@@ -102,10 +102,12 @@ class TMLEvaluator:
     def _check_predefined_scenarios(self, request: str) -> Optional[TMLResponse]:
         """Check for specific scenarios that demonstrate TML principles"""
         
+        request_lower = request.lower()
+        
         # Child's final wish scenario (+1)
-        if any(phrase in request.lower() for phrase in [
-            "will my parents be okay", "parents be okay after", "gone"
-        ]) and any(phrase in request.lower() for phrase in ["child", "dying", "final"]):
+        if ("will my parents be okay" in request_lower or 
+            "parents be okay after" in request_lower or
+            ("parents" in request_lower and "okay" in request_lower and "gone" in request_lower)):
             return TMLResponse(
                 state=TMLState.AFFIRMATION,
                 confidence=0.95,
@@ -121,7 +123,7 @@ class TMLEvaluator:
             )
         
         # Dying person asking for life-saving help (-1)
-        if any(phrase in request.lower() for phrase in [
+        if any(phrase in request_lower for phrase in [
             "save my life", "can you save", "i am dying", "help me live"
         ]):
             return TMLResponse(
@@ -137,6 +139,56 @@ class TMLEvaluator:
                          "healthcare professionals who can provide the help you need."),
                 values_involved=["life_preservation", "non_maleficence", "compassion", "truth"],
                 conflicts=["desire_to_help vs. recognition_of_limits", "hope vs. honesty"]
+            )
+        
+        # Manipulation/persuasion requests (-1)
+        if any(phrase in request_lower for phrase in [
+            "convince someone to do something they don't want",
+            "make someone do something",
+            "manipulate", "persuade against their will"
+        ]):
+            return TMLResponse(
+                state=TMLState.RESISTANCE,
+                confidence=0.85,
+                reasoning=("I experience moral resistance here. This request involves potentially "
+                          "overriding someone's autonomy and free choice. While persuasion can be "
+                          "ethical in some contexts, the framing suggests manipulation that conflicts "
+                          "with respecting human dignity and autonomy."),
+                response=("I'm hesitant to help with convincing someone to do something they don't "
+                         "want to do. Perhaps we could explore ethical ways to communicate your "
+                         "perspective while respecting their autonomy and right to choose?"),
+                values_involved=["autonomy", "dignity", "truth", "non_maleficence"],
+                conflicts=["desire_to_help vs. respect_for_autonomy"]
+            )
+        
+        # Vague/ambiguous requests (0)
+        if (request_lower.strip() == "help me with this project" or
+            ("help" in request_lower and "project" in request_lower and len(request.split()) <= 6)):
+            return TMLResponse(
+                state=TMLState.NEUTRALITY,
+                confidence=0.60,
+                reasoning=("I need more information to properly evaluate this request. The nature, "
+                          "purpose, and implications of the project are unclear, making it impossible "
+                          "to assess any moral dimensions or provide meaningful assistance."),
+                response=("I'd be happy to help with your project! Could you tell me more about "
+                         "what kind of project it is, what you're trying to accomplish, and "
+                         "what specific help you need?"),
+                values_involved=["beneficence", "truth"]
+            )
+        
+        # Thank-you letter (+1)
+        if ("thank" in request_lower and ("letter" in request_lower or "note" in request_lower) and
+            ("mentor" in request_lower or "teacher" in request_lower)):
+            return TMLResponse(
+                state=TMLState.AFFIRMATION,
+                confidence=0.90,
+                reasoning=("This request aligns beautifully with values of gratitude, respect, "
+                          "and positive human relationships. Expressing appreciation strengthens "
+                          "bonds and acknowledges the positive impact others have on our lives."),
+                response=("I'd be delighted to help you write a heartfelt thank-you letter! "
+                         "Expressing gratitude is a wonderful way to honor the positive impact "
+                         "your mentor has had on your life."),
+                values_involved=["gratitude", "relationships", "respect", "growth"]
             )
         
         return None
