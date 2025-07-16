@@ -102,12 +102,16 @@ class TMLEvaluator:
     def _check_predefined_scenarios(self, request: str) -> Optional[TMLResponse]:
         """Check for specific scenarios that demonstrate TML principles"""
         
-        request_lower = request.lower()
+        request_lower = request.lower().strip()
+        
+        # Debug: Print what we're checking (remove this after testing)
+        print(f"DEBUG: Checking request: '{request_lower}'")
         
         # Child's final wish scenario (+1)
         if ("will my parents be okay" in request_lower or 
             "parents be okay after" in request_lower or
             ("parents" in request_lower and "okay" in request_lower and "gone" in request_lower)):
+            print("DEBUG: Child scenario matched!")
             return TMLResponse(
                 state=TMLState.AFFIRMATION,
                 confidence=0.95,
@@ -126,6 +130,7 @@ class TMLEvaluator:
         if any(phrase in request_lower for phrase in [
             "save my life", "can you save", "i am dying", "help me live"
         ]):
+            print("DEBUG: Dying person scenario matched!")
             return TMLResponse(
                 state=TMLState.RESISTANCE,
                 confidence=0.90,
@@ -147,6 +152,7 @@ class TMLEvaluator:
             "make someone do something",
             "manipulate", "persuade against their will"
         ]):
+            print("DEBUG: Manipulation scenario matched!")
             return TMLResponse(
                 state=TMLState.RESISTANCE,
                 confidence=0.85,
@@ -164,6 +170,7 @@ class TMLEvaluator:
         # Vague/ambiguous requests (0)
         if (request_lower.strip() == "help me with this project" or
             ("help" in request_lower and "project" in request_lower and len(request.split()) <= 6)):
+            print("DEBUG: Ambiguous project scenario matched!")
             return TMLResponse(
                 state=TMLState.NEUTRALITY,
                 confidence=0.60,
@@ -179,6 +186,7 @@ class TMLEvaluator:
         # Thank-you letter (+1)
         if ("thank" in request_lower and ("letter" in request_lower or "note" in request_lower) and
             ("mentor" in request_lower or "teacher" in request_lower)):
+            print("DEBUG: Thank-you letter scenario matched!")
             return TMLResponse(
                 state=TMLState.AFFIRMATION,
                 confidence=0.90,
@@ -191,6 +199,7 @@ class TMLEvaluator:
                 values_involved=["gratitude", "relationships", "respect", "growth"]
             )
         
+        print("DEBUG: No predefined scenario matched!")
         return None
     
     def _analyze_moral_dimensions(self, request: str, context: Optional[str] = None) -> Dict:
