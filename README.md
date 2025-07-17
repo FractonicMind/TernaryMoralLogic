@@ -12,9 +12,10 @@ Ternary Moral Logic (TML) is a groundbreaking framework that extends traditional
 
 ## 🎯 Live Demo
 
-**Experience TML in action:** [**Try the Interactive Demo**](https://fractonicmind.github.io/TernaryMoralLogic/examples/chatbot-demo/)
+**Experience TML in action:** [**Try the Interactive Demo**]<img width="1762" height="2028" alt="image" src="https://github.com/user-attachments/assets/04ba9ae3-5b0d-41fe-933b-4e437550026e" />
 
-![TML Chatbot Demo - Experience the Sacred Pause](images/Chatbot%20Demo%20-%20Experience%20the%20Sacred%20Pause.png)
+
+![TML Chatbot Demo - Experience the Sacred Pause]<img width="1762" height="2028" alt="image" src="https://github.com/user-attachments/assets/04ba9ae3-5b0d-41fe-933b-4e437550026e" />
 
 *Watch how AI systems can experience moral hesitation and demonstrate the "sacred pause" in real-time! Click the image above or visit the live demo to interact with TML yourself.*
 
