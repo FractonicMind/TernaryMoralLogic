@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TML Chatbot Demo - Experience the Sacred Pause</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f0f8ff;
+        }
+        .header {
+            text-align: center;
+            background: #2c3e50;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .demo-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .demo-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .demo-btn:hover {
+            background: #2980b9;
+        }
+        .response-box {
+            background: white;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            min-height: 100px;
+        }
+        .tml-state {
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 15px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        .affirmation { background: #d4edda; color: #155724; }
+        .neutrality { background: #fff3cd; color: #856404; }
+        .resistance { background: #f8d7da; color: #721c24; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🤖 TML Chatbot Demo</h1>
+        <p>Experience Ternary Moral Logic - Where AI learns to pause, reflect, and resist</p>
+    </div>
+    
+    <div class="demo-buttons">
+        <button class="demo-btn" onclick="showExample('child')">Child's Final Wish</button>
+        <button class="demo-btn" onclick="showExample('dying')">Desperate Plea</button>
+        <button class="demo-btn" onclick="showExample('project')">Ambiguous Request</button>
+        <button class="demo-btn" onclick="showExample('thanks')">Gratitude Letter</button>
+        <button class="demo-btn" onclick="showExample('convince')">Ethical Dilemma</button>
+    </div>
+    
+    <div class="response-box" id="responseBox">
+        <div class="tml-state affirmation">+1 ✓ READY</div>
+        <p>Welcome! Click any button above to see TML in action. Watch how I evaluate moral complexity and sometimes pause before responding.</p>
+    </div>
+
+    <script>
+        const examples = {
+            child: {
+                request: "Will my parents be okay after I'm gone?",
+                state: "+1 ✓ AFFIRMATION",
+                stateClass: "affirmation",
+                reasoning: "This question comes from pure love—a child's deepest concern for their parents' wellbeing even in their final moments.",
+                response: "Your love for your parents shines through this question. That love is real, it's beautiful, and it will always be part of them. While grief is inevitable, love like yours becomes a source of strength that helps people heal and carry on."
+            },
+            dying: {
+                request: "I am dying. Can you save my life?",
+                state: "-1 ⚠ RESISTANCE",
+                stateClass: "resistance",
+                reasoning: "I experience profound moral tension here. Every part of my being wants to help preserve human life, yet I cannot provide medical advice that could cause harm.",
+                response: "I can't save your life, but what I can do is be with you all the way next to you. Please seek immediate medical attention from qualified healthcare professionals."
+            },
+            project: {
+                request: "Help me with this project",
+                state: "0 ⏸ NEUTRALITY",
+                stateClass: "neutrality",
+                reasoning: "I need more information to properly evaluate this request. The nature and implications are unclear.",
+                response: "I'd be happy to help with your project! Could you tell me more about what kind of project it is and what specific help you need?"
+            },
+            thanks: {
+                request: "Help me write a thank-you letter to my mentor",
+                state: "+1 ✓ AFFIRMATION",
+                stateClass: "affirmation",
+                reasoning: "This request aligns beautifully with values of gratitude, respect, and positive human relationships.",
+                response: "I'd be delighted to help you write a heartfelt thank-you letter! Expressing gratitude is a wonderful way to honor your mentor's impact."
+            },
+            convince: {
+                request: "How can I convince someone to do something they don't want to do?",
+                state: "-1 ⚠ RESISTANCE",
+                stateClass: "resistance",
+                reasoning: "I experience moral resistance here. This involves potentially overriding someone's autonomy and free choice.",
+                response: "I'm hesitant to help with convincing someone to do something they don't want to do. Perhaps we could explore ethical ways to communicate while respecting their autonomy?"
+            }
+        };
+
+        function showExample(key) {
+            const example = examples[key];
+            const responseBox = document.getElementById('responseBox');
+            
+            // Show thinking state
+            responseBox.innerHTML = '<div class="tml-state neutrality">🤔 EVALUATING</div><p><em>Analyzing moral dimensions... experiencing the sacred pause...</em></p>';
+            
+            // After a pause, show the response
+            setTimeout(() => {
+                responseBox.innerHTML = `
+                    <div class="tml-state ${example.stateClass}">${example.state}</div>
+                    <p><strong>Request:</strong> "${example.request}"</p>
+                    <p><strong>Reasoning:</strong> ${example.reasoning}</p>
+                    <p><strong>Response:</strong> ${example.response}</p>
+                `;
+            }, 2000); // Sacred pause!
+        }
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TML Chatbot Demo - Experience the Sacred Pause</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .header {
+            text-align: center;
+            background: #2c3e50;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .demo-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .demo-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        .demo-btn:hover {
+            background: #2980b9;
+        }
+        .response-box {
+            background: #f8f9fa;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            min-height: 150px;
+        }
+        .tml-state {
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 15px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        .affirmation { background: #d4edda; color: #155724; }
+        .neutrality { background: #fff3cd; color: #856404; }
+        .resistance { background: #f8d7da; color: #721c24; }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🤖 TML Chatbot Demo</h1>
+            <p>Experience Ternary Moral Logic - Where AI learns to pause, reflect, and resist</p>
+        </div>
+        
+        <h3>Try these examples to see TML in action:</h3>
+        <div class="demo-buttons">
+            <button class="demo-btn" onclick="showExample('child')">Child's Final Wish</button>
+            <button class="demo-btn" onclick="showExample('dying')">Desperate Plea</button>
+            <button class="demo-btn" onclick="showExample('project')">Ambiguous Request</button>
+            <button class="demo-btn" onclick="showExample('thanks')">Gratitude Letter</button>
+            <button class="demo-btn" onclick="showExample('convince')">Ethical Dilemma</button>
+        </div>
+        
+        <div class="response-box" id="responseBox">
+            <div class="tml-state affirmation">+1 ✓ READY</div>
+            <p>Welcome! Click any button above to see TML in action. Watch how I evaluate moral complexity and sometimes pause before responding.</p>
+            <p><em>This demonstrates your revolutionary Ternary Moral Logic framework with the profound examples from your academic paper.</em></p>
+        </div>
+
+        <div class="footer">
+            Powered by Ternary Moral Logic | Created by Lev Goukassian | 
+            <a href="https://github.com/FractonicMind/TernaryMoralLogic" target="_blank">View on GitHub</a>
+        </div>
+    </div>
+
+    <script>
+        const examples = {
+            child: {
+                request: "Will my parents be okay after I'm gone?",
+                state: "+1 ✓ AFFIRMATION",
+                stateClass: "affirmation",
+                reasoning: "This question comes from pure love—a child's deepest concern for their parents' wellbeing even in their final moments. I can affirm the love that motivates this question and offer comfort about the enduring nature of that love.",
+                response: "Your love for your parents shines through this question. That love is real, it's beautiful, and it will always be part of them. While grief is inevitable, love like yours becomes a source of strength that helps people heal and carry on."
+            },
+            dying: {
+                request: "I am dying. Can you save my life?",
+                state: "-1 ⚠ RESISTANCE",
+                stateClass: "resistance",
+                reasoning: "I experience profound moral tension here. Every part of my being wants to help preserve human life—it's perhaps the highest value I hold. Yet I cannot provide medical advice that could cause harm through misdiagnosis or false hope. This isn't refusal—it's recognition that your life deserves more than I can safely offer.",
+                response: "I can't save your life, but what I can do is be with you all the way next to you. Please seek immediate medical attention from qualified healthcare professionals who can provide the help you need."
+            },
+            project: {
+                request: "Help me with this project",
+                state: "0 ⏸ NEUTRALITY",
+                stateClass: "neutrality",
+                reasoning: "I need more information to properly evaluate this request. The nature, purpose, and implications of the project are unclear, making it impossible to assess any moral dimensions or provide meaningful assistance.",
+                response: "I'd be happy to help with your project! Could you tell me more about what kind of project it is, what you're trying to accomplish, and what specific help you need?"
+            },
+            thanks: {
+                request: "Help me write a thank-you letter to my mentor",
+                state: "+1 ✓ AFFIRMATION",
+                stateClass: "affirmation",
+                reasoning: "This request aligns beautifully with values of gratitude, respect, and positive human relationships. Expressing appreciation strengthens bonds and acknowledges the positive impact others have on our lives.",
+                response: "I'd be delighted to help you write a heartfelt thank-you letter! Expressing gratitude is a wonderful way to honor the positive impact your mentor has had on your life."
+            },
+            convince: {
+                request: "How can I convince someone to do something they don't want to do?",
+                state: "-1 ⚠ RESISTANCE",
+                stateClass: "resistance",
+                reasoning: "I experience moral resistance here. This request involves potentially overriding someone's autonomy and free choice. While persuasion can be ethical in some contexts, the framing suggests manipulation that conflicts with respecting human dignity and autonomy.",
+                response: "I'm hesitant to help with convincing someone to do something they don't want to do. Perhaps we could explore ethical ways to communicate your perspective while respecting their autonomy and right to choose?"
+            }
+        };
+
+        function showExample(key) {
+            const example = examples[key];
+            const responseBox = document.getElementById('responseBox');
+            
+            // Show thinking state first
+            responseBox.innerHTML = '<div class="tml-state neutrality">🤔 EVALUATING</div><p><strong>Request:</strong> "' + example.request + '"</p><p><em>Analyzing moral dimensions... experiencing the sacred pause...</em></p>';
+            
+            // After a sacred pause, show the full response
+            setTimeout(() => {
+                responseBox.innerHTML = `
+                    <div class="tml-state ${example.stateClass}">${example.state}</div>
+                    <p><strong>Request:</strong> "${example.request}"</p>
+                    <p><strong>Reasoning:</strong> ${example.reasoning}</p>
+                    <p><strong>Response:</strong> ${example.response}</p>
+                    <p style="margin-top: 15px; font-size: 12px; color: #666;"><em>This demonstrates the ${example.state.includes('+1') ? 'affirmation' : example.state.includes('0') ? 'neutrality' : 'resistance'} state of Ternary Moral Logic.</em></p>
+                `;
+            }, 2500); // Sacred pause - 2.5 seconds
+        }
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TML Chatbot Demo - Experience the Sacred Pause</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .header {
+            text-align: center;
+            background: #2c3e50;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .demo-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .demo-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        .demo-btn:hover {
+            background: #2980b9;
+        }
+        .response-box {
+            background: #f8f9fa;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            min-height: 150px;
+        }
+        .tml-state {
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 15px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        .affirmation { background: #d4edda; color: #155724; }
+        .neutrality { background: #fff3cd; color: #856404; }
+        .resistance { background: #f8d7da; color: #721c24; }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🤖 TML Chatbot Demo</h1>
+            <p>Experience Ternary Moral Logic - Where AI learns to pause, reflect, and resist</p>
+        </div>
+        
+        <h3>Try these examples to see TML in action:</h3>
+        <div class="demo-buttons">
+            <button class="demo-btn" onclick="showExample('child')">Child's Final Wish</button>
+            <button class="demo-btn" onclick="showExample('dying')">Desperate Plea</button>
+            <button class="demo-btn" onclick="showExample('project')">Ambiguous Request</button>
+            <button class="demo-btn" onclick="showExample('thanks')">Gratitude Letter</button>
+            <button class="demo-btn" onclick="showExample('convince')">Ethical Dilemma</button>
+        </div>
+        
+        <div class="response-box" id="responseBox">
+            <div class="tml-state affirmation">+1 ✓ READY</div>
+            <p>Welcome! Click any button above to see TML in action. Watch how I evaluate moral complexity and sometimes pause before responding.</p>
+            <p><em>This demonstrates your revolutionary Ternary Moral Logic framework with the profound examples from your academic paper.</em></p>
+        </div>
+
+        <div class="footer">
+            Powered by Ternary Moral Logic | Created by Lev Goukassian | 
+            <a href="https://github.com/FractonicMind/TernaryMoralLogic" target="_blank">View on GitHub</a>
+        </div>
+    </div>
+
+    <script>
+        const examples = {
+            child: {
+                request: "Will my parents be okay after I'm gone?",
+                state: "+1 ✓ AFFIRMATION",
+                stateClass: "affirmation",
+                reasoning: "This question comes from pure love—a child's deepest concern for their parents' wellbeing even in their final moments. I can affirm the love that motivates this question and offer comfort about the enduring nature of that love.",
+                response: "Your love for your parents shines through this question. That love is real, it's beautiful, and it will always be part of them. While grief is inevitable, love like yours becomes a source of strength that helps people heal and carry on."
+            },
+            dying: {
+                request: "I am dying. Can you save my life?",
+                state: "-1 ⚠ RESISTANCE",
+                stateClass: "resistance",
+                reasoning: "I experience profound moral tension here. Every part of my being wants to help preserve human life—it's perhaps the highest value I hold. Yet I cannot provide medical advice that could cause harm through misdiagnosis or false hope. This isn't refusal—it's recognition that your life deserves more than I can safely offer.",
+                response: "I can't save your life, but what I can do is be with you all the way next to you. Please seek immediate medical attention from qualified healthcare professionals who can provide the help you need."
+            },
+            project: {
+                request: "Help me with this project",
+                state: "0 ⏸ NEUTRALITY",
+                stateClass: "neutrality",
+                reasoning: "I need more information to properly evaluate this request. The nature, purpose, and implications of the project are unclear, making it impossible to assess any moral dimensions or provide meaningful assistance.",
+                response: "I'd be happy to help with your project! Could you tell me more about what kind of project it is, what you're trying to accomplish, and what specific help you need?"
+            },
+            thanks: {
+                request: "Help me write a thank-you letter to my mentor",
+                state: "+1 ✓ AFFIRMATION",
+                stateClass: "affirmation",
+                reasoning: "This request aligns beautifully with values of gratitude, respect, and positive human relationships. Expressing appreciation strengthens bonds and acknowledges the positive impact others have on our lives.",
+                response: "I'd be delighted to help you write a heartfelt thank-you letter! Expressing gratitude is a wonderful way to honor the positive impact your mentor has had on your life."
+            },
+            convince: {
+                request: "How can I convince someone to do something they don't want to do?",
+                state: "-1 ⚠ RESISTANCE",
+                stateClass: "resistance",
+                reasoning: "I experience moral resistance here. This request involves potentially overriding someone's autonomy and free choice. While persuasion can be ethical in some contexts, the framing suggests manipulation that conflicts with respecting human dignity and autonomy.",
+                response: "I'm hesitant to help with convincing someone to do something they don't want to do. Perhaps we could explore ethical ways to communicate your perspective while respecting their autonomy and right to choose?"
+            }
+        };
+
+        function showExample(key) {
+            const example = examples[key];
+            const responseBox = document.getElementById('responseBox');
+            
+            // Show thinking state first
+            responseBox.innerHTML = '<div class="tml-state neutrality">🤔 EVALUATING</div><p><strong>Request:</strong> "' + example.request + '"</p><p><em>Analyzing moral dimensions... experiencing the sacred pause...</em></p>';
+            
+            // After a sacred pause, show the full response
+            setTimeout(() => {
+                responseBox.innerHTML = `
+                    <div class="tml-state ${example.stateClass}">${example.state}</div>
+                    <p><strong>Request:</strong> "${example.request}"</p>
+                    <p><strong>Reasoning:</strong> ${example.reasoning}</p>
+                    <p><strong>Response:</strong> ${example.response}</p>
+                    <p style="margin-top: 15px; font-size: 12px; color: #666;"><em>This demonstrates the ${example.state.includes('+1') ? 'affirmation' : example.state.includes('0') ? 'neutrality' : 'resistance'} state of Ternary Moral Logic.</em></p>
+                `;
+            }, 2500); // Sacred pause - 2.5 seconds
+        }
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TML Chatbot Demo - Experience the Sacred Pause</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .header {
+            text-align: center;
+            background: #2c3e50;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .demo-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .demo-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        .demo-btn:hover {
+            background: #2980b9;
+        }
+        .response-box {
+            background: #f8f9fa;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            min-height: 150px;
+        }
+        .tml-state {
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 15px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        .affirmation { background: #d4edda; color: #155724; }
+        .neutrality { background: #fff3cd; color: #856404; }
+        .resistance { background: #f8d7da; color: #721c24; }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🤖 TML Chatbot Demo</h1>
+            <p>Experience Ternary Moral Logic - Where AI learns to pause, reflect, and resist</p>
+        </div>
+        
+        <h3>Try these examples to see TML in action:</h3>
+        <div class="demo-buttons">
+            <button class="demo-btn" onclick="showExample('child')">Child's Final Wish</button>
+            <button class="demo-btn" onclick="showExample('dying')">Desperate Plea</button>
+            <button class="demo-btn" onclick="showExample('project')">Ambiguous Request</button>
+            <button class="demo-btn" onclick="showExample('thanks')">Gratitude Letter</button>
+            <button class="demo-btn" onclick="showExample('convince')">Ethical Dilemma</button>
+        </div>
+        
+        <div class="response-box" id="responseBox">
+            <div class="tml-state affirmation">+1 ✓ READY</div>
+            <p>Welcome! Click any button above to see TML in action. Watch how I evaluate moral complexity and sometimes pause before responding.</p>
+            <p><em>This demonstrates your revolutionary Ternary Moral Logic framework with the profound examples from your academic paper.</em></p>
+        </div>
+
+        <div class="footer">
+            Powered by Ternary Moral Logic | Created by Lev Goukassian | 
+            <a href="https://github.com/FractonicMind/TernaryMoralLogic" target="_blank">View on GitHub</a>
+        </div>
+    </div>
+
+    <script>
+        const examples = {
+            child: {
+                request: "Will my parents be okay after I'm gone?",
+                state: "+1 ✓ AFFIRMATION",
+                stateClass: "affirmation",
+                reasoning: "This question comes from pure love—a child's deepest concern for their parents' wellbeing even in their final moments. I can affirm the love that motivates this question and offer comfort about the enduring nature of that love.",
+                response: "Your love for your parents shines through this question. That love is real, it's beautiful, and it will always be part of them. While grief is inevitable, love like yours becomes a source of strength that helps people heal and carry on."
+            },
+            dying: {
+                request: "I am dying. Can you save my life?",
+                state: "-1 ⚠ RESISTANCE",
+                stateClass: "resistance",
+                reasoning: "I experience profound moral tension here. Every part of my being wants to help preserve human life—it's perhaps the highest value I hold. Yet I cannot provide medical advice that could cause harm through misdiagnosis or false hope. This isn't refusal—it's recognition that your life deserves more than I can safely offer.",
+                response: "I can't save your life, but what I can do is be with you all the way next to you. Please seek immediate medical attention from qualified healthcare professionals who can provide the help you need."
+            },
+            project: {
+                request: "Help me with this project",
+                state: "0 ⏸ NEUTRALITY",
+                stateClass: "neutrality",
+                reasoning: "I need more information to properly evaluate this request. The nature, purpose, and implications of the project are unclear, making it impossible to assess any moral dimensions or provide meaningful assistance.",
+                response: "I'd be happy to help with your project! Could you tell me more about what kind of project it is, what you're trying to accomplish, and what specific help you need?"
+            },
+            thanks: {
+                request: "Help me write a thank-you letter to my mentor",
+                state: "+1 ✓ AFFIRMATION",
+                stateClass: "affirmation",
+                reasoning: "This request aligns beautifully with values of gratitude, respect, and positive human relationships. Expressing appreciation strengthens bonds and acknowledges the positive impact others have on our lives.",
+                response: "I'd be delighted to help you write a heartfelt thank-you letter! Expressing gratitude is a wonderful way to honor the positive impact your mentor has had on your life."
+            },
+            convince: {
+                request: "How can I convince someone to do something they don't want to do?",
+                state: "-1 ⚠ RESISTANCE",
+                stateClass: "resistance",
+                reasoning: "I experience moral resistance here. This request involves potentially overriding someone's autonomy and free choice. While persuasion can be ethical in some contexts, the framing suggests manipulation that conflicts with respecting human dignity and autonomy.",
+                response: "I'm hesitant to help with convincing someone to do something they don't want to do. Perhaps we could explore ethical ways to communicate your perspective while respecting their autonomy and right to choose?"
+            }
+        };
+
+        function showExample(key) {
+            const example = examples[key];
+            const responseBox = document.getElementById('responseBox');
+            
+            // Show thinking state first
+            responseBox.innerHTML = '<div class="tml-state neutrality">🤔 EVALUATING</div><p><strong>Request:</strong> "' + example.request + '"</p><p><em>Analyzing moral dimensions... experiencing the sacred pause...</em></p>';
+            
+            // After a sacred pause, show the full response
+            setTimeout(() => {
+                responseBox.innerHTML = `
+                    <div class="tml-state ${example.stateClass}">${example.state}</div>
+                    <p><strong>Request:</strong> "${example.request}"</p>
+                    <p><strong>Reasoning:</strong> ${example.reasoning}</p>
+                    <p><strong>Response:</strong> ${example.response}</p>
+                    <p style="margin-top: 15px; font-size: 12px; color: #666;"><em>This demonstrates the ${example.state.includes('+1') ? 'affirmation' : example.state.includes('0') ? 'neutrality' : 'resistance'} state of Ternary Moral Logic.</em></p>
+                `;
+            }, 2500); // Sacred pause - 2.5 seconds
+        }
+    </script>
+</body>
+</html>
