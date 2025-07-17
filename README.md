@@ -26,7 +26,7 @@ Ternary Moral Logic (TML) is a groundbreaking framework that extends traditional
 
 ---
 
-### The Three States
+## The Three States
 
 - **+1 (Affirmation)**: Proceed with confidence when values align
 - **0 (Neutrality)**: Pause for reflection when more information is needed  
@@ -68,50 +68,6 @@ TML State: [Your evaluation]
 Reasoning: [Your moral reasoning]
 Response: [Your response based on TML state]
 """
-```
-
-### Example Implementation
-
-```python
-class TMLEvaluator:
-    def __init__(self):
-        self.values = ["autonomy", "beneficence", "justice", "transparency"]
-    
-    def evaluate(self, request, context=None):
-        conflicts = self.detect_value_conflicts(request)
-        
-        if not conflicts:
-            return {"state": +1, "confidence": "high"}
-        elif self.needs_more_info(request):
-            return {"state": 0, "reason": "insufficient_information"}
-        else:
-            return {
-                "state": -1, 
-                "conflicts": conflicts,
-                "reasoning": self.explain_resistance(conflicts)
-            }
-    
-    def detect_value_conflicts(self, request):
-        # Implementation for detecting conflicts between values
-        pass
-    
-    def explain_resistance(self, conflicts):
-        return f"I experience moral tension between {conflicts}. This situation requires careful human consideration."
-```
-
-## Core Concepts
-
-### Moral Agency vs. Compliance
-
-TML transforms AI systems from **moral automatons** that follow rules to **moral partners** capable of:
-- Experiencing genuine ethical conflict
-- Maintaining productive tension rather than resolving it immediately  
-- Communicating moral concerns transparently
-- Collaborating with humans on complex ethical decisions
-
-### Beyond Alignment to Partnership
-
-Traditional AI alignment seeks compliance with human values. TML suggests a different relationship: AI systems as moral partners capable of their own ethical reasoning and resistance.
 
 ## Research Foundation
 
