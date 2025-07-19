@@ -238,9 +238,6 @@ If you use TML in your research, please cite:
 Email: leogouk@gmail.com  
 ORCID: [0009-0006-5966-1243](https://orcid.org/0009-0006-5966-1243)
 
-## Acknowledgments
-
-Special thanks to Claude Sonnet 4 (Anthropic) for collaborative engagement in developing this framework through iterative dialogue, demonstrating that AI systems can be genuine partners in moral reasoning development.
 
 ---
 
