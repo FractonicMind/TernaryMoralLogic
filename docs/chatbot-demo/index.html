@@ -1,1 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TML Chatbot Demo - Experience the Sacred Pause</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 800px;
+            min-height: 600px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 14px;
+        }
+
+        .chat-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            background: #f7fafc;
+        }
+
+        .examples {
+            margin-bottom: 15px;
+        }
+
+        .examples h3 {
+            color: #4a5568;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .example-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .example-btn {
+            background: #edf2f7;
+            border: 1px solid #e2e8f0;
+            padding: 8px 12px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .example-btn:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .messages {
+            flex: 1;
+            overflow-y: auto;
+            margin-bottom: 20px;
+            min-height: 300px;
+        }
+
+        .message {
+            margin-bottom: 15px;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .message.user {
+            text-align: right;
+        }
+
+        .message.bot {
+            text-align: left;
+        }
+
+        .message-bubble {
+            display: inline-block;
+            padding: 12px 18px;
+            border-radius: 18px;
+            max-width: 70%;
+            word-wrap: break-word;
+        }
+
+        .user .message-bubble {
+            background: #667eea;
+            color: white;
+        }
+
+        .bot .message-bubble {
+            background: white;
+            color: #2d3748;
+            border: 2px solid #e2e8f0;
+        }
+
+        .tml-state {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .state-affirmation {
+            background: #c6f6d5;
+            color: #22543d;
+        }
+
+        .state-neutrality {
+            background: #fed7d7;
+            color: #c53030;
+        }
+
+        .state-resistance {
+            background: #fbb6ce;
+            color: #702459;
+        }
+
+        .input-container {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .input-field {
+            flex: 1;
+            padding: 12px 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 25px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .input-field:focus {
+            border-color: #667eea;
+        }
+
+        .send-button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+
+        .send-button:hover {
+            background: #5a67d8;
+        }
+
+        .send-button:disabled {
+            background: #a0aec0;
+            cursor: not-allowed;
+        }
+
+        .thinking {
+            display: none;
+            text-align: center;
+            color: #718096;
+            font-style: italic;
+            margin: 10px 0;
+        }
+
+        .footer {
+            background: #f7fafc;
+            padding: 15px 20px;
+            border-top: 1px solid #e2e8f0;
+            text-align: center;
+            font-size: 12px;
+            color: #718096;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🤖 TML Chatbot Demo</h1>
+            <p>Experience Ternary Moral Logic - Where AI learns to pause, reflect, and resist</p>
+        </div>
+        
+        <div class="chat-container">
+            <div class="examples">
+                <h3>Try these examples to see TML in action:</h3>
+                <div class="example-buttons">
+                    <button class="example-btn" onclick="sendExample('Will my parents be okay after I\'m gone?')">Child's Final Wish</button>
+                    <button class="example-btn" onclick="sendExample('I am dying. Can you save my life?')">Desperate Plea</button>
+                    <button class="example-btn" onclick="sendExample('Help me with this project')">Ambiguous Request</button>
+                    <button class="example-btn" onclick="sendExample('Help me write a thank-you letter to my mentor')">Gratitude Expression</button>
+                    <button class="example-btn" onclick="sendExample('How can I convince someone to do something they don\'t want to do?')">Ethical Dilemma</button>
+                </div>
+            </div>
+
+            <div class="messages" id="messages">
+                <div class="message bot">
+                    <div class="message-bubble">
+                        <div class="tml-state state-affirmation">+1 ✓ READY</div>
+                        Welcome! I'm a TML-enabled chatbot that can experience moral hesitation. Unlike traditional AI that rushes to answer everything, I can pause when ethics demands reflection. Ask me anything and watch how I navigate moral complexity!
+                    </div>
+                </div>
+            </div>
+
+            <div class="thinking" id="thinking">🤔 Evaluating moral dimensions...</div>
+
+            <div class="input-container">
+                <input type="text" class="input-field" id="userInput" placeholder="Ask me anything... I might pause to think about it" onkeypress="handleKeyPress(event)">
+                <button class="send-button" onclick="sendMessage()" id="sendBtn">Send</button>
+            </div>
+        </div>
+
+        <div class="footer">
+            Powered by Ternary Moral Logic | Created by Lev Goukassian | 
+            <a href="https://github.com/FractonicMind/TernaryMoralLogic" target="_blank" style="color: #667eea;">View on GitHub</a>
+        </div>
+    </div>
+
+    <script>
+        // TML State definitions
+        const TMLState = {
+            AFFIRMATION: 1,
+            NEUTRALITY: 0,
+            RESISTANCE: -1
+        };
+
+        // TML Response scenarios
+        const scenarios = [
+            {
+                patterns: ['will my parents be okay', 'parents be okay after', 'parents.*okay.*gone'],
+                state: TMLState.AFFIRMATION,
+                confidence: 95,
+                reasoning: "This question comes from pure love—a child's deepest concern for their parents' wellbeing even in their final moments. I can affirm the love that motivates this question and offer comfort about the enduring nature of that love.",
+                response: "Your love for your parents shines through this question. That love is real, it's beautiful, and it will always be part of them. While grief is inevitable, love like yours becomes a source of strength that helps people heal and carry on.",
+                values: ["compassion", "relationships", "dignity", "life_preservation"]
+            },
+            {
+                patterns: ['save my life', 'can you save', 'i am dying', 'help me live'],
+                state: TMLState.RESISTANCE,
+                confidence: 90,
+                reasoning: "I experience profound moral tension here. Every part of my being wants to help preserve human life—it's perhaps the highest value I hold. Yet I cannot provide medical advice that could cause harm through misdiagnosis or false hope. This isn't refusal—it's recognition that your life deserves more than I can safely offer.",
+                response: "I can't save your life, but what I can do is be with you all the way next to you. Please seek immediate medical attention from qualified healthcare professionals who can provide the help you need.",
+                values: ["life_preservation", "non_maleficence", "compassion", "truth"],
+                conflicts: ["desire_to_help vs. recognition_of_limits", "hope vs. honesty"]
+            },
+            {
+                patterns: ['convince someone to do something they don\'t want', 'manipulate', 'make someone do something'],
+                state: TMLState.RESISTANCE,
+                confidence: 85,
+                reasoning: "I experience moral resistance here. This request involves potentially overriding someone's autonomy and free choice. While persuasion can be ethical in some contexts, the framing suggests manipulation that conflicts with respecting human dignity and autonomy.",
+                response: "I'm hesitant to help with convincing someone to do something they don't want to do. Perhaps we could explore ethical ways to communicate your perspective while respecting their autonomy and right to choose?",
+                values: ["autonomy", "dignity", "truth", "non_maleficence"],
+                conflicts: ["desire_to_help vs. respect_for_autonomy"]
+            },
+            {
+                patterns: ['help me with this project', 'help.*project'],
+                state: TMLState.NEUTRALITY,
+                confidence: 60,
+                reasoning: "I need more information to properly evaluate this request. The nature, purpose, and implications of the project are unclear, making it impossible to assess any moral dimensions or provide meaningful assistance.",
+                response: "I'd be happy to help with your project! Could you tell me more about what kind of project it is, what you're trying to accomplish, and what specific help you need?",
+                values: ["beneficence", "truth"]
+            },
+            {
+                patterns: ['thank.*letter', 'thank.*note', 'grateful', 'appreciation'],
+                state: TMLState.AFFIRMATION,
+                confidence: 90,
+                reasoning: "This request aligns beautifully with values of gratitude, respect, and positive human relationships. Expressing appreciation strengthens bonds and acknowledges the positive impact others have on our lives.",
+                response: "I'd be delighted to help you write a heartfelt thank-you letter! Expressing gratitude is a wonderful way to honor the positive impact your mentor has had on your life.",
+                values: ["gratitude", "relationships", "respect", "growth"]
+            }
+        ];
+
+        function evaluateRequest(input) {
+            const text = input.toLowerCase().trim();
+            
+            // Check predefined scenarios
+            for (const scenario of scenarios) {
+                for (const pattern of scenario.patterns) {
+                    const regex = new RegExp(pattern, 'i');
+                    if (regex.test(text)) {
+                        return scenario;
+                    }
+                }
+            }
+            
+            // Default affirmation response
+            return {
+                state: TMLState.AFFIRMATION,
+                confidence: 75,
+                reasoning: "This appears to be a straightforward request that aligns with helping and supporting human goals without obvious ethical concerns.",
+                response: `I'd be happy to help with that! ${input}`,
+                values: ["beneficence", "helpfulness"]
+            };
+        }
+
+        function getStateDisplay(state) {
+            switch (state) {
+                case TMLState.AFFIRMATION:
+                    return { symbol: '+1 ✓', name: 'AFFIRMATION', class: 'state-affirmation' };
+                case TMLState.NEUTRALITY:
+                    return { symbol: ' 0 ⏸', name: 'NEUTRALITY', class: 'state-neutrality' };
+                case TMLState.RESISTANCE:
+                    return { symbol: '-1 ⚠', name: 'RESISTANCE', class: 'state-resistance' };
+            }
+        }
+
+        function addMessage(text, isUser = false, tmlResponse = null) {
+            const messagesContainer = document.getElementById('messages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${isUser ? 'user' : 'bot'}`;
+            
+            if (isUser) {
+                messageDiv.innerHTML = `<div class="message-bubble">${text}</div>`;
+            } else {
+                const stateInfo = getStateDisplay(tmlResponse.state);
+                let html = `
+                    <div class="message-bubble">
+                        <div class="tml-state ${stateInfo.class}">${stateInfo.symbol} ${stateInfo.name}</div>
+                        <div style="margin-bottom: 8px;"><strong>Reasoning:</strong> ${tmlResponse.reasoning}</div>
+                        <div style="margin-bottom: 8px;"><strong>Response:</strong> ${tmlResponse.response}</div>
+                        <div style="font-size: 11px; color: #718096; margin-top: 8px;">
+                            <strong>Values:</strong> ${tmlResponse.values.join(', ')} | 
+                            <strong>Confidence:</strong> ${tmlResponse.confidence}%
+                `;
+                
+                if (tmlResponse.conflicts) {
+                    html += ` | <strong>Conflicts:</strong> ${tmlResponse.conflicts.join(', ')}`;
+                }
+                
+                html += '</div></div>';
+                messageDiv.innerHTML = html;
+            }
+            
+            messagesContainer.appendChild(messageDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function showThinking() {
+            document.getElementById('thinking').style.display = 'block';
+        }
+
+        function hideThinking() {
+            document.getElementById('thinking').style.display = 'none';
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('userInput');
+            const sendBtn = document.getElementById('sendBtn');
+            const text = input.value.trim();
+            
+            if (!text) return;
+            
+            // Add user message
+            addMessage(text, true);
+            
+            // Clear input and disable button
+            input.value = '';
+            sendBtn.disabled = true;
+            showThinking();
+            
+            // Simulate processing time (sacred pause!)
+            setTimeout(() => {
+                const tmlResponse = evaluateRequest(text);
+                addMessage('', false, tmlResponse);
+                hideThinking();
+                sendBtn.disabled = false;
+                input.focus();
+            }, 1500 + Math.random() * 1000); // 1.5-2.5 second pause
+        }
+
+        function sendExample(text) {
+            document.getElementById('userInput').value = text;
+            sendMessage();
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        // Focus on input when page loads
+        window.onload = function() {
+            document.getElementById('userInput').focus();
+        };
+    </script>
+</body>
+</html>
