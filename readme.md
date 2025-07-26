@@ -30,9 +30,9 @@ Ternary Moral Logic (TML) revolutionizes AI ethics by introducing a third comput
 
 ### 🌟 Interactive Demo
 
-**Experience TML in Action:** [Try the Live Demo](https://fractonicmind.github.io/TernaryMoralLogic/chatbot-demo/)
+**Experience TML in Action:** [Try the Live Demo](https://fractonicmind.github.io/TernaryMoralLogic/examples/chatbot-demo/)
 
-[![TML Demo](https://img.shields.io/badge/🚀_Try_TML-Interactive_Demo-orange.svg)](https://fractonicmind.github.io/TernaryMoralLogic/chatbot-demo/)
+[![TML Demo](https://img.shields.io/badge/🚀_Try_TML-Interactive_Demo-orange.svg)](https://fractonicmind.github.io/TernaryMoralLogic/examples/chatbot-demo/)
 
 ---
 
