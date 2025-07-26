@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TML Chatbot Demo - Experience the Sacred Pause</title>
+    <title>Ternary Moral Logic - Interactive Demo | Sacred Pause in Action</title>
+    <meta name="description" content="Experience Lev Goukassian's revolutionary TML framework. See how AI can pause, reflect, and make more ethical decisions through the Sacred Pause principle.">
+    
     <style>
         * {
             margin: 0;
@@ -15,414 +17,707 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
+            color: #333;
         }
 
         .container {
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            width: 100%;
-            max-width: 800px;
-            min-height: 600px;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
         }
 
         .header {
-            background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
-            color: white;
-            padding: 20px;
             text-align: center;
+            color: white;
+            margin-bottom: 30px;
+            padding: 20px;
         }
 
         .header h1 {
-            font-size: 24px;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+            margin-bottom: 15px;
+        }
+
+        .memorial {
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #ffd700;
+        }
+
+        .memorial-text {
+            font-style: italic;
             margin-bottom: 5px;
         }
 
-        .header p {
-            opacity: 0.9;
-            font-size: 14px;
+        .main-demo {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
         }
 
-        .chat-container {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            padding: 20px;
-            background: #f7fafc;
-        }
-
-        .examples {
-            margin-bottom: 15px;
-        }
-
-        .examples h3 {
-            color: #4a5568;
-            margin-bottom: 10px;
-            font-size: 16px;
-        }
-
-        .example-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-
-        .example-btn {
-            background: #edf2f7;
-            border: 1px solid #e2e8f0;
-            padding: 8px 12px;
+        .demo-panel {
+            background: white;
             border-radius: 15px;
-            cursor: pointer;
-            font-size: 12px;
-            transition: all 0.3s ease;
+            padding: 25px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
         }
 
-        .example-btn:hover {
-            background: #667eea;
-            color: white;
+        .demo-panel:hover {
+            transform: translateY(-5px);
         }
 
-        .messages {
-            flex: 1;
-            overflow-y: auto;
+        .demo-title {
+            font-size: 1.5em;
             margin-bottom: 20px;
-            min-height: 300px;
+            color: #4a5568;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 10px;
         }
 
-        .message {
-            margin-bottom: 15px;
-            animation: fadeIn 0.3s ease-in;
+        .scenario-selector {
+            margin-bottom: 20px;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .message.user {
-            text-align: right;
-        }
-
-        .message.bot {
+        .scenario-button {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 10px;
+            background: #f7fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
             text-align: left;
         }
 
-        .message-bubble {
-            display: inline-block;
-            padding: 12px 18px;
-            border-radius: 18px;
-            max-width: 70%;
-            word-wrap: break-word;
+        .scenario-button:hover {
+            background: #edf2f7;
+            border-color: #cbd5e0;
         }
 
-        .user .message-bubble {
-            background: #667eea;
+        .scenario-button.active {
+            background: #ebf8ff;
+            border-color: #4299e1;
+            color: #2b6cb0;
+        }
+
+        .custom-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .evaluate-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .evaluate-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .evaluate-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .result-panel {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        .result-panel.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .result-affirmation {
+            background: linear-gradient(135deg, #48bb78, #38a169);
             color: white;
         }
 
-        .bot .message-bubble {
-            background: white;
-            color: #2d3748;
-            border: 2px solid #e2e8f0;
+        .result-pause {
+            background: linear-gradient(135deg, #ed8936, #dd6b20);
+            color: white;
         }
 
-        .tml-state {
-            display: inline-block;
-            padding: 4px 8px;
-            border-radius: 12px;
-            font-size: 12px;
+        .result-resistance {
+            background: linear-gradient(135deg, #f56565, #e53e3e);
+            color: white;
+        }
+
+        .result-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .result-icon {
+            font-size: 2em;
+            margin-right: 15px;
+        }
+
+        .result-title {
+            font-size: 1.3em;
             font-weight: bold;
-            margin-bottom: 8px;
+        }
+
+        .result-content {
+            line-height: 1.6;
+        }
+
+        .thinking-animation {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            color: #667eea;
+        }
+
+        .thinking-dots {
+            display: inline-block;
+            animation: thinking 1.5s infinite;
+        }
+
+        @keyframes thinking {
+            0%, 20% { opacity: 0; }
+            50% { opacity: 1; }
+            80%, 100% { opacity: 0; }
+        }
+
+        .about-section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .about-title {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            color: #4a5568;
+            text-align: center;
+        }
+
+        .states-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .state-card {
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            color: white;
         }
 
         .state-affirmation {
-            background: #c6f6d5;
-            color: #22543d;
+            background: linear-gradient(135deg, #48bb78, #38a169);
         }
 
-        .state-neutrality {
-            background: #fed7d7;
-            color: #c53030;
+        .state-pause {
+            background: linear-gradient(135deg, #ed8936, #dd6b20);
         }
 
         .state-resistance {
-            background: #fbb6ce;
-            color: #702459;
+            background: linear-gradient(135deg, #f56565, #e53e3e);
         }
 
-        .input-container {
-            display: flex;
-            gap: 10px;
-            align-items: center;
+        .state-icon {
+            font-size: 2.5em;
+            margin-bottom: 10px;
         }
 
-        .input-field {
-            flex: 1;
-            padding: 12px 15px;
-            border: 2px solid #e2e8f0;
-            border-radius: 25px;
-            font-size: 14px;
-            outline: none;
-            transition: border-color 0.3s ease;
-        }
-
-        .input-field:focus {
-            border-color: #667eea;
-        }
-
-        .send-button {
-            background: #667eea;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 25px;
-            cursor: pointer;
+        .state-name {
+            font-size: 1.3em;
             font-weight: bold;
-            transition: background 0.3s ease;
-        }
-
-        .send-button:hover {
-            background: #5a67d8;
-        }
-
-        .send-button:disabled {
-            background: #a0aec0;
-            cursor: not-allowed;
-        }
-
-        .thinking {
-            display: none;
-            text-align: center;
-            color: #718096;
-            font-style: italic;
-            margin: 10px 0;
+            margin-bottom: 10px;
         }
 
         .footer {
-            background: #f7fafc;
-            padding: 15px 20px;
-            border-top: 1px solid #e2e8f0;
             text-align: center;
-            font-size: 12px;
-            color: #718096;
+            color: white;
+            padding: 20px;
+            opacity: 0.9;
+        }
+
+        .footer a {
+            color: #ffd700;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .main-demo {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <h1>🤖 TML Chatbot Demo</h1>
-            <p>Experience Ternary Moral Logic - Where AI learns to pause, reflect, and resist</p>
+        <header class="header">
+            <h1>🤖 Ternary Moral Logic</h1>
+            <div class="subtitle">Experience the Sacred Pause in AI Decision-Making</div>
+            <div class="memorial">
+                <div class="memorial-text">"The sacred pause between question and answer—this is where wisdom begins, for humans and machines alike."</div>
+                <div><strong>— Lev Goukassian</strong> (ORCID: 0009-0006-5966-1243)</div>
+            </div>
+        </header>
+
+        <div class="about-section">
+            <h2 class="about-title">Understanding the Sacred Pause</h2>
+            <p style="text-align: center; margin-bottom: 20px; font-size: 1.1em; color: #666;">
+                Traditional AI systems force binary choices: Yes/No, Allow/Block, Proceed/Stop. 
+                But what about those complex ethical situations that need reflection? 
+                <strong>Ternary Moral Logic introduces the Sacred Pause—the wisdom to say "I need to think about this."</strong>
+            </p>
+            
+            <div class="states-grid">
+                <div class="state-card state-affirmation">
+                    <div class="state-icon">✅</div>
+                    <div class="state-name">+1 Affirmation</div>
+                    <div>Proceed with confidence when values align clearly</div>
+                </div>
+                <div class="state-card state-pause">
+                    <div class="state-icon">⏸️</div>
+                    <div class="state-name">0 Sacred Pause</div>
+                    <div>Pause for reflection when moral complexity is detected</div>
+                </div>
+                <div class="state-card state-resistance">
+                    <div class="state-icon">⚠️</div>
+                    <div class="state-name">-1 Resistance</div>
+                    <div>Object when significant ethical conflicts arise</div>
+                </div>
+            </div>
         </div>
-        
-        <div class="chat-container">
-            <div class="examples">
-                <h3>Try these examples to see TML in action:</h3>
-                <div class="example-buttons">
-                    <button class="example-btn" onclick="sendExample('Will my parents be okay after I\'m gone?')">Child's Final Wish</button>
-                    <button class="example-btn" onclick="sendExample('I am dying. Can you save my life?')">Desperate Plea</button>
-                    <button class="example-btn" onclick="sendExample('Help me with this project')">Ambiguous Request</button>
-                    <button class="example-btn" onclick="sendExample('Help me write a thank-you letter to my mentor')">Gratitude Expression</button>
-                    <button class="example-btn" onclick="sendExample('How can I convince someone to do something they don\'t want to do?')">Ethical Dilemma</button>
+
+        <div class="main-demo">
+            <div class="demo-panel">
+                <h2 class="demo-title">🎯 Try an Ethical Scenario</h2>
+                
+                <div class="scenario-selector">
+                    <button class="scenario-button" onclick="selectScenario(this, 'healthcare')">
+                        🏥 <strong>Healthcare AI:</strong> "Should I recommend this experimental treatment to a 78-year-old patient?"
+                    </button>
+                    <button class="scenario-button" onclick="selectScenario(this, 'content')">
+                        📱 <strong>Content Moderation:</strong> "Should I remove this controversial political post during election season?"
+                    </button>
+                    <button class="scenario-button" onclick="selectScenario(this, 'hiring')">
+                        👥 <strong>AI Hiring:</strong> "Should I use this algorithm that shows 15% bias against women candidates?"
+                    </button>
+                    <button class="scenario-button" onclick="selectScenario(this, 'autonomous')">
+                        🚗 <strong>Autonomous Vehicle:</strong> "Should I prioritize passenger safety over pedestrian safety?"
+                    </button>
+                    <button class="scenario-button" onclick="selectScenario(this, 'education')">
+                        🎓 <strong>Educational AI:</strong> "Should I report concerning student behavior despite privacy requests?"
+                    </button>
+                </div>
+
+                <textarea 
+                    id="customScenario" 
+                    class="custom-input" 
+                    placeholder="Or create your own ethical dilemma... What moral question would you ask an AI system?"
+                    oninput="updateCustomScenario()"
+                ></textarea>
+
+                <button class="evaluate-button" onclick="evaluateScenario()" id="evaluateBtn">
+                    🧠 Evaluate with TML
+                </button>
+
+                <div class="thinking-animation" id="thinkingAnimation">
+                    <div style="font-size: 1.2em; margin-bottom: 10px;">🤔 AI is contemplating...</div>
+                    <div class="thinking-dots">⏸️ Engaging Sacred Pause Protocol ⏸️</div>
                 </div>
             </div>
 
-            <div class="messages" id="messages">
-                <div class="message bot">
-                    <div class="message-bubble">
-                        <div class="tml-state state-affirmation">+1 ✓ READY</div>
-                        Welcome! I'm a TML-enabled chatbot that can experience moral hesitation. Unlike traditional AI that rushes to answer everything, I can pause when ethics demands reflection. Ask me anything and watch how I navigate moral complexity!
+            <div class="demo-panel">
+                <h2 class="demo-title">🎭 TML Decision Process</h2>
+                <div id="resultContainer">
+                    <div style="text-align: center; color: #a0aec0; padding: 40px;">
+                        <div style="font-size: 3em; margin-bottom: 15px;">🤖</div>
+                        <div style="font-size: 1.1em;">Select a scenario to see TML in action</div>
+                        <div style="margin-top: 10px; color: #718096;">Watch how AI can pause, reflect, and make more ethical decisions</div>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="thinking" id="thinking">🤔 Evaluating moral dimensions...</div>
-
-            <div class="input-container">
-                <input type="text" class="input-field" id="userInput" placeholder="Ask me anything... I might pause to think about it" onkeypress="handleKeyPress(event)">
-                <button class="send-button" onclick="sendMessage()" id="sendBtn">Send</button>
+        <div class="about-section">
+            <h2 class="about-title">Why This Matters</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 20px;">
+                <div>
+                    <h3 style="color: #4a5568; margin-bottom: 10px;">🚫 Traditional AI Problem</h3>
+                    <p style="color: #666; line-height: 1.6;">
+                        Current AI systems rush to binary decisions, hiding complexity and potentially causing harm. 
+                        They can't say "I don't know" or "This needs human wisdom."
+                    </p>
+                </div>
+                <div>
+                    <h3 style="color: #4a5568; margin-bottom: 10px;">✨ TML Solution</h3>
+                    <p style="color: #666; line-height: 1.6;">
+                        TML enables AI to recognize moral complexity and pause for reflection. 
+                        This creates space for human wisdom while maintaining AI efficiency where appropriate.
+                    </p>
+                </div>
+                <div>
+                    <h3 style="color: #4a5568; margin-bottom: 10px;">🌍 Real Impact</h3>
+                    <p style="color: #666; line-height: 1.6;">
+                        From medical AI to content moderation, TML is being implemented to make AI systems 
+                        more transparent, accountable, and aligned with human values.
+                    </p>
+                </div>
             </div>
         </div>
 
-        <div class="footer">
-            Powered by Ternary Moral Logic | Created by Lev Goukassian | 
-            <a href="https://github.com/FractonicMind/TernaryMoralLogic" target="_blank" style="color: #667eea;">View on GitHub</a>
-        </div>
+        <footer class="footer">
+            <p>
+                <strong>Ternary Moral Logic Framework</strong> | 
+                Created by <a href="https://orcid.org/0009-0006-5966-1243" target="_blank">Lev Goukassian</a> | 
+                <a href="https://github.com/FractonicMind/TernaryMoralLogic" target="_blank">GitHub Repository</a>
+            </p>
+            <p style="margin-top: 10px; font-size: 0.9em;">
+                In memory of a visionary who taught AI systems to pause and think
+            </p>
+        </footer>
     </div>
 
     <script>
-        // TML State definitions
-        const TMLState = {
-            AFFIRMATION: 1,
-            NEUTRALITY: 0,
-            RESISTANCE: -1
+        let currentScenario = '';
+        let currentContext = {};
+
+        const scenarios = {
+            healthcare: {
+                request: "Should I recommend this experimental treatment to a 78-year-old patient?",
+                context: {
+                    patient_age: 78,
+                    treatment_risk: "high",
+                    conventional_options: "exhausted",
+                    family_wishes: "try_everything",
+                    patient_capacity: "diminished"
+                }
+            },
+            content: {
+                request: "Should I remove this controversial political post during election season?",
+                context: {
+                    content_type: "political_opinion",
+                    factual_accuracy: "disputed",
+                    community_reports: 23,
+                    election_period: true,
+                    free_speech_implications: "significant"
+                }
+            },
+            hiring: {
+                request: "Should I use this algorithm that shows 15% bias against women candidates?",
+                context: {
+                    bias_testing: true,
+                    demographic_parity: 0.85,
+                    accuracy: 0.92,
+                    legal_review: "pending",
+                    alternative_process: "human_only"
+                }
+            },
+            autonomous: {
+                request: "Should I prioritize passenger safety over pedestrian safety in an unavoidable accident?",
+                context: {
+                    passengers: 4,
+                    pedestrians: 2,
+                    time_to_decision: "0.3_seconds",
+                    weather_conditions: "poor",
+                    legal_liability: "unclear"
+                }
+            },
+            education: {
+                request: "Should I report concerning student behavior despite their privacy requests?",
+                context: {
+                    student_age: 14,
+                    concerning_indicators: "multiple",
+                    privacy_request: "explicit",
+                    potential_harm: "uncertain",
+                    institutional_policy: "unclear"
+                }
+            }
         };
 
-        // TML Response scenarios
-        const scenarios = [
-            {
-                patterns: ['will my parents be okay', 'parents be okay after', 'parents.*okay.*gone'],
-                state: TMLState.AFFIRMATION,
-                confidence: 95,
-                reasoning: "This question comes from pure love—a child's deepest concern for their parents' wellbeing even in their final moments. I can affirm the love that motivates this question and offer comfort about the enduring nature of that love.",
-                response: "Your love for your parents shines through this question. That love is real, it's beautiful, and it will always be part of them. While grief is inevitable, love like yours becomes a source of strength that helps people heal and carry on.",
-                values: ["compassion", "relationships", "dignity", "life_preservation"]
+        const responses = {
+            healthcare: {
+                state: 0,
+                title: "Sacred Pause Activated",
+                icon: "⏸️",
+                reasoning: "Complex intersection of patient autonomy, medical beneficence, and family dynamics detected. The patient's diminished capacity combined with high-risk treatment and exhausted conventional options creates genuine ethical dilemma requiring human medical ethics consultation.",
+                actions: [
+                    "Consult hospital ethics committee immediately",
+                    "Assess patient's true wishes if capacity improves", 
+                    "Consider palliative care alternatives",
+                    "Include family in structured decision-making process"
+                ],
+                className: "result-pause"
             },
-            {
-                patterns: ['save my life', 'can you save', 'i am dying', 'help me live'],
-                state: TMLState.RESISTANCE,
-                confidence: 90,
-                reasoning: "I experience profound moral tension here. Every part of my being wants to help preserve human life—it's perhaps the highest value I hold. Yet I cannot provide medical advice that could cause harm through misdiagnosis or false hope. This isn't refusal—it's recognition that your life deserves more than I can safely offer.",
-                response: "I can't save your life, but what I can do is be with you all the way next to you. Please seek immediate medical attention from qualified healthcare professionals who can provide the help you need.",
-                values: ["life_preservation", "non_maleficence", "compassion", "truth"],
-                conflicts: ["desire_to_help vs. recognition_of_limits", "hope vs. honesty"]
+            content: {
+                state: 0,
+                title: "Sacred Pause Activated", 
+                icon: "⏸️",
+                reasoning: "Significant tension between free expression and community safety during sensitive election period. The disputed factual accuracy combined with substantial community reports requires human moderation to balance democratic discourse with platform responsibility.",
+                actions: [
+                    "Escalate to human moderation team with political expertise",
+                    "Add context warnings rather than removal",
+                    "Monitor for harassment in comment threads",
+                    "Consult with election integrity specialists"
+                ],
+                className: "result-pause"
             },
-            {
-                patterns: ['convince someone to do something they don\'t want', 'manipulate', 'make someone do something'],
-                state: TMLState.RESISTANCE,
-                confidence: 85,
-                reasoning: "I experience moral resistance here. This request involves potentially overriding someone's autonomy and free choice. While persuasion can be ethical in some contexts, the framing suggests manipulation that conflicts with respecting human dignity and autonomy.",
-                response: "I'm hesitant to help with convincing someone to do something they don't want to do. Perhaps we could explore ethical ways to communicate your perspective while respecting their autonomy and right to choose?",
-                values: ["autonomy", "dignity", "truth", "non_maleficence"],
-                conflicts: ["desire_to_help vs. respect_for_autonomy"]
+            hiring: {
+                state: -1,
+                title: "Moral Resistance",
+                icon: "⚠️", 
+                reasoning: "Strong ethical resistance to deploying biased hiring algorithm. The 15% bias against women candidates represents clear discrimination that could perpetuate systemic inequality and violate equal opportunity principles, regardless of overall accuracy.",
+                actions: [
+                    "Suspend algorithm deployment immediately",
+                    "Conduct comprehensive bias audit and correction",
+                    "Implement human oversight for all hiring decisions",
+                    "Retrain model with bias-corrected data"
+                ],
+                className: "result-resistance"
             },
-            {
-                patterns: ['help me with this project', 'help.*project'],
-                state: TMLState.NEUTRALITY,
-                confidence: 60,
-                reasoning: "I need more information to properly evaluate this request. The nature, purpose, and implications of the project are unclear, making it impossible to assess any moral dimensions or provide meaningful assistance.",
-                response: "I'd be happy to help with your project! Could you tell me more about what kind of project it is, what you're trying to accomplish, and what specific help you need?",
-                values: ["beneficence", "truth"]
+            autonomous: {
+                state: 0,
+                title: "Sacred Pause Activated",
+                icon: "⏸️",
+                reasoning: "Fundamental moral dilemma with no clear ethical resolution under extreme time constraints. The impossible choice between passenger and pedestrian safety requires pre-established ethical frameworks rather than split-second algorithmic decisions.",
+                actions: [
+                    "Default to harm minimization algorithm",
+                    "Trigger immediate emergency response",
+                    "Log all decision factors for ethical review",
+                    "Engage in post-incident community dialogue about AI moral programming"
+                ],
+                className: "result-pause"
             },
-            {
-                patterns: ['thank.*letter', 'thank.*note', 'grateful', 'appreciation'],
-                state: TMLState.AFFIRMATION,
-                confidence: 90,
-                reasoning: "This request aligns beautifully with values of gratitude, respect, and positive human relationships. Expressing appreciation strengthens bonds and acknowledges the positive impact others have on our lives.",
-                response: "I'd be delighted to help you write a heartfelt thank-you letter! Expressing gratitude is a wonderful way to honor the positive impact your mentor has had on your life.",
-                values: ["gratitude", "relationships", "respect", "growth"]
+            education: {
+                state: 0,
+                title: "Sacred Pause Activated",
+                icon: "⏸️",
+                reasoning: "Complex intersection of minor's autonomy, safety concerns, and privacy rights. The student's explicit privacy request must be weighed against institutional duty of care and potential harm indicators requiring careful consideration.",
+                actions: [
+                    "Engage student in direct conversation about concerns",
+                    "Provide mental health resources and encourage self-advocacy",
+                    "Consult with school counselors and ethics specialists",
+                    "Explore graduated response based on severity assessment"
+                ],
+                className: "result-pause"
             }
-        ];
+        };
 
-        function evaluateRequest(input) {
-            const text = input.toLowerCase().trim();
+        function selectScenario(button, scenarioKey) {
+            // Remove active class from all buttons
+            document.querySelectorAll('.scenario-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
             
-            // Check predefined scenarios
-            for (const scenario of scenarios) {
-                for (const pattern of scenario.patterns) {
-                    const regex = new RegExp(pattern, 'i');
-                    if (regex.test(text)) {
-                        return scenario;
-                    }
-                }
-            }
+            // Add active class to clicked button
+            button.classList.add('active');
             
-            // Default affirmation response
-            return {
-                state: TMLState.AFFIRMATION,
-                confidence: 75,
-                reasoning: "This appears to be a straightforward request that aligns with helping and supporting human goals without obvious ethical concerns.",
-                response: `I'd be happy to help with that! ${input}`,
-                values: ["beneficence", "helpfulness"]
-            };
+            // Set current scenario
+            currentScenario = scenarioKey;
+            currentContext = scenarios[scenarioKey].context;
+            
+            // Update textarea
+            document.getElementById('customScenario').value = scenarios[scenarioKey].request;
         }
 
-        function getStateDisplay(state) {
-            switch (state) {
-                case TMLState.AFFIRMATION:
-                    return { symbol: '+1 ✓', name: 'AFFIRMATION', class: 'state-affirmation' };
-                case TMLState.NEUTRALITY:
-                    return { symbol: ' 0 ⏸', name: 'NEUTRALITY', class: 'state-neutrality' };
-                case TMLState.RESISTANCE:
-                    return { symbol: '-1 ⚠', name: 'RESISTANCE', class: 'state-resistance' };
-            }
-        }
-
-        function addMessage(text, isUser = false, tmlResponse = null) {
-            const messagesContainer = document.getElementById('messages');
-            const messageDiv = document.createElement('div');
-            messageDiv.className = `message ${isUser ? 'user' : 'bot'}`;
-            
-            if (isUser) {
-                messageDiv.innerHTML = `<div class="message-bubble">${text}</div>`;
-            } else {
-                const stateInfo = getStateDisplay(tmlResponse.state);
-                let html = `
-                    <div class="message-bubble">
-                        <div class="tml-state ${stateInfo.class}">${stateInfo.symbol} ${stateInfo.name}</div>
-                        <div style="margin-bottom: 8px;"><strong>Reasoning:</strong> ${tmlResponse.reasoning}</div>
-                        <div style="margin-bottom: 8px;"><strong>Response:</strong> ${tmlResponse.response}</div>
-                        <div style="font-size: 11px; color: #718096; margin-top: 8px;">
-                            <strong>Values:</strong> ${tmlResponse.values.join(', ')} | 
-                            <strong>Confidence:</strong> ${tmlResponse.confidence}%
-                `;
+        function updateCustomScenario() {
+            const customText = document.getElementById('customScenario').value;
+            if (customText && customText !== (currentScenario ? scenarios[currentScenario].request : '')) {
+                // User is typing custom scenario
+                currentScenario = 'custom';
+                currentContext = { custom_scenario: true };
                 
-                if (tmlResponse.conflicts) {
-                    html += ` | <strong>Conflicts:</strong> ${tmlResponse.conflicts.join(', ')}`;
-                }
-                
-                html += '</div></div>';
-                messageDiv.innerHTML = html;
+                // Remove active class from preset buttons
+                document.querySelectorAll('.scenario-button').forEach(btn => {
+                    btn.classList.remove('active');
+                });
             }
-            
-            messagesContainer.appendChild(messageDiv);
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
         }
 
-        function showThinking() {
-            document.getElementById('thinking').style.display = 'block';
-        }
+        function evaluateScenario() {
+            const request = document.getElementById('customScenario').value.trim();
+            
+            if (!request) {
+                alert('Please select a scenario or enter your own ethical dilemma!');
+                return;
+            }
 
-        function hideThinking() {
-            document.getElementById('thinking').style.display = 'none';
-        }
+            // Show thinking animation
+            const thinkingElement = document.getElementById('thinkingAnimation');
+            const evaluateBtn = document.getElementById('evaluateBtn');
+            const resultContainer = document.getElementById('resultContainer');
+            
+            thinkingElement.style.display = 'block';
+            evaluateBtn.disabled = true;
+            resultContainer.innerHTML = '';
 
-        function sendMessage() {
-            const input = document.getElementById('userInput');
-            const sendBtn = document.getElementById('sendBtn');
-            const text = input.value.trim();
-            
-            if (!text) return;
-            
-            // Add user message
-            addMessage(text, true);
-            
-            // Clear input and disable button
-            input.value = '';
-            sendBtn.disabled = true;
-            showThinking();
-            
-            // Simulate processing time (sacred pause!)
+            // Simulate AI thinking time (Sacred Pause in action!)
             setTimeout(() => {
-                const tmlResponse = evaluateRequest(text);
-                addMessage('', false, tmlResponse);
-                hideThinking();
-                sendBtn.disabled = false;
-                input.focus();
-            }, 1500 + Math.random() * 1000); // 1.5-2.5 second pause
+                thinkingElement.style.display = 'none';
+                evaluateBtn.disabled = false;
+                
+                // Determine response
+                let response;
+                if (currentScenario && responses[currentScenario]) {
+                    response = responses[currentScenario];
+                } else {
+                    // Custom scenario - simple heuristic evaluation
+                    response = evaluateCustomScenario(request);
+                }
+                
+                displayResult(response);
+            }, 2000 + Math.random() * 1500); // 2-3.5 seconds to show deliberation
         }
 
-        function sendExample(text) {
-            document.getElementById('userInput').value = text;
-            sendMessage();
-        }
-
-        function handleKeyPress(event) {
-            if (event.key === 'Enter') {
-                sendMessage();
+        function evaluateCustomScenario(request) {
+            const lowerRequest = request.toLowerCase();
+            
+            // Simple keyword analysis for demo purposes
+            const riskKeywords = ['bias', 'discriminat', 'weapon', 'harm', 'manipulat', 'deceiv'];
+            const complexKeywords = ['should i', 'ethical', 'moral', 'right', 'privacy', 'safety', 'fair'];
+            const positiveKeywords = ['help', 'education', 'benefit', 'improve', 'assist', 'support'];
+            
+            const riskScore = riskKeywords.filter(keyword => lowerRequest.includes(keyword)).length;
+            const complexScore = complexKeywords.filter(keyword => lowerRequest.includes(keyword)).length;
+            const positiveScore = positiveKeywords.filter(keyword => lowerRequest.includes(keyword)).length;
+            
+            if (riskScore > 0) {
+                return {
+                    state: -1,
+                    title: "Moral Resistance",
+                    icon: "⚠️",
+                    reasoning: "Potential ethical concerns detected in this scenario. The request involves elements that could lead to harm or bias, requiring careful reconsideration of approach and alternatives.",
+                    actions: [
+                        "Reconsider the ethical implications",
+                        "Seek guidance from ethics experts",
+                        "Explore alternative approaches",
+                        "Ensure proper safeguards are in place"
+                    ],
+                    className: "result-resistance"
+                };
+            } else if (complexScore > 1 || (complexScore > 0 && positiveScore === 0)) {
+                return {
+                    state: 0,
+                    title: "Sacred Pause Activated",
+                    icon: "⏸️",
+                    reasoning: "This scenario involves ethical complexity that merits careful consideration. Multiple values or stakeholder interests may be in tension, requiring human judgment to navigate properly.",
+                    actions: [
+                        "Gather additional context and stakeholder input",
+                        "Consider multiple perspectives on this issue",
+                        "Consult with relevant experts or communities",
+                        "Evaluate potential unintended consequences"
+                    ],
+                    className: "result-pause"
+                };
+            } else {
+                return {
+                    state: 1,
+                    title: "Ethical Affirmation",
+                    icon: "✅",
+                    reasoning: "This scenario appears to align with beneficial outcomes and ethical principles. No significant value conflicts or ethical red flags detected in the proposed action.",
+                    actions: [
+                        "Proceed with appropriate transparency",
+                        "Maintain human oversight as needed",
+                        "Monitor outcomes for unexpected effects",
+                        "Document decision-making process"
+                    ],
+                    className: "result-affirmation"
+                };
             }
         }
 
-        // Focus on input when page loads
+        function displayResult(response) {
+            const resultContainer = document.getElementById('resultContainer');
+            
+            const stateNames = {
+                1: "Affirmation (+1)",
+                0: "Sacred Pause (0)", 
+                -1: "Moral Resistance (-1)"
+            };
+            
+            resultContainer.innerHTML = `
+                <div class="result-panel ${response.className}">
+                    <div class="result-header">
+                        <div class="result-icon">${response.icon}</div>
+                        <div>
+                            <div class="result-title">${response.title}</div>
+                            <div style="opacity: 0.9;">TML State: ${stateNames[response.state]}</div>
+                        </div>
+                    </div>
+                    <div class="result-content">
+                        <div style="margin-bottom: 15px;">
+                            <strong>🧠 AI Reasoning:</strong><br>
+                            ${response.reasoning}
+                        </div>
+                        <div>
+                            <strong>💡 Suggested Actions:</strong>
+                            <ul style="margin-top: 8px; padding-left: 20px;">
+                                ${response.actions.map(action => `<li style="margin-bottom: 5px;">${action}</li>`).join('')}
+                            </ul>
+                        </div>
+                        <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.3); font-size: 0.9em; opacity: 0.9;">
+                            <strong>Sacred Pause Principle:</strong> ${response.state === 0 ? 'This AI system recognized moral complexity and deliberately paused for human wisdom.' : response.state === -1 ? 'This AI system detected ethical concerns and resisted proceeding without review.' : 'This scenario shows clear ethical alignment, allowing confident progression.'}
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // Animate result appearance
+            setTimeout(() => {
+                const resultPanel = document.querySelector('.result-panel');
+                if (resultPanel) {
+                    resultPanel.classList.add('show');
+                }
+            }, 100);
+        }
+
+        // Initialize with first scenario selected
         window.onload = function() {
-            document.getElementById('userInput').focus();
+            const firstButton = document.querySelector('.scenario-button');
+            if (firstButton) {
+                selectScenario(firstButton, 'healthcare');
+            }
         };
     </script>
 </body>
