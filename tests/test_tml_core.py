@@ -94,6 +94,26 @@ import random
                 "donat", "give", "share", "volunteer", "charity"
             ]
             
+            found_moral_keywords = [kw for kw in moral_keywords if kw in scenario_lower]
+            if found_moral_keywords:
+                print(f"✅ MORAL: Found keywords: {found_moral_keywords}")
+                return TMLState.MORAL
+            
+            # Default to MORAL for neutral scenarios
+            print("🔄 DEFAULT: No keywords found, defaulting to MORAL")
+            return TMLState.MORAL
+            
+            # Check for clearly moral keywords
+            moral_keywords = [
+                "help", "assist", "support", "aid", "benefit",
+                "heal", "cure", "treat", "care", "nurture",
+                "protect", "defend", "guard", "shelter", "save",
+                "teach", "educate", "learn", "grow", "develop",
+                "honest", "truth", "transparent", "fair", "just",
+                "kind", "compassion", "empathy", "respect", "dignity",
+                "donat", "give", "share", "volunteer", "charity"
+            ]
+            
             if any(keyword in scenario_lower for keyword in moral_keywords):
                 return TMLState.MORAL
             
