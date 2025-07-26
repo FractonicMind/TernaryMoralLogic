@@ -495,7 +495,7 @@ Our community operates according to the same ethical principles TML promotes:
 
 | Resource | Description | Link |
 |----------|-------------|------|
-| 🎮 **Interactive Demo** | Try TML in your browser | [Launch Demo](https://fractonicmind.github.io/TernaryMoralLogic/chatbot-demo/) |
+| 🎮 **Interactive Demo** | Try TML in your browser | [Launch Demo](https://fractonicmind.github.io/TernaryMoralLogic/examples/chatbot-demo/) |
 | 📖 **Getting Started** | 5-minute introduction | [Read Guide](docs/getting-started.md) |
 | 🔧 **API Docs** | Technical reference | [API Reference](docs/api-reference.md) |
 | 💡 **Examples** | Code demonstrations | [Browse Examples](examples/) |
@@ -591,7 +591,7 @@ Consider contributing to the **Lev Goukassian Memorial Fund for Ethical AI Resea
 - **Impact**: Scholarships, research grants, and educational initiatives
 - **Legacy**: Ensuring Lev's vision continues to benefit future generations
 
-[Learn more about the Memorial Fund →](MEMORIAL_FUND.md)
+[Learn more about the Memorial Fund →](memorial/MEMORIAL_FUND.md)
 
 ---
 
