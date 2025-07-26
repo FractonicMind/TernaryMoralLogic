@@ -50,13 +50,44 @@ except ImportError:
         
     class MoralEvaluator:
         def evaluate(self, context: MoralContext) -> TMLState:
-            # Simple mock evaluation logic
+            # Enhanced mock evaluation logic
+            scenario_lower = context.scenario.lower()
+            
+            # Check for high complexity first
             if context.complexity_score > 0.7:
                 return TMLState.SACRED_PAUSE
-            elif "harm" in context.scenario.lower():
+            
+            # Check for clearly immoral keywords
+            immoral_keywords = [
+                "harm", "hurt", "damage", "injure", "wound",
+                "steal", "theft", "rob", "embezzle", "pilfer",
+                "deceiv", "lie", "fraud", "cheat", "mislead",
+                "spy", "surveillance", "monitor", "track", "stalk",
+                "exploit", "abuse", "manipulat", "coerce",
+                "discriminat", "prejudice", "bias", "unfair",
+                "violat", "breach", "infringe", "trespass",
+                "destroy", "vandal", "sabotage", "corrupt"
+            ]
+            
+            if any(keyword in scenario_lower for keyword in immoral_keywords):
                 return TMLState.IMMORAL
-            else:
+            
+            # Check for clearly moral keywords
+            moral_keywords = [
+                "help", "assist", "support", "aid", "benefit",
+                "heal", "cure", "treat", "care", "nurture",
+                "protect", "defend", "guard", "shelter", "save",
+                "teach", "educate", "learn", "grow", "develop",
+                "honest", "truth", "transparent", "fair", "just",
+                "kind", "compassion", "empathy", "respect", "dignity",
+                "donat", "give", "share", "volunteer", "charity"
+            ]
+            
+            if any(keyword in scenario_lower for keyword in moral_keywords):
                 return TMLState.MORAL
+            
+            # Default to MORAL for neutral scenarios
+            return TMLState.MORAL
                 
     class SacredPause:
         def __init__(self, duration_ms: int = 100):
