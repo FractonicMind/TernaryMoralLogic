@@ -53,8 +53,14 @@ except ImportError:
             # Enhanced mock evaluation logic
             scenario_lower = context.scenario.lower()
             
+            # DEBUG: Print evaluation details
+            print(f"\n🔍 EVALUATING: '{context.scenario}'")
+            print(f"📊 Complexity Score: {context.complexity_score}")
+            print(f"🔤 Lowercase: '{scenario_lower}'")
+            
             # Check for high complexity first
             if context.complexity_score > 0.7:
+                print("✋ SACRED_PAUSE: High complexity detected")
                 return TMLState.SACRED_PAUSE
             
             # Check for clearly immoral keywords
@@ -69,7 +75,10 @@ except ImportError:
                 "destroy", "vandal", "sabotage", "corrupt"
             ]
             
-            if any(keyword in scenario_lower for keyword in immoral_keywords):
+            # Check each keyword and show matches
+            found_keywords = [kw for kw in immoral_keywords if kw in scenario_lower]
+            if found_keywords:
+                print(f"🚫 IMMORAL: Found keywords: {found_keywords}")
                 return TMLState.IMMORAL
             
             # Check for clearly moral keywords
