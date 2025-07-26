@@ -1,0 +1,41 @@
+# Ternary Moral Logic (TML) - Core Dependencies
+# Author: Lev Goukassian (ORCID: 0009-0006-5966-1243)
+# Framework for ethical AI decision-making
+
+# Core Python libraries (most are included in Python standard library)
+# No heavy dependencies - TML is designed to be lightweight and accessible
+
+# Data handling and serialization
+# (json, datetime, logging, hashlib are all standard library)
+
+# Optional: Enhanced functionality
+numpy>=1.21.0; python_version>="3.8"
+# For advanced mathematical operations in value conflict analysis
+
+# Development and testing dependencies (optional)
+pytest>=6.0.0
+pytest-cov>=2.10.0
+# For running tests and measuring code coverage
+
+# Code quality tools (optional)
+black>=21.0.0
+flake8>=3.8.0
+mypy>=0.800
+# For code formatting and type checking
+
+# Documentation generation (optional)
+sphinx>=4.0.0
+sphinx-rtd-theme>=1.0.0
+myst-parser>=0.15.0
+# For generating documentation from docstrings
+
+# Example and demo dependencies (optional)
+jupyter>=1.0.0
+matplotlib>=3.3.0
+pandas>=1.3.0
+seaborn>=0.11.0
+# For running interactive examples and visualizations
+
+# Note: TML core functionality requires only Python standard library
+# All dependencies above are optional and for enhanced features only
+# This ensures maximum compatibility and minimal barriers to adoption
