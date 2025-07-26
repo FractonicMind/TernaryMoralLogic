@@ -430,7 +430,7 @@ TML draws from diverse philosophical traditions:
 We're building a global community around ethical AI decision-making:
 
 - **⭐ Star this repository** to show support for ethical AI
-- **💬 Join discussions** via [GitHub Discussions](https://github.com/FractonicMind/TernaryMoralLogic/discussions)
+- **💬 Create discussions** via GitHub Issues for questions and ideas
 - **🐛 Report issues** to improve the framework
 - **🤝 Contribute** following our [contribution guidelines](community/CONTRIBUTING.md)
 
