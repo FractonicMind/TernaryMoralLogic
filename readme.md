@@ -486,7 +486,6 @@ Our community operates according to the same ethical principles TML promotes:
 
 ### 💬 Community Support
 
-- **Questions**: Use [GitHub Discussions](https://github.com/FractonicMind/TernaryMoralLogic/discussions)
 - **Bug Reports**: Submit [GitHub Issues](https://github.com/FractonicMind/TernaryMoralLogic/issues)
 - **Feature Requests**: Propose via GitHub Issues with "enhancement" label
 - **Academic Collaboration**: Contact maintainers for research partnerships
