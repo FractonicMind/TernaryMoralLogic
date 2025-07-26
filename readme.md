@@ -12,6 +12,9 @@
 
 ## In Memory of Lev Goukassian (ORCID: 0009-0006-5966-1243)
 
+"I taught machines to feel the weight of action, and the beauty of hesitation. I paused — and made the future pause with me."
+— Lev Goukassian
+
 This framework represents Lev Goukassian's final contribution to humanity—a vision of AI systems that serve as **moral partners**, not just moral automatons. Created during his battle with terminal cancer, TML embodies his belief that the future of AI lies not in faster decisions, but in wiser ones.
 
 **Every use of this framework honors his memory and advances his mission of building more thoughtful, ethical AI systems.**
