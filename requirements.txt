@@ -1,41 +1,250 @@
 # Ternary Moral Logic (TML) - Core Dependencies
 # Author: Lev Goukassian (ORCID: 0009-0006-5966-1243)
-# Framework for ethical AI decision-making
+# Framework for ethical AI decision-making with Sacred Pause technology
+# 
+# PHILOSOPHY: TML is designed to be lightweight and accessible
+# Core functionality requires only Python standard library
+# All dependencies below are for enhanced features and academic reproducibility
+# Exact versions (==) ensure reproducible installations for peer review
 
-# Core Python libraries (most are included in Python standard library)
-# No heavy dependencies - TML is designed to be lightweight and accessible
+# ============================================================================
+# CORE PRODUCTION DEPENDENCIES (Academic Reproducibility)
+# ============================================================================
 
-# Data handling and serialization
-# (json, datetime, logging, hashlib are all standard library)
+# Data handling and mathematical operations
+numpy==1.24.3
+# For advanced mathematical operations in moral complexity analysis
 
-# Optional: Enhanced functionality
-numpy>=1.21.0; python_version>="3.8"
-# For advanced mathematical operations in value conflict analysis
+# Type hints and validation (for robust code)
+typing-extensions==4.7.1
+pydantic==2.1.1
+# For data validation and enhanced type checking
 
-# Development and testing dependencies (optional)
-pytest>=6.0.0
-pytest-cov>=2.10.0
+# Configuration and serialization
+PyYAML==6.0.1
+# For configuration files and data serialization
+
+# Date and time handling (enhanced beyond standard library)
+python-dateutil==2.8.2
+pytz==2023.3
+# For robust timezone and date handling in global deployments
+
+# Cryptographic functions (for ethical authentication system)
+cryptography==41.0.3
+# For ethical use verification and memorial attribution protection
+
+# HTTP requests (for external validation services)
+requests==2.31.0
+certifi==2023.7.22
+# For network communications and certificate validation
+
+# JSON schema validation
+jsonschema==4.18.4
+# For validating moral scenario data structures
+
+# Enhanced logging (beyond standard library)
+structlog==23.1.0
+# For structured logging in production deployments
+
+# Academic and research tools
+bibtexparser==1.4.0
+# For academic citation support and bibliography management
+
+# Text processing (for content analysis in Sacred Pause)
+regex==2023.6.3
+# Enhanced regular expressions beyond standard library
+
+# Email validation (for contact and attribution verification)
+email-validator==2.0.0
+# For validating contact information in ethical use requests
+
+# Environment management
+python-decouple==3.8
+# For secure environment variable handling
+
+# Version and packaging utilities
+packaging==23.1
+# For version comparison and package management
+
+# ============================================================================
+# OPTIONAL: Enhanced Mathematical Operations
+# ============================================================================
+
+scipy==1.10.1
+# For advanced statistical operations in moral complexity analysis
+
+statsmodels==0.14.0
+# For statistical modeling and analysis
+
+sympy==1.12
+# For symbolic mathematics in ethical framework formalization
+
+# ============================================================================
+# OPTIONAL: Data Analysis and Research
+# ============================================================================
+
+pandas==2.0.3
+# For data analysis and research dataset handling
+
+scikit-learn==1.3.0
+# For minimal machine learning in pattern recognition
+
+# ============================================================================
+# OPTIONAL: User Interface and Experience
+# ============================================================================
+
+rich==13.4.2
+colorama==0.4.6
+# For enhanced terminal output and user experience
+
+tqdm==4.65.0
+# For progress bars during long operations
+
+# ============================================================================
+# OPTIONAL: File Format Support
+# ============================================================================
+
+openpyxl==3.1.2
+# For Excel file support in research data import/export
+
+markdown==3.4.4
+# For markdown processing in documentation
+
+# ============================================================================
+# OPTIONAL: System Compatibility
+# ============================================================================
+
+psutil==5.9.5
+# For cross-platform system information and compatibility
+
+# ============================================================================
+# DEVELOPMENT AND TESTING DEPENDENCIES (Optional)
+# ============================================================================
+
+# Testing framework
+pytest==7.4.0
+pytest-cov==4.1.0
 # For running tests and measuring code coverage
 
-# Code quality tools (optional)
-black>=21.0.0
-flake8>=3.8.0
-mypy>=0.800
-# For code formatting and type checking
+# Property-based testing
+hypothesis==6.82.0
+# For advanced testing of moral reasoning edge cases
 
-# Documentation generation (optional)
-sphinx>=4.0.0
-sphinx-rtd-theme>=1.0.0
-myst-parser>=0.15.0
+# Code quality tools
+black==23.7.0
+flake8==6.0.0
+mypy==1.5.1
+# For code formatting, linting, and type checking
+
+isort==5.12.0
+# For import sorting and organization
+
+# Security scanning
+bandit==1.7.5
+safety==2.3.4
+# For security vulnerability detection
+
+# ============================================================================
+# DOCUMENTATION GENERATION (Optional)
+# ============================================================================
+
+sphinx==7.1.2
+sphinx-rtd-theme==1.3.0
+myst-parser==2.0.0
 # For generating documentation from docstrings
 
-# Example and demo dependencies (optional)
-jupyter>=1.0.0
-matplotlib>=3.3.0
-pandas>=1.3.0
-seaborn>=0.11.0
-# For running interactive examples and visualizations
+# Modern documentation
+mkdocs==1.5.2
+mkdocs-material==9.1.21
+# For modern, beautiful documentation sites
 
-# Note: TML core functionality requires only Python standard library
-# All dependencies above are optional and for enhanced features only
-# This ensures maximum compatibility and minimal barriers to adoption
+# ============================================================================
+# EXAMPLE AND DEMO DEPENDENCIES (Optional)
+# ============================================================================
+
+jupyter==1.0.0
+notebook==7.0.0
+# For running interactive examples and demonstrations
+
+matplotlib==3.7.2
+seaborn==0.12.2
+# For data visualization in research and examples
+
+ipython==8.14.0
+# For enhanced interactive Python development
+
+# ============================================================================
+# BUILD AND DISTRIBUTION (Optional)
+# ============================================================================
+
+build==0.10.0
+twine==4.0.2
+wheel==0.41.1
+# For building and distributing the TML framework
+
+# Development workflow tools
+pre-commit==3.3.3
+# For git hooks and code quality automation
+
+python-dotenv==1.0.0
+# For development environment management
+
+# ============================================================================
+# PERFORMANCE AND PROFILING (Optional)
+# ============================================================================
+
+memory-profiler==0.60.0
+# For memory usage analysis and optimization
+
+coverage==7.2.7
+# For code coverage reporting
+
+# ============================================================================
+# TESTING UTILITIES (Optional)
+# ============================================================================
+
+faker==19.3.0
+# For generating test data
+
+freezegun==1.2.2
+# For time-based testing
+
+watchdog==3.0.0
+# For file watching during development
+
+# ============================================================================
+# TYPE CHECKING EXTENSIONS (Optional)
+# ============================================================================
+
+types-requests==2.31.0.2
+types-PyYAML==6.0.12.11
+# For enhanced type checking with external libraries
+
+# ============================================================================
+# ACADEMIC QUALITY ASSURANCE (Optional)
+# ============================================================================
+
+codespell==2.2.5
+# For spell checking in academic documentation
+
+# ============================================================================
+# INSTALLATION NOTES
+# ============================================================================
+
+# BASIC INSTALLATION (Core functionality only):
+# pip install numpy PyYAML requests cryptography structlog
+# 
+# ACADEMIC INSTALLATION (All research tools):
+# pip install -r requirements.txt
+#
+# DEVELOPMENT INSTALLATION (All tools):
+# pip install -r requirements.txt
+# pip install -r requirements-dev.txt  # If separate dev file exists
+#
+# LIGHTWEIGHT INSTALLATION (Absolute minimum):
+# pip install numpy>=1.21.0
+# (TML core works with just numpy, everything else is enhancement)
+#
+# Note: TML framework philosophy emphasizes minimal dependencies
+# Most functionality works with Python standard library only
+# Dependencies above are for enhanced features and academic validation
