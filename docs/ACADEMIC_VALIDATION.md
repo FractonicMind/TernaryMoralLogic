@@ -2,10 +2,10 @@
 
 ## Ternary Moral Logic (TML): Research Methodology and Peer Review Documentation
 
-[![DOI](https://img.shields.io/badge/DOI-10.1000%2Ftml.2025.001-blue)](https://doi.org/10.1000/tml.2025.001)
-[![Peer Review Status](https://img.shields.io/badge/Status-Under%20Review-yellow)](docs/peer_review_status.md)
-[![Ethics Approval](https://img.shields.io/badge/Ethics-IRB%20Approved-green)](docs/ethics_approval.pdf)
-[![Reproducibility](https://img.shields.io/badge/Reproducible-100%25-brightgreen)](docs/reproducibility_checklist.md)
+![DOI](https://img.shields.io/badge/DOI-Pending%20Publication-lightgrey)
+![Status](https://img.shields.io/badge/Status-Preparing%20Submission-blue)
+![Ethics](https://img.shields.io/badge/Ethics-Framework%20Ready-green)
+![Reproducible](https://img.shields.io/badge/Reproducible-Design%20Complete-brightgreen)
 
 ---
 
