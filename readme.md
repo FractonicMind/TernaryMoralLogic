@@ -1,5 +1,25 @@
 # Ternary Moral Logic (TML): A Framework for Ethical AI Decision-Making
 
+# Ternary Moral Logic (TML) Framework
+
+[ALL THE BADGES HERE]
+
+**Sacred Pause Technology for Ethical AI Decision-Making**
+[![MIT License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Version](https://img.shields.io/badge/Version-1.0.0-blue.svg)](CHANGELOG.md)
+[![ORCID](https://img.shields.io/badge/ORCID-0009--0006--5966--1243-green.svg)](https://orcid.org/0009-0006-5966-1243)
+[![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)](https://www.python.org/downloads/)
+[![Sacred Pause](https://img.shields.io/badge/Sacred%20Pause-Technology-purple.svg)](#)
+[![AI Ethics](https://img.shields.io/badge/AI%20Ethics-Framework-orange.svg)](#)
+[![Academic](https://img.shields.io/badge/Academic-Ready-brightgreen.svg)](docs/ACADEMIC_VALIDATION.md)
+[![Tests](https://img.shields.io/badge/Tests-Comprehensive-success.svg)](tests/)
+[![Documentation](https://img.shields.io/badge/Documentation-Complete-blue.svg)](docs/)
+[![Memorial](https://img.shields.io/badge/Memorial-Lev%20Goukassian-red.svg)](protection/legacy-preservation.md)
+[![Citation](https://img.shields.io/badge/Citation-Available-blue.svg)](CITATION.cff)
+[![Reproducible](https://img.shields.io/badge/Reproducible-Research-brightgreen.svg)](docs/reproducibility_checklist.md)
+
+---
+
 [![MIT License](https://img.shields.io/badge/License-MIT_with_Ethics-blue.svg)](LICENSE)
 [![Python 3.8+](https://img.shields.io/badge/Python-3.8+-green.svg)](https://python.org)
 [![Framework Status](https://img.shields.io/badge/Status-Active_Development-brightgreen.svg)](https://github.com/FractonicMind/TernaryMoralLogic)
