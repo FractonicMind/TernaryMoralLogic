@@ -2,7 +2,7 @@
 
 **Sacred Pause Technology for Ethical AI Decision-Making**
 
-[![MIT License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![MIT License](https://img.shields.io/badge/License-MIT_with_Ethics-blue.svg)](LICENSE)
 [![Version](https://img.shields.io/badge/Version-1.0.0-blue.svg)](CHANGELOG.md)
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0006--5966--1243-green.svg)](https://orcid.org/0009-0006-5966-1243)
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)](https://www.python.org/downloads/)
@@ -14,10 +14,6 @@
 [![Memorial](https://img.shields.io/badge/Memorial-Lev%20Goukassian-red.svg)](protection/legacy-preservation.md)
 [![Citation](https://img.shields.io/badge/Citation-Available-blue.svg)](CITATION.cff)
 [![Reproducible](https://img.shields.io/badge/Reproducible-Research-brightgreen.svg)](docs/reproducibility_checklist.md)
-
----
-
-[![MIT License](https://img.shields.io/badge/License-MIT_with_Ethics-blue.svg)](LICENSE)
 [![Python 3.8+](https://img.shields.io/badge/Python-3.8+-green.svg)](https://python.org)
 [![Framework Status](https://img.shields.io/badge/Status-Active_Development-brightgreen.svg)](https://github.com/FractonicMind/TernaryMoralLogic)
 [![Memorial Project](https://img.shields.io/badge/Memorial-Lev_Goukassian-purple.svg)](https://orcid.org/0009-0006-5966-1243)
