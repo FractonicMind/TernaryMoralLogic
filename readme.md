@@ -1,9 +1,5 @@
 # Ternary Moral Logic (TML): A Framework for Ethical AI Decision-Making
 
-# Ternary Moral Logic (TML) Framework
-
-[ALL THE BADGES HERE]
-
 **Sacred Pause Technology for Ethical AI Decision-Making**
 [![MIT License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Version](https://img.shields.io/badge/Version-1.0.0-blue.svg)](CHANGELOG.md)
