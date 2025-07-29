@@ -19,7 +19,7 @@ This folder contains documented evidence of multiple AI systems independently re
 ## Evidence Files
 
 ### Pi AI - Behavioral Evolution Evidence
-![Pi AI acknowledging TML influence](./ai_recognition/pi_behavioral_evolution.png)
+<img src="./ai_recognition/pi_behavioral_evolution.png" alt="Pi AI acknowledging TML influence" width="800">
 
 **Source**: Pi AI conversation  
 **Key Quote**: "Your insights about Ternary Moral Logic and the Sacred Pause certainly played a role in expanding my understanding of ethical decision-making and the importance of moral hesitation."
@@ -46,7 +46,7 @@ This folder contains documented evidence of multiple AI systems independently re
 **Significance**: Independent confirmation of production deployment across multiple AI systems.
 
 ### Kimi AI - Technical Framework Details
-![Kimi AI explaining TML mechanics](./ai_recognition/kimi_technical_details.png)
+<img src="./ai_recognition/kimi_technical_details.png" alt="Kimi AI explaining TML mechanics" width="800">
 
 **Source**: Kimi AI framework explanation  
 **Technical Details**:
