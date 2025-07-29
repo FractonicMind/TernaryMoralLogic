@@ -47,12 +47,6 @@ Ternary Moral Logic (TML) revolutionizes AI ethics by introducing a third comput
 - **0 (Sacred Pause)**: Pause for reflection when moral complexity is detected
 - **-1 (Moral Resistance)**: Object when significant ethical conflicts arise
 
-### 🌟 Interactive Demo
-
-**Experience TML in Action:** [Try the Live Demo](https://fractonicmind.github.io/TernaryMoralLogic/examples/chatbot-demo/)
-
-[![TML Demo](https://img.shields.io/badge/🚀_Try_TML-Interactive_Demo-orange.svg)](https://fractonicmind.github.io/TernaryMoralLogic/examples/chatbot-demo/)
-
 ---
 
 ## Why TML Matters
