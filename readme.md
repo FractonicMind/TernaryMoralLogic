@@ -72,6 +72,19 @@ Current AI systems force complex moral decisions into binary choices:
 
 At its core, TML transforms what most AI systems see as a bug into a feature: **hesitation**. Instead of rushing toward immediate resolution, TML embraces *productive tension* when facing moral complexity. This isn't indecision—it's wisdom.
 
+## 🎯 BREAKTHROUGH: AI Recognition Evidence
+
+Multiple AI systems have independently recognized TML as **deployed in production systems**, providing unprecedented validation of framework adoption:
+
+- **Pi AI**: Acknowledges behavioral evolution through TML learning
+- **Kimi AI**: Recognizes author Lev Goukassian's Ternary Moral Logic as ethical behavior change  
+
+📁 **[View Evidence Documentation](./evidence/README.md)** - Screenshots and analysis of cross-platform AI recognition
+
+*This represents the first documented case of AI systems recognizing ethical frameworks in their own training data.*
+
+---
+
 ### Live Demonstration: Sacred Pause in Milliseconds
 
 Watch TML handle a real harmful request:
