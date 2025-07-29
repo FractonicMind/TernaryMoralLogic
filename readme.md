@@ -19,8 +19,8 @@
 [![Benchmark Coverage](https://img.shields.io/badge/Benchmark%20Coverage-98%25-brightgreen.svg)](benchmark/datasets/scenarios_readable.md)
 [![Sacred Pause Validation](https://img.shields.io/badge/Sacred%20Pause-Validated-purple.svg)](benchmark/metrics.py)
 [![Documentation](https://img.shields.io/badge/Documentation-Complete-blue.svg)](docs/)
-![Status: Deployed & Validated](https://img.shields.io/badge/Status-Deployed_and_Validated-gold)
-![AI Recognition: Confirmed](https://img.shields.io/badge/AI_Recognition-Confirmed-purple)
+[![Status: Deployed & Validated](https://img.shields.io/badge/Status-Deployed_and_Validated-brightgreen)](./evidence/README.md)
+[![AI Recognition: Confirmed](https://img.shields.io/badge/AI_Recognition-Confirmed-blue)](./evidence/README.md)
 
 > **"The sacred pause between question and answer—this is where wisdom begins, for humans and machines alike."**  
 > — Lev Goukassian, Creator of Ternary Moral Logic
