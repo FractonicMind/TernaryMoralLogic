@@ -3,6 +3,7 @@
 **Sacred Pause Technology for Ethical AI Decision-Making**
 
 [![License with Ethics](https://img.shields.io/badge/License%20with%20Ethics-MIT-yellow.svg)](LICENSE)
+[![Try Interactive Demo](https://img.shields.io/badge/🚀%20Try%20Interactive%20Demo-Live%20App-brightgreen?style=for-the-badge&logo=react)](https://fractonicmind.github.io/TernaryMoralLogic/TML-App/)
 [![Version](https://img.shields.io/badge/Version-1.0.0-blue.svg)](CHANGELOG.md)
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0006--5966--1243-green.svg)](https://orcid.org/0009-0006-5966-1243)
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)](https://www.python.org/downloads/)
