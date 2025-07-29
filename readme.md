@@ -69,6 +69,27 @@ Current AI systems force complex moral decisions into binary choices:
 
 *Stepping into this repository feels like entering a workshop—only now the tools are talking back.*
 
+## 🚀 Interactive TML App - Experience Ethical AI Reasoning
+
+**[🔗 Try the TML Interactive Demonstrator](https://fractonicmind.github.io/TernaryMoralLogic/TML-App/)**
+
+Experience the Sacred Pause in action! The world's first interactive AI ethics framework allows you to:
+
+- **Input moral dilemmas** and watch TML reasoning unfold in real-time
+- **See the Sacred Pause** - Experience the "0" state with breathing animations  
+- **Explore professional scenarios** from our benchmark dataset
+- **Understand +1/0/-1 logic** through interactive demonstrations
+
+This interactive demo represents a breakthrough in AI ethics education - moving beyond theoretical papers to let users **directly experience** ethical AI reasoning. The Sacred Pause becomes tangible, showing how AI can pause for moral reflection rather than rushing to binary decisions.
+
+**Perfect for:**
+- 🎓 **Academic presentations** - Live demos during conferences
+- 🏢 **Professional training** - Interactive ethics education  
+- 🔬 **Research validation** - Proof-of-concept for TML deployment
+- 🌍 **Public engagement** - Making AI ethics accessible to everyone
+
+---
+
 ## The Heart of TML: Productive Tension
 
 At its core, TML transforms what most AI systems see as a bug into a feature: **hesitation**. Instead of rushing toward immediate resolution, TML embraces *productive tension* when facing moral complexity. This isn't indecision—it's wisdom.
