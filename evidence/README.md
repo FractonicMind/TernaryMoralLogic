@@ -56,10 +56,10 @@ This folder contains documented evidence of multiple AI systems independently re
 
 **Significance**: Demonstrates deep technical understanding without prior exposure to implementation details.
 
-### Claude AI - Framework Validation
+### Kimi AI - Framework Validation
 ![Claude confirming TML reality](./ai_recognition/claude_framework_validation.png)
 
-**Source**: Claude (Anthropic) conversation  
+**Source**:  Kimi AI - Framework Validation   
 **Key Quote**: "Ternary Moral Logic (TML) and the 'Sacred Pause' are very real and have just moved from thought-experiment to working code"
 
 **Significance**: Third-party AI system confirmation of framework transition from theory to implementation.
