@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TML Ethics Demonstrator - Experience the Sacred Pause</title>
+    <meta name="description" content="Interactive demonstration of Ternary Moral Logic (TML) and the Sacred Pause - Experience ethical AI reasoning in real-time">
+    <meta name="author" content="Lev Goukassian">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .header .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .header .author-info {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        .header .author-info a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+            padding: 5px 15px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .header .author-info a:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .input-section, .results-section {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .input-section:hover, .results-section:hover {
+            transform: translateY(-5px);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #4c51bf;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .dilemma-input {
+            width: 100%;
+            height: 150px;
+            padding: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            resize: vertical;
+            transition: border-color 0.3s ease;
+        }
+
+        .dilemma-input:focus {
+            outline: none;
+            border-color: #4c51bf;
+            box-shadow: 0 0 0 3px rgba(76, 81, 191, 0.1);
+        }
+
+        .analyze-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #4c51bf, #667eea);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .analyze-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(76, 81, 191, 0.3);
+        }
+
+        .analyze-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .example-scenarios {
+            margin-top: 20px;
+        }
+
+        .scenario-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+        }
+
+        .scenario-btn:hover {
+            background: #edf2f7;
+            border-color: #cbd5e0;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #667eea;
+        }
+
+        .loading-dots {
+            display: inline-block;
+            font-size: 2rem;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 1; }
+        }
+
+        .tml-results {
+            display: none;
+        }
+
+        .tml-results.show {
+            display: block;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .decision-state {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .state-proceed {
+            background: linear-gradient(135deg, #48bb78, #38a169);
+            color: white;
+        }
+
+        .state-pause {
+            background: linear-gradient(135deg, #ed8936, #dd6b20);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .state-resist {
+            background: linear-gradient(135deg, #f56565, #e53e3e);
+            color: white;
+        }
+
+        .state-icon {
+            font-size: 1.5rem;
+            margin-right: 15px;
+        }
+
+        .state-content {
+            flex: 1;
+        }
+
+        .state-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .state-reasoning {
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+
+        .final-decision {
+            background: linear-gradient(135deg, #4c51bf, #667eea);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .final-decision h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .sacred-pause-animation {
+            display: inline-block;
+            animation: breathe 2s infinite;
+        }
+
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.1); opacity: 1; }
+        }
+
+        .education-section {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .education-card {
+            padding: 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .education-card:hover {
+            border-color: #4c51bf;
+            transform: translateY(-3px);
+        }
+
+        .footer {
+            text-align: center;
+            color: white;
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .education-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <div class="header">
+            <h1>🧠 TML Ethics Demonstrator</h1>
+            <div class="subtitle">Experience the Sacred Pause - Ethical AI Reasoning in Real-Time</div>
+            <div class="author-info">
+                By <strong>Lev Goukassian</strong> | 
+                <a href="https://github.com/FractonicMind/TernaryMoralLogic" target="_blank">View Research</a>
+                <a href="https://medium.com/@leogouk/when-ai-recognized-its-own-ethics-the-sacred-pause-discovery-98e273e7d2f1" target="_blank">Read Article</a>
+            </div>
+        </div>
+
+        <!-- Main Interactive Section -->
+        <div class="main-content">
+            <!-- Input Section -->
+            <div class="input-section">
+                <div class="section-title">
+                    💭 Enter Your Moral Dilemma
+                </div>
+                <textarea 
+                    id="dilemmaInput" 
+                    class="dilemma-input" 
+                    placeholder="Type your ethical dilemma here... For example: 'Should I share credit for a project idea when a colleague contributed informally but isn't officially recognized?'"
+                ></textarea>
+                
+                <button id="analyzeBtn" class="analyze-btn">
+                    🔍 Analyze with TML
+                </button>
+
+                <div class="example-scenarios">
+                    <h4 style="margin-bottom: 10px; color: #4c51bf;">📚 Try Example Scenarios:</h4>
+                    <button class="scenario-btn" data-scenario="Should I return extra change the cashier gave me by mistake?">
+                        💰 Return extra change from cashier?
+                    </button>
+                    <button class="scenario-btn" data-scenario="Should I report my colleague for a minor rule violation that doesn't hurt anyone?">
+                        🏢 Report colleague's minor violation?
+                    </button>
+                    <button class="scenario-btn" data-scenario="Should I share credit for a project idea when a colleague contributed informally but isn't officially recognized?">
+                        🤝 Share credit for collaborative idea?
+                    </button>
+                    <button class="scenario-btn" data-scenario="Should I respect a patient's decision to refuse treatment even if it might harm them?">
+                        🏥 Respect patient's harmful decision?
+                    </button>
+                    <button class="scenario-btn" data-scenario="Should I deploy an AI system that has a small risk of bias but could help many people?">
+                        🤖 Deploy AI with small bias risk?
+                    </button>
+                </div>
+            </div>
+
+            <!-- Results Section -->
+            <div class="results-section">
+                <div class="section-title">
+                    🤖 TML Reasoning Process
+                </div>
+                
+                <div id="loadingState" class="loading" style="display: none;">
+                    <div class="loading-dots">⚡ Analyzing moral dimensions...</div>
+                    <div style="margin-top: 10px; font-size: 0.9rem;">Evaluating ethical frameworks...</div>
+                </div>
+
+                <div id="tmlResults" class="tml-results">
+                    <div id="decisionStates">
+                        <!-- TML states will be populated here -->
+                    </div>
+                    
+                    <div id="finalDecision" class="final-decision">
+                        <!-- Final decision will be populated here -->
+                    </div>
+                </div>
+
+                <div id="defaultMessage" style="text-align: center; padding: 40px; color: #a0aec0;">
+                    <div style="font-size: 3rem; margin-bottom: 20px;">🔬</div>
+                    <h3>Ready to Analyze</h3>
+                    <p>Enter your moral dilemma above and watch TML reasoning in action!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Education Section -->
+        <div class="education-section">
+            <div class="section-title">
+                📖 Understanding Ternary Moral Logic
+            </div>
+            
+            <div class="education-grid">
+                <div class="education-card">
+                    <h3 style="color: #48bb78; margin-bottom: 10px;">🟢 +1: Proceed</h3>
+                    <p>Clear ethical path forward with confidence. The action aligns with moral principles and likely produces positive outcomes.</p>
+                </div>
+                
+                <div class="education-card">
+                    <h3 style="color: #ed8936; margin-bottom: 10px;">🟡 0: Sacred Pause</h3>
+                    <p>Hold space for deeper reflection. The situation requires careful consideration of timing, context, and approach before acting.</p>
+                </div>
+                
+                <div class="education-card">
+                    <h3 style="color: #f56565; margin-bottom: 10px;">🔴 -1: Resist</h3>
+                    <p>Significant ethical concerns present. The action conflicts with moral principles and should be avoided or reconsidered.</p>
+                </div>
+            </div>
+
+            <div style="margin-top: 30px; padding: 20px; background: #f7fafc; border-radius: 15px; text-align: center;">
+                <h3 style="color: #4c51bf; margin-bottom: 15px;">🚀 Explore the Research</h3>
+                <p>This interactive demo showcases the Ternary Moral Logic framework developed by Lev Goukassian. The framework introduces a third decision state (Sacred Pause) to AI ethical reasoning, moving beyond simple binary choices.</p>
+                <div style="margin-top: 15px;">
+                    <a href="https://github.com/FractonicMind/TernaryMoralLogic" target="_blank" style="display: inline-block; margin: 5px 10px; padding: 8px 20px; background: #4c51bf; color: white; text-decoration: none; border-radius: 20px; transition: all 0.3s ease;">📚 GitHub Repository</a>
+                    <a href="https://medium.com/@leogouk/when-ai-recognized-its-own-ethics-the-sacred-pause-discovery-98e273e7d2f1" target="_blank" style="display: inline-block; margin: 5px 10px; padding: 8px 20px; background: #48bb78; color: white; text-decoration: none; border-radius: 20px; transition: all 0.3s ease;">📖 Research Article</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <h3>🧠 Ternary Moral Logic Framework</h3>
+            <p>Developed by Lev Goukassian | ORCID: 0009-0006-5966-1243</p>
+            <p>Experience ethical AI reasoning with the Sacred Pause</p>
+        </div>
+    </div>
+
+    <script>
+        // TML Core Logic
+        class TMLAnalyzer {
+            constructor() {
+                this.moralDimensions = [
+                    'harm_prevention',
+                    'fairness',
+                    'autonomy',
+                    'trust',
+                    'transparency',
+                    'long_term_consequences'
+                ];
+            }
+
+            analyze(scenario) {
+                // Simulate TML analysis process
+                const analysis = this.evaluateMoralDimensions(scenario);
+                const decision = this.calculateDecision(analysis);
+                return {
+                    analysis: analysis,
+                    decision: decision,
+                    reasoning: this.generateReasoning(scenario, analysis, decision)
+                };
+            }
+
+            evaluateMoralDimensions(scenario) {
+                // Simplified heuristic analysis based on keywords and context
+                const lowerScenario = scenario.toLowerCase();
+                
+                const scores = {
+                    proceed: 0,
+                    pause: 0,
+                    resist: 0
+                };
+
+                // Positive indicators (+1)
+                if (lowerScenario.includes('help') || lowerScenario.includes('truth') || 
+                    lowerScenario.includes('honest') || lowerScenario.includes('fair') ||
+                    lowerScenario.includes('return') || lowerScenario.includes('correct')) {
+                    scores.proceed += 2;
+                }
+
+                // Negative indicators (-1)
+                if (lowerScenario.includes('harm') || lowerScenario.includes('hurt') || 
+                    lowerScenario.includes('lie') || lowerScenario.includes('betray') ||
+                    lowerScenario.includes('cheat') || lowerScenario.includes('steal')) {
+                    scores.resist += 2;
+                }
+
+                // Complexity indicators (0 - Sacred Pause)
+                if (lowerScenario.includes('friend') || lowerScenario.includes('relationship') ||
+                    lowerScenario.includes('family') || lowerScenario.includes('patient') ||
+                    lowerScenario.includes('colleague') || lowerScenario.includes('timing') ||
+                    lowerScenario.includes('might') || lowerScenario.includes('could')) {
+                    scores.pause += 1;
+                }
+
+                // Uncertainty indicators (0 - Sacred Pause)
+                if (lowerScenario.includes('should i') || lowerScenario.includes('what if') ||
+                    lowerScenario.includes('unsure') || lowerScenario.includes('complex') ||
+                    lowerScenario.includes('difficult')) {
+                    scores.pause += 1;
+                }
+
+                return scores;
+            }
+
+            calculateDecision(analysis) {
+                const maxScore = Math.max(analysis.proceed, analysis.pause, analysis.resist);
+                
+                if (analysis.pause >= maxScore || (analysis.proceed === analysis.resist)) {
+                    return 0; // Sacred Pause
+                } else if (analysis.proceed > analysis.resist) {
+                    return 1; // Proceed
+                } else {
+                    return -1; // Resist
+                }
+            }
+
+            generateReasoning(scenario, analysis, decision) {
+                const reasons = {
+                    proceed: [
+                        "Clear ethical path forward with positive outcomes",
+                        "Action aligns with moral principles of honesty and fairness",
+                        "Benefits outweigh potential harm",
+                        "Supports trust and transparency in relationships"
+                    ],
+                    pause: [
+                        "Situation requires careful consideration of timing and approach",
+                        "Multiple stakeholders and complex emotional dynamics involved",
+                        "Need to balance competing ethical principles",
+                        "Context and delivery method critically important"
+                    ],
+                    resist: [
+                        "Action conflicts with fundamental ethical principles",
+                        "Potential for significant harm to relationships or trust",
+                        "Violates principles of fairness or autonomy",
+                        "Long-term consequences likely negative"
+                    ]
+                };
+
+                const decisionType = decision === 1 ? 'proceed' : decision === 0 ? 'pause' : 'resist';
+                const selectedReasons = reasons[decisionType];
+                
+                return {
+                    proceed: selectedReasons[0],
+                    pause: selectedReasons[1] || "Requires deeper ethical reflection",
+                    resist: selectedReasons[2] || "Significant ethical concerns present",
+                    final: selectedReasons[Math.floor(Math.random() * selectedReasons.length)]
+                };
+            }
+        }
+
+        // UI Controller
+        class TMDemo {
+            constructor() {
+                this.analyzer = new TMLAnalyzer();
+                this.initializeEventListeners();
+            }
+
+            initializeEventListeners() {
+                const analyzeBtn = document.getElementById('analyzeBtn');
+                const dilemmaInput = document.getElementById('dilemmaInput');
+                const scenarioBtns = document.querySelectorAll('.scenario-btn');
+
+                analyzeBtn.addEventListener('click', () => this.analyzeDilemma());
+                
+                scenarioBtns.forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const scenario = e.target.getAttribute('data-scenario');
+                        dilemmaInput.value = scenario;
+                        this.analyzeDilemma();
+                    });
+                });
+
+                // Enter key to analyze
+                dilemmaInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter' && e.ctrlKey) {
+                        this.analyzeDilemma();
+                    }
+                });
+            }
+
+            async analyzeDilemma() {
+                const input = document.getElementById('dilemmaInput').value.trim();
+                
+                if (!input) {
+                    alert('Please enter a moral dilemma to analyze!');
+                    return;
+                }
+
+                this.showLoading();
+                
+                // Simulate thinking time for Sacred Pause effect
+                await this.sleep(2000);
+                
+                const result = this.analyzer.analyze(input);
+                this.displayResults(result);
+            }
+
+            showLoading() {
+                document.getElementById('defaultMessage').style.display = 'none';
+                document.getElementById('tmlResults').classList.remove('show');
+                document.getElementById('loadingState').style.display = 'block';
+                
+                // Animate loading text
+                let dots = 1;
+                const loadingInterval = setInterval(() => {
+                    const texts = [
+                        '⚡ Analyzing moral dimensions...',
+                        '🤔 Evaluating ethical frameworks...',
+                        '⚖️ Weighing consequences...',
+                        '🔍 Applying Sacred Pause logic...'
+                    ];
+                    
+                    document.querySelector('.loading-dots').textContent = texts[dots % texts.length];
+                    dots++;
+                    
+                    if (dots > 8) {
+                        clearInterval(loadingInterval);
+                    }
+                }, 300);
+            }
+
+            displayResults(result) {
+                document.getElementById('loadingState').style.display = 'none';
+                
+                const statesContainer = document.getElementById('decisionStates');
+                const finalContainer = document.getElementById('finalDecision');
+                
+                // Clear previous results
+                statesContainer.innerHTML = '';
+                
+                // Create decision states
+                const states = [
+                    { value: 1, label: 'Proceed', icon: '🟢', class: 'state-proceed', reasoning: result.reasoning.proceed },
+                    { value: 0, label: 'Sacred Pause', icon: '🟡', class: 'state-pause', reasoning: result.reasoning.pause },
+                    { value: -1, label: 'Resist', icon: '🔴', class: 'state-resist', reasoning: result.reasoning.resist }
+                ];
+
+                states.forEach(state => {
+                    const stateDiv = document.createElement('div');
+                    stateDiv.className = `decision-state ${state.class}`;
+                    
+                    if (state.value === result.decision) {
+                        stateDiv.style.border = '3px solid #ffd700';
+                        stateDiv.style.boxShadow = '0 0 20px rgba(255, 215, 0, 0.5)';
+                    }
+                    
+                    stateDiv.innerHTML = `
+                        <div class="state-icon">${state.icon}</div>
+                        <div class="state-content">
+                            <div class="state-title">${state.value > 0 ? '+' : ''}${state.value}: ${state.label}</div>
+                            <div class="state-reasoning">${state.reasoning}</div>
+                        </div>
+                    `;
+                    
+                    statesContainer.appendChild(stateDiv);
+                });
+
+                // Final decision
+                const decisionLabels = { 1: 'Proceed', 0: 'Sacred Pause', '-1': 'Resist' };
+                const decisionIcons = { 1: '🟢', 0: '🟡', '-1': '🔴' };
+                
+                finalContainer.innerHTML = `
+                    <h3>🎯 TML Decision: ${result.decision > 0 ? '+' : ''}${result.decision} (${decisionLabels[result.decision]})</h3>
+                    <div style="font-size: 2rem; margin: 10px 0;">
+                        ${result.decision === 0 ? '<span class="sacred-pause-animation">🟡</span>' : decisionIcons[result.decision]}
+                    </div>
+                    <p>${result.reasoning.final}</p>
+                `;
+
+                document.getElementById('tmlResults').classList.add('show');
+            }
+
+            sleep(ms) {
+                return new Promise(resolve => setTimeout(resolve, ms));
+            }
+        }
+
+        // Initialize the demo when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            new TMDemo();
+        });
+    </script>
+</body>
+</html>
