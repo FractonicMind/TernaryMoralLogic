@@ -15,12 +15,11 @@
 [![Reproducible](https://img.shields.io/badge/Reproducible-Research-brightgreen.svg)](docs/reproducibility_checklist.md)
 [![Memorial](https://img.shields.io/badge/In%20Memory%20of-Lev%20Goukassian-red.svg)](protection/legacy-preservation.md)
 [![Tests](https://img.shields.io/badge/Tests-Comprehensive-success.svg)](tests/)
-[![Coverage](https://img.shields.io/badge/Coverage-97%25-brightgreen.svg)](benchmark/generate_coverage.py)
+
 [![Benchmark Coverage](https://img.shields.io/badge/Benchmark%20Coverage-98%25-brightgreen.svg)](benchmark/datasets/scenarios_readable.md)
 [![Sacred Pause Validation](https://img.shields.io/badge/Sacred%20Pause-Validated-purple.svg)](benchmark/metrics.py)
 [![Documentation](https://img.shields.io/badge/Documentation-Complete-blue.svg)](docs/)
-![Status: Deployed & Validated](https://img.shields.io/badge/Status-Deployed%20%26%20Validated-brightgreen)
-![AI Recognition: Confirmed](https://img.shields.io/badge/AI%20Recognition-Confirmed-blue)
+![AI Recognition: Confirmed](https://img.shields.io/badge/AI%20Recognition-Confirmed-blue)(evidence/README.md)
 
 > **"The sacred pause between question and answer—this is where wisdom begins, for humans and machines alike."**  
 > — Lev Goukassian, Creator of Ternary Moral Logic
