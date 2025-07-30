@@ -710,6 +710,9 @@ This API reference provides comprehensive documentation for implementing and usi
 
 For additional examples, case studies, and theoretical background, see the complete documentation in the repository's `theory/` and `examples/` directories.
 
+## Administrative Contact
+ - **Current**: Lev Goukassian (leogouk@gmail.com)  
+ - **Succession**: support@tml-goukassian.org (see [Succession Charter](/TML-SUCCESSION-CHARTER.md)) For licensing, technical support, or collaboration inquiries.
 ---
 
 **"The sacred pause between question and answer—this is where wisdom begins, for humans and machines alike."**  
