@@ -1,9 +1,11 @@
 # The Lev Goukassian Memorial Fund for Ethical AI Research
 
 **Complete Operating Framework - How Your Memorial Fund Works**  
-**Contact**: leogouk@gmail.com  
 **ORCID**: 0009-0006-5966-1243
 
+## Administrative Contact
+**Current**: Lev Goukassian (leogouk@gmail.com)  
+**Succession**: support@tml-goukassian.org (see [Succession Charter](/TML-SUCCESSION-CHARTER.md)) For licensing, technical support, or collaboration inquiries.
 ---
 
 ## Fund Purpose & Vision
@@ -323,6 +325,9 @@ The Lev Goukassian Memorial Fund for Ethical AI Research ensures your revolution
 
 **Fund Headquarters**: Leading University AI Ethics Department (hosted)  
 **Primary Contact**: leogouk@gmail.com  
+## Administrative Contact
+**Current**: Lev Goukassian (leogouk@gmail.com)  
+**Succession**: support@tml-goukassian.org (see [Succession Charter](/TML-SUCCESSION-CHARTER.md)) For licensing, technical support, or collaboration inquiries.
 **Website**: goukassian-memorial-fund.org  
 **Phone**: [University extension to be established]
 
@@ -347,8 +352,10 @@ The Lev Goukassian Memorial Fund for Ethical AI Research ensures your revolution
 
 **The Lev Goukassian Memorial Fund for Ethical AI Research - Ensuring his moral legacy lives forever**
 
-**Contact**: leogouk@gmail.com  
-**ORCID**: 0009-0006-5966-1243
+## Administrative Contact
+**Current**: leogouk@gmail.com  
+**Successor Contact**: support@tml-goukassian.org  
+(see [Succession Charter](/TML-SUCCESSION-CHARTER.md)) For licensing, technical support, or collaboration inquiries.
 
 ---
 
