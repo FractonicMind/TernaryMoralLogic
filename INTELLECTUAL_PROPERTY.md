@@ -2,7 +2,9 @@
 
 **Ternary Moral Logic Framework**  
 **Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)  
-**Contact**: leogouk@gmail.com  
+## Administrative Contact
+**Current**: Lev Goukassian (leogouk@gmail.com)  
+**Succession**: support@tml-goukassian.org (see [Succession Charter](TML-SUCCESSION-CHARTER.md)) For licensing, technical support, or collaboration inquiries. 
 **Creation Date**: 2025  
 **Repository**: https://github.com/FractonicMind/TernaryMoralLogic
 
@@ -355,10 +357,9 @@ Software Attribution:
 - **Repository**: https://github.com/FractonicMind/TernaryMoralLogic
 
 ### Legal and Licensing Inquiries
-- **Licensing Questions**: licensing@goukassian-tml.org
-- **IP Violations**: ip-violations@goukassian-tml.org
-- **Commercial Use**: commercial@goukassian-tml.org
-- **Memorial Fund**: memorial-fund@goukassian-tml.org
+## Administrative Contact
+- **Current**: Lev Goukassian (leogouk@gmail.com)  
+- **Succession**: support@tml-goukassian.org (see [Succession Charter](TML-SUCCESSION-CHARTER.md)) For licensing, technical support, or collaboration inquiries.
 
 ### Legal Representation
 - **IP Attorney**: [To be designated]
