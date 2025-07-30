@@ -759,7 +759,7 @@ This project is licensed under the **MIT License with Ethical Use Requirements**
 
 **License Inquiries**: leogouk@gmail.com | support@tml-goukassian.org (see [Succession Charter](TML-SUCCESSION-CHARTER.md)) For licensing, technical support, or collaboration inquiries.
 
-See [LICENSE](LICENSE) for complete terms.
+See [LICENSE](LICENSE) for complete terms, or explore our [Ternary License Demo](examples/ternary-license-demo.md) for a creative example of TML principles applied to licensing.
 
 ---
 
