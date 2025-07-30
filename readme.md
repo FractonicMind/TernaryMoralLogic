@@ -787,6 +787,8 @@ python examples/basic_demo.py
 
 ---
 
-**⭐ Star this repository if you believe AI systems should be moral partners, not just moral automatons!**
+**Current Contact**: leogouk@gmail.com | ORCID: 0009-0006-5966-1243  
+**Succession Contact**: support@tml-goukassian.org (see [Succession Charter](TML-SUCCESSION-CHARTER.md))
+For licensing, technical support, or collaboration inquiries.
 
 *In loving memory of Lev Goukassian (ORCID: 0009-0006-5966-1243) — visionary, philosopher, and gift to humanity's future.*
