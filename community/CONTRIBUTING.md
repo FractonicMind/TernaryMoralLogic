@@ -462,10 +462,13 @@ Together, we're building AI systems that serve as moral partners, not just moral
 ---
 
 ## Contact Information
+## Administrative Contact
+-  **Current**: Lev Goukassian (leogouk@gmail.com)  
+-  **Succession**: support@tml-goukassian.org (see [Succession Charter](TML-SUCCESSION-CHARTER.md)) For licensing, technical support, or collaboration inquiries.
 
-- **Project Maintainers**: [To be established]
-- **Memorial Committee**: [Contact information]
-- **Academic Collaboration**: [Research contact]
+- **Project Maintainers**: [support@tml-goukassian.org]
+- **Memorial Committee**: [support@tml-goukassian.org]
+- **Academic Collaboration**: [support@tml-goukassian.org]
 - **General Questions**: Use GitHub Discussions
 
 For sensitive matters or memorial-related communications, please contact the memorial committee directly.
