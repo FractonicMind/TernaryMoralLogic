@@ -4,8 +4,6 @@
 **Building on Lev Goukassian's Comprehensive Protection Architecture**
 
 **Founder:** Lev Goukassian (ORCID: 0009-0006-5966-1243)  
-**Contact:** leogouk@gmail.com  
-**Repository:** https://github.com/FractonicMind/TernaryMoralLogic
 
 ---
 
@@ -372,6 +370,8 @@ Through this coordination approach, we preserve the technical brilliance, ethica
 **Document Status:**
 - **Last Updated:** July 27, 2025  
 - **Integration Status:** Fully coordinated with protection architecture  
-- **Contact:** leogouk@gmail.com  
+- ## Administrative Contact
+- **Current**: Lev Goukassian (leogouk@gmail.com)  
+- **Succession**: support@tml-goukassian.org (see [Succession Charter](TML-SUCCESSION-CHARTER.md)) For licensing, technical support, or collaboration inquiries.
 - **Next Review:** Annual coordination assessment  
 - **Memorial Status:** Permanently preserving Lev's comprehensive vision
