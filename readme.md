@@ -752,13 +752,29 @@ TML builds upon decades of moral philosophy and AI ethics research. We acknowled
 ## License and Usage
 
 This project is licensed under the **MIT License with Ethical Use Requirements**. This ensures:
-
 - ✅ **Free use** for research, education, and beneficial applications
 - ✅ **Open source** development and modification
 - ❌ **Prohibited use** for surveillance, discrimination, or harm
 - 🤝 **Community accountability** for ethical implementation
 
+**License Inquiries**: leogouk@gmail.com | support@tml-goukassian.org (see [Succession Charter](TML-SUCCESSION-CHARTER.md)) For licensing, technical support, or collaboration inquiries.
+
 See [LICENSE](LICENSE) for complete terms.
+
+---
+
+## 📧 Contact & Succession
+
+**Current Contact**: Lev Goukassian  
+- **Email**: leogouk@gmail.com  
+- **ORCID**: 0009-0006-5966-1243  
+
+**Successor Contact**: support@tml-goukassian.org  
+- **Purpose**: Institutional stewardship for TML framework continuity  
+- **Activation**: Upon creator incapacity or as outlined in [Succession Charter](TML-SUCCESSION-CHARTER.md)  
+- **Services**: Licensing, technical support, collaboration inquiries, Memorial Fund administration  
+
+For immediate assistance, use current contact. For information about long-term framework stewardship and institutional succession planning, see our [TML Succession Charter](TML-SUCCESSION-CHARTER.md).
 
 ---
 
