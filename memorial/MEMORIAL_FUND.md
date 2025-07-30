@@ -4,8 +4,8 @@
 **ORCID**: 0009-0006-5966-1243
 
 ## Administrative Contact
-**Current**: Lev Goukassian (leogouk@gmail.com)  
-**Succession**: support@tml-goukassian.org (see [Succession Charter](/TML-SUCCESSION-CHARTER.md)) For licensing, technical support, or collaboration inquiries.
+ - **Current**: Lev Goukassian (leogouk@gmail.com)  
+ - **Succession**: support@tml-goukassian.org (see [Succession Charter](/TML-SUCCESSION-CHARTER.md)) For licensing, technical support, or collaboration inquiries.
 ---
 
 ## Fund Purpose & Vision
