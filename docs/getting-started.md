@@ -437,6 +437,6 @@ print(result.reasoning)
 ```
 - **Contact**: leogouk@gmail.com (current) | support@tml-goukassian.org (successor)
 *Note: The successor contact becomes active upon institutional stewardship 
-as outlined in the [TML Succession Charter](TML-SUCCESSION-CHARTER.md).*
+as outlined in the [TML Succession Charter](risks-and-prevention/TML-SUCCESSION-CHARTER.md).*
 
 Ready to begin your journey with ethical AI? Start with a simple evaluation and discover the power of the Sacred Pause.
