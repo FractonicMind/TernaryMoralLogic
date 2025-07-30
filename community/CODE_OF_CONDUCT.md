@@ -373,9 +373,9 @@ We thank the many communities that have developed thoughtful approaches to onlin
 
 ## Contact Information
 
-**Community Moderators:** [To be established]  
-**Memorial Committee:** [To be established]  
-**Emergency Contact:** [To be established]
+- **Contact**: leogouk@gmail.com (current) | support@tml-goukassian.org (successor)
+*Note: The successor contact becomes active upon institutional stewardship 
+as outlined in the [TML Succession Charter](TML-SUCCESSION-CHARTER.md).*
 
 **For non-urgent questions about this code:** Use GitHub Discussions with the "Code of Conduct" tag
 
