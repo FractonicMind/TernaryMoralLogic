@@ -319,7 +319,6 @@ While TML is designed to enhance ethical AI decision-making, we recognize potent
 #### Our Prevention Architecture
 
 **🛡️ Technical Protection (`protection/integrity-monitoring.md`)**
-- Cryptographic authentication requiring ethical verification
 - Built-in attribution enforcement at the code level
 - Usage monitoring and logging for compliance
 - Memorial recognition required for framework access
@@ -474,7 +473,6 @@ This repository contains a comprehensive ecosystem for ethical AI development:
 ### 🛡️ **Protection Architecture** (1,835+ lines total)
 - **`protection/institutional-access.md`** - Controls for authorized institutions (412 lines)
 - **`protection/misuse-prevention.md`** - Active safeguards against harmful use (754 lines)
-- **`protection/integrity-monitoring.md`** - Cryptographic protection system (669 lines)
 
 ### 💝 **Memorial Preservation System**
 - **`memorial/MEMORIAL_FUND.md`** - Complete operational framework for ethical AI research funding
