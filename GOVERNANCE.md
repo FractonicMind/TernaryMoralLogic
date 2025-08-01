@@ -12,7 +12,6 @@
 This document establishes the coordination layer for TML framework governance, building upon Lev Goukassian's comprehensive protection and legacy systems. Rather than duplicate existing safeguards, this governance framework integrates and coordinates the sophisticated protection architecture already established.
 
 **Core Integration Points:**
-- **Technical Protection:** `protection/integrity-monitoring.md` - Cryptographic authentication and memorial enforcement
 - **Institutional Access:** `protection/institutional-access.md` - Pre-authorized institutions and community review
 - **Misuse Prevention:** `protection/misuse-prevention.md` - License revocation and community enforcement  
 - **Legacy Preservation:** `protection/legacy-preservation.md` - Memorial fund and perpetual maintenance
