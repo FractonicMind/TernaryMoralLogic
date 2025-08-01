@@ -318,12 +318,6 @@ While TML is designed to enhance ethical AI decision-making, we recognize potent
 
 #### Our Prevention Architecture
 
-**🛡️ Technical Protection (`protection/integrity-monitoring.md`)**
-- Built-in attribution enforcement at the code level
-- Usage monitoring and logging for compliance
-- Memorial recognition required for framework access
-- Technical safeguards preventing unauthorized modifications
-
 **🚨 Active Prevention (`protection/misuse-prevention.md`)**
 - Community-based monitoring and reporting systems
 - License revocation protocols for violations
@@ -610,7 +604,7 @@ Our community operates according to the same ethical principles TML promotes:
 
 | Resource | Description | Link |
 |----------|-------------|------|
-| 🎮 **Interactive Demo** | Try TML in your browser | [Launch Demo](https://fractonicmind.github.io/TernaryMoralLogic/examples/chatbot-demo/) |
+| 🎮 **Interactive Demo** | Try TML in your browser | [TML Interactive Demonstrator](https://fractonicmind.github.io/TernaryMoralLogic/TML-App/) |
 | 📖 **Getting Started** | 5-minute introduction | [Read Guide](docs/getting-started.md) |
 | 🔧 **API Docs** | Technical reference | [API Reference](docs/api-reference.md) |
 | 💡 **Examples** | Code demonstrations | [Browse Examples](examples/) |
