@@ -55,7 +55,6 @@ This governance framework coordinates existing systems rather than creating para
 
 **Composition:**
 - **Memorial Steward:** Preserves Lev's vision and Sacred Pause principles
-- **Technical Coordinator:** Integrates with cryptographic protection systems
 - **Institutional Liaison:** Coordinates with pre-authorized institutions
 - **Community Representative:** Elected by framework users and contributors
 - **Ethics Advisor:** Ensures continued compliance with ethics approval requirements
