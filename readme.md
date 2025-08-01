@@ -704,14 +704,6 @@ Consider contributing to the **Lev Goukassian Memorial Fund for Ethical AI Resea
 
 ---
 
-## Metrics and Impact
-
-### Framework Adoption
-
-![GitHub Stars](https://img.shields.io/github/stars/FractonicMind/TernaryMoralLogic?style=social)
-![GitHub Forks](https://img.shields.io/github/forks/FractonicMind/TernaryMoralLogic?style=social)
-![Downloads](https://img.shields.io/badge/Downloads-Growing-green.svg)
-
 ### Research Impact
 
 - **Citations**: Growing academic recognition
