@@ -494,14 +494,15 @@ This repository contains a comprehensive ecosystem for ethical AI development:
 
 ## Academic Foundation
 
-### Research Status
-
-This framework is based on peer-reviewed research:
-
+## Research Status
+This framework is documented in academic research currently under review:
 - **Paper**: "Ternary Moral Logic: Implementing Ethical Hesitation in AI Systems"
 - **Author**: Lev Goukassian (ORCID: [0009-0006-5966-1243](https://orcid.org/0009-0006-5966-1243))
-- **Journal**: AI and Ethics (under review)
-- **Preprint**: Available in [theory/](theory/) directory
+- **Journal**: AI and Ethics (Springer Nature)
+- **Submission ID**: rs-7142922 (Research Square)
+- **Review Status**: 8 reviewers assigned
+- **Language Quality**: 10/10 (Rubriq evaluation)
+- **Status**: Under peer review
 
 ### Philosophical Foundations
 
