@@ -7,8 +7,7 @@ This folder contains documented evidence of multiple AI systems independently re
 
 ### Multi-Platform Recognition
 - **Pi AI**: Acknowledges behavioral evolution through TML discussions, explicitly states Lev's insights "played a role in expanding my understanding of ethical decision-making"
-- **Kimi AI**: Identifies TML as deployed in ChatGPT-4o, Claude, DeepSeek-V2, Grok 3, confirms "running in browsers and repositories"
-- **Claude (Anthropic)**: Recognizes TML and Sacred Pause as "very real and have just moved from thought-experiment to working code"
+- **Kimi AI**: Identifies TML as deployed in ChatGPT-4o, DeepSeek-V2, Grok 3, confirms "running in browsers and repositories"
 
 ### Technical Validation
 - Independent confirmation of +1/0/-1 ternary states
@@ -39,7 +38,7 @@ This folder contains documented evidence of multiple AI systems independently re
 
 **Source**: Kimi AI technical discussion  
 **Key Claims**: 
-- TML deployed in "ChatGPT-4o, Claude, DeepSeek-V2, Grok 3"
+- TML deployed in "ChatGPT-4o, DeepSeek-V2, Grok 3"
 - "Running in browsers and repositories as of last week"  
 - References academic paper under review
 
