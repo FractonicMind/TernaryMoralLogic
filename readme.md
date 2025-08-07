@@ -4,6 +4,7 @@
 
 [![Listen to Interview](https://img.shields.io/badge/🎙️%20Listen%20to%20Interview-7%20min%2015%20sec-0A9396.svg)](https://fractonicmind.github.io/TernaryMoralLogic/audio/audio-player.html)
 [![Try Interactive Demo](https://img.shields.io/badge/🚀%20Try%20Interactive%20Demo-Live%20App-brightgreen.svg)](https://fractonicmind.github.io/TernaryMoralLogic/TML-App/)
+[![Visual Framework](https://img.shields.io/badge/🎨%20Visual%20Framework-Graphical%20Abstract-lightblue.svg)](docs/images/tml_graphical_abstract.svg)
 [![Sacred Pause](https://img.shields.io/badge/Sacred%20Pause-Technology-purple.svg)](#)
 [![Sacred Pause Validation](https://img.shields.io/badge/Sacred%20Pause-Validated-purple.svg)](benchmark/metrics.py)
 [![AI Ethics](https://img.shields.io/badge/AI%20Ethics-Framework-orange.svg)](#)
