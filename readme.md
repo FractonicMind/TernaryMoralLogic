@@ -375,10 +375,10 @@ For complex situations, we pause to:
 
 ### Community Accountability
 
-**Peer Monitoring**: TML users are expected to monitor and report concerning implementations
-**Public Transparency**: All enforcement actions are documented publicly
-**Victim Support**: Resources and assistance for communities harmed by TML misuse
-**Continuous Improvement**: Regular updates to prevention measures based on emerging threats
+- **Peer Monitoring**: TML users are expected to monitor and report concerning implementations
+- **Public Transparency**: All enforcement actions are documented publicly
+- **Victim Support**: Resources and assistance for communities harmed by TML misuse
+- **Continuous Improvement**: Regular updates to prevention measures based on emerging threats
 
 ### 🧠 Intelligent Value Detection
 
@@ -406,6 +406,11 @@ When complexity exceeds AI capability, TML activates the Sacred Pause:
 - Suggests clarifying questions for human consideration
 - Recommends stakeholder consultation
 - Proposes alternative approaches
+
+## 📊 Visual Framework Comparison
+<div align="center">
+  <img src="docs/images/tml_graphical_abstract.svg" alt="TML Graphical Abstract" width="800">
+</div>
 
 ### 📊 Decision Tracking
 
