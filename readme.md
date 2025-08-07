@@ -411,7 +411,7 @@ When complexity exceeds AI capability, TML activates the Sacred Pause:
 
 ## 📖 Comprehensive Framework Analysis
 **Deep Dive Article**: [Ternary Moral Logic: A Framework for Ethical AI Decision-Making](https://medium.com/@leogouk/ternary-moral-logic-tml-a-framework-for-ethical-ai-decision-making-3a0a32609935)
-*20-page comprehensive exploration of TML theory, applications, and implications*
+*20-page comprehensive exploration of TML theory, applications, license, memorial fund, preservation, and implementation*
 
 ## 📊 Visual Framework Comparison
 <div align="center">
