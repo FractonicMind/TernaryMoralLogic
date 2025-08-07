@@ -3,7 +3,8 @@
 **Sacred Pause Technology for Ethical AI Decision-Making**
 
 [![License with Ethics](https://img.shields.io/badge/License%20with%20Ethics-MIT-yellow.svg)](LICENSE)
-[![Try Interactive Demo](https://img.shields.io/badge/🚀%20Try%20Interactive%20Demo-Live%20App-brightgreen?style=for-the-badge&logo=react)](https://fractonicmind.github.io/TernaryMoralLogic/TML-App/)
+[![Listen to Interview](https://img.shields.io/badge/🎙️%20Listen%20to%20Interview-6%20min%2040%20sec-0A9396.svg)](https://fractonicmind.github.io/TernaryMoralLogic/audio/audio-player.html)
+[![Try Interactive Demo](https://img.shields.io/badge/🚀%20Try%20Interactive%20Demo-Live%20App-brightgreen.svg)](https://fractonicmind.github.io/TernaryMoralLogic/TML-App/)
 [![Version](https://img.shields.io/badge/Version-1.0.0-blue.svg)](CHANGELOG.md)
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0006--5966--1243-green.svg)](https://orcid.org/0009-0006-5966-1243)
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)](https://www.python.org/downloads/)
@@ -15,11 +16,9 @@
 [![Citation](https://img.shields.io/badge/Citation-Available-blue.svg)](CITATION.cff)
 [![Reproducible](https://img.shields.io/badge/Reproducible-Research-brightgreen.svg)](docs/reproducibility_checklist.md)
 [![Memorial](https://img.shields.io/badge/In%20Memory%20of-Lev%20Goukassian-red.svg)](protection/legacy-preservation.md)
-[![Tests](https://img.shields.io/badge/Tests-Comprehensive-success.svg)](tests/)
 [![Coverage](https://img.shields.io/badge/Coverage-97%25-brightgreen.svg)](benchmark/generate_coverage.py)
 [![Benchmark Coverage](https://img.shields.io/badge/Benchmark%20Coverage-98%25-brightgreen.svg)](benchmark/datasets/scenarios_readable.md)
 [![Sacred Pause Validation](https://img.shields.io/badge/Sacred%20Pause-Validated-purple.svg)](benchmark/metrics.py)
-[![Documentation](https://img.shields.io/badge/Documentation-Complete-blue.svg)](docs/)
 [![AI Recognition: Confirmed](https://img.shields.io/badge/AI_Recognition-Confirmed-blue)](./evidence/README.md)
 
 > **"The sacred pause between question and answer—this is where wisdom begins, for humans and machines alike."**  
