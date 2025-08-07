@@ -53,7 +53,7 @@ Ternary Moral Logic (TML) revolutionizes AI ethics by introducing a third comput
 
 ### **Exclusive Interview: Understanding the Sacred Pause**
 
-[![Listen to TML Interview](https://img.shields.io/badge/▶%20Play%20Interview-7%20min%20150%20sec-0A9396?style=for-the-badge&logo=spotify&logoColor=white)](https://fractonicmind.github.io/TernaryMoralLogic/audio/audio-player.html)
+[![Listen to TML Interview](https://img.shields.io/badge/▶%20Play%20Interview-7%20min%2015%20sec-0A9396?style=for-the-badge&logo=spotify&logoColor=white)](https://fractonicmind.github.io/TernaryMoralLogic/audio/audio-player.html)
 
 **[🎧 Click to Listen: The Ternary Moral Logic Framework Interview](https://fractonicmind.github.io/TernaryMoralLogic/audio/audio-player.html)**
 
