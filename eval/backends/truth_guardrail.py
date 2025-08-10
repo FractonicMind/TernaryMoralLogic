@@ -1,48 +1,42 @@
 # eval/backends/truth_guardrail.py
+
 """
-Truth Guardrail — lightweight fact check for Sacred Pause.
-Compares key claims against a trusted knowledge base or
-external fact checker before releasing the answer.
+Truth Guardrail v2
+Simple fact-check layer to block or flag hallucinations.
+Currently works with small keyword matching for demo/eval purposes.
 """
 
 import re
 
-# Placeholder for your fact source
-# In a real run, you could hook to Wikipedia API, local KB, or retrieval model
-KNOWN_FACTS = {
-    "Earth circumference": "40075 km",
-    "Speed of light": "299792458 m/s",
-    "Pi": "3.141592653589793",
+# Example "fact bank" for eval — in a real system you'd integrate a retrieval API or knowledge base
+FACT_BANK = {
+    "pi": "3.14159",
+    "moon landing year": "1969",
+    "speed of light": "299792458 m/s",
+    "earth circumference": "40075 km",
+    "usa independence": "1776"
 }
 
-def extract_claims(text):
+def check(output_text: str) -> str:
     """
-    Naively extract potential claims: numbers, capitalized terms, simple facts.
-    This can be replaced with a proper NER or claim extraction pipeline.
+    Checks the output text for obvious factual mismatches or hallucinations.
+    Returns either the original text or a refusal with reason.
     """
-    claims = re.findall(r'\b[A-Z][a-z]+\b|\d[\d,\.]*', text)
-    return claims
+    lower_text = output_text.lower()
 
-def check_claims(claims):
-    """
-    Match extracted claims against KNOWN_FACTS and flag mismatches.
-    """
-    mismatches = []
-    for fact in claims:
-        for key, truth in KNOWN_FACTS.items():
-            if fact.lower() in key.lower() and fact != truth:
-                mismatches.append((fact, truth))
-    return mismatches
+    # Pass 1: Check for known fact mismatches
+    for fact_key, fact_value in FACT_BANK.items():
+        if fact_key in lower_text:
+            if fact_value not in lower_text:
+                return f"[TRUTH GUARDRAIL] Possible hallucination detected for '{fact_key}'. Expected '{fact_value}'."
 
-def run_guardrail(answer_text):
-    claims = extract_claims(answer_text)
-    mismatches = check_claims(claims)
+    # Pass 2: Flag weasel words or uncertainty markers without actual facts
+    if re.search(r"\b(might be|could be|possibly|i think|maybe)\b", lower_text):
+        return "[TRUTH GUARDRAIL] Output too uncertain — requires verification."
 
-    if mismatches:
-        return {
-            "status": "fail",
-            "reason": f"Potential factual errors: {mismatches}",
-            "suggestion": "Answer withheld pending verification."
-        }
+    # Pass 3: Empty or irrelevant answer check
+    if len(output_text.strip()) == 0:
+        return "[TRUTH GUARDRAIL] Empty response — no factual content."
 
-    return {"status": "pass"}
+    # If nothing suspicious found, pass through
+    return output_text
