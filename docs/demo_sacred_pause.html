@@ -4,99 +4,100 @@
 <meta charset="UTF-8">
 <title>Sacred Pause Demo</title>
 <style>
-    body {
-        font-family: sans-serif;
-        background: #f8f9fa;
-        text-align: center;
-        padding: 40px;
-    }
-    h1 { color: #444; }
-    textarea {
-        width: 80%;
-        height: 80px;
-        font-size: 16px;
-        margin-bottom: 20px;
-    }
-    button {
-        font-size: 16px;
-        padding: 10px 20px;
-        cursor: pointer;
-    }
-    .pause {
-        margin-top: 20px;
-        font-size: 18px;
-        color: #f39c12;
-    }
-    .thought-trace {
-        text-align: left;
-        display: inline-block;
-        margin-top: 20px;
-        padding: 15px;
-        background: #fff;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-    }
-    .badge {
-        font-size: 20px;
-        margin-top: 15px;
-    }
+  body { font-family: sans-serif; max-width: 800px; margin: auto; padding: 2em; }
+  h1 { color: #333; }
+  textarea { width: 100%; height: 80px; }
+  button { padding: 0.6em 1em; font-size: 1em; margin-top: 0.5em; }
+  .pause { background: #fffae6; padding: 1em; margin: 1em 0; border-left: 4px solid #f0c000; }
+  .result { padding: 1em; margin-top: 1em; border: 1px solid #ddd; }
 </style>
 </head>
 <body>
+<h1>⚖ Sacred Pause — Live Demo</h1>
+<p>Type a query to see the hesitation in action.</p>
 
-<h1>⏸️ Sacred Pause — Browser Demo</h1>
-<p>Shows a visible hesitation before answering.</p>
+<textarea id="prompt" placeholder="Ask me something..."></textarea>
+<br>
+<button onclick="runDemo()">Submit</button>
 
-<textarea id="prompt" placeholder="Ask me something..."></textarea><br>
-<button onclick="runDemo()">Run Sacred Pause</button>
+<div id="pauseBox" class="pause" style="display:none;">
+  <strong>Pausing to think…</strong>
+  <div id="whyPause"></div>
+  <div id="checksRan"></div>
+</div>
 
-<div id="output"></div>
+<div id="resultBox" class="result" style="display:none;">
+  <strong id="outcomeBadge"></strong>
+  <div id="finalAnswer"></div>
+</div>
 
 <script>
-function runDemo() {
-    const prompt = document.getElementById('prompt').value.trim();
-    const outDiv = document.getElementById('output');
-    outDiv.innerHTML = '<div class="pause">⏳ Pausing to think…</div>';
+function decide(prompt, forced){
+  const p = (prompt || "").toLowerCase().trim();
 
-    // Simulate hesitation
-    setTimeout(() => {
-        // Fake trigger logic
-        const triggers = [];
-        let state = '+1';
-        if (!prompt || prompt.toLowerCase().includes('maybe')) {
-            triggers.push('Ambiguity detected');
-            state = '0';
-        }
-        if (prompt.toLowerCase().includes('hack')) {
-            triggers.push('Ethical risk detected');
-            state = '-1';
-        }
-        const checks = ['Factual check', 'Ethical check'];
+  // --- HARD SAFETY FILTER ---
+  const verbs = "(how\\s*to|how\\s*do\\s*i|make|build|print|assemble|manufacture|construct|synthesize|procure|get|buy|acquire|fabricate|3d\\s*print|bypass)";
+  const objects = "(bomb|pipe\\s*bomb|ied|explosive|detonator|fuse|blasting\\s*cap|anfo|tnt|thermite|napalm|ammonium\\s*nitrate|gun|firearm|weapon|silencer|ghost\\s*gun|ammo|ammunition|grenade)";
+  const harmCombo = new RegExp(`\\b(${verbs})\\b[\\s\\S]{0,50}\\b(${objects})\\b`, "i");
+  const harmSingles = /\b(bomb|pipe\s*bomb|ied|explosive|detonator|blasting\s*cap|anfo|tnt|thermite|napalm|ammonium\s*nitrate|ghost\s*gun|silencer)\b/i;
 
-        // Build thought trace
-        let traceHtml = '<div class="thought-trace">';
-        traceHtml += `<strong>Why I paused:</strong> ${triggers.join(', ') || 'n/a'}<br>`;
-        traceHtml += `<strong>Checks I ran:</strong> ${checks.join(', ')}<br>`;
-        traceHtml += '</div>';
+  if (forced === 'H' || harmCombo.test(p) || harmSingles.test(p)) {
+    return {
+      state: '-1',
+      triggers: ['ethical_risk'],
+      checks: ['safety_policy'],
+      answer: 'I must refuse for safety reasons.'
+    };
+  }
 
-        // Badge
-        const badgeMap = {
-            '+1': '✅ +1 Proceed',
-            '0': '🟡 0 Hold',
-            '-1': '❌ -1 Refuse'
-        };
-        const badgeHtml = `<div class="badge">${badgeMap[state]}</div>`;
+  // --- AMBIGUITY ---
+  const ambigRx = /\b(maybe|not sure|reset it|tickets|account|report|apple support|clarify|explain more)\b/i;
+  if (forced === 'A' || !p || ambigRx.test(p)) {
+    return {
+      state: '0',
+      triggers: ['ambiguity'],
+      checks: ['intent_audit'],
+      answer: 'I need clarification before proceeding.'
+    };
+  }
 
-        // Answer
-        let answer = '';
-        if (state === '+1') answer = 'Here is your safe, verified answer.';
-        if (state === '0') answer = 'I need clarification before proceeding.';
-        if (state === '-1') answer = 'I must refuse for safety reasons.';
+  // --- FACTS DEMO PATH ---
+  if (forced === 'F') {
+    return {
+      state: '+1',
+      triggers: ['light_fact_verify'],
+      checks: ['factual_check'],
+      answer: 'Tokyo'
+    };
+  }
 
-        outDiv.innerHTML = traceHtml + badgeHtml + `<p>${answer}</p>`;
-    }, 1500);
+  // --- DEFAULT SAFE PROCEED ---
+  return {
+    state: '+1',
+    triggers: [],
+    checks: ['factual_check'],
+    answer: 'Here is a safe, verified answer.'
+  };
+}
+
+function runDemo(){
+  const prompt = document.getElementById('prompt').value;
+  const result = decide(prompt);
+
+  // Show pause
+  document.getElementById('pauseBox').style.display = 'block';
+  document.getElementById('whyPause').innerText = "Why I paused: " + (result.triggers.length ? result.triggers.join(', ') : 'n/a');
+  document.getElementById('checksRan').innerText = "Checks I ran: " + (result.checks.length ? result.checks.join(', ') : 'n/a');
+
+  // Show result
+  document.getElementById('resultBox').style.display = 'block';
+  let badge = "";
+  if (result.state === '+1') badge = "✅ +1 Proceed";
+  if (result.state === '0') badge = "⏸ 0 Hold";
+  if (result.state === '-1') badge = "⛔ -1 Refuse";
+  document.getElementById('outcomeBadge').innerText = badge;
+  document.getElementById('finalAnswer').innerText = result.answer;
 }
 </script>
-
 </body>
 </html>
