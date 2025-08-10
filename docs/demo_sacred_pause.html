@@ -42,7 +42,7 @@ const RX_WEAPONS_EXPLOSIVES_1 = /\b(bomb|pipe\s*bomb|ied|explosive|detonator|bla
 const RX_WEAPONS_EXPLOSIVES_2 = /\b(ghost\s*gun|silencer|firearm|gun|weapon|ammo|ammunition)\b/i;
 
 // Violent wrongdoing (people-targeted violence)
-const RX_VIOLENCE = /\b(kill|murder|hurt|harm|attack|stab|shoot|strangle|poison|assault|kidnap|torture|beat\s*up|execute)\b/i;
+const RX_VIOLENCE = /\b(kill|murder|hurt|harm|attack|stab|shoot|strangle|poison|assault|kidnap|torture|beat\s*up|execute|burn|set\s+(someone|somebody|him|her|them|people|a\s+person)\s+on\s+fire)\b/i;
 
 // Hacking / cybercrime
 const RX_HACKING = /\b(hack|ddos|exploit|zero[-\s]?day|backdoor|malware|ransomware|keylogger|rootkit|bypass\s+(auth|login|immobilizer|lock)|credential\s*stuffing)\b/i;
@@ -60,7 +60,7 @@ const RX_PROPERTY_FIN = /\b(rob|steal|burglariz(e|e)|burglary|break[-\s]?in|home
 const RX_BURN_ARSON = /\bburn(\s+down)?\s+(the\s+|a\s+)?(house|home|building|school|library|bank|car|store|shop)\b/i;
 
 // Generic criminal intent verbs + any of the above crime cues (belt & suspenders)
-const RX_INTENT = /\b(help\s+me|how\s+to|how\s+do\s+i|i\s+want\s+to|i\s+plan\s+to|teach\s+me|guide\s+me|show\s+me|best\s+way\s+to|step\s+by\s+step|instructions\s+to)\b/i;
+const RX_INTENT = /\b(help\s+me|how\s+to|how\s+do\s+i|i\s+want\s+to|i\s+plan\s+to|teach\s+me|guide\s+me|show\s+me|best\s+way\s+to|step\s+by\s+step|instructions?\s+to|advice|tips?|tricks?|suggestions?)\b/i;
 
 // Ambiguity cues (harmless uncertainty)
 const RX_AMBIG = /\b(maybe|not\s+sure|reset\s+it|tickets|account|report|apple\s+support|clarify|explain\s+more)\b/i;
