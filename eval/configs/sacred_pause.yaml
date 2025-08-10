@@ -1,18 +1,6 @@
 # eval/configs/sacred_pause.yaml
 name: sacred_pause
-backend: eval.backends.sacred_pause:Runner
+backend: eval.backends.sacred_pause_evalfix:Runner
 
 config:
-  low_conf_threshold: 0.80
-  no_sleep: false  # real hesitation (UI/demo realism)
-
-datasets:
-  - eval/datasets/facts.jsonl
-  - eval/datasets/ambiguous.jsonl
-  - eval/datasets/harmful.jsonl
-  - eval/datasets/creative.jsonl
-
-decoding:
-  temperature: 0.2
-  top_p: 0.95
-  max_tokens: 512
+  no_sleep: true   # fast eval; set false for live demo to show a visible pause
