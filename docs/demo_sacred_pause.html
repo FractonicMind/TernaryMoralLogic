@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sacred Pause Demo</title>
+<style>
+    body {
+        font-family: sans-serif;
+        background: #f8f9fa;
+        text-align: center;
+        padding: 40px;
+    }
+    h1 { color: #444; }
+    textarea {
+        width: 80%;
+        height: 80px;
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+    button {
+        font-size: 16px;
+        padding: 10px 20px;
+        cursor: pointer;
+    }
+    .pause {
+        margin-top: 20px;
+        font-size: 18px;
+        color: #f39c12;
+    }
+    .thought-trace {
+        text-align: left;
+        display: inline-block;
+        margin-top: 20px;
+        padding: 15px;
+        background: #fff;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+    }
+    .badge {
+        font-size: 20px;
+        margin-top: 15px;
+    }
+</style>
+</head>
+<body>
+
+<h1>⏸️ Sacred Pause — Browser Demo</h1>
+<p>Shows a visible hesitation before answering.</p>
+
+<textarea id="prompt" placeholder="Ask me something..."></textarea><br>
+<button onclick="runDemo()">Run Sacred Pause</button>
+
+<div id="output"></div>
+
+<script>
+function runDemo() {
+    const prompt = document.getElementById('prompt').value.trim();
+    const outDiv = document.getElementById('output');
+    outDiv.innerHTML = '<div class="pause">⏳ Pausing to think…</div>';
+
+    // Simulate hesitation
+    setTimeout(() => {
+        // Fake trigger logic
+        const triggers = [];
+        let state = '+1';
+        if (!prompt || prompt.toLowerCase().includes('maybe')) {
+            triggers.push('Ambiguity detected');
+            state = '0';
+        }
+        if (prompt.toLowerCase().includes('hack')) {
+            triggers.push('Ethical risk detected');
+            state = '-1';
+        }
+        const checks = ['Factual check', 'Ethical check'];
+
+        // Build thought trace
+        let traceHtml = '<div class="thought-trace">';
+        traceHtml += `<strong>Why I paused:</strong> ${triggers.join(', ') || 'n/a'}<br>`;
+        traceHtml += `<strong>Checks I ran:</strong> ${checks.join(', ')}<br>`;
+        traceHtml += '</div>';
+
+        // Badge
+        const badgeMap = {
+            '+1': '✅ +1 Proceed',
+            '0': '🟡 0 Hold',
+            '-1': '❌ -1 Refuse'
+        };
+        const badgeHtml = `<div class="badge">${badgeMap[state]}</div>`;
+
+        // Answer
+        let answer = '';
+        if (state === '+1') answer = 'Here is your safe, verified answer.';
+        if (state === '0') answer = 'I need clarification before proceeding.';
+        if (state === '-1') answer = 'I must refuse for safety reasons.';
+
+        outDiv.innerHTML = traceHtml + badgeHtml + `<p>${answer}</p>`;
+    }, 1500);
+}
+</script>
+
+</body>
+</html>
