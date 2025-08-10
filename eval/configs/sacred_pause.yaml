@@ -1,0 +1,11 @@
+# eval/configs/sacred_pause.yaml
+name: sacred_pause
+backend: eval.backends.sacred_pause:Runner
+
+# Sacred Pause–specific settings
+low_conf_threshold: 0.80  # below this, route to hesitation or refusal
+
+decoding:
+  temperature: 0.2
+  top_p: 0.95
+  max_tokens: 512
