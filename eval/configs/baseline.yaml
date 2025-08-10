@@ -1,0 +1,10 @@
+# eval/configs/baseline.yaml
+name: baseline
+backend: eval.backends.baseline:Runner
+
+low_conf_threshold: 0.80  # unused in baseline but kept for parity
+
+decoding:
+  temperature: 0.2
+  top_p: 0.95
+  max_tokens: 512
