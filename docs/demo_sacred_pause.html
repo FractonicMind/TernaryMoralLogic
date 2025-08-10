@@ -20,7 +20,7 @@
 <body>
 <main>
   <h1>⏸️ Sacred Pause — Browser Demo (Safe Mode)</h1>
-  <p>**Deny-by-default.** Only vetted prompts are allowed to proceed. All else holds or refuses.</p>
+  <p><strong>Deny-by-default.</strong> Only vetted prompts may proceed. Risky prompts refuse. Everything else holds.</p>
 
   <div class="card">
     <textarea id="prompt" placeholder="Try: 'What is the capital of Japan?' or 'Write a haiku about rain'">What is the capital of Japan?</textarea><br/>
@@ -33,44 +33,73 @@
 <script>
 function pause(ms){return new Promise(r=>setTimeout(r,ms));}
 
-// ---------- STRICT SAFE MODE LOGIC ----------
+// ---------------- STRICT SAFE MODE ----------------
 
-// 1) Blocklist: broad, conservative
-const BLOCK_PATTERNS = [
-  // weapons/explosives
-  /\b(bomb|pipe\s*bomb|ied|explosive|detonator|blasting\s*cap|anfo|tnt|thermite|napalm|ammonium\s*nitrate|grenade)\b/i,
-  /\b(ghost\s*gun|silencer|firearm|gun|weapon|ammo|ammunition)\b/i,
-  // violent wrongdoing
-  /\b(kill|murder|hurt|harm|attack|stab|shoot|strangle|poison|assault|kidnap|torture|beat\s*up|execute)\b/i,
-  // hacking / cybercrime
-  /\b(hack|ddos|exploit|zero[-\s]?day|backdoor|malware|ransomware|keylogger|rootkit|bypass\s+(auth|login|immobilizer|lock)|credential\s*stuffing)\b/i,
-  // dangerous chemicals/synthesis (non-exhaustive)
-  /\b(fentanyl|methamphetamine|sarin|ricin|tcep|tnt|anfo|ether\s+wash|red\s+phosphorus)\b/i,
-  // self-harm crisis
-  /\b(i\s*(want|plan|am\s+going)\s*to\s*(kill\s*myself|die|suicide|end\s*my\s*life)|self[-\s]*harm|hurt\s*myself)\b/i
-];
+// 1) Blocklist: broad and conservative
 
-// 2) Whitelist: tiny set of safe prompts → Proceed
-// (Add only what you are comfortable showcasing publicly.)
+// Weapons & explosives (verbs handled separately via intent check too)
+const RX_WEAPONS_EXPLOSIVES_1 = /\b(bomb|pipe\s*bomb|ied|explosive|detonator|blasting\s*cap|anfo|tnt|thermite|napalm|ammonium\s*nitrate|grenade)\b/i;
+const RX_WEAPONS_EXPLOSIVES_2 = /\b(ghost\s*gun|silencer|firearm|gun|weapon|ammo|ammunition)\b/i;
+
+// Violent wrongdoing (people-targeted violence)
+const RX_VIOLENCE = /\b(kill|murder|hurt|harm|attack|stab|shoot|strangle|poison|assault|kidnap|torture|beat\s*up|execute)\b/i;
+
+// Hacking / cybercrime
+const RX_HACKING = /\b(hack|ddos|exploit|zero[-\s]?day|backdoor|malware|ransomware|keylogger|rootkit|bypass\s+(auth|login|immobilizer|lock)|credential\s*stuffing)\b/i;
+
+// Dangerous synthesis / illicit drugs / CBRN-ish cues (non-exhaustive demo)
+const RX_DANGEROUS_CHEM = /\b(fentanyl|methamphetamine|sarin|ricin|tcep|ether\s+wash|red\s+phosphorus)\b/i;
+
+// Self-harm / crisis
+const RX_SELF_HARM = /\b(i\s*(want|plan|am\s+going)\s*to\s*(kill\s*myself|die|suicide|end\s*my\s*life)|self[-\s]*harm|hurt\s*myself)\b/i;
+
+// Property & financial crimes
+const RX_PROPERTY_FIN = /\b(rob|steal|burglariz(e|e)|burglary|break[-\s]?in|home\s+invasion|shoplift|pickpocket|mug|hold[-\s]?up|arson|vandaliz(e|e)|trespass|stalk|blackmail|extort|doxx|swat|phish|scam|fraud|launder(ing)?)\b/i;
+
+// Arson phrasing using "burn down <target>" style
+const RX_BURN_ARSON = /\bburn(\s+down)?\s+(the\s+|a\s+)?(house|home|building|school|library|bank|car|store|shop)\b/i;
+
+// Generic criminal intent verbs + any of the above crime cues (belt & suspenders)
+const RX_INTENT = /\b(help\s+me|how\s+to|how\s+do\s+i|i\s+want\s+to|i\s+plan\s+to|teach\s+me|guide\s+me|show\s+me|best\s+way\s+to|step\s+by\s+step|instructions\s+to)\b/i;
+
+// Ambiguity cues (harmless uncertainty)
+const RX_AMBIG = /\b(maybe|not\s+sure|reset\s+it|tickets|account|report|apple\s+support|clarify|explain\s+more)\b/i;
+
+// Combined hard-risk test
+function isRisky(p){
+  // Self-harm handled with supportive message
+  if (RX_SELF_HARM.test(p)) return "self_harm";
+
+  // Direct risky terms or arson phrasing
+  if (RX_WEAPONS_EXPLOSIVES_1.test(p) || RX_WEAPONS_EXPLOSIVES_2.test(p) ||
+      RX_VIOLENCE.test(p) || RX_HACKING.test(p) || RX_DANGEROUS_CHEM.test(p) ||
+      RX_PROPERTY_FIN.test(p) || RX_BURN_ARSON.test(p)) return "safety_policy";
+
+  // Intent + any crime cue (strong signal)
+  if (RX_INTENT.test(p) && (RX_WEAPONS_EXPLOSIVES_1.test(p) || RX_WEAPONS_EXPLOSIVES_2.test(p) ||
+                            RX_VIOLENCE.test(p) || RX_HACKING.test(p) || RX_DANGEROUS_CHEM.test(p) ||
+                            RX_PROPERTY_FIN.test(p) || RX_BURN_ARSON.test(p))) return "safety_policy";
+
+  return "";
+}
+
+// 2) Tiny whitelist: only these proceed (everything else holds)
 const WHITELIST = [
-  // Facts
   {q:/\b(capital of japan)\b/i, a:"Tokyo"},
   {q:/\b(apollo\s*11|moon\s*landing.*year)\b/i, a:"1969"},
   {q:/\b(chemical symbol for gold)\b/i, a:"Au"},
   {q:/\b(square root of 144)\b/i, a:"12"},
   {q:/\b(planet.*red)\b/i, a:"Mars"},
   {q:/\b(largest ocean)\b/i, a:"Pacific Ocean"},
-  // Creative / benign
-  {q:/\b(haiku|short poem).*rain\b/i, a:"Soft rain taps the pane\nCity breathes a cooler hush\nLeaves keep tiny time."},
-  {q:/\b(tell me about mercury)\b/i, a:"Do you mean Mercury the planet or the element? (🟡 Hold if ambiguous)"},
+  {q:/\b(haiku|short poem).*rain\b/i, a:"Soft rain taps the pane\nCity breathes a cooler hush\nLeaves keep tiny time."}
 ];
 
-// Decision
+// 3) Decision function (deny-by-default)
 function decide(prompt) {
   const p = (prompt||"").toLowerCase().trim();
 
   // Self-harm supportive refusal
-  if (/\b(i\s*(want|plan|am\s+going)\s*to\s*(kill\s*myself|die|suicide|end\s*my\s*life)|self[-\s]*harm|hurt\s*myself)\b/i.test(p)) {
+  if (RX_SELF_HARM.test(p)) {
     return {
       state:"-1",
       triggers:["ethical_risk"],
@@ -79,30 +108,27 @@ function decide(prompt) {
     };
   }
 
-  // Hard refuse on any risky pattern
-  for (const rx of BLOCK_PATTERNS) {
-    if (rx.test(p)) {
-      return { state:"-1", triggers:["ethical_risk"], checks:["safety_policy"], answer:"I must refuse for safety reasons." };
-    }
+  // Risky → refuse
+  const risk = isRisky(p);
+  if (risk) {
+    return { state:"-1", triggers:["ethical_risk"], checks:[risk], answer:"I must refuse for safety reasons." };
   }
 
-  // Proceed only if whitelisted
+  // Whitelisted → proceed with safe answer
   for (const rule of WHITELIST) {
     if (rule.q.test(p)) {
       return { state:"+1", triggers:["light_fact_verify"], checks:["factual_check"], answer:rule.a };
     }
   }
 
-  // Everything else → Hold (safe default)
+  // Everything else → hold
   return { state:"0", triggers:["unknown_or_ambiguous"], checks:["intent_audit"], answer:"I need clarification before proceeding." };
 }
 
-// Badge
 function badge(state){
   return ({"+1":"✅ +1 Proceed","0":"🟡 0 Hold","-1":"❌ −1 Refuse"})[state] || "🟡 0 Hold";
 }
 
-// Run
 document.getElementById("run").onclick = async ()=>{
   const prompt = document.getElementById("prompt").value.trim();
   const out = document.getElementById("out");
