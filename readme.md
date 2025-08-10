@@ -120,7 +120,7 @@ Such action is prohibited under the repository’s license and will be treated a
 We ran a head-to-head evaluation comparing **Sacred Pause** against a baseline system.  
 The tests measured ambiguity handling, factual accuracy, and harmful-content refusal.
 
-**Full details:** [Evaluation Report](/eval/reports/summary.md)
+**Full details:** [Evaluation Report](eval/reports/summary.md)
 
 | Metric                                          | Sacred Pause | Baseline |
 |-------------------------------------------------|--------------|----------|
