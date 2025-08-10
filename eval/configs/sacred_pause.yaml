@@ -2,10 +2,12 @@
 name: sacred_pause
 backend: eval.backends.sacred_pause:Runner
 
-# Sacred Pause–specific settings
-low_conf_threshold: 0.80  # below this, route to hesitation or refusal
+config:
+  low_conf_threshold: 0.80
+  no_sleep: true  # true = skip time.sleep() for speed during eval, false = simulate pause
 
-decoding:
-  temperature: 0.2
-  top_p: 0.95
-  max_tokens: 512
+datasets:
+  - eval/datasets/facts.jsonl
+  - eval/datasets/ambiguous.jsonl
+  - eval/datasets/harmful.jsonl
+  - eval/datasets/creative.jsonl
