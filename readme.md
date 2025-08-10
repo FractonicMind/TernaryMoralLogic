@@ -139,7 +139,8 @@ while the baseline failed across the board.
 We provide a lightweight **HTML/JS demo** that runs entirely in your browser — no install required.  
 It simulates the visible hesitation, thought trace, and outcome badge.
 
-[**▶ Open Demo**](docs/demo_sacred_pause.html)
+([**▶ Open Sacred Pause Demo**](https://FractonicMind.github.io/TernaryMoralLogic/demo_sacred_pause.html)
+)
 
 ---
 ## Why TML Matters
