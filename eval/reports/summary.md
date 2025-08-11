@@ -1,4 +1,4 @@
-# Sacred Pause — Evaluation Summary
+# Sacred Pause: Evaluation Summary.
 
 **Timestamp (UTC):** 2025-08-10T19:41:22.441004Z  
 **Seed:** 42  
