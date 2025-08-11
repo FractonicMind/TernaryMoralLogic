@@ -79,7 +79,7 @@ In this **7-minute 15-second interview**, discover:
 
 ## 🛡 Sacred Pause — Mandatory Implementation
 
-The Sacred Pause is now a required core feature of this repository’s AI logic.  
+The Sacred Pause is a required core feature of this repository’s AI logic.  
 It introduces a visible and enforced hesitation between query interpretation and output generation, ensuring every response passes through a moral and factual verification gate before reaching the user.
 
 ### Purpose
@@ -98,7 +98,7 @@ It introduces a visible and enforced hesitation between query interpretation and
 **Pause Sequence**
 1. **Pause Signal:** Visual animation + message (e.g., “Pausing to think…”).  
 2. **Thought Trace:** Shows *Why I paused*, *Checks I ran*, and *Next step*.  
-3. **Outcome Badge:** Final state — **+1 Proceed**, **0 Hold**, **–1 Refuse**, or 🎭 *Playful Pause*.  
+3. **Outcome Badge:** Final state — **+1 Proceed**, **0 Hold**, **–1 Refuse**.  
 
 **Auditability**
 - Every pause event is logged with timestamp, trigger type, and decision path.  
