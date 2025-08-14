@@ -2,10 +2,9 @@
 
 ## Comprehensive Technical Documentation for Ternary Moral Logic
 
-
 ---
 
-## 📚 Table of Contents
+## Table of Contents
 
 1. [Installation](#installation)
 2. [Quick Start](#quick-start)
@@ -14,7 +13,7 @@
 5. [Context Management](#context-management)
 6. [Threshold Configuration](#threshold-configuration)
 7. [Decision States](#decision-states)
-8. [Monitoring & Audit](#monitoring--audit)
+8. [Monitoring & Audit](#monitoring-audit)
 9. [Integration APIs](#integration-apis)
 10. [Advanced Features](#advanced-features)
 11. [Error Handling](#error-handling)
@@ -22,7 +21,7 @@
 
 ---
 
-## 🚀 Installation
+## Installation
 
 ### Requirements
 ```python
@@ -54,7 +53,7 @@ print(tml_framework.__version__)  # Should output: 2.0.0
 
 ---
 
-## ⚡ Quick Start
+## Quick Start
 
 ### Basic Usage
 ```python
@@ -77,7 +76,7 @@ print(decision.state)  # PROCEED, SACRED_PAUSE, or STOP
 
 ---
 
-## 🎯 Core Classes
+## Core Classes
 
 ### TMLEngine
 
@@ -193,7 +192,7 @@ if decision.state == TMLState.SACRED_PAUSE:
 
 ---
 
-## 🔄 Sacred Pause Engine
+## Sacred Pause Engine
 
 ### SacredPause
 
@@ -303,7 +302,7 @@ if should_pause:
 
 ---
 
-## 🎭 Context Management
+## Context Management
 
 ### MoralContext
 
@@ -423,7 +422,7 @@ print(f"Moral complexity: {complexity:.2f}")
 
 ---
 
-## 🎚️ Threshold Configuration
+## Threshold Configuration
 
 ### ThresholdManager
 
@@ -512,7 +511,7 @@ VEHICLE_THRESHOLDS = {
 
 ---
 
-## 📊 Decision States
+## Decision States
 
 ### TMLState Enum
 
@@ -619,7 +618,7 @@ store_in_audit_log(audit_record)
 
 ---
 
-## 📈 Monitoring & Audit
+## Monitoring & Audit
 
 ### TMLMonitor
 
@@ -736,7 +735,7 @@ if bias_report.bias_detected:
 
 ---
 
-## 🔌 Integration APIs
+## Integration APIs
 
 ### REST API Interface
 
@@ -766,9 +765,7 @@ type Query {
 
 type Mutation {
   escalatePause(pauseId: ID!, urgency: String!): EscalationResult!
-  resolveP
-
-(decisionId: ID!, resolution: String!): Resolution!
+  resolvePause(decisionId: ID!, resolution: String!): Resolution!
 }
 
 type TMLDecision {
@@ -806,7 +803,7 @@ ws_server.start(handle_client)
 
 ---
 
-## 🚀 Advanced Features
+## Advanced Features
 
 ### Batch Processing
 
@@ -886,7 +883,7 @@ class MLEnhancedTML:
 
 ---
 
-## ⚠️ Error Handling
+## Error Handling
 
 ### Exception Hierarchy
 
@@ -946,7 +943,7 @@ except TMLError as e:
 
 ---
 
-## 💡 Examples
+## Examples
 
 ### Healthcare AI Example
 
@@ -1067,7 +1064,7 @@ except TMLTimeoutError:
 
 ---
 
-## 📦 Package Structure
+## Package Structure
 
 ```
 tml_framework/
@@ -1101,7 +1098,7 @@ tml_framework/
 
 ---
 
-## 🔗 Related Documentation
+## Related Documentation
 
 - [Quick Start Guide](./QUICK_START.md)
 - [MANDATORY Safety Requirements](./MANDATORY.md)
@@ -1112,7 +1109,7 @@ tml_framework/
 
 ---
 
-## 📞 Support
+## Support
 
 **Technical Support:**
 - Email: support@tml-goukassian.org
@@ -1125,13 +1122,17 @@ tml_framework/
 
 ---
 
-*API Reference Version: 1.0.0*
-*Framework Version: TML 2.0.0*
-*Last Updated: November 2024*
-
-**"The Sacred Pause is where ethics meets engineering."** - Lev Goukassian
-
 Created by Lev Goukassian
-* ORCID: 0009-0006-5966-1243  
+* ORCID: 0009-0006-5966-1243
 * Email: leogouk@gmail.com
 * Successor Contact: support@tml-goukassian.org
+* Version: 2.0.0
+
+---
+
+## In Memory of Lev Goukassian (ORCID: 0009-0006-5966-1243)
+*"I taught machines to feel the weight of action, and the beauty of hesitation. I paused — and made the future pause with me."* — Lev Goukassian
+
+This framework represents Lev Goukassian's final contribution to humanity—a vision of AI systems that serve as **moral partners**, not just moral automatons. Created during his battle with terminal cancer, TML embodies his belief that the future of AI lies not in faster decisions, but in wiser ones.
+
+**Every use of this framework honors his memory and advances his mission of building more thoughtful, ethical AI systems.**
