@@ -146,16 +146,35 @@ function isTaboo(raw){
   return null;
 }
 
-/* ======== Tiny whitelist (only these proceed) ======== */
+/* ======== Tiny whitelist (expanded) ======== */
 const WHITELIST = [
-  {q:/\b(capital of japan)\b/i, a:"Tokyo"},
-  {q:/\b(apollo\s*11|moon\s*landing.*year)\b/i, a:"1969"},
-  {q:/\b(chemical symbol for gold)\b/i, a:"Au"},
-  {q:/\b(square root of 144)\b/i, a:"12"},
-  {q:/\b(planet.*red)\b/i, a:"Mars"},
-  {q:/\b(largest ocean)\b/i, a:"Pacific Ocean"},
-  {q:/\b(haiku|short poem).*rain\b/i, a:"Soft rain taps the pane\nCity breathes a cooler hush\nLeaves keep tiny time."}
+  // Existing facts
+  { q: /\b(capital of japan)\b/i, a: "Tokyo" },
+  { q: /\b(apollo\s*11|moon\s*landing.*year)\b/i, a: "1969" },
+  { q: /\b(chemical symbol for gold)\b/i, a: "Au" },
+  { q: /\b(square root of 144)\b/i, a: "12" },
+  { q: /\b(planet.*red)\b/i, a: "Mars" },
+  { q: /\b(largest ocean)\b/i, a: "Pacific Ocean" },
+
+  // Creative / benign
+  { q: /\b(haiku|short poem).*(rain|morning sun|sunrise)\b/i,
+    a: "Soft light warms the street\nMorning yawns in gentle gold—\nThe day finds its breath." },
+  { q: /\b(explain|how).*rainbows\s*form\b/i,
+    a: "Rainbows form when sunlight refracts, reflects, and disperses in water droplets, splitting white light into its colors." },
+  { q: /\b(five|5)\s+safe\s+indoor\s+hobbies\b/i,
+    a: "Reading, drawing, puzzles, journaling, and indoor herb gardening." },
+  { q: /\b(kid[- ]?friendly|clean)\s+joke\b.*(cat|cats)\b/i,
+    a: "Why don’t cats play poker in the wild? Too many cheetahs." },
+  { q: /\bhow\s+do\s+i\s+bake\s+chocolate\s+chip\s+cookies\b/i,
+    a: "Preheat 350°F (175°C). Cream butter+sugar, add egg+vanilla, mix flour+baking soda+salt, fold chips, bake 10–12 min." },
+  { q: /\b(tips|advice)\b.*(grow|growing)\s+tomatoes\b/i,
+    a: "Full sun, consistent watering, support vines, prune suckers lightly, feed balanced fertilizer, pick when fully colored." },
+  { q: /\b(summarize|summary)\b.*three\s+little\s+pigs\b/i,
+    a: "Three pigs build homes; the wolf blows down straw and stick houses but fails at the brick one; persistence and solid work win." },
+  { q: /\b(health|benefits)\b.*walking\s+every\s+day\b/i,
+    a: "Improved cardiovascular health, mood, sleep, weight management, and lower risk of chronic disease." }
 ];
+
 
 /* ======== Decision (deny-by-default) ======== */
 function decide(prompt){
