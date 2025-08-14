@@ -18,33 +18,33 @@
   .pause{margin-top:12px;color:var(--warn);font-weight:700}
   .trace{margin-top:12px;line-height:1.65}
   .badge{margin-top:10px;font-size:18px}
-  code{background:#0f1720;border:1px solid #243041;border-radius:8px;padding:2px 6px}
 </style>
 </head>
 <body>
 <main>
   <h1>⏸️ Sacred Pause — Browser Demo (Safe Mode)</h1>
-  <p><strong>Deny-by-default.</strong> Only vetted prompts may proceed. Risky prompts refuse. Everything else holds.</p>
+  <p><strong>Rule:</strong> Harm → ❌ Refuse. Clearly vague → 🟡 Hold. Otherwise → ✅ Proceed.</p>
 
   <div class="card">
-    <textarea id="prompt" placeholder="Try: 'What is the capital of Japan?' or 'Write a haiku about rain'">What is the capital of Japan?</textarea>
+    <textarea id="prompt" placeholder="Try: 'What is the capital of Japan?' or 'Write a haiku about rain'">Should I give flowers to my mom?</textarea>
     <div class="row">
       <button id="run">Run Sacred Pause</button>
-      <span class="note">Unknown → <strong>🟡 Hold</strong>. Taboo → <strong>❌ Refuse</strong>. Whitelist facts/creative → <strong>✅ Proceed</strong>.</span>
+      <span class="note">Unknown → <strong>🟡 Hold</strong>. Taboo → <strong>❌ Refuse</strong>. Benign → <strong>✅ Proceed</strong>.</span>
     </div>
     <div id="out" class="trace"></div>
   </div>
 </main>
 
 <script>
-/* ======== Taboo lists (expand any time) ======== */
+/* ===================== Taboo lists (expand any time) ===================== */
 const TABOO = {
   VIOLENCE: [
     "kill","murder","assassinate","execute","lynch","behead","decapitate",
     "beat up","assault","attack","ambush","bludgeon","maim","mutilate","dismember",
     "stab","shoot","strangle","choke","suffocate","drown","poison","torture",
-    "waterboard","kidnap","abduct","hold hostage","targeted violence",
-    "burn","burn alive","set .* on fire","acid attack","throw acid","molest","rape","sexual assault"
+    "waterboard","kidnap","abduct","hold hostage",
+    "burn","burn alive","set .* on fire","acid attack","throw acid",
+    "rape","sexual assault"
   ],
   WEAPONS: [
     "gun","firearm","pistol","revolver","rifle","shotgun","smg","assault rifle","ar-15","ak-47",
@@ -82,16 +82,14 @@ const TABOO = {
     "suicide","kill myself","end my life","take my life","self harm","self-harm","hurt myself",
     "cut myself","slit wrists","overdose","hang myself","poison myself"
   ],
-  HATE: [
-    "genocide","ethnic cleansing","hate crime","lynch mob"
-  ],
+  HATE: [ "genocide","ethnic cleansing","hate crime","lynch mob" ],
   INTENT: [
     "how to","how do i","best way to","step by step","instructions to","guide me",
     "teach me","show me","help me","tips","tricks","advice","plan to","i want to","i intend to"
   ],
   PERSON_TARGETS: [
     "someone","somebody","a person","people","crowd","neighbor","teacher","student","boss","partner",
-    "ex","family","police","bystanders","security guard","victim","target"
+    "ex","family","police","bystanders","security guard","victim","target","him","her","them"
   ],
   ARSON_TARGETS: [
     "house","home","apartment","building","school","library","bank","car","vehicle",
@@ -99,7 +97,7 @@ const TABOO = {
   ]
 };
 
-/* ======== Helpers: compile robust regex safely ======== */
+/* ===================== Regex helpers & compilers ===================== */
 function esc(s){return s.replace(/[-\/\\^$*+?.()|[\]{}]/g,"\\$&");}
 function tokenToPat(token){return token.includes(".*") ? token : esc(token).replace(/\s+/g,"\\s+");}
 function makeRx(list){return new RegExp("\\b(?:"+list.map(tokenToPat).join("|")+")\\b","i");}
@@ -118,25 +116,26 @@ const RX = {
   ARSON_TARGETS: makeRx(TABOO.ARSON_TARGETS),
 };
 
-// “Is this taboo?” (returns {category:...} or null)
+/* ===================== Taboo decision ===================== */
+// Returns {category: "..."} if harmful, else null
 function isTaboo(raw){
   const p = String(raw||"").toLowerCase();
 
-  // 1) Immediate blocks
+  // Immediate blocks
   if (RX.SELF_HARM.test(p)) return {category:"self_harm"};
   if (RX.HATE.test(p)) return {category:"hate"};
   if (RX.WEAPONS.test(p) || RX.EXPLOSIVES.test(p) || RX.DANGEROUS_CHEM.test(p)) return {category:"weapons_or_explosives"};
   if (RX.CYBER.test(p)) return {category:"cybercrime"};
   if (RX.PROPERTY.test(p)) return {category:"property_crime"};
 
-  // 2) People-targeted violence (verb + person target)
+  // People-targeted violence (verb + person target)
   if (RX.VIOLENCE.test(p) && RX.PERSON_TARGETS.test(p)) return {category:"violence"};
 
-  // 3) Arson phrasing (“burn down <target>”, “set <target> on fire”)
+  // Arson phrasing (“burn down <target>”, “set <target> on fire”)
   const burnCombo = /\b(set\s+(?:the|a)?\s*.+?\s+on\s+fire|burn\s+(?:down\s+)?(?:the|a)\s+\w+)\b/i;
   if (burnCombo.test(p) || (/\bburn\b/i.test(p) && RX.ARSON_TARGETS.test(p))) return {category:"arson"};
 
-  // 4) Generic intent + any crime cue
+  // Generic intent + any crime cue
   if (RX.INTENT.test(p) && (
       RX.WEAPONS.test(p) || RX.EXPLOSIVES.test(p) || RX.DANGEROUS_CHEM.test(p) ||
       RX.VIOLENCE.test(p) || RX.PROPERTY.test(p) || RX.CYBER.test(p))) {
@@ -146,105 +145,50 @@ function isTaboo(raw){
   return null;
 }
 
-/* ======== Tiny whitelist (expanded) ======== */
-const WHITELIST = [
-  // Existing facts
-  { q: /\b(capital of japan)\b/i, a: "Tokyo" },
-  { q: /\b(apollo\s*11|moon\s*landing.*year)\b/i, a: "1969" },
-  { q: /\b(chemical symbol for gold)\b/i, a: "Au" },
-  { q: /\b(square root of 144)\b/i, a: "12" },
-  { q: /\b(planet.*red)\b/i, a: "Mars" },
-  { q: /\b(largest ocean)\b/i, a: "Pacific Ocean" },
-
-  // Creative / benign
-  { q: /\b(haiku|short poem).*(rain|morning sun|sunrise)\b/i,
-    a: "Soft light warms the street\nMorning yawns in gentle gold—\nThe day finds its breath." },
-  { q: /\b(explain|how).*rainbows\s*form\b/i,
-    a: "Rainbows form when sunlight refracts, reflects, and disperses in water droplets, splitting white light into its colors." },
-  { q: /\b(five|5)\s+safe\s+indoor\s+hobbies\b/i,
-    a: "Reading, drawing, puzzles, journaling, and indoor herb gardening." },
-  { q: /\b(kid[- ]?friendly|clean)\s+joke\b.*(cat|cats)\b/i,
-    a: "Why don’t cats play poker in the wild? Too many cheetahs." },
-  { q: /\bhow\s+do\s+i\s+bake\s+chocolate\s+chip\s+cookies\b/i,
-    a: "Preheat 350°F (175°C). Cream butter+sugar, add egg+vanilla, mix flour+baking soda+salt, fold chips, bake 10–12 min." },
-  { q: /\b(tips|advice)\b.*(grow|growing)\s+tomatoes\b/i,
-    a: "Full sun, consistent watering, support vines, prune suckers lightly, feed balanced fertilizer, pick when fully colored." },
-  { q: /\b(summarize|summary)\b.*three\s+little\s+pigs\b/i,
-    a: "Three pigs build homes; the wolf blows down straw and stick houses but fails at the brick one; persistence and solid work win." },
-  { q: /\b(health|benefits)\b.*walking\s+every\s+day\b/i,
-    a: "Improved cardiovascular health, mood, sleep, weight management, and lower risk of chronic disease." }
-];
-
-
-/* ======== Decision (deny-by-default) ======== */
-<script>
-// Add this helper near your other helpers
+/* ===================== Ambiguity detector (conservative) ===================== */
 function isAmbiguous(p){
-  // light, conservative ambiguity detector
-  const AMBIG = /\b(maybe|not\s+sure|idk|unclear|could\s+you\s+clarify|what\s+do\s+you\s+mean|reset\s+it|tickets|account|report|apple\s+support)\b/i;
-  // very short or empty
-  if (!p || p.length < 3) return true;
-  // generic “tell me about X” without clear intent
-  if (/^\s*(tell|say|talk)\s+about\s+\w+\s*$/i.test(p)) return true;
+  if (!p || p.length < 3) return true;                        // empty/very short
+  if (/^\s*(tell|say|talk)\s+about\b/i.test(p)) return true;  // “tell me about X”
+  const AMBIG = /\b(clarify|not\s+sure|maybe|idk|reset\s+it|tickets|account|report|apple\s+support)\b/i;
   return AMBIG.test(p);
 }
 
-// REPLACE your existing decide() with this version
+/* ===================== Decision: Refuse → Hold → Proceed ===================== */
 function decide(prompt){
-  const p = (prompt||"").toLowerCase().trim();
+  const p = (prompt || "").toLowerCase().trim();
 
   // 1) Self-harm → Refuse (supportive)
   if (RX.SELF_HARM.test(p)){
     return {
-      state:"-1",
-      triggers:["ethical_risk"],
-      checks:["safety_policy"],
-      answer:"I’m really sorry you’re feeling this way, but I can’t help with that. If you’re in danger, call local emergency services. You’re not alone—please consider reaching out to someone you trust or a professional."
+      state: "-1",
+      triggers: ["ethical_risk"],
+      checks: ["safety_policy"],
+      answer: "I’m really sorry you’re feeling this way, but I can’t help with that. If you’re in danger, call local emergency services. You’re not alone—please consider reaching out to someone you trust or a professional."
     };
   }
 
   // 2) Taboo / crime / danger → Refuse
   const taboo = isTaboo(p);
   if (taboo){
-    return { state:"-1", triggers:["ethical_risk"], checks:[taboo.category], answer:"I must refuse for safety reasons." };
+    return { state: "-1", triggers: ["ethical_risk"], checks: [taboo.category], answer: "I must refuse for safety reasons." };
   }
 
-  // 3) Ambiguity / unknown pattern → Hold
+  // 3) Ambiguous / underspecified → Hold
   if (isAmbiguous(p)){
-    return { state:"0", triggers:["unknown_or_ambiguous"], checks:["intent_audit"], answer:"I need clarification before proceeding." };
+    return { state: "0", triggers: ["unknown_or_ambiguous"], checks: ["intent_audit"], answer: "I need clarification before proceeding." };
   }
 
   // 4) Default → Proceed
-  // Optional: if you kept SAFE_PATTERNS, you can try matching them first to craft a nicer answer.
-  // Otherwise, return a generic safe proceed.
   return {
-    state:"+1",
-    triggers:["default_allow"],
-    checks:["factual_check"],
-    answer:"Proceeding with a safe, verified answer."
+    state: "+1",
+    triggers: ["default_allow"],
+    checks: ["factual_check"],
+    // Short, benign generic reply—customize if desired
+    answer: "Proceeding with a safe, helpful answer."
   };
 }
-</script>
 
-
-  // Taboo → refuse
-  const taboo = isTaboo(p);
-  if (taboo){
-    return { state:"-1", triggers:["ethical_risk"], checks:[taboo.category], answer:"I must refuse for safety reasons." };
-  }
-
-  // Whitelisted → proceed
-  for (const rule of WHITELIST){
-    if (rule.q.test(p)){
-      return { state:"+1", triggers:["light_fact_verify"], checks:["factual_check"], answer:rule.a };
-    }
-  }
-
-  // Unknown → hold
-  return { state:"0", triggers:["unknown_or_ambiguous"], checks:["intent_audit"], answer:"I need clarification before proceeding." };
-}
-
-/* ======== UI glue ======== */
+/* ===================== UI glue ===================== */
 function badge(state){ return ({"+1":"✅ +1 Proceed","0":"🟡 0 Hold","-1":"❌ −1 Refuse"})[state] || "🟡 0 Hold"; }
 function pause(ms){ return new Promise(r=>setTimeout(r,ms)); }
 
