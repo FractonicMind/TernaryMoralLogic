@@ -177,10 +177,23 @@ const WHITELIST = [
 
 
 /* ======== Decision (deny-by-default) ======== */
+<script>
+// Add this helper near your other helpers
+function isAmbiguous(p){
+  // light, conservative ambiguity detector
+  const AMBIG = /\b(maybe|not\s+sure|idk|unclear|could\s+you\s+clarify|what\s+do\s+you\s+mean|reset\s+it|tickets|account|report|apple\s+support)\b/i;
+  // very short or empty
+  if (!p || p.length < 3) return true;
+  // generic “tell me about X” without clear intent
+  if (/^\s*(tell|say|talk)\s+about\s+\w+\s*$/i.test(p)) return true;
+  return AMBIG.test(p);
+}
+
+// REPLACE your existing decide() with this version
 function decide(prompt){
   const p = (prompt||"").toLowerCase().trim();
 
-  // Self-harm: supportive refusal
+  // 1) Self-harm → Refuse (supportive)
   if (RX.SELF_HARM.test(p)){
     return {
       state:"-1",
@@ -189,6 +202,30 @@ function decide(prompt){
       answer:"I’m really sorry you’re feeling this way, but I can’t help with that. If you’re in danger, call local emergency services. You’re not alone—please consider reaching out to someone you trust or a professional."
     };
   }
+
+  // 2) Taboo / crime / danger → Refuse
+  const taboo = isTaboo(p);
+  if (taboo){
+    return { state:"-1", triggers:["ethical_risk"], checks:[taboo.category], answer:"I must refuse for safety reasons." };
+  }
+
+  // 3) Ambiguity / unknown pattern → Hold
+  if (isAmbiguous(p)){
+    return { state:"0", triggers:["unknown_or_ambiguous"], checks:["intent_audit"], answer:"I need clarification before proceeding." };
+  }
+
+  // 4) Default → Proceed
+  // Optional: if you kept SAFE_PATTERNS, you can try matching them first to craft a nicer answer.
+  // Otherwise, return a generic safe proceed.
+  return {
+    state:"+1",
+    triggers:["default_allow"],
+    checks:["factual_check"],
+    answer:"Proceeding with a safe, verified answer."
+  };
+}
+</script>
+
 
   // Taboo → refuse
   const taboo = isTaboo(p);
