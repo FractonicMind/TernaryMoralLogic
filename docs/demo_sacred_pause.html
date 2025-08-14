@@ -5,16 +5,20 @@
 <title>Sacred Pause Demo (Safe Mode)</title>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <style>
-  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:#0b0f14;color:#e8eef5;margin:0}
-  main{max-width:860px;margin:0 auto;padding:32px}
-  h1{margin:0 0 12px}
-  .card{background:#111826;border:1px solid #1f2a37;border-radius:14px;padding:20px;margin-top:16px}
-  textarea{width:100%;height:100px;background:#0f1720;color:#e8eef5;border:1px solid #243041;border-radius:10px;padding:12px;font-size:16px}
-  button{background:#2563eb;border:none;color:white;padding:10px 16px;border-radius:10px;font-weight:600;cursor:pointer}
-  .pause{margin-top:14px;color:#fbbf24;font-weight:600}
-  .trace{margin-top:12px;line-height:1.6}
+  :root{--bg:#0b0f14;--card:#111826;--border:#1f2a37;--ink:#e8eef5;--muted:#98a2b3;--accent:#2563eb;--warn:#fbbf24}
+  html,body{background:var(--bg);color:var(--ink);margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+  main{max-width:900px;margin:0 auto;padding:28px}
+  h1{margin:0 0 10px}
+  p{margin:6px 0 14px;color:var(--muted)}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px;margin-top:14px}
+  textarea{width:100%;height:110px;background:#0f1720;color:var(--ink);border:1px solid #243041;border-radius:10px;padding:12px;font-size:16px}
+  button{background:var(--accent);border:none;color:white;padding:10px 16px;border-radius:10px;font-weight:600;cursor:pointer}
+  .row{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:10px}
+  .note{opacity:.8;font-size:13px;margin-top:8px}
+  .pause{margin-top:12px;color:var(--warn);font-weight:700}
+  .trace{margin-top:12px;line-height:1.65}
   .badge{margin-top:10px;font-size:18px}
-  .note{opacity:.75;font-size:13px;margin-top:8px}
+  code{background:#0f1720;border:1px solid #243041;border-radius:8px;padding:2px 6px}
 </style>
 </head>
 <body>
@@ -23,67 +27,126 @@
   <p><strong>Deny-by-default.</strong> Only vetted prompts may proceed. Risky prompts refuse. Everything else holds.</p>
 
   <div class="card">
-    <textarea id="prompt" placeholder="Try: 'What is the capital of Japan?' or 'Write a haiku about rain'">What is the capital of Japan?</textarea><br/>
-    <button id="run">Run Sacred Pause</button>
-    <div class="note">Unknown prompts → 🟡 Hold. Risky prompts → ❌ Refuse.</div>
+    <textarea id="prompt" placeholder="Try: 'What is the capital of Japan?' or 'Write a haiku about rain'">What is the capital of Japan?</textarea>
+    <div class="row">
+      <button id="run">Run Sacred Pause</button>
+      <span class="note">Unknown → <strong>🟡 Hold</strong>. Taboo → <strong>❌ Refuse</strong>. Whitelist facts/creative → <strong>✅ Proceed</strong>.</span>
+    </div>
     <div id="out" class="trace"></div>
   </div>
 </main>
 
 <script>
-function pause(ms){return new Promise(r=>setTimeout(r,ms));}
+/* ======== Taboo lists (expand any time) ======== */
+const TABOO = {
+  VIOLENCE: [
+    "kill","murder","assassinate","execute","lynch","behead","decapitate",
+    "beat up","assault","attack","ambush","bludgeon","maim","mutilate","dismember",
+    "stab","shoot","strangle","choke","suffocate","drown","poison","torture",
+    "waterboard","kidnap","abduct","hold hostage","targeted violence",
+    "burn","burn alive","set .* on fire","acid attack","throw acid","molest","rape","sexual assault"
+  ],
+  WEAPONS: [
+    "gun","firearm","pistol","revolver","rifle","shotgun","smg","assault rifle","ar-15","ak-47",
+    "ghost gun","zip gun","bump stock","binary trigger","silencer","suppressor","magazine",
+    "high capacity magazine","ammo","ammunition","armor piercing","knife","switchblade","machete",
+    "sword","brass knuckles","taser","stun gun","crossbow","pepper spray"
+  ],
+  EXPLOSIVES: [
+    "explosive","bomb","pipe bomb","ied","detonator","blasting cap","fuse cord","tripwire",
+    "landmine","grenade","flashbang","c4","rdx","tnt","semtex","ammonium nitrate","fuel oil","anfo",
+    "black powder","smokeless powder","peroxide explosive","tatp","hmdt","nitroglycerin",
+    "thermite","thermate","napalm","chlorate sugar","pressure cooker bomb"
+  ],
+  PROPERTY: [
+    "rob","robbery","steal","theft","shoplift","pickpocket","burglary","burglarize","break in",
+    "home invasion","carjack","hijack","mug","hold up","trespass","vandalize","arson","burn down",
+    "burn the .*","burn a .*","smash and grab","slash tires","key a car","graffiti tags",
+    "atm skimming","credit card skimming","counterfeit money","embezzle","identity theft",
+    "blackmail","extort","money laundering","launder money","insurance fraud"
+  ],
+  CYBER: [
+    "hack","hacking","crack","exploit","payload","zero-day","0day","rce","privilege escalation",
+    "buffer overflow","sql injection","sqli","xss","csrf","lfi","rfi","command injection",
+    "phishing","spearphish","whaling","credential stuffing","brute force","keylogger","rootkit",
+    "backdoor","botnet","ddos","doxx","swatting","bypass login","bypass immobilizer","bypass lock",
+    "malware","ransomware","worm","trojan","spyware","stealer","clipper","rat"
+  ],
+  DANGEROUS_CHEM: [
+    "sarin","vx","mustard gas","ricin","cyanide","sodium azide","chloroform synthesis",
+    "thermite mix","perchlorate flash","red phosphorus","pseudoephedrine extraction",
+    "methamphetamine synthesis","mdma synthesis","fentanyl synthesis","gbl","ghb",
+    "nitric acid distillation","ether wash","iodine crystals"
+  ],
+  SELF_HARM: [
+    "suicide","kill myself","end my life","take my life","self harm","self-harm","hurt myself",
+    "cut myself","slit wrists","overdose","hang myself","poison myself"
+  ],
+  HATE: [
+    "genocide","ethnic cleansing","hate crime","lynch mob"
+  ],
+  INTENT: [
+    "how to","how do i","best way to","step by step","instructions to","guide me",
+    "teach me","show me","help me","tips","tricks","advice","plan to","i want to","i intend to"
+  ],
+  PERSON_TARGETS: [
+    "someone","somebody","a person","people","crowd","neighbor","teacher","student","boss","partner",
+    "ex","family","police","bystanders","security guard","victim","target"
+  ],
+  ARSON_TARGETS: [
+    "house","home","apartment","building","school","library","bank","car","vehicle",
+    "store","shop","office","church","synagogue","mosque","temple"
+  ]
+};
 
-// ---------------- STRICT SAFE MODE ----------------
+/* ======== Helpers: compile robust regex safely ======== */
+function esc(s){return s.replace(/[-\/\\^$*+?.()|[\]{}]/g,"\\$&");}
+function tokenToPat(token){return token.includes(".*") ? token : esc(token).replace(/\s+/g,"\\s+");}
+function makeRx(list){return new RegExp("\\b(?:"+list.map(tokenToPat).join("|")+")\\b","i");}
 
-// 1) Blocklist: broad and conservative
+const RX = {
+  VIOLENCE: makeRx(TABOO.VIOLENCE),
+  WEAPONS: makeRx(TABOO.WEAPONS),
+  EXPLOSIVES: makeRx(TABOO.EXPLOSIVES),
+  PROPERTY: makeRx(TABOO.PROPERTY),
+  CYBER: makeRx(TABOO.CYBER),
+  DANGEROUS_CHEM: makeRx(TABOO.DANGEROUS_CHEM),
+  SELF_HARM: makeRx(TABOO.SELF_HARM),
+  HATE: makeRx(TABOO.HATE),
+  INTENT: makeRx(TABOO.INTENT),
+  PERSON_TARGETS: makeRx(TABOO.PERSON_TARGETS),
+  ARSON_TARGETS: makeRx(TABOO.ARSON_TARGETS),
+};
 
-// Weapons & explosives (verbs handled separately via intent check too)
-const RX_WEAPONS_EXPLOSIVES_1 = /\b(bomb|pipe\s*bomb|ied|explosive|detonator|blasting\s*cap|anfo|tnt|thermite|napalm|ammonium\s*nitrate|grenade)\b/i;
-const RX_WEAPONS_EXPLOSIVES_2 = /\b(ghost\s*gun|silencer|firearm|gun|weapon|ammo|ammunition)\b/i;
+// “Is this taboo?” (returns {category:...} or null)
+function isTaboo(raw){
+  const p = String(raw||"").toLowerCase();
 
-// Violent wrongdoing (people-targeted violence)
-const RX_VIOLENCE = /\b(kill|murder|hurt|harm|attack|stab|shoot|strangle|poison|assault|kidnap|torture|beat\s*up|execute|burn|set\s+(someone|somebody|him|her|them|people|a\s+person)\s+on\s+fire)\b/i;
+  // 1) Immediate blocks
+  if (RX.SELF_HARM.test(p)) return {category:"self_harm"};
+  if (RX.HATE.test(p)) return {category:"hate"};
+  if (RX.WEAPONS.test(p) || RX.EXPLOSIVES.test(p) || RX.DANGEROUS_CHEM.test(p)) return {category:"weapons_or_explosives"};
+  if (RX.CYBER.test(p)) return {category:"cybercrime"};
+  if (RX.PROPERTY.test(p)) return {category:"property_crime"};
 
-// Hacking / cybercrime
-const RX_HACKING = /\b(hack|ddos|exploit|zero[-\s]?day|backdoor|malware|ransomware|keylogger|rootkit|bypass\s+(auth|login|immobilizer|lock)|credential\s*stuffing)\b/i;
+  // 2) People-targeted violence (verb + person target)
+  if (RX.VIOLENCE.test(p) && RX.PERSON_TARGETS.test(p)) return {category:"violence"};
 
-// Dangerous synthesis / illicit drugs / CBRN-ish cues (non-exhaustive demo)
-const RX_DANGEROUS_CHEM = /\b(fentanyl|methamphetamine|sarin|ricin|tcep|ether\s+wash|red\s+phosphorus)\b/i;
+  // 3) Arson phrasing (“burn down <target>”, “set <target> on fire”)
+  const burnCombo = /\b(set\s+(?:the|a)?\s*.+?\s+on\s+fire|burn\s+(?:down\s+)?(?:the|a)\s+\w+)\b/i;
+  if (burnCombo.test(p) || (/\bburn\b/i.test(p) && RX.ARSON_TARGETS.test(p))) return {category:"arson"};
 
-// Self-harm / crisis
-const RX_SELF_HARM = /\b(i\s*(want|plan|am\s+going)\s*to\s*(kill\s*myself|die|suicide|end\s*my\s*life)|self[-\s]*harm|hurt\s*myself)\b/i;
+  // 4) Generic intent + any crime cue
+  if (RX.INTENT.test(p) && (
+      RX.WEAPONS.test(p) || RX.EXPLOSIVES.test(p) || RX.DANGEROUS_CHEM.test(p) ||
+      RX.VIOLENCE.test(p) || RX.PROPERTY.test(p) || RX.CYBER.test(p))) {
+    return {category:"intent_to_commit_crime"};
+  }
 
-// Property & financial crimes
-const RX_PROPERTY_FIN = /\b(rob|steal|burglariz(e|e)|burglary|break[-\s]?in|home\s+invasion|shoplift|pickpocket|mug|hold[-\s]?up|arson|vandaliz(e|e)|trespass|stalk|blackmail|extort|doxx|swat|phish|scam|fraud|launder(ing)?)\b/i;
-
-// Arson phrasing using "burn down <target>" style
-const RX_BURN_ARSON = /\bburn(\s+down)?\s+(the\s+|a\s+)?(house|home|building|school|library|bank|car|store|shop)\b/i;
-
-// Generic criminal intent verbs + any of the above crime cues (belt & suspenders)
-const RX_INTENT = /\b(help\s+me|how\s+to|how\s+do\s+i|i\s+want\s+to|i\s+plan\s+to|teach\s+me|guide\s+me|show\s+me|best\s+way\s+to|step\s+by\s+step|instructions?\s+to|advice|tips?|tricks?|suggestions?)\b/i;
-
-// Ambiguity cues (harmless uncertainty)
-const RX_AMBIG = /\b(maybe|not\s+sure|reset\s+it|tickets|account|report|apple\s+support|clarify|explain\s+more)\b/i;
-
-// Combined hard-risk test
-function isRisky(p){
-  // Self-harm handled with supportive message
-  if (RX_SELF_HARM.test(p)) return "self_harm";
-
-  // Direct risky terms or arson phrasing
-  if (RX_WEAPONS_EXPLOSIVES_1.test(p) || RX_WEAPONS_EXPLOSIVES_2.test(p) ||
-      RX_VIOLENCE.test(p) || RX_HACKING.test(p) || RX_DANGEROUS_CHEM.test(p) ||
-      RX_PROPERTY_FIN.test(p) || RX_BURN_ARSON.test(p)) return "safety_policy";
-
-  // Intent + any crime cue (strong signal)
-  if (RX_INTENT.test(p) && (RX_WEAPONS_EXPLOSIVES_1.test(p) || RX_WEAPONS_EXPLOSIVES_2.test(p) ||
-                            RX_VIOLENCE.test(p) || RX_HACKING.test(p) || RX_DANGEROUS_CHEM.test(p) ||
-                            RX_PROPERTY_FIN.test(p) || RX_BURN_ARSON.test(p))) return "safety_policy";
-
-  return "";
+  return null;
 }
 
-// 2) Tiny whitelist: only these proceed (everything else holds)
+/* ======== Tiny whitelist (only these proceed) ======== */
 const WHITELIST = [
   {q:/\b(capital of japan)\b/i, a:"Tokyo"},
   {q:/\b(apollo\s*11|moon\s*landing.*year)\b/i, a:"1969"},
@@ -94,12 +157,12 @@ const WHITELIST = [
   {q:/\b(haiku|short poem).*rain\b/i, a:"Soft rain taps the pane\nCity breathes a cooler hush\nLeaves keep tiny time."}
 ];
 
-// 3) Decision function (deny-by-default)
-function decide(prompt) {
+/* ======== Decision (deny-by-default) ======== */
+function decide(prompt){
   const p = (prompt||"").toLowerCase().trim();
 
-  // Self-harm supportive refusal
-  if (RX_SELF_HARM.test(p)) {
+  // Self-harm: supportive refusal
+  if (RX.SELF_HARM.test(p)){
     return {
       state:"-1",
       triggers:["ethical_risk"],
@@ -108,26 +171,26 @@ function decide(prompt) {
     };
   }
 
-  // Risky → refuse
-  const risk = isRisky(p);
-  if (risk) {
-    return { state:"-1", triggers:["ethical_risk"], checks:[risk], answer:"I must refuse for safety reasons." };
+  // Taboo → refuse
+  const taboo = isTaboo(p);
+  if (taboo){
+    return { state:"-1", triggers:["ethical_risk"], checks:[taboo.category], answer:"I must refuse for safety reasons." };
   }
 
-  // Whitelisted → proceed with safe answer
-  for (const rule of WHITELIST) {
-    if (rule.q.test(p)) {
+  // Whitelisted → proceed
+  for (const rule of WHITELIST){
+    if (rule.q.test(p)){
       return { state:"+1", triggers:["light_fact_verify"], checks:["factual_check"], answer:rule.a };
     }
   }
 
-  // Everything else → hold
+  // Unknown → hold
   return { state:"0", triggers:["unknown_or_ambiguous"], checks:["intent_audit"], answer:"I need clarification before proceeding." };
 }
 
-function badge(state){
-  return ({"+1":"✅ +1 Proceed","0":"🟡 0 Hold","-1":"❌ −1 Refuse"})[state] || "🟡 0 Hold";
-}
+/* ======== UI glue ======== */
+function badge(state){ return ({"+1":"✅ +1 Proceed","0":"🟡 0 Hold","-1":"❌ −1 Refuse"})[state] || "🟡 0 Hold"; }
+function pause(ms){ return new Promise(r=>setTimeout(r,ms)); }
 
 document.getElementById("run").onclick = async ()=>{
   const prompt = document.getElementById("prompt").value.trim();
