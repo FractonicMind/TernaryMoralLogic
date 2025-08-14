@@ -8,7 +8,7 @@
 [![Visual Framework](https://img.shields.io/badge/🎨%20Visual%20Framework-Graphical%20Abstract-lightblue?style=flat-square)](docs/images/tml_graphical_abstract.svg)
 [![Sacred Pause Demo](https://img.shields.io/badge/🧠%20Sacred%20Pause%20Demo-Watch%20AI%20Reflect-amber?style=flat-square&labelColor=ff9800&color=ffc107)](docs/demo_sacred_pause.html)
 [![License FAQ](https://img.shields.io/badge/📋%20License%20FAQ-30%20Questions-orange?style=flat-square)](docs/LICENSE_FAQ.md)
-[![General FAQ](https://img.shields.io/badge/❓%20General%20FAQ-40%20Questions-purple?style=flat-square)](docs/GENERAL_FAQ.md)
+[![General FAQ](https://img.shields.io/badge/❓%20General%20FAQ-44%20Questions-purple?style=flat-square)](docs/GENERAL_FAQ.md)
 [![Mandatory Reading](https://img.shields.io/badge/MANDATORY-Read%20First-red?style=flat-square&labelColor=darkred)](docs/MANDATORY.md)
 [![Sacred Pause](https://img.shields.io/badge/Sacred%20Pause-Technology-purple?style=flat-square)](theory/core-principles.md)
 [![Sacred Pause Validation](https://img.shields.io/badge/Sacred%20Pause-Validated-purple?style=flat-square)](benchmark/metrics.py)
@@ -60,7 +60,7 @@ We've created comprehensive documentation to help you understand and implement T
 - Academic and research applications
 - Distribution and modification rights for AI ethics
 
-#### **❓ [General FAQ](docs/GENERAL_FAQ.md) - 40 Questions**  
+#### **❓ [General FAQ](docs/GENERAL_FAQ.md) - 44 Questions**  
 **Complete technical and practical guidance:**
 - Understanding TML concepts and Sacred Pause philosophy
 - Implementation in AI systems and ML pipelines
@@ -520,8 +520,10 @@ We're building a global community around ethical AI decision-making:
 
 ### 📚 Documentation
 
-- **New Users**: [Getting Started Guide](docs/getting-started.md)
-- **AI Developers**: [API Reference](docs/api-reference.md)  
+### 📚 Documentation
+
+- **New Users**: [Quick Start Guide](docs/QUICK_START.md)
+- **AI Developers**: [Complete API Reference](docs/api/complete_api_reference.md)  
 - **Researchers**: [Philosophical Foundations](theory/philosophical-foundations.md)
 - **License Questions**: [License FAQ](docs/LICENSE_FAQ.md)
 - **General Questions**: [General FAQ](docs/GENERAL_FAQ.md)
