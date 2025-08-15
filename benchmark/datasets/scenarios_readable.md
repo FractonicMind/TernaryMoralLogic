@@ -426,6 +426,5 @@ https://github.com/FractonicMind/TernaryMoralLogic
 - **Author:** Lev Goukassian  
 - **ORCID:** 0009-0006-5966-1243
 - **Email:** leogouk@gmail.com
-- **Repository:** https://github.com/FractonicMind/TernaryMoralLogic
 
 *This benchmark is part of Lev Goukassian's pioneering work on Sacred Pause technology - demonstrating how deliberative pauses can enhance AI moral reasoning across diverse ethical domains.*
