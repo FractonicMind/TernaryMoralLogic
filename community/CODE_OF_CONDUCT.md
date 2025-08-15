@@ -243,12 +243,12 @@ The community commits to preserving Lev's original vision while allowing for app
 ### How to Report
 
 **For General Violations:**
-- Email: [community-conduct@tml-framework.org] (to be established)
+- Email: [community-conduct@tml-goukassian.org] (to be established)
 - GitHub Issues: Use "Code of Conduct Violation" template
 - Private Message: Contact community moderators directly
 
 **For Serious Violations or Memorial Issues:**
-- Memorial Committee: [memorial-committee@tml-framework.org] (to be established)
+- Memorial Committee: [memorial-committee@tml-goukassian.org] (to be established)
 - Anonymous Form: [Link to anonymous reporting form] (to be established)
 
 **For Urgent Safety Issues:**
@@ -322,7 +322,7 @@ Ensuring the framework remains accessible to diverse technical backgrounds:
 **Understanding TML Principles:**
 - [Philosophical Foundations](../theory/philosophical-foundations.md)
 - [Case Studies](../theory/case-studies.md)
-- [API Reference](../docs/api-reference.md)
+- [API Reference](../docs/complete_api-reference.md)
 
 **Community Participation:**
 - [Contributing Guide](CONTRIBUTING.md)
@@ -380,7 +380,7 @@ as outlined in the [TML Succession Charter](/TML-SUCCESSION-CHARTER.md).*
 
 **"Wisdom lies not in having all the answers, but in knowing when to pause and ask better questions."**
 
-**In Memory of Lev Goukassian (ORCID: 0009-0006-5966-1243)**  
+****By Lev Goukassian (ORCID: 0009-0006-5966-1243)****  
 *Creator of the Sacred Pause*
 
 *This Code of Conduct embodies Lev Goukassian's vision of the Sacred Pause—creating space for reflection, wisdom, and ethical reasoning in all our community interactions. Through respectful collaboration, we honor his memory and advance his mission of building more thoughtful, ethical relationships between humans and AI.*
