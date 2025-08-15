@@ -6,7 +6,7 @@
 [![Try Interactive Demo](https://img.shields.io/badge/🚀%20Try%20Interactive%20Demo-Live%20App-brightgreen?style=flat-square)](https://fractonicmind.github.io/TernaryMoralLogic/TML-App/)
 [![Medium Article](https://img.shields.io/badge/📖%20Medium%20Article-Read%20More-green?style=flat-square)](https://medium.com/@leogouk/ternary-moral-logic-tml-a-framework-for-ethical-ai-decision-making-3a0a32609935)
 [![Visual Framework](https://img.shields.io/badge/🎨%20Visual%20Framework-Graphical%20Abstract-lightblue?style=flat-square)](docs/images/tml_graphical_abstract.svg)
-[![Sacred Pause Demo](https://img.shields.io/badge/🧠%20Sacred%20Pause%20Demo-Watch%20AI%20Reflect-amber?style=flat-square&labelColor=ff9800&color=ffc107)](docs/demo_sacred_pause.html)
+[![Sacred Pause Demo](https://img.shields.io/badge/🧠%20Sacred%20Pause%20Demo-Watch%20AI%20Reflect-amber?style=flat-square&labelColor=ff9800&color=ffc107)](https://FractonicMind.github.io/TernaryMoralLogic/docs/demo_sacred_pause.html)
 [![License FAQ](https://img.shields.io/badge/📋%20License%20FAQ-30%20Questions-orange?style=flat-square)](docs/LICENSE_FAQ.md)
 [![General FAQ](https://img.shields.io/badge/❓%20General%20FAQ-44%20Questions-purple?style=flat-square)](docs/GENERAL_FAQ.md)
 [![Mandatory Reading](https://img.shields.io/badge/MANDATORY-Read%20First-red?style=flat-square&labelColor=darkred)](docs/MANDATORY.md)
