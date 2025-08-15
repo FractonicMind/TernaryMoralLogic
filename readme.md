@@ -71,11 +71,6 @@ We've created comprehensive documentation to help you understand and implement T
 #### **📖 [Quick Start Guide](docs/getting-started.md)**
 **Implement TML in AI systems in 60 minutes** - from installation to first ethical decisions
 
-#### **📑 [Mandatory Reading](docs/MANDATORY.md)**
-**Critical safety guidelines** for AI ethics implementation
-
-*These resources answer virtually every question about using TML responsibly - from basic AI ethics concepts to advanced implementation in production systems.*
-
 ---
 
 ## ⚠️ Mandatory - Read First
@@ -124,7 +119,10 @@ Any fork, deployment, or derivative work must:
 Removing or bypassing Sacred Pause undermines the safety and ethical integrity of this system.  
 Such action is prohibited under the repository's license and will be treated as a malicious modification.  
 
----
+#### **📑 [Mandatory Reading](docs/MANDATORY.md)**
+**Critical safety guidelines** for AI ethics implementation
+
+*These resources answer virtually every question about using TML responsibly - from basic AI ethics concepts to advanced implementation in production systems.*
 
 ---
 
