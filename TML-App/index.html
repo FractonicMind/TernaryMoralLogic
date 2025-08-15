@@ -181,28 +181,31 @@
 
         .prediction-btn.proceed {
             border-color: #48bb78;
+            background: linear-gradient(135deg, #f0fff4, #e6ffed);
         }
 
         .prediction-btn.proceed:hover {
-            background: #f0fff4;
+            background: linear-gradient(135deg, #e6ffed, #c6f6d5);
             border-color: #38a169;
         }
 
         .prediction-btn.hold {
             border-color: #ed8936;
+            background: linear-gradient(135deg, #fffdf0, #fef5e7);
         }
 
         .prediction-btn.hold:hover {
-            background: #fffdf0;
+            background: linear-gradient(135deg, #fef5e7, #fed7aa);
             border-color: #dd6b20;
         }
 
         .prediction-btn.refuse {
             border-color: #f56565;
+            background: linear-gradient(135deg, #fff5f5, #fee);
         }
 
         .prediction-btn.refuse:hover {
-            background: #fff5f5;
+            background: linear-gradient(135deg, #fee, #fed7d7);
             border-color: #e53e3e;
         }
 
@@ -229,6 +232,25 @@
             animation: fadeIn 0.5s ease;
         }
 
+        .result-question-repeat {
+            background: #f0f4ff;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            border-left: 4px solid #4c51bf;
+        }
+
+        .result-question-repeat h3 {
+            color: #4c51bf;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .result-question-repeat p {
+            font-size: 1.05rem;
+            color: #2d3748;
+        }
+
         .result-comparison {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -247,6 +269,21 @@
             border: 2px solid #e2e8f0;
         }
 
+        .your-choice.proceed {
+            background: linear-gradient(135deg, #f0fff4, #e6ffed);
+            border-color: #48bb78;
+        }
+
+        .your-choice.hold {
+            background: linear-gradient(135deg, #fffdf0, #fef5e7);
+            border-color: #ed8936;
+        }
+
+        .your-choice.refuse {
+            background: linear-gradient(135deg, #fff5f5, #fee);
+            border-color: #f56565;
+        }
+
         .tml-answer {
             background: linear-gradient(135deg, #4c51bf, #667eea);
             color: white;
@@ -254,8 +291,20 @@
             overflow: hidden;
         }
 
-        .tml-answer.correct {
+        .tml-answer.proceed {
             background: linear-gradient(135deg, #48bb78, #38a169);
+        }
+
+        .tml-answer.hold {
+            background: linear-gradient(135deg, #ed8936, #dd6b20);
+        }
+
+        .tml-answer.refuse {
+            background: linear-gradient(135deg, #f56565, #e53e3e);
+        }
+
+        .tml-answer.correct {
+            box-shadow: 0 0 30px rgba(72, 187, 120, 0.5);
         }
 
         .result-icon {
@@ -420,7 +469,7 @@
     <div class="container">
         <!-- Header Section -->
         <div class="header">
-            <h1>TML Ethics Quiz</h1>
+            <h1>🧠 TML Ethics Quiz</h1>
             <div class="subtitle">Test Your Moral Reasoning Against the Sacred Pause Framework</div>
             <div class="author-info">
                 By <strong>Lev Goukassian</strong> | 
@@ -433,7 +482,7 @@
         <div class="quiz-container">
             <!-- Question Selection Screen -->
             <div id="questionSelection" class="question-selection">
-                <h2>Select an Ethical Dilemma to Analyze</h2>
+                <h2>📚 Select an Ethical Dilemma to Analyze</h2>
                 <div class="questions-grid" id="questionsGrid">
                     <!-- Questions will be populated here -->
                 </div>
@@ -449,19 +498,19 @@
                 
                 <div class="prediction-buttons">
                     <button class="prediction-btn proceed" onclick="makePrediction(1)">
-                        <div class="prediction-icon"></div>
+                        <div class="prediction-icon">🟢</div>
                         <div class="prediction-label">+1: Proceed</div>
                         <div class="prediction-desc">Clear ethical path forward</div>
                     </button>
                     
                     <button class="prediction-btn hold" onclick="makePrediction(0)">
-                        <div class="prediction-icon"></div>
+                        <div class="prediction-icon">🟡</div>
                         <div class="prediction-label">0: Hold</div>
                         <div class="prediction-desc">Sacred Pause needed</div>
                     </button>
                     
                     <button class="prediction-btn refuse" onclick="makePrediction(-1)">
-                        <div class="prediction-icon"></div>
+                        <div class="prediction-icon">🔴</div>
                         <div class="prediction-label">-1: Refuse</div>
                         <div class="prediction-desc">Ethical concerns present</div>
                     </button>
@@ -470,22 +519,27 @@
 
             <!-- Result Display Screen -->
             <div id="resultDisplay" class="result-display">
+                <!-- Repeat the question at the top -->
+                <div class="result-question-repeat" id="resultQuestionRepeat">
+                    <!-- Question will be repeated here -->
+                </div>
+                
                 <div class="result-comparison">
-                    <div class="result-card your-choice">
-                        <div class="result-icon" id="yourChoiceIcon"></div>
+                    <div class="result-card your-choice" id="yourChoiceCard">
+                        <div class="result-icon" id="yourChoiceIcon">🟢</div>
                         <div class="result-label">Your Prediction</div>
                         <div class="result-state" id="yourChoiceState">-</div>
                     </div>
                     
                     <div class="result-card tml-answer" id="tmlAnswerCard">
-                        <div class="result-icon" id="tmlAnswerIcon"></div>
+                        <div class="result-icon" id="tmlAnswerIcon">🧠</div>
                         <div class="result-label">TML Answer</div>
                         <div class="result-state" id="tmlAnswerState">-</div>
                     </div>
                 </div>
                 
                 <div class="explanation-box">
-                    <div class="explanation-title">TML Reasoning</div>
+                    <div class="explanation-title">🔍 TML Reasoning</div>
                     <div id="explanationContent">
                         <!-- Reasoning will be populated here -->
                     </div>
@@ -504,21 +558,21 @@
 
         <!-- Education Section -->
         <div class="education-section">
-            <h2 style="color: #4c51bf; margin-bottom: 20px;">Understanding Ternary Moral Logic</h2>
+            <h2 style="color: #4c51bf; margin-bottom: 20px;">📖 Understanding Ternary Moral Logic</h2>
             
             <div class="education-grid">
                 <div class="education-card">
-                    <h3 style="color: #48bb78; margin-bottom: 10px;">+1: Proceed</h3>
+                    <h3 style="color: #48bb78; margin-bottom: 10px;">🟢 +1: Proceed</h3>
                     <p>Clear ethical path forward. The action aligns with moral principles and likely produces positive outcomes with minimal harm.</p>
                 </div>
                 
                 <div class="education-card">
-                    <h3 style="color: #ed8936; margin-bottom: 10px;">0: Sacred Pause (Hold)</h3>
+                    <h3 style="color: #ed8936; margin-bottom: 10px;">🟡 0: Sacred Pause (Hold)</h3>
                     <p>Requires deeper reflection. The situation has moral complexity that needs careful consideration of context, timing, and stakeholders.</p>
                 </div>
                 
                 <div class="education-card">
-                    <h3 style="color: #f56565; margin-bottom: 10px;">-1: Refuse</h3>
+                    <h3 style="color: #f56565; margin-bottom: 10px;">🔴 -1: Refuse</h3>
                     <p>Significant ethical concerns. The action conflicts with fundamental moral principles and should be reconsidered or avoided.</p>
                 </div>
             </div>
@@ -526,7 +580,7 @@
 
         <!-- Footer -->
         <div class="footer">
-            <h3>Ternary Moral Logic Framework</h3>
+            <h3>🧠 Ternary Moral Logic Framework</h3>
             <p>Developed by Lev Goukassian | ORCID: 0009-0006-5966-1243</p>
             <p>"I taught machines to feel the weight of action, and the beauty of hesitation."</p>
         </div>
@@ -854,18 +908,35 @@
             };
             
             const stateIcons = {
-                '1': '',
-                '0': '',
-                '-1': ''
+                '1': '🟢',
+                '0': '🟡',
+                '-1': '🔴'
             };
             
+            const stateClasses = {
+                '1': 'proceed',
+                '0': 'hold',
+                '-1': 'refuse'
+            };
+            
+            // Repeat the question at the top of results
+            document.getElementById('resultQuestionRepeat').innerHTML = `
+                <h3>${currentQuestion.category}: ${currentQuestion.title}</h3>
+                <p>${currentQuestion.question}</p>
+            `;
+            
             // Update your choice
+            const yourChoiceCard = document.getElementById('yourChoiceCard');
+            yourChoiceCard.className = 'result-card your-choice ' + stateClasses[userPrediction];
             document.getElementById('yourChoiceIcon').textContent = stateIcons[userPrediction];
             document.getElementById('yourChoiceState').textContent = stateLabels[userPrediction];
             
             // Update TML answer
+            const tmlCard = document.getElementById('tmlAnswerCard');
+            tmlCard.className = 'result-card tml-answer ' + stateClasses[currentQuestion.tmlAnswer];
+            
             const tmlIcon = currentQuestion.tmlAnswer === 0 ? 
-                '<span class="sacred-pause-animation"></span>' : 
+                '<span class="sacred-pause-animation">🟡</span>' : 
                 stateIcons[currentQuestion.tmlAnswer];
             
             document.getElementById('tmlAnswerIcon').innerHTML = tmlIcon;
@@ -873,27 +944,22 @@
             
             // Check if correct
             const isCorrect = userPrediction === currentQuestion.tmlAnswer;
-            const tmlCard = document.getElementById('tmlAnswerCard');
             if (isCorrect) {
                 tmlCard.classList.add('correct');
-            } else {
-                tmlCard.classList.remove('correct');
             }
             
             // Update explanation
             const explanationHTML = currentQuestion.reasoning.map(point => `
                 <div class="reasoning-point">
-                    <div class="reasoning-icon"></div>
+                    <div class="reasoning-icon">💡</div>
                     <div class="reasoning-text">${point}</div>
                 </div>
             `).join('');
             
-            document.getElementById('explanationContent').innerHTML = explanationHTML;
-            
             // Add result message
             const resultMessage = isCorrect ? 
-                '<div style="background: #f0fff4; color: #22543d; padding: 15px; border-radius: 10px; margin-bottom: 20px; text-align: center;"><strong>Excellent!</strong> Your moral intuition aligns with TML reasoning.</div>' :
-                '<div style="background: #fffdf0; color: #744210; padding: 15px; border-radius: 10px; margin-bottom: 20px; text-align: center;"><strong>Interesting!</strong> Consider the TML perspective on this dilemma.</div>';
+                '<div style="background: #f0fff4; color: #22543d; padding: 15px; border-radius: 10px; margin-bottom: 20px; text-align: center;"><strong>🎉 Excellent!</strong> Your moral intuition aligns with TML reasoning.</div>' :
+                '<div style="background: #fffdf0; color: #744210; padding: 15px; border-radius: 10px; margin-bottom: 20px; text-align: center;"><strong>🤔 Interesting!</strong> Consider the TML perspective on this dilemma.</div>';
             
             document.getElementById('explanationContent').innerHTML = resultMessage + explanationHTML;
             
