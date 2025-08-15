@@ -1,9 +1,5 @@
 # Contributing to Ternary Moral Logic (TML)
 
-**Framework Creator:** Lev Goukassian (ORCID: 0009-0006-5966-1243)  
-**Memorial Legacy Project**  
-**License:** MIT  
-
 ---
 
 ## In Memory of Lev Goukassian
@@ -58,7 +54,7 @@ The framework should be accessible to researchers and practitioners worldwide, r
    - Review the [README.md](../README.md) for framework overview
    - Study [Philosophical Foundations](../theory/philosophical-foundations.md)
    - Examine [Case Studies](../theory/case-studies.md) for practical examples
-   - Check the [API Reference](../docs/api-reference.md) for technical details
+   - Check the [API Reference](../docs/api/complete_api_reference.md) for technical details
 
 2. **Join the Community**
    - ⭐ Star the repository to show support
@@ -427,13 +423,13 @@ Consider supporting the Lev Goukassian Memorial Fund for Ethical AI Research:
 ## Getting Help
 
 ### For New Contributors
-- Read the [Getting Started Guide](../docs/getting-started.md)
+- Read the [Getting Started Guide](../docs/QUICK_START.md)
 - Browse [existing issues](https://github.com/FractonicMind/TernaryMoralLogic/issues) marked "good first issue"
 - Join [GitHub Discussions](https://github.com/FractonicMind/TernaryMoralLogic/discussions) for questions
 - Review [case studies](../theory/case-studies.md) for practical examples
 
 ### For Technical Issues
-- Check the [API Reference](../docs/api-reference.md) for technical details
+- Check the [API Reference](../docs/api/complete_api_reference.md) for technical details
 - Search existing issues before creating new ones
 - Provide minimal reproducible examples when reporting bugs
 - Include environment details (Python version, OS, etc.)
