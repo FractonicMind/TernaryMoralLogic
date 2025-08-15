@@ -1,8 +1,5 @@
 # Code of Conduct - Ternary Moral Logic Community
 
-**In Memory of Lev Goukassian (ORCID: 0009-0006-5966-1243)**  
-*Creator of the Sacred Pause*
-
 ---
 
 ## Our Sacred Commitment
@@ -375,13 +372,16 @@ We thank the many communities that have developed thoughtful approaches to onlin
 
 - **Contact**: leogouk@gmail.com (current) | support@tml-goukassian.org (successor)
 *Note: The successor contact becomes active upon institutional stewardship 
-as outlined in the [TML Succession Charter](TML-SUCCESSION-CHARTER.md).*
+as outlined in the [TML Succession Charter](/TML-SUCCESSION-CHARTER.md).*
 
 **For non-urgent questions about this code:** Use GitHub Discussions with the "Code of Conduct" tag
 
 ---
 
 **"Wisdom lies not in having all the answers, but in knowing when to pause and ask better questions."**
+
+**In Memory of Lev Goukassian (ORCID: 0009-0006-5966-1243)**  
+*Creator of the Sacred Pause*
 
 *This Code of Conduct embodies Lev Goukassian's vision of the Sacred Pause—creating space for reflection, wisdom, and ethical reasoning in all our community interactions. Through respectful collaboration, we honor his memory and advance his mission of building more thoughtful, ethical relationships between humans and AI.*
 
