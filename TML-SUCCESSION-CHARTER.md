@@ -2,11 +2,6 @@
 
 **Ternary Moral Logic Framework - Institutional Stewardship Invitation**
 
-**Author**: Lev Goukassian  
-**Date**: January 29, 2025  
-**ORCID**: 0009-0006-5966-1243  
-**Contact**: leogouk@gmail.com  
-
 ---
 
 ## I. PURPOSE AND SCOPE
@@ -316,9 +311,11 @@ The Sacred Pause principle that defines TML—the wisdom to pause and reflect be
 
 **Signature and Date**
 
-Lev Goukassian  
-Creator, Ternary Moral Logic Framework  
-January 29, 2025  
+**Author**: Lev Goukassian  
+**Date**: January 25, 2025  
+**ORCID**: 0009-0006-5966-1243  
+**Contact**: leogouk@gmail.com  
+ 
 
 *"Sometimes the most ethical action is to pause and reflect before proceeding."*  
 — Sacred Pause Principle
