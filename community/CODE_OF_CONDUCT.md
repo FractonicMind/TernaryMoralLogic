@@ -322,7 +322,7 @@ Ensuring the framework remains accessible to diverse technical backgrounds:
 **Understanding TML Principles:**
 - [Philosophical Foundations](../theory/philosophical-foundations.md)
 - [Case Studies](../theory/case-studies.md)
-- [API Reference](../docs/complete_api-reference.md)
+- [API Reference](../docs/api/complete_api-reference.md)
 
 **Community Participation:**
 - [Contributing Guide](CONTRIBUTING.md)
