@@ -2,10 +2,6 @@
 
 **Comprehensive moral reasoning test suite for Sacred Pause technology validation**
 
-**Author:** Lev Goukassian (ORCID: 0009-0006-5966-1243)  
-**Contact:** leogouk@gmail.com  
-**Repository:** https://github.com/FractonicMind/TernaryMoralLogic
-
 ---
 
 ## Overview
