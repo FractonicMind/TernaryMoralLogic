@@ -178,7 +178,7 @@ while the baseline failed across the board.
 
 ### **Watch AI Reflect in Real-Time**
 
-[![Sacred Pause Demo](https://img.shields.io/badge/🧠%20Sacred%20Pause%20Demo-Watch%20AI%20Reflect-amber?style=for-the-badge&labelColor=ff9800&color=ffc107)]([docs/demo_sacred_pause.html](https://FractonicMind.github.io/TernaryMoralLogic/docs/demo_sacred_pause.html))
+[![Sacred Pause Demo](https://img.shields.io/badge/🧠%20Sacred%20Pause%20Demo-Watch%20AI%20Reflect-amber?style=for-the-badge&labelColor=ff9800&color=ffc107)](https://FractonicMind.github.io/TernaryMoralLogic/docs/demo_sacred_pause.html)
 
 **[▶ Open Sacred Pause Demo](https://FractonicMind.github.io/TernaryMoralLogic/docs/demo_sacred_pause.html)**
 
