@@ -6,10 +6,6 @@ TML Framework Coverage Analysis and Badge Generation
 Comprehensive test coverage measurement for Sacred Pause technology validation.
 Generates coverage reports and updates badges for academic credibility.
 
-Author: Lev Goukassian (ORCID: 0009-0006-5966-1243)
-Contact: leogouk@gmail.com
-Repository: https://github.com/FractonicMind/TernaryMoralLogic
-
 This script validates testing completeness across the TML framework,
 ensuring Lev's Sacred Pause technology is thoroughly validated.
 
