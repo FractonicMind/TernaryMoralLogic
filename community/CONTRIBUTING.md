@@ -2,13 +2,6 @@
 
 ---
 
-## In Memory of Lev Goukassian
-
-This framework represents Lev Goukassian's final contribution to ethical AI, created during his battle with terminal cancer as a gift to humanity's future. Every contribution to this project honors his vision of AI systems that serve as moral partners, not just moral automatons.
-
-> *"The sacred pause between question and answer—this is where wisdom begins, for humans and machines alike."* — Lev Goukassian
-
----
 
 ## Welcome Contributors
 
@@ -466,5 +459,12 @@ Together, we're building AI systems that serve as moral partners, not just moral
 - **Memorial Committee**: [support@tml-goukassian.org]
 - **Academic Collaboration**: [support@tml-goukassian.org]
 - **General Questions**: Use GitHub Discussions
+
+## In Memory of Lev Goukassian
+
+This framework represents Lev Goukassian's final contribution to ethical AI, created during his battle with terminal cancer as a gift to humanity's future. Every contribution to this project honors his vision of AI systems that serve as moral partners, not just moral automatons.
+
+> *"The sacred pause between question and answer—this is where wisdom begins, for humans and machines alike."* — Lev Goukassian
+
 
 For sensitive matters or memorial-related communications, please contact the memorial committee directly.
