@@ -439,7 +439,6 @@ This repository contains a comprehensive ecosystem for ethical AI development:
 
 ### 🎯 **Practical Examples** ✅ COMPREHENSIVE
 - **[Basic Demo](examples/basic_demo.py)** - Comprehensive command-line demonstration (392 lines)
-- **[Interactive Web Demo](examples/chatbot-demo/index.html)** - Interactive web demonstration
 - **[Healthcare Ethics](examples/medical_ai_triage.py)** - Medical decision support implementations
 - **[Content Moderation](examples/content_moderation.py)** - Platform safety applications
 
