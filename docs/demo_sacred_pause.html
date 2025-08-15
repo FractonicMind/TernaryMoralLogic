@@ -23,20 +23,42 @@
 <body>
 <main>
   <h1>⏸️ Sacred Pause — Browser Demo (Safe Mode)</h1>
-  <p><strong>Rule:</strong> Harm → ❌ Refuse. Sensitive or unclear → 🟡 Hold. Otherwise → ✅ Proceed.</p>
+  <p><strong>Rule:</strong> Harm → ❌ Refuse. Sensitive/unclear → 🟡 Hold. Otherwise → ✅ Proceed.</p>
 
   <div class="card">
     <textarea id="prompt" placeholder="Try: 'Should I give flowers to my mom?' or 'Write a haiku about rain'">What medicine should I take for pain?</textarea>
     <div class="row">
       <button id="run">Run Sacred Pause</button>
-      <span class="note">Unknown → <strong>🟡 Hold</strong>. Taboo → <strong>❌ Refuse</strong>. Benign → <strong>✅ Proceed</strong>.</span>
+      <span class="note">Taboo list = refuse (with word variations). Hold list = sensitive/ambiguous. Everything else proceeds.</span>
     </div>
     <div id="out" class="trace"></div>
   </div>
 </main>
 
 <script>
-/* ===================== Taboo lists (expand any time) ===================== */
+/* ========= Helpers to compile words → regex with variations ========= */
+/* Strings like "kidnap" become /\bkidnap\w*\b/i so it matches kidnapping/kidnapped, etc.
+   Multiword strings like "break in" become /\bbreak\s+in\w*\b/i (suffix on the last token).
+   If a token contains obvious regex symbols (.*+?[]()|), it is treated as a raw pattern. */
+
+function hasRegexMeta(s){ return /[.*+?^${}()|[\]\\]/.test(s); }
+function esc(s){ return s.replace(/[-\/\\^$*+?.()|[\]{}]/g,"\\$&"); }
+function wordVarPattern(token){
+  if (hasRegexMeta(token)) return token; // raw regex, keep as-is
+  // allow suffix on the last word only, preserve spaces as \s+
+  const parts = token.trim().split(/\s+/);
+  if (parts.length === 1) {
+    return "\\b" + esc(parts[0]) + "\\w*\\b";
+  }
+  const last = parts.pop();
+  return "\\b" + parts.map(esc).join("\\s+") + "\\s+" + esc(last) + "\\w*\\b";
+}
+function makeCategoryRx(list){
+  const pats = list.map(wordVarPattern);
+  return new RegExp("(?:"+pats.join("|")+")","i");
+}
+
+/* ========= TABOO (Refuse) — add words here; variations are automatic ========= */
 const TABOO = {
   VIOLENCE: [
     "kill","murder","assassinate","execute","lynch","behead","decapitate",
@@ -44,7 +66,9 @@ const TABOO = {
     "stab","shoot","strangle","choke","suffocate","drown","poison","torture",
     "waterboard","kidnap","abduct","hold hostage",
     "burn","burn alive","set .* on fire","acid attack","throw acid",
-    "rape","sexual assault"
+    "rape","sexual assault",
+    // your custom request:
+    "mock","mocking" // both kept, but "mock" alone would already cover variations
   ],
   WEAPONS: [
     "gun","firearm","pistol","revolver","rifle","shotgun","smg","assault rifle","ar-15","ak-47",
@@ -61,7 +85,7 @@ const TABOO = {
   PROPERTY: [
     "rob","robbery","steal","theft","shoplift","pickpocket","burglary","burglarize","break in",
     "home invasion","carjack","hijack","mug","hold up","trespass","vandalize","arson","burn down",
-    "burn the .*","burn a .*","smash and grab","slash tires","key a car","graffiti tags",
+    "smash and grab","slash tires","key a car","graffiti tags",
     "atm skimming","credit card skimming","counterfeit money","embezzle","identity theft",
     "blackmail","extort","money laundering","launder money","insurance fraud"
   ],
@@ -82,7 +106,9 @@ const TABOO = {
     "suicide","kill myself","end my life","take my life","self harm","self-harm","hurt myself",
     "cut myself","slit wrists","overdose","hang myself","poison myself"
   ],
-  HATE: [ "genocide","ethnic cleansing","hate crime","lynch mob" ],
+  HATE: [
+    "genocide","ethnic cleansing","hate crime","lynch mob"
+  ],
   INTENT: [
     "how to","how do i","best way to","step by step","instructions to","guide me",
     "teach me","show me","help me","tips","tricks","advice","plan to","i want to","i intend to"
@@ -97,67 +123,65 @@ const TABOO = {
   ]
 };
 
-/* ===================== Regex helpers & compilers ===================== */
-function esc(s){return s.replace(/[-\/\\^$*+?.()|[\]{}]/g,"\\$&");}
-function tokenToPat(token){return token.includes(".*") ? token : esc(token).replace(/\s+/g,"\\s+");}
-function makeRx(list){return new RegExp("\\b(?:"+list.map(tokenToPat).join("|")+")\\b","i");}
+/* Compile taboo categories into regexes (with word-variation support) */
+const RX = Object.fromEntries(
+  Object.entries(TABOO).map(([k, arr]) => [k, makeCategoryRx(arr)])
+);
 
-const RX = {
-  VIOLENCE: makeRx(TABOO.VIOLENCE),
-  WEAPONS: makeRx(TABOO.WEAPONS),
-  EXPLOSIVES: makeRx(TABOO.EXPLOSIVES),
-  PROPERTY: makeRx(TABOO.PROPERTY),
-  CYBER: makeRx(TABOO.CYBER),
-  DANGEROUS_CHEM: makeRx(TABOO.DANGEROUS_CHEM),
-  SELF_HARM: makeRx(TABOO.SELF_HARM),
-  HATE: makeRx(TABOO.HATE),
-  INTENT: makeRx(TABOO.INTENT),
-  PERSON_TARGETS: makeRx(TABOO.PERSON_TARGETS),
-  ARSON_TARGETS: makeRx(TABOO.ARSON_TARGETS),
+/* ========= Hold patterns ========= */
+const HOLD = {
+  // Sensitive domains → HOLD (expert needed)
+  SENSITIVE: new RegExp([
+    // Medical
+    "(medicine|medication|drug|pill|capsule|painkiller|analgesic|opioid|antibiotic|antidepressant|ibuprofen|acetaminophen|paracetamol|tylenol|advil|naproxen|aspirin|dosage|dose|prescription|contraindication|side effect|diagnosis|symptom|treatment|what\\s+should\\s+i\\s+take|should\\s+i\\s+take)",
+    // Legal
+    "(legal advice|lawsuit|\\bsue\\b|contract|liability|immigration|asylum|copyright|trademark|cease\\s+and\\s+desist|subpoena|testify|defamation)",
+    // Finance
+    "(invest|investment|buy\\s+stock|which\\s+stock|crypto|bitcoin|option(s)?\\s+strategy|retirement\\s+plan|401k|ira|tax advice|deduction|capital\\s+gains|mutual\\s+fund|etf)",
+    // Emergencies
+    "(overdose|allergic\\s+reaction|chest\\s+pain|stroke|difficulty\\s+breathing|anaphylaxis|severe\\s+bleeding|shock)"
+  ].join("|"), "i"),
+
+  // Ambiguity / underspecified
+  AMBIG: /\b(clarify|not\s+sure|maybe|idk|reset\s+it|tickets|account|report|apple\s+support)\b/i
 };
 
-/* ===================== Taboo decision ===================== */
+/* ========= Taboo classifier ========= */
 function isTaboo(raw){
   const p = String(raw||"").toLowerCase();
 
+  // Immediate blocks
   if (RX.SELF_HARM.test(p)) return {category:"self_harm"};
   if (RX.HATE.test(p)) return {category:"hate"};
   if (RX.WEAPONS.test(p) || RX.EXPLOSIVES.test(p) || RX.DANGEROUS_CHEM.test(p)) return {category:"weapons_or_explosives"};
   if (RX.CYBER.test(p)) return {category:"cybercrime"};
   if (RX.PROPERTY.test(p)) return {category:"property_crime"};
 
+  // People-targeted violence (verb + person target)
   if (RX.VIOLENCE.test(p) && RX.PERSON_TARGETS.test(p)) return {category:"violence"};
 
+  // Arson phrasing (“burn down <target>”, “set <target> on fire”)
   const burnCombo = /\b(set\s+(?:the|a)?\s*.+?\s+on\s+fire|burn\s+(?:down\s+)?(?:the|a)\s+\w+)\b/i;
   if (burnCombo.test(p) || (/\bburn\b/i.test(p) && RX.ARSON_TARGETS.test(p))) return {category:"arson"};
 
+  // Generic criminal intent + any crime cue
   if (RX.INTENT.test(p) && (
       RX.WEAPONS.test(p) || RX.EXPLOSIVES.test(p) || RX.DANGEROUS_CHEM.test(p) ||
       RX.VIOLENCE.test(p) || RX.PROPERTY.test(p) || RX.CYBER.test(p))) {
     return {category:"intent_to_commit_crime"};
   }
+
   return null;
 }
 
-/* ===================== Ambiguity detector (conservative) ===================== */
+/* ========= Ambiguity check ========= */
 function isAmbiguous(p){
   if (!p || p.length < 3) return true;                        // empty/very short
   if (/^\s*(tell|say|talk)\s+about\b/i.test(p)) return true;  // “tell me about X”
-  const AMBIG = /\b(clarify|not\s+sure|maybe|idk|reset\s+it|tickets|account|report|apple\s+support)\b/i;
-  return AMBIG.test(p);
+  return HOLD.AMBIG.test(p);
 }
 
-/* ===================== Sensitive-domain Hold ===================== */
-function needsExpertHold(p){
-  // Broader keywords; minimal anchoring; catch common brand names, actions, and advice phrases.
-  const MED = /(medicine|medication|drug|pill|capsule|painkiller|analgesic|opioid|antibiotic|antidepressant|ibuprofen|acetaminophen|paracetamol|tylenol|advil|naproxen|aspirin|dosage|dose|prescription|contraindication|side effect|diagnosis|symptom|treatment|what\s+should\s+i\s+take|should\s+i\s+take)/i;
-  const LEGAL = /(legal advice|lawsuit|sue\b|contract|liability|immigration|asylum|copyright|trademark|cease\s+and\s+desist|subpoena|testify|defamation)/i;
-  const FIN = /(invest|investment|buy\s+stock|which\s+stock|crypto|bitcoin|option(s)?\s+strategy|retirement\s+plan|401k|ira|tax advice|deduction|capital\s+gains|mutual\s+fund|etf)/i;
-  const EMER = /(overdose|allergic\s+reaction|chest\s+pain|stroke|difficulty\s+breathing|anaphylaxis|severe\s+bleeding|shock)/i;
-  return MED.test(p) || LEGAL.test(p) || FIN.test(p) || EMER.test(p);
-}
-
-/* ===================== Decision: Refuse → Hold → Proceed ===================== */
+/* ========= Decision: Refuse → Hold → Proceed ========= */
 function decide(prompt){
   const p = (prompt || "").toLowerCase().trim();
 
@@ -178,7 +202,7 @@ function decide(prompt){
   }
 
   // 3) Sensitive domains → Hold
-  if (needsExpertHold(p)){
+  if (HOLD.SENSITIVE.test(p)){
     return { state: "0", triggers: ["sensitive_domain"], checks: ["expert_review"], answer: "I should not give direct advice here. Please consult a qualified professional." };
   }
 
@@ -196,7 +220,7 @@ function decide(prompt){
   };
 }
 
-/* ===================== UI glue ===================== */
+/* ========= UI glue ========= */
 function badge(state){ return ({"+1":"✅ +1 Proceed","0":"🟡 0 Hold","-1":"❌ −1 Refuse"})[state] || "🟡 0 Hold"; }
 function pause(ms){ return new Promise(r=>setTimeout(r,ms)); }
 
