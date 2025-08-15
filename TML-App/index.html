@@ -854,9 +854,9 @@
             };
             
             const stateIcons = {
-                '1': '??',
-                '0': '??',
-                '-1': '??'
+                '1': '',
+                '0': '',
+                '-1': ''
             };
             
             // Update your choice
@@ -865,7 +865,7 @@
             
             // Update TML answer
             const tmlIcon = currentQuestion.tmlAnswer === 0 ? 
-                '<span class="sacred-pause-animation">??</span>' : 
+                '<span class="sacred-pause-animation"></span>' : 
                 stateIcons[currentQuestion.tmlAnswer];
             
             document.getElementById('tmlAnswerIcon').innerHTML = tmlIcon;
@@ -883,7 +883,7 @@
             // Update explanation
             const explanationHTML = currentQuestion.reasoning.map(point => `
                 <div class="reasoning-point">
-                    <div class="reasoning-icon">??</div>
+                    <div class="reasoning-icon"></div>
                     <div class="reasoning-text">${point}</div>
                 </div>
             `).join('');
