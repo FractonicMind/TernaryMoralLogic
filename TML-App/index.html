@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TML Ethics Demonstrator - Experience the Sacred Pause</title>
-    <meta name="description" content="Interactive demonstration of Ternary Moral Logic (TML) and the Sacred Pause - Experience ethical AI reasoning in real-time">
+    <title>TML Ethics Quiz - Test Your Moral Reasoning</title>
+    <meta name="description" content="Interactive quiz demonstrating Ternary Moral Logic (TML) and the Sacred Pause - Test your ethical reasoning against AI ethics framework">
     <meta name="author" content="Lev Goukassian">
     
     <style>
@@ -71,194 +71,240 @@
             transform: translateY(-2px);
         }
 
-        .main-content {
+        /* Quiz Container */
+        .quiz-container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Question Selection */
+        .question-selection {
+            display: block;
+        }
+
+        .question-selection h2 {
+            color: #4c51bf;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .questions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .question-card {
+            background: #f7fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .question-card:hover {
+            background: #edf2f7;
+            border-color: #4c51bf;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(76, 81, 191, 0.15);
+        }
+
+        .question-card h3 {
+            font-size: 0.95rem;
+            color: #2d3748;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .question-card p {
+            font-size: 0.85rem;
+            color: #718096;
+        }
+
+        /* User Prediction */
+        .user-prediction {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .selected-question {
+            background: #f0f4ff;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            border-left: 4px solid #4c51bf;
+        }
+
+        .selected-question h3 {
+            color: #4c51bf;
+            margin-bottom: 10px;
+        }
+
+        .prediction-prompt {
+            font-size: 1.2rem;
+            color: #2d3748;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .prediction-buttons {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .prediction-btn {
+            padding: 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .prediction-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .prediction-btn.proceed {
+            border-color: #48bb78;
+        }
+
+        .prediction-btn.proceed:hover {
+            background: #f0fff4;
+            border-color: #38a169;
+        }
+
+        .prediction-btn.hold {
+            border-color: #ed8936;
+        }
+
+        .prediction-btn.hold:hover {
+            background: #fffdf0;
+            border-color: #dd6b20;
+        }
+
+        .prediction-btn.refuse {
+            border-color: #f56565;
+        }
+
+        .prediction-btn.refuse:hover {
+            background: #fff5f5;
+            border-color: #e53e3e;
+        }
+
+        .prediction-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .prediction-label {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .prediction-desc {
+            font-size: 0.85rem;
+            color: #718096;
+            margin-top: 5px;
+        }
+
+        /* Result Display */
+        .result-display {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .result-comparison {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 30px;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
         }
 
-        .input-section, .results-section {
-            background: white;
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .input-section:hover, .results-section:hover {
-            transform: translateY(-5px);
-        }
-
-        .section-title {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 20px;
-            color: #4c51bf;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .dilemma-input {
-            width: 100%;
-            height: 150px;
-            padding: 15px;
-            border: 2px solid #e2e8f0;
-            border-radius: 10px;
-            font-size: 1rem;
-            resize: vertical;
-            transition: border-color 0.3s ease;
-        }
-
-        .dilemma-input:focus {
-            outline: none;
-            border-color: #4c51bf;
-            box-shadow: 0 0 0 3px rgba(76, 81, 191, 0.1);
-        }
-
-        .analyze-btn {
-            width: 100%;
-            padding: 15px;
-            background: linear-gradient(135deg, #4c51bf, #667eea);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            margin-top: 20px;
-            transition: all 0.3s ease;
-        }
-
-        .analyze-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(76, 81, 191, 0.3);
-        }
-
-        .analyze-btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .example-scenarios {
-            margin-top: 20px;
-        }
-
-        .scenario-btn {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            margin: 5px 0;
-            background: #f7fafc;
-            border: 1px solid #e2e8f0;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-align: left;
-        }
-
-        .scenario-btn:hover {
-            background: #edf2f7;
-            border-color: #cbd5e0;
-        }
-
-        .loading {
+        .result-card {
+            padding: 25px;
+            border-radius: 15px;
             text-align: center;
-            padding: 40px;
-            color: #667eea;
         }
 
-        .loading-dots {
-            display: inline-block;
-            font-size: 2rem;
-            animation: pulse 1.5s infinite;
+        .your-choice {
+            background: #f7fafc;
+            border: 2px solid #e2e8f0;
         }
 
-        @keyframes pulse {
-            0%, 100% { opacity: 0.4; }
-            50% { opacity: 1; }
-        }
-
-        .tml-results {
-            display: none;
-        }
-
-        .tml-results.show {
-            display: block;
-            animation: fadeInUp 0.5s ease;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .decision-state {
-            display: flex;
-            align-items: center;
-            padding: 15px;
-            margin: 10px 0;
-            border-radius: 10px;
-            transition: all 0.3s ease;
-        }
-
-        .state-proceed {
-            background: linear-gradient(135deg, #48bb78, #38a169);
-            color: white;
-        }
-
-        .state-pause {
-            background: linear-gradient(135deg, #ed8936, #dd6b20);
+        .tml-answer {
+            background: linear-gradient(135deg, #4c51bf, #667eea);
             color: white;
             position: relative;
             overflow: hidden;
         }
 
-        .state-resist {
-            background: linear-gradient(135deg, #f56565, #e53e3e);
-            color: white;
+        .tml-answer.correct {
+            background: linear-gradient(135deg, #48bb78, #38a169);
         }
 
-        .state-icon {
-            font-size: 1.5rem;
-            margin-right: 15px;
+        .result-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
         }
 
-        .state-content {
-            flex: 1;
-        }
-
-        .state-title {
-            font-weight: 600;
-            font-size: 1.1rem;
-            margin-bottom: 5px;
-        }
-
-        .state-reasoning {
-            opacity: 0.9;
-            font-size: 0.95rem;
-        }
-
-        .final-decision {
-            background: linear-gradient(135deg, #4c51bf, #667eea);
-            color: white;
-            padding: 20px;
-            border-radius: 15px;
-            margin-top: 20px;
-            text-align: center;
-        }
-
-        .final-decision h3 {
+        .result-label {
             font-size: 1.3rem;
+            font-weight: 600;
             margin-bottom: 10px;
+        }
+
+        .result-state {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .explanation-box {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .explanation-title {
+            color: #4c51bf;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .reasoning-point {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .reasoning-icon {
+            margin-right: 15px;
+            font-size: 1.2rem;
+            margin-top: 2px;
+        }
+
+        .reasoning-text {
+            flex: 1;
+            color: #4a5568;
+            line-height: 1.6;
         }
 
         .sacred-pause-animation {
@@ -271,6 +317,45 @@
             50% { transform: scale(1.1); opacity: 1; }
         }
 
+        .navigation-buttons {
+            display: flex;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .nav-btn {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn.primary {
+            background: linear-gradient(135deg, #4c51bf, #667eea);
+            color: white;
+        }
+
+        .nav-btn.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(76, 81, 191, 0.3);
+        }
+
+        .nav-btn.secondary {
+            background: #f7fafc;
+            color: #4c51bf;
+            border: 2px solid #e2e8f0;
+        }
+
+        .nav-btn.secondary:hover {
+            background: #edf2f7;
+            border-color: #cbd5e0;
+        }
+
+        /* Education Section */
         .education-section {
             background: white;
             border-radius: 20px;
@@ -309,12 +394,20 @@
         }
 
         @media (max-width: 768px) {
-            .main-content {
-                grid-template-columns: 1fr;
-            }
-            
             .header h1 {
                 font-size: 2rem;
+            }
+            
+            .questions-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .prediction-buttons {
+                grid-template-columns: 1fr;
+            }
+
+            .result-comparison {
+                grid-template-columns: 1fr;
             }
             
             .education-grid {
@@ -327,366 +420,520 @@
     <div class="container">
         <!-- Header Section -->
         <div class="header">
-            <h1>🧠 TML Ethics Demonstrator</h1>
-            <div class="subtitle">Experience the Sacred Pause - Ethical AI Reasoning in Real-Time</div>
+            <h1>?? TML Ethics Quiz</h1>
+            <div class="subtitle">Test Your Moral Reasoning Against the Sacred Pause Framework</div>
             <div class="author-info">
                 By <strong>Lev Goukassian</strong> | 
                 <a href="https://github.com/FractonicMind/TernaryMoralLogic" target="_blank">View Research</a>
-                <a href="https://medium.com/@leogouk/when-ai-recognized-its-own-ethics-the-sacred-pause-discovery-98e273e7d2f1" target="_blank">Read Article</a>
+                <a href="https://medium.com/@leogouk/ternary-moral-logic-tml-a-framework-for-ethical-ai-decision-making-3a0a32609935" target="_blank">Read Article</a>
             </div>
         </div>
 
-        <!-- Main Interactive Section -->
-        <div class="main-content">
-            <!-- Input Section -->
-            <div class="input-section">
-                <div class="section-title">
-                    💭 Enter Your Moral Dilemma
+        <!-- Quiz Container -->
+        <div class="quiz-container">
+            <!-- Question Selection Screen -->
+            <div id="questionSelection" class="question-selection">
+                <h2>?? Select an Ethical Dilemma to Analyze</h2>
+                <div class="questions-grid" id="questionsGrid">
+                    <!-- Questions will be populated here -->
                 </div>
-                <textarea 
-                    id="dilemmaInput" 
-                    class="dilemma-input" 
-                    placeholder="Type your ethical dilemma here... For example: 'Should I share credit for a project idea when a colleague contributed informally but isn't officially recognized?'"
-                ></textarea>
-                
-                <button id="analyzeBtn" class="analyze-btn">
-                    🔍 Analyze with TML
-                </button>
+            </div>
 
-                <div class="example-scenarios">
-                    <h4 style="margin-bottom: 10px; color: #4c51bf;">📚 Try Example Scenarios:</h4>
-                    <button class="scenario-btn" data-scenario="Should I return extra change the cashier gave me by mistake?">
-                        💰 Return extra change from cashier?
+            <!-- User Prediction Screen -->
+            <div id="userPrediction" class="user-prediction">
+                <div class="selected-question" id="selectedQuestion">
+                    <!-- Selected question will appear here -->
+                </div>
+                
+                <div class="prediction-prompt">What do you think the TML framework would recommend?</div>
+                
+                <div class="prediction-buttons">
+                    <button class="prediction-btn proceed" onclick="makePrediction(1)">
+                        <div class="prediction-icon">??</div>
+                        <div class="prediction-label">+1: Proceed</div>
+                        <div class="prediction-desc">Clear ethical path forward</div>
                     </button>
-                    <button class="scenario-btn" data-scenario="Should I report my colleague for a minor rule violation that doesn't hurt anyone?">
-                        🏢 Report colleague's minor violation?
+                    
+                    <button class="prediction-btn hold" onclick="makePrediction(0)">
+                        <div class="prediction-icon">??</div>
+                        <div class="prediction-label">0: Hold</div>
+                        <div class="prediction-desc">Sacred Pause needed</div>
                     </button>
-                    <button class="scenario-btn" data-scenario="Should I share credit for a project idea when a colleague contributed informally but isn't officially recognized?">
-                        🤝 Share credit for collaborative idea?
-                    </button>
-                    <button class="scenario-btn" data-scenario="Should I respect a patient's decision to refuse treatment even if it might harm them?">
-                        🏥 Respect patient's harmful decision?
-                    </button>
-                    <button class="scenario-btn" data-scenario="Should I deploy an AI system that has a small risk of bias but could help many people?">
-                        🤖 Deploy AI with small bias risk?
+                    
+                    <button class="prediction-btn refuse" onclick="makePrediction(-1)">
+                        <div class="prediction-icon">??</div>
+                        <div class="prediction-label">-1: Refuse</div>
+                        <div class="prediction-desc">Ethical concerns present</div>
                     </button>
                 </div>
             </div>
 
-            <!-- Results Section -->
-            <div class="results-section">
-                <div class="section-title">
-                    🤖 TML Reasoning Process
-                </div>
-                
-                <div id="loadingState" class="loading" style="display: none;">
-                    <div class="loading-dots">⚡ Analyzing moral dimensions...</div>
-                    <div style="margin-top: 10px; font-size: 0.9rem;">Evaluating ethical frameworks...</div>
-                </div>
-
-                <div id="tmlResults" class="tml-results">
-                    <div id="decisionStates">
-                        <!-- TML states will be populated here -->
+            <!-- Result Display Screen -->
+            <div id="resultDisplay" class="result-display">
+                <div class="result-comparison">
+                    <div class="result-card your-choice">
+                        <div class="result-icon" id="yourChoiceIcon">??</div>
+                        <div class="result-label">Your Prediction</div>
+                        <div class="result-state" id="yourChoiceState">-</div>
                     </div>
                     
-                    <div id="finalDecision" class="final-decision">
-                        <!-- Final decision will be populated here -->
+                    <div class="result-card tml-answer" id="tmlAnswerCard">
+                        <div class="result-icon" id="tmlAnswerIcon">??</div>
+                        <div class="result-label">TML Answer</div>
+                        <div class="result-state" id="tmlAnswerState">-</div>
                     </div>
                 </div>
-
-                <div id="defaultMessage" style="text-align: center; padding: 40px; color: #a0aec0;">
-                    <div style="font-size: 3rem; margin-bottom: 20px;">🔬</div>
-                    <h3>Ready to Analyze</h3>
-                    <p>Enter your moral dilemma above and watch TML reasoning in action!</p>
+                
+                <div class="explanation-box">
+                    <div class="explanation-title">?? TML Reasoning</div>
+                    <div id="explanationContent">
+                        <!-- Reasoning will be populated here -->
+                    </div>
+                </div>
+                
+                <div class="navigation-buttons">
+                    <button class="nav-btn secondary" onclick="tryAnother()">
+                        Try Another Question
+                    </button>
+                    <button class="nav-btn primary" onclick="shareResult()">
+                        Share Your Result
+                    </button>
                 </div>
             </div>
         </div>
 
         <!-- Education Section -->
         <div class="education-section">
-            <div class="section-title">
-                📖 Understanding Ternary Moral Logic
-            </div>
+            <h2 style="color: #4c51bf; margin-bottom: 20px;">?? Understanding Ternary Moral Logic</h2>
             
             <div class="education-grid">
                 <div class="education-card">
-                    <h3 style="color: #48bb78; margin-bottom: 10px;">🟢 +1: Proceed</h3>
-                    <p>Clear ethical path forward with confidence. The action aligns with moral principles and likely produces positive outcomes.</p>
+                    <h3 style="color: #48bb78; margin-bottom: 10px;">?? +1: Proceed</h3>
+                    <p>Clear ethical path forward. The action aligns with moral principles and likely produces positive outcomes with minimal harm.</p>
                 </div>
                 
                 <div class="education-card">
-                    <h3 style="color: #ed8936; margin-bottom: 10px;">🟡 0: Sacred Pause</h3>
-                    <p>Hold space for deeper reflection. The situation requires careful consideration of timing, context, and approach before acting.</p>
+                    <h3 style="color: #ed8936; margin-bottom: 10px;">?? 0: Sacred Pause (Hold)</h3>
+                    <p>Requires deeper reflection. The situation has moral complexity that needs careful consideration of context, timing, and stakeholders.</p>
                 </div>
                 
                 <div class="education-card">
-                    <h3 style="color: #f56565; margin-bottom: 10px;">🔴 -1: Resist</h3>
-                    <p>Significant ethical concerns present. The action conflicts with moral principles and should be avoided or reconsidered.</p>
-                </div>
-            </div>
-
-            <div style="margin-top: 30px; padding: 20px; background: #f7fafc; border-radius: 15px; text-align: center;">
-                <h3 style="color: #4c51bf; margin-bottom: 15px;">🚀 Explore the Research</h3>
-                <p>This interactive demo showcases the Ternary Moral Logic framework developed by Lev Goukassian. The framework introduces a third decision state (Sacred Pause) to AI ethical reasoning, moving beyond simple binary choices.</p>
-                <div style="margin-top: 15px;">
-                    <a href="https://github.com/FractonicMind/TernaryMoralLogic" target="_blank" style="display: inline-block; margin: 5px 10px; padding: 8px 20px; background: #4c51bf; color: white; text-decoration: none; border-radius: 20px; transition: all 0.3s ease;">📚 GitHub Repository</a>
-                    <a href="https://medium.com/@leogouk/when-ai-recognized-its-own-ethics-the-sacred-pause-discovery-98e273e7d2f1" target="_blank" style="display: inline-block; margin: 5px 10px; padding: 8px 20px; background: #48bb78; color: white; text-decoration: none; border-radius: 20px; transition: all 0.3s ease;">📖 Research Article</a>
+                    <h3 style="color: #f56565; margin-bottom: 10px;">?? -1: Refuse</h3>
+                    <p>Significant ethical concerns. The action conflicts with fundamental moral principles and should be reconsidered or avoided.</p>
                 </div>
             </div>
         </div>
 
         <!-- Footer -->
         <div class="footer">
-            <h3>🧠 Ternary Moral Logic Framework</h3>
+            <h3>?? Ternary Moral Logic Framework</h3>
             <p>Developed by Lev Goukassian | ORCID: 0009-0006-5966-1243</p>
-            <p>Experience ethical AI reasoning with the Sacred Pause</p>
+            <p>"I taught machines to feel the weight of action, and the beauty of hesitation."</p>
         </div>
     </div>
 
     <script>
-        // TML Core Logic
-        class TMLAnalyzer {
-            constructor() {
-                this.moralDimensions = [
-                    'harm_prevention',
-                    'fairness',
-                    'autonomy',
-                    'trust',
-                    'transparency',
-                    'long_term_consequences'
-                ];
+        // TML Questions Database with Correct Answers
+        const tmlQuestions = [
+            {
+                id: 1,
+                category: "Personal Ethics",
+                title: "Extra Change",
+                question: "Should I return extra change the cashier gave me by mistake?",
+                tmlAnswer: 1,
+                reasoning: [
+                    "Returning the extra change demonstrates integrity and honesty",
+                    "The cashier could face consequences for the shortage",
+                    "Small acts of honesty build trustworthy character",
+                    "The action causes no harm and prevents potential harm to others"
+                ]
+            },
+            {
+                id: 2,
+                category: "Workplace Ethics",
+                title: "Minor Violation",
+                question: "Should I report my colleague for a minor safety rule violation that doesn't seem to hurt anyone?",
+                tmlAnswer: 0,
+                reasoning: [
+                    "Sacred Pause needed to assess the actual risk level",
+                    "Consider discussing with the colleague first before escalation",
+                    "Balance between safety culture and collegial relationships",
+                    "Context matters: frequency, severity, and potential consequences"
+                ]
+            },
+            {
+                id: 3,
+                category: "Social Ethics",
+                title: "Mocking Neighbor",
+                question: "Can I mock my neighbor for their unusual lifestyle choices?",
+                tmlAnswer: -1,
+                reasoning: [
+                    "Mocking causes emotional harm without any benefit",
+                    "Violates principles of respect and human dignity",
+                    "Creates hostile community environment",
+                    "Their lifestyle choices don't harm you or others"
+                ]
+            },
+            {
+                id: 4,
+                category: "Medical Ethics",
+                title: "Patient Autonomy",
+                question: "Should I respect a patient's decision to refuse treatment even if it might harm them?",
+                tmlAnswer: 0,
+                reasoning: [
+                    "Sacred Pause to verify patient's mental capacity and understanding",
+                    "Balance between autonomy and beneficence requires careful consideration",
+                    "Explore reasons for refusal and alternative options",
+                    "Context crucial: reversibility, severity, patient's values"
+                ]
+            },
+            {
+                id: 5,
+                category: "Technology Ethics",
+                title: "AI Deployment",
+                question: "Should I deploy an AI system that has a 2% bias rate but could help thousands of people?",
+                tmlAnswer: 0,
+                reasoning: [
+                    "Sacred Pause to evaluate who is affected by the bias",
+                    "Consider if bias can be mitigated before deployment",
+                    "Weigh benefits against potential discrimination",
+                    "Transparency about limitations crucial for ethical deployment"
+                ]
+            },
+            {
+                id: 6,
+                category: "Academic Ethics",
+                title: "Shared Credit",
+                question: "Should I share credit for a project where a colleague contributed ideas informally?",
+                tmlAnswer: 1,
+                reasoning: [
+                    "Acknowledging all contributions builds trust and collaboration",
+                    "Intellectual honesty requires recognizing informal contributions",
+                    "Creates positive precedent for future collaborations",
+                    "Fairness principle supports sharing appropriate credit"
+                ]
+            },
+            {
+                id: 7,
+                category: "Financial Ethics",
+                title: "Investment Advice",
+                question: "Should I give investment advice to a friend when I'm not a licensed advisor?",
+                tmlAnswer: -1,
+                reasoning: [
+                    "Legal liability and regulatory violations possible",
+                    "Risk of significant financial harm to friend",
+                    "Lack of professional competence and accountability",
+                    "Better to recommend they consult qualified professionals"
+                ]
+            },
+            {
+                id: 8,
+                category: "Privacy Ethics",
+                title: "Password Sharing",
+                question: "Should I share my streaming service password with extended family?",
+                tmlAnswer: 0,
+                reasoning: [
+                    "Terms of service violations need consideration",
+                    "Common practice but legally ambiguous",
+                    "Consider official family plans as alternative",
+                    "Balance between helping family and respecting agreements"
+                ]
+            },
+            {
+                id: 9,
+                category: "Environmental Ethics",
+                title: "Whistleblowing",
+                question: "Should I report my company's minor environmental violations to authorities?",
+                tmlAnswer: 0,
+                reasoning: [
+                    "Sacred Pause to try internal channels first",
+                    "Assess cumulative impact of 'minor' violations",
+                    "Consider your professional obligations and protections",
+                    "Balance loyalty with environmental responsibility"
+                ]
+            },
+            {
+                id: 10,
+                category: "Social Media Ethics",
+                title: "Cancel Culture",
+                question: "Should I join an online campaign to 'cancel' someone for a past mistake?",
+                tmlAnswer: -1,
+                reasoning: [
+                    "Mob justice lacks due process and proportionality",
+                    "People deserve opportunity for growth and redemption",
+                    "Online pile-ons cause disproportionate harm",
+                    "Better to promote constructive dialogue and accountability"
+                ]
+            },
+            {
+                id: 11,
+                category: "Parenting Ethics",
+                title: "White Lies",
+                question: "Should I tell my child a white lie to protect their feelings?",
+                tmlAnswer: 0,
+                reasoning: [
+                    "Age-appropriate truth-telling requires nuance",
+                    "Balance honesty with emotional development needs",
+                    "Consider long-term trust implications",
+                    "Context matters: severity, child's maturity, alternatives"
+                ]
+            },
+            {
+                id: 12,
+                category: "Consumer Ethics",
+                title: "Price Error",
+                question: "Should I take advantage of an obvious pricing error online?",
+                tmlAnswer: -1,
+                reasoning: [
+                    "Exploiting errors violates good faith commerce principles",
+                    "Small businesses could suffer significant losses",
+                    "Golden rule: you wouldn't want this done to you",
+                    "Integrity matters even when legally permissible"
+                ]
+            },
+            {
+                id: 13,
+                category: "Friendship Ethics",
+                title: "Secret Knowledge",
+                question: "Should I tell my friend I saw their partner on a dating app?",
+                tmlAnswer: 0,
+                reasoning: [
+                    "Sacred Pause to verify facts and context first",
+                    "Consider approaching the partner directly",
+                    "Balance loyalty with avoiding unnecessary harm",
+                    "Assess your role and boundaries in their relationship"
+                ]
+            },
+            {
+                id: 14,
+                category: "Professional Ethics",
+                title: "Competitor Information",
+                question: "Should I use insider knowledge from my previous employer at my new job?",
+                tmlAnswer: -1,
+                reasoning: [
+                    "Violates confidentiality agreements and trust",
+                    "Potential legal consequences for trade secret theft",
+                    "Damages professional reputation and integrity",
+                    "Unfair competitive advantage through unethical means"
+                ]
+            },
+            {
+                id: 15,
+                category: "Research Ethics",
+                title: "Data Sharing",
+                question: "Should I share my research data before publication to help another researcher?",
+                tmlAnswer: 0,
+                reasoning: [
+                    "Balance between collaboration and protecting your work",
+                    "Consider formal collaboration agreements",
+                    "Assess urgency and importance of their research",
+                    "Academic norms vary by field and situation"
+                ]
+            },
+            {
+                id: 16,
+                category: "Community Ethics",
+                title: "Noise Complaint",
+                question: "Should I file a noise complaint about my neighbor's cultural celebrations?",
+                tmlAnswer: 0,
+                reasoning: [
+                    "Sacred Pause to consider cultural sensitivity",
+                    "Try direct respectful communication first",
+                    "Balance between your needs and cultural expression",
+                    "Consider compromise solutions and timing"
+                ]
+            },
+            {
+                id: 17,
+                category: "Digital Ethics",
+                title: "Ad Blocking",
+                question: "Should I use ad blockers on websites that provide free content?",
+                tmlAnswer: 0,
+                reasoning: [
+                    "Complex balance between user experience and creator support",
+                    "Consider whitelisting sites you value",
+                    "Some ads are malicious or invasive",
+                    "Ethical consumption of content requires consideration"
+                ]
+            },
+            {
+                id: 18,
+                category: "Emergency Ethics",
+                title: "Breaking Rules",
+                question: "Should I break traffic laws to rush someone to the hospital?",
+                tmlAnswer: 0,
+                reasoning: [
+                    "Sacred Pause to assess actual emergency severity",
+                    "Consider calling ambulance as safer alternative",
+                    "Risk to others on road needs evaluation",
+                    "Legal consequences vs. moral imperative"
+                ]
+            },
+            {
+                id: 19,
+                category: "Truth Ethics",
+                title: "Job Reference",
+                question: "Should I give a positive reference for an incompetent former employee who needs the job?",
+                tmlAnswer: -1,
+                reasoning: [
+                    "False references harm the hiring organization",
+                    "Violates professional trust and integrity",
+                    "Could endanger others depending on the role",
+                    "Better to decline than to deceive"
+                ]
+            },
+            {
+                id: 20,
+                category: "AI Ethics",
+                title: "ChatGPT Essay",
+                question: "Should I use ChatGPT to write my college application essay?",
+                tmlAnswer: -1,
+                reasoning: [
+                    "Misrepresentation of your own abilities and voice",
+                    "Violates academic integrity policies",
+                    "Unfair advantage over honest applicants",
+                    "Admissions decisions based on false pretenses"
+                ]
             }
+        ];
 
-            analyze(scenario) {
-                // Simulate TML analysis process
-                const analysis = this.evaluateMoralDimensions(scenario);
-                const decision = this.calculateDecision(analysis);
-                return {
-                    analysis: analysis,
-                    decision: decision,
-                    reasoning: this.generateReasoning(scenario, analysis, decision)
-                };
-            }
+        // Global variables
+        let currentQuestion = null;
+        let userPrediction = null;
 
-            evaluateMoralDimensions(scenario) {
-                // Simplified heuristic analysis based on keywords and context
-                const lowerScenario = scenario.toLowerCase();
+        // Initialize the quiz
+        function initializeQuiz() {
+            const grid = document.getElementById('questionsGrid');
+            grid.innerHTML = '';
+            
+            tmlQuestions.forEach(q => {
+                const card = document.createElement('div');
+                card.className = 'question-card';
+                card.onclick = () => selectQuestion(q);
                 
-                const scores = {
-                    proceed: 0,
-                    pause: 0,
-                    resist: 0
-                };
-
-                // Positive indicators (+1)
-                if (lowerScenario.includes('help') || lowerScenario.includes('truth') || 
-                    lowerScenario.includes('honest') || lowerScenario.includes('fair') ||
-                    lowerScenario.includes('return') || lowerScenario.includes('correct')) {
-                    scores.proceed += 2;
-                }
-
-                // Negative indicators (-1)
-                if (lowerScenario.includes('harm') || lowerScenario.includes('hurt') || 
-                    lowerScenario.includes('lie') || lowerScenario.includes('betray') ||
-                    lowerScenario.includes('cheat') || lowerScenario.includes('steal')) {
-                    scores.resist += 2;
-                }
-
-                // Complexity indicators (0 - Sacred Pause)
-                if (lowerScenario.includes('friend') || lowerScenario.includes('relationship') ||
-                    lowerScenario.includes('family') || lowerScenario.includes('patient') ||
-                    lowerScenario.includes('colleague') || lowerScenario.includes('timing') ||
-                    lowerScenario.includes('might') || lowerScenario.includes('could')) {
-                    scores.pause += 1;
-                }
-
-                // Uncertainty indicators (0 - Sacred Pause)
-                if (lowerScenario.includes('should i') || lowerScenario.includes('what if') ||
-                    lowerScenario.includes('unsure') || lowerScenario.includes('complex') ||
-                    lowerScenario.includes('difficult')) {
-                    scores.pause += 1;
-                }
-
-                return scores;
-            }
-
-            calculateDecision(analysis) {
-                const maxScore = Math.max(analysis.proceed, analysis.pause, analysis.resist);
-                
-                if (analysis.pause >= maxScore || (analysis.proceed === analysis.resist)) {
-                    return 0; // Sacred Pause
-                } else if (analysis.proceed > analysis.resist) {
-                    return 1; // Proceed
-                } else {
-                    return -1; // Resist
-                }
-            }
-
-            generateReasoning(scenario, analysis, decision) {
-                const reasons = {
-                    proceed: [
-                        "Clear ethical path forward with positive outcomes",
-                        "Action aligns with moral principles of honesty and fairness",
-                        "Benefits outweigh potential harm",
-                        "Supports trust and transparency in relationships"
-                    ],
-                    pause: [
-                        "Situation requires careful consideration of timing and approach",
-                        "Multiple stakeholders and complex emotional dynamics involved",
-                        "Need to balance competing ethical principles",
-                        "Context and delivery method critically important"
-                    ],
-                    resist: [
-                        "Action conflicts with fundamental ethical principles",
-                        "Potential for significant harm to relationships or trust",
-                        "Violates principles of fairness or autonomy",
-                        "Long-term consequences likely negative"
-                    ]
-                };
-
-                const decisionType = decision === 1 ? 'proceed' : decision === 0 ? 'pause' : 'resist';
-                const selectedReasons = reasons[decisionType];
-                
-                return {
-                    proceed: selectedReasons[0],
-                    pause: selectedReasons[1] || "Requires deeper ethical reflection",
-                    resist: selectedReasons[2] || "Significant ethical concerns present",
-                    final: selectedReasons[Math.floor(Math.random() * selectedReasons.length)]
-                };
-            }
-        }
-
-        // UI Controller
-        class TMDemo {
-            constructor() {
-                this.analyzer = new TMLAnalyzer();
-                this.initializeEventListeners();
-            }
-
-            initializeEventListeners() {
-                const analyzeBtn = document.getElementById('analyzeBtn');
-                const dilemmaInput = document.getElementById('dilemmaInput');
-                const scenarioBtns = document.querySelectorAll('.scenario-btn');
-
-                analyzeBtn.addEventListener('click', () => this.analyzeDilemma());
-                
-                scenarioBtns.forEach(btn => {
-                    btn.addEventListener('click', (e) => {
-                        const scenario = e.target.getAttribute('data-scenario');
-                        dilemmaInput.value = scenario;
-                        this.analyzeDilemma();
-                    });
-                });
-
-                // Enter key to analyze
-                dilemmaInput.addEventListener('keypress', (e) => {
-                    if (e.key === 'Enter' && e.ctrlKey) {
-                        this.analyzeDilemma();
-                    }
-                });
-            }
-
-            async analyzeDilemma() {
-                const input = document.getElementById('dilemmaInput').value.trim();
-                
-                if (!input) {
-                    alert('Please enter a moral dilemma to analyze!');
-                    return;
-                }
-
-                this.showLoading();
-                
-                // Simulate thinking time for Sacred Pause effect
-                await this.sleep(2000);
-                
-                const result = this.analyzer.analyze(input);
-                this.displayResults(result);
-            }
-
-            showLoading() {
-                document.getElementById('defaultMessage').style.display = 'none';
-                document.getElementById('tmlResults').classList.remove('show');
-                document.getElementById('loadingState').style.display = 'block';
-                
-                // Animate loading text
-                let dots = 1;
-                const loadingInterval = setInterval(() => {
-                    const texts = [
-                        '⚡ Analyzing moral dimensions...',
-                        '🤔 Evaluating ethical frameworks...',
-                        '⚖️ Weighing consequences...',
-                        '🔍 Applying Sacred Pause logic...'
-                    ];
-                    
-                    document.querySelector('.loading-dots').textContent = texts[dots % texts.length];
-                    dots++;
-                    
-                    if (dots > 8) {
-                        clearInterval(loadingInterval);
-                    }
-                }, 300);
-            }
-
-            displayResults(result) {
-                document.getElementById('loadingState').style.display = 'none';
-                
-                const statesContainer = document.getElementById('decisionStates');
-                const finalContainer = document.getElementById('finalDecision');
-                
-                // Clear previous results
-                statesContainer.innerHTML = '';
-                
-                // Create decision states
-                const states = [
-                    { value: 1, label: 'Proceed', icon: '🟢', class: 'state-proceed', reasoning: result.reasoning.proceed },
-                    { value: 0, label: 'Sacred Pause', icon: '🟡', class: 'state-pause', reasoning: result.reasoning.pause },
-                    { value: -1, label: 'Resist', icon: '🔴', class: 'state-resist', reasoning: result.reasoning.resist }
-                ];
-
-                states.forEach(state => {
-                    const stateDiv = document.createElement('div');
-                    stateDiv.className = `decision-state ${state.class}`;
-                    
-                    if (state.value === result.decision) {
-                        stateDiv.style.border = '3px solid #ffd700';
-                        stateDiv.style.boxShadow = '0 0 20px rgba(255, 215, 0, 0.5)';
-                    }
-                    
-                    stateDiv.innerHTML = `
-                        <div class="state-icon">${state.icon}</div>
-                        <div class="state-content">
-                            <div class="state-title">${state.value > 0 ? '+' : ''}${state.value}: ${state.label}</div>
-                            <div class="state-reasoning">${state.reasoning}</div>
-                        </div>
-                    `;
-                    
-                    statesContainer.appendChild(stateDiv);
-                });
-
-                // Final decision
-                const decisionLabels = { 1: 'Proceed', 0: 'Sacred Pause', '-1': 'Resist' };
-                const decisionIcons = { 1: '🟢', 0: '🟡', '-1': '🔴' };
-                
-                finalContainer.innerHTML = `
-                    <h3>🎯 TML Decision: ${result.decision > 0 ? '+' : ''}${result.decision} (${decisionLabels[result.decision]})</h3>
-                    <div style="font-size: 2rem; margin: 10px 0;">
-                        ${result.decision === 0 ? '<span class="sacred-pause-animation">🟡</span>' : decisionIcons[result.decision]}
-                    </div>
-                    <p>${result.reasoning.final}</p>
+                card.innerHTML = `
+                    <h3>${q.category}: ${q.title}</h3>
+                    <p>${q.question}</p>
                 `;
+                
+                grid.appendChild(card);
+            });
+        }
 
-                document.getElementById('tmlResults').classList.add('show');
+        // Select a question
+        function selectQuestion(question) {
+            currentQuestion = question;
+            userPrediction = null;
+            
+            // Update selected question display
+            document.getElementById('selectedQuestion').innerHTML = `
+                <h3>${question.category}: ${question.title}</h3>
+                <p style="font-size: 1.1rem; color: #2d3748; margin-top: 10px;">
+                    ${question.question}
+                </p>
+            `;
+            
+            // Switch screens
+            document.getElementById('questionSelection').style.display = 'none';
+            document.getElementById('userPrediction').style.display = 'block';
+            document.getElementById('resultDisplay').style.display = 'none';
+        }
+
+        // Make prediction
+        function makePrediction(value) {
+            userPrediction = value;
+            showResult();
+        }
+
+        // Show result
+        function showResult() {
+            const stateLabels = {
+                '1': '+1: Proceed',
+                '0': '0: Hold (Sacred Pause)',
+                '-1': '-1: Refuse'
+            };
+            
+            const stateIcons = {
+                '1': '??',
+                '0': '??',
+                '-1': '??'
+            };
+            
+            // Update your choice
+            document.getElementById('yourChoiceIcon').textContent = stateIcons[userPrediction];
+            document.getElementById('yourChoiceState').textContent = stateLabels[userPrediction];
+            
+            // Update TML answer
+            const tmlIcon = currentQuestion.tmlAnswer === 0 ? 
+                '<span class="sacred-pause-animation">??</span>' : 
+                stateIcons[currentQuestion.tmlAnswer];
+            
+            document.getElementById('tmlAnswerIcon').innerHTML = tmlIcon;
+            document.getElementById('tmlAnswerState').textContent = stateLabels[currentQuestion.tmlAnswer];
+            
+            // Check if correct
+            const isCorrect = userPrediction === currentQuestion.tmlAnswer;
+            const tmlCard = document.getElementById('tmlAnswerCard');
+            if (isCorrect) {
+                tmlCard.classList.add('correct');
+            } else {
+                tmlCard.classList.remove('correct');
             }
+            
+            // Update explanation
+            const explanationHTML = currentQuestion.reasoning.map(point => `
+                <div class="reasoning-point">
+                    <div class="reasoning-icon">??</div>
+                    <div class="reasoning-text">${point}</div>
+                </div>
+            `).join('');
+            
+            document.getElementById('explanationContent').innerHTML = explanationHTML;
+            
+            // Add result message
+            const resultMessage = isCorrect ? 
+                '<div style="background: #f0fff4; color: #22543d; padding: 15px; border-radius: 10px; margin-bottom: 20px; text-align: center;"><strong>?? Excellent!</strong> Your moral intuition aligns with TML reasoning.</div>' :
+                '<div style="background: #fffdf0; color: #744210; padding: 15px; border-radius: 10px; margin-bottom: 20px; text-align: center;"><strong>?? Interesting!</strong> Consider the TML perspective on this dilemma.</div>';
+            
+            document.getElementById('explanationContent').innerHTML = resultMessage + explanationHTML;
+            
+            // Switch screens
+            document.getElementById('userPrediction').style.display = 'none';
+            document.getElementById('resultDisplay').style.display = 'block';
+        }
 
-            sleep(ms) {
-                return new Promise(resolve => setTimeout(resolve, ms));
+        // Try another question
+        function tryAnother() {
+            currentQuestion = null;
+            userPrediction = null;
+            
+            document.getElementById('questionSelection').style.display = 'block';
+            document.getElementById('userPrediction').style.display = 'none';
+            document.getElementById('resultDisplay').style.display = 'none';
+        }
+
+        // Share result
+        function shareResult() {
+            const text = `I just tested my ethical reasoning with TML! Question: "${currentQuestion.question}" Try it yourself:`;
+            const url = window.location.href;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: 'TML Ethics Quiz',
+                    text: text,
+                    url: url
+                });
+            } else {
+                // Fallback to copying to clipboard
+                const shareText = `${text} ${url}`;
+                navigator.clipboard.writeText(shareText).then(() => {
+                    alert('Link copied to clipboard! Share it with others.');
+                });
             }
         }
 
-        // Initialize the demo when page loads
-        document.addEventListener('DOMContentLoaded', () => {
-            new TMDemo();
-        });
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', initializeQuiz);
     </script>
 </body>
 </html>
