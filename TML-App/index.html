@@ -420,7 +420,7 @@
     <div class="container">
         <!-- Header Section -->
         <div class="header">
-            <h1>?? TML Ethics Quiz</h1>
+            <h1>TML Ethics Quiz</h1>
             <div class="subtitle">Test Your Moral Reasoning Against the Sacred Pause Framework</div>
             <div class="author-info">
                 By <strong>Lev Goukassian</strong> | 
@@ -433,7 +433,7 @@
         <div class="quiz-container">
             <!-- Question Selection Screen -->
             <div id="questionSelection" class="question-selection">
-                <h2>?? Select an Ethical Dilemma to Analyze</h2>
+                <h2>Select an Ethical Dilemma to Analyze</h2>
                 <div class="questions-grid" id="questionsGrid">
                     <!-- Questions will be populated here -->
                 </div>
@@ -449,19 +449,19 @@
                 
                 <div class="prediction-buttons">
                     <button class="prediction-btn proceed" onclick="makePrediction(1)">
-                        <div class="prediction-icon">??</div>
+                        <div class="prediction-icon"></div>
                         <div class="prediction-label">+1: Proceed</div>
                         <div class="prediction-desc">Clear ethical path forward</div>
                     </button>
                     
                     <button class="prediction-btn hold" onclick="makePrediction(0)">
-                        <div class="prediction-icon">??</div>
+                        <div class="prediction-icon"></div>
                         <div class="prediction-label">0: Hold</div>
                         <div class="prediction-desc">Sacred Pause needed</div>
                     </button>
                     
                     <button class="prediction-btn refuse" onclick="makePrediction(-1)">
-                        <div class="prediction-icon">??</div>
+                        <div class="prediction-icon"></div>
                         <div class="prediction-label">-1: Refuse</div>
                         <div class="prediction-desc">Ethical concerns present</div>
                     </button>
@@ -472,20 +472,20 @@
             <div id="resultDisplay" class="result-display">
                 <div class="result-comparison">
                     <div class="result-card your-choice">
-                        <div class="result-icon" id="yourChoiceIcon">??</div>
+                        <div class="result-icon" id="yourChoiceIcon"></div>
                         <div class="result-label">Your Prediction</div>
                         <div class="result-state" id="yourChoiceState">-</div>
                     </div>
                     
                     <div class="result-card tml-answer" id="tmlAnswerCard">
-                        <div class="result-icon" id="tmlAnswerIcon">??</div>
+                        <div class="result-icon" id="tmlAnswerIcon"></div>
                         <div class="result-label">TML Answer</div>
                         <div class="result-state" id="tmlAnswerState">-</div>
                     </div>
                 </div>
                 
                 <div class="explanation-box">
-                    <div class="explanation-title">?? TML Reasoning</div>
+                    <div class="explanation-title">TML Reasoning</div>
                     <div id="explanationContent">
                         <!-- Reasoning will be populated here -->
                     </div>
@@ -504,21 +504,21 @@
 
         <!-- Education Section -->
         <div class="education-section">
-            <h2 style="color: #4c51bf; margin-bottom: 20px;">?? Understanding Ternary Moral Logic</h2>
+            <h2 style="color: #4c51bf; margin-bottom: 20px;">Understanding Ternary Moral Logic</h2>
             
             <div class="education-grid">
                 <div class="education-card">
-                    <h3 style="color: #48bb78; margin-bottom: 10px;">?? +1: Proceed</h3>
+                    <h3 style="color: #48bb78; margin-bottom: 10px;">+1: Proceed</h3>
                     <p>Clear ethical path forward. The action aligns with moral principles and likely produces positive outcomes with minimal harm.</p>
                 </div>
                 
                 <div class="education-card">
-                    <h3 style="color: #ed8936; margin-bottom: 10px;">?? 0: Sacred Pause (Hold)</h3>
+                    <h3 style="color: #ed8936; margin-bottom: 10px;">0: Sacred Pause (Hold)</h3>
                     <p>Requires deeper reflection. The situation has moral complexity that needs careful consideration of context, timing, and stakeholders.</p>
                 </div>
                 
                 <div class="education-card">
-                    <h3 style="color: #f56565; margin-bottom: 10px;">?? -1: Refuse</h3>
+                    <h3 style="color: #f56565; margin-bottom: 10px;">-1: Refuse</h3>
                     <p>Significant ethical concerns. The action conflicts with fundamental moral principles and should be reconsidered or avoided.</p>
                 </div>
             </div>
@@ -526,7 +526,7 @@
 
         <!-- Footer -->
         <div class="footer">
-            <h3>?? Ternary Moral Logic Framework</h3>
+            <h3>Ternary Moral Logic Framework</h3>
             <p>Developed by Lev Goukassian | ORCID: 0009-0006-5966-1243</p>
             <p>"I taught machines to feel the weight of action, and the beauty of hesitation."</p>
         </div>
@@ -892,8 +892,8 @@
             
             // Add result message
             const resultMessage = isCorrect ? 
-                '<div style="background: #f0fff4; color: #22543d; padding: 15px; border-radius: 10px; margin-bottom: 20px; text-align: center;"><strong>?? Excellent!</strong> Your moral intuition aligns with TML reasoning.</div>' :
-                '<div style="background: #fffdf0; color: #744210; padding: 15px; border-radius: 10px; margin-bottom: 20px; text-align: center;"><strong>?? Interesting!</strong> Consider the TML perspective on this dilemma.</div>';
+                '<div style="background: #f0fff4; color: #22543d; padding: 15px; border-radius: 10px; margin-bottom: 20px; text-align: center;"><strong>Excellent!</strong> Your moral intuition aligns with TML reasoning.</div>' :
+                '<div style="background: #fffdf0; color: #744210; padding: 15px; border-radius: 10px; margin-bottom: 20px; text-align: center;"><strong>Interesting!</strong> Consider the TML perspective on this dilemma.</div>';
             
             document.getElementById('explanationContent').innerHTML = resultMessage + explanationHTML;
             
