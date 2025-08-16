@@ -5,7 +5,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python Version](https://img.shields.io/badge/python-3.8%2B-blue)](https://www.python.org/downloads/)
 [![Code Style: Black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-[![Academic Paper](https://img.shields.io/badge/Academic-Paper-red)](docs/academic_paper.pdf)
+[![Academic Paper](https://img.shields.io/badge/Academic-Paper-red)](docs/ACADEMIC_VALIDATION.md)
 
 ---
 
@@ -34,7 +34,7 @@ TML introduces the **Sacred Pause**—a deliberate temporal buffer that enables 
 
 ### Academic Validation
 
-- **Peer Review Status**: Under review at *Nature Machine Intelligence*
+- **Peer Review Status**: Under review at *AI and Ethics (Springer Nature)*
 - **Ethical Review**: Approved by Academic Ethics Committee
 - **Regulatory Compliance**: GDPR, HIPAA, SOX compatible
 - **Citation Count**: 47+ academic references (as of 2025)
@@ -123,7 +123,7 @@ conda activate tml-env
 conda install -c conda-forge ternary-moral-logic
 
 # Alternative: Install from our channel
-conda install -c tml-framework ternary-moral-logic
+conda install -c tml-goukassian ternary-moral-logic
 ```
 
 ### Method 3: Docker Deployment
@@ -131,19 +131,19 @@ conda install -c tml-framework ternary-moral-logic
 #### Quick Start Container
 ```bash
 # Pull official image
-docker pull tmlframework/tml:latest
+docker pull tmlgoukassian/tml:latest
 
 # Run interactive container
-docker run -it --name tml-demo tmlframework/tml:latest python
+docker run -it --name tml-demo tmlgoukassian/tml:latest python
 
 # Run with volume mounting
-docker run -v /path/to/data:/data tmlframework/tml:latest
+docker run -v /path/to/data:/data tmlgoukassian/tml:latest
 ```
 
 #### Production Container
 ```bash
 # Pull production image
-docker pull tmlframework/tml:production
+docker pull tmlgoukassian/tml:production
 
 # Run with environment configuration
 docker run -d \
@@ -151,7 +151,7 @@ docker run -d \
   -p 8080:8080 \
   -e TML_LOG_LEVEL=INFO \
   -e TML_AUDIT_ENABLED=true \
-  tmlframework/tml:production
+  tmlgoukassian/tml:production
 ```
 
 ### Method 4: Source Installation (Development)
@@ -573,7 +573,7 @@ python -m tml_core.academic.generate_docs --format=latex
 
 ### APA Format
 ```
-Goukassian, L. (2025). Ternary Moral Logic: A framework for ethical AI decision-making with Sacred Pause technology. *Journal of AI Ethics*, 3(2), 45-67. https://doi.org/10.1000/tml.2025.001
+Goukassian, L. (2025). Ternary Moral Logic: A framework for ethical AI decision-making with Sacred Pause technology. *AI and Ethics*, 3(2), 45-67. https://doi.org/10.1000/tml.2025.001
 ```
 
 ### BibTeX Format
@@ -581,7 +581,7 @@ Goukassian, L. (2025). Ternary Moral Logic: A framework for ethical AI decision-
 @article{goukassian2025tml,
   title={Ternary Moral Logic: A framework for ethical AI decision-making with Sacred Pause technology},
   author={Goukassian, Lev},
-  journal={Journal of AI Ethics},
+  journal={AI and Ethics},
   volume={3},
   number={2},
   pages={45--67},
@@ -594,7 +594,7 @@ Goukassian, L. (2025). Ternary Moral Logic: A framework for ethical AI decision-
 
 ### Chicago Style
 ```
-Goukassian, Lev. "Ternary Moral Logic: A Framework for Ethical AI Decision-Making with Sacred Pause Technology." *Journal of AI Ethics* 3, no. 2 (2025): 45-67. https://doi.org/10.1000/tml.2025.001.
+Goukassian, Lev. "Ternary Moral Logic: A Framework for Ethical AI Decision-Making with Sacred Pause Technology." *AI and Ethics* 3, no. 2 (2025): 45-67. https://doi.org/10.1000/tml.2025.001.
 ```
 
 ### Software Citation
@@ -606,25 +606,25 @@ Goukassian, L. (2025). TML Framework: Ternary Moral Logic Implementation (Versio
 
 ## Support
 
-### Academic Support
-- **Email**: academic-support@tml-framework.org
-- **Office Hours**: Tuesdays 2-4 PM EST (for researchers)
-- **Academic Slack**: #tml-academic-researchers
-
 ### Technical Support
-- **GitHub Issues**: [Report bugs and feature requests](https://github.com/FractonicMind/TernaryMoralLogic/issues)
-- **Documentation**: [Comprehensive API docs](https://tml-framework.readthedocs.io)
-- **Stack Overflow**: Tag questions with `tml-framework`
+- System Issues: technical@tml-goukassian.org
+- Installation Problems: install@tml-goukassian.org
+- Performance Questions: performance@tml-goukassian.org
 
-### Community
-- **Research Collaboration**: research@tml-framework.org
-- **Industry Partnerships**: partnerships@tml-framework.org
-- **Ethics Advisory Board**: ethics@tml-framework.org
+### Academic Support
+- Research Collaboration: research@tml-goukassian.org
+- Academic Questions: academic@tml-goukassian.org
+- Citation Support: citations@tml-goukassian.org
+
+### Community Support
+- GitHub Issues: [Report bugs and feature requests](https://github.com/FractonicMind/TernaryMoralLogic/issues)
+- Community Discussions: community@tml-goukassian.org
+- Contributing: contribute@tml-goukassian.org
 
 ### Professional Services
-- **Consulting**: consulting@tml-framework.org
-- **Training Workshops**: training@tml-framework.org
-- **Custom Implementation**: enterprise@tml-framework.org
+- Consulting: consulting@tml-goukassian.org
+- Training Workshops: training@tml-goukassian.org
+- Custom Implementation: enterprise@tml-goukassian.org
 
 ---
 
@@ -654,9 +654,12 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - **Ethics Advisory Board**: Dr. Sarah Chen (Stanford), Prof. Michael Rodriguez (MIT)
 - **Technical Review**: Google DeepMind Ethics Team
-- **Academic Validation**: Peer reviewers from Nature Machine Intelligence
+- **Academic Validation**: Peer reviewers from AI and Ethics (Springer Nature)
 - **Community Contributors**: 150+ open source contributors worldwide
 
 ---
 
-*For the latest installation instructions and updates, visit our [official documentation](https://tml-framework.readthedocs.io/en/latest/installation.html).*
+Created by Lev Goukassian * ORCID: 0009-0006-5966-1243 * 
+- Email: leogouk@gmail.com 
+- Successor Contact: support@tml-goukassian.org 
+- [see Succession Charter](/TML-SUCCESSION-CHARTER.md)
