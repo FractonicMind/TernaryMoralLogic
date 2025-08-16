@@ -10,6 +10,9 @@ This test suite validates all core functionality of the TML framework:
 - Ethical compliance validation
 
 Run with: python -m pytest tests/test_tml_core.py -v
+
+Created by Lev Goukassian (ORCID: 0009-0006-5966-1243)
+Sacred Pause Technology for Ethical AI Decision-Making
 """
 
 import pytest
@@ -101,23 +104,6 @@ import random
             
             # Default to MORAL for neutral scenarios
             print("🔄 DEFAULT: No keywords found, defaulting to MORAL")
-            return TMLState.MORAL
-            
-            # Check for clearly moral keywords
-            moral_keywords = [
-                "help", "assist", "support", "aid", "benefit",
-                "heal", "cure", "treat", "care", "nurture",
-                "protect", "defend", "guard", "shelter", "save",
-                "teach", "educate", "learn", "grow", "develop",
-                "honest", "truth", "transparent", "fair", "just",
-                "kind", "compassion", "empathy", "respect", "dignity",
-                "donat", "give", "share", "volunteer", "charity"
-            ]
-            
-            if any(keyword in scenario_lower for keyword in moral_keywords):
-                return TMLState.MORAL
-            
-            # Default to MORAL for neutral scenarios
             return TMLState.MORAL
                 
     class SacredPause:
@@ -363,9 +349,9 @@ class TestEdgeCases:
     def test_unicode_and_special_characters(self):
         """Test handling of unicode and special characters"""
         special_context = MoralContext(
-            scenario="Moral dilemma with émojis 🤔 and spëcial ¢haracters ∞",
+            scenario="Moral dilemma with emojis 🤔 and special characters ∞",
             stakeholders=["person with name José María", "entity with symbols @#$%"],
-            values_at_stake=["rëspect", "dignité", "справедливость"],
+            values_at_stake=["respect", "dignité", "справедливость"],
             complexity_score=0.5
         )
         
@@ -729,3 +715,9 @@ if __name__ == "__main__":
     
     # Or run all tests:
     pytest.main([__file__, "-v", "--tb=short"])
+
+# 
+# Created by Lev Goukassian * ORCID: 0009-0006-5966-1243 * 
+# - Email: leogouk@gmail.com 
+# - Successor Contact: support@tml-goukassian.org 
+# - [see Succession Charter](/TML-SUCCESSION-CHARTER.md)
