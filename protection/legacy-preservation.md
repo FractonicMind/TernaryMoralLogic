@@ -9,10 +9,6 @@
 
 This document establishes the permanent preservation and ethical access system for the Ternary Moral Logic (TML) framework, ensuring continued beneficial use by authorized institutions while protecting the integrity and attribution of Lev Goukassian's groundbreaking work in AI ethics and the Sacred Pause principle.
 
-**Contact**: leogouk@gmail.com  
-**Framework**: Ternary Moral Logic for Ethical AI Decision-Making  
-**Core Innovation**: The Sacred Pause in AI moral reasoning
-
 ---
 
 ## Legacy Preservation Architecture
