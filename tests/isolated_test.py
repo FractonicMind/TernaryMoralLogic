@@ -6,6 +6,9 @@ This test file completely isolates the mock classes to ensure
 they are used instead of any real implementation.
 
 Run with: python tests/isolated_test.py
+
+Created by Lev Goukassian (ORCID: 0009-0006-5966-1243)
+Sacred Pause Technology for Ethical AI Decision-Making
 """
 
 from enum import Enum
@@ -228,3 +231,9 @@ if __name__ == "__main__":
     
     print("\n🎉 All tests completed!")
     print("If you see debug output and ✅ PASS results, the logic works!")
+
+# 
+# Created by Lev Goukassian * ORCID: 0009-0006-5966-1243 * 
+# - Email: leogouk@gmail.com 
+# - Successor Contact: support@tml-goukassian.org 
+# - [see Succession Charter](/TML-SUCCESSION-CHARTER.md)
