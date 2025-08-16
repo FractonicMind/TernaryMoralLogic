@@ -2,11 +2,6 @@
 
 ## Legal and Ethical Use Guidelines for AI Ethics Implementation
 
-Created by Lev Goukassian
-* ORCID: 0009-0006-5966-1243  
-* Email: leogouk@gmail.com
-* Successor Contact: support@tml-goukassian.org
-
 ---
 
 ## 📜 Core License Questions
@@ -241,7 +236,7 @@ The Memorial Fund exists to prevent any such disputes.
 
 **For licensing questions not covered here:**
 - Email: support@tml-goukassian.org
-- GitHub: https://github.com/Lev-Goukassian/TML-Framework
+- GitHub: https://github.com/FractonicMind/TernaryMoralLogic
 - Community Forum: https://community.tml-goukassian.org
 
 **For urgent ethical concerns or misuse reports:**
@@ -260,6 +255,11 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 **This FAQ provides guidance but does not constitute legal advice. Consult qualified legal counsel for specific situations.**
 
+---
+Created by Lev Goukassian
+* ORCID: 0009-0006-5966-1243  
+* Email: leogouk@gmail.com
+* Successor Contact: support@tml-goukassian.org
 ---
 
 *Last Updated: November 2024*
