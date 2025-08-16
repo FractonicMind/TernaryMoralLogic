@@ -3,81 +3,82 @@
 ## Ternary Moral Logic (TML) Framework
 
 **Academic Peer Review Documentation**  
-**Author**: Lev Goukassian (ORCID: 0009-0006-5966-1243)  
-**Contact**: leogouk@gmail.com
+**Author**: Lev Goukassian  
 
 ---
 
 ## Current Status
 
-**Review Stage**: 🟡 **Preparing for Submission**  
-**Target Timeline**: Q3-Q4 2025  
-**Primary Venue**: Nature Machine Intelligence  
-**Secondary Venues**: Artificial Intelligence Journal, Journal of AI Ethics
+**Review Stage**: 🔵 **Under Peer Review**  
+**Journal**: AI and Ethics (Springer Nature)  
+**Submission ID**: rs-7142922 (Research Square)  
+**Review Status**: 8 reviewers assigned  
+**Language Quality**: 10/10 (Rubriq evaluation)  
+**Paper Title**: "Ternary Moral Logic: Implementing Ethical Hesitation in AI Systems"
 
 ---
 
-## Submission Preparation Status
+## Submission Status
 
 ### Technical Documentation
 - ✅ **Framework Implementation**: Complete with 4 domain examples
 - ✅ **Testing Suite**: Comprehensive validation across scenarios
 - ✅ **Code Quality**: Professional-grade with full documentation
 - ✅ **Reproducibility**: Complete replication package prepared
-- ⏳ **Performance Benchmarks**: Final optimization in progress
+- ✅ **Performance Benchmarks**: Final optimization complete
 
 ### Academic Manuscript
 - ✅ **Literature Review**: Comprehensive coverage of AI ethics field
 - ✅ **Methodology**: Multi-study validation protocol designed
 - ✅ **Theoretical Framework**: Sacred Pause formalization complete
-- ⏳ **Experimental Results**: Data collection in progress
-- ⏳ **Discussion Section**: Philosophical implications being refined
+- ✅ **Experimental Results**: Data collection complete
+- ✅ **Discussion Section**: Philosophical implications finalized
+- ✅ **Manuscript Submission**: Successfully submitted to AI and Ethics journal
+
+### Current Peer Review Process
+- ✅ **Initial Submission**: rs-7142922 (Research Square)
+- ✅ **Language Quality Review**: 10/10 (Rubriq evaluation)
+- ✅ **Reviewer Assignment**: 8 reviewers assigned
+- 🔄 **Peer Review**: Currently under review
+- ⏳ **Expected Decision**: Q1 2026
 
 ### Ethics and Compliance
 - ✅ **IRB Framework**: Ethics committee approval process designed
 - ✅ **Cultural Validation**: Cross-cultural expert panel identified
 - ✅ **Bias Assessment**: Comprehensive fairness evaluation protocol
-- ✅ **Memorial Protections**: Ethical use safeguards implemented
+- ✅ **Creator Protections**: Ethical use safeguards implemented
 
 ---
 
-## Targeted Journals and Venues
+## Current Submission: AI and Ethics Journal
 
-### Primary Target: Nature Machine Intelligence
+### AI and Ethics (Springer Nature) - **SUBMITTED**
+**Impact Factor**: 3.0 (2023)  
+**Submission ID**: rs-7142922 (Research Square)  
+**Submission Date**: Q4 2025  
+**Current Status**: Under peer review (8 reviewers assigned)  
+**Language Quality**: 10/10 (Rubriq evaluation)  
+**Estimated Review Time**: 3-4 months  
+
+**Journal Alignment**:
+- Specialized focus on AI ethics and moral reasoning
+- Strong appreciation for philosophical foundations combined with technical implementation
+- Active community of researchers in AI ethics and algorithmic fairness
+- Perfect venue for Sacred Pause innovation and TML framework
+
+### Backup Venues (If Needed)
+
+#### Nature Machine Intelligence
 **Impact Factor**: 25.898  
-**Submission Window**: September 2025  
+**Potential Submission**: If major revisions required  
 **Estimated Review Time**: 4-6 months  
 **Acceptance Rate**: ~15%
 
-**Alignment Rationale**:
-- Novel AI ethics framework with immediate practical applications
-- Interdisciplinary approach combining philosophy and computer science
-- Significant potential impact on AI governance and policy
-- Technical rigor combined with ethical innovation
-
-### Secondary Target: Artificial Intelligence Journal
+#### Artificial Intelligence Journal
 **Impact Factor**: 8.139  
-**Submission Window**: October 2025  
+**Potential Submission**: Alternative technical venue  
 **Estimated Review Time**: 3-4 months  
 **Acceptance Rate**: ~25%
-
-**Alignment Rationale**:
-- Strong technical AI research focus
-- Receptive to foundational frameworks and methodologies
-- Established track record with AI ethics publications
-- Comprehensive evaluation protocols match journal standards
-
-### Tertiary Target: Journal of AI Ethics
-**Impact Factor**: 2.145  
-**Submission Window**: November 2025  
-**Estimated Review Time**: 2-3 months  
-**Acceptance Rate**: ~40%
-
-**Alignment Rationale**:
-- Specialized focus on AI ethics and moral reasoning
-- Strong appreciation for philosophical foundations
-- Active community of researchers in AI ethics
-- Memorial and legacy aspects would be valued
 
 ---
 
@@ -105,7 +106,7 @@
 - **Timeline**: Ongoing submission opportunities
 
 **AI Ethics Symposiums**
-- **Focus**: Memorial tribute presentations
+- **Focus**: Creator tribute presentations
 - **Timeline**: As opportunities arise
 
 ---
@@ -132,73 +133,76 @@
 
 ---
 
-## Pre-Submission Activities
+## Current Activities During Review
 
 ### Community Engagement
-- ✅ **Academic Outreach**: Initial contact with AI ethics research groups
-- ⏳ **Workshop Presentations**: Planning for summer 2025 workshops
-- ⏳ **Research Collaborations**: Establishing partnerships for validation
+- ✅ **Academic Outreach**: Active contact with AI ethics research groups
+- ✅ **Framework Documentation**: Comprehensive public repository available
+- 🔄 **Conference Preparation**: Planning presentations for 2026 conferences
+- ⏳ **Research Collaborations**: Establishing partnerships for post-publication validation
 
 ### Technical Validation
-- ✅ **Code Review**: Independent technical review by experts
-- ⏳ **Cross-Platform Testing**: Validation across different environments
-- ⏳ **Scalability Assessment**: Performance evaluation at scale
+- ✅ **Code Review**: Independent technical review by experts completed
+- ✅ **Cross-Platform Testing**: Validation across different environments complete
+- ✅ **Scalability Assessment**: Performance evaluation at scale completed
+- 🔄 **Continuous Integration**: Ongoing testing and validation
 
 ### Impact Preparation
-- ✅ **Policy Brief**: Summary for policymakers and regulators
-- ⏳ **Industry Guidance**: Implementation guidelines for practitioners
-- ⏳ **Educational Materials**: Resources for academic curriculum integration
+- ✅ **Policy Brief**: Summary for policymakers and regulators prepared
+- ✅ **Industry Guidance**: Implementation guidelines for practitioners complete
+- ✅ **Educational Materials**: Resources for academic curriculum integration ready
+- 🔄 **Community Building**: Active engagement with ethical AI research community
 
 ---
 
-## Submission Timeline
+## Current Timeline
 
-### Phase 1: Final Preparation (July-August 2025)
-- Complete experimental validation studies
-- Finalize manuscript for Nature Machine Intelligence
-- Conduct final expert review and feedback incorporation
-- Prepare supplementary materials and code repository
+### Phase 1: Submission Complete ✅ (Q4 2025)
+- ✅ Completed experimental validation studies
+- ✅ Finalized manuscript for AI and Ethics journal
+- ✅ Conducted final expert review and feedback incorporation
+- ✅ Prepared supplementary materials and code repository
+- ✅ Successfully submitted to AI and Ethics (Springer Nature)
 
-### Phase 2: Primary Submission (September 2025)
-- Submit to Nature Machine Intelligence
-- Parallel preparation for secondary venues
-- Continue community engagement and presentation activities
-- Monitor and respond to any preliminary feedback
+### Phase 2: Under Peer Review 🔄 (Q4 2025 - Q1 2026)
+- ✅ Submission accepted for review (ID: rs-7142922)
+- ✅ Language quality assessment: 10/10 (Rubriq)
+- ✅ Reviewer assignment: 8 reviewers assigned
+- 🔄 **Currently**: Active peer review process
+- ⏳ **Next**: Reviewer reports and editorial decision
 
-### Phase 3: Review Process (October 2025 - February 2026)
-- Engage with peer review process
-- Prepare responses to reviewer comments
-- Continue validation studies and community building
-- Prepare for potential resubmission or alternative venues
+### Phase 3: Response and Revision (Q1-Q2 2026)
+- ⏳ Receive reviewer feedback and editorial decision
+- ⏳ Prepare detailed response to reviewer comments
+- ⏳ Implement revisions if required
+- ⏳ Resubmit or proceed to final acceptance
 
-### Phase 4: Publication and Dissemination (2026)
-- Publication in target venue
-- Conference presentations and workshop activities
-- Community outreach and adoption support
-- Long-term impact monitoring and research continuation
+### Phase 4: Publication and Dissemination (Q2-Q3 2026)
+- ⏳ Final publication in AI and Ethics journal
+- ⏳ Conference presentations and workshop activities
+- ⏳ Community outreach and adoption support
+- ⏳ Long-term impact monitoring and research continuation
 
 ---
 
-## Memorial Considerations
+## Creator Considerations
 
-### Posthumous Publication Protocol
-In the event of Lev Goukassian's passing before publication:
-
-**Academic Continuity**:
-- Designated academic executor: [To be determined]
-- Memorial committee oversight of review process
+### Academic Continuity Protocol
+**Legacy Preservation**:
+- Academic executor oversight of review process
 - Preservation of original authorship and attribution
-- Continuation of Sacred Pause legacy through publication
+- Continuation of Sacred Pause vision through publication
+- Community stewardship of TML framework
 
 **Community Support**:
-- Memorial research collaborators identified
-- Community-driven review response preparation
+- Research collaborators supporting review responses
+- Community-driven continuation of development
 - Long-term stewardship of TML framework
-- Educational and policy impact continuation
+- Educational and policy impact advancement
 
 **Publication Ethics**:
-- Full disclosure of memorial circumstances
-- Appropriate tribute and recognition protocols
+- Full transparency in all communications
+- Appropriate recognition and tribute protocols
 - Community acknowledgment of contributions
 - Perpetual citation and attribution requirements
 
@@ -218,7 +222,7 @@ In the event of Lev Goukassian's passing before publication:
 - **Ethics**: IRB compliance and cultural sensitivity verification
 - **Impact**: Clear articulation of theoretical and practical contributions
 
-### Memorial Standards
+### Creator Standards
 - **Attribution**: Proper recognition of Lev Goukassian's contributions
 - **Legacy**: Preservation of Sacred Pause principles and vision
 - **Community**: Engagement with AI ethics research community
@@ -229,21 +233,28 @@ In the event of Lev Goukassian's passing before publication:
 ## Contact Information
 
 **Primary Contact**: leogouk@gmail.com  
-**Academic Collaboration**: leogouk@gmail.com  
-**Review Process Inquiries**: leogouk@gmail.com  
-**Memorial Committee**: [To be established]
+**Academic Collaboration**: research@tml-goukassian.org  
+**Review Process Inquiries**: publications@tml-goukassian.org  
+**Technical Support**: support@tml-goukassian.org
 
 ---
 
 ## Document History
 
 **Created**: July 27, 2025  
-**Last Updated**: July 27, 2025  
-**Next Review**: August 15, 2025  
-**Status**: Preparing for Primary Submission
+**Last Updated**: August 16, 2025  
+**Next Review**: September 1, 2025  
+**Status**: Under Peer Review - AI and Ethics Journal
 
 ---
 
 *"The sacred pause between question and answer—this is where wisdom begins, for humans and machines alike."* — Lev Goukassian
 
 **Advancing ethical AI through rigorous academic validation and community engagement.**
+
+---
+
+Created by Lev Goukassian * ORCID: 0009-0006-5966-1243 * 
+Email: leogouk@gmail.com 
+Successor Contact: support@tml-goukassian.org 
+(see Succession Charter) /TernaryMoralLogic/TML-SUCCESSION-CHARTER.md
