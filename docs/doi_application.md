@@ -233,6 +233,6 @@ Week 4: Academic Announcement + Outreach
 
 ---
 
-**Last Updated**: July 26, 2025  
-**Next Review**: August 2, 2025  
-**Application Deadline**: August 15, 2025
+- Email: leogouk@gmail.com 
+- Successor Contact: support@tml-goukassian.org 
+- [See Succession Charter](/TML-SUCCESSION-CHARTER.md)
