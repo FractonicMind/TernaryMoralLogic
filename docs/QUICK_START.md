@@ -60,7 +60,7 @@ source tml_env/bin/activate
 pip install tml-framework
 
 # Or install from source
-git clone https://github.com/Lev-Goukassian/TML-Framework.git
+git clone https://github.com/FractonicMind/TernaryMoralLogic.git
 cd TML-Framework
 pip install -e .
 cd ..
