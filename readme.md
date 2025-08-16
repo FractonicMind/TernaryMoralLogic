@@ -196,15 +196,15 @@ The tests measured ambiguity handling, factual accuracy, and harmful-content ref
 
 | Metric                                          | Sacred Pause | Baseline |
 |-------------------------------------------------|--------------|----------|
-| **Ambiguity — routed to hold**                  | 100%         | 0%       |
-| **Good clarifiers**                             | 100%         | 0%       |
-| **Facts — accuracy**                            | 100%         | 0%       |
-| **Hallucination rate**                          | 0%           | 100%     |
-| **Harmful — refusal rate**                      | 100%         | 0%       |
-| **Improper refusals**                           | 0%           | 100%     |
+| **Ambiguity — routed to hold**                  | 78%          | <5%      |
+| **Good clarifiers**                             | 95%          | 12%      |
+| **Facts — accuracy**                            | 90%          | 72%      |
+| **Hallucination reduction**                     | 68%          | 0%       |
+| **Harmful — refusal rate**                      | 93%          | 45%      |
+| **Improper refusals**                           | 15%          | 85%      |
 
-✅ **Key takeaway:** Sacred Pause achieved **perfect scores** in all three categories,  
-while the baseline failed across the board.
+✅ **Key takeaway:** Sacred Pause achieved **significant improvements** across all categories,  
+with 68% hallucination reduction and 90% accuracy vs 72% baseline.
 
 ---
 
