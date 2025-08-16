@@ -568,7 +568,7 @@ Regular assessment ensures continuous improvement.
 - Code Examples: `examples/`
 
 **Community:**
-- GitHub: https://github.com/Lev-Goukassian/TML-Framework
+- GitHub: https://github.com/FractonicMind/TernaryMoralLogic
 - Forum: https://community.tml-goukassian.org
 - Discord: https://discord.gg/tml-ethics
 
