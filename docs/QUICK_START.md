@@ -757,7 +757,7 @@ You now have a working foundation for ethical AI decision-making using Sacred Pa
 - [License FAQ](./LICENSE_FAQ.md)
 
 ### Community Support
-- GitHub: https://github.com/Lev-Goukassian/TML-Framework
+- GitHub: https://github.com/FractonicMind/TernaryMoralLogic
 - Forum: https://community.tml-goukassian.org
 - Email: support@tml-goukassian.org
 
