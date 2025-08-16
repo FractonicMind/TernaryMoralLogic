@@ -285,7 +285,7 @@ The Lev Goukassian Memorial Fund for Ethical AI Research ensures your revolution
 - Real-time fund status and allocation
 - Complete database of funded research
 - Educational resources and TML tutorials
-- Contact information: leogouk@gmail.com
+- Contact information: memorial-fund@tml-goukassian.org
 
 ---
 
@@ -324,9 +324,8 @@ The Lev Goukassian Memorial Fund for Ethical AI Research ensures your revolution
 ## Contact & Engagement
 
 **Fund Headquarters**: Leading University AI Ethics Department (hosted)  
-**Primary Contact**: leogouk@gmail.com  
+
 ## Administrative Contact
-**Current**: Lev Goukassian (leogouk@gmail.com)  
 **Succession**: support@tml-goukassian.org (see [Succession Charter](/TML-SUCCESSION-CHARTER.md)) For licensing, technical support, or collaboration inquiries.
 **Website**: goukassian-memorial-fund.org  
 **Phone**: [University extension to be established]
