@@ -3,8 +3,7 @@
 ## Ternary Moral Logic (TML) Framework
 
 **Academic Sources and Related Research**  
-**Compiled by**: Lev Goukassian (ORCID: 0009-0006-5966-1243)  
-**Contact**: leogouk@gmail.com
+**Compiled by**: Lev Goukassian 
 
 ---
 
@@ -284,11 +283,16 @@ Each source listed contributed to the theoretical foundation, practical implemen
 
 When citing this framework or related research, please include proper attribution to Lev Goukassian and reference the complete academic lineage that informed the development of Ternary Moral Logic.
 
-For citation formats, see [CITATION.cff](CITATION.cff) in the repository root.
+For citation formats, see [CITATION.cff](/CITATION.cff) in the repository root.
 
 ---
 
-**Contact**: leogouk@gmail.com  
-**Last Updated**: July 27, 2025  
 **Total References**: 45+ academic sources  
 **Coverage**: Comprehensive theoretical and practical foundations
+---
+
+## Contact Information
+Created by Lev Goukassian * ORCID: 0009-0006-5966-1243 * 
+Email: leogouk@gmail.com 
+Successor Contact: support@tml-goukassian.org 
+[See Succession Charter] (/TML-SUCCESSION-CHARTER.md)
