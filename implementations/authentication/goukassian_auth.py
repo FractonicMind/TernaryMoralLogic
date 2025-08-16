@@ -3,12 +3,6 @@ Goukassian TML Authentication System
 Cryptographic prevention using Lev Goukassian's name as authenticity signature
 Only authentic implementations can claim to be "Goukassian TML"
 
-Created by: Lev Goukassian
-ORCID: 0009-0006-5966-1243
-Academic Reference: "Ternary Moral Logic: Implementing Ethical Hesitation in AI Systems" - AI and Ethics Journal
-Repository: https://github.com/FractonicMind/TernaryMoralLogic
-
-© 2025 Lev Goukassian. All rights reserved.
 """
 
 import hashlib
@@ -689,3 +683,11 @@ if __name__ == "__main__":
     print(f"\n💡 REMEMBER: Only systems authenticated by Lev Goukassian are legitimate TML implementations!")
     print(f"📧 Contact: leogouk@gmail.com for authentication requests")
     print(f"🔗 Repository: https://github.com/FractonicMind/TernaryMoralLogic")
+"""
+Created by: Lev Goukassian
+ORCID: 0009-0006-5966-1243
+Academic Reference: "Ternary Moral Logic: Implementing Ethical Hesitation in AI Systems" - AI and Ethics Journal
+Repository: https://github.com/FractonicMind/TernaryMoralLogic
+
+© 2025 Lev Goukassian. All rights reserved.
+"""
