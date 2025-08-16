@@ -302,19 +302,24 @@ The TML framework complies with major international ethical standards:
 ## Contact and Reporting
 
 ### Ethics Inquiries
-**Primary Contact**: leogouk@gmail.com  
-**Ethics Questions**: leogouk@gmail.com  
-**Compliance Issues**: leogouk@gmail.com
+Primary Contact: primary@tml-goukassian.org
+Ethics Questions: ethics@tml-goukassian.org
+Compliance Issues: compliance@tml-goukassian.org
 
 ### Incident Reporting
-**Ethical Violations**: leogouk@gmail.com  
-**Misuse Reports**: leogouk@gmail.com  
-**Community Concerns**: leogouk@gmail.com
+Ethical Violations: incidents@tml-goukassian.org
+Misuse Reports: misuse@tml-goukassian.org
+Community Concerns: community@tml-goukassian.org
 
 ### Memorial Committee
-**Memorial Governance**: leogouk@gmail.com  
-**Legacy Protection**: leogouk@gmail.com  
-**Attribution Issues**: leogouk@gmail.com
+Memorial Governance: memorial@tml-goukassian.org
+Legacy Protection: legacy@tml-goukassian.org
+Attribution Issues: attribution@tml-goukassian.org
+
+### Research
+Research Collaboration: research@tml-goukassian.org
+Replication Studies: replication@tml-goukassian.org
+Publication Coordination: publications@tml-goukassian.org
 
 ---
 
@@ -333,10 +338,8 @@ The framework serves as a model for ethical AI development that respects human d
 
 ---
 
-**Approved by**: TML Ethics Committee  
-**Approval Date**: July 27, 2025  
-**Document Version**: 1.0  
-**Next Review**: July 27, 2026
+- Successor Contact: support@tml-goukassian.org 
+- [See Succession Charter](/TML-SUCCESSION-CHARTER.md)
 
 *"The sacred pause between question and answer—this is where wisdom begins, for humans and machines alike."* — Lev Goukassian
 
