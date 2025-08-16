@@ -1100,7 +1100,7 @@ tml_framework/
 
 ## Related Documentation
 
-- [Quick Start Guide](./QUICK_START.md)
+- [Quick Start Guide](/docs/QUICK_START.md)
 - [MANDATORY Safety Requirements](./MANDATORY.md)
 - [FAQ - General](./GENERAL_FAQ.md)
 - [FAQ - License](./LICENSE_FAQ.md)
