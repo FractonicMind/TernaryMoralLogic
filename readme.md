@@ -178,20 +178,6 @@ while the baseline failed across the board.
 
 ---
 
-## 🧠 Experience the Sacred Pause
-
-### **Watch AI Reflect in Real-Time**
-
-[![Sacred Pause Demo](https://img.shields.io/badge/🧠%20Sacred%20Pause%20Demo-Watch%20AI%20Reflect-amber?style=for-the-badge&labelColor=ff9800&color=ffc107)](https://FractonicMind.github.io/TernaryMoralLogic/docs/demo_sacred_pause.html)
-
-We provide a lightweight **HTML/JS demo** that runs entirely in your browser — no install required.  
-It simulates the visible hesitation, thought trace, and outcome badge.
-
-**[▶ Open HTML Sacred Pause Demo](docs/demo_sacred_pause.html)**
-
-The world's first visualization of AI moral reasoning as a feature, not a limitation. When faced with ethical complexity, the system doesn't freeze or guess—it displays a thoughtful reflection process, showing it's considering moral implications carefully.
-
----
 
 ## 🚀 Interactive TML App - Experience Ethical AI Reasoning
 
