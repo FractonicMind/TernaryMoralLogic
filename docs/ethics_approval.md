@@ -302,24 +302,24 @@ The TML framework complies with major international ethical standards:
 ## Contact and Reporting
 
 ### Ethics Inquiries
-Primary Contact: primary@tml-goukassian.org
-Ethics Questions: ethics@tml-goukassian.org
-Compliance Issues: compliance@tml-goukassian.org
+- Primary Contact: primary@tml-goukassian.org
+- Ethics Questions: ethics@tml-goukassian.org
+- Compliance Issues: compliance@tml-goukassian.org
 
 ### Incident Reporting
-Ethical Violations: incidents@tml-goukassian.org
-Misuse Reports: misuse@tml-goukassian.org
-Community Concerns: community@tml-goukassian.org
+- Ethical Violations: incidents@tml-goukassian.org
+- Misuse Reports: misuse@tml-goukassian.org
+- Community Concerns: community@tml-goukassian.org
 
 ### Memorial Committee
-Memorial Governance: memorial@tml-goukassian.org
-Legacy Protection: legacy@tml-goukassian.org
-Attribution Issues: attribution@tml-goukassian.org
+- Memorial Governance: memorial@tml-goukassian.org
+- Legacy Protection: legacy@tml-goukassian.org
+- Attribution Issues: attribution@tml-goukassian.org
 
 ### Research
-Research Collaboration: research@tml-goukassian.org
-Replication Studies: replication@tml-goukassian.org
-Publication Coordination: publications@tml-goukassian.org
+- Research Collaboration: research@tml-goukassian.org
+- Replication Studies: replication@tml-goukassian.org
+- Publication Coordination: publications@tml-goukassian.org
 
 ---
 
