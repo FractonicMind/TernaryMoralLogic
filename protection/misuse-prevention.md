@@ -1,7 +1,7 @@
 # Misuse Prevention Protocols for Ternary Moral Logic
 
 **Active Protection Against Harmful Applications**  
-**In Memory of Lev Goukassian (ORCID: 0009-0006-5966-1243)**
+**Protecting the Work of Lev Goukassian (ORCID: 0009-0006-5966-1243)**
 
 ## License Revocation Protocols
 
@@ -19,7 +19,7 @@
 - Weapons development or deployment using TML
 - Mass surveillance systems violating human rights
 - Discriminatory systems causing documented harm to protected classes
-- Commercial exploitation of memorial elements for profit
+- Commercial exploitation of attribution elements for profit
 - Persistent violation of attribution requirements after warning
 
 **Community Vote Revocation:**
@@ -162,7 +162,7 @@ While preventing misuse is essential, equally important is recognizing, celebrat
 - AI development that proactively identifies and addresses bias
 
 **Recognition Indicators:**
-- Proper memorial attribution to Lev Goukassian in all implementations
+- Proper attribution to Lev Goukassian in all implementations
 - Transparent documentation of how TML influences decision-making
 - Evidence of improved ethical outcomes for affected communities
 - Integration of human oversight and the Sacred Pause principle
@@ -179,7 +179,7 @@ Implementation Type: [Healthcare/Education/Policy/Research/Other]
 Sacred Pause Integration: [How the framework properly implements pauses]
 Human Partnership: [Evidence of AI-human collaboration, not replacement]
 Community Benefit: [Documented positive impact]
-Memorial Recognition: [How Lev Goukassian's contribution is honored]
+Attribution Recognition: [How Lev Goukassian's contribution is honored]
 
 Nomination Submitted By: [Community member]
 Evidence Links: [Documentation, papers, public reports]
@@ -199,7 +199,7 @@ Why This Deserves Recognition:
 
 **Annual TML Excellence Awards:**
 - "Sacred Pause Innovation" - Best implementation of human-AI collaboration
-- "Memorial Honor" - Best recognition of Lev Goukassian's contribution
+- "Attribution Honor" - Best recognition of Lev Goukassian's contribution
 - "Community Benefit" - Greatest positive impact on vulnerable populations
 - "Ethical Advancement" - Most innovative ethical AI application
 - "Educational Impact" - Best use in teaching moral reasoning
@@ -221,7 +221,7 @@ def share_success_pattern(implementation_details):
         'sacred_pause_integration': implementation_details['pause_implementation'],
         'human_oversight': implementation_details['human_involvement'],
         'ethical_outcomes': implementation_details['measured_benefits'],
-        'memorial_attribution': implementation_details['lev_recognition'],
+        'attribution_recognition': implementation_details['lev_recognition'],
         'lessons_learned': implementation_details['key_insights']
     }
     
@@ -249,7 +249,7 @@ def share_success_pattern(implementation_details):
 - Community mentorship programs
 
 **Resource Provision:**
-- Funding support through memorial fund for beneficial projects
+- Funding support through preservation fund for beneficial projects
 - Academic collaboration facilitation
 - Policy development assistance
 - Community networking and partnership building
@@ -557,11 +557,11 @@ class TMLEvaluator:
 **Attribution Enforcement:**
 ```python
 def require_attribution():
-    """Ensure proper memorial attribution is maintained"""
+    """Ensure proper attribution is maintained"""
     attribution_text = """
     Built using Ternary Moral Logic framework
     Created by Lev Goukassian (ORCID: 0009-0006-5966-1243)
-    In memory of his vision for ethical AI partnership
+    Honoring his vision for ethical AI partnership
     """
     
     # Technical mechanism to ensure attribution remains visible
@@ -686,21 +686,21 @@ def log_usage_pattern(use_case_category, ethical_state_distribution):
 
 ---
 
-## Memorial Integration
+## Protection Integration
 
 ### Protecting Lev's Vision
 
 **Vision Preservation:**
 - All prevention efforts must align with Lev's vision of ethical AI partnership
-- Memorial aspects of the framework receive special protection
+- Attribution aspects of the framework receive special protection
 - Community education about Lev's original intentions
-- Opposition to exploitation of memorial elements
+- Opposition to exploitation of attribution elements
 
 **Legacy Continuity:**
 - Prevention protocols designed to evolve while maintaining core principles
 - Community governance structures that honor Lev's values
 - Educational initiatives that spread understanding of his vision
-- Memorial fund integration with prevention efforts
+- Preservation fund integration with prevention efforts
 
 ---
 
@@ -732,23 +732,25 @@ def log_usage_pattern(use_case_category, ethical_state_distribution):
 ## Contact Information
 
 **Misuse Reporting:**
-- Email: misuse-report@tml-framework.org
-- Anonymous Form: [Secure reporting portal]
-- Emergency Hotline: [24/7 crisis line]
+- Email: ethics@tml-goukassian.org
+- Technical Concerns: technical@tml-goukassian.org
+- Community Issues: community@tml-goukassian.org
 
-**Community Coordination:**
-- Prevention Team: prevention@tml-framework.org
-- Legal Support: legal@tml-framework.org
-- Technical Response: technical@tml-framework.org
+**Emergency Contact:**
+- Crisis Response: compliance@tml-goukassian.org
+- Legal Support: governance@tml-goukassian.org
+- Direct Creator Contact: leogouk@gmail.com
 
 ---
 
 **"The same principles that guide TML's ethical reasoning—transparency, accountability, and the Sacred Pause—guide our efforts to protect the framework from misuse."**
 
-*Every prevention effort honors Lev Goukassian's memory by ensuring his gift to humanity cannot be perverted into a tool for harm.*
+*Every prevention effort honors Lev Goukassian's work by ensuring his gift to humanity cannot be perverted into a tool for harm.*
 
 ---
 
-*Last Updated: [Date]  
-Version: 1.0  
-Community Input: Prevention protocols evolve based on collective experience*
+Created by Lev Goukassian • ORCID: 0009-0006-5966-1243 • 
+- Email: leogouk@gmail.com • 
+- Successor Contact: support@tml-goukassian.org • 
+- [see Succession Charter](/TML-SUCCESSION-CHARTER.md)
+- 
