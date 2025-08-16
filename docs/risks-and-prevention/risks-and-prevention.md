@@ -382,7 +382,7 @@ GitHub: https://github.com/FractonicMind/TernaryMoralLogic
 ORCID: https://orcid.org/0009-0006-5966-1243
 
 ### Implementation Guide
-See https://github.com/FractonicMind/TernaryMoralLogic/implementations/authentication/ for technical implementation details.
+See the authentication examples in `/implementations/python-library/core.py` for technical implementation details.
 
 ## 📞 Contact and Reporting
 
