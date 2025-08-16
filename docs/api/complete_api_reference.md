@@ -1113,7 +1113,7 @@ tml_framework/
 
 **Technical Support:**
 - Email: support@tml-goukassian.org
-- GitHub Issues: https://github.com/Lev-Goukassian/TML-Framework/issues
+- GitHub Issues: https://github.com/FractonicMind/TernaryMoralLogic/issues
 - Stack Overflow Tag: `tml-framework`
 
 **Emergency Ethics Support:**
