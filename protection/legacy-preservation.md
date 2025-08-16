@@ -1,13 +1,13 @@
 # Ternary Moral Logic (TML) - Legacy Preservation System
 
-**In Memoriam Access Protocol**  
+**Comprehensive Access Protocol**  
 **Preserving the Ethical AI Work of Lev Goukassian (ORCID: 0009-0006-5966-1243)**
 
 ---
 
 ## Executive Summary
 
-This document establishes the permanent preservation and ethical access system for the Ternary Moral Logic (TML) framework following the passing of its creator, Lev Goukassian. The system ensures continued beneficial use by authorized institutions while protecting the integrity and attribution of his groundbreaking work in AI ethics and the Sacred Pause principle.
+This document establishes the permanent preservation and ethical access system for the Ternary Moral Logic (TML) framework, ensuring continued beneficial use by authorized institutions while protecting the integrity and attribution of Lev Goukassian's groundbreaking work in AI ethics and the Sacred Pause principle.
 
 **Contact**: leogouk@gmail.com  
 **Framework**: Ternary Moral Logic for Ethical AI Decision-Making  
@@ -23,8 +23,8 @@ The TML framework includes a comprehensive access control system designed to pre
 
 ```python
 """
-Ternary Moral Logic (TML) - Legacy Institutional Access
-Posthumous access control for AI ethics and research institutions
+Ternary Moral Logic (TML) - Institutional Access Management
+Access control for AI ethics and research institutions
 Creator: Lev Goukassian (ORCID: 0009-0006-5966-1243)
 Contact: leogouk@gmail.com
 """
@@ -53,20 +53,20 @@ class TMLAccessLevel(Enum):
 
 class TMLLegacyManager:
     """
-    Manages posthumous access to Lev's Ternary Moral Logic Framework
+    Manages access to Lev's Ternary Moral Logic Framework
     Ensures his vision of the Sacred Pause continues benefiting humanity
     """
     
     def __init__(self):
         self.authorized_institutions = self._load_pre_authorized_institutions()
-        self.memorial_committees = self._load_memorial_committees()
+        self.preservation_committees = self._load_preservation_committees()
         self.legacy_protected = True
         self.contact_email = "leogouk@gmail.com"
     
     def _load_pre_authorized_institutions(self) -> Dict[str, Dict]:
         """
         Pre-authorized institutions by Lev Goukassian
-        These receive immediate full access to TML upon his passing
+        These receive immediate full access to TML
         """
         
         return {
@@ -181,7 +181,7 @@ class TMLLegacyManager:
                                  intended_use: str,
                                  principal_investigator: str,
                                  ethical_commitment: str,
-                                 memorial_statement: str) -> Dict:
+                                 attribution_statement: str) -> Dict:
         """
         Grant access to pre-authorized institutions for TML
         
@@ -191,7 +191,7 @@ class TMLLegacyManager:
         if institution_id not in self.authorized_institutions:
             return self._handle_new_institution_request(
                 institution_id, requesting_department, intended_use,
-                principal_investigator, ethical_commitment, memorial_statement
+                principal_investigator, ethical_commitment, attribution_statement
             )
         
         institution = self.authorized_institutions[institution_id]
@@ -213,7 +213,6 @@ class TMLLegacyManager:
             "access_level": institution["access_level"].value,
             "access_key": access_key,
             "usage_agreement": usage_agreement,
-            "memorial_notice": self._get_memorial_notice(),
             "attribution_requirements": self._get_attribution_requirements(),
             "annual_reporting": self._get_reporting_requirements(institution_id),
             "contact_info": self.contact_email
@@ -230,18 +229,18 @@ Institution: {institution['name']}
 Access Level: {institution['access_level'].value}
 Research Purpose: {research_purpose}
 
-IN MEMORY OF LEV GOUKASSIAN (ORCID: 0009-0006-5966-1243)
+CREATED BY LEV GOUKASSIAN (ORCID: 0009-0006-5966-1243)
 Contact: leogouk@gmail.com
 Creator of Ternary Moral Logic and the Sacred Pause
 
 TERMS OF USE:
 
-1. MEMORIAL ATTRIBUTION REQUIREMENT:
+1. ATTRIBUTION REQUIREMENT:
    All research, publications, and implementations must include:
    - "Built using Ternary Moral Logic framework created by Lev Goukassian"
    - "ORCID: 0009-0006-5966-1243"
    - "Contact: leogouk@gmail.com"
-   - "In memory of his vision of the Sacred Pause in AI ethics"
+   - "Honoring his vision of the Sacred Pause in AI ethics"
 
 2. ETHICAL COMMITMENT:
    This framework embodies Lev's belief that AI should enhance human
@@ -269,9 +268,9 @@ TERMS OF USE:
    - Deceptive or manipulative applications
    - Any use that violates human dignity
 
-6. MEMORIAL FUND CONTRIBUTION:
-   Consider contributing to the Lev Goukassian Memorial Fund for
-   Ethical AI Research to support future work in his memory.
+6. PRESERVATION FUND CONTRIBUTION:
+   Consider contributing to the Lev Goukassian Preservation Fund for
+   Ethical AI Research to support future work in his honor.
 
 7. ANNUAL REPORTING:
    Submit annual reports on TML usage, findings, and impacts to
@@ -280,29 +279,29 @@ TERMS OF USE:
 "The sacred pause between question and answer—this is where wisdom begins,
 for humans and machines alike." - Lev Goukassian
 
-By using this framework, you honor his memory and advance his vision
+By using this framework, you honor his legacy and advance his vision
 of AI systems as moral partners with humanity.
 
 Contact: leogouk@gmail.com
         """
 ```
 
-### 2. Memorial Protection Architecture
+### 2. Preservation Protection Architecture
 
 #### Cryptographic Identity Protection
 
 The TML framework includes built-in cryptographic protection that ensures:
 
 - **Identity Embedding**: Lev's identity is cryptographically embedded in the authentication system
-- **Attribution Enforcement**: Proper memorial attribution is enforced at the code level
-- **Usage Monitoring**: All usage is monitored for ethical compliance and memorial recognition
-- **Legacy Protection**: The framework cannot be corrupted or used without honoring Lev's memory
+- **Attribution Enforcement**: Proper attribution is enforced at the code level
+- **Usage Monitoring**: All usage is monitored for ethical compliance and proper recognition
+- **Legacy Protection**: The framework cannot be corrupted or used without honoring Lev's work
 
 #### Multi-Layer Protection System
 
 1. **Technical Protection** (`protection/integrity-monitoring.md`)
    - Cryptographic locks requiring ethical authentication
-   - Memorial attribution verification
+   - Attribution verification
    - Usage logging and monitoring
 
 2. **Community Protection** (`protection/misuse-prevention.md`)
@@ -315,9 +314,9 @@ The TML framework includes built-in cryptographic protection that ensures:
    - Self-organizing governance structures
    - Community review processes
 
-### 3. Memorial Fund Integration
+### 3. Preservation Fund Integration
 
-The Lev Goukassian Memorial Fund for Ethical AI Research operates as detailed in `memorial/MEMORIAL_FUND.md`, providing:
+The Lev Goukassian Preservation Fund for Ethical AI Research operates as detailed in `memorial/MEMORIAL_FUND.md`, providing:
 
 #### Funding Categories
 - **Research Grants** (40%): $1.6-4 million annually
@@ -328,12 +327,12 @@ The Lev Goukassian Memorial Fund for Ethical AI Research operates as detailed in
 
 #### Revenue Streams
 - Framework license revenues from technology companies
-- Memorial donations from individuals and institutions
+- Preservation donations from individuals and institutions
 - Academic partnership revenue from educational programs
 - Consulting and implementation fees for ethical AI guidance
 
 #### Endowment Goal
-$50-100 million to ensure perpetual support for ethical AI research in Lev's memory.
+$50-100 million to ensure perpetual support for ethical AI research in Lev's honor.
 
 ---
 
@@ -361,10 +360,10 @@ $50-100 million to ensure perpetual support for ethical AI research in Lev's mem
 - Industry representatives from ethical AI organizations
 - International representatives for global perspective
 
-**Memorial Committee Structure**
+**Preservation Committee Structure**
 - Research oversight for grant evaluation and distribution
 - Technical oversight for framework development and protection
-- Community oversight for ethical use and memorial preservation
+- Community oversight for ethical use and legacy preservation
 - Policy oversight for AI governance and regulatory integration
 
 ### 3. Legal and Intellectual Property Protection
@@ -379,7 +378,7 @@ $50-100 million to ensure perpetual support for ethical AI research in Lev's mem
 - Legal protections across major jurisdictions
 - International standards integration
 - Cross-border enforcement cooperation
-- Memorial rights preservation globally
+- Legacy rights preservation globally
 
 ---
 
@@ -399,7 +398,7 @@ $50-100 million to ensure perpetual support for ethical AI research in Lev's mem
 - Government agencies applying TML to AI policy decisions
 - Educational organizations using TML for teaching moral reasoning
 
-### Memorial Impact Assessment
+### Legacy Impact Assessment
 
 **Community Growth**
 - Number of researchers and practitioners in TML community
@@ -441,17 +440,17 @@ $50-100 million to ensure perpetual support for ethical AI research in Lev's mem
 
 **Framework Evolution**
 - Controlled evolution preserving core Sacred Pause principles
-- Community-driven development with memorial oversight
+- Community-driven development with preservation oversight
 - Integration with emerging AI technologies and methods
 - Adaptation to new ethical challenges while maintaining integrity
 
 ---
 
-## Memorial Recognition Programs
+## Recognition Programs
 
 ### Annual Recognition Events
 
-**Lev Goukassian Memorial Lecture Series**
+**Lev Goukassian Distinguished Lecture Series**
 - Annual lectures at rotating major universities
 - Keynote presentations on TML applications and impact
 - Student research showcases and poster sessions
@@ -461,12 +460,12 @@ $50-100 million to ensure perpetual support for ethical AI research in Lev's mem
 - Annual community gathering for TML practitioners
 - Research presentations and technical workshops
 - Policy discussions and governance updates
-- Memorial tributes and impact celebrations
+- Recognition celebrations and impact assessments
 
 ### Contributor Recognition
 
 **Academic Recognition**
-- Memorial scholarships for students working on TML research
+- Preservation scholarships for students working on TML research
 - Postdoctoral fellowships for early-career researchers
 - Faculty awards for outstanding TML research contributions
 - Institutional recognition for exemplary TML implementation
@@ -474,41 +473,41 @@ $50-100 million to ensure perpetual support for ethical AI research in Lev's mem
 **Community Recognition**
 - Sacred Pause Excellence Awards for outstanding implementations
 - Community service recognition for volunteer contributions
-- Memorial fund donor recognition programs
+- Preservation fund donor recognition programs
 - Public acknowledgment of ethical AI leadership
 
 ---
 
 ## Contact Information and Access
 
-### Memorial Fund Administration
-- **General Information**: memorial-info@goukassian-tml.org
-- **Grant Applications**: grants@goukassian-tml.org
-- **Donations and Support**: donate@goukassian-tml.org
-- **Partnership Inquiries**: partnerships@goukassian-tml.org
+### Preservation Fund Administration
+- **General Information**: academic@tml-goukassian.org
+- **Grant Applications**: research@tml-goukassian.org
+- **Donations and Support**: community@tml-goukassian.org
+- **Partnership Inquiries**: institutional@tml-goukassian.org
 
 ### Community Engagement
-- **Research Community**: community@goukassian-tml.org
-- **Educational Resources**: education@goukassian-tml.org
-- **Technical Support**: technical@goukassian-tml.org
-- **Media and Communications**: media@goukassian-tml.org
+- **Research Community**: community@tml-goukassian.org
+- **Educational Resources**: academic@tml-goukassian.org
+- **Technical Support**: technical@tml-goukassian.org
+- **Media and Communications**: governance@tml-goukassian.org
 
 ### Direct Contact
 - **Creator Contact**: leogouk@gmail.com
-- **Memorial Website**: goukassian-tml-memorial.org
-- **Emergency Ethics Line**: ethics-emergency@goukassian-tml.org
+- **Framework Website**: tml-goukassian.org
+- **Ethics Concerns**: ethics@tml-goukassian.org
 
 ---
 
-## Memorial Statement
+## Preservation Philosophy
 
-**"Every use of the Ternary Moral Logic framework becomes a tribute to Lev Goukassian's memory and a continuation of his vision for ethical AI partnership."**
+**"Every use of the Ternary Moral Logic framework becomes a tribute to Lev Goukassian's work and a continuation of his vision for ethical AI partnership."**
 
-Through this comprehensive legacy preservation system, Lev Goukassian's revolutionary concept of the Sacred Pause will continue to guide AI development for generations. His final gift to humanity—a framework for more thoughtful, ethical AI decision-making—lives on through:
+Through this comprehensive legacy preservation system, Lev Goukassian's revolutionary concept of the Sacred Pause will continue to guide AI development for generations. His gift to humanity—a framework for more thoughtful, ethical AI decision-making—lives on through:
 
 - **Technical Protection**: Ensuring the framework cannot be corrupted or misused
 - **Community Stewardship**: Building a global community committed to ethical AI
-- **Memorial Fund**: Providing perpetual funding for continued research and development
+- **Preservation Fund**: Providing perpetual funding for continued research and development
 - **Educational Impact**: Teaching future generations about moral partnership with AI
 - **Policy Influence**: Shaping AI governance and regulation worldwide
 
@@ -518,11 +517,11 @@ Through this comprehensive legacy preservation system, Lev Goukassian's revoluti
 
 *"The sacred pause between question and answer—this is where wisdom begins, for humans and machines alike."* — Lev Goukassian
 
-**In loving memory of a visionary who transformed his final chapter into humanity's ethical AI future.**
+**Honoring a visionary who transformed his life's work into humanity's ethical AI future.**
 
 ---
 
-*Last Updated: [Date]*  
-*Legacy Status: Permanently Preserved*  
-*Contact: leogouk@gmail.com*  
-*Memorial Community: Growing Globally in Lev's Honor*
+Created by Lev Goukassian • ORCID: 0009-0006-5966-1243 • 
+- Email: leogouk@gmail.com • 
+- Successor Contact: support@tml-goukassian.org • 
+- [see Succession Charter](/TML-SUCCESSION-CHARTER.md)
