@@ -2,8 +2,8 @@
 
 **Sacred Pause Technology for Ethical AI Decision-Making**
 
-[![Listen to Interview](https://img.shields.io/badge/🎙️%20Listen%20to%20Interview-7%20min%2015%20sec-0A9396?style=flat-square)](https://fractonicmind.github.io/TernaryMoralLogic/audio/audio-player.html)
 [![Try Interactive Demo](https://img.shields.io/badge/🚀%20Try%20Interactive%20Demo-Live%20App-brightgreen?style=flat-square)](https://fractonicmind.github.io/TernaryMoralLogic/TML-App/)
+[![Listen to Interview](https://img.shields.io/badge/🎙️%20Listen%20to%20Interview-7%20min%2015%20sec-0A9396?style=flat-square)](https://fractonicmind.github.io/TernaryMoralLogic/audio/audio-player.html)
 [![Medium Article](https://img.shields.io/badge/📖%20Medium%20Article-Read%20More-green?style=flat-square)](https://medium.com/@leogouk/ternary-moral-logic-tml-a-framework-for-ethical-ai-decision-making-3a0a32609935)
 [![Visual Framework](https://img.shields.io/badge/🎨%20Visual%20Framework-Graphical%20Abstract-lightblue?style=flat-square)](docs/images/tml_graphical_abstract.svg)
 [![Quick Start](https://img.shields.io/badge/⚡%20Quick%20Start-60%20Minutes-success?style=flat-square)](docs/QUICK_START.md)
