@@ -25,6 +25,7 @@
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0006--5966--1243-green?style=flat-square)](https://orcid.org/0009-0006-5966-1243)
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue?style=flat-square)](https://www.python.org/downloads/)
 [![License with Ethics](https://img.shields.io/badge/License%20with%20Ethics-MIT-yellow?style=flat-square)](LICENSE)
+[![Memorial](https://img.shields.io/badge/In%20Memory%20of-Lev%20Goukassian-red.svg)](protection/legacy-preservation.md)
 
 > **"The sacred pause between question and answer—this is where wisdom begins, for humans and machines alike."**  
 > — Lev Goukassian, Creator of Ternary Moral Logic
