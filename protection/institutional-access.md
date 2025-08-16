@@ -1,7 +1,7 @@
 # Institutional Access Framework for Ternary Moral Logic
 
-**Memorial Legacy Protection System**  
-**In Memory of Lev Goukassian (ORCID: 0009-0006-5966-1243)**
+**Legacy Protection System**  
+**Created by Lev Goukassian (ORCID: 0009-0006-5966-1243)**
 
 ---
 
@@ -126,7 +126,7 @@ The following institutions receive immediate access to the full TML framework ba
 - Intended use case and research/application goals
 - Ethical review board approval (if applicable)
 - Track record in responsible AI or ethics research
-- Commitment to attribution and memorial recognition
+- Commitment to attribution and creator recognition
 
 **Application Template:**
 ```
@@ -149,9 +149,9 @@ Ethical Commitment:
 - Data Protection: [Data handling and privacy protocols]
 - Beneficial Use: [How this advances human welfare]
 
-Memorial Recognition:
+Creator Recognition:
 - Attribution Plan: [How Lev Goukassian will be credited]
-- Memorial Fund: [Willingness to support memorial initiatives]
+- Fund Support: [Willingness to support initiatives]
 - Legacy Preservation: [Commitment to framework integrity]
 
 Previous Work:
@@ -202,14 +202,14 @@ Applications are reviewed through a community-based process that may include:
 - Clear beneficial use case aligned with TML principles
 - Strong track record in responsible AI research
 - Commitment to open science and knowledge sharing
-- Appropriate memorial attribution and recognition
+- Appropriate creator attribution and recognition
 
 **Automatic Rejection Indicators:**
 - Commercial use without clear public benefit
 - Military or surveillance applications
 - History of ethical violations or irresponsible AI
 - Unwillingness to commit to ethical use requirements
-- Attempts to commercialize memorial aspects
+- Attempts to commercialize creator aspects
 
 **Sacred Pause Required (Additional Review):**
 - Novel use cases not previously considered
@@ -223,7 +223,7 @@ Applications are reviewed through a community-based process that may include:
 **Approved institutions receive:**
 - Digital access credentials to full TML framework
 - Usage agreement outlining ethical commitments
-- Attribution guidelines and memorial requirements
+- Attribution guidelines and creator requirements
 - Technical support and community access
 - Annual reporting requirements
 
@@ -237,10 +237,10 @@ Access Level: [Full/Limited/Specific Use]
 
 TERMS OF ACCESS:
 
-1. MEMORIAL ATTRIBUTION
+1. CREATOR ATTRIBUTION
 All uses must include: "Built using Ternary Moral Logic framework 
-created by Lev Goukassian (ORCID: 0009-0006-5966-1243) in memory 
-of his vision for ethical AI partnership."
+created by Lev Goukassian (ORCID: 0009-0006-5966-1243) - 
+vision for ethical AI partnership."
 
 2. ETHICAL COMMITMENTS
 - Use only for beneficial purposes advancing human welfare
@@ -258,12 +258,12 @@ of his vision for ethical AI partnership."
 - Annual report on usage, findings, and impacts
 - Notification of any potential misuse or ethical concerns
 - Sharing of improvements and adaptations with community
-- Documentation of memorial attribution in all outputs
+- Documentation of creator attribution in all outputs
 
 5. COMMUNITY PARTICIPATION
 - Engagement with TML research community
 - Contribution to shared knowledge and best practices
-- Support for memorial fund and educational initiatives
+- Support for fund and educational initiatives
 - Assistance with new institution onboarding when appropriate
 
 Signed: [Institutional Representative]
@@ -312,14 +312,14 @@ Community Review Approval: [Review Body]
 - Community reporting of potential misuse
 - Academic publication monitoring for proper attribution
 - Technical implementation auditing when possible
-- Memorial fund contribution tracking
+- Fund contribution tracking
 
 ### Compliance Enforcement
 - Warning system for minor violations
 - Access suspension for significant violations
 - Community notification of compliance issues
 - Legal consultation for serious breaches
-- Memorial trustee intervention when necessary
+- Trustee intervention when necessary
 
 ### Community Accountability
 - Peer review of institutional implementations
@@ -330,10 +330,10 @@ Community Review Approval: [Review Body]
 
 ---
 
-## Memorial Integration
+## Creator Recognition Integration
 
 ### Attribution Requirements
-All institutional users must include appropriate memorial attribution:
+All institutional users must include appropriate creator attribution:
 
 **In Publications:**
 "This research builds upon the Ternary Moral Logic framework created by Lev Goukassian (ORCID: 0009-0006-5966-1243) during his final months as a contribution to ethical AI development."
@@ -349,8 +349,8 @@ All institutional users must include appropriate memorial attribution:
 **In Policy Documents:**
 "Based on Ternary Moral Logic principles developed by Lev Goukassian, emphasizing the Sacred Pause in AI ethical decision-making."
 
-### Memorial Fund Support
-Institutions are encouraged to support the Lev Goukassian Memorial Fund through:
+### Fund Support
+Institutions are encouraged to support the Lev Goukassian Fund through:
 - Direct financial contributions
 - Research collaboration and resource sharing
 - Educational initiative support
@@ -375,7 +375,7 @@ Institutions are encouraged to support the Lev Goukassian Memorial Fund through:
 - Legal framework development for protection
 - International standards integration
 
-### Memorial Legacy
+### Creator Legacy
 - Long-term preservation of Lev's vision and principles
 - Sustainable funding for ongoing development
 - Educational initiatives to spread TML principles
@@ -386,18 +386,21 @@ Institutions are encouraged to support the Lev Goukassian Memorial Fund through:
 
 ## Contact Information
 
-**Contact Information**
+### Community Review Bodies
+- General Inquiries: community@tml-goukassian.org
+- Access Requests: access@tml-goukassian.org
+- Compliance Issues: compliance@tml-goukassian.org
+- Fund Support: fund@tml-goukassian.org
 
-**Community Review Bodies**
-- General Inquiries: community@tml-framework.org
-- Access Requests: access-request@tml-framework.org
-- Compliance Issues: compliance@tml-framework.org
-- Memorial Fund: memorial-fund@tml-framework.org
+### Technical Support
+- Implementation Help: technical@tml-goukassian.org
+- Integration Support: integration@tml-goukassian.org
+- Research Collaboration: research@tml-goukassian.org
 
-**Emergency Contact**
+### Emergency Contact
 For urgent ethical concerns or misuse reports:
-- Emergency Line: [To be established]
-- Anonymous Reporting: [Secure form link]
+- Emergency Issues: emergency@tml-goukassian.org
+- Anonymous Reporting: [Secure form at tml-goukassian.org]
 
 ---
 
@@ -407,6 +410,7 @@ For urgent ethical concerns or misuse reports:
 
 ---
 
-*Last Updated: [Date]  
-Version: 1.0  
-Community Review Process: Self-organizing as framework adoption grows*
+Created by Lev Goukassian * ORCID: 0009-0006-5966-1243 * 
+- Email: leogouk@gmail.com 
+- Successor Contact: support@tml-goukassian.org 
+- [see Succession Charter](/TML-SUCCESSION-CHARTER.md)
