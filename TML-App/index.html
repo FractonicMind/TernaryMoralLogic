@@ -878,6 +878,7 @@
         function selectQuestion(question) {
             currentQuestion = question;
             userPrediction = null;
+            window.scrollTo(0, 0);
             
             // Update selected question display
             document.getElementById('selectedQuestion').innerHTML = `
@@ -972,6 +973,7 @@
         function tryAnother() {
             currentQuestion = null;
             userPrediction = null;
+             window.scrollTo(0, 0);
             
             document.getElementById('questionSelection').style.display = 'block';
             document.getElementById('userPrediction').style.display = 'none';
