@@ -243,3 +243,10 @@ The sacred pause between question and answer—this is where wisdom begins, for 
 *For implementation details, see `/implementations/` directory.*  
 *For practical examples, see `/examples/` directory.*  
 *For academic foundation, see the research paper under review at AI and Ethics.*
+
+---
+
+Created by Lev Goukassian * ORCID: 0009-0006-5966-1243 * 
+- Email: leogouk@gmail.com 
+- Successor Contact: support@tml-goukassian.org 
+- [see Succession Charter](/TML-SUCCESSION-CHARTER.md)
