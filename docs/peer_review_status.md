@@ -257,4 +257,4 @@
 Created by Lev Goukassian * ORCID: 0009-0006-5966-1243 * 
 Email: leogouk@gmail.com 
 Successor Contact: support@tml-goukassian.org 
-[see Succession Charter](/TernaryMoralLogic/TML-SUCCESSION-CHARTER.md)
+[see Succession Charter](/TML-SUCCESSION-CHARTER.md)
