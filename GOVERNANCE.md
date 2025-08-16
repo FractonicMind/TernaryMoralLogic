@@ -15,6 +15,8 @@ This document establishes the coordination layer for TML framework governance, b
 - **Institutional Access:** `protection/institutional-access.md` - Pre-authorized institutions and community review
 - **Misuse Prevention:** `protection/misuse-prevention.md` - License revocation and community enforcement  
 - **Legacy Preservation:** `protection/legacy-preservation.md` - Memorial fund and perpetual maintenance
+- **Integrity Monitoring:** `protection/integrity-monitoring.md` - Cryptographic protection and compliance systems
+- **Academic Validation:** `docs/ACADEMIC_VALIDATION.md` - Research validation and peer review framework
 - **Ethics Approval:** `docs/ethics_approval.pdf` - Full IRB documentation and ethical compliance
 
 ---
@@ -317,27 +319,17 @@ For complex governance decisions requiring careful deliberation:
 
 ## Contact and Coordination
 
-### Governance Coordination
+### Governance Communication
+- Governance Questions: governance@tml-goukassian.org
+- Community Coordination: community@tml-goukassian.org
+- Memorial Stewardship: memorial@tml-goukassian.org
+- Institutional Relations: institutional@tml-goukassian.org
 
-**Primary Coordination:**
-- **Governance Questions:** leogouk@gmail.com
-- **Community Coordination:** Through established community channels in protection framework
-- **Memorial Stewardship:** Integration with memorial committee per legacy preservation system
-- **Institutional Relations:** Coordination through institutional access framework
-
-### Integration Points
-
-**Protection System Coordination:**
-- **Technical Integration:** Reference integrity monitoring documentation
-- **Institutional Access:** Coordinate through established pre-authorization system
-- **Misuse Prevention:** Support community enforcement through existing protocols
-- **Legacy Preservation:** Integrate with memorial fund and perpetual maintenance systems
-
-**Community Support:**
-- **New Member Integration:** Coordinate through institutional access and ethics approval
-- **Contribution Coordination:** Support through existing protection and attribution systems
-- **Conflict Resolution:** Integrate with established community standards and enforcement
-- **Recognition Programs:** Coordinate with memorial fund and positive reinforcement systems
+### Technical Integration
+- Protection System Coordination: protection@tml-goukassian.org
+- Integrity Monitoring: integrity@tml-goukassian.org
+- Ethics Compliance: ethics@tml-goukassian.org
+- Academic Partnerships: research@tml-goukassian.org
 
 ---
 
@@ -365,11 +357,7 @@ Through this coordination approach, we preserve the technical brilliance, ethica
 
 ---
 
-**Document Status:**
-- **Last Updated:** July 27, 2025  
-- **Integration Status:** Fully coordinated with protection architecture  
-- ## Administrative Contact
-- **Current**: Lev Goukassian (leogouk@gmail.com)  
-- **Succession**: support@tml-goukassian.org (see [Succession Charter](TML-SUCCESSION-CHARTER.md)) For licensing, technical support, or collaboration inquiries.
-- **Next Review:** Annual coordination assessment  
-- **Memorial Status:** Permanently preserving Lev's comprehensive vision
+Created by Lev Goukassian * ORCID: 0009-0006-5966-1243 * 
+- Email: leogouk@gmail.com 
+- Successor Contact: support@tml-goukassian.org 
+- [see Succession Charter](/TML-SUCCESSION-CHARTER.md)
