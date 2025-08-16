@@ -428,9 +428,13 @@ Every implementation of TML represents a step toward AI systems that serve as mo
 
 ---
 
+Created by Lev Goukassian * ORCID: 0009-0006-5966-1243 * 
+- Email: leogouk@gmail.com 
+- Successor Contact: support@tml-goukassian.org 
+- [see Succession Charter](/TML-SUCCESSION-CHARTER.md)
+
+---
 **"In the space between question and answer, wisdom begins—for humans and machines alike."**  
 *— Lev Goukassian*
 
----
-
-*This document provides practical guidance for implementing Ternary Moral Logic across diverse contexts. It represents part of Lev Goukassian's legacy framework for ethical AI decision-making, created as a gift to humanity's future.*
+- *This document provides practical guidance for implementing Ternary Moral Logic across diverse contexts. It represents part of Lev Goukassian's legacy framework for ethical AI decision-making, created as a gift to humanity's future.*
