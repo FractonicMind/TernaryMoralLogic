@@ -382,16 +382,57 @@ GitHub: https://github.com/FractonicMind/TernaryMoralLogic
 ORCID: https://orcid.org/0009-0006-5966-1243
 
 ### Implementation Guide
-See `/implementations/authentication/` for technical implementation details.
+See https://github.com/FractonicMind/TernaryMoralLogic/implementations/authentication/ for technical implementation details.
+
+## 📞 Contact and Reporting
+
+### For Authentication Requests
+- **Creator**: Lev Goukassian
+- **Email**: leogouk@gmail.com
+- **ORCID**: 0009-0006-5966-1243
+- **Successor Contact**: support@tml-goukassian.org
+
+### For Misuse Reporting
+- **Primary Contact**: leogouk@gmail.com
+- **Successor Contact**: support@tml-goukassian.org
+- **Repository Issues**: GitHub.com/FractonicMind/TernaryMoralLogic/issues
+- **Community Alerts**: TML user community forums
+
+### For Research Collaboration
+- **Contact**: leogouk@gmail.com or support@tml-goukassian.org
+- **Academic Partnerships**: AI ethics research institutions
+- **Technical Development**: Open source community contributions
 
 ---
 
-> *"The sacred pause between question and answer—this is where wisdom begins, for humans and machines alike."*
+## 📚 References and Citations
+
+### Primary Source
+Goukassian, L. (2025). Ternary Moral Logic: Implementing Ethical Hesitation in AI Systems. *AI and Ethics*. (Under Review)
+
+### Repository
+GitHub: https://github.com/FractonicMind/TernaryMoralLogic
+
+### Academic Identity
+ORCID: https://orcid.org/0009-0006-5966-1243
+
+---
+
+Created by Lev Goukassian
+* ORCID: 0009-0006-5966-1243
+* Email: leogouk@gmail.com
+* Successor Contact: support@tml-goukassian.org
+
+
+---
+
+> *"I taught machines to feel the weight of action, and the beauty of hesitation. I paused — and made the future pause with me."*
 > 
 > **- Lev Goukassian, Creator of Ternary Moral Logic**
 
+**This document is part of the official TML documentation. Only implementations following these guidelines can claim authentic Goukassian TML designation.**
+
 ---
 
-**This document is part of the official TML documentation. Only implementations following these guidelines can claim authentic Goukassian TML designation.**
 
 **© 2025 Lev Goukassian. All rights reserved.**
