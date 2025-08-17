@@ -417,7 +417,7 @@ This repository contains a comprehensive ecosystem for ethical AI development:
 - **[Core Principles](theory/core-principles.md)** - Fundamental TML principles and Sacred Pause implementation
 
 ### 💻 **Technical Implementation** ✅ COMPREHENSIVE
-- **[Core Framework](implementations/python-library/core.py)** - Production-ready TML framework (534 lines)
+- **[Core Framework](implementations/implementations/python-library/core.py)** - Production-ready TML framework (534 lines)
 - **[Package Initialization](implementations/python-library/__init__.py)** - Package initialization with creator recognition
 - **[Setup Configuration](setup.py)** - Professional package installation and metadata
 - **[Requirements](requirements.txt)** - Minimal dependencies for maximum accessibility
