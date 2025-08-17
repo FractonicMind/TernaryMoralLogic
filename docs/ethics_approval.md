@@ -4,7 +4,6 @@
 
 **Institutional Review Board (IRB) Documentation**  
 **Principal Investigator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)  
-**Contact**: leogouk@gmail.com  
 **Research Title**: "Development and Validation of Ternary Moral Logic Framework for Ethical AI Decision-Making"
 
 ---
