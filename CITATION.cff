@@ -20,14 +20,17 @@ keywords:
   - "Machine Ethics"
   - "Responsible AI"
 version: "1.0.0"
-date-released: "2025-07-27"
+date-released: "2025-08-17"
 license: MIT
 repository-code: "https://github.com/FractonicMind/TernaryMoralLogic"
-url: "https://github.com/FractonicMind/TernaryMoralLogic"
+url: "https://tml-goukassian.org"
 doi: "10.5281/zenodo.TML-FRAMEWORK"  # Update when DOI obtained
 contact:
   - email: leogouk@gmail.com
     name: "Lev Goukassian"
+  - email: support@tml-goukassian.org
+    name: "TML Framework Support"
+    note: "Successor contact - see Succession Charter"
 references:
   - type: article
     authors:
@@ -56,4 +59,4 @@ preferred-citation:
   end: 67
   year: 2025
   doi: "10.1000/tml.2025.001"
-  url: "https://github.com/FractonicMind/TernaryMoralLogic"
+  url: "https://tml-goukassian.org"
