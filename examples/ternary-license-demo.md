@@ -61,7 +61,7 @@ This document demonstrates how the Ternary Moral Logic framework can be creative
 When choosing +1 (sharing), you must provide:
 
 - **Clear attribution** to the original creator: Lev Goukassian
-- **Link to original source**: https://github.com/FractonicMind/TernaryMoralLogic
+- **Link to original source**: https://github.com/leogouk/tml-framework
 - **Copyright notice**: "© 2025 Lev Goukassian. TML Framework under Ternary Logic License (Demo)"
 - **Sacred Pause acknowledgment**: "This work incorporates ethical decision-making principles from Ternary Moral Logic"
 
@@ -184,13 +184,15 @@ The Ternary Logic License demonstrates how TML's Sacred Pause principle can be a
 ## References
 
 - **TML Framework**: [Main Repository](../README.md)
-- **Interactive Demo**: https://fractonicmind.github.io/TernaryMoralLogic/TML-App/
-- **Research Article**: "When AI Recognized Its Own Ethics" - [Medium](https://medium.com/@leogouk/when-ai-recognized-its-own-ethics-the-sacred-pause-discovery-98e273e7d2f1)
-- **Evidence Documentation**: [AI Recognition Evidence](../evidence/README.md)
+- **Interactive Demo**: Available at TML project website
+- **Documentation**: [Complete TML Documentation](../docs/)
+- **Academic Resources**: [Research Papers](../docs/ACADEMIC_VALIDATION.md)
+- **Creator Contact**: leogouk@gmail.com
 
 ---
 
-**Contact**: leogouk@gmail.com | **ORCID**: 0009-0006-5966-1243  
-**License**: This demonstration document is released under the MIT + Ethical Use License
-
 *"Sometimes the most ethical action is to pause and reflect before proceeding."* - TML Sacred Pause Principle
+
+---
+
+Created by Lev Goukassian • ORCID: 0009-0006-5966-1243 • Email: leogouk@gmail.com • Successor Contact: support@tml-goukassian.org • [see Succession Charter](/TML-SUCCESSION-CHARTER.md)
