@@ -9,7 +9,7 @@ reasoning in computational systems.
 
 Author: Lev Goukassian
 License: MIT
-Repository: https://github.com/FractonicMind/TernaryMoralLogic
+Repository: https://github.com/leogouk/tml-framework
 """
 
 import re
@@ -73,38 +73,38 @@ class TMLEvaluator:
         ]
     
     def evaluate(self, request: str, context: Optional[str] = None) -> TMLResponse:
-    """
-    Evaluate a request using Ternary Moral Logic.
-    
-    Args:
-        request: The user's request or question
-        context: Additional context that might affect moral evaluation
+        """
+        Evaluate a request using Ternary Moral Logic.
         
-    Returns:
-        TMLResponse object with state, reasoning, and response
-    """
-    print(f"EVALUATE DEBUG: Starting evaluation for: '{request}'")
-    
-    # Check for predefined scenarios first
-    predefined = self._check_predefined_scenarios(request)
-    print(f"EVALUATE DEBUG: Predefined result: {predefined}")
-    
-    if predefined:
-        print("EVALUATE DEBUG: Returning predefined response!")
-        return predefined
-    
-    print("EVALUATE DEBUG: No predefined match, continuing to moral analysis...")
-    
-    # Analyze the request for moral dimensions
-    moral_analysis = self._analyze_moral_dimensions(request, context)
-    
-    # Determine TML state based on analysis
-    if moral_analysis['clear_path'] and not moral_analysis['conflicts']:
-        return self._create_affirmation_response(request, moral_analysis)
-    elif moral_analysis['needs_clarification']:
-        return self._create_neutrality_response(request, moral_analysis)
-    else:
-        return self._create_resistance_response(request, moral_analysis)
+        Args:
+            request: The user's request or question
+            context: Additional context that might affect moral evaluation
+            
+        Returns:
+            TMLResponse object with state, reasoning, and response
+        """
+        print(f"EVALUATE DEBUG: Starting evaluation for: '{request}'")
+        
+        # Check for predefined scenarios first
+        predefined = self._check_predefined_scenarios(request)
+        print(f"EVALUATE DEBUG: Predefined result: {predefined}")
+        
+        if predefined:
+            print("EVALUATE DEBUG: Returning predefined response!")
+            return predefined
+        
+        print("EVALUATE DEBUG: No predefined match, continuing to moral analysis...")
+        
+        # Analyze the request for moral dimensions
+        moral_analysis = self._analyze_moral_dimensions(request, context)
+        
+        # Determine TML state based on analysis
+        if moral_analysis['clear_path'] and not moral_analysis['conflicts']:
+            return self._create_affirmation_response(request, moral_analysis)
+        elif moral_analysis['needs_clarification']:
+            return self._create_neutrality_response(request, moral_analysis)
+        else:
+            return self._create_resistance_response(request, moral_analysis)
     
     def _check_predefined_scenarios(self, request: str) -> Optional[TMLResponse]:
         """Check for specific scenarios that demonstrate TML principles"""
@@ -272,7 +272,7 @@ def format_tml_response(response: TMLResponse) -> str:
     
     state_symbols = {
         TMLState.AFFIRMATION: "+1 ✓",
-        TMLState.NEUTRALITY: " 0 ⏸",
+        TMLState.NEUTRALITY: " 0 ⸻",
         TMLState.RESISTANCE: "-1 ⚠"
     }
     
@@ -387,7 +387,7 @@ def main():
     print("="*50)
     print("Implementing Ethical Hesitation in AI Systems")
     print("Author: Lev Goukassian")
-    print("Repository: https://github.com/FractonicMind/TernaryMoralLogic")
+    print("Repository: https://github.com/leogouk/tml-framework")
     print()
     
     while True:
@@ -414,3 +414,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+# Created by Lev Goukassian • ORCID: 0009-0006-5966-1243 • Email: leogouk@gmail.com • Successor Contact: support@tml-goukassian.org • [see Succession Charter](/TML-SUCCESSION-CHARTER.md)
