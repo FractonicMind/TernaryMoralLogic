@@ -106,10 +106,10 @@ def get_framework_info():
         "description": "A framework for ethical AI decision-making",
         "sacred_pause": SACRED_PAUSE_DESCRIPTION.strip(),
         "principles": FRAMEWORK_PRINCIPLES,
-        "repository": "https://github.com/FractonicMind/TernaryMoralLogic",
+        "repository": "https://github.com/leogouk/tml-framework",
         "citation": {
             "paper": "Goukassian, L. (2025). Ternary Moral Logic: Implementing Ethical Hesitation in AI Systems. AI and Ethics (under review).",
-            "software": f"Goukassian, L. ({__version__}). TernaryMoralLogic: Implementation Framework. https://github.com/FractonicMind/TernaryMoralLogic"
+            "software": f"Goukassian, L. ({__version__}). TernaryMoralLogic: Implementation Framework. https://github.com/leogouk/tml-framework"
         }
     }
 
@@ -135,7 +135,7 @@ def quick_start_example():
     if result.state == TMLState.AFFIRMATION:
         print("✓ Proceed with confidence")
     elif result.state == TMLState.SACRED_PAUSE:
-        print("⏸ Pause for reflection")
+        print("⸻ Pause for reflection")
         print(f"Questions to consider: {result.clarifying_questions}")
     elif result.state == TMLState.RESISTANCE:
         print("⚠ Ethical resistance detected")
@@ -145,8 +145,8 @@ def quick_start_example():
     """
     print(example)
 
-# Memorial message
-MEMORIAL_MESSAGE = """
+# Recognition message
+RECOGNITION_MESSAGE = """
 "The sacred pause between question and answer—this is where wisdom begins, 
 for humans and machines alike." - Lev Goukassian
 
@@ -156,10 +156,10 @@ honors his vision of AI systems that are moral partners, not just
 moral automatons.
 """
 
-def print_memorial():
-    """Print memorial message for Lev Goukassian"""
+def print_recognition():
+    """Print recognition message for Lev Goukassian"""
     print("=" * 60)
-    print(MEMORIAL_MESSAGE)
+    print(RECOGNITION_MESSAGE)
     print("=" * 60)
 
 # Initialize logging for the package
@@ -176,3 +176,5 @@ def check_version():
         "is_latest": True,  # Would check against PyPI in real implementation
         "update_available": False
     }
+
+# Created by Lev Goukassian • ORCID: 0009-0006-5966-1243 • Email: leogouk@gmail.com • Successor Contact: support@tml-goukassian.org • [see Succession Charter](/TML-SUCCESSION-CHARTER.md)
