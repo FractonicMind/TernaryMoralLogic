@@ -160,6 +160,8 @@ if result.state == TMLState.SACRED_PAUSE:
 
 ## Repository Navigation and Documentation
 
+**[📋 Complete Repository Map](repository-navigation.html)**: Interactive navigation with clickable links to all framework components
+
 ### Essential Documentation
 
 **[Mandatory Reading](docs/MANDATORY.md)**: Critical safety guidelines for AI ethics implementation  
