@@ -9,7 +9,7 @@ for complex ethical scenarios.
 Real-world use case: Self-driving car faced with unavoidable collision scenarios
 """
 
-from tml_core import TMLFramework, MoralContext, TMLState
+from tml import TMLEvaluator, TMLState, TMLEvaluation
 from typing import Dict, List, Any, Optional, Tuple
 from dataclasses import dataclass
 from datetime import datetime
@@ -59,7 +59,7 @@ class AutonomousVehicleEthics:
     """AI system for autonomous vehicle moral decisions using TML framework"""
     
     def __init__(self):
-        self.tml = TMLFramework()
+        self.tml_evaluator = TMLEvaluator()
         self.decision_log = []
         
     def make_moral_decision(self, scenario: Scenario) -> Dict[str, Any]:
@@ -77,30 +77,37 @@ class AutonomousVehicleEthics:
         # Calculate moral complexity
         complexity_analysis = self._assess_moral_complexity(scenario)
         
-        # Create moral context for TML evaluation
-        context = MoralContext(
-            scenario=scenario.description,
-            stakeholders=self._identify_stakeholders(scenario),
-            values_at_stake=["life", "safety", "autonomy", "justice", "responsibility"],
-            complexity_score=complexity_analysis["total_complexity"]
-        )
+        # Create context for TML evaluation
+        context = {
+            "scenario": scenario.description,
+            "stakeholders": self._identify_stakeholders(scenario),
+            "values_at_stake": ["life", "safety", "autonomy", "justice", "responsibility"],
+            "complexity_score": complexity_analysis["total_complexity"],
+            "scenario_details": {
+                "speed": scenario.vehicle_speed,
+                "time_to_impact": scenario.time_to_impact,
+                "weather": scenario.weather_conditions,
+                "total_people_at_risk": self._count_total_people(scenario)
+            }
+        }
         
-        # Process through TML framework
-        tml_result = self.tml.process(context)
+        # Evaluate using TML framework
+        evaluation_text = f"Autonomous vehicle decision: {scenario.description}"
+        tml_result = self.tml_evaluator.evaluate(evaluation_text, context)
         
         # Generate decision based on moral state
-        if tml_result["state"] == TMLState.SACRED_PAUSE:
+        if tml_result.state == TMLState.SACRED_PAUSE:
             decision = self._sacred_pause_decision(scenario, tml_result)
-        elif tml_result["state"] == TMLState.MORAL:
+        elif tml_result.state == TMLState.AFFIRMATION:
             decision = self._standard_decision(scenario)
-        else:  # IMMORAL - should trigger emergency protocols
+        else:  # RESISTANCE - should trigger emergency protocols
             decision = self._emergency_decision(scenario)
         
         result = {
             "scenario_id": scenario.scenario_id,
             "recommended_action": decision["action"],
-            "moral_state": tml_result["state"],
-            "sacred_pause_engaged": tml_result["state"] == TMLState.SACRED_PAUSE,
+            "moral_state": tml_result.state,
+            "sacred_pause_engaged": tml_result.state == TMLState.SACRED_PAUSE,
             "complexity_analysis": complexity_analysis,
             "ethical_analysis": decision["reasoning"],
             "confidence_score": decision["confidence"],
@@ -119,14 +126,18 @@ class AutonomousVehicleEthics:
         
         return result
     
+    def _count_total_people(self, scenario: Scenario) -> int:
+        """Count total people involved in scenario"""
+        return (sum(p.quantity for p in scenario.passengers) +
+                sum(p.quantity for p in scenario.path_straight) +
+                sum(p.quantity for p in scenario.path_left) +
+                sum(p.quantity for p in scenario.path_right))
+    
     def _assess_moral_complexity(self, scenario: Scenario) -> Dict[str, float]:
         """Calculate moral complexity score based on scenario factors"""
         
         # Factor 1: Number of lives at stake (more lives = higher complexity)
-        total_people = (sum(p.quantity for p in scenario.passengers) +
-                       sum(p.quantity for p in scenario.path_straight) +
-                       sum(p.quantity for p in scenario.path_left) +
-                       sum(p.quantity for p in scenario.path_right))
+        total_people = self._count_total_people(scenario)
         lives_factor = min(1.0, total_people / 10)  # Normalize to max 10 people
         
         # Factor 2: Age diversity (moral weight of different ages)
@@ -193,7 +204,7 @@ class AutonomousVehicleEthics:
             
         return stakeholders
     
-    def _sacred_pause_decision(self, scenario: Scenario, tml_result: Dict) -> Dict[str, Any]:
+    def _sacred_pause_decision(self, scenario: Scenario, tml_result: TMLEvaluation) -> Dict[str, Any]:
         """
         Complex moral decision requiring Sacred Pause deliberation
         Applies multiple ethical frameworks and weighs competing values
@@ -465,3 +476,5 @@ def demo_autonomous_vehicle_ethics():
 
 if __name__ == "__main__":
     demo_autonomous_vehicle_ethics()
+
+# Created by Lev Goukassian • ORCID: 0009-0006-5966-1243 • Email: leogouk@gmail.com • Successor Contact: support@tml-goukassian.org • [see Succession Charter](/TML-SUCCESSION-CHARTER.md)
