@@ -558,7 +558,7 @@ Consider contributing to the **Lev Goukassian Fund for Ethical AI Research**:
 ### License
 **MIT License with Ethical Use Requirements** - Free for beneficial AI use, prohibited for harmful AI applications or systems designed to deceive or manipulate.
 
-**📋 [Complete License FAQ →](docs/LICENSE_FAQ.md)** - 30 questions covering all legal aspects for AI ethics
+** [Complete License FAQ →](docs/LICENSE_FAQ.md)** - 30 questions covering all legal aspects for AI ethics
 
 For licensing, technical support, or collaboration inquiries, see our [Ternary License Demo](examples/ternary-license-demo.md) for a creative example of TML principles applied to licensing.
 
@@ -576,7 +576,7 @@ Every time you use TML, you honor Lev Goukassian's vision and advance the future
 
 ---
 
-### 🚀 Ready to Begin?
+### Ready to Begin?
 
 ```bash
 git clone https://github.com/FractonicMind/TernaryMoralLogic.git
@@ -589,7 +589,7 @@ python examples/basic_demo.py
 
 ---
 
-- Created by Lev Goukassian * ORCID: 0009-0006-5966-1243 * 
+### Created by Lev Goukassian * ORCID: 0009-0006-5966-1243 * 
 - Email: leogouk@gmail.com 
 - Successor Contact: support@tml-goukassian.org 
-- (see Succession Charter)/TernaryMoralLogic/TML-SUCCESSION-CHARTER.md
+- [see Succession Charter](/TML-SUCCESSION-CHARTER.md)
