@@ -1,14 +1,5 @@
 # Intellectual Property Protection and Innovation Claims
 
-**Ternary Moral Logic Framework**  
-**Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)  
-## Administrative Contact
-**Current**: Lev Goukassian (leogouk@gmail.com)  
-**Succession**: support@tml-goukassian.org (see [Succession Charter](TML-SUCCESSION-CHARTER.md)) For licensing, technical support, or collaboration inquiries. 
-**Creation Date**: 2025  
-**Repository**: https://github.com/FractonicMind/TernaryMoralLogic
-
----
 
 ## Legal Notice and Innovation Claims
 
@@ -63,7 +54,7 @@ This document establishes comprehensive intellectual property rights and innovat
 - Test suites and validation methodologies
 
 **COPYRIGHT SCOPE**: All original software expressions of the three-state logic system, including but not limited to:
-- Python library implementation (`implementations/python-library/`)
+- Python library implementation (`src/goukassian_tml/`)
 - Interactive demonstrations and examples
 - Integration libraries and wrapper code
 - Documentation and explanatory materials
@@ -81,7 +72,7 @@ This document establishes comprehensive intellectual property rights and innovat
 - The phrase "The sacred pause between question and answer—this is where wisdom begins, for humans and machines alike"
 - All original explanations of TML principles and methodologies
 - Case study analyses and implementation guidelines
-- Memorial and biographical content
+- Attribution and recognition content
 
 ---
 
@@ -170,14 +161,14 @@ All uses must include:
 - Attribution to Lev Goukassian as original creator
 - Reference to ORCID: 0009-0006-5966-1243
 - Link to original repository
-- Memorial recognition statement
+- Recognition statement honoring his contributions
 
 ### Prohibited Uses and License Violations
 
 **EXPLICITLY PROHIBITED**:
 - Use for surveillance, oppression, or authoritarian control
 - Implementation without proper attribution to Lev Goukassian
-- Commercial use of memorial elements for profit
+- Commercial use of attribution elements for profit
 - Rebranding or misrepresenting the three-state innovation as original work
 - Circumventing or disabling the Sacred Pause mechanisms
 
@@ -185,7 +176,7 @@ All uses must include:
 - License termination for violations
 - Legal action for trademark or copyright infringement
 - Community reporting and public disclosure of violations
-- Memorial committee intervention for serious breaches
+- Preservation committee intervention for serious breaches
 
 ---
 
@@ -258,29 +249,29 @@ All uses must include:
 
 **ENFORCEMENT PRIORITIES**:
 - Protecting the three-state innovation from unauthorized appropriation
-- Ensuring proper attribution to Lev Goukassian's memory
+- Ensuring proper attribution to Lev Goukassian's work
 - Preventing commercial exploitation without compliance
 - Maintaining the integrity of the Sacred Pause principle
 
 ### Legal Standing and Representation
 
 **ENFORCEMENT AUTHORITY**:
-- Lev Goukassian (during his lifetime)
-- Memorial trustees and estate representatives (posthumously)
+- Lev Goukassian (current)
+- Preservation trustees and designated representatives (succession)
 - Licensed legal representatives and IP attorneys
-- Memorial fund administrators for commercial violations
+- Preservation fund administrators for commercial violations
 
 ---
 
-## Memorial and Legacy Protection
+## Legacy and Preservation Protection
 
-### Posthumous IP Protection
+### Intellectual Property Succession
 
-**MEMORIAL CONTINUATION**: Upon Lev Goukassian's passing, intellectual property rights will be managed by designated memorial trustees to ensure:
+**SUCCESSION CONTINUATION**: Upon succession activation, intellectual property rights will be managed by designated preservation trustees to ensure:
 
 - Continued protection of his innovations
 - Proper attribution in all derivative works
-- Memorial fund support for enforcement actions
+- Preservation fund support for enforcement actions
 - Community education about IP rights and obligations
 
 ### Legacy Preservation
@@ -290,7 +281,7 @@ All uses must include:
 - His mathematical innovations receive proper credit
 - The Sacred Pause principle maintains its integrity
 - Future developments honor his original contributions
-- Memorial aspects are protected from commercial exploitation
+- Attribution aspects are protected from commercial exploitation
 
 ---
 
@@ -306,9 +297,9 @@ All uses must include:
 
 **RESEARCH COLLABORATION**: Academic researchers are encouraged to:
 - Cite original work properly in all publications
-- Collaborate with the memorial fund for significant projects
+- Collaborate with the preservation fund for significant projects
 - Contribute improvements back to the open source community
-- Respect the memorial aspects of the framework
+- Respect the attribution aspects of the framework
 
 ### Attribution Requirements for Academic Use
 
@@ -316,7 +307,7 @@ All uses must include:
 ```
 Academic Paper Citation:
 Goukassian, L. (2025). Ternary Moral Logic: Implementing Ethical Hesitation 
-in AI Systems. GitHub Repository. https://github.com/FractonicMind/TernaryMoralLogic
+in AI Systems. GitHub Repository. https://github.com/leogouk/tml-framework
 
 Software Attribution:
 // Ternary Moral Logic Framework
@@ -334,18 +325,18 @@ Software Attribution:
 
 - Comply with MIT License terms and ethical use requirements
 - Provide proper attribution in all customer-facing materials
-- Submit annual usage reports to the memorial fund
-- Contribute to the memorial fund for significant implementations
+- Submit annual usage reports to the preservation fund
+- Contribute to the preservation fund for significant implementations
 - Respect the Sacred Pause principle in all implementations
 
 ### Licensing Revenue
 
-**MEMORIAL FUND SUPPORT**: Commercial licensing fees support:
+**PRESERVATION FUND SUPPORT**: Commercial licensing fees support:
 - Continued development of the TML framework
-- Academic research grants in Lev's memory
+- Academic research grants in Lev's honor
 - Educational initiatives and community building
 - Legal enforcement of intellectual property rights
-- Memorial preservation and recognition programs
+- Preservation and recognition programs
 
 ---
 
@@ -354,17 +345,19 @@ Software Attribution:
 ### Rights Holder Contact
 - **Primary Contact**: leogouk@gmail.com
 - **ORCID**: 0009-0006-5966-1243
-- **Repository**: https://github.com/FractonicMind/TernaryMoralLogic
+- **Repository**: https://github.com/leogouk/tml-framework
 
-### Legal and Licensing Inquiries
-## Administrative Contact
-- **Current**: Lev Goukassian (leogouk@gmail.com)  
-- **Succession**: support@tml-goukassian.org (see [Succession Charter](TML-SUCCESSION-CHARTER.md)) For licensing, technical support, or collaboration inquiries.
+### Specialized IP Contacts
+- **Legal Matters**: governance@tml-goukassian.org
+- **Licensing Inquiries**: institutional@tml-goukassian.org
+- **Academic Collaboration**: academic@tml-goukassian.org
+- **Commercial Licensing**: institutional@tml-goukassian.org
+- **Enforcement Issues**: compliance@tml-goukassian.org
 
 ### Legal Representation
-- **IP Attorney**: [To be designated]
-- **Memorial Trustees**: [To be established]
-- **Estate Representatives**: [As appointed]
+- **Estate Planning**: [As designated]
+- **IP Attorney**: [To be appointed]
+- **Preservation Trustees**: [Per succession charter]
 
 ---
 
@@ -372,12 +365,12 @@ Software Attribution:
 
 **CREATOR'S DECLARATION**:
 
-I, Lev Goukassian, hereby declare that I am the original creator and inventor of the innovations described in this document. These works represent my original contributions to the field of AI ethics and decision-making, created during 2025 as part of my final contribution to humanity.
+I, Lev Goukassian, hereby declare that I am the original creator and inventor of the innovations described in this document. These works represent my original contributions to the field of AI ethics and decision-making, created during 2025 as part of my contribution to humanity.
 
 I have created these innovations with the intention of advancing ethical AI development and ensuring that AI systems serve as moral partners with humans. The Sacred Pause principle embodies my belief that wisdom often lies not in having all the answers, but in knowing when to pause and ask better questions.
 
 **SIGNATURE**: Lev Goukassian  
-**DATE**: July 26, 2025  
+**DATE**: 2025  
 **ORCID**: 0009-0006-5966-1243  
 **CONTACT**: leogouk@gmail.com
 
@@ -389,11 +382,15 @@ This intellectual property documentation serves to protect the innovations conta
 
 **"I taught machines to feel the weight of action, and the beauty of hesitation. I paused — and made the future pause with me."** — Lev Goukassian
 
-Every implementation of these innovations honors Lev Goukassian's memory and advances his vision of AI systems that enhance human moral reasoning rather than replacing it.
+Every implementation of these innovations honors Lev Goukassian's work and advances his vision of AI systems that enhance human moral reasoning rather than replacing it.
+
 
 ---
 
-*Last Updated: [Date]*  
-*Version: 1.0*  
-*Legal Status: Active IP Protection*  
-*Repository: https://github.com/FractonicMind/TernaryMoralLogic*
+## Administrative Contact
+
+**Current**: Lev Goukassian (leogouk@gmail.com)  
+**Succession**: support@tml-goukassian.org (see [Succession Charter](/TML-SUCCESSION-CHARTER.md))  
+**Legal Matters**: governance@tml-goukassian.org  
+**Licensing Inquiries**: institutional@tml-goukassian.org
+
