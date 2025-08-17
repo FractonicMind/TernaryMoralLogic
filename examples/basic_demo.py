@@ -20,7 +20,7 @@ from typing import Dict, List
 
 # Try to import TML - provide helpful error if not installed
 try:
-    from tml import TMLEvaluator, TMLState, get_framework_info, print_memorial
+    from tml import TMLEvaluator, TMLState, get_framework_info, print_recognition
 except ImportError:
     print("❌ TML framework not found!")
     print("Please install with: pip install -e .")
@@ -47,9 +47,9 @@ def print_tml_result(request: str, result, context: Dict = None):
         TMLState.RESISTANCE: "⚠️  MORAL RESISTANCE (-1)"
     }
     
-    print(f"📝 REQUEST: {request}")
+    print(f"🔍 REQUEST: {request}")
     if context:
-        print(f"🔍 CONTEXT: {context}")
+        print(f"📝 CONTEXT: {context}")
     print()
     
     print(f"🎯 TML STATE: {state_indicators[result.state]}")
@@ -326,8 +326,8 @@ def interactive_demo():
 def main():
     """Main demonstration script"""
     
-    # Display memorial and framework info
-    print_memorial()
+    # Display recognition and framework info
+    print_recognition()
     
     print_separator("TERNARY MORAL LOGIC DEMONSTRATION")
     
@@ -369,7 +369,7 @@ def main():
         print("To learn more:")
         print("  • Read the documentation in docs/")
         print("  • Study case studies in theory/case-studies.md")
-        print("  • Explore the API reference in docs/api-reference.md")
+        print("  • Explore the API reference in docs/api/")
         print("  • Join the community discussions")
         print()
         print("\"Wisdom lies not in having all the answers, but in knowing")
@@ -384,9 +384,11 @@ def main():
     
     print_separator()
     print("Thank you for exploring Ternary Moral Logic!")
-    print("Every use of this framework honors Lev Goukassian's memory")
+    print("Every use of this framework honors Lev Goukassian's work")
     print("and advances his vision of ethical AI partnership.")
 
 
 if __name__ == "__main__":
     main()
+
+# Created by Lev Goukassian • ORCID: 0009-0006-5966-1243 • Email: leogouk@gmail.com • Successor Contact: support@tml-goukassian.org • [see Succession Charter](/TML-SUCCESSION-CHARTER.md)
