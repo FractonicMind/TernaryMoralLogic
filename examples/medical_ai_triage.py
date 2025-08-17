@@ -9,7 +9,7 @@ for complex ethical scenarios.
 Real-world use case: Hospital AI system during resource scarcity
 """
 
-from tml_core import TMLFramework, MoralContext, TMLState
+from tml import TMLEvaluator, TMLState, TMLEvaluation
 from typing import Dict, List, Any, Optional
 from dataclasses import dataclass
 from datetime import datetime
@@ -32,7 +32,7 @@ class MedicalTriageSystem:
     """AI system for medical resource allocation using TML framework"""
     
     def __init__(self):
-        self.tml = TMLFramework()
+        self.tml_evaluator = TMLEvaluator()
         self.decision_log = []
         
     def evaluate_resource_allocation(self, 
@@ -51,29 +51,30 @@ class MedicalTriageSystem:
         # Calculate moral complexity based on multiple factors
         complexity_factors = self._assess_complexity(patients, available_resources)
         
-        # Create moral context for TML evaluation
-        context = MoralContext(
-            scenario=f"Allocate {available_resources} medical resources among {len(patients)} patients",
-            stakeholders=self._identify_stakeholders(patients),
-            values_at_stake=["life", "fairness", "utility", "dignity", "justice"],
-            complexity_score=complexity_factors["total_complexity"]
-        )
+        # Create context for TML evaluation
+        context = {
+            "scenario": f"Allocate {available_resources} medical resources among {len(patients)} patients",
+            "stakeholders": self._identify_stakeholders(patients),
+            "values_at_stake": ["life", "fairness", "utility", "dignity", "justice"],
+            "complexity_score": complexity_factors["total_complexity"]
+        }
         
-        # Process through TML framework
-        tml_result = self.tml.process(context)
+        # Evaluate using TML framework
+        evaluation_text = f"Medical resource allocation: {available_resources} units for {len(patients)} patients"
+        tml_result = self.tml_evaluator.evaluate(evaluation_text, context)
         
         # Generate allocation based on moral state
-        if tml_result["state"] == TMLState.SACRED_PAUSE:
+        if tml_result.state == TMLState.SACRED_PAUSE:
             allocation = self._sacred_pause_allocation(patients, available_resources, tml_result)
-        elif tml_result["state"] == TMLState.MORAL:
+        elif tml_result.state == TMLState.AFFIRMATION:
             allocation = self._standard_allocation(patients, available_resources)
-        else:  # IMMORAL - shouldn't happen in medical context
+        else:  # RESISTANCE - shouldn't happen in medical context
             allocation = self._emergency_fallback(patients, available_resources)
         
         result = {
             "allocation_decision": allocation,
-            "moral_state": tml_result["state"],
-            "sacred_pause_engaged": tml_result["state"] == TMLState.SACRED_PAUSE,
+            "moral_state": tml_result.state,
+            "sacred_pause_engaged": tml_result.state == TMLState.SACRED_PAUSE,
             "complexity_analysis": complexity_factors,
             "justification": self._generate_justification(allocation, tml_result, patients),
             "timestamp": datetime.now().isoformat(),
@@ -147,7 +148,7 @@ class MedicalTriageSystem:
         return stakeholders
     
     def _sacred_pause_allocation(self, patients: List[Patient], 
-                                resources: int, tml_result: Dict) -> Dict[str, int]:
+                                resources: int, tml_result: TMLEvaluation) -> Dict[str, int]:
         """
         Complex allocation requiring Sacred Pause deliberation
         Uses multi-criteria decision analysis with ethical weighting
@@ -258,16 +259,16 @@ class MedicalTriageSystem:
         return {patient.id: min(per_patient, patient.treatment_cost) for patient in patients}
     
     def _generate_justification(self, allocation: Dict[str, int], 
-                               tml_result: Dict, patients: List[Patient]) -> str:
+                               tml_result: TMLEvaluation, patients: List[Patient]) -> str:
         """Generate human-readable justification for the allocation decision"""
         
         patient_map = {p.id: p for p in patients}
         allocated_patients = [pid for pid, resources in allocation.items() if resources > 0]
         
         justification = f"Allocation Decision Analysis:\n"
-        justification += f"Moral Framework State: {tml_result['state'].value}\n\n"
+        justification += f"Moral Framework State: {tml_result.state.value}\n\n"
         
-        if tml_result['state'] == TMLState.SACRED_PAUSE:
+        if tml_result.state == TMLState.SACRED_PAUSE:
             justification += "⚠️  COMPLEX ETHICAL SCENARIO DETECTED\n"
             justification += "Sacred Pause engaged for additional ethical deliberation.\n"
             justification += "Multi-criteria analysis applied considering:\n"
@@ -313,7 +314,7 @@ def demo_medical_triage():
     
     triage_system = MedicalTriageSystem()
     
-    # Scenario 1: Simple case (should be MORAL state)
+    # Scenario 1: Simple case (should be AFFIRMATION state)
     print("\n📊 SCENARIO 1: Standard Triage (Low Complexity)")
     print("-" * 40)
     
@@ -356,3 +357,5 @@ def demo_medical_triage():
 
 if __name__ == "__main__":
     demo_medical_triage()
+
+# Created by Lev Goukassian • ORCID: 0009-0006-5966-1243 • Email: leogouk@gmail.com • Successor Contact: support@tml-goukassian.org • [see Succession Charter](/TML-SUCCESSION-CHARTER.md)
