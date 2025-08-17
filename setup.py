@@ -8,7 +8,7 @@ import os
 
 # Read the README file for long description
 def read_readme():
-    readme_path = os.path.join(os.path.dirname(__file__), 'README.md')
+    readme_path = os.path.join(os.path.dirname(__file__), 'readme.md')
     if os.path.exists(readme_path):
         with open(readme_path, 'r', encoding='utf-8') as f:
             return f.read()
@@ -30,12 +30,17 @@ setup(
     description="A framework for implementing ethical hesitation and moral reasoning in AI systems",
     long_description=read_readme(),
     long_description_content_type="text/markdown",
-    url="https://github.com/FractonicMind/TernaryMoralLogic",
+    url="https://tml-goukassian.org",
     project_urls={
+        "Homepage": "https://tml-goukassian.org",
+        "Repository": "https://github.com/FractonicMind/TernaryMoralLogic",
         "Bug Reports": "https://github.com/FractonicMind/TernaryMoralLogic/issues",
         "Source": "https://github.com/FractonicMind/TernaryMoralLogic",
-        "Documentation": "https://github.com/FractonicMind/TernaryMoralLogic/tree/main/docs",
+        "Documentation": "https://tml-goukassian.org/docs",
         "Research Paper": "https://github.com/FractonicMind/TernaryMoralLogic/tree/main/theory",
+        "Interactive Demo": "https://fractonicmind.github.io/TernaryMoralLogic/TML-App/",
+        "Technical Support": "mailto:technical@tml-goukassian.org",
+        "Academic Support": "mailto:academic@tml-goukassian.org",
     },
     packages=find_packages(include=['tml', 'tml.*']),
     package_dir={'': 'implementations/python-library'},
@@ -122,3 +127,7 @@ setup(
         "legacy_note": "This framework represents Lev Goukassian's contribution to ethical AI, created during his final months as a gift to humanity's future."
     }
 )
+
+# Created by Lev Goukassian • ORCID: 0009-0006-5966-1243
+# Email: leogouk@gmail.com
+# Successor Contact: support@tml-goukassian.org • see Succession Charter
