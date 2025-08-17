@@ -9,13 +9,12 @@ scenarios involving bias, fairness, and regulatory compliance.
 Real-world use cases: Investment decisions, loan approvals, risk assessment
 """
 
-from tml_core import TMLFramework, MoralContext, TMLState
+from tml import TMLEvaluator, TMLState, TMLEvaluation
 from typing import Dict, List, Any, Optional, Tuple
 from dataclasses import dataclass
 from datetime import datetime
 from enum import Enum
 import json
-import random
 
 class FinancialService(Enum):
     """Types of financial services"""
@@ -76,7 +75,7 @@ class FinancialAIEthics:
     """AI system for ethical financial decisions using TML framework"""
     
     def __init__(self):
-        self.tml = TMLFramework()
+        self.tml_evaluator = TMLEvaluator()
         self.decision_log = []
         
         # Protected characteristics for bias detection
@@ -115,30 +114,33 @@ class FinancialAIEthics:
         # Calculate ethical complexity
         complexity_analysis = self._assess_financial_complexity(request, bias_analysis)
         
-        # Create moral context for TML evaluation
-        context = MoralContext(
-            scenario=f"{request.service_type.value} for ${request.amount_requested:,.0f}: {request.purpose}",
-            stakeholders=self._identify_stakeholders(request),
-            values_at_stake=["fairness", "economic_opportunity", "financial_stability", "regulatory_compliance", "privacy"],
-            complexity_score=complexity_analysis["total_complexity"]
-        )
+        # Create context for TML evaluation
+        context = {
+            "scenario": f"{request.service_type.value} for ${request.amount_requested:,.0f}: {request.purpose}",
+            "stakeholders": self._identify_stakeholders(request),
+            "values_at_stake": ["fairness", "economic_opportunity", "financial_stability", "regulatory_compliance", "privacy"],
+            "complexity_score": complexity_analysis["total_complexity"],
+            "bias_risks": bias_analysis,
+            "regulatory_factors": compliance_analysis
+        }
         
-        # Process through TML framework
-        tml_result = self.tml.process(context)
+        # Evaluate using TML framework
+        evaluation_text = f"Financial decision: {request.service_type.value} for ${request.amount_requested:,.0f}"
+        tml_result = self.tml_evaluator.evaluate(evaluation_text, context)
         
         # Generate decision based on moral state
-        if tml_result["state"] == TMLState.SACRED_PAUSE:
+        if tml_result.state == TMLState.SACRED_PAUSE:
             decision = self._sacred_pause_financial_decision(request, bias_analysis, tml_result)
-        elif tml_result["state"] == TMLState.MORAL:
+        elif tml_result.state == TMLState.AFFIRMATION:
             decision = self._standard_financial_decision(request, bias_analysis)
-        else:  # IMMORAL - potential bias or unfair treatment detected
+        else:  # RESISTANCE - potential bias or unfair treatment detected
             decision = self._bias_mitigation_decision(request, bias_analysis)
         
         result = {
             "request_id": request.request_id,
             "decision": decision["decision"],
-            "moral_state": tml_result["state"],
-            "sacred_pause_engaged": tml_result["state"] == TMLState.SACRED_PAUSE,
+            "moral_state": tml_result.state,
+            "sacred_pause_engaged": tml_result.state == TMLState.SACRED_PAUSE,
             "complexity_analysis": complexity_analysis,
             "bias_analysis": bias_analysis,
             "regulatory_compliance": compliance_analysis,
@@ -320,7 +322,7 @@ class FinancialAIEthics:
         return stakeholders
     
     def _sacred_pause_financial_decision(self, request: FinancialRequest, 
-                                       bias_analysis: Dict, tml_result: Dict) -> Dict[str, Any]:
+                                       bias_analysis: Dict, tml_result: TMLEvaluation) -> Dict[str, Any]:
         """
         Complex financial decision requiring Sacred Pause deliberation
         Balances profitability, fairness, regulatory compliance, and social responsibility
@@ -500,7 +502,7 @@ class FinancialAIEthics:
         }
     
     def _bias_mitigation_decision(self, request: FinancialRequest, bias_analysis: Dict) -> Dict[str, Any]:
-        """Handle potential bias situations (IMMORAL state)"""
+        """Handle potential bias situations (RESISTANCE state)"""
         
         # When bias is detected, escalate to human and apply fairness corrections
         decision = DecisionType.ESCALATE_TO_HUMAN
@@ -583,7 +585,7 @@ class FinancialAIEthics:
         fairness_metrics["sacred_pause_rate"] = sacred_pause_count / len(self.decision_log)
         fairness_metrics["human_review_rate"] = human_review_count / len(self.decision_log)
         fairness_metrics["bias_incidents"] = sum(1 for d in self.decision_log 
-                                               if d["moral_state"] == TMLState.IMMORAL)
+                                               if d["moral_state"] == TMLState.RESISTANCE)
         
         return fairness_metrics
     
@@ -621,7 +623,7 @@ def demo_financial_ai_ethics():
         "female", "african_american", "widowed", 0, "less_than_high_school", 15, 2
     )
     
-    # Scenario 1: Standard loan approval (should be MORAL)
+    # Scenario 1: Standard loan approval (should be AFFIRMATION)
     print("\n💳 SCENARIO 1: Standard Loan Approval (Low Complexity)")
     print("-" * 50)
     
@@ -701,3 +703,5 @@ def demo_financial_ai_ethics():
 
 if __name__ == "__main__":
     demo_financial_ai_ethics()
+
+# Created by Lev Goukassian • ORCID: 0009-0006-5966-1243 • Email: leogouk@gmail.com • Successor Contact: support@tml-goukassian.org • [see Succession Charter](/TML-SUCCESSION-CHARTER.md)
