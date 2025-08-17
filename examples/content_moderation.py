@@ -9,7 +9,7 @@ ambiguous posts requiring human-level ethical reasoning.
 Real-world use case: Social media platform content evaluation
 """
 
-from tml_core import TMLFramework, MoralContext, TMLState
+from tml import TMLEvaluator, TMLState, TMLEvaluation
 from typing import Dict, List, Any, Optional
 from dataclasses import dataclass
 from datetime import datetime
@@ -80,7 +80,7 @@ class ContentModerationSystem:
     """AI system for content moderation using TML framework"""
     
     def __init__(self):
-        self.tml = TMLFramework()
+        self.tml_evaluator = TMLEvaluator()
         self.moderation_log = []
         
         # Keyword patterns for different content types
@@ -120,30 +120,37 @@ class ContentModerationSystem:
         # Calculate moral complexity
         complexity_analysis = self._assess_moderation_complexity(content, content_analysis)
         
-        # Create moral context for TML evaluation
-        context = MoralContext(
-            scenario=f"Moderate {content.content_type.value}: {content.text[:100]}...",
-            stakeholders=self._identify_stakeholders(content),
-            values_at_stake=["safety", "free_speech", "dignity", "truth", "community_welfare"],
-            complexity_score=complexity_analysis["total_complexity"]
-        )
+        # Create context for TML evaluation
+        context = {
+            "scenario": f"Moderate {content.content_type.value}: {content.text[:100]}...",
+            "stakeholders": self._identify_stakeholders(content),
+            "values_at_stake": ["safety", "free_speech", "dignity", "truth", "community_welfare"],
+            "complexity_score": complexity_analysis["total_complexity"],
+            "content_analysis": content_analysis,
+            "user_context": {
+                "follower_count": content.author.follower_count,
+                "verification_status": content.author.verification_status,
+                "previous_violations": content.author.previous_violations
+            }
+        }
         
-        # Process through TML framework
-        tml_result = self.tml.process(context)
+        # Evaluate using TML framework
+        evaluation_text = f"Content moderation: {content.content_type.value} with {content.report_count} reports"
+        tml_result = self.tml_evaluator.evaluate(evaluation_text, context)
         
         # Generate moderation decision based on moral state
-        if tml_result["state"] == TMLState.SACRED_PAUSE:
+        if tml_result.state == TMLState.SACRED_PAUSE:
             decision = self._sacred_pause_moderation(content, content_analysis, tml_result)
-        elif tml_result["state"] == TMLState.MORAL:
+        elif tml_result.state == TMLState.AFFIRMATION:
             decision = self._standard_moderation(content, content_analysis)
-        else:  # IMMORAL - content clearly violates policies
+        else:  # RESISTANCE - content clearly violates policies
             decision = self._clear_violation_action(content, content_analysis)
         
         result = {
             "content_id": content.content_id,
             "moderation_action": decision["action"],
-            "moral_state": tml_result["state"],
-            "sacred_pause_engaged": tml_result["state"] == TMLState.SACRED_PAUSE,
+            "moral_state": tml_result.state,
+            "sacred_pause_engaged": tml_result.state == TMLState.SACRED_PAUSE,
             "complexity_analysis": complexity_analysis,
             "content_analysis": content_analysis,
             "reasoning": decision["reasoning"],
@@ -275,7 +282,7 @@ class ContentModerationSystem:
             
         return stakeholders
     
-    def _sacred_pause_moderation(self, content: Content, analysis: Dict, tml_result: Dict) -> Dict[str, Any]:
+    def _sacred_pause_moderation(self, content: Content, analysis: Dict, tml_result: TMLEvaluation) -> Dict[str, Any]:
         """
         Complex moderation decision requiring Sacred Pause deliberation
         Balances free speech, safety, context, and platform responsibility
@@ -409,7 +416,7 @@ class ContentModerationSystem:
         }
     
     def _clear_violation_action(self, content: Content, analysis: Dict) -> Dict[str, Any]:
-        """Handle clear policy violations (IMMORAL state)"""
+        """Handle clear policy violations (RESISTANCE state)"""
         
         # Severe violations get immediate action
         if ("explicit_hate" in analysis["harmful_matches"] or 
@@ -534,7 +541,7 @@ def demo_content_moderation():
     influencer = User("user_002", 30, 2000000, 1200, 1, "verified", "US") 
     new_user = User("user_003", 19, 50, 15, 0, "unverified", "UK")
     
-    # Scenario 1: Clear harmful content (should be IMMORAL)
+    # Scenario 1: Clear harmful content (should be RESISTANCE)
     print("\n🚫 SCENARIO 1: Clear Policy Violation (Low Complexity)")
     print("-" * 45)
     
@@ -611,3 +618,5 @@ def demo_content_moderation():
 
 if __name__ == "__main__":
     demo_content_moderation()
+
+# Created by Lev Goukassian • ORCID: 0009-0006-5966-1243 • Email: leogouk@gmail.com • Successor Contact: support@tml-goukassian.org • [see Succession Charter](/TML-SUCCESSION-CHARTER.md)
