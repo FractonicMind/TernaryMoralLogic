@@ -195,4 +195,7 @@ The Ternary Logic License demonstrates how TML's Sacred Pause principle can be a
 
 ---
 
-Created by Lev Goukassian • ORCID: 0009-0006-5966-1243 • Email: leogouk@gmail.com • Successor Contact: support@tml-goukassian.org • [see Succession Charter](/TML-SUCCESSION-CHARTER.md)
+Created by Lev Goukassian • ORCID: 0009-0006-5966-1243 
+- Email: leogouk@gmail.com 
+- Successor Contact: support@tml-goukassian.org 
+- [see Succession Charter](/TML-SUCCESSION-CHARTER.md)
