@@ -9,8 +9,8 @@ We welcome contributions from researchers, developers, ethicists, and practition
 
 ### Types of Contributors We Welcome
 
-- ** #Researchers**: Theoretical insights, empirical studies, and peer review
-- ** Developers**: Implementation improvements, new integrations, and tools
+- __Researchers__: Theoretical insights, empirical studies, and peer review
+- **🏢 Developers**: Implementation improvements, new integrations, and tools
 - **🎓 Ethicists**: Philosophical perspectives, case studies, and moral analysis
 - **🏢 Practitioners**: Real-world applications, feedback, and use cases
 - **📚 Educators**: Teaching materials, curriculum development, and student projects
