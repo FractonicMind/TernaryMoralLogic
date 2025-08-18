@@ -9,12 +9,12 @@ We welcome contributions from researchers, developers, ethicists, and practition
 
 ### Types of Contributors We Welcome
 
-- ** Researchers**: Theoretical insights, empirical studies, and peer review
-- ** Developers**: Implementation improvements, new integrations, and tools
-- ** Ethicists**: Philosophical perspectives, case studies, and moral analysis
-- ** Practitioners**: Real-world applications, feedback, and use cases
-- ** Educators**: Teaching materials, curriculum development, and student projects
-- ** Advocates**: Community building, outreach, and adoption support
+- **🔬 Researchers**: Theoretical insights, empirical studies, and peer review
+- **💻 Developers**: Implementation improvements, new integrations, and tools
+- **🎓 Ethicists**: Philosophical perspectives, case studies, and moral analysis
+- **🏢 Practitioners**: Real-world applications, feedback, and use cases
+- **📚 Educators**: Teaching materials, curriculum development, and student projects
+- **🌍 Advocates**: Community building, outreach, and adoption support
 
 ---
 
@@ -41,7 +41,7 @@ The framework should be accessible to researchers and practitioners worldwide, r
 
 ## How to Contribute
 
-###  Getting Started
+### 🚀 Getting Started
 
 1. **Read the Documentation**
    - Review the [README.md](../README.md) for framework overview
@@ -51,15 +51,15 @@ The framework should be accessible to researchers and practitioners worldwide, r
 
 2. **Join the Community**
    - ⭐ Star the repository to show support
-   -  Use [GitHub Discussions](https://github.com/FractonicMind/TernaryMoralLogic/discussions) for questions
-   -  Check [existing issues](https://github.com/FractonicMind/TernaryMoralLogic/issues) for contribution opportunities
+   - 💬 Use [GitHub Discussions](https://github.com/FractonicMind/TernaryMoralLogic/discussions) for questions
+   - 🐛 Check [existing issues](https://github.com/FractonicMind/TernaryMoralLogic/issues) for contribution opportunities
 
 3. **Choose Your Contribution Type**
    - See [Contribution Areas](#contribution-areas) below
    - Check our [Project Roadmap](#project-roadmap)
    - Review [Current Priorities](#current-priorities)
 
-###  Before You Start
+### 📋 Before You Start
 
 - [ ] Fork the repository
 - [ ] Read this contributing guide completely
@@ -71,7 +71,7 @@ The framework should be accessible to researchers and practitioners worldwide, r
 
 ## Contribution Areas
 
-###  Code Contributions
+### 💻 Code Contributions
 
 #### Core Framework Development
 - **Value Detection**: Improve algorithms for identifying ethical dimensions
@@ -120,7 +120,7 @@ class EnhancedValueDetector(ValueDetector):
         pass
 ```
 
-###  Research Contributions
+### 📖 Research Contributions
 
 #### Theoretical Development
 - **Philosophical Analysis**: Deeper exploration of moral foundations
@@ -140,7 +140,7 @@ class EnhancedValueDetector(ValueDetector):
 - Cross-cultural and diverse perspective inclusion is strongly encouraged
 - Open science practices (open data, reproducible methods) preferred
 
-###  Documentation Contributions
+### 📚 Documentation Contributions
 
 #### User Documentation
 - **Getting Started Guides**: Tutorials for different user types
@@ -154,7 +154,7 @@ class EnhancedValueDetector(ValueDetector):
 - **Case Study Library**: Expanding the collection of practical examples
 - **Interactive Demos**: Web-based tools for exploring TML concepts
 
-###  Community Building
+### 🌍 Community Building
 
 #### Outreach and Adoption
 - **Conference Presentations**: Sharing TML at academic and industry events
