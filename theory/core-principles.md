@@ -77,8 +77,8 @@ TML treats moral conflict not as a problem to be solved but as valuable informat
 
 TML distinguishes between two fundamentally different types of uncertainty:
 
-- **Epistemic Uncertainty** (0 state): "I don't know enough to decide"
-- **Moral Uncertainty** (-1 state): "I know enough to recognize this requires careful consideration"
+- __Epistemic Uncertainty__ (0 state): "I don't know enough to decide"
+- __Moral Uncertainty__ (-1 state): "I know enough to recognize this requires careful consideration"
 
 This distinction is crucial because they require different responses. Epistemic uncertainty calls for more information; moral uncertainty calls for human wisdom and deliberation.
 
@@ -133,10 +133,10 @@ TML systems must be capable of identifying when multiple values are in tension. 
 
 When experiencing the -1 state, systems should clearly communicate:
 
-- **What values are in conflict**
-- **Why the conflict matters**
-- **What kinds of considerations would help resolve the tension**
-- **Suggestions for human deliberation**
+- __What values are in conflict__
+- __Why the conflict matters__
+- __What kinds of considerations would help resolve the tension__
+- __Suggestions for human deliberation__
 
 ### Temporal Dynamics
 

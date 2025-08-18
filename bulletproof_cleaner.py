@@ -10,17 +10,17 @@ def clean_file(filename):
     print(f"--- Starting process for: {filename} ---")
 
     if not os.path.isfile(filename):
-        print(f"❌ ERROR: File not found at '{filename}'. Please check the path.")
+        print(f" ERROR: File not found at '{filename}'. Please check the path.")
         return
 
     try:
         # Step 1: Read the original file content
         with open(filename, 'r', encoding='utf-8') as f_read:
             content = f_read.read()
-        print(f"✅ Step 1: Successfully read {len(content)} characters from the file.")
+        print(f" Step 1: Successfully read {len(content)} characters from the file.")
 
         if not content.strip():
-            print("❌ ERROR: File is empty or contains only whitespace. Aborting.")
+            print(" ERROR: File is empty or contains only whitespace. Aborting.")
             return
 
         # Step 2: Clean the content using the universal emoji pattern
@@ -32,20 +32,20 @@ def clean_file(filename):
             "]+"
         )
         cleaned_content = UNIVERSAL_EMOJI_PATTERN.sub('', content)
-        print(f"✅ Step 2: Cleaned content down to {len(cleaned_content)} characters.")
+        print(f" Step 2: Cleaned content down to {len(cleaned_content)} characters.")
 
         if not cleaned_content.strip():
-            print("❌ ERROR: Cleaned content is empty. This should not happen. Aborting.")
+            print(" ERROR: Cleaned content is empty. This should not happen. Aborting.")
             return
 
         # Step 3: Write the cleaned content back to the file
         with open(filename, 'w', encoding='utf-8') as f_write:
             f_write.write(cleaned_content)
-        print(f"✅ Step 3: Successfully wrote cleaned content back to the file.")
+        print(f" Step 3: Successfully wrote cleaned content back to the file.")
         print("--- Process Complete ---")
 
     except Exception as e:
-        print(f"❌ An unexpected error occurred: {e}")
+        print(f" An unexpected error occurred: {e}")
 
 
 if __name__ == "__main__":

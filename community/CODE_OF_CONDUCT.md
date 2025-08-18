@@ -32,31 +32,31 @@ We commit to acting in ways that contribute to an open, welcoming, diverse, incl
 
 ### Behaviors That Honor the Sacred Pause
 
-**✓ Respectful Dialogue**
+** Respectful Dialogue**
 - Listen thoughtfully before responding
 - Acknowledge different perspectives on ethical issues
 - Engage with ideas constructively, even when disagreeing
 - Take time to reflect before reacting to challenging discussions
 
-**✓ Inclusive Collaboration**
+** Inclusive Collaboration**
 - Welcome newcomers and help them understand TML principles
 - Use inclusive language that invites participation
 - Respect cultural differences in approaching ethical questions
 - Share knowledge generously while crediting sources appropriately
 
-**✓ Memorial Respect**
+** Memorial Respect**
 - Honor Lev Goukassian's memory through thoughtful engagement
 - Preserve the integrity of his vision while allowing for evolution
 - Acknowledge his original contribution in derivative work
 - Approach his legacy with appropriate dignity and respect
 
-**✓ Ethical Reasoning**
+** Ethical Reasoning**
 - Apply TML principles to community interactions when appropriate
 - Acknowledge uncertainty and seek guidance when needed
 - Consider the impact of decisions on all community members
 - Prioritize moral reasoning over efficiency in difficult situations
 
-**✓ Constructive Contribution**
+** Constructive Contribution**
 - Provide helpful feedback on code, research, and documentation
 - Share knowledge and experience to benefit the community
 - Support others' learning and development
@@ -64,25 +64,25 @@ We commit to acting in ways that contribute to an open, welcoming, diverse, incl
 
 ### Behaviors That Violate Our Community Standards
 
-**✗ Disrespectful Conduct**
+** Disrespectful Conduct**
 - Personal attacks, insults, or derogatory comments
 - Harassment, trolling, or deliberately inflammatory behavior
 - Public or private harassment of any kind
 - Discrimination based on protected characteristics
 
-**✗ Disregard for Memorial Values**
+** Disregard for Memorial Values**
 - Disrespecting Lev Goukassian's memory or contributions
 - Misrepresenting the framework's purposes or principles
 - Using the framework for purposes contrary to its ethical foundations
 - Commercializing the memorial aspects inappropriately
 
-**✗ Unethical Technical Conduct**
+** Unethical Technical Conduct**
 - Plagiarism or failure to properly attribute work
 - Submitting malicious code or deliberately harmful contributions
 - Violating intellectual property rights
 - Misrepresenting research findings or technical capabilities
 
-**✗ Community Harm**
+** Community Harm**
 - Publishing private information without consent
 - Disrupting discussions or community events
 - Spreading misinformation about the framework or community
@@ -94,26 +94,26 @@ We commit to acting in ways that contribute to an open, welcoming, diverse, incl
 
 When conflicts arise in our community, we apply TML principles:
 
-### 🔴 Immediate Harm (TML State: -1 Resistance)
+###  Immediate Harm (TML State: -1 Resistance)
 For clear violations that cause immediate harm:
-- **Immediate Action**: Remove harmful content, temporary restrictions
-- **Documentation**: Record incident details for review
-- **Support**: Provide support to affected community members
-- **Review**: Follow up with formal enforcement process
+- __Immediate Action__ Remove harmful content, temporary restrictions
+- __Documentation__ Record incident details for review
+- __Support__ Provide support to affected community members
+- __Review__ Follow up with formal enforcement process
 
 ### 🟡 Complex Situations (TML State: 0 Sacred Pause)
 For nuanced conflicts requiring reflection:
-- **Pause**: Temporarily halt escalating discussions
-- **Consultation**: Seek input from community moderators
-- **Reflection**: Allow time for perspective and understanding
-- **Dialogue**: Facilitate respectful conversation toward resolution
+- __Pause__ Temporarily halt escalating discussions
+- __Consultation__ Seek input from community moderators
+- __Reflection__ Allow time for perspective and understanding
+- __Dialogue__ Facilitate respectful conversation toward resolution
 
 ### 🟢 Minor Issues (TML State: +1 Affirmation)
 For manageable disagreements:
-- **Direct Communication**: Encourage respectful direct dialogue
-- **Community Support**: Provide resources for constructive discussion
-- **Learning**: Use conflicts as opportunities for community growth
-- **Documentation**: Share learnings to prevent similar issues
+- __Direct Communication__ Encourage respectful direct dialogue
+- __Community Support__ Provide resources for constructive discussion
+- __Learning__ Use conflicts as opportunities for community growth
+- __Documentation__ Share learnings to prevent similar issues
 
 ---
 
@@ -216,13 +216,13 @@ Appeals will be reviewed within 30 days and decisions communicated clearly.
 
 ### Honoring Lev's Legacy
 
-**✓ Appropriate Memorial Behavior**
+** Appropriate Memorial Behavior**
 - Reference Lev's work accurately and respectfully
 - Acknowledge his original contributions in derivative work
 - Share stories of how TML has impacted your work positively
 - Support the memorial fund and educational initiatives
 
-**✗ Inappropriate Memorial Behavior**
+** Inappropriate Memorial Behavior**
 - Exploiting Lev's memory for personal or commercial gain
 - Misrepresenting his views or the framework's purposes
 - Using memorial aspects to avoid criticism of technical contributions
@@ -231,10 +231,10 @@ Appeals will be reviewed within 30 days and decisions communicated clearly.
 ### Preservation of Vision
 
 The community commits to preserving Lev's original vision while allowing for appropriate evolution:
-- **Core Principles**: The Sacred Pause and moral partnership remain inviolate
-- **Technical Evolution**: Improvements and extensions are welcome within ethical bounds
-- **Cultural Adaptation**: Framework adaptation to diverse contexts is encouraged
-- **Educational Expansion**: Teaching and learning applications strongly supported
+- __Core Principles__ The Sacred Pause and moral partnership remain inviolate
+- __Technical Evolution__ Improvements and extensions are welcome within ethical bounds
+- __Cultural Adaptation__ Framework adaptation to diverse contexts is encouraged
+- __Educational Expansion__ Teaching and learning applications strongly supported
 
 ---
 
@@ -278,26 +278,26 @@ All reports will be handled with appropriate confidentiality:
 ### Academic and Research Ethics
 
 Given TML's academic origins, special attention to research ethics:
-- **Attribution**: Proper citation of all sources and contributors
-- **Integrity**: Honest representation of research findings and limitations
-- **Collaboration**: Fair and equitable research partnerships
-- **Publication**: Appropriate acknowledgment of community contributions
+- __Attribution__ Proper citation of all sources and contributors
+- __Integrity__ Honest representation of research findings and limitations
+- __Collaboration__ Fair and equitable research partnerships
+- __Publication__ Appropriate acknowledgment of community contributions
 
 ### Cultural Sensitivity
 
 TML addresses universal human values while respecting cultural differences:
-- **Value Systems**: Acknowledge different approaches to ethical reasoning
-- **Language**: Use inclusive language that welcomes global participation
-- **Practices**: Respect different cultural practices around conflict resolution
-- **Learning**: Approach cultural differences as learning opportunities
+- __Value Systems__ Acknowledge different approaches to ethical reasoning
+- __Language__ Use inclusive language that welcomes global participation
+- __Practices__ Respect different cultural practices around conflict resolution
+- __Learning__ Approach cultural differences as learning opportunities
 
 ### Technical Accessibility
 
 Ensuring the framework remains accessible to diverse technical backgrounds:
-- **Documentation**: Provide explanations for different skill levels
-- **Examples**: Include practical examples for various use cases
-- **Support**: Offer help to newcomers learning the framework
-- **Tools**: Develop accessible tools and interfaces
+- __Documentation__ Provide explanations for different skill levels
+- __Examples__ Include practical examples for various use cases
+- __Support__ Offer help to newcomers learning the framework
+- __Tools__ Develop accessible tools and interfaces
 
 ---
 
@@ -370,7 +370,7 @@ We thank the many communities that have developed thoughtful approaches to onlin
 
 ## Contact Information
 
-- **Contact**: leogouk@gmail.com (current) | support@tml-goukassian.org (successor)
+- __Contact__ leogouk@gmail.com (current) | support@tml-goukassian.org (successor)
 - *Note: The successor contact becomes active upon institutional stewardship 
 as outlined in the [TML Succession Charter](/TML-SUCCESSION-CHARTER.md).*
 

@@ -4,7 +4,7 @@
 
 ---
 
-## 📜 Core License Questions
+##  Core License Questions
 
 ### Q1: What license governs the TML Framework?
 **A:** The TML Framework is released under the **MIT License**, one of the most permissive open-source licenses. This allows free use, modification, and distribution for both commercial and non-commercial AI ethics applications, with minimal restrictions.
@@ -32,7 +32,7 @@ Beyond legal requirements, we encourage ethical AI practitioners to contribute i
 
 ---
 
-## 🏢 Commercial and Enterprise Use
+##  Commercial and Enterprise Use
 
 ### Q6: Can consulting firms charge for TML implementation services?
 **A:** **Yes, absolutely.** Consulting firms can:
@@ -64,7 +64,7 @@ No special government license is required.
 
 ---
 
-## 🛡️ Ethical Obligations and Misuse Prevention
+##  Ethical Obligations and Misuse Prevention
 
 ### Q11: Can I remove Sacred Pause safety features in my implementation?
 **A:** **Legally yes, ethically no.** While the MIT License allows modification, removing Sacred Pause safety mechanisms contradicts TML's fundamental purpose. Such modifications:
@@ -75,10 +75,10 @@ No special government license is required.
 
 ### Q12: What constitutes misuse of the TML Framework?
 **A:** Misuse includes:
-- **Removing ethical safeguards** while still claiming TML compliance
-- **Using TML to create deceptive "ethics washing"** for harmful AI
-- **Implementing discriminatory AI** under the guise of moral reasoning
-- **Weaponizing AI systems** using TML components
+- __Removing ethical safeguards__ while still claiming TML compliance
+- __Using TML to create deceptive "ethics washing"__ for harmful AI
+- __Implementing discriminatory AI__ under the guise of moral reasoning
+- __Weaponizing AI systems__ using TML components
 While legally permitted under MIT License, such uses violate the framework's ethical foundation.
 
 ### Q13: Can I use TML to justify unethical AI decisions?
@@ -104,7 +104,7 @@ Report suspected misuse to: support@tml-goukassian.org
 
 ---
 
-## 🏛️ Attribution and Academic Use
+##  Attribution and Academic Use
 
 ### Q16: How should I cite TML in academic papers?
 **A:** Use this citation format:
@@ -148,7 +148,7 @@ Please use a different name to avoid confusion with canonical TML.
 
 ---
 
-## 💰 Financial and Sustainability Questions
+##  Financial and Sustainability Questions
 
 ### Q21: Will TML ever become paid or restricted software?
 **A:** **Never.** The TML Framework has irreversible commitments to remain free:
@@ -189,7 +189,7 @@ Report false claims immediately to the community.
 
 ---
 
-## 🔮 Future Development and Compatibility
+##  Future Development and Compatibility
 
 ### Q26: Will future TML versions remain backwards compatible?
 **A:** **Yes, core compatibility guaranteed.** The Succession Charter ensures:
@@ -224,15 +224,15 @@ Sacred Pause can enhance any existing ethical review process.
 
 ### Q30: What are my rights if Lev Goukassian's estate makes claims?
 **A:** **Your rights are fully protected.** The MIT License is:
-- **Irrevocable once granted** - cannot be withdrawn
-- **Perpetual** - lasts forever
-- **Unconditional** - no future obligations can be added
-- **Defended by the Succession Charter** and institutional partners
+- __Irrevocable once granted__ - cannot be withdrawn
+- __Perpetual__ - lasts forever
+- __Unconditional__ - no future obligations can be added
+- __Defended by the Succession Charter__ and institutional partners
 The Memorial Fund exists to prevent any such disputes.
 
 ---
 
-## 📞 Support and Contact
+##  Support and Contact
 
 **For licensing questions not covered here:**
 - Email: support@tml-goukassian.org
@@ -249,7 +249,7 @@ The Memorial Fund exists to prevent any such disputes.
 
 ---
 
-## ⚖️ Final Legal Notice
+##  Final Legal Notice
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 

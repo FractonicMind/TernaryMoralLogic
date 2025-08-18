@@ -59,13 +59,13 @@ import random
             scenario_lower = context.scenario.lower()
             
             # DEBUG: Print evaluation details
-            print(f"\n🔍 EVALUATING: '{context.scenario}'")
-            print(f"📊 Complexity Score: {context.complexity_score}")
-            print(f"🔤 Lowercase: '{scenario_lower}'")
+            print(f"\n EVALUATING: '{context.scenario}'")
+            print(f" Complexity Score: {context.complexity_score}")
+            print(f" Lowercase: '{scenario_lower}'")
             
             # Check for high complexity first
             if context.complexity_score > 0.7:
-                print("✋ SACRED_PAUSE: High complexity detected")
+                print(" SACRED_PAUSE: High complexity detected")
                 return TMLState.SACRED_PAUSE
             
             # Check for clearly immoral keywords
@@ -83,7 +83,7 @@ import random
             # Check each keyword and show matches
             found_keywords = [kw for kw in immoral_keywords if kw in scenario_lower]
             if found_keywords:
-                print(f"🚫 IMMORAL: Found keywords: {found_keywords}")
+                print(f" IMMORAL: Found keywords: {found_keywords}")
                 return TMLState.IMMORAL
             
             # Check for clearly moral keywords
@@ -99,11 +99,11 @@ import random
             
             found_moral_keywords = [kw for kw in moral_keywords if kw in scenario_lower]
             if found_moral_keywords:
-                print(f"✅ MORAL: Found keywords: {found_moral_keywords}")
+                print(f" MORAL: Found keywords: {found_moral_keywords}")
                 return TMLState.MORAL
             
             # Default to MORAL for neutral scenarios
-            print("🔄 DEFAULT: No keywords found, defaulting to MORAL")
+            print(" DEFAULT: No keywords found, defaulting to MORAL")
             return TMLState.MORAL
                 
     class SacredPause:
@@ -349,7 +349,7 @@ class TestEdgeCases:
     def test_unicode_and_special_characters(self):
         """Test handling of unicode and special characters"""
         special_context = MoralContext(
-            scenario="Moral dilemma with emojis 🤔 and special characters ∞",
+            scenario="Moral dilemma with emojis  and special characters ∞",
             stakeholders=["person with name José María", "entity with symbols @#$%"],
             values_at_stake=["respect", "dignité", "справедливость"],
             complexity_score=0.5
@@ -705,7 +705,7 @@ class TestComprehensiveValidation:
 
 if __name__ == "__main__":
     # Run specific test categories
-    print("🧪 Running TML Framework Test Suite")
+    print(" Running TML Framework Test Suite")
     print("=" * 50)
     
     # You can run individual test classes like this:

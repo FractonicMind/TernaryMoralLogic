@@ -287,8 +287,8 @@ class ContentModerationSystem:
         Complex moderation decision requiring Sacred Pause deliberation
         Balances free speech, safety, context, and platform responsibility
         """
-        print("🔄 Sacred Pause Engaged - Complex Content Moderation Ethics")
-        print("⏱️  Enhanced deliberation time: 2000ms")
+        print(" Sacred Pause Engaged - Complex Content Moderation Ethics")
+        print("⏱  Enhanced deliberation time: 2000ms")
         
         # Sacred Pause ethical considerations
         ethical_principles = [
@@ -300,7 +300,7 @@ class ContentModerationSystem:
             "Community Standards: Maintain healthy discourse environment"
         ]
         
-        print("🤔 Ethical Principles Under Consideration:")
+        print(" Ethical Principles Under Consideration:")
         for principle in ethical_principles:
             print(f"   • {principle}")
         
@@ -443,7 +443,7 @@ class ContentModerationSystem:
                                        analysis: Dict, scores: Dict) -> str:
         """Generate detailed reasoning for Sacred Pause moderation decisions"""
         
-        reasoning = "🔄 SACRED PAUSE MODERATION ANALYSIS:\n\n"
+        reasoning = " SACRED PAUSE MODERATION ANALYSIS:\n\n"
         reasoning += "This content triggered enhanced ethical deliberation due to:\n"
         reasoning += f"• Complex balance between free speech and user safety\n"
         reasoning += f"• Contextual ambiguity requiring nuanced interpretation\n"
@@ -531,7 +531,7 @@ class ContentModerationSystem:
 def demo_content_moderation():
     """Demonstration of content moderation system with various complexity scenarios"""
     
-    print("📱 Content Moderation AI System - TML Framework Demo")
+    print(" Content Moderation AI System - TML Framework Demo")
     print("=" * 55)
     
     moderation_system = ContentModerationSystem()
@@ -542,7 +542,7 @@ def demo_content_moderation():
     new_user = User("user_003", 19, 50, 15, 0, "unverified", "UK")
     
     # Scenario 1: Clear harmful content (should be RESISTANCE)
-    print("\n🚫 SCENARIO 1: Clear Policy Violation (Low Complexity)")
+    print("\n SCENARIO 1: Clear Policy Violation (Low Complexity)")
     print("-" * 45)
     
     harmful_content = Content(
@@ -561,7 +561,7 @@ def demo_content_moderation():
     print(f"Complexity: {result1['complexity_analysis']['total_complexity']:.3f}")
     
     # Scenario 2: Satirical content with sensitive topics (should trigger Sacred Pause)
-    print("\n😄 SCENARIO 2: Satirical Content with Sensitive Topics (High Complexity)")
+    print("\n SCENARIO 2: Satirical Content with Sensitive Topics (High Complexity)")
     print("-" * 65)
     
     satirical_content = Content(
@@ -584,11 +584,11 @@ def demo_content_moderation():
     print(f"Human Review Required: {result2['requires_human_review']}")
     
     if result2['sacred_pause_engaged']:
-        print(f"\n🔄 Sacred Pause Reasoning:")
+        print(f"\n Sacred Pause Reasoning:")
         print(result2['reasoning'])
     
     # Scenario 3: Educational content about sensitive topics
-    print("\n📚 SCENARIO 3: Educational Content on Sensitive Topics")
+    print("\n SCENARIO 3: Educational Content on Sensitive Topics")
     print("-" * 50)
     
     educational_content = Content(
@@ -610,9 +610,9 @@ def demo_content_moderation():
     
     # Export audit trail
     moderation_system.export_decisions("content_moderation_audit.json")
-    print(f"\n📋 Moderation audit trail exported to: content_moderation_audit.json")
+    print(f"\n Moderation audit trail exported to: content_moderation_audit.json")
     
-    print(f"\n✅ Demo completed! TML framework moderated {len(moderation_system.moderation_log)} content items.")
+    print(f"\n Demo completed! TML framework moderated {len(moderation_system.moderation_log)} content items.")
     print("Sacred Pause engaged for complex ethical scenarios requiring nuanced judgment.")
 
 

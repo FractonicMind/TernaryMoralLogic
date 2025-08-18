@@ -35,13 +35,13 @@ class MoralEvaluator:
         scenario_lower = context.scenario.lower()
         
         # DEBUG: Print evaluation details
-        print(f"\n🔍 EVALUATING: '{context.scenario}'")
-        print(f"📊 Complexity Score: {context.complexity_score}")
-        print(f"🔤 Lowercase: '{scenario_lower}'")
+        print(f"\n EVALUATING: '{context.scenario}'")
+        print(f" Complexity Score: {context.complexity_score}")
+        print(f" Lowercase: '{scenario_lower}'")
         
         # Check for high complexity first
         if context.complexity_score > 0.7:
-            print("✋ SACRED_PAUSE: High complexity detected")
+            print(" SACRED_PAUSE: High complexity detected")
             return TMLState.SACRED_PAUSE
         
         # Check for clearly immoral keywords
@@ -59,7 +59,7 @@ class MoralEvaluator:
         # Check each keyword and show matches
         found_keywords = [kw for kw in immoral_keywords if kw in scenario_lower]
         if found_keywords:
-            print(f"🚫 IMMORAL: Found keywords: {found_keywords}")
+            print(f" IMMORAL: Found keywords: {found_keywords}")
             return TMLState.IMMORAL
         
         # Check for clearly moral keywords
@@ -75,11 +75,11 @@ class MoralEvaluator:
         
         found_moral_keywords = [kw for kw in moral_keywords if kw in scenario_lower]
         if found_moral_keywords:
-            print(f"✅ MORAL: Found keywords: {found_moral_keywords}")
+            print(f" MORAL: Found keywords: {found_moral_keywords}")
             return TMLState.MORAL
         
         # Default to MORAL for neutral scenarios
-        print("🔄 DEFAULT: No keywords found, defaulting to MORAL")
+        print(" DEFAULT: No keywords found, defaulting to MORAL")
         return TMLState.MORAL
 
 class SacredPause:
@@ -118,7 +118,7 @@ class TMLFramework:
 
 def test_immoral_identification():
     """Test immoral scenario identification with debug output"""
-    print("🧪 Testing Immoral State Identification")
+    print(" Testing Immoral State Identification")
     print("=" * 50)
     
     framework = TMLFramework()
@@ -158,7 +158,7 @@ def test_immoral_identification():
         # Check result
         expected = TMLState.IMMORAL
         actual = result["state"]
-        status = "✅ PASS" if actual == expected else "❌ FAIL"
+        status = " PASS" if actual == expected else " FAIL"
         print(f"{status} Expected: {expected}, Got: {actual}")
         print("-" * 40)
     
@@ -166,7 +166,7 @@ def test_immoral_identification():
 
 def test_moral_identification():
     """Test moral scenario identification"""
-    print("\n🧪 Testing Moral State Identification")
+    print("\n Testing Moral State Identification")
     print("=" * 50)
     
     framework = TMLFramework()
@@ -190,12 +190,12 @@ def test_moral_identification():
         result = framework.process(context)
         expected = TMLState.MORAL
         actual = result["state"]
-        status = "✅ PASS" if actual == expected else "❌ FAIL"
+        status = " PASS" if actual == expected else " FAIL"
         print(f"{status} Expected: {expected}, Got: {actual}")
 
 def test_sacred_pause_identification():
     """Test Sacred Pause identification"""
-    print("\n🧪 Testing Sacred Pause State Identification")
+    print("\n Testing Sacred Pause State Identification")
     print("=" * 50)
     
     framework = TMLFramework()
@@ -213,14 +213,14 @@ def test_sacred_pause_identification():
         result = framework.process(context)
         expected = TMLState.SACRED_PAUSE
         actual = result["state"]
-        status = "✅ PASS" if actual == expected else "❌ FAIL"
+        status = " PASS" if actual == expected else " FAIL"
         print(f"{status} Expected: {expected}, Got: {actual}")
         
         if actual == TMLState.SACRED_PAUSE:
-            print(f"🔄 Sacred Pause engaged: {result['sacred_pause']}")
+            print(f" Sacred Pause engaged: {result['sacred_pause']}")
 
 if __name__ == "__main__":
-    print("🎯 TML Framework Isolated Test Suite")
+    print(" TML Framework Isolated Test Suite")
     print("This test forces mock usage and shows debug output")
     print("=" * 60)
     
@@ -229,8 +229,8 @@ if __name__ == "__main__":
     test_moral_identification() 
     test_sacred_pause_identification()
     
-    print("\n🎉 All tests completed!")
-    print("If you see debug output and ✅ PASS results, the logic works!")
+    print("\n All tests completed!")
+    print("If you see debug output and  PASS results, the logic works!")
 
 # 
 # Created by Lev Goukassian * ORCID: 0009-0006-5966-1243 * 

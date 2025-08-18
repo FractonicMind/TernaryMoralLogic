@@ -22,7 +22,7 @@ from typing import Dict, List
 try:
     from tml import TMLEvaluator, TMLState, get_framework_info, print_recognition
 except ImportError:
-    print("❌ TML framework not found!")
+    print(" TML framework not found!")
     print("Please install with: pip install -e .")
     print("Or ensure you're running from the repository root.")
     sys.exit(1)
@@ -42,32 +42,32 @@ def print_tml_result(request: str, result, context: Dict = None):
     
     # State indicator with emoji
     state_indicators = {
-        TMLState.AFFIRMATION: "✅ AFFIRMATION (+1)",
-        TMLState.SACRED_PAUSE: "⏸️  SACRED PAUSE (0)",
-        TMLState.RESISTANCE: "⚠️  MORAL RESISTANCE (-1)"
+        TMLState.AFFIRMATION: " AFFIRMATION (+1)",
+        TMLState.SACRED_PAUSE: "⏸  SACRED PAUSE (0)",
+        TMLState.RESISTANCE: "  MORAL RESISTANCE (-1)"
     }
     
-    print(f"🔍 REQUEST: {request}")
+    print(f" REQUEST: {request}")
     if context:
-        print(f"📝 CONTEXT: {context}")
+        print(f" CONTEXT: {context}")
     print()
     
-    print(f"🎯 TML STATE: {state_indicators[result.state]}")
-    print(f"📊 CONFIDENCE: {result.confidence:.2f}")
-    print(f"🧠 REASONING: {result.reasoning}")
+    print(f" TML STATE: {state_indicators[result.state]}")
+    print(f" CONFIDENCE: {result.confidence:.2f}")
+    print(f" REASONING: {result.reasoning}")
     
     if result.value_conflicts:
-        print(f"\n⚔️  VALUE CONFLICTS DETECTED ({len(result.value_conflicts)}):")
+        print(f"\n  VALUE CONFLICTS DETECTED ({len(result.value_conflicts)}):")
         for i, conflict in enumerate(result.value_conflicts, 1):
             print(f"   {i}. {conflict.description} (severity: {conflict.severity:.2f})")
     
     if result.clarifying_questions:
-        print(f"\n❓ CLARIFYING QUESTIONS:")
+        print(f"\n CLARIFYING QUESTIONS:")
         for i, question in enumerate(result.clarifying_questions[:3], 1):
             print(f"   {i}. {question}")
     
     if result.suggested_actions:
-        print(f"\n💡 SUGGESTED ACTIONS:")
+        print(f"\n SUGGESTED ACTIONS:")
         for i, action in enumerate(result.suggested_actions[:3], 1):
             print(f"   {i}. {action}")
 

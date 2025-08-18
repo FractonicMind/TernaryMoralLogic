@@ -36,9 +36,9 @@ def clean_file(filename):
         if original_content != content:
             with open(filename, 'w', encoding='utf-8') as f_write:
                 f_write.write(content)
-            print(f"✅ Cleaned and reformatted: {filename}")
+            print(f" Cleaned and reformatted: {filename}")
         else:
-            print(f"ℹ️ No changes needed for: {filename}")
+            print(f"ℹ No changes needed for: {filename}")
 
     except Exception as e:
         print(f"Error processing {filename}: {e}", file=sys.stderr)

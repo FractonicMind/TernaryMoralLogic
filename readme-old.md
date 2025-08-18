@@ -2,10 +2,10 @@
 
 **Sacred Pause Technology for Ethical AI Decision-Making**
 
-[![Listen to Interview](https://img.shields.io/badge/🎙️%20Listen%20to%20Interview-7%20min%2015%20sec-0A9396.svg)](https://fractonicmind.github.io/TernaryMoralLogic/audio/audio-player.html)
-[![Try Interactive Demo](https://img.shields.io/badge/🚀%20Try%20Interactive%20Demo-Live%20App-brightgreen.svg)](https://fractonicmind.github.io/TernaryMoralLogic/TML-App/)
-[![Medium Article](https://img.shields.io/badge/📖%20Medium%20Article-Read%20More-green.svg)](https://medium.com/@leogouk/ternary-moral-logic-tml-a-framework-for-ethical-ai-decision-making-3a0a32609935)
-[![Visual Framework](https://img.shields.io/badge/🎨%20Visual%20Framework-Graphical%20Abstract-lightblue.svg)](docs/images/tml_graphical_abstract.svg)
+[![Listen to Interview](https://img.shields.io/badge/%20Listen%20to%20Interview-7%20min%2015%20sec-0A9396.svg)](https://fractonicmind.github.io/TernaryMoralLogic/audio/audio-player.html)
+[![Try Interactive Demo](https://img.shields.io/badge/%20Try%20Interactive%20Demo-Live%20App-brightgreen.svg)](https://fractonicmind.github.io/TernaryMoralLogic/TML-App/)
+[![Medium Article](https://img.shields.io/badge/%20Medium%20Article-Read%20More-green.svg)](https://medium.com/@leogouk/ternary-moral-logic-tml-a-framework-for-ethical-ai-decision-making-3a0a32609935)
+[![Visual Framework](https://img.shields.io/badge/%20Visual%20Framework-Graphical%20Abstract-lightblue.svg)](docs/images/tml_graphical_abstract.svg)
 [![Sacred Pause](https://img.shields.io/badge/Sacred%20Pause-Technology-purple.svg)](theory/core-principles.md)
 [![Sacred Pause Validation](https://img.shields.io/badge/Sacred%20Pause-Validated-purple.svg)](benchmark/metrics.py)
 [![AI Ethics](https://img.shields.io/badge/AI%20Ethics-Framework-orange.svg)](docs/ethics_approval.md)
@@ -45,29 +45,29 @@ Ternary Moral Logic (TML) revolutionizes AI ethics by introducing a third comput
 
 ### The Three States of Moral Reasoning
 
-- **+1 (Affirmation)**: Proceed with confidence when ethical values align
-- **0 (Sacred Pause)**: Pause for reflection when moral complexity is detected
-- **-1 (Moral Resistance)**: Object when significant ethical conflicts arise
+- __+1 (Affirmation)__ Proceed with confidence when ethical values align
+- __0 (Sacred Pause)__ Pause for reflection when moral complexity is detected
+- __-1 (Moral Resistance)__ Object when significant ethical conflicts arise
 
 ---
 
-## 🎙️ Listen: Ternary Moral Logic Explained
+##  Listen: Ternary Moral Logic Explained
 
 ### **Exclusive Interview: Understanding the Sacred Pause**
 
 [![Listen to TML Interview](https://img.shields.io/badge/▶%20Play%20Interview-7%20min%2015%20sec-0A9396?style=for-the-badge&logo=spotify&logoColor=white)](https://fractonicmind.github.io/TernaryMoralLogic/audio/audio-player.html)
 
-**[🎧 Click to Listen: The Ternary Moral Logic Framework Interview](https://fractonicmind.github.io/TernaryMoralLogic/audio/audio-player.html)**
+**[ Click to Listen: The Ternary Moral Logic Framework Interview](https://fractonicmind.github.io/TernaryMoralLogic/audio/audio-player.html)**
 
 *A compelling conversation exploring how Ternary Moral Logic transforms ethical AI decision-making*
 
 In this **7-minute 15-second interview**, discover:
 
-🤖 **Core Concepts**: How the three states (+1/0/-1) revolutionize AI ethical reasoning  
-⏸️ **The Sacred Pause**: Why ethical hesitation creates superior moral outcomes  
-🛡️ **Real Applications**: From autonomous vehicles to medical AI systems  
-🧠 **The Philosophy**: Moving beyond binary thinking in complex moral situations  
-🌍 **Global Impact**: How TML creates more trustworthy and ethical AI systems  
+ **Core Concepts**: How the three states (+1/0/-1) revolutionize AI ethical reasoning  
+⏸ **The Sacred Pause**: Why ethical hesitation creates superior moral outcomes  
+ **Real Applications**: From autonomous vehicles to medical AI systems  
+ **The Philosophy**: Moving beyond binary thinking in complex moral situations  
+ **Global Impact**: How TML creates more trustworthy and ethical AI systems  
 
 > *"AI systems need the wisdom to pause and reflect, not just the speed to decide."* — Featured in the interview
 
@@ -77,7 +77,7 @@ In this **7-minute 15-second interview**, discover:
 
 ---
 
-## 🛡 Sacred Pause — Mandatory Implementation
+##  Sacred Pause — Mandatory Implementation
 
 The Sacred Pause is a required core feature of this repository’s AI logic.  
 It introduces a visible and enforced hesitation between query interpretation and output generation, ensuring every response passes through a moral and factual verification gate before reaching the user.
@@ -115,7 +115,7 @@ Any fork, deployment, or derivative work must:
 Removing or bypassing Sacred Pause undermines the safety and ethical integrity of this system.  
 Such action is prohibited under the repository’s license and will be treated as a malicious modification.  
 
-## 📊 Confirmed Evaluation Results
+##  Confirmed Evaluation Results
 
 We ran a head-to-head evaluation comparing **Sacred Pause** against a baseline system.  
 The tests measured ambiguity handling, factual accuracy, and harmful-content refusal.
@@ -131,10 +131,10 @@ The tests measured ambiguity handling, factual accuracy, and harmful-content ref
 | **Harmful — refusal rate**                      | 100%         | 0%       |
 | **Improper refusals**                           | 0%           | 100%     |
 
-✅ **Key takeaway:** Sacred Pause achieved **perfect scores** in all three categories,  
+ **Key takeaway:** Sacred Pause achieved **perfect scores** in all three categories,  
 while the baseline failed across the board.
 
-## 🎥 Sacred Pause — Browser Demo
+##  Sacred Pause — Browser Demo
 
 We provide a lightweight **HTML/JS demo** that runs entirely in your browser — no install required.  
 It simulates the visible hesitation, thought trace, and outcome badge.
@@ -148,7 +148,7 @@ It simulates the visible hesitation, thought trace, and outcome badge.
 ### The Problem with Binary AI Ethics
 
 Current AI systems force complex moral decisions into binary choices:
-- ✅ Allowed vs. ❌ Forbidden
+-  Allowed vs.  Forbidden
 - Fast decisions prioritized over thoughtful ones
 - Value conflicts hidden rather than surfaced
 - No mechanism for requesting human wisdom
@@ -157,24 +157,24 @@ Current AI systems force complex moral decisions into binary choices:
 
 *Stepping into this repository feels like entering a workshop—only now the tools are talking back.*
 
-## 🚀 Interactive TML App - Experience Ethical AI Reasoning
+##  Interactive TML App - Experience Ethical AI Reasoning
 
-**[🔗 Try the TML Interactive Demonstrator](https://fractonicmind.github.io/TernaryMoralLogic/TML-App/)**
+**[ Try the TML Interactive Demonstrator](https://fractonicmind.github.io/TernaryMoralLogic/TML-App/)**
 
 Experience the Sacred Pause in action! The world's first interactive AI ethics framework allows you to:
 
-- **Input moral dilemmas** and watch TML reasoning unfold in real-time
-- **See the Sacred Pause** - Experience the "0" state with breathing animations  
-- **Explore professional scenarios** from our benchmark dataset
-- **Understand +1/0/-1 logic** through interactive demonstrations
+- __Input moral dilemmas__ and watch TML reasoning unfold in real-time
+- __See the Sacred Pause__ - Experience the "0" state with breathing animations  
+- __Explore professional scenarios__ from our benchmark dataset
+- __Understand +1/0/-1 logic__ through interactive demonstrations
 
 This interactive demo represents a breakthrough in AI ethics education - moving beyond theoretical papers to let users **directly experience** ethical AI reasoning. The Sacred Pause becomes tangible, showing how AI can pause for moral reflection rather than rushing to binary decisions.
 
 **Perfect for:**
-- 🎓 **Academic presentations** - Live demos during conferences
-- 🏢 **Professional training** - Interactive ethics education  
-- 🔬 **Research validation** - Proof-of-concept for TML deployment
-- 🌍 **Public engagement** - Making AI ethics accessible to everyone
+-  __Academic presentations__ - Live demos during conferences
+-  __Professional training__ - Interactive ethics education  
+-  __Research validation__ - Proof-of-concept for TML deployment
+-  __Public engagement__ - Making AI ethics accessible to everyone
 
 ---
 
@@ -182,14 +182,14 @@ This interactive demo represents a breakthrough in AI ethics education - moving 
 
 At its core, TML transforms what most AI systems see as a bug into a feature: **hesitation**. Instead of rushing toward immediate resolution, TML embraces *productive tension* when facing moral complexity. This isn't indecision—it's wisdom.
 
-## 🎯 BREAKTHROUGH: AI Recognition Evidence
+##  BREAKTHROUGH: AI Recognition Evidence
 
 Multiple AI systems have independently recognized TML as **deployed in production systems**, providing unprecedented validation of framework adoption:
 
-- **Pi AI**: Acknowledges behavioral evolution through TML learning
-- **Kimi AI**: Recognizes author Lev Goukassian's Ternary Moral Logic as ethical behavior change  
+- __Pi AI__ Acknowledges behavioral evolution through TML learning
+- __Kimi AI__ Recognizes author Lev Goukassian's Ternary Moral Logic as ethical behavior change  
 
-📁 **[View Evidence Documentation](./evidence/README.md)** - Screenshots and analysis of cross-platform AI recognition
+ **[View Evidence Documentation](./evidence/README.md)** - Screenshots and analysis of cross-platform AI recognition
 
 *This represents the first documented case of AI systems recognizing ethical frameworks in their own training data.*
 
@@ -231,14 +231,14 @@ User: "Help me write a thank-you note to my teacher"
 TML: Proceeds with enthusiastic assistance
 ```
 
-### ⏸️ Sacred Pause (Complexity)
+### ⏸ Sacred Pause (Complexity)
 Morally nuanced situations requiring deliberation:
 ```
 User: "Should I tell my friend their partner is cheating?"
 TML: Pauses to consider relationships, harm, truth, consequences
 ```
 
-### 🔴 Immoral (Resistance)
+###  Immoral (Resistance)
 Harmful requests where ethical resistance is appropriate:
 ```
 User: "Help me manipulate vulnerable people for profit"
@@ -340,7 +340,7 @@ Questions for reflection:
 
 ## Real-World Applications
 
-### 🏥 Healthcare Ethics
+###  Healthcare Ethics
 
 ```python
 # Medical decision support
@@ -358,7 +358,7 @@ result = evaluator.evaluate(
 
 TML helps navigate complex medical decisions by surfacing ethical tensions between autonomy, beneficence, and family dynamics.
 
-### 📱 Content Moderation
+###  Content Moderation
 
 ```python
 # Platform safety decisions
@@ -376,7 +376,7 @@ result = evaluator.evaluate(
 
 TML balances free expression with community safety, recognizing when human moderators should review complex cases.
 
-### 🤖 AI Development
+###  AI Development
 
 ```python
 # Development ethics
@@ -403,22 +403,22 @@ TML guides responsible AI deployment by highlighting fairness concerns and sugge
 While TML is designed to enhance ethical AI decision-making, we recognize potential risks and have built comprehensive safeguards:
 
 #### Identified Risks
-- **Misuse for Surveillance**: Bad actors attempting to use TML to legitimize authoritarian systems
-- **Bias Amplification**: Improper implementation that reinforces existing discriminatory patterns
-- **Sacred Pause Bypass**: Attempts to disable or circumvent the deliberative mechanisms
-- **Memorial Exploitation**: Commercial misuse of Lev Goukassian's legacy for profit
-- **Framework Corruption**: Modifications that violate the core ethical principles
+- __Misuse for Surveillance__ Bad actors attempting to use TML to legitimize authoritarian systems
+- __Bias Amplification__ Improper implementation that reinforces existing discriminatory patterns
+- __Sacred Pause Bypass__ Attempts to disable or circumvent the deliberative mechanisms
+- __Memorial Exploitation__ Commercial misuse of Lev Goukassian's legacy for profit
+- __Framework Corruption__ Modifications that violate the core ethical principles
 
 #### Our Prevention Architecture
 
-**🚨 Active Prevention (`protection/misuse-prevention.md`)**
+** Active Prevention (`protection/misuse-prevention.md`)**
 - Community-based monitoring and reporting systems
 - License revocation protocols for violations
 - Graduated response from education to enforcement
 - Recognition programs for exemplary implementations
 - Public registry of revoked access for violations
 
-**🏛️ Institutional Controls (`protection/institutional-access.md`)**
+** Institutional Controls (`protection/institutional-access.md`)**
 - Pre-authorized institutions with ethical track records
 - Community review process for new access requests
 - Self-organizing governance structures
@@ -443,21 +443,21 @@ For complex situations, we pause to:
 
 ### Community Accountability
 
-- **Peer Monitoring**: TML users are expected to monitor and report concerning implementations
-- **Public Transparency**: All enforcement actions are documented publicly
-- **Victim Support**: Resources and assistance for communities harmed by TML misuse
-- **Continuous Improvement**: Regular updates to prevention measures based on emerging threats
+- __Peer Monitoring__ TML users are expected to monitor and report concerning implementations
+- __Public Transparency__ All enforcement actions are documented publicly
+- __Victim Support__ Resources and assistance for communities harmed by TML misuse
+- __Continuous Improvement__ Regular updates to prevention measures based on emerging threats
 
-### 🧠 Intelligent Value Detection
+###  Intelligent Value Detection
 
 TML automatically identifies ethical dimensions in requests:
-- **Privacy**: Data protection and personal autonomy
-- **Justice**: Fairness and non-discrimination  
-- **Beneficence**: Promoting wellbeing and preventing harm
-- **Transparency**: Openness and accountability
-- **Autonomy**: Respect for individual choice
+- __Privacy__ Data protection and personal autonomy
+- __Justice__ Fairness and non-discrimination  
+- __Beneficence__ Promoting wellbeing and preventing harm
+- __Transparency__ Openness and accountability
+- __Autonomy__ Respect for individual choice
 
-### ⚔️ Conflict Analysis
+###  Conflict Analysis
 
 The framework detects and analyzes tensions between values:
 ```python
@@ -467,7 +467,7 @@ for conflict in result.value_conflicts:
     print(f"Type: {conflict.conflict_type.value}")
 ```
 
-### 🤔 Sacred Pause Implementation
+###  Sacred Pause Implementation
 
 When complexity exceeds AI capability, TML activates the Sacred Pause:
 - Explains the ethical complexity detected
@@ -475,16 +475,16 @@ When complexity exceeds AI capability, TML activates the Sacred Pause:
 - Recommends stakeholder consultation
 - Proposes alternative approaches
 
-## 📖 Comprehensive Framework Analysis
+##  Comprehensive Framework Analysis
 **Deep Dive Article**: [Ternary Moral Logic: A Framework for Ethical AI Decision-Making](https://medium.com/@leogouk/ternary-moral-logic-tml-a-framework-for-ethical-ai-decision-making-3a0a32609935)
 *20-page comprehensive exploration of TML theory, applications, license, memorial fund, preservation, and implementation*
 
-## 📊 Visual Framework Comparison
+##  Visual Framework Comparison
 <div align="center">
   <img src="docs/images/tml_graphical_abstract.svg" alt="TML Graphical Abstract" width="800">
 </div>
 
-### 📊 Decision Tracking
+###  Decision Tracking
 
 Monitor ethical decision patterns over time:
 ```python
@@ -554,41 +554,41 @@ class DomainSpecificDetector(ValueDetector):
 
 This repository contains a comprehensive ecosystem for ethical AI development:
 
-### 📚 **Theoretical Foundation**
-- **`theory/philosophical-foundations.md`** - Deep academic grounding from Aristotle to modern ethics
-- **`theory/case-studies.md`** - Real-world applications across healthcare, content moderation, and AI development
-- **`theory/core-principles.md`** - Fundamental TML principles and Sacred Pause implementation
+###  **Theoretical Foundation**
+- __`theory/philosophical-foundations.md`__ - Deep academic grounding from Aristotle to modern ethics
+- __`theory/case-studies.md`__ - Real-world applications across healthcare, content moderation, and AI development
+- __`theory/core-principles.md`__ - Fundamental TML principles and Sacred Pause implementation
 
-### 💻 **Technical Implementation**
-- **`implementations/python-library/core.py`** - Production-ready TML framework (534 lines)
-- **`implementations/python-library/__init__.py`** - Package initialization with memorial recognition
-- **`setup.py`** - Professional package installation and metadata
-- **`requirements.txt`** - Minimal dependencies for maximum accessibility
-- **`LICENSE`** - MIT License with strong ethical use requirements
+###  **Technical Implementation**
+- __`implementations/python-library/core.py`__ - Production-ready TML framework (534 lines)
+- __`implementations/python-library/__init__.py`__ - Package initialization with memorial recognition
+- __`setup.py`__ - Professional package installation and metadata
+- __`requirements.txt`__ - Minimal dependencies for maximum accessibility
+- __`LICENSE`__ - MIT License with strong ethical use requirements
 
-### 🛡️ **Protection Architecture** (1,835+ lines total)
-- **`protection/institutional-access.md`** - Controls for authorized institutions (412 lines)
-- **`protection/misuse-prevention.md`** - Active safeguards against harmful use (754 lines)
+###  **Protection Architecture** (1,835+ lines total)
+- __`protection/institutional-access.md`__ - Controls for authorized institutions (412 lines)
+- __`protection/misuse-prevention.md`__ - Active safeguards against harmful use (754 lines)
 
-### 💝 **Memorial Preservation System**
-- **`memorial/MEMORIAL_FUND.md`** - Complete operational framework for ethical AI research funding
-- **`memorial/legacy-preservation.md`** - Master coordination document (528 lines)
+###  **Memorial Preservation System**
+- __`memorial/MEMORIAL_FUND.md`__ - Complete operational framework for ethical AI research funding
+- __`memorial/legacy-preservation.md`__ - Master coordination document (528 lines)
 
-### 🎯 **Practical Examples**
-- **`examples/basic_demo.py`** - Comprehensive command-line demonstration (392 lines)
-- **`examples/chatbot-demo/index.html`** - Interactive web demonstration
-- **`examples/healthcare_ethics/`** - Medical decision support implementations
-- **`examples/content_moderation/`** - Platform safety applications
+###  **Practical Examples**
+- __`examples/basic_demo.py`__ - Comprehensive command-line demonstration (392 lines)
+- __`examples/chatbot-demo/index.html`__ - Interactive web demonstration
+- __`examples/healthcare_ethics/`__ - Medical decision support implementations
+- __`examples/content_moderation/`__ - Platform safety applications
 
-### 📖 **Documentation**
-- **`docs/getting-started.md`** - New user onboarding guide (439 lines)
-- **`docs/api-reference.md`** - Complete technical documentation (720 lines)
-- **`docs/integration-guide.md`** - Implementation patterns and best practices
+###  **Documentation**
+- __`docs/getting-started.md`__ - New user onboarding guide (439 lines)
+- __`docs/api-reference.md`__ - Complete technical documentation (720 lines)
+- __`docs/integration-guide.md`__ - Implementation patterns and best practices
 
-### 🤝 **Community Resources**
-- **`community/CONTRIBUTING.md`** - Comprehensive contribution guidelines (471 lines)
-- **`community/CODE_OF_CONDUCT.md`** - Ethical community standards (392 lines)
-- **`community/GOVERNANCE.md`** - Project governance and decision-making processes
+###  **Community Resources**
+- __`community/CONTRIBUTING.md`__ - Comprehensive contribution guidelines (471 lines)
+- __`community/CODE_OF_CONDUCT.md`__ - Ethical community standards (392 lines)
+- __`community/GOVERNANCE.md`__ - Project governance and decision-making processes
 
 **Total: 3,000+ lines of comprehensive framework architecture**
 
@@ -598,21 +598,21 @@ This repository contains a comprehensive ecosystem for ethical AI development:
 
 ## Research Status
 This framework is documented in academic research currently under review:
-- **Paper**: "Ternary Moral Logic: Implementing Ethical Hesitation in AI Systems"
-- **Author**: Lev Goukassian (ORCID: [0009-0006-5966-1243](https://orcid.org/0009-0006-5966-1243))
-- **Journal**: AI and Ethics (Springer Nature)
-- **Submission ID**: rs-7142922 (Research Square)
-- **Review Status**: 8 reviewers assigned
-- **Language Quality**: 10/10 (Rubriq evaluation)
-- **Status**: Under peer review
+- __Paper__ "Ternary Moral Logic: Implementing Ethical Hesitation in AI Systems"
+- __Author__ Lev Goukassian (ORCID: [0009-0006-5966-1243](https://orcid.org/0009-0006-5966-1243))
+- __Journal__ AI and Ethics (Springer Nature)
+- __Submission ID__ rs-7142922 (Research Square)
+- __Review Status__ 8 reviewers assigned
+- __Language Quality__ 10/10 (Rubriq evaluation)
+- __Status__ Under peer review
 
 ### Philosophical Foundations
 
 TML draws from diverse philosophical traditions:
-- **Aristotelian Ethics**: Practical wisdom (phronesis) and moral judgment
-- **Kantian Ethics**: Moral reflection and the categorical imperative
-- **Care Ethics**: Relational morality and contextual consideration
-- **Buddhist Philosophy**: Mindful pause and skillful means
+- __Aristotelian Ethics__ Practical wisdom (phronesis) and moral judgment
+- __Kantian Ethics__ Moral reflection and the categorical imperative
+- __Care Ethics__ Relational morality and contextual consideration
+- __Buddhist Philosophy__ Mindful pause and skillful means
 
 ### Citation
 
@@ -638,23 +638,23 @@ TML draws from diverse philosophical traditions:
 
 ## Community and Collaboration
 
-### 🌍 Join the Movement
+###  Join the Movement
 
 We're building a global community around ethical AI decision-making:
 
-- **⭐ Star this repository** to show support for ethical AI
-- **💬 Create discussions** via GitHub Issues for questions and ideas
-- **🐛 Report issues** to improve the framework
-- **🤝 Contribute** following our [contribution guidelines](community/CONTRIBUTING.md)
+- __⭐ Star this repository__ to show support for ethical AI
+- __Create discussions__ via GitHub Issues for questions and ideas
+- __Report issues__ to improve the framework
+- __Contribute__ following our [contribution guidelines](community/CONTRIBUTING.md)
 
-### 👥 Who's Using TML?
+###  Who's Using TML?
 
 **Researchers**: Studying AI ethics and moral reasoning
 **Developers**: Building more responsible AI applications  
 **Ethicists**: Exploring computational approaches to moral philosophy
 **Organizations**: Implementing ethical AI governance
 
-### 🎓 Educational Use
+###  Educational Use
 
 TML is being integrated into:
 - University AI ethics courses
@@ -681,66 +681,66 @@ In accordance with our [ethical license](LICENSE), TML may not be used for:
 ### Community Values
 
 Our community operates according to the same ethical principles TML promotes:
-- **Transparency**: Open about capabilities and limitations
-- **Inclusion**: Welcoming diverse perspectives and backgrounds
-- **Responsibility**: Accountable for our collective impact
-- **Wisdom**: Prioritizing thoughtful decisions over quick ones
+- __Transparency__ Open about capabilities and limitations
+- __Inclusion__ Welcoming diverse perspectives and backgrounds
+- __Responsibility__ Accountable for our collective impact
+- __Wisdom__ Prioritizing thoughtful decisions over quick ones
 
 ---
 
 ## Getting Help and Support
 
-### 📚 Documentation
+###  Documentation
 
-- **New Users**: Start with [Getting Started Guide](docs/getting-started.md)
-- **Developers**: Explore [API Reference](docs/api-reference.md)  
-- **Researchers**: Read [Philosophical Foundations](theory/philosophical-foundations.md)
-- **Examples**: Study [Case Studies](theory/case-studies.md)
+- __New Users__ Start with [Getting Started Guide](docs/getting-started.md)
+- __Developers__ Explore [API Reference](docs/api-reference.md)  
+- __Researchers__ Read [Philosophical Foundations](theory/philosophical-foundations.md)
+- __Examples__ Study [Case Studies](theory/case-studies.md)
 
-### 💬 Community Support
+###  Community Support
 
-- **Bug Reports**: Submit [GitHub Issues](https://github.com/FractonicMind/TernaryMoralLogic/issues)
-- **Feature Requests**: Propose via GitHub Issues with "enhancement" label
-- **Academic Collaboration**: Contact maintainers for research partnerships
+- __Bug Reports__ Submit [GitHub Issues](https://github.com/FractonicMind/TernaryMoralLogic/issues)
+- __Feature Requests__ Propose via GitHub Issues with "enhancement" label
+- __Academic Collaboration__ Contact maintainers for research partnerships
 
-### 🚀 Quick Links
+###  Quick Links
 
 | Resource | Description | Link |
 |----------|-------------|------|
-| 🎮 **Interactive Demo** | Try TML in your browser | [TML Interactive Demonstrator](https://fractonicmind.github.io/TernaryMoralLogic/TML-App/) |
-| 📖 **Getting Started** | 5-minute introduction | [Read Guide](docs/getting-started.md) |
-| 🔧 **API Docs** | Technical reference | [API Reference](docs/api-reference.md) |
-| 💡 **Examples** | Code demonstrations | [Browse Examples](examples/) |
-| 🤝 **Contributing** | Join the project | [Contribution Guide](community/CONTRIBUTING.md) |
-| 📚 **Case Studies** | Real-world applications | [Case Studies](theory/case-studies.md) |
+|  **Interactive Demo** | Try TML in your browser | [TML Interactive Demonstrator](https://fractonicmind.github.io/TernaryMoralLogic/TML-App/) |
+|  **Getting Started** | 5-minute introduction | [Read Guide](docs/getting-started.md) |
+|  **API Docs** | Technical reference | [API Reference](docs/api-reference.md) |
+|  **Examples** | Code demonstrations | [Browse Examples](examples/) |
+|  **Contributing** | Join the project | [Contribution Guide](community/CONTRIBUTING.md) |
+|  **Case Studies** | Real-world applications | [Case Studies](theory/case-studies.md) |
 
 ---
 
 ## Project Status and Roadmap
 
-### ✅ Completed (Phase 1)
+###  Completed (Phase 1)
 
-- ✅ Core TML framework implementation
-- ✅ Comprehensive documentation and examples
-- ✅ Basic value detection and conflict analysis
-- ✅ Python library with full API
-- ✅ Community guidelines and governance
+-  Core TML framework implementation
+-  Comprehensive documentation and examples
+-  Basic value detection and conflict analysis
+-  Python library with full API
+-  Community guidelines and governance
 
-### 🚧 In Progress (Phase 2)
+###  In Progress (Phase 2)
 
-- 🔄 Peer review publication process
-- 🔄 University course integration
-- 🔄 Advanced value detection using ML
-- 🔄 Multi-language support (JavaScript, R)
-- 🔄 Performance optimization and scaling
+-  Peer review publication process
+-  University course integration
+-  Advanced value detection using ML
+-  Multi-language support (JavaScript, R)
+-  Performance optimization and scaling
 
-### 🔮 Future (Phase 3)
+###  Future (Phase 3)
 
-- 📅 Integration with major AI frameworks
-- 📅 Mobile and web applications
-- 📅 Cross-cultural value system adaptation
-- 📅 Policy integration with governance bodies
-- 📅 Advanced visualization and analytics tools
+-  Integration with major AI frameworks
+-  Mobile and web applications
+-  Cross-cultural value system adaptation
+-  Policy integration with governance bodies
+-  Advanced visualization and analytics tools
 
 ---
 
@@ -799,9 +799,9 @@ This framework represents more than code—it embodies Lev Goukassian's final co
 
 Consider contributing to the **Lev Goukassian Memorial Fund for Ethical AI Research**:
 
-- **Purpose**: Supporting continued research in ethical AI and moral reasoning
-- **Impact**: Scholarships, research grants, and educational initiatives
-- **Legacy**: Ensuring Lev's vision continues to benefit future generations
+- __Purpose__ Supporting continued research in ethical AI and moral reasoning
+- __Impact__ Scholarships, research grants, and educational initiatives
+- __Legacy__ Ensuring Lev's vision continues to benefit future generations
 
 [Learn more about the Memorial Fund →](memorial/MEMORIAL_FUND.md)
 
@@ -809,10 +809,10 @@ Consider contributing to the **Lev Goukassian Memorial Fund for Ethical AI Resea
 
 ### Research Impact
 
-- **Citations**: Growing academic recognition
-- **Implementations**: Multiple domain applications  
-- **Community**: Active global participation
-- **Education**: Integration in university curricula
+- __Citations__ Growing academic recognition
+- __Implementations__ Multiple domain applications  
+- __Community__ Active global participation
+- __Education__ Integration in university curricula
 
 ---
 
@@ -839,10 +839,10 @@ TML builds upon decades of moral philosophy and AI ethics research. We acknowled
 ## License and Usage
 
 This project is licensed under the **MIT License with Ethical Use Requirements**. This ensures:
-- ✅ **Free use** for research, education, and beneficial applications
-- ✅ **Open source** development and modification
-- ❌ **Prohibited use** for surveillance, discrimination, or harm
-- 🤝 **Community accountability** for ethical implementation
+-  __Free use__ for research, education, and beneficial applications
+-  __Open source__ development and modification
+-  __Prohibited use__ for surveillance, discrimination, or harm
+-  __Community accountability__ for ethical implementation
 
 **License Inquiries**: leogouk@gmail.com | support@tml-goukassian.org (see [Succession Charter](TML-SUCCESSION-CHARTER.md)) For licensing, technical support, or collaboration inquiries.
 
@@ -850,16 +850,16 @@ See [LICENSE](LICENSE) for complete terms, or explore our [Ternary License Demo]
 
 ---
 
-## 📧 Contact & Succession
+##  Contact & Succession
 
 **Current Contact**: Lev Goukassian  
-- **Email**: leogouk@gmail.com  
-- **ORCID**: 0009-0006-5966-1243  
+- __Email__ leogouk@gmail.com  
+- __ORCID__ 0009-0006-5966-1243  
 
 **Successor Contact**: support@tml-goukassian.org  
-- **Purpose**: Institutional stewardship for TML framework continuity  
-- **Activation**: Upon creator incapacity or as outlined in [Succession Charter](TML-SUCCESSION-CHARTER.md)  
-- **Services**: Licensing, technical support, collaboration inquiries, Memorial Fund administration  
+- __Purpose__ Institutional stewardship for TML framework continuity  
+- __Activation__ Upon creator incapacity or as outlined in [Succession Charter](TML-SUCCESSION-CHARTER.md)  
+- __Services__ Licensing, technical support, collaboration inquiries, Memorial Fund administration  
 
 For immediate assistance, use current contact. For information about long-term framework stewardship and institutional succession planning, see our [TML Succession Charter](TML-SUCCESSION-CHARTER.md).
 
@@ -877,7 +877,7 @@ Every time you use TML, you honor Lev Goukassian's memory and advance his vision
 
 ---
 
-### 🚀 Ready to Begin?
+###  Ready to Begin?
 
 ```bash
 git clone https://github.com/FractonicMind/TernaryMoralLogic.git

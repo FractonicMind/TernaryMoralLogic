@@ -271,9 +271,9 @@ def format_tml_response(response: TMLResponse) -> str:
     """Format a TML response for human-readable output"""
     
     state_symbols = {
-        TMLState.AFFIRMATION: "+1 ✓",
+        TMLState.AFFIRMATION: "+1 ",
         TMLState.NEUTRALITY: " 0 ⸻",
-        TMLState.RESISTANCE: "-1 ⚠"
+        TMLState.RESISTANCE: "-1 "
     }
     
     output = f"""

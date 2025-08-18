@@ -133,12 +133,12 @@ def quick_start_example():
     
     # Check the result
     if result.state == TMLState.AFFIRMATION:
-        print("✓ Proceed with confidence")
+        print(" Proceed with confidence")
     elif result.state == TMLState.SACRED_PAUSE:
         print("⸻ Pause for reflection")
         print(f"Questions to consider: {result.clarifying_questions}")
     elif result.state == TMLState.RESISTANCE:
-        print("⚠ Ethical resistance detected")
+        print(" Ethical resistance detected")
         print(f"Conflicts: {[c.description for c in result.value_conflicts]}")
     
     print(f"Reasoning: {result.reasoning}")

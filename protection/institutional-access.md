@@ -32,85 +32,85 @@ The following institutions receive immediate access to the full TML framework ba
 ### Tier 1: Leading Academic Institutions
 
 **Stanford University**
-- **Departments**: Computer Science, AI Ethics, Human-Centered AI Institute
-- **Access Level**: Full research and educational use
-- **Special Permissions**: Derivative framework development, student research projects
-- **Contact**: hai-info@stanford.edu
-- **Justification**: Pioneer in human-centered AI and ethical technology development
+- __Departments__ Computer Science, AI Ethics, Human-Centered AI Institute
+- __Access Level__ Full research and educational use
+- __Special Permissions__ Derivative framework development, student research projects
+- __Contact__ hai-info@stanford.edu
+- __Justification__ Pioneer in human-centered AI and ethical technology development
 
 **Massachusetts Institute of Technology (MIT)**
-- **Departments**: CSAIL, Computer Science, AI Ethics for Social Good
-- **Access Level**: Full research and educational use
-- **Special Permissions**: Technical improvements, integration projects
-- **Contact**: csail-info@mit.edu
-- **Justification**: Leading research institution with strong ethics focus
+- __Departments__ CSAIL, Computer Science, AI Ethics for Social Good
+- __Access Level__ Full research and educational use
+- __Special Permissions__ Technical improvements, integration projects
+- __Contact__ csail-info@mit.edu
+- __Justification__ Leading research institution with strong ethics focus
 
 **Harvard University**
-- **Departments**: Computer Science, Kennedy School, Business School Ethics
-- **Access Level**: Full research and policy analysis
-- **Special Permissions**: Policy recommendation development, case study creation
-- **Contact**: seas-research@harvard.edu
-- **Justification**: Excellence in ethics research and policy development
+- __Departments__ Computer Science, Kennedy School, Business School Ethics
+- __Access Level__ Full research and policy analysis
+- __Special Permissions__ Policy recommendation development, case study creation
+- __Contact__ seas-research@harvard.edu
+- __Justification__ Excellence in ethics research and policy development
 
 **University of Oxford**
-- **Departments**: Future of Humanity Institute, Computer Science, Philosophy
-- **Access Level**: Full research and safety analysis
-- **Special Permissions**: AI safety research, existential risk analysis
-- **Contact**: admin@fhi.ox.ac.uk
-- **Justification**: Global leader in AI safety and long-term thinking
+- __Departments__ Future of Humanity Institute, Computer Science, Philosophy
+- __Access Level__ Full research and safety analysis
+- __Special Permissions__ AI safety research, existential risk analysis
+- __Contact__ admin@fhi.ox.ac.uk
+- __Justification__ Global leader in AI safety and long-term thinking
 
 **University of Cambridge**
-- **Departments**: Computer Laboratory, Centre for AI Ethics
-- **Access Level**: Full research and educational use
-- **Special Permissions**: International collaboration projects
-- **Contact**: ai-ethics@cam.ac.uk
-- **Justification**: Strong tradition in ethics and responsible technology
+- __Departments__ Computer Laboratory, Centre for AI Ethics
+- __Access Level__ Full research and educational use
+- __Special Permissions__ International collaboration projects
+- __Contact__ ai-ethics@cam.ac.uk
+- __Justification__ Strong tradition in ethics and responsible technology
 
 ### Tier 2: Specialized Research Institutes
 
 **Brookings Institution**
-- **Departments**: AI Research, Economic Studies, Governance Studies
-- **Access Level**: Policy analysis and recommendation development
-- **Special Permissions**: Congressional testimony preparation, policy briefs
-- **Contact**: research@brookings.edu
-- **Justification**: Respected policy research and government advisory role
+- __Departments__ AI Research, Economic Studies, Governance Studies
+- __Access Level__ Policy analysis and recommendation development
+- __Special Permissions__ Congressional testimony preparation, policy briefs
+- __Contact__ research@brookings.edu
+- __Justification__ Respected policy research and government advisory role
 
 **RAND Corporation**
-- **Departments**: AI and Ethics, National Security Research, Public Policy
-- **Access Level**: Research and security analysis
-- **Special Permissions**: Security applications, risk assessment studies
-- **Contact**: research@rand.org
-- **Justification**: Rigorous analysis methodology and public service mission
+- __Departments__ AI and Ethics, National Security Research, Public Policy
+- __Access Level__ Research and security analysis
+- __Special Permissions__ Security applications, risk assessment studies
+- __Contact__ research@rand.org
+- __Justification__ Rigorous analysis methodology and public service mission
 
 **Future of Humanity Institute (Oxford)**
-- **Departments**: AI Safety, Long-term Impact, Existential Risk
-- **Access Level**: Safety research and long-term analysis
-- **Special Permissions**: Safety protocol development, risk mitigation
-- **Contact**: admin@fhi.ox.ac.uk
-- **Justification**: Focus on beneficial AI and long-term human welfare
+- __Departments__ AI Safety, Long-term Impact, Existential Risk
+- __Access Level__ Safety research and long-term analysis
+- __Special Permissions__ Safety protocol development, risk mitigation
+- __Contact__ admin@fhi.ox.ac.uk
+- __Justification__ Focus on beneficial AI and long-term human welfare
 
 ### Tier 3: International Organizations
 
 **United Nations - AI Advisory Body**
-- **Departments**: AI Governance, Sustainable Development, Human Rights
-- **Access Level**: Policy analysis and international standards development
-- **Special Permissions**: Global governance recommendations, developing nation access
-- **Contact**: ai-governance@un.org
-- **Justification**: Global governance mandate and human rights focus
+- __Departments__ AI Governance, Sustainable Development, Human Rights
+- __Access Level__ Policy analysis and international standards development
+- __Special Permissions__ Global governance recommendations, developing nation access
+- __Contact__ ai-governance@un.org
+- __Justification__ Global governance mandate and human rights focus
 
 **World Health Organization (WHO)**
-- **Departments**: Digital Health, Health Ethics, Global Health Policy
-- **Access Level**: Healthcare ethics analysis and policy development
-- **Special Permissions**: Global health guidelines, pandemic response protocols
-- **Contact**: digital-health@who.int
-- **Justification**: Global health mandate and ethical healthcare focus
+- __Departments__ Digital Health, Health Ethics, Global Health Policy
+- __Access Level__ Healthcare ethics analysis and policy development
+- __Special Permissions__ Global health guidelines, pandemic response protocols
+- __Contact__ digital-health@who.int
+- __Justification__ Global health mandate and ethical healthcare focus
 
 **European Commission - AI Unit**
-- **Departments**: DG CNECT, AI Ethics Guidelines, Digital Policy
-- **Access Level**: Regulatory analysis and standards development
-- **Special Permissions**: EU AI Act implementation, regulatory guidance
-- **Contact**: cnect-ai@ec.europa.eu
-- **Justification**: Leadership in AI regulation and ethics standards
+- __Departments__ DG CNECT, AI Ethics Guidelines, Digital Policy
+- __Access Level__ Regulatory analysis and standards development
+- __Special Permissions__ EU AI Act implementation, regulatory guidance
+- __Contact__ cnect-ai@ec.europa.eu
+- __Justification__ Leadership in AI regulation and ethics standards
 
 ---
 

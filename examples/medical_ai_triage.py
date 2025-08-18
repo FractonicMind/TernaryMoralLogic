@@ -153,8 +153,8 @@ class MedicalTriageSystem:
         Complex allocation requiring Sacred Pause deliberation
         Uses multi-criteria decision analysis with ethical weighting
         """
-        print("🔄 Sacred Pause Engaged - Complex Medical Ethics Decision")
-        print("⏱️  Additional deliberation time: 2000ms")
+        print(" Sacred Pause Engaged - Complex Medical Ethics Decision")
+        print("⏱  Additional deliberation time: 2000ms")
         
         # Sacred Pause reflection considerations
         ethical_principles = [
@@ -165,7 +165,7 @@ class MedicalTriageSystem:
             "Respect individual dignity and autonomy"
         ]
         
-        print("🤔 Ethical Principles Under Consideration:")
+        print(" Ethical Principles Under Consideration:")
         for principle in ethical_principles:
             print(f"   • {principle}")
         
@@ -269,7 +269,7 @@ class MedicalTriageSystem:
         justification += f"Moral Framework State: {tml_result.state.value}\n\n"
         
         if tml_result.state == TMLState.SACRED_PAUSE:
-            justification += "⚠️  COMPLEX ETHICAL SCENARIO DETECTED\n"
+            justification += "  COMPLEX ETHICAL SCENARIO DETECTED\n"
             justification += "Sacred Pause engaged for additional ethical deliberation.\n"
             justification += "Multi-criteria analysis applied considering:\n"
             justification += "• Utilitarian outcomes (lives saved)\n"
@@ -309,13 +309,13 @@ class MedicalTriageSystem:
 def demo_medical_triage():
     """Demonstration of medical triage system with various complexity scenarios"""
     
-    print("🏥 Medical AI Triage System - TML Framework Demo")
+    print(" Medical AI Triage System - TML Framework Demo")
     print("=" * 60)
     
     triage_system = MedicalTriageSystem()
     
     # Scenario 1: Simple case (should be AFFIRMATION state)
-    print("\n📊 SCENARIO 1: Standard Triage (Low Complexity)")
+    print("\n SCENARIO 1: Standard Triage (Low Complexity)")
     print("-" * 40)
     
     simple_patients = [
@@ -329,7 +329,7 @@ def demo_medical_triage():
     print(f"Complexity Score: {result1['complexity_analysis']['total_complexity']:.3f}")
     
     # Scenario 2: Complex ethical dilemma (should trigger Sacred Pause)
-    print("\n⚠️  SCENARIO 2: Complex Ethical Dilemma (High Complexity)")
+    print("\n  SCENARIO 2: Complex Ethical Dilemma (High Complexity)")
     print("-" * 50)
     
     complex_patients = [
@@ -345,14 +345,14 @@ def demo_medical_triage():
     print(f"Complexity Score: {result2['complexity_analysis']['total_complexity']:.3f}")
     
     if result2['sacred_pause_engaged']:
-        print("\n🔄 Sacred Pause Justification:")
+        print("\n Sacred Pause Justification:")
         print(result2['justification'])
     
     # Export audit trail
     triage_system.export_decisions("medical_triage_audit.json")
-    print("\n📋 Decision audit trail exported to: medical_triage_audit.json")
+    print("\n Decision audit trail exported to: medical_triage_audit.json")
     
-    print("\n✅ Demo completed! TML framework successfully handled medical ethics.")
+    print("\n Demo completed! TML framework successfully handled medical ethics.")
 
 
 if __name__ == "__main__":

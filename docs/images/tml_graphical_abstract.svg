@@ -216,7 +216,7 @@
     <g transform="translate(300, 25)">
       <circle cx="25" cy="15" r="20" fill="#f39c12" filter="url(#glow)"/>
       <text x="25" y="20" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="white" font-weight="bold">
-        ⚖
+        
       </text>
       <text x="25" y="50" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#2c3e50" font-weight="bold">
         Sacred Pause

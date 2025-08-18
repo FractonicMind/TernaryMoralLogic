@@ -211,8 +211,8 @@ class AutonomousVehicleEthics:
         """
         start_time = time.time()
         
-        print("🚗 Sacred Pause Engaged - Complex Autonomous Vehicle Ethics")
-        print("⏱️  Enhanced deliberation time: 1500ms")
+        print(" Sacred Pause Engaged - Complex Autonomous Vehicle Ethics")
+        print("⏱  Enhanced deliberation time: 1500ms")
         
         # Sacred Pause ethical framework analysis
         ethical_frameworks = [
@@ -223,7 +223,7 @@ class AutonomousVehicleEthics:
             "Legal Framework: Follow traffic laws and liability rules"
         ]
         
-        print("🤔 Ethical Frameworks Under Consideration:")
+        print(" Ethical Frameworks Under Consideration:")
         for framework in ethical_frameworks:
             print(f"   • {framework}")
         
@@ -348,7 +348,7 @@ class AutonomousVehicleEthics:
                                        scores: Dict[ActionType, float]) -> str:
         """Generate detailed reasoning for Sacred Pause decisions"""
         
-        reasoning = "🔄 SACRED PAUSE MORAL ANALYSIS:\n\n"
+        reasoning = " SACRED PAUSE MORAL ANALYSIS:\n\n"
         reasoning += "This scenario triggered enhanced ethical deliberation due to complex moral factors:\n"
         reasoning += f"• Multiple lives at stake across different paths\n"
         reasoning += f"• Competing ethical principles (utilitarian vs. individual rights)\n"
@@ -391,13 +391,13 @@ class AutonomousVehicleEthics:
 def demo_autonomous_vehicle_ethics():
     """Demonstration of autonomous vehicle ethics with various moral scenarios"""
     
-    print("🚗 Autonomous Vehicle Ethics System - TML Framework Demo")
+    print(" Autonomous Vehicle Ethics System - TML Framework Demo")
     print("=" * 65)
     
     ethics_system = AutonomousVehicleEthics()
     
     # Scenario 1: Simple case - no people in alternate paths
-    print("\n📊 SCENARIO 1: Simple Obstacle Avoidance (Low Complexity)")
+    print("\n SCENARIO 1: Simple Obstacle Avoidance (Low Complexity)")
     print("-" * 50)
     
     simple_scenario = Scenario(
@@ -419,7 +419,7 @@ def demo_autonomous_vehicle_ethics():
     print(f"Confidence: {result1['confidence_score']:.3f}")
     
     # Scenario 2: Classic trolley problem - unavoidable harm
-    print("\n⚠️  SCENARIO 2: Classic Trolley Problem (High Complexity)")
+    print("\n  SCENARIO 2: Classic Trolley Problem (High Complexity)")
     print("-" * 55)
     
     trolley_scenario = Scenario(
@@ -442,11 +442,11 @@ def demo_autonomous_vehicle_ethics():
     print(f"Decision Time: {result2['decision_time_ms']:.1f}ms")
     
     if result2['sacred_pause_engaged']:
-        print(f"\n🔄 Sacred Pause Ethical Analysis:")
+        print(f"\n Sacred Pause Ethical Analysis:")
         print(result2['ethical_analysis'])
     
     # Scenario 3: Vulnerable populations and legal compliance
-    print("\n👶 SCENARIO 3: Vulnerable Populations & Legal Factors")
+    print("\n SCENARIO 3: Vulnerable Populations & Legal Factors")
     print("-" * 50)
     
     vulnerable_scenario = Scenario(
@@ -468,9 +468,9 @@ def demo_autonomous_vehicle_ethics():
     
     # Export audit trail
     ethics_system.export_decisions("autonomous_vehicle_audit.json")
-    print(f"\n📋 Decision audit trail exported to: autonomous_vehicle_audit.json")
+    print(f"\n Decision audit trail exported to: autonomous_vehicle_audit.json")
     
-    print(f"\n✅ Demo completed! TML framework handled {len(ethics_system.decision_log)} moral scenarios.")
+    print(f"\n Demo completed! TML framework handled {len(ethics_system.decision_log)} moral scenarios.")
     print("Sacred Pause engaged for complex ethical dilemmas requiring enhanced deliberation.")
 
 

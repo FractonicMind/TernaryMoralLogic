@@ -31,9 +31,9 @@ def clean_file(filename):
         if content != cleaned_content:
             with open(filename, 'w', encoding='utf-8') as f_write:
                 f_write.write(cleaned_content)
-            print(f"✅ Cleaned emojis from: {filename}")
+            print(f" Cleaned emojis from: {filename}")
         else:
-            print(f"ℹ️ No emojis found in: {filename}")
+            print(f"ℹ No emojis found in: {filename}")
 
     except Exception as e:
         print(f"Error processing {filename}: {e}", file=sys.stderr)

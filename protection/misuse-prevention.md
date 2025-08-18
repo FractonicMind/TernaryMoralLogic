@@ -133,11 +133,11 @@ Community Support: [Letters of support from affected parties]
 Proposed Probation Terms: [Suggested monitoring and restrictions]
 
 Restoration Conditions Accepted:
-☐ Enhanced monitoring and reporting requirements
-☐ Limited use case restrictions during probation period
-☐ Community oversight and regular check-ins
-☐ Contribution to TML improvement and community education
-☐ Public accountability measures and transparency
+ Enhanced monitoring and reporting requirements
+ Limited use case restrictions during probation period
+ Community oversight and regular check-ins
+ Contribution to TML improvement and community education
+ Public accountability measures and transparency
 ```
 
 ## Monitoring Proper Use
@@ -270,17 +270,17 @@ The Ternary Moral Logic framework was created to enhance human moral reasoning a
 
 Just as TML introduces the Sacred Pause for complex moral decisions, our prevention protocols incorporate deliberate reflection before taking protective action. We distinguish between:
 
-- **Immediate Threats**: Clear violations requiring instant response
-- **Complex Situations**: Potential misuse requiring community consultation  
-- **Educational Opportunities**: Misconceptions that need clarification rather than enforcement
+- __Immediate Threats__ Clear violations requiring instant response
+- __Complex Situations__ Potential misuse requiring community consultation  
+- __Educational Opportunities__ Misconceptions that need clarification rather than enforcement
 
 ### Proportional Response Principle
 
 Protection measures scale with threat severity:
-- **Education First**: Most issues stem from misunderstanding, not malice
-- **Community Pressure**: Peer accountability often more effective than legal action
-- **Technical Safeguards**: Built-in protections that make misuse difficult
-- **Legal Action**: Reserved for serious, persistent violations
+- __Education First__ Most issues stem from misunderstanding, not malice
+- __Community Pressure__ Peer accountability often more effective than legal action
+- __Technical Safeguards__ Built-in protections that make misuse difficult
+- __Legal Action__ Reserved for serious, persistent violations
 
 ---
 
@@ -378,11 +378,11 @@ def validate_use_case(context):
 MISUSE REPORTING FORM
 
 Type of Concern:
-☐ Surveillance/Oppression
-☐ Discrimination/Bias  
-☐ Deception/Manipulation
-☐ Weapons/Harm
-☐ Other: _______________
+ Surveillance/Oppression
+ Discrimination/Bias  
+ Deception/Manipulation
+ Weapons/Harm
+ Other: _______________
 
 Details:
 - Organization/Entity: [Name if known]
@@ -397,11 +397,11 @@ Reporter Information (Optional):
 - Contact: [For follow-up if desired]
 
 Preferred Response:
-☐ Public community discussion
-☐ Private investigation
-☐ Educational outreach
-☐ Technical intervention
-☐ Legal consultation
+ Public community discussion
+ Private investigation
+ Educational outreach
+ Technical intervention
+ Legal consultation
 ```
 
 ### Technical Monitoring

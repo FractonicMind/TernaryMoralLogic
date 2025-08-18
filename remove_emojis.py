@@ -15,7 +15,7 @@ def clean_file(filename):
     "["
     "\U0001F1E0-\U0001F1FF"  # Flags
     # ... other lines ...
-    "\uFE0F"                # Variation Selector (for things like ⚖️)
+    "\uFE0F"                # Variation Selector (for things like )
     "]+" # <--- ADD THIS PLUS SIGN
 )
         
@@ -27,9 +27,9 @@ def clean_file(filename):
         if content != cleaned_content:
             with open(filename, 'w', encoding='utf-8') as f_write:
                 f_write.write(cleaned_content)
-            print(f"✅ Cleaned remaining emojis from: {filename}")
+            print(f" Cleaned remaining emojis from: {filename}")
         else:
-            print(f"ℹ️ No emojis found in: {filename}")
+            print(f"ℹ No emojis found in: {filename}")
 
     except Exception as e:
         print(f"Error processing {filename}: {e}", file=sys.stderr)

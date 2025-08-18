@@ -13,9 +13,9 @@ This document establishes comprehensive intellectual property rights and innovat
 
 **INNOVATION CLAIM**: Lev Goukassian is the original creator and inventor of the three-state decision logic system specifically applied to AI ethical reasoning, defined as:
 
-- **State -1 (Moral Resistance)**: Active ethical objection with reasoned opposition
-- **State 0 (Sacred Pause)**: Deliberate hesitation for moral complexity requiring human consultation  
-- **State +1 (Affirmation)**: Ethical alignment permitting confident action
+- __State -1 (Moral Resistance)__ Active ethical objection with reasoned opposition
+- __State 0 (Sacred Pause)__ Deliberate hesitation for moral complexity requiring human consultation  
+- __State +1 (Affirmation)__ Ethical alignment permitting confident action
 
 **MATHEMATICAL NOTATION**: The specific notation, state definitions, and transitional logic between these three states (-1, 0, +1) as applied to AI decision-making systems.
 
@@ -82,17 +82,17 @@ This document establishes comprehensive intellectual property rights and innovat
 
 **CLAIMED TRADEMARKS** (Common Law Rights Established Through Use):
 
-- **"Ternary Moral Logic"** - For AI ethics framework and related services
-- **"Ternary Logic"** - For three-state mathematical reasoning and computational services
-- **"Sacred Pause"** - For AI decision-making methodology and consultation services
-- **"TML Framework"** - For software and educational services
-- **"Goukassian Framework"** - For mathematical and computational methodologies
+- __"Ternary Moral Logic"__ - For AI ethics framework and related services
+- __"Ternary Logic"__ - For three-state mathematical reasoning and computational services
+- __"Sacred Pause"__ - For AI decision-making methodology and consultation services
+- __"TML Framework"__ - For software and educational services
+- __"Goukassian Framework"__ - For mathematical and computational methodologies
 
 ### Secondary Marks
 
-- **"Moral Resistance"** - For AI ethical objection mechanisms
-- **"Ethical Affirmation"** - For AI confidence-based decision protocols
-- **"The pause that saves"** - For AI safety and ethical decision-making
+- __"Moral Resistance"__ - For AI ethical objection mechanisms
+- __"Ethical Affirmation"__ - For AI confidence-based decision protocols
+- __"The pause that saves"__ - For AI safety and ethical decision-making
 
 **TRADEMARK SCOPE**: These marks are claimed for use in connection with:
 - Computer software for AI ethics and decision-making
@@ -343,21 +343,21 @@ Software Attribution:
 ## Contact Information for IP Matters
 
 ### Rights Holder Contact
-- **Primary Contact**: leogouk@gmail.com
-- **ORCID**: 0009-0006-5966-1243
-- **Repository**: https://github.com/leogouk/tml-framework
+- __Primary Contact__ leogouk@gmail.com
+- __ORCID__ 0009-0006-5966-1243
+- __Repository__ https://github.com/leogouk/tml-framework
 
 ### Specialized IP Contacts
-- **Legal Matters**: governance@tml-goukassian.org
-- **Licensing Inquiries**: institutional@tml-goukassian.org
-- **Academic Collaboration**: academic@tml-goukassian.org
-- **Commercial Licensing**: institutional@tml-goukassian.org
-- **Enforcement Issues**: compliance@tml-goukassian.org
+- __Legal Matters__ governance@tml-goukassian.org
+- __Licensing Inquiries__ institutional@tml-goukassian.org
+- __Academic Collaboration__ academic@tml-goukassian.org
+- __Commercial Licensing__ institutional@tml-goukassian.org
+- __Enforcement Issues__ compliance@tml-goukassian.org
 
 ### Legal Representation
-- **Estate Planning**: [As designated]
-- **IP Attorney**: [To be appointed]
-- **Preservation Trustees**: [Per succession charter]
+- __Estate Planning__ [As designated]
+- __IP Attorney__ [To be appointed]
+- __Preservation Trustees__ [Per succession charter]
 
 ---
 

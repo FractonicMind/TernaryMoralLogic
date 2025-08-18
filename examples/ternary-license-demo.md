@@ -1,6 +1,6 @@
 # Ternary Logic License (Demonstration)
 
-**🎯 Educational Example: Applying TML Principles to Licensing**
+** Educational Example: Applying TML Principles to Licensing**
 
 > **Note**: This is a creative demonstration of how Ternary Moral Logic principles can be applied beyond AI ethics. For actual licensing of TML framework content, please use the [MIT + Ethical Use License](../LICENSE.md) in the repository root.
 
@@ -20,18 +20,18 @@ This document demonstrates how the Ternary Moral Logic framework can be creative
 
 ### Definitions
 
-- **"Content"** refers to any text, code, examples, or other materials related to Ternary Moral Logic (TML) created by Lev Goukassian and shared under this license.
-- **"Work"** means any material derived from or based on the original TML content.
-- **"Share"** refers to the act of distributing, disseminating, or making available the content or work to others.
-- **"Change"** means modifying, altering, or transforming the content or work in any way.
-- **"Claim"** refers to asserting ownership, authorship, or any rights over the content or work.
+- __"Content"__ refers to any text, code, examples, or other materials related to Ternary Moral Logic (TML) created by Lev Goukassian and shared under this license.
+- __"Work"__ means any material derived from or based on the original TML content.
+- __"Share"__ refers to the act of distributing, disseminating, or making available the content or work to others.
+- __"Change"__ means modifying, altering, or transforming the content or work in any way.
+- __"Claim"__ refers to asserting ownership, authorship, or any rights over the content or work.
 
 ### Ternary Decision Framework
 
 **Instead of traditional "allowed/prohibited" binary licensing, this framework uses TML's three-state logic:**
 
 #### +1 (PROCEED) - Explicitly Permitted Actions
-- **You may choose +1 to:**
+- __You may choose +1 to:__
   - Use the content for research, education, or ethical applications
   - Modify and improve the content for beneficial purposes
   - Share the content with proper attribution
@@ -39,7 +39,7 @@ This document demonstrates how the Ternary Moral Logic framework can be creative
   - Create derivative works that maintain ethical integrity
 
 #### 0 (SACRED PAUSE) - Reflection Required Actions  
-- **You must choose 0 (pause and consider) before:**
+- __You must choose 0 (pause and consider) before:__
   - Using content for commercial applications without consultation
   - Making significant modifications to core TML principles
   - Implementing content in systems affecting human welfare
@@ -49,7 +49,7 @@ This document demonstrates how the Ternary Moral Logic framework can be creative
 *Sacred Pause Protocol: Contact the original author for guidance when encountering 0-state decisions.*
 
 #### -1 (RESIST) - Prohibited Actions
-- **You may not choose -1 to:**
+- __You may not choose -1 to:__
   - Claim ownership or authorship of the original content
   - Use content for harmful, discriminatory, or unethical purposes
   - Remove attribution or misrepresent the source
@@ -60,10 +60,10 @@ This document demonstrates how the Ternary Moral Logic framework can be creative
 
 When choosing +1 (sharing), you must provide:
 
-- **Clear attribution** to the original creator: Lev Goukassian
-- **Link to original source**: https://github.com/leogouk/tml-framework
-- **Copyright notice**: "© 2025 Lev Goukassian. TML Framework under Ternary Logic License (Demo)"
-- **Sacred Pause acknowledgment**: "This work incorporates ethical decision-making principles from Ternary Moral Logic"
+- __Clear attribution__ to the original creator: Lev Goukassian
+- __Link to original source__ https://github.com/leogouk/tml-framework
+- __Copyright notice__ "© 2025 Lev Goukassian. TML Framework under Ternary Logic License (Demo)"
+- __Sacred Pause acknowledgment__ "This work incorporates ethical decision-making principles from Ternary Moral Logic"
 
 ### Ethical Compliance
 
@@ -73,10 +73,10 @@ All uses must align with the core TML principle: **AI systems should be capable 
 
 Rather than traditional legal enforcement, this license relies on:
 
-- **Transparency**: Open documentation of usage decisions
-- **Community oversight**: Peer review of implementations  
-- **Ethical accountability**: Alignment with TML's Sacred Pause principles
-- **Educational correction**: Guidance rather than punishment for violations
+- __Transparency__ Open documentation of usage decisions
+- __Community oversight__ Peer review of implementations  
+- __Ethical accountability__ Alignment with TML's Sacred Pause principles
+- __Educational correction__ Guidance rather than punishment for violations
 
 ---
 
@@ -85,10 +85,10 @@ Rather than traditional legal enforcement, this license relies on:
 ### Conference Presentations
 
 Use this license example to demonstrate:
-- **TML versatility**: Framework applies beyond AI ethics
-- **Ternary thinking**: How three-state logic works in practice
-- **Creative innovation**: Novel approaches to traditional problems
-- **Ethical framework**: Principles embedded in practical applications
+- __TML versatility__ Framework applies beyond AI ethics
+- __Ternary thinking__ How three-state logic works in practice
+- __Creative innovation__ Novel approaches to traditional problems
+- __Ethical framework__ Principles embedded in practical applications
 
 ### Academic Discussion
 
@@ -148,10 +148,10 @@ function evaluateLicenseUsage(intendedUse, context) {
 ### Integration with Development Tools
 
 Potential implementations:
-- **Package managers**: Warn on 0-state dependencies
-- **CI/CD systems**: Pause builds for ethical review
-- **Documentation tools**: Embed ethical considerations
-- **Community platforms**: Support Sacred Pause discussions
+- __Package managers__ Warn on 0-state dependencies
+- __CI/CD systems__ Pause builds for ethical review
+- __Documentation tools__ Embed ethical considerations
+- __Community platforms__ Support Sacred Pause discussions
 
 ---
 
@@ -159,10 +159,10 @@ Potential implementations:
 
 ### Potential Extensions
 
-- **Industry-specific ternary licenses** for healthcare, finance, education
-- **Community governance models** based on Sacred Pause principles
-- **Automated ethical assessment** tools for license compliance
-- **Cross-cultural adaptations** of ternary decision frameworks
+- __Industry-specific ternary licenses__ for healthcare, finance, education
+- __Community governance models__ based on Sacred Pause principles
+- __Automated ethical assessment__ tools for license compliance
+- __Cross-cultural adaptations__ of ternary decision frameworks
 
 ### Research Questions
 
@@ -183,11 +183,11 @@ The Ternary Logic License demonstrates how TML's Sacred Pause principle can be a
 
 ## References
 
-- **TML Framework**: [Main Repository](../README.md)
-- **Interactive Demo**: Available at TML project website
-- **Documentation**: [Complete TML Documentation](../docs/)
-- **Academic Resources**: [Research Papers](../docs/ACADEMIC_VALIDATION.md)
-- **Creator Contact**: leogouk@gmail.com
+- __TML Framework__ [Main Repository](../README.md)
+- __Interactive Demo__ Available at TML project website
+- __Documentation__ [Complete TML Documentation](../docs/)
+- __Academic Resources__ [Research Papers](../docs/ACADEMIC_VALIDATION.md)
+- __Creator Contact__ leogouk@gmail.com
 
 ---
 

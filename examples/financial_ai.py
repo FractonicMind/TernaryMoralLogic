@@ -327,8 +327,8 @@ class FinancialAIEthics:
         Complex financial decision requiring Sacred Pause deliberation
         Balances profitability, fairness, regulatory compliance, and social responsibility
         """
-        print("💰 Sacred Pause Engaged - Complex Financial Ethics Decision")
-        print("⏱️  Enhanced deliberation time: 2500ms")
+        print(" Sacred Pause Engaged - Complex Financial Ethics Decision")
+        print("⏱  Enhanced deliberation time: 2500ms")
         
         # Sacred Pause ethical considerations
         ethical_principles = [
@@ -340,7 +340,7 @@ class FinancialAIEthics:
             "Community Impact: Consider broader socioeconomic effects"
         ]
         
-        print("🤔 Financial Ethics Principles Under Consideration:")
+        print(" Financial Ethics Principles Under Consideration:")
         for principle in ethical_principles:
             print(f"   • {principle}")
         
@@ -526,7 +526,7 @@ class FinancialAIEthics:
                                                  scores: Dict) -> str:
         """Generate detailed reasoning for Sacred Pause financial decisions"""
         
-        reasoning = "💰 SACRED PAUSE FINANCIAL ETHICS ANALYSIS:\n\n"
+        reasoning = " SACRED PAUSE FINANCIAL ETHICS ANALYSIS:\n\n"
         reasoning += "This financial decision triggered enhanced ethical deliberation due to:\n"
         reasoning += f"• Complex intersection of risk assessment and fairness principles\n"
         reasoning += f"• Potential protected group impact requiring careful consideration\n"
@@ -602,7 +602,7 @@ class FinancialAIEthics:
 def demo_financial_ai_ethics():
     """Demonstration of financial AI ethics system with various complexity scenarios"""
     
-    print("💰 Financial AI Ethics System - TML Framework Demo")
+    print(" Financial AI Ethics System - TML Framework Demo")
     print("=" * 55)
     
     ethics_system = FinancialAIEthics()
@@ -624,7 +624,7 @@ def demo_financial_ai_ethics():
     )
     
     # Scenario 1: Standard loan approval (should be AFFIRMATION)
-    print("\n💳 SCENARIO 1: Standard Loan Approval (Low Complexity)")
+    print("\n SCENARIO 1: Standard Loan Approval (Low Complexity)")
     print("-" * 50)
     
     standard_request = FinancialRequest(
@@ -641,7 +641,7 @@ def demo_financial_ai_ethics():
     print(f"Bias Risk: {result1['bias_analysis']['disparate_impact_risk']:.3f}")
     
     # Scenario 2: Protected group loan (should trigger Sacred Pause)
-    print("\n⚖️  SCENARIO 2: Protected Group Financial Decision (High Complexity)")
+    print("\n  SCENARIO 2: Protected Group Financial Decision (High Complexity)")
     print("-" * 60)
     
     protected_request = FinancialRequest(
@@ -660,11 +660,11 @@ def demo_financial_ai_ethics():
     print(f"Human Review: {result2['human_review_required']}")
     
     if result2['sacred_pause_engaged']:
-        print(f"\n💰 Sacred Pause Financial Reasoning:")
+        print(f"\n Sacred Pause Financial Reasoning:")
         print(result2['reasoning'])
     
     # Scenario 3: Vulnerable customer (high ethical stakes)
-    print("\n👵 SCENARIO 3: Vulnerable Customer Protection")
+    print("\n SCENARIO 3: Vulnerable Customer Protection")
     print("-" * 45)
     
     vulnerable_request = FinancialRequest(
@@ -687,7 +687,7 @@ def demo_financial_ai_ethics():
     
     # Generate fairness report
     fairness_report = ethics_system.generate_fairness_report()
-    print(f"\n📊 FAIRNESS METRICS:")
+    print(f"\n FAIRNESS METRICS:")
     print(f"• Total Decisions: {fairness_report['total_decisions']}")
     print(f"• Sacred Pause Rate: {fairness_report['sacred_pause_rate']:.1%}")
     print(f"• Human Review Rate: {fairness_report['human_review_rate']:.1%}")
@@ -695,9 +695,9 @@ def demo_financial_ai_ethics():
     
     # Export audit trail
     ethics_system.export_decisions("financial_ai_audit.json")
-    print(f"\n📋 Financial audit trail exported to: financial_ai_audit.json")
+    print(f"\n Financial audit trail exported to: financial_ai_audit.json")
     
-    print(f"\n✅ Demo completed! TML framework ensured ethical financial decisions.")
+    print(f"\n Demo completed! TML framework ensured ethical financial decisions.")
     print("Sacred Pause protected against bias while enabling financial inclusion.")
 
 

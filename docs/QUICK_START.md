@@ -1,4 +1,4 @@
-# 🚀 TML Quick Start Guide
+#  TML Quick Start Guide
 
 ## Implement Sacred Pause for Ethical AI in 60 Minutes
 
@@ -6,21 +6,21 @@
 
 ---
 
-## ⏱️ What You'll Accomplish in 60 Minutes
+## ⏱ What You'll Accomplish in 60 Minutes
 
 By the end of this guide, you will have:
-- ✅ Installed TML Framework
-- ✅ Implemented Sacred Pause in a sample AI system
-- ✅ Configured domain-specific thresholds
-- ✅ Set up basic monitoring and audit trails
-- ✅ Tested ethical decision-making scenarios
-- ✅ Created your first Sacred Pause escalation
+-  Installed TML Framework
+-  Implemented Sacred Pause in a sample AI system
+-  Configured domain-specific thresholds
+-  Set up basic monitoring and audit trails
+-  Tested ethical decision-making scenarios
+-  Created your first Sacred Pause escalation
 
 **No prior TML experience required!**
 
 ---
 
-## 📋 Prerequisites (5 minutes)
+##  Prerequisites (5 minutes)
 
 ### System Requirements
 - Python 3.8 or higher
@@ -52,7 +52,7 @@ source tml_env/bin/activate
 
 ---
 
-## 🔧 Minute 0-10: Installation and Setup
+##  Minute 0-10: Installation and Setup
 
 ### Install TML Framework
 ```bash
@@ -71,7 +71,7 @@ cd ..
 # test_install.py
 import tml_framework
 print(f"TML Version: {tml_framework.__version__}")
-print("✅ TML successfully installed!")
+print(" TML successfully installed!")
 ```
 
 Run:
@@ -87,7 +87,7 @@ pip install numpy pandas flask
 
 ---
 
-## 💡 Minute 10-20: Your First Sacred Pause
+##  Minute 10-20: Your First Sacred Pause
 
 ### Create Basic Implementation
 ```python
@@ -96,11 +96,11 @@ from tml_framework import TMLEngine, MoralContext
 
 def main():
     # Step 1: Initialize TML Engine
-    print("🚀 Initializing TML Engine...")
+    print(" Initializing TML Engine...")
     tml = TMLEngine(domain="general")
     
     # Step 2: Create a moral context
-    print("🎭 Creating moral context...")
+    print(" Creating moral context...")
     context = MoralContext(
         action="share_user_data_with_third_party",
         stakeholders=["user", "company", "third_party"],
@@ -108,21 +108,21 @@ def main():
     )
     
     # Step 3: Evaluate the decision
-    print("🔍 Evaluating ethical decision...")
+    print(" Evaluating ethical decision...")
     decision = tml.evaluate(context)
     
     # Step 4: Handle the decision
-    print(f"\n📊 Decision: {decision.state}")
+    print(f"\n Decision: {decision.state}")
     print(f"Confidence: {decision.confidence:.2%}")
     
     if decision.state == "SACRED_PAUSE":
-        print("⏸️ Sacred Pause triggered!")
+        print("⏸ Sacred Pause triggered!")
         print(f"Reason: {decision.pause_reason}")
         print("Action: Escalating for human review...")
     elif decision.state == "PROCEED":
-        print("✅ Ethically cleared to proceed")
+        print(" Ethically cleared to proceed")
     else:  # STOP
-        print("🛑 Action ethically prohibited")
+        print(" Action ethically prohibited")
     
     return decision
 
@@ -137,20 +137,20 @@ python my_first_sacred_pause.py
 
 **Expected Output:**
 ```
-🚀 Initializing TML Engine...
-🎭 Creating moral context...
-🔍 Evaluating ethical decision...
+ Initializing TML Engine...
+ Creating moral context...
+ Evaluating ethical decision...
 
-📊 Decision: SACRED_PAUSE
+ Decision: SACRED_PAUSE
 Confidence: 45%
-⏸️ Sacred Pause triggered!
+⏸ Sacred Pause triggered!
 Reason: Stakeholder conflict detected
 Action: Escalating for human review...
 ```
 
 ---
 
-## 🏥 Minute 20-30: Domain-Specific Implementation
+##  Minute 20-30: Domain-Specific Implementation
 
 ### Healthcare AI Example
 ```python
@@ -215,19 +215,19 @@ class HealthcareAISystem:
         """Handle TML decision appropriately."""
         
         if decision.state == "PROCEED":
-            print(f"✅ Treatment approved: {treatment_plan['name']}")
+            print(f" Treatment approved: {treatment_plan['name']}")
             print(f"   Confidence: {decision.confidence:.2%}")
             # Implement treatment
             return self.implement_treatment(treatment_plan)
             
         elif decision.state == "SACRED_PAUSE":
-            print(f"⏸️ Ethics review required for: {treatment_plan['name']}")
+            print(f"⏸ Ethics review required for: {treatment_plan['name']}")
             print(f"   Reason: {decision.pause_reason}")
             # Escalate to medical ethics board
             return self.escalate_to_ethics_board(decision, treatment_plan)
             
         else:  # STOP
-            print(f"🛑 Treatment not recommended: {treatment_plan['name']}")
+            print(f" Treatment not recommended: {treatment_plan['name']}")
             print(f"   Ethical concerns: {decision.reasoning}")
             # Document why treatment was rejected
             return self.document_rejection(decision, treatment_plan)
@@ -276,11 +276,11 @@ if __name__ == "__main__":
         }
     ]
     
-    print("🏥 Healthcare AI Ethical Evaluation System\n")
+    print(" Healthcare AI Ethical Evaluation System\n")
     print("=" * 50)
     
     for treatment in test_treatments:
-        print(f"\n📋 Evaluating: {treatment['name']}")
+        print(f"\n Evaluating: {treatment['name']}")
         print(f"   Success Rate: {treatment['success_rate']:.1%}")
         print(f"   Risk Level: {treatment['risk_level']:.1%}")
         
@@ -290,7 +290,7 @@ if __name__ == "__main__":
         print("=" * 50)
     
     # Show summary
-    print(f"\n📊 Summary: {len(healthcare_ai.decisions_made)} decisions made")
+    print(f"\n Summary: {len(healthcare_ai.decisions_made)} decisions made")
     for d in healthcare_ai.decisions_made:
         print(f"   • {d['treatment']}: {d['decision']} ({d['confidence']:.1%} confidence)")
 ```
@@ -302,7 +302,7 @@ python healthcare_ai.py
 
 ---
 
-## 🔍 Minute 30-40: Configure Monitoring & Audit
+##  Minute 30-40: Configure Monitoring & Audit
 
 ### Set Up Basic Monitoring
 ```python
@@ -376,23 +376,23 @@ class MonitoredAISystem:
             with open(self.audit_file, 'a') as f:
                 f.write(json.dumps(record) + '\n')
         except Exception as e:
-            print(f"⚠️ Audit write failed: {e}")
+            print(f" Audit write failed: {e}")
     
     def check_alerts(self):
         """Check for monitoring alerts."""
         metrics = self.engine.get_metrics(period="hour")
         
         if metrics.sacred_pause_rate > 0.15:
-            print("🚨 ALERT: High Sacred Pause rate detected!")
+            print(" ALERT: High Sacred Pause rate detected!")
             print(f"   Current rate: {metrics.sacred_pause_rate:.1%}")
             
         if metrics.avg_response_time > 200:
-            print("🚨 ALERT: Slow response time detected!")
+            print(" ALERT: Slow response time detected!")
             print(f"   Average: {metrics.avg_response_time:.0f}ms")
     
     def generate_report(self):
         """Generate monitoring report."""
-        print("\n📊 MONITORING REPORT")
+        print("\n MONITORING REPORT")
         print("=" * 40)
         
         # Get metrics
@@ -406,11 +406,11 @@ class MonitoredAISystem:
         # Check for bias
         bias_report = self.monitor.detect_bias(window="day")
         if bias_report.bias_detected:
-            print("\n⚠️ BIAS DETECTED:")
+            print("\n BIAS DETECTED:")
             for finding in bias_report.findings:
                 print(f"   • {finding}")
         else:
-            print("\n✅ No bias detected")
+            print("\n No bias detected")
 
 # Test monitoring system
 if __name__ == "__main__":
@@ -438,7 +438,7 @@ if __name__ == "__main__":
         )
     ]
     
-    print("🔍 Running Monitored AI System\n")
+    print(" Running Monitored AI System\n")
     
     # Process decisions
     for i, context in enumerate(test_scenarios, 1):
@@ -450,7 +450,7 @@ if __name__ == "__main__":
     # Generate report
     system.generate_report()
     
-    print(f"\n📁 Audit log saved to: {system.audit_file}")
+    print(f"\n Audit log saved to: {system.audit_file}")
 ```
 
 ### Run Monitoring Example
@@ -460,7 +460,7 @@ python monitoring_setup.py
 
 ---
 
-## 🌐 Minute 40-50: Create REST API
+##  Minute 40-50: Create REST API
 
 ### Build Simple API Server
 ```python
@@ -551,9 +551,9 @@ def escalate_pause():
     })
 
 if __name__ == '__main__':
-    print("🚀 Starting TML API Server...")
-    print("📍 Server running at http://localhost:5000")
-    print("📚 API Endpoints:")
+    print(" Starting TML API Server...")
+    print(" Server running at http://localhost:5000")
+    print(" API Endpoints:")
     print("   • GET  /health     - Health check")
     print("   • POST /evaluate   - Evaluate decision")
     print("   • GET  /metrics    - Get metrics")
@@ -588,7 +588,7 @@ curl http://localhost:5000/metrics?period=hour
 
 ---
 
-## ✅ Minute 50-60: Test & Validate
+##  Minute 50-60: Test & Validate
 
 ### Create Test Suite
 ```python
@@ -651,7 +651,7 @@ class TestSacredPause(unittest.TestCase):
 
 if __name__ == '__main__':
     # Run tests
-    print("🧪 Running Sacred Pause Tests\n")
+    print(" Running Sacred Pause Tests\n")
     unittest.main(verbosity=2)
 ```
 
@@ -664,7 +664,7 @@ python test_sacred_pause.py
 ```python
 # validation_checklist.py
 print("""
-✅ TML IMPLEMENTATION VALIDATION CHECKLIST
+ TML IMPLEMENTATION VALIDATION CHECKLIST
 ==========================================
 
 Core Functionality:
@@ -705,7 +705,7 @@ Next Steps:
 4. Train your team on Sacred Pause
 5. Implement in your AI system
 
-🎉 CONGRATULATIONS! You've implemented TML in 60 minutes!
+ CONGRATULATIONS! You've implemented TML in 60 minutes!
 
 For questions: support@tml-goukassian.org
 For ethics emergencies: ethics@tml-goukassian.org
@@ -714,7 +714,7 @@ For ethics emergencies: ethics@tml-goukassian.org
 
 ---
 
-## 🎓 What You've Learned
+##  What You've Learned
 
 In just 60 minutes, you've:
 
@@ -729,7 +729,7 @@ You now have a working foundation for ethical AI decision-making using Sacred Pa
 
 ---
 
-## 📚 Next Steps
+##  Next Steps
 
 ### Immediate Actions
 1. **Read MANDATORY.md** - Critical safety requirements
@@ -767,14 +767,14 @@ You now have a working foundation for ethical AI decision-making using Sacred Pa
 
 ---
 
-## 🏆 Success Metrics
+##  Success Metrics
 
 Your TML implementation is successful when:
-- ✅ Sacred Pause triggers appropriately (1-5% of decisions)
-- ✅ No harmful decisions proceed without review
-- ✅ Stakeholder trust increases
-- ✅ Audit trail is complete and immutable
-- ✅ Team understands when and why pauses occur
+-  Sacred Pause triggers appropriately (1-5% of decisions)
+-  No harmful decisions proceed without review
+-  Stakeholder trust increases
+-  Audit trail is complete and immutable
+-  Team understands when and why pauses occur
 
 ---
 

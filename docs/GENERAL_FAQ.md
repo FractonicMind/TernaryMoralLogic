@@ -5,7 +5,7 @@
 
 ---
 
-## 🎯 Understanding TML Basics
+##  Understanding TML Basics
 
 ### Q1: What is the Ternary Moral Logic (TML) Framework?
 **A:** TML is a revolutionary AI ethics framework that adds a crucial third state - **Sacred Pause** - between binary proceed/stop decisions. Instead of forcing immediate ethical judgments, TML allows AI systems to acknowledge moral complexity and defer to enhanced review when ethical clarity is insufficient.
@@ -22,33 +22,33 @@ This pause triggers enhanced ethical review, stakeholder consultation, or human 
 
 ### Q3: How does TML differ from traditional AI ethics approaches?
 **A:** Traditional approaches often force binary ethical decisions or use continuous probability scores. TML uniquely:
-- **Acknowledges moral uncertainty** as a valid state
-- **Prevents premature ethical conclusions** in complex scenarios
-- **Mandates explicit handling** of edge cases
-- **Creates traceable decision paths** for audit
-- **Preserves human agency** in morally significant decisions
+- __Acknowledges moral uncertainty__ as a valid state
+- __Prevents premature ethical conclusions__ in complex scenarios
+- __Mandates explicit handling__ of edge cases
+- __Creates traceable decision paths__ for audit
+- __Preserves human agency__ in morally significant decisions
 
 ### Q4: Why "Ternary" instead of continuous ethics scores?
 **A:** While continuous scores (0.0-1.0) seem more nuanced, they create false precision in moral reasoning. TML's three states reflect ethical reality:
-- **PROCEED (1)**: Clear ethical permission with confidence
-- **SACRED PAUSE (0)**: Genuine moral uncertainty requiring deeper consideration
-- **STOP (-1)**: Clear ethical prohibition with confidence
+- __PROCEED (1)__ Clear ethical permission with confidence
+- __SACRED PAUSE (0)__ Genuine moral uncertainty requiring deeper consideration
+- __STOP (-1)__ Clear ethical prohibition with confidence
 
 This prevents "ethics washing" through probability manipulation.
 
 ### Q5: What types of AI systems benefit most from TML?
 **A:** TML is especially critical for:
-- **Healthcare AI**: Treatment recommendations, triage decisions, resource allocation
-- **Autonomous vehicles**: Life-critical navigation decisions
-- **Financial AI**: Loan approvals, risk assessment, algorithmic trading
-- **Content moderation**: Balancing free speech with harm prevention
-- **Criminal justice AI**: Sentencing recommendations, parole decisions
-- **HR systems**: Hiring, promotion, performance evaluation
+- __Healthcare AI__ Treatment recommendations, triage decisions, resource allocation
+- __Autonomous vehicles__ Life-critical navigation decisions
+- __Financial AI__ Loan approvals, risk assessment, algorithmic trading
+- __Content moderation__ Balancing free speech with harm prevention
+- __Criminal justice AI__ Sentencing recommendations, parole decisions
+- __HR systems__ Hiring, promotion, performance evaluation
 - Any AI making decisions affecting human welfare
 
 ---
 
-## 🔧 Technical Implementation
+##  Technical Implementation
 
 ### Q6: How do I implement Sacred Pause in my AI system?
 **A:** Basic implementation follows this pattern:
@@ -79,21 +79,21 @@ else:  # STOP
 
 ### Q7: What are the computational requirements for TML?
 **A:** TML is designed to be lightweight:
-- **Memory**: ~10MB for core engine
-- **CPU**: Minimal overhead (<1% for most decisions)
-- **Latency**: Typically <100ms for evaluation
-- **Storage**: Audit logs ~1KB per decision
-- **Scalability**: Handles millions of decisions/day
+- __Memory__ ~10MB for core engine
+- __CPU__ Minimal overhead (<1% for most decisions)
+- __Latency__ Typically <100ms for evaluation
+- __Storage__ Audit logs ~1KB per decision
+- __Scalability__ Handles millions of decisions/day
 
 The Sacred Pause mechanism adds negligible computational cost while providing immense ethical value.
 
 ### Q8: Can TML work with existing ML/AI frameworks?
 **A:** **Yes!** TML integrates seamlessly with:
-- **TensorFlow/PyTorch**: As an ethical evaluation layer
-- **Scikit-learn**: For decision validation
-- **Hugging Face**: For LLM moral reasoning
-- **Cloud platforms**: AWS, Google Cloud, Azure AI services
-- **Edge computing**: Lightweight enough for IoT devices
+- __TensorFlow/PyTorch__ As an ethical evaluation layer
+- __Scikit-learn__ For decision validation
+- __Hugging Face__ For LLM moral reasoning
+- __Cloud platforms__ AWS, Google Cloud, Azure AI services
+- __Edge computing__ Lightweight enough for IoT devices
 
 Example integrations provided in `examples/integrations/`.
 
@@ -126,7 +126,7 @@ This process can be synchronous or asynchronous based on urgency.
 
 ---
 
-## 🏢 Organizational Implementation
+##  Organizational Implementation
 
 ### Q11: How do we roll out TML in a large organization?
 **A:** Recommended phased approach:
@@ -154,12 +154,12 @@ This process can be synchronous or asynchronous based on urgency.
 ### Q12: What team roles are needed for TML implementation?
 **A:** Successful implementation requires:
 
-- **AI Engineers**: Technical integration and testing
-- **Ethics Officers**: Sacred Pause protocol design
-- **Domain Experts**: Context-specific threshold setting
-- **Legal/Compliance**: Regulatory alignment
-- **Data Scientists**: Monitoring and optimization
-- **Stakeholder Representatives**: Affected community input
+- __AI Engineers__ Technical integration and testing
+- __Ethics Officers__ Sacred Pause protocol design
+- __Domain Experts__ Context-specific threshold setting
+- __Legal/Compliance__ Regulatory alignment
+- __Data Scientists__ Monitoring and optimization
+- __Stakeholder Representatives__ Affected community input
 
 Small teams can combine roles; large organizations may need dedicated TML teams.
 
@@ -204,15 +204,15 @@ Example: Autonomous vehicles default to safe stop during Sacred Pause.
 
 ---
 
-## 🛡️ Safety and Ethics
+##  Safety and Ethics
 
 ### Q16: Can Sacred Pause be overridden?
 **A:** Override should be:
-- **Exceptional**: Only for genuine emergencies
-- **Authorized**: By designated senior personnel
-- **Documented**: Full reasoning required
-- **Reviewed**: Post-hoc analysis mandatory
-- **Limited**: Time-bound override period
+- __Exceptional__ Only for genuine emergencies
+- __Authorized__ By designated senior personnel
+- __Documented__ Full reasoning required
+- __Reviewed__ Post-hoc analysis mandatory
+- __Limited__ Time-bound override period
 
 Never allow systematic bypass of Sacred Pause safeguards.
 
@@ -228,22 +228,22 @@ Never allow systematic bypass of Sacred Pause safeguards.
 ### Q18: What about adversarial attacks on TML?
 **A:** TML includes defenses against:
 
-- **Threshold manipulation**: Cryptographic threshold integrity
-- **Context poisoning**: Input validation and sanitization
-- **Decision flooding**: Rate limiting and prioritization
-- **Bypass attempts**: Multi-signature override requirements
-- **Audit tampering**: Immutable decision logs
+- __Threshold manipulation__ Cryptographic threshold integrity
+- __Context poisoning__ Input validation and sanitization
+- __Decision flooding__ Rate limiting and prioritization
+- __Bypass attempts__ Multi-signature override requirements
+- __Audit tampering__ Immutable decision logs
 
 Security details in `docs/security/`.
 
 ### Q19: How does TML handle cultural moral differences?
 **A:** TML accommodates cultural variation through:
 
-- **Configurable principles**: Local moral frameworks supported
-- **Stakeholder weighting**: Community values reflected
-- **Cultural advisors**: Sacred Pause review includes cultural experts
-- **Principle hierarchies**: Adjustable based on context
-- **Universal minimums**: Core human rights always protected
+- __Configurable principles__ Local moral frameworks supported
+- __Stakeholder weighting__ Community values reflected
+- __Cultural advisors__ Sacred Pause review includes cultural experts
+- __Principle hierarchies__ Adjustable based on context
+- __Universal minimums__ Core human rights always protected
 
 ### Q20: What if stakeholders disagree on Sacred Pause resolution?
 **A:** Disagreement resolution protocol:
@@ -257,16 +257,16 @@ Security details in `docs/security/`.
 
 ---
 
-## 📊 Performance and Optimization
+##  Performance and Optimization
 
 ### Q21: Will TML slow down my AI system?
 **A:** Typical performance impact:
 
-- **Inference latency**: +5-10ms average
-- **Memory overhead**: <10MB resident
-- **CPU usage**: <1% additional
-- **Network**: Only for escalation events
-- **Storage**: ~1GB/year for million decisions
+- __Inference latency__ +5-10ms average
+- __Memory overhead__ <10MB resident
+- __CPU usage__ <1% additional
+- __Network__ Only for escalation events
+- __Storage__ ~1GB/year for million decisions
 
 Sacred Pause adds minimal overhead while preventing catastrophic ethical failures.
 
@@ -285,11 +285,11 @@ Target: 1-5% Sacred Pause rate for most domains.
 ### Q23: Can TML scale to billions of decisions?
 **A:** Yes, TML scales through:
 
-- **Distributed evaluation**: Parallel Sacred Pause processing
-- **Edge computing**: Local ethical evaluation
-- **Hierarchical review**: Tiered escalation systems
-- **Automated resolution**: ML-assisted pause handling
-- **Regional clusters**: Geographically distributed ethics boards
+- __Distributed evaluation__ Parallel Sacred Pause processing
+- __Edge computing__ Local ethical evaluation
+- __Hierarchical review__ Tiered escalation systems
+- __Automated resolution__ ML-assisted pause handling
+- __Regional clusters__ Geographically distributed ethics boards
 
 Large-scale architectures in `docs/scaling/`.
 
@@ -308,17 +308,17 @@ Never compromise safety for testing speed.
 ### Q25: What about TML in edge/IoT devices?
 **A:** TML edge implementation:
 
-- **Lightweight engine**: 2MB footprint version available
-- **Local thresholds**: No network dependency
-- **Periodic sync**: Update thresholds when connected
-- **Fallback modes**: Safe defaults without connectivity
-- **Compressed logs**: Efficient audit storage
+- __Lightweight engine__ 2MB footprint version available
+- __Local thresholds__ No network dependency
+- __Periodic sync__ Update thresholds when connected
+- __Fallback modes__ Safe defaults without connectivity
+- __Compressed logs__ Efficient audit storage
 
 Perfect for autonomous vehicles, medical devices, drones.
 
 ---
 
-## 🔄 Integration and Migration
+##  Integration and Migration
 
 ### Q26: How do we migrate from existing ethics frameworks?
 **A:** Migration strategy:
@@ -350,34 +350,34 @@ if violates_rule("privacy"):
 ### Q28: How does TML integrate with MLOps pipelines?
 **A:** TML fits naturally into MLOps:
 
-- **Training**: Include ethical evaluation in validation
-- **CI/CD**: Sacred Pause tests in deployment pipeline
-- **Monitoring**: Ethical metrics in dashboards
-- **Alerting**: Sacred Pause triggers notifications
-- **Versioning**: Track threshold changes
-- **Rollback**: Revert problematic ethical updates
+- __Training__ Include ethical evaluation in validation
+- __CI/CD__ Sacred Pause tests in deployment pipeline
+- __Monitoring__ Ethical metrics in dashboards
+- __Alerting__ Sacred Pause triggers notifications
+- __Versioning__ Track threshold changes
+- __Rollback__ Revert problematic ethical updates
 
 ### Q29: What about multi-agent AI systems?
 **A:** TML for multi-agent coordination:
 
-- **Consensus protocols**: Agents must agree on Sacred Pause
-- **Hierarchical pause**: Local vs. system-wide pauses
-- **Delegation chains**: Clear escalation paths
-- **Conflict resolution**: Inter-agent ethical disagreements
-- **Emergent ethics**: Monitor collective behavior
+- __Consensus protocols__ Agents must agree on Sacred Pause
+- __Hierarchical pause__ Local vs. system-wide pauses
+- __Delegation chains__ Clear escalation paths
+- __Conflict resolution__ Inter-agent ethical disagreements
+- __Emergent ethics__ Monitor collective behavior
 
 ### Q30: Can TML handle streaming/online learning?
 **A:** Yes, with considerations:
 
-- **Threshold adaptation**: Gradual adjustment with safeguards
-- **Concept drift detection**: Sacred Pause on ethical shifts
-- **Continuous validation**: Real-time ethical monitoring
-- **Feedback loops**: Prevent ethical degradation
-- **Checkpoint ethics**: Regular full evaluation
+- __Threshold adaptation__ Gradual adjustment with safeguards
+- __Concept drift detection__ Sacred Pause on ethical shifts
+- __Continuous validation__ Real-time ethical monitoring
+- __Feedback loops__ Prevent ethical degradation
+- __Checkpoint ethics__ Regular full evaluation
 
 ---
 
-## 🎓 Advanced Topics
+##  Advanced Topics
 
 ### Q31: How does TML handle ethical dilemmas (trolley problems)?
 **A:** TML's approach to ethical dilemmas:
@@ -394,11 +394,11 @@ TML doesn't solve dilemmas but ensures they're handled thoughtfully.
 ### Q32: Can TML reasoning be explained to regulators?
 **A:** Yes! TML provides:
 
-- **Decision trees**: Visual ethical reasoning paths
-- **Natural language**: Plain English explanations
-- **Audit trails**: Complete decision history
-- **Precedent linking**: Similar case references
-- **Regulatory mapping**: Compliance checkpoint documentation
+- __Decision trees__ Visual ethical reasoning paths
+- __Natural language__ Plain English explanations
+- __Audit trails__ Complete decision history
+- __Precedent linking__ Similar case references
+- __Regulatory mapping__ Compliance checkpoint documentation
 
 Designed for regulatory transparency from the ground up.
 
@@ -421,28 +421,28 @@ Different uncertainty types trigger different review processes.
 ### Q34: What about TML for AGI/superintelligence safety?
 **A:** TML provides essential AGI safety features:
 
-- **Value learning pause**: Stops when human values unclear
-- **Impact assessment**: Pauses before irreversible actions
-- **Corrigibility maintenance**: Ensures continued human control
-- **Goal stability**: Detects value drift
-- **Interpretability requirements**: Forces explainable decisions
+- __Value learning pause__ Stops when human values unclear
+- __Impact assessment__ Pauses before irreversible actions
+- __Corrigibility maintenance__ Ensures continued human control
+- __Goal stability__ Detects value drift
+- __Interpretability requirements__ Forces explainable decisions
 
 Critical foundation for safe AGI development.
 
 ### Q35: Can TML handle non-human stakeholders (environment, animals)?
 **A:** Yes, through representation:
 
-- **Environmental proxies**: Sustainability experts represent nature
-- **Animal welfare advocates**: Speak for non-human animals
-- **Future generations**: Long-term impact consideration
-- **Ecosystem health**: Holistic impact assessment
-- **Intrinsic value recognition**: Beyond human utility
+- __Environmental proxies__ Sustainability experts represent nature
+- __Animal welfare advocates__ Speak for non-human animals
+- __Future generations__ Long-term impact consideration
+- __Ecosystem health__ Holistic impact assessment
+- __Intrinsic value recognition__ Beyond human utility
 
 Configurable stakeholder frameworks in `docs/stakeholders/`.
 
 ---
 
-## 🚀 Future Development
+##  Future Development
 
 ### Q36: What's on the TML roadmap?
 **A:** Upcoming enhancements:
@@ -457,50 +457,50 @@ Community-driven development via GitHub.
 ### Q37: How can I contribute to TML development?
 **A:** Contribution opportunities:
 
-- **Code**: Submit PRs for features/fixes
-- **Documentation**: Improve guides and examples
-- **Translation**: Make TML globally accessible
-- **Research**: Validate and extend theory
-- **Case studies**: Share implementation experiences
-- **Education**: Create training materials
+- __Code__ Submit PRs for features/fixes
+- __Documentation__ Improve guides and examples
+- __Translation__ Make TML globally accessible
+- __Research__ Validate and extend theory
+- __Case studies__ Share implementation experiences
+- __Education__ Create training materials
 
 See `CONTRIBUTING.md` for guidelines.
 
 ### Q38: Will TML support quantum computing?
 **A:** Quantum TML research active:
 
-- **Superposition ethics**: Multiple moral states simultaneously
-- **Entangled decisions**: Coupled ethical evaluations
-- **Quantum Sacred Pause**: Probabilistic pause states
-- **Coherence preservation**: Maintaining ethical consistency
+- __Superposition ethics__ Multiple moral states simultaneously
+- __Entangled decisions__ Coupled ethical evaluations
+- __Quantum Sacred Pause__ Probabilistic pause states
+- __Coherence preservation__ Maintaining ethical consistency
 
 Early implementations in `research/quantum/`.
 
 ### Q39: What about brain-computer interfaces?
 **A:** TML for neural interfaces:
 
-- **Thought privacy**: Sacred Pause on mental intrusion
-- **Cognitive sovereignty**: Protecting mental autonomy
-- **Enhancement ethics**: Fairness in augmentation
-- **Neural feedback**: Ethical evaluation of brain stimulation
-- **Hybrid decision-making**: Human-AI neural cooperation
+- __Thought privacy__ Sacred Pause on mental intrusion
+- __Cognitive sovereignty__ Protecting mental autonomy
+- __Enhancement ethics__ Fairness in augmentation
+- __Neural feedback__ Ethical evaluation of brain stimulation
+- __Hybrid decision-making__ Human-AI neural cooperation
 
 Critical for ethical neurotechnology.
 
 ### Q40: How will TML adapt to new AI capabilities?
 **A:** Adaptive framework design:
 
-- **Capability detection**: Identifies new AI powers
-- **Ethical expansion**: Adds relevant moral dimensions
-- **Threshold evolution**: Adjusts to new risk profiles
-- **Precedent building**: Learns from novel cases
-- **Community updates**: Crowdsourced ethical wisdom
+- __Capability detection__ Identifies new AI powers
+- __Ethical expansion__ Adds relevant moral dimensions
+- __Threshold evolution__ Adjusts to new risk profiles
+- __Precedent building__ Learns from novel cases
+- __Community updates__ Crowdsourced ethical wisdom
 
 TML evolves with AI advancement.
 
 ---
 
-## 💡 Best Practices
+##  Best Practices
 
 ### Q41: What are the top 5 TML implementation mistakes?
 **A:** Common pitfalls to avoid:
@@ -560,7 +560,7 @@ Regular assessment ensures continuous improvement.
 
 ---
 
-## 📞 Support and Resources
+##  Support and Resources
 
 **Getting Started:**
 - Quick Start Guide: `docs/QUICK_START.md`
