@@ -13,8 +13,8 @@ We welcome contributions from researchers, developers, ethicists, and practition
 - **💻 Developers**: Implementation improvements, new integrations, and tools
 - **🎓 Ethicists**: Philosophical perspectives, case studies, and moral analysis
 - **🏢 Practitioners**: Real-world applications, feedback, and use cases
-- **📚 Educators**: Teaching materials, curriculum development, and student projects
-- **🌍 Advocates**: Community building, outreach, and adoption support
+- ** Educators**: Teaching materials, curriculum development, and student projects
+- ** Advocates**: Community building, outreach, and adoption support
 
 ---
 
@@ -140,7 +140,7 @@ class EnhancedValueDetector(ValueDetector):
 - Cross-cultural and diverse perspective inclusion is strongly encouraged
 - Open science practices (open data, reproducible methods) preferred
 
-### 📚 Documentation Contributions
+###  Documentation Contributions
 
 #### User Documentation
 - **Getting Started Guides**: Tutorials for different user types
@@ -154,7 +154,7 @@ class EnhancedValueDetector(ValueDetector):
 - **Case Study Library**: Expanding the collection of practical examples
 - **Interactive Demos**: Web-based tools for exploring TML concepts
 
-### 🌍 Community Building
+###  Community Building
 
 #### Outreach and Adoption
 - **Conference Presentations**: Sharing TML at academic and industry events
