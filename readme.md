@@ -165,7 +165,7 @@ if result.state == TMLState.SACRED_PAUSE:
 
 ## Repository Navigation and Documentation
 
-**[📁 Complete Repository Map](repository-navigation.html)** - Interactive navigation guide with clickable links to all framework components
+**[📁 Complete Repository Map](https://fractonicmind.github.io/TernaryMoralLogic/repository-navigation.html)** - Interactive navigation guide with clickable links to all framework components
 
 ### Essential Documentation
 
