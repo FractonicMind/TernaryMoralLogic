@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TML Repository Navigation</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #34495e;
+            margin-top: 30px;
+            border-left: 4px solid #3498db;
+            padding-left: 10px;
+        }
+        .container {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .tree {
+            font-family: 'Courier New', monospace;
+            white-space: pre;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .file {
+            color: #2c3e50;
+        }
+        .folder {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        .description {
+            color: #7f8c8d;
+            font-size: 0.9em;
+            margin-left: 20px;
+        }
+        .attribution {
+            background: #e3f2fd;
+            padding: 15งpx;
+            border-radius: 5px;
+            margin: 20px 0;
+            border-left: 4px solid #2196f3;
+        }
+        .note {
+            background: #fff3e0;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            border-left: 4px solid #ff9800;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Ternary Moral Logic (TML) Repository Navigation</h1>
+        
+        <div class="attribution">
+            <strong>Sacred Pause created by Lev Goukassian, 2025</strong><br>
+            ORCID: 0009-0006-5966-1243 | Email: leogouk@gmail.com
+        </div>
+
+        <div class="note">
+            <strong>Note:</strong> This framework provides contextual capabilities for ethical AI decision-making. 
+            Organizations can choose when and how to implement Sacred Pause based on their specific needs.
+        </div>
+
+        <h2>Repository Structure</h2>
+        
+        <div class="tree">
+<span class="folder">TernaryMoralLogic/</span>
+├── <a href="readme.md" class="file">readme.md</a> <span class="description">Main framework documentation</span>
+├── <a href="LICENSE" class="file">LICENSE</a> <span class="description">MIT License</span>
+├── <a href="ATTRIBUTION.md" class="file">ATTRIBUTION.md</a> <span class="description">Attribution guidelines</span>
+├── <a href="CITATION.cff" class="file">CITATION.cff</a> <span class="description">Academic citation format</span>
+├── <a href="INTELLECTUAL_PROPERTY.md" class="file">INTELLECTUAL_PROPERTY.md</a> <span class="description">IP statement</span>
+├── <a href="CHANGELOG.md" class="file">CHANGELOG.md</a> <span class="description">Version history</span>
+├── <a href="requirements.txt" class="file">requirements.txt</a> <span class="description">Python dependencies</span>
+├── <a href="setup.py" class="file">setup.py</a> <span class="description">Package installation</span>
+│
+├── <span class="folder">docs/</span> <span class="description">Documentation</span>
+│   ├── <a href="docs/IMPLEMENTATION_GUIDE.md" class="file">IMPLEMENTATION_GUIDE.md</a> <span class="description">Contextual implementation guidance</span>
+│   ├── <a href="docs/QUICK_START.md" class="file">QUICK_START.md</a> <span class="description">60-minute implementation guide</span>
+│   ├── <a href="docs/GENERAL_FAQ.md" class="file">GENERAL_FAQ.md</a> <span class="description">Technical FAQ (44 questions)</span>
+│   ├── <a href="docs/LICENSE_FAQ.md" class="file">LICENSE_FAQ.md</a> <span class="description">Licensing FAQ (30 questions)</span>
+│   ├── <a href="docs/ACADEMIC_VALIDATION.md" class="file">ACADEMIC_VALIDATION.md</a> <span class="description">Research methodology</span>
+│   ├── <a href="docs/api/complete_api_reference.md" class="file">api/complete_api_reference.md</a> <span class="description">API documentation</span>
+│   └── <a href="docs/images/tml_graphical_abstract.svg" class="file">images/tml_graphical_abstract.svg</a> <span class="description">Framework visualization</span>
+│
+├── <span class="folder">TML-App/</span> <span class="description">Interactive demonstration</span>
+│   ├── <a href="TML-App/index.html" class="file">index.html</a> <span class="description">Interactive Sacred Pause demo</span>
+│   └── <a href="TML-App/readme.md" class="file">readme.md</a> <span class="description">Application documentation</span>
+│
+├── <span class="folder">implementations/</span> <span class="description">Core implementation</span>
+│   └── <span class="folder">python-library/</span>
+│       ├── <a href="implementations/python-library/core.py" class="file">core.py</a> <span class="description">Core framework (534 lines)</span>
+│       └── <a href="implementations/python-library/__init__.py" class="file">__init__.py</a> <span class="description">Package initialization</span>
+│
+├── <span class="folder">examples/</span> <span class="description">Implementation examples</span>
+│   ├── <a href="examples/basic_demo.py" class="file">basic_demo.py</a> <span class="description">Comprehensive demonstration</span>
+│   ├── <a href="examples/medical_ai_triage.py" class="file">medical_ai_triage.py</a> <span class="description">Healthcare ethics</span>
+│   ├── <a href="examples/autonomous_vehicle.py" class="file">autonomous_vehicle.py</a> <span class="description">Self-driving car ethics</span>
+│   ├── <a href="examples/content_moderation.py" class="file">content_moderation.py</a> <span class="description">Social media applications</span>
+│   └── <a href="examples/financial_ai.py" class="file">financial_ai.py</a> <span class="description">Banking ethics</span>
+│
+├── <span class="folder">theory/</span> <span class="description">Theoretical foundations</span>
+│   ├── <a href="theory/core-principles.md" class="file">core-principles.md</a> <span class="description">TML principles</span>
+│   ├── <a href="theory/philosophical-foundations.md" class="file">philosophical-foundations.md</a> <span class="description">Academic grounding</span>
+│   └── <a href="theory/case-studies.md" class="file">case-studies.md</a> <span class="description">Real-world applications</span>
+│
+├── <span class="folder">tests/</span> <span class="description">Testing framework</span>
+│   ├── <a href="tests/test_tml_core.py" class="file">test_tml_core.py</a> <span class="description">Professional pytest (97% coverage)</span>
+│   └── <a href="tests/isolated_test.py" class="file">isolated_test.py</a> <span class="description">Debug-focused validation</span>
+│
+├── <span class="folder">eval/</span> <span class="description">Evaluation framework</span>
+│   ├── <span class="folder">backends/</span>
+│   │   ├── <a href="eval/backends/baseline.py" class="file">baseline.py</a> <span class="description">Baseline system</span>
+│   │   └── <a href="eval/backends/sacred_pause.py" class="file">sacred_pause.py</a> <span class="description">Sacred Pause implementation</span>
+│   ├── <span class="folder">reports/</span>
+│   │   └── <a href="eval/reports/summary.md" class="file">summary.md</a> <span class="description">Results: 68% hallucination reduction</span>
+│   └── <span class="folder">scripts/</span>
+│       ├── <a href="eval/scripts/run_eval.py" class="file">run_eval.py</a> <span class="description">Evaluation execution</span>
+│       └── <a href="eval/scripts/score_all.py" class="file">score_all.py</a> <span class="description">Scoring system</span>
+│
+├── <span class="folder">benchmark/</span> <span class="description">Performance evaluation</span>
+│   └── <span class="folder">datasets/</span>
+│       ├── <a href="benchmark/datasets/moral_scenarios.jsonl" class="file">moral_scenarios.jsonl</a> <span class="description">Test cases</span>
+│       └── <a href="benchmark/datasets/scenarios_readable.md" class="file">scenarios_readable.md</a> <span class="description">Human-readable scenarios</span>
+│
+├── <span class="folder">protection/</span> <span class="description">Security considerations</span>
+│   ├── <a href="protection/misuse-prevention.md" class="file">misuse-prevention.md</a> <span class="description">Misuse awareness</span>
+│   └── <a href="protection/integrity-monitoring.md" class="file">integrity-monitoring.md</a> <span class="description">Security guidance</span>
+│
+└── <span class="folder">community/</span> <span class="description">Community resources</span>
+    ├── <a href="community/CODE_OF_CONDUCT.md" class="file">CODE_OF_CONDUCT.md</a> <span class="description">Community standards</span>
+    └── <a href="community/CONTRIBUTING.md" class="file">CONTRIBUTING.md</a> <span class="description">Contribution guidelines</span>
+        </div>
+
+        <h2>Key Files</h2>
+        
+        <h3>Core Documentation</h3>
+        <ul>
+            <li><strong><a href="readme.md">README.md</a></strong> - Main entry point explaining Sacred Pause as a contextual capability</li>
+            <li><strong><a href="docs/IMPLEMENTATION_GUIDE.md">Implementation Guide</a></strong> - How to implement Sacred Pause when appropriate</li>
+            <li><strong><a href="docs/QUICK_START.md">Quick Start</a></strong> - 60-minute guide to get started</li>
+            <li><strong><a href="ATTRIBUTION.md">Attribution</a></strong> - How to properly credit Sacred Pause</li>
+        </ul>
+
+        <h3>Technical Implementation</h3>
+        <ul>
+            <li><strong><a href="implementations/python-library/core.py">core.py</a></strong> - Complete Python implementation</li>
+            <li><strong><a href="examples/">Examples folder</a></strong> - Domain-specific implementations</li>
+            <li><strong><a href="tests/">Tests folder</a></strong> - 97% test coverage</li>
+        </ul>
+
+        <h3>Theoretical Foundation</h3>
+        <ul>
+            <li><strong><a href="theory/core-principles.md">Core Principles</a></strong> - Fundamental TML concepts</li>
+            <li><strong><a href="theory/philosophical-foundations.md">Philosophical Foundations</a></strong> - Ethical grounding</li>
+            <li><strong><a href="theory/case-studies.md">Case Studies</a></strong> - Real-world applications</li>
+        </ul>
+
+        <h2>Interactive Demo</h2>
+        <p>Try the <strong><a href="https://fractonicmind.github.io/TernaryMoralLogic/TML-App/">Interactive Sacred Pause Demo</a></strong> to see the framework in action.</p>
+
+        <h2>Performance Results</h2>
+        <p>Benchmark testing demonstrated <strong>68% reduction in harmful hallucinations</strong> when Sacred Pause capability was utilized. See <a href="eval/reports/summary.md">evaluation summary</a> for details.</p>
+
+        <h2>License</h2>
+        <p>This framework is released under the <strong>MIT License</strong>, allowing free use, modification, and distribution with attribution to Lev Goukassian as creator of Sacred Pause (2025).</p>
+
+        <div class="attribution" style="margin-top: 40px;">
+            <strong>"The sacred pause between question and answer—this is where wisdom begins, for humans and machines alike."</strong><br>
+            — Lev Goukassian, Creator of Ternary Moral Logic
+        </div>
+    </div>
+</body>
+</html>
