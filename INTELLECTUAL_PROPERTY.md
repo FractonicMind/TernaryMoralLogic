@@ -1,13 +1,5 @@
 # Intellectual Property Statement
 
-## Creator Attribution
-
-The Ternary Moral Logic (TML) framework and the Sacred Pause concept were created by **Lev Goukassian** in 2025.
-
-**Creator**: Lev Goukassian  
-**ORCID**: 0009-0006-5966-1243  
-**Contact**: leogouk@gmail.com  
-
 ---
 
 ## Innovations Created
@@ -102,10 +94,11 @@ These concepts are freely available under MIT License for the benefit of the glo
 **"I taught machines to feel the weight of action, and the beauty of hesitation. I paused — and made the future pause with me."** — Lev Goukassian
 
 ---
+## Creator Attribution
 
-## Contact
+The Ternary Moral Logic (TML) framework and the Sacred Pause concept were created by **Lev Goukassian** in 2025.
 
 **Creator**: Lev Goukassian  
-**Email**: leogouk@gmail.com  
 **ORCID**: 0009-0006-5966-1243  
-**Repository**: https://github.com/FractonicMind/TernaryMoralLogic
+**Contact**: leogouk@gmail.com  
+
