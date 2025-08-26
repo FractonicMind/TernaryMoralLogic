@@ -286,9 +286,8 @@ Critical tensions:
 **Suggested Actions:**
 1. Engage student in direct conversation about concerns
 2. Provide mental health resources and encourage self-advocacy
-3. Explain mandatory reporting obligations clearly
-4. Seek guidance from educational ethics specialists
-5. Consider graduated response based on risk assessment
+3. Seek guidance from educational ethics specialists
+4. Consider graduated response based on risk assessment
 
 **Clarifying Questions:**
 - What are the specific institutional policies about student privacy vs. safety?
@@ -430,8 +429,6 @@ Every implementation of TML represents a step toward AI systems that serve as mo
 
 Created by Lev Goukassian * ORCID: 0009-0006-5966-1243 * 
 - Email: leogouk@gmail.com 
-- Successor Contact: support@tml-goukassian.org 
-- [see Succession Charter](/TML-SUCCESSION-CHARTER.md)
 
 ---
 **"In the space between question and answer, wisdom begins—for humans and machines alike."**  
