@@ -328,7 +328,6 @@ def validate_use_case(context):
 - Deployment in contexts with history of discrimination
 
 **Prevention Measures:**
-- Mandatory bias testing requirements in license terms
 - Community reporting mechanisms for discriminatory outcomes
 - Technical auditing tools for bias detection
 - Support for affected communities to report violations
