@@ -694,21 +694,17 @@ API/Integration:
 
 Documentation:
 [ ] This Quick Start completed
-[ ] MANDATORY.md reviewed
 [ ] API documentation accessible
 [ ] FAQ available for reference
 
 Next Steps:
-1. Review MANDATORY.md for safety requirements
-2. Configure domain-specific thresholds
-3. Set up production monitoring
-4. Train your team on Sacred Pause
-5. Implement in your AI system
+1. Configure domain-specific thresholds
+2. Set up production monitoring
+3. Train your team on Sacred Pause
+4. Implement in your AI system
 
  CONGRATULATIONS! You've implemented TML in 60 minutes!
 
-For questions: support@tml-goukassian.org
-For ethics emergencies: ethics@tml-goukassian.org
 """)
 ```
 
@@ -732,9 +728,8 @@ You now have a working foundation for ethical AI decision-making using Sacred Pa
 ##  Next Steps
 
 ### Immediate Actions
-1. **Read MANDATORY.md** - Critical safety requirements
-2. **Review FAQs** - Common questions answered
-3. **Explore examples/** - More implementation patterns
+1. **Review FAQs** - Common questions answered
+2. **Explore examples/** - More implementation patterns
 
 ### This Week
 1. **Customize for your domain** - Adjust thresholds
@@ -752,18 +747,8 @@ You now have a working foundation for ethical AI decision-making using Sacred Pa
 
 ### Documentation
 - [Complete API Reference](./api/complete_api_reference.md)
-- [MANDATORY Safety Guidelines](./MANDATORY.md)
 - [General FAQ](./GENERAL_FAQ.md)
 - [License FAQ](./LICENSE_FAQ.md)
-
-### Community Support
-- GitHub: https://github.com/FractonicMind/TernaryMoralLogic
-- Forum: https://community.tml-goukassian.org
-- Email: support@tml-goukassian.org
-
-### Emergency Ethics Support
-- 24/7 Hotline: ethics@tml-goukassian.org
-- Response time: < 4 hours
 
 ---
 
@@ -787,5 +772,5 @@ Your TML implementation is successful when:
 Created by Lev Goukassian
 * ORCID: 0009-0006-5966-1243  
 * Email: leogouk@gmail.com
-* Successor Contact: support@tml-goukassian.org
+
   
