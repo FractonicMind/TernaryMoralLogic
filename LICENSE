@@ -1,4 +1,4 @@
-MIT License with Ethical Use Requirements
+MIT License
 
 Copyright (c) 2025 Lev Goukassian
 
@@ -9,9 +9,8 @@ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the Software is
 furnished to do so, subject to the following conditions:
 
-The above copyright notice, this permission notice, and the ethical use 
-requirements below shall be included in all copies or substantial portions 
-of the Software.
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -23,107 +22,19 @@ SOFTWARE.
 
 ================================================================================
 
-ETHICAL USE REQUIREMENTS
+ABOUT THE TERNARY MORAL LOGIC FRAMEWORK
 
-The Ternary Moral Logic framework was created by Lev Goukassian as a 
-contribution to ethical AI development. In honor of his vision and to protect
-his legacy, users of this software commit to the following ethical principles:
+The Ternary Moral Logic framework and the Sacred Pause concept were created by 
+Lev Goukassian in 2025 as a contribution to AI ethics. The framework demonstrates
+how AI systems can benefit from the capability to pause and request human guidance
+when facing moral complexity.
 
-PROHIBITED USES:
-The Software shall NOT be used for:
+Sacred Pause created by Lev Goukassian, 2025
 
-1. SURVEILLANCE AND OPPRESSION
-   - Mass surveillance of populations without consent
-   - Authoritarian control or suppression of human rights
-   - Social credit systems that restrict individual freedoms
-   - Automated decision-making that lacks human oversight in critical domains
+For questions about the framework:
+**Creator**: Lev Goukassian | ORCID: 0009-0006-5966-1243  
+**Email**: leogouk@gmail.com
 
-2. DISCRIMINATION AND BIAS
-   - Systems that intentionally discriminate based on protected characteristics
-   - Amplification of existing biases without corrective measures
-   - Exclusion of vulnerable populations from benefits or opportunities
-   - Hiring, lending, or service decisions that violate anti-discrimination laws
-
-3. DECEPTION AND MANIPULATION
-   - Creation of deepfakes or synthetic media to deceive
-   - Manipulation of democratic processes or elections
-   - Psychological manipulation for commercial or political gain
-   - Impersonation of humans without clear disclosure
-
-4. HARM AND VIOLENCE
-   - Development of autonomous weapons systems
-   - Predictive policing that targets communities unfairly
-   - Systems designed to cause physical, psychological, or economic harm
-   - Applications that could reasonably lead to loss of life or safety
-
-5. PRIVACY VIOLATIONS
-   - Processing personal data without appropriate consent
-   - Violating reasonable expectations of privacy
-   - Combining datasets to create invasive profiles without authorization
-   - Circumventing privacy protections or anonymization
-
-REQUIRED PRINCIPLES:
-Users of this Software commit to:
-
-1. HUMAN DIGNITY
-   - Respect the inherent worth and agency of all individuals
-   - Ensure human oversight in consequential decisions
-   - Protect vulnerable populations from algorithmic harm
-   - Maintain transparency about AI system capabilities and limitations
-
-2. BENEFICIAL PURPOSE
-   - Use the Software to advance human welfare and flourishing
-   - Consider long-term societal impacts of implementations
-   - Prioritize social good over pure efficiency or profit
-   - Support equitable access to AI benefits
-
-3. TRANSPARENCY AND ACCOUNTABILITY
-   - Provide clear explanations of AI decision-making processes
-   - Enable meaningful human review and appeal of automated decisions
-   - Accept responsibility for system outcomes and impacts
-   - Maintain records for audit and improvement purposes
-
-4. THE SACRED PAUSE PRINCIPLE
-   - Honor the core TML concept that some decisions require reflection
-   - Implement appropriate human consultation mechanisms
-   - Resist pressure to automate decisions that require moral judgment
-   - Preserve space for human wisdom in AI-assisted decision-making
-
-ENFORCEMENT:
-Violation of these ethical requirements constitutes a breach of license terms.
-While legal enforcement may vary by jurisdiction, users who violate these
-principles:
-- Lose the moral authority to claim alignment with Lev Goukassian's vision
-- Damage the reputation and integrity of the TML framework
-- Betray the trust of the global research and development community
-- Dishonor the memory of the framework's creator
-
-COMMUNITY ACCOUNTABILITY:
-The TML community commits to:
-- Monitoring and reporting unethical uses of the framework
-- Supporting victims of algorithmic harm involving TML-based systems
-- Developing better safeguards against misuse
-- Preserving the ethical integrity of Lev Goukassian's legacy
-
-================================================================================
-
-FRAMEWORK PHILOSOPHY
-
-The Ternary Moral Logic framework embodies Lev Goukassian's vision that
-AI systems should serve as moral partners with humans, not replacements
-for human moral judgment. The Sacred Pause represents the computational
-equivalent of ethical wisdom—the recognition that some decisions require
-reflection rather than immediate action.
-
-This framework was created as Lev's gift to humanity's future, developed
-during his final months as a contribution to more thoughtful, ethical
-AI development worldwide.
-
-For questions regarding this license or ethical use compliance:
-
-**Current Contact**: leogouk@gmail.com | ORCID: 0009-0006-5966-1243  
-**Succession Contact**: support@tml-goukassian.org (see [Succession Charter](TML-SUCCESSION-CHARTER.md))
-For licensing, technical support, or collaboration inquiries.
 ================================================================================
 
 "The sacred pause between question and answer—this is where wisdom begins,
@@ -131,5 +42,3 @@ for humans and machines alike."
 
 — Lev Goukassian
 Creator of Ternary Moral Logic
-
-In memory of a visionary who transformed his final chapter into humanity's gain.
