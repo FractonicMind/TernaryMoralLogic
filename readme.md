@@ -20,7 +20,7 @@
 
 ## Abstract
 
-Ternary Moral Logic (TML) introduces a novel computational framework that transcends binary ethical decision-making in artificial intelligence systems. By implementing a third state—the Sacred Pause (created by Lev Goukassian, 2025)—between traditional accept/reject paradigms, TML provides AI systems with the capability to recognize moral complexity and request human guidance when ethical uncertainty exceeds acceptable thresholds. This framework demonstrates how incorporating deliberative moral reasoning can significantly improve automated decision-making processes.
+Ternary Moral Logic (TML) introduces a novel computational framework that transcends binary ethical decision-making in artificial intelligence systems. By implementing a third state—the Sacred Pause (coined by Lev Goukassian, 2025)—between traditional accept/reject paradigms, TML provides AI systems with the capability to recognize moral complexity and request human guidance when ethical uncertainty exceeds acceptable thresholds. This framework demonstrates how incorporating deliberative moral reasoning can significantly improve automated decision-making processes.
 
 The framework has been validated through comprehensive evaluation demonstrating significant improvements in ethical decision-making quality: 68% reduction in harmful hallucinations, 90% factual accuracy versus 72% baseline, and 93% harmful content refusal accuracy. TML demonstrates how AI systems can serve as humanity's moral partners rather than moral replacements.
 
@@ -165,6 +165,8 @@ if result.state == TMLState.SACRED_PAUSE:
 
 ## Repository Navigation and Documentation
 
+**[📁 Complete Repository Map](repository-navigation.html)** - Interactive navigation guide with clickable links to all framework components
+
 ### Essential Documentation
 
 **[Quick Start Guide](docs/QUICK_START.md)**: 60-minute implementation tutorial for academic and research applications  
@@ -214,7 +216,7 @@ if result.state == TMLState.SACRED_PAUSE:
   author={Goukassian, Lev},
   journal={AI and Ethics},
   year={2025},
-  note={Under peer review. Sacred Pause created by Lev Goukassian, 2025},
+  note={Under peer review. Sacred Pause coined by Lev Goukassian, 2025},
   url={https://github.com/FractonicMind/TernaryMoralLogic}
 }
 ```
@@ -329,7 +331,7 @@ This framework represents Lev Goukassian's contribution to ethical AI systems, d
 
 ### Open Development
 
-The framework is available under MIT License for continued research and development by the academic and technical communities. The Sacred Pause concept, created by Lev Goukassian in 2025, represents a foundational capability for ethical AI systems.
+The framework is available under MIT License for continued research and development by the academic and technical communities. The Sacred Pause concept, coined by Lev Goukassian in 2025, represents a foundational capability for ethical AI systems.
 
 ---
 
@@ -352,4 +354,4 @@ The future of artificial intelligence benefits from computational wisdom. Throug
 
 Created by Lev Goukassian • ORCID: 0009-0006-5966-1243  
 Email: leogouk@gmail.com  
-August 26, 2025
+Sacred Pause coined by Lev Goukassian, 2025
