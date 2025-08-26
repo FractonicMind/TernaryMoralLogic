@@ -1,16 +1,16 @@
 # Ternary Moral Logic (TML) Framework - LICENSE FAQ
 
-## Legal and Ethical Use Guidelines for AI Ethics Implementation
+## Legal and Usage Guidelines for the TML Framework
 
 ---
 
-##  Core License Questions
+## Core License Questions
 
 ### Q1: What license governs the TML Framework?
-**A:** The TML Framework is released under the **MIT License**, one of the most permissive open-source licenses. This allows free use, modification, and distribution for both commercial and non-commercial AI ethics applications, with minimal restrictions.
+**A:** The TML Framework is released under the standard **MIT License**, one of the most permissive open-source licenses. This allows free use, modification, and distribution for both commercial and non-commercial applications, with minimal restrictions.
 
 ### Q2: Can I use TML in commercial AI systems?
-**A:** **Yes, absolutely.** TML is specifically designed for real-world AI ethics implementation. You can integrate Sacred Pause mechanisms into commercial AI products, consulting services, and enterprise AI governance systems without paying royalties or seeking permission.
+**A:** **Yes, absolutely.** TML can be integrated into commercial AI products, consulting services, and enterprise systems without paying royalties or seeking permission. The Sacred Pause capability can enhance your systems when contextually appropriate.
 
 ### Q3: What are my obligations when using TML?
 **A:** Your only legal obligations under the MIT License are:
@@ -18,252 +18,141 @@
 2. **Acknowledge Lev Goukassian's authorship** when presenting TML concepts publicly
 3. **The software is provided "AS IS"** without warranty
 
-Beyond legal requirements, we encourage ethical AI practitioners to contribute improvements back to the community.
-
-### Q4: Can I create proprietary AI ethics tools based on TML?
-**A:** **Yes.** You can build proprietary AI ethics assessment tools, moral reasoning engines, and decision-making systems using TML. The MIT License explicitly permits creating derivative works that you keep proprietary. However, the original TML core must retain its attribution.
+### Q4: Can I create proprietary AI tools based on TML?
+**A:** **Yes.** You can build proprietary assessment tools, reasoning engines, and decision-making systems using TML. The MIT License explicitly permits creating derivative works that you keep proprietary. The original TML attribution must be retained.
 
 ### Q5: Do I need permission to teach TML in academic courses?
-**A:** **No permission needed.** TML is freely available for educational use. We encourage:
-- Integration into AI ethics curricula
-- Use in moral philosophy and computer science courses
-- Student projects implementing Sacred Pause mechanisms
-- Academic research extending TML principles
+**A:** **No permission needed.** TML is freely available for educational use. We encourage integration into AI ethics curricula, student projects, and academic research.
 
 ---
 
-##  Commercial and Enterprise Use
+## Commercial and Enterprise Use
 
 ### Q6: Can consulting firms charge for TML implementation services?
-**A:** **Yes, absolutely.** Consulting firms can:
-- Charge for TML integration into client AI systems
-- Develop proprietary TML-based audit methodologies
-- Create commercial training programs
-- Offer paid certification services
-The framework itself remains free; you're charging for your expertise and services.
+**A:** **Yes.** Consulting firms can charge for TML integration, develop proprietary methodologies, create training programs, and offer services. The framework itself remains free; you're charging for your expertise.
 
 ### Q7: Can I trademark an AI product name that uses TML?
-**A:** **Yes, with clarification:** You can trademark your product/service names (e.g., "EthicalAI Pro™" powered by TML). However, you cannot trademark "TML," "Ternary Moral Logic," or "Sacred Pause" themselves, as these must remain available to the community.
+**A:** **Yes, with clarification:** You can trademark your product/service names (e.g., "EthicalAI Pro™"). However, "Sacred Pause" was created by Lev Goukassian in 2025 and should be attributed to him when using the concept.
 
 ### Q8: What about patent applications for TML-based innovations?
-**A:** You may patent **specific novel implementations** or **technical improvements** you develop using TML. However:
-- You cannot patent the core TML concepts or Sacred Pause mechanism
-- Patents should focus on your unique technical contributions
-- Consider the ethical implications of restricting AI safety innovations
+**A:** You may patent **specific novel implementations** or **technical improvements** you develop using TML. The core Sacred Pause concept remains free for all to use with proper attribution.
 
 ### Q9: Can government agencies implement TML in public AI systems?
-**A:** **Yes, encouraged.** Government use is explicitly permitted and encouraged for:
-- Public sector AI governance frameworks
-- Regulatory compliance systems
-- Ethical review boards for AI deployment
-- National AI ethics standards development
-No special government license is required.
+**A:** **Yes.** Government use is permitted for public sector AI governance, regulatory compliance systems, and ethical review processes. No special license is required.
 
-### Q10: Are there any geographic restrictions on TML use?
-**A:** **No.** TML is available worldwide without geographic restrictions. The framework is designed to support global AI ethics implementation, respecting cultural variations in moral reasoning while maintaining core Sacred Pause principles.
+### Q10: Are there geographic restrictions on TML use?
+**A:** **No.** TML is available worldwide without restrictions. The framework supports global AI ethics implementation while respecting cultural variations.
 
 ---
 
-##  Ethical Obligations and Misuse Prevention
+## Implementation and Modification
 
-### Q11: Can I remove Sacred Pause safety features in my implementation?
-**A:** **Legally yes, ethically no.** While the MIT License allows modification, removing Sacred Pause safety mechanisms contradicts TML's fundamental purpose. Such modifications:
-- Undermine AI safety objectives
-- May create liability risks in AI deployment
-- Violate the memorial intent of the framework
-- Could harm vulnerable populations affected by AI decisions
+### Q11: Can I modify the Sacred Pause implementation?
+**A:** **Yes.** The MIT License allows full modification. You can adapt Sacred Pause thresholds, change triggering conditions, or create alternative implementations based on your specific needs.
 
-### Q12: What constitutes misuse of the TML Framework?
-**A:** Misuse includes:
-- __Removing ethical safeguards__ while still claiming TML compliance
-- __Using TML to create deceptive "ethics washing"__ for harmful AI
-- __Implementing discriminatory AI__ under the guise of moral reasoning
-- __Weaponizing AI systems__ using TML components
-While legally permitted under MIT License, such uses violate the framework's ethical foundation.
+### Q12: What if I want to remove Sacred Pause features?
+**A:** **Permitted.** While Sacred Pause is a valuable capability for handling moral complexity, you're free to use other parts of TML without it, or modify it to suit your requirements.
 
-### Q13: Can I use TML to justify unethical AI decisions?
-**A:** **Absolutely not.** TML is designed to **prevent** unethical AI decisions through Sacred Pause reflection. Using it to rationalize predetermined harmful outcomes is:
-- A fundamental misunderstanding of the framework
-- Potentially legally liable depending on jurisdiction
-- A violation of professional AI ethics standards
+### Q13: Can I combine TML with other frameworks?
+**A:** **Yes.** TML is designed to be interoperable. It can complement IEEE standards, Asilomar AI Principles, and corporate governance frameworks.
 
-### Q14: What if someone uses TML for harmful AI applications?
-**A:** The TML community response includes:
-1. **Public documentation** of misuse cases
-2. **Community advisory warnings** about bad actors
-3. **Technical countermeasures** in future versions
-4. **Collaboration with AI safety organizations**
-Report suspected misuse to: support@tml-goukassian.org
+### Q14: Do I need to contribute improvements back?
+**A:** **Not required but appreciated.** While you can keep modifications proprietary, sharing improvements benefits the entire community.
 
-### Q15: Are there any "MANDATORY" implementation requirements?
-**A:** While not legally required, **MANDATORY.md** contains critical safety guidelines that all ethical implementers should follow:
-- Never bypass Sacred Pause in high-stakes decisions
-- Always maintain human oversight capabilities
-- Document moral reasoning transparency
-- Preserve appeal and review mechanisms
+### Q15: Are there any restricted use cases?
+**A:** **No.** The standard MIT License imposes no use restrictions. Organizations determine appropriate applications based on their own ethical guidelines and regulatory requirements.
 
 ---
 
-##  Attribution and Academic Use
+## Attribution and Academic Use
 
 ### Q16: How should I cite TML in academic papers?
 **A:** Use this citation format:
 ```
-Goukassian, L. (2024). Ternary Moral Logic Framework: 
+Goukassian, L. (2025). Ternary Moral Logic Framework: 
 Sacred Pause Mechanisms for Ethical AI Decision-Making. 
-Version 2.0.0. https://github.com/Lev-Goukassian/TML-Framework
+https://github.com/FractonicMind/TernaryMoralLogic
 ORCID: 0009-0006-5966-1243
+Sacred Pause created by Lev Goukassian, 2025
 ```
 
-### Q17: Can I publish research extending TML without permission?
-**A:** **Yes, encouraged!** Academic freedom is fundamental. You can:
-- Publish papers critiquing or extending TML
-- Develop alternative implementations
-- Propose theoretical improvements
-- Conduct empirical validation studies
-We only ask for proper attribution and constructive engagement.
+### Q17: Can I publish research extending or critiquing TML?
+**A:** **Yes.** Academic freedom is fundamental. You can publish papers, develop alternatives, propose improvements, and conduct validation studies. Proper attribution is appreciated.
 
-### Q18: What about using TML in competitive research grants?
-**A:** **Fully permitted.** You can:
-- Include TML in grant proposals
-- Claim novel applications as your contribution
-- Compete for funding with TML-based projects
-- Lead multi-institutional TML research initiatives
-No permission or collaboration required, though we welcome partnership opportunities.
+### Q18: Can I use TML in competitive research grants?
+**A:** **Yes.** You can include TML in grant proposals, claim novel applications as your contribution, and compete for funding with TML-based projects.
 
-### Q19: Can I create a "fork" with different moral principles?
-**A:** **Yes.** The MIT License allows creating modified versions for:
-- Different cultural moral frameworks
-- Domain-specific ethical systems
-- Alternative philosophical foundations
-- Experimental moral reasoning approaches
-Please use a different name to avoid confusion with canonical TML.
+### Q19: Can I create a "fork" with different principles?
+**A:** **Yes.** The MIT License allows creating modified versions for different moral frameworks or domain-specific systems. Consider using a different name to avoid confusion.
 
 ### Q20: Do I need to share my TML research data?
-**A:** **Not required but encouraged.** While you own your research data, sharing advances the field:
-- Empirical validation strengthens TML
-- Negative results prevent repeated failures
-- Edge cases improve Sacred Pause mechanisms
-- Collective learning benefits all AI systems
+**A:** **Not required.** While you own your research data, sharing advances the field and helps improve the framework for everyone.
 
 ---
 
-##  Financial and Sustainability Questions
+## Financial and Sustainability Questions
 
-### Q21: Will TML ever become paid or restricted software?
-**A:** **Never.** The TML Framework has irreversible commitments to remain free:
-1. **MIT License is irrevocable** for all released versions
-2. **Succession Charter** mandates perpetual open access
-3. **Memorial Fund** ensures sustainable free distribution
-4. **Institutional partners** committed to preservation
+### Q21: Will TML ever become paid software?
+**A:** **No.** The MIT License is irrevocable for all released versions. Once released under MIT, it remains free forever.
 
 ### Q22: Can I donate to support TML development?
-**A:** **Yes, through the Memorial Fund.** Donations support:
-- Continued framework development
-- Free educational resources
-- Global accessibility initiatives
-- Long-term preservation
-Contact: support@tml-goukassian.org for donation information
+**A:** Currently, there is no formal donation mechanism. The framework is Lev Goukassian's contribution to the field. Community contributions through code and research are welcomed.
 
-### Q23: What if a company claims exclusive TML rights?
-**A:** **They cannot.** Any such claims are fraudulent. TML rights are:
-- Permanently in the public domain via MIT License
-- Protected by the Succession Charter
-- Defended by institutional partners
-- Documented in immutable blockchain records
-Report false claims immediately to the community.
+### Q23: Can someone claim exclusive TML rights?
+**A:** **No.** Any such claims would be invalid. The MIT License ensures TML remains freely available to all. The Sacred Pause concept was created by Lev Goukassian in 2025 and this attribution should be maintained.
 
 ### Q24: Can I create a commercial TML certification program?
-**A:** **Yes, with transparency.** You can offer paid certification, but:
-- Cannot claim to be the "official" or "only" certification
-- Must acknowledge other certification providers
-- Should contribute to community standards development
-- Must maintain ethical training quality standards
+**A:** **Yes.** You can offer paid certification, training, and consulting. Be transparent that yours is not the "only" or "official" certification.
 
-### Q25: Is there a TML trademark or logo I can use?
-**A:** The TML name and Sacred Pause concept are intentionally unregistered to remain free for all. You may:
-- Create your own logos for TML implementations
-- Use "TML-Compatible" or "Sacred Pause Enabled" descriptions
-- Design certification badges for your programs
-- Develop visual representations of ternary moral states
+### Q25: Is there a TML trademark or logo?
+**A:** No official trademark exists. You may create your own visual representations for your implementations while maintaining proper attribution to Lev Goukassian as creator of Sacred Pause.
 
 ---
 
-##  Future Development and Compatibility
+## Future Development and Compatibility
 
-### Q26: Will future TML versions remain backwards compatible?
-**A:** **Yes, core compatibility guaranteed.** The Succession Charter ensures:
-- Sacred Pause mechanisms remain stable
-- Core ternary states preserve their meaning
-- API additions won't break existing implementations
-- Migration guides provided for any changes
+### Q26: How stable is the TML API?
+**A:** The core concepts of ternary logic and Sacred Pause are stable. Implementations may evolve, but backward compatibility is a priority.
 
-### Q27: Can I contribute code to the official TML repository?
-**A:** **Yes, contributions welcome!** Submit pull requests for:
-- Bug fixes and performance improvements
-- New domain implementations
-- Enhanced moral reasoning algorithms
-- Documentation and translation efforts
-All contributions must maintain MIT License compatibility.
+### Q27: Can I contribute to the TML repository?
+**A:** **Yes.** Contributions are welcome via pull requests for bug fixes, improvements, new implementations, and documentation. All contributions fall under the MIT License.
 
-### Q28: What about AI regulation compliance?
-**A:** TML is designed to **facilitate regulatory compliance**:
-- EU AI Act alignment through transparency mechanisms
-- Explainable moral reasoning for audits
-- Built-in fairness and bias detection
-- Documentary evidence of ethical consideration
-However, implementers remain responsible for specific regulatory compliance.
+### Q28: Does TML help with AI regulation compliance?
+**A:** TML's transparency and documentation features may facilitate compliance with regulations like the EU AI Act. However, implementers remain responsible for specific regulatory compliance.
 
-### Q29: Can TML be integrated with other AI ethics frameworks?
-**A:** **Yes, TML is interoperable.** It complements:
-- IEEE's Ethically Aligned Design standards
-- Asilomar AI Principles
-- Partnership on AI guidelines
-- Corporate AI governance frameworks
-Sacred Pause can enhance any existing ethical review process.
+### Q29: Can TML work with other AI ethics frameworks?
+**A:** **Yes.** TML's Sacred Pause capability can enhance existing ethical review processes and complement other frameworks.
 
-### Q30: What are my rights if Lev Goukassian's estate makes claims?
-**A:** **Your rights are fully protected.** The MIT License is:
-- __Irrevocable once granted__ - cannot be withdrawn
-- __Perpetual__ - lasts forever
-- __Unconditional__ - no future obligations can be added
-- __Defended by the Succession Charter__ and institutional partners
-The Memorial Fund exists to prevent any such disputes.
+### Q30: What if legal questions arise about my TML use?
+**A:** Under the MIT License, you have clear rights to use, modify, and distribute TML. For specific legal questions, consult qualified legal counsel.
 
 ---
 
-##  Support and Contact
+## Support and Contact
 
-**For licensing questions not covered here:**
-- Email: support@tml-goukassian.org
+**For questions about the framework:**
+- Creator: Lev Goukassian
+- Email: leogouk@gmail.com
 - GitHub: https://github.com/FractonicMind/TernaryMoralLogic
-- Community Forum: https://community.tml-goukassian.org
-
-**For urgent ethical concerns or misuse reports:**
-- Emergency: ethics@tml-goukassian.org
-- Response time: Within 48 hours
-
-**For academic collaboration:**
-- Research: research@tml-goukassian.org
-- Institutional partnerships: See TML-SUCCESSION-CHARTER.md
+- ORCID: 0009-0006-5966-1243
 
 ---
 
-##  Final Legal Notice
+## Final Legal Notice
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 **This FAQ provides guidance but does not constitute legal advice. Consult qualified legal counsel for specific situations.**
 
 ---
-Created by Lev Goukassian
-* ORCID: 0009-0006-5966-1243  
-* Email: leogouk@gmail.com
-* Successor Contact: support@tml-goukassian.org
+
+Created by Lev Goukassian  
+ORCID: 0009-0006-5966-1243  
+Email: leogouk@gmail.com  
+Sacred Pause created by Lev Goukassian, 2025
+
 ---
 
-*Last Updated: November 2024*
-*Version: 1.0.0*
-*Framework Version Compatibility: TML 2.0.0+*
-
-"I taught machines to feel the weight of action, and the beauty of hesitation. I paused — and made the future pause with me.” — Lev Goukassian
+*Last Updated: August 2025*  
+*Version: 2.0.0*  
+*Framework Version: TML 2.0.0+*
