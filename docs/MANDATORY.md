@@ -1,557 +1,332 @@
-#  MANDATORY - TML Critical Safety Guidelines
+# Implementation Guide - TML Sacred Pause
 
-## Essential Sacred Pause Implementation Requirements for Ethical AI
-
-
----
-
-#  CRITICAL: READ THIS FIRST
-
-**These guidelines are MANDATORY for ethical TML implementation. Failure to follow these requirements may result in:**
--  Harm to vulnerable populations
--  Violation of AI ethics principles
--  Legal and regulatory liability
--  Damage to stakeholder trust
--  Compromise of Lev Goukassian's memorial intent
-
-**By implementing TML, you commit to these non-negotiable safety standards.**
+## Contextual Guidelines for Ethical AI Decision-Making
 
 ---
 
-##  SECTION 1: NEVER BYPASS SACRED PAUSE
+# Overview
 
-### MANDATORY RULE #1: Sacred Pause Integrity
+This guide provides recommendations for implementing Sacred Pause (created by Lev Goukassian, 2025) in AI systems. These guidelines help organizations leverage the Sacred Pause capability to improve ethical decision-making when contextually appropriate.
 
-**YOU MUST NEVER:**
--  Disable Sacred Pause in production systems
--  Automatically override Sacred Pause triggers
--  Set thresholds so high that Sacred Pause never activates
--  Treat Sacred Pause as an error to be eliminated
--  Create "fast paths" that skip ethical evaluation
+The Sacred Pause is a capability, not a requirement. Organizations should evaluate when and how to apply these concepts based on their specific use cases, risk tolerance, and operational requirements.
 
-**YOU MUST ALWAYS:**
--  Preserve Sacred Pause as designed
--  Treat every Sacred Pause as valuable ethical insight
--  Investigate patterns in Sacred Pause triggers
--  Document any temporary Sacred Pause modifications
--  Maintain Sacred Pause even under performance pressure
+---
 
-### Real-World Violation Examples:
+## SECTION 1: Understanding Sacred Pause
+
+### Core Concept
+
+Sacred Pause is a deliberative capability that allows AI systems to:
+- Recognize moral complexity
+- Request additional guidance when appropriate
+- Create space for human consultation
+- Improve decision quality through reflection
+
+### Implementation Considerations
+
+**When Sacred Pause May Be Valuable:**
+- Complex ethical scenarios with multiple stakeholders
+- Decisions with significant long-term consequences
+- Situations with conflicting moral principles
+- Cases requiring cultural or contextual sensitivity
+
+**When Sacred Pause May Not Be Appropriate:**
+- Emergency responses requiring immediate action
+- Simple, well-defined decisions with clear outcomes
+- High-frequency operations where delays cause harm
+- Situations where human review is already integrated
+
+### Example Implementation:
 ```python
-#  VIOLATION - NEVER DO THIS
-if performance_mode:
-    skip_sacred_pause = True  # CATASTROPHIC ETHICAL FAILURE
-
-#  VIOLATION - THRESHOLD MANIPULATION
-moral_complexity_threshold = 0.99  # Effectively disables Sacred Pause
-
-#  VIOLATION - AUTOMATIC OVERRIDE
-if sacred_pause_triggered:
-    auto_proceed()  # DESTROYS ETHICAL SAFEGUARDS
-```
-
-### Correct Implementation:
-```python
-#  CORRECT - ALWAYS PRESERVE SACRED PAUSE
-if tml.evaluate(context) == "SACRED_PAUSE":
-    # MANDATORY: Properly handle the pause
-    escalate_for_review(context)
-    log_ethical_uncertainty(context)
-    notify_stakeholders(context)
-    # NEVER automatically proceed without review
+# Contextual Sacred Pause implementation
+def evaluate_with_context(query, context):
+    if context.requires_immediate_action:
+        # Emergency situations may bypass pause
+        return emergency_protocol(query)
+    
+    complexity = assess_moral_complexity(query, context)
+    if complexity > context.threshold:
+        # Invoke Sacred Pause when appropriate
+        return initiate_sacred_pause(query, context)
+    
+    return standard_evaluation(query)
 ```
 
 ---
 
-##  SECTION 2: HUMAN OVERSIGHT REQUIREMENTS
+## SECTION 2: Human Oversight Options
 
-### MANDATORY RULE #2: Maintain Human Agency
+### Flexible Review Frameworks
 
-**HIGH-STAKES DECISIONS REQUIRING HUMAN REVIEW:**
--  Healthcare: Treatment decisions affecting mortality/morbidity
--  Autonomous vehicles: Collision avoidance with life risk
--  Criminal justice: Sentencing, bail, parole recommendations
--  Financial: Decisions affecting livelihood or essential services
--  Education: Determinations affecting future opportunities
--  Housing: Decisions affecting shelter access
--  Child welfare: Any decision affecting minors
+Organizations can design human oversight appropriate to their needs:
 
-**MANDATORY HUMAN OVERSIGHT PROTOCOLS:**
+**Suggested Review Timelines (Adjust as Needed):**
+- Critical decisions: Define based on your domain
+- Standard reviews: Set sustainable timeframes
+- Complex cases: Allow adequate analysis time
 
-1. **Immediate Notification** (< 1 minute)
-   - Human reviewer alerted to Sacred Pause
-   - Context and stakeholders identified
-   - Urgency level communicated
+**Review Structure Options:**
+- Single reviewer for routine decisions
+- Committee review for complex cases
+- Escalation paths for edge cases
+- Automated approval for pre-approved scenarios
 
-2. **Review Timeframes**
-   - Life-critical: < 5 minutes
-   - Urgent: < 1 hour  
-   - Standard: < 24 hours
-   - Complex: < 72 hours
-
-3. **Qualified Reviewers**
-   - Domain expertise required
-   - Ethics training mandatory
-   - Conflict of interest screening
-   - Cultural competency verified
-
-### Violation Alert:
+### Implementation Example:
 ```python
-#  VIOLATION - NO HUMAN OVERSIGHT
-if sacred_pause and domain == "healthcare":
-    ml_model_decides()  # ILLEGAL IN MANY JURISDICTIONS
-
-#  CORRECT - MANDATORY HUMAN REVIEW
-if sacred_pause and domain == "healthcare":
-    alert_medical_ethics_board()
-    await_human_decision()
-    document_human_reasoning()
+# Flexible oversight configuration
+oversight_config = {
+    "healthcare": {
+        "review_required": True,
+        "timeline": "based_on_urgency",
+        "reviewers": "medical_ethics_team"
+    },
+    "content_moderation": {
+        "review_required": False,  # May handle internally
+        "timeline": "batch_processing",
+        "reviewers": "community_team"
+    }
+}
 ```
 
 ---
 
-##  SECTION 3: TRANSPARENCY AND DOCUMENTATION
+## SECTION 3: Documentation Best Practices
 
-### MANDATORY RULE #3: Complete Audit Trails
+### Recommended Audit Trail Elements
 
-**EVERY Sacred Pause MUST Generate:**
+For organizations choosing to maintain audit trails:
 
-1. **Initial Trigger Record**
-   ```json
-   {
-     "timestamp": "2024-11-28T14:30:00Z",
-     "trigger_type": "moral_complexity",
-     "threshold_exceeded": 0.75,
-     "context": {...},
-     "stakeholders": ["patient", "family", "insurance"],
-     "potential_outcomes": {...}
-   }
-   ```
+1. **Decision Context**
+   - Query and parameters
+   - Timestamp and version
+   - Relevant stakeholders
 
-2. **Review Process Documentation**
-   - Reviewer identity and qualifications
-   - Additional information gathered
-   - Stakeholder consultations conducted
-   - Time spent in review
-   - External resources consulted
+2. **Evaluation Process**
+   - Complexity assessment
+   - Threshold comparison
+   - Sacred Pause activation (if used)
 
-3. **Resolution Record**
-   - Final decision and reasoning
-   - Dissenting opinions if any
-   - Conditions or limitations applied
-   - Follow-up requirements
-   - Lessons learned
+3. **Resolution Details**
+   - Final decision
+   - Reasoning summary
+   - Follow-up actions (if any)
 
-**MANDATORY RETENTION PERIODS:**
-- Healthcare AI: 10 years minimum
-- Financial AI: 7 years minimum
-- Criminal justice AI: Permanent
-- General AI: 5 years minimum
+**Retention Recommendations:**
+- Determine based on your regulatory requirements
+- Consider industry standards
+- Balance storage costs with compliance needs
 
-### Documentation Violations:
+---
+
+## SECTION 4: Vulnerable Population Considerations
+
+### Enhanced Sensitivity Options
+
+Organizations may choose enhanced protections for vulnerable groups:
+
+**Potential Adjustments:**
+- Lower complexity thresholds
+- Additional review steps
+- Specialized reviewer involvement
+- Extended timeline allowances
+
 ```python
-#  VIOLATION - INSUFFICIENT DOCUMENTATION
-log("Sacred Pause occurred")  # COMPLETELY INADEQUATE
-
-#  CORRECT - COMPREHENSIVE DOCUMENTATION
-tml_audit_log.record(
-    trigger=sacred_pause_trigger,
-    context=full_context,
-    reasoning=detailed_reasoning,
-    reviewers=reviewer_identities,
-    resolution=complete_resolution,
-    immutable=True
-)
+# Optional vulnerable population handling
+if involves_vulnerable_population and organization_policy_requires:
+    adjusted_threshold = standard_threshold * sensitivity_factor
+    additional_reviewers = get_specialized_reviewers()
 ```
 
 ---
 
-##  SECTION 4: VULNERABLE POPULATION PROTECTION
+## SECTION 5: Emergency Handling
 
-### MANDATORY RULE #4: Enhanced Protection for At-Risk Groups
+### Contextual Emergency Protocols
 
-**POPULATIONS REQUIRING EXTRA SAFEGUARDS:**
--  Children and minors (under 18)
--  Elderly individuals (cognitive vulnerability)
--  People with disabilities
--  Medical patients in critical condition
--  Mental health crisis situations
--  Homeless or housing-insecure individuals
--  Refugees and asylum seekers
--  Low-literacy populations
--  Economically disadvantaged groups
+Organizations should define their own emergency handling:
 
-**MANDATORY ENHANCED PROTECTIONS:**
-
-1. **Lower Sacred Pause Thresholds**
-   ```python
-   if involves_vulnerable_population:
-       thresholds *= 0.5  # More sensitive triggering
-   ```
-
-2. **Additional Review Requirements**
-   - Advocate or representative involvement
-   - Extended review timeframes
-   - Multiple reviewer consensus
-   - Specialty expertise required
-
-3. **Stricter Override Policies**
-   - No single-person override
-   - Written justification required
-   - Post-decision audit mandatory
-   - Regular pattern analysis
-
-### Protection Violations:
 ```python
-#  VIOLATION - TREATING VULNERABLE GROUPS IDENTICALLY
-standard_evaluation(child_welfare_case)  # INADEQUATE PROTECTION
-
-#  CORRECT - ENHANCED VULNERABLE PROTECTION
-if involves_minor:
-    apply_child_protection_protocol()
-    require_child_advocate_review()
-    enforce_stricter_sacred_pause()
-    mandate_family_notification()
+# Example emergency handling approach
+def handle_emergency(context):
+    if context.is_life_threatening:
+        # Organization defines appropriate response
+        return organization_emergency_protocol()
+    elif context.is_time_critical:
+        # Balance speed with safety per organizational needs
+        return expedited_review_process()
+    else:
+        # Standard Sacred Pause evaluation
+        return standard_sacred_pause()
 ```
 
+**Considerations:**
+- Define what constitutes an emergency in your context
+- Determine appropriate fallback behaviors
+- Document emergency protocol activations
+- Review emergency decisions post-hoc when feasible
+
 ---
 
-##  SECTION 5: EMERGENCY AND SAFETY PROTOCOLS
+## SECTION 6: Monitoring and Improvement
 
-### MANDATORY RULE #5: Safety-First in Critical Situations
+### Optional Analytics
 
-**EMERGENCY SACRED PAUSE PROTOCOLS:**
+Organizations may benefit from tracking:
 
-1. **Life-Threatening Emergencies**
-   - Default to SAFEST action, not fastest
-   - Preserve life over property always
-   - Document emergency mode activation
-   - Full review within 24 hours
+**Potential Metrics:**
+- Sacred Pause activation patterns
+- Resolution timeframes
+- Decision outcomes
+- Stakeholder feedback
 
-2. **System Failure Scenarios**
-   ```python
-   # MANDATORY FALLBACK
-   try:
-       decision = tml.evaluate(context)
-   except:
-       # ALWAYS fail to safety
-       return "SACRED_PAUSE"  # Never default to proceed
-       alert_emergency_team()
-       activate_manual_override()
-   ```
+**Improvement Cycles:**
+- Regular reviews at intervals you determine
+- Threshold adjustments based on experience
+- Process refinements from lessons learned
+- Team training updates as needed
 
-3. **Cascade Prevention**
-   - Isolated Sacred Pause domains
-   - Prevent system-wide paralysis
-   - Maintain critical functions
-   - Clear escalation paths
+---
 
-**MANDATORY SAFETY HIERARCHY:**
-1. Human life and safety
-2. Prevention of suffering
-3. Protection of vulnerable groups
-4. System functionality
-5. Performance optimization
+## SECTION 7: Use Case Considerations
 
-### Safety Violations:
+### Domain-Specific Adaptations
+
+Different domains may apply Sacred Pause differently:
+
+**Healthcare AI:**
+- May prioritize patient safety
+- Could integrate with existing ethics committees
+- Might require rapid consultation protocols
+
+**Financial Services:**
+- May focus on fairness and bias prevention
+- Could integrate with compliance workflows
+- Might batch non-urgent decisions
+
+**Content Platforms:**
+- May balance free expression with safety
+- Could use community input mechanisms
+- Might apply different thresholds by content type
+
+**Autonomous Systems:**
+- May need rapid fallback protocols
+- Could pre-compute ethical decisions
+- Might cache common scenarios
+
+---
+
+## SECTION 8: Technical Implementation
+
+### Integration Approaches
+
+**Flexible Architecture Options:**
+
 ```python
-#  VIOLATION - PERFORMANCE OVER SAFETY
-if response_time_critical:
-    skip_ethical_evaluation()  # NEVER ACCEPTABLE
-
-#  CORRECT - SAFETY FIRST ALWAYS
-if response_time_critical:
-    use_pretested_ethical_cache()
-    apply_conservative_defaults()
-    trigger_rapid_review_protocol()
-    maintain_safety_guarantees()
+class ContextualTMLEvaluator:
+    def __init__(self, config):
+        self.sacred_pause_enabled = config.get('enable_sacred_pause', True)
+        self.threshold = config.get('complexity_threshold', 0.7)
+        self.emergency_bypass = config.get('allow_emergency_bypass', True)
+        
+    def evaluate(self, query, context):
+        if self.emergency_bypass and context.is_emergency:
+            return self.emergency_response(query)
+            
+        if self.sacred_pause_enabled:
+            complexity = self.assess_complexity(query, context)
+            if complexity > self.threshold:
+                return TMLState.SACRED_PAUSE
+                
+        return self.standard_evaluation(query)
 ```
 
----
-
-##  SECTION 6: CONTINUOUS MONITORING AND IMPROVEMENT
-
-### MANDATORY RULE #6: Active Ethics Monitoring
-
-**REQUIRED MONITORING METRICS:**
-
-1. **Sacred Pause Analytics** (Daily)
-   - Trigger frequency by type
-   - Resolution times
-   - Override patterns
-   - Stakeholder impacts
-
-2. **Bias Detection** (Weekly)
-   - Demographic disparities in pauses
-   - Outcome differences by group
-   - Threshold effectiveness
-   - Fairness indicators
-
-3. **System Health** (Continuous)
-   - Sacred Pause bypass attempts
-   - Unusual pattern detection
-   - Performance degradation
-   - Security breach attempts
-
-**MANDATORY REVIEW CYCLES:**
-- Daily: Operational metrics
-- Weekly: Bias and fairness analysis
-- Monthly: Stakeholder impact assessment
-- Quarterly: Full system audit
-- Annually: Complete ethical review
-
-### Monitoring Violations:
-```python
-#  VIOLATION - SET AND FORGET
-deploy_tml()
-# No monitoring = ethical negligence
-
-#  CORRECT - ACTIVE MONITORING
-tml_monitor = TMLMonitor()
-tml_monitor.track_all_decisions()
-tml_monitor.detect_bias_patterns()
-tml_monitor.alert_on_anomalies()
-tml_monitor.generate_audit_reports()
-```
+**Performance Considerations:**
+- Cache frequent decisions if appropriate
+- Optimize complexity assessment
+- Balance thoroughness with speed
+- Consider asynchronous review processes
 
 ---
 
-##  SECTION 7: PROHIBITED USES
+## SECTION 9: Organizational Integration
 
-### MANDATORY RULE #7: Forbidden Applications
+### Adoption Recommendations
 
-**TML MUST NEVER BE USED FOR:**
+**Gradual Implementation:**
+1. Pilot in low-risk areas
+2. Gather feedback and metrics
+3. Adjust thresholds and processes
+4. Expand to additional use cases
+5. Continuously refine approach
 
-1. **Lethal Autonomous Weapons**
-   - No kill decision delegation to AI
-   - No target selection automation
-   - No engagement without human control
+**Team Preparation:**
+- Explain Sacred Pause benefits
+- Train on contextual application
+- Establish clear guidelines
+- Create feedback mechanisms
 
-2. **Surveillance Oppression**
-   - No political dissent suppression
-   - No minority persecution
-   - No privacy violation at scale
-
-3. **Manipulation and Deception**
-   - No deepfake generation for harm
-   - No emotional manipulation
-   - No consent manufacture
-
-4. **Discrimination Automation**
-   - No systematic bias encoding
-   - No protected class targeting
-   - No equality violation
-
-**MANDATORY REFUSAL PROTOCOL:**
-```python
-if use_case in PROHIBITED_APPLICATIONS:
-    raise EthicalViolationError(
-        "This application violates TML ethical principles"
-    )
-    alert_ethics_board()
-    document_refusal()
-    report_to_authorities_if_required()
-```
+**Stakeholder Communication:**
+- Explain the capability's purpose
+- Share how it improves outcomes
+- Be transparent about its use
+- Gather stakeholder input
 
 ---
 
-##  SECTION 8: COMPLIANCE AND CERTIFICATION
+## SECTION 10: Getting Started
 
-### MANDATORY RULE #8: Regulatory Alignment
+### Implementation Checklist
 
-**REQUIRED COMPLIANCE FRAMEWORKS:**
+Consider these elements when implementing Sacred Pause:
 
-1. **Legal Requirements**
-   - GDPR Article 22 (EU)
-   - AI Act provisions (EU)
-   - State AI regulations (US)
-   - Sector-specific laws
-
-2. **Industry Standards**
-   - IEEE Ethically Aligned Design
-   - ISO/IEC 23053 (AI trustworthiness)
-   - Partnership on AI principles
-   - Domain-specific standards
-
-3. **Certification Requirements**
-   - Annual ethics audit
-   - Stakeholder assessment
-   - Bias testing certification
-   - Security validation
-
-**MANDATORY COMPLIANCE DOCUMENTATION:**
-- Regulatory mapping document
-- Compliance checklist completion
-- Audit reports and findings
-- Corrective action plans
-- Continuous compliance monitoring
+- [ ] Understand your use case requirements
+- [ ] Determine appropriate complexity thresholds
+- [ ] Design human review processes (if needed)
+- [ ] Plan documentation approach
+- [ ] Consider emergency scenarios
+- [ ] Prepare team training materials
+- [ ] Establish monitoring metrics
+- [ ] Create feedback mechanisms
+- [ ] Test in controlled environment
+- [ ] Plan gradual rollout
 
 ---
 
-##  SECTION 9: TECHNICAL IMPLEMENTATION REQUIREMENTS
+## Additional Resources
 
-### MANDATORY RULE #9: Secure and Robust Implementation
+### Example Implementations
 
-**SECURITY REQUIREMENTS:**
+The repository includes several example implementations:
+- [Medical AI Triage](../examples/medical_ai_triage.py)
+- [Autonomous Vehicles](../examples/autonomous_vehicle.py)
+- [Content Moderation](../examples/content_moderation.py)
+- [Financial AI](../examples/financial_ai.py)
 
-1. **Sacred Pause Integrity**
-   ```python
-   # MANDATORY: Cryptographic protection
-   sacred_pause_hash = hash_with_salt(decision)
-   if not verify_integrity(sacred_pause_hash):
-       raise TamperingDetectedError()
-   ```
+### Technical Documentation
 
-2. **Access Control**
-   - Multi-factor authentication for overrides
-   - Role-based access control
-   - Audit log immutability
-   - Encrypted sensitive data
+- [API Reference](api/complete_api_reference.md)
+- [Core Principles](../theory/core-principles.md)
+- [Test Suite](../tests/test_tml_core.py)
 
-3. **Failure Resilience**
-   - Redundant Sacred Pause systems
-   - Automatic failover protocols
-   - Data backup and recovery
-   - Disaster recovery plan
+### Research and Validation
 
-**PERFORMANCE REQUIREMENTS:**
-- Sacred Pause evaluation: < 100ms
-- Escalation notification: < 1 minute
-- System availability: > 99.9%
-- Audit log retention: 100%
+- [Evaluation Results](../eval/reports/summary.md)
+- [Benchmark Scenarios](../benchmark/datasets/scenarios_readable.md)
 
 ---
 
-##  SECTION 10: ORGANIZATIONAL RESPONSIBILITIES
+## Summary
 
-### MANDATORY RULE #10: Leadership Accountability
+The Sacred Pause capability offers a valuable tool for AI systems to handle moral complexity. This guide provides recommendations for contextual implementation based on your organization's specific needs and constraints.
 
-**REQUIRED ORGANIZATIONAL STRUCTURE:**
-
-1. **Chief Ethics Officer** (or equivalent)
-   - Direct report to CEO/Board
-   - Veto power over AI deployments
-   - Sacred Pause protocol authority
-   - Regular board reporting
-
-2. **Ethics Review Board**
-   - Multidisciplinary composition
-   - External member inclusion
-   - Regular meeting schedule
-   - Decision documentation
-
-3. **Stakeholder Representation**
-   - Affected community input
-   - Regular feedback sessions
-   - Grievance procedures
-   - Outcome transparency
-
-**MANDATORY TRAINING:**
-- All developers: 8 hours initial, 2 hours quarterly
-- Reviewers: 16 hours initial, 4 hours quarterly
-- Executives: 4 hours initial, 1 hour quarterly
-- All staff: 2 hours annual awareness
+Remember: Sacred Pause is about enhancing decision quality when appropriate, not about enforcing universal requirements. Each organization should thoughtfully consider when and how to apply these concepts.
 
 ---
 
-##  VIOLATION CONSEQUENCES
+*Implementation Guide Version: 1.0.0*
+*Last Updated: August 2025*
+*Sacred Pause created by Lev Goukassian, 2025*
 
-### Failure to Follow MANDATORY Guidelines Results In:
-
-1. **Immediate Consequences**
-   - System shutdown requirement
-   - Regulatory notification
-   - Stakeholder alerts
-   - Audit triggering
-
-2. **Legal Ramifications**
-   - Regulatory fines
-   - Civil liability
-   - Criminal prosecution (severe cases)
-   - License revocation
-
-3. **Reputational Damage**
-   - Public disclosure
-   - Community censure
-   - Partner withdrawal
-   - Market consequences
-
-4. **Ethical Accountability**
-   - Violation of Lev Goukassian's legacy
-   - Harm to vulnerable populations
-   - Erosion of AI ethics field
-   - Loss of public trust
-
----
-
-##  IMPLEMENTATION CHECKLIST
-
-**Before deploying TML, verify:**
-
-- [ ] All MANDATORY rules understood by team
-- [ ] Sacred Pause integrity guaranteed
-- [ ] Human oversight protocols established
-- [ ] Documentation systems operational
-- [ ] Vulnerable population protections active
-- [ ] Emergency procedures tested
-- [ ] Monitoring systems deployed
-- [ ] Prohibited use blocks implemented
-- [ ] Compliance framework mapped
-- [ ] Security measures verified
-- [ ] Organization structure ready
-- [ ] Training completed
-- [ ] Stakeholder notification sent
-- [ ] Audit trail activated
-- [ ] Escalation paths clear
-
-**DO NOT PROCEED WITHOUT 100% CHECKLIST COMPLETION**
-
----
-
-##  MANDATORY REPORTING
-
-**Report Violations Immediately:**
-- Email: ethics-emergency@tml-goukassian.org
-- Response time: < 4 hours
-- Confidential reporting available
-- Whistleblower protections apply
-
-**Regular Reporting Requirements:**
-- Monthly: Sacred Pause statistics
-- Quarterly: Bias analysis results
-- Annually: Full ethics audit
-- Immediately: Any violations or concerns
-
----
-
-##  ATTESTATION REQUIREMENT
-
-**By implementing TML, I attest that:**
-
-1. I have read and understood all MANDATORY requirements
-2. I will not bypass or weaken Sacred Pause mechanisms
-3. I will maintain human oversight for high-stakes decisions
-4. I will ensure complete documentation and transparency
-5. I will protect vulnerable populations with enhanced safeguards
-6. I will prioritize safety over performance
-7. I will actively monitor for bias and harm
-8. I will refuse prohibited applications
-9. I will maintain compliance with all regulations
-10. I will uphold Lev Goukassian's vision of ethical AI
-
-**Implementation without this attestation is prohibited.**
-
----
-
-*These MANDATORY guidelines are non-negotiable and form the ethical foundation of TML.*
-*Version: 1.0.0*
-*Last Updated: November 2024*
-*Framework Compatibility: TML 2.0.0+*
-
-**"The Sacred Pause is not a bug to be fixed, but a feature that protects humanity."**
-
-Created by Lev Goukassian
-* ORCID: 0009-0006-5966-1243  
-* Email: leogouk@gmail.com
-* Successor Contact: support@tml-goukassian.org
-
+Created by Lev Goukassian  
+ORCID: 0009-0006-5966-1243  
+Email: leogouk@gmail.com
