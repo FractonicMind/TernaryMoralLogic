@@ -3,6 +3,7 @@
 **A Computational Framework for Implementing Ethical Hesitation in Artificial Intelligence Systems**
 
 [![Interactive Demo](https://img.shields.io/badge/Try%20Interactive%20Demo-Live%20Application-blue?style=flat-square)](https://fractonicmind.github.io/TernaryMoralLogic/TML-App/)
+[![Repository Navigation](https://img.shields.io/badge/📁_Repository-Navigation-blue?style=flat-square)](https://fractonicmind.github.io/TernaryMoralLogic/repository-navigation.html)
 [![Research Paper](https://img.shields.io/badge/Research%20Paper-Under%20Review-orange?style=flat-square)](https://medium.com/@leogouk/ternary-moral-logic-tml-a-framework-for-ethical-ai-decision-making-3a0a32609935)
 [![Framework Visualization](https://img.shields.io/badge/Framework%20Visualization-Graphical%20Abstract-lightblue?style=flat-square)](docs/images/tml_graphical_abstract.svg)
 [![Academic Validation](https://img.shields.io/badge/Academic%20Validation-Complete-brightgreen?style=flat-square)](docs/ACADEMIC_VALIDATION.md)
