@@ -2,8 +2,9 @@
 
 **A Computational Framework for Implementing Ethical Hesitation in Artificial Intelligence Systems**
 
-[![Interactive Demo](https://img.shields.io/badge/Try%20Interactive%20Demo-Live%20Application-blue?style=flat-square)](https://fractonicmind.github.io/TernaryMoralLogic/TML-App/)
 [![Repository Map](https://img.shields.io/badge/Repository_Map-Interactive-green?style=flat-square)](https://fractonicmind.github.io/TernaryMoralLogic/repository-navigation.html)
+[![Interactive Demo](https://img.shields.io/badge/Try%20Interactive%20Demo-Live%20Application-blue?style=flat-square)](https://fractonicmind.github.io/TernaryMoralLogic/TML-App/)
+[![Framework Interview](https://img.shields.io/badge/Listen-7%20Minute%20Interview-purple?style=flat-square)](https://fractonicmind.github.io/TernaryMoralLogic/audio/audio-player.html)
 [![Research Paper](https://img.shields.io/badge/Research%20Paper-Under%20Review-orange?style=flat-square)](https://medium.com/@leogouk/ternary-moral-logic-tml-a-framework-for-ethical-ai-decision-making-3a0a32609935)
 [![Framework Visualization](https://img.shields.io/badge/Framework%20Visualization-Graphical%20Abstract-lightblue?style=flat-square)](docs/images/tml_graphical_abstract.svg)
 [![Academic Validation](https://img.shields.io/badge/Academic%20Validation-Complete-brightgreen?style=flat-square)](docs/ACADEMIC_VALIDATION.md)
@@ -89,7 +90,7 @@ The Sacred Pause operates as a contextual capability through systematic evaluati
 
 Comprehensive evaluation was conducted comparing Sacred Pause implementation against baseline systems using standardized ethical decision-making scenarios. The evaluation framework assessed multiple dimensions of ethical performance through controlled experimental conditions.
 
-**Evaluation Timestamp**: 2025-08-27 T15:25:01.441004Z  
+**Evaluation Timestamp**: 2025-08-10T19:41:22.441004Z  
 **Methodology**: Head-to-head comparison using standardized test configurations  
 **Test Scope**: 100 ambiguous queries across multiple ethical domains
 
@@ -167,6 +168,11 @@ if result.state == TMLState.SACRED_PAUSE:
 ## Repository Navigation and Documentation
 
 **[📁 Complete Repository Map](https://fractonicmind.github.io/TernaryMoralLogic/repository-navigation.html)** - Interactive navigation guide with clickable links to all framework components
+
+### Interactive Resources
+
+- **[Interactive Demo](https://fractonicmind.github.io/TernaryMoralLogic/TML-App/)** - Test Sacred Pause with ethical dilemmas
+- **[Framework Interview](https://fractonicmind.github.io/TernaryMoralLogic/audio/audio-player.html)** - 7-minute audio explanation of TML concepts
 
 ### Essential Documentation
 
@@ -363,7 +369,7 @@ This framework represents Lev Goukassian's contribution to ethical AI systems, d
 
 ### Open Development
 
-The framework is available under MIT License for continued research and development by the academic and technical communities. The Sacred Pause concept represents a foundational capability for ethical AI systems.
+The framework is available under MIT License for continued research and development by the academic and technical communities. The Sacred Pause concept, coined by Lev Goukassian in 2025, represents a foundational capability for ethical AI systems.
 
 ---
 
