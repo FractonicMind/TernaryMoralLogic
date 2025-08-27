@@ -369,7 +369,7 @@ This framework represents Lev Goukassian's contribution to ethical AI systems, d
 
 ### Open Development
 
-The framework is available under MIT License for continued research and development by the academic and technical communities. The Sacred Pause concept, coined by Lev Goukassian in 2025, represents a foundational capability for ethical AI systems.
+The framework is available under MIT License for continued research and development by the academic and technical communities. The Sacred Pause concept represents a foundational capability for ethical AI systems.
 
 ---
 
