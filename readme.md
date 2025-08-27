@@ -367,13 +367,6 @@ The framework is available under MIT License for continued research and developm
 
 ---
 
-## Contact
-
-**Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)  
-**Email**: leogouk@gmail.com  
-
----
-
 ## Conclusion
 
 Ternary Moral Logic demonstrates a valuable advancement in AI ethics implementation, providing computational frameworks that embody wisdom traditions while maintaining practical utility. By introducing the Sacred Pause as an available computational capability, TML shows how creating space for moral deliberation in automated systems can enhance their ethical decision-making.
