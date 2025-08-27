@@ -3,6 +3,7 @@
 **A Computational Framework for Implementing Ethical Hesitation in Artificial Intelligence Systems**
 
 [![Interactive Demo](https://img.shields.io/badge/Try%20Interactive%20Demo-Live%20Application-blue?style=flat-square)](https://fractonicmind.github.io/TernaryMoralLogic/TML-App/)
+[![Repository Map](https://img.shields.io/badge/Repository_Map-Interactive-green?style=flat-square)](https://fractonicmind.github.io/TernaryMoralLogic/repository-navigation.html)
 [![Research Paper](https://img.shields.io/badge/Research%20Paper-Under%20Review-orange?style=flat-square)](https://medium.com/@leogouk/ternary-moral-logic-tml-a-framework-for-ethical-ai-decision-making-3a0a32609935)
 [![Framework Visualization](https://img.shields.io/badge/Framework%20Visualization-Graphical%20Abstract-lightblue?style=flat-square)](docs/images/tml_graphical_abstract.svg)
 [![Academic Validation](https://img.shields.io/badge/Academic%20Validation-Complete-brightgreen?style=flat-square)](docs/ACADEMIC_VALIDATION.md)
@@ -203,24 +204,6 @@ if result.state == TMLState.SACRED_PAUSE:
 **[License FAQ](docs/LICENSE_FAQ.md)**: Legal and licensing information  
 **[General FAQ](docs/GENERAL_FAQ.md)**: Technical implementation guidance  
 
-### Research and Citation
-
-**Current Research Status**: Under peer review at AI and Ethics (Springer Nature)  
-**Research Square Submission**: rs-7142922 with 8 assigned reviewers  
-
-#### Citation Format
-
-```bibtex
-@article{goukassian2025tml,
-  title={Ternary Moral Logic: Implementing Ethical Hesitation in AI Systems},
-  author={Goukassian, Lev},
-  journal={AI and Ethics},
-  year={2025},
-  note={Under peer review. Sacred Pause coined by Lev Goukassian, 2025},
-  url={https://github.com/FractonicMind/TernaryMoralLogic}
-}
-```
-
 ---
 
 ## Philosophical Foundations
@@ -380,7 +363,7 @@ This framework represents Lev Goukassian's contribution to ethical AI systems, d
 
 ### Open Development
 
-The framework is available under MIT License for continued research and development by the academic and technical communities. The Sacred Pause concept, coined by Lev Goukassian in 2025, represents a foundational capability for ethical AI systems.
+The framework is available under MIT License for continued research and development by the academic and technical communities. The Sacred Pause concept represents a foundational capability for ethical AI systems.
 
 ---
 
