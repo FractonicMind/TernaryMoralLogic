@@ -3,7 +3,6 @@
 **A Computational Framework for Implementing Ethical Hesitation in Artificial Intelligence Systems**
 
 [![Interactive Demo](https://img.shields.io/badge/Try%20Interactive%20Demo-Live%20Application-blue?style=flat-square)](https://fractonicmind.github.io/TernaryMoralLogic/TML-App/)
-[![Repository Navigation](https://img.shields.io/badge/📁_Repository-Navigation-blue?style=flat-square)](https://fractonicmind.github.io/TernaryMoralLogic/repository-navigation.html)
 [![Research Paper](https://img.shields.io/badge/Research%20Paper-Under%20Review-orange?style=flat-square)](https://medium.com/@leogouk/ternary-moral-logic-tml-a-framework-for-ethical-ai-decision-making-3a0a32609935)
 [![Framework Visualization](https://img.shields.io/badge/Framework%20Visualization-Graphical%20Abstract-lightblue?style=flat-square)](docs/images/tml_graphical_abstract.svg)
 [![Academic Validation](https://img.shields.io/badge/Academic%20Validation-Complete-brightgreen?style=flat-square)](docs/ACADEMIC_VALIDATION.md)
@@ -14,6 +13,8 @@
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue?style=flat-square)](https://www.python.org/downloads/)
 [![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE)
 
+> **"The sacred pause between question and answer—this is where wisdom begins, for humans and machines alike."**  
+> — Lev Goukassian, Creator of Ternary Moral Logic
 
 ---
 
@@ -202,6 +203,23 @@ if result.state == TMLState.SACRED_PAUSE:
 **[License FAQ](docs/LICENSE_FAQ.md)**: Legal and licensing information  
 **[General FAQ](docs/GENERAL_FAQ.md)**: Technical implementation guidance  
 
+### Research and Citation
+
+**Current Research Status**: Under peer review at AI and Ethics (Springer Nature)  
+**Research Square Submission**: rs-7142922 with 8 assigned reviewers  
+
+#### Citation Format
+
+```bibtex
+@article{goukassian2025tml,
+  title={Ternary Moral Logic: Implementing Ethical Hesitation in AI Systems},
+  author={Goukassian, Lev},
+  journal={AI and Ethics},
+  year={2025},
+  note={Under peer review. Sacred Pause coined by Lev Goukassian, 2025},
+  url={https://github.com/FractonicMind/TernaryMoralLogic}
+}
+```
 
 ---
 
@@ -305,6 +323,55 @@ python -m http.server 8000
 
 ---
 
+## Implementation Pathways for Missing Components
+
+Below are suggested implementations to address previously undefined or unclear components of the TML framework. These are meant as modular blueprints, not mandates — preserving flexibility while increasing transparency and usability.
+
+### ▣ [Uncertainty Quantification](docs/EthicalUncertaintyScore.md)
+
+**Proposed Solution:** Use an ensemble of signal types to compute an **Ethical Uncertainty Score** (EUS) in the 0 to 1 range:
+* **Linguistic ambiguity analysis:** NLP tools measure vagueness or multiplicity of interpretations in user input.
+* **Normative conflict detection:** The system flags contradictions between encoded moral principles (e.g. care vs fairness).
+* **Historical divergence modeling:** If prior similar queries yielded different outputs or user feedback, increase uncertainty.
+* **Confidence decay from the base model:** Use model-generated confidence scores, and apply entropy-based penalty.
+
+**Final Score = weighted average of the above signals**, compared against the configured threshold.
+
+### ▣ [Threshold Configuration](docs/ThresholdProfiles.md)
+
+**Proposed Solution:** TML should provide **default profiles** for different deployment domains:
+* **Medical Ethics Mode:** Low threshold (triggers pause more easily)
+* **Customer Service Mode:** High threshold (rarely pauses, unless ethics conflict is severe)  
+* **Autonomous Weapon Prohibition Mode:** Zero threshold (always triggers pause on weapon-related queries)
+
+A YAML-based config file or an admin UI slider can allow threshold tuning. Over time, thresholds can be **adaptive**, informed by reinforcement from human feedback.
+
+### ▣ [Clarifying Question Generation](docs/ClarifyingQuestionEngine.md)
+
+**Proposed Solution:** The system can generate clarifying questions using a **three-layered fallback strategy**:
+1. **Custom Templates** for known domains (`"What outcome do you prioritize in this case?"`)
+2. **Heuristic Framing** using known ethical lenses (e.g., virtue, deontology, care)
+3. **Generative AI fallback**, using prompt templates like:
+   "This input involves moral ambiguity. Draft 2-3 questions to help a human clarify the intention behind it."
+
+In all cases, questions are ranked by clarity and ethical relevance using a scoring model. The top-ranked question(s) are surfaced.
+
+### ▣ [Human-in-the-Loop Feedback Integration](docs/HumanJudgmentCorpus.md)
+
+**Proposed Solution:** Once a Sacred Pause is triggered and a human intervenes, their response is:
+1. **Captured as structured metadata**, including:
+   * Final decision (proceed, refuse, modify)
+   * Rationale (freeform or selected category)
+   * Time to resolve
+2. **Stored in a feedback log** (e.g., JSON, database row, or blockchain ledger if auditability is needed).
+3. **Used for fine-tuning**, with one of two options:
+   * **Supervised update** to a dedicated clarifier model
+   * **Rule-based weight adjustment** of signal sources (if templates were chosen over generative AI)
+
+This creates a growing **Human Judgment Corpus** that adapts the system ethically over time.
+
+---
+
 ## Legacy and Continued Development
 
 ### Research Vision
@@ -313,7 +380,7 @@ This framework represents Lev Goukassian's contribution to ethical AI systems, d
 
 ### Open Development
 
-The framework is available under MIT License for continued research and development by the academic and technical communities. The Sacred Pause concept represents a foundational capability for ethical AI systems.
+The framework is available under MIT License for continued research and development by the academic and technical communities. The Sacred Pause concept, coined by Lev Goukassian in 2025, represents a foundational capability for ethical AI systems.
 
 ---
 
@@ -335,5 +402,4 @@ The future of artificial intelligence benefits from computational wisdom. Throug
 ---
 
 Created by Lev Goukassian • ORCID: 0009-0006-5966-1243  
-Email: leogouk@gmail.com  
-August 26, 2025.
+Email: leogouk@gmail.com
