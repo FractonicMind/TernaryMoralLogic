@@ -2,10 +2,6 @@
 
 **Protecting Universal AI Transparency Infrastructure from Misuse**
 
-*Created by: Lev Goukassian*  
-*ORCID: 0009-0006-5966-1243*  
-*Framework: Universal AI Moral Transparency with Post-Audit Investigation*
-
 ---
 
 ## Executive Summary
