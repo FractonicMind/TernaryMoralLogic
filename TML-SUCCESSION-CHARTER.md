@@ -1,321 +1,238 @@
-# TML Succession Invitation Charter
+# TML Investigation Authority Charter
 
-**Ternary Moral Logic Framework - Institutional Stewardship Invitation**
+**Ternary Moral Logic Framework - Democratic Oversight Succession**
 
 ---
 
 ## I. PURPOSE AND SCOPE
 
-This Charter establishes a voluntary succession framework for the Ternary Moral Logic (TML) framework and Sacred Pause methodology upon the incapacity or death of the original creator, Lev Goukassian. This document serves as an **invitation** to qualified institutions to assume stewardship responsibilities, not as an assignment of obligations.
+This Charter establishes succession framework for democratic oversight of the Ternary Moral Logic (TML) framework and Sacred Pause methodology upon incapacity or death of creator Lev Goukassian. This document invites qualified institutions to assume investigation authority and oversight responsibilities for AI transparency infrastructure.
 
 ### Framework Coverage
-- **Ternary Moral Logic** theoretical framework
-- **Sacred Pause** methodology and implementations
-- **TML Interactive Demonstration** system
-- **Associated research** and documentation
-- **Memorial Fund** structure and governance
-- **Domain and communication** infrastructure
+- **Ternary Moral Logic** transparency infrastructure
+- **Sacred Pause** universal logging methodology  
+- **TML Investigation Tools** and audit capabilities
+- **Democratic Oversight** coordination protocols
+- **Memorial Fund** for ethical AI research
+- **Academic Collaboration** networks
 
 ---
 
 ## II. SUCCESSION TRIGGERS
 
-This succession framework activates upon any of the following verified conditions:
+Investigation authority transfer activates upon verified conditions:
 
 1. **Death** of Lev Goukassian (verified by death certificate)
-2. **Legal incapacity** (verified by medical/legal documentation)
-3. **Communication absence** (90+ consecutive days of non-response to official communications)
-4. **Voluntary succession** (written declaration by Lev Goukassian)
+2. **Legal incapacity** (verified by medical/legal documentation)  
+3. **Communication absence** (90+ consecutive days non-response)
+4. **Voluntary transfer** (written declaration by Lev Goukassian)
 
-### Notification Process
-Upon trigger activation, notification shall be sent to all Preferred Institutions listed in Section III within 30 days.
+Notification sent to Investigation Authority Institutions within 30 days.
 
 ---
 
-## III. INVITATION TO QUALIFIED INSTITUTIONS
+## III. INVESTIGATION AUTHORITY INSTITUTIONS
 
-### Preferred Institutions (Invitation Priority Order)
-
-The following institutions are **invited** to consider TML stewardship, in order of preference:
+### Pre-Authorized Investigation Institutions (Priority Order)
 
 1. **MIT Computer Science and Artificial Intelligence Laboratory (CSAIL)**
-   - Contact: Director of CSAIL
-   - Rationale: Leading AI research, ethical AI focus, technical infrastructure
+   - **Authority**: Technical investigation of AI ethical reasoning failures
+   - **Expertise**: AI system analysis, algorithm auditing, performance investigation
 
-2. **Stanford Human-Centered AI Institute (HAI)**
-   - Contact: Director of HAI
-   - Rationale: Human-centered AI mission, interdisciplinary approach
+2. **Stanford Human-Centered AI Institute (HAI)**  
+   - **Authority**: Human impact investigation and stakeholder analysis
+   - **Expertise**: Human-AI interaction, ethical impact assessment, community effects
 
 3. **Oxford Future of Humanity Institute (FHI)**
-   - Contact: Director of FHI  
-   - Rationale: AI safety focus, long-term impact research
+   - **Authority**: Long-term impact investigation and existential risk analysis  
+   - **Expertise**: AI safety research, risk assessment, systemic impact evaluation
 
-4. **UC Berkeley Center for Human-Compatible AI**
-   - Contact: Director, Stuart Russell
-   - Rationale: AI alignment research, compatible AI principles
+4. **Harvard Kennedy School Technology and Public Purpose**
+   - **Authority**: Policy and regulatory investigation coordination
+   - **Expertise**: Democratic oversight, public policy, institutional governance
 
-5. **Carnegie Mellon University AI Ethics Initiative**
-   - Contact: Director of AI Ethics
-   - Rationale: Ethics research focus, technical capabilities
+5. **UC Berkeley Center for Human-Compatible AI**
+   - **Authority**: AI alignment investigation and safety analysis
+   - **Expertise**: AI alignment research, safety evaluation, technical assessment
 
-### Qualification Criteria
+### Investigation Authority Requirements
 
-Any institution accepting stewardship must demonstrate:
-
-- **Accredited university** status or established research institution
-- **Active AI ethics program** with dedicated faculty/researchers  
-- **Technical infrastructure** for software and web hosting
-- **Legal capacity** for intellectual property management
-- **Commitment to open research** and educational accessibility
-- **Resources for sustained stewardship** (minimum 5-year commitment)
+Institutions accepting investigation authority must demonstrate:
+- **Academic research credentials** in AI ethics or related fields
+- **Technical capability** for audit trail analysis and system investigation  
+- **Independence** from commercial AI development interests
+- **Democratic accountability** through academic governance structures
+- **Investigation expertise** in AI system analysis and ethical evaluation
 
 ---
 
-## IV. STEWARDSHIP RIGHTS AND RESPONSIBILITIES
+## IV. INVESTIGATION AUTHORITY RESPONSIBILITIES
 
-### Rights Offered to Accepting Institution
+### Rights Granted to Investigation Institutions
 
-1. **Intellectual Property Stewardship**
-   - Copyright holder status for TML framework materials
-   - Authority to license TML for commercial and research use
-   - Rights to modify and improve framework while maintaining core principles
+1. **Audit Trail Access Authority**
+   - Real-time access to moral trace logs from TML-implementing systems
+   - Investigation coordination authority for AI incident analysis
+   - Evidence analysis tools and technical infrastructure access
 
-2. **Domain and Communication Authority**
-   - Right to register and control `tml-goukassian.org` domain
-   - Authority to establish `support@tml-goukassian.org` email
-   - Control of official TML communications and announcements
+2. **Academic Research Rights**
+   - Authority to analyze anonymized moral reasoning patterns for research
+   - Publication rights for investigation methodology and findings
+   - Collaboration authority with other investigation institutions
 
-3. **Memorial Fund Administration**
-   - Authority to establish Lev Goukassian Memorial Fund
-   - Right to collect commercial licensing fees
-   - Discretion in fund allocation within specified guidelines
+3. **Democratic Oversight Coordination**
+   - Authority to coordinate public transparency reporting  
+   - Responsibility for community accountability mechanisms
+   - Investigation findings publication for democratic oversight
 
-4. **Research and Development Rights**
-   - Authority to continue TML research and development
-   - Right to publish research under institutional affiliation
-   - Freedom to establish collaborations and partnerships
+### Investigation Responsibilities
 
-### Responsibilities Requested from Accepting Institution
+1. **Technical Investigation Capability**
+   - Analyze moral trace logs when AI systems cause harm or ethical issues
+   - Provide expert evaluation of AI ethical reasoning quality and accuracy
+   - Coordinate investigation findings with regulatory authorities and legal proceedings
 
-1. **Framework Integrity Protection**
-   - Maintain core TML principles: +1/0/-1 ternary logic and Sacred Pause
-   - Prevent commercial misuse that contradicts ethical AI principles
-   - Ensure proper attribution to Lev Goukassian in all materials
+2. **Democratic Accountability Coordination**
+   - Generate public transparency reports with anonymized findings  
+   - Coordinate community oversight and stakeholder feedback mechanisms
+   - Ensure investigation authority serves public interest rather than institutional interest
 
-2. **Educational Accessibility**
-   - Maintain free access to TML framework for educational use
-   - Continue hosting interactive demonstration system
-   - Support academic research and publication
+3. **Academic Research and Improvement**
+   - Conduct research on AI ethical reasoning improvement using investigation evidence
+   - Publish academic findings supporting evidence-based enhancement of AI ethics
+   - Coordinate international research collaboration on AI transparency and accountability
 
-3. **Memorial Fund Management**
-   - Establish transparent fund governance structure
-   - Allocate funds to AI safety and ethics research
-   - Publish annual reports on fund activities and allocations
-   - Maintain "Lev Goukassian Memorial" designation
-
-4. **Community Engagement**
-   - Respond to licensing requests and technical inquiries
-   - Support TML implementation in ethical AI projects
-   - Foster community development around Sacred Pause principles
+4. **Memorial Fund Coordination**
+   - Coordinate memorial fund allocation for ethical AI research
+   - Ensure fund supports investigation capability and democratic oversight enhancement
+   - Maintain transparent allocation process with academic accountability
 
 ---
 
-## V. SUCCESSION PROCESS
+## V. FRAMEWORK PRESERVATION STRUCTURE
 
-### Phase 1: Notification (30 days)
-- Official notification sent to all Preferred Institutions
-- 30-day period for initial response and interest indication
-- Information package including complete TML documentation
+### Technical Infrastructure Continuity
 
-### Phase 2: Acceptance Period (60 days)
-- Interested institutions have 60 days to submit formal acceptance
-- Acceptance must include stewardship plan and resource commitment
-- Legal review period for institutional approval processes
+**Repository and Documentation:**
+- Maintain GitHub repository accessibility and version control
+- Continue hosting interactive demonstration system
+- Preserve complete academic documentation and research materials
+- Ensure permanent accessibility for educational and research use
 
-### Phase 3: Selection and Transfer (30 days)
-- If multiple institutions accept: selection based on stewardship plan quality
-- If single acceptance: automatic selection
-- If no acceptances: proceed to Alternative Succession (Section VI)
-- Legal transfer of rights and establishment of infrastructure
+**Investigation Tool Development:**
+- Enhance audit trail analysis capabilities based on investigation experience
+- Develop academic research tools for moral reasoning pattern analysis  
+- Support democratic oversight through improved transparency mechanisms
+- Coordinate technical advancement with investigation authority institutions
 
-### Communication During Process
-All communications regarding succession shall be directed to:
-- **GitHub Repository**: https://github.com/FractonicMind/TernaryMoralLogic
-- **Backup Contact**: [To be designated by Lev Goukassian]
+### Memorial Fund Administration
 
----
+**Fund Purpose**: Support ethical AI research and democratic oversight capability development
 
-## VI. ALTERNATIVE SUCCESSION PLANS
+**Revenue Sources:**
+- Academic licensing for research and educational use
+- Voluntary contributions from ethical AI implementation projects
+- Research grants supporting investigation capability and transparency research
 
-### If No Institution Accepts (120 days post-notification)
-
-**Option A: Open Source Foundation Stewardship**
-- Transfer to Creative Commons or similar open-source organization
-- Maintain educational accessibility with attribution requirements
-- Simplified governance focused on framework preservation
-
-**Option B: Family Trust Administration**
-- Transfer to designated family trust with technical advisory board
-- Maintain existing MIT + Ethical Use License
-- Revenue from commercial licensing supports AI safety research
-
-**Option C: Public Domain with Attribution**
-- Release framework to public domain with permanent attribution requirement
-- Memorial Fund becomes standalone charitable fund
-- Community-driven development with attribution protection
-
-### Default Selection Process
-If Lev Goukassian has not designated preference, selection follows order: A → B → C
+**Allocation Framework:**
+- **60%** Investigation capability research and development
+- **25%** Democratic oversight mechanism research  
+- **10%** Memorial preservation and academic accessibility
+- **5%** Administrative coordination
 
 ---
 
-## VII. MEMORIAL FUND STRUCTURE
+## VI. SUCCESSION PROCESS
 
-### Fund Purpose
-The Lev Goukassian Memorial Fund shall support:
-- AI safety and ethics research grants
-- Educational programs promoting ethical AI development
-- Conferences and workshops on AI ethics and Sacred Pause principles
-- Student scholarships in AI ethics and moral reasoning
+### Phase 1: Investigation Authority Notification (30 days)
+- Notification to all pre-authorized investigation institutions
+- Information package including complete TML documentation and investigation protocols
+- 30-day response period for investigation authority acceptance
 
-### Revenue Sources
-- Commercial licensing fees for TML framework
-- Voluntary donations from TML implementers
-- Grants and sponsorships aligned with fund mission
+### Phase 2: Authority Establishment (60 days)  
+- Investigation institutions submit coordination plans and resource commitments
+- Legal review of investigation authority agreements and democratic oversight protocols
+- Coordination structure establishment for multi-institutional investigation authority
 
-### Allocation Guidelines
-- **50%** Direct research grants for AI safety/ethics
-- **25%** Educational programs and conferences  
-- **15%** Administrative costs and infrastructure
-- **10%** Emergency fund for framework protection
-
-### Governance Requirements
-- Annual public reporting of fund activities
-- Transparent allocation process with public criteria
-- Board oversight including AI ethics experts
-- Prohibition on general institutional operational funding
+### Phase 3: Authority Activation (30 days)
+- Investigation authority transfer with complete audit access capability
+- Democratic oversight coordination protocol activation
+- Memorial fund establishment and governance structure implementation
 
 ---
 
-## VIII. TECHNICAL INFRASTRUCTURE TRANSFER
+## VII. ALTERNATIVE SUCCESSION PROTOCOLS
 
-### Digital Assets
-- **GitHub Repository**: https://github.com/FractonicMind/TernaryMoralLogic
-- **Interactive Demo**: https://fractonicmind.github.io/TernaryMoralLogic/TML-App/
-- **Documentation and Evidence**: Complete framework materials
-- **Medium Articles**: Publication and promotion materials
+### If No Investigation Authority Accepted (120 days post-notification)
 
-### Domain and Email Setup
+**Option A: Academic Consortium Formation**
+- Coordinate multiple academic institutions for shared investigation authority
+- Distributed oversight responsibility with specialized investigation domains
+- Memorial fund administration through academic foundation
+
+**Option B: Open Research Foundation Authority**
+- Transfer investigation authority to established open research foundation  
+- Maintain academic accessibility with democratic oversight principles
+- Community-driven investigation capability with academic coordination
+
+**Option C: Public Archive with Community Oversight**
+- Release investigation tools to public domain with attribution requirement
+- Community-driven oversight with academic advisory coordination
+- Memorial fund becomes independent ethical AI research foundation
+
+---
+
+## VIII. TECHNICAL INFRASTRUCTURE COORDINATION
+
+### Digital Asset Management
+
+**Academic Infrastructure:**
 ```
-Domain: tml-goukassian.org
-Primary Email: support@tml-goukassian.org
-Alternative: info@tml-goukassian.org
-Redirects: 
-  - leogouk@gmail.com → support@tml-goukassian.org
-  - GitHub contact → support@tml-goukassian.org
+Domain: tml-goukassian.org → Academic institution hosting
+Repository: GitHub.com/FractonicMind/TernaryMoralLogic → Institution maintenance  
+Investigation Tools: Real-time audit access APIs → Institution management
+Documentation: Complete academic materials → Institution preservation
 ```
 
-### Hosting and Maintenance
-- Continue hosting of interactive demonstration
-- Maintain repository accessibility and version control
-- Ensure website and email infrastructure reliability
-- Backup and archival of all TML materials
+**Investigation Capability Infrastructure:**
+- Real-time moral trace log access systems for investigation coordination
+- Academic research coordination platforms for investigation finding publication
+- Democratic oversight reporting mechanisms for public accountability
+- International coordination systems for cross-jurisdictional investigation authority
+
+### Community Coordination
+
+**Academic Research Network:**
+- Investigation methodology research coordination across institutions
+- Publication coordination for investigation findings and methodology advancement  
+- International collaboration for AI transparency research and democratic oversight development
+- Community engagement for stakeholder feedback and public accountability
 
 ---
 
-## IX. PROTECTION MECHANISMS
+## IX. CHARTER ACTIVATION AND IMPLEMENTATION
 
-### Framework Integrity Safeguards
-- **Core Principle Lock**: Ternary logic (+1/0/-1) and Sacred Pause cannot be modified
-- **Attribution Requirement**: Lev Goukassian credit mandatory in all uses
-- **Ethical Use Clause**: Commercial use must align with AI safety principles
-- **Community Review**: Changes to framework require public consultation period
+### Immediate Documentation Requirements
 
-### Legal Protections
-- **Trademark Protection**: "Sacred Pause" and "TML" terminology protection
-- **License Enforcement**: Authority to pursue violations of ethical use requirements
-- **Domain Security**: Multi-factor authentication and backup administration
-- **Archive Requirements**: Permanent preservation of original framework materials
+1. **Repository Integration**: Charter reference in README.md and governance documentation
+2. **Investigation Protocol Documentation**: Complete procedures for post-incident authority activation
+3. **Academic Coordination**: Notification of investigation institutions regarding succession framework  
+4. **Community Information**: Public documentation of democratic oversight succession planning
 
-### Appeal and Dispute Resolution
-- **Community Input**: Public forum for framework governance discussions
-- **Expert Advisory**: Board including AI ethics researchers and philosophers
-- **Arbitration Process**: Neutral dispute resolution for licensing conflicts
-- **Transparency Requirements**: Public documentation of all major decisions
+### Success Criteria
+
+- Seamless continuation of TML transparency infrastructure and investigation capability
+- Maintenance of academic accessibility and research coordination  
+- Successful democratic oversight coordination and public accountability
+- Investigation authority effectiveness in AI incident analysis and system improvement
+- Memorial fund operation supporting ethical AI research and oversight enhancement
 
 ---
-
-## X. IMPLEMENTATION AND ACTIVATION
-
-### Immediate Preparations
-1. **Repository Documentation**: Link to this Charter in README.md
-2. **Backup Communications**: Establish secondary contact points
-3. **Legal Documentation**: Include Charter reference in will/estate planning
-4. **Community Notification**: Inform TML users of succession framework
-
-### Activation Checklist
-Upon succession trigger:
-- [ ] Verify trigger condition with appropriate documentation
-- [ ] Notify all Preferred Institutions within 30 days
-- [ ] Establish communication protocol for interested institutions
-- [ ] Begin 120-day succession timeline
-- [ ] Document all communications and decisions
-- [ ] Prepare for rights transfer and infrastructure setup
-
-### Success Metrics
-- Seamless continuation of TML framework availability
-- Maintenance of educational accessibility
-- Successful establishment of Memorial Fund
-- Community satisfaction with stewardship transition
-- Preservation of framework integrity and attribution
-
----
-
-## XI. CHARTER MODIFICATION AND GOVERNANCE
-
-### Modification Authority
-While Lev Goukassian retains capacity:
-- **Full modification rights** to this Charter
-- **Institution preference updates** as needed
-- **Process refinements** based on legal consultation
-- **Community feedback integration** for improvement
-
-After succession activation:
-- **Charter becomes binding** on accepting institution
-- **Modifications require community consultation** and legal review
-- **Core provisions protected** from material alteration
-
-### Legal Status
-This Charter constitutes:
-- **Intellectual property assignment** effective upon succession trigger
-- **Contractual offer** to qualified institutions
-- **Governance framework** for TML stewardship
-- **Legal foundation** for Memorial Fund establishment
-
-### Governing Law
-This Charter shall be governed by the laws of the jurisdiction where the accepting institution is located, with international intellectual property law applying to cross-border enforcement.
-
----
-
-## XII. CONCLUSION
-
-This Succession Invitation Charter ensures the continuation of the Ternary Moral Logic framework and Sacred Pause methodology beyond the lifetime of its creator. By inviting qualified institutions to voluntarily assume stewardship rather than imposing obligations, this framework respects institutional autonomy while protecting the integrity and accessibility of TML for future generations.
-
-The Sacred Pause principle that defines TML—the wisdom to pause and reflect before acting—extends to this succession framework itself. Rather than rushing to assign responsibilities, this Charter creates space for thoughtful consideration and voluntary commitment from institutions that share the vision of ethical AI development.
-
-**Contact for Charter Questions**: leogouk@gmail.com  
-**Repository Reference**: https://github.com/FractonicMind/TernaryMoralLogic  
-**Framework Demo**: https://fractonicmind.github.io/TernaryMoralLogic/TML-App/  
-
----
-
-**Signature and Date**
 
 **Author**: Lev Goukassian  
-**Date**: January 25, 2025  
+**Date**: August 28, 2025  
 **ORCID**: 0009-0006-5966-1243  
 **Contact**: leogouk@gmail.com  
- 
+**Investigation Authority Contact**: academic@tml-goukassian.org  
 
-*"Sometimes the most ethical action is to pause and reflect before proceeding."*  
-— Sacred Pause Principle
+*"Sacred Pause creates evidence for investigation, not barriers for operation."*
