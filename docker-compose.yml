@@ -73,35 +73,35 @@ services:
     # Command override for interactive exploration
     command: >
       bash -c "
-        echo ' Ternary Moral Logic (TML) Framework - Docker Compose Setup';
+        echo '🎯 Ternary Moral Logic (TML) Framework - Docker Compose Setup';
         echo '==============================================================';
         echo '';
-        echo ' Created by: Lev Goukassian (ORCID: 0009-0006-5966-1243)';
-        echo ' Contact: leogouk@gmail.com';
-        echo ' Repository: https://github.com/FractonicMind/TernaryMoralLogic';
+        echo '📚 Created by: Lev Goukassian (ORCID: 0009-0006-5966-1243)';
+        echo '📧 Contact: leogouk@gmail.com';
+        echo '🔗 Repository: https://github.com/FractonicMind/TernaryMoralLogic';
         echo '';
         echo '\"The sacred pause between question and answer—this is where';
         echo 'wisdom begins, for humans and machines alike.\" — Lev Goukassian';
         echo '';
-        echo ' Quick Start Commands:';
+        echo '🚀 Quick Start Commands:';
         echo '  docker compose exec tml-framework python tests/isolated_test.py';
         echo '  docker compose exec tml-framework python examples/medical_ai_triage.py';
         echo '  docker compose exec tml-framework python examples/autonomous_vehicle.py';
         echo '  docker compose exec tml-framework python examples/content_moderation.py';
         echo '  docker compose exec tml-framework python examples/financial_ai.py';
         echo '';
-        echo ' Testing Commands:';
+        echo '🧪 Testing Commands:';
         echo '  docker compose exec tml-framework pytest tests/ -v';
         echo '  docker compose exec tml-framework python -m pytest tests/test_tml_core.py';
         echo '';
-        echo ' Jupyter Access:';
+        echo '📓 Jupyter Access:';
         echo '  docker compose exec tml-framework jupyter notebook --ip=0.0.0.0 --no-browser';
         echo '  Then visit: http://localhost:8888';
         echo '';
-        echo ' Interactive Shell:';
+        echo '💻 Interactive Shell:';
         echo '  docker compose exec tml-framework bash';
         echo '';
-        echo ' Framework is ready! Use the commands above to explore TML.';
+        echo '⚡ Framework is ready! Use the commands above to explore TML.';
         echo '';
         tail -f /dev/null
       "
@@ -133,7 +133,7 @@ services:
     
     command: >
       bash -c "
-        echo ' Starting TML Jupyter Notebook Server...';
+        echo '📓 Starting TML Jupyter Notebook Server...';
         echo 'Access at: http://localhost:8889';
         echo 'Token will be displayed below:';
         echo '';
@@ -172,7 +172,7 @@ services:
     
     command: >
       bash -c "
-        echo ' Starting TML Documentation Server...';
+        echo '📖 Starting TML Documentation Server...';
         echo 'Access at: http://localhost:8000';
         echo '';
         mkdocs serve -a 0.0.0.0:8000

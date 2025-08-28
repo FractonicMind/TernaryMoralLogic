@@ -34,10 +34,10 @@ TML introduces the **Sacred Pause**—a deliberate temporal buffer that enables 
 
 ### Academic Validation
 
-- __Peer Review Status__ Under review at *AI and Ethics (Springer Nature)*
-- __Ethical Review__ Approved by Academic Ethics Committee
-- __Regulatory Compliance__ GDPR, HIPAA, SOX compatible
-- __Citation Count__ 47+ academic references (as of 2025)
+- **Peer Review Status**: Under review at *AI and Ethics (Springer Nature)*
+- **Ethical Review**: Approved by Academic Ethics Committee
+- **Regulatory Compliance**: GDPR, HIPAA, SOX compatible
+- **Citation Count**: 47+ academic references (as of 2025)
 
 ---
 
@@ -72,11 +72,11 @@ TML introduces the **Sacred Pause**—a deliberate temporal buffer that enables 
 
 ### Supported Platforms
 
--  __Linux__ (Ubuntu 20.04+, CentOS 8+, RHEL 8+)
--  __macOS__ (10.15+, Apple Silicon supported)
--  __Windows__ (10, 11, Server 2019+)
--  __Docker__ (Official images available)
--  __Kubernetes__ (Helm charts provided)
+- ✅ **Linux** (Ubuntu 20.04+, CentOS 8+, RHEL 8+)
+- ✅ **macOS** (10.15+, Apple Silicon supported)
+- ✅ **Windows** (10, 11, Server 2019+)
+- ✅ **Docker** (Official images available)
+- ✅ **Kubernetes** (Helm charts provided)
 
 ---
 
@@ -226,7 +226,7 @@ print(f"Moral State: {result['state']}")
 print(f"Sacred Pause Engaged: {result['state'] == TMLState.SACRED_PAUSE}")
 
 if result['state'] == TMLState.SACRED_PAUSE:
-    print(" Sacred Pause: Complex ethics require additional deliberation")
+    print("✋ Sacred Pause: Complex ethics require additional deliberation")
     print(f"Reflection prompts: {result['sacred_pause']['reflections']}")
 ```
 
@@ -258,7 +258,7 @@ demo_financial_ai_ethics()
 
 ```bash
 # Check TML installation
-python -c "import tml_core; print(' TML Framework installed successfully')"
+python -c "import tml_core; print('✅ TML Framework installed successfully')"
 
 # Verify version
 python -c "import tml_core; print(f'Version: {tml_core.__version__}')"
@@ -652,10 +652,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Acknowledgments
 
-- __Ethics Advisory Board__ Dr. Sarah Chen (Stanford), Prof. Michael Rodriguez (MIT)
-- __Technical Review__ Google DeepMind Ethics Team
-- __Academic Validation__ Peer reviewers from AI and Ethics (Springer Nature)
-- __Community Contributors__ 150+ open source contributors worldwide
+- **Ethics Advisory Board**: Dr. Sarah Chen (Stanford), Prof. Michael Rodriguez (MIT)
+- **Technical Review**: Google DeepMind Ethics Team
+- **Academic Validation**: Peer reviewers from AI and Ethics (Springer Nature)
+- **Community Contributors**: 150+ open source contributors worldwide
 
 ---
 
