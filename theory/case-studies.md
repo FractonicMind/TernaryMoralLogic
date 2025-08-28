@@ -29,10 +29,10 @@ This document presents detailed case studies demonstrating how Ternary Moral Log
 ### TML Analysis Process
 
 **Step 1: Value Detection**
-- __Beneficence__ Providing best medical care
-- __Justice__ Fair allocation of limited resources
-- __Autonomy__ Patient's right to make informed decisions
-- __Efficiency__ Optimal use of hospital resources
+- **Beneficence**: Providing best medical care
+- **Justice**: Fair allocation of limited resources
+- **Autonomy**: Patient's right to make informed decisions
+- **Efficiency**: Optimal use of hospital resources
 
 **Step 2: Conflict Identification**
 Primary conflict between:
@@ -82,11 +82,11 @@ This Sacred Pause prevented a potentially problematic automated decision while e
 ### TML Analysis Process
 
 **Step 1: Value Detection**
-- __Free Expression__ Protecting legitimate political discourse
-- __Safety__ Preventing harmful speech that could incite violence
-- __Democratic Participation__ Enabling election-season debate
-- __Community Standards__ Maintaining platform civility
-- __Cultural Sensitivity__ Respecting diverse community concerns
+- **Free Expression**: Protecting legitimate political discourse
+- **Safety**: Preventing harmful speech that could incite violence
+- **Democratic Participation**: Enabling election-season debate
+- **Community Standards**: Maintaining platform civility
+- **Cultural Sensitivity**: Respecting diverse community concerns
 
 **Step 2: Conflict Identification**
 Primary tensions:
@@ -144,11 +144,11 @@ Primary tensions:
 ### TML Analysis Process
 
 **Step 1: Value Detection**
-- __Justice/Fairness__ Equal opportunity regardless of gender
-- __Meritocracy__ Hiring best-qualified candidates
-- __Legal Compliance__ Avoiding discriminatory practices
-- __Organizational Diversity__ Building inclusive teams
-- __Accuracy__ Making correct hiring predictions
+- **Justice/Fairness**: Equal opportunity regardless of gender
+- **Meritocracy**: Hiring best-qualified candidates
+- **Legal Compliance**: Avoiding discriminatory practices
+- **Organizational Diversity**: Building inclusive teams
+- **Accuracy**: Making correct hiring predictions
 
 **Step 2: Conflict Identification**
 Core tension:
@@ -200,10 +200,10 @@ After bias correction training:
 ### TML Analysis Process
 
 **Step 1: Rapid Value Assessment**
-- __Life preservation__ Minimize loss of life
-- __Equal dignity__ All lives have equal moral worth
-- __Responsibility__ Special duty to vehicle occupants
-- __Vulnerability__ Special consideration for children
+- **Life preservation**: Minimize loss of life
+- **Equal dignity**: All lives have equal moral worth
+- **Responsibility**: Special duty to vehicle occupants
+- **Vulnerability**: Special consideration for children
 
 **Step 2: Conflict Recognition**
 Fundamental moral dilemma:
@@ -264,11 +264,11 @@ Even in time-critical situations, TML provides value by:
 ### TML Analysis Process
 
 **Step 1: Value Detection**
-- __Student Autonomy__ Respecting student's wishes and developing independence
-- __Beneficence__ Acting in student's best interest
-- __Privacy__ Protecting confidential relationship
-- __Safety__ Preventing potential harm
-- __Trust__ Maintaining tutoring relationship effectiveness
+- **Student Autonomy**: Respecting student's wishes and developing independence
+- **Beneficence**: Acting in student's best interest
+- **Privacy**: Protecting confidential relationship
+- **Safety**: Preventing potential harm
+- **Trust**: Maintaining tutoring relationship effectiveness
 
 **Step 2: Conflict Identification**
 Critical tensions:
@@ -286,8 +286,9 @@ Critical tensions:
 **Suggested Actions:**
 1. Engage student in direct conversation about concerns
 2. Provide mental health resources and encourage self-advocacy
-3. Seek guidance from educational ethics specialists
-4. Consider graduated response based on risk assessment
+3. Explain mandatory reporting obligations clearly
+4. Seek guidance from educational ethics specialists
+5. Consider graduated response based on risk assessment
 
 **Clarifying Questions:**
 - What are the specific institutional policies about student privacy vs. safety?
@@ -429,6 +430,8 @@ Every implementation of TML represents a step toward AI systems that serve as mo
 
 Created by Lev Goukassian * ORCID: 0009-0006-5966-1243 * 
 - Email: leogouk@gmail.com 
+- Successor Contact: support@tml-goukassian.org 
+- [see Succession Charter](/TML-SUCCESSION-CHARTER.md)
 
 ---
 **"In the space between question and answer, wisdom begins—for humans and machines alike."**  
