@@ -532,8 +532,8 @@ def validate_application_ethics(use_case):
 ---
 
 **Created by Lev Goukassian**  
-**ORCID**: 0009-0006-5966-1243  
-**Email**: leogouk@gmail.com  
-**Framework Contact**: technical@tml-goukassian.org  
-**[Succession Charter]**:(/TML-SUCCESSION-CHARTER.md)
+- ORCID: 0009-0006-5966-1243  
+- Email: leogouk@gmail.com  
+- Framework Contact: technical@tml-goukassian.org  
+- [Succession Charter](/TML-SUCCESSION-CHARTER.md)
 
