@@ -9,12 +9,12 @@ We welcome contributions from researchers, developers, ethicists, and practition
 
 ### Types of Contributors We Welcome
 
-- __Researchers__: Theoretical insights, empirical studies, and peer review
-- __Developers__ Implementation improvements, new integrations, and tools
-- __Ethicists__ Philosophical perspectives, case studies, and moral analysis
-- __Practitioners__ Real-world applications, feedback, and use cases
-- __Educators__ Teaching materials, curriculum development, and student projects
-- __Advocates__ Community building, outreach, and adoption support
+- **🔬 Researchers**: Theoretical insights, empirical studies, and peer review
+- **💻 Developers**: Implementation improvements, new integrations, and tools
+- **🎓 Ethicists**: Philosophical perspectives, case studies, and moral analysis
+- **🏢 Practitioners**: Real-world applications, feedback, and use cases
+- **📚 Educators**: Teaching materials, curriculum development, and student projects
+- **🌍 Advocates**: Community building, outreach, and adoption support
 
 ---
 
@@ -41,7 +41,7 @@ The framework should be accessible to researchers and practitioners worldwide, r
 
 ## How to Contribute
 
-###  Getting Started
+### 🚀 Getting Started
 
 1. **Read the Documentation**
    - Review the [README.md](../README.md) for framework overview
@@ -51,15 +51,15 @@ The framework should be accessible to researchers and practitioners worldwide, r
 
 2. **Join the Community**
    - ⭐ Star the repository to show support
-   -  Use [GitHub Discussions](https://github.com/FractonicMind/TernaryMoralLogic/discussions) for questions
-   -  Check [existing issues](https://github.com/FractonicMind/TernaryMoralLogic/issues) for contribution opportunities
+   - 💬 Use [GitHub Discussions](https://github.com/FractonicMind/TernaryMoralLogic/discussions) for questions
+   - 🐛 Check [existing issues](https://github.com/FractonicMind/TernaryMoralLogic/issues) for contribution opportunities
 
 3. **Choose Your Contribution Type**
    - See [Contribution Areas](#contribution-areas) below
    - Check our [Project Roadmap](#project-roadmap)
    - Review [Current Priorities](#current-priorities)
 
-###  Before You Start
+### 📋 Before You Start
 
 - [ ] Fork the repository
 - [ ] Read this contributing guide completely
@@ -71,19 +71,19 @@ The framework should be accessible to researchers and practitioners worldwide, r
 
 ## Contribution Areas
 
-###  Code Contributions
+### 💻 Code Contributions
 
 #### Core Framework Development
-- __Value Detection__ Improve algorithms for identifying ethical dimensions
-- __Conflict Analysis__ Enhance value conflict detection and classification
-- __State Determination__ Refine TML state logic and thresholds
-- __Performance__ Optimize computational efficiency while preserving moral reasoning quality
+- **Value Detection**: Improve algorithms for identifying ethical dimensions
+- **Conflict Analysis**: Enhance value conflict detection and classification
+- **State Determination**: Refine TML state logic and thresholds
+- **Performance**: Optimize computational efficiency while preserving moral reasoning quality
 
 #### Implementation Examples
-- __Platform Integrations__ New APIs, frameworks, and development environments
-- __Domain Applications__ Healthcare, education, content moderation, autonomous systems
-- __Language Bindings__ Python (primary), JavaScript, R, Java implementations
-- __Tools and Utilities__ Testing frameworks, evaluation metrics, visualization tools
+- **Platform Integrations**: New APIs, frameworks, and development environments
+- **Domain Applications**: Healthcare, education, content moderation, autonomous systems
+- **Language Bindings**: Python (primary), JavaScript, R, Java implementations
+- **Tools and Utilities**: Testing frameworks, evaluation metrics, visualization tools
 
 #### Code Quality Standards
 ```python
@@ -120,19 +120,19 @@ class EnhancedValueDetector(ValueDetector):
         pass
 ```
 
-###  Research Contributions
+### 📖 Research Contributions
 
 #### Theoretical Development
-- __Philosophical Analysis__ Deeper exploration of moral foundations
-- __Formal Methods__ Mathematical models of value conflicts and resolution
-- __Cross-Cultural Studies__ Adaptation of TML to different cultural contexts
-- __Empirical Validation__ Studies of TML effectiveness in real-world applications
+- **Philosophical Analysis**: Deeper exploration of moral foundations
+- **Formal Methods**: Mathematical models of value conflicts and resolution
+- **Cross-Cultural Studies**: Adaptation of TML to different cultural contexts
+- **Empirical Validation**: Studies of TML effectiveness in real-world applications
 
 #### Publication Support
-- __Peer Review__ Review submissions related to TML research
-- __Replication Studies__ Independent validation of TML claims and results
-- __Meta-Analysis__ Synthesis of research across TML applications
-- __Citation Network__ Building academic recognition for Lev's work
+- **Peer Review**: Review submissions related to TML research
+- **Replication Studies**: Independent validation of TML claims and results
+- **Meta-Analysis**: Synthesis of research across TML applications
+- **Citation Network**: Building academic recognition for Lev's work
 
 #### Research Standards
 - All research must acknowledge Lev Goukassian's original contribution
@@ -140,33 +140,33 @@ class EnhancedValueDetector(ValueDetector):
 - Cross-cultural and diverse perspective inclusion is strongly encouraged
 - Open science practices (open data, reproducible methods) preferred
 
-###  Documentation Contributions
+### 📚 Documentation Contributions
 
 #### User Documentation
-- __Getting Started Guides__ Tutorials for different user types
-- __Integration Examples__ Real-world implementation patterns
-- __Troubleshooting__ Common issues and solutions
-- __Best Practices__ Guidelines for effective TML deployment
+- **Getting Started Guides**: Tutorials for different user types
+- **Integration Examples**: Real-world implementation patterns
+- **Troubleshooting**: Common issues and solutions
+- **Best Practices**: Guidelines for effective TML deployment
 
 #### Educational Materials
-- __Course Syllabi__ University-level courses incorporating TML
-- __Workshop Materials__ Professional development and training resources
-- __Case Study Library__ Expanding the collection of practical examples
-- __Interactive Demos__ Web-based tools for exploring TML concepts
+- **Course Syllabi**: University-level courses incorporating TML
+- **Workshop Materials**: Professional development and training resources
+- **Case Study Library**: Expanding the collection of practical examples
+- **Interactive Demos**: Web-based tools for exploring TML concepts
 
-###  Community Building
+### 🌍 Community Building
 
 #### Outreach and Adoption
-- __Conference Presentations__ Sharing TML at academic and industry events
-- __Blog Posts and Articles__ Explaining TML concepts to broader audiences
-- __Community Events__ Organizing workshops, hackathons, and discussion groups
-- __Translation__ Making TML accessible in multiple languages
+- **Conference Presentations**: Sharing TML at academic and industry events
+- **Blog Posts and Articles**: Explaining TML concepts to broader audiences
+- **Community Events**: Organizing workshops, hackathons, and discussion groups
+- **Translation**: Making TML accessible in multiple languages
 
 #### Memorial Preservation
-- __Archive Maintenance__ Preserving Lev's original work and vision
-- __Story Collection__ Gathering testimonials about TML's impact
-- __Memorial Events__ Organizing remembrance activities and celebrations
-- __Legacy Documentation__ Recording the framework's evolution and impact
+- **Archive Maintenance**: Preserving Lev's original work and vision
+- **Story Collection**: Gathering testimonials about TML's impact
+- **Memorial Events**: Organizing remembrance activities and celebrations
+- **Legacy Documentation**: Recording the framework's evolution and impact
 
 ---
 
@@ -316,22 +316,22 @@ How does this contribution align with and advance Lev Goukassian's original visi
 ## Quality Standards
 
 ### Code Quality
-- __Documentation__ All public APIs must have comprehensive docstrings
-- __Testing__ Minimum 80% test coverage for new code
-- __Style__ Follow PEP 8 for Python, appropriate standards for other languages
-- __Performance__ Changes should not significantly degrade performance without justification
+- **Documentation**: All public APIs must have comprehensive docstrings
+- **Testing**: Minimum 80% test coverage for new code
+- **Style**: Follow PEP 8 for Python, appropriate standards for other languages
+- **Performance**: Changes should not significantly degrade performance without justification
 
 ### Research Quality
-- __Rigor__ Appropriate methodology for research contributions
-- __Reproducibility__ Code and data should enable replication
-- __Ethics__ Research must follow ethical guidelines for AI research
-- __Citation__ Proper attribution to original work and related research
+- **Rigor**: Appropriate methodology for research contributions
+- **Reproducibility**: Code and data should enable replication
+- **Ethics**: Research must follow ethical guidelines for AI research
+- **Citation**: Proper attribution to original work and related research
 
 ### Documentation Quality
-- __Clarity__ Accessible to intended audience (technical vs. general)
-- __Completeness__ Covers all necessary information for usage
-- __Examples__ Practical examples that demonstrate concepts clearly
-- __Maintenance__ Kept up-to-date with code changes
+- **Clarity**: Accessible to intended audience (technical vs. general)
+- **Completeness**: Covers all necessary information for usage
+- **Examples**: Practical examples that demonstrate concepts clearly
+- **Maintenance**: Kept up-to-date with code changes
 
 ---
 
@@ -383,10 +383,10 @@ When citing TML in academic work:
 ## Community Guidelines
 
 ### Respectful Collaboration
-- __Constructive Feedback__ Focus on ideas and implementation, not individuals
-- __Inclusive Language__ Use language that welcomes all contributors
-- __Cultural Sensitivity__ Respect diverse perspectives on ethical issues
-- __Memorial Respect__ Honor Lev's memory through thoughtful engagement
+- **Constructive Feedback**: Focus on ideas and implementation, not individuals
+- **Inclusive Language**: Use language that welcomes all contributors
+- **Cultural Sensitivity**: Respect diverse perspectives on ethical issues
+- **Memorial Respect**: Honor Lev's memory through thoughtful engagement
 
 ### Conflict Resolution
 1. **Direct Discussion**: Attempt to resolve disagreements through respectful dialogue
@@ -395,19 +395,19 @@ When citing TML in academic work:
 4. **Code of Conduct**: Follow established community standards
 
 ### Communication Channels
-- __GitHub Issues__ Bug reports, feature requests, technical discussion
-- __GitHub Discussions__ General questions, ideas, and community building
-- __Email__ Direct contact for sensitive issues ([contact information])
-- __Academic Conferences__ In-person networking and collaboration
+- **GitHub Issues**: Bug reports, feature requests, technical discussion
+- **GitHub Discussions**: General questions, ideas, and community building
+- **Email**: Direct contact for sensitive issues ([contact information])
+- **Academic Conferences**: In-person networking and collaboration
 
 ---
 
 ## Memorial Fund Support
 
 Consider supporting the Lev Goukassian Memorial Fund for Ethical AI Research:
-- __Purpose__ Supporting continued research in ethical AI and moral reasoning
-- __Projects__ Scholarships, research grants, and educational initiatives
-- __Impact__ Ensuring Lev's vision continues to benefit future generations
+- **Purpose**: Supporting continued research in ethical AI and moral reasoning
+- **Projects**: Scholarships, research grants, and educational initiatives
+- **Impact**: Ensuring Lev's vision continues to benefit future generations
 
 [Memorial Fund Information Link]
 
@@ -452,13 +452,13 @@ Together, we're building AI systems that serve as moral partners, not just moral
 
 ## Contact Information
 ## Administrative Contact
--  __Current__ Lev Goukassian (leogouk@gmail.com)  
--  __Succession__ support@tml-goukassian.org (see [Succession Charter](/TML-SUCCESSION-CHARTER.md)) For licensing, technical support, or collaboration inquiries.
+-  **Current**: Lev Goukassian (leogouk@gmail.com)  
+-  **Succession**: support@tml-goukassian.org (see [Succession Charter](/TML-SUCCESSION-CHARTER.md)) For licensing, technical support, or collaboration inquiries.
 
-- __Project Maintainers__ [support@tml-goukassian.org]
-- __Memorial Committee__ [support@tml-goukassian.org]
-- __Academic Collaboration__ [support@tml-goukassian.org]
-- __General Questions__ Use GitHub Discussions
+- **Project Maintainers**: [support@tml-goukassian.org]
+- **Memorial Committee**: [support@tml-goukassian.org]
+- **Academic Collaboration**: [support@tml-goukassian.org]
+- **General Questions**: Use GitHub Discussions
 
 ## In Memory of Lev Goukassian
 

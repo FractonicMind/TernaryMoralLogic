@@ -12,12 +12,12 @@
 This document establishes the coordination layer for TML framework governance, building upon Lev Goukassian's comprehensive protection and legacy systems. Rather than duplicate existing safeguards, this governance framework integrates and coordinates the sophisticated protection architecture already established.
 
 **Core Integration Points:**
-- __Institutional Access:__ `protection/institutional-access.md` - Pre-authorized institutions and community review
-- __Misuse Prevention:__ `protection/misuse-prevention.md` - License revocation and community enforcement  
-- __Legacy Preservation:__ `protection/legacy-preservation.md` - Memorial fund and perpetual maintenance
-- __Integrity Monitoring:__ `protection/integrity-monitoring.md` - Cryptographic protection and compliance systems
-- __Academic Validation:__ `docs/ACADEMIC_VALIDATION.md` - Research validation and peer review framework
-- __Ethics Approval:__ `docs/ethics_approval.pdf` - Full IRB documentation and ethical compliance
+- **Institutional Access:** `protection/institutional-access.md` - Pre-authorized institutions and community review
+- **Misuse Prevention:** `protection/misuse-prevention.md` - License revocation and community enforcement  
+- **Legacy Preservation:** `protection/legacy-preservation.md` - Memorial fund and perpetual maintenance
+- **Integrity Monitoring:** `protection/integrity-monitoring.md` - Cryptographic protection and compliance systems
+- **Academic Validation:** `docs/ACADEMIC_VALIDATION.md` - Research validation and peer review framework
+- **Ethics Approval:** `docs/ethics_approval.pdf` - Full IRB documentation and ethical compliance
 
 ---
 
@@ -56,10 +56,10 @@ This governance framework coordinates existing systems rather than creating para
 **Purpose:** Coordinate the self-organizing community structures referenced in institutional access framework
 
 **Composition:**
-- __Memorial Steward:__ Preserves Lev's vision and Sacred Pause principles
-- __Institutional Liaison:__ Coordinates with pre-authorized institutions
-- __Community Representative:__ Elected by framework users and contributors
-- __Ethics Advisor:__ Ensures continued compliance with ethics approval requirements
+- **Memorial Steward:** Preserves Lev's vision and Sacred Pause principles
+- **Institutional Liaison:** Coordinates with pre-authorized institutions
+- **Community Representative:** Elected by framework users and contributors
+- **Ethics Advisor:** Ensures continued compliance with ethics approval requirements
 
 **Responsibilities:**
 - Coordinate between protection systems and daily community needs
