@@ -1,231 +1,284 @@
-# TML Investigation Authority Charter
+# TML Investigation Authority Consortium Charter
 
-**Ternary Moral Logic Framework - Democratic Oversight Succession**
+**Ternary Moral Logic Framework - Democratic Oversight Through Academic Consortium**
 
 ---
 
 ## I. PURPOSE AND SCOPE
 
-This Charter establishes succession framework for democratic oversight of the Ternary Moral Logic (TML) framework and Sacred Pause methodology upon incapacity or death of creator Lev Goukassian. This document invites qualified institutions to assume investigation authority and oversight responsibilities for AI transparency infrastructure.
+This Charter establishes consortium-based democratic oversight for the Ternary Moral Logic (TML) framework and Sacred Pause methodology upon incapacity or death of creator Lev Goukassian. This framework prevents monopolization of AI ethics investigation authority through distributed institutional coordination and democratic voting mechanisms.
 
 ### Framework Coverage
-- **Ternary Moral Logic** transparency infrastructure
-- **Sacred Pause** universal logging methodology  
-- **TML Investigation Tools** and audit capabilities
-- **Democratic Oversight** coordination protocols
-- **Memorial Fund** for ethical AI research
-- **Academic Collaboration** networks
+- **Investigation Authority** coordination across multiple institutions
+- **Audit Trail Analysis** capability distribution and coordination  
+- **Democratic Oversight** through consortium voting and consensus mechanisms
+- **Academic Research** coordination preventing single institutional control
+- **Memorial Fund** governance through consortium democratic decision-making
 
 ---
 
-## II. SUCCESSION TRIGGERS
+## II. CONSORTIUM INVESTIGATION AUTHORITY STRUCTURE
 
-Investigation authority transfer activates upon verified conditions:
+### Core Investigation Institutions (Equal Authority)
 
-1. **Death** of Lev Goukassian (verified by death certificate)
-2. **Legal incapacity** (verified by medical/legal documentation)  
-3. **Communication absence** (90+ consecutive days non-response)
-4. **Voluntary transfer** (written declaration by Lev Goukassian)
-
-Notification sent to Investigation Authority Institutions within 30 days.
-
----
-
-## III. INVESTIGATION AUTHORITY INSTITUTIONS
-
-### Pre-Authorized Investigation Institutions (Priority Order)
-
+**Primary Investigation Consortium:**
 1. **MIT Computer Science and Artificial Intelligence Laboratory (CSAIL)**
-   - **Authority**: Technical investigation of AI ethical reasoning failures
-   - **Expertise**: AI system analysis, algorithm auditing, performance investigation
+   - **Investigation Domain**: Technical AI system analysis and algorithm auditing
+   - **Voting Weight**: 1 vote in consortium decisions
 
-2. **Stanford Human-Centered AI Institute (HAI)**  
-   - **Authority**: Human impact investigation and stakeholder analysis
-   - **Expertise**: Human-AI interaction, ethical impact assessment, community effects
+2. **Stanford Human-Centered AI Institute (HAI)**
+   - **Investigation Domain**: Human impact analysis and stakeholder assessment  
+   - **Voting Weight**: 1 vote in consortium decisions
 
-3. **Oxford Future of Humanity Institute (FHI)**
-   - **Authority**: Long-term impact investigation and existential risk analysis  
-   - **Expertise**: AI safety research, risk assessment, systemic impact evaluation
+3. **Harvard University Kennedy School Technology and Public Purpose**
+   - **Investigation Domain**: Policy coordination and regulatory analysis
+   - **Voting Weight**: 1 vote in consortium decisions
 
-4. **Harvard Kennedy School Technology and Public Purpose**
-   - **Authority**: Policy and regulatory investigation coordination
-   - **Expertise**: Democratic oversight, public policy, institutional governance
+4. **University of Oxford Future of Humanity Institute (FHI)**
+   - **Investigation Domain**: Long-term impact and existential risk analysis
+   - **Voting Weight**: 1 vote in consortium decisions
 
-5. **UC Berkeley Center for Human-Compatible AI**
-   - **Authority**: AI alignment investigation and safety analysis
-   - **Expertise**: AI alignment research, safety evaluation, technical assessment
+5. **University of Cambridge AI Ethics and Society Unit**
+   - **Investigation Domain**: Social impact and ethical framework analysis
+   - **Voting Weight**: 1 vote in consortium decisions
 
-### Investigation Authority Requirements
+6. **Johns Hopkins Medical AI Ethics Board**
+   - **Investigation Domain**: Healthcare AI ethics and medical decision analysis
+   - **Voting Weight**: 1 vote in consortium decisions
 
-Institutions accepting investigation authority must demonstrate:
-- **Academic research credentials** in AI ethics or related fields
-- **Technical capability** for audit trail analysis and system investigation  
-- **Independence** from commercial AI development interests
-- **Democratic accountability** through academic governance structures
-- **Investigation expertise** in AI system analysis and ethical evaluation
+7. **Mayo Clinic AI Governance Committee**
+   - **Investigation Domain**: Clinical AI implementation and patient safety analysis
+   - **Voting Weight**: 1 vote in consortium decisions
 
----
+8. **UN AI Ethics Advisory Panel**
+   - **Investigation Domain**: International coordination and global policy analysis
+   - **Voting Weight**: 1 vote in consortium decisions
 
-## IV. INVESTIGATION AUTHORITY RESPONSIBILITIES
+9. **WHO AI in Healthcare Committee**
+   - **Investigation Domain**: Global health AI ethics and public health analysis
+   - **Voting Weight**: 1 vote in consortium decisions
 
-### Rights Granted to Investigation Institutions
+10. **European Commission AI Ethics Unit**
+    - **Investigation Domain**: EU regulatory compliance and cross-border coordination
+    - **Voting Weight**: 1 vote in consortium decisions
 
-1. **Audit Trail Access Authority**
-   - Real-time access to moral trace logs from TML-implementing systems
-   - Investigation coordination authority for AI incident analysis
-   - Evidence analysis tools and technical infrastructure access
+11. **IEEE Standards AI Ethics Group**
+    - **Investigation Domain**: Technical standards and professional ethics coordination
+    - **Voting Weight**: 1 vote in consortium decisions
 
-2. **Academic Research Rights**
-   - Authority to analyze anonymized moral reasoning patterns for research
-   - Publication rights for investigation methodology and findings
-   - Collaboration authority with other investigation institutions
+**Total Consortium Authority**: 11 institutions with equal democratic representation
 
-3. **Democratic Oversight Coordination**
-   - Authority to coordinate public transparency reporting  
-   - Responsibility for community accountability mechanisms
-   - Investigation findings publication for democratic oversight
+### Consortium Decision-Making Authority
 
-### Investigation Responsibilities
+**Major Framework Decisions Requiring Consortium Vote:**
 
-1. **Technical Investigation Capability**
-   - Analyze moral trace logs when AI systems cause harm or ethical issues
-   - Provide expert evaluation of AI ethical reasoning quality and accuracy
-   - Coordinate investigation findings with regulatory authorities and legal proceedings
+1. **Framework Liquidation** (Requires 8/11 majority vote)
+   - Discontinuation of TML investigation infrastructure
+   - Transfer to alternative governance structure  
+   - Framework dissolution and asset distribution
 
-2. **Democratic Accountability Coordination**
-   - Generate public transparency reports with anonymized findings  
-   - Coordinate community oversight and stakeholder feedback mechanisms
-   - Ensure investigation authority serves public interest rather than institutional interest
+2. **Technical Architecture Changes** (Requires 6/11 majority vote)
+   - Modifications to universal logging requirements
+   - Changes to 40-microsecond processing guarantee
+   - Audit trail format or accessibility modifications
 
-3. **Academic Research and Improvement**
-   - Conduct research on AI ethical reasoning improvement using investigation evidence
-   - Publish academic findings supporting evidence-based enhancement of AI ethics
-   - Coordinate international research collaboration on AI transparency and accountability
+3. **Investigation Protocol Evolution** (Requires 6/11 majority vote)
+   - Investigation authority expansion or limitation  
+   - New institutional authority addition to consortium
+   - Investigation methodology standardization changes
 
-4. **Memorial Fund Coordination**
-   - Coordinate memorial fund allocation for ethical AI research
-   - Ensure fund supports investigation capability and democratic oversight enhancement
-   - Maintain transparent allocation process with academic accountability
+4. **Memorial Fund Major Decisions** (Requires 6/11 majority vote)
+   - Fund dissolution or major allocation changes
+   - Memorial fund governance structure modifications
+   - Research priority framework substantial changes
 
----
-
-## V. FRAMEWORK PRESERVATION STRUCTURE
-
-### Technical Infrastructure Continuity
-
-**Repository and Documentation:**
-- Maintain GitHub repository accessibility and version control
-- Continue hosting interactive demonstration system
-- Preserve complete academic documentation and research materials
-- Ensure permanent accessibility for educational and research use
-
-**Investigation Tool Development:**
-- Enhance audit trail analysis capabilities based on investigation experience
-- Develop academic research tools for moral reasoning pattern analysis  
-- Support democratic oversight through improved transparency mechanisms
-- Coordinate technical advancement with investigation authority institutions
-
-### Memorial Fund Administration
-
-**Fund Purpose**: Support ethical AI research and democratic oversight capability development
-
-**Revenue Sources:**
-- Academic licensing for research and educational use
-- Voluntary contributions from ethical AI implementation projects
-- Research grants supporting investigation capability and transparency research
-
-**Allocation Framework:**
-- **60%** Investigation capability research and development
-- **25%** Democratic oversight mechanism research  
-- **10%** Memorial preservation and academic accessibility
-- **5%** Administrative coordination
+**Routine Operations** (Individual institutional authority):
+- Daily investigation coordination and evidence analysis
+- Academic research publication using anonymized audit data
+- Technical support for audit trail analysis and investigation tools
+- Community engagement and stakeholder feedback coordination
 
 ---
 
-## VI. SUCCESSION PROCESS
+## III. INVESTIGATION AUTHORITY RESPONSIBILITIES
 
-### Phase 1: Investigation Authority Notification (30 days)
-- Notification to all pre-authorized investigation institutions
-- Information package including complete TML documentation and investigation protocols
-- 30-day response period for investigation authority acceptance
+### Distributed Investigation Expertise
 
-### Phase 2: Authority Establishment (60 days)  
-- Investigation institutions submit coordination plans and resource commitments
-- Legal review of investigation authority agreements and democratic oversight protocols
-- Coordination structure establishment for multi-institutional investigation authority
+**MIT CSAIL**: Technical system analysis, algorithm auditing, performance investigation
+**Stanford HAI**: Human impact assessment, stakeholder analysis, community effect evaluation  
+**Oxford FHI**: Systemic risk analysis, long-term impact investigation, safety assessment
+**Harvard Kennedy**: Regulatory coordination, legal investigation support, policy analysis
+**UC Berkeley**: AI alignment investigation, safety evaluation, technical assessment coordination
 
-### Phase 3: Authority Activation (30 days)
-- Investigation authority transfer with complete audit access capability
-- Democratic oversight coordination protocol activation
-- Memorial fund establishment and governance structure implementation
+### Consortium Coordination Requirements
 
----
+1. **Investigation Coordination Protocol**
+   ```python
+   class ConsortiumInvestigation:
+       def coordinate_incident_analysis(self, incident_data):
+           # Distributed investigation across consortium expertise
+           technical_analysis = MIT_CSAIL.analyze_system_failure(incident_data)
+           human_impact = Stanford_HAI.assess_stakeholder_effects(incident_data)  
+           systemic_risk = Oxford_FHI.evaluate_long_term_implications(incident_data)
+           policy_coordination = Harvard_Kennedy.coordinate_regulatory_response(incident_data)
+           safety_analysis = UC_Berkeley.investigate_alignment_factors(incident_data)
+           
+           # Consortium consensus report generation
+           return generate_consensus_investigation_report([
+               technical_analysis, human_impact, systemic_risk, 
+               policy_coordination, safety_analysis
+           ])
+   ```
 
-## VII. ALTERNATIVE SUCCESSION PROTOCOLS
-
-### If No Investigation Authority Accepted (120 days post-notification)
-
-**Option A: Academic Consortium Formation**
-- Coordinate multiple academic institutions for shared investigation authority
-- Distributed oversight responsibility with specialized investigation domains
-- Memorial fund administration through academic foundation
-
-**Option B: Open Research Foundation Authority**
-- Transfer investigation authority to established open research foundation  
-- Maintain academic accessibility with democratic oversight principles
-- Community-driven investigation capability with academic coordination
-
-**Option C: Public Archive with Community Oversight**
-- Release investigation tools to public domain with attribution requirement
-- Community-driven oversight with academic advisory coordination
-- Memorial fund becomes independent ethical AI research foundation
+2. **Democratic Decision-Making Process**
+   - Monthly consortium coordination meetings with rotating leadership
+   - Transparent voting processes with public documentation of decisions  
+   - Community input mechanisms for major framework decisions
+   - Academic peer review for investigation methodology changes
 
 ---
 
-## VIII. TECHNICAL INFRASTRUCTURE COORDINATION
+## IV. VOTING MECHANISMS AND GOVERNANCE
 
-### Digital Asset Management
+### Consortium Voting Authority
 
-**Academic Infrastructure:**
+**Framework Liquidation Decision Process:**
+1. **Motion Introduction**: Any consortium member may propose TML framework liquidation
+2. **Community Input Period**: 90-day public comment period with stakeholder feedback
+3. **Academic Review**: Peer review of liquidation rationale and alternative options
+4. **Consortium Vote**: 4/5 majority required (4 of 5 institutions must approve)
+5. **Implementation Timeline**: 180-day framework wind-down with community notification
+
+**Technical Modification Voting:**
+1. **Technical Proposal**: Detailed modification proposal with performance and transparency impact analysis
+2. **Peer Review**: Academic evaluation of proposed changes and democratic oversight implications  
+3. **Community Feedback**: 30-day public comment period for stakeholder input
+4. **Consortium Vote**: 3/5 majority required for approval and implementation
+5. **Implementation**: Coordinated rollout with academic evaluation and community notification
+
+### Emergency Decision Authority
+
+**Crisis Response Protocol:**
+- Any 2 consortium institutions may coordinate emergency response for critical AI safety incidents
+- Emergency investigation authority activation within 24 hours of critical incident
+- Full consortium notification and coordination within 72 hours  
+- Democratic review of emergency decisions within 30 days
+
+---
+
+## V. TECHNICAL INFRASTRUCTURE COORDINATION
+
+### Distributed Investigation Capability
+
+**Each Institution Maintains:**
+- Real-time audit trail access for investigation domain expertise
+- Specialized investigation tools appropriate to institutional research focus
+- Academic publication authority for investigation findings and methodology research
+- Community coordination responsibility within investigation expertise domain
+
+**Consortium Coordination Infrastructure:**
+```python
+# Investigation authority coordination system
+consortium_governance = {
+    "investigation_coordination": "distributed_across_5_institutions",
+    "decision_voting": "democratic_majority_consensus",
+    "emergency_response": "any_2_institutions_coordinate",
+    "technical_infrastructure": "shared_access_distributed_responsibility",
+    "memorial_fund": "consortium_democratic_governance"
+}
 ```
-Domain: tml-goukassian.org → Academic institution hosting
-Repository: GitHub.com/FractonicMind/TernaryMoralLogic → Institution maintenance  
-Investigation Tools: Real-time audit access APIs → Institution management
-Documentation: Complete academic materials → Institution preservation
-```
 
-**Investigation Capability Infrastructure:**
-- Real-time moral trace log access systems for investigation coordination
-- Academic research coordination platforms for investigation finding publication
-- Democratic oversight reporting mechanisms for public accountability
-- International coordination systems for cross-jurisdictional investigation authority
+### Academic Research Coordination
 
-### Community Coordination
-
-**Academic Research Network:**
-- Investigation methodology research coordination across institutions
-- Publication coordination for investigation findings and methodology advancement  
-- International collaboration for AI transparency research and democratic oversight development
-- Community engagement for stakeholder feedback and public accountability
+**Research Collaboration Requirements:**
+- Cross-institutional investigation methodology development and validation
+- Coordinated publication preventing duplicate research and ensuring comprehensive coverage  
+- International academic collaboration through consortium representation and coordination
+- Community research coordination ensuring public benefit and democratic accountability
 
 ---
 
-## IX. CHARTER ACTIVATION AND IMPLEMENTATION
+## VI. MEMORIAL FUND CONSORTIUM GOVERNANCE
 
-### Immediate Documentation Requirements
+### Democratic Fund Administration
 
-1. **Repository Integration**: Charter reference in README.md and governance documentation
-2. **Investigation Protocol Documentation**: Complete procedures for post-incident authority activation
-3. **Academic Coordination**: Notification of investigation institutions regarding succession framework  
-4. **Community Information**: Public documentation of democratic oversight succession planning
+**Consortium Voting Authority Over Fund:**
+- Annual allocation decisions (3/5 majority vote required)
+- Research priority framework decisions (3/5 majority vote required)  
+- Fund governance structure changes (4/5 majority vote required)
+- Emergency fund distribution for framework protection (2/5 institutions coordinate)
 
-### Success Criteria
+**Fund Allocation Through Democratic Process:**
+```python
+def allocate_memorial_fund(proposed_allocation):
+    # Community input collection
+    stakeholder_feedback = collect_community_input(proposed_allocation)
+    
+    # Academic peer review of allocation rationale
+    academic_review = coordinate_peer_evaluation(proposed_allocation)
+    
+    # Consortium democratic vote (all 11 institutions)
+    consortium_votes = {
+        "MIT_CSAIL": vote_technical_merit(proposed_allocation),
+        "Stanford_HAI": vote_human_impact(proposed_allocation),
+        "Harvard_Kennedy": vote_policy_benefit(proposed_allocation),
+        "Oxford_FHI": vote_safety_research(proposed_allocation), 
+        "Cambridge_AI_Ethics": vote_social_impact(proposed_allocation),
+        "Johns_Hopkins_Medical": vote_healthcare_ethics(proposed_allocation),
+        "Mayo_Clinic": vote_clinical_implementation(proposed_allocation),
+        "UN_AI_Ethics": vote_international_coordination(proposed_allocation),
+        "WHO_AI_Healthcare": vote_global_health_benefit(proposed_allocation),
+        "EU_AI_Ethics": vote_regulatory_alignment(proposed_allocation),
+        "IEEE_AI_Standards": vote_professional_standards(proposed_allocation)
+    }
+    
+    if sum(consortium_votes.values()) >= 6:  # 6/11 majority
+        implement_fund_allocation(proposed_allocation)
+        publish_democratic_decision_rationale(consortium_votes)
+```
 
-- Seamless continuation of TML transparency infrastructure and investigation capability
-- Maintenance of academic accessibility and research coordination  
-- Successful democratic oversight coordination and public accountability
-- Investigation authority effectiveness in AI incident analysis and system improvement
-- Memorial fund operation supporting ethical AI research and oversight enhancement
+---
+
+## VII. PROTECTION AGAINST INSTITUTIONAL MONOPOLIZATION
+
+### Anti-Monopolization Safeguards
+
+1. **No Single Institution Control**: Investigation authority distributed across 5 institutions with equal representation
+2. **Democratic Decision-Making**: Major decisions require majority consensus preventing unilateral institutional control
+3. **Community Oversight**: Public input mechanisms for major decisions ensuring democratic participation
+4. **Academic Independence**: Research coordination without institutional hierarchy or control authority
+
+### Framework Protection Mechanisms
+
+**Consortium Authority Limitations:**
+- Cannot modify core TML technical requirements (40μs guarantee, universal logging)
+- Cannot restrict academic accessibility or research coordination
+- Cannot convert democratic oversight into institutional business operation
+- Cannot eliminate investigation authority distribution or consortium coordination
+
+**Democratic Safeguards:**
+- Public documentation of all consortium decisions with rationale and voting records
+- Community appeal mechanisms for consortium decisions affecting public interest
+- Academic peer review requirement for technical modifications and governance changes
+- International coordination ensuring framework serves global rather than institutional interests
+
+---
+
+## VIII. ACTIVATION AND IMPLEMENTATION
+
+### Consortium Authority Establishment
+
+**Phase 1**: Notification to consortium institutions with investigation authority proposal
+**Phase 2**: Institution acceptance with distributed investigation capability coordination  
+**Phase 3**: Democratic governance structure establishment and consortium coordination protocol activation
+
+### Consortium Coordination Success Metrics
+
+- Effective distributed investigation capability without monopolization
+- Democratic decision-making process with community accountability and transparency
+- Academic research coordination enhancing rather than controlling investigation authority  
+- Memorial fund operation supporting ethical AI research through consortium democratic governance
+- International coordination and collaboration through distributed institutional representation
 
 ---
 
@@ -233,6 +286,4 @@ Documentation: Complete academic materials → Institution preservation
 **Date**: August 28, 2025  
 **ORCID**: 0009-0006-5966-1243  
 **Contact**: leogouk@gmail.com  
-**Investigation Authority Contact**: academic@tml-goukassian.org  
-
-*"Sacred Pause creates evidence for investigation, not barriers for operation."*
+**Consortium Coordination**: consortium@tml-goukassian.org
