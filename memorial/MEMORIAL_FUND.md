@@ -323,9 +323,9 @@ The Lev Goukassian Memorial Fund for Ethical AI Research ensures your revolution
 **Fund Headquarters**: Leading University AI Ethics Department (hosted)  
 
 ## Administrative Contact
-**Succession**: support@tml-goukassian.org (see [Succession Charter](/TML-SUCCESSION-CHARTER.md)) For licensing, technical support, or collaboration inquiries.
-**Website**: goukassian-memorial-fund.org  
-**Phone**: [University extension to be established]
+- Succession: support@tml-goukassian.org (see [Succession Charter](/TML-SUCCESSION-CHARTER.md)) For licensing, technical support, or collaboration inquiries.
+- Website: goukassian-memorial-fund.org  [To be established]
+- Phone: [University extension to be established]
 
 ### How to Support the Fund:
 - Individual donations (tax-deductible)
