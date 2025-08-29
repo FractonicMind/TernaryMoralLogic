@@ -348,10 +348,7 @@ The Lev Goukassian Memorial Fund for Ethical AI Research ensures your revolution
 
 **The Lev Goukassian Memorial Fund for Ethical AI Research - Ensuring his moral legacy lives forever**
 
-## Administrative Contact
-**Current**: leogouk@gmail.com  
-**Successor Contact**: support@tml-goukassian.org  
-(see [Succession Charter](/TML-SUCCESSION-CHARTER.md)) For licensing, technical support, or collaboration inquiries.
+
 
 ---
 
