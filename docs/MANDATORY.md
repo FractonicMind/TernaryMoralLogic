@@ -242,20 +242,6 @@ delete_old_records(age_days=30)  # RETENTION VIOLATION
    - Performance guarantee and audit capability provision exclusively
    - Technical support for evidence analysis and investigation tools
 
-3. **Calibration Documentation Requirements**
-   ```python
-   # MANDATORY: Domain calibration documentation
-   domain_calibration = {
-       "healthcare": {
-           "patient_safety_threshold": 0.1,
-           "diagnostic_uncertainty": 0.3,
-           "treatment_complexity": 0.5,
-           "rationale": "Conservative approach prioritizing patient safety",
-           "evidence_basis": "Medical ethics board review 2025-01-15",
-           "review_schedule": "quarterly"
-       }
-   }
-   ```
 
 ### Calibration Requirements:
 - **Evidence-Based**: Thresholds justified by stakeholder impact analysis
