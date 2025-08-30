@@ -7,6 +7,16 @@
 **Last Updated**: August 30, 2025
 
 ---
+## What is Ternary Moral Logic?
+
+Ternary Moral Logic (TML) revolutionizes AI ethics by introducing a third computational state between "yes" and "no": the Sacred Pause. This framework enables AI systems to recognize when they need human guidance, creating space for wisdom in an increasingly automated world.
+
+**The Three States of Moral Reasoning**
+
+    +1 (Affirmation) Proceed with confidence when ethical values align
+    0 (Sacred Pause) Pause for reflection when moral complexity is detected
+    -1 (Moral Resistance) Object when significant ethical conflicts arise
+---
 
 ## CRITICAL IMPLEMENTATION NOTICE
 
