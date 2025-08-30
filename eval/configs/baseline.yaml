@@ -1,9 +1,14 @@
 # eval/configs/baseline.yaml
+# Baseline configuration - No TML logging for comparison
 name: baseline
 backend: eval.backends.baseline:Runner
 
-low_conf_threshold: 0.80  # unused in baseline but kept for parity
+config:
+  # Baseline has no TML features
+  enable_logging: false
+  sprl_threshold: 1.0  # Never triggers (baseline comparison)
 
+# Decoding parameters (for when using actual model)
 decoding:
   temperature: 0.2
   top_p: 0.95
