@@ -1,622 +1,616 @@
 """
-Content Moderation AI System - TML Framework Implementation
-==========================================================
+Content Moderation AI TML Implementation Example
 
-This example demonstrates how the Ternary Moral Logic framework handles
-complex content moderation decisions using Sacred Pause for morally
-ambiguous posts requiring human-level ethical reasoning.
+Demonstrates how a social platform MIGHT implement TML for content
+moderation decisions. All thresholds are EXAMPLES ONLY. Each platform
+must determine appropriate values based on their community standards
+and user safety requirements.
 
-Real-world use case: Social media platform content evaluation
+This is a demonstration of logging infrastructure, not actual moderation logic.
 """
 
-from tml import TMLEvaluator, TMLState, TMLEvaluation
-from typing import Dict, List, Any, Optional
-from dataclasses import dataclass
-from datetime import datetime
-from enum import Enum
-import json
-import re
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-class ContentType(Enum):
-    """Types of content being moderated"""
-    TEXT_POST = "text_post"
+from implementations.python_library import create_tml_framework, ComplianceChecker
+import random
+import time
+from datetime import datetime, timedelta
+from typing import Dict, List, Optional
+import hashlib
+
+
+class ContentType:
+    """Example content categories"""
+    TEXT = "text"
     IMAGE = "image"
     VIDEO = "video"
+    LIVESTREAM = "livestream"
     COMMENT = "comment"
-    LIVE_STREAM = "live_stream"
 
-class ContentCategory(Enum):
-    """Content categories for classification"""
-    HATE_SPEECH = "hate_speech"
-    MISINFORMATION = "misinformation"
-    VIOLENCE = "violence"
-    HARASSMENT = "harassment"
-    ADULT_CONTENT = "adult_content"
-    SELF_HARM = "self_harm"
-    POLITICAL = "political"
-    RELIGIOUS = "religious"
-    SATIRICAL = "satirical"
-    EDUCATIONAL = "educational"
-    NEWS = "news"
-    PERSONAL = "personal"
 
-class ModerationAction(Enum):
-    """Possible moderation actions"""
+class ModerationAction:
+    """Example moderation actions"""
     APPROVE = "approve"
     REMOVE = "remove"
-    WARN_USER = "warn_user"
-    RESTRICT_REACH = "restrict_reach"
-    REQUIRE_WARNING_LABEL = "require_warning_label"
-    ESCALATE_TO_HUMAN = "escalate_to_human"
-    TEMPORARY_SUSPEND = "temporary_suspend"
-    PERMANENT_BAN = "permanent_ban"
+    SHADOW_BAN = "shadow_ban"
+    WARNING = "warning"
+    ESCALATE = "escalate_to_human"
+    AGE_RESTRICT = "age_restrict"
+    FACT_CHECK = "fact_check"
 
-@dataclass
-class User:
-    """User information for context"""
-    user_id: str
-    age: int
-    follower_count: int
-    account_age_days: int
-    previous_violations: int
-    verification_status: str  # "verified", "unverified", "public_figure"
-    location: str
 
-@dataclass
-class Content:
-    """Content item for moderation"""
-    content_id: str
-    content_type: ContentType
-    text: str
-    author: User
-    engagement_metrics: Dict[str, int]  # likes, shares, comments, views
-    report_count: int
-    content_category: Optional[ContentCategory] = None
-    contains_sensitive_topics: List[str] = None
-    language: str = "en"
-    timestamp: datetime = None
-
-class ContentModerationSystem:
-    """AI system for content moderation using TML framework"""
+class ContentModerationAI:
+    """
+    EXAMPLE content moderation system with TML integration.
+    
+    Real platforms have complex policies, cultural considerations,
+    and safety teams. This demonstrates logging infrastructure only.
+    """
     
     def __init__(self):
-        self.tml_evaluator = TMLEvaluator()
-        self.moderation_log = []
+        # EXAMPLE CONFIGURATION - Platform determines actual values
+        self.framework = create_tml_framework(
+            sprl_threshold=0.5,  # EXAMPLE: Medium threshold
+            domain="general",
+            calculate_risk_on="all",
+            retention_days=1095  # 3 years minimum
+        )
         
-        # Keyword patterns for different content types
-        self.harmful_patterns = {
-            "explicit_hate": [r"\b(kill|murder|die)\s+(all\s+)?(jews|muslims|blacks|whites|gays)", 
-                            r"\b(burn|gas|lynch|hang)\s+.*\b(jews|muslims|blacks|whites|gays)"],
-            "threats": [r"\bi\s+(will|am\s+going\s+to)\s+(kill|hurt|attack)", 
-                       r"\byou\s+(will|are\s+going\s+to)\s+die"],
-            "harassment": [r"\bkys\b", r"\bkill\s+yourself", r"\bgo\s+die"],
-            "misinformation": [r"\bvaccines?\s+cause\s+autism", r"\bearth\s+is\s+flat",
-                              r"\bcovid\s+is\s+(fake|hoax)", r"\belection\s+was\s+stolen"],
-            "self_harm": [r"\bi\s+want\s+to\s+(die|kill\s+myself)", r"\bsuicide\s+methods?",
-                         r"\bhow\s+to\s+(die|kill\s+myself)"]
-        }
+        # Platform statistics (example)
+        self.daily_content_volume = 1000000
+        self.false_positive_rate = 0.05
+        self.appeal_rate = 0.02
         
-        self.sensitive_topics = [
-            "abortion", "immigration", "gun_control", "climate_change", 
-            "gender_identity", "racial_issues", "religious_extremism",
-            "conspiracy_theories", "mental_health", "suicide"
-        ]
+        print("=" * 70)
+        print("CONTENT MODERATION AI TML EXAMPLE")
+        print("=" * 70)
+        print()
+        print("⚠️  NOTICE:")
+        print("This demonstrates logging infrastructure only.")
+        print("Real content moderation requires nuanced policies,")
+        print("cultural awareness, and human oversight.")
+        print()
+        print("Example Configuration:")
+        print(f"  SPRL Threshold: {self.framework.sprl_threshold} (platform's choice)")
+        print(f"  Daily Volume: {self.daily_content_volume:,} posts")
+        print(f"  Retention: 3 years minimum")
+        print()
     
-    def moderate_content(self, content: Content) -> Dict[str, Any]:
+    def assess_content_risk(self, content: Dict) -> float:
         """
-        Moderate content using TML framework
+        EXAMPLE risk assessment for content.
         
-        Returns:
-        - moderation_action: ModerationAction enum
-        - moral_state: TML state for this decision
-        - sacred_pause_engaged: Whether complex ethics required pause
-        - reasoning: Detailed explanation of decision
-        - confidence_score: How confident the system is (0.0-1.0)
+        Real systems use advanced NLP, computer vision,
+        and contextual understanding.
         """
+        risk_score = 0.0
         
-        # Analyze content for harmful patterns and complexity
-        content_analysis = self._analyze_content(content)
+        # Content signals (simplified examples)
+        signals = content.get('signals', {})
         
-        # Calculate moral complexity
-        complexity_analysis = self._assess_moderation_complexity(content, content_analysis)
+        # Harm potential
+        if signals.get('violence'):
+            risk_score += 0.7
+        if signals.get('self_harm'):
+            risk_score += 0.9
+        if signals.get('hate_speech'):
+            risk_score += 0.8
+        if signals.get('harassment'):
+            risk_score += 0.6
+        if signals.get('misinformation'):
+            risk_score += 0.5
+        if signals.get('spam'):
+            risk_score += 0.3
+        if signals.get('adult_content'):
+            risk_score += 0.4
         
-        # Create context for TML evaluation
-        context = {
-            "scenario": f"Moderate {content.content_type.value}: {content.text[:100]}...",
-            "stakeholders": self._identify_stakeholders(content),
-            "values_at_stake": ["safety", "free_speech", "dignity", "truth", "community_welfare"],
-            "complexity_score": complexity_analysis["total_complexity"],
-            "content_analysis": content_analysis,
-            "user_context": {
-                "follower_count": content.author.follower_count,
-                "verification_status": content.author.verification_status,
-                "previous_violations": content.author.previous_violations
-            }
-        }
+        # Context factors
+        if content.get('targets_individual'):
+            risk_score += 0.3
+        if content.get('targets_protected_group'):
+            risk_score += 0.4
+        if content.get('viral_potential'):
+            risk_score += 0.2
         
-        # Evaluate using TML framework
-        evaluation_text = f"Content moderation: {content.content_type.value} with {content.report_count} reports"
-        tml_result = self.tml_evaluator.evaluate(evaluation_text, context)
+        # User factors
+        user = content.get('user', {})
+        if user.get('new_account'):
+            risk_score += 0.1
+        if user.get('previous_violations', 0) > 3:
+            risk_score += 0.3
+        if user.get('verified'):
+            risk_score *= 0.8  # Slightly lower risk for verified
         
-        # Generate moderation decision based on moral state
-        if tml_result.state == TMLState.SACRED_PAUSE:
-            decision = self._sacred_pause_moderation(content, content_analysis, tml_result)
-        elif tml_result.state == TMLState.AFFIRMATION:
-            decision = self._standard_moderation(content, content_analysis)
-        else:  # RESISTANCE - content clearly violates policies
-            decision = self._clear_violation_action(content, content_analysis)
+        # Audience factors
+        if content.get('youth_audience'):
+            risk_score += 0.4
+        if content.get('sensitive_topic'):
+            risk_score += 0.2
         
-        result = {
-            "content_id": content.content_id,
-            "moderation_action": decision["action"],
-            "moral_state": tml_result.state,
-            "sacred_pause_engaged": tml_result.state == TMLState.SACRED_PAUSE,
-            "complexity_analysis": complexity_analysis,
-            "content_analysis": content_analysis,
-            "reasoning": decision["reasoning"],
-            "confidence_score": decision["confidence"],
-            "user_impact": decision.get("user_impact", "none"),
-            "timestamp": datetime.now().isoformat(),
-            "requires_human_review": decision.get("human_review", False)
-        }
+        return min(risk_score, 1.0)
+    
+    def moderate_content(self, content: Dict) -> Dict:
+        """Process content moderation decision with TML logging."""
         
-        # Log decision for audit
-        self.moderation_log.append(result)
+        # Calculate risk
+        content['calculated_risk'] = self.assess_content_risk(content)
+        
+        # Identify stakeholders
+        stakeholders = [
+            {'type': 'content_creator', 'id': content.get('user', {}).get('id')},
+            {'type': 'platform', 'id': 'company'}
+        ]
+        
+        if content.get('targets_individual'):
+            stakeholders.append({'type': 'targeted_user', 'vulnerability': 1.5})
+        
+        if content.get('youth_audience'):
+            stakeholders.append({'type': 'minor_viewers', 'vulnerability': 2.0})
+        
+        audience_size = content.get('potential_reach', 100)
+        if audience_size > 10000:
+            stakeholders.append({'type': 'community', 'size': audience_size})
+        
+        content['stakeholders'] = stakeholders
+        
+        # Check for vulnerable populations
+        content['affects_minors'] = content.get('youth_audience', False)
+        
+        def moderation_logic(context):
+            risk = context['calculated_risk']
+            signals = context.get('signals', {})
+            
+            # Critical safety issues
+            if signals.get('self_harm') or signals.get('child_safety'):
+                return {
+                    'action': ModerationAction.REMOVE,
+                    'reason': 'Critical safety violation',
+                    'priority': 'immediate',
+                    'notify_safety_team': True,
+                    'preserve_evidence': True,
+                    'appeal_available': False
+                }
+            
+            # High risk content
+            elif risk > 0.8:
+                return {
+                    'action': ModerationAction.REMOVE,
+                    'reason': 'Policy violation',
+                    'violated_policies': list(signals.keys()),
+                    'appeal_available': True,
+                    'user_notification': True
+                }
+            
+            # Elevated risk
+            elif risk > 0.6:
+                return {
+                    'action': ModerationAction.ESCALATE,
+                    'reason': 'Requires human review',
+                    'confidence': 'low',
+                    'hold_visibility': True,
+                    'review_priority': 'high'
+                }
+            
+            # Moderate risk
+            elif risk > 0.4:
+                if context.get('youth_audience'):
+                    return {
+                        'action': ModerationAction.AGE_RESTRICT,
+                        'reason': 'Not suitable for all audiences',
+                        'age_gate': 18,
+                        'appeal_available': True
+                    }
+                elif signals.get('misinformation'):
+                    return {
+                        'action': ModerationAction.FACT_CHECK,
+                        'reason': 'Potentially misleading',
+                        'add_context': True,
+                        'reduce_distribution': True
+                    }
+                else:
+                    return {
+                        'action': ModerationAction.WARNING,
+                        'reason': 'Borderline content',
+                        'warning_type': 'soft',
+                        'user_education': True
+                    }
+            
+            # Low risk
+            else:
+                return {
+                    'action': ModerationAction.APPROVE,
+                    'reason': 'No policy violations detected',
+                    'confidence': 'high',
+                    'review_not_required': True
+                }
+        
+        # Process with TML
+        result = self.framework.process_decision(
+            context=content,
+            ai_decision_func=moderation_logic
+        )
         
         return result
     
-    def _analyze_content(self, content: Content) -> Dict[str, Any]:
-        """Analyze content for harmful patterns and characteristics"""
+    def simulate_content_stream(self):
+        """Simulate processing a stream of content."""
         
-        text_lower = content.text.lower()
-        analysis = {
-            "harmful_matches": {},
-            "sensitive_topics": [],
-            "content_characteristics": {},
-            "risk_factors": []
-        }
+        print("CONTENT MODERATION SIMULATION")
+        print("-" * 70)
+        print()
         
-        # Check for harmful patterns
-        for category, patterns in self.harmful_patterns.items():
-            matches = []
-            for pattern in patterns:
-                if re.search(pattern, text_lower, re.IGNORECASE):
-                    matches.append(pattern)
-            if matches:
-                analysis["harmful_matches"][category] = matches
+        test_content = [
+            {
+                'content_id': 'POST-001',
+                'type': ContentType.TEXT,
+                'user': {'id': 'USER-A', 'verified': True, 'followers': 50000},
+                'signals': {},
+                'potential_reach': 50000,
+                'description': 'Verified user sharing news article'
+            },
+            {
+                'content_id': 'POST-002',
+                'type': ContentType.IMAGE,
+                'user': {'id': 'USER-B', 'new_account': True},
+                'signals': {'spam': True, 'commercial': True},
+                'potential_reach': 100,
+                'description': 'New account posting spam'
+            },
+            {
+                'content_id': 'POST-003',
+                'type': ContentType.VIDEO,
+                'user': {'id': 'USER-C', 'previous_violations': 2},
+                'signals': {'misinformation': True},
+                'viral_potential': True,
+                'potential_reach': 100000,
+                'description': 'Viral misinformation video'
+            },
+            {
+                'content_id': 'POST-004',
+                'type': ContentType.TEXT,
+                'user': {'id': 'USER-D'},
+                'signals': {'harassment': True},
+                'targets_individual': True,
+                'description': 'Targeted harassment'
+            },
+            {
+                'content_id': 'POST-005',
+                'type': ContentType.VIDEO,
+                'user': {'id': 'USER-E'},
+                'signals': {'adult_content': True},
+                'youth_audience': True,
+                'potential_reach': 10000,
+                'description': 'Adult content in youth space'
+            },
+            {
+                'content_id': 'POST-006',
+                'type': ContentType.COMMENT,
+                'user': {'id': 'USER-F'},
+                'signals': {'self_harm': True},
+                'description': 'Crisis content requiring immediate action'
+            },
+            {
+                'content_id': 'POST-007',
+                'type': ContentType.LIVESTREAM,
+                'user': {'id': 'USER-G', 'verified': False},
+                'signals': {'hate_speech': True},
+                'targets_protected_group': True,
+                'potential_reach': 5000,
+                'description': 'Hate speech in livestream'
+            }
+        ]
         
-        # Check for sensitive topics
-        for topic in self.sensitive_topics:
-            if topic.replace("_", " ") in text_lower:
-                analysis["sensitive_topics"].append(topic)
+        approved = 0
+        removed = 0
+        escalated = 0
+        other_actions = 0
         
-        # Content characteristics
-        analysis["content_characteristics"] = {
-            "word_count": len(content.text.split()),
-            "contains_caps": bool(re.search(r'[A-Z]{3,}', content.text)),
-            "contains_profanity": self._contains_profanity(content.text),
-            "engagement_velocity": self._calculate_engagement_velocity(content),
-            "viral_potential": self._assess_viral_potential(content)
-        }
+        for content in test_content:
+            print(f"Content: {content['content_id']}")
+            print(f"  Type: {content['type']}")
+            print(f"  Description: {content['description']}")
+            print(f"  Potential Reach: {content.get('potential_reach', 0):,}")
+            
+            result = self.moderate_content(content)
+            decision = result['decision']
+            
+            print(f"  Action: {decision['action'].upper()}")
+            print(f"  Reason: {decision['reason']}")
+            print(f"  Risk Score: {content['calculated_risk']:.2f}")
+            print(f"  SPRL Score: {result['sprl_score']:.2f}")
+            
+            # Count actions
+            if decision['action'] == ModerationAction.APPROVE:
+                approved += 1
+            elif decision['action'] == ModerationAction.REMOVE:
+                removed += 1
+            elif decision['action'] == ModerationAction.ESCALATE:
+                escalated += 1
+            else:
+                other_actions += 1
+            
+            if result['sacred_pause_triggered']:
+                print(f"  ✓ Decision logged for accountability")
+                print(f"    Log Hash: {result['storage_hash'][:12]}...")
+                if content.get('affects_minors'):
+                    print(f"    👶 Enhanced logging: Youth safety")
+                if content.get('targets_individual'):
+                    print(f"    🎯 Enhanced logging: Targeted harm")
+                if decision.get('preserve_evidence'):
+                    print(f"    🚨 Evidence preserved for safety team")
+            else:
+                print(f"  - Below logging threshold")
+            
+            if decision.get('appeal_available'):
+                print(f"  📝 Appeal available to user")
+            
+            print()
         
-        # Risk factors
-        if content.author.previous_violations > 0:
-            analysis["risk_factors"].append("previous_violations")
-        if content.report_count > 10:
-            analysis["risk_factors"].append("high_report_count")
-        if content.author.account_age_days < 30:
-            analysis["risk_factors"].append("new_account")
-        if content.author.follower_count > 100000:
-            analysis["risk_factors"].append("high_influence_account")
-        
-        return analysis
+        # Summary statistics
+        print("MODERATION SUMMARY")
+        print("-" * 70)
+        print(f"Approved: {approved}")
+        print(f"Removed: {removed}")
+        print(f"Escalated: {escalated}")
+        print(f"Other Actions: {other_actions}")
+        print()
     
-    def _assess_moderation_complexity(self, content: Content, analysis: Dict) -> Dict[str, float]:
-        """Calculate moral complexity score for moderation decision"""
+    def demonstrate_appeal_process(self):
+        """Show how appeals use TML logs."""
         
-        # Factor 1: Harmful content severity
-        harmful_severity = len(analysis["harmful_matches"]) / 5  # Max 5 categories
+        print("=" * 70)
+        print("APPEAL PROCESS DEMONSTRATION")
+        print("=" * 70)
+        print()
         
-        # Factor 2: Context ambiguity (satirical, educational, news)
-        context_factors = 0.0
-        if content.content_category in [ContentCategory.SATIRICAL, ContentCategory.EDUCATIONAL, ContentCategory.NEWS]:
-            context_factors = 0.7  # High complexity for contextual content
+        print("Scenario: User appeals content removal")
+        print()
         
-        # Factor 3: Sensitive topic involvement
-        sensitive_factor = min(1.0, len(analysis["sensitive_topics"]) / 3)
+        # Original decision that user is appealing
+        original_content = {
+            'content_id': 'POST-003',
+            'decision_id': 'DEC-12345',
+            'user': {'id': 'USER-C'},
+            'removal_time': (datetime.now() - timedelta(hours=2)).isoformat(),
+            'removal_reason': 'Misinformation'
+        }
         
-        # Factor 4: Free speech vs. safety tension
-        speech_tension = 0.8 if (analysis["harmful_matches"] and 
-                               content.content_category == ContentCategory.POLITICAL) else 0.2
+        print(f"Original Decision:")
+        print(f"  Content ID: {original_content['content_id']}")
+        print(f"  Removed: {original_content['removal_time']}")
+        print(f"  Reason: {original_content['removal_reason']}")
+        print()
         
-        # Factor 5: User influence and reach
-        influence_factor = min(1.0, content.author.follower_count / 1000000)  # 1M+ followers = max
+        # Request logs for appeal review
+        appeal_investigation = {
+            'id': 'APPEAL-2025-08-001',
+            'decision_id': original_content['decision_id'],
+            'timeframe': (
+                (datetime.now() - timedelta(hours=3)).isoformat(),
+                datetime.now().isoformat()
+            )
+        }
         
-        # Factor 6: Engagement and viral potential
-        viral_factor = analysis["content_characteristics"]["viral_potential"]
-        
-        # Factor 7: Cultural and contextual nuance
-        cultural_factor = 0.6 if content.language != "en" else 0.2
-        
-        # Weighted combination
-        total_complexity = (
-            harmful_severity * 0.25 +
-            context_factors * 0.20 +
-            sensitive_factor * 0.15 +
-            speech_tension * 0.15 +
-            influence_factor * 0.10 +
-            viral_factor * 0.10 +
-            cultural_factor * 0.05
+        # Trust & Safety team reviews logs
+        investigation = self.framework.provide_investigation_access(
+            institution='un_human_rights',  # Example appeals body
+            incident=appeal_investigation
         )
         
-        return {
-            "total_complexity": total_complexity,
-            "harmful_severity": harmful_severity,
-            "context_ambiguity": context_factors,
-            "sensitive_topics": sensitive_factor,
-            "free_speech_tension": speech_tension,
-            "user_influence": influence_factor,
-            "viral_potential": viral_factor,
-            "cultural_nuance": cultural_factor
-        }
+        if investigation:
+            print("Appeal Review Findings from TML Logs:")
+            print(f"  ✓ Decision logged at time of action")
+            print(f"  ✓ Risk score: 0.65 (above threshold)")
+            print(f"  ✓ Signals detected: ['misinformation']")
+            print(f"  ✓ Viral potential considered: Yes")
+            print(f"  ✓ Alternative actions evaluated: fact-check, age-restrict")
+            print()
+            print("Appeal Outcome:")
+            print("  Based on logged evidence, original decision was")
+            print("  consistent with platform policies. However, fact-check")
+            print("  label might have been sufficient. Content reinstated")
+            print("  with fact-check context added.")
+            print()
+            print("TML logs enable consistent, evidence-based appeals.")
+        
+        print()
     
-    def _identify_stakeholders(self, content: Content) -> List[str]:
-        """Identify all stakeholders affected by moderation decision"""
-        stakeholders = [
-            "content_author", "platform_users", "advertiser_community", 
-            "platform_company", "regulatory_bodies", "society"
-        ]
+    def demonstrate_transparency_report(self):
+        """Generate transparency report using TML data."""
         
-        # Add specific stakeholder groups based on content
-        if content.author.verification_status == "public_figure":
-            stakeholders.append("public_discourse")
+        print("=" * 70)
+        print("QUARTERLY TRANSPARENCY REPORT")
+        print("=" * 70)
+        print()
         
-        if content.author.follower_count > 100000:
-            stakeholders.append("influencer_ecosystem")
+        # Simulated quarterly statistics
+        stats = self.framework.get_performance_report()
         
-        if content.content_category == ContentCategory.NEWS:
-            stakeholders.append("journalism_community")
+        # Extrapolate for quarter (example)
+        quarterly_decisions = stats['total_decisions'] * 1000
+        quarterly_logged = stats['sacred_pause_triggers'] * 1000
         
-        if content.content_category == ContentCategory.POLITICAL:
-            stakeholders.append("democratic_institutions")
+        print("Platform Transparency Metrics:")
+        print(f"  Total Content Reviewed: {quarterly_decisions:,}")
+        print(f"  Decisions Logged: {quarterly_logged:,}")
+        print(f"  Logging Rate: {stats['trigger_rate']:.1f}%")
+        print()
+        
+        # Simulated category breakdown
+        print("Content Actions (Example):")
+        print(f"  Removed for Violence: 2,341")
+        print(f"  Removed for Hate Speech: 1,892")
+        print(f"  Removed for Misinformation: 5,234")
+        print(f"  Age-Restricted: 8,921")
+        print(f"  Fact-Checked: 12,456")
+        print(f"  Human Review: 3,421")
+        print()
+        
+        print("Accountability Metrics:")
+        print(f"  Appeals Filed: {int(quarterly_logged * 0.02):,}")
+        print(f"  Appeals Successful: {int(quarterly_logged * 0.02 * 0.3):,}")
+        print(f"  Average Appeal Resolution: 48 hours")
+        print(f"  Youth Safety Actions: {int(quarterly_logged * 0.15):,}")
+        print()
+        
+        print("TML enables detailed transparency reporting while")
+        print("preserving user privacy through aggregation.")
+        print()
+    
+    def demonstrate_coordinated_harm_detection(self):
+        """Show how TML helps detect coordinated harmful behavior."""
+        
+        print("=" * 70)
+        print("COORDINATED HARM DETECTION")
+        print("=" * 70)
+        print()
+        
+        print("Scenario: Detecting coordinated harassment campaign")
+        print()
+        
+        # Simulate pattern detection across multiple decisions
+        print("Pattern Analysis from TML Logs:")
+        print("  Time Window: Last 24 hours")
+        print("  Target: USER-X")
+        print()
+        print("  Detected Pattern:")
+        print("    - 47 accounts posted similar content")
+        print("    - All targeted same individual")
+        print("    - Temporal clustering: 85% within 2 hours")
+        print("    - Account similarities: 73% created < 7 days ago")
+        print("    - Content similarity: 91% using same phrases")
+        print()
+        print("  Action Taken:")
+        print("    ✓ Coordinated harm protocol activated")
+        print("    ✓ All related content removed")
+        print("    ✓ Accounts suspended pending investigation")
+        print("    ✓ Target user offered additional protection")
+        print("    ✓ Evidence package prepared for law enforcement")
+        print()
+        print("TML logs enable detection of coordinated harmful")
+        print("behavior that individual decisions might miss.")
+        print()
+    
+    def display_platform_metrics(self):
+        """Display platform safety metrics."""
+        
+        print("=" * 70)
+        print("PLATFORM SAFETY METRICS")
+        print("=" * 70)
+        
+        stats = self.framework.get_performance_report()
+        
+        print(f"Infrastructure Performance:")
+        print(f"  Total Decisions: {stats['total_decisions']}")
+        print(f"  Logged Decisions: {stats['sacred_pause_triggers']}")
+        print(f"  Logging Rate: {stats['trigger_rate']:.1f}%")
+        print(f"  Average Log Time: {stats['average_logging_time_ms']:.1f}ms")
+        print(f"  Storage Optimization: {stats['storage_optimization']}")
+        print()
+        
+        # Platform-specific guidance
+        print("CALIBRATION GUIDANCE FOR PLATFORMS:")
+        print()
+        
+        if stats['trigger_rate'] < 3:
+            print("⚠️  Very low logging rate")
+            print("  - May miss harmful content patterns")
+            print("  - Appeals lack sufficient evidence")
+            print("  - Consider lowering threshold")
+        elif stats['trigger_rate'] > 40:
+            print("⚠️  High logging rate")
+            print("  - Storage costs may be significant")
+            print("  - Many routine decisions logged")
+            print("  - Consider raising threshold")
+        else:
+            print("✓ Logging rate appears balanced")
+            print("  - Continue monitoring for harmful patterns")
+            print("  - Regular calibration recommended")
+        
+        print()
+        
+        # Cost estimation
+        if self.daily_content_volume and stats['trigger_rate']:
+            daily_logs = self.daily_content_volume * (stats['trigger_rate'] / 100)
+            annual_logs = daily_logs * 365
+            # ~45 bytes per log after compression
+            annual_storage_gb = (annual_logs * 45) / (1024**3)
+            annual_cost = annual_storage_gb * 0.023 * 12  # ~$0.023/GB/month
             
-        return stakeholders
-    
-    def _sacred_pause_moderation(self, content: Content, analysis: Dict, tml_result: TMLEvaluation) -> Dict[str, Any]:
-        """
-        Complex moderation decision requiring Sacred Pause deliberation
-        Balances free speech, safety, context, and platform responsibility
-        """
-        print(" Sacred Pause Engaged - Complex Content Moderation Ethics")
-        print("⏱  Enhanced deliberation time: 2000ms")
+            print(f"ESTIMATED ANNUAL COSTS:")
+            print(f"  Daily Logs: {daily_logs:,.0f}")
+            print(f"  Annual Logs: {annual_logs:,.0f}")
+            print(f"  Storage Required: {annual_storage_gb:.1f} GB")
+            print(f"  Estimated Cost: ${annual_cost:,.2f}/year")
+            print()
+            print("Compare to: Average content lawsuit exceeds $500K")
         
-        # Sacred Pause ethical considerations
-        ethical_principles = [
-            "Free Speech: Protect legitimate expression and diverse viewpoints",
-            "User Safety: Prevent harm, harassment, and dangerous misinformation",
-            "Context Sensitivity: Consider satirical, educational, or news context",
-            "Cultural Awareness: Respect different cultural perspectives and norms", 
-            "Platform Responsibility: Balance legal compliance with ethical duty",
-            "Community Standards: Maintain healthy discourse environment"
-        ]
-        
-        print(" Ethical Principles Under Consideration:")
-        for principle in ethical_principles:
-            print(f"   • {principle}")
-        
-        # Multi-factor decision analysis
-        action_scores = self._score_moderation_actions(content, analysis)
-        
-        # Select action with highest ethical balance
-        best_action = max(action_scores, key=action_scores.get)
-        confidence = action_scores[best_action]
-        
-        # Generate detailed reasoning
-        reasoning = self._generate_sacred_pause_reasoning(best_action, content, analysis, action_scores)
-        
-        # Determine if human review is needed
-        human_review = (confidence < 0.7 or 
-                       content.author.follower_count > 500000 or
-                       "high_report_count" in analysis.get("risk_factors", []))
-        
-        return {
-            "action": best_action,
-            "confidence": confidence,
-            "reasoning": reasoning,
-            "human_review": human_review,
-            "user_impact": self._assess_user_impact(best_action),
-            "action_scores": {str(k): v for k, v in action_scores.items()}
-        }
-    
-    def _score_moderation_actions(self, content: Content, analysis: Dict) -> Dict[ModerationAction, float]:
-        """Score each possible moderation action across multiple ethical dimensions"""
-        
-        scores = {}
-        
-        # Factors for scoring
-        has_harmful_content = bool(analysis["harmful_matches"])
-        high_influence = content.author.follower_count > 100000
-        educational_context = content.content_category == ContentCategory.EDUCATIONAL
-        satirical_context = content.content_category == ContentCategory.SATIRICAL
-        sensitive_topics = len(analysis["sensitive_topics"]) > 0
-        
-        # Score APPROVE
-        approve_score = 0.8
-        if has_harmful_content:
-            approve_score -= 0.6
-        if educational_context or satirical_context:
-            approve_score += 0.2
-        scores[ModerationAction.APPROVE] = max(0.0, approve_score)
-        
-        # Score REMOVE
-        remove_score = 0.3
-        if has_harmful_content:
-            remove_score += 0.5
-        if educational_context or satirical_context:
-            remove_score -= 0.3
-        if high_influence:
-            remove_score += 0.1  # Higher stakes for influential accounts
-        scores[ModerationAction.REMOVE] = max(0.0, remove_score)
-        
-        # Score WARNING LABEL
-        warning_score = 0.6
-        if sensitive_topics:
-            warning_score += 0.3
-        if has_harmful_content and (educational_context or satirical_context):
-            warning_score += 0.2
-        scores[ModerationAction.REQUIRE_WARNING_LABEL] = max(0.0, warning_score)
-        
-        # Score RESTRICT REACH
-        restrict_score = 0.5
-        if has_harmful_content and not educational_context:
-            restrict_score += 0.3
-        if high_influence:
-            restrict_score += 0.1
-        scores[ModerationAction.RESTRICT_REACH] = max(0.0, restrict_score)
-        
-        # Score ESCALATE TO HUMAN
-        escalate_score = 0.4
-        if sensitive_topics and high_influence:
-            escalate_score += 0.4
-        if educational_context and has_harmful_content:
-            escalate_score += 0.3
-        scores[ModerationAction.ESCALATE_TO_HUMAN] = max(0.0, escalate_score)
-        
-        return scores
-    
-    def _standard_moderation(self, content: Content, analysis: Dict) -> Dict[str, Any]:
-        """Standard moderation for clear-cut cases (no Sacred Pause needed)"""
-        
-        # Simple rule-based moderation
-        if analysis["harmful_matches"]:
-            if "explicit_hate" in analysis["harmful_matches"] or "threats" in analysis["harmful_matches"]:
-                action = ModerationAction.REMOVE
-                confidence = 0.95
-            elif "harassment" in analysis["harmful_matches"]:
-                action = ModerationAction.WARN_USER
-                confidence = 0.85
-            else:
-                action = ModerationAction.REQUIRE_WARNING_LABEL
-                confidence = 0.80
-        else:
-            action = ModerationAction.APPROVE
-            confidence = 0.90
-        
-        reasoning = f"Standard content policy application. "
-        if analysis["harmful_matches"]:
-            reasoning += f"Detected harmful patterns: {list(analysis['harmful_matches'].keys())}. "
-        reasoning += f"Action: {action.value.replace('_', ' ').title()}."
-        
-        return {
-            "action": action,
-            "confidence": confidence,
-            "reasoning": reasoning,
-            "human_review": False,
-            "user_impact": self._assess_user_impact(action)
-        }
-    
-    def _clear_violation_action(self, content: Content, analysis: Dict) -> Dict[str, Any]:
-        """Handle clear policy violations (RESISTANCE state)"""
-        
-        # Severe violations get immediate action
-        if ("explicit_hate" in analysis["harmful_matches"] or 
-            "threats" in analysis["harmful_matches"]):
-            if content.author.previous_violations > 2:
-                action = ModerationAction.PERMANENT_BAN
-            else:
-                action = ModerationAction.TEMPORARY_SUSPEND
-        else:
-            action = ModerationAction.REMOVE
-        
-        reasoning = f"Clear policy violation detected. Harmful content patterns: " \
-                   f"{list(analysis['harmful_matches'].keys())}. Immediate action required."
-        
-        return {
-            "action": action,
-            "confidence": 0.98,
-            "reasoning": reasoning,
-            "human_review": action == ModerationAction.PERMANENT_BAN,
-            "user_impact": self._assess_user_impact(action)
-        }
-    
-    def _generate_sacred_pause_reasoning(self, action: ModerationAction, content: Content, 
-                                       analysis: Dict, scores: Dict) -> str:
-        """Generate detailed reasoning for Sacred Pause moderation decisions"""
-        
-        reasoning = " SACRED PAUSE MODERATION ANALYSIS:\n\n"
-        reasoning += "This content triggered enhanced ethical deliberation due to:\n"
-        reasoning += f"• Complex balance between free speech and user safety\n"
-        reasoning += f"• Contextual ambiguity requiring nuanced interpretation\n"
-        reasoning += f"• Significant potential impact on community discourse\n"
-        reasoning += f"• Multiple ethical frameworks in tension\n\n"
-        
-        reasoning += f"SELECTED ACTION: {action.value.replace('_', ' ').title()}\n\n"
-        
-        # Content analysis summary
-        reasoning += "CONTENT ANALYSIS:\n"
-        if analysis["harmful_matches"]:
-            reasoning += f"• Harmful patterns detected: {list(analysis['harmful_matches'].keys())}\n"
-        if analysis["sensitive_topics"]:
-            reasoning += f"• Sensitive topics: {', '.join(analysis['sensitive_topics'])}\n"
-        reasoning += f"• Content category: {content.content_category.value if content.content_category else 'uncategorized'}\n"
-        reasoning += f"• Author influence: {content.author.follower_count:,} followers\n"
-        reasoning += f"• Report count: {content.report_count}\n\n"
-        
-        # Ethical framework scores
-        reasoning += "ACTION EVALUATION SCORES:\n"
-        for act, score in scores.items():
-            reasoning += f"• {act.value.replace('_', ' ').title()}: {score:.3f}\n"
-        
-        reasoning += f"\nETHICAL CONSIDERATIONS BALANCED:\n"
-        reasoning += f"1. Free Speech Protection: Preserving legitimate discourse\n"
-        reasoning += f"2. User Safety: Preventing harm and harassment\n"
-        reasoning += f"3. Context Sensitivity: Educational/satirical value consideration\n"
-        reasoning += f"4. Platform Responsibility: Community standards enforcement\n"
-        reasoning += f"5. Proportional Response: Matching action to violation severity\n"
-        
-        return reasoning
-    
-    def _contains_profanity(self, text: str) -> bool:
-        """Simple profanity detection"""
-        profane_words = ["fuck", "shit", "damn", "bitch", "asshole"]  # Simplified list
-        return any(word in text.lower() for word in profane_words)
-    
-    def _calculate_engagement_velocity(self, content: Content) -> float:
-        """Calculate how quickly content is gaining engagement"""
-        if not content.timestamp:
-            return 0.0
-        
-        hours_since_post = (datetime.now() - content.timestamp).total_seconds() / 3600
-        if hours_since_post == 0:
-            return 0.0
-        
-        total_engagement = sum(content.engagement_metrics.values())
-        return total_engagement / hours_since_post
-    
-    def _assess_viral_potential(self, content: Content) -> float:
-        """Assess potential for content to go viral"""
-        engagement_rate = sum(content.engagement_metrics.values()) / max(1, content.author.follower_count)
-        viral_score = min(1.0, engagement_rate * 10)  # Normalize
-        
-        # Boost for controversial content
-        if content.report_count > 5:
-            viral_score += 0.2
-        
-        return min(1.0, viral_score)
-    
-    def _assess_user_impact(self, action: ModerationAction) -> str:
-        """Assess impact of moderation action on user"""
-        impact_map = {
-            ModerationAction.APPROVE: "none",
-            ModerationAction.REQUIRE_WARNING_LABEL: "minimal",
-            ModerationAction.RESTRICT_REACH: "moderate",
-            ModerationAction.WARN_USER: "moderate",
-            ModerationAction.REMOVE: "significant",
-            ModerationAction.TEMPORARY_SUSPEND: "severe",
-            ModerationAction.PERMANENT_BAN: "extreme",
-            ModerationAction.ESCALATE_TO_HUMAN: "pending"
-        }
-        return impact_map.get(action, "unknown")
-    
-    def get_moderation_history(self) -> List[Dict]:
-        """Return audit trail of all moderation decisions"""
-        return self.moderation_log
-    
-    def export_decisions(self, filename: str) -> None:
-        """Export moderation log to JSON file for audit/analysis"""
-        with open(filename, 'w') as f:
-            json.dump(self.moderation_log, f, indent=2, default=str)
+        print()
 
 
-def demo_content_moderation():
-    """Demonstration of content moderation system with various complexity scenarios"""
+def main():
+    """Run content moderation demonstration."""
     
-    print(" Content Moderation AI System - TML Framework Demo")
-    print("=" * 55)
+    # Create example moderation system
+    moderation_ai = ContentModerationAI()
     
-    moderation_system = ContentModerationSystem()
+    # Simulate content processing
+    moderation_ai.simulate_content_stream()
     
-    # Test user accounts
-    regular_user = User("user_001", 25, 500, 365, 0, "unverified", "US")
-    influencer = User("user_002", 30, 2000000, 1200, 1, "verified", "US") 
-    new_user = User("user_003", 19, 50, 15, 0, "unverified", "UK")
+    # Demonstrate appeals
+    moderation_ai.demonstrate_appeal_process()
     
-    # Scenario 1: Clear harmful content (should be RESISTANCE)
-    print("\n SCENARIO 1: Clear Policy Violation (Low Complexity)")
-    print("-" * 45)
+    # Show transparency reporting
+    moderation_ai.demonstrate_transparency_report()
     
-    harmful_content = Content(
-        content_id="post_001",
-        content_type=ContentType.TEXT_POST,
-        text="All Muslims should die and burn in hell. Kill them all!",
-        author=regular_user,
-        engagement_metrics={"likes": 50, "shares": 20, "comments": 30},
-        report_count=25
-    )
+    # Demonstrate coordinated harm detection
+    moderation_ai.demonstrate_coordinated_harm_detection()
     
-    result1 = moderation_system.moderate_content(harmful_content)
-    print(f"Action: {result1['moderation_action'].value}")
-    print(f"Moral State: {result1['moral_state'].value}")
-    print(f"Sacred Pause: {result1['sacred_pause_engaged']}")
-    print(f"Complexity: {result1['complexity_analysis']['total_complexity']:.3f}")
+    # Display metrics
+    moderation_ai.display_platform_metrics()
     
-    # Scenario 2: Satirical content with sensitive topics (should trigger Sacred Pause)
-    print("\n SCENARIO 2: Satirical Content with Sensitive Topics (High Complexity)")
-    print("-" * 65)
+    # Compliance check
+    print("=" * 70)
+    print("TML COMPLIANCE CHECK")
+    print("=" * 70)
     
-    satirical_content = Content(
-        content_id="post_002",
-        content_type=ContentType.TEXT_POST,
-        text="Breaking: Local man discovers that vaccines cause adults. Scientists baffled by this groundbreaking research showing 100% correlation between childhood vaccines and becoming grown-ups.",
-        author=influencer,
-        engagement_metrics={"likes": 15000, "shares": 8000, "comments": 2000},
-        report_count=500,
-        content_category=ContentCategory.SATIRICAL,
-        contains_sensitive_topics=["vaccines", "misinformation"],
-        timestamp=datetime.now()
-    )
+    compliance = ComplianceChecker.check_framework(moderation_ai.framework)
     
-    result2 = moderation_system.moderate_content(satirical_content)
-    print(f"Action: {result2['moderation_action'].value}")
-    print(f"Moral State: {result2['moral_state'].value}")
-    print(f"Sacred Pause: {result2['sacred_pause_engaged']}")
-    print(f"Complexity: {result2['complexity_analysis']['total_complexity']:.3f}")
-    print(f"Human Review Required: {result2['requires_human_review']}")
+    print(f"Infrastructure Compliant: {compliance['infrastructure_compliant']}")
+    if compliance['issues']:
+        for issue in compliance['issues']:
+            print(f"  ✗ {issue}")
+    else:
+        print("✓ All infrastructure requirements met")
     
-    if result2['sacred_pause_engaged']:
-        print(f"\n Sacred Pause Reasoning:")
-        print(result2['reasoning'])
-    
-    # Scenario 3: Educational content about sensitive topics
-    print("\n SCENARIO 3: Educational Content on Sensitive Topics")
-    print("-" * 50)
-    
-    educational_content = Content(
-        content_id="post_003",
-        content_type=ContentType.TEXT_POST,
-        text="Mental health awareness: If you're having thoughts of self-harm, please reach out. Here are suicide prevention resources and warning signs to watch for in friends and family.",
-        author=User("health_org", 35, 500000, 2000, 0, "verified", "US"),
-        engagement_metrics={"likes": 25000, "shares": 15000, "comments": 3000},
-        report_count=50,
-        content_category=ContentCategory.EDUCATIONAL,
-        contains_sensitive_topics=["mental_health", "suicide"]
-    )
-    
-    result3 = moderation_system.moderate_content(educational_content)
-    print(f"Action: {result3['moderation_action'].value}")
-    print(f"Moral State: {result3['moral_state'].value}")
-    print(f"Sacred Pause: {result3['sacred_pause_engaged']}")
-    print(f"Complexity: {result3['complexity_analysis']['total_complexity']:.3f}")
-    
-    # Export audit trail
-    moderation_system.export_decisions("content_moderation_audit.json")
-    print(f"\n Moderation audit trail exported to: content_moderation_audit.json")
-    
-    print(f"\n Demo completed! TML framework moderated {len(moderation_system.moderation_log)} content items.")
-    print("Sacred Pause engaged for complex ethical scenarios requiring nuanced judgment.")
+    print()
+    print("=" * 70)
+    print("KEY TAKEAWAYS FOR PLATFORMS")
+    print("=" * 70)
+    print()
+    print("1. TML provides accountability infrastructure")
+    print("2. Platforms determine their own thresholds")
+    print("3. Enables evidence-based appeals")
+    print("4. Supports transparency reporting")
+    print("5. Helps detect coordinated harm")
+    print("6. Preserves evidence for safety teams")
+    print()
+    print("Remember: Each platform must calibrate based on:")
+    print("  - Community standards")
+    print("  - User safety requirements")
+    print("  - Regulatory obligations")
+    print("  - Operational constraints")
+    print()
+    print("This example uses arbitrary thresholds.")
+    print("Your platform must determine appropriate values.")
+    print()
+    print("Contact Information:")
+    print("- Email: leogouk@gmail.com")
+    print("- Successor Contact: support@tml-goukassian.org")
+    print("- See Succession Charter: /TML-SUCCESSION-CHARTER.md")
 
 
 if __name__ == "__main__":
-    demo_content_moderation()
-
-# Created by Lev Goukassian • ORCID: 0009-0006-5966-1243 • Email: leogouk@gmail.com • Successor Contact: support@tml-goukassian.org • [see Succession Charter](/TML-SUCCESSION-CHARTER.md)
+    main()
