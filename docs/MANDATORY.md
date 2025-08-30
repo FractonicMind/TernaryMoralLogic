@@ -4,7 +4,7 @@
 
 **Document Type**: Technical Implementation Standard  
 **Enforcement Level**: Required for TML Compliance  
-**Last Updated**: August 29, 2025
+**Last Updated**: August 30, 2025
 
 ---
 
@@ -40,6 +40,8 @@ This document defines mandatory requirements for TML framework implementation. O
 ### Core Mandate
 
 When an organization's AI system triggers Sacred Pause according to their configured thresholds, a moral trace log must be generated and preserved.
+
+**For high-risk decisions**: Organizations must set thresholds that ensure adequate logging for investigation. Setting thresholds to avoid accountability (e.g., 0.99999) violates the framework and establishes liability.
 
 **MANDATORY REQUIREMENTS:**
 1. Log generation capability when Sacred Pause triggers
@@ -215,7 +217,49 @@ Organizations must certify:
 
 ---
 
-## SECTION 4: AUDIT TRAIL INTEGRITY PROTECTION
+## SECTION 4: HIGH-RISK DECISION REQUIREMENTS
+
+### Organizational Self-Assessment
+
+Organizations MUST determine if their AI systems make high-risk decisions.
+
+**High-risk decisions are those that could reasonably result in:**
+- Loss of life or serious physical/psychological injury
+- Significant financial harm (relative to affected party's circumstances)
+- Loss of fundamental rights or freedoms
+- Irreversible consequences that materially affect life outcomes
+- Disproportionate impact on vulnerable populations
+
+**If your AI makes high-risk decisions:**
+- You MUST implement Sacred Pause logging for these decisions
+- You MUST ensure logs contain sufficient detail for meaningful investigation
+- You MUST retain these logs for the full mandatory retention period
+- You CANNOT set thresholds that effectively prevent logging of high-risk decisions
+
+### Consequences of Insufficient Logging
+
+If a serious incident occurs and investigation reveals:
+- No logs exist for the relevant decision(s), OR
+- Logs exist but lack sufficient detail for investigation, OR
+- Threshold was set to deliberately avoid logging
+
+Then:
+- Organization cannot claim TML compliance
+- Presumption of negligence applies
+- Organization bears full liability for the incident
+- Enhanced penalties may apply under regulatory frameworks
+
+### Performance Clarification
+
+Detailed logging does NOT impact decision speed when implemented correctly:
+- Decisions and actions execute FIRST
+- Logging occurs asynchronously in background
+- Log size/detail does not affect operational performance
+- Organizations cannot cite performance as reason for insufficient logging
+
+---
+
+## SECTION 5: AUDIT TRAIL INTEGRITY PROTECTION
 
 ### Tamper-Resistant Evidence Preservation
 
@@ -260,7 +304,7 @@ Logs need not contain raw personal data:
 
 ---
 
-## SECTION 5: INVESTIGATION ACCESS ARCHITECTURE
+## SECTION 6: INVESTIGATION ACCESS ARCHITECTURE
 
 ### Pre-Authorized Institutions
 
@@ -302,7 +346,7 @@ This implements GDPR Article 22 and similar regulations through concrete mechani
 
 ---
 
-## SECTION 6: LIABILITY AND RESPONSIBILITY FRAMEWORK
+## SECTION 7: LIABILITY AND RESPONSIBILITY FRAMEWORK
 
 ### Clear Delineation of Responsibility
 
@@ -330,7 +374,7 @@ This separation protects TML from liability for organizational risk assessment d
 
 ---
 
-## SECTION 7: VULNERABLE POPULATION PROTECTION
+## SECTION 8: VULNERABLE POPULATION PROTECTION
 
 ### Enhanced Requirements
 
@@ -361,7 +405,7 @@ Organizations must establish specialized review protocols for vulnerable populat
 
 ---
 
-## SECTION 8: DEMOCRATIC OVERSIGHT INTEGRATION
+## SECTION 9: DEMOCRATIC OVERSIGHT INTEGRATION
 
 ### Governance Council Structure
 
@@ -396,7 +440,7 @@ class OversightAPI:
 
 ---
 
-## SECTION 9: PROHIBITED USES
+## SECTION 10: PROHIBITED USES
 
 ### Automatic Refusal Requirements
 
@@ -427,7 +471,7 @@ def validate_use_case(application):
 
 ---
 
-## SECTION 10: CONTINUOUS MONITORING AND IMPROVEMENT
+## SECTION 11: CONTINUOUS MONITORING AND IMPROVEMENT
 
 ### Pattern Analysis Requirements
 
@@ -458,7 +502,7 @@ def analyze_decision_patterns(period):
 
 ---
 
-## SECTION 11: EVIDENTIARY VALUE IN LEGAL PROCEEDINGS
+## SECTION 12: EVIDENTIARY VALUE IN LEGAL PROCEEDINGS
 
 ### Admissibility Engineering
 
@@ -488,7 +532,7 @@ Long-term retention ensures evidence availability for:
 
 ---
 
-## SECTION 12: IMPLEMENTATION COMPLIANCE
+## SECTION 13: IMPLEMENTATION COMPLIANCE
 
 ### Implementation Timeline
 
@@ -536,6 +580,12 @@ We certify that our AI system implements TML logging infrastructure
 according to mandatory requirements. We accept responsibility for our 
 risk calibration decisions and will provide full investigation access 
 to authorized institutions when incidents occur.
+
+We certify that:
+- We have assessed whether our AI makes high-risk decisions
+- If high-risk, our thresholds ensure adequate logging
+- Our logs contain sufficient detail for meaningful investigation
+- We understand that absence of logs for serious incidents establishes liability
 
 We understand that TML provides infrastructure specifications only 
 and does not determine or validate our risk thresholds.
