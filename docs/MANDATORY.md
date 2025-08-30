@@ -15,7 +15,7 @@ Ternary Moral Logic (TML) revolutionizes AI ethics by introducing a third comput
 
     +1 (Affirmation) Proceed with confidence when ethical values align
     0 (Sacred Pause) Pause for reflection when moral complexity is detected
-    -1 (Moral Resistance) Object when significant ethical conflicts arise
+    -1 (Resistance) Object when significant ethical conflicts arise
 ---
 
 ## CRITICAL IMPLEMENTATION NOTICE
