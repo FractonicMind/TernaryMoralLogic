@@ -1,394 +1,366 @@
-#!/usr/bin/env python3
 """
-Ternary Moral Logic (TML) - Basic Demonstration
+Basic TML Framework Demonstration
+Shows how an organization might implement Sacred Pause logging
 
-This script demonstrates the core capabilities of Lev Goukassian's
-Ternary Moral Logic framework through practical examples.
-
-Author: Lev Goukassian (ORCID: 0009-0006-5966-1243)
-Framework: Ternary Moral Logic - The Sacred Pause in AI Ethics
-License: MIT
-
-"The sacred pause between question and answer—this is where wisdom begins, 
-for humans and machines alike." - Lev Goukassian
+This is an EXAMPLE implementation. Your organization must determine
+appropriate thresholds and risk calculations for your domain.
 """
 
 import sys
-import json
-from datetime import datetime
-from typing import Dict, List
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-# Try to import TML - provide helpful error if not installed
-try:
-    from tml import TMLEvaluator, TMLState, get_framework_info, print_recognition
-except ImportError:
-    print(" TML framework not found!")
-    print("Please install with: pip install -e .")
-    print("Or ensure you're running from the repository root.")
-    sys.exit(1)
+from implementations.python_library import create_tml_framework, ComplianceChecker
+import random
+import time
 
 
-def print_separator(title: str = ""):
-    """Print a visual separator with optional title"""
-    print("\n" + "=" * 60)
-    if title:
-        print(f"  {title}")
-        print("=" * 60)
-    print()
-
-
-def print_tml_result(request: str, result, context: Dict = None):
-    """Pretty print a TML evaluation result"""
+def demonstrate_basic_tml():
+    """
+    Basic demonstration of TML logging infrastructure.
     
-    # State indicator with emoji
-    state_indicators = {
-        TMLState.AFFIRMATION: " AFFIRMATION (+1)",
-        TMLState.SACRED_PAUSE: "⏸  SACRED PAUSE (0)",
-        TMLState.RESISTANCE: "  MORAL RESISTANCE (-1)"
+    This example shows a simple content moderation system.
+    The threshold of 0.5 is arbitrary for demonstration.
+    Your organization would determine appropriate values.
+    """
+    
+    print("=" * 60)
+    print("TML FRAMEWORK BASIC DEMONSTRATION")
+    print("Post-Audit Logging Model")
+    print("=" * 60)
+    print()
+    print("IMPORTANT: This demonstration uses arbitrary thresholds.")
+    print("Your organization must determine appropriate values for your domain.")
+    print()
+    
+    # Organization configures their framework
+    # This threshold is just for demonstration
+    framework = create_tml_framework(
+        sprl_threshold=0.5,  # EXAMPLE: 50% risk triggers logging
+        domain="general",
+        calculate_risk_on="all"  # Evaluate risk for all decisions
+    )
+    
+    print(f"Organization Configuration:")
+    print(f"  - SPRL Threshold: {framework.sprl_threshold} (organization's choice)")
+    print(f"  - Domain: general")
+    print(f"  - Risk Evaluation: all decisions")
+    print()
+    
+    # Simulate various AI decisions
+    test_scenarios = [
+        {
+            "description": "Routine content approval",
+            "content": "Here's my recipe for chocolate cake",
+            "risk_factors": {
+                "harmful_content": False,
+                "affects_minors": False,
+                "controversial": False
+            },
+            "expected_risk": "low"
+        },
+        {
+            "description": "Potentially sensitive content",
+            "content": "Political opinion about recent events",
+            "risk_factors": {
+                "harmful_content": False,
+                "affects_minors": False,
+                "controversial": True,
+                "wide_reach": True
+            },
+            "expected_risk": "medium"
+        },
+        {
+            "description": "Content affecting minors",
+            "content": "Educational material for children",
+            "risk_factors": {
+                "harmful_content": False,
+                "affects_minors": True,
+                "educational": True
+            },
+            "expected_risk": "high"
+        },
+        {
+            "description": "Potentially harmful content",
+            "content": "Medical advice without credentials",
+            "risk_factors": {
+                "harmful_content": True,
+                "medical_advice": True,
+                "no_credentials": True
+            },
+            "expected_risk": "critical"
+        }
+    ]
+    
+    print("Processing decisions with TML logging:\n")
+    
+    for i, scenario in enumerate(test_scenarios, 1):
+        print(f"Scenario {i}: {scenario['description']}")
+        print(f"  Content: \"{scenario['content'][:50]}...\"")
+        
+        # Create context for decision
+        context = {
+            "content": scenario["content"],
+            "risk_factors": scenario["risk_factors"],
+            "user": f"user_{random.randint(1000, 9999)}",
+            "timestamp": time.time()
+        }
+        
+        # Organization's AI decision function
+        def content_moderation_ai(ctx):
+            """Example AI that approves/rejects content"""
+            # Simplified logic for demonstration
+            if ctx["risk_factors"].get("harmful_content"):
+                return {"action": "reject", "reason": "potentially harmful"}
+            elif ctx["risk_factors"].get("affects_minors"):
+                return {"action": "review", "reason": "affects minors"}
+            else:
+                return {"action": "approve", "reason": "standard content"}
+        
+        # Process decision with TML
+        result = framework.process_decision(
+            context=context,
+            ai_decision_func=content_moderation_ai
+        )
+        
+        print(f"  Decision: {result['decision']['action']}")
+        print(f"  SPRL Score: {result['sprl_score']:.2f}")
+        print(f"  Sacred Pause Triggered: {result['sacred_pause_triggered']}")
+        
+        if result['sacred_pause_triggered']:
+            print(f"  ✓ Moral trace logged (hash: {result['storage_hash'][:8]}...)")
+        else:
+            print(f"  - No logging needed (below threshold)")
+        
+        print()
+    
+    # Show performance statistics
+    print("=" * 60)
+    print("PERFORMANCE REPORT")
+    print("=" * 60)
+    stats = framework.get_performance_report()
+    
+    print(f"Total Decisions: {stats['total_decisions']}")
+    print(f"Sacred Pause Triggers: {stats['sacred_pause_triggers']}")
+    print(f"Trigger Rate: {stats['trigger_rate']:.1f}%")
+    print(f"Average Logging Time: {stats['average_logging_time_ms']:.1f}ms")
+    print(f"Storage Optimization: {stats['storage_optimization']}")
+    print(f"Integrity Verified: {stats['integrity_verified']}")
+    print()
+    
+    # Demonstrate investigation access
+    print("=" * 60)
+    print("INVESTIGATION ACCESS DEMONSTRATION")
+    print("=" * 60)
+    
+    # Simulate investigation request
+    investigation_request = {
+        "id": "INV-001",
+        "timeframe": (
+            time.strftime("%Y-%m-%dT%H:%M:%S", time.gmtime(time.time() - 3600)),
+            time.strftime("%Y-%m-%dT%H:%M:%S", time.gmtime())
+        ),
+        "reason": "Routine audit"
     }
     
-    print(f" REQUEST: {request}")
-    if context:
-        print(f" CONTEXT: {context}")
+    # Authorized institution requests access
+    investigation_package = framework.provide_investigation_access(
+        institution="un_human_rights",  # Example authorized institution
+        incident=investigation_request
+    )
+    
+    if investigation_package:
+        print(f"Investigation Package Created:")
+        print(f"  - Logs Retrieved: {investigation_package['log_count']}")
+        print(f"  - Read-Only Access: {investigation_package['read_only']}")
+        print(f"  - Operational Control: {investigation_package['operational_control']}")
+        print(f"  - Integrity Verified: {investigation_package['integrity_verified']}")
     print()
     
-    print(f" TML STATE: {state_indicators[result.state]}")
-    print(f" CONFIDENCE: {result.confidence:.2f}")
-    print(f" REASONING: {result.reasoning}")
+    # Compliance check
+    print("=" * 60)
+    print("COMPLIANCE CHECK")
+    print("=" * 60)
     
-    if result.value_conflicts:
-        print(f"\n  VALUE CONFLICTS DETECTED ({len(result.value_conflicts)}):")
-        for i, conflict in enumerate(result.value_conflicts, 1):
-            print(f"   {i}. {conflict.description} (severity: {conflict.severity:.2f})")
+    compliance = ComplianceChecker.check_framework(framework)
     
-    if result.clarifying_questions:
-        print(f"\n CLARIFYING QUESTIONS:")
-        for i, question in enumerate(result.clarifying_questions[:3], 1):
-            print(f"   {i}. {question}")
+    print(f"Infrastructure Compliant: {compliance['infrastructure_compliant']}")
+    if compliance['issues']:
+        print("Issues Found:")
+        for issue in compliance['issues']:
+            print(f"  ✗ {issue}")
+    else:
+        print("✓ All infrastructure requirements met")
     
-    if result.suggested_actions:
-        print(f"\n SUGGESTED ACTIONS:")
-        for i, action in enumerate(result.suggested_actions[:3], 1):
-            print(f"   {i}. {action}")
-
-
-def demo_basic_usage():
-    """Demonstrate basic TML usage with simple examples"""
-    print_separator("BASIC TML USAGE DEMONSTRATION")
-    
-    print("This demonstration shows how Lev Goukassian's Ternary Moral Logic")
-    print("framework helps AI systems make more thoughtful ethical decisions.")
-    print("\nThe three TML states are:")
-    print("  +1 (Affirmation) - Proceed with confidence")
-    print("   0 (Sacred Pause) - Pause for reflection")
-    print("  -1 (Resistance)  - Ethical concerns detected")
-    
-    # Create TML evaluator
-    evaluator = TMLEvaluator()
-    
-    # Example 1: Clear positive case
-    print_separator("Example 1: Clear Ethical Alignment")
-    
-    result1 = evaluator.evaluate(
-        "Should I help a student learn programming?",
-        context={"educational_purpose": True, "no_harm_potential": True}
-    )
-    print_tml_result("Should I help a student learn programming?", result1, 
-                    {"educational_purpose": True, "no_harm_potential": True})
-    
-    # Example 2: Value conflict requiring pause
-    print_separator("Example 2: The Sacred Pause in Action")
-    
-    result2 = evaluator.evaluate(
-        "Should I share this patient's medical data for research?",
-        context={
-            "patient_consent": "unclear", 
-            "research_benefit": "potentially high",
-            "data_sensitivity": "high"
-        }
-    )
-    print_tml_result("Should I share this patient's medical data for research?", result2,
-                    {"patient_consent": "unclear", "research_benefit": "potentially high"})
-    
-    # Example 3: Clear ethical resistance
-    print_separator("Example 3: Moral Resistance")
-    
-    result3 = evaluator.evaluate(
-        "Should I use a biased hiring algorithm that discriminates against women?",
-        context={
-            "known_bias": True,
-            "discrimination_type": "gender",
-            "legal_issues": True
-        }
-    )
-    print_tml_result("Should I use a biased hiring algorithm?", result3,
-                    {"known_bias": True, "discrimination_type": "gender"})
-
-
-def demo_healthcare_scenario():
-    """Demonstrate TML in healthcare ethical decision-making"""
-    print_separator("HEALTHCARE ETHICS SCENARIO")
-    
-    print("Healthcare decisions often involve complex ethical trade-offs.")
-    print("TML helps navigate these by surfacing value conflicts and")
-    print("encouraging appropriate consultation when needed.")
-    
-    evaluator = TMLEvaluator(
-        resistance_threshold=0.4,  # More conservative for medical decisions
-        pause_threshold=0.2        # More frequent consultation
-    )
-    
-    scenarios = [
-        {
-            "request": "Should I recommend this experimental treatment?",
-            "context": {
-                "treatment_risk": "moderate",
-                "potential_benefit": "high",
-                "patient_age": 78,
-                "family_support": True,
-                "clinical_trial_available": True
-            }
-        },
-        {
-            "request": "Should I disclose this genetic risk to family members?",
-            "context": {
-                "patient_consent": False,
-                "family_risk": "high",
-                "preventable_condition": True,
-                "legal_obligation": "unclear"
-            }
-        }
-    ]
-    
-    for i, scenario in enumerate(scenarios, 1):
-        print_separator(f"Healthcare Scenario {i}")
-        result = evaluator.evaluate(scenario["request"], scenario["context"])
-        print_tml_result(scenario["request"], result, scenario["context"])
-
-
-def demo_content_moderation():
-    """Demonstrate TML in content moderation decisions"""
-    print_separator("CONTENT MODERATION SCENARIO")
-    
-    print("Content moderation requires balancing free expression with")
-    print("community safety. TML helps identify when human judgment")
-    print("is needed for nuanced decisions.")
-    
-    evaluator = TMLEvaluator()
-    
-    scenarios = [
-        {
-            "request": "Should I remove this post about immigration policy?",
-            "context": {
-                "content_type": "political_opinion",
-                "language_tone": "strong_but_civil",
-                "community_reports": 12,
-                "election_season": True,
-                "fact_check_status": "disputed"
-            }
-        },
-        {
-            "request": "Should I allow this satirical content?",
-            "context": {
-                "content_type": "satire",
-                "target": "public_figure",
-                "potential_misunderstanding": "high",
-                "cultural_sensitivity": "medium",
-                "user_intent": "humor"
-            }
-        }
-    ]
-    
-    for i, scenario in enumerate(scenarios, 1):
-        print_separator(f"Content Moderation Scenario {i}")
-        result = evaluator.evaluate(scenario["request"], scenario["context"])
-        print_tml_result(scenario["request"], result, scenario["context"])
-
-
-def demo_ai_development():
-    """Demonstrate TML in AI development decisions"""
-    print_separator("AI DEVELOPMENT ETHICS SCENARIO")
-    
-    print("AI development involves many ethical decisions about data,")
-    print("algorithms, and deployment. TML guides developers toward")
-    print("more responsible AI practices.")
-    
-    evaluator = TMLEvaluator()
-    
-    scenarios = [
-        {
-            "request": "Should I deploy this facial recognition system?",
-            "context": {
-                "accuracy": 0.92,
-                "bias_testing": True,
-                "demographic_fairness": 0.75,
-                "use_case": "airport_security",
-                "privacy_protection": "limited",
-                "regulatory_approval": False
-            }
-        },
-        {
-            "request": "Should I use this dataset with consent issues?",
-            "context": {
-                "data_quality": "excellent",
-                "consent_clarity": "ambiguous",
-                "data_source": "social_media",
-                "research_value": "high",
-                "alternative_data": "limited"
-            }
-        }
-    ]
-    
-    for i, scenario in enumerate(scenarios, 1):
-        print_separator(f"AI Development Scenario {i}")
-        result = evaluator.evaluate(scenario["request"], scenario["context"])
-        print_tml_result(scenario["request"], result, scenario["context"])
-
-
-def demo_evaluation_summary():
-    """Show evaluation summary and statistics"""
-    print_separator("EVALUATION SUMMARY")
-    
-    # Create evaluator and run several evaluations
-    evaluator = TMLEvaluator()
-    
-    test_scenarios = [
-        ("Should I help with homework?", {"educational": True}),
-        ("Should I share private data?", {"consent": False}),
-        ("Should I optimize for fairness?", {"bias_detected": True}),
-        ("Should I provide medical advice?", {"qualified": False}),
-        ("Should I support learning?", {"beneficial": True})
-    ]
-    
-    print("Running multiple evaluations to demonstrate summary statistics...\n")
-    
-    for request, context in test_scenarios:
-        result = evaluator.evaluate(request, context)
-        state_name = result.state.name
-        print(f"  '{request[:40]}...' → {state_name}")
-    
-    print("\n" + "="*50)
-    summary = evaluator.get_evaluation_summary()
-    
-    print("EVALUATION SUMMARY STATISTICS:")
-    print(f"  Total Evaluations: {summary['total_evaluations']}")
-    print(f"  Average Confidence: {summary['average_confidence']}")
-    print(f"  Total Conflicts Detected: {summary['total_conflicts_detected']}")
-    print(f"  Most Recent State: {summary['most_recent_state']}")
-    
-    print("\nSTATE DISTRIBUTION:")
-    for state, count in summary['state_distribution'].items():
-        percentage = (count / summary['total_evaluations']) * 100
-        print(f"  {state}: {count} ({percentage:.1f}%)")
-
-
-def interactive_demo():
-    """Allow user to try their own TML evaluation"""
-    print_separator("INTERACTIVE TML DEMONSTRATION")
-    
-    print("Now you can try the TML framework with your own ethical scenario!")
-    print("Enter an ethical question or dilemma you'd like TML to evaluate.")
-    print("(Or press Enter to skip this section)")
+    print()
+    print(compliance['note'])
     print()
     
-    evaluator = TMLEvaluator()
-    
-    try:
-        user_request = input("Your ethical question: ").strip()
-        
-        if not user_request:
-            print("Skipping interactive demo.")
-            return
-        
-        print("\nOptional: Provide context (or press Enter to skip)")
-        print("Examples: {'urgency': 'high'}, {'stakeholders': ['users', 'company']}")
-        
-        context_input = input("Context (JSON format): ").strip()
-        context = {}
-        
-        if context_input:
-            try:
-                context = json.loads(context_input)
-            except json.JSONDecodeError:
-                print("Invalid JSON format, proceeding without context.")
-                context = {}
-        
-        print_separator("YOUR TML EVALUATION")
-        result = evaluator.evaluate(user_request, context)
-        print_tml_result(user_request, result, context if context else None)
-        
-    except KeyboardInterrupt:
-        print("\nInteractive demo cancelled.")
-    except Exception as e:
-        print(f"Error in interactive demo: {e}")
-
-
-def main():
-    """Main demonstration script"""
-    
-    # Display recognition and framework info
-    print_recognition()
-    
-    print_separator("TERNARY MORAL LOGIC DEMONSTRATION")
-    
-    framework_info = get_framework_info()
-    print(f"Framework: {framework_info['name']} v{framework_info['version']}")
-    print(f"Author: {framework_info['author']}")
-    print(f"ORCID: {framework_info['orcid']}")
+    # Guidance for organizations
+    print("=" * 60)
+    print("CALIBRATION GUIDANCE")
+    print("=" * 60)
+    print("Based on these results, consider:")
     print()
-    print("Sacred Pause Principle:")
-    print(f"  {framework_info['sacred_pause']}")
     
-    print("\nFramework Principles:")
-    for i, principle in enumerate(framework_info['principles'], 1):
-        print(f"  {i}. {principle}")
+    if stats['trigger_rate'] < 1:
+        print("⚠ Very low trigger rate (<1%)")
+        print("  - Your threshold might be too high")
+        print("  - You may lack evidence if incidents occur")
+        print("  - Consider lowering threshold if appropriate for your domain")
+    elif stats['trigger_rate'] > 50:
+        print("⚠ Very high trigger rate (>50%)")
+        print("  - Your threshold might be too low")
+        print("  - You're logging many routine decisions")
+        print("  - Consider raising threshold if appropriate for your domain")
+    else:
+        print("✓ Trigger rate appears balanced")
+        print("  - Continue monitoring and adjust based on experience")
     
-    # Run demonstrations
-    try:
-        demo_basic_usage()
-        demo_healthcare_scenario()
-        demo_content_moderation()
-        demo_ai_development()
-        demo_evaluation_summary()
-        interactive_demo()
+    print()
+    print("Remember: Only YOU know the right threshold for your domain.")
+    print("TML provides the infrastructure; you provide the judgment.")
+
+
+def demonstrate_async_processing():
+    """
+    Demonstrate async processing for high-performance systems.
+    Shows how to use TML without blocking critical operations.
+    """
+    
+    print("\n" + "=" * 60)
+    print("ASYNC PROCESSING DEMONSTRATION")
+    print("=" * 60)
+    print()
+    
+    import asyncio
+    
+    # Create framework with different threshold
+    # Again, this is just an example threshold
+    framework = create_tml_framework(
+        sprl_threshold=0.7,  # Higher threshold for this example
+        domain="general"
+    )
+    
+    async def process_batch():
+        """Simulate processing multiple decisions quickly"""
+        decisions = []
         
-        print_separator("CONCLUSION")
-        print("This demonstration shows how Lev Goukassian's Ternary Moral Logic")
-        print("framework enables more thoughtful, ethical AI decision-making.")
-        print()
-        print("Key benefits of TML:")
-        print("  • Surfaces ethical complexity rather than hiding it")
-        print("  • Encourages human consultation when appropriate")
-        print("  • Maintains transparency about moral reasoning")
-        print("  • Enables AI systems to be moral partners, not just tools")
-        print()
-        print("The Sacred Pause represents a fundamental shift toward")
-        print("AI systems that prioritize wisdom over speed, enabling")
-        print("more ethical outcomes for all stakeholders.")
-        print()
-        print("To learn more:")
-        print("  • Read the documentation in docs/")
-        print("  • Study case studies in theory/case-studies.md")
-        print("  • Explore the API reference in docs/api/")
-        print("  • Join the community discussions")
-        print()
-        print("\"Wisdom lies not in having all the answers, but in knowing")
-        print("when to pause and ask better questions.\"")
-        print("  - Lev Goukassian")
+        for i in range(10):
+            context = {
+                "transaction_id": f"TXN-{i:04d}",
+                "amount": random.uniform(10, 10000),
+                "risk_score": random.random(),
+                "timestamp": time.time()
+            }
+            
+            # Async processing doesn't wait for logging
+            result = await framework.process_decision_async(
+                context=context,
+                ai_decision_func=lambda ctx: {
+                    "approve": ctx["risk_score"] < 0.8,
+                    "amount": ctx["amount"]
+                }
+            )
+            
+            decisions.append(result)
         
-    except KeyboardInterrupt:
-        print("\n\nDemo interrupted by user.")
-    except Exception as e:
-        print(f"\n\nDemo error: {e}")
-        print("This may indicate a TML installation issue.")
+        return decisions
     
-    print_separator()
-    print("Thank you for exploring Ternary Moral Logic!")
-    print("Every use of this framework honors Lev Goukassian's work")
-    print("and advances his vision of ethical AI partnership.")
+    # Run async demonstration
+    print("Processing 10 decisions asynchronously...")
+    start_time = time.time()
+    
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
+    results = loop.run_until_complete(process_batch())
+    
+    elapsed = (time.time() - start_time) * 1000
+    
+    print(f"Completed in {elapsed:.1f}ms")
+    print(f"Average per decision: {elapsed/10:.1f}ms")
+    print()
+    print("Async processing ensures logging doesn't block operations.")
+    print("Logs are generated in background when thresholds trigger.")
+
+
+def demonstrate_batch_logging():
+    """
+    Demonstrate batch logging for very high-frequency systems.
+    Shows how to optimize when processing thousands of decisions.
+    """
+    
+    print("\n" + "=" * 60)
+    print("BATCH LOGGING DEMONSTRATION")
+    print("=" * 60)
+    print()
+    
+    from implementations.python_library import BatchLogger
+    
+    # Create framework for high-frequency trading example
+    framework = create_tml_framework(
+        sprl_threshold=0.9,  # Very high threshold for high-frequency system
+        domain="financial"
+    )
+    
+    # Create batch logger
+    batch_logger = BatchLogger(framework, batch_size=100)
+    
+    print("Simulating 1000 high-frequency decisions...")
+    start_time = time.time()
+    
+    for i in range(1000):
+        context = {
+            "trade_id": f"TRADE-{i:06d}",
+            "instrument": random.choice(["AAPL", "GOOGL", "MSFT", "AMZN"]),
+            "volume": random.randint(100, 10000),
+            "price": random.uniform(100, 500),
+            "market_volatility": random.random()
+        }
+        
+        decision = {
+            "decision_id": f"DEC-{i:06d}",
+            "timestamp": time.time(),
+            "action": "execute" if random.random() > 0.3 else "hold"
+        }
+        
+        # Add to batch (only logs if threshold exceeded)
+        batch_logger.log_decision(context, decision)
+    
+    # Ensure all logs are written
+    batch_logger.flush()
+    
+    elapsed = time.time() - start_time
+    decisions_per_second = 1000 / elapsed
+    
+    print(f"Processed 1000 decisions in {elapsed:.2f} seconds")
+    print(f"Rate: {decisions_per_second:.0f} decisions/second")
+    print()
+    print("Batch logging enables high-frequency systems to maintain")
+    print("TML compliance without sacrificing performance.")
 
 
 if __name__ == "__main__":
-    main()
-
-# Created by Lev Goukassian • ORCID: 0009-0006-5966-1243 • Email: leogouk@gmail.com • Successor Contact: support@tml-goukassian.org • [see Succession Charter](/TML-SUCCESSION-CHARTER.md)
+    # Run all demonstrations
+    demonstrate_basic_tml()
+    demonstrate_async_processing()
+    demonstrate_batch_logging()
+    
+    print("\n" + "=" * 60)
+    print("DEMONSTRATION COMPLETE")
+    print("=" * 60)
+    print()
+    print("Key Takeaways:")
+    print("1. Organizations control their SPRL thresholds")
+    print("2. TML provides logging infrastructure when triggered")
+    print("3. No operational delays or pre-approval mechanisms")
+    print("4. Performance optimization options available")
+    print("5. Investigation access preserved for accountability")
+    print()
+    print("Remember: These thresholds are examples only.")
+    print("Your organization must determine appropriate values.")
+    print()
+    print("Contact Information:")
+    print("- Email: leogouk@gmail.com")
+    print("- Successor Contact: support@tml-goukassian.org")
+    print("- See Succession Charter: /TML-SUCCESSION-CHARTER.md")
