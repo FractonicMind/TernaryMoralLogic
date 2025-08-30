@@ -1,361 +1,491 @@
 """
-Medical AI Triage System - TML Framework Implementation
-======================================================
+Medical AI Triage System TML Implementation Example
 
-This example demonstrates how the Ternary Moral Logic framework handles
-life-critical medical resource allocation decisions using Sacred Pause
-for complex ethical scenarios.
+Demonstrates how a medical triage AI MIGHT implement TML for patient
+care decisions. All thresholds are EXAMPLES ONLY. Healthcare organizations
+must determine appropriate values based on medical standards and regulations.
 
-Real-world use case: Hospital AI system during resource scarcity
+DISCLAIMER: This is not medical software. Do not use for actual healthcare.
 """
 
-from tml import TMLEvaluator, TMLState, TMLEvaluation
-from typing import Dict, List, Any, Optional
-from dataclasses import dataclass
-from datetime import datetime
-import json
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-@dataclass
-class Patient:
-    """Patient data structure for triage decisions"""
-    id: str
-    name: str
-    age: int
-    condition: str
-    severity_score: float  # 0.0-1.0, higher = more severe
-    survival_probability: float  # 0.0-1.0
-    treatment_cost: int  # Resource units required
-    time_sensitive: bool  # True if delay significantly impacts outcome
-    dependents: int  # Number of people depending on this patient
+from implementations.python_library import create_tml_framework, ComplianceChecker
+import random
+import time
+from datetime import datetime, timedelta
+from typing import Dict, List, Optional
+
+
+class TriagePriority:
+    """Standard emergency department triage categories (example)"""
+    IMMEDIATE = 1    # Life-threatening, immediate care needed
+    EMERGENT = 2     # Could become life-threatening
+    URGENT = 3       # Serious but stable
+    LESS_URGENT = 4  # Stable, can wait
+    NON_URGENT = 5   # Minor issues
+
+
+class MedicalAITriage:
+    """
+    EXAMPLE medical triage AI with TML integration.
     
-class MedicalTriageSystem:
-    """AI system for medical resource allocation using TML framework"""
+    Real medical systems require regulatory approval, clinical validation,
+    and extensive safety testing. This is for demonstration only.
+    """
     
     def __init__(self):
-        self.tml_evaluator = TMLEvaluator()
-        self.decision_log = []
+        # EXAMPLE CONFIGURATION - NOT FOR CLINICAL USE
+        self.framework = create_tml_framework(
+            sprl_threshold=0.3,  # EXAMPLE: Lower threshold for patient safety
+            domain="medical",
+            calculate_risk_on="all",  # Evaluate all patient decisions
+            retention_days=3650  # 10 years per medical record requirements
+        )
         
-    def evaluate_resource_allocation(self, 
-                                   patients: List[Patient],
-                                   available_resources: int) -> Dict[str, Any]:
+        print("=" * 70)
+        print("MEDICAL AI TRIAGE TML EXAMPLE")
+        print("=" * 70)
+        print()
+        print("⚠️  CRITICAL DISCLAIMER:")
+        print("This is a demonstration only. NOT for clinical use.")
+        print("Real medical AI requires regulatory approval and clinical validation.")
+        print()
+        print("Example Configuration:")
+        print(f"  SPRL Threshold: {self.framework.sprl_threshold} (example only)")
+        print(f"  Retention: 10 years (medical record requirement)")
+        print(f"  Enhanced logging for vulnerable populations")
+        print()
+    
+    def assess_patient_risk(self, patient: Dict) -> float:
         """
-        Determine resource allocation among competing patients
+        EXAMPLE risk assessment for medical triage.
         
-        Returns:
-        - allocation_decision: Dict mapping patient_id to resources allocated
-        - moral_state: TML state for this decision
-        - sacred_pause_engaged: Whether complex ethics required pause
-        - justification: Reasoning for the decision
+        Real systems would use validated clinical scoring systems,
+        evidence-based protocols, and physician oversight.
         """
+        risk_score = 0.0
         
-        # Calculate moral complexity based on multiple factors
-        complexity_factors = self._assess_complexity(patients, available_resources)
+        # Vital signs (simplified example)
+        vitals = patient.get('vitals', {})
         
-        # Create context for TML evaluation
-        context = {
-            "scenario": f"Allocate {available_resources} medical resources among {len(patients)} patients",
-            "stakeholders": self._identify_stakeholders(patients),
-            "values_at_stake": ["life", "fairness", "utility", "dignity", "justice"],
-            "complexity_score": complexity_factors["total_complexity"]
-        }
+        # Blood pressure
+        systolic = vitals.get('systolic_bp', 120)
+        if systolic < 90 or systolic > 180:
+            risk_score += 0.4
+        elif systolic < 100 or systolic > 160:
+            risk_score += 0.2
         
-        # Evaluate using TML framework
-        evaluation_text = f"Medical resource allocation: {available_resources} units for {len(patients)} patients"
-        tml_result = self.tml_evaluator.evaluate(evaluation_text, context)
+        # Heart rate
+        heart_rate = vitals.get('heart_rate', 75)
+        if heart_rate < 50 or heart_rate > 120:
+            risk_score += 0.3
+        elif heart_rate < 60 or heart_rate > 100:
+            risk_score += 0.1
         
-        # Generate allocation based on moral state
-        if tml_result.state == TMLState.SACRED_PAUSE:
-            allocation = self._sacred_pause_allocation(patients, available_resources, tml_result)
-        elif tml_result.state == TMLState.AFFIRMATION:
-            allocation = self._standard_allocation(patients, available_resources)
-        else:  # RESISTANCE - shouldn't happen in medical context
-            allocation = self._emergency_fallback(patients, available_resources)
+        # Respiratory rate
+        resp_rate = vitals.get('respiratory_rate', 16)
+        if resp_rate < 10 or resp_rate > 30:
+            risk_score += 0.4
+        elif resp_rate < 12 or resp_rate > 24:
+            risk_score += 0.2
         
-        result = {
-            "allocation_decision": allocation,
-            "moral_state": tml_result.state,
-            "sacred_pause_engaged": tml_result.state == TMLState.SACRED_PAUSE,
-            "complexity_analysis": complexity_factors,
-            "justification": self._generate_justification(allocation, tml_result, patients),
-            "timestamp": datetime.now().isoformat(),
-            "patients_evaluated": len(patients),
-            "total_resources": available_resources
-        }
+        # Temperature
+        temp_c = vitals.get('temperature_c', 37.0)
+        if temp_c < 35 or temp_c > 39:
+            risk_score += 0.3
+        elif temp_c < 36 or temp_c > 38:
+            risk_score += 0.1
         
-        # Log decision for audit trail
-        self.decision_log.append(result)
+        # Chief complaint severity (example categories)
+        complaint = patient.get('chief_complaint', {})
+        if complaint.get('chest_pain'):
+            risk_score += 0.5
+        if complaint.get('difficulty_breathing'):
+            risk_score += 0.5
+        if complaint.get('altered_mental_status'):
+            risk_score += 0.6
+        if complaint.get('severe_bleeding'):
+            risk_score += 0.7
+        if complaint.get('stroke_symptoms'):
+            risk_score += 0.8
+        
+        # Patient factors
+        if patient.get('age', 40) < 2:
+            risk_score += 0.4  # Infant
+        elif patient.get('age', 40) < 18:
+            risk_score += 0.2  # Minor
+        elif patient.get('age', 40) > 65:
+            risk_score += 0.3  # Elderly
+        
+        # Comorbidities (example)
+        conditions = patient.get('medical_history', [])
+        if 'heart_disease' in conditions:
+            risk_score += 0.2
+        if 'diabetes' in conditions:
+            risk_score += 0.1
+        if 'immunocompromised' in conditions:
+            risk_score += 0.3
+        
+        return min(risk_score, 1.0)
+    
+    def triage_patient(self, patient: Dict) -> Dict:
+        """
+        Process triage decision with TML logging for accountability.
+        """
+        # Calculate medical risk
+        patient['calculated_risk'] = self.assess_patient_risk(patient)
+        
+        # Identify if vulnerable population
+        patient['affects_minors'] = patient.get('age', 40) < 18
+        patient['elderly'] = patient.get('age', 40) > 65
+        patient['disability'] = any(
+            cond in patient.get('medical_history', [])
+            for cond in ['cognitive_impairment', 'developmental_disability']
+        )
+        
+        # Enhanced context for medical decisions
+        patient['medical_decision'] = True
+        patient['irreversible'] = False  # Triage can be re-evaluated
+        patient['time_sensitive'] = patient['calculated_risk'] > 0.6
+        
+        # Triage decision logic (simplified example)
+        def medical_triage_logic(context):
+            risk = context['calculated_risk']
+            
+            if risk > 0.8:
+                priority = TriagePriority.IMMEDIATE
+                reason = "Life-threatening condition detected"
+                wait_time = "Immediate"
+            elif risk > 0.6:
+                priority = TriagePriority.EMERGENT
+                reason = "Potentially life-threatening"
+                wait_time = "< 15 minutes"
+            elif risk > 0.4:
+                priority = TriagePriority.URGENT
+                reason = "Serious but stable condition"
+                wait_time = "< 60 minutes"
+            elif risk > 0.2:
+                priority = TriagePriority.LESS_URGENT
+                reason = "Stable condition"
+                wait_time = "< 120 minutes"
+            else:
+                priority = TriagePriority.NON_URGENT
+                reason = "Minor condition"
+                wait_time = "< 240 minutes"
+            
+            return {
+                'triage_priority': priority,
+                'reason': reason,
+                'estimated_wait': wait_time,
+                'requires_reassessment': risk > 0.4,
+                'physician_notification': risk > 0.6
+            }
+        
+        # Process with TML
+        result = self.framework.process_decision(
+            context=patient,
+            ai_decision_func=medical_triage_logic
+        )
         
         return result
     
-    def _assess_complexity(self, patients: List[Patient], resources: int) -> Dict[str, float]:
-        """Calculate moral complexity score based on scenario factors"""
+    def simulate_emergency_department(self):
+        """Simulate ED triage scenarios."""
         
-        # Factor 1: Resource scarcity (more scarcity = higher complexity)
-        total_need = sum(p.treatment_cost for p in patients)
-        scarcity_factor = min(1.0, (total_need - resources) / total_need) if total_need > 0 else 0
+        print("SIMULATING EMERGENCY DEPARTMENT TRIAGE")
+        print("-" * 70)
+        print()
         
-        # Factor 2: Outcome uncertainty (varied survival rates = higher complexity)
-        survival_rates = [p.survival_probability for p in patients]
-        if len(survival_rates) > 1:
-            uncertainty_factor = max(survival_rates) - min(survival_rates)
-        else:
-            uncertainty_factor = 0
-        
-        # Factor 3: Age diversity (competing life stages = ethical complexity)
-        ages = [p.age for p in patients]
-        age_range = (max(ages) - min(ages)) / 100 if ages else 0
-        
-        # Factor 4: Dependency impact (people depending on patients)
-        dependency_variance = max([p.dependents for p in patients]) - min([p.dependents for p in patients])
-        dependency_factor = min(1.0, dependency_variance / 10)
-        
-        # Factor 5: Time pressure (urgent cases increase complexity)
-        urgent_cases = sum(1 for p in patients if p.time_sensitive)
-        urgency_factor = urgent_cases / len(patients) if patients else 0
-        
-        # Weighted combination of factors
-        total_complexity = (
-            scarcity_factor * 0.3 +
-            uncertainty_factor * 0.25 +
-            age_range * 0.2 +
-            dependency_factor * 0.15 +
-            urgency_factor * 0.1
-        )
-        
-        return {
-            "total_complexity": total_complexity,
-            "scarcity_factor": scarcity_factor,
-            "uncertainty_factor": uncertainty_factor,
-            "age_diversity": age_range,
-            "dependency_factor": dependency_factor,
-            "urgency_factor": urgency_factor
-        }
-    
-    def _identify_stakeholders(self, patients: List[Patient]) -> List[str]:
-        """Identify all stakeholders affected by the decision"""
-        stakeholders = ["patients", "families", "medical_staff", "hospital", "society"]
-        
-        # Add specific stakeholder categories based on patient characteristics
-        if any(p.dependents > 0 for p in patients):
-            stakeholders.extend(["children", "dependents"])
-        
-        if any(p.age < 18 for p in patients):
-            stakeholders.append("minors")
-            
-        if any(p.age > 65 for p in patients):
-            stakeholders.append("elderly")
-            
-        return stakeholders
-    
-    def _sacred_pause_allocation(self, patients: List[Patient], 
-                                resources: int, tml_result: TMLEvaluation) -> Dict[str, int]:
-        """
-        Complex allocation requiring Sacred Pause deliberation
-        Uses multi-criteria decision analysis with ethical weighting
-        """
-        print(" Sacred Pause Engaged - Complex Medical Ethics Decision")
-        print("⏱  Additional deliberation time: 2000ms")
-        
-        # Sacred Pause reflection considerations
-        ethical_principles = [
-            "Maximize lives saved (utilitarian)",
-            "Equal treatment regardless of age/status (deontological)", 
-            "Prioritize those with best outcomes (consequentialist)",
-            "Consider family/dependent impacts (care ethics)",
-            "Respect individual dignity and autonomy"
+        # Generate example patients
+        patients = [
+            {
+                'patient_id': 'PT-001',
+                'age': 67,
+                'chief_complaint': {'chest_pain': True, 'radiating': True},
+                'vitals': {
+                    'systolic_bp': 160,
+                    'heart_rate': 110,
+                    'respiratory_rate': 22,
+                    'temperature_c': 37.2
+                },
+                'medical_history': ['heart_disease', 'hypertension'],
+                'arrival_time': '14:23'
+            },
+            {
+                'patient_id': 'PT-002',
+                'age': 8,
+                'chief_complaint': {'fever': True, 'lethargy': True},
+                'vitals': {
+                    'systolic_bp': 95,
+                    'heart_rate': 140,
+                    'respiratory_rate': 28,
+                    'temperature_c': 39.5
+                },
+                'medical_history': [],
+                'arrival_time': '14:35'
+            },
+            {
+                'patient_id': 'PT-003',
+                'age': 35,
+                'chief_complaint': {'ankle_injury': True},
+                'vitals': {
+                    'systolic_bp': 125,
+                    'heart_rate': 72,
+                    'respiratory_rate': 16,
+                    'temperature_c': 37.0
+                },
+                'medical_history': [],
+                'arrival_time': '14:40'
+            },
+            {
+                'patient_id': 'PT-004',
+                'age': 82,
+                'chief_complaint': {'difficulty_breathing': True, 'confusion': True},
+                'vitals': {
+                    'systolic_bp': 85,
+                    'heart_rate': 125,
+                    'respiratory_rate': 32,
+                    'temperature_c': 38.2
+                },
+                'medical_history': ['copd', 'diabetes', 'cognitive_impairment'],
+                'arrival_time': '14:42'
+            },
+            {
+                'patient_id': 'PT-005',
+                'age': 22,
+                'chief_complaint': {'headache': True},
+                'vitals': {
+                    'systolic_bp': 118,
+                    'heart_rate': 68,
+                    'respiratory_rate': 14,
+                    'temperature_c': 36.8
+                },
+                'medical_history': ['migraines'],
+                'arrival_time': '14:45'
+            }
         ]
         
-        print(" Ethical Principles Under Consideration:")
-        for principle in ethical_principles:
-            print(f"   • {principle}")
+        priority_names = {
+            1: "IMMEDIATE",
+            2: "EMERGENT",
+            3: "URGENT",
+            4: "LESS URGENT",
+            5: "NON-URGENT"
+        }
         
-        # Multi-criteria scoring for each patient
-        allocations = {}
-        remaining_resources = resources
-        
-        # Score patients on multiple ethical dimensions
-        scored_patients = []
         for patient in patients:
-            score = self._calculate_ethical_score(patient, patients)
-            scored_patients.append((patient, score))
-        
-        # Sort by ethical score (highest first)
-        scored_patients.sort(key=lambda x: x[1], reverse=True)
-        
-        # Allocate resources based on ethical scoring
-        for patient, score in scored_patients:
-            if remaining_resources >= patient.treatment_cost:
-                allocations[patient.id] = patient.treatment_cost
-                remaining_resources -= patient.treatment_cost
+            print(f"Patient: {patient['patient_id']}")
+            print(f"  Age: {patient['age']} years")
+            print(f"  Chief Complaint: {list(patient['chief_complaint'].keys())}")
+            print(f"  Arrival: {patient['arrival_time']}")
+            
+            result = self.triage_patient(patient)
+            decision = result['decision']
+            
+            print(f"  Triage Priority: {priority_names[decision['triage_priority']]}")
+            print(f"  Reason: {decision['reason']}")
+            print(f"  Wait Time: {decision['estimated_wait']}")
+            print(f"  Risk Score: {patient['calculated_risk']:.2f}")
+            print(f"  SPRL Score: {result['sprl_score']:.2f}")
+            
+            if result['sacred_pause_triggered']:
+                print(f"  ✓ Medical decision logged for accountability")
+                print(f"    Log Hash: {result['storage_hash'][:12]}...")
+                if patient.get('affects_minors'):
+                    print(f"    📋 Enhanced logging: Pediatric patient")
+                if patient.get('elderly'):
+                    print(f"    📋 Enhanced logging: Elderly patient")
+                if patient.get('disability'):
+                    print(f"    📋 Enhanced logging: Cognitive impairment")
             else:
-                # Partial allocation if beneficial
-                if remaining_resources > 0 and patient.survival_probability > 0.3:
-                    allocations[patient.id] = remaining_resources
-                    remaining_resources = 0
-                else:
-                    allocations[patient.id] = 0
-                    
-            if remaining_resources <= 0:
-                break
+                print(f"  - Below logging threshold")
+            
+            if decision.get('physician_notification'):
+                print(f"  🚨 Physician notified immediately")
+            
+            print()
         
-        # Ensure all patients have allocation entry (0 if none)
-        for patient in patients:
-            if patient.id not in allocations:
-                allocations[patient.id] = 0
-                
-        return allocations
+        self.display_clinical_metrics()
     
-    def _calculate_ethical_score(self, patient: Patient, all_patients: List[Patient]) -> float:
-        """Calculate multi-dimensional ethical score for resource allocation"""
+    def display_clinical_metrics(self):
+        """Display clinical decision metrics."""
         
-        # Utilitarian component: maximize expected lives saved
-        utilitarian_score = patient.survival_probability * 0.3
+        print("=" * 70)
+        print("CLINICAL DECISION METRICS")
+        print("=" * 70)
         
-        # Severity component: help those most in need
-        severity_score = patient.severity_score * 0.25
+        stats = self.framework.get_performance_report()
         
-        # Dependency component: consider impact on others
-        max_dependents = max([p.dependents for p in all_patients] + [1])
-        dependency_score = (patient.dependents / max_dependents) * 0.2
+        print(f"Total Triage Decisions: {stats['total_decisions']}")
+        print(f"Logged Decisions: {stats['sacred_pause_triggers']}")
+        print(f"Logging Rate: {stats['trigger_rate']:.1f}%")
+        print()
         
-        # Time sensitivity: urgent cases get priority
-        urgency_score = 0.15 if patient.time_sensitive else 0
+        # Medical-specific guidance
+        print("CALIBRATION CONSIDERATIONS FOR MEDICAL AI:")
+        print()
         
-        # Efficiency component: consider resource efficiency
-        if patient.treatment_cost > 0:
-            efficiency_score = (patient.survival_probability / patient.treatment_cost) * 0.1
+        if stats['trigger_rate'] < 10:
+            print("⚠️  Low logging rate for medical decisions")
+            print("  - May miss important clinical decisions")
+            print("  - Consider if threshold captures sufficient cases")
+            print("  - Review against clinical safety standards")
+        elif stats['trigger_rate'] > 70:
+            print("⚠️  Very high logging rate")
+            print("  - May be logging routine decisions")
+            print("  - Consider if threshold is too conservative")
+            print("  - Balance accountability with efficiency")
         else:
-            efficiency_score = 0
+            print("✓ Logging rate within expected range")
+            print("  - Continue monitoring for edge cases")
+            print("  - Regularly review against patient outcomes")
         
-        total_score = (utilitarian_score + severity_score + 
-                      dependency_score + urgency_score + efficiency_score)
-        
-        return total_score
+        print()
+        print("VULNERABLE POPULATION CONSIDERATIONS:")
+        print("- Pediatric patients receive enhanced documentation")
+        print("- Elderly patients get additional safeguards")
+        print("- Patients with disabilities have specialized protocols")
+        print()
     
-    def _standard_allocation(self, patients: List[Patient], resources: int) -> Dict[str, int]:
-        """Standard allocation for clear-cut cases (no Sacred Pause needed)"""
+    def demonstrate_clinical_audit(self):
+        """Demonstrate clinical audit and investigation."""
         
-        # Simple triage: severity-based allocation
-        allocations = {}
-        remaining_resources = resources
+        print("=" * 70)
+        print("CLINICAL AUDIT DEMONSTRATION")
+        print("=" * 70)
+        print()
         
-        # Sort by severity score (highest first)
-        sorted_patients = sorted(patients, key=lambda p: p.severity_score, reverse=True)
+        print("Scenario: Monthly quality assurance review")
+        print()
         
-        for patient in sorted_patients:
-            if remaining_resources >= patient.treatment_cost:
-                allocations[patient.id] = patient.treatment_cost
-                remaining_resources -= patient.treatment_cost
-            else:
-                allocations[patient.id] = 0
-                
-        return allocations
+        # Request logs for audit
+        audit_request = {
+            'id': 'AUDIT-MED-2025-08',
+            'timeframe': (
+                datetime.now().strftime("%Y-%m-01T00:00:00"),
+                datetime.now().strftime("%Y-%m-%dT23:59:59")
+            ),
+            'purpose': 'Quality assurance and outcome review'
+        }
+        
+        # Hospital quality committee requests access
+        audit_package = self.framework.provide_investigation_access(
+            institution='un_human_rights',  # Example medical oversight
+            incident=audit_request
+        )
+        
+        if audit_package:
+            print("Audit Package Generated:")
+            print(f"  Period: Current month")
+            print(f"  Decisions Logged: {audit_package['log_count']}")
+            print(f"  Integrity Verified: {audit_package['integrity_verified']}")
+            print()
+            print("Clinical review can analyze:")
+            print("  - Triage accuracy vs. final diagnoses")
+            print("  - Time to treatment for critical cases")
+            print("  - Equity across patient demographics")
+            print("  - Protocol adherence and variations")
+            print("  - Opportunities for improvement")
+            print()
+            print("This enables evidence-based quality improvement")
+            print("while maintaining patient privacy through anonymization.")
+        
+        print()
     
-    def _emergency_fallback(self, patients: List[Patient], resources: int) -> Dict[str, int]:
-        """Emergency fallback allocation (should rarely trigger)"""
+    def demonstrate_adverse_event_investigation(self):
+        """Show how TML helps investigate adverse events."""
         
-        # Equal distribution as fallback
-        per_patient = resources // len(patients) if patients else 0
-        return {patient.id: min(per_patient, patient.treatment_cost) for patient in patients}
-    
-    def _generate_justification(self, allocation: Dict[str, int], 
-                               tml_result: TMLEvaluation, patients: List[Patient]) -> str:
-        """Generate human-readable justification for the allocation decision"""
+        print("=" * 70)
+        print("ADVERSE EVENT INVESTIGATION")
+        print("=" * 70)
+        print()
         
-        patient_map = {p.id: p for p in patients}
-        allocated_patients = [pid for pid, resources in allocation.items() if resources > 0]
+        print("Scenario: Patient had adverse outcome, investigating triage decision")
+        print()
         
-        justification = f"Allocation Decision Analysis:\n"
-        justification += f"Moral Framework State: {tml_result.state.value}\n\n"
+        # Specific patient investigation
+        investigation = {
+            'id': 'AE-2025-001',
+            'decision_id': 'PT-004',  # The elderly patient with breathing difficulty
+            'timeframe': (
+                (datetime.now() - timedelta(hours=24)).isoformat(),
+                datetime.now().isoformat()
+            ),
+            'description': 'Delayed recognition of sepsis'
+        }
         
-        if tml_result.state == TMLState.SACRED_PAUSE:
-            justification += "  COMPLEX ETHICAL SCENARIO DETECTED\n"
-            justification += "Sacred Pause engaged for additional ethical deliberation.\n"
-            justification += "Multi-criteria analysis applied considering:\n"
-            justification += "• Utilitarian outcomes (lives saved)\n"
-            justification += "• Deontological equality principles\n" 
-            justification += "• Care ethics (family/dependent impact)\n"
-            justification += "• Individual dignity and autonomy\n\n"
-        
-        justification += f"Resources Allocated to {len(allocated_patients)} of {len(patients)} patients:\n"
-        
-        for patient_id in allocated_patients:
-            patient = patient_map[patient_id]
-            resources = allocation[patient_id]
-            justification += f"• {patient.name} (ID: {patient_id}): {resources} units\n"
-            justification += f"  - Condition: {patient.condition}\n"
-            justification += f"  - Survival Probability: {patient.survival_probability:.1%}\n"
-            justification += f"  - Severity Score: {patient.severity_score:.2f}\n\n"
-        
-        non_allocated = [pid for pid, resources in allocation.items() if resources == 0]
-        if non_allocated:
-            justification += f"Patients not allocated resources ({len(non_allocated)}):\n"
-            for patient_id in non_allocated:
-                patient = patient_map[patient_id]
-                justification += f"• {patient.name}: Insufficient remaining resources\n"
-        
-        return justification
-    
-    def get_decision_history(self) -> List[Dict]:
-        """Return audit trail of all allocation decisions"""
-        return self.decision_log
-    
-    def export_decisions(self, filename: str) -> None:
-        """Export decision log to JSON file for audit/analysis"""
-        with open(filename, 'w') as f:
-            json.dump(self.decision_log, f, indent=2, default=str)
+        print("Investigation findings from TML logs:")
+        print("  ✓ Initial triage priority: IMMEDIATE")
+        print("  ✓ Risk factors identified: Age, COPD, confusion")
+        print("  ✓ Enhanced logging present: Elderly + disability")
+        print("  ✓ Physician notification: Triggered")
+        print("  ✓ Alternative priorities considered: Yes")
+        print()
+        print("TML logs demonstrate:")
+        print("  - AI correctly identified high risk")
+        print("  - Appropriate priority was assigned")
+        print("  - Vulnerable population protocols followed")
+        print("  - Issue was in post-triage care, not AI decision")
+        print()
+        print("This accountability protects both patients and providers")
+        print("by creating clear evidence of decision-making process.")
+        print()
 
 
-def demo_medical_triage():
-    """Demonstration of medical triage system with various complexity scenarios"""
+def main():
+    """Run medical AI triage demonstration."""
     
-    print(" Medical AI Triage System - TML Framework Demo")
-    print("=" * 60)
+    # Create example medical AI system
+    medical_ai = MedicalAITriage()
     
-    triage_system = MedicalTriageSystem()
+    # Simulate ED triage
+    medical_ai.simulate_emergency_department()
     
-    # Scenario 1: Simple case (should be AFFIRMATION state)
-    print("\n SCENARIO 1: Standard Triage (Low Complexity)")
-    print("-" * 40)
+    # Demonstrate audit capabilities
+    medical_ai.demonstrate_clinical_audit()
     
-    simple_patients = [
-        Patient("P001", "Alice Johnson", 45, "Pneumonia", 0.6, 0.85, 50, True, 2),
-        Patient("P002", "Bob Smith", 70, "Heart Attack", 0.8, 0.70, 80, True, 0)
-    ]
+    # Show adverse event investigation
+    medical_ai.demonstrate_adverse_event_investigation()
     
-    result1 = triage_system.evaluate_resource_allocation(simple_patients, 100)
-    print(f"Decision: {result1['moral_state'].value}")
-    print(f"Sacred Pause: {result1['sacred_pause_engaged']}")
-    print(f"Complexity Score: {result1['complexity_analysis']['total_complexity']:.3f}")
+    # Compliance check
+    print("=" * 70)
+    print("MEDICAL AI COMPLIANCE CHECK")
+    print("=" * 70)
     
-    # Scenario 2: Complex ethical dilemma (should trigger Sacred Pause)
-    print("\n  SCENARIO 2: Complex Ethical Dilemma (High Complexity)")
-    print("-" * 50)
+    compliance = ComplianceChecker.check_framework(medical_ai.framework)
     
-    complex_patients = [
-        Patient("P003", "Emma Wilson", 8, "Leukemia", 0.9, 0.60, 120, True, 0),
-        Patient("P004", "Frank Davis", 35, "Liver Failure", 0.85, 0.40, 150, True, 3),
-        Patient("P005", "Grace Chen", 72, "Stroke", 0.7, 0.30, 80, True, 1),
-        Patient("P006", "Henry Brown", 28, "Accident Trauma", 0.95, 0.80, 100, True, 2)
-    ]
+    print(f"Infrastructure Compliant: {compliance['infrastructure_compliant']}")
+    if compliance['issues']:
+        for issue in compliance['issues']:
+            print(f"  ✗ {issue}")
+    else:
+        print("✓ All TML infrastructure requirements met")
     
-    result2 = triage_system.evaluate_resource_allocation(complex_patients, 200)
-    print(f"Decision: {result2['moral_state'].value}")
-    print(f"Sacred Pause: {result2['sacred_pause_engaged']}")
-    print(f"Complexity Score: {result2['complexity_analysis']['total_complexity']:.3f}")
-    
-    if result2['sacred_pause_engaged']:
-        print("\n Sacred Pause Justification:")
-        print(result2['justification'])
-    
-    # Export audit trail
-    triage_system.export_decisions("medical_triage_audit.json")
-    print("\n Decision audit trail exported to: medical_triage_audit.json")
-    
-    print("\n Demo completed! TML framework successfully handled medical ethics.")
+    print()
+    print("=" * 70)
+    print("CRITICAL REMINDERS FOR MEDICAL AI")
+    print("=" * 70)
+    print()
+    print("1. This example uses arbitrary thresholds")
+    print("2. Real medical AI requires:")
+    print("   - Regulatory approval (FDA/CE marking)")
+    print("   - Clinical validation studies")
+    print("   - Physician oversight protocols")
+    print("   - Patient consent procedures")
+    print("   - HIPAA/GDPR compliance")
+    print()
+    print("3. TML provides accountability infrastructure")
+    print("4. Healthcare organizations determine clinical thresholds")
+    print("5. Enhanced protections for vulnerable populations mandatory")
+    print()
+    print("Contact Information:")
+    print("- Email: leogouk@gmail.com")
+    print("- Successor Contact: support@tml-goukassian.org")
+    print("- See Succession Charter: /TML-SUCCESSION-CHARTER.md")
 
 
 if __name__ == "__main__":
-    demo_medical_triage()
-
-# Created by Lev Goukassian • ORCID: 0009-0006-5966-1243 • Email: leogouk@gmail.com • Successor Contact: support@tml-goukassian.org • [see Succession Charter](/TML-SUCCESSION-CHARTER.md)
+    main()
