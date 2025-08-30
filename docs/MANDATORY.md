@@ -1,4 +1,4 @@
-# MANDATORY - TML Framework Implementation Requirements
+# MANDATORY - Ternary Moral Logic (TML) Framework Implementation Requirements
 
 ## Sacred Pause Logging Infrastructure for AI Accountability
 
@@ -10,7 +10,7 @@
 
 ## CRITICAL IMPLEMENTATION NOTICE
 
-This document defines mandatory requirements for TML framework implementation. Organizations implementing TML must comply with these logging infrastructure requirements while maintaining autonomy over risk calibration decisions.
+This document defines mandatory requirements for Ternary Moral Logic (TML) framework implementation. Organizations implementing TML must comply with these logging infrastructure requirements while maintaining autonomy over risk calibration decisions.
 
 **TML Provides**: Logging infrastructure, audit trail architecture, investigation capability  
 **Organizations Control**: Risk thresholds, trigger conditions, response procedures
