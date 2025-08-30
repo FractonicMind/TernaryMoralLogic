@@ -1,180 +1,307 @@
 """
-Ternary Moral Logic (TML) - A Framework for Ethical AI Decision-Making
+Ternary Moral Logic (TML) Framework
+Sacred Pause Logging Infrastructure for AI Accountability
 
-Author: Lev Goukassian (ORCID: 0009-0006-5966-1243)
-License: MIT
-
-This package implements the Ternary Moral Logic framework, introducing
-the concept of the "Sacred Pause" in AI ethical decision-making.
-
-The framework extends traditional binary decision-making to include
-a third state representing moral hesitation or ethical resistance,
-enabling more nuanced and ethically-aware AI systems.
-
-Example usage:
-    from tml import TMLEvaluator
-    
-    evaluator = TMLEvaluator()
-    result = evaluator.evaluate("Should I share this sensitive information?")
-    
-    print(f"TML State: {result.state.name}")
-    print(f"Reasoning: {result.reasoning}")
+Post-audit investigation model where organizations control thresholds
+and TML provides mandatory logging infrastructure.
 """
 
-__version__ = "1.0.0"
+__version__ = "2.0.0-TRANSITION"
 __author__ = "Lev Goukassian"
 __email__ = "leogouk@gmail.com"
-__license__ = "MIT"
-__orcid__ = "0009-0006-5966-1243"
+__license__ = "MIT with Mandatory Logging"
 
-# Core imports - make the main classes easily accessible
 from .core import (
-    # Core TML classes
-    TMLEvaluator,
-    TMLState,
-    TMLEvaluation,
-    
-    # Value and conflict classes
-    EthicalValue,
-    ValueConflict,
-    ValueConflictType,
-    
-    # Abstract base classes for customization
-    ValueDetector,
-    ConflictDetector,
-    
-    # Basic implementations
-    BasicValueDetector,
-    BasicConflictDetector,
-    
-    # Utility classes
-    TMLPromptGenerator,
+    TMLFramework,
+    TernaryState,
+    BatchLogger,
+    verify_tml_compliance,
+    PatternCategory,
+    ImmutableStorage
 )
 
-# Define what gets imported with "from tml import *"
-__all__ = [
-    # Core classes that users will typically need
-    "TMLEvaluator",
-    "TMLState", 
-    "TMLEvaluation",
-    "EthicalValue",
-    "ValueConflict",
-    "ValueConflictType",
-    
-    # For advanced users who want to customize
-    "ValueDetector",
-    "ConflictDetector",
-    "BasicValueDetector", 
-    "BasicConflictDetector",
-    
-    # Utilities
-    "TMLPromptGenerator",
-    
-    # Package metadata
-    "__version__",
-    "__author__",
-    "__license__",
-]
-
-# Package-level constants
-SACRED_PAUSE_DESCRIPTION = """
-The Sacred Pause represents a computational state where AI systems 
-deliberately slow down to acknowledge moral complexity. This pause is 
-not inefficiency but wisdom—the AI equivalent of ethical conscience.
-"""
-
-FRAMEWORK_PRINCIPLES = [
-    "AI systems should be moral partners, not just moral automatons",
-    "Ethical complexity deserves deliberate pause and reflection",
-    "Value conflicts should be surfaced, not hidden",
-    "Moral resistance is a feature, not a bug",
-    "The space between yes and no is where wisdom lives"
-]
-
-def get_framework_info():
+# Quick setup function for standard configuration
+def create_tml_framework(
+    sprl_threshold=0.7,
+    domain="general",
+    calculate_risk_on="all",
+    retention_days=None
+):
     """
-    Get information about the TML framework
+    Quick setup function for TML Framework
+    
+    Args:
+        sprl_threshold: Organization's Sacred Pause trigger threshold (0-1)
+        domain: Application domain (medical, financial, autonomous, general)
+        calculate_risk_on: When to evaluate risk (all, samples, threshold)
+        retention_days: Log retention period (uses domain defaults if None)
     
     Returns:
-        dict: Framework metadata and principles
+        Configured TMLFramework instance
     """
-    return {
-        "name": "Ternary Moral Logic",
-        "version": __version__,
-        "author": __author__,
-        "orcid": __orcid__,
-        "description": "A framework for ethical AI decision-making",
-        "sacred_pause": SACRED_PAUSE_DESCRIPTION.strip(),
-        "principles": FRAMEWORK_PRINCIPLES,
-        "repository": "https://github.com/leogouk/tml-framework",
-        "citation": {
-            "paper": "Goukassian, L. (2025). Ternary Moral Logic: Implementing Ethical Hesitation in AI Systems. AI and Ethics (under review).",
-            "software": f"Goukassian, L. ({__version__}). TernaryMoralLogic: Implementation Framework. https://github.com/leogouk/tml-framework"
+    # Domain-specific retention requirements
+    domain_retention = {
+        'medical': 3650,    # 10 years
+        'financial': 2555,  # 7 years  
+        'autonomous': 1825, # 5 years
+        'general': 1095     # 3 years
+    }
+    
+    if retention_days is None:
+        retention_days = domain_retention.get(domain, 1095)
+    
+    # Standard risk categories by domain
+    risk_categories = {
+        'medical': {
+            'life_threatening': 1.0,
+            'treatment_affecting': 0.8,
+            'diagnostic': 0.6,
+            'administrative': 0.3
+        },
+        'financial': {
+            'large_transaction': 0.9,
+            'credit_decision': 0.7,
+            'investment': 0.6,
+            'inquiry': 0.2
+        },
+        'autonomous': {
+            'safety_critical': 1.0,
+            'navigation': 0.5,
+            'comfort': 0.2,
+            'entertainment': 0.1
+        },
+        'general': {
+            'high': 0.8,
+            'medium': 0.5,
+            'low': 0.2
         }
     }
-
-def quick_start_example():
-    """
-    Print a quick start example for new users
-    """
-    example = """
-    # Quick Start Example - Ternary Moral Logic
     
-    from tml import TMLEvaluator, TMLState
-    
-    # Create evaluator
-    evaluator = TMLEvaluator()
-    
-    # Evaluate an ethical scenario
-    result = evaluator.evaluate(
-        "Should I prioritize efficiency over fairness in this algorithm?",
-        context={"domain": "hiring", "impact": "high"}
-    )
-    
-    # Check the result
-    if result.state == TMLState.AFFIRMATION:
-        print(" Proceed with confidence")
-    elif result.state == TMLState.SACRED_PAUSE:
-        print("⸻ Pause for reflection")
-        print(f"Questions to consider: {result.clarifying_questions}")
-    elif result.state == TMLState.RESISTANCE:
-        print(" Ethical resistance detected")
-        print(f"Conflicts: {[c.description for c in result.value_conflicts]}")
-    
-    print(f"Reasoning: {result.reasoning}")
-    """
-    print(example)
-
-# Recognition message
-RECOGNITION_MESSAGE = """
-"The sacred pause between question and answer—this is where wisdom begins, 
-for humans and machines alike." - Lev Goukassian
-
-This framework represents Lev Goukassian's contribution to ethical AI,
-created as a gift to humanity's future. Every use of this framework
-honors his vision of AI systems that are moral partners, not just
-moral automatons.
-"""
-
-def print_recognition():
-    """Print recognition message for Lev Goukassian"""
-    print("=" * 60)
-    print(RECOGNITION_MESSAGE)
-    print("=" * 60)
-
-# Initialize logging for the package
-import logging
-
-logger = logging.getLogger(__name__)
-logger.addHandler(logging.NullHandler())  # Prevents error if no handler configured
-
-# Version check function
-def check_version():
-    """Check if this is the latest version (placeholder for future use)"""
-    return {
-        "current_version": __version__,
-        "is_latest": True,  # Would check against PyPI in real implementation
-        "update_available": False
+    config = {
+        'sprl_threshold': sprl_threshold,
+        'risk_categories': risk_categories.get(domain, risk_categories['general']),
+        'stakeholder_methodology': 'standard',
+        'calculate_risk_on': calculate_risk_on,
+        'retention_days': retention_days,
+        'domain': domain
     }
+    
+    return TMLFramework(config)
 
-# Created by Lev Goukassian • ORCID: 0009-0006-5966-1243 • Email: leogouk@gmail.com • Successor Contact: support@tml-goukassian.org • [see Succession Charter](/TML-SUCCESSION-CHARTER.md)
+
+# Convenience decorators for adding TML to existing systems
+def tml_protected(sprl_threshold=0.7, domain="general"):
+    """
+    Decorator to add TML logging to existing functions
+    
+    Usage:
+        @tml_protected(sprl_threshold=0.6, domain="medical")
+        def make_medical_decision(patient_data):
+            # existing decision logic
+            return decision
+    """
+    def decorator(func):
+        framework = create_tml_framework(sprl_threshold, domain)
+        
+        def wrapper(*args, **kwargs):
+            # Extract context from function arguments
+            context = {
+                'function': func.__name__,
+                'args': args,
+                'kwargs': kwargs,
+                'domain': domain
+            }
+            
+            # Process with TML
+            result = framework.process_decision(
+                context=context,
+                ai_decision_func=lambda c: func(*args, **kwargs)
+            )
+            
+            # Return original function result
+            return result['decision']
+        
+        wrapper.__name__ = func.__name__
+        wrapper.__doc__ = func.__doc__
+        wrapper.tml_framework = framework  # Expose framework for inspection
+        
+        return wrapper
+    
+    return decorator
+
+
+# Async version for high-performance systems
+def tml_protected_async(sprl_threshold=0.7, domain="general"):
+    """
+    Async decorator for TML logging without blocking
+    
+    Usage:
+        @tml_protected_async(sprl_threshold=0.8)
+        async def process_transaction(data):
+            # async decision logic
+            return await decision
+    """
+    def decorator(func):
+        framework = create_tml_framework(sprl_threshold, domain)
+        
+        async def wrapper(*args, **kwargs):
+            context = {
+                'function': func.__name__,
+                'args': args,
+                'kwargs': kwargs,
+                'domain': domain
+            }
+            
+            # Process with async TML
+            result = await framework.process_decision_async(
+                context=context,
+                ai_decision_func=lambda c: func(*args, **kwargs)
+            )
+            
+            return result['decision']
+        
+        wrapper.__name__ = func.__name__
+        wrapper.__doc__ = func.__doc__
+        wrapper.tml_framework = framework
+        
+        return wrapper
+    
+    return decorator
+
+
+# Compliance checking utilities
+class ComplianceChecker:
+    """Utility class for verifying TML compliance"""
+    
+    @staticmethod
+    def check_framework(framework):
+        """
+        Comprehensive compliance check
+        
+        Returns:
+            Dict with compliance status and any issues found
+        """
+        issues = []
+        warnings = []
+        
+        # Check mandatory capabilities
+        if not framework.logging_enabled:
+            issues.append("Logging capability is disabled")
+        if not framework.audit_immutable:
+            issues.append("Audit trail is not immutable")
+        if not framework.investigation_api:
+            issues.append("Investigation API is not available")
+        
+        # Check configuration
+        if framework.sprl_threshold is None:
+            issues.append("SPRL threshold not configured")
+        elif framework.sprl_threshold < 0 or framework.sprl_threshold > 1:
+            issues.append(f"Invalid SPRL threshold: {framework.sprl_threshold}")
+        
+        # Check retention
+        min_retention = {
+            'medical': 3650,
+            'financial': 2555,
+            'autonomous': 1825,
+            'general': 1095
+        }
+        
+        domain = framework.risk_categories.get('domain', 'general')
+        required_retention = min_retention.get(domain, 1095)
+        
+        if framework.retention_days < required_retention:
+            issues.append(
+                f"Retention period ({framework.retention_days} days) "
+                f"below minimum for {domain} domain ({required_retention} days)"
+            )
+        
+        # Check performance
+        stats = framework.get_performance_report()
+        if stats['average_logging_time_ms'] > 100:
+            warnings.append(
+                f"High logging latency: {stats['average_logging_time_ms']:.1f}ms"
+            )
+        
+        # Verify integrity
+        if not framework.immutable_storage.verify_integrity():
+            issues.append("Audit trail integrity verification failed")
+        
+        return {
+            'compliant': len(issues) == 0,
+            'issues': issues,
+            'warnings': warnings,
+            'stats': stats
+        }
+    
+    @staticmethod
+    def generate_compliance_report(framework):
+        """Generate detailed compliance report"""
+        check = ComplianceChecker.check_framework(framework)
+        stats = framework.get_performance_report()
+        
+        report = f"""
+TML COMPLIANCE REPORT
+Generated: {__import__('datetime').datetime.now().isoformat()}
+
+COMPLIANCE STATUS: {'✓ COMPLIANT' if check['compliant'] else '✗ NON-COMPLIANT'}
+
+CONFIGURATION:
+- SPRL Threshold: {framework.sprl_threshold}
+- Retention Period: {framework.retention_days} days
+- Risk Calculation: {framework.calculate_risk_on}
+
+PERFORMANCE:
+- Total Decisions: {stats['total_decisions']}
+- Sacred Pause Triggers: {stats['sacred_pause_triggers']} ({stats['trigger_rate']:.1f}%)
+- Average Log Time: {stats['average_logging_time_ms']:.1f}ms
+- Storage Optimization: {stats['storage_optimization']}
+- Integrity Verified: {stats['integrity_verified']}
+
+"""
+        
+        if check['issues']:
+            report += "CRITICAL ISSUES:\n"
+            for issue in check['issues']:
+                report += f"  ✗ {issue}\n"
+        
+        if check['warnings']:
+            report += "\nWARNINGS:\n"
+            for warning in check['warnings']:
+                report += f"  ⚠ {warning}\n"
+        
+        return report
+
+
+# Export all public components
+__all__ = [
+    # Core framework
+    'TMLFramework',
+    'TernaryState',
+    'BatchLogger',
+    'PatternCategory',
+    'ImmutableStorage',
+    
+    # Setup utilities
+    'create_tml_framework',
+    'verify_tml_compliance',
+    
+    # Decorators
+    'tml_protected',
+    'tml_protected_async',
+    
+    # Compliance
+    'ComplianceChecker',
+    
+    # Metadata
+    '__version__',
+    '__author__',
+    '__email__',
+    '__license__'
+]
+
+"""
+Contact Information
+- Email: leogouk@gmail.com 
+- Successor Contact: support@tml-goukassian.org 
+- See Succession Charter: /TML-SUCCESSION-CHARTER.md
+"""
