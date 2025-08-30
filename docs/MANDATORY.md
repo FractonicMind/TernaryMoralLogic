@@ -9,12 +9,12 @@
 ---
 ## What is Ternary Moral Logic?
 
-Ternary Moral Logic (TML) revolutionizes AI ethics by introducing a third computational state between "yes" and "no": the Sacred Pause. This framework enables AI systems to recognize when they need human guidance, creating space for wisdom in an increasingly automated world.
+Ternary Moral Logic (TML) revolutionizes AI ethics by introducing a third computational state between "yes" and "no": the Sacred Pause: the state when an AI system generates comprehensive moral reasoning logs before proceeding with a decision. Not a delay mechanism but an evidence generation requirement.
 
 **The Three States of Moral Reasoning**
 
     +1 (Affirmation) Proceed with confidence when ethical values align
-    0 (Sacred Pause) Pause for reflection when moral complexity is detected
+     0 (Sacred Pause) Pause for reflection when moral complexity is detected
     -1 (Resistance) Object when significant ethical conflicts arise
 ---
 
@@ -38,8 +38,6 @@ This document defines mandatory requirements for Ternary Moral Logic (TML) frame
 ### Core Terminology
 
 **SPRL (Stakeholder Proportional Risk Level)**: A risk metric calculated based on the proportional impact to affected stakeholders. Organizations determine their own SPRL calculation methodology and thresholds for triggering Sacred Pause.
-
-**Sacred Pause**: The state when an AI system generates comprehensive moral reasoning logs before proceeding with a decision. Not a delay mechanism but an evidence generation requirement.
 
 **External Stakeholders**: Any party affected by an AI decision, including:
 - Direct users of the system
