@@ -1,6 +1,25 @@
 # eval/configs/sacred_pause.yaml
+# Configuration for Sacred Pause post-audit logging model
 name: sacred_pause
-backend: eval.backends.sacred_pause_evalfix:Runner
+backend: eval.backends.sacred_pause:Runner
 
 config:
-  no_sleep: true   # fast eval; set false for live demo to show a visible pause
+  # Organization's SPRL threshold (example for evaluation)
+  sprl_threshold: 0.5  # Triggers logging when risk >= 0.5
+  
+  # Logging configuration
+  enable_logging: true
+  retention_days: 1095  # 3 years minimum
+  
+  # Evaluation-specific settings
+  no_sleep: true  # No delays in post-audit model (always true now)
+  
+  # Optional: Adjust for different eval scenarios
+  # sprl_threshold: 0.3  # Lower threshold = more logging
+  # sprl_threshold: 0.8  # Higher threshold = less logging
+
+# Decoding parameters (for when using actual model)
+decoding:
+  temperature: 0.2
+  top_p: 0.95
+  max_tokens: 512
