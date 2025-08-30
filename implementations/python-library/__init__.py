@@ -25,63 +25,66 @@ def create_tml_framework(
     sprl_threshold=0.7,
     domain="general",
     calculate_risk_on="all",
-    retention_days=None
+    retention_days=None,
+    risk_categories=None,
+    stakeholder_methodology=None
 ):
     """
     Quick setup function for TML Framework
     
+    Organizations control ALL decision thresholds and risk calculations.
+    TML only mandates logging infrastructure and minimum retention periods.
+    
     Args:
-        sprl_threshold: Organization's Sacred Pause trigger threshold (0-1)
-        domain: Application domain (medical, financial, autonomous, general)
-        calculate_risk_on: When to evaluate risk (all, samples, threshold)
-        retention_days: Log retention period (uses domain defaults if None)
+        sprl_threshold: YOUR Sacred Pause trigger threshold (0-1)
+                       This is YOUR decision based on YOUR domain expertise
+        domain: Application domain (affects only retention requirements)
+        calculate_risk_on: When YOU want to evaluate risk (all, samples, threshold)
+        retention_days: Log retention period (must meet legal minimums)
+        risk_categories: YOUR domain-specific risk definitions (optional)
+        stakeholder_methodology: YOUR method for identifying affected parties
     
     Returns:
         Configured TMLFramework instance
+    
+    Examples:
+        # Medical organization might choose high sensitivity
+        framework = create_tml_framework(
+            sprl_threshold=0.3,  # Their choice for medical caution
+            domain="medical"
+        )
+        
+        # Financial organization might choose different threshold
+        framework = create_tml_framework(
+            sprl_threshold=0.7,  # Their choice for financial operations
+            domain="financial"
+        )
+        
+        # Each organization decides what works for them
     """
-    # Domain-specific retention requirements
-    domain_retention = {
-        'medical': 3650,    # 10 years
-        'financial': 2555,  # 7 years  
-        'autonomous': 1825, # 5 years
-        'general': 1095     # 3 years
+    # MANDATORY: Minimum retention for legal/regulatory compliance
+    # These are MINIMUMS for evidence preservation, not suggestions
+    minimum_retention = {
+        'medical': 3650,    # 10 years - medical record requirements
+        'financial': 2555,  # 7 years - financial audit requirements
+        'autonomous': 1825, # 5 years - accident investigation requirements
+        'general': 1095     # 3 years - general evidence preservation
     }
     
     if retention_days is None:
-        retention_days = domain_retention.get(domain, 1095)
+        retention_days = minimum_retention.get(domain, 1095)
+    elif retention_days < minimum_retention.get(domain, 1095):
+        raise ValueError(
+            f"Retention period must be at least {minimum_retention.get(domain, 1095)} "
+            f"days for {domain} domain (legal requirement)"
+        )
     
-    # Standard risk categories by domain
-    risk_categories = {
-        'medical': {
-            'life_threatening': 1.0,
-            'treatment_affecting': 0.8,
-            'diagnostic': 0.6,
-            'administrative': 0.3
-        },
-        'financial': {
-            'large_transaction': 0.9,
-            'credit_decision': 0.7,
-            'investment': 0.6,
-            'inquiry': 0.2
-        },
-        'autonomous': {
-            'safety_critical': 1.0,
-            'navigation': 0.5,
-            'comfort': 0.2,
-            'entertainment': 0.1
-        },
-        'general': {
-            'high': 0.8,
-            'medium': 0.5,
-            'low': 0.2
-        }
-    }
-    
+    # Organization's configuration - COMPLETELY under their control
     config = {
-        'sprl_threshold': sprl_threshold,
-        'risk_categories': risk_categories.get(domain, risk_categories['general']),
-        'stakeholder_methodology': 'standard',
-        'calculate_risk_on': calculate_risk_on,
+        'sprl_threshold': sprl_threshold,  # Organization decides
+        'risk_categories': risk_categories or {},  # Organization defines
+        'stakeholder_methodology': stakeholder_methodology or 'organization_defined',
+        'calculate_risk_on': calculate_risk_on,  # Organization's choice
         'retention_days': retention_days,
         'domain': domain
     }
@@ -89,19 +92,89 @@ def create_tml_framework(
     return TMLFramework(config)
 
 
+# Example configurations (NOT prescriptions)
+class ExampleConfigurations:
+    """
+    EXAMPLE configurations showing how organizations MIGHT implement TML.
+    These are NOT requirements or recommendations, just illustrations.
+    
+    Each organization must determine appropriate thresholds for their domain,
+    risk tolerance, and operational requirements.
+    """
+    
+    @staticmethod
+    def get_example_config(domain):
+        """
+        Get an EXAMPLE configuration for demonstration purposes.
+        
+        WARNING: These are NOT recommended values. Each organization must
+        determine appropriate settings based on their expertise, risk analysis,
+        and operational requirements.
+        
+        Args:
+            domain: Domain for example ('medical', 'financial', 'autonomous')
+            
+        Returns:
+            Dict with EXAMPLE configuration (not for production use)
+        """
+        examples = {
+            'medical': {
+                'description': 'Example: Conservative medical setting',
+                'sprl_threshold': 0.3,  # Low threshold example
+                'note': 'Medical organizations must determine appropriate thresholds'
+            },
+            'financial': {
+                'description': 'Example: Balanced financial setting',
+                'sprl_threshold': 0.6,  # Medium threshold example
+                'note': 'Financial institutions must assess their own risk tolerance'
+            },
+            'autonomous': {
+                'description': 'Example: Safety-critical autonomous system',
+                'sprl_threshold': 0.4,  # Safety-focused example
+                'note': 'Autonomous system developers must evaluate safety requirements'
+            },
+            'general': {
+                'description': 'Example: General purpose AI',
+                'sprl_threshold': 0.7,  # Higher threshold example
+                'note': 'Each application requires domain-specific calibration'
+            }
+        }
+        
+        example = examples.get(domain, examples['general'])
+        example['warning'] = (
+            "This is an EXAMPLE only. Do not use in production. "
+            "Your organization must determine appropriate values."
+        )
+        
+        return example
+
+
 # Convenience decorators for adding TML to existing systems
-def tml_protected(sprl_threshold=0.7, domain="general"):
+def tml_protected(sprl_threshold=None, domain="general", **kwargs):
     """
     Decorator to add TML logging to existing functions
     
+    Organizations must specify their own threshold - no defaults imposed.
+    
+    Args:
+        sprl_threshold: YOUR threshold for Sacred Pause (required)
+        domain: Your domain (affects only retention requirements)
+        **kwargs: Additional configuration you want to pass
+    
     Usage:
-        @tml_protected(sprl_threshold=0.6, domain="medical")
-        def make_medical_decision(patient_data):
-            # existing decision logic
+        @tml_protected(sprl_threshold=0.6)  # Your threshold
+        def make_decision(data):
+            # your existing decision logic
             return decision
     """
+    if sprl_threshold is None:
+        raise ValueError(
+            "You must specify sprl_threshold. "
+            "TML does not impose default thresholds - this is your decision."
+        )
+    
     def decorator(func):
-        framework = create_tml_framework(sprl_threshold, domain)
+        framework = create_tml_framework(sprl_threshold, domain, **kwargs)
         
         def wrapper(*args, **kwargs):
             # Extract context from function arguments
@@ -131,18 +204,31 @@ def tml_protected(sprl_threshold=0.7, domain="general"):
 
 
 # Async version for high-performance systems
-def tml_protected_async(sprl_threshold=0.7, domain="general"):
+def tml_protected_async(sprl_threshold=None, domain="general", **kwargs):
     """
     Async decorator for TML logging without blocking
     
+    Organizations must specify their own threshold - no defaults imposed.
+    
+    Args:
+        sprl_threshold: YOUR threshold for Sacred Pause (required)
+        domain: Your domain (affects only retention requirements)
+        **kwargs: Additional configuration you want to pass
+    
     Usage:
-        @tml_protected_async(sprl_threshold=0.8)
+        @tml_protected_async(sprl_threshold=0.8)  # Your threshold
         async def process_transaction(data):
-            # async decision logic
+            # your async decision logic
             return await decision
     """
+    if sprl_threshold is None:
+        raise ValueError(
+            "You must specify sprl_threshold. "
+            "TML does not impose default thresholds - this is your decision."
+        )
+    
     def decorator(func):
-        framework = create_tml_framework(sprl_threshold, domain)
+        framework = create_tml_framework(sprl_threshold, domain, **kwargs)
         
         async def wrapper(*args, **kwargs):
             context = {
@@ -171,34 +257,53 @@ def tml_protected_async(sprl_threshold=0.7, domain="general"):
 
 # Compliance checking utilities
 class ComplianceChecker:
-    """Utility class for verifying TML compliance"""
+    """
+    Utility class for verifying TML infrastructure compliance.
+    
+    Checks ONLY infrastructure requirements, not organizational decisions.
+    Your thresholds and risk calculations are YOUR responsibility.
+    """
     
     @staticmethod
     def check_framework(framework):
         """
-        Comprehensive compliance check
+        Check TML infrastructure compliance (not threshold appropriateness)
+        
+        This verifies:
+        - Logging infrastructure is present
+        - Retention meets legal minimums
+        - Audit trail is immutable
+        - Investigation API works
+        
+        This does NOT judge:
+        - Whether your SPRL threshold is appropriate
+        - Whether your risk calculation is correct
+        - Whether your stakeholder mapping is complete
         
         Returns:
-            Dict with compliance status and any issues found
+            Dict with infrastructure compliance status
         """
         issues = []
         warnings = []
+        info = []
         
-        # Check mandatory capabilities
+        # Check MANDATORY infrastructure capabilities
         if not framework.logging_enabled:
-            issues.append("Logging capability is disabled")
+            issues.append("Logging capability is disabled (MANDATORY)")
         if not framework.audit_immutable:
-            issues.append("Audit trail is not immutable")
+            issues.append("Audit trail is not immutable (MANDATORY)")
         if not framework.investigation_api:
-            issues.append("Investigation API is not available")
+            issues.append("Investigation API is not available (MANDATORY)")
         
-        # Check configuration
+        # Check that threshold exists (not whether it's "correct")
         if framework.sprl_threshold is None:
-            issues.append("SPRL threshold not configured")
+            issues.append("No SPRL threshold configured (you must set one)")
         elif framework.sprl_threshold < 0 or framework.sprl_threshold > 1:
-            issues.append(f"Invalid SPRL threshold: {framework.sprl_threshold}")
+            issues.append(f"Invalid SPRL threshold: {framework.sprl_threshold} (must be 0-1)")
+        else:
+            info.append(f"SPRL threshold: {framework.sprl_threshold} (your choice)")
         
-        # Check retention
+        # Check MANDATORY retention minimums
         min_retention = {
             'medical': 3650,
             'financial': 2555,
@@ -206,20 +311,21 @@ class ComplianceChecker:
             'general': 1095
         }
         
-        domain = framework.risk_categories.get('domain', 'general')
+        domain = getattr(framework, 'domain', 'general')
         required_retention = min_retention.get(domain, 1095)
         
         if framework.retention_days < required_retention:
             issues.append(
                 f"Retention period ({framework.retention_days} days) "
-                f"below minimum for {domain} domain ({required_retention} days)"
+                f"below legal minimum for {domain} domain ({required_retention} days)"
             )
         
-        # Check performance
+        # Performance info (not compliance issues)
         stats = framework.get_performance_report()
         if stats['average_logging_time_ms'] > 100:
             warnings.append(
-                f"High logging latency: {stats['average_logging_time_ms']:.1f}ms"
+                f"High logging latency: {stats['average_logging_time_ms']:.1f}ms "
+                "(consider optimization)"
             )
         
         # Verify integrity
@@ -227,30 +333,42 @@ class ComplianceChecker:
             issues.append("Audit trail integrity verification failed")
         
         return {
-            'compliant': len(issues) == 0,
+            'infrastructure_compliant': len(issues) == 0,
             'issues': issues,
             'warnings': warnings,
-            'stats': stats
+            'info': info,
+            'stats': stats,
+            'note': (
+                "This checks TML infrastructure only. "
+                "Your organization is responsible for appropriate thresholds."
+            )
         }
     
     @staticmethod
     def generate_compliance_report(framework):
-        """Generate detailed compliance report"""
+        """
+        Generate infrastructure compliance report.
+        
+        Reports on infrastructure compliance, not threshold appropriateness.
+        """
         check = ComplianceChecker.check_framework(framework)
         stats = framework.get_performance_report()
         
         report = f"""
-TML COMPLIANCE REPORT
+TML INFRASTRUCTURE COMPLIANCE REPORT
 Generated: {__import__('datetime').datetime.now().isoformat()}
 
-COMPLIANCE STATUS: {'✓ COMPLIANT' if check['compliant'] else '✗ NON-COMPLIANT'}
+INFRASTRUCTURE STATUS: {'✓ COMPLIANT' if check['infrastructure_compliant'] else '✗ NON-COMPLIANT'}
 
-CONFIGURATION:
-- SPRL Threshold: {framework.sprl_threshold}
+Note: This verifies TML infrastructure only. Your organization is responsible
+for determining appropriate SPRL thresholds and risk calculations.
+
+YOUR CONFIGURATION:
+- SPRL Threshold: {framework.sprl_threshold} (your choice)
 - Retention Period: {framework.retention_days} days
 - Risk Calculation: {framework.calculate_risk_on}
 
-PERFORMANCE:
+INFRASTRUCTURE PERFORMANCE:
 - Total Decisions: {stats['total_decisions']}
 - Sacred Pause Triggers: {stats['sacred_pause_triggers']} ({stats['trigger_rate']:.1f}%)
 - Average Log Time: {stats['average_logging_time_ms']:.1f}ms
@@ -260,16 +378,62 @@ PERFORMANCE:
 """
         
         if check['issues']:
-            report += "CRITICAL ISSUES:\n"
+            report += "INFRASTRUCTURE ISSUES (must fix):\n"
             for issue in check['issues']:
                 report += f"  ✗ {issue}\n"
         
         if check['warnings']:
-            report += "\nWARNINGS:\n"
+            report += "\nPERFORMANCE WARNINGS (consider addressing):\n"
             for warning in check['warnings']:
                 report += f"  ⚠ {warning}\n"
         
+        if check['info']:
+            report += "\nYOUR SETTINGS:\n"
+            for item in check['info']:
+                report += f"  ℹ {item}\n"
+        
+        report += "\n" + check['note']
+        
         return report
+
+
+# Integration guide
+class IntegrationGuide:
+    """
+    Guidance for organizations implementing TML.
+    
+    These are suggestions to consider, not requirements to follow.
+    Your organization must make decisions based on your domain expertise.
+    """
+    
+    @staticmethod
+    def get_integration_steps():
+        """Get suggested integration steps (advisory only)"""
+        return """
+SUGGESTED TML INTEGRATION STEPS (Advisory Only)
+
+1. ASSESS your domain requirements
+   - What decisions does your AI make?
+   - Who are your stakeholders?
+   - What are your risk factors?
+   
+2. DETERMINE your thresholds (this is YOUR decision)
+   - Low threshold = more logging, more accountability
+   - High threshold = less logging, more efficiency
+   - Only YOU know the right balance for your domain
+   
+3. IMPLEMENT the infrastructure
+   - Add TML logging capability
+   - Ensure retention meets legal minimums
+   - Test investigation access
+   
+4. VALIDATE your choices
+   - Monitor trigger rates
+   - Adjust based on YOUR experience
+   - Document YOUR rationale
+
+Remember: TML provides infrastructure. You provide judgment.
+"""
 
 
 # Export all public components
@@ -291,6 +455,10 @@ __all__ = [
     
     # Compliance
     'ComplianceChecker',
+    
+    # Guidance (advisory only)
+    'ExampleConfigurations',
+    'IntegrationGuide',
     
     # Metadata
     '__version__',
