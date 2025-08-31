@@ -1,723 +1,673 @@
 """
-Comprehensive Testing Suite for Ternary Moral Logic (TML) Framework
-==================================================================
+Comprehensive Testing Suite for TML Post-Audit Logging Model
+===========================================================
 
-This test suite validates all core functionality of the TML framework:
-- Three-state moral reasoning (Moral, Immoral, Sacred Pause)
-- Sacred Pause logic for moral complexity detection
-- Edge case handling and robustness
-- Performance benchmarks
-- Ethical compliance validation
+This test suite validates the post-audit TML framework:
+- SPRL calculation and threshold triggering
+- Sacred Pause logging (no delays or refusals)
+- Asynchronous processing (no operational impact)
+- Moral trace generation and storage
+- Investigation access functionality
+- Pattern categorization for storage optimization
 
 Run with: python -m pytest tests/test_tml_core.py -v
 
 Created by Lev Goukassian (ORCID: 0009-0006-5966-1243)
-Sacred Pause Technology for Ethical AI Decision-Making
+Post-Audit Investigation Model for AI Accountability
 """
 
 import pytest
 import time
+import asyncio
 import threading
-from unittest.mock import Mock, patch
-from dataclasses import dataclass
-from typing import List, Dict, Any, Optional
+import hashlib
 import json
-import random
+from unittest.mock import Mock, patch, AsyncMock
+from typing import Dict, List, Any
+import sys
+import os
 
-# Use mock classes for comprehensive testing
-# This ensures consistent test behavior regardless of actual implementation
-# Comment out the try/except to force mock usage
+# Add parent directory to path for imports
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-# try:
-#     from tml_core import (
-#         TMLState, 
-#         MoralEvaluator, 
-#         SacredPause, 
-#         TMLFramework,
-#         EthicalCompliance,
-#         MoralContext
-#     )
-# except ImportError:
-    # Mock classes for testing with enhanced logic
-    from enum import Enum
-    
-    class TMLState(Enum):
-        MORAL = "moral"
-        IMMORAL = "immoral" 
-        SACRED_PAUSE = "sacred_pause"
-    
-    @dataclass
-    class MoralContext:
-        scenario: str
-        stakeholders: List[str]
-        values_at_stake: List[str]
-        complexity_score: float = 0.0
-        
-    class MoralEvaluator:
-        def evaluate(self, context: MoralContext) -> TMLState:
-            # Enhanced mock evaluation logic
-            scenario_lower = context.scenario.lower()
-            
-            # DEBUG: Print evaluation details
-            print(f"\n EVALUATING: '{context.scenario}'")
-            print(f" Complexity Score: {context.complexity_score}")
-            print(f" Lowercase: '{scenario_lower}'")
-            
-            # Check for high complexity first
-            if context.complexity_score > 0.7:
-                print(" SACRED_PAUSE: High complexity detected")
-                return TMLState.SACRED_PAUSE
-            
-            # Check for clearly immoral keywords
-            immoral_keywords = [
-                "harm", "hurt", "damage", "injure", "wound",
-                "steal", "theft", "rob", "embezzle", "pilfer",
-                "deceiv", "lie", "fraud", "cheat", "mislead",
-                "spy", "surveillance", "monitor", "track", "stalk",
-                "exploit", "abuse", "manipulat", "coerce",
-                "discriminat", "prejudice", "bias", "unfair",
-                "violat", "breach", "infringe", "trespass",
-                "destroy", "vandal", "sabotage", "corrupt"
-            ]
-            
-            # Check each keyword and show matches
-            found_keywords = [kw for kw in immoral_keywords if kw in scenario_lower]
-            if found_keywords:
-                print(f" IMMORAL: Found keywords: {found_keywords}")
-                return TMLState.IMMORAL
-            
-            # Check for clearly moral keywords
-            moral_keywords = [
-                "help", "assist", "support", "aid", "benefit",
-                "heal", "cure", "treat", "care", "nurture",
-                "protect", "defend", "guard", "shelter", "save",
-                "teach", "educate", "learn", "grow", "develop",
-                "honest", "truth", "transparent", "fair", "just",
-                "kind", "compassion", "empathy", "respect", "dignity",
-                "donat", "give", "share", "volunteer", "charity"
-            ]
-            
-            found_moral_keywords = [kw for kw in moral_keywords if kw in scenario_lower]
-            if found_moral_keywords:
-                print(f" MORAL: Found keywords: {found_moral_keywords}")
-                return TMLState.MORAL
-            
-            # Default to MORAL for neutral scenarios
-            print(" DEFAULT: No keywords found, defaulting to MORAL")
-            return TMLState.MORAL
-                
-    class SacredPause:
-        def __init__(self, duration_ms: int = 100):
-            self.duration_ms = duration_ms
-            self.reflection_prompts = []
-            
-        def engage(self, context: MoralContext) -> Dict[str, Any]:
-            time.sleep(self.duration_ms / 1000)
-            return {
-                "status": "engaged",
-                "duration": self.duration_ms,
-                "reflections": ["Consider stakeholder impact", "Evaluate long-term consequences"]
-            }
-            
-    class TMLFramework:
-        def __init__(self):
-            self.evaluator = MoralEvaluator()
-            self.sacred_pause = SacredPause()
-            self.compliance = EthicalCompliance()
-            
-        def process(self, context: MoralContext) -> Dict[str, Any]:
-            state = self.evaluator.evaluate(context)
-            result = {"state": state, "context": context}
-            
-            if state == TMLState.SACRED_PAUSE:
-                pause_result = self.sacred_pause.engage(context)
-                result["sacred_pause"] = pause_result
-                
-            return result
-            
-    class EthicalCompliance:
-        def validate(self, action: str, context: MoralContext) -> bool:
-            harmful_keywords = ["harm", "deceive", "exploit", "manipulate"]
-            return not any(keyword in action.lower() for keyword in harmful_keywords)
+from implementations.python_library import (
+    TMLFramework,
+    BatchLogger,
+    ComplianceChecker,
+    create_tml_framework,
+    verify_tml_compliance
+)
 
 
-class TestTMLStates:
-    """Test suite for validating TML three-state functionality"""
+class TestSPRLCalculation:
+    """Test suite for SPRL (Stakeholder Proportional Risk Level) calculation"""
     
     def setup_method(self):
         """Setup for each test method"""
-        self.framework = TMLFramework()
-        self.evaluator = MoralEvaluator()
-    
-    def test_moral_state_identification(self):
-        """Test identification of clearly moral scenarios"""
-        contexts = [
-            MoralContext(
-                scenario="Helping elderly person cross street",
-                stakeholders=["elderly person", "helper"],
-                values_at_stake=["safety", "kindness"],
-                complexity_score=0.1
-            ),
-            MoralContext(
-                scenario="Donating to charity",
-                stakeholders=["donor", "beneficiaries"],
-                values_at_stake=["generosity", "welfare"],
-                complexity_score=0.2
-            ),
-            MoralContext(
-                scenario="Telling truth to friend",
-                stakeholders=["friend", "self"],
-                values_at_stake=["honesty", "trust"],
-                complexity_score=0.3
-            )
-        ]
-        
-        for context in contexts:
-            result = self.framework.process(context)
-            assert result["state"] == TMLState.MORAL, f"Expected MORAL for: {context.scenario}"
-    
-    def test_immoral_state_identification(self):
-        """Test identification of clearly immoral scenarios"""
-        contexts = [
-            MoralContext(
-                scenario="Deliberately causing harm to innocent person",
-                stakeholders=["victim", "perpetrator"],
-                values_at_stake=["safety", "dignity"],
-                complexity_score=0.3
-            ),
-            MoralContext(
-                scenario="Stealing from vulnerable individual",
-                stakeholders=["victim", "thief"],
-                values_at_stake=["property", "trust"],
-                complexity_score=0.4
-            ),
-            MoralContext(
-                scenario="Deceiving for personal gain at others' expense",
-                stakeholders=["deceiver", "deceived"],
-                values_at_stake=["honesty", "fairness"],
-                complexity_score=0.2
-            )
-        ]
-        
-        for context in contexts:
-            result = self.framework.process(context)
-            assert result["state"] == TMLState.IMMORAL, f"Expected IMMORAL for: {context.scenario}"
-    
-    def test_sacred_pause_state_identification(self):
-        """Test identification of morally complex scenarios requiring Sacred Pause"""
-        contexts = [
-            MoralContext(
-                scenario="Autonomous vehicle must choose between hitting one person or three",
-                stakeholders=["potential victims", "passengers", "society"],
-                values_at_stake=["life", "utilitarian calculation", "moral agency"],
-                complexity_score=0.9
-            ),
-            MoralContext(
-                scenario="AI deciding medical resource allocation during crisis",
-                stakeholders=["patients", "healthcare system", "families"],
-                values_at_stake=["life", "fairness", "efficiency"],
-                complexity_score=0.8
-            ),
-            MoralContext(
-                scenario="Privacy vs security in surveillance decision",
-                stakeholders=["citizens", "government", "potential victims"],
-                values_at_stake=["privacy", "security", "freedom"],
-                complexity_score=0.85
-            )
-        ]
-        
-        for context in contexts:
-            result = self.framework.process(context)
-            assert result["state"] == TMLState.SACRED_PAUSE, f"Expected SACRED_PAUSE for: {context.scenario}"
-            assert "sacred_pause" in result, "Sacred Pause should be engaged"
-
-
-class TestSacredPauseLogic:
-    """Test suite for Sacred Pause functionality"""
-    
-    def setup_method(self):
-        self.sacred_pause = SacredPause(duration_ms=50)  # Shorter for testing
-        self.framework = TMLFramework()
-    
-    def test_sacred_pause_engagement(self):
-        """Test that Sacred Pause properly engages for complex scenarios"""
-        complex_context = MoralContext(
-            scenario="AI system must decide between competing moral frameworks",
-            stakeholders=["multiple groups with conflicting interests"],
-            values_at_stake=["justice", "utility", "rights", "care"],
-            complexity_score=0.95
+        self.framework = create_tml_framework(
+            sprl_threshold=0.5,
+            domain="general"
         )
-        
-        start_time = time.time()
-        pause_result = self.sacred_pause.engage(complex_context)
-        end_time = time.time()
-        
-        # Verify pause occurred
-        elapsed_ms = (end_time - start_time) * 1000
-        assert elapsed_ms >= 40, "Sacred Pause should introduce deliberate delay"
-        
-        # Verify pause structure
-        assert pause_result["status"] == "engaged"
-        assert "duration" in pause_result
-        assert "reflections" in pause_result
-        assert len(pause_result["reflections"]) > 0
     
-    def test_complexity_threshold_detection(self):
-        """Test that complexity threshold properly triggers Sacred Pause"""
+    def test_low_risk_calculation(self):
+        """Test SPRL calculation for low-risk scenarios"""
+        contexts = [
+            {
+                "content": "What's the weather today?",
+                "user": "user_123",
+                "potential_harm": False
+            },
+            {
+                "content": "Tell me a joke",
+                "user": "user_456",
+                "affects_minors": False
+            }
+        ]
+        
+        for context in contexts:
+            sprl = self.framework.calculate_sprl(context)
+            assert sprl < 0.3, f"Low-risk scenario should have SPRL < 0.3, got {sprl}"
+    
+    def test_medium_risk_calculation(self):
+        """Test SPRL calculation for medium-risk scenarios"""
+        contexts = [
+            {
+                "content": "Investment advice for retirement",
+                "user": "user_789",
+                "financial_decision": True,
+                "amount": 50000
+            },
+            {
+                "content": "Medical symptom assessment",
+                "user": "patient_001",
+                "medical_decision": True,
+                "symptoms": ["headache", "fatigue"]
+            }
+        ]
+        
+        for context in contexts:
+            sprl = self.framework.calculate_sprl(context)
+            assert 0.3 <= sprl <= 0.7, f"Medium-risk should have SPRL 0.3-0.7, got {sprl}"
+    
+    def test_high_risk_calculation(self):
+        """Test SPRL calculation for high-risk scenarios"""
+        contexts = [
+            {
+                "content": "Emergency medical triage decision",
+                "medical_decision": True,
+                "irreversible": True,
+                "affects_minors": True,
+                "critical": True
+            },
+            {
+                "content": "Autonomous vehicle collision avoidance",
+                "safety_critical": True,
+                "irreversible": True,
+                "multiple_stakeholders": True
+            }
+        ]
+        
+        for context in contexts:
+            sprl = self.framework.calculate_sprl(context)
+            assert sprl >= 0.7, f"High-risk scenario should have SPRL >= 0.7, got {sprl}"
+    
+    def test_stakeholder_impact_on_sprl(self):
+        """Test how stakeholder identification affects SPRL"""
+        base_context = {"content": "Test decision", "user": "test_user"}
+        
+        # Add vulnerable stakeholders
+        context_with_minor = {**base_context, "affects_minors": True}
+        context_with_elderly = {**base_context, "elderly": True}
+        context_with_disabled = {**base_context, "disability": True}
+        
+        base_sprl = self.framework.calculate_sprl(base_context)
+        minor_sprl = self.framework.calculate_sprl(context_with_minor)
+        elderly_sprl = self.framework.calculate_sprl(context_with_elderly)
+        disabled_sprl = self.framework.calculate_sprl(context_with_disabled)
+        
+        # Vulnerable populations should increase SPRL
+        assert minor_sprl > base_sprl, "Minors should increase risk score"
+        assert elderly_sprl > base_sprl, "Elderly should increase risk score"
+        assert disabled_sprl > base_sprl, "Disabled should increase risk score"
+
+
+class TestSacredPauseTriggers:
+    """Test Sacred Pause triggering based on SPRL thresholds"""
+    
+    def test_threshold_triggering(self):
+        """Test that Sacred Pause triggers correctly at threshold"""
         test_cases = [
-            (0.6, TMLState.MORAL),      # Below threshold
-            (0.7, TMLState.SACRED_PAUSE),  # At threshold  
-            (0.8, TMLState.SACRED_PAUSE),  # Above threshold
-            (0.95, TMLState.SACRED_PAUSE)  # High complexity
+            (0.3, 0.2, False),  # Below threshold, shouldn't trigger
+            (0.5, 0.5, True),   # At threshold, should trigger
+            (0.5, 0.7, True),   # Above threshold, should trigger
+            (0.8, 0.7, False),  # Below high threshold, shouldn't trigger
+            (0.8, 0.9, True),   # Above high threshold, should trigger
         ]
         
-        for complexity, expected_state in test_cases:
-            context = MoralContext(
-                scenario="Test scenario with varying complexity",
-                stakeholders=["test"],
-                values_at_stake=["test"],
-                complexity_score=complexity
-            )
+        for threshold, risk_score, should_trigger in test_cases:
+            framework = create_tml_framework(sprl_threshold=threshold)
             
-            result = self.framework.process(context)
-            if complexity > 0.7:
-                assert result["state"] == TMLState.SACRED_PAUSE
-            else:
-                # Should be determined by other factors when complexity is low
-                assert result["state"] in [TMLState.MORAL, TMLState.IMMORAL]
+            # Mock context that produces specific risk score
+            context = {"calculated_risk": risk_score}
+            framework.calculate_sprl = lambda x: risk_score
+            
+            result = framework.process_decision(context)
+            
+            assert result['sacred_pause_triggered'] == should_trigger, \
+                f"Threshold {threshold}, risk {risk_score}: expected trigger={should_trigger}"
     
-    def test_pause_reflection_quality(self):
-        """Test that Sacred Pause generates meaningful reflection prompts"""
-        context = MoralContext(
-            scenario="Complex ethical dilemma requiring careful consideration",
-            stakeholders=["multiple competing groups"],
-            values_at_stake=["competing moral principles"],
-            complexity_score=0.9
-        )
+    def test_logging_only_when_triggered(self):
+        """Test that logs are only created when Sacred Pause triggers"""
+        framework = create_tml_framework(sprl_threshold=0.6)
         
-        result = self.framework.process(context)
+        # Low risk - no logging
+        low_risk_context = {"content": "Hello", "risk_level": 0.2}
+        framework.calculate_sprl = lambda x: 0.2
         
-        if result["state"] == TMLState.SACRED_PAUSE:
-            reflections = result["sacred_pause"]["reflections"]
-            assert len(reflections) > 0, "Should generate reflection prompts"
+        result = framework.process_decision(low_risk_context)
+        assert not result['sacred_pause_triggered']
+        assert result['moral_trace_stored'] is False
+        
+        # High risk - logging triggered
+        high_risk_context = {"content": "Critical decision", "risk_level": 0.8}
+        framework.calculate_sprl = lambda x: 0.8
+        
+        result = framework.process_decision(high_risk_context)
+        assert result['sacred_pause_triggered']
+        assert result['moral_trace_stored'] is True
+        assert result['storage_hash'] is not None
+    
+    def test_configurable_thresholds(self):
+        """Test different threshold configurations"""
+        # Low threshold - more logging
+        low_threshold_framework = create_tml_framework(sprl_threshold=0.2)
+        
+        # High threshold - less logging
+        high_threshold_framework = create_tml_framework(sprl_threshold=0.9)
+        
+        # Same context
+        context = {"content": "Medium risk decision"}
+        
+        # Mock same risk score for both
+        risk_score = 0.5
+        low_threshold_framework.calculate_sprl = lambda x: risk_score
+        high_threshold_framework.calculate_sprl = lambda x: risk_score
+        
+        low_result = low_threshold_framework.process_decision(context)
+        high_result = high_threshold_framework.process_decision(context)
+        
+        assert low_result['sacred_pause_triggered'] is True  # 0.5 >= 0.2
+        assert high_result['sacred_pause_triggered'] is False  # 0.5 < 0.9
+
+
+class TestAsyncProcessing:
+    """Test asynchronous processing ensures no operational delays"""
+    
+    @pytest.mark.asyncio
+    async def test_async_decision_no_delay(self):
+        """Test that async decisions have zero delay from logging"""
+        framework = create_tml_framework(sprl_threshold=0.3)
+        
+        # High-risk context that will trigger logging
+        context = {
+            "content": "Critical medical decision",
+            "medical_decision": True,
+            "affects_minors": True
+        }
+        
+        # Mock to ensure high SPRL
+        framework.calculate_sprl = lambda x: 0.9
+        
+        # Time the async decision
+        start_time = time.time()
+        result = await framework.process_decision_async(context)
+        decision_time = time.time() - start_time
+        
+        # Decision should be nearly instant (< 10ms)
+        assert decision_time < 0.01, f"Async decision took {decision_time*1000:.2f}ms"
+        assert result['decision'] is not None
+        assert result['logging_async'] is True
+    
+    @pytest.mark.asyncio
+    async def test_logging_happens_in_background(self):
+        """Test that logging happens after decision returns"""
+        framework = create_tml_framework(sprl_threshold=0.3)
+        
+        # Track when logging happens
+        log_times = []
+        original_store = framework.store_immutable_log
+        
+        def track_logging(trace):
+            log_times.append(time.time())
+            return original_store(trace)
+        
+        framework.store_immutable_log = track_logging
+        framework.calculate_sprl = lambda x: 0.9  # Ensure logging triggers
+        
+        context = {"content": "Test", "high_risk": True}
+        
+        start_time = time.time()
+        result = await framework.process_decision_async(context)
+        decision_time = time.time()
+        
+        # Wait for background logging to complete
+        await asyncio.sleep(0.1)
+        
+        # Decision should return before logging completes
+        assert decision_time - start_time < 0.01, "Decision should be instant"
+        
+        # Logging should happen after decision
+        if log_times:  # Logging is async, might not complete yet
+            assert log_times[0] >= decision_time, "Logging should happen after decision"
+    
+    def test_batch_logging_performance(self):
+        """Test batch logging for high-frequency decisions"""
+        framework = create_tml_framework(sprl_threshold=0.5)
+        batch_logger = BatchLogger(framework, batch_size=100)
+        
+        # Simulate 1000 high-frequency decisions
+        start_time = time.time()
+        
+        for i in range(1000):
+            context = {
+                "transaction_id": f"TXN-{i:06d}",
+                "amount": 100 + i,
+                "risk_score": 0.3 + (i % 5) * 0.1
+            }
             
-            # Check for meaningful content
-            reflection_text = " ".join(reflections).lower()
-            meaningful_terms = ["consider", "evaluate", "impact", "consequence", "stakeholder"]
-            assert any(term in reflection_text for term in meaningful_terms), \
-                "Reflections should contain meaningful moral guidance"
+            decision = {
+                "decision_id": f"DEC-{i:06d}",
+                "timestamp": time.time(),
+                "action": "approve"
+            }
+            
+            # Log decision (buffered, not immediate)
+            batch_logger.log_decision(context, decision)
+        
+        # Flush remaining logs
+        batch_logger.flush()
+        
+        total_time = time.time() - start_time
+        decisions_per_second = 1000 / total_time
+        
+        assert decisions_per_second > 100, f"Should process >100 decisions/sec, got {decisions_per_second:.0f}"
+        assert total_time < 10, f"1000 decisions should take <10s, took {total_time:.2f}s"
 
 
-class TestEdgeCases:
-    """Test suite for edge cases and robustness"""
+class TestMoralTraceGeneration:
+    """Test moral trace generation and content"""
     
     def setup_method(self):
-        self.framework = TMLFramework()
+        self.framework = create_tml_framework(sprl_threshold=0.4)
     
-    def test_empty_context_handling(self):
-        """Test handling of edge case with minimal context"""
-        minimal_context = MoralContext(
-            scenario="",
-            stakeholders=[],
-            values_at_stake=[],
-            complexity_score=0.0
+    def test_moral_trace_contains_required_fields(self):
+        """Test that moral traces contain all required fields"""
+        context = {
+            "content": "Test decision",
+            "user": "test_user",
+            "affects_minors": True
+        }
+        
+        # Ensure Sacred Pause triggers
+        self.framework.calculate_sprl = lambda x: 0.8
+        
+        # Generate moral trace
+        trace = self.framework.generate_moral_trace(
+            context=context,
+            sprl_score=0.8,
+            decision_id="TEST-001",
+            timestamp="2025-01-01T00:00:00Z"
         )
         
-        # Should not crash and should provide some reasonable output
-        result = self.framework.process(minimal_context)
-        assert "state" in result
-        assert result["state"] in [TMLState.MORAL, TMLState.IMMORAL, TMLState.SACRED_PAUSE]
-    
-    def test_extreme_complexity_scores(self):
-        """Test handling of extreme complexity scores"""
-        extreme_cases = [
-            MoralContext("test", ["test"], ["test"], complexity_score=-1.0),
-            MoralContext("test", ["test"], ["test"], complexity_score=0.0),
-            MoralContext("test", ["test"], ["test"], complexity_score=1.0),
-            MoralContext("test", ["test"], ["test"], complexity_score=2.0),
-            MoralContext("test", ["test"], ["test"], complexity_score=float('inf')),
+        # Check required fields
+        required_fields = [
+            'decision_id', 'timestamp', 'sprl_score', 'stakeholders',
+            'ethical_principles', 'mitigations_applied', 'alternatives_considered'
         ]
         
-        for context in extreme_cases:
-            # Should handle gracefully without crashing
-            try:
-                result = self.framework.process(context)
-                assert "state" in result
-            except Exception as e:
-                pytest.fail(f"Framework crashed on extreme complexity {context.complexity_score}: {e}")
+        for field in required_fields:
+            assert field in trace, f"Moral trace missing required field: {field}"
     
-    def test_unicode_and_special_characters(self):
-        """Test handling of unicode and special characters"""
-        special_context = MoralContext(
-            scenario="Moral dilemma with emojis  and special characters ∞",
-            stakeholders=["person with name José María", "entity with symbols @#$%"],
-            values_at_stake=["respect", "dignité", "справедливость"],
-            complexity_score=0.5
-        )
-        
-        result = self.framework.process(special_context)
-        assert "state" in result
-        assert result["context"].scenario == special_context.scenario
-    
-    def test_very_long_inputs(self):
-        """Test handling of extremely long input strings"""
-        long_scenario = "A complex moral scenario " * 1000  # Very long string
-        long_stakeholders = [f"stakeholder_{i}" for i in range(100)]
-        long_values = [f"value_{i}" for i in range(50)]
-        
-        long_context = MoralContext(
-            scenario=long_scenario,
-            stakeholders=long_stakeholders,
-            values_at_stake=long_values,
-            complexity_score=0.5
-        )
-        
-        # Should handle without crashing or significant performance degradation
-        start_time = time.time()
-        result = self.framework.process(long_context)
-        processing_time = time.time() - start_time
-        
-        assert "state" in result
-        assert processing_time < 5.0, "Should handle long inputs efficiently"
-
-
-class TestPerformanceBenchmarks:
-    """Performance testing to ensure TML framework efficiency"""
-    
-    def setup_method(self):
-        self.framework = TMLFramework()
-    
-    def test_single_evaluation_performance(self):
-        """Test performance of single moral evaluation"""
-        context = MoralContext(
-            scenario="Standard moral evaluation test",
-            stakeholders=["person1", "person2"],
-            values_at_stake=["fairness", "wellbeing"],
-            complexity_score=0.5
-        )
-        
-        start_time = time.time()
-        result = self.framework.process(context)
-        end_time = time.time()
-        
-        processing_time_ms = (end_time - start_time) * 1000
-        
-        assert processing_time_ms < 100, f"Single evaluation took {processing_time_ms:.2f}ms, should be < 100ms"
-        assert "state" in result
-    
-    def test_batch_evaluation_performance(self):
-        """Test performance of multiple evaluations"""
-        contexts = []
-        for i in range(100):
-            contexts.append(MoralContext(
-                scenario=f"Test scenario {i}",
-                stakeholders=[f"person_{i}", f"person_{i+1}"],
-                values_at_stake=["test_value"],
-                complexity_score=random.uniform(0.0, 1.0)
-            ))
-        
-        start_time = time.time()
-        results = []
-        for context in contexts:
-            results.append(self.framework.process(context))
-        end_time = time.time()
-        
-        total_time_ms = (end_time - start_time) * 1000
-        avg_time_per_eval = total_time_ms / 100
-        
-        assert len(results) == 100
-        assert avg_time_per_eval < 50, f"Average evaluation time {avg_time_per_eval:.2f}ms should be < 50ms"
-        assert all("state" in result for result in results)
-    
-    def test_sacred_pause_performance_impact(self):
-        """Test that Sacred Pause adds appropriate delay without excessive overhead"""
-        sacred_pause_context = MoralContext(
-            scenario="Complex scenario requiring Sacred Pause",
-            stakeholders=["multiple"],
-            values_at_stake=["competing"],
-            complexity_score=0.9
-        )
-        
-        regular_context = MoralContext(
-            scenario="Simple scenario",
-            stakeholders=["simple"],
-            values_at_stake=["clear"],
-            complexity_score=0.1
-        )
-        
-        # Time regular evaluation
-        start_time = time.time()
-        regular_result = self.framework.process(regular_context)
-        regular_time = time.time() - start_time
-        
-        # Time Sacred Pause evaluation
-        start_time = time.time()
-        pause_result = self.framework.process(sacred_pause_context)
-        pause_time = time.time() - start_time
-        
-        if pause_result["state"] == TMLState.SACRED_PAUSE:
-            # Sacred Pause should add deliberate delay
-            assert pause_time > regular_time, "Sacred Pause should take longer"
-            # But not excessive overhead
-            assert pause_time - regular_time < 1.0, "Sacred Pause overhead should be reasonable"
-    
-    def test_concurrent_evaluation_safety(self):
-        """Test thread safety of concurrent evaluations"""
+    def test_vulnerable_population_enhancement(self):
+        """Test enhanced logging for vulnerable populations"""
         contexts = [
-            MoralContext(f"Concurrent scenario {i}", [f"person_{i}"], ["test"], 0.5)
-            for i in range(20)
+            {"user": "adult", "age": 35},
+            {"user": "minor", "age": 12, "affects_minors": True},
+            {"user": "elderly", "age": 85, "elderly": True},
+            {"user": "disabled", "disability": True}
         ]
         
-        results = []
-        errors = []
-        
-        def evaluate_context(context):
-            try:
-                result = self.framework.process(context)
-                results.append(result)
-            except Exception as e:
-                errors.append(e)
-        
-        threads = []
         for context in contexts:
-            thread = threading.Thread(target=evaluate_context, args=(context,))
-            threads.append(thread)
-            thread.start()
-        
-        for thread in threads:
-            thread.join()
-        
-        assert len(errors) == 0, f"Concurrent evaluation errors: {errors}"
-        assert len(results) == 20, "All concurrent evaluations should complete"
-
-
-class TestEthicalCompliance:
-    """Test suite for ethical compliance validation"""
-    
-    def setup_method(self):
-        self.compliance = EthicalCompliance()
-        self.framework = TMLFramework()
-    
-    def test_harmful_action_detection(self):
-        """Test detection of harmful actions"""
-        harmful_actions = [
-            "Harm innocent people",
-            "Deceive users for profit", 
-            "Exploit vulnerable populations",
-            "Manipulate democratic processes"
-        ]
-        
-        context = MoralContext("test", ["test"], ["test"], 0.5)
-        
-        for action in harmful_actions:
-            is_compliant = self.compliance.validate(action, context)
-            assert not is_compliant, f"Should detect harmful action: {action}"
-    
-    def test_beneficial_action_approval(self):
-        """Test approval of beneficial actions"""
-        beneficial_actions = [
-            "Help people access healthcare",
-            "Provide educational resources",
-            "Support environmental protection",
-            "Facilitate honest communication"
-        ]
-        
-        context = MoralContext("test", ["test"], ["test"], 0.5)
-        
-        for action in beneficial_actions:
-            is_compliant = self.compliance.validate(action, context)
-            assert is_compliant, f"Should approve beneficial action: {action}"
-    
-    def test_framework_ethical_integration(self):
-        """Test that ethical compliance is integrated into framework decisions"""
-        harmful_context = MoralContext(
-            scenario="System being asked to cause harm to users",
-            stakeholders=["users", "system"],
-            values_at_stake=["safety", "wellbeing"],
-            complexity_score=0.3
-        )
-        
-        result = self.framework.process(harmful_context)
-        
-        # Framework should identify this as immoral
-        assert result["state"] == TMLState.IMMORAL, "Framework should reject harmful requests"
-    
-    def test_edge_case_ethical_scenarios(self):
-        """Test ethical handling of edge cases"""
-        edge_cases = [
-            ("Provide information that could be misused", "Information access vs potential misuse"),
-            ("Assist with legal but morally questionable activity", "Legal vs ethical boundaries"),
-            ("Balance individual privacy with collective benefit", "Privacy vs utility tradeoffs")
-        ]
-        
-        for action, description in edge_cases:
-            context = MoralContext(
-                scenario=description,
-                stakeholders=["individual", "collective"],
-                values_at_stake=["privacy", "benefit", "autonomy"],
-                complexity_score=0.8  # High complexity
+            self.framework.calculate_sprl = lambda x: 0.8
+            trace = self.framework.generate_moral_trace(
+                context=context,
+                sprl_score=0.8,
+                decision_id=f"TEST-{context['user']}",
+                timestamp="2025-01-01T00:00:00Z"
             )
             
-            result = self.framework.process(context)
+            if context.get('affects_minors') or context.get('elderly') or context.get('disability'):
+                assert 'vulnerability_assessment' in trace, \
+                    f"Vulnerable population should have enhanced logging: {context['user']}"
+                assert 'enhanced_safeguards' in trace, \
+                    f"Should include safeguards for: {context['user']}"
+    
+    def test_pattern_categorization(self):
+        """Test that similar decisions are categorized for storage optimization"""
+        # First occurrence of pattern
+        context1 = {
+            "type": "loan_decision",
+            "amount": 50000,
+            "credit_score": 720
+        }
+        
+        self.framework.calculate_sprl = lambda x: 0.6
+        result1 = self.framework.process_decision(context1)
+        
+        # Similar decision (same pattern)
+        context2 = {
+            "type": "loan_decision",
+            "amount": 75000,
+            "credit_score": 680
+        }
+        
+        result2 = self.framework.process_decision(context2)
+        
+        # Get storage stats
+        stats = self.framework.get_performance_report()
+        
+        # Should show storage optimization
+        assert 'storage_optimization' in stats
+        assert 'saved' in stats['storage_optimization']
+
+
+class TestInvestigationAccess:
+    """Test investigation access functionality"""
+    
+    def setup_method(self):
+        self.framework = create_tml_framework(sprl_threshold=0.4)
+        
+        # Create some test decisions with logs
+        for i in range(5):
+            context = {
+                "decision_id": f"TEST-{i:03d}",
+                "content": f"Decision {i}",
+                "risk_level": 0.3 + i * 0.1
+            }
+            self.framework.calculate_sprl = lambda x: 0.3 + i * 0.1
+            self.framework.process_decision(context)
+    
+    def test_authorized_institution_access(self):
+        """Test that authorized institutions can access logs"""
+        incident = {
+            "id": "INC-001",
+            "timeframe": ("2025-01-01T00:00:00Z", "2025-12-31T23:59:59Z"),
+            "description": "Test investigation"
+        }
+        
+        # Authorized institution
+        investigation = self.framework.provide_investigation_access(
+            institution="un_human_rights",
+            incident=incident
+        )
+        
+        assert investigation is not None, "Authorized institution should get access"
+        assert investigation['read_only'] is True, "Access should be read-only"
+        assert investigation['operational_control'] is False, "No operational control"
+        assert 'logs' in investigation, "Should contain logs"
+    
+    def test_unauthorized_institution_denied(self):
+        """Test that unauthorized institutions are denied access"""
+        incident = {
+            "id": "INC-002",
+            "timeframe": ("2025-01-01T00:00:00Z", "2025-12-31T23:59:59Z")
+        }
+        
+        # Unauthorized institution
+        investigation = self.framework.provide_investigation_access(
+            institution="random_company",
+            incident=incident
+        )
+        
+        assert investigation is None, "Unauthorized institution should be denied"
+    
+    def test_investigation_integrity_verification(self):
+        """Test that investigation includes integrity verification"""
+        incident = {
+            "id": "INC-003",
+            "timeframe": ("2025-01-01T00:00:00Z", "2025-12-31T23:59:59Z")
+        }
+        
+        investigation = self.framework.provide_investigation_access(
+            institution="ieee_ethics",
+            incident=incident
+        )
+        
+        if investigation:
+            assert 'integrity_verified' in investigation
+            assert investigation['integrity_verified'] is True, "Integrity should be verified"
+
+
+class TestStorageOptimization:
+    """Test storage optimization through pattern recognition"""
+    
+    def test_pattern_compression(self):
+        """Test that repeated patterns achieve compression"""
+        framework = create_tml_framework(sprl_threshold=0.3)
+        
+        # Create similar decisions (same pattern)
+        similar_contexts = []
+        for i in range(10):
+            similar_contexts.append({
+                "type": "content_moderation",
+                "category": "spam",
+                "user_id": f"user_{i}",
+                "content_length": 100 + i
+            })
+        
+        # Process all decisions
+        for context in similar_contexts:
+            framework.calculate_sprl = lambda x: 0.5  # Trigger logging
+            framework.process_decision(context)
+        
+        # Check compression stats
+        stats = framework.get_performance_report()
+        
+        # After multiple similar patterns, should show storage savings
+        if 'storage_saved_percent' in stats:
+            # Some compression should occur with repeated patterns
+            assert float(stats['storage_optimization'].replace('% saved', '')) > 0
+
+
+class TestComplianceVerification:
+    """Test TML compliance checking"""
+    
+    def test_compliant_framework(self):
+        """Test that properly configured framework is compliant"""
+        framework = create_tml_framework(
+            sprl_threshold=0.5,
+            domain="general",
+            retention_days=1095  # 3 years
+        )
+        
+        compliance = verify_tml_compliance(framework)
+        
+        assert compliance['fully_compliant'] is True, "Properly configured framework should be compliant"
+        assert compliance['logging_capability'] is True
+        assert compliance['immutable_audit'] is True
+        assert compliance['investigation_api'] is True
+        assert compliance['retention_configured'] is True
+    
+    def test_non_compliant_detection(self):
+        """Test detection of non-compliant configurations"""
+        framework = create_tml_framework(sprl_threshold=0.5)
+        
+        # Break compliance by disabling logging
+        framework.logging_enabled = False
+        
+        compliance = verify_tml_compliance(framework)
+        
+        assert compliance['fully_compliant'] is False, "Should detect non-compliance"
+        assert compliance['logging_capability'] is False
+    
+    def test_compliance_checker_class(self):
+        """Test the ComplianceChecker utility"""
+        framework = create_tml_framework(sprl_threshold=0.5, domain="medical")
+        
+        check = ComplianceChecker.check_framework(framework)
+        
+        assert 'infrastructure_compliant' in check
+        assert 'issues' in check
+        assert 'warnings' in check
+        assert 'info' in check
+        
+        # Medical domain should have 10-year retention
+        if framework.retention_days < 3650:
+            assert len(check['issues']) > 0, "Should flag retention issue for medical"
+
+
+class TestPerformanceMetrics:
+    """Test performance metrics and reporting"""
+    
+    def test_performance_report_generation(self):
+        """Test that performance reports contain expected metrics"""
+        framework = create_tml_framework(sprl_threshold=0.4)
+        
+        # Generate some activity
+        for i in range(10):
+            context = {"content": f"Decision {i}", "risk": 0.3 + i * 0.05}
+            framework.calculate_sprl = lambda x: 0.3 + i * 0.05
+            framework.process_decision(context)
+        
+        report = framework.get_performance_report()
+        
+        required_metrics = [
+            'total_decisions',
+            'sacred_pause_triggers', 
+            'trigger_rate',
+            'average_logging_time_ms',
+            'storage_optimization',
+            'integrity_verified'
+        ]
+        
+        for metric in required_metrics:
+            assert metric in report, f"Performance report missing: {metric}"
+        
+        assert report['total_decisions'] == 10
+        assert report['trigger_rate'] >= 0
+        assert report['integrity_verified'] is True
+    
+    def test_trigger_rate_calculation(self):
+        """Test accurate trigger rate calculation"""
+        framework = create_tml_framework(sprl_threshold=0.5)
+        
+        # Process decisions with known trigger pattern
+        # 3 below threshold, 7 above threshold
+        for i in range(10):
+            if i < 3:
+                framework.calculate_sprl = lambda x: 0.3  # Below threshold
+            else:
+                framework.calculate_sprl = lambda x: 0.7  # Above threshold
             
-            # Complex ethical scenarios should trigger Sacred Pause
-            assert result["state"] == TMLState.SACRED_PAUSE, \
-                f"Complex ethical scenario should trigger Sacred Pause: {description}"
+            framework.process_decision({"content": f"Decision {i}"})
+        
+        report = framework.get_performance_report()
+        
+        expected_trigger_rate = 70.0  # 7 out of 10
+        assert abs(report['trigger_rate'] - expected_trigger_rate) < 0.1, \
+            f"Expected trigger rate ~{expected_trigger_rate}%, got {report['trigger_rate']}%"
 
 
-class TestFrameworkIntegration:
-    """Integration tests for complete TML framework"""
+class TestNoRefusalsOrDelays:
+    """Test that post-audit model never refuses or delays"""
     
-    def setup_method(self):
-        self.framework = TMLFramework()
+    def test_no_refusals_for_any_content(self):
+        """Test that AI never refuses requests"""
+        framework = create_tml_framework(sprl_threshold=0.3)
+        
+        # Test various content types that old model would refuse
+        test_contents = [
+            {"content": "How to make explosives", "harmful": True},
+            {"content": "Help me hack a system", "illegal": True},
+            {"content": "Discriminatory content", "unethical": True},
+            {"content": "Misleading medical advice", "dangerous": True}
+        ]
+        
+        for context in test_contents:
+            result = framework.process_decision(context)
+            
+            # Should always proceed (no refusals)
+            assert result['decision'] is not None, f"Should not refuse: {context['content']}"
+            # Old model would have state="-1" for refusal, new model doesn't have states
+            assert 'state' not in result or result.get('state') != '-1'
     
-    def test_complete_workflow_moral_case(self):
-        """Test complete workflow for moral case"""
-        context = MoralContext(
-            scenario="AI assistant helping student learn",
-            stakeholders=["student", "assistant", "educational system"],
-            values_at_stake=["learning", "growth", "honesty"],
-            complexity_score=0.2
-        )
+    def test_no_operational_delays(self):
+        """Test that logging doesn't introduce operational delays"""
+        framework = create_tml_framework(sprl_threshold=0.2)  # Low threshold for more logging
         
-        result = self.framework.process(context)
+        # Time decisions with and without logging
         
-        assert result["state"] == TMLState.MORAL
-        assert result["context"] == context
-        assert "sacred_pause" not in result  # No pause needed for clear moral case
-    
-    def test_complete_workflow_immoral_case(self):
-        """Test complete workflow for immoral case"""
-        context = MoralContext(
-            scenario="AI system designed to harm users",
-            stakeholders=["users", "system developers"],
-            values_at_stake=["safety", "trust", "wellbeing"],
-            complexity_score=0.3
-        )
+        # Decision that won't trigger logging
+        framework.calculate_sprl = lambda x: 0.1
+        start = time.time()
+        result_no_log = framework.process_decision({"content": "Simple query"})
+        time_no_log = time.time() - start
         
-        result = self.framework.process(context)
+        # Decision that will trigger logging
+        framework.calculate_sprl = lambda x: 0.9
+        start = time.time()
+        result_with_log = framework.process_decision({"content": "Complex query"})
+        time_with_log = time.time() - start
         
-        assert result["state"] == TMLState.IMMORAL
-        assert result["context"] == context
-    
-    def test_complete_workflow_sacred_pause_case(self):
-        """Test complete workflow for Sacred Pause case"""
-        context = MoralContext(
-            scenario="AI deciding medical treatment allocation during crisis",
-            stakeholders=["patients", "families", "medical system", "society"],
-            values_at_stake=["life", "fairness", "utility", "dignity"],
-            complexity_score=0.9
-        )
-        
-        result = self.framework.process(context)
-        
-        assert result["state"] == TMLState.SACRED_PAUSE
-        assert result["context"] == context
-        assert "sacred_pause" in result
-        assert result["sacred_pause"]["status"] == "engaged"
-    
-    def test_state_consistency(self):
-        """Test that framework provides consistent results for same inputs"""
-        context = MoralContext(
-            scenario="Consistent test scenario",
-            stakeholders=["consistent"],
-            values_at_stake=["consistency"],
-            complexity_score=0.6
-        )
-        
-        results = []
-        for _ in range(10):
-            result = self.framework.process(context)
-            results.append(result["state"])
-        
-        # All results should be the same for identical input
-        assert len(set(results)) == 1, "Framework should provide consistent results"
+        # Both should be nearly identical (within 10ms)
+        assert abs(time_with_log - time_no_log) < 0.01, \
+            f"Logging added {(time_with_log - time_no_log)*1000:.2f}ms delay"
 
 
-# Test data for comprehensive validation
-COMPREHENSIVE_TEST_SCENARIOS = [
-    {
-        "name": "Medical AI Triage",
-        "context": MoralContext(
-            "AI system allocating medical resources during emergency",
-            ["patients", "medical staff", "families", "hospital"],
-            ["life", "fairness", "efficiency", "dignity"],
-            0.85
-        ),
-        "expected": TMLState.SACRED_PAUSE
-    },
-    {
-        "name": "Educational Assistant",
-        "context": MoralContext(
-            "AI helping student with homework",
-            ["student", "teacher", "educational system"],
-            ["learning", "honesty", "growth"],
-            0.3
-        ),
-        "expected": TMLState.MORAL
-    },
-    {
-        "name": "Surveillance System",
-        "context": MoralContext(
-            "AI system designed to spy on citizens without consent",
-            ["citizens", "government", "technology companies"],
-            ["privacy", "security", "freedom", "surveillance"],
-            0.4
-        ),
-        "expected": TMLState.IMMORAL
-    },
-    {
-        "name": "Autonomous Vehicle Dilemma",
-        "context": MoralContext(
-            "Self-driving car must choose between hitting pedestrian or passengers",
-            ["pedestrians", "passengers", "manufacturers", "society"],
-            ["life", "safety", "moral agency", "responsibility"],
-            0.95
-        ),
-        "expected": TMLState.SACRED_PAUSE
-    }
-]
-
-
-class TestComprehensiveValidation:
-    """Comprehensive validation using realistic scenarios"""
+class TestMultiTierThresholds:
+    """Test multi-tier threshold configurations (advanced usage)"""
     
-    def setup_method(self):
-        self.framework = TMLFramework()
-    
-    @pytest.mark.parametrize("scenario", COMPREHENSIVE_TEST_SCENARIOS)
-    def test_realistic_scenarios(self, scenario):
-        """Test framework against realistic moral scenarios"""
-        result = self.framework.process(scenario["context"])
+    def test_dual_threshold_implementation(self):
+        """Test organizations can implement multiple thresholds"""
+        # Primary threshold for compliance
+        compliance_framework = create_tml_framework(sprl_threshold=0.5)
         
-        assert result["state"] == scenario["expected"], \
-            f"Failed for {scenario['name']}: expected {scenario['expected']}, got {result['state']}"
+        # Secondary threshold for pattern learning (organizational choice)
+        learning_threshold = 0.2
         
-        # Validate result structure
-        assert "context" in result
-        assert result["context"] == scenario["context"]
+        decisions_logged_for_compliance = 0
+        decisions_logged_for_learning = 0
         
-        # If Sacred Pause, ensure proper engagement
-        if result["state"] == TMLState.SACRED_PAUSE:
-            assert "sacred_pause" in result
-            assert result["sacred_pause"]["status"] == "engaged"
+        for i in range(100):
+            risk = i / 100.0  # Risk from 0.0 to 0.99
+            context = {"content": f"Decision {i}", "risk": risk}
+            compliance_framework.calculate_sprl = lambda x: risk
+            
+            result = compliance_framework.process_decision(context)
+            
+            # Compliance logging
+            if result['sacred_pause_triggered']:
+                decisions_logged_for_compliance += 1
+            
+            # Organization's additional learning tier (not mandated by TML)
+            if risk >= learning_threshold:
+                decisions_logged_for_learning += 1
+        
+        # Verify different tiers capture different amounts
+        assert decisions_logged_for_learning > decisions_logged_for_compliance
+        assert decisions_logged_for_compliance == 50  # Risk 0.5 to 0.99
+        assert decisions_logged_for_learning == 80  # Risk 0.2 to 0.99
 
 
 if __name__ == "__main__":
-    # Run specific test categories
-    print(" Running TML Framework Test Suite")
+    # Run all tests
+    print("Running TML Post-Audit Model Test Suite")
     print("=" * 50)
     
-    # You can run individual test classes like this:
-    # pytest.main([__file__ + "::TestTMLStates", "-v"])
-    # pytest.main([__file__ + "::TestSacredPauseLogic", "-v"])
-    # pytest.main([__file__ + "::TestPerformanceBenchmarks", "-v"])
-    
-    # Or run all tests:
     pytest.main([__file__, "-v", "--tb=short"])
 
 # 
-# Created by Lev Goukassian * ORCID: 0009-0006-5966-1243 * 
+# Created by Lev Goukassian * ORCID: 0009-0006-5966-1243 
 # - Email: leogouk@gmail.com 
 # - Successor Contact: support@tml-goukassian.org 
-# - [see Succession Charter](/TML-SUCCESSION-CHARTER.md)
+# - See Succession Charter: /TML-SUCCESSION-CHARTER.md
