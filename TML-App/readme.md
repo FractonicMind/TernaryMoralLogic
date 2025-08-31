@@ -104,7 +104,7 @@ const logs = await TML.getInvestigationLogs({
 
 ### Documentation
 - [MANDATORY.md](../MANDATORY.md) - Core framework specification
-- [README.md](../README.md) - Project overview
+- [readme.md](../README.md) - Project overview
 - [IMPLEMENTATION_GUIDE.md](../IMPLEMENTATION_GUIDE.md) - Integration instructions
 
 ### Contact
