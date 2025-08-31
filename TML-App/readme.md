@@ -90,7 +90,7 @@ const logs = await TML.getInvestigationLogs({
 
 ### Data Protection
 - All logs are cryptographically signed
-- Immutable audit trail with blockchain integration
+- Immutable audit trail preservation
 - No sensitive data in public logs
 - Organization-controlled access permissions
 
@@ -103,15 +103,13 @@ const logs = await TML.getInvestigationLogs({
 ## Support
 
 ### Documentation
-- [MANDATORY.md](../MANDATORY.md) - Core framework specification
-- [readme.md](../README.md) - Project overview
-- [IMPLEMENTATION_GUIDE.md](../IMPLEMENTATION_GUIDE.md) - Integration instructions
+- [docs/MANDATORY.md](../docs/MANDATORY.md) - Core framework specification
+- [readme.md](../readme.md) - Project overview
+- [docs/QUICK_START.md](../docs/QUICK_START.md) - Implementation guide
+- [docs/api/complete_api_reference.md](../docs/api/complete_api_reference.md) - Technical specifications
 
-### Contact
-**Creator**: Lev Goukassian   
-**ORCID**: 0009-0006-5966-1243  
-**Email**: leogouk@gmail.com  
-**Repository**: https://github.com/fractonicmind/TernaryMoralLogic
+### Repository Structure
+For complete navigation, see the [Interactive Repository Map](https://fractonicmind.github.io/TernaryMoralLogic/repository-navigation.html)
 
 ## License
 MIT License - See [LICENSE](../LICENSE) for details
@@ -122,4 +120,7 @@ Updated: August 2025
 
 ---
 
-*The TML Framework: Enabling ethical transparency through post-event investigation infrastructure.*
+## Contact Information
+- Email: leogouk@gmail.com 
+- Successor Contact: support@tml-goukassian.org 
+- [See Succession Charter](/TML-SUCCESSION-CHARTER.md)
