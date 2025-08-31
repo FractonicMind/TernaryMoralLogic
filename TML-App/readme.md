@@ -1,72 +1,125 @@
-# TML Interactive Ethics Quiz
-**[ Launch Quiz](https://fractonicmind.github.io/TernaryMoralLogic/TML-App/)**
+# TML Framework Web Application
 
 ## Overview
-This interactive quiz demonstrates the Ternary Moral Logic (TML) framework developed by Lev Goukassian. Users test their ethical reasoning against the Sacred Pause methodology through carefully curated moral dilemmas.
-
-## How It Works
-1. **Select a Question**: Choose from 20 professional ethical dilemmas
-2. **Make Your Prediction**: Decide if TML would say Proceed (+1), Hold (0), or Refuse (-1)  
-3. **See TML's Answer**: Compare your reasoning with the framework's logic
-4. **Learn the Reasoning**: Understand why TML made its decision
+Interactive web interface for the Ternary Moral Logic (TML) framework - a post-audit logging system for ethical decision tracking in AI systems.
 
 ## Features
-- __20 Curated Dilemmas__ Professional scenarios across multiple ethical domains
-- __Interactive Quiz Format__ Test your moral intuition before seeing answers
-- __Sacred Pause Animation__ Visual representation of the "0" state
-- __Detailed Explanations__ Learn the reasoning behind each TML decision
-- __Mobile Responsive__ Works perfectly on all devices
-- __Zero Dependencies__ Pure HTML/CSS/JavaScript implementation
 
-## Question Categories
-- Personal Ethics
-- Workplace Ethics  
-- Medical Ethics
-- Technology & AI Ethics
-- Social Media Ethics
-- Environmental Ethics
-- Academic Ethics
-- Community Ethics
-- Financial Ethics
-- Emergency Situations
+### Core Functionality
+- **SPRL Threshold Configuration**: Organizations set their own Sacred Pause Risk Level triggers
+- **Decision Logging**: Automatic trace generation when thresholds are exceeded
+- **Investigation Portal**: Access to immutable audit logs for post-event analysis
+- **Real-time Monitoring**: Live view of decision patterns and risk assessments
 
-## Decision States
-- __🟢 +1 (Proceed)__ Clear ethical path with positive outcomes
-- __🟡 0 (Hold/Sacred Pause)__ Requires deeper reflection and consideration
-- __-1 (Refuse)__ Significant ethical concerns, action should be avoided
+### Post-Audit Model
+The TML framework operates on a **logging-first** principle:
+- No operational delays or pre-approval requirements
+- Decisions execute immediately with concurrent logging
+- Sacred Pause triggers create investigation records, not pauses
+- Organizations maintain full control over their threshold settings
 
-## Educational Value
-This quiz serves multiple purposes:
-- __Ethics Training__ Interactive learning for students and professionals
-- __Framework Demonstration__ Shows TML reasoning in practice
-- __Self-Assessment__ Test your own moral intuition
-- __Discussion Starter__ Great for ethics classes and workshops
+## Access
 
-## Technical Details
-- __Technology__ Pure HTML5, CSS3, JavaScript (no dependencies)
-- __Hosting__ GitHub Pages
-- __Size__ Single-page application (~35KB)
-- __Compatibility__ All modern browsers
-- __Performance__ Instant load, client-side processing
+### Web Interface
+Live at: https://fractonicmind.github.io/TernaryMoralLogic/TML-App/
 
-## Accuracy Note
-All 20 questions have been carefully analyzed with predetermined TML answers based on the framework's principles. This ensures consistent, professional responses that accurately represent the Sacred Pause methodology.
+### Local Development
+```bash
+# Clone repository
+git clone https://github.com/fractonicmind/TernaryMoralLogic.git
+cd TernaryMoralLogic/TML-App
 
-## Research Context
-This application implements the theoretical framework described in:
-**"Ternary Moral Logic: Implementing Ethical Hesitation in AI Systems"**  
-*By Lev Goukassian*
+# Open in browser
+open index.html
+# or
+python -m http.server 8000
+# then navigate to http://localhost:8000
+```
 
-### Related Links
-- __Main Repository__ [TernaryMoralLogic](https://github.com/FractonicMind/TernaryMoralLogic)
-- __Research Article__ [TML Framework Article](https://medium.com/@leogouk/ternary-moral-logic-tml-a-framework-for-ethical-ai-decision-making-3a0a32609935)
+## Components
 
-## Citation
-```bibtex
-@software{goukassian2025tml_quiz,
-  author = {Goukassian, Lev},
-  title = {TML Interactive Ethics Quiz: Test Your Moral Reasoning},
-  year = {2025},
-  url = {https://fractonicmind.github.io/TernaryMoralLogic/TML-App/},
-  note = {Interactive quiz demonstrating Ternary Moral Logic framework}
-}
+### index.html
+Main application interface providing:
+- SPRL threshold configuration panel
+- Real-time decision stream monitoring
+- Audit log viewer with filtering capabilities
+- Investigation access controls
+
+### Supporting Files
+- `styles.css`: Visual design and responsive layout
+- `app.js`: Core application logic and event handling
+- `tml-core.js`: Framework implementation (loaded from CDN)
+
+## Integration
+
+### For Organizations
+```javascript
+// Configure your SPRL thresholds
+const config = {
+  organization: "YourOrgName",
+  sprl_threshold: 0.7,  // Your risk tolerance
+  log_endpoint: "https://your-logs.api/tml",
+  investigation_access: ["security@org.com", "compliance@org.com"]
+};
+
+// Initialize TML monitoring
+TML.initialize(config);
+```
+
+### For Developers
+```javascript
+// Import TML framework
+import { TML } from './tml-core.js';
+
+// Log decisions with moral traces
+TML.logDecision({
+  action: "data_processing",
+  risk_level: 0.8,
+  context: contextData,
+  timestamp: Date.now()
+});
+
+// Access investigation logs
+const logs = await TML.getInvestigationLogs({
+  timeRange: "24h",
+  minRiskLevel: 0.7
+});
+```
+
+## Security
+
+### Data Protection
+- All logs are cryptographically signed
+- Immutable audit trail with blockchain integration
+- No sensitive data in public logs
+- Organization-controlled access permissions
+
+### Privacy
+- No personal data collection
+- Decision contexts anonymized
+- GDPR-compliant logging practices
+- Right to investigation transparency
+
+## Support
+
+### Documentation
+- [MANDATORY.md](../MANDATORY.md) - Core framework specification
+- [README.md](../README.md) - Project overview
+- [IMPLEMENTATION_GUIDE.md](../IMPLEMENTATION_GUIDE.md) - Integration instructions
+
+### Contact
+**Creator**: Lev Goukassian   
+**ORCID**: 0009-0006-5966-1243  
+**Email**: leogouk@gmail.com  
+**Repository**: https://github.com/fractonicmind/TernaryMoralLogic
+
+## License
+MIT License - See [LICENSE](../LICENSE) for details
+
+## Version
+Current: 2.0.0 (Post-Audit Model)  
+Updated: August 2025
+
+---
+
+*The TML Framework: Enabling ethical transparency through post-event investigation infrastructure.*
