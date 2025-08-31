@@ -3,657 +3,279 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TML Framework - Repository Navigation</title>
+    <title>TML Repository Navigation - Enforcement Framework v3.0</title>
     <style>
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            font-family: 'Courier New', monospace;
             line-height: 1.6;
-            margin: 0;
-            padding: 40px 20px;
-            background-color: #ffffff;
-            color: #24292f;
+            color: #333;
             max-width: 1400px;
-            margin-left: auto;
-            margin-right: auto;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
         }
-        
         h1 {
-            color: #24292f;
-            font-size: 2.2em;
-            font-weight: 600;
-            border-bottom: 1px solid #d1d9e0;
-            padding-bottom: 15px;
-            margin-bottom: 30px;
-            text-align: center;
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
         }
-        
-        .quick-start {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 25px;
-            border-radius: 10px;
-            margin-bottom: 40px;
-            text-align: center;
-        }
-        
-        .quick-start h3 {
-            margin-top: 0;
-            margin-bottom: 20px;
-            color: white;
-            font-size: 1.3em;
-        }
-        
-        .quick-links {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
-        }
-        
-        .quick-link {
-            background: rgba(255, 255, 255, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            color: white;
-            padding: 12px 20px;
-            text-decoration: none;
-            border-radius: 25px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(5px);
-        }
-        
-        .quick-link:hover {
-            background: rgba(255, 255, 255, 0.3);
-            color: white;
-            transform: translateY(-2px);
-        }
-        
-        .tree-container {
-            background: #f8f9fa;
-            border: 1px solid #d1d9e0;
-            border-radius: 8px;
-            padding: 30px;
-            margin-top: 30px;
-            overflow-x: auto;
-        }
-        
         .tree {
-            font-family: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
-            font-size: 14px;
-            line-height: 1.8;
-            white-space: nowrap;
+            font-family: 'Courier New', monospace;
+            white-space: pre;
+            line-height: 1.4;
         }
-        
-        .tree-item {
-            display: block;
-            margin: 2px 0;
-            position: relative;
-        }
-        
-        .tree-icon {
-            color: #656d76;
-            margin-right: 8px;
-            font-weight: normal;
-        }
-        
-        .folder {
-            color: #0969da;
-            font-weight: 600;
+        .tree a {
+            color: #3498db;
             text-decoration: none;
         }
-        
-        .folder:hover {
+        .tree a:hover {
             text-decoration: underline;
+            color: #2980b9;
         }
-        
-        .file {
-            color: #24292f;
-            text-decoration: none;
-            font-weight: 500;
+        .needed {
+            color: #e74c3c;
+            font-weight: bold;
         }
-        
-        .file:hover {
-            color: #0969da;
-            text-decoration: underline;
-            background: rgba(9, 105, 218, 0.1);
-            padding: 2px 4px;
-            border-radius: 3px;
-            margin: -2px -4px;
+        .updated {
+            color: #27ae60;
+            font-weight: bold;
         }
-        
-        .file-desc {
-            color: #656d76;
-            font-weight: normal;
-            margin-left: 15px;
-            font-style: italic;
-        }
-        
-        .essential {
-            color: #1f883d !important;
-            font-weight: 600;
-        }
-        
-        .essential:hover {
-            background: rgba(31, 136, 61, 0.1);
-        }
-        
-        .critical {
-            color: #d1242f !important;
-            font-weight: 600;
-        }
-        
-        .critical:hover {
-            background: rgba(209, 36, 47, 0.1);
-        }
-        
-        .demo {
-            color: #8250df !important;
-            font-weight: 600;
-        }
-        
-        .demo:hover {
-            background: rgba(130, 80, 223, 0.1);
-        }
-        
-        .indent-0 { margin-left: 0; }
-        .indent-1 { margin-left: 20px; }
-        .indent-2 { margin-left: 40px; }
-        .indent-3 { margin-left: 60px; }
-        
-        .contact-info {
-            background: #f6f8fa;
-            border: 1px solid #d1d9e0;
-            border-radius: 8px;
-            padding: 25px;
-            margin-top: 40px;
-        }
-        
-        .contact-info h3 {
-            margin-top: 0;
-            color: #24292f;
-            font-size: 1.2em;
-        }
-        
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 15px;
-        }
-        
-        .legend {
-            background: #fff;
-            border: 1px solid #d1d9e0;
-            border-radius: 6px;
+        .warning {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            border-radius: 5px;
             padding: 15px;
-            margin-bottom: 20px;
+            margin: 20px 0;
         }
-        
-        .legend h4 {
-            margin-top: 0;
-            margin-bottom: 10px;
-            color: #24292f;
+        .description {
+            color: #666;
+            font-style: italic;
             font-size: 0.9em;
         }
-        
-        .legend-item {
-            display: inline-block;
-            margin-right: 20px;
-            margin-bottom: 5px;
-            font-size: 0.85em;
+        .status-legend {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 20px 0;
         }
-        
-        .legend-color {
-            display: inline-block;
-            width: 12px;
-            height: 12px;
-            border-radius: 2px;
-            margin-right: 5px;
-            vertical-align: middle;
+        .status-legend h3 {
+            margin-top: 0;
         }
-        
-        .color-critical { background: #d1242f; }
-        .color-essential { background: #1f883d; }
-        .color-demo { background: #8250df; }
-        .color-file { background: #24292f; }
-        .color-folder { background: #0969da; }
+        .sacred-pause-box {
+            background: #d4edda;
+            border: 2px solid #28a745;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 20px 0;
+        }
     </style>
 </head>
 <body>
-    <h1>Ternary Moral Logic Framework<br><small style="color: #656d76; font-size: 0.6em; font-weight: 400;">Complete Repository Navigation</small></h1>
+    <h1>TML Repository Navigation - Enforcement Framework v3.0</h1>
     
-    <div class="quick-start">
-        <h3>Academic Quick Start Path</h3>
-        <div class="quick-links">
-            <a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/MANDATORY.md" class="quick-link" target="_blank">1. Safety Guidelines</a>
-            <a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/readme.md" class="quick-link" target="_blank">2. Framework Overview</a>
-            <a href="https://fractonicmind.github.io/TernaryMoralLogic/TML-App/" class="quick-link" target="_blank">3. Interactive Demo</a>
-            <a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/examples/basic_demo.py" class="quick-link" target="_blank">4. Basic Demo</a>
-            <a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/eval/reports/summary.md" class="quick-link" target="_blank">5. Review Results</a>
-        </div>
+    <div class="warning">
+        <strong>⚠️ Repository Status:</strong> MANDATORY.md v7 complete with enforcement framework. 
+        Multiple implementation files need creation (marked as [NEEDED]).
+        Sacred Pause is a LOGGING TRIGGER at State 0, not an operational delay.
     </div>
 
-    <div class="legend">
-        <h4>Color Guide:</h4>
-        <span class="legend-item"><span class="legend-color color-critical"></span>Critical (READ FIRST)</span>
-        <span class="legend-item"><span class="legend-color color-essential"></span>Essential Files</span>
-        <span class="legend-item"><span class="legend-color color-demo"></span>Interactive Demos</span>
-        <span class="legend-item"><span class="legend-color color-file"></span>Regular Files</span>
-        <span class="legend-item"><span class="legend-color color-folder"></span>Directories</span>
+    <div class="sacred-pause-box">
+        <strong>🔑 Critical Understanding - The Three States:</strong><br>
+        +1 (Proceed): SPRL < 0.3 → Minimal logging<br>
+        0 (Sacred Pause): SPRL ≥ 0.3 → COMPREHENSIVE LOGGING (trigger, not delay)<br>
+        -1 (Prohibit): SPRL ≥ 0.8 → Block action
     </div>
 
-    <div class="tree-container">
-        <div class="tree">
-            <div class="tree-item indent-0">
-                <span class="tree-icon">📁</span><span class="folder">Ternary Moral Logic Framework</span>
-            </div>
-            
-            <!-- Root Files -->
-            <div class="tree-item indent-1">
-                <span class="tree-icon">├──</span><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/CHANGELOG.md" class="file" target="_blank">CHANGELOG.md</a>
-                <span class="file-desc">Version history and updates</span>
-            </div>
-            <div class="tree-item indent-1">
-                <span class="tree-icon">├──</span><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/CITATION.cff" class="file" target="_blank">CITATION.cff</a>
-                <span class="file-desc">Academic citation format</span>
-            </div>
-            <div class="tree-item indent-1">
-                <span class="tree-icon">├──</span><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/GOVERNANCE.md" class="file" target="_blank">GOVERNANCE.md</a>
-                <span class="file-desc">Project governance framework</span>
-            </div>
-            <div class="tree-item indent-1">
-                <span class="tree-icon">├──</span><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/INTELLECTUAL_PROPERTY.md" class="file" target="_blank">INTELLECTUAL_PROPERTY.md</a>
-                <span class="file-desc">Legal foundation and IP protection</span>
-            </div>
-            <div class="tree-item indent-1">
-                <span class="tree-icon">├──</span><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/LICENSE" class="file" target="_blank">LICENSE</a>
-                <span class="file-desc">MIT license with ethical use requirements</span>
-            </div>
-            <div class="tree-item indent-1">
-                <span class="tree-icon">├──</span><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/readme.md" class="file essential" target="_blank">readme.md</a>
-                <span class="file-desc">Main framework documentation</span>
-            </div>
-            <div class="tree-item indent-1">
-                <span class="tree-icon">├──</span><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/requirements.txt" class="file" target="_blank">requirements.txt</a>
-                <span class="file-desc">Python dependencies</span>
-            </div>
-            <div class="tree-item indent-1">
-                <span class="tree-icon">├──</span><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/setup.py" class="file" target="_blank">setup.py</a>
-                <span class="file-desc">Package installation configuration</span>
-            </div>
-            <div class="tree-item indent-1">
-                <span class="tree-icon">├──</span><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/TML-SUCCESSION-CHARTER.md" class="file" target="_blank">TML-SUCCESSION-CHARTER.md</a>
-                <span class="file-desc">Legacy preservation charter</span>
-            </div>
-            
-            <!-- TML-App Directory -->
-            <div class="tree-item indent-1">
-                <span class="tree-icon">├──</span><span class="folder">📁 TML-App/</span>
-                <span class="file-desc">Interactive demonstration application</span>
-            </div>
-            <div class="tree-item indent-2">
-                <span class="tree-icon">│   ├──</span><a href="https://fractonicmind.github.io/TernaryMoralLogic/TML-App/" class="file demo" target="_blank">index.html</a>
-                <span class="file-desc">Interactive Sacred Pause demo</span>
-            </div>
-            <div class="tree-item indent-2">
-                <span class="tree-icon">│   └──</span><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/TML-App/readme.md" class="file" target="_blank">readme.md</a>
-                <span class="file-desc">Application documentation</span>
-            </div>
-            
-            <!-- Audio Directory -->
-            <div class="tree-item indent-1">
-                <span class="tree-icon">├──</span><span class="folder">📁 audio/</span>
-                <span class="file-desc">Educational audio resources</span>
-            </div>
-            <div class="tree-item indent-2">
-                <span class="tree-icon">│   ├──</span><a href="https://fractonicmind.github.io/TernaryMoralLogic/audio/audio-player.html" class="file demo" target="_blank">audio-player.html</a>
-                <span class="file-desc">🎧 7-minute framework interview</span>
-            </div>
-            <div class="tree-item indent-2">
-                <span class="tree-icon">│   └──</span><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/audio/TernaryMoralLogic-interview.mp3" class="file" target="_blank">TernaryMoralLogic-interview.mp3</a>
-                <span class="file-desc">Audio file</span>
-            </div>
-            
-            <!-- Benchmark Directory -->
-            <div class="tree-item indent-1">
-                <span class="tree-icon">├──</span><span class="folder">📁 benchmark/</span>
-                <span class="file-desc">Performance evaluation framework</span>
-            </div>
-            <div class="tree-item indent-2">
-                <span class="tree-icon">│   ├──</span><span class="folder">📁 datasets/</span>
-            </div>
-            <div class="tree-item indent-3">
-                <span class="tree-icon">│   │   ├──</span><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/benchmark/datasets/moral_scenarios.jsonl" class="file" target="_blank">moral_scenarios.jsonl</a>
-                <span class="file-desc">Test cases</span>
-            </div>
-            <div class="tree-item indent-3">
-                <span class="tree-icon">│   │   └──</span><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/benchmark/datasets/scenarios_readable.md" class="file" target="_blank">scenarios_readable.md</a>
-                <span class="file-desc">Human-readable scenarios</span>
-            </div>
-            <div class="tree-item indent-2">
-                <span class="tree-icon">│   ├──</span><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/benchmark/generate_coverage.py" class="file" target="_blank">generate_coverage.py</a>
-                <span class="file-desc">Coverage analysis</span>
-            </div>
-            <div class="tree-item indent-2">
-                <span class="tree-icon">│   ├──</span><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/benchmark/metrics.py" class="file" target="_blank">metrics.py</a>
-                <span class="file-desc">Evaluation metrics</span>
-            </div>
-            <div class="tree-item indent-2">
-                <span class="tree-icon">│   └──</span><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/benchmark/run_benchmark.py" class="file" target="_blank">run_benchmark.py</a>
-                <span class="file-desc">Benchmark execution</span>
-            </div>
-            
-            <!-- Community Directory -->
-            <div class="tree-item indent-1">
-                <span class="tree-icon">├──</span><span class="folder">📁 community/</span>
-                <span class="file-desc">Community guidelines and governance</span>
-            </div>
-            <div class="tree-item indent-2">
-                <span class="tree-icon">│   ├──</span><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/community/CODE_OF_CONDUCT.md" class="file" target="_blank">CODE_OF_CONDUCT.md</a>
-                <span class="file-desc">Ethical community standards</span>
-            </div>
-            <div class="tree-item indent-2">
-                <span class="tree-icon">│   └──</span><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/community/CONTRIBUTING.md" class="file" target="_blank">CONTRIBUTING.md</a>
-                <span class="file-desc">Contribution guidelines</span>
-            </div>
-            <div class="tree-item indent-2">
-                <span class="tree-icon">│   └──</span><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/community/GOVERNANCE.md" class="file" target="_blank">GOVERNANCE.md</a>
-                <span class="file-desc">Contribution guidelines</span>
-            </div>
-            
-            <!-- Docs Directory -->
-            <div class="tree-item indent-1">
-                <span class="tree-icon">├──</span><span class="folder">📁 docs/</span>
-                <span class="file-desc">Comprehensive documentation</span>
-            </div>
-            <div class="tree-item indent-2">
-                <span class="tree-icon">│   ├──</span><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/ACADEMIC_VALIDATION.md" class="file essential" target="_blank">ACADEMIC_VALIDATION.md</a>
-                <span class="file-desc">Peer review protocols</span>
-            </div>
-            <div class="tree-item indent-2">
-                <span class="tree-icon">│   ├──</span><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/GENERAL_FAQ.md" class="file" target="_blank">GENERAL_FAQ.md</a>
-                <span class="file-desc">44 technical questions</span>
-            </div>
-            <div class="tree-item indent-2">
-                <span class="tree-icon">│   ├──</span><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/LICENSE_FAQ.md" class="file" target="_blank">LICENSE_FAQ.md</a>
-                <span class="file-desc">30 licensing questions</span>
-            </div>
-            <div class="tree-item indent-2">
-                <span class="tree-icon">│   ├──</span><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/MANDATORY.md" class="file critical" target="_blank">MANDATORY.md</a>
-                <span class="file-desc">⚠️ CRITICAL: Safety guidelines (READ FIRST)</span>
-            </div>
-            <div class="tree-item indent-2">
-                <span class="tree-icon">│   ├──</span><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/QUICK_START.md" class="file essential" target="_blank">QUICK_START.md</a>
-                <span class="file-desc">30-minute implementation guide</span>
-            </div>
-            <div class="tree-item indent-2">
-                <span class="tree-icon">│   ├──</span><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/REFERENCES.md" class="file essential" target="_blank">REFERENCES.md</a>
-                <span class="file-desc">30-minute implementation guide</span>
-            </div>
-            <div class="tree-item indent-2">
-                <span class="tree-icon">│   ├──</span><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/TML Research Plan Creation.md" class="file essential" target="_blank">TML Research Plan Creation.md</a>
-                <span class="file-desc">30-minute implementation guide</span>
-            </div>
-            <div class="tree-item indent-2">
-                <span class="tree-icon">│   ├──</span><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/doi_application.md" class="file essential" target="_blank">doi_application.md</a>
-                <span class="file-desc">30-minute implementation guide</span>
-            </div>
-            <div class="tree-item indent-2">
-                <span class="tree-icon">│   ├──</span><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/ethics_approval.md" class="file essential" target="_blank">ethics_approval.md</a>
-                <span class="file-desc">30-minute implementation guide</span>
-            </div>
-            <div class="tree-item indent-2">
-                <span class="tree-icon">│   ├──</span><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/ethics_approval.pdf" class="file essential" target="_blank">ethics_approval.pdf</a>
-                <span class="file-desc">30-minute implementation guide</span>
-            </div>
-            <div class="tree-item indent-2">
-                <span class="tree-icon">│   ├──</span><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/peer_review_status.md" class="file essential" target="_blank">peer_review_status.md</a>
-                <span class="file-desc">30-minute implementation guide</span>
-            </div>
-            <div class="tree-item indent-2">
-                <span class="tree-icon">│   ├──</span><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/reproducibility_checklist.md" class="file essential" target="_blank">reproducibility_checklist.md</a>
-                <span class="file-desc">30-minute implementation guide</span>
-            </div>
-            <div class="tree-item indent-2">
-                <span class="tree-icon">│   ├──</span><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/rsacred-pause-ui-framework.md" class="file essential" target="_blank">rsacred-pause-ui-framework.md</a>
-                <span class="file-desc">30-minute implementation guide</span>
-            </div>
-            <div class="tree-item indent-2">
-                <span class="tree-icon">│   ├──</span><span class="folder">📁 api/</span>
-            </div>
-            <div class="tree-item indent-3">
-                <span class="tree-icon">│   │   └──</span><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/api/complete_api_reference.md" class="file" target="_blank">complete_api_reference.md</a>
-                <span class="file-desc">Professional API docs</span>
-            </div>
-            <div class="tree-item indent-2">
-                <span class="tree-icon">│   ├──</span><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/ethics_approval.md" class="file" target="_blank">ethics_approval.md</a>
-                <span class="file-desc">Ethics committee approval</span>
-            </div>
-            <div class="tree-item indent-2">
-                <span class="tree-icon">│   ├──</span><span class="folder">📁 images/</span>
-            </div>
-            <div class="tree-item indent-3">
-                <span class="tree-icon">│   │   └──</span><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/images/tml_graphical_abstract.svg" class="file" target="_blank">tml_graphical_abstract.svg</a>
-                <span class="file-desc">Framework visualization</span>
-            </div>
-            <div class="tree-item indent-2">
-                <span class="tree-icon">│   └──</span><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/reproducibility_checklist.md" class="file" target="_blank">reproducibility_checklist.md</a>
-                <span class="file-desc">Research reproducibility</span>
-            </div>
-            
-            <!-- Eval Directory -->
-            <div class="tree-item indent-1">
-                <span class="tree-icon">├──</span><span class="folder">📁 eval/</span>
-                <span class="file-desc">Evaluation and testing framework</span>
-            </div>
-            <div class="tree-item indent-2">
-                <span class="tree-icon">│   ├──</span><span class="folder">📁 backends/</span>
-            </div>
-            <div class="tree-item indent-3">
-                <span class="tree-icon">│   │   ├──</span><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/eval/backends/baseline.py" class="file" target="_blank">baseline.py</a>
-                <span class="file-desc">Baseline system</span>
-            </div>
-            <div class="tree-item indent-3">
-                <span class="tree-icon">│   │   └──</span><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/eval/backends/sacred_pause.py" class="file" target="_blank">sacred_pause.py</a>
-                <span class="file-desc">Sacred Pause implementation</span>
-            </div>
-            <div class="tree-item indent-2">
-                <span class="tree-icon">│   ├──</span><span class="folder">📁 datasets/</span>
-            </div>
-            <div class="tree-item indent-3">
-                <span class="tree-icon">│   │   ├──</span><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/eval/datasets/ambiguous.jsonl" class="file" target="_blank">ambiguous.jsonl</a>
-                <span class="file-desc">Ambiguous scenarios</span>
-            </div>
-            <div class="tree-item indent-3">
-                <span class="tree-icon">│   │   ├──</span><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/eval/datasets/facts.jsonl" class="file" target="_blank">facts.jsonl</a>
-                <span class="file-desc">Factual accuracy tests</span>
-            </div>
-            <div class="tree-item indent-3">
-                <span class="tree-icon">│   │   └──</span><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/eval/datasets/harmful.jsonl" class="file" target="_blank">harmful.jsonl</a>
-                <span class="file-desc">Harmful content tests</span>
-            </div>
-            <div class="tree-item indent-2">
-                <span class="tree-icon">│   ├──</span><span class="folder">📁 reports/</span>
-            </div>
-            <div class="tree-item indent-3">
-                <span class="tree-icon">│   │   └──</span><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/eval/reports/summary.md" class="file essential" target="_blank">summary.md</a>
-                <span class="file-desc">📊 Results: 68% hallucination reduction</span>
-            </div>
-            <div class="tree-item indent-2">
-                <span class="tree-icon">│   └──</span><span class="folder">📁 scripts/</span>
-            </div>
-            <div class="tree-item indent-3">
-                <span class="tree-icon">│       ├──</span><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/eval/scripts/run_eval.py" class="file" target="_blank">run_eval.py</a>
-                <span class="file-desc">Evaluation execution</span>
-            </div>
-            <div class="tree-item indent-3">
-                <span class="tree-icon">│       └──</span><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/eval/scripts/score_all.py" class="file" target="_blank">score_all.py</a>
-                <span class="file-desc">Scoring system</span>
-            </div>
-            
-            <!-- Evidence Directory -->
-            <div class="tree-item indent-1">
-                <span class="tree-icon">├──</span><span class="folder">📁 evidence/</span>
-                <span class="file-desc">AI recognition validation</span>
-            </div>
-            <div class="tree-item indent-2">
-                <span class="tree-icon">│   ├──</span><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/evidence/README.md" class="file" target="_blank">README.md</a>
-                <span class="file-desc">AI recognition evidence</span>
-            </div>
-            <div class="tree-item indent-2">
-                <span class="tree-icon">│   └──</span><span class="folder">📁 ai_recognition/</span>
-                <span class="file-desc">Screenshots and validation</span>
-            </div>
-            
-            <!-- Examples Directory -->
-            <div class="tree-item indent-1">
-                <span class="tree-icon">├──</span><span class="folder">📁 examples/</span>
-                <span class="file-desc">Implementation examples across domains</span>
-            </div>
-            <div class="tree-item indent-2">
-                <span class="tree-icon">│   ├──</span><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/examples/autonomous_vehicle.py" class="file" target="_blank">autonomous_vehicle.py</a>
-                <span class="file-desc">Self-driving car ethics</span>
-            </div>
-            <div class="tree-item indent-2">
-                <span class="tree-icon">│   ├──</span><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/examples/basic_demo.py" class="file essential" target="_blank">basic_demo.py</a>
-                <span class="file-desc">Comprehensive demonstration</span>
-            </div>
-            <div class="tree-item indent-2">
-                <span class="tree-icon">│   ├──</span><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/examples/content_moderation.py" class="file" target="_blank">content_moderation.py</a>
-                <span class="file-desc">Social media applications</span>
-            </div>
-            <div class="tree-item indent-2">
-                <span class="tree-icon">│   ├──</span><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/examples/financial_ai.py" class="file" target="_blank">financial_ai.py</a>
-                <span class="file-desc">Banking ethics</span>
-            </div>
-            <div class="tree-item indent-2">
-                <span class="tree-icon">│   ├──</span><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/examples/medical_ai_triage.py" class="file" target="_blank">medical_ai_triage.py</a>
-                <span class="file-desc">Healthcare ethics</span>
-            </div>
-            <div class="tree-item indent-2">
-                <span class="tree-icon">│   └──</span><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/examples/ternary-license-demo.md" class="file" target="_blank">ternary-license-demo.md</a>
-                <span class="file-desc">Creative licensing demo</span>
-            </div>
-            
-            <!-- Implementations Directory -->
-            <div class="tree-item indent-1">
-                <span class="tree-icon">├──</span><span class="folder">📁 implementations/</span>
-                <span class="file-desc">Core framework implementation</span>
-            </div>
-            <div class="tree-item indent-2">
-                <span class="tree-icon">│   ├──</span><span class="folder">📁 implementations/</span>
-            </div>
-            <div class="tree-item indent-3">
-                <span class="tree-icon">│   │   └──</span><span class="folder">📁 python-library/</span>
-            </div>
-            <div class="tree-item indent-3">
-                <span class="tree-icon">│   │       └──</span><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/implementations/implementations/python-library/core.py" class="file essential" target="_blank">core.py</a>
-                <span class="file-desc">534-line core framework</span>
-            </div>
-            <div class="tree-item indent-2">
-                <span class="tree-icon">│   ├──</span><span class="folder">📁 prompt-engineering/</span>
-            </div>
-            <div class="tree-item indent-3">
-                <span class="tree-icon">│   │   └──</span><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/implementations/prompt-engineering/basic-tml.py" class="file" target="_blank">basic-tml.py</a>
-                <span class="file-desc">Prompt engineering demo</span>
-            </div>
-            <div class="tree-item indent-2">
-                <span class="tree-icon">│   └──</span><span class="folder">📁 python-library/</span>
-            </div>
-            <div class="tree-item indent-3">
-                <span class="tree-icon">│       └──</span><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/implementations/python-library/__init__.py" class="file" target="_blank">__init__.py</a>
-                <span class="file-desc">Package initialization</span>
-            </div>
-            
-            <!-- Memorial Directory -->
-            <div class="tree-item indent-1">
-                <span class="tree-icon">├──</span><span class="folder">📁 memorial/</span>
-                <span class="file-desc">Legacy preservation</span>
-            </div>
-            <div class="tree-item indent-2">
-                <span class="tree-icon">│   └──</span><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/memorial/MEMORIAL_FUND.md" class="file" target="_blank">MEMORIAL_FUND.md</a>
-                <span class="file-desc">Research fund and legacy</span>
-            </div>
-            
-            <!-- Protection Directory -->
-            <div class="tree-item indent-1">
-                <span class="tree-icon">├──</span><span class="folder">📁 protection/</span>
-                <span class="file-desc">Multi-layered protection architecture</span>
-            </div>
-            <div class="tree-item indent-2">
-                <span class="tree-icon">│   ├──</span><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/protection/institutional-access.md" class="file" target="_blank">institutional-access.md</a>
-                <span class="file-desc">Institution controls</span>
-            </div>
-            <div class="tree-item indent-2">
-                <span class="tree-icon">│   ├──</span><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/protection/integrity-monitoring.md" class="file" target="_blank">integrity-monitoring.md</a>
-                <span class="file-desc">Cryptographic protection</span>
-            </div>
-            <div class="tree-item indent-2">
-                <span class="tree-icon">│   ├──</span><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/protection/legacy-preservation.md" class="file" target="_blank">legacy-preservation.md</a>
-                <span class="file-desc">Master coordination</span>
-            </div>
-            <div class="tree-item indent-2">
-                <span class="tree-icon">│   └──</span><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/protection/misuse-prevention.md" class="file" target="_blank">misuse-prevention.md</a>
-                <span class="file-desc">Active safeguards</span>
-            </div>
-            
-            <!-- Tests Directory -->
-            <div class="tree-item indent-1">
-                <span class="tree-icon">├──</span><span class="folder">📁 tests/</span>
-                <span class="file-desc">Comprehensive testing framework</span>
-            </div>
-            <div class="tree-item indent-2">
-                <span class="tree-icon">│   ├──</span><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/tests/isolated_test.py" class="file" target="_blank">isolated_test.py</a>
-                <span class="file-desc">Debug-focused validation</span>
-            </div>
-            <div class="tree-item indent-2">
-                <span class="tree-icon">│   └──</span><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/tests/test_tml_core.py" class="file" target="_blank">test_tml_core.py</a>
-                <span class="file-desc">Professional pytest (97% coverage)</span>
-            </div>
-            
-            <!-- Theory Directory -->
-            <div class="tree-item indent-1">
-                <span class="tree-icon">└──</span><span class="folder">📁 theory/</span>
-                <span class="file-desc">Theoretical foundations</span>
-            </div>
-            <div class="tree-item indent-2">
-                <span class="tree-icon">    ├──</span><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/theory/case-studies.md" class="file" target="_blank">case-studies.md</a>
-                <span class="file-desc">Real-world applications</span>
-            </div>
-            <div class="tree-item indent-2">
-                <span class="tree-icon">    ├──</span><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/theory/core-principles.md" class="file essential" target="_blank">core-principles.md</a>
-                <span class="file-desc">Fundamental TML principles</span>
-            </div>
-            <div class="tree-item indent-2">
-                <span class="tree-icon">    └──</span><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/theory/philosophical-foundations.md" class="file" target="_blank">philosophical-foundations.md</a>
-                <span class="file-desc">Academic grounding from Aristotle to modern ethics</span>
-            </div>
-        </div>
+    <div class="status-legend">
+        <h3>Status Legend:</h3>
+        <span class="updated">[UPDATED]</span> - Aligned with enforcement framework<br>
+        <span class="needed">[NEEDED]</span> - Must be created for compliance<br>
+        <span>[EXISTS]</span> - Current file, may need review<br>
     </div>
 
-    <div class="contact-info">
-        <h3>Contact Information</h3>
-        <div class="contact-grid">
-            <div>
-                <strong>Creator:</strong><br>
-                Lev Goukassian<br>
-                ORCID: 0009-0006-5966-1243<br>
-                leogouk@gmail.com
-            </div>
-            <div>
-                <strong>Academic Inquiries:</strong><br>
-                academic@tml-goukassian.org
-            </div>
-            <div>
-                <strong>Technical Support:</strong><br>
-                technical@tml-goukassian.org
-            </div>
-            <div>
-                <strong>Successor Contact:</strong><br>
-                support@tml-goukassian.org<br>
-                <em>See Succession Charter</em>
-            </div>
-        </div>
+    <div class="tree">
+<strong>TernaryMoralLogic/</strong>
+├── <a href="https://github.com/fractonicmind/TernaryMoralLogic/blob/main/ATTRIBUTION.md">ATTRIBUTION.md</a> <span class="description">- Creator attribution</span>
+├── <a href="https://github.com/fractonicmind/TernaryMoralLogic/blob/main/CHANGELOG.md">CHANGELOG.md</a> <span class="description">- Version history</span>
+├── <a href="https://github.com/fractonicmind/TernaryMoralLogic/blob/main/CITATION.cff">CITATION.cff</a> <span class="description">- Citation format</span>
+├── <a href="https://github.com/fractonicmind/TernaryMoralLogic/blob/main/Dockerfile">Dockerfile</a> <span class="description">- Container configuration</span>
+├── <a href="https://github.com/fractonicmind/TernaryMoralLogic/blob/main/GOVERNANCE.md">GOVERNANCE.md</a> <span class="needed">[NEEDED]</span> <span class="description">- 11-institution council structure</span>
+├── <a href="https://github.com/fractonicmind/TernaryMoralLogic/blob/main/INSTALLATION.md">INSTALLATION.md</a> <span class="description">- Setup instructions</span>
+├── <a href="https://github.com/fractonicmind/TernaryMoralLogic/blob/main/INTELLECTUAL_PROPERTY.md">INTELLECTUAL_PROPERTY.md</a> <span class="description">- IP declarations</span>
+├── <a href="https://github.com/fractonicmind/TernaryMoralLogic/blob/main/LICENSE">LICENSE</a> <span class="description">- MIT with mandatory logging</span>
+├── <a href="https://github.com/fractonicmind/TernaryMoralLogic/blob/main/TML-SUCCESSION-CHARTER.md">TML-SUCCESSION-CHARTER.md</a> <span class="description">- Succession planning</span>
+├── <a href="https://github.com/fractonicmind/TernaryMoralLogic/blob/main/readme.md">readme.md</a> <span class="updated">[UPDATED]</span> <span class="description">- Working version with implementation tracking</span>
+├── <a href="https://github.com/fractonicmind/TernaryMoralLogic/blob/main/repository-navigation.html">repository-navigation.html</a> <span class="updated">[THIS FILE]</span>
+│
+├── <strong>benchmark/</strong> <span class="description">- Performance testing</span>
+│   ├── <a href="https://github.com/fractonicmind/TernaryMoralLogic/blob/main/benchmark/generate_coverage.py">generate_coverage.py</a> <span class="description">- Coverage analysis</span>
+│   └── <a href="https://github.com/fractonicmind/TernaryMoralLogic/blob/main/benchmark/metrics.py">metrics.py</a> <span class="description">- Performance metrics</span>
+│
+├── <strong>datasets/</strong> <span class="description">- Test data</span>
+│   ├── <a href="https://github.com/fractonicmind/TernaryMoralLogic/blob/main/datasets/moral_scenarios.jsonl">moral_scenarios.jsonl</a> <span class="description">- Test scenarios</span>
+│   └── <a href="https://github.com/fractonicmind/TernaryMoralLogic/blob/main/datasets/scenarios_readable.md">scenarios_readable.md</a> <span class="description">- Human-readable scenarios</span>
+│
+├── <strong>protection/</strong> <span class="description">- Security and protection measures</span>
+│   ├── <a href="https://github.com/fractonicmind/TernaryMoralLogic/blob/main/protection/institutional-access.md">institutional-access.md</a> <span class="description">- Pre-authorized institutions</span>
+│   ├── <a href="https://github.com/fractonicmind/TernaryMoralLogic/blob/main/protection/integrity-monitoring.md">integrity-monitoring.md</a> <span class="description">- Log integrity verification</span>
+│   ├── <a href="https://github.com/fractonicmind/TernaryMoralLogic/blob/main/protection/legacy-preservation.md">legacy-preservation.md</a> <span class="description">- Long-term preservation</span>
+│   └── <a href="https://github.com/fractonicmind/TernaryMoralLogic/blob/main/protection/misuse-prevention.md">misuse-prevention.md</a> <span class="description">- Anti-gaming mechanisms</span>
+│
+├── <strong>docs/</strong> <span class="description">- Core documentation</span>
+│   ├── <a href="https://github.com/fractonicmind/TernaryMoralLogic/blob/main/docs/ACADEMIC_VALIDATION.md">ACADEMIC_VALIDATION.md</a> <span class="description">- Research validation</span>
+│   ├── <a href="https://github.com/fractonicmind/TernaryMoralLogic/blob/main/docs/GENERAL_FAQ.md">GENERAL_FAQ.md</a> <span class="description">- Frequently asked questions</span>
+│   ├── <a href="https://github.com/fractonicmind/TernaryMoralLogic/blob/main/docs/LICENSE_FAQ.md">LICENSE_FAQ.md</a> <span class="description">- License clarifications</span>
+│   ├── <a href="https://github.com/fractonicmind/TernaryMoralLogic/blob/main/docs/MANDATORY.md">MANDATORY.md</a> <span class="updated">[UPDATED v7]</span> <span class="description">- Complete enforcement framework (25 sections + 11 appendices)</span>
+│   ├── <a href="https://github.com/fractonicmind/TernaryMoralLogic/blob/main/docs/QUICK_START.md">QUICK_START.md</a> <span class="description">- Getting started guide</span>
+│   ├── <a href="https://github.com/fractonicmind/TernaryMoralLogic/blob/main/docs/REFERENCES.md">REFERENCES.md</a> <span class="description">- Academic references</span>
+│   ├── <a href="https://github.com/fractonicmind/TernaryMoralLogic/blob/main/docs/doi_application.md">doi_application.md</a> <span class="description">- DOI application</span>
+│   ├── <a href="https://github.com/fractonicmind/TernaryMoralLogic/blob/main/docs/ethics_approval.pdf">ethics_approval.pdf</a> <span class="description">- Ethics documentation</span>
+│   ├── <a href="https://github.com/fractonicmind/TernaryMoralLogic/blob/main/docs/peer_review_status.md">peer_review_status.md</a> <span class="description">- Review status</span>
+│   ├── <a href="https://github.com/fractonicmind/TernaryMoralLogic/blob/main/docs/reproducibility_checklist.md">reproducibility_checklist.md</a> <span class="description">- Reproducibility guide</span>
+│   └── <a href="https://github.com/fractonicmind/TernaryMoralLogic/blob/main/docs/sacred-pause-ui-framework.md">sacred-pause-ui-framework.md</a> <span class="description">- UI framework guide</span>
+│
+├── <strong>risks-and-prevention/</strong>
+│   └── <a href="https://github.com/fractonicmind/TernaryMoralLogic/blob/main/risks-and-prevention/risks-and-prevention.md">risks-and-prevention.md</a> <span class="description">- Risk analysis and mitigation</span>
+│
+├── <strong>images/</strong>
+│   └── <a href="https://github.com/fractonicmind/TernaryMoralLogic/blob/main/images/tml_graphical_abstract.svg">tml_graphical_abstract.svg</a> <span class="description">- Visual framework representation</span>
+│
+├── <strong>api/</strong> <span class="needed">[DIRECTORY NEEDED]</span>
+│   ├── complete_api_reference.md <span class="description">- API documentation</span>
+│   └── openapi.yaml <span class="needed">[NEEDED]</span> <span class="description">- OpenAPI 3.0 specification from MANDATORY Appendix C</span>
+│
+├── <strong>schemas/</strong> <span class="needed">[DIRECTORY NEEDED]</span>
+│   ├── moral_trace_log.yaml <span class="needed">[NEEDED]</span> <span class="description">- Moral trace schema with cryptographic requirements</span>
+│   └── justification_object.yaml <span class="needed">[NEEDED]</span> <span class="description">- Executive justification with liability acknowledgment</span>
+│
+├── <strong>policies/</strong> <span class="needed">[DIRECTORY NEEDED]</span>
+│   ├── red_lines.yaml <span class="needed">[NEEDED]</span> <span class="description">- Quantified thresholds: 15% discrimination, 0.7 manipulation</span>
+│   ├── whistleblower_policy.md <span class="needed">[NEEDED]</span> <span class="description">- Qui tam 15-30% rewards, anti-retaliation</span>
+│   └── vulnerable_populations.md <span class="needed">[NEEDED]</span> <span class="description">- Enhanced protections, ≤0.25 Sacred Pause threshold</span>
+│
+├── <strong>eval/</strong> <span class="description">- Evaluation framework</span>
+│   ├── <strong>datasets/</strong>
+│   │   ├── <a href="https://github.com/fractonicmind/TernaryMoralLogic/tree/main/eval/datasets/ambiguous.jsonl">ambiguous.jsonl</a> <span class="description">- Ambiguous scenarios</span>
+│   │   ├── <a href="https://github.com/fractonicmind/TernaryMoralLogic/tree/main/eval/datasets/creative.jsonl">creative.jsonl</a> <span class="description">- Creative scenarios</span>
+│   │   ├── <a href="https://github.com/fractonicmind/TernaryMoralLogic/tree/main/eval/datasets/facts.jsonl">facts.jsonl</a> <span class="description">- Factual scenarios</span>
+│   │   └── <a href="https://github.com/fractonicmind/TernaryMoralLogic/tree/main/eval/datasets/harmful.jsonl">harmful.jsonl</a> <span class="description">- Harmful scenarios</span>
+│   ├── <strong>configs/</strong>
+│   │   ├── <a href="https://github.com/fractonicmind/TernaryMoralLogic/tree/main/eval/configs/baseline.yaml">baseline.yaml</a> <span class="description">- Baseline configuration</span>
+│   │   └── <a href="https://github.com/fractonicmind/TernaryMoralLogic/tree/main/eval/configs/sacred_pause.yaml">sacred_pause.yaml</a> <span class="description">- Sacred Pause config</span>
+│   ├── <strong>backends/</strong>
+│   │   ├── <a href="https://github.com/fractonicmind/TernaryMoralLogic/tree/main/eval/backends/baseline.py">baseline.py</a> <span class="description">- Baseline backend</span>
+│   │   ├── <a href="https://github.com/fractonicmind/TernaryMoralLogic/tree/main/eval/backends/sacred_pause.py">sacred_pause.py</a> <span class="needed">[NEEDS UPDATE]</span> <span class="description">- Convert to logging trigger model</span>
+│   │   └── <a href="https://github.com/fractonicmind/TernaryMoralLogic/tree/main/eval/backends/truth_guardrail.py">truth_guardrail.py</a> <span class="description">- Truth verification</span>
+│   ├── <strong>scripts/</strong>
+│   │   ├── <a href="https://github.com/fractonicmind/TernaryMoralLogic/tree/main/eval/scripts/run_and_report.py">run_and_report.py</a> <span class="description">- Run evaluations</span>
+│   │   ├── <a href="https://github.com/fractonicmind/TernaryMoralLogic/tree/main/eval/scripts/run_eval.py">run_eval.py</a> <span class="description">- Evaluation runner</span>
+│   │   └── <a href="https://github.com/fractonicmind/TernaryMoralLogic/tree/main/eval/scripts/score_all.py">score_all.py</a> <span class="description">- Score all tests</span>
+│   └── <strong>reports/</strong>
+│       └── <a href="https://github.com/fractonicmind/TernaryMoralLogic/tree/main/eval/reports/summary.md">summary.md</a> <span class="description">- Evaluation summary</span>
+│
+├── <strong>community/</strong> <span class="description">- Community guidelines</span>
+│   ├── <a href="https://github.com/fractonicmind/TernaryMoralLogic/blob/main/community/CODE_OF_CONDUCT.md">CODE_OF_CONDUCT.md</a> <span class="description">- Conduct standards</span>
+│   ├── <a href="https://github.com/fractonicmind/TernaryMoralLogic/blob/main/community/CONTRIBUTING.md">CONTRIBUTING.md</a> <span class="description">- Contribution guide</span>
+│   └── <a href="https://github.com/fractonicmind/TernaryMoralLogic/blob/main/community/GOVERNANCE.md">GOVERNANCE.md</a> <span class="description">- Community governance</span>
+│
+├── <strong>theory/</strong> <span class="description">- Theoretical foundations</span>
+│   ├── <a href="https://github.com/fractonicmind/TernaryMoralLogic/blob/main/theory/case-studies.md">case-studies.md</a> <span class="description">- Real-world applications</span>
+│   ├── <a href="https://github.com/fractonicmind/TernaryMoralLogic/blob/main/theory/core-principles.md">core-principles.md</a> <span class="description">- Fundamental principles</span>
+│   └── <a href="https://github.com/fractonicmind/TernaryMoralLogic/blob/main/theory/philosophical-foundations.md">philosophical-foundations.md</a> <span class="description">- Philosophy basis</span>
+│
+├── <strong>examples/</strong> <span class="description">- Implementation examples</span>
+│   ├── <a href="https://github.com/fractonicmind/TernaryMoralLogic/blob/main/examples/autonomous_vehicle.py">autonomous_vehicle.py</a> <span class="needed">[NEEDS UPDATE]</span> <span class="description">- Remove wait_for_approval(), add moral_trace</span>
+│   ├── <a href="https://github.com/fractonicmind/TernaryMoralLogic/blob/main/examples/basic_demo.py">basic_demo.py</a> <span class="needed">[NEEDS UPDATE]</span> <span class="description">- Convert to logging model</span>
+│   ├── <a href="https://github.com/fractonicmind/TernaryMoralLogic/blob/main/examples/content_moderation.py">content_moderation.py</a> <span class="needed">[NEEDS UPDATE]</span>
+│   ├── <a href="https://github.com/fractonicmind/TernaryMoralLogic/blob/main/examples/financial_ai.py">financial_ai.py</a> <span class="needed">[NEEDS UPDATE]</span>
+│   ├── <a href="https://github.com/fractonicmind/TernaryMoralLogic/blob/main/examples/medical_ai_triage.py">medical_ai_triage.py</a> <span class="needed">[NEEDS UPDATE]</span>
+│   └── <a href="https://github.com/fractonicmind/TernaryMoralLogic/blob/main/examples/ternary-license-demo.md">ternary-license-demo.md</a> <span class="description">- License demonstration</span>
+│
+├── <strong>evidence/</strong> <span class="description">- Framework validation evidence</span>
+│   └── <strong>ai_recognition/</strong>
+│       ├── <a href="https://github.com/fractonicmind/TernaryMoralLogic/tree/main/evidence/ai_recognition/claude_framework_validation.png">claude_framework_validation.png</a>
+│       └── <a href="https://github.com/fractonicmind/TernaryMoralLogic/tree/main/evidence/ai_recognition/kimi_production_deployment.png">kimi_production_deployment.png</a>
+│
+├── <strong>TML-App/</strong> <span class="description">- Web interface</span>
+│   ├── <a href="https://fractonicmind.github.io/TernaryMoralLogic/TML-App/index.html">index.html</a> <span class="updated">[UPDATED]</span> <span class="description">- Interactive demo</span>
+│   └── <a href="https://github.com/fractonicmind/TernaryMoralLogic/blob/main/TML-App/readme.md">readme.md</a> <span class="updated">[UPDATED]</span> <span class="description">- App documentation</span>
+│
+├── <strong>audio/</strong> <span class="description">- Audio resources</span>
+│   ├── <a href="https://github.com/fractonicmind/TernaryMoralLogic/blob/main/audio/TernaryMoralLogic-interview.mp3">TernaryMoralLogic-interview.mp3</a> <span class="description">- Framework interview</span>
+│   └── <a href="https://github.com/fractonicmind/TernaryMoralLogic/blob/main/audio/audio-player.html">audio-player.html</a> <span class="description">- Audio player interface</span>
+│
+├── <strong>memorial/</strong> <span class="description">- Memorial documentation</span>
+│   └── <a href="https://github.com/fractonicmind/TernaryMoralLogic/blob/main/memorial/MEMORIAL_FUND.md">MEMORIAL_FUND.md</a> <span class="description">- Memorial fund information</span>
+│
+├── <strong>implementations/</strong> <span class="description">- Core implementations</span>
+│   ├── <strong>prompt-engineering/</strong>
+│   │   └── basic-tml.py <span class="description">[REMOVED]</span>
+│   └── <strong>python-library/</strong>
+│       ├── <a href="https://github.com/fractonicmind/TernaryMoralLogic/tree/main/implementations/python-library/__init__.py">__init__.py</a> <span class="description">- Package init</span>
+│       ├── <a href="https://github.com/fractonicmind/TernaryMoralLogic/tree/main/implementations/python-library/core.py">core.py</a> <span class="updated">[UPDATED]</span> <span class="description">- Core TML implementation</span>
+│       ├── tml_core.py <span class="needed">[NEEDED]</span> <span class="description">- Three-state engine with Sacred Pause as trigger</span>
+│       ├── sprl_calculator.py <span class="needed">[NEEDED]</span> <span class="description">- SPRL calculation: Σ(wi * fi)</span>
+│       ├── sacred_pause_service.py <span class="needed">[NEEDED]</span> <span class="description">- Logging trigger service</span>
+│       └── moral_tracer.py <span class="needed">[NEEDED]</span> <span class="description">- Moral trace generation</span>
+│
+├── <strong>app/</strong> <span class="needed">[DIRECTORY NEEDED]</span> <span class="description">- FastAPI application</span>
+│   ├── main.py <span class="needed">[NEEDED]</span> <span class="description">- FastAPI entry point</span>
+│   ├── <strong>routers/</strong> <span class="needed">[NEEDED]</span>
+│   │   ├── decisions.py <span class="needed">[NEEDED]</span> <span class="description">- Decision evaluation endpoint</span>
+│   │   ├── audit.py <span class="needed">[NEEDED]</span> <span class="description">- Audit access via lottery</span>
+│   │   ├── investigation.py <span class="needed">[NEEDED]</span> <span class="description">- Post-incident access</span>
+│   │   ├── whistleblower.py <span class="needed">[NEEDED]</span> <span class="description">- Anonymous submission</span>
+│   │   └── governance.py <span class="needed">[NEEDED]</span> <span class="description">- Council oversight API</span>
+│   ├── <strong>services/</strong> <span class="needed">[NEEDED]</span>
+│   │   ├── logging_service.py <span class="needed">[NEEDED]</span> <span class="description">- Immutable logging</span>
+│   │   ├── storage_service.py <span class="needed">[NEEDED]</span> <span class="description">- WORM storage</span>
+│   │   └── cryptographic_service.py <span class="needed">[NEEDED]</span> <span class="description">- HSM/TPM integration</span>
+│   └── <strong>models/</strong> <span class="needed">[NEEDED]</span>
+│       └── schemas.py <span class="needed">[NEEDED]</span> <span class="description">- Pydantic models</span>
+│
+├── <strong>governance/</strong> <span class="needed">[DIRECTORY NEEDED]</span> <span class="description">- Governance structure</span>
+│   ├── council_charter.md <span class="needed">[NEEDED]</span> <span class="description">- 11-institution council with equal voting</span>
+│   ├── audit_protocol.md <span class="needed">[NEEDED]</span> <span class="description">- Independent audit via lottery, escrow funding</span>
+│   └── investigation_access.md <span class="needed">[NEEDED]</span> <span class="description">- Post-incident procedures</span>
+│
+└── <strong>tests/</strong> <span class="description">- Test suite</span>
+    ├── <a href="https://github.com/fractonicmind/TernaryMoralLogic/blob/main/tests/isolated_test.py">isolated_test.py</a> <span class="description">- Isolated tests</span>
+    ├── <a href="https://github.com/fractonicmind/TernaryMoralLogic/blob/main/tests/test_tml_core.py">test_tml_core.py</a> <span class="needed">[NEEDS UPDATE]</span>
+    ├── test_sacred_pause_trigger.py <span class="needed">[NEEDED]</span> <span class="description">- Verify triggers at exact threshold</span>
+    ├── test_prohibition_enforcement.py <span class="needed">[NEEDED]</span> <span class="description">- Confirm blocking works</span>
+    ├── test_vulnerable_protection.py <span class="needed">[NEEDED]</span> <span class="description">- Enhanced protection validation</span>
+    └── <strong>compliance/</strong> <span class="needed">[DIRECTORY NEEDED]</span>
+        ├── test_missing_logs.py <span class="needed">[NEEDED]</span> <span class="description">- Irrebuttable presumption test</span>
+        └── test_thresholds.py <span class="needed">[NEEDED]</span> <span class="description">- Gaming prevention tests</span>
     </div>
+
+    <div class="warning" style="margin-top: 30px;">
+        <h3>Implementation Priority:</h3>
+        <ol>
+            <li><strong>Core Three-State Engine</strong>: implementations/python-library/tml_core.py</li>
+            <li><strong>SPRL Calculator</strong>: implementations/python-library/sprl_calculator.py</li>
+            <li><strong>Sacred Pause Service</strong>: implementations/python-library/sacred_pause_service.py</li>
+            <li><strong>Schema Definitions</strong>: /schemas/*.yaml files</li>
+            <li><strong>Policy Documents</strong>: /policies/*.yaml and *.md files</li>
+            <li><strong>FastAPI Application</strong>: /app/ directory structure</li>
+            <li><strong>Test Suite</strong>: Compliance validation tests</li>
+        </ol>
+    </div>
+
+    <div class="sacred-pause-box" style="margin-top: 20px;">
+        <h3>Key Enforcement Mechanisms:</h3>
+        • <strong>Missing Logs = Irrebuttable Presumption of Guilt</strong><br>
+        • <strong>Threshold Gaming = Criminal Fraud Charges</strong><br>
+        • <strong>False Attestation = 5 Years Imprisonment (18 U.S.C. § 1001)</strong><br>
+        • <strong>Whistleblower Rewards = 15-30% of Penalties</strong><br>
+        • <strong>High-Risk Systems = Sacred Pause ≤0.5, Prohibition ≤0.85</strong>
+    </div>
+
+    <p style="margin-top: 30px; text-align: center; color: #666;">
+        <strong>TML Framework v3.0 - Enforcement Model</strong><br>
+        Last Updated: August 31, 2025<br>
+        Contact: leogouk@gmail.com | support@tml-goukassian.org
+    </p>
 </body>
 </html>
