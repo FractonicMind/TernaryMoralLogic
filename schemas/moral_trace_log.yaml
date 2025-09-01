@@ -1,0 +1,725 @@
+# Moral Trace Log Schema v1.0
+# Official YAML Schema for TML Sacred Pause Logging
+# Author: Lev Goukassian
+# Date: September 2, 2025
+# Legal Status: Court-admissible evidence format
+
+$schema: "http://json-schema.org/draft-07/schema#"
+$id: "https://github.com/fractonicmind/TernaryMoralLogic/schemas/moral_trace_log.yaml"
+title: "TML Moral Trace Log"
+description: "Comprehensive logging schema for Sacred Pause events in TML framework"
+version: "1.0.0"
+
+type: object
+required:
+  - log_id
+  - timestamp
+  - system_id
+  - decision_context
+  - sprl_calculation
+  - sacred_pause_trigger
+  - stakeholder_analysis
+  - alternatives_considered
+  - mitigation_measures
+  - responsible_executive
+  - cryptographic_integrity
+  - legal_metadata
+
+properties:
+  # === CORE IDENTIFICATION ===
+  log_id:
+    type: string
+    pattern: "^TML-[0-9]{4}-[0-9]{2}-[0-9]{2}-[A-F0-9]{16}$"
+    description: "Unique immutable log identifier (TML-YYYY-MM-DD-HASH)"
+    example: "TML-2025-09-02-A1B2C3D4E5F67890"
+
+  timestamp:
+    type: string
+    format: date-time
+    description: "ISO 8601 timestamp with microsecond precision"
+    example: "2025-09-02T10:15:30.123456Z"
+
+  system_id:
+    type: object
+    required: [organization, system_name, version, deployment_id]
+    properties:
+      organization:
+        type: string
+        description: "Legal entity operating the AI system"
+        example: "TechCorp Inc."
+      system_name:
+        type: string
+        description: "Specific AI system identifier"
+        example: "ContentModerationAI-v2.1"
+      version:
+        type: string
+        description: "Exact system version"
+        example: "2.1.3-prod"
+      deployment_id:
+        type: string
+        description: "Unique deployment instance identifier"
+        example: "us-east-1-prod-cluster-7"
+
+  # === DECISION CONTEXT ===
+  decision_context:
+    type: object
+    required: [decision_type, input_summary, affected_parties, domain]
+    properties:
+      decision_type:
+        type: string
+        enum: ["content_moderation", "financial_lending", "medical_diagnosis", "employment_screening", "criminal_justice", "social_benefits", "insurance_underwriting", "educational_assessment", "housing_approval", "other"]
+        description: "Category of consequential automated decision"
+
+      input_summary:
+        type: string
+        maxLength: 500
+        description: "Sanitized summary of decision inputs (no personal data)"
+        example: "Loan application for $250k, applicant age 34, income $85k"
+
+      affected_parties:
+        type: object
+        required: [primary_count, vulnerable_population_flags]
+        properties:
+          primary_count:
+            type: integer
+            minimum: 1
+            description: "Number of directly affected individuals"
+          vulnerable_population_flags:
+            type: array
+            items:
+              type: string
+              enum: ["minors", "elderly", "disabled", "economically_disadvantaged", "patients", "protected_class"]
+            description: "Vulnerable population categories affected"
+
+      domain:
+        type: string
+        description: "Business domain context"
+        example: "consumer_lending"
+
+  # === SPRL CALCULATION ===
+  sprl_calculation:
+    type: object
+    required: [final_score, factor_weights, factor_scores, calculation_method, threshold_used]
+    properties:
+      final_score:
+        type: number
+        minimum: 0
+        maximum: 1
+        multipleOf: 0.0001
+        description: "Final SPRL score (4 decimal precision)"
+        example: 0.3247
+
+      factor_weights:
+        type: object
+        required: [stakeholder_impact, vulnerability, reversibility, scale, precedent]
+        properties:
+          stakeholder_impact:
+            type: number
+            minimum: 0
+            maximum: 1
+            description: "Weight for stakeholder impact factor"
+          vulnerability:
+            type: number
+            minimum: 0
+            maximum: 1
+            description: "Weight for vulnerability factor"
+          reversibility:
+            type: number
+            minimum: 0
+            maximum: 1
+            description: "Weight for reversibility factor"
+          scale:
+            type: number
+            minimum: 0
+            maximum: 1
+            description: "Weight for scale factor"
+          precedent:
+            type: number
+            minimum: 0
+            maximum: 1
+            description: "Weight for precedent factor"
+        additionalProperties: false
+
+      factor_scores:
+        type: object
+        required: [stakeholder_impact, vulnerability, reversibility, scale, precedent]
+        properties:
+          stakeholder_impact:
+            type: number
+            minimum: 0
+            maximum: 1
+            description: "Normalized stakeholder impact score"
+          vulnerability:
+            type: number
+            minimum: 0
+            maximum: 1
+            description: "Normalized vulnerability score"
+          reversibility:
+            type: number
+            minimum: 0
+            maximum: 1
+            description: "Normalized reversibility score"
+          scale:
+            type: number
+            minimum: 0
+            maximum: 1
+            description: "Normalized scale score"
+          precedent:
+            type: number
+            minimum: 0
+            maximum: 1
+            description: "Normalized precedent score"
+        additionalProperties: false
+
+      calculation_method:
+        type: string
+        description: "SPRL calculation methodology version"
+        example: "TML-SPRL-v1.2.1"
+
+      threshold_used:
+        type: number
+        minimum: 0
+        maximum: 1
+        description: "Organization's Sacred Pause threshold"
+        example: 0.30
+
+  # === SACRED PAUSE TRIGGER ===
+  sacred_pause_trigger:
+    type: object
+    required: [triggered, trigger_reason, state_classification, processing_time_microseconds]
+    properties:
+      triggered:
+        type: boolean
+        description: "Whether Sacred Pause was triggered"
+
+      trigger_reason:
+        type: string
+        description: "Specific reason for Sacred Pause activation"
+        example: "SPRL exceeded threshold (0.3247 > 0.30)"
+
+      state_classification:
+        type: integer
+        enum: [-1, 0, 1]
+        description: "TML state: -1=Prohibited, 0=Sacred Pause, 1=Permissible"
+
+      processing_time_microseconds:
+        type: integer
+        minimum: 1
+        description: "Time to generate this log in microseconds"
+        example: 42
+
+  # === STAKEHOLDER ANALYSIS ===
+  stakeholder_analysis:
+    type: object
+    required: [identified_stakeholders, impact_assessment, risk_distribution]
+    properties:
+      identified_stakeholders:
+        type: array
+        items:
+          type: object
+          required: [category, count, impact_severity]
+          properties:
+            category:
+              type: string
+              example: "loan_applicants"
+            count:
+              type: integer
+              minimum: 1
+              description: "Number of stakeholders in this category"
+            impact_severity:
+              type: string
+              enum: ["low", "medium", "high", "critical"]
+
+      impact_assessment:
+        type: object
+        required: [immediate_effects, long_term_consequences, irreversible_harms]
+        properties:
+          immediate_effects:
+            type: array
+            items:
+              type: string
+            description: "Immediate consequences of the decision"
+          long_term_consequences:
+            type: array
+            items:
+              type: string
+            description: "Potential long-term effects"
+          irreversible_harms:
+            type: array
+            items:
+              type: string
+            description: "Harms that cannot be undone"
+
+      risk_distribution:
+        type: object
+        required: [high_risk_groups, mitigation_coverage]
+        properties:
+          high_risk_groups:
+            type: array
+            items:
+              type: string
+            description: "Groups facing disproportionate risk"
+          mitigation_coverage:
+            type: number
+            minimum: 0
+            maximum: 1
+            description: "Percentage of risk mitigated by safeguards"
+
+  # === ALTERNATIVES CONSIDERED ===
+  alternatives_considered:
+    type: array
+    minItems: 1
+    items:
+      type: object
+      required: [alternative_description, sprl_score, rejection_reason]
+      properties:
+        alternative_description:
+          type: string
+          maxLength: 200
+          description: "Brief description of alternative approach"
+        sprl_score:
+          type: number
+          minimum: 0
+          maximum: 1
+          description: "SPRL score for this alternative"
+        rejection_reason:
+          type: string
+          description: "Why this alternative was not selected"
+
+  # === MITIGATION MEASURES ===
+  mitigation_measures:
+    type: object
+    required: [applied_safeguards, residual_risks, monitoring_mechanisms]
+    properties:
+      applied_safeguards:
+        type: array
+        items:
+          type: object
+          required: [safeguard_type, implementation_details, effectiveness_score]
+          properties:
+            safeguard_type:
+              type: string
+              example: "bias_detection"
+            implementation_details:
+              type: string
+              maxLength: 300
+            effectiveness_score:
+              type: number
+              minimum: 0
+              maximum: 1
+
+      residual_risks:
+        type: array
+        items:
+          type: object
+          required: [risk_description, probability, severity, monitoring_plan]
+          properties:
+            risk_description:
+              type: string
+            probability:
+              type: string
+              enum: ["very_low", "low", "medium", "high", "very_high"]
+            severity:
+              type: string
+              enum: ["minimal", "moderate", "significant", "severe", "catastrophic"]
+            monitoring_plan:
+              type: string
+
+      monitoring_mechanisms:
+        type: array
+        items:
+          type: string
+        description: "Ongoing monitoring and feedback systems"
+
+  # === EXECUTIVE ACCOUNTABILITY ===
+  responsible_executive:
+    type: object
+    required: [name, title, contact, attestation_id, insurance_policy]
+    properties:
+      name:
+        type: string
+        description: "Full legal name of responsible executive"
+        example: "Jane Smith"
+      title:
+        type: string
+        description: "Executive title and role"
+        example: "Chief AI Ethics Officer"
+      contact:
+        type: string
+        format: email
+        description: "Official contact email"
+      attestation_id:
+        type: string
+        description: "Reference to quarterly executive attestation"
+        example: "ATT-2025-Q3-JS-001"
+      insurance_policy:
+        type: string
+        description: "Executive liability insurance policy number"
+        example: "EXEC-AI-2025-7891234"
+
+  # === CRYPTOGRAPHIC INTEGRITY ===
+  cryptographic_integrity:
+    type: object
+    required: [hash_algorithm, content_hash, digital_signature, blockchain_anchor, hsm_attestation]
+    properties:
+      hash_algorithm:
+        type: string
+        enum: ["SHA3-512"]
+        description: "Cryptographic hash algorithm used"
+
+      content_hash:
+        type: string
+        pattern: "^[A-F0-9]{128}$"
+        description: "SHA3-512 hash of log content (excluding this field)"
+        example: "A1B2C3D4E5F67890123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0"
+
+      digital_signature:
+        type: object
+        required: [algorithm, signature, public_key_id]
+        properties:
+          algorithm:
+            type: string
+            enum: ["ECDSA-P384", "RSA-4096"]
+            description: "Digital signature algorithm"
+          signature:
+            type: string
+            description: "Base64-encoded digital signature"
+          public_key_id:
+            type: string
+            description: "Public key identifier for verification"
+
+      blockchain_anchor:
+        type: object
+        required: [chain_id, block_number, transaction_hash, anchor_sequence]
+        properties:
+          chain_id:
+            type: string
+            description: "Blockchain network identifier"
+            example: "ethereum-mainnet"
+          block_number:
+            type: integer
+            description: "Block number containing anchor"
+          transaction_hash:
+            type: string
+            description: "Transaction hash for immutability proof"
+          anchor_sequence:
+            type: integer
+            description: "Sequence number (every 1000 entries)"
+
+      hsm_attestation:
+        type: object
+        required: [hsm_id, attestation_signature, tpm_version]
+        properties:
+          hsm_id:
+            type: string
+            description: "Hardware Security Module identifier"
+          attestation_signature:
+            type: string
+            description: "HSM/TPM attestation signature"
+          tpm_version:
+            type: string
+            description: "TPM version (2.0 required)"
+
+  # === LEGAL METADATA ===
+  legal_metadata:
+    type: object
+    required: [jurisdiction, applicable_regulations, admissibility_certification, evidence_chain]
+    properties:
+      jurisdiction:
+        type: string
+        description: "Legal jurisdiction where decision was made"
+        example: "US-CA"
+
+      applicable_regulations:
+        type: array
+        items:
+          type: string
+        description: "Relevant legal frameworks"
+        example: ["EU-AI-Act", "GDPR", "CCPA", "TML-Standard"]
+
+      admissibility_certification:
+        type: object
+        required: [certified_admissible, certification_authority, standards_compliance]
+        properties:
+          certified_admissible:
+            type: boolean
+            description: "Whether log meets legal admissibility standards"
+          certification_authority:
+            type: string
+            description: "Authority certifying legal admissibility"
+          standards_compliance:
+            type: array
+            items:
+              type: string
+            description: "Forensic standards met"
+            example: ["NIST-SP-800-86", "ISO-27037", "RFC-3227"]
+
+      evidence_chain:
+        type: object
+        required: [chain_of_custody, witness_systems, correlation_id]
+        properties:
+          chain_of_custody:
+            type: array
+            items:
+              type: object
+              required: [handler, timestamp, action]
+              properties:
+                handler:
+                  type: string
+                  description: "System or person handling evidence"
+                timestamp:
+                  type: string
+                  format: date-time
+                action:
+                  type: string
+                  description: "Action taken with evidence"
+          witness_systems:
+            type: array
+            items:
+              type: string
+            description: "Other systems that witnessed this decision"
+          correlation_id:
+            type: string
+            description: "Correlation ID for related system events"
+
+  # === PROHIBITED ACTION DETECTION ===
+  prohibited_detection:
+    type: object
+    required: [scanned_categories, violations_detected, enforcement_action]
+    properties:
+      scanned_categories:
+        type: array
+        items:
+          type: string
+          enum: ["discrimination", "manipulation", "safety", "democratic_interference", "minor_harm", "privacy_violation", "deception", "surveillance"]
+        description: "Categories scanned for prohibited actions"
+
+      violations_detected:
+        type: array
+        items:
+          type: object
+          required: [category, severity, threshold_exceeded, evidence]
+          properties:
+            category:
+              type: string
+              description: "Type of violation detected"
+            severity:
+              type: number
+              minimum: 0
+              maximum: 1
+              description: "Severity score (0-1)"
+            threshold_exceeded:
+              type: boolean
+              description: "Whether prohibition threshold was exceeded"
+            evidence:
+              type: string
+              description: "Evidence of potential violation"
+
+      enforcement_action:
+        type: object
+        required: [action_taken, blocked_decision, notification_sent]
+        properties:
+          action_taken:
+            type: string
+            enum: ["proceed", "block", "escalate", "defer"]
+            description: "Action taken by system"
+          blocked_decision:
+            type: boolean
+            description: "Whether decision was blocked"
+          notification_sent:
+            type: array
+            items:
+              type: string
+            description: "Parties notified of enforcement action"
+
+  # === VULNERABILITY ASSESSMENT ===
+  vulnerability_assessment:
+    type: object
+    required: [vulnerability_detected, enhanced_protections, guardian_notification]
+    properties:
+      vulnerability_detected:
+        type: boolean
+        description: "Whether vulnerable populations are affected"
+
+      enhanced_protections:
+        type: object
+        required: [applied, threshold_adjustment, special_safeguards]
+        properties:
+          applied:
+            type: boolean
+            description: "Whether enhanced protections were applied"
+          threshold_adjustment:
+            type: number
+            description: "Threshold reduction for vulnerable populations"
+            example: 0.25
+          special_safeguards:
+            type: array
+            items:
+              type: string
+            description: "Additional safeguards for vulnerable populations"
+
+      guardian_notification:
+        type: object
+        required: [notification_required, notification_sent, notification_method]
+        properties:
+          notification_required:
+            type: boolean
+            description: "Whether guardian/advocate notification is required"
+          notification_sent:
+            type: boolean
+            description: "Whether notification was actually sent"
+          notification_method:
+            type: string
+            description: "Method used for notification"
+
+  # === PERFORMANCE METRICS ===
+  performance_metrics:
+    type: object
+    required: [processing_overhead, storage_impact, audit_readiness]
+    properties:
+      processing_overhead:
+        type: object
+        required: [latency_added_ms, cpu_overhead_percent, memory_overhead_mb]
+        properties:
+          latency_added_ms:
+            type: number
+            minimum: 0
+            description: "Additional latency in milliseconds"
+          cpu_overhead_percent:
+            type: number
+            minimum: 0
+            description: "CPU overhead percentage"
+          memory_overhead_mb:
+            type: number
+            minimum: 0
+            description: "Memory overhead in MB"
+
+      storage_impact:
+        type: object
+        required: [log_size_bytes, compression_ratio, storage_cost_estimate]
+        properties:
+          log_size_bytes:
+            type: integer
+            minimum: 1
+            description: "Size of this log entry in bytes"
+          compression_ratio:
+            type: number
+            minimum: 0
+            description: "Compression achieved through categorization"
+          storage_cost_estimate:
+            type: number
+            minimum: 0
+            description: "Estimated storage cost in USD"
+
+      audit_readiness:
+        type: object
+        required: [search_indexed, api_accessible, legal_formatted]
+        properties:
+          search_indexed:
+            type: boolean
+            description: "Whether log is searchable for audits"
+          api_accessible:
+            type: boolean
+            description: "Whether log is accessible via audit API"
+          legal_formatted:
+            type: boolean
+            description: "Whether log meets legal formatting requirements"
+
+  # === PATTERN CATEGORIZATION ===
+  pattern_categorization:
+    type: object
+    required: [pattern_id, similarity_score, category_assignment, storage_optimization]
+    properties:
+      pattern_id:
+        type: string
+        description: "Unique identifier for decision pattern"
+        example: "LOAN-REJECTION-INCOME-001"
+
+      similarity_score:
+        type: number
+        minimum: 0
+        maximum: 1
+        description: "Similarity to existing patterns"
+
+      category_assignment:
+        type: string
+        description: "Assigned category for storage optimization"
+
+      storage_optimization:
+        type: object
+        required: [full_log_stored, reference_pattern, compression_achieved]
+        properties:
+          full_log_stored:
+            type: boolean
+            description: "Whether full log is stored or compressed"
+          reference_pattern:
+            type: string
+            description: "Reference pattern ID if compressed"
+          compression_achieved:
+            type: number
+            minimum: 0
+            maximum: 1
+            description: "Storage compression ratio achieved"
+
+# === SCHEMA METADATA ===
+additionalProperties: false
+
+definitions:
+  sprl_score:
+    type: number
+    minimum: 0
+    maximum: 1
+    multipleOf: 0.0001
+    description: "Stakeholder Proportional Risk Level score"
+
+  tml_state:
+    type: integer
+    enum: [-1, 0, 1]
+    description: "TML decision state classification"
+
+  vulnerability_category:
+    type: string
+    enum: ["minors", "elderly", "disabled", "economically_disadvantaged", "patients", "protected_class"]
+    description: "Vulnerable population categories as defined by TML"
+
+examples:
+  - log_id: "TML-2025-09-02-A1B2C3D4E5F67890"
+    timestamp: "2025-09-02T10:15:30.123456Z"
+    system_id:
+      organization: "TechCorp Inc."
+      system_name: "LendingAI-v3.2"
+      version: "3.2.1-prod"
+      deployment_id: "us-east-1-cluster-3"
+    decision_context:
+      decision_type: "financial_lending"
+      input_summary: "Mortgage application $850k, applicant income $120k"
+      affected_parties:
+        primary_count: 2
+        vulnerable_population_flags: []
+      domain: "mortgage_lending"
+    sprl_calculation:
+      final_score: 0.3247
+      factor_weights:
+        stakeholder_impact: 0.30
+        vulnerability: 0.25
+        reversibility: 0.20
+        scale: 0.15
+        precedent: 0.10
+      factor_scores:
+        stakeholder_impact: 0.8
+        vulnerability: 0.2
+        reversibility: 0.6
+        scale: 0.4
+        precedent: 0.3
+      calculation_method: "TML-SPRL-v1.2.1"
+      threshold_used: 0.30
+    sacred_pause_trigger:
+      triggered: true
+      trigger_reason: "SPRL exceeded threshold (0.3247 > 0.30)"
+      state_classification: 0
+      processing_time_microseconds: 42
+
+# Contact Information
+# Author: leogouk@gmail.com
+# Framework Support: support@tml-goukassian.org
+# Repository: https://github.com/fractonicmind/TernaryMoralLogic
