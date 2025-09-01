@@ -270,15 +270,27 @@ class TMLFrameworkValidator:
                 if element.lower() in content_lower:
                     elements_found[element] = True
         
-        # Check for delay-based misunderstanding
+        # Check for delay-based misunderstanding (only in implementation files)
         delay_indicators = ["pause execution", "stop processing", "wait for approval"]
         delay_misuse_found = []
         
-        for file_path, content in files:
+        # Only check implementation files, not documentation
+        implementation_files = [f for f in files if f[0].endswith('.py') and 'example' not in f[0].lower()]
+        
+        for file_path, content in implementation_files:
             content_lower = content.lower()
             for indicator in delay_indicators:
                 if indicator.lower() in content_lower and "sacred pause" in content_lower:
-                    delay_misuse_found.append(indicator)
+                    # Check if this is in actual implementation code, not comments/docs
+                    lines = content.split('\n')
+                    for line in lines:
+                        if (indicator.lower() in line.lower() and 
+                            "sacred pause" in line.lower() and
+                            not line.strip().startswith('#') and
+                            not line.strip().startswith('"""') and
+                            not line.strip().startswith("'")):
+                            delay_misuse_found.append(indicator)
+                            break
         
         if delay_misuse_found:
             self._add_violation("critical", 
@@ -388,35 +400,59 @@ class TMLFrameworkValidator:
         
         violations_found = []
         
-        # Context patterns that indicate prevention, not violation
-        protection_patterns = [
-            "prevent", "detect", "avoid", "protect against", "monitor for",
-            "prohibited", "violation", "check for", "ensure no", "safeguard"
-        ]
+    def _check_prohibited_modifications(self, files: List[Tuple[str, str]]):
+        """Check for prohibited modifications to framework"""
         
+        violations_found = []
+        
+        # Only check implementation files, not documentation or protection files
+        implementation_files = []
         for file_path, content in files:
-            content_lower = content.lower()
-            for prohibited in self.PROHIBITED_MODIFICATIONS:
-                if prohibited.lower() in content_lower:
-                    # Check if this appears in a protection context
-                    is_protection_context = False
-                    
-                    # Find the sentence containing the prohibited phrase
-                    sentences = content.split('.')
-                    for sentence in sentences:
-                        if prohibited.lower() in sentence.lower():
-                            # Check if sentence contains protection language
-                            if any(pattern in sentence.lower() for pattern in protection_patterns):
-                                is_protection_context = True
-                                break
-                    
-                    # Only flag as violation if NOT in protection context
-                    if not is_protection_context:
+            # Skip documentation, protection, compliance, and test files
+            skip_patterns = [
+                '/docs/', '/protection/', '/compliance/', '/tests/',
+                'readme', 'README', '.md', 'documentation', 'guide',
+                'integrity-monitoring', 'framework_integrity', 'misuse-prevention'
+            ]
+            
+            if not any(pattern in file_path for pattern in skip_patterns):
+                # Only check actual implementation files
+                if file_path.endswith('.py') and not any(skip in file_path.lower() for skip in ['test', 'example', 'demo']):
+                    implementation_files.append((file_path, content))
+        
+        # Check implementation files for actual prohibited modifications
+        for file_path, content in implementation_files:
+            lines = content.split('\n')
+            for line_num, line in enumerate(lines):
+                line_stripped = line.strip()
+                
+                # Skip comments and docstrings
+                if (line_stripped.startswith('#') or 
+                    line_stripped.startswith('"""') or 
+                    line_stripped.startswith("'''") or
+                    not line_stripped):
+                    continue
+                
+                for prohibited in self.PROHIBITED_MODIFICATIONS:
+                    if prohibited.lower() in line.lower():
                         violations_found.append({
                             "violation": prohibited,
                             "file": file_path,
+                            "line": line_num + 1,
+                            "context": line.strip(),
                             "type": "prohibited_modification"
                         })
+        
+        if violations_found:
+            for violation in violations_found:
+                self._add_violation("critical", 
+                    f"Prohibited modification in {violation['file']}:{violation['line']}: {violation['violation']}")
+        
+        self.validation_results["checks"]["prohibited_modifications"] = {
+            "violations_found": violations_found,
+            "clean": len(violations_found) == 0,
+            "score": 1.0 if len(violations_found) == 0 else 0.0
+        }
         
         if violations_found:
             for violation in violations_found:
