@@ -1,262 +1,253 @@
-# Ternary Moral Logic (TML) Framework - LICENSE FAQ
+# TML Framework - License FAQ
 
-## Legal and Ethical Use Guidelines for AI Transparency Infrastructure
+**Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)  
+**Version**: 2.0.0  
+**Last Updated**: September 1, 2025
 
 ---
 
 ## Core License Questions
 
 ### Q1: What license governs the TML Framework?
-**A:** The TML Framework is released under the **MIT License**, one of the most permissive open-source licenses. This allows free use, modification, and distribution for both commercial and non-commercial AI transparency applications, with minimal restrictions.
+**MIT License** - one of the most permissive open-source licenses. Allows free use, modification, and distribution for commercial and non-commercial applications with minimal restrictions.
 
 ### Q2: Can I use TML in commercial AI systems?
-**A:** **Yes, absolutely.** TML transparency infrastructure is specifically designed for real-world AI accountability implementation. You can integrate universal moral trace logging into commercial AI products, consulting services, and enterprise AI systems without paying royalties or seeking permission.
+**Yes, absolutely.** TML is designed for real-world AI accountability. You can integrate Sacred Pause logging into commercial products, consulting services, and enterprise systems without royalties or permission.
 
-### Q3: What are my obligations when using TML transparency infrastructure?
-**A:** Your only legal obligations under the MIT License are:
-1. **Include the original copyright notice** and license text in any substantial distribution
-2. **Acknowledge Lev Goukassian's authorship** when presenting TML concepts publicly
-3. **The software is provided "AS IS"** without warranty
+### Q3: What are my legal obligations under MIT License?
+Only two requirements:
+1. **Include copyright notice** and license text in distributions
+2. **Acknowledge Lev Goukassian's authorship** when presenting TML concepts
+3. **"AS IS" warranty disclaimer** - no liability from framework creators
 
-Beyond legal requirements, we encourage transparency infrastructure implementers to contribute improvements back to the community.
+### Q4: Can I create proprietary tools based on TML?
+**Yes.** Build proprietary AI audit systems, investigation tools, and accountability platforms using TML. The MIT License permits derivative works you keep proprietary, but original TML core must retain attribution.
 
-### Q4: Can I create proprietary AI transparency tools based on TML?
-**A:** **Yes.** You can build proprietary AI audit systems, investigation tools, and accountability platforms using TML transparency infrastructure. The MIT License explicitly permits creating derivative works that you keep proprietary. However, the original TML core must retain its attribution.
-
-### Q5: Do I need permission to teach TML in academic courses?
-**A:** **No permission needed.** TML is freely available for educational use. We encourage:
-- Integration into AI transparency and accountability curricula
-- Use in computer science and policy courses
-- Student projects implementing moral trace logging
-- Academic research extending transparency infrastructure
+### Q5: Do I need permission for academic use?
+**No permission needed.** TML is freely available for:
+- AI ethics and accountability curricula
+- Computer science and policy courses  
+- Student research projects
+- Academic research extending the framework
 
 ---
 
-## Commercial and Enterprise Use
+## Commercial Use
 
-### Q6: Can consulting firms charge for TML transparency implementation services?
-**A:** **Yes, absolutely.** Consulting firms can:
-- Charge for TML integration into client AI systems
-- Develop proprietary audit analysis methodologies
-- Create commercial training programs for transparency infrastructure
-- Offer paid investigation capability services
-The framework itself remains free; you're charging for your expertise and services.
+### Q6: Can consulting firms charge for TML implementation services?
+**Yes.** Consulting firms can:
+- Charge for TML integration services
+- Develop proprietary audit methodologies
+- Create commercial training programs
+- Offer paid investigation services
 
-### Q7: Can I trademark an AI product name that uses TML transparency?
-**A:** **Yes, with clarification:** You can trademark your product/service names (e.g., "TransparencyAI Pro™" powered by TML). However, you cannot trademark "TML," "Ternary Moral Logic," or "Sacred Pause" themselves, as these must remain available to the community.
+The framework is free; you charge for expertise and services.
 
-### Q8: What about patent applications for TML-based transparency innovations?
-**A:** You may patent **specific novel implementations** or **technical improvements** you develop using TML infrastructure. However:
-- You cannot patent the core TML transparency concepts or universal logging mechanisms
-- Patents should focus on your unique technical contributions to audit capability
-- Consider the ethical implications of restricting AI accountability innovations
+### Q7: Can I trademark products using TML?
+**Yes, with limitations:** You can trademark your product names (e.g., "AccountabilityAI Pro™ powered by TML"). Cannot trademark "TML," "Ternary Moral Logic," or "Sacred Pause" - these remain community terms.
 
-### Q9: Can government agencies implement TML in public AI systems?
-**A:** **Yes, encouraged.** Government use is explicitly permitted and encouraged for:
-- Public sector AI accountability frameworks
-- Regulatory investigation systems
-- Democratic oversight infrastructure for AI governance
-- National AI transparency standards development
-No special government license is required.
+### Q8: What about patents for TML-based innovations?
+You may patent **specific novel implementations** or **technical improvements** you develop. However:
+- Cannot patent core TML concepts or Sacred Pause mechanism
+- Patents should focus on your unique technical contributions
+- Consider ethical implications of restricting AI accountability innovations
 
-### Q10: Are there any geographic restrictions on TML transparency infrastructure?
-**A:** **No.** TML is available worldwide without geographic restrictions. The transparency framework is designed to support global AI accountability implementation, respecting jurisdictional variations in oversight while maintaining core transparency principles.
+### Q9: Can government agencies use TML?
+**Yes, encouraged.** Government use permitted for:
+- Public sector AI accountability
+- Regulatory investigation systems  
+- Democratic oversight infrastructure
+- National AI transparency standards
+
+No special license required.
+
+### Q10: Are there geographic restrictions?
+**No.** TML available worldwide without restrictions. Designed to support global AI accountability while respecting jurisdictional variations.
 
 ---
 
-## Ethical Obligations and Infrastructure Protection
+## Ethical Use and Framework Protection
 
-### Q11: Can I modify TML transparency requirements in my implementation?
-**A:** **Legally yes, ethically discouraged.** While the MIT License allows modification, reducing transparency infrastructure contradicts TML's fundamental purpose. Such modifications:
+### Q11: Can I modify TML requirements in my implementation?
+**Legally yes, ethically discouraged.** MIT License allows modification, but reducing accountability contradicts TML's purpose. Such modifications:
 - Undermine AI accountability objectives
-- May create liability risks in AI deployment where transparency is expected
-- Violate the democratic oversight intent of the framework
-- Could prevent investigation when AI decisions cause harm
+- Create liability risks where transparency expected
+- Violate democratic oversight intent
+- Prevent investigation when AI causes harm
 
-### Q12: What constitutes misuse of the TML transparency infrastructure?
-**A:** Misuse includes:
-- **Implementing selective logging** while claiming universal TML transparency
-- **Using TML branding for "ethics washing"** without substantive accountability
-- **Circumventing audit trail generation** while maintaining TML compliance claims
-- **Preventing investigation access** when incidents require evidence analysis
-While legally permitted under MIT License, such uses violate the framework's transparency foundation.
+### Q12: What constitutes TML misuse?
+Misuse includes:
+- **Selective logging** while claiming universal TML compliance
+- **"Ethics washing"** using TML branding without accountability
+- **Circumventing audit trails** while maintaining compliance claims
+- **Preventing investigation access** when incidents require evidence
 
-### Q13: Can I use TML to justify inadequate AI transparency?
-**A:** **Absolutely not.** TML is designed to **mandate comprehensive AI transparency** through universal logging. Using it to rationalize selective disclosure or limited audit capability is:
-- A fundamental misunderstanding of the transparency infrastructure
-- Potentially legally liable depending on jurisdiction and regulatory requirements
-- A violation of professional AI ethics and accountability standards
+While legally permitted, such uses violate framework foundations.
 
-### Q14: What if someone uses TML branding for non-transparent AI applications?
-**A:** The TML community response includes:
-1. **Public documentation** of transparency circumvention cases
-2. **Community advisory warnings** about inadequate implementations  
-3. **Technical verification tools** for authentic TML transparency
-4. **Collaboration with AI accountability organizations**
-Report suspected transparency violations to: transparency-violations@tml-goukassian.org
+### Q13: Can I use TML to justify inadequate transparency?
+**Absolutely not.** TML mandates comprehensive transparency through universal logging. Using it to rationalize limited disclosure is:
+- Fundamental misunderstanding of the framework
+- Potentially legally liable under enforcement mechanisms
+- Violation of professional AI ethics standards
 
-### Q15: Are there any implementation requirements for authentic TML transparency?
-**A:** While not legally required, authentic TML implementation should follow transparency standards:
-- Universal moral trace logging for 100% of AI interactions
-- 40-microsecond maximum processing time guarantee
+### Q14: What if someone misuses TML branding?
+Community response includes:
+- Public documentation of circumvention cases
+- Community warnings about inadequate implementations
+- Technical verification tools for authentic TML
+- Collaboration with AI accountability organizations
+
+Report violations to TML Governance Council.
+
+### Q15: What defines authentic TML implementation?
+Authentic implementation follows enforcement standards:
+- Universal moral trace logging for AI interactions
+- Sacred Pause triggered at organizational thresholds  
 - Complete audit trail accessibility for investigation
-- Consortium institution coordination for democratic oversight
+- Council institution coordination for oversight
+
+Reference: `/MANDATORY.md` and `/docs/IMPLEMENTATION_GUIDE.md`
 
 ---
 
-## Attribution and Academic Use
+## Attribution and Research
 
-### Q16: How should I cite TML in academic papers and research?
-**A:** Use this citation format:
+### Q16: How should I cite TML in academic papers?
 ```
 Goukassian, L. (2025). Ternary Moral Logic Framework: 
-Universal AI Transparency Infrastructure with Post-Audit Investigation. 
-Version 2.0.0-MANDATORY. https://tml-goukassian.org
+Enforcement Infrastructure for AI Accountability. 
+Version 2.0.0. https://github.com/fractonicmind/TernaryMoralLogic
 ORCID: 0009-0006-5966-1243
 ```
 
-### Q17: Can I publish research extending TML transparency without permission?
-**A:** **Yes, encouraged!** Academic freedom is fundamental. You can:
-- Publish papers analyzing or extending TML transparency infrastructure
-- Develop alternative audit trail methodologies
-- Propose theoretical improvements to investigation protocols
-- Conduct empirical validation studies of accountability mechanisms
-We only ask for proper attribution and constructive engagement with transparency principles.
+### Q17: Can I publish research extending TML without permission?
+**Yes, encouraged.** Academic freedom is fundamental:
+- Publish papers analyzing or extending TML
+- Develop alternative accountability methodologies  
+- Propose improvements to investigation protocols
+- Conduct empirical validation studies
 
-### Q18: What about using TML in competitive research grants for AI transparency?
-**A:** **Fully permitted.** You can:
-- Include TML transparency infrastructure in grant proposals
-- Claim novel investigation applications as your contribution
-- Compete for funding with TML-based accountability projects
-- Lead multi-institutional transparency research initiatives
-No permission or collaboration required, though we welcome partnership opportunities.
+Proper attribution and constructive engagement appreciated.
 
-### Q19: Can I create a modified transparency framework with different audit requirements?
-**A:** **Yes.** The MIT License allows creating modified versions for:
-- Different regulatory compliance requirements
-- Domain-specific audit trail specifications  
+### Q18: Can I use TML in competitive research grants?
+**Fully permitted.** You can:
+- Include TML in grant proposals
+- Claim novel applications as your contribution
+- Compete for funding with TML-based projects
+- Lead multi-institutional research initiatives
+
+### Q19: Can I create modified accountability frameworks?
+**Yes.** MIT License allows creating modified versions for:
+- Different regulatory requirements
+- Domain-specific specifications
 - Alternative investigation methodologies
-- Experimental accountability approaches
-Please use a different name to avoid confusion with canonical TML transparency infrastructure.
+- Experimental approaches
 
-### Q20: Do I need to share my TML transparency research data?
-**A:** **Not required but encouraged.** While you own your research data, sharing advances transparency methodology:
-- Investigation effectiveness validation strengthens TML
-- Implementation challenges prevent repeated failures
-- Audit trail analysis improves transparency infrastructure
-- Collective learning benefits all AI accountability systems
+Use different name to avoid confusion with canonical TML.
+
+### Q20: Must I share TML research data?
+**Not required but encouraged.** Sharing advances accountability methodology:
+- Investigation effectiveness validation
+- Implementation challenge solutions
+- Audit trail analysis improvements
+- Collective learning benefits
 
 ---
 
-## Financial and Sustainability Questions
+## Financial and Sustainability
 
-### Q21: Will TML transparency infrastructure ever become paid or restricted?
-**A:** **Never.** The TML Framework has irreversible commitments to remain free:
-1. **MIT License is irrevocable** for all released versions
-2. **Succession Charter** mandates perpetual open access through consortium governance
-3. **Memorial Fund** ensures sustainable free distribution and development
-4. **Institutional partners** committed to democratic transparency preservation
+### Q21: Will TML ever become paid or restricted?
+**Never.** Irreversible commitments to remain free:
+- MIT License is irrevocable for all versions
+- Governance council mandates perpetual open access
+- Memorial fund ensures sustainable free distribution
+- Institutional partners committed to preservation
 
-### Q22: Can I donate to support TML transparency development?
-**A:** **Yes, through the Memorial Fund.** Donations support:
-- Continued transparency infrastructure development
-- Investigation capability research and enhancement
-- Democratic oversight mechanism advancement
-- Global accessibility and adoption initiatives
-Contact: support@tml-goukassian.org for donation coordination
+### Q22: Can I donate to support TML development?
+**Yes.** Donations support:
+- Continued framework development
+- Investigation capability research
+- Democratic oversight mechanisms
+- Global accessibility initiatives
 
-### Q23: What if a company claims exclusive TML transparency rights?
-**A:** **They cannot.** Any such claims are fraudulent. TML transparency rights are:
+Contact via TML Governance Council institutions.
+
+### Q23: What if someone claims exclusive TML rights?
+**They cannot.** Any such claims are fraudulent:
 - Permanently public via MIT License
-- Protected by consortium institutional authority
-- Defended by academic community coordination
-- Documented in immutable audit records
-Report false claims to: legal@tml-goukassian.org
+- Protected by council governance
+- Defended by academic community
+- Documented in audit records
 
-### Q24: Can I create a commercial TML transparency certification program?
-**A:** **Yes, with transparency.** You can offer paid certification, but:
-- Cannot claim to be the "official" or "only" certification authority
-- Must acknowledge other certification providers and standards
-- Should contribute to community transparency standards development
-- Must maintain ethical training quality and investigation capability standards
+### Q24: Can I create commercial TML certification?
+**Yes, with transparency:** You can offer paid certification but:
+- Cannot claim "official" or "only" authority
+- Must acknowledge other providers
+- Should contribute to community standards
+- Must maintain quality and investigation standards
 
-### Q25: Is there a TML trademark or logo I can use for transparency infrastructure?
-**A:** The TML name and Sacred Pause concept are intentionally unregistered to remain free for all. You may:
-- Create your own logos for TML transparency implementations
-- Use "TML-Compatible" or "Universal Moral Logging" descriptions
-- Design certification badges for your accountability programs
-- Develop visual representations of transparency infrastructure
+### Q25: Can I use TML logos or trademarks?
+TML name and Sacred Pause intentionally unregistered to remain free:
+- Create your own logos for implementations
+- Use "TML-Compatible" descriptions
+- Design certification badges
+- Develop visual representations
 
 ---
 
-## Future Development and Compatibility
+## Future Development
 
-### Q26: Will future TML versions maintain transparency infrastructure compatibility?
-**A:** **Yes, transparency compatibility guaranteed.** The Succession Charter ensures:
-- Universal logging mechanisms remain stable and compatible
-- 40-microsecond processing guarantees preserved across versions
-- Investigation capability maintains consistent evidence accessibility
-- Democratic oversight protocols preserve community accountability
+### Q26: Will future versions maintain compatibility?
+**Yes, compatibility guaranteed** through governance:
+- Universal logging mechanisms remain stable
+- Investigation capability maintains evidence accessibility
+- Democratic oversight protocols preserve accountability
+- Council governance prevents breaking changes
 
-### Q27: Can I contribute code to the official TML transparency repository?
-**A:** **Yes, contributions welcome!** Submit pull requests for:
-- Processing time optimization and efficiency improvements
-- Enhanced audit trail generation and investigation tools
-- Investigation coordination and consortium governance enhancements
-- Documentation and accessibility improvements
-All contributions must maintain MIT License compatibility and transparency principles.
+### Q27: Can I contribute to official TML repository?
+**Yes, contributions welcome** for:
+- Processing optimization improvements
+- Enhanced investigation tools
+- Governance coordination enhancements  
+- Documentation improvements
 
-### Q28: What about regulatory compliance with TML transparency infrastructure?
-**A:** TML is designed to **facilitate regulatory compliance** through evidence generation:
-- EU AI Act alignment through comprehensive audit capability
-- Democratic oversight coordination for regulatory investigation
-- Complete decision documentation for legal proceedings
-- Evidence accessibility for regulatory authorities and investigation
-However, implementers remain responsible for specific regulatory compliance and legal obligations.
+All contributions must maintain MIT License and accountability principles.
 
-### Q29: Can TML transparency integrate with other AI accountability frameworks?
-**A:** **Yes, TML enhances existing accountability.** It complements:
-- Regulatory compliance frameworks through evidence generation
-- Corporate AI governance through audit capability
+### Q28: How does TML relate to regulatory compliance?
+TML **facilitates compliance** through evidence generation:
+- EU AI Act alignment via comprehensive audit capability
+- GDPR Article 22 explanation through moral traces
+- Sector regulations through investigation documentation
+- Legal proceedings through court-admissible evidence
+
+Implementers responsible for specific regulatory obligations.
+
+### Q29: Can TML integrate with other accountability frameworks?
+**Yes, TML enhances existing accountability:**
+- Regulatory frameworks through evidence generation
+- Corporate governance through audit capability
 - Academic research through investigation methodology
-- International standards through consortium institutional coordination
-Universal transparency infrastructure supports any accountability approach.
+- International standards through council coordination
 
-### Q30: What are my rights regarding future TML transparency developments?
-**A:** **Your rights are fully protected.** The MIT License guarantees:
-- **Irrevocable access** to all current and future transparency infrastructure
-- **Perpetual usage rights** that cannot be withdrawn or restricted
-- **No future obligations** beyond current attribution requirements
-- **Consortium protection** through institutional governance preventing commercial capture
-The Memorial Fund and Succession Charter exist to defend these permanent rights.
+### Q30: What are my perpetual rights with TML?
+**Fully protected rights:**
+- Irrevocable access to current and future versions
+- Perpetual usage rights that cannot be withdrawn
+- No future obligations beyond attribution
+- Council protection against commercial capture
 
 ---
 
-## Support and Contact
+## Contact
 
-**For licensing questions:**
-- Legal: legal@tml-goukassian.org
-- Community Forum: https://community.tml-goukassian.org
-- GitHub Issues: https://github.com/FractonicMind/TernaryMoralLogic
-
-**For transparency violations or misuse reports:**
-- Violations: transparency-violations@tml-goukassian.org
-- Response time: Within 48 hours
-
-**For academic collaboration and research:**
-- Academic: academic@tml-goukassian.org
-- Consortium Coordination: consortium@tml-goukassian.org
+**Creator**: leogouk@gmail.com  
+**Governance**: Via TML Council institutions  
+**Repository**: https://github.com/fractonicmind/TernaryMoralLogic
 
 ---
 
-## Final Legal Notice
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-**This FAQ provides guidance but does not constitute legal advice. Consult qualified legal counsel for specific situations.**
+**Legal Notice**: THE SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY. This FAQ provides guidance, not legal advice. Consult qualified counsel for specific situations.
 
 ---
 
----
-
-*"Sacred Pause creates evidence, not delays - building trust through transparency."*
+*TML remains permanently free to ensure AI accountability serves humanity, not commercial interests.*
