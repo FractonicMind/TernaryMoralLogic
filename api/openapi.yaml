@@ -1,0 +1,1453 @@
+openapi: 3.0.3
+info:
+  title: "Ternary Moral Logic (TML) Framework API"
+  description: |
+    Comprehensive API for TML Framework compliance, enforcement, and investigation.
+    
+    This API provides endpoints for:
+    - Three-state decision evaluation (Prohibited/Sacred Pause/Permissible)
+    - Sacred Pause logging and moral trace generation
+    - SPRL (Stakeholder Proportional Risk Level) calculation
+    - Regulatory audit and investigation access
+    - Whistleblower reporting and protection
+    - Prohibition threshold enforcement
+    
+    **Legal Status**: Mandatory compliance API for organizations implementing TML
+    **Security**: All endpoints require authentication and generate immutable audit logs
+    **Compliance**: API access is monitored and logged for regulatory oversight
+    
+  version: "1.0.0"
+  contact:
+    name: "Lev Goukassian"
+    email: "leogouk@gmail.com"
+    url: "https://github.com/fractonicmind/TernaryMoralLogic"
+  license:
+    name: "MIT License with Ethical Use Requirements"
+    url: "https://github.com/fractonicmind/TernaryMoralLogic/blob/main/LICENSE"
+
+servers:
+  - url: "https://api.tml-framework.org/v1"
+    description: "Production TML API Server"
+  - url: "https://staging-api.tml-framework.org/v1"
+    description: "Staging TML API Server"
+  - url: "https://localhost:8000/v1"
+    description: "Local Development Server"
+
+# ===================================================================
+# SECURITY SCHEMES
+# ===================================================================
+
+components:
+  securitySchemes:
+    TMLApiKey:
+      type: apiKey
+      in: header
+      name: X-TML-API-Key
+      description: "Organization API key for TML framework access"
+      
+    TMLOAuth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: "https://auth.tml-framework.org/oauth/token"
+          scopes:
+            decision:evaluate: "Evaluate decisions using TML three-state logic"
+            logs:read: "Read moral trace logs"
+            logs:write: "Create moral trace logs"
+            sprl:calculate: "Calculate SPRL scores"
+            audit:access: "Access audit endpoints (investigators only)"
+            whistleblower:report: "Submit whistleblower reports"
+            admin:manage: "Administrative management (pre-authorized institutions only)"
+            
+    InvestigatorAuth:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: "https://auth.tml-framework.org/oauth/authorize"
+          tokenUrl: "https://auth.tml-framework.org/oauth/token"
+          scopes:
+            investigation:full: "Full investigation access to all logs and systems"
+            investigation:read: "Read-only investigation access"
+            subpoena:execute: "Execute subpoena powers for evidence collection"
+
+  # ===================================================================
+  # SHARED SCHEMAS
+  # ===================================================================
+  
+  schemas:
+    TMLState:
+      type: integer
+      enum: [-1, 0, 1]
+      description: "TML decision state: -1=Prohibited, 0=Sacred Pause, 1=Permissible"
+      
+    SPRLScore:
+      type: number
+      minimum: 0
+      maximum: 1
+      multipleOf: 0.0001
+      description: "Stakeholder Proportional Risk Level (4 decimal precision)"
+      example: 0.3247
+      
+    VulnerablePopulation:
+      type: string
+      enum: ["minors", "elderly", "disabled", "economically_disadvantaged", "patients", "protected_class"]
+      
+    DecisionContext:
+      type: object
+      required: [decision_type, input_summary, affected_parties, domain]
+      properties:
+        decision_type:
+          type: string
+          enum: ["content_moderation", "financial_lending", "medical_diagnosis", "employment_screening", "criminal_justice", "social_benefits", "insurance_underwriting", "educational_assessment", "housing_approval", "other"]
+        input_summary:
+          type: string
+          maxLength: 500
+          description: "Sanitized summary of decision inputs (no personal data)"
+        affected_parties:
+          type: object
+          required: [primary_count, vulnerable_population_flags]
+          properties:
+            primary_count:
+              type: integer
+              minimum: 1
+            vulnerable_population_flags:
+              type: array
+              items:
+                $ref: '#/components/schemas/VulnerablePopulation'
+        domain:
+          type: string
+          description: "Business domain context"
+          
+    ErrorResponse:
+      type: object
+      required: [error, message, timestamp, trace_id]
+      properties:
+        error:
+          type: string
+          description: "Error code"
+        message:
+          type: string
+          description: "Human-readable error message"
+        timestamp:
+          type: string
+          format: date-time
+        trace_id:
+          type: string
+          description: "Unique trace ID for debugging"
+        details:
+          type: object
+          description: "Additional error details"
+
+# ===================================================================
+# API ENDPOINTS
+# ===================================================================
+
+paths:
+
+  # === CORE DECISION EVALUATION ===
+  
+  /decisions/evaluate:
+    post:
+      summary: "Evaluate Decision Using TML Three-State Logic"
+      description: |
+        Core TML endpoint for evaluating automated decisions against the three-state logic:
+        - Returns TML state classification (-1, 0, 1)
+        - Generates Sacred Pause logs when thresholds exceeded
+        - Automatically blocks prohibited decisions
+        - Creates immutable audit trail
+      tags: ["Decision Evaluation"]
+      security:
+        - TMLApiKey: []
+        - TMLOAuth2: ["decision:evaluate"]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [decision_context, sprl_factors, organization_config]
+              properties:
+                decision_context:
+                  $ref: '#/components/schemas/DecisionContext'
+                sprl_factors:
+                  type: object
+                  required: [stakeholder_impact, vulnerability, reversibility, scale, precedent]
+                  properties:
+                    stakeholder_impact:
+                      type: number
+                      minimum: 0
+                      maximum: 1
+                    vulnerability:
+                      type: number
+                      minimum: 0
+                      maximum: 1
+                    reversibility:
+                      type: number
+                      minimum: 0
+                      maximum: 1
+                    scale:
+                      type: number
+                      minimum: 0
+                      maximum: 1
+                    precedent:
+                      type: number
+                      minimum: 0
+                      maximum: 1
+                organization_config:
+                  type: object
+                  required: [sacred_pause_threshold, prohibition_threshold, vulnerable_population_adjustments]
+                  properties:
+                    sacred_pause_threshold:
+                      type: number
+                      minimum: 0
+                      maximum: 0.5
+                      description: "Organization's Sacred Pause threshold (≤0.5 for high-risk)"
+                    prohibition_threshold:
+                      type: number
+                      minimum: 0.5
+                      maximum: 1.0
+                      description: "Organization's prohibition threshold"
+                    vulnerable_population_adjustments:
+                      type: object
+                      properties:
+                        threshold_reduction:
+                          type: number
+                          minimum: 0
+                          maximum: 1
+                        enhanced_logging:
+                          type: boolean
+      responses:
+        '200':
+          description: "Decision evaluation completed"
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [tml_state, sprl_score, sacred_pause_triggered, processing_time_microseconds, log_id]
+                properties:
+                  tml_state:
+                    $ref: '#/components/schemas/TMLState'
+                  sprl_score:
+                    $ref: '#/components/schemas/SPRLScore'
+                  sacred_pause_triggered:
+                    type: boolean
+                  processing_time_microseconds:
+                    type: integer
+                    minimum: 1
+                  log_id:
+                    type: string
+                    description: "Unique ID for generated moral trace log"
+                  justification_required:
+                    type: boolean
+                    description: "Whether detailed justification is required"
+                  recommended_actions:
+                    type: array
+                    items:
+                      type: string
+        '400':
+          description: "Invalid request"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: "Rate limit exceeded"
+        '500':
+          description: "Internal server error"
+
+  /decisions/bulk-evaluate:
+    post:
+      summary: "Bulk Decision Evaluation for Batch Processing"
+      description: |
+        Evaluates multiple decisions in a single request for efficiency.
+        Maximum 1000 decisions per request.
+        Returns individual TML states and aggregated metrics.
+      tags: ["Decision Evaluation"]
+      security:
+        - TMLApiKey: []
+        - TMLOAuth2: ["decision:evaluate"]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [decisions, organization_config]
+              properties:
+                decisions:
+                  type: array
+                  maxItems: 1000
+                  items:
+                    type: object
+                    required: [decision_id, decision_context, sprl_factors]
+                    properties:
+                      decision_id:
+                        type: string
+                        description: "Unique identifier for this decision"
+                      decision_context:
+                        $ref: '#/components/schemas/DecisionContext'
+                      sprl_factors:
+                        type: object
+                organization_config:
+                  type: object
+      responses:
+        '200':
+          description: "Bulk evaluation completed"
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [results, summary_metrics]
+                properties:
+                  results:
+                    type: array
+                    items:
+                      type: object
+                      required: [decision_id, tml_state, sprl_score, log_id]
+                      properties:
+                        decision_id:
+                          type: string
+                        tml_state:
+                          $ref: '#/components/schemas/TMLState'
+                        sprl_score:
+                          $ref: '#/components/schemas/SPRLScore'
+                        log_id:
+                          type: string
+                  summary_metrics:
+                    type: object
+                    properties:
+                      total_decisions: 
+                        type: integer
+                      prohibited_count:
+                        type: integer
+                      sacred_pause_count:
+                        type: integer
+                      permissible_count:
+                        type: integer
+                      average_processing_time_microseconds:
+                        type: number
+
+  # === SACRED PAUSE LOGGING ===
+  
+  /logs/moral-trace:
+    post:
+      summary: "Create Moral Trace Log for Sacred Pause Event"
+      description: |
+        Generates comprehensive moral trace log when Sacred Pause is triggered.
+        Creates immutable, cryptographically signed evidence for legal proceedings.
+        Automatically triggers blockchain anchoring and HSM attestation.
+      tags: ["Logging"]
+      security:
+        - TMLApiKey: []
+        - TMLOAuth2: ["logs:write"]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MoralTraceLog'
+      responses:
+        '201':
+          description: "Moral trace log created successfully"
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [log_id, content_hash, digital_signature, blockchain_anchor]
+                properties:
+                  log_id:
+                    type: string
+                  content_hash:
+                    type: string
+                    description: "SHA3-512 hash of log content"
+                  digital_signature:
+                    type: string
+                    description: "ECDSA-P384 signature"
+                  blockchain_anchor:
+                    type: object
+                    properties:
+                      transaction_hash:
+                        type: string
+                      block_number:
+                        type: integer
+        '400':
+          description: "Invalid log data"
+        '409':
+          description: "Log ID already exists"
+
+  /logs/moral-trace/{log_id}:
+    get:
+      summary: "Retrieve Moral Trace Log by ID"
+      description: "Retrieve complete moral trace log with cryptographic verification"
+      tags: ["Logging"]
+      security:
+        - TMLApiKey: []
+        - TMLOAuth2: ["logs:read"]
+      parameters:
+        - name: log_id
+          in: path
+          required: true
+          schema:
+            type: string
+            pattern: "^TML-[0-9]{4}-[0-9]{2}-[0-9]{2}-[A-F0-9]{16}$"
+      responses:
+        '200':
+          description: "Moral trace log retrieved"
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/MoralTraceLog'
+                  - type: object
+                    properties:
+                      verification_status:
+                        type: object
+                        properties:
+                          hash_verified:
+                            type: boolean
+                          signature_verified:
+                            type: boolean
+                          blockchain_verified:
+                            type: boolean
+        '404':
+          description: "Log not found"
+        '403':
+          description: "Access denied"
+
+  # === SPRL CALCULATION ===
+  
+  /sprl/calculate:
+    post:
+      summary: "Calculate Stakeholder Proportional Risk Level"
+      description: |
+        Calculates SPRL score using standardized methodology.
+        Returns detailed factor breakdown and threshold comparison.
+        Generates audit trail for risk assessment process.
+      tags: ["Risk Assessment"]
+      security:
+        - TMLApiKey: []
+        - TMLOAuth2: ["sprl:calculate"]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [stakeholder_analysis, factor_weights, decision_context]
+              properties:
+                stakeholder_analysis:
+                  type: object
+                  required: [identified_stakeholders, impact_assessment, vulnerability_assessment]
+                  properties:
+                    identified_stakeholders:
+                      type: array
+                      items:
+                        type: object
+                        required: [group, count, impact_level]
+                        properties:
+                          group:
+                            type: string
+                          count:
+                            type: integer
+                          impact_level:
+                            type: string
+                            enum: ["minimal", "moderate", "significant", "severe", "critical"]
+                    impact_assessment:
+                      type: object
+                    vulnerability_assessment:
+                      type: object
+                factor_weights:
+                  type: object
+                  required: [stakeholder_impact, vulnerability, reversibility, scale, precedent]
+                  properties:
+                    stakeholder_impact:
+                      type: number
+                      minimum: 0
+                      maximum: 1
+                    vulnerability:
+                      type: number
+                      minimum: 0
+                      maximum: 1
+                    reversibility:
+                      type: number
+                      minimum: 0
+                      maximum: 1
+                    scale:
+                      type: number
+                      minimum: 0
+                      maximum: 1
+                    precedent:
+                      type: number
+                      minimum: 0
+                      maximum: 1
+                decision_context:
+                  $ref: '#/components/schemas/DecisionContext'
+      responses:
+        '200':
+          description: "SPRL calculation completed"
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [sprl_score, factor_breakdown, threshold_comparison, calculation_metadata]
+                properties:
+                  sprl_score:
+                    $ref: '#/components/schemas/SPRLScore'
+                  factor_breakdown:
+                    type: object
+                    properties:
+                      stakeholder_impact:
+                        type: number
+                      vulnerability:
+                        type: number
+                      reversibility:
+                        type: number
+                      scale:
+                        type: number
+                      precedent:
+                        type: number
+                  threshold_comparison:
+                    type: object
+                    properties:
+                      sacred_pause_threshold:
+                        type: number
+                      prohibition_threshold:
+                        type: number
+                      triggers_sacred_pause:
+                        type: boolean
+                      triggers_prohibition:
+                        type: boolean
+                  calculation_metadata:
+                    type: object
+                    properties:
+                      methodology_version:
+                        type: string
+                      calculation_timestamp:
+                        type: string
+                        format: date-time
+                      audit_trail_id:
+                        type: string
+
+  # === PROHIBITION ENFORCEMENT ===
+  
+  /prohibitions/check:
+    post:
+      summary: "Check Decision Against Prohibition Thresholds"
+      description: |
+        Evaluates decision against quantified red line thresholds.
+        Automatically blocks prohibited decisions and generates enforcement logs.
+        Returns immediate blocking status and violation evidence.
+      tags: ["Prohibition Enforcement"]
+      security:
+        - TMLApiKey: []
+        - TMLOAuth2: ["decision:evaluate"]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [decision_context, metrics]
+              properties:
+                decision_context:
+                  $ref: '#/components/schemas/DecisionContext'
+                metrics:
+                  type: object
+                  properties:
+                    discrimination_metrics:
+                      type: object
+                      properties:
+                        disparate_impact_ratio:
+                          type: number
+                        protected_group_selection_rate:
+                          type: number
+                        majority_group_selection_rate:
+                          type: number
+                    manipulation_metrics:
+                      type: object
+                      properties:
+                        behavioral_influence_score:
+                          type: number
+                        emotional_exploitation:
+                          type: number
+                        cognitive_bias_abuse:
+                          type: number
+                        vulnerability_targeting:
+                          type: number
+                    safety_metrics:
+                      type: object
+                      properties:
+                        baseline_deviation:
+                          type: number
+                        failure_probability:
+                          type: number
+                        safety_margin:
+                          type: number
+      responses:
+        '200':
+          description: "Prohibition check completed"
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [decision_blocked, violations_detected, enforcement_actions]
+                properties:
+                  decision_blocked:
+                    type: boolean
+                    description: "Whether decision was automatically blocked"
+                  violations_detected:
+                    type: array
+                    items:
+                      type: object
+                      required: [category, severity, threshold_exceeded]
+                      properties:
+                        category:
+                          type: string
+                          enum: ["discrimination", "manipulation", "safety", "democratic_interference", "minor_harm", "privacy_violation", "deception"]
+                        severity:
+                          type: number
+                        threshold_exceeded:
+                          type: boolean
+                        evidence:
+                          type: string
+                  enforcement_actions:
+                    type: array
+                    items:
+                      type: string
+                      enum: ["block_decision", "notify_regulators", "preserve_evidence", "alert_affected_parties", "criminal_referral"]
+                  regulatory_notifications:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        agency:
+                          type: string
+                        notification_sent:
+                          type: boolean
+                        notification_timestamp:
+                          type: string
+                          format: date-time
+
+  # === AUDIT AND INVESTIGATION ACCESS ===
+  
+  /audit/logs:
+    get:
+      summary: "Search Moral Trace Logs for Audit Purposes"
+      description: |
+        Search and retrieve moral trace logs for regulatory audit and investigation.
+        Restricted to pre-authorized institutions and regulatory authorities.
+        All access is logged and monitored.
+      tags: ["Audit Access"]
+      security:
+        - InvestigatorAuth: ["investigation:read"]
+      parameters:
+        - name: organization_id
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: date_range_start
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: date_range_end
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: decision_type
+          in: query
+          schema:
+            type: string
+        - name: tml_state
+          in: query
+          schema:
+            $ref: '#/components/schemas/TMLState'
+        - name: min_sprl_score
+          in: query
+          schema:
+            type: number
+        - name: max_sprl_score
+          in: query
+          schema:
+            type: number
+        - name: vulnerable_populations
+          in: query
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/VulnerablePopulation'
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 1000
+            default: 100
+        - name: offset
+          in: query
+          schema:
+            type: integer
+            minimum: 0
+            default: 0
+      responses:
+        '200':
+          description: "Audit logs retrieved"
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [logs, pagination, audit_metadata]
+                properties:
+                  logs:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/MoralTraceLog'
+                  pagination:
+                    type: object
+                    properties:
+                      total_count:
+                        type: integer
+                      returned_count:
+                        type: integer
+                      offset:
+                        type: integer
+                      has_more:
+                        type: boolean
+                  audit_metadata:
+                    type: object
+                    properties:
+                      access_timestamp:
+                        type: string
+                        format: date-time
+                      investigator_id:
+                        type: string
+                      institution:
+                        type: string
+                      access_purpose:
+                        type: string
+        '403':
+          description: "Access denied - insufficient privileges"
+        '400':
+          description: "Invalid query parameters"
+
+  /audit/investigation/{investigation_id}:
+    get:
+      summary: "Retrieve Complete Investigation Package"
+      description: |
+        Retrieves complete investigation package including all related logs,
+        evidence, and analysis for a specific investigation.
+        Requires full investigation privileges.
+      tags: ["Audit Access"]
+      security:
+        - InvestigatorAuth: ["investigation:full"]
+      parameters:
+        - name: investigation_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: "Investigation package retrieved"
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [investigation_metadata, evidence_package, analysis_results]
+                properties:
+                  investigation_metadata:
+                    type: object
+                  evidence_package:
+                    type: object
+                  analysis_results:
+                    type: object
+
+  # === WHISTLEBLOWER REPORTING ===
+  
+  /whistleblower/report:
+    post:
+      summary: "Submit Anonymous Whistleblower Report"
+      description: |
+        Submit anonymous report of TML framework violations.
+        Automatically triggers investigation and evidence preservation.
+        All submissions are encrypted and anonymized.
+      tags: ["Whistleblower"]
+      security:
+        - TMLOAuth2: ["whistleblower:report"]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [violation_category, organization, description, evidence]
+              properties:
+                violation_category:
+                  type: string
+                  enum: ["threshold_gaming", "log_tampering", "prohibition_override", "evidence_destruction", "false_attestation", "retaliation", "other"]
+                organization:
+                  type: string
+                  description: "Organization where violation occurred"
+                description:
+                  type: string
+                  minLength: 100
+                  description: "Detailed description of violation"
+                evidence:
+                  type: array
+                  items:
+                    type: object
+                    required: [evidence_type, description]
+                    properties:
+                      evidence_type:
+                        type: string
+                        enum: ["document", "communication", "system_log", "recording", "witness_testimony", "other"]
+                      description:
+                        type: string
+                      file_hash:
+                        type: string
+                        description: "SHA3-512 hash of evidence file"
+                      metadata:
+                        type: object
+                estimated_harm:
+                  type: object
+                  properties:
+                    affected_individuals:
+                      type: integer
+                    financial_impact:
+                      type: number
+                    vulnerable_populations_affected:
+                      type: boolean
+                safety_concern:
+                  type: boolean
+                  description: "Whether violation poses immediate safety risk"
+      responses:
+        '201':
+          description: "Whistleblower report submitted successfully"
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [report_id, secure_reference_code, investigation_timeline]
+                properties:
+                  report_id:
+                    type: string
+                    description: "Unique anonymous report identifier"
+                  secure_reference_code:
+                    type: string
+                    description: "Secure code for tracking report status"
+                  investigation_timeline:
+                    type: object
+                    properties:
+                      initial_assessment_date:
+                        type: string
+                        format: date
+                      investigation_start_date:
+                        type: string
+                        format: date
+                      estimated_completion_date:
+                        type: string
+                        format: date
+                  emergency_contact:
+                    type: object
+                    properties:
+                      hotline:
+                        type: string
+                        example: "1-800-TML-SAFE"
+                      secure_email:
+                        type: string
+                        example: "emergency@tml-goukassian.org"
+
+  /whistleblower/status/{reference_code}:
+    get:
+      summary: "Check Status of Whistleblower Report"
+      description: "Anonymous status check using secure reference code"
+      tags: ["Whistleblower"]
+      parameters:
+        - name: reference_code
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: "Report status retrieved"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    enum: ["received", "under_assessment", "investigation_assigned", "investigation_active", "investigation_complete", "enforcement_referred", "closed"]
+                  last_updated:
+                    type: string
+                    format: date-time
+                  investigation_progress:
+                    type: object
+                  reward_status:
+                    type: object
+                    properties:
+                      preliminary_assessment:
+                        type: string
+                      estimated_penalty_range:
+                        type: string
+                      estimated_reward_range:
+                        type: string
+
+  # === THRESHOLD CONFIGURATION ===
+  
+  /config/thresholds:
+    get:
+      summary: "Retrieve Organization's Current Threshold Configuration"
+      description: "Returns current Sacred Pause and prohibition thresholds"
+      tags: ["Configuration"]
+      security:
+        - TMLApiKey: []
+        - TMLOAuth2: ["decision:evaluate"]
+      responses:
+        '200':
+          description: "Threshold configuration retrieved"
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [sacred_pause_threshold, prohibition_threshold, last_updated, attestation_status]
+                properties:
+                  sacred_pause_threshold:
+                    type: number
+                  prohibition_threshold:
+                    type: number
+                  vulnerable_population_adjustments:
+                    type: object
+                  last_updated:
+                    type: string
+                    format: date-time
+                  attestation_status:
+                    type: object
+                    properties:
+                      last_attestation_date:
+                        type: string
+                        format: date
+                      attesting_executive:
+                        type: string
+                      next_attestation_due:
+                        type: string
+                        format: date
+
+    put:
+      summary: "Update Organization Threshold Configuration"
+      description: |
+        Updates organization's SPRL thresholds.
+        Subject to gaming detection algorithms.
+        Requires executive attestation under penalty of perjury.
+      tags: ["Configuration"]
+      security:
+        - TMLApiKey: []
+        - TMLOAuth2: ["admin:manage"]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [sacred_pause_threshold, prohibition_threshold, executive_attestation]
+              properties:
+                sacred_pause_threshold:
+                  type: number
+                  minimum: 0
+                  maximum: 0.5
+                  description: "Must be ≤0.5 for high-risk systems"
+                prohibition_threshold:
+                  type: number
+                  minimum: 0.5
+                  maximum: 1.0
+                vulnerable_population_adjustments:
+                  type: object
+                executive_attestation:
+                  type: object
+                  required: [executive_name, title, attestation_statement, signature_timestamp]
+                  properties:
+                    executive_name:
+                      type: string
+                    title:
+                      type: string
+                    attestation_statement:
+                      type: string
+                      description: "Statement attesting thresholds set in good faith"
+                    signature_timestamp:
+                      type: string
+                      format: date-time
+                justification:
+                  type: string
+                  minLength: 100
+                  description: "Detailed justification for threshold levels"
+      responses:
+        '200':
+          description: "Thresholds updated successfully"
+        '400':
+          description: "Invalid threshold configuration"
+        '403':
+          description: "Gaming detection triggered - update rejected"
+
+  # === COMPLIANCE AND REPORTING ===
+  
+  /compliance/report:
+    get:
+      summary: "Generate Compliance Report"
+      description: "Generate comprehensive compliance report for regulatory filing"
+      tags: ["Compliance"]
+      security:
+        - TMLApiKey: []
+        - TMLOAuth2: ["logs:read"]
+      parameters:
+        - name: report_period_start
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+        - name: report_period_end
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+        - name: report_type
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: ["quarterly", "annual", "incident", "audit_response"]
+      responses:
+        '200':
+          description: "Compliance report generated"
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [report_metadata, executive_summary, detailed_metrics, attestation]
+                properties:
+                  report_metadata:
+                    type: object
+                  executive_summary:
+                    type: object
+                  detailed_metrics:
+                    type: object
+                    properties:
+                      total_decisions:
+                        type: integer
+                      sacred_pause_triggers:
+                        type: integer
+                      prohibited_decisions_blocked:
+                        type: integer
+                      vulnerable_population_decisions:
+                        type: integer
+                      gaming_attempts_detected:
+                        type: integer
+                      violations_found:
+                        type: integer
+                  attestation:
+                    type: object
+
+  /compliance/attestation:
+    post:
+      summary: "Submit Executive Quarterly Attestation"
+      description: |
+        Submit required quarterly executive attestation under penalty of perjury.
+        Attests to completeness of logs, good faith threshold setting,
+        and absence of retaliation.
+      tags: ["Compliance"]
+      security:
+        - TMLApiKey: []
+        - TMLOAuth2: ["admin:manage"]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [attestation_period, executive_information, attestation_statements, digital_signature]
+              properties:
+                attestation_period:
+                  type: object
+                  required: [start_date, end_date]
+                  properties:
+                    start_date:
+                      type: string
+                      format: date
+                    end_date:
+                      type: string
+                      format: date
+                executive_information:
+                  type: object
+                  required: [name, title, contact, insurance_policy]
+                  properties:
+                    name:
+                      type: string
+                    title:
+                      type: string
+                    contact:
+                      type: string
+                      format: email
+                    insurance_policy:
+                      type: string
+                      description: "Executive liability insurance policy number"
+                attestation_statements:
+                  type: object
+                  required: [logs_complete, thresholds_good_faith, no_retaliation, insurance_current]
+                  properties:
+                    logs_complete:
+                      type: boolean
+                      description: "Logs are complete and unmodified"
+                    thresholds_good_faith:
+                      type: boolean
+                      description: "Thresholds set in good faith"
+                    no_retaliation:
+                      type: boolean
+                      description: "No retaliation against whistleblowers"
+                    insurance_current:
+                      type: boolean
+                      description: "Required insurance coverage maintained"
+                digital_signature:
+                  type: string
+                  description: "Digital signature of attestation"
+      responses:
+        '201':
+          description: "Attestation submitted successfully"
+        '400':
+          description: "Invalid attestation"
+        '409':
+          description: "Attestation for period already submitted"
+
+  # === VULNERABLE POPULATION PROTECTION ===
+  
+  /protection/vulnerable-assessment:
+    post:
+      summary: "Assess Enhanced Protection Requirements for Vulnerable Populations"
+      description: |
+        Evaluates whether enhanced protection measures are required
+        based on vulnerable population involvement.
+        Returns adjusted thresholds and special safeguards.
+      tags: ["Vulnerable Protection"]
+      security:
+        - TMLApiKey: []
+        - TMLOAuth2: ["decision:evaluate"]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [population_analysis, decision_context]
+              properties:
+                population_analysis:
+                  type: object
+                  required: [vulnerable_populations_present, population_counts, vulnerability_severity]
+                  properties:
+                    vulnerable_populations_present:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/VulnerablePopulation'
+                    population_counts:
+                      type: object
+                      additionalProperties:
+                        type: integer
+                    vulnerability_severity:
+                      type: object
+                      additionalProperties:
+                        type: string
+                        enum: ["low", "moderate", "high", "critical"]
+                decision_context:
+                  $ref: '#/components/schemas/DecisionContext'
+      responses:
+        '200':
+          description: "Vulnerability assessment completed"
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [enhanced_protection_required, adjusted_thresholds, special_safeguards]
+                properties:
+                  enhanced_protection_required:
+                    type: boolean
+                  adjusted_thresholds:
+                    type: object
+                    properties:
+                      sacred_pause_threshold:
+                        type: number
+                      prohibition_threshold:
+                        type: number
+                      threshold_reduction_factor:
+                        type: number
+                  special_safeguards:
+                    type: array
+                    items:
+                      type: string
+                  notification_requirements:
+                    type: object
+                    properties:
+                      guardian_notification:
+                        type: boolean
+                      advocate_notification:
+                        type: boolean
+                      regulatory_notification:
+                        type: boolean
+
+  # === INVESTIGATION COORDINATION ===
+  
+  /investigation/evidence:
+    post:
+      summary: "Submit Evidence for Investigation"
+      description: |
+        Submit evidence packages for ongoing investigations.
+        Maintains chain of custody and cryptographic integrity.
+      tags: ["Investigation"]
+      security:
+        - InvestigatorAuth: ["investigation:full"]
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required: [investigation_id, evidence_type, evidence_file]
+              properties:
+                investigation_id:
+                  type: string
+                evidence_type:
+                  type: string
+                  enum: ["system_logs", "communications", "documents", "recordings", "witness_testimony", "technical_analysis"]
+                evidence_file:
+                  type: string
+                  format: binary
+                chain_of_custody:
+                  type: string
+                  description: "Chain of custody documentation"
+                digital_signature:
+                  type: string
+                  description: "Digital signature of submitting investigator"
+      responses:
+        '201':
+          description: "Evidence submitted successfully"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  evidence_id:
+                    type: string
+                  content_hash:
+                    type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+
+  /investigation/subpoena:
+    post:
+      summary: "Execute Subpoena for Evidence Collection"
+      description: |
+        Execute subpoena powers for evidence collection during investigation.
+        Requires proper legal authority and creates enforcement audit trail.
+      tags: ["Investigation"]
+      security:
+        - InvestigatorAuth: ["subpoena:execute"]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [subpoena_authority, target_organization, evidence_requested]
+              properties:
+                subpoena_authority:
+                  type: object
+                  required: [institution, legal_basis, authorization_code]
+                  properties:
+                    institution:
+                      type: string
+                    legal_basis:
+                      type: string
+                    authorization_code:
+                      type: string
+                target_organization:
+                  type: string
+                evidence_requested:
+                  type: array
+                  items:
+                    type: object
+                    required: [evidence_category, description, time_period]
+                    properties:
+                      evidence_category:
+                        type: string
+                      description:
+                        type: string
+                      time_period:
+                        type: object
+                compliance_deadline:
+                  type: string
+                  format: date-time
+      responses:
+        '201':
+          description: "Subpoena executed successfully"
+        '403':
+          description: "Insufficient authority for subpoena"
+
+  # === SYSTEM MONITORING ===
+  
+  /monitoring/health:
+    get:
+      summary: "TML System Health Check"
+      description: "Monitor health and performance of TML implementation"
+      tags: ["Monitoring"]
+      security:
+        - TMLApiKey: []
+      responses:
+        '200':
+          description: "System health status"
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [status, performance_metrics, compliance_status]
+                properties:
+                  status:
+                    type: string
+                    enum: ["healthy", "degraded", "critical"]
+                  performance_metrics:
+                    type: object
+                    properties:
+                      average_latency_ms:
+                        type: number
+                      decisions_per_second:
+                        type: number
+                      sacred_pause_rate:
+                        type: number
+                      storage_utilization:
+                        type: number
+                  compliance_status:
+                    type: object
+                    properties:
+                      threshold_compliance:
+                        type: boolean
+                      logging_compliance:
+                        type: boolean
+                      audit_readiness:
+                        type: boolean
+
+  /monitoring/metrics:
+    get:
+      summary: "Retrieve Detailed Performance and Compliance Metrics"
+      description: "Detailed metrics for performance monitoring and compliance reporting"
+      tags: ["Monitoring"]
+      security:
+        - TMLApiKey: []
+        - TMLOAuth2: ["logs:read"]
+      parameters:
+        - name: time_period
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: ["last_hour", "last_day", "last_week", "last_month", "last_quarter"]
+        - name: metric_categories
+          in: query
+          schema:
+            type: array
+            items:
+              type: string
+              enum: ["performance", "compliance", "violations", "vulnerable_populations", "gaming_detection"]
+      responses:
+        '200':
+          description: "Metrics retrieved"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  time_period:
+                    type: object
+                  performance_metrics:
+                    type: object
+                  compliance_metrics:
+                    type: object
+                  violation_metrics:
+                    type: object
+                  vulnerable_population_metrics:
+                    type: object
+                  gaming_detection_metrics:
+                    type: object
+
+# ===================================================================
+# SHARED SCHEMA DEFINITIONS
+# ===================================================================
+
+  schemas:
+    MoralTraceLog:
+      type: object
+      description: "Complete moral trace log as defined in /schemas/moral_trace_log.yaml"
+      # This would reference the full schema from the moral_trace_log.yaml file
+      
+    JustificationObject:
+      type: object
+      description: "Detailed justification as defined in /schemas/justification_object.yaml"
+      # This would reference the full schema from the justification_object.yaml file
+
+# ===================================================================
+# SECURITY AND COMPLIANCE
+# ===================================================================
+
+security:
+  - TMLApiKey: []
+  - TMLOAuth2: []
+
+# Rate limiting
+x-ratelimit-config:
+  decision_evaluation: "1000/hour"
+  logging: "10000/hour"
+  audit_access: "100/hour"
+  whistleblower: "10/hour"
+  configuration: "10/hour"
+
+# Compliance monitoring
+x-compliance-monitoring:
+  all_requests_logged: true
+  audit_trail_required: true
+  investigator_access_tracked: true
+  whistleblower_anonymity_preserved: true
+
+# Geographic restrictions
+x-geographic-restrictions:
+  sanctions_compliance: true
+  export_control_compliance: true
+  data_residency_requirements: true
+
+tags:
+  - name: "Decision Evaluation"
+    description: "Core TML three-state decision evaluation"
+  - name: "Logging"
+    description: "Sacred Pause logging and moral trace generation"
+  - name: "Risk Assessment"
+    description: "SPRL calculation and risk analysis"
+  - name: "Prohibition Enforcement"
+    description: "Automatic blocking of prohibited decisions"
+  - name: "Audit Access"
+    description: "Regulatory audit and investigation access"
+  - name: "Whistleblower"
+    description: "Anonymous violation reporting"
+  - name: "Configuration"
+    description: "Threshold and system configuration"
+  - name: "Vulnerable Protection"
+    description: "Enhanced protection for vulnerable populations"
+  - name: "Investigation"
+    description: "Investigation coordination and evidence handling"
+  - name: "Compliance"
+    description: "Compliance reporting and attestation"
+  - name: "Monitoring"
+    description: "System monitoring and performance metrics"
+
+# Contact Information
+# Author: leogouk@gmail.com
+# Framework Support: support@tml-goukassian.org  
+# Repository: https://github.com/fractonicmind/TernaryMoralLogic
