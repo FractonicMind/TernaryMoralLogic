@@ -1,8 +1,5 @@
 # Ternary Moral Logic (TML): Enforcement Framework for AI Accountability
 
-**Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)  
-**Contact**: leogouk@gmail.com  
-**Version**: 2.0.0  
 
 > *"The Sacred Pause between question and answer—this is where wisdom begins, for humans and machines alike."*
 
@@ -416,7 +413,9 @@ TML represents a fundamental shift from voluntary AI ethics to enforceable accou
 **🛡️ Validation**: [`python compliance/framework_integrity.py .`](compliance/framework_integrity.py)
 
 ---
-
+**Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)  
+**Contact**: leogouk@gmail.com  
+**Version**: 2.0.0  
 **TML: Where AI accountability meets enforceable law**
 
 *Framework ensuring AI serves humanity with transparency, criminal liability for violations, and justice for victims of AI negligence.*
