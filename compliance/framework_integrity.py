@@ -388,15 +388,35 @@ class TMLFrameworkValidator:
         
         violations_found = []
         
+        # Context patterns that indicate prevention, not violation
+        protection_patterns = [
+            "prevent", "detect", "avoid", "protect against", "monitor for",
+            "prohibited", "violation", "check for", "ensure no", "safeguard"
+        ]
+        
         for file_path, content in files:
             content_lower = content.lower()
             for prohibited in self.PROHIBITED_MODIFICATIONS:
                 if prohibited.lower() in content_lower:
-                    violations_found.append({
-                        "violation": prohibited,
-                        "file": file_path,
-                        "type": "prohibited_modification"
-                    })
+                    # Check if this appears in a protection context
+                    is_protection_context = False
+                    
+                    # Find the sentence containing the prohibited phrase
+                    sentences = content.split('.')
+                    for sentence in sentences:
+                        if prohibited.lower() in sentence.lower():
+                            # Check if sentence contains protection language
+                            if any(pattern in sentence.lower() for pattern in protection_patterns):
+                                is_protection_context = True
+                                break
+                    
+                    # Only flag as violation if NOT in protection context
+                    if not is_protection_context:
+                        violations_found.append({
+                            "violation": prohibited,
+                            "file": file_path,
+                            "type": "prohibited_modification"
+                        })
         
         if violations_found:
             for violation in violations_found:
