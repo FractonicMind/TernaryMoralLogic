@@ -377,10 +377,9 @@ TML directly implements proposed requirements:
 
 ## Contact for Regulatory Coordination
 
-**Creator**: leogouk@gmail.com  
-**Council Governance**: Via 11-institution governance structure  
-**Repository**: https://github.com/fractonicmind/TernaryMoralLogic  
-**Implementation Guide**: `/docs/IMPLEMENTATION_GUIDE.md`
+**Created by**: Lev Goukassian (ORCID: 0009-0006-5966-1243)  
+**Contact**: leogouk@gmail.com  
+**Repository**: https://github.com/fractonicmind/TernaryMoralLogic
 
 ---
 
