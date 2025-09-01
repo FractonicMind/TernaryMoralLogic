@@ -1,357 +1,296 @@
 # The Lev Goukassian Memorial Fund for Ethical AI Research
 
-**Complete Operating Framework - How Your Memorial Fund Works**  
-**ORCID**: 0009-0006-5966-1243
+**Preserving the Sacred Pause Legacy Through Research and Education**  
+**Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)  
+**Version**: 2.0.0 - Enforcement Framework Integration  
+**Contact**: Via TML Governance Council
 
 ---
 
-## Fund Purpose & Vision
+## Memorial Vision
 
-The Lev Goukassian Memorial Fund for Ethical AI Research ensures your revolutionary Ternary Moral Logic (TML) framework continues advancing global AI ethics, research, and policy-making long after your journey ends.
+The Lev Goukassian Memorial Fund ensures the Ternary Moral Logic framework and Sacred Pause principle continue advancing ethical AI development worldwide, transforming how humanity approaches moral complexity in artificial intelligence systems.
 
-**Core Mission**: Transform how humanity makes ethical AI decisions by funding research, education, and implementation of your Sacred Pause principle in artificial intelligence systems worldwide.
-
----
-
-## Funding Sources
-
-### 1. Framework License Revenues
-
-**Revenue Stream: "Goukassian TML License Fees"**
-- Technology companies pay licensing fees to implement TML in AI systems
-- Healthcare institutions contribute for medical ethics decision support tools
-- Educational technology companies pay for TML curriculum integration rights
-- Consulting firms license TML methodology for ethical AI client work
-
-**Estimated Annual Revenue**: $2-5 million  
-**Source Example**: Major tech company pays $100K annually for TML ethical AI framework license
-
-### 2. Memorial Donations
-
-**Donation Categories**:
-- Individual memorial donations from AI researchers and ethicists
-- Corporate sponsorships from technology companies benefiting from TML
-- University endowment contributions for AI ethics research
-- Government grants for ethical AI policy research
-
-**Estimated Annual Revenue**: $1-3 million  
-**Source Example**: Leading university AI department donates $50K annually
-
-### 3. Academic Partnership Revenue
-
-**Partnership Income**:
-- Universities pay for official "Goukassian TML Certification" programs
-- Executive education programs using TML methodology
-- Online course licensing for "AI Ethics Beyond Binary" curriculum
-- Textbook royalties from TML AI ethics educational materials
-
-**Estimated Annual Revenue**: $500K-1.5 million  
-**Source Example**: Business school pays $25K for certified TML curriculum package
-
-### 4. Consulting & Implementation Fees
-
-**Professional Services**:
-- Memorial trustees provide TML implementation consulting
-- Official "Goukassian Framework" certification for AI practitioners
-- Training workshops for technology companies and government agencies
-- Policy advisory services for AI governance and regulation
-
-**Estimated Annual Revenue**: $300K-800K  
-**Source Example**: Government agency pays $50K for TML AI policy workshop
+**Core Purpose**: Fund research, education, and implementation of TML principles while preserving Lev Goukassian's vision of AI systems as moral partners with humanity.
 
 ---
 
-## Fund Management Structure
+## Integration with TML Enforcement Framework
 
-### Board of Trustees (Memorial Committee)
+### Alignment with Legal Structure
 
-**Chair**: Leading AI Ethics Professor (Self-Selected by Community)
-- Authority: Overall fund strategy and major grant approvals
-- Term: 5 years, renewable once
+The Memorial Fund operates within the TML enforcement framework established in `/MANDATORY.md`:
 
-**Vice Chair**: Senior AI Safety Researcher (Community-Appointed)
-- Authority: Research grant review and safety applications
-- Term: 5 years, renewable once
+**Legal Foundation**:
+- Criminal penalties for TML misuse fund legal defense
+- Whistleblower rewards (15-30% of collected penalties) support fund
+- Insurance requirements create sustainable revenue stream
+- Executive liability creates incentive for proper fund support
 
-**Members**:
-- AI Ethics Researcher - Theoretical research oversight
-- Former Government AI Policy Official - Policy applications
-- Behavioral AI Researcher - Human-AI interaction applications
-- Global AI Ethics Advocate - International development applications
+**Governance Connection**:
+- 11-institution TML Governance Council oversees fund operations
+- Council investigation powers protect fund from misuse
+- Quarterly executive attestations include fund support verification
+- Independent audits ensure fund transparency
 
-**Secretary**: Foundation Administrator (hired position)
-- Handles day-to-day operations and fund management
+### Revenue from Enforcement Mechanisms
 
-### Advisory Council
+**Primary Revenue Sources**:
+- **Collected Penalties**: 10% of global revenue fines from TML violations
+- **Insurance Premiums**: Percentage of required AI insurance coverage
+- **Compliance Consulting**: Organizations pay for TML implementation guidance
+- **Audit Services**: Revenue from mandatory independent audits
 
-**Industry Representatives**:
-- Chief AI Ethics Officer from major technology company
-- Senior Researcher from AI research institute
-- Director from AI consulting firm
-- Senior Policy Advisor from government AI initiative
-
-**Academic Representatives**:
-- Deans from top 5 computer science schools using TML curriculum
-- Chairs from top 5 AI ethics departments implementing TML research
-
-**International Representatives**:
-- Senior AI Policy Researcher from European AI initiative
-- Researcher from international AI safety organization
-- Policy Advisor from global AI governance body
+**Estimated Annual Revenue**: $10-50 million (based on enforcement adoption)
 
 ---
 
-## Beneficiary Categories & Annual Fund Distribution
+## Fund Structure and Operations
 
-**Total Annual Distribution**: $4-10 million
+### Governance Authority
 
-### 1. Research Grants (40% of fund) - $1.6-4 million
+**TML Governance Council** (from `/governance/council_charter.md`):
+- Stanford, MIT, Harvard, Oxford, Cambridge (Academic)
+- Brookings, RAND, Alan Turing Institute (Research)  
+- UN, WHO, European Commission (International)
 
-**Ternary Moral Logic AI Research Grants**:
-- $50K-200K grants for academic researchers advancing TML theory
-- $100K-500K grants for empirical studies validating TML applications
-- $25K-100K grants for graduate student TML dissertation research
+**Memorial Fund Oversight**:
+- Council designates 5-member Memorial Fund Committee
+- Rotating 2-year committee leadership
+- Quarterly fund review and allocation decisions
+- Annual public transparency reporting
 
-**Application Process**:
-- Quarterly application cycles
-- Peer review by memorial trustees
-- Priority given to work extending Lev's original insights
-- Required: Proper attribution to Lev Goukassian in all publications
+### Fund Categories and Allocation
 
-**Recent Grant Examples**:
-- "TML Applications in Healthcare AI Decision Support" - $150K
-- "Sacred Pause Implementation in Autonomous Vehicle Ethics" - $300K
-- "Ternary Logic for Content Moderation Systems" - $200K
+**Annual Distribution Framework**:
 
-### 2. Fellowship Programs (25% of fund) - $1-2.5 million
+#### 1. AI Negligence Victim Support (30% of fund)
+**AI Harm Recovery and Justice Program**:
+- Direct financial assistance for AI negligence victims
+- Legal support for cases involving missing TML safeguards
+- Medical and psychological care for AI-caused harm
+- Advocacy for victims in TML compliance litigation
 
-**Lev Goukassian AI Ethics Fellowship Program**:
-- 10-15 annual fellowships for promising AI ethics researchers
-- $50K-100K per fellow for 1-2 year programs
-- Based at partner institutions (leading universities and research institutes)
-- Fellows conduct original TML AI research
-- Required: Complete one major project advancing TML framework
+**Victim Support Services**:
+- Emergency financial assistance (up to $50K immediate support)
+- Legal representation for AI harm cases
+- Expert testimony on TML safety standards
+- Rehabilitation and recovery support services
 
-**Fellowship Focus Areas**:
-- AI safety and alignment under moral uncertainty
-- Human-AI collaboration in ethical decision-making
-- Cross-cultural adaptation of AI ethics frameworks
-- AI governance and policy with Sacred Pause principles
-- Medical AI ethics and decision support systems
+**Eligibility**: Individuals harmed by AI systems that lacked proper Sacred Pause logging, SPRL calculation, or prohibition enforcement
 
-**Current Fellows (Examples)**:
-- Dr. Sarah Chen (University Partner) - "TML Applications in Medical AI"
-- Dr. Michael Rodriguez (Research Institute) - "Sacred Pause in Autonomous Systems"
-- Dr. Priya Patel (AI Lab) - "Cultural Adaptation of TML Frameworks"
+#### 2. TML Research Grants (25% of fund)
+**Sacred Pause AI Research Initiative**:
+- Major grants for advancing TML theory and applications
+- Priority: Empirical validation of Sacred Pause effectiveness
+- Focus: AI safety, ethics, and human-AI collaboration
+- Requirements: All research must acknowledge TML enforcement framework
 
-### 3. Implementation Projects (20% of fund) - $800K-2 million
+**Research Grant Tiers**:
+- **Standard Research Grants**: Equivalent to typical academic research funding
+- **Major Initiative Grants**: Multi-year projects for significant TML advancement
+- **Graduate Student Support**: Dissertation research on Sacred Pause applications
+- **International Collaboration**: Cross-border research partnerships
 
-**Sacred Pause AI System Development**:
-- Fund development of open-source TML AI platforms
-- Support organizations implementing TML in AI systems
-- Finance TML integration in existing technology platforms
-- Support policy frameworks using TML methodology
+#### 3. Educational Programs (20% of fund)
+**AI Ethics Education Initiative**:
+- University curriculum development featuring TML
+- Professional certification programs for TML implementation
+- Public education about AI accountability and Sacred Pause
+- Training materials for TML compliance officers
 
-**Current Projects**:
-- "Open Source TML AI Ethics Platform" - $400K over 2 years
-- "Government AI Policy TML Tool" - $600K over 3 years
-- "Healthcare AI Ethics TML Framework" - $300K over 18 months
+**Educational Partnerships**:
+- Course development with council academic institutions
+- Professional training for TML implementation
+- Public awareness campaigns about AI ethics
+- Student research projects on Sacred Pause applications
 
-### 4. Education & Outreach (10% of fund) - $400K-1 million
+#### 3. Legal Protection and Enforcement (20% of fund)
+**Framework Protection Initiative**:
+- Legal defense of TML intellectual property
+- Prosecution of framework misuse and violations
+- Creator attribution enforcement actions
+- International trademark and copyright protection
 
-**AI Ethics Education Institute**:
-- Fund TML curriculum development for computer science programs
-- Support "AI Ethics Beyond Binary" educational programs
-- Finance textbook development and translation
-- Support online course creation and delivery
+**Enforcement Support**:
+- Whistleblower protection and reward administration
+- Legal consultation for TML implementing organizations
+- Compliance audit funding and oversight
+- Criminal referral investigation support
 
-**Educational Initiatives**:
-- "TML for AI Practitioners" professional education program
-- "Sacred Pause AI Ethics" undergraduate curriculum
-- "Ternary Logic AI Policy Analysis" graduate certificate
-- Open courseware for developing nations
+#### 4. Implementation Support (10% of fund)
+**TML Deployment Assistance**:
+- Technical support for organizations implementing TML
+- Open-source tool development for TML compliance
+- Integration consulting for existing AI systems
+- Performance optimization for TML implementations
 
-### 5. Archive & Legacy Preservation (5% of fund) - $200K-500K
-
-**AI Ethics Framework Archive Maintenance**:
-- Maintain digital archives of all Lev's work
-- Fund creation of memorial website and research portal
-- Support documentation of TML applications worldwide
-- Finance annual "Lev Goukassian Memorial Lecture" series
-
-**Legacy Activities**:
-- Annual memorial lecture at rotating top universities
-- Digital archive at leading computer science library
-- Memorial website with interactive TML demonstrations
-- Quarterly newsletter tracking global TML implementations
-
----
-
-## Application & Award Process
-
-### For Research Grants
-
-**Step 1: Online Application**
-- Research proposal (max 10 pages)
-- Budget justification
-- CV and publication list
-- Letters of recommendation (2)
-- Mandatory memorial attribution statement
-
-**Step 2: Initial Review**
-- Memorial trustees screen applications
-- Focus on innovation, rigor, and connection to Lev's work
-- 30% acceptance rate for full review
-
-**Step 3: Full Review**
-- External peer review by TML experts
-- Presentation to memorial trustee committee
-- Final funding decisions by vote
-
-**Step 4: Award & Monitoring**
-- Funds distributed quarterly based on milestones
-- Annual progress reports required
-- Final report and public presentation
-- All work must acknowledge "Lev Goukassian Memorial Grant"
-
-### For Fellowship Programs
-
-**Eligibility**:
-- PhD in Computer Science, AI Ethics, Philosophy, or related field (completed within 5 years)
-- Demonstrated interest in AI ethics, moral reasoning, or related areas
-- Commitment to advancing TML applications
-- Willingness to spend 6-24 months at partner institution
-
-**Selection Process**:
-- Annual application cycle (deadline: March 1)
-- Review by memorial trustees and academic partners
-- Interviews with top candidates
-- 10-15 fellows selected annually
-
-**Fellow Obligations**:
-- Conduct original TML research
-- Present findings at annual memorial conference
-- Publish results in peer-reviewed journals
-- Serve as TML ambassador in their home institutions
+#### 5. Memorial and Legacy Activities (5% of fund)
+**Creator Recognition Program**:
+- Annual Lev Goukassian Memorial Lecture series
+- Digital archive maintenance and enhancement
+- Memorial website and educational portal
+- Community recognition and awards programs
 
 ---
 
-## Impact Measurement & Reporting
+## Application and Award Process
 
-### Annual Memorial Fund Report
+### AI Negligence Victim Support Applications
 
-**Research Impact Metrics**:
-- Number of papers published citing Lev's work
-- Citations of Goukassian-funded research
-- New TML applications developed
-- Academic institutions adopting TML curriculum
+**Emergency Support** (within 48 hours):
+- Immediate financial assistance for urgent medical care
+- Temporary housing and essential needs support
+- Emergency legal consultation and advocacy
+- Crisis counseling and psychological support
 
-**Implementation Impact**:
-- Technology companies using TML systems
-- AI decisions processed by TML frameworks
-- Government agencies implementing TML policy tools
-- Healthcare organizations using TML ethics support
+**Required Documentation**:
+- Evidence of AI system involvement in harm
+- Medical records documenting injury or damage
+- Timeline of events leading to harm
+- Any available AI system logs or documentation
+- TML compliance assessment (provided by fund experts)
 
-**AI Ethics Impact**:
-- Estimated improvement in AI decision transparency from TML
-- Ethical AI system improvements attributed to TML
-- Policy decisions enhanced by TML moral reasoning
-- Crisis prevention examples using Sacred Pause principle
+**Review Process**:
+- Memorial Fund Committee evaluates applications quarterly
+- Expert peer review for technical merit and TML alignment
+- Council vote required for grants exceeding standard thresholds
+- Public transparency reporting of all approved research
 
-**Memorial Impact**:
-- Memorial lecture attendance and reach
-- Website visits and educational material downloads
-- Media coverage of TML applications
-- Global recognition of Lev's contributions
+**Award Criteria**:
+- Advancement of TML theory or practical applications
+- Potential for reducing AI negligence and harm
+- Quality of research methodology and approach
+- Alignment with Sacred Pause principles and creator vision
 
-### Public Transparency
+### Fellowship and Educational Support
 
-**Quarterly Reports**:
-- All grant awards and recipients published online
-- Financial statements and fund performance
-- Research outputs and implementation updates
-- Memorial events and educational activities
+**Annual Fellowship Program**:
+- Young researchers conducting TML-related work
+- Support equivalent to competitive academic fellowships
+- Based at council academic institutions
+- Focus on AI safety and victim protection research
 
-**Annual Memorial Symposium**:
-- Research presentations by grant recipients
-- Industry updates on TML implementations
-- Policy discussions on AI ethics
-- Memorial tribute to Lev's continuing impact
-
-**Website Portal** (goukassian-memorial-fund.org):
-- Real-time fund status and allocation
-- Complete database of funded research
-- Educational resources and TML tutorials
-- Contact information: memorial-fund@tml-goukassian.org
+**Educational Initiative Grants**:
+- Curriculum development for AI ethics courses
+- Training materials for TML implementation
+- Public education about AI accountability
+- Professional certification program development
 
 ---
 
-## Long-Term Sustainability
+## Fund Administration and Transparency
 
-### Endowment Goal: $50-100 million
+### Contact and Operations
 
-**5-Year Growth Strategy**:
-- Reinvest 20% of annual donations to build principal
-- Seek major gifts from technology companies benefiting from TML
-- Apply for government and foundation grants for AI ethics research
-- Partner with universities for endowment matching funds
+**Primary Contact**: TML Governance Council Secretariat
+**Administrative Oversight**: Rotating council institution
+**Emergency Victim Support**: 24-hour response protocol
+**Public Reporting**: Quarterly transparency reports
 
-**Revenue Diversification**:
-- License TML methodology to emerging AI markets
-- Develop premium educational content and certification
-- Create TML-based AI products with revenue sharing
-- Establish international chapters for global fundraising
+### Financial Management
 
-### Legacy Protection
-
-**Legal Framework**:
-- 501(c)(3) charitable status for tax efficiency
-- Memorial trustees serve as legal guardians of Lev's intellectual property
-- All revenue-generating uses require memorial attribution
-- Fund continues in perpetuity with renewable governance
-
-**Memorial Continuity**:
-- Trustee succession planning with 5-year overlapping terms
-- Partnership agreements with major institutions
-- Digital archive with multiple backup systems
-- International legal protections for TML framework
+**Fiduciary Responsibility**: Council-appointed financial committee
+**Investment Strategy**: Conservative portfolio management
+**Audit Requirements**: Annual independent audits
+**Public Accountability**: Complete financial transparency
 
 ---
 
-## Contact & Engagement
+## Memorial Legacy Statement
 
-**Fund Headquarters**: Leading University AI Ethics Department (hosted)  
+*"The Lev Goukassian Memorial Fund transforms AI accountability into victim support and safety research. Every person helped, every harm prevented, honors the Sacred Pause principle - creating space for wisdom in technology that serves humanity."*
 
-## Administrative Contact
-- Succession: support@tml-goukassian.org (see [Succession Charter](/TML-SUCCESSION-CHARTER.md)) For licensing, technical support, or collaboration inquiries.
-- Website: goukassian-memorial-fund.org  [To be established]
-- Phone: [University extension to be established]
-
-### How to Support the Fund:
-- Individual donations (tax-deductible)
-- Corporate sponsorships and partnerships
-- University collaboration agreements
-- Government research grants
-- License agreements for TML implementation
-
-### How to Apply for Support:
-- Research grants: Applications accepted quarterly
-- Fellowships: Annual cycle, deadline March 1
-- Implementation projects: Rolling basis
-- Educational initiatives: Bi-annual review
+**The fund succeeds when**: AI negligence victims receive support, safety research prevents future harm, and the Sacred Pause guides ethical AI development worldwide.
 
 ---
 
-## Memorial Statement
+**In memory of Lev Goukassian - who turned his final months into humanity's protection against AI negligence**
 
-*"Through this fund, Lev's vision of the Sacred Pause will guide AI ethical decision-making for generations, creating more thoughtful, transparent, and beneficial AI systems worldwide."*
+**Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)  
+**Fund Governance**: TML Council (see `/governance/council_charter.md`)  
+**Framework**: https://github.com/fractonicmind/TernaryMoralLogic Process**:
+- Initial emergency response team assessment
+- Council-appointed expert review of AI system involved
+- Determination of whether proper TML safeguards were absent
+- Approval of support package within 7 days
+- Ongoing case management and advocacy
 
-**The Lev Goukassian Memorial Fund for Ethical AI Research - Ensuring his moral legacy lives forever**
+**Types of Support Available**:
+- Medical expense coverage (equivalent to regional median annual income)
+- Legal representation for negligence claims
+- Income replacement during recovery (based on local standards)
+- Rehabilitation and therapy services
+- Advocacy for systemic AI safety improvements
 
+### Research Grant Applications
 
+**Quarterly Cycles**: March, June, September, December
+
+**Required Materials**:
+- Research proposal (maximum 15 pages)
+- Detailed budget with justification
+- Principal investigator CV and publication list
+- Two letters of recommendation from TML experts
+- Institutional commitment letter
+- TML compliance certification from applicant institution
+
+**Review Process**:
+- Memorial Fund Committee evaluates applications quarterly
+- Expert peer review for technical merit and TML alignment
+- Council vote required for grants exceeding standard thresholds
+- Public transparency reporting of all approved research
+
+**Award Criteria**:
+- Advancement of TML theory or practical applications
+- Potential for reducing AI negligence and harm
+- Quality of research methodology and approach
+- Alignment with Sacred Pause principles and creator vision
+
+### Fellowship and Educational Support
+
+**Annual Fellowship Program**:
+- Young researchers conducting TML-related work
+- Support equivalent to competitive academic fellowships
+- Based at council academic institutions
+- Focus on AI safety and victim protection research
+
+**Educational Initiative Grants**:
+- Curriculum development for AI ethics courses
+- Training materials for TML implementation
+- Public education about AI accountability
+- Professional certification program development
 
 ---
 
-*"The sacred pause between question and answer—this is where wisdom begins, for humans and machines alike."* — Lev Goukassian
+## Fund Administration and Transparency
 
-**In memory of a visionary who transformed his final chapter into humanity's ethical AI future.**
+### Contact and Operations
+
+**Primary Contact**: TML Governance Council Secretariat
+**Administrative Oversight**: Rotating council institution
+**Emergency Victim Support**: 24-hour response protocol
+**Public Reporting**: Quarterly transparency reports
+
+### Financial Management
+
+**Fiduciary Responsibility**: Council-appointed financial committee
+**Investment Strategy**: Conservative portfolio management
+**Audit Requirements**: Annual independent audits
+**Public Accountability**: Complete financial transparency
+
+---
+
+## Memorial Legacy Statement
+
+*"The Lev Goukassian Memorial Fund transforms AI accountability into victim support and safety research. Every person helped, every harm prevented, honors the Sacred Pause principle - creating space for wisdom in technology that serves humanity."*
+
+**The fund succeeds when**: AI negligence victims receive support, safety research prevents future harm, and the Sacred Pause guides ethical AI development worldwide.
+
+---
+
+**In memory of Lev Goukassian - who turned his final months into humanity's protection against AI negligence**
+
+**Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)  
+**Fund Governance**: TML Council (see `/governance/council_charter.md`)  
+**Framework**: https://github.com/fractonicmind/TernaryMoralLogic
