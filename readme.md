@@ -35,7 +35,7 @@ Current AI systems operate as "black boxes" with no meaningful accountability:
 
 ### The Solution: Enforceable Accountability
 TML transforms AI into "glass boxes" with complete transparency:
-- **Criminal penalties**: 5-20 years imprisonment for gaming safeguards
+- **Criminal penalties**: Imprisonment for gaming safeguards
 - **Financial liability**: Percentage of global revenue for missing logs
 - **Victim support**: Memorial fund provides legal aid and compensation
 - **Investigation capability**: Expert analysis of AI decision reasoning
@@ -82,7 +82,7 @@ def accountable_ai_decision(query, context):
 
 **Organizations cannot bypass evidence generation**:
 - Missing logs create **irrebuttable presumption** of maximum fault
-- **Criminal charges**: False attestation (5 years), log tampering (20 years)
+- **Criminal charges**: False attestation, log tampering
 - **Financial penalties**: Scaling with organizational revenue and impact
 - **Whistleblower rewards**: 15-30% of collected penalties
 
@@ -154,8 +154,8 @@ TernaryMoralLogic/
 ## Legal Framework
 
 ### Criminal Penalties
-- **False Attestation**: 18 U.S.C. § 1001 (5 years imprisonment)
-- **Log Tampering**: 18 U.S.C. § 1519 (20 years imprisonment)  
+- **False Attestation**: 18 U.S.C. § 1001 (imprisonment)
+- **Log Tampering**: 18 U.S.C. § 1519 (imprisonment)  
 - **Threshold Gaming**: Fraud charges with treble damages
 
 ### Financial Liability
