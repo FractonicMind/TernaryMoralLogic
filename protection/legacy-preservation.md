@@ -36,7 +36,7 @@ All TML deployments worldwide must maintain:
 - **Cryptographic integrity** - Immutable evidence generation
 - **Council oversight authority** - 11-institution governance structure
 
-**Protection Mechanism**: Any implementation claiming to be "TML" must pass validation against `/tests/compliance/framework_integrity.py`
+**Protection Mechanism**: Any implementation claiming to be "TML" must pass validation against `/compliance/framework_integrity.py`
 
 ### 1.3 Vision Statement Preservation
 
