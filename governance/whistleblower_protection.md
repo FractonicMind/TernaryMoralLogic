@@ -243,7 +243,7 @@ Annual transparency:
 **Emergency Hotline**: [Council-managed 24/7 line]  
 **Secure Portal**: https://github.com/fractonicmind/TernaryMoralLogic/security/advisories  
 **Legal Support**: Memorial Fund Legal Division  
-**Email**: whistleblower@tml-governance.org  
+**Email**: whistleblower@tml-goukassian.org
 **Physical Mail**: [Rotating secure addresses]
 
 **Remember**: Your courage protects society. Your evidence convicts criminals. Your reward reflects your service.
