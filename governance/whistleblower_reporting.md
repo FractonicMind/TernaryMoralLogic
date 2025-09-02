@@ -1,6 +1,5 @@
 # Report TML Violations - Whistleblower Portal
 
-**Secure Reporting**: https://github.com/fractonicmind/TernaryMoralLogic/security/advisories  
 **Encrypted Email**: whistleblower@tml-goukassian.org  
 **Anonymous Options**: Available below
 
@@ -275,7 +274,6 @@ No. Multiple secure channels prevent tracing.
 
 ### Don't Wait. Don't Doubt. Report Today.
 
-**Secure Portal**: https://github.com/fractonicmind/TernaryMoralLogic/security/advisories  
 **Email**: whistleblower@tml-goukassian.org  
 **Hotline**: [Secure number]  
 **Mail**: [Rotating address]
