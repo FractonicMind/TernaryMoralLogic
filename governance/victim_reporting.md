@@ -2,7 +2,7 @@
 
 **Emergency?** Call [Emergency Hotline] immediately.  
 **Email**: victims@tml-goukassian.org  
-**Secure Portal**: https://github.com/fractonicmind/TernaryMoralLogic/security/advisories
+**Secure Portal**: https://github.com/fractonicmind/TernaryMoralLogic/blob/main/governance/victim_reporting.md
 
 ---
 
@@ -118,7 +118,7 @@ _________________________________________
 ## Multiple Ways to Report
 
 ### Online
-- **Secure Form**: https://github.com/fractonicmind/TernaryMoralLogic/security/advisories
+- **Secure Form**: https://github.com/fractonicmind/TernaryMoralLogic/blob/main/governance/victim_reporting.md
 - **Email**: victims@tml-goukassian.org
 
 ### Phone
@@ -186,7 +186,7 @@ Immigration status doesn't matter. Full protection.
 
 **Email**: victims@tml-goukassian.org  
 **Hotline**: [24/7 Number]  
-**Portal**: https://github.com/fractonicmind/TernaryMoralLogic/security/advisories
+**Portal**: https://github.com/fractonicmind/TernaryMoralLogic/blob/main/governance/victim_reporting.md
 
 ---
 
