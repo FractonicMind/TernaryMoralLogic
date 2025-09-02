@@ -476,6 +476,6 @@ The validator is public. Anyone can verify if a company legitimately implements 
 
 **TML transforms AI accountability from voluntary guidelines to mandatory criminal law. Missing logs equal guilt. Gaming equals fraud. Violations equal imprisonment.**
 
-**Company penalties finance victim support. Whistleblowers get rich. Executives get prison.**
+**Company penalties finance victim support.**
 
 **The age of unaccountable AI ends when TML becomes law.**
