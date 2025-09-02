@@ -257,7 +257,7 @@ Collective action support:
 ### How to Report
 Multiple channels ensure access:
 - **Emergency Hotline**: 24/7 multilingual support
-- **Online Portal**: https://github.com/fractonicmind/TernaryMoralLogic/blob/main/governance/victim_protection.md
+- **Online Portal**: https://github.com/fractonicmind/TernaryMoralLogic/blob/main/governance/victim_reporting.md
 - **Any Hospital**: Medical providers must report
 - **Council Institutions**: Direct walk-in reports
 - **Legal Representatives**: Attorneys can file
@@ -334,7 +334,7 @@ Investigation finds the rest.
 ## Contact Information
 
 **24/7 Emergency Hotline**: [Council-managed]  
-**Online Reporting**: https://github.com/fractonicmind/TernaryMoralLogic/blob/main/governance/victim_protection.md  
+**Online Reporting**: https://github.com/fractonicmind/TernaryMoralLogic/blob/main/governance/victim_reporting.md  
 **Email**: victims@tml-goukassian.org  
 **Walk-in Locations**: Any council institution globally  
 **Legal Referrals**: memorial-legal@tml-goukassian.org
