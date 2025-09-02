@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TML Repository Navigation</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            color: #e0e0e0;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 30px 0;
+            border-bottom: 2px solid #ff6b6b;
+            margin-bottom: 40px;
+        }
+        
+        h1 {
+            color: #ff6b6b;
+            font-size: 2.5em;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .subtitle {
+            color: #a0a0a0;
+            margin-top: 10px;
+            font-size: 1.1em;
+        }
+        
+        .author {
+            margin-top: 20px;
+            color: #ffaa00;
+        }
+        
+        .navigation-tree {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(30, 30, 45, 0.8);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        
+        .folder {
+            margin: 10px 0;
+            padding-left: 20px;
+            border-left: 2px solid #444;
+        }
+        
+        .folder-title {
+            color: #ffaa00;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin: 20px 0 10px 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .folder-icon {
+            margin-right: 10px;
+        }
+        
+        .file {
+            margin: 8px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        .file::before {
+            content: "📄";
+            position: absolute;
+            left: 10px;
+        }
+        
+        .file.critical::before {
+            content: "🔴";
+        }
+        
+        .file.governance::before {
+            content: "⚖️";
+        }
+        
+        .file.technical::before {
+            content: "⚙️";
+        }
+        
+        .file.support::before {
+            content: "💚";
+        }
+        
+        a {
+            color: #6db3ff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        a:hover {
+            color: #ff6b6b;
+            transform: translateX(5px);
+            text-shadow: 0 0 10px rgba(109, 179, 255, 0.5);
+        }
+        
+        .description {
+            color: #888;
+            font-size: 0.9em;
+            margin-left: 10px;
+        }
+        
+        .root-file {
+            margin: 15px 0;
+            padding: 10px;
+            background: rgba(50, 50, 70, 0.5);
+            border-radius: 5px;
+            border-left: 3px solid #ff6b6b;
+        }
+        
+        .stats {
+            margin-top: 40px;
+            padding: 20px;
+            background: rgba(50, 50, 70, 0.3);
+            border-radius: 5px;
+            text-align: center;
+        }
+        
+        .stat-item {
+            display: inline-block;
+            margin: 0 20px;
+            padding: 10px;
+        }
+        
+        .stat-number {
+            color: #ffaa00;
+            font-size: 2em;
+            font-weight: bold;
+        }
+        
+        .stat-label {
+            color: #888;
+            font-size: 0.9em;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid #444;
+            color: #888;
+        }
+        
+        .warning {
+            background: rgba(255, 107, 107, 0.1);
+            border: 2px solid #ff6b6b;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .warning strong {
+            color: #ff6b6b;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Ternary Moral Logic Framework</h1>
+        <div class="subtitle">Complete Repository Navigation</div>
+        <div class="author">
+            <strong>Creator:</strong> Lev Goukassian | 
+            <strong>ORCID:</strong> 0009-0006-5966-1243 | 
+            <strong>Contact:</strong> leogouk@gmail.com
+        </div>
+    </div>
+
+    <div class="warning">
+        <strong>⚠️ LEGAL WARNING:</strong> Implementation creates binding obligations. Missing Moral Trace Logs = Criminal liability. Consult legal counsel before deployment.
+    </div>
+
+    <div class="navigation-tree">
+        <h2 style="color: #ff6b6b;">📁 Repository Structure</h2>
+        
+        <!-- Root Files -->
+        <div class="root-file">
+            <a href="https://github.com/fractonicmind/TernaryMoralLogic/blob/main/README.md">
+                <strong>README.md</strong>
+            </a>
+            <span class="description">- Academic paper format with complete framework overview</span>
+        </div>
+        
+        <div class="root-file">
+            <a href="https://github.com/fractonicmind/TernaryMoralLogic/blob/main/LICENSE">
+                <strong>LICENSE</strong>
+            </a>
+            <span class="description">- MIT License with mandatory attribution</span>
+        </div>
+
+        <!-- Core Documentation -->
+        <div class="folder">
+            <div class="folder-title">
+                <span class="folder-icon">📚</span> /docs - Core Documentation
+            </div>
+            
+            <div class="file critical">
+                <a href="https://github.com/fractonicmind/TernaryMoralLogic/blob/main/docs/GENERAL_FAQ.md">
+                    GENERAL_FAQ.md
+                </a>
+                <span class="description">- 37 questions with enforcement focus</span>
+            </div>
+            
+            <div class="file critical">
+                <a href="https://github.com/fractonicmind/TernaryMoralLogic/blob/main/docs/MANDATORY.md">
+                    MANDATORY.md
+                </a>
+                <span class="description">- Legal framework and criminal penalties</span>
+            </div>
+            
+            <div class="file technical">
+                <a href="https://github.com/fractonicmind/TernaryMoralLogic/blob/main/docs/IMPLEMENTATION_GUIDE.md">
+                    IMPLEMENTATION_GUIDE.md
+                </a>
+                <span class="description">- Technical deployment instructions</span>
+            </div>
+            
+            <div class="file technical">
+                <a href="https://github.com/fractonicmind/TernaryMoralLogic/blob/main/docs/complete_api_reference.md">
+                    complete_api_reference.md
+                </a>
+                <span class="description">- Full API specification</span>
+            </div>
+        </div>
+
+        <!-- Governance -->
+        <div class="folder">
+            <div class="folder-title">
+                <span class="folder-icon">⚖️</span> /governance - Oversight & Protection
+            </div>
+            
+            <div class="file governance">
+                <a href="https://github.com/fractonicmind/TernaryMoralLogic/blob/main/governance/council_charter.md">
+                    council_charter.md
+                </a>
+                <span class="description">- 11-institution governance structure</span>
+            </div>
+            
+            <div class="file governance">
+                <a href="https://github.com/fractonicmind/TernaryMoralLogic/blob/main/governance/whistleblower_protection.md">
+                    whistleblower_protection.md
+                </a>
+                <span class="description">- 15% rewards and criminal protection</span>
+            </div>
+            
+            <div class="file governance">
+                <a href="https://github.com/fractonicmind/TernaryMoralLogic/blob/main/governance/whistleblower_reporting.md">
+                    whistleblower_reporting.md
+                </a>
+                <span class="description">- Violation reporting portal</span>
+            </div>
+            
+            <div class="file governance">
+                <a href="https://github.com/fractonicmind/TernaryMoralLogic/blob/main/governance/victim_protection.md">
+                    victim_protection.md
+                </a>
+                <span class="description">- 30-40% penalty allocation to victims</span>
+            </div>
+            
+            <div class="file governance">
+                <a href="https://github.com/fractonicmind/TernaryMoralLogic/blob/main/governance/victim_reporting.md">
+                    victim_reporting.md
+                </a>
+                <span class="description">- AI harm reporting portal</span>
+            </div>
+        </div>
+
+        <!-- Memorial Fund -->
+        <div class="folder">
+            <div class="folder-title">
+                <span class="folder-icon">💚</span> /memorial - Victim Support
+            </div>
+            
+            <div class="file support">
+                <a href="https://github.com/fractonicmind/TernaryMoralLogic/blob/main/memorial/MEMORIAL_FUND.md">
+                    MEMORIAL_FUND.md
+                </a>
+                <span class="description">- Lev Goukassian Memorial Fund charter</span>
+            </div>
+        </div>
+
+        <!-- Tools -->
+        <div class="folder">
+            <div class="folder-title">
+                <span class="folder-icon">🔧</span> /tools - Validation & Testing
+            </div>
+            
+            <div class="file technical">
+                <a href="https://github.com/fractonicmind/TernaryMoralLogic/blob/main/tools/tml_validator.py">
+                    tml_validator.py
+                </a>
+                <span class="description">- Compliance validation tool</span>
+            </div>
+        </div>
+
+        <!-- Examples -->
+        <div class="folder">
+            <div class="folder-title">
+                <span class="folder-icon">💡</span> /examples - Implementation Samples
+            </div>
+            
+            <div class="file technical">
+                <a href="https://github.com/fractonicmind/TernaryMoralLogic/tree/main/examples">
+                    View all examples →
+                </a>
+                <span class="description">- Healthcare, finance, autonomous systems</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="stats">
+        <div class="stat-item">
+            <div class="stat-number">37</div>
+            <div class="stat-label">FAQ Questions</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">20</div>
+            <div class="stat-label">Years Max Prison</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">30-40%</div>
+            <div class="stat-label">Victim Support</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">15%</div>
+            <div class="stat-label">Whistleblower Rewards</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">11</div>
+            <div class="stat-label">Oversight Institutions</div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p><strong>Remember:</strong> Missing logs = guilt. Gaming = fraud. Violations = imprisonment.</p>
+        <p>The age of unaccountable AI ends when TML becomes law.</p>
+        <hr style="width: 50%; margin: 30px auto; border-color: #444;">
+        <p>© 2025 Lev Goukassian | ORCID: 0009-0006-5966-1243</p>
+        <p>
+            <a href="https://github.com/fractonicmind/TernaryMoralLogic">GitHub Repository</a> | 
+            <a href="mailto:leogouk@gmail.com">Contact</a>
+        </p>
+    </div>
+</body>
+</html>
