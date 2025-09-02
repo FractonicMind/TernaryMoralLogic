@@ -40,7 +40,7 @@ The TML Whistleblower Protection Framework transforms employees into accountabil
 
 ### Direct Council Access
 Bypass all corporate structures:
-- **Encrypted portal**: https://github.com/fractonicmind/TernaryMoralLogic/security/advisories
+- **Encrypted portal**: https://github.com/fractonicmind/TernaryMoralLogic/blob/main/governance/whistleblower_reporting.md
 - **Secure hotline**: Managed by council, not companies
 - **Physical mail**: Rotating secure addresses globally
 - **In-person**: Any council institution accepts reports
@@ -241,7 +241,7 @@ Annual transparency:
 ## Contact Information
 
 **Emergency Hotline**: [Council-managed 24/7 line]  
-**Secure Portal**: https://github.com/fractonicmind/TernaryMoralLogic/security/advisories  
+**Secure Portal**: https://github.com/fractonicmind/TernaryMoralLogic/blob/main/governance/whistleblower_reporting.md  
 **Legal Support**: Memorial Fund Legal Division  
 **Email**: whistleblower@tml-goukassian.org
 **Physical Mail**: [Rotating secure addresses]
