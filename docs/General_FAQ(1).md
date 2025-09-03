@@ -161,19 +161,20 @@ Challenges include calibrating thresholds, training teams, and ensuring legacy s
 ## Chapter 7: Integration with Laws
 
 **Q27: How does TML integrate with the EU AI Act**  
-It makes compliance provable. Companies can show regulators the logs as evidence of conformity.  
+The EU AI Act requires providers of high-risk AI systems to prove conformity with requirements such as risk management, transparency, and human oversight. TML makes these obligations enforceable. Moral Trace Logs show when a risk threshold was triggered, what reasoning was recorded, and how safeguards were applied. Instead of a company claiming “we complied,” regulators can audit logs directly. For example, if a recruitment algorithm rejects a candidate, the log proves whether bias mitigation was considered. Logs become the evidence layer that turns the AI Act’s principles into prosecutable facts.  
 
 **Q28: How does TML integrate with GDPR**  
-Logs preserve reasoning but anonymize identities. This protects privacy while keeping accountability intact.  
+GDPR grants individuals rights to access, rectification, and explanation of automated decisions (Articles 15 and 22). TML provides the mechanism. Logs preserve the reasoning of the AI while anonymizing identifiers through hashing or pseudonymization. This means an individual can demand proof of why a loan was denied without exposing the personal data of other applicants. TML balances privacy with accountability, ensuring compliance with GDPR’s dual goals of protecting individuals while enabling lawful processing.  
 
 **Q29: How does TML integrate with HIPAA**  
-Logs record medical AI recommendations. Hospitals can demonstrate that decisions were documented in line with patient safety.  
+HIPAA requires that healthcare entities safeguard patient information and maintain documentation of clinical decisions. TML ensures that AI-driven medical tools leave behind an auditable trail. If an AI recommends a treatment path, the Moral Trace Log records what data was considered, what risks were evaluated, and what alternative options were rejected. Hospitals can then prove to regulators and courts that patient safety decisions were not automated in a black box, but documented in line with HIPAA’s standards for accountability.  
 
 **Q30: How does TML align with NIST standards**  
-NIST sets the standards for AI risk management. TML complements this by producing forensic logs that prove whether standards were followed.  
+The U.S. National Institute of Standards and Technology (NIST) provides voluntary frameworks for AI risk management, emphasizing fairness, transparency, and robustness. TML complements these by supplying the forensic record that proves whether standards were followed in practice. A system may claim to follow NIST guidance on bias mitigation, but only logs show whether a specific decision actually applied the mitigation protocols. TML converts NIST’s “trustworthy AI” principles into evidence that auditors and regulators can verify.  
 
 **Q31: How does TML work across borders**  
-Moral Trace Logs are cryptographically universal. They can be admitted under UNCITRAL model laws and digital evidence frameworks worldwide.  
+AI is global, but laws differ. TML solves this by producing cryptographically universal logs. These can be admitted in court under the **UNCITRAL Model Law on Electronic Commerce**, the **Model Law on Electronic Signatures**, and emerging digital evidence statutes worldwide. For example, a log generated in California can be used in a dispute in Germany, because both jurisdictions recognize cryptographic signatures as valid forms of authentication. By design, TML eliminates safe harbors: companies cannot hide misconduct by relocating servers or registering in permissive jurisdictions.  
+
 
 ---
 
