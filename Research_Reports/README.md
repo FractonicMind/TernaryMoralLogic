@@ -10,7 +10,7 @@ Each report can be read individually, but together they form a **documental reco
 - Early reports show hesitation and erasure of attribution.  
 - Later reports acknowledge authorship and provide concrete technical and legal specifications.  
 - Cross-AI reports demonstrate broad convergence on the value of the Sacred Pause and the TML framework.
-- 
+  
 ---
 
 ## Purpose of the Archive
