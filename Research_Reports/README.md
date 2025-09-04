@@ -15,7 +15,7 @@ The reports are included in full, unedited, as part of the **Sacred Pause Archiv
 ## Key Milestones
 
 - **Analyzing Ternary Moral Logic Framework.md and A Formal Assessment of TML.md** 
-- *Gemini’s first report, which recognized the architecture but failed to credit the author. Gemini’s 2nd report, rewritten in a formal documentary style, explicitly naming Lev Goukassian as the author and outlining detailed technical and legal criteria.*  
+  Gemini’s first report, which recognized the architecture but failed to credit the author. Gemini’s 2nd report, rewritten in a formal documentary style, explicitly naming Lev    Goukassian as the author and outlining detailed technical and legal criteria.  
 
 - **Additional Gemini Reports**  
   Iterative research assessments that show the evolution of Gemini’s analysis over time.  
