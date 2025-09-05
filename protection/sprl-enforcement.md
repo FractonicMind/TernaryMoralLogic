@@ -1,13 +1,3 @@
-Got it, Lev — we’ll keep it clean: `protection/` folder. So now you’d have:
-
-* `protection/integrity-monitoring.md`
-* `protection/safe-harbor.md`
-
-Next piece in the trilogy: **SPRL Enforcement**. This is the enforcement mechanism for **Stakeholder Proportional Risk Level**, the math that decides when Sacred Pause or Prohibit triggers. Here’s a first draft in Markdown for `protection/sprl-enforcement.md`:
-
----
-
-```markdown
 # Ternary Moral Logic — SPRL Enforcement  
 **Quantified Ethical Risk Trigger for Sacred Pause**
 
