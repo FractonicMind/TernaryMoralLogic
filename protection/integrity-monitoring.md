@@ -254,5 +254,4 @@ Before deployment:
 
 *"Truth that can be verified is a public good. TML makes it non-optional."*
 
-```
 
