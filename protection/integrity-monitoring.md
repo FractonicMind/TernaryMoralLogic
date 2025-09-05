@@ -31,7 +31,7 @@ Failures must trigger **signed control records**, making outages visible.
 Adversaries may attempt to:  
 - Suppress, forge, reorder, or flood logs.  
 - Manipulate SPRL thresholds (*threshold gaming*).  
-- Launch denial-of-service on TSA or storage.  
+- Launch **denial-of-service (DoS)** on TSA or storage.  
 - Extract signing keys via side-channels.  
 - Use supply-chain backdoors.  
 - Exploit “silence” (no logs) to weaken trust.  
@@ -106,7 +106,7 @@ Adversaries may attempt to:
 
 ---
 
-## 9. Heartbeats, Floods, and Backpressure
+## 9. Heartbeats and Backpressure
 
 * **Heartbeat:** signed every 30s with queue depth + TSA status. Missing heartbeats = evidence.
 * **Aggregation:** low-risk routine decisions batched with Merkle root.
@@ -115,7 +115,20 @@ Adversaries may attempt to:
 
 ---
 
-## 10. SPRL Transparency
+## 10. DoS and Flooding Resilience
+
+* **Attack mode:** adversary floods AI or monitor to exhaust logging or TSA throughput.
+* **Defense:**
+
+  * Signed **heartbeat records** prove monitor was alive, even if entries queued.
+  * **Backpressure control records** log queue depth and performance strain.
+  * **TSA outage records** document unavailability of external authorities.
+* **Legal effect:** documented outages transform missing logs into admissible evidence of attack.
+* **Auditor tools:** analyze heartbeat continuity, queue depth, TSA outage tokens, and anomaly signatures to separate cyberattacks from negligence.
+
+---
+
+## 11. SPRL Transparency
 
 * Publish methodology for stakeholder impact, vulnerability weights, probability.
 * Log config updates as signed `risk_config_update` records.
@@ -123,7 +136,7 @@ Adversaries may attempt to:
 
 ---
 
-## 11. Supply Chain Integrity
+## 12. Supply Chain Integrity
 
 * Reproducible builds, signed releases, dependency pinning.
 * No dynamic code loading in the monitor.
@@ -131,7 +144,7 @@ Adversaries may attempt to:
 
 ---
 
-## 12. Control Records
+## 13. Control Records
 
 The monitor must issue structured control records for anomalies:
 
@@ -141,10 +154,11 @@ The monitor must issue structured control records for anomalies:
 * `backpressure` — queue depth, aggregation policy.
 * `storage_rollover` — Merkle root, anchor reference.
 * `anomaly_detected` — IDS evidence, severity.
+* `incident_declared` — signed human attestation linking anomalies to accountability.
 
 ---
 
-## 13. Compliance and Metrics
+## 14. Compliance and Metrics
 
 Auditors must see:
 
@@ -158,7 +172,7 @@ Reports must be computed from live data — no hardcoded scores.
 
 ---
 
-## 14. Privacy and Minimization
+## 15. Privacy and Minimization
 
 * Logs contain hashes, not raw sensitive data.
 * Use AEAD (AES-GCM / XChaCha20-Poly1305) for encrypted payloads.
@@ -167,15 +181,16 @@ Reports must be computed from live data — no hardcoded scores.
 
 ---
 
-## 15. Governance and Oversight
+## 16. Governance and Oversight
 
 * **Council custody:** 11 institutions mirror roots and verify anchors.
 * **Access:** auditors use proofs + metadata; full content needs authorization + custody receipts.
 * **Legal clause:** *missing logs create a **rebuttable presumption of guilt*** unless signed outage/control records prove external interference.
+* **Safe Harbor:** operators that meet certification standards are shielded from liability when attacks occur despite defenses.
 
 ---
 
-## 16. Reference Workflow
+## 17. Reference Workflow
 
 1. AI proposes decision.
 2. Risk Trigger computes SPRL → classify event.
@@ -187,7 +202,7 @@ Reports must be computed from live data — no hardcoded scores.
 
 ---
 
-## 17. Creator Attribution
+## 18. Creator Attribution
 
 Attribution is enforced via signed manifests:
 
@@ -200,7 +215,7 @@ This implementation preserves the Sacred Pause principle for intelligent moral d
 
 ---
 
-## 18. Validation Checklist
+## 19. Validation Checklist
 
 Before deployment:
 
@@ -213,15 +228,16 @@ Before deployment:
 
 ---
 
-## 19. Legal Notes
+## 20. Legal Notes
 
 * Tampering or forged entries = obstruction of justice.
 * Threshold gaming = deceptive practice (fraud).
-* Due process preserved through **rebuttable presumption** and control records.
+* DoS and flooding attacks → admissible as evidence via signed outage records.
+* Due process preserved through **rebuttable presumption** and Safe Harbor certification.
 
 ---
 
-## 20. Rationale
+## 21. Rationale
 
 * **XAI explains, TML proves.**
 * Gaps are not weakness; they are evidence.
@@ -230,7 +246,7 @@ Before deployment:
 
 ---
 
-## 21. Status
+## 22. Status
 
 **Creator:** Lev Goukassian
 **Integrity level:** Court-grade
@@ -239,3 +255,4 @@ Before deployment:
 *"Truth that can be verified is a public good. TML makes it non-optional."*
 
 ```
+
