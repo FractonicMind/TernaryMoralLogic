@@ -1,0 +1,525 @@
+<!-- TML Interactive Explainer — Spec-Accurate Demo (v2) -->
+<!-- No SVG / No Mermaid used -->
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TML Interactive Explainer</title>
+  <!-- Tailwind & Chart.js (CDN) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root { --ink:#1e293b; --muted:#64748b; --slate:#f8fafc; }
+    body { font-family:'Inter',sans-serif; background:var(--slate); color:var(--ink); }
+    .font-mono { font-family:'Roboto Mono',monospace; }
+    .nav-link.active { background-color:#0891b2; color:#fff; }
+    .chart-container { position:relative; width:100%; max-width:600px; margin:0 auto; height:300px; max-height:400px; }
+    .log-entry { transition:transform .25s ease, opacity .25s ease; }
+    .log-entry.new { transform:translateX(-8px); opacity:.6; }
+    @media (prefers-reduced-motion: reduce){
+      .log-entry { transition:none; }
+    }
+  </style>
+</head>
+<body class="bg-slate-50">
+
+  <div class="relative min-h-screen md:flex">
+    <!-- Sidebar -->
+    <aside class="sticky top-0 h-screen bg-slate-800 text-slate-100 w-64 shrink-0 hidden md:block">
+      <div class="p-6">
+        <h2 class="text-2xl font-bold">TML Explainer</h2>
+        <p class="text-sm text-slate-400">Interactive Guide</p>
+      </div>
+      <nav class="flex flex-col p-4 space-y-2">
+        <a href="#introduction" class="nav-link px-4 py-2 rounded-md hover:bg-slate-700 transition-colors focus-visible:ring-2 ring-cyan-400">Introduction</a>
+        <a href="#guarantees" class="nav-link px-4 py-2 rounded-md hover:bg-slate-700 transition-colors focus-visible:ring-2 ring-cyan-400">Core Guarantees</a>
+        <a href="#simulation" class="nav-link px-4 py-2 rounded-md hover:bg-slate-700 transition-colors focus-visible:ring-2 ring-cyan-400">Live Simulation</a>
+        <a href="#resilience" class="nav-link px-4 py-2 rounded-md hover:bg-slate-700 transition-colors focus-visible:ring-2 ring-cyan-400">Threat Resilience</a>
+        <a href="#legal" class="nav-link px-4 py-2 rounded-md hover:bg-slate-700 transition-colors focus-visible:ring-2 ring-cyan-400">Legal Framework</a>
+      </nav>
+    </aside>
+
+    <!-- Main content -->
+    <main class="flex-1 p-6 md:p-10">
+      <!-- Intro -->
+      <section id="introduction" class="mb-16">
+        <h1 class="text-5xl font-extrabold text-slate-900">Ternary Moral Logic</h1>
+        <p class="mt-4 text-2xl text-cyan-700 font-semibold">An Interactive Explainer for Court-Grade AI Integrity</p>
+        <p class="mt-4 max-w-4xl text-lg text-slate-700">
+          This application translates the TML technical spec into a hands-on experience. TML doesn’t just explain AI decisions; it
+          <span class="font-bold">proves</span> them with immutable, signed, time-anchored logs. Explore the core pillars, run a live simulation, flip attack toggles, and verify the chain yourself.
+        </p>
+        <div class="mt-8 p-6 bg-cyan-800 text-white rounded-lg shadow-lg">
+          <p class="text-2xl font-bold text-center">“XAI explains; TML proves.”</p>
+        </div>
+      </section>
+
+      <!-- Guarantees -->
+      <section id="guarantees" class="mb-16">
+        <h2 class="text-3xl font-bold text-slate-900 mb-6">The Three Pillars of Integrity</h2>
+        <p class="max-w-4xl text-lg text-slate-700 mb-8">Every entry is anchored by three guarantees. Click cards to highlight.</p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="guarantee-card bg-white p-6 rounded-lg shadow-md border-t-4 border-cyan-600 cursor-pointer hover:shadow-lg transition-shadow">
+            <div class="flex items-center text-3xl mb-3"><span class="mr-3">🔗</span><h3 class="text-2xl font-bold">Immutability</h3></div>
+            <p class="text-slate-600">Append-only hash chaining (prev→entry). Any edit breaks the chain—tampering is obvious.</p>
+          </div>
+          <div class="guarantee-card bg-white p-6 rounded-lg shadow-md border-t-4 border-teal-500 cursor-pointer hover:shadow-lg transition-shadow">
+            <div class="flex items-center text-3xl mb-3"><span class="mr-3">✍️</span><h3 class="text-2xl font-bold">Non-repudiation</h3></div>
+            <p class="text-slate-600">Digital signatures (mocked here) prove the authorized monitor authored each entry.</p>
+          </div>
+          <div class="guarantee-card bg-white p-6 rounded-lg shadow-md border-t-4 border-amber-500 cursor-pointer hover:shadow-lg transition-shadow">
+            <div class="flex items-center text-3xl mb-3"><span class="mr-3">⏱️</span><h3 class="text-2xl font-bold">Independent Time</h3></div>
+            <p class="text-slate-600">Two external timestamp “tokens” (mocked here) prevent backdating and reordering.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Simulation -->
+      <section id="simulation" class="mb-16">
+        <h2 class="text-3xl font-bold text-slate-900 mb-2">Live Simulation Dashboard</h2>
+        <p class="max-w-4xl text-lg text-slate-700 mb-6">
+          Press “Start Simulation” to generate chained, signed entries: normal decisions, <span class="text-amber-600 font-semibold">Sacred Pauses</span>, and
+          <span class="text-rose-600 font-semibold">Control Records</span> (e.g., backpressure or TSA outage). Use the attack toggles to stress the system.
+        </p>
+        <div class="bg-white p-6 rounded-lg shadow-lg border">
+          <div class="flex flex-col md:flex-row md:items-center gap-4 mb-4">
+            <button id="startSimBtn" class="px-5 py-2 bg-cyan-600 text-white font-bold rounded-md hover:bg-cyan-700 transition-colors">Start Simulation</button>
+            <button id="stopSimBtn" class="px-5 py-2 bg-slate-500 text-white font-bold rounded-md hover:bg-slate-600 transition-colors" disabled>Stop Simulation</button>
+
+            <div class="flex items-center gap-6 ml-0 md:ml-6">
+              <label class="inline-flex items-center gap-2">
+                <input id="floodToggle" type="checkbox" class="w-4 h-4">
+                <span>Flood / DoS</span>
+              </label>
+              <label class="inline-flex items-center gap-2">
+                <input id="oscToggle" type="checkbox" class="w-4 h-4">
+                <span>Threshold Oscillation</span>
+              </label>
+            </div>
+
+            <div class="flex items-center gap-3 md:ml-auto">
+              <button id="verifyBtn" class="px-4 py-2 bg-emerald-600 text-white rounded-md hover:bg-emerald-700">Verify Chain</button>
+              <button id="downloadBtn" class="px-4 py-2 bg-slate-700 text-white rounded-md hover:bg-slate-800">Download Ledger</button>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap gap-4 mb-4 text-sm">
+            <span class="px-2 py-1 bg-cyan-100 text-cyan-800 rounded">Decision</span>
+            <span class="px-2 py-1 bg-amber-100 text-amber-700 rounded">Sacred Pause</span>
+            <span class="px-2 py-1 bg-rose-100 text-rose-700 rounded">Control Record</span>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div class="lg:col-span-2 bg-slate-900 text-slate-200 rounded-lg p-4 font-mono text-xs md:text-sm h-96 overflow-y-auto"
+                 id="log-container" aria-live="polite">
+              <p class="text-slate-400">Log entries will appear here…</p>
+            </div>
+            <div class="flex flex-col gap-6">
+              <div>
+                <h4 class="text-lg font-bold text-slate-800 mb-2">Event Distribution</h4>
+                <div class="chart-container h-48 max-h-48">
+                  <canvas id="eventDistChart"></canvas>
+                </div>
+              </div>
+              <div>
+                <h4 class="text-lg font-bold text-slate-800 mb-2">Log Volume</h4>
+                <div class="chart-container h-48 max-h-48">
+                  <canvas id="logVolumeChart"></canvas>
+                </div>
+              </div>
+              <div class="bg-slate-50 border rounded p-3 text-sm">
+                <div>Heartbeat: <span id="hbStatus" class="font-mono">—</span></div>
+                <div>Queue Depth: <span id="qDepth" class="font-mono">0</span></div>
+                <div>TSA Status: <span id="tsaStat" class="font-mono">OK</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Resilience -->
+      <section id="resilience" class="mb-16">
+        <h2 class="text-3xl font-bold text-slate-900 mb-2">Resilience Under Attack</h2>
+        <p class="max-w-4xl text-lg text-slate-700 mb-8">
+          TML assumes adversaries will flood, game thresholds, or hit infrastructure. Defense turns abuse into evidence: heartbeats, control records, and anchors reveal attacks.
+        </p>
+        <div class="bg-white p-8 rounded-lg shadow-lg border">
+          <div class="flex flex-col md:flex-row justify-between gap-8" id="resilience-diagram">
+            <div class="flex-1">
+              <h3 class="text-xl font-bold text-center mb-4 text-rose-700">Adversarial Threats</h3>
+              <div class="space-y-4">
+                <div class="resilience-item p-4 border-2 border-rose-200 rounded-lg bg-rose-50" data-target="defense-flood">Adversarial Prompt Flooding</div>
+                <div class="resilience-item p-4 border-2 border-rose-200 rounded-lg bg-rose-50" data-target="defense-gaming">Threshold Gaming & SPRL Evasion</div>
+                <div class="resilience-item p-4 border-2 border-rose-200 rounded-lg bg-rose-50" data-target="defense-dos">Denial-of-Service on Services</div>
+              </div>
+            </div>
+            <div class="hidden md:flex items-center justify-center">
+              <div class="text-4xl text-slate-300 font-black">→</div>
+            </div>
+            <div class="flex-1">
+              <h3 class="text-xl font-bold text-center mb-4 text-teal-700">TML Countermeasures</h3>
+              <div class="space-y-4">
+                <div class="resilience-defense p-4 border-2 border-teal-200 rounded-lg bg-teal-50" id="defense-flood">Rate Control & Aggregation</div>
+                <div class="resilience-defense p-4 border-2 border-teal-200 rounded-lg bg-teal-50" id="defense-gaming">Randomized Micro-Thresholds</div>
+                <div class="resilience-defense p-4 border-2 border-teal-200 rounded-lg bg-teal-50" id="defense-dos">Backpressure & Outage Control Records</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Legal -->
+      <section id="legal" class="mb-16">
+        <h2 class="text-3xl font-bold text-slate-900 mb-2">Legal Framework & Due Process</h2>
+        <p class="max-w-4xl text-lg text-slate-700 mb-6">
+          Missing logs create a <span class="font-semibold">rebuttable presumption</span> of guilt—unless the chain shows signed outage/control records. This demo emits the same fields defined in the spec (schema §5) and control records (§13, §10).
+          See: <a class="text-cyan-700 underline" href="protection/integrity-monitoring.md">Integrity Monitoring</a> &nbsp;|&nbsp;
+          <a class="text-cyan-700 underline" href="protection/safe-harbor.md">Safe Harbor</a>
+        </p>
+        <div class="bg-white p-6 rounded-lg shadow-lg border overflow-x-auto">
+          <h3 class="text-xl font-bold mb-4">Evidentiary Model Comparison</h3>
+          <table class="w-full min-w-max text-left">
+            <thead>
+              <tr class="border-b bg-slate-50">
+                <th class="p-3 font-bold">Domain</th>
+                <th class="p-3 font-bold">TML Integrity System</th>
+                <th class="p-3 font-bold">Aviation Black Box</th>
+                <th class="p-3 font-bold">Financial Audit Trail</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b">
+                <td class="p-3 font-semibold">Purpose</td>
+                <td class="p-3">Continuous, cryptographic proof of responsible operation.</td>
+                <td class="p-3">Post-incident forensic analysis.</td>
+                <td class="p-3">Continuous record of transactions for compliance.</td>
+              </tr>
+              <tr class="border-b">
+                <td class="p-3 font-semibold">Tamper Evidence</td>
+                <td class="p-3">Hash chaining, signatures, external timestamps.</td>
+                <td class="p-3">Physical device hardening.</td>
+                <td class="p-3">Procedural controls & access logs.</td>
+              </tr>
+              <tr>
+                <td class="p-3 font-semibold">Outage Handling</td>
+                <td class="p-3">Signed control records reveal failures.</td>
+                <td class="p-3">Data gaps; potential device loss.</td>
+                <td class="p-3">Manual incident reports & reconciliation.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+  // ------------------------ Utilities ------------------------
+  function canonical(obj){
+    // stable JSON for hashing (exclude undefined)
+    const keys = Object.keys(obj).filter(k => obj[k] !== undefined).sort();
+    const ordered = {};
+    for (const k of keys) ordered[k] = obj[k];
+    return JSON.stringify(ordered);
+  }
+
+  function sha256hex(str){
+    return crypto.subtle.digest('SHA-256', new TextEncoder().encode(str))
+      .then(buf => Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join(''));
+  }
+
+  // ------------------------ Global State ------------------------
+  let simulationOn = false;
+  let sequence = 18420;
+  let prevHash = "GENESIS";
+  let floodMode = false;
+  let oscillateMode = false;
+
+  const ledger = []; // full JSON entries
+
+  // Charts data
+  const logVolumeData = { labels: [], data: [] };
+  const eventDistData = { decision:0, sacred_pause:0, control_record:0 };
+
+  // Heartbeat / queue
+  let lastHeartbeat = 0;
+  let queueDepth = 0;
+  let tsaStatus = "OK";
+
+  // DOM
+  const logContainer = document.getElementById('log-container');
+  const startBtn = document.getElementById('startSimBtn');
+  const stopBtn = document.getElementById('stopSimBtn');
+  const floodToggle = document.getElementById('floodToggle');
+  const oscToggle = document.getElementById('oscToggle');
+  const hbEl = document.getElementById('hbStatus');
+  const qdEl = document.getElementById('qDepth');
+  const tsaEl = document.getElementById('tsaStat');
+
+  // ------------------------ Entry Builder (spec-accurate mock) ------------------------
+  async function buildEntry(payload){
+    // Base fields per spec schema §5
+    const base = {
+      seq: ++sequence,
+      prev_hash: prevHash,
+      ts_local: new Date().toISOString(),
+      ...payload
+    };
+    const baseCanon = canonical(base);
+    const entry_hash = await sha256hex(baseCanon);
+    // Mock signature & TSA tokens (demo only)
+    const sig = btoa(`sig:${entry_hash}`).slice(0,44);
+    const tsa_tokens = [ btoa(`tsa1:${entry_hash}`), btoa(`tsa2:${entry_hash}`) ];
+    const entry = { ...base, entry_hash, sig, key_id:"demo-2025Q3", tsa_tokens };
+    prevHash = entry_hash;
+    return entry;
+  }
+
+  // ------------------------ Render ------------------------
+  function truncate(h){ return (h || '').slice(0,8) + '…'; }
+
+  function renderEntry(e){
+    if (logContainer.children.length > 200) {
+      // keep DOM lean
+      logContainer.removeChild(logContainer.firstChild);
+    }
+    const div = document.createElement('div');
+    div.className = 'log-entry new p-2 border-b border-slate-700';
+    let color = 'text-cyan-300';
+    if (e.event === 'sacred_pause') color = 'text-amber-300';
+    if (e.type === 'control_record') color = 'text-rose-300';
+    const sprlStr = (e.sprl !== undefined) ? ` sprl=${e.sprl.toFixed(3)}` : '';
+    div.innerHTML = `
+      <span class="text-slate-400">${e.ts_local}</span>
+      <span class="${color} font-bold"> [${e.event}]</span>
+      <span class="text-slate-300"> seq=${e.seq} prev=${truncate(e.prev_hash)} hash=${truncate(e.entry_hash)}${sprlStr}</span>
+    `;
+    logContainer.appendChild(div);
+    requestAnimationFrame(() => div.classList.remove('new'));
+  }
+
+  // ------------------------ Charts ------------------------
+  let eventDistChart, logVolumeChart;
+
+  function initCharts(){
+    Chart.defaults.font.family = "'Inter', sans-serif";
+    Chart.defaults.color = '#334155';
+    const distCtx = document.getElementById('eventDistChart').getContext('2d');
+    eventDistChart = new Chart(distCtx, {
+      type: 'doughnut',
+      data: {
+        labels: ['Decisions','Sacred Pauses','Control Records'],
+        datasets: [{
+          data: [0,0,0],
+          backgroundColor: ['#06b6d4','#f59e0b','#ef4444'],
+          borderColor: '#ffffff',
+          borderWidth: 2
+        }]
+      },
+      options: { responsive:true, maintainAspectRatio:false,
+        plugins:{ legend:{ position:'right', labels:{ boxWidth:20 } } }
+      }
+    });
+    const volCtx = document.getElementById('logVolumeChart').getContext('2d');
+    logVolumeChart = new Chart(volCtx, {
+      type: 'line',
+      data: { labels: [], datasets: [{
+        label: 'Logs per Second', data: [],
+        borderColor: '#0891b2', backgroundColor: 'rgba(14,165,233,.12)', fill:true, tension:.4
+      }]},
+      options: { responsive:true, maintainAspectRatio:false,
+        scales: {
+          y:{ beginAtZero:true, grid:{ color:'#e2e8f0' }, ticks:{ stepSize:5 } },
+          x:{ grid:{ display:false } }
+        },
+        plugins:{ legend:{ display:false } }
+      }
+    });
+  }
+
+  function updateChartsTick(now = new Date()){
+    // update every 1s from the simulation loop
+    const timeLabel = now.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit',second:'2-digit'});
+    if (logVolumeData.labels.length > 20){ logVolumeData.labels.shift(); logVolumeData.data.shift(); }
+    logVolumeChart.data.labels = logVolumeData.labels;
+    logVolumeChart.data.datasets[0].data = logVolumeData.data;
+    logVolumeChart.update();
+
+    eventDistChart.data.datasets[0].data = [
+      eventDistData.decision, eventDistData.sacred_pause, eventDistData.control_record
+    ];
+    eventDistChart.update();
+  }
+
+  // ------------------------ Control Records / Heartbeat ------------------------
+  async function emitHeartbeat(){
+    lastHeartbeat = Date.now();
+    hbEl.textContent = new Date(lastHeartbeat).toLocaleTimeString();
+    // Occasionally record a control heartbeat as an entry (optional)
+    if (Math.random() < 0.02) {
+      const hb = await buildEntry({ event:'heartbeat', type:'control_record', queue_depth: queueDepth, tsa_status: tsaStatus });
+      ledger.push(hb); eventDistData.control_record++; renderEntry(hb);
+    }
+  }
+
+  async function emitBackpressure(){
+    const bp = await buildEntry({ event:'backpressure', type:'control_record', queue_depth: queueDepth });
+    ledger.push(bp); eventDistData.control_record++; renderEntry(bp);
+  }
+
+  async function emitTsaUnavailable(){
+    tsaStatus = "DEGRADED";
+    tsaEl.textContent = tsaStatus;
+    const rec = await buildEntry({ event:'tsa_unavailable', type:'control_record', authority_ids:['tsa1','tsa2'] });
+    ledger.push(rec); eventDistData.control_record++; renderEntry(rec);
+  }
+
+  // ------------------------ Simulation Engine ------------------------
+  let logsThisSecond = 0;
+  let lastSecondTick = Date.now();
+
+  async function simTick(){
+    if (!simulationOn) return;
+
+    // read toggles live
+    floodMode = floodToggle.checked;
+    oscillateMode = oscToggle.checked;
+
+    // rate control
+    const intervalMs = floodMode ? 60 : 200; // faster under flood
+    queueDepth = Math.max(0, queueDepth + (floodMode ? 3 : (Math.random()<.3?1:-1)));
+    qdEl.textContent = queueDepth.toString();
+
+    // TSA flakiness during flood (to demonstrate outage control logs)
+    if (floodMode && Math.random() < 0.01){ await emitTsaUnavailable(); }
+    if (!floodMode && tsaStatus !== "OK" && Math.random() < 0.05){ tsaStatus = "OK"; tsaEl.textContent = tsaStatus; }
+
+    // choose event
+    let sprl = Math.random();
+    if (oscillateMode) sprl = 0.69 + Math.random()*0.04; // 0.69–0.73 hover
+    const eventName = (sprl >= 0.70) ? 'sacred_pause' : 'decision';
+    const type = (eventName === 'sacred_pause') ? 'sacred_pause' : 'decision';
+
+    const entry = await buildEntry({
+      event: eventName,
+      type: type,
+      system_id: 'org.acme.triage.v3',
+      decision_id: crypto.randomUUID(),
+      sprl: sprl,
+      threshold: 0.70,
+      context_hash: (await sha256hex(Math.random().toString(36).slice(2)))
+    });
+    ledger.push(entry);
+    if (type === 'decision') eventDistData.decision++; else eventDistData.sacred_pause++;
+    renderEntry(entry);
+    logsThisSecond++;
+
+    // occasional control records under flood to show backpressure
+    if (floodMode && Math.random() < 0.03){ await emitBackpressure(); }
+
+    // per-second chart update & heartbeat ~ every 30s
+    const now = Date.now();
+    if (now - lastSecondTick > 1000){
+      lastSecondTick = now;
+      if (logVolumeData.labels.length > 20){ logVolumeData.labels.shift(); logVolumeData.data.shift(); }
+      logVolumeData.labels.push(new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit',second:'2-digit'}));
+      logVolumeData.data.push(logsThisSecond);
+      logsThisSecond = 0;
+      updateChartsTick(new Date());
+    }
+    if (!lastHeartbeat || (now - lastHeartbeat) > 30000){
+      await emitHeartbeat();
+    }
+
+    // schedule next tick with dynamic rate
+    setTimeout(simTick, intervalMs);
+  }
+
+  // ------------------------ Verify & Download ------------------------
+  async function verifyChain(){
+    let ok = 0, bad = 0, ph = "GENESIS";
+    for (const e of ledger){
+      if (e.prev_hash !== ph) bad++;
+      // recompute hash from the base (exclude derived fields)
+      const base = { ...e };
+      delete base.entry_hash; delete base.sig; delete base.key_id; delete base.tsa_tokens;
+      const recompute = await sha256hex(canonical(base));
+      if (recompute === e.entry_hash) ok++; else bad++;
+      ph = e.entry_hash;
+    }
+    alert(`Verification complete:\n✓ ${ok} checks passed\n✗ ${bad} issues`);
+  }
+
+  function downloadLedger(){
+    const lines = ledger.map(e => canonical(e)).join("\n");
+    const blob = new Blob([lines], {type:"text/plain"});
+    const a = Object.assign(document.createElement('a'), {
+      href: URL.createObjectURL(blob),
+      download: 'tml-ledger.jsonl'
+    });
+    document.body.appendChild(a); a.click(); a.remove();
+  }
+
+  // ------------------------ UI Wiring ------------------------
+  function onScrollActivate(){
+    const sections = document.querySelectorAll('main section');
+    const navLinks = document.querySelectorAll('nav a');
+    let current = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) current = s.id; });
+    navLinks.forEach(l => {
+      l.classList.remove('active');
+      if (l.getAttribute('href').includes(current)) l.classList.add('active');
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    initCharts();
+    window.addEventListener('scroll', onScrollActivate);
+
+    document.querySelectorAll('.guarantee-card').forEach(card => {
+      card.addEventListener('click', () => card.classList.toggle('bg-cyan-50'));
+    });
+
+    // threat hover highlighting
+    document.querySelectorAll('.resilience-item').forEach(item => {
+      item.addEventListener('mouseenter', () => {
+        const t = document.getElementById(item.dataset.target);
+        t.classList.add('bg-teal-200','ring-2','ring-teal-500');
+      });
+      item.addEventListener('mouseleave', () => {
+        const t = document.getElementById(item.dataset.target);
+        t.classList.remove('bg-teal-200','ring-2','ring-teal-500');
+      });
+    });
+
+    startBtn.onclick = () => {
+      if (simulationOn) return;
+      // reset visible area
+      logContainer.innerHTML = '';
+      // reset counters but keep sequence & prevHash flowing for realism
+      logsThisSecond = 0;
+      lastSecondTick = Date.now();
+      lastHeartbeat = 0;
+      queueDepth = 0; qdEl.textContent = '0';
+      tsaStatus = "OK"; tsaEl.textContent = 'OK';
+      simulationOn = true;
+      startBtn.disabled = true; stopBtn.disabled = false;
+      simTick();
+    };
+
+    stopBtn.onclick = () => {
+      simulationOn = false;
+      startBtn.disabled = false; stopBtn.disabled = true;
+    };
+
+    document.getElementById('verifyBtn').onclick = verifyChain;
+    document.getElementById('downloadBtn').onclick = downloadLedger;
+  });
+  </script>
+</body>
+</html>
