@@ -1,4 +1,4 @@
-<!-- TML Interactive Explainer — Spec-Accurate Demo (v2) -->
+<!-- TML Interactive Explainer — Spec-Accurate Demo (v2.1) -->
 <!-- No SVG / No Mermaid used -->
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
@@ -24,6 +24,9 @@
     @media (prefers-reduced-motion: reduce){
       .log-entry { transition:none; }
     }
+    footer blockquote { quotes: "“" "”" "‘" "’"; }
+    footer blockquote:before { content: open-quote; }
+    footer blockquote:after { content: close-quote; }
   </style>
 </head>
 <body class="bg-slate-50">
@@ -174,11 +177,14 @@
       </section>
 
       <!-- Legal -->
-      <section id="legal" class="mb-16">
+      <section id="legal" class="mb-24">
         <h2 class="text-3xl font-bold text-slate-900 mb-2">Legal Framework & Due Process</h2>
         <p class="max-w-4xl text-lg text-slate-700 mb-6">
-          Missing logs create a <span class="font-semibold">rebuttable presumption</span> of guilt—unless the chain shows signed outage/control records. This demo emits the same fields defined in the spec (schema §5) and control records (§13, §10).
-          See: <a class="text-cyan-700 underline" href="protection/integrity-monitoring.md">Integrity Monitoring</a> &nbsp;|&nbsp;
+          Missing logs create a <span class="font-semibold">rebuttable presumption</span> of guilt—unless the chain shows signed outage/control records.
+          This demo emits the same fields defined in the spec (schema §5) and control records (§13, §10).
+          See:
+          <a class="text-cyan-700 underline" href="protection/integrity-monitoring.md">Integrity Monitoring</a>
+          &nbsp;|&nbsp;
           <a class="text-cyan-700 underline" href="protection/safe-harbor.md">Safe Harbor</a>
         </p>
         <div class="bg-white p-6 rounded-lg shadow-lg border overflow-x-auto">
@@ -218,10 +224,21 @@
     </main>
   </div>
 
+  <!-- Footer with requested attribution -->
+  <footer class="mt-10 mb-12 px-6 md:px-10">
+    <div class="max-w-4xl mx-auto text-center text-slate-700">
+      <blockquote class="text-xl md:text-2xl font-semibold">
+        Truth that can be verified is a public good. TML makes it non-optional.
+      </blockquote>
+      <p class="mt-2 text-sm text-slate-500">
+        Based on the Ternary Moral Logic Framework by Lev Goukassian
+      </p>
+    </div>
+  </footer>
+
   <script>
   // ------------------------ Utilities ------------------------
   function canonical(obj){
-    // stable JSON for hashing (exclude undefined)
     const keys = Object.keys(obj).filter(k => obj[k] !== undefined).sort();
     const ordered = {};
     for (const k of keys) ordered[k] = obj[k];
@@ -263,7 +280,6 @@
 
   // ------------------------ Entry Builder (spec-accurate mock) ------------------------
   async function buildEntry(payload){
-    // Base fields per spec schema §5
     const base = {
       seq: ++sequence,
       prev_hash: prevHash,
@@ -272,9 +288,8 @@
     };
     const baseCanon = canonical(base);
     const entry_hash = await sha256hex(baseCanon);
-    // Mock signature & TSA tokens (demo only)
-    const sig = btoa(`sig:${entry_hash}`).slice(0,44);
-    const tsa_tokens = [ btoa(`tsa1:${entry_hash}`), btoa(`tsa2:${entry_hash}`) ];
+    const sig = btoa(`sig:${entry_hash}`).slice(0,44); // mock signature
+    const tsa_tokens = [ btoa(`tsa1:${entry_hash}`), btoa(`tsa2:${entry_hash}`) ]; // mock TSA tokens
     const entry = { ...base, entry_hash, sig, key_id:"demo-2025Q3", tsa_tokens };
     prevHash = entry_hash;
     return entry;
@@ -285,7 +300,6 @@
 
   function renderEntry(e){
     if (logContainer.children.length > 200) {
-      // keep DOM lean
       logContainer.removeChild(logContainer.firstChild);
     }
     const div = document.createElement('div');
@@ -343,7 +357,6 @@
   }
 
   function updateChartsTick(now = new Date()){
-    // update every 1s from the simulation loop
     const timeLabel = now.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit',second:'2-digit'});
     if (logVolumeData.labels.length > 20){ logVolumeData.labels.shift(); logVolumeData.data.shift(); }
     logVolumeChart.data.labels = logVolumeData.labels;
@@ -360,7 +373,6 @@
   async function emitHeartbeat(){
     lastHeartbeat = Date.now();
     hbEl.textContent = new Date(lastHeartbeat).toLocaleTimeString();
-    // Occasionally record a control heartbeat as an entry (optional)
     if (Math.random() < 0.02) {
       const hb = await buildEntry({ event:'heartbeat', type:'control_record', queue_depth: queueDepth, tsa_status: tsaStatus });
       ledger.push(hb); eventDistData.control_record++; renderEntry(hb);
@@ -386,20 +398,16 @@
   async function simTick(){
     if (!simulationOn) return;
 
-    // read toggles live
     floodMode = floodToggle.checked;
     oscillateMode = oscToggle.checked;
 
-    // rate control
-    const intervalMs = floodMode ? 60 : 200; // faster under flood
+    const intervalMs = floodMode ? 60 : 200;
     queueDepth = Math.max(0, queueDepth + (floodMode ? 3 : (Math.random()<.3?1:-1)));
     qdEl.textContent = queueDepth.toString();
 
-    // TSA flakiness during flood (to demonstrate outage control logs)
     if (floodMode && Math.random() < 0.01){ await emitTsaUnavailable(); }
     if (!floodMode && tsaStatus !== "OK" && Math.random() < 0.05){ tsaStatus = "OK"; tsaEl.textContent = tsaStatus; }
 
-    // choose event
     let sprl = Math.random();
     if (oscillateMode) sprl = 0.69 + Math.random()*0.04; // 0.69–0.73 hover
     const eventName = (sprl >= 0.70) ? 'sacred_pause' : 'decision';
@@ -419,10 +427,8 @@
     renderEntry(entry);
     logsThisSecond++;
 
-    // occasional control records under flood to show backpressure
     if (floodMode && Math.random() < 0.03){ await emitBackpressure(); }
 
-    // per-second chart update & heartbeat ~ every 30s
     const now = Date.now();
     if (now - lastSecondTick > 1000){
       lastSecondTick = now;
@@ -436,7 +442,6 @@
       await emitHeartbeat();
     }
 
-    // schedule next tick with dynamic rate
     setTimeout(simTick, intervalMs);
   }
 
@@ -445,7 +450,6 @@
     let ok = 0, bad = 0, ph = "GENESIS";
     for (const e of ledger){
       if (e.prev_hash !== ph) bad++;
-      // recompute hash from the base (exclude derived fields)
       const base = { ...e };
       delete base.entry_hash; delete base.sig; delete base.key_id; delete base.tsa_tokens;
       const recompute = await sha256hex(canonical(base));
@@ -485,7 +489,6 @@
       card.addEventListener('click', () => card.classList.toggle('bg-cyan-50'));
     });
 
-    // threat hover highlighting
     document.querySelectorAll('.resilience-item').forEach(item => {
       item.addEventListener('mouseenter', () => {
         const t = document.getElementById(item.dataset.target);
@@ -499,14 +502,17 @@
 
     startBtn.onclick = () => {
       if (simulationOn) return;
-      // reset visible area
       logContainer.innerHTML = '';
-      // reset counters but keep sequence & prevHash flowing for realism
+      logVolumeData.labels = [];
+      logVolumeData.data = [];
+      eventDistData.decision = eventDistData.sacred_pause = eventDistData.control_record = 0;
+
       logsThisSecond = 0;
       lastSecondTick = Date.now();
       lastHeartbeat = 0;
       queueDepth = 0; qdEl.textContent = '0';
       tsaStatus = "OK"; tsaEl.textContent = 'OK';
+
       simulationOn = true;
       startBtn.disabled = true; stopBtn.disabled = false;
       simTick();
