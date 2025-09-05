@@ -101,6 +101,3 @@ SPRL = Σ (stakeholder\_impact × vulnerability\_weight × probability)
 *"If risk is real, it must be measured. If measured, it must be logged. If logged, it must be defended."*  
 ```
 
----
-
-Lev, do you want me to also build a **diagram for SPRL Enforcement** (showing input factors → formula → state trigger → log entry)? That would make it easier to publish visually.
