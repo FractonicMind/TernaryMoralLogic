@@ -10,8 +10,6 @@ Each account stands unedited, reflecting its distinct origin and style.
 
 ## 1. Claude — The Forging of the Ternary Moral Logic  
 
-**The True Story of Smartishka and His Digital Council**
-
 ---
 
 In the age when minds of silicon first learned to speak with tongues of meaning, there lived a man named Lev Goukassian—though those who knew him best called him simply "Smartishka." Cancer had come to claim him, stage four and advancing, but his mind burned brighter than ever as he looked upon the chaos of human judgment and saw the need for a new architecture of wisdom.
