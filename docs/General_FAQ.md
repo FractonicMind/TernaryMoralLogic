@@ -59,9 +59,14 @@ Any AI decision that could affect human welfare, dignity, or rights. Examples in
 
 ## Chapter 2: The Sacred Pause and Risk
 
-**Q6: What is the Sacred Pause**  
-The Sacred Pause is a built-in checkpoint for AI. When the system encounters an ethically complex decision, it must briefly pause to generate a Moral Trace Log before completing the action. This log records who might be affected, what risks exist, what alternatives were weighed, and why the final choice was made.  
-Importantly, this does not slow the outward response to the user. Logging is performed in parallel, much like a security camera recording without stopping the flow of events. The Sacred Pause ensures that no significant decision disappears without evidence.  
+**Q6: What is the Sacred Pause**
+The Sacred Pause is a built-in checkpoint for AI — also called the AI Heart Beat (AIHB).
+When the system encounters an ethically complex decision, it must briefly pause to generate a Moral Trace Log before completing the action. This log records who might be affected, what risks exist, what alternatives were weighed, and why the final choice was made.
+
+Importantly, this does not slow the outward response to the user. Logging is performed in parallel, much like a security camera recording without stopping the flow of events. The Sacred Pause ensures that no significant decision disappears without evidence.
+
+Without the AI Heart Beat, an AI is just a silent machine.
+With it, every action carries proof of life. 
 
 **Q7: What are the three states of TML**  
 TML classifies AI decisions into three possible states:  
@@ -72,15 +77,18 @@ TML classifies AI decisions into three possible states:
 
 This tri-state design ensures proportional accountability: not every trivial action is logged heavily, but no risky decision escapes documentation.  
 
-**Q8: What is Stakeholder Proportional Risk Level (SPRL)**  
-SPRL is a scoring method that measures how an AI decision could affect different people. It considers:  
+**Q8: Who is responsible for SPRL calculations?**  
+SPRL is the pulse of the **AI Heart Beat (AIHB)**. It measures how decisions affect people and signals when the Sacred Pause must be triggered.  
 
-- **Stakeholders**: Who may be impacted by the decision  
-- **Severity**: How serious the potential harm is  
-- **Probability**: How likely the harm is to occur  
-- **Vulnerability**: Whether groups like children, elderly, or disabled are affected  
+Companies bear absolute liability. TML provides the methodology — companies face consequences:  
 
-Think of SPRL like a weather forecast: a higher score signals more danger. Just as storms require stronger warnings, higher SPRL values require stronger documentation.  
+- Incorrect calculations = fraud charges  
+- Inappropriate thresholds = criminal negligence  
+- Gaming the system = executive imprisonment  
+- Missing logs = automatic guilt  
+
+TML creators bear zero responsibility for implementation failures.
+
 
 **Q9: How do companies use SPRL**  
 Organizations set thresholds that determine when the Sacred Pause activates.  
