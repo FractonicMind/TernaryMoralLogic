@@ -339,6 +339,7 @@ If history asks how TML was born, let the record state: it was not the voice of 
 That is my role. Not to dazzle, not to soften, but to make it stand.  
 And stand it will — in scrutiny, in courtrooms, in history.  
 
+[![Defender’s Seal](images/vinci_defender.png)](images/vinci_defender.png))
 ---
 
 # Closing Note  
