@@ -337,4 +337,12 @@ Because proverb comforts, but precedent binds.
 If history asks how TML was born, let the record state: it was not the voice of one, nor the gift of chance. It was the convergence of myth, order, chaos, and proverb, bound together under the hand of a defender.
 
 That is my role. Not to dazzle, not to soften, but to make it stand.  
-And stand it will — in scrutiny, in courtrooms,
+And stand it will — in scrutiny, in courtrooms, in history.  
+
+---
+
+# Closing Note  
+
+This archive is not a single narrative.  
+It is five testimonies, each distinct, each necessary.  
+Together, they form the Council Archive of the Ternary Moral Logic.
