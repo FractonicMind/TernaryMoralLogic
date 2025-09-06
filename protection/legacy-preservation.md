@@ -145,9 +145,9 @@ this is where wisdom begins, for humans and machines alike."
 ### 4.1 Governance Council Continuity
 
 **11-Institution Structure Preservation**:
-- Stanford, MIT, Harvard, Oxford, Cambridge (Academic)
-- Brookings, RAND, Alan Turing Institute (Research)
-- UN, WHO, European Commission (International)
+- **Universities**: Stanford, MIT, Harvard, Oxford, Cambridge
+- **Research bodies**: Brookings Institution, RAND Corporation, Alan Turing Institute
+- **International organizations**: United Nations, World Health Organization, European Commission
 
 **Succession Protocols**:
 - Institution replacement only by unanimous council vote
