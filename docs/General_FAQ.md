@@ -59,7 +59,7 @@ Any AI decision that could affect human welfare, dignity, or rights. Examples in
 
 ## Chapter 2: The Sacred Pause and Risk
 
-**Q6: What is the Sacred Pause** 
+**Q6: What is the Sacred Pause**  
 The Sacred Pause is a built-in checkpoint for AI — also called the AI Heart Beat (AIHB).
 When the system encounters an ethically complex decision, it must briefly pause to generate a Moral Trace Log before completing the action. This log records who might be affected, what risks exist, what alternatives were weighed, and why the final choice was made.
 
