@@ -143,11 +143,10 @@ this is where wisdom begins, for humans and machines alike."
 ## 4. COMMUNITY GOVERNANCE SUCCESSION
 
 ### 4.1 Governance Council Continuity
-
 **11-Institution Structure Preservation**:
 - **Universities**: Stanford, MIT, Harvard, Oxford, Cambridge
-- **Research bodies**: Brookings Institution, RAND Corporation, Alan Turing Institute
-- **International organizations**: United Nations, World Health Organization, European Commission
+- **Research Organizations**: Brookings Institution, RAND Corporation, Alan Turing Institute
+- **International Organizations**: United Nations, World Health Organization, European Commission
 
 **Succession Protocols**:
 - Institution replacement only by unanimous council vote
