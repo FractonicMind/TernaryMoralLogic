@@ -140,41 +140,40 @@ this is where wisdom begins, for humans and machines alike."
 
 ---
 
-## 4. COMMUNITY GOVERNANCE SUCCESSION
+# 4. COMMUNITY GOVERNANCE SUCCESSION
 
-### 4.1 Governance Council Continuity
-**11-Institution Structure Preservation**:
-- **Universities**: Stanford, MIT, Harvard, Oxford, Cambridge
-- **Research Organizations**: Brookings Institution, RAND Corporation, Alan Turing Institute
-- **International Organizations**: United Nations, World Health Organization, European Commission
+## 4.1 Governance Council Continuity
 
-**Succession Protocols**:
-- Institution replacement only by unanimous council vote
-- New institutions must demonstrate ethical AI commitment
-- Geographic and philosophical diversity maintained
-- Rotating leadership prevents capture
+**11-Institution Structure**:  
+The Governance Council shall be composed of leading academic, research, and international institutions.  
+Founding members include Stanford, MIT, Harvard, Oxford, Cambridge, Brookings Institution, RAND Corporation, Alan Turing Institute, the United Nations, the World Health Organization, and the European Commission.  
 
-### 4.2 Community Self-Organization
+**Succession Protocols**:  
+- Replacement of institutions requires a **supermajority vote** with a full Sacred Pause log of deliberation.  
+- Institutions must disclose conflicts of interest to prevent hidden influence.  
+- New members must demonstrate commitment to ethical AI.  
+- Geographic and philosophical diversity must be maintained.  
+- Rotating leadership prevents capture by any single body.  
 
-**Democratic Evolution**:
-- Community working groups for technical development
-- Open contribution process with attribution
-- Transparent decision-making for framework updates
-- Regular community feedback and input mechanisms
+---
 
-**Quality Assurance**:
-- Peer review for all major changes
-- Academic validation of new components
-- Real-world testing before implementation
-- Community consensus for philosophical updates
+## 4.2 Community Self-Organization
 
-### 4.3 Authority Distribution
+**Democratic Evolution**:  
+- Open working groups for technical development  
+- Transparent processes for framework updates  
+- Community feedback channels and peer review for major changes  
+- Academic validation and real-world testing before adoption  
 
-**No Single Point of Control**:
-- Technical development: Community-driven with council oversight
-- Implementation decisions: Organization autonomy within framework
-- Standards evolution: Multi-stakeholder consensus required
-- Legal enforcement: Distributed across jurisdictions
+---
+
+## 4.3 Authority Distribution
+
+**Distributed Authority**:  
+- Technical development is community-driven, under council oversight  
+- Implementation decisions remain with individual organizations, provided they follow TML principles  
+- Standards evolve only through multi-stakeholder consensus  
+- Legal enforcement is shared across jurisdictions, preventing centralization
 
 ---
 
@@ -182,18 +181,20 @@ this is where wisdom begins, for humans and machines alike."
 
 ### 5.1 Memorial Fund Structure
 
-**Lev Goukassian Memorial Fund for Ethical AI**:
-- Endowment target: $50-100 million
-- Revenue sources: Licensing fees, donations, grants, speaking fees
-- Investment strategy: Conservative portfolio with 4-5% annual distribution
-- Governance: 11-institution council with rotating treasury management
+**Lev Goukassian Memorial Fund for Ethical AI**:  
+- Endowment target: baseline equivalent of **$50 million (2025 USD)**, with periodic adjustment to preserve purchasing power over time  
+- Revenue sources: licensing fees, donations, grants, speaking fees  
+- Investment strategy: conservative portfolio with 4–5% annual distribution  
+- Governance: 11-institution council with rotating treasury management  
 
-**Fund Purposes**:
-- TML framework maintenance and development
-- Academic research grants in ethical AI
-- Educational initiatives and course development
-- Community infrastructure and support
-- Legal protection and enforcement actions
+**Fund Purposes**:  
+- Maintenance and development of the TML framework  
+- Academic research grants in ethical AI  
+- Educational initiatives and course development  
+- Community infrastructure and support  
+- Legal protection and enforcement actions  
+- **Direct assistance to victims of AI harm**  
+- **Protection and support for whistleblowers exposing unethical AI practices**
 
 ### 5.2 Revenue Model
 
