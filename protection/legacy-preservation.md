@@ -177,7 +177,7 @@ Founding members include Stanford, MIT, Harvard, Oxford, Cambridge, Brookings In
 
 ---
 
-## 5. FINANCIAL SUSTAINABILITY
+ ## 5. FINANCIAL SUSTAINABILITY
 
 ### 5.1 Memorial Fund Structure
 
@@ -196,29 +196,39 @@ Founding members include Stanford, MIT, Harvard, Oxford, Cambridge, Brookings In
 - **Direct assistance to victims of AI harm**  
 - **Protection and support for whistleblowers exposing unethical AI practices**
 
+---
+
 ### 5.2 Revenue Model
 
-**Sustainable Funding Sources**:
-- Enterprise licensing fees for commercial TML implementations
-- Training and certification program revenues
-- Academic conference and symposium income
-- Book royalties and educational material sales
-- Corporate ethics consulting and advisory services
+**Sustainable Funding Sources**:  
+- Enterprise licensing fees for commercial TML implementations  
+- Training and certification program revenues  
+- Academic conference and symposium income  
+- Book royalties and educational material sales  
+- Corporate ethics consulting and advisory services  
+- Periodic adjustment of fee structures to preserve long-term purchasing power  
 
-**Cost Structure**:
-- Framework development: 40% of fund
-- Legal protection: 25% of fund
-- Educational initiatives: 20% of fund
-- Community infrastructure: 10% of fund
-- Administrative costs: 5% of fund
+**Cost Structure**:  
+- Framework development: 40% of fund  
+- Legal protection: 25% of fund  
+- Educational initiatives: 20% of fund  
+- Community infrastructure: 10% of fund  
+- Administrative costs: 5% of fund  
+
+**Compensation Rule**:  
+The highest salary paid by the TML Foundation  
+shall not exceed **125% of the median salary for nonprofit executives  
+managing endowments of comparable size**.  
+
+---
 
 ### 5.3 Economic Independence
 
-**Long-term Viability**:
-- Multiple revenue streams prevent single-point failure
-- Endowment provides baseline funding security
-- Community contributions ensure distributed support
-- Commercial applications generate sustainable income
+**Long-term Viability**:  
+- Multiple revenue streams prevent single-point failure  
+- Endowment provides baseline funding security  
+- Community contributions ensure distributed support  
+- Commercial applications generate sustainable income  
 - Academic integration creates institutional commitment
 
 ---
