@@ -216,9 +216,7 @@ Founding members include Stanford, MIT, Harvard, Oxford, Cambridge, Brookings In
 - Administrative costs: 5% of fund  
 
 **Compensation Rule**:  
-The highest salary paid by the TML Foundation  
-shall not exceed **125% of the median salary for nonprofit executives  
-managing endowments of comparable size**.  
+The highest salary paid by the TML Foundation shall not exceed **125% of the median salary for nonprofit executives managing endowments of comparable size**.  
 
 ---
 
