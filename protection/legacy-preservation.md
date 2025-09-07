@@ -467,16 +467,16 @@ The highest salary paid by the TML Foundation shall not exceed **125% of the med
 
 ### 11.2 Research Awards and Grants
 
-**Lev Goukassian Award for Ethical AI Innovation**:
-- Annual recognition for breakthrough ethical AI research
-- $50,000 research grant for promising projects
-- Publication support and academic collaboration
-- Integration with TML community and resources
+**Lev Goukassian Award for Ethical AI Innovation**:  
+- Annual recognition for breakthrough ethical AI research  
+- **Baseline equivalent of $50,000 (2025 USD)** research grant for promising projects,   with periodic adjustment to preserve purchasing power over time  
+- Publication support and academic collaboration  
+- Integration with TML community and resources  
 
-**Student Fellowship Program**:
-- Graduate student support for TML-related research
-- Undergraduate project grants for Sacred Pause applications
-- Mentorship connections with TML community experts
+**Student Fellowship Program**:  
+- Graduate student support for TML-related research  
+- Undergraduate project grants for Sacred Pause applications  
+- Mentorship connections with TML community experts  
 - Career development in ethical AI and technology
 
 ### 11.3 Community Recognition
