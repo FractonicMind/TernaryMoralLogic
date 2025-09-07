@@ -31,7 +31,7 @@ The fundamental architecture of TML must remain inviolate:
 ### 1.2 Implementation Consistency
 
 All TML deployments worldwide must maintain:
-- **SPRL calculation methodology** - Standardized risk assessment
+- **SPRL calculation methodology** – Standardized risk assessment that defines when the Sacred Pause must trigger
 - **Prohibition threshold enforcement** - Quantified red lines cannot be weakened
 - **Cryptographic integrity** - Immutable evidence generation
 - **Council oversight authority** - 11-institution governance structure
