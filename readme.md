@@ -1,12 +1,5 @@
 # Ternary Moral Logic: A Mandatory Framework for Auditable AI
 
-**Author**: Lev Goukassian  
-**ORCID**: 0009-0006-5966-1243  
-**Affiliation**: Independent Researcher  
-**Contact**: leogouk@gmail.com  
-**Version**: 3.0.0  
-**Date**: September 2, 2025
-
 ---
 
 ## Abstract
