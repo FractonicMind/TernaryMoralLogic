@@ -172,7 +172,7 @@ Harmed parties receive:
 
 ### 6.3 Penalty Distribution
 
-- 30-40%: Victim support
+- 30%: Victim support
 - 15%: Whistleblower rewards
 - 25%: Enforcement infrastructure
 - 20%: Council operations
