@@ -72,7 +72,7 @@ The Memorial Fund operates within the TML enforcement framework established in `
 - Advocacy for victims in TML compliance litigation
 
 **Victim Support Services**:
-- Emergency financial assistance (up to $50K immediate support)
+- Emergency financial assistance — up to $50,000 (nominal 2025 value) in immediate support
 - Legal representation for AI harm cases
 - Expert testimony on TML safety standards
 - Rehabilitation and recovery support services
