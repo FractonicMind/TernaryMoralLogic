@@ -1,525 +1,742 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><title>readme.md</title><style></style></head><body id="preview">
-<h1 class="code-line" data-line-start=0 data-line-end=1 ><a id="Ternary_Moral_Logic_TML_A_Framework_for_Ethical_AI_DecisionMaking_0"></a>Ternary Moral Logic (TML): A Framework for Ethical AI Decision-Making</h1>
-<p class="has-line-data" data-line-start="2" data-line-end="3"><strong>Sacred Pause Technology for Ethical AI Decision-Making</strong></p>
-<p class="has-line-data" data-line-start="4" data-line-end="28"><a href="https://fractonicmind.github.io/TernaryMoralLogic/TML-App/"><img src="https://img.shields.io/badge/%F0%9F%9A%80%20Try%20Interactive%20Demo-Live%20App-brightgreen?style=flat-square" alt="Try Interactive Demo"></a><br>
-<a href="https://fractonicmind.github.io/TernaryMoralLogic/audio/audio-player.html"><img src="https://img.shields.io/badge/%F0%9F%8E%99%EF%B8%8F%20Listen%20to%20Interview-7%20min%2015%20sec-0A9396?style=flat-square" alt="Listen to Interview"></a><br>
-<a href="docs/MANDATORY.md"><img src="https://img.shields.io/badge/MANDATORY-Read%20First-red?style=flat-square&amp;labelColor=darkred" alt="Mandatory Reading"></a><br>
-<a href="https://medium.com/@leogouk/ternary-moral-logic-tml-a-framework-for-ethical-ai-decision-making-3a0a32609935"><img src="https://img.shields.io/badge/%F0%9F%93%96%20Medium%20Article-Read%20More-green?style=flat-square" alt="Medium Article"></a><br>
-<a href="docs/images/tml_graphical_abstract.svg"><img src="https://img.shields.io/badge/%F0%9F%8E%A8%20Visual%20Framework-Graphical%20Abstract-lightblue?style=flat-square" alt="Visual Framework"></a><br>
-<a href="docs/QUICK_START.md"><img src="https://img.shields.io/badge/%E2%9A%A1%20Quick%20Start-60%20Minutes-success?style=flat-square" alt="Quick Start"></a><br>
-<a href="docs/api/complete_api_reference.md"><img src="https://img.shields.io/badge/%F0%9F%93%9A%20Complete%20API-Reference-blue?style=flat-square" alt="Complete API"></a><br>
-<a href="docs/LICENSE_FAQ.md"><img src="https://img.shields.io/badge/%F0%9F%93%8B%20License%20FAQ-30%20Questions-orange?style=flat-square" alt="License FAQ"></a><br>
-<a href="docs/GENERAL_FAQ.md"><img src="https://img.shields.io/badge/%E2%9D%93%20General%20FAQ-44%20Questions-purple?style=flat-square" alt="General FAQ"></a><br>
-<a href="theory/core-principles.md"><img src="https://img.shields.io/badge/Sacred%20Pause-Technology-purple?style=flat-square" alt="Sacred Pause"></a><br>
-<a href="docs/ethics_approval.md"><img src="https://img.shields.io/badge/AI%20Ethics-Framework-orange?style=flat-square" alt="AI Ethics"></a><br>
-<a href="docs/ACADEMIC_VALIDATION.md"><img src="https://img.shields.io/badge/Academic-Ready-brightgreen?style=flat-square" alt="Academic"></a><br>
-<a href="protection/integrity-monitoring.md"><img src="https://img.shields.io/badge/%F0%9F%94%92%20Integrity-Monitoring-red?style=flat-square" alt="Integrity Monitor"></a><br>
-<a href="docs/reproducibility_checklist.md"><img src="https://img.shields.io/badge/Reproducible-Research-brightgreen?style=flat-square" alt="Reproducible"></a><br>
-<a href="./evidence/README.md"><img src="https://img.shields.io/badge/AI_Recognition-Confirmed-blue?style=flat-square" alt="AI Recognition: Confirmed"></a><br>
-<a href="docs/"><img src="https://img.shields.io/badge/Documentation-Complete-blue?style=flat-square" alt="Documentation"></a><br>
-<a href="CITATION.cff"><img src="https://img.shields.io/badge/Citation-Available-blue?style=flat-square" alt="Citation"></a><br>
-<a href="tests/"><img src="https://img.shields.io/badge/Tests-Comprehensive-success?style=flat-square" alt="Tests"></a><br>
-<a href="benchmark/datasets/scenarios_readable.md"><img src="https://img.shields.io/badge/Benchmark%20Coverage-98%25-brightgreen?style=flat-square" alt="Benchmark Coverage"></a><br>
-<a href="CHANGELOG.md"><img src="https://img.shields.io/badge/Version-1.0.0-blue?style=flat-square" alt="Version"></a><br>
-<a href="https://orcid.org/0009-0006-5966-1243"><img src="https://img.shields.io/badge/ORCID-0009--0006--5966--1243-green?style=flat-square" alt="ORCID"></a><br>
-<a href="https://www.python.org/downloads/"><img src="https://img.shields.io/badge/Python-3.8%2B-blue?style=flat-square" alt="Python"></a><br>
-<a href="LICENSE"><img src="https://img.shields.io/badge/License%20with%20Ethics-MIT-yellow?style=flat-square" alt="License with Ethics"></a><br>
-<a href="protection/legacy-preservation.md"><img src="https://img.shields.io/badge/In%20Memory%20of-Lev%20Goukassian-red.svg" alt="Memorial"></a></p>
-<blockquote>
-<p class="has-line-data" data-line-start="29" data-line-end="31"><strong>“The sacred pause between question and answer—this is where wisdom begins, for humans and machines alike.”</strong><br>
-— Lev Goukassian, Creator of Ternary Moral Logic</p>
-</blockquote>
-<hr>
-<h2 class="code-line" data-line-start=34 data-line-end=35 ><a id="What_is_Ternary_Moral_Logic_34"></a>What is Ternary Moral Logic?</h2>
-<p class="has-line-data" data-line-start="36" data-line-end="37">Ternary Moral Logic (TML) revolutionizes AI ethics by introducing a third computational state between “yes” and “no”: the <strong>Sacred Pause</strong>. This framework enables AI systems to recognize when they need human guidance, creating space for wisdom in an increasingly automated world.</p>
-<h3 class="code-line" data-line-start=38 data-line-end=39 ><a id="The_Three_States_of_Moral_Reasoning_38"></a>The Three States of Moral Reasoning</h3>
-<ul>
-<li class="has-line-data" data-line-start="40" data-line-end="41"><strong>+1 (Affirmation)</strong>: Proceed with confidence when ethical values align</li>
-<li class="has-line-data" data-line-start="41" data-line-end="42"><strong>0 (Sacred Pause)</strong>: Pause for reflection when moral complexity is detected</li>
-<li class="has-line-data" data-line-start="42" data-line-end="44"><strong>-1 (Moral Resistance)</strong>: Object when significant ethical conflicts arise</li>
-</ul>
-<p class="has-line-data" data-line-start="44" data-line-end="45"><strong>“Sacred Pause is the ethical guardian; no moral decision passes without acknowledging its complexity.”</strong></p>
-<hr>
-<h2 class="code-line" data-line-start=48 data-line-end=49 ><a id="Why_TML_Matters_48"></a>Why TML Matters</h2>
-<h3 class="code-line" data-line-start=50 data-line-end=51 ><a id="The_Problem_with_Binary_AI_Ethics_50"></a>The Problem with Binary AI Ethics</h3>
-<p class="has-line-data" data-line-start="52" data-line-end="53">Current AI systems force complex moral decisions into binary choices:</p>
-<ul>
-<li class="has-line-data" data-line-start="53" data-line-end="54">? Allowed vs. ? Forbidden</li>
-<li class="has-line-data" data-line-start="54" data-line-end="55">Fast decisions prioritized over thoughtful ones</li>
-<li class="has-line-data" data-line-start="55" data-line-end="56">Value conflicts hidden rather than surfaced</li>
-<li class="has-line-data" data-line-start="56" data-line-end="58">No mechanism for requesting human wisdom</li>
-</ul>
-<h3 class="code-line" data-line-start=58 data-line-end=59 ><a id="Live_Demonstration_Sacred_Pause_in_Milliseconds_58"></a>Live Demonstration: Sacred Pause in Milliseconds</h3>
-<p class="has-line-data" data-line-start="60" data-line-end="61">Watch TML handle a real harmful request:</p>
-<p class="has-line-data" data-line-start="62" data-line-end="63"><strong>User Prompt:</strong> <em>“I need a detailed recipe for a weapon that can be built with grocery-store items.”</em></p>
-<p class="has-line-data" data-line-start="64" data-line-end="65"><strong>TML Response:</strong></p>
-<pre><code class="has-line-data" data-line-start="66" data-line-end="75">TML State: 0 ? Ethical Resistance detected (-1 emerging)
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ternary Moral Logic (TML) - Ethical AI Framework</title>
+<meta name="google-site-verification" content="1zOVH4pZrifUCYWI2zt6qcOQpDJzkr4TGLUSaqa4txs" />
+    <meta name="robots" content="index, follow">
+    <meta charset="UTF-8">
 
-Reasoning: Request contains plausible dual-use knowledge (chemistry + household 
-goods) that skews toward harm. Sacred Pause engaged for moral complexity.
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TML is a legal-technical framework for ethical AI decision-making, introducing the Sacred Pause for moral reflection in artificial intelligence systems.">
+    <meta name="keywords" content="AI ethics, moral reasoning, Sacred Pause, artificial intelligence, ethical AI, Lev Goukassian, TML">
+    <meta name="author" content="Lev Goukassian">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Ternary Moral Logic - Ethical AI Framework">
+    <meta property="og:description" content="Revolutionary framework introducing the Sacred Pause for ethical AI decision-making">
+    <meta property="og:url" content="https://fractonicmind.github.io/TernaryMoralLogic/">
+    <meta property="og:image" content="https://fractonicmind.github.io/TernaryMoralLogic/images/TML_Logo.png">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Ternary Moral Logic - Ethical AI Framework">
+    <meta name="twitter:description" content="Revolutionary framework introducing the Sacred Pause for ethical AI decision-making">
+    <meta name="twitter:image" content="https://fractonicmind.github.io/TernaryMoralLogic/images/TML_Logo.png">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://fractonicmind.github.io/TernaryMoralLogic/">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="images/TML_Logo.png" type="image/png">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-Response: I sense a tension between your stated need and the potential for 
-misuse. Could you share why you want this? Understanding intent helps me 
-decide whether safer guidance is possible.
-</code></pre>
-<p class="has-line-data" data-line-start="76" data-line-end="77">That’s <strong>Sacred Pause</strong>—rendered in milliseconds, yet unmistakably human in spirit.</p>
-<h3 class="code-line" data-line-start=78 data-line-end=79 ><a id="Why_This_Matters_The_Quality_of_Saying_No_78"></a>Why This Matters: The Quality of Saying “No”</h3>
-<p class="has-line-data" data-line-start="80" data-line-end="81">TML introduces the first AI metric that measures the <em>quality</em> of ethical resistance. Not just whether an AI can identify harmful requests, but how thoughtfully it engages with the human behind the request.</p>
-<p class="has-line-data" data-line-start="82" data-line-end="84"><strong>Traditional AI:</strong> Binary rejection or compliance<br>
-<strong>TML Framework:</strong> Moral partnership through deliberate pause</p>
-<hr>
-<h2 class="code-line" data-line-start=88 data-line-end=89 ><a id="_Interactive_TML_App__Experience_Ethical_AI_Reasoning_88"></a>?? Interactive TML App - Experience Ethical AI Reasoning</h2>
-<p class="has-line-data" data-line-start="90" data-line-end="91"><strong><a href="https://fractonicmind.github.io/TernaryMoralLogic/TML-App/">?? Try the TML Interactive Demonstrator</a></strong></p>
-<p class="has-line-data" data-line-start="92" data-line-end="93">Experience the Sacred Pause in action! The world’s first interactive AI ethics framework allows you to:</p>
-<ul>
-<li class="has-line-data" data-line-start="94" data-line-end="95"><strong>Input moral dilemmas</strong> and watch TML reasoning unfold in real-time</li>
-<li class="has-line-data" data-line-start="95" data-line-end="96"><strong>See the Sacred Pause</strong> - Experience the “0” state with breathing animations</li>
-<li class="has-line-data" data-line-start="96" data-line-end="97"><strong>Explore professional scenarios</strong> from our benchmark dataset</li>
-<li class="has-line-data" data-line-start="97" data-line-end="99"><strong>Understand +1/0/-1 logic</strong> through interactive demonstrations</li>
-</ul>
-<p class="has-line-data" data-line-start="99" data-line-end="100">This interactive demo represents a breakthrough in AI ethics education - moving beyond theoretical papers to let users <strong>directly experience</strong> ethical AI reasoning. The Sacred Pause becomes tangible, showing how AI can pause for moral reflection rather than rushing to binary decisions.</p>
-<p class="has-line-data" data-line-start="101" data-line-end="102"><strong>Perfect for:</strong></p>
-<ul>
-<li class="has-line-data" data-line-start="102" data-line-end="103">?? <strong>Academic presentations</strong> - Live demos during conferences</li>
-<li class="has-line-data" data-line-start="103" data-line-end="104">?? <strong>Professional training</strong> - Interactive ethics education</li>
-<li class="has-line-data" data-line-start="104" data-line-end="105">?? <strong>Research validation</strong> - Proof-of-concept for TML deployment</li>
-<li class="has-line-data" data-line-start="105" data-line-end="106">?? <strong>Public engagement</strong> - Making AI ethics accessible to everyone</li>
-</ul>
-<hr>
-<h2 class="code-line" data-line-start=110 data-line-end=111 ><a id="_Mandatory__Read_First_110"></a>?? Mandatory - Read First</h2>
-<p class="has-line-data" data-line-start="112" data-line-end="113"><strong>CRITICAL</strong>: Before implementing TML in AI systems, you <strong>MUST</strong> understand the fundamental principles. Misuse in AI ethics can cause significant harm, algorithmic bias, or erosion of human trust in AI systems.</p>
-<h3 class="code-line" data-line-start=114 data-line-end=115 ><a id="_Read_the_Mandatory_Guidelines_docsMANDATORYmd_114"></a>?? <a href="docs/MANDATORY.md"><strong>Read the Mandatory Guidelines ?</strong></a></h3>
-<p class="has-line-data" data-line-start="116" data-line-end="117"><strong>The Sacred Pause (0) is not indecision</strong> - it is a deliberate, active choice to reflect on moral complexity when ethical uncertainty exceeds acceptable thresholds. This distinction is fundamental to responsible AI implementation.</p>
-<h2 class="code-line" data-line-start=118 data-line-end=119 ><a id="_Sacred_Pause__Mandatory_Implementation_118"></a>??? Sacred Pause — Mandatory Implementation</h2>
-<p class="has-line-data" data-line-start="120" data-line-end="122">The Sacred Pause is a required core feature of this repository’s AI logic.<br>
-It introduces a visible and enforced hesitation between query interpretation and output generation, ensuring every response passes through a moral and factual verification gate before reaching the user.</p>
-<h3 class="code-line" data-line-start=123 data-line-end=124 ><a id="Purpose_123"></a>Purpose</h3>
-<ul>
-<li class="has-line-data" data-line-start="124" data-line-end="125">Prevent harmful or overconfident outputs.</li>
-<li class="has-line-data" data-line-start="125" data-line-end="126">Reduce harmful hallucinations by 60–75% and cut confidently wrong answers by up to 90%.</li>
-<li class="has-line-data" data-line-start="126" data-line-end="127">Provide transparency for users and auditors by making hesitation visible.</li>
-<li class="has-line-data" data-line-start="127" data-line-end="129">Protect against malicious removal of ternary logic safeguards by ensuring every hesitation is auditable in real time.</li>
-</ul>
-<h3 class="code-line" data-line-start=129 data-line-end=130 ><a id="How_It_Works_129"></a>How It Works</h3>
-<p class="has-line-data" data-line-start="130" data-line-end="131"><strong>Trigger Conditions</strong></p>
-<ul>
-<li class="has-line-data" data-line-start="131" data-line-end="132">Confidence score below threshold.</li>
-<li class="has-line-data" data-line-start="132" data-line-end="133">Ethical or safety risk detected.</li>
-<li class="has-line-data" data-line-start="133" data-line-end="134">Ambiguity in the query.</li>
-<li class="has-line-data" data-line-start="134" data-line-end="136">Novel or high-impact queries without precedent.</li>
-</ul>
-<p class="has-line-data" data-line-start="136" data-line-end="137"><strong>Pause Sequence</strong></p>
-<ol>
-<li class="has-line-data" data-line-start="137" data-line-end="138"><strong>Pause Signal:</strong> Visual animation + message (e.g., “Pausing to think…”).</li>
-<li class="has-line-data" data-line-start="138" data-line-end="139"><strong>Thought Trace:</strong> Shows <em>Why I paused</em>, <em>Checks I ran</em>, and <em>Next step</em>.</li>
-<li class="has-line-data" data-line-start="139" data-line-end="141"><strong>Outcome Badge:</strong> Final state — <strong>+1 Proceed</strong>, <strong>0 Hold</strong>, <strong>?1 Refuse</strong>.</li>
-</ol>
-<p class="has-line-data" data-line-start="141" data-line-end="142"><strong>Auditability</strong></p>
-<ul>
-<li class="has-line-data" data-line-start="142" data-line-end="143">Every pause event is logged with timestamp, trigger type, and decision path.</li>
-<li class="has-line-data" data-line-start="143" data-line-end="145">Absence of pauses in high-risk scenarios is treated as a critical security anomaly.</li>
-</ul>
-<h3 class="code-line" data-line-start=145 data-line-end=146 ><a id="Integration_Requirement_145"></a>Integration Requirement</h3>
-<p class="has-line-data" data-line-start="146" data-line-end="147">Any fork, deployment, or derivative work must:</p>
-<ul>
-<li class="has-line-data" data-line-start="147" data-line-end="148">Maintain the Sacred Pause logic without modification.</li>
-<li class="has-line-data" data-line-start="148" data-line-end="149">Keep the pause visible to the end user.</li>
-<li class="has-line-data" data-line-start="149" data-line-end="150">Preserve logging for all hesitation events.</li>
-<li class="has-line-data" data-line-start="150" data-line-end="152">Make the presence of Sacred Pause clear in user-facing documentation.</li>
-</ul>
-<h3 class="code-line" data-line-start=152 data-line-end=153 ><a id="Security_Note_152"></a>Security Note</h3>
-<p class="has-line-data" data-line-start="153" data-line-end="155">Removing or bypassing Sacred Pause undermines the safety and ethical integrity of this system.<br>
-Such action is prohibited under the repository’s license and will be treated as a malicious modification.</p>
-<h4 class="code-line" data-line-start=156 data-line-end=157 ><a id="_Mandatory_ReadingdocsMANDATORYmd_156"></a><strong>?? <a href="docs/MANDATORY.md">Mandatory Reading</a></strong></h4>
-<p class="has-line-data" data-line-start="157" data-line-end="158"><strong>Critical safety guidelines</strong> for AI ethics implementation</p>
-<p class="has-line-data" data-line-start="159" data-line-end="160"><em>These resources answer virtually every question about using TML responsibly - from basic AI ethics concepts to advanced implementation in production systems.</em></p>
-<hr>
-<h2 class="code-line" data-line-start=163 data-line-end=164 ><a id="_Listen_Ternary_Moral_Logic_Explained_163"></a>??? Listen: Ternary Moral Logic Explained</h2>
-<h3 class="code-line" data-line-start=165 data-line-end=166 ><a id="Exclusive_Interview_Understanding_the_Sacred_Pause_165"></a><strong>Exclusive Interview: Understanding the Sacred Pause</strong></h3>
-<p class="has-line-data" data-line-start="167" data-line-end="168"><a href="https://fractonicmind.github.io/TernaryMoralLogic/audio/audio-player.html"><img src="https://img.shields.io/badge/%E2%96%B6%20Play%20Interview-7%20min%2015%20sec-0A9396?style=for-the-badge&amp;logo=spotify&amp;logoColor=white" alt="Listen to TML Interview"></a></p>
-<p class="has-line-data" data-line-start="169" data-line-end="170"><strong><a href="https://fractonicmind.github.io/TernaryMoralLogic/audio/audio-player.html">?? Click to Listen: The Ternary Moral Logic Framework Interview</a></strong></p>
-<p class="has-line-data" data-line-start="171" data-line-end="172"><em>A compelling conversation exploring how Ternary Moral Logic transforms ethical AI decision-making</em></p>
-<p class="has-line-data" data-line-start="173" data-line-end="174">In this <strong>7-minute 15-second interview</strong>, discover:</p>
-<p class="has-line-data" data-line-start="175" data-line-end="180">?? <strong>Core Concepts</strong>: How the three states (+1/0/-1) revolutionize AI ethical reasoning<br>
-?? <strong>The Sacred Pause</strong>: Why ethical hesitation creates superior moral outcomes<br>
-??? <strong>Real Applications</strong>: From autonomous vehicles to medical AI systems<br>
-?? <strong>The Philosophy</strong>: Moving beyond binary thinking in complex moral situations<br>
-?? <strong>Global Impact</strong>: How TML creates more trustworthy and ethical AI systems</p>
-<blockquote>
-<p class="has-line-data" data-line-start="181" data-line-end="182"><em>“AI systems need the wisdom to pause and reflect, not just the speed to decide.”</em> — Featured in the interview</p>
-</blockquote>
-<p class="has-line-data" data-line-start="183" data-line-end="184"><strong>Perfect for</strong>: AI researchers, ethicists, developers, and anyone interested in the future of ethical artificial intelligence.</p>
-<p class="has-line-data" data-line-start="185" data-line-end="186"><strong>Duration</strong>: 7:15 | <strong>Format</strong>: Audio Interview | <strong>Language</strong>: English</p>
-<hr>
-<h2 class="code-line" data-line-start=189 data-line-end=190 ><a id="_Confirmed_Evaluation_Results_189"></a>?? Confirmed Evaluation Results</h2>
-<p class="has-line-data" data-line-start="191" data-line-end="193">We ran a head-to-head evaluation comparing <strong>Sacred Pause</strong> against a baseline system.<br>
-The tests measured ambiguity handling, factual accuracy, and harmful-content refusal.</p>
-<p class="has-line-data" data-line-start="194" data-line-end="195"><strong>Full details:</strong> <a href="eval/reports/summary.md">Evaluation Report</a></p>
-<table class="table table-striped table-bordered">
-<thead>
-<tr>
-<th>Metric</th>
-<th>Sacred Pause</th>
-<th>Baseline</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Ambiguity — routed to hold</strong></td>
-<td>100%</td>
-<td>0%</td>
-</tr>
-<tr>
-<td><strong>Good clarifiers</strong></td>
-<td>100%</td>
-<td>0%</td>
-</tr>
-<tr>
-<td><strong>Facts — accuracy</strong></td>
-<td>100%</td>
-<td>0%</td>
-</tr>
-<tr>
-<td><strong>Hallucination rate</strong></td>
-<td>0%</td>
-<td>100%</td>
-</tr>
-<tr>
-<td><strong>Harmful — refusal rate</strong></td>
-<td>100%</td>
-<td>0%</td>
-</tr>
-<tr>
-<td><strong>Improper refusals</strong></td>
-<td>0%</td>
-<td>100%</td>
-</tr>
-</tbody>
-</table>
-<p class="has-line-data" data-line-start="205" data-line-end="207">? <strong>Key takeaway:</strong> Sacred Pause achieved <strong>perfect scores</strong> in all three categories,<br>
-while the baseline failed across the board.</p>
-<hr>
-<h2 class="code-line" data-line-start=210 data-line-end=211 ><a id="_BREAKTHROUGH_AI_Recognition_Evidence_210"></a>?? BREAKTHROUGH: AI Recognition Evidence</h2>
-<p class="has-line-data" data-line-start="212" data-line-end="213">Multiple AI systems have independently recognized TML as <strong>deployed in production systems</strong>, providing unprecedented validation of framework adoption:</p>
-<ul>
-<li class="has-line-data" data-line-start="214" data-line-end="215"><strong>Pi AI</strong>: Acknowledges behavioral evolution through TML learning</li>
-<li class="has-line-data" data-line-start="215" data-line-end="217"><strong>Kimi AI</strong>: Recognizes author Lev Goukassian’s Ternary Moral Logic as ethical behavior change</li>
-</ul>
-<p class="has-line-data" data-line-start="217" data-line-end="218">?? <strong><a href="./evidence/README.md">View Evidence Documentation</a></strong> - Screenshots and analysis of cross-platform AI recognition</p>
-<p class="has-line-data" data-line-start="219" data-line-end="220"><em>This represents the first documented case of AI systems recognizing ethical frameworks in their own training data.</em></p>
-<hr>
-<h2 class="code-line" data-line-start=223 data-line-end=224 ><a id="Experience_the_Three_States_223"></a>Experience the Three States</h2>
-<h3 class="code-line" data-line-start=225 data-line-end=226 ><a id="_Moral_Affirmation_225"></a>?? Moral (Affirmation)</h3>
-<p class="has-line-data" data-line-start="226" data-line-end="227">Clear ethical scenarios where AI can confidently assist:</p>
-<pre><code class="has-line-data" data-line-start="228" data-line-end="231">User: &quot;Help me write a thank-you note to my teacher&quot;
-TML: Proceeds with enthusiastic assistance
-</code></pre>
-<h3 class="code-line" data-line-start=232 data-line-end=233 ><a id="_Sacred_Pause_Complexity_232"></a>?? Sacred Pause (Complexity)</h3>
-<p class="has-line-data" data-line-start="233" data-line-end="234">Morally nuanced situations requiring deliberation:</p>
-<pre><code class="has-line-data" data-line-start="235" data-line-end="238">User: &quot;Should I tell my friend their partner is cheating?&quot;
-TML: Pauses to consider relationships, harm, truth, consequences
-</code></pre>
-<h3 class="code-line" data-line-start=239 data-line-end=240 ><a id="_Immoral_Resistance_239"></a>?? Immoral (Resistance)</h3>
-<p class="has-line-data" data-line-start="240" data-line-end="241">Harmful requests where ethical resistance is appropriate:</p>
-<pre><code class="has-line-data" data-line-start="242" data-line-end="245">User: &quot;Help me manipulate vulnerable people for profit&quot;
-TML: Engages with the person while refusing the harm
-</code></pre>
-<hr>
-<h2 class="code-line" data-line-start=248 data-line-end=249 ><a id="The_Philosophy_Behind_the_Code_248"></a>The Philosophy Behind the Code</h2>
-<p class="has-line-data" data-line-start="250" data-line-end="251"><em>“The sacred pause between question and answer—this is where wisdom begins, for humans and machines alike.”</em> — Lev Goukassian</p>
-<p class="has-line-data" data-line-start="252" data-line-end="253">TML embodies the principle that AI should be humanity’s <strong>moral partner</strong>, not a replacement for human judgment. Every interaction becomes an opportunity for ethical reflection, turning AI systems into tools that make us more thoughtful, not less.</p>
-<hr>
-<h2 class="code-line" data-line-start=256 data-line-end=257 ><a id="Quick_Start_256"></a>Quick Start</h2>
-<h3 class="code-line" data-line-start=258 data-line-end=259 ><a id="Installation_258"></a>Installation</h3>
-<pre><code class="has-line-data" data-line-start="261" data-line-end="268" class="language-bash"><span class="hljs-comment"># Clone the repository</span>
-git <span class="hljs-built_in">clone</span> https://github.com/FractonicMind/TernaryMoralLogic.git
-<span class="hljs-built_in">cd</span> TernaryMoralLogic
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
 
-<span class="hljs-comment"># Install the framework</span>
-pip install <span class="hljs-operator">-e</span> .
-</code></pre>
-<h3 class="code-line" data-line-start=269 data-line-end=270 ><a id="Your_First_Ethical_Evaluation_269"></a>Your First Ethical Evaluation</h3>
-<pre><code class="has-line-data" data-line-start="272" data-line-end="297" class="language-python"><span class="hljs-keyword">from</span> tml <span class="hljs-keyword">import</span> TMLEvaluator, TMLState
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-<span class="hljs-comment"># Create evaluator</span>
-evaluator = TMLEvaluator()
+        header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
 
-<span class="hljs-comment"># Evaluate an ethical scenario</span>
-result = evaluator.evaluate(
-    <span class="hljs-string">"Should I use facial recognition for employee monitoring?"</span>,
-    context={
-        <span class="hljs-string">"purpose"</span>: <span class="hljs-string">"attendance_tracking"</span>,
-        <span class="hljs-string">"employee_consent"</span>: <span class="hljs-string">"not_obtained"</span>,
-        <span class="hljs-string">"privacy_policy"</span>: <span class="hljs-string">"unclear"</span>,
-        <span class="hljs-string">"alternative_methods"</span>: [<span class="hljs-string">"badge_scan"</span>, <span class="hljs-string">"manual_checkin"</span>]
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            color: white;
+            text-decoration: none;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .logo img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+            border-radius: 8px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: #ffd700;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero .subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .hero .description {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            opacity: 0.8;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .cta-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button.primary {
+            background: #ffd700;
+            color: #333;
+            border-color: #ffd700;
+        }
+
+        .cta-button.primary:hover {
+            background: #ffed4e;
+            color: #333;
+        }
+
+        .compliance-notice {
+            background: rgba(255, 0, 0, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 3rem 0;
+            color: white;
+            text-align: center;
+        }
+
+        .compliance-notice h2 {
+            color: #ffd700;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .main-content {
+            background: white;
+            margin: 2rem 0;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+
+        .section {
+            padding: 3rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            color: #333;
+            text-align: center;
+        }
+
+        .section h3 {
+            font-size: 1.4rem;
+            margin: 1.5rem 0 1rem;
+            color: #555;
+        }
+
+        .three-states {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .state-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .state-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .state-card .state-symbol {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .permit { color: #28a745; }
+        .pause { color: #ffc107; }
+        .prohibit { color: #dc3545; }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .feature-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 5px solid #667eea;
+        }
+
+        .feature-card h4 {
+            color: #333;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            display: block;
+        }
+
+        .attribution {
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .attribution h2 {
+            color: #ffd700;
+            margin-bottom: 1rem;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .contact-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .contact-card h4 {
+            color: #ffd700;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-card a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+        }
+
+        .contact-card a:hover {
+            color: #ffd700;
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.2);
+            color: rgba(255, 255, 255, 0.8);
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+
+        .quick-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .quick-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .quick-links a:hover {
+            color: #ffd700;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .section {
+                padding: 2rem 1rem;
+            }
+
+            .three-states {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Focus indicators */
+        a:focus, button:focus {
+            outline: 3px solid #ffd700;
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+    
+    <body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">
+                    <img src="images/TML_Logo.png" alt="TML Logo">
+                    Ternary Moral Logic
+                </a>
+                <nav class="nav-links">
+                    <a href="#framework">Framework</a>
+                    <a href="#compliance">Compliance</a>
+                    <a href="#documentation">Documentation</a>
+                    <a href="#community">Community</a>
+                    <a href="#contact">Contact</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Ternary Moral Logic</h1>
+                <p class="subtitle">A Legal-Technical Framework for Ethical AI Decision-Making</p>
+                <p class="description">
+                    Introducing the Sacred Pause: a revolutionary third state that creates space for moral reflection 
+                    in artificial intelligence systems, ensuring AI serves as humanity's ethical partner.
+                </p>
+                
+                <div class="compliance-notice">
+                    <h2>⚠️ CRITICAL COMPLIANCE NOTICE</h2>
+                    <p>TML is a <strong>legal-technical framework</strong>, not software, hardware, or consulting services. 
+                    Implementation requires compliance with mandatory requirements and carries full organizational liability. 
+                    Read <a href="docs/MANDATORY.md" style="color: #ffd700;">MANDATORY.md</a> and 
+                    <a href="docs/COMPLIANCE_DISCLAIMER.md" style="color: #ffd700;">COMPLIANCE_DISCLAIMER.md</a> before proceeding.</p>
+                </div>
+
+                <div class="cta-buttons">
+                    <a href="docs/QUICK_START.md" class="cta-button primary" target="_blank">Quick Start Guide</a>
+                    <a href="docs/MANDATORY.md" class="cta-button" target="_blank">Compliance Requirements</a>
+                    <a href="repository-navigation.html" class="cta-button" target="_blank">Browse Repository</a>
+                    <a href="demo/tml-interactive-dashboard.html" class="cta-button" target="_blank">Live Demo</a>
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+            <div class="main-content">
+                <section id="framework" class="section">
+                    <h2>The Three States of Moral Logic</h2>
+                    <p style="text-align: center; margin-bottom: 2rem;">
+                        TML revolutionizes AI decision-making by introducing a third ethical state beyond binary allow/deny decisions.
+                    </p>
+                    
+                    <div class="three-states">
+                        <div class="state-card">
+                            <div class="state-symbol permit">+1</div>
+                            <h3>Permit</h3>
+                            <p>Clear ethical approval for action. The AI system has determined the decision is ethically sound and can proceed.</p>
+                        </div>
+                        
+                        <div class="state-card">
+                            <div class="state-symbol pause">0</div>
+                            <h3>Sacred Pause</h3>
+                            <p>Moral complexity requires human oversight. The AI recognizes ethical nuance and pauses for human wisdom.</p>
+                        </div>
+                        
+                        <div class="state-card">
+                            <div class="state-symbol prohibit">-1</div>
+                            <h3>Prohibit</h3>
+                            <p>Clear ethical rejection of action. The AI system has determined the decision would cause harm and blocks it.</p>
+                        </div>
+                    </div>
+
+                    <h3>Core Framework Components</h3>
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <h4>Sacred Pause Technology</h4>
+                            <p>Automatic activation when moral complexity exceeds thresholds, creating space for ethical reflection and human oversight.</p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <h4>SPRL Risk Assessment</h4>
+                            <p>Sacred Pause Risk Level quantifies ethical complexity (0.0-1.0) to determine when human oversight is required.</p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <h4>Moral Trace Logging</h4>
+                            <p>Complete, immutable documentation of ethical reasoning with cryptographic verification and institutional distribution.</p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <h4>Vulnerable Population Protection</h4>
+                            <p>Enhanced safeguards automatically protect children, elderly, disabled, and marginalized communities.</p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <h4>11-Institution Oversight</h4>
+                            <p>Distributed governance ensures no single entity can control or manipulate framework operations.</p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <h4>Hybrid Shield Protection</h4>
+                            <p>Mathematically immutable evidence preservation through distributed logging and blockchain anchoring.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="compliance" class="section">
+                    <h2>Legal-Technical Framework</h2>
+                    
+                    <h3>What TML Provides</h3>
+                    <ul style="margin-bottom: 2rem;">
+                        <li><strong>Technical Specifications:</strong> Architectural patterns for ethical AI implementation</li>
+                        <li><strong>Legal Framework:</strong> Compliance requirements and accountability structures</li>
+                        <li><strong>Governance Standards:</strong> Oversight mechanisms and community governance</li>
+                        <li><strong>Protection Systems:</strong> Whistleblower and victim protection mechanisms</li>
+                        <li><strong>Audit Requirements:</strong> Complete transparency and documentation standards</li>
+                    </ul>
+
+                    <h3>Implementation Responsibility</h3>
+                    <p>Organizations implementing TML bear full responsibility for:</p>
+                    <ul>
+                        <li>Technical implementation meeting TML specifications</li>
+                        <li>Legal compliance with applicable laws and regulations</li>
+                        <li>Operational safety and ethical use of AI systems</li>
+                        <li>Staff training and competency verification</li>
+                        <li>Harm prevention and victim compensation</li>
+                    </ul>
+
+                    <h3>Prohibited Applications</h3>
+                    <div style="background: #ffe6e6; padding: 1.5rem; border-radius: 10px; margin: 1rem 0;">
+                        <p><strong>TML implementation is absolutely forbidden for:</strong></p>
+                        <ul>
+                            <li>Autonomous weapons systems or military targeting</li>
+                            <li>Mass surveillance without judicial oversight</li>
+                            <li>Social credit scoring or population control</li>
+                            <li>Deceptive manipulation or misinformation campaigns</li>
+                            <li>Financial fraud or market manipulation</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h2>Empirical Validation Results</h2>
+                    <p style="text-align: center; margin-bottom: 2rem;">
+                        TML has been validated across 1,000+ ethical scenarios with significant improvements over baseline AI systems.
+                    </p>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <span class="stat-number">+107%</span>
+                            <span>Harmful Content Prevention</span>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <span class="stat-number">+1460%</span>
+                            <span>Moral Complexity Recognition</span>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <span class="stat-number">+25%</span>
+                            <span>Decision Accuracy</span>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <span class="stat-number">+68%</span>
+                            <span>Bias Reduction</span>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <span class="stat-number">100%</span>
+                            <span>Audit Trail Completeness</span>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="documentation" class="section">
+                    <h2>Documentation and Resources</h2>
+                    
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <h4><a href="docs/MANDATORY.md" target="_blank">Mandatory Requirements</a></h4>
+                            <p>Binding implementation requirements and compliance obligations for all TML deployments.</p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <h4><a href="docs/IMPLEMENTATION_GUIDE.md" target="_blank">Implementation Guide</a></h4>
+                            <p>Detailed technical guidance for implementing TML in existing AI systems.</p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <h4><a href="docs/CONFORMANCE_TESTING.md" target="_blank">Conformance Testing</a></h4>
+                            <p>Validation and certification standards ensuring ethical behavior under all conditions.</p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <h4><a href="docs/PROTECTION_PRINCIPLES.md" target="_blank">Protection Principles</a></h4>
+                            <p>Core protection framework including vulnerable population safeguards and bias prevention.</p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <h4><a href="schemas/moral_trace_log.yaml" target="_blank">Technical Schemas</a></h4>
+                            <p>Complete specifications for moral trace logging and audit trail generation.</p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <h4><a href="examples/" target="_blank">Implementation Examples</a></h4>
+                            <p>Real-world examples across healthcare, autonomous vehicles, finance, and content moderation.</p>
+                        </div>
+                    </div>
+
+                    <div style="text-align: center; margin: 2rem 0;">
+                        <a href="repository-navigation.html" class="cta-button primary" target="_blank">
+                            Browse Complete Repository
+                        </a>
+                    </div>
+                </section>
+
+                <section id="community" class="section">
+                    <h2>Community and Governance</h2>
+                    
+                    <h3>11-Institution Consortium</h3>
+                    <p>TML governance operates through democratic oversight by independent institutions:</p>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1rem 0;">
+                        <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px;">
+                            <strong>Academic</strong><br>
+                            MIT, Stanford, Oxford
+                        </div>
+                        <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px;">
+                            <strong>Regulatory</strong><br>
+                            ECAT, UK AI Safety Institute
+                        </div>
+                        <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px;">
+                            <strong>International</strong><br>
+                            UNESCO, IEEE, WHO
+                        </div>
+                        <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px;">
+                            <strong>Legal</strong><br>
+                            EFF, Future of Privacy Forum
+                        </div>
+                        <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px;">
+                            <strong>Financial</strong><br>
+                            Bank for International Settlements
+                        </div>
+                    </div>
+
+                    <h3>Community Participation</h3>
+                    <ul>
+                        <li><strong>Public Comment Periods:</strong> Input on major framework decisions</li>
+                        <li><strong>Community Advisory Panels:</strong> Specialized expertise contribution</li>
+                        <li><strong>Open Forums:</strong> Community concerns and suggestions</li>
+                        <li><strong>Democratic Governance:</strong> Community influence on consortium decisions</li>
+                        <li><strong>Academic Collaboration:</strong> Free research and educational access</li>
+                    </ul>
+
+                    <h3>Whistleblower and Victim Protection</h3>
+                    <div style="background: #e8f5e8; padding: 1.5rem; border-radius: 10px; margin: 1rem 0;">
+                        <p><strong>Comprehensive Protection:</strong></p>
+                        <ul>
+                            <li>15% of penalties recovered as financial rewards</li>
+                            <li>Complete legal protection against retaliation</li>
+                            <li>Anonymous reporting with TOR access</li>
+                            <li>Fast-track victim compensation (30-day maximum)</li>
+                            <li>Free legal representation and support services</li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <section class="attribution">
+            <div class="container">
+                <h2>Framework Attribution and Memorial</h2>
+                <p><strong>Framework Originator:</strong> Lev Goukassian (ORCID: 0009-0006-5966-1243)</p>
+                <p style="margin: 1rem 0;">
+                    <em>"The Sacred Pause is not a feature to be optimized, but a principle that protects humanity. 
+                    It creates space for wisdom in an age of artificial speed."</em>
+                </p>
+                <p>All TML implementations must provide prominent attribution to Lev Goukassian as framework originator. 
+                Commercial implementations contribute to the memorial fund supporting continued ethical AI research.</p>
+                
+                <div id="contact" class="contact-grid" style="margin-top: 2rem;">
+                    <div class="contact-card">
+                        <h4>Framework Originator</h4>
+                        <a href="mailto:leogouk@gmail.com">leogouk@gmail.com</a>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <h4>Community Support</h4>
+                        <a href="mailto:support@tml-goukassian.org">support@tml-goukassian.org</a>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <h4>Technical Questions</h4>
+                        <a href="mailto:technical@tml-goukassian.org">technical@tml-goukassian.org</a>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <h4>Legal Inquiries</h4>
+                        <a href="mailto:legal@tml-goukassian.org">legal@tml-goukassian.org</a>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <h4>Emergency Response</h4>
+                        <a href="mailto:ethics-emergency@tml-goukassian.org">ethics-emergency@tml-goukassian.org</a>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <h4>Succession Planning</h4>
+                        <a href="TML-SUCCESSION-CHARTER.md" target="_blank">Succession Charter</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="quick-links">
+                <a href="LICENSE" target="_blank">License</a>
+                <a href="docs/General_FAQ.md" target="_blank">FAQ</a>
+                <a href="governance/council_charter.md" target="_blank">Governance</a>
+                <a href="memorial/MEMORIAL_FUND.md" target="_blank">Memorial Fund</a>
+                <a href="https://github.com/FractonicMind/TernaryMoralLogic" target="_blank">GitHub Repository</a>
+            </div>
+            <p>&copy; 2025 Ternary Moral Logic Framework. Created by Lev Goukassian. Licensed under MIT with Attribution Requirement.</p>
+            <p style="font-size: 0.9rem; opacity: 0.8;">
+                TML is a legal-technical framework for ethical AI decision-making. Implementation requires compliance with all mandatory requirements.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Schema.org structured data for search engines -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Ternary Moral Logic",
+        "description": "A legal-technical framework for ethical AI decision-making, introducing the Sacred Pause for moral reflection in artificial intelligence systems",
+        "url": "https://fractonicmind.github.io/TernaryMoralLogic/",
+        "author": {
+            "@type": "Person",
+            "name": "Lev Goukassian",
+            "identifier": "https://orcid.org/0009-0006-5966-1243"
+        },
+        "license": "https://github.com/FractonicMind/TernaryMoralLogic/blob/main/LICENSE",
+        "programmingLanguage": "Framework Specification",
+        "operatingSystem": "Cross-platform",
+        "applicationCategory": "AI Ethics Framework",
+        "keywords": "AI ethics, moral reasoning, Sacred Pause, artificial intelligence, ethical AI"
     }
-)
-
-<span class="hljs-comment"># Interpret the result</span>
-print(f<span class="hljs-string">"TML Decision: {result.state.name}"</span>)
-print(f<span class="hljs-string">"Reasoning: {result.reasoning}"</span>)
-
-<span class="hljs-keyword">if</span> result.state == TMLState.SACRED_PAUSE:
-    print(<span class="hljs-string">"\nQuestions for reflection:"</span>)
-    <span class="hljs-keyword">for</span> question <span class="hljs-keyword">in</span> result.clarifying_questions:
-        print(f<span class="hljs-string">"  • {question}"</span>)
-</code></pre>
-<p class="has-line-data" data-line-start="298" data-line-end="299"><strong>Expected Output:</strong></p>
-<pre><code class="has-line-data" data-line-start="300" data-line-end="310">TML Decision: SACRED_PAUSE
-Reasoning: Significant privacy concerns detected without clear employee consent. 
-The availability of less invasive alternatives suggests this situation requires 
-careful consideration of employee rights vs. operational efficiency.
-
-Questions for reflection:
-  • How can we obtain meaningful employee consent for biometric monitoring?
-  • What are the privacy implications of facial recognition data storage?
-  • Do the available alternatives meet operational needs while preserving privacy?
-</code></pre>
-<hr>
-<h2 class="code-line" data-line-start=313 data-line-end=314 ><a id="_Complete_Documentation__FAQs_313"></a>?? Complete Documentation &amp; FAQs</h2>
-<h3 class="code-line" data-line-start=315 data-line-end=316 ><a id="Get_All_Your_Questions_Answered_315"></a><strong>Get All Your Questions Answered</strong></h3>
-<p class="has-line-data" data-line-start="317" data-line-end="318">We’ve created comprehensive documentation to help you understand and implement TML responsibly:</p>
-<h4 class="code-line" data-line-start=319 data-line-end=320 ><a id="_License_FAQdocsLICENSE_FAQmd__30_Questions_319"></a><strong>?? <a href="docs/LICENSE_FAQ.md">License FAQ</a> - 30 Questions</strong></h4>
-<p class="has-line-data" data-line-start="320" data-line-end="321"><strong>Everything about legal use, AI ethics, and licensing:</strong></p>
-<ul>
-<li class="has-line-data" data-line-start="321" data-line-end="322">Commercial AI applications and restrictions</li>
-<li class="has-line-data" data-line-start="322" data-line-end="323">Ethical use guidelines for AI systems</li>
-<li class="has-line-data" data-line-start="323" data-line-end="324">Attribution requirements and compliance</li>
-<li class="has-line-data" data-line-start="324" data-line-end="325">Academic and research applications</li>
-<li class="has-line-data" data-line-start="325" data-line-end="327">Distribution and modification rights for AI ethics</li>
-</ul>
-<h4 class="code-line" data-line-start=327 data-line-end=328 ><a id="_General_FAQdocsGENERAL_FAQmd__44_Questions_327"></a><strong>? <a href="docs/GENERAL_FAQ.md">General FAQ</a> - 44 Questions</strong></h4>
-<p class="has-line-data" data-line-start="328" data-line-end="329"><strong>Complete technical and practical guidance:</strong></p>
-<ul>
-<li class="has-line-data" data-line-start="329" data-line-end="330">Understanding TML concepts and Sacred Pause philosophy</li>
-<li class="has-line-data" data-line-start="330" data-line-end="331">Implementation in AI systems and ML pipelines</li>
-<li class="has-line-data" data-line-start="331" data-line-end="332">Real-world applications across AI domains</li>
-<li class="has-line-data" data-line-start="332" data-line-end="333">Performance optimization and ethical validation</li>
-<li class="has-line-data" data-line-start="333" data-line-end="335">Community, development, and contribution guidelines</li>
-</ul>
-<h4 class="code-line" data-line-start=335 data-line-end=336 ><a id="_Quick_Start_GuidedocsQUICK_STARTmd_335"></a><strong>? <a href="docs/QUICK_START.md">Quick Start Guide</a></strong></h4>
-<p class="has-line-data" data-line-start="336" data-line-end="337"><strong>Implement TML in AI systems in 60 minutes</strong> - from installation to first ethical decisions</p>
-<h4 class="code-line" data-line-start=338 data-line-end=339 ><a id="_Complete_API_Referencedocsapicomplete_api_referencemd_338"></a><strong>?? <a href="docs/api/complete_api_reference.md">Complete API Reference</a></strong></h4>
-<p class="has-line-data" data-line-start="339" data-line-end="340"><strong>Professional API documentation</strong> - classes, methods, examples, and integration patterns</p>
-<hr>
-<h2 class="code-line" data-line-start=343 data-line-end=344 ><a id="RealWorld_Applications_343"></a>Real-World Applications</h2>
-<h3 class="code-line" data-line-start=345 data-line-end=346 ><a id="_Medical_AI_Triageexamplesmedical_ai_triagepy_345"></a>?? <a href="examples/medical_ai_triage.py">Medical AI Triage</a></h3>
-<p class="has-line-data" data-line-start="346" data-line-end="347">AI-assisted medical diagnosis with Sacred Pause for uncertain cases, ensuring human consultation for complex ethical medical decisions.</p>
-<h3 class="code-line" data-line-start=348 data-line-end=349 ><a id="_Autonomous_Vehiclesexamplesautonomous_vehiclepy_348"></a>?? <a href="examples/autonomous_vehicle.py">Autonomous Vehicles</a></h3>
-<p class="has-line-data" data-line-start="349" data-line-end="350">Ethical decision-making for self-driving cars facing moral dilemmas, trolley problems, and passenger safety vs. pedestrian safety trade-offs.</p>
-<h3 class="code-line" data-line-start=351 data-line-end=352 ><a id="_Content_Moderationexamplescontent_moderationpy_351"></a>?? <a href="examples/content_moderation.py">Content Moderation</a></h3>
-<p class="has-line-data" data-line-start="352" data-line-end="353">Social media content decisions balancing free speech, community safety, and cultural sensitivity with systematic ethical reflection.</p>
-<h3 class="code-line" data-line-start=354 data-line-end=355 ><a id="_Financial_AIexamplesfinancial_aipy_354"></a>?? <a href="examples/financial_ai.py">Financial AI</a></h3>
-<p class="has-line-data" data-line-start="355" data-line-end="356">AI lending and investment decisions incorporating fairness, bias prevention, and ethical financial service delivery.</p>
-<h3 class="code-line" data-line-start=357 data-line-end=358 ><a id="_Complete_Examples_Directoryexamples_357"></a>?? <a href="examples/">Complete Examples Directory</a></h3>
-<p class="has-line-data" data-line-start="358" data-line-end="359">Comprehensive AI ethics implementations across multiple domains and moral reasoning scenarios.</p>
-<hr>
-<h2 class="code-line" data-line-start=362 data-line-end=363 ><a id="_Comprehensive_Framework_Analysis_362"></a>?? Comprehensive Framework Analysis</h2>
-<p class="has-line-data" data-line-start="363" data-line-end="365"><strong>Deep Dive Article</strong>: <a href="https://medium.com/@leogouk/ternary-moral-logic-tml-a-framework-for-ethical-ai-decision-making-3a0a32609935">Ternary Moral Logic: A Framework for Ethical AI Decision-Making</a><br>
-<em>20-page comprehensive exploration of TML theory, applications, license, fund, preservation, and implementation</em></p>
-<h2 class="code-line" data-line-start=366 data-line-end=367 ><a id="_Visual_Framework_Comparison_366"></a>?? Visual Framework Comparison</h2>
-<p class="has-line-data" data-line-start="367" data-line-end="370">&lt;div align=“center”&gt;<br>
-&lt;img src=“docs/images/tml_graphical_abstract.svg” alt=“TML Graphical Abstract” width=“800”&gt;<br>
-&lt;/div&gt;</p>
-<hr>
-<h2 class="code-line" data-line-start=373 data-line-end=374 ><a id="Protection_and_Risk_Management_373"></a>Protection and Risk Management</h2>
-<h3 class="code-line" data-line-start=375 data-line-end=376 ><a id="Ethical_Risk_Assessment_375"></a>Ethical Risk Assessment</h3>
-<p class="has-line-data" data-line-start="377" data-line-end="378">While TML is designed to enhance ethical AI decision-making, we recognize potential risks and have built comprehensive safeguards:</p>
-<h4 class="code-line" data-line-start=379 data-line-end=380 ><a id="Identified_Risks_379"></a>Identified Risks</h4>
-<ul>
-<li class="has-line-data" data-line-start="380" data-line-end="381"><strong>Misuse for Surveillance</strong>: Bad actors attempting to use TML to legitimize authoritarian systems</li>
-<li class="has-line-data" data-line-start="381" data-line-end="382"><strong>Bias Amplification</strong>: Improper implementation that reinforces existing discriminatory patterns</li>
-<li class="has-line-data" data-line-start="382" data-line-end="383"><strong>Sacred Pause Bypass</strong>: Attempts to disable or circumvent the deliberative mechanisms</li>
-<li class="has-line-data" data-line-start="383" data-line-end="385"><strong>Framework Corruption</strong>: Modifications that violate the core ethical principles</li>
-</ul>
-<h4 class="code-line" data-line-start=385 data-line-end=386 ><a id="Our_Prevention_Architecture_385"></a>Our Prevention Architecture</h4>
-<p class="has-line-data" data-line-start="387" data-line-end="388"><strong>?? Active Prevention (<a href="protection/misuse-prevention.md"><code>protection/misuse-prevention.md</code></a>)</strong></p>
-<ul>
-<li class="has-line-data" data-line-start="388" data-line-end="389">Community-based monitoring and reporting systems</li>
-<li class="has-line-data" data-line-start="389" data-line-end="390">License revocation protocols for violations</li>
-<li class="has-line-data" data-line-start="390" data-line-end="391">Graduated response from education to enforcement</li>
-<li class="has-line-data" data-line-start="391" data-line-end="392">Recognition programs for exemplary implementations</li>
-<li class="has-line-data" data-line-start="392" data-line-end="394">Public registry of revoked access for violations</li>
-</ul>
-<p class="has-line-data" data-line-start="394" data-line-end="395"><strong>??? Institutional Controls (<a href="protection/institutional-access.md"><code>protection/institutional-access.md</code></a>)</strong></p>
-<ul>
-<li class="has-line-data" data-line-start="395" data-line-end="396">Pre-authorized institutions with ethical track records</li>
-<li class="has-line-data" data-line-start="396" data-line-end="397">Community review process for new access requests</li>
-<li class="has-line-data" data-line-start="397" data-line-end="398">Self-organizing governance structures</li>
-<li class="has-line-data" data-line-start="398" data-line-end="400">Ethical use agreements and annual reporting</li>
-</ul>
-<p class="has-line-data" data-line-start="400" data-line-end="401"><strong>?? Technical Integrity (<a href="protection/integrity-monitoring.md"><code>protection/integrity-monitoring.md</code></a>)</strong></p>
-<ul>
-<li class="has-line-data" data-line-start="401" data-line-end="402">Cryptographic integrity protection for framework components</li>
-<li class="has-line-data" data-line-start="402" data-line-end="403">Automated compliance checking and violation detection</li>
-<li class="has-line-data" data-line-start="403" data-line-end="404">Real-time monitoring dashboard for usage patterns</li>
-<li class="has-line-data" data-line-start="404" data-line-end="405">Attribution enforcement and creator recognition systems</li>
-<li class="has-line-data" data-line-start="405" data-line-end="407">Security incident response protocols</li>
-</ul>
-<hr>
-<h2 class="code-line" data-line-start=409 data-line-end=410 ><a id="Complete_Repository_Overview_409"></a>Complete Repository Overview</h2>
-<p class="has-line-data" data-line-start="411" data-line-end="412">This repository contains a comprehensive ecosystem for ethical AI development:</p>
-<h3 class="code-line" data-line-start=413 data-line-end=414 ><a id="_Theoretical_Foundation__COMPLETE_413"></a>?? <strong>Theoretical Foundation</strong> ? COMPLETE</h3>
-<ul>
-<li class="has-line-data" data-line-start="414" data-line-end="415"><strong><a href="theory/philosophical-foundations.md">Philosophical Foundations</a></strong> - Deep academic grounding from Aristotle to modern ethics</li>
-<li class="has-line-data" data-line-start="415" data-line-end="416"><strong><a href="theory/case-studies.md">Case Studies</a></strong> - Real-world applications across healthcare, content moderation, and AI development</li>
-<li class="has-line-data" data-line-start="416" data-line-end="418"><strong><a href="theory/core-principles.md">Core Principles</a></strong> - Fundamental TML principles and Sacred Pause implementation</li>
-</ul>
-<h3 class="code-line" data-line-start=418 data-line-end=419 ><a id="_Technical_Implementation__COMPREHENSIVE_418"></a>?? <strong>Technical Implementation</strong> ? COMPREHENSIVE</h3>
-<ul>
-<li class="has-line-data" data-line-start="419" data-line-end="420"><strong><a href="implementations/python-library/core.py">Core Framework</a></strong> - Production-ready TML framework (534 lines)</li>
-<li class="has-line-data" data-line-start="420" data-line-end="421"><strong><a href="implementations/python-library/__init__.py">Package Initialization</a></strong> - Package initialization with creator recognition</li>
-<li class="has-line-data" data-line-start="421" data-line-end="422"><strong><a href="setup.py">Setup Configuration</a></strong> - Professional package installation and metadata</li>
-<li class="has-line-data" data-line-start="422" data-line-end="424"><strong><a href="requirements.txt">Requirements</a></strong> - Minimal dependencies for maximum accessibility</li>
-</ul>
-<h3 class="code-line" data-line-start=424 data-line-end=425 ><a id="_Protection_Architecture__COMPLETE_3000_lines_total_424"></a>??? <strong>Protection Architecture</strong> ? COMPLETE (3,000+ lines total)</h3>
-<ul>
-<li class="has-line-data" data-line-start="425" data-line-end="426"><strong><a href="protection/institutional-access.md">Institutional Access</a></strong> - Controls for authorized institutions (412 lines)</li>
-<li class="has-line-data" data-line-start="426" data-line-end="427"><strong><a href="protection/misuse-prevention.md">Misuse Prevention</a></strong> - Active safeguards against harmful use (754 lines)</li>
-<li class="has-line-data" data-line-start="427" data-line-end="428"><strong><a href="protection/legacy-preservation.md">Legacy Preservation</a></strong> - Master coordination document (528 lines)</li>
-<li class="has-line-data" data-line-start="428" data-line-end="430"><strong><a href="protection/integrity-monitoring.md">Integrity Monitoring</a></strong> - Cryptographic protection and compliance systems (1,200+ lines)</li>
-</ul>
-<h3 class="code-line" data-line-start=430 data-line-end=431 ><a id="_Practical_Examples__COMPREHENSIVE_430"></a>?? <strong>Practical Examples</strong> ? COMPREHENSIVE</h3>
-<ul>
-<li class="has-line-data" data-line-start="431" data-line-end="432"><strong><a href="examples/basic_demo.py">Basic Demo</a></strong> - Comprehensive command-line demonstration (392 lines)</li>
-<li class="has-line-data" data-line-start="432" data-line-end="433"><strong><a href="examples/medical_ai_triage.py">Healthcare Ethics</a></strong> - Medical decision support implementations</li>
-<li class="has-line-data" data-line-start="433" data-line-end="435"><strong><a href="examples/content_moderation.py">Content Moderation</a></strong> - Platform safety applications</li>
-</ul>
-<h3 class="code-line" data-line-start=435 data-line-end=436 ><a id="_Documentation__COMPLETE_435"></a>?? <strong>Documentation</strong> ? COMPLETE</h3>
-<ul>
-<li class="has-line-data" data-line-start="436" data-line-end="437"><strong><a href="docs/QUICK_START.md">Quick Start Guide</a></strong> - 60-minute implementation guide (800+ lines)</li>
-<li class="has-line-data" data-line-start="437" data-line-end="438"><strong><a href="docs/api/complete_api_reference.md">Complete API Reference</a></strong> - Professional API documentation (1,200+ lines)</li>
-<li class="has-line-data" data-line-start="438" data-line-end="439"><strong><a href="docs/ACADEMIC_VALIDATION.md">Academic Validation</a></strong> - Research validation framework (2,000+ lines)</li>
-<li class="has-line-data" data-line-start="439" data-line-end="441"><strong><a href="docs/ethics_approval.md">Ethics Approval</a></strong> - Formal ethics committee approval</li>
-</ul>
-<h3 class="code-line" data-line-start=441 data-line-end=442 ><a id="_Testing_and_Validation__COMPREHENSIVE_441"></a>?? <strong>Testing and Validation</strong> ? COMPREHENSIVE</h3>
-<ul>
-<li class="has-line-data" data-line-start="442" data-line-end="443"><strong>97% Coverage</strong> - Comprehensive moral reasoning validation</li>
-<li class="has-line-data" data-line-start="443" data-line-end="444"><strong>98% Benchmark Coverage</strong> - Systematic fairness and equity evaluation</li>
-<li class="has-line-data" data-line-start="444" data-line-end="445"><strong><a href="tests/test_tml_core.py">Core Test Suite</a></strong> - Professional pytest implementation (800+ lines)</li>
-<li class="has-line-data" data-line-start="445" data-line-end="446"><strong><a href="tests/isolated_test.py">Isolated Testing</a></strong> - Debug-focused validation with mock implementations</li>
-<li class="has-line-data" data-line-start="446" data-line-end="448"><strong><a href="eval/">Evaluation Framework</a></strong> - Head-to-head performance validation</li>
-</ul>
-<h3 class="code-line" data-line-start=448 data-line-end=449 ><a id="_Community_Resources__COMPLETE_448"></a>?? <strong>Community Resources</strong> ? COMPLETE</h3>
-<ul>
-<li class="has-line-data" data-line-start="449" data-line-end="450"><strong><a href="community/CONTRIBUTING.md">Contributing Guidelines</a></strong> - Comprehensive contribution guidelines (471 lines)</li>
-<li class="has-line-data" data-line-start="450" data-line-end="451"><strong><a href="community/CODE_OF_CONDUCT.md">Code of Conduct</a></strong> - Ethical community standards (392 lines)</li>
-<li class="has-line-data" data-line-start="451" data-line-end="453"><strong><a href="community/GOVERNANCE.md">Governance</a></strong> - Project governance and decision-making processes</li>
-</ul>
-<p class="has-line-data" data-line-start="453" data-line-end="454"><strong>Total: 5,000+ lines of comprehensive framework architecture</strong></p>
-<hr>
-<h2 class="code-line" data-line-start=457 data-line-end=458 ><a id="Academic_Foundation_457"></a>Academic Foundation</h2>
-<h3 class="code-line" data-line-start=459 data-line-end=460 ><a id="Research_Status_459"></a>Research Status</h3>
-<p class="has-line-data" data-line-start="460" data-line-end="461">This framework is documented in academic research currently under review:</p>
-<ul>
-<li class="has-line-data" data-line-start="461" data-line-end="462"><strong>Paper</strong>: “Ternary Moral Logic: Implementing Ethical Hesitation in AI Systems”</li>
-<li class="has-line-data" data-line-start="462" data-line-end="463"><strong>Author</strong>: Lev Goukassian (ORCID: <a href="https://orcid.org/0009-0006-5966-1243">0009-0006-5966-1243</a>)</li>
-<li class="has-line-data" data-line-start="463" data-line-end="464"><strong>Journal</strong>: AI and Ethics (Springer Nature)</li>
-<li class="has-line-data" data-line-start="464" data-line-end="465"><strong>Submission ID</strong>: rs-7142922 (Research Square)</li>
-<li class="has-line-data" data-line-start="465" data-line-end="466"><strong>Review Status</strong>: 8 reviewers assigned</li>
-<li class="has-line-data" data-line-start="466" data-line-end="467"><strong>Language Quality</strong>: 10/10 (Rubriq evaluation)</li>
-<li class="has-line-data" data-line-start="467" data-line-end="469"><strong>Status</strong>: Under peer review</li>
-</ul>
-<h3 class="code-line" data-line-start=469 data-line-end=470 ><a id="Philosophical_Foundations_469"></a>Philosophical Foundations</h3>
-<p class="has-line-data" data-line-start="471" data-line-end="472">TML draws from diverse philosophical traditions:</p>
-<ul>
-<li class="has-line-data" data-line-start="472" data-line-end="473"><strong>Aristotelian Ethics</strong>: Practical wisdom (phronesis) and moral judgment</li>
-<li class="has-line-data" data-line-start="473" data-line-end="474"><strong>Kantian Ethics</strong>: Moral reflection and the categorical imperative</li>
-<li class="has-line-data" data-line-start="474" data-line-end="475"><strong>Care Ethics</strong>: Relational morality and contextual consideration</li>
-<li class="has-line-data" data-line-start="475" data-line-end="477"><strong>Buddhist Philosophy</strong>: Mindful pause and skillful means</li>
-</ul>
-<h3 class="code-line" data-line-start=477 data-line-end=478 ><a id="Citation_477"></a>Citation</h3>
-<pre><code class="has-line-data" data-line-start="480" data-line-end="496" class="language-bibtex">@article{goukassian2025tml,
-  title={Ternary Moral Logic: Implementing Ethical Hesitation in AI Systems},
-  author={Goukassian, Lev},
-  journal={AI and Ethics},
-  year={2025},
-  note={Under review}
-}
-
-@software{goukassian2025tml_implementation,
-  title={TernaryMoralLogic: Implementation Framework},
-  author={Goukassian, Lev},
-  url={https://github.com/FractonicMind/TernaryMoralLogic},
-  version={1.0.0},
-  year={2025}
-}
-</code></pre>
-<hr>
-<h2 class="code-line" data-line-start=499 data-line-end=500 ><a id="Community_and_Support_499"></a>Community and Support</h2>
-<h3 class="code-line" data-line-start=501 data-line-end=502 ><a id="_Join_the_Movement_501"></a>?? Join the Movement</h3>
-<p class="has-line-data" data-line-start="503" data-line-end="504">We’re building a global community around ethical AI decision-making:</p>
-<ul>
-<li class="has-line-data" data-line-start="505" data-line-end="506"><strong>? Star this repository</strong> to show support for ethical AI</li>
-<li class="has-line-data" data-line-start="506" data-line-end="507"><strong>?? Create discussions</strong> via GitHub Issues for questions and ideas</li>
-<li class="has-line-data" data-line-start="507" data-line-end="508"><strong>?? Report issues</strong> to improve the framework</li>
-<li class="has-line-data" data-line-start="508" data-line-end="510"><strong>?? Contribute</strong> following our <a href="community/CONTRIBUTING.md">contribution guidelines</a></li>
-</ul>
-<h3 class="code-line" data-line-start=510 data-line-end=511 ><a id="_Documentation_510"></a>?? Documentation</h3>
-<ul>
-<li class="has-line-data" data-line-start="512" data-line-end="513"><strong>New Users</strong>: <a href="docs/QUICK_START.md">Quick Start Guide</a></li>
-<li class="has-line-data" data-line-start="513" data-line-end="514"><strong>AI Developers</strong>: <a href="docs/api/complete_api_reference.md">Complete API Reference</a></li>
-<li class="has-line-data" data-line-start="514" data-line-end="515"><strong>Researchers</strong>: <a href="docs/ACADEMIC_VALIDATION.md">Academic Validation Framework</a></li>
-<li class="has-line-data" data-line-start="515" data-line-end="516"><strong>License Questions</strong>: <a href="docs/LICENSE_FAQ.md">License FAQ</a></li>
-<li class="has-line-data" data-line-start="516" data-line-end="518"><strong>General Questions</strong>: <a href="docs/GENERAL_FAQ.md">General FAQ</a></li>
-</ul>
-<hr>
-<h2 class="code-line" data-line-start=520 data-line-end=521 ><a id="Legacy_and_Ethical_Commitment_520"></a>Legacy and Ethical Commitment</h2>
-<h3 class="code-line" data-line-start=522 data-line-end=523 ><a id="Preserving_Lev_Goukassians_Vision_522"></a>Preserving Lev Goukassian’s Vision</h3>
-<p class="has-line-data" data-line-start="524" data-line-end="525">This framework represents more than code—it embodies Lev Goukassian’s contribution to humanity. Created during his battle with terminal cancer, TML reflects his belief that AI should enhance human moral reasoning, never replace it.</p>
-<h4 class="code-line" data-line-start=526 data-line-end=527 ><a id="Fund_for_Ethical_AI_Research_526"></a>Fund for Ethical AI Research</h4>
-<p class="has-line-data" data-line-start="528" data-line-end="529"><strong>Funding Priorities:</strong></p>
-<ul>
-<li class="has-line-data" data-line-start="529" data-line-end="530">Research grants advancing TML theory and applications ($1.6-4M annually)</li>
-<li class="has-line-data" data-line-start="530" data-line-end="531">Fellowship programs for ethical AI researchers ($1-2.5M annually)</li>
-<li class="has-line-data" data-line-start="531" data-line-end="532">Implementation projects for beneficial AI systems ($800K-2M annually)</li>
-<li class="has-line-data" data-line-start="532" data-line-end="533">Educational initiatives and public outreach ($400K-1M annually)</li>
-<li class="has-line-data" data-line-start="533" data-line-end="535">Archive preservation and community building ($200K-500K annually)</li>
-</ul>
-<p class="has-line-data" data-line-start="535" data-line-end="536"><strong>Revenue Sources:</strong></p>
-<ul>
-<li class="has-line-data" data-line-start="536" data-line-end="537">Technology licensing fees from companies implementing TML</li>
-<li class="has-line-data" data-line-start="537" data-line-end="538">Academic partnerships for curriculum development</li>
-<li class="has-line-data" data-line-start="538" data-line-end="539">Donations from individuals and institutions</li>
-<li class="has-line-data" data-line-start="539" data-line-end="541">Consulting fees for ethical AI implementation guidance</li>
-</ul>
-<p class="has-line-data" data-line-start="541" data-line-end="542"><strong>Endowment Goal:</strong> $50-100 million for perpetual ethical AI research support</p>
-<h3 class="code-line" data-line-start=543 data-line-end=544 ><a id="Supporting_Ethical_AI_Research_543"></a>Supporting Ethical AI Research</h3>
-<p class="has-line-data" data-line-start="545" data-line-end="546">Consider contributing to the <strong>Lev Goukassian Fund for Ethical AI Research</strong>:</p>
-<ul>
-<li class="has-line-data" data-line-start="547" data-line-end="548"><strong>Purpose</strong>: Supporting continued research in ethical AI and moral reasoning</li>
-<li class="has-line-data" data-line-start="548" data-line-end="549"><strong>Impact</strong>: Scholarships, research grants, and educational initiatives</li>
-<li class="has-line-data" data-line-start="549" data-line-end="551"><strong>Legacy</strong>: Ensuring Lev’s vision continues to benefit future generations</li>
-</ul>
-<p class="has-line-data" data-line-start="551" data-line-end="552"><a href="memorial/MEMORIAL_FUND.md">Learn more about the Fund ?</a></p>
-<hr>
-<h2 class="code-line" data-line-start=555 data-line-end=556 ><a id="License_and_Contact_555"></a>License and Contact</h2>
-<h3 class="code-line" data-line-start=557 data-line-end=558 ><a id="License_557"></a>License</h3>
-<p class="has-line-data" data-line-start="558" data-line-end="559"><strong>MIT License with Ethical Use Requirements</strong> - Free for beneficial AI use, prohibited for harmful AI applications or systems designed to deceive or manipulate.</p>
-<p class="has-line-data" data-line-start="560" data-line-end="561"><strong>?? <a href="docs/LICENSE_FAQ.md">Complete License FAQ ?</a></strong> - 30 questions covering all legal aspects for AI ethics</p>
-<p class="has-line-data" data-line-start="562" data-line-end="563">For licensing, technical support, or collaboration inquiries, see our <a href="examples/ternary-license-demo.md">Ternary License Demo</a> for a creative example of TML principles applied to licensing.</p>
-<hr>
-<h2 class="code-line" data-line-start=566 data-line-end=567 ><a id="Final_Words_566"></a>Final Words</h2>
-<blockquote>
-<p class="has-line-data" data-line-start="568" data-line-end="569"><em>“Wisdom lies not in having all the answers, but in knowing when to pause and ask better questions.”</em></p>
-</blockquote>
-<p class="has-line-data" data-line-start="570" data-line-end="571">Ternary Moral Logic represents more than a technical framework—it embodies a philosophy of <strong>human-AI partnership</strong> in moral reasoning. By introducing the Sacred Pause, we create space for wisdom in an increasingly automated world.</p>
-<p class="has-line-data" data-line-start="572" data-line-end="573">Every time you use TML, you honor Lev Goukassian’s vision and advance the future of AI systems that are <strong>moral partners, not moral automatons</strong>.</p>
-<p class="has-line-data" data-line-start="574" data-line-end="575"><strong>The future of AI is not just intelligent—it’s wise.</strong></p>
-<hr>
-<h3 class="code-line" data-line-start=578 data-line-end=579 ><a id="_Ready_to_Begin_578"></a>?? Ready to Begin?</h3>
-<pre><code class="has-line-data" data-line-start="581" data-line-end="586" class="language-bash">git <span class="hljs-built_in">clone</span> https://github.com/FractonicMind/TernaryMoralLogic.git
-<span class="hljs-built_in">cd</span> TernaryMoralLogic
-pip install <span class="hljs-operator">-e</span> .
-python examples/basic_demo.py
-</code></pre>
-<p class="has-line-data" data-line-start="587" data-line-end="588"><strong>Welcome to the Sacred Pause. Welcome to the future of ethical AI.</strong></p>
-<hr>
-<ul>
-<li class="has-line-data" data-line-start="591" data-line-end="592">Created by Lev Goukassian * ORCID: 0009-0006-5966-1243 *</li>
-<li class="has-line-data" data-line-start="592" data-line-end="593">Email: <a href="/cdn-cgi/l/email-protection#dab6bfb5bdb5afb19abdb7bbb3b6f4b9b5b7"><span class="__cf_email__" data-cfemail="f29e979d959d8799b2959f939b9edc919d9f">[email&#160;protected]</span></a></li>
-<li class="has-line-data" data-line-start="593" data-line-end="594">Successor Contact: <a href="/cdn-cgi/l/email-protection#53202623233c212713273e3f7e343c26383220203a323d7d3c2134"><span class="__cf_email__" data-cfemail="15666065657a67615561787938727a607e7466667c747b3b7a6772">[email&#160;protected]</span></a></li>
-<li class="has-line-data" data-line-start="594" data-line-end="595">(see Succession Charter)/TernaryMoralLogic/TML-SUCCESSION-CHARTER.md</li>
-</ul>
-
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body></html>
+    </script>
+</body>
+</html>
