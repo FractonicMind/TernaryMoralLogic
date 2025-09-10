@@ -240,7 +240,7 @@ Public verification capabilities enable democratic participation in AI accountab
 - **Technical Infrastructure**: technical@tml-goukassian.org
 - **Legal Framework**: legal@tml-goukassian.org
 - **Emergency Response**: ethics-emergency@tml-goukassian.org
-- **Succession Planning**: [See TML Succession Charter](TML-SUCCESSION-CHARTER.md)
+- **Succession Planning**: [See TML Succession Charter](/TML-SUCCESSION-CHARTER.md)
 
 ---
 
