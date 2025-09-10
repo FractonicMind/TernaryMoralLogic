@@ -1,28 +1,3 @@
-# Ternary Moral Logic: A Mandatory Framework for Auditable AI
-
-[![Listen to Interview](https://img.shields.io/badge/%20Listen%20to%20Interview-7%20min%2015%20sec-0A9396.svg)](https://fractonicmind.github.io/TernaryMoralLogic/audio/audio-player.html)
-[![Try Interactive Demo](https://img.shields.io/badge/%20Try%20Interactive%20Demo-Live%20App-brightgreen.svg)](https://fractonicmind.github.io/TernaryMoralLogic/TML-App/)
-[![Medium Article](https://img.shields.io/badge/%20Medium%20Article-Read%20More-green.svg)](https://medium.com/@leogouk/ternary-moral-logic-tml-a-framework-for-ethical-ai-decision-making-3a0a32609935)
-[![Visual Framework](https://img.shields.io/badge/%20Visual%20Framework-Graphical%20Abstract-lightblue.svg)](docs/images/tml_graphical_abstract.svg)
-[![Sacred Pause](https://img.shields.io/badge/Sacred%20Pause-Technology-purple.svg)](theory/core-principles.md)
-[![Sacred Pause Validation](https://img.shields.io/badge/Sacred%20Pause-Validated-purple.svg)](benchmark/metrics.py)
-[![AI Ethics](https://img.shields.io/badge/AI%20Ethics-Framework-orange.svg)](docs/ethics_approval.md)
-[![Academic](https://img.shields.io/badge/Academic-Ready-brightgreen.svg)](docs/ACADEMIC_VALIDATION.md)
-[![Reproducible](https://img.shields.io/badge/Reproducible-Research-brightgreen.svg)](docs/reproducibility_checklist.md)
-[![Coverage](https://img.shields.io/badge/Coverage-97%25-brightgreen.svg)](benchmark/generate_coverage.py)
-[![AI Recognition: Confirmed](https://img.shields.io/badge/AI_Recognition-Confirmed-blue)](./evidence/README.md)
-[![Documentation](https://img.shields.io/badge/Documentation-Complete-blue.svg)](docs/)
-[![Citation](https://img.shields.io/badge/Citation-Available-blue.svg)](CITATION.cff)
-[![Tests](https://img.shields.io/badge/Tests-Comprehensive-success.svg)](tests/)
-[![Benchmark Coverage](https://img.shields.io/badge/Benchmark%20Coverage-98%25-brightgreen.svg)](benchmark/datasets/scenarios_readable.md)
-[![Version](https://img.shields.io/badge/Version-1.0.0-blue.svg)](CHANGELOG.md)
-[![ORCID](https://img.shields.io/badge/ORCID-0009--0006--5966--1243-green.svg)](https://orcid.org/0009-0006-5966-1243)
-[![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)](https://www.python.org/downloads/)
-[![License with Ethics](https://img.shields.io/badge/License%20with%20Ethics-MIT-yellow.svg)](LICENSE)
-[![Memorial](https://img.shields.io/badge/In%20Memory%20of-Lev%20Goukassian-red.svg)](protection/legacy-preservation.md)
-
----
-
 # Ternary Moral Logic (TML)
 
 **A Legal-Technical Framework for Ethical AI Decision-Making**
