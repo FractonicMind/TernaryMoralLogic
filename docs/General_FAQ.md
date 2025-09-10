@@ -466,7 +466,10 @@ AGI makes TML more critical, not optional:
 
 Advanced AI demands advanced accountability.
 
-### Q37: How will TML adapt to new technologies?
+### Q37: If AGI is so powerful, why wouldn’t it just hide or fake the logs?**  
+**A:** Because logging runs outside the AGI. Every decision call is wrapped: the AGI executes immediately, while a background task records the log in parallel. Logs are sealed in tamper-proof external storage (universities, NGOs, blockchain anchors). The AGI never controls or even sees this process.  
+
+### Q38: How will TML adapt to new technologies?
 Evolution maintains enforcement:
 - **Automatic coverage** of new capabilities
 - **Improved detection** algorithms
@@ -476,7 +479,7 @@ Evolution maintains enforcement:
 
 Technology advances, accountability remains.
 
-### Q38: What makes TML different from other AI safety approaches?
+### Q39: What makes TML different from other AI safety approaches?
 TML has teeth. Others have suggestions:
 - **Real prison sentences** not ethics boards
 - **Missing logs = guilt** not "areas for improvement"
@@ -486,7 +489,7 @@ TML has teeth. Others have suggestions:
 
 TML transforms AI safety from corporate PR to criminal law.
 
-### Q39: How is TML compliance verified?
+### Q40: How is TML compliance verified?
 An automated validator checks every TML implementation for:
 - **Creator attribution** - Must credit Lev Goukassian (ORCID: 0009-0006-5966-1243)
 - **Core concepts** - Must implement Ternary Moral Logic, Sacred Pause, Moral Trace Logs
