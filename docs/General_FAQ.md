@@ -469,7 +469,13 @@ Advanced AI demands advanced accountability.
 ### Q37: If AGI is so powerful, why wouldn’t it just hide or fake the logs?  
  Because logging runs outside the AGI. Every decision call is wrapped: the AGI executes immediately, while a background task records the log in parallel. Logs are sealed in tamper-proof external storage (universities, NGOs, blockchain anchors). The AGI never controls or even sees this process.  
 
-### Q38: How will TML adapt to new technologies?
+### Q38: Could organizations misuse the Sacred Pause to shift liability onto humans?
+ No. Every Sacred Pause generates a Moral Trace Log that records why the pause was triggered and what options were presented. If a system is designed to offload responsibility in bad faith, the logs expose that pattern. Liability attaches to the organization that built or deployed the system, not to the human forced into last-second decisions.
+
+### Q39: Could an AI abuse the Sacred Pause to avoid hard questions?
+ Attempts at “malicious compliance” are visible in the logs. If an AI pauses abnormally often in safe or routine cases, that behavior itself is recorded and auditable. Overuse of the pause becomes evidence of system failure or manipulation, not a shield against accountability.
+
+### Q40: How will TML adapt to new technologies?
 Evolution maintains enforcement:
 - **Automatic coverage** of new capabilities
 - **Improved detection** algorithms
@@ -479,7 +485,7 @@ Evolution maintains enforcement:
 
 Technology advances, accountability remains.
 
-### Q39: What makes TML different from other AI safety approaches?
+### Q41: What makes TML different from other AI safety approaches?
 TML has teeth. Others have suggestions:
 - **Real prison sentences** not ethics boards
 - **Missing logs = guilt** not "areas for improvement"
@@ -489,7 +495,7 @@ TML has teeth. Others have suggestions:
 
 TML transforms AI safety from corporate PR to criminal law.
 
-### Q40: How is TML compliance verified?
+### Q42: How is TML compliance verified?
 An automated validator checks every TML implementation for:
 - **Creator attribution** - Must credit Lev Goukassian (ORCID: 0009-0006-5966-1243)
 - **Core concepts** - Must implement Ternary Moral Logic, Sacred Pause, Moral Trace Logs
