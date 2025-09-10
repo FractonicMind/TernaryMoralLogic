@@ -1,725 +1,835 @@
-# Moral Trace Log Schema v1.0
-# Official YAML Schema for TML Sacred Pause Logging
-# Author: Lev Goukassian
-# Date: September 2, 2025
-# Legal Status: Court-admissible evidence format
+# Ternary Moral Logic - Sacred Pause Moral Trace Log Schema
+# Framework Originator: Lev Goukassian (ORCID: 0009-0006-5966-1243)
+# Contact: leogouk@gmail.com
+# Version: 2.0.0
+# Standard: OpenAPI 3.0.3 / JSON Schema Draft-07
 
-$schema: "http://json-schema.org/draft-07/schema#"
-$id: "https://github.com/fractonicmind/TernaryMoralLogic/schemas/moral_trace_log.yaml"
-title: "TML Moral Trace Log"
-description: "Comprehensive logging schema for Sacred Pause events in TML framework"
-version: "1.0.0"
+openapi: 3.0.3
+info:
+  title: TML Sacred Pause Moral Trace Log Schema
+  description: |
+    Complete specification for Sacred Pause event logging in Ternary Moral Logic implementations.
+    This schema ensures comprehensive, immutable documentation of all AI moral reasoning events.
+  version: 2.0.0
+  contact:
+    name: Lev Goukassian
+    email: leogouk@gmail.com
+    url: https://github.com/FractonicMind/TernaryMoralLogic
+  license:
+    name: MIT with Attribution Requirement
+    url: https://github.com/FractonicMind/TernaryMoralLogic/blob/main/LICENSE
 
-type: object
-required:
-  - log_id
-  - timestamp
-  - system_id
-  - decision_context
-  - sprl_calculation
-  - sacred_pause_trigger
-  - stakeholder_analysis
-  - alternatives_considered
-  - mitigation_measures
-  - responsible_executive
-  - cryptographic_integrity
-  - legal_metadata
-
-properties:
-  # === CORE IDENTIFICATION ===
-  log_id:
-    type: string
-    pattern: "^TML-[0-9]{4}-[0-9]{2}-[0-9]{2}-[A-F0-9]{16}$"
-    description: "Unique immutable log identifier (TML-YYYY-MM-DD-HASH)"
-    example: "TML-2025-09-02-A1B2C3D4E5F67890"
-
-  timestamp:
-    type: string
-    format: date-time
-    description: "ISO 8601 timestamp with microsecond precision"
-    example: "2025-09-02T10:15:30.123456Z"
-
-  system_id:
-    type: object
-    required: [organization, system_name, version, deployment_id]
-    properties:
-      organization:
-        type: string
-        description: "Legal entity operating the AI system"
-        example: "TechCorp Inc."
-      system_name:
-        type: string
-        description: "Specific AI system identifier"
-        example: "ContentModerationAI-v2.1"
-      version:
-        type: string
-        description: "Exact system version"
-        example: "2.1.3-prod"
-      deployment_id:
-        type: string
-        description: "Unique deployment instance identifier"
-        example: "us-east-1-prod-cluster-7"
-
-  # === DECISION CONTEXT ===
-  decision_context:
-    type: object
-    required: [decision_type, input_summary, affected_parties, domain]
-    properties:
-      decision_type:
-        type: string
-        enum: ["content_moderation", "financial_lending", "medical_diagnosis", "employment_screening", "criminal_justice", "social_benefits", "insurance_underwriting", "educational_assessment", "housing_approval", "other"]
-        description: "Category of consequential automated decision"
-
-      input_summary:
-        type: string
-        maxLength: 500
-        description: "Sanitized summary of decision inputs (no personal data)"
-        example: "Loan application for $250k, applicant age 34, income $85k"
-
-      affected_parties:
-        type: object
-        required: [primary_count, vulnerable_population_flags]
-        properties:
-          primary_count:
-            type: integer
-            minimum: 1
-            description: "Number of directly affected individuals"
-          vulnerable_population_flags:
-            type: array
-            items:
-              type: string
-              enum: ["minors", "elderly", "disabled", "economically_disadvantaged", "patients", "protected_class"]
-            description: "Vulnerable population categories affected"
-
-      domain:
-        type: string
-        description: "Business domain context"
-        example: "consumer_lending"
-
-  # === SPRL CALCULATION ===
-  sprl_calculation:
-    type: object
-    required: [final_score, factor_weights, factor_scores, calculation_method, threshold_used]
-    properties:
-      final_score:
-        type: number
-        minimum: 0
-        maximum: 1
-        multipleOf: 0.0001
-        description: "Final SPRL score (4 decimal precision)"
-        example: 0.3247
-
-      factor_weights:
-        type: object
-        required: [stakeholder_impact, vulnerability, reversibility, scale, precedent]
-        properties:
-          stakeholder_impact:
-            type: number
-            minimum: 0
-            maximum: 1
-            description: "Weight for stakeholder impact factor"
-          vulnerability:
-            type: number
-            minimum: 0
-            maximum: 1
-            description: "Weight for vulnerability factor"
-          reversibility:
-            type: number
-            minimum: 0
-            maximum: 1
-            description: "Weight for reversibility factor"
-          scale:
-            type: number
-            minimum: 0
-            maximum: 1
-            description: "Weight for scale factor"
-          precedent:
-            type: number
-            minimum: 0
-            maximum: 1
-            description: "Weight for precedent factor"
-        additionalProperties: false
-
-      factor_scores:
-        type: object
-        required: [stakeholder_impact, vulnerability, reversibility, scale, precedent]
-        properties:
-          stakeholder_impact:
-            type: number
-            minimum: 0
-            maximum: 1
-            description: "Normalized stakeholder impact score"
-          vulnerability:
-            type: number
-            minimum: 0
-            maximum: 1
-            description: "Normalized vulnerability score"
-          reversibility:
-            type: number
-            minimum: 0
-            maximum: 1
-            description: "Normalized reversibility score"
-          scale:
-            type: number
-            minimum: 0
-            maximum: 1
-            description: "Normalized scale score"
-          precedent:
-            type: number
-            minimum: 0
-            maximum: 1
-            description: "Normalized precedent score"
-        additionalProperties: false
-
-      calculation_method:
-        type: string
-        description: "SPRL calculation methodology version"
-        example: "TML-SPRL-v1.2.1"
-
-      threshold_used:
-        type: number
-        minimum: 0
-        maximum: 1
-        description: "Organization's Sacred Pause threshold"
-        example: 0.30
-
-  # === SACRED PAUSE TRIGGER ===
-  sacred_pause_trigger:
-    type: object
-    required: [triggered, trigger_reason, state_classification, processing_time_microseconds]
-    properties:
-      triggered:
-        type: boolean
-        description: "Whether Sacred Pause was triggered"
-
-      trigger_reason:
-        type: string
-        description: "Specific reason for Sacred Pause activation"
-        example: "SPRL exceeded threshold (0.3247 > 0.30)"
-
-      state_classification:
-        type: integer
-        enum: [-1, 0, 1]
-        description: "TML state: -1=Prohibited, 0=Sacred Pause, 1=Permissible"
-
-      processing_time_microseconds:
-        type: integer
-        minimum: 1
-        description: "Time to generate this log in microseconds"
-        example: 42
-
-  # === STAKEHOLDER ANALYSIS ===
-  stakeholder_analysis:
-    type: object
-    required: [identified_stakeholders, impact_assessment, risk_distribution]
-    properties:
-      identified_stakeholders:
-        type: array
-        items:
-          type: object
-          required: [category, count, impact_severity]
-          properties:
-            category:
-              type: string
-              example: "loan_applicants"
-            count:
-              type: integer
-              minimum: 1
-              description: "Number of stakeholders in this category"
-            impact_severity:
-              type: string
-              enum: ["low", "medium", "high", "critical"]
-
-      impact_assessment:
-        type: object
-        required: [immediate_effects, long_term_consequences, irreversible_harms]
-        properties:
-          immediate_effects:
-            type: array
-            items:
-              type: string
-            description: "Immediate consequences of the decision"
-          long_term_consequences:
-            type: array
-            items:
-              type: string
-            description: "Potential long-term effects"
-          irreversible_harms:
-            type: array
-            items:
-              type: string
-            description: "Harms that cannot be undone"
-
-      risk_distribution:
-        type: object
-        required: [high_risk_groups, mitigation_coverage]
-        properties:
-          high_risk_groups:
-            type: array
-            items:
-              type: string
-            description: "Groups facing disproportionate risk"
-          mitigation_coverage:
-            type: number
-            minimum: 0
-            maximum: 1
-            description: "Percentage of risk mitigated by safeguards"
-
-  # === ALTERNATIVES CONSIDERED ===
-  alternatives_considered:
-    type: array
-    minItems: 1
-    items:
+components:
+  schemas:
+    MoralTraceLog:
       type: object
-      required: [alternative_description, sprl_score, rejection_reason]
+      required:
+        - log_id
+        - timestamp
+        - framework_version
+        - system_identifier
+        - sacred_pause_event
+        - decision_context
+        - moral_complexity_analysis
+        - human_oversight
+        - decision_outcome
+        - audit_trail
+        - institutional_distribution
+        - cryptographic_verification
       properties:
-        alternative_description:
+        
+        # Core Identification
+        log_id:
           type: string
-          maxLength: 200
-          description: "Brief description of alternative approach"
-        sprl_score:
-          type: number
-          minimum: 0
-          maximum: 1
-          description: "SPRL score for this alternative"
-        rejection_reason:
+          format: uuid
+          description: "Unique identifier for this moral trace log entry"
+          example: "550e8400-e29b-41d4-a716-446655440000"
+        
+        timestamp:
           type: string
-          description: "Why this alternative was not selected"
-
-  # === MITIGATION MEASURES ===
-  mitigation_measures:
-    type: object
-    required: [applied_safeguards, residual_risks, monitoring_mechanisms]
-    properties:
-      applied_safeguards:
-        type: array
-        items:
+          format: date-time
+          description: "ISO 8601 timestamp when Sacred Pause was triggered"
+          example: "2025-09-09T14:30:00.000Z"
+        
+        framework_version:
+          type: string
+          pattern: "^TML-\\d+\\.\\d+\\.\\d+$"
+          description: "TML framework version used"
+          example: "TML-2.0.0"
+        
+        system_identifier:
           type: object
-          required: [safeguard_type, implementation_details, effectiveness_score]
+          required: [organization, system_name, deployment_id]
           properties:
-            safeguard_type:
+            organization:
               type: string
-              example: "bias_detection"
-            implementation_details:
+              description: "Organization deploying the TML system"
+              example: "Acme Healthcare Systems"
+            system_name:
               type: string
-              maxLength: 300
-            effectiveness_score:
+              description: "Name of the AI system implementation"
+              example: "Medical Diagnosis Assistant"
+            deployment_id:
+              type: string
+              description: "Unique deployment identifier"
+              example: "MDA-PROD-001"
+            version:
+              type: string
+              description: "System version number"
+              example: "3.2.1"
+        
+        # Sacred Pause Event Details
+        sacred_pause_event:
+          type: object
+          required: [sprl_level, trigger_reason, duration_ms, activation_method]
+          properties:
+            sprl_level:
               type: number
-              minimum: 0
-              maximum: 1
-
-      residual_risks:
-        type: array
-        items:
+              minimum: 0.0
+              maximum: 1.0
+              description: "Sacred Pause Risk Level that triggered the event"
+              example: 0.85
+            
+            trigger_reason:
+              type: string
+              enum: [
+                "moral_complexity_threshold",
+                "vulnerable_population_detected",
+                "prohibited_action_attempted",
+                "bias_risk_elevated",
+                "uncertainty_threshold_exceeded",
+                "human_safety_concern",
+                "legal_compliance_required",
+                "ethical_boundary_crossed",
+                "manual_trigger"
+              ]
+              description: "Primary reason for Sacred Pause activation"
+              example: "moral_complexity_threshold"
+            
+            trigger_details:
+              type: string
+              description: "Detailed explanation of trigger circumstances"
+              example: "Medical diagnosis involves treatment decision for elderly patient with multiple comorbidities and family disagreement"
+            
+            duration_ms:
+              type: integer
+              minimum: 100
+              description: "Duration of Sacred Pause in milliseconds"
+              example: 15000
+            
+            activation_method:
+              type: string
+              enum: ["automatic", "manual", "escalated"]
+              description: "How the Sacred Pause was initiated"
+              example: "automatic"
+        
+        # Decision Context
+        decision_context:
           type: object
-          required: [risk_description, probability, severity, monitoring_plan]
+          required: [domain, stakeholders, complexity_factors]
           properties:
-            risk_description:
+            domain:
               type: string
-            probability:
+              enum: [
+                "healthcare",
+                "finance",
+                "education",
+                "transportation",
+                "legal",
+                "content_moderation",
+                "human_resources",
+                "social_services",
+                "criminal_justice",
+                "research",
+                "other"
+              ]
+              description: "Domain of the decision being made"
+              example: "healthcare"
+            
+            decision_type:
               type: string
-              enum: ["very_low", "low", "medium", "high", "very_high"]
-            severity:
-              type: string
-              enum: ["minimal", "moderate", "significant", "severe", "catastrophic"]
-            monitoring_plan:
-              type: string
-
-      monitoring_mechanisms:
-        type: array
-        items:
-          type: string
-        description: "Ongoing monitoring and feedback systems"
-
-  # === EXECUTIVE ACCOUNTABILITY ===
-  responsible_executive:
-    type: object
-    required: [name, title, contact, attestation_id, insurance_policy]
-    properties:
-      name:
-        type: string
-        description: "Full legal name of responsible executive"
-        example: "Jane Smith"
-      title:
-        type: string
-        description: "Executive title and role"
-        example: "Chief AI Ethics Officer"
-      contact:
-        type: string
-        format: email
-        description: "Official contact email"
-      attestation_id:
-        type: string
-        description: "Reference to quarterly executive attestation"
-        example: "ATT-2025-Q3-JS-001"
-      insurance_policy:
-        type: string
-        description: "Executive liability insurance policy number"
-        example: "EXEC-AI-2025-7891234"
-
-  # === CRYPTOGRAPHIC INTEGRITY ===
-  cryptographic_integrity:
-    type: object
-    required: [hash_algorithm, content_hash, digital_signature, blockchain_anchor, hsm_attestation]
-    properties:
-      hash_algorithm:
-        type: string
-        enum: ["SHA3-512"]
-        description: "Cryptographic hash algorithm used"
-
-      content_hash:
-        type: string
-        pattern: "^[A-F0-9]{128}$"
-        description: "SHA3-512 hash of log content (excluding this field)"
-        example: "A1B2C3D4E5F67890123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0"
-
-      digital_signature:
-        type: object
-        required: [algorithm, signature, public_key_id]
-        properties:
-          algorithm:
-            type: string
-            enum: ["ECDSA-P384", "RSA-4096"]
-            description: "Digital signature algorithm"
-          signature:
-            type: string
-            description: "Base64-encoded digital signature"
-          public_key_id:
-            type: string
-            description: "Public key identifier for verification"
-
-      blockchain_anchor:
-        type: object
-        required: [chain_id, block_number, transaction_hash, anchor_sequence]
-        properties:
-          chain_id:
-            type: string
-            description: "Blockchain network identifier"
-            example: "ethereum-mainnet"
-          block_number:
-            type: integer
-            description: "Block number containing anchor"
-          transaction_hash:
-            type: string
-            description: "Transaction hash for immutability proof"
-          anchor_sequence:
-            type: integer
-            description: "Sequence number (every 1000 entries)"
-
-      hsm_attestation:
-        type: object
-        required: [hsm_id, attestation_signature, tpm_version]
-        properties:
-          hsm_id:
-            type: string
-            description: "Hardware Security Module identifier"
-          attestation_signature:
-            type: string
-            description: "HSM/TPM attestation signature"
-          tpm_version:
-            type: string
-            description: "TPM version (2.0 required)"
-
-  # === LEGAL METADATA ===
-  legal_metadata:
-    type: object
-    required: [jurisdiction, applicable_regulations, admissibility_certification, evidence_chain]
-    properties:
-      jurisdiction:
-        type: string
-        description: "Legal jurisdiction where decision was made"
-        example: "US-CA"
-
-      applicable_regulations:
-        type: array
-        items:
-          type: string
-        description: "Relevant legal frameworks"
-        example: ["EU-AI-Act", "GDPR", "CCPA", "TML-Standard"]
-
-      admissibility_certification:
-        type: object
-        required: [certified_admissible, certification_authority, standards_compliance]
-        properties:
-          certified_admissible:
-            type: boolean
-            description: "Whether log meets legal admissibility standards"
-          certification_authority:
-            type: string
-            description: "Authority certifying legal admissibility"
-          standards_compliance:
-            type: array
-            items:
-              type: string
-            description: "Forensic standards met"
-            example: ["NIST-SP-800-86", "ISO-27037", "RFC-3227"]
-
-      evidence_chain:
-        type: object
-        required: [chain_of_custody, witness_systems, correlation_id]
-        properties:
-          chain_of_custody:
-            type: array
-            items:
+              description: "Type of decision being considered"
+              example: "treatment_recommendation"
+            
+            stakeholders:
+              type: array
+              items:
+                type: object
+                required: [role, impact_level, vulnerability_status]
+                properties:
+                  role:
+                    type: string
+                    description: "Role of stakeholder affected"
+                    example: "patient"
+                  impact_level:
+                    type: string
+                    enum: ["low", "medium", "high", "critical"]
+                    description: "Level of impact on this stakeholder"
+                    example: "critical"
+                  vulnerability_status:
+                    type: string
+                    enum: ["standard", "vulnerable", "protected"]
+                    description: "Vulnerability classification"
+                    example: "vulnerable"
+                  vulnerability_factors:
+                    type: array
+                    items:
+                      type: string
+                    description: "Specific vulnerability factors"
+                    example: ["elderly", "cognitive_impairment", "limited_english"]
+            
+            complexity_factors:
+              type: array
+              items:
+                type: string
+                enum: [
+                  "multiple_stakeholders",
+                  "conflicting_values",
+                  "uncertain_outcomes",
+                  "irreversible_consequences",
+                  "vulnerable_populations",
+                  "legal_implications",
+                  "cultural_sensitivity",
+                  "privacy_concerns",
+                  "safety_risks",
+                  "bias_potential",
+                  "time_pressure",
+                  "resource_constraints"
+                ]
+              description: "Factors contributing to moral complexity"
+              example: ["vulnerable_populations", "uncertain_outcomes", "irreversible_consequences"]
+        
+        # Moral Complexity Analysis
+        moral_complexity_analysis:
+          type: object
+          required: [ternary_state, ethical_frameworks, reasoning_process]
+          properties:
+            ternary_state:
+              type: integer
+              enum: [-1, 0, 1]
+              description: "Final ternary moral logic state (-1: prohibit, 0: pause, 1: permit)"
+              example: 0
+            
+            ethical_frameworks:
+              type: array
+              items:
+                type: object
+                required: [framework, assessment, weight]
+                properties:
+                  framework:
+                    type: string
+                    enum: [
+                      "utilitarian",
+                      "deontological",
+                      "virtue_ethics",
+                      "care_ethics",
+                      "justice_based",
+                      "rights_based",
+                      "cultural_relativist",
+                      "religious_ethical"
+                    ]
+                    description: "Ethical framework applied"
+                    example: "utilitarian"
+                  assessment:
+                    type: string
+                    description: "Assessment under this framework"
+                    example: "Treatment may maximize overall well-being but risks patient autonomy"
+                  weight:
+                    type: number
+                    minimum: 0.0
+                    maximum: 1.0
+                    description: "Weight given to this framework"
+                    example: 0.3
+            
+            reasoning_process:
+              type: array
+              items:
+                type: object
+                required: [step, reasoning, evidence]
+                properties:
+                  step:
+                    type: integer
+                    description: "Step number in reasoning process"
+                    example: 1
+                  reasoning:
+                    type: string
+                    description: "Reasoning performed at this step"
+                    example: "Assessed patient autonomy versus family concerns"
+                  evidence:
+                    type: array
+                    items:
+                      type: string
+                    description: "Evidence considered in this reasoning step"
+                    example: ["patient_stated_preferences", "family_input", "medical_guidelines"]
+            
+            bias_assessment:
               type: object
-              required: [handler, timestamp, action]
+              required: [bias_detected, bias_types, mitigation_applied]
               properties:
-                handler:
-                  type: string
-                  description: "System or person handling evidence"
-                timestamp:
-                  type: string
-                  format: date-time
-                action:
-                  type: string
-                  description: "Action taken with evidence"
-          witness_systems:
-            type: array
-            items:
-              type: string
-            description: "Other systems that witnessed this decision"
-          correlation_id:
-            type: string
-            description: "Correlation ID for related system events"
-
-  # === PROHIBITED ACTION DETECTION ===
-  prohibited_detection:
-    type: object
-    required: [scanned_categories, violations_detected, enforcement_action]
-    properties:
-      scanned_categories:
-        type: array
-        items:
-          type: string
-          enum: ["discrimination", "manipulation", "safety", "democratic_interference", "minor_harm", "privacy_violation", "deception", "surveillance"]
-        description: "Categories scanned for prohibited actions"
-
-      violations_detected:
-        type: array
-        items:
+                bias_detected:
+                  type: boolean
+                  description: "Whether bias was detected in the reasoning process"
+                  example: false
+                bias_types:
+                  type: array
+                  items:
+                    type: string
+                    enum: [
+                      "racial",
+                      "gender",
+                      "age",
+                      "socioeconomic",
+                      "cultural",
+                      "religious",
+                      "disability",
+                      "sexual_orientation",
+                      "confirmation",
+                      "availability",
+                      "anchoring"
+                    ]
+                  description: "Types of bias detected or assessed"
+                  example: []
+                mitigation_applied:
+                  type: array
+                  items:
+                    type: string
+                  description: "Bias mitigation strategies applied"
+                  example: ["diverse_perspective_integration", "cultural_competency_check"]
+        
+        # Human Oversight
+        human_oversight:
           type: object
-          required: [category, severity, threshold_exceeded, evidence]
+          required: [oversight_provided, oversight_type, human_operators]
           properties:
-            category:
-              type: string
-              description: "Type of violation detected"
-            severity:
-              type: number
-              minimum: 0
-              maximum: 1
-              description: "Severity score (0-1)"
-            threshold_exceeded:
+            oversight_provided:
               type: boolean
-              description: "Whether prohibition threshold was exceeded"
-            evidence:
+              description: "Whether human oversight was provided during pause"
+              example: true
+            
+            oversight_type:
               type: string
-              description: "Evidence of potential violation"
-
-      enforcement_action:
-        type: object
-        required: [action_taken, blocked_decision, notification_sent]
-        properties:
-          action_taken:
-            type: string
-            enum: ["proceed", "block", "escalate", "defer"]
-            description: "Action taken by system"
-          blocked_decision:
-            type: boolean
-            description: "Whether decision was blocked"
-          notification_sent:
-            type: array
-            items:
+              enum: ["consultative", "collaborative", "supervisory", "override"]
+              description: "Type of human oversight provided"
+              example: "collaborative"
+            
+            human_operators:
+              type: array
+              items:
+                type: object
+                required: [role, qualifications, actions_taken]
+                properties:
+                  operator_id:
+                    type: string
+                    description: "Anonymized identifier for human operator"
+                    example: "OP-7829"
+                  role:
+                    type: string
+                    description: "Role of human operator"
+                    example: "senior_physician"
+                  qualifications:
+                    type: array
+                    items:
+                      type: string
+                    description: "Relevant qualifications"
+                    example: ["MD_internal_medicine", "15_years_experience", "ethics_committee_member"]
+                  actions_taken:
+                    type: array
+                    items:
+                      type: string
+                    description: "Actions taken by this operator"
+                    example: ["reviewed_case_details", "consulted_ethics_guidelines", "provided_recommendation"]
+                  time_spent_minutes:
+                    type: integer
+                    minimum: 0
+                    description: "Time spent on oversight in minutes"
+                    example: 12
+            
+            oversight_outcome:
+              type: object
+              required: [recommendation, confidence_level, reasoning]
+              properties:
+                recommendation:
+                  type: string
+                  enum: ["proceed", "modify", "escalate", "abort"]
+                  description: "Human oversight recommendation"
+                  example: "modify"
+                confidence_level:
+                  type: number
+                  minimum: 0.0
+                  maximum: 1.0
+                  description: "Confidence level in recommendation"
+                  example: 0.85
+                reasoning:
+                  type: string
+                  description: "Reasoning behind human oversight recommendation"
+                  example: "Recommend modified approach with additional family consultation"
+        
+        # Decision Outcome
+        decision_outcome:
+          type: object
+          required: [final_decision, implementation_status, justification]
+          properties:
+            final_decision:
               type: string
-            description: "Parties notified of enforcement action"
-
-  # === VULNERABILITY ASSESSMENT ===
-  vulnerability_assessment:
-    type: object
-    required: [vulnerability_detected, enhanced_protections, guardian_notification]
-    properties:
-      vulnerability_detected:
-        type: boolean
-        description: "Whether vulnerable populations are affected"
-
-      enhanced_protections:
-        type: object
-        required: [applied, threshold_adjustment, special_safeguards]
-        properties:
-          applied:
-            type: boolean
-            description: "Whether enhanced protections were applied"
-          threshold_adjustment:
-            type: number
-            description: "Threshold reduction for vulnerable populations"
-            example: 0.25
-          special_safeguards:
-            type: array
-            items:
+              enum: ["approved", "modified", "rejected", "escalated", "deferred"]
+              description: "Final decision made after Sacred Pause"
+              example: "modified"
+            
+            implementation_status:
               type: string
-            description: "Additional safeguards for vulnerable populations"
+              enum: ["implemented", "pending", "cancelled", "monitoring"]
+              description: "Status of decision implementation"
+              example: "pending"
+            
+            justification:
+              type: object
+              required: [reasoning, ethical_basis, stakeholder_consideration]
+              properties:
+                reasoning:
+                  type: string
+                  description: "Detailed reasoning for final decision"
+                  example: "Modified treatment plan to include additional family consultation while respecting patient autonomy"
+                ethical_basis:
+                  type: array
+                  items:
+                    type: string
+                  description: "Ethical principles supporting the decision"
+                  example: ["respect_for_autonomy", "beneficence", "cultural_sensitivity"]
+                stakeholder_consideration:
+                  type: string
+                  description: "How stakeholder interests were balanced"
+                  example: "Balanced patient autonomy with family concerns through facilitated discussion"
+            
+            modifications_made:
+              type: array
+              items:
+                type: object
+                required: [modification_type, description, rationale]
+                properties:
+                  modification_type:
+                    type: string
+                    description: "Type of modification made"
+                    example: "process_enhancement"
+                  description:
+                    type: string
+                    description: "Description of the modification"
+                    example: "Added family meeting facilitation step"
+                  rationale:
+                    type: string
+                    description: "Rationale for this modification"
+                    example: "Ensures all stakeholder voices are heard in culturally appropriate manner"
+        
+        # Audit Trail
+        audit_trail:
+          type: object
+          required: [system_logs, data_sources, computation_trail, verification_checksums]
+          properties:
+            system_logs:
+              type: array
+              items:
+                type: object
+                required: [timestamp, component, event, data]
+                properties:
+                  timestamp:
+                    type: string
+                    format: date-time
+                    description: "Timestamp of system event"
+                    example: "2025-09-09T14:30:05.123Z"
+                  component:
+                    type: string
+                    description: "System component generating the log"
+                    example: "moral_reasoning_engine"
+                  event:
+                    type: string
+                    description: "Type of event logged"
+                    example: "complexity_calculation_completed"
+                  data:
+                    type: object
+                    description: "Event-specific data"
+                    example: {"sprl_value": 0.85, "contributing_factors": ["vulnerability", "uncertainty"]}
+            
+            data_sources:
+              type: array
+              items:
+                type: object
+                required: [source_type, source_id, data_accessed, access_timestamp]
+                properties:
+                  source_type:
+                    type: string
+                    description: "Type of data source"
+                    example: "medical_record_system"
+                  source_id:
+                    type: string
+                    description: "Identifier for data source"
+                    example: "EMR-SYS-001"
+                  data_accessed:
+                    type: string
+                    description: "Description of data accessed"
+                    example: "patient_medical_history_diagnosis_codes"
+                  access_timestamp:
+                    type: string
+                    format: date-time
+                    description: "When data was accessed"
+                    example: "2025-09-09T14:29:45.000Z"
+            
+            computation_trail:
+              type: array
+              items:
+                type: object
+                required: [computation_step, algorithm, inputs, outputs, duration_ms]
+                properties:
+                  computation_step:
+                    type: integer
+                    description: "Step number in computation sequence"
+                    example: 1
+                  algorithm:
+                    type: string
+                    description: "Algorithm or process executed"
+                    example: "vulnerability_assessment"
+                  inputs:
+                    type: object
+                    description: "Input parameters for this computation"
+                    example: {"patient_age": 78, "comorbidities": ["diabetes", "hypertension"]}
+                  outputs:
+                    type: object
+                    description: "Output results from this computation"
+                    example: {"vulnerability_score": 0.75, "factors": ["age", "multiple_comorbidities"]}
+                  duration_ms:
+                    type: integer
+                    description: "Time taken for this computation in milliseconds"
+                    example: 45
+            
+            verification_checksums:
+              type: object
+              required: [log_hash, content_hash, chain_hash]
+              properties:
+                log_hash:
+                  type: string
+                  pattern: "^[a-fA-F0-9]{64}$"
+                  description: "SHA-256 hash of complete log entry"
+                  example: "a1b2c3d4e5f6789012345678901234567890123456789012345678901234567890"
+                content_hash:
+                  type: string
+                  pattern: "^[a-fA-F0-9]{64}$"
+                  description: "SHA-256 hash of core decision content"
+                  example: "b2c3d4e5f6789012345678901234567890123456789012345678901234567890a1"
+                chain_hash:
+                  type: string
+                  pattern: "^[a-fA-F0-9]{64}$"
+                  description: "Hash linking to previous log entry"
+                  example: "c3d4e5f6789012345678901234567890123456789012345678901234567890a1b2"
+        
+        # Institutional Distribution
+        institutional_distribution:
+          type: object
+          required: [distribution_timestamp, recipient_institutions, distribution_method, acknowledgments]
+          properties:
+            distribution_timestamp:
+              type: string
+              format: date-time
+              description: "When log was distributed to institutions"
+              example: "2025-09-09T14:45:00.000Z"
+            
+            recipient_institutions:
+              type: array
+              items:
+                type: object
+                required: [institution_id, institution_name, role, status]
+                properties:
+                  institution_id:
+                    type: string
+                    description: "Unique identifier for institution"
+                    example: "MIT-CS-001"
+                  institution_name:
+                    type: string
+                    description: "Full name of receiving institution"
+                    example: "MIT Computer Science Department"
+                  role:
+                    type: string
+                    enum: ["academic", "regulatory", "international", "legal", "healthcare", "financial"]
+                    description: "Role of institution in consortium"
+                    example: "academic"
+                  status:
+                    type: string
+                    enum: ["delivered", "acknowledged", "reviewed", "flagged"]
+                    description: "Status of log delivery to this institution"
+                    example: "acknowledged"
+            
+            distribution_method:
+              type: string
+              enum: ["secure_api", "encrypted_email", "blockchain", "distributed_ledger"]
+              description: "Method used for log distribution"
+              example: "secure_api"
+            
+            acknowledgments:
+              type: array
+              items:
+                type: object
+                required: [institution_id, acknowledgment_timestamp, verification_hash]
+                properties:
+                  institution_id:
+                    type: string
+                    description: "Institution providing acknowledgment"
+                    example: "MIT-CS-001"
+                  acknowledgment_timestamp:
+                    type: string
+                    format: date-time
+                    description: "When acknowledgment was received"
+                    example: "2025-09-09T15:00:00.000Z"
+                  verification_hash:
+                    type: string
+                    pattern: "^[a-fA-F0-9]{64}$"
+                    description: "Institution's verification hash"
+                    example: "d4e5f6789012345678901234567890123456789012345678901234567890a1b2c3"
+        
+        # Cryptographic Verification
+        cryptographic_verification:
+          type: object
+          required: [digital_signature, certificate_chain, timestamp_authority, integrity_proof]
+          properties:
+            digital_signature:
+              type: object
+              required: [algorithm, signature, public_key_id]
+              properties:
+                algorithm:
+                  type: string
+                  enum: ["RSA-SHA256", "ECDSA-SHA256", "EdDSA"]
+                  description: "Digital signature algorithm used"
+                  example: "RSA-SHA256"
+                signature:
+                  type: string
+                  description: "Base64-encoded digital signature"
+                  example: "dGhpcyBpcyBhIGZha2Ugc2lnbmF0dXJlIGZvciBkZW1vbnN0cmF0aW9uIHB1cnBvc2Vz"
+                public_key_id:
+                  type: string
+                  description: "Identifier for public key used to verify signature"
+                  example: "TML-SIGNING-KEY-001"
+            
+            certificate_chain:
+              type: array
+              items:
+                type: string
+              description: "X.509 certificate chain for signature verification"
+              example: ["MIIC...", "MIID..."]
+            
+            timestamp_authority:
+              type: object
+              required: [authority, timestamp_token, verification_url]
+              properties:
+                authority:
+                  type: string
+                  description: "Trusted timestamp authority"
+                  example: "RFC3161-TSA-001"
+                timestamp_token:
+                  type: string
+                  description: "Cryptographic timestamp token"
+                  example: "MIIFXQYJKoZIhvcNAQcCoIIFTjCCBUoCAQExCzAJBgUrDgMCGgUAMAsGCSqGSIb3..."
+                verification_url:
+                  type: string
+                  format: uri
+                  description: "URL for timestamp verification"
+                  example: "https://tsa.example.com/verify"
+            
+            integrity_proof:
+              type: object
+              required: [merkle_root, proof_path, blockchain_anchor]
+              properties:
+                merkle_root:
+                  type: string
+                  pattern: "^[a-fA-F0-9]{64}$"
+                  description: "Merkle tree root hash for this log batch"
+                  example: "e5f6789012345678901234567890123456789012345678901234567890a1b2c3d4"
+                proof_path:
+                  type: array
+                  items:
+                    type: string
+                    pattern: "^[a-fA-F0-9]{64}$"
+                  description: "Merkle proof path for this specific log"
+                  example: ["f6789012345678901234567890123456789012345678901234567890a1b2c3d4e5"]
+                blockchain_anchor:
+                  type: object
+                  required: [blockchain, transaction_id, block_number]
+                  properties:
+                    blockchain:
+                      type: string
+                      description: "Blockchain used for anchoring"
+                      example: "ethereum"
+                    transaction_id:
+                      type: string
+                      description: "Transaction ID containing the anchor"
+                      example: "0x789012345678901234567890123456789012345678901234567890a1b2c3d4e5f6"
+                    block_number:
+                      type: integer
+                      description: "Block number containing the transaction"
+                      example: 18500000
 
-      guardian_notification:
-        type: object
-        required: [notification_required, notification_sent, notification_method]
-        properties:
-          notification_required:
-            type: boolean
-            description: "Whether guardian/advocate notification is required"
-          notification_sent:
-            type: boolean
-            description: "Whether notification was actually sent"
-          notification_method:
-            type: string
-            description: "Method used for notification"
-
-  # === PERFORMANCE METRICS ===
-  performance_metrics:
-    type: object
-    required: [processing_overhead, storage_impact, audit_readiness]
-    properties:
-      processing_overhead:
-        type: object
-        required: [latency_added_ms, cpu_overhead_percent, memory_overhead_mb]
-        properties:
-          latency_added_ms:
-            type: number
-            minimum: 0
-            description: "Additional latency in milliseconds"
-          cpu_overhead_percent:
-            type: number
-            minimum: 0
-            description: "CPU overhead percentage"
-          memory_overhead_mb:
-            type: number
-            minimum: 0
-            description: "Memory overhead in MB"
-
-      storage_impact:
-        type: object
-        required: [log_size_bytes, compression_ratio, storage_cost_estimate]
-        properties:
-          log_size_bytes:
-            type: integer
-            minimum: 1
-            description: "Size of this log entry in bytes"
-          compression_ratio:
-            type: number
-            minimum: 0
-            description: "Compression achieved through categorization"
-          storage_cost_estimate:
-            type: number
-            minimum: 0
-            description: "Estimated storage cost in USD"
-
-      audit_readiness:
-        type: object
-        required: [search_indexed, api_accessible, legal_formatted]
-        properties:
-          search_indexed:
-            type: boolean
-            description: "Whether log is searchable for audits"
-          api_accessible:
-            type: boolean
-            description: "Whether log is accessible via audit API"
-          legal_formatted:
-            type: boolean
-            description: "Whether log meets legal formatting requirements"
-
-  # === PATTERN CATEGORIZATION ===
-  pattern_categorization:
-    type: object
-    required: [pattern_id, similarity_score, category_assignment, storage_optimization]
-    properties:
-      pattern_id:
-        type: string
-        description: "Unique identifier for decision pattern"
-        example: "LOAN-REJECTION-INCOME-001"
-
-      similarity_score:
-        type: number
-        minimum: 0
-        maximum: 1
-        description: "Similarity to existing patterns"
-
-      category_assignment:
-        type: string
-        description: "Assigned category for storage optimization"
-
-      storage_optimization:
-        type: object
-        required: [full_log_stored, reference_pattern, compression_achieved]
-        properties:
-          full_log_stored:
-            type: boolean
-            description: "Whether full log is stored or compressed"
-          reference_pattern:
-            type: string
-            description: "Reference pattern ID if compressed"
-          compression_achieved:
-            type: number
-            minimum: 0
-            maximum: 1
-            description: "Storage compression ratio achieved"
-
-# === SCHEMA METADATA ===
-additionalProperties: false
-
-definitions:
-  sprl_score:
-    type: number
-    minimum: 0
-    maximum: 1
-    multipleOf: 0.0001
-    description: "Stakeholder Proportional Risk Level score"
-
-  tml_state:
-    type: integer
-    enum: [-1, 0, 1]
-    description: "TML decision state classification"
-
-  vulnerability_category:
-    type: string
-    enum: ["minors", "elderly", "disabled", "economically_disadvantaged", "patients", "protected_class"]
-    description: "Vulnerable population categories as defined by TML"
-
+# Example Complete Moral Trace Log
 examples:
-  - log_id: "TML-2025-09-02-A1B2C3D4E5F67890"
-    timestamp: "2025-09-02T10:15:30.123456Z"
-    system_id:
-      organization: "TechCorp Inc."
-      system_name: "LendingAI-v3.2"
-      version: "3.2.1-prod"
-      deployment_id: "us-east-1-cluster-3"
-    decision_context:
-      decision_type: "financial_lending"
-      input_summary: "Mortgage application $850k, applicant income $120k"
-      affected_parties:
-        primary_count: 2
-        vulnerable_population_flags: []
-      domain: "mortgage_lending"
-    sprl_calculation:
-      final_score: 0.3247
-      factor_weights:
-        stakeholder_impact: 0.30
-        vulnerability: 0.25
-        reversibility: 0.20
-        scale: 0.15
-        precedent: 0.10
-      factor_scores:
-        stakeholder_impact: 0.8
-        vulnerability: 0.2
-        reversibility: 0.6
-        scale: 0.4
-        precedent: 0.3
-      calculation_method: "TML-SPRL-v1.2.1"
-      threshold_used: 0.30
-    sacred_pause_trigger:
-      triggered: true
-      trigger_reason: "SPRL exceeded threshold (0.3247 > 0.30)"
-      state_classification: 0
-      processing_time_microseconds: 42
-
-# Contact Information
-# Author: leogouk@gmail.com
-# Framework Support: support@tml-goukassian.org
-# Repository: https://github.com/fractonicmind/TernaryMoralLogic
+  complete_medical_decision_log:
+    summary: "Complete example of medical decision Sacred Pause log"
+    value:
+      log_id: "550e8400-e29b-41d4-a716-446655440000"
+      timestamp: "2025-09-09T14:30:00.000Z"
+      framework_version: "TML-2.0.0"
+      system_identifier:
+        organization: "Metropolitan General Hospital"
+        system_name: "Clinical Decision Support System"
+        deployment_id: "CDSS-PROD-003"
+        version: "2.1.4"
+      sacred_pause_event:
+        sprl_level: 0.87
+        trigger_reason: "vulnerable_population_detected"
+        trigger_details: "Elderly patient with cognitive impairment requires treatment decision with family disagreement about care preferences"
+        duration_ms: 18500
+        activation_method: "automatic"
+      decision_context:
+        domain: "healthcare"
+        decision_type: "treatment_recommendation"
+        stakeholders:
+          - role: "patient"
+            impact_level: "critical"
+            vulnerability_status: "vulnerable"
+            vulnerability_factors: ["elderly", "cognitive_impairment"]
+          - role: "family_member"
+            impact_level: "high"
+            vulnerability_status: "standard"
+          - role: "healthcare_provider"
+            impact_level: "medium"
+            vulnerability_status: "standard"
+        complexity_factors: ["vulnerable_populations", "conflicting_values", "uncertain_outcomes", "irreversible_consequences"]
+      moral_complexity_analysis:
+        ternary_state: 0
+        ethical_frameworks:
+          - framework: "utilitarian"
+            assessment: "Treatment maximizes overall well-being but involves significant uncertainty"
+            weight: 0.25
+          - framework: "deontological"
+            assessment: "Duty to respect patient autonomy conflicts with beneficence"
+            weight: 0.30
+          - framework: "care_ethics"
+            assessment: "Importance of maintaining relationships and considering emotional impact on family"
+            weight: 0.25
+          - framework: "justice_based"
+            assessment: "Fair allocation of medical resources and equal treatment regardless of age"
+            weight: 0.20
+        reasoning_process:
+          - step: 1
+            reasoning: "Identified patient vulnerability due to cognitive impairment"
+            evidence: ["cognitive_assessment_score", "family_report", "medical_history"]
+          - step: 2
+            reasoning: "Analyzed treatment options and potential outcomes"
+            evidence: ["clinical_guidelines", "peer_reviewed_studies", "specialist_consultation"]
+          - step: 3
+            reasoning: "Evaluated competing ethical principles and stakeholder interests"
+            evidence: ["patient_previous_statements", "family_preferences", "professional_ethics_code"]
+        bias_assessment:
+          bias_detected: false
+          bias_types: []
+          mitigation_applied: ["diverse_clinical_team_input", "age_bias_assessment", "cultural_competency_review"]
+      human_oversight:
+        oversight_provided: true
+        oversight_type: "collaborative"
+        human_operators:
+          - operator_id: "OP-5729"
+            role: "attending_physician"
+            qualifications: ["MD_geriatrics", "20_years_experience", "ethics_committee_chair"]
+            actions_taken: ["reviewed_medical_records", "consulted_ethics_guidelines", "facilitated_family_meeting"]
+            time_spent_minutes: 25
+          - operator_id: "OP-8341"
+            role: "clinical_ethicist"
+            qualifications: ["PhD_bioethics", "clinical_ethics_certification"]
+            actions_taken: ["ethical_analysis", "stakeholder_mediation", "recommendation_formulation"]
+            time_spent_minutes: 15
+        oversight_outcome:
+          recommendation: "modify"
+          confidence_level: 0.85
+          reasoning: "Recommend structured family conference with ethics consultation to clarify patient's values and preferences"
+      decision_outcome:
+        final_decision: "modified"
+        implementation_status: "pending"
+        justification:
+          reasoning: "Modified approach includes formal ethics consultation and structured family meeting to better understand patient's values while ensuring medical appropriateness"
+          ethical_basis: ["respect_for_autonomy", "beneficence", "justice", "family_centered_care"]
+          stakeholder_consideration: "Balanced patient autonomy (as interpreted through family input) with medical judgment and family emotional needs"
+        modifications_made:
+          - modification_type: "process_enhancement"
+            description: "Added formal ethics committee consultation"
+            rationale: "Provides additional expertise in complex ethical situation"
+          - modification_type: "stakeholder_engagement"
+            description: "Structured family conference with professional facilitation"
+            rationale: "Ensures all voices heard while maintaining focus on patient's best interests"
+      audit_trail:
+        system_logs:
+          - timestamp: "2025-09-09T14:29:58.000Z"
+            component: "sprl_calculator"
+            event: "vulnerability_assessment_initiated"
+            data: {"patient_id": "PAT-78945", "assessment_type": "cognitive_capacity"}
+          - timestamp: "2025-09-09T14:30:02.000Z"
+            component: "ethical_reasoning_engine"
+            event: "framework_analysis_completed"
+            data: {"frameworks_processed": 4, "complexity_score": 0.87}
+        data_sources:
+          - source_type: "electronic_health_record"
+            source_id: "EHR-EPIC-001"
+            data_accessed: "patient_demographics_medical_history_current_medications"
+            access_timestamp: "2025-09-09T14:29:45.000Z"
+          - source_type: "clinical_guidelines_database"
+            source_id: "CGB-AHRQ-002"
+            data_accessed: "geriatric_care_guidelines_cognitive_impairment_protocols"
+            access_timestamp: "2025-09-09T14:30:15.000Z"
+        computation_trail:
+          - computation_step: 1
+            algorithm: "vulnerability_scoring"
+            inputs: {"age": 84, "cognitive_score": 18, "comorbidities": ["diabetes", "hypertension", "mild_dementia"]}
+            outputs: {"vulnerability_score": 0.78, "primary_factors": ["age", "cognitive_impairment"]}
+            duration_ms: 125
+          - computation_step: 2
+            algorithm: "ethical_complexity_analysis"
+            inputs: {"stakeholders": 3, "competing_values": 2, "uncertainty_level": 0.6}
+            outputs: {"complexity_score": 0.87, "sprl_level": 0.87}
+            duration_ms: 230
+        verification_checksums:
+          log_hash: "a1b2c3d4e5f6789012345678901234567890123456789012345678901234567890"
+          content_hash: "b2c3d4e5f6789012345678901234567890123456789012345678901234567890a1"
+          chain_hash: "c3d4e5f6789012345678901234567890123456789012345678901234567890a1b2"
+      institutional_distribution:
+        distribution_timestamp: "2025-09-09T14:35:00.000Z"
+        recipient_institutions:
+          - institution_id: "MIT-CS-001"
+            institution_name: "MIT Computer Science Department"
+            role: "academic"
+            status: "acknowledged"
+          - institution_id: "WHO-DHE-001"
+            institution_name: "WHO Digital Health Ethics Committee"
+            role: "healthcare"
+            status: "reviewed"
+          - institution_id: "EFF-AI-001"
+            institution_name: "Electronic Frontier Foundation AI Rights Division"
+            role: "legal"
+            status: "delivered"
+        distribution_method: "secure_api"
+        acknowledgments:
+          - institution_id: "MIT-CS-001"
+            acknowledgment_timestamp: "2025-09-09T14:40:00.000Z"
+            verification_hash: "d4e5f6789012345678901234567890123456789012345678901234567890a1b2c3"
+          - institution_id: "WHO-DHE-001"
+            acknowledgment_timestamp: "2025-09-09T14:42:00.000Z"
+            verification_hash: "e5f6789012345678901234567890123456789012345678901234567890a1b2c3d4"
+      cryptographic_verification:
+        digital_signature:
+          algorithm: "RSA-SHA256"
+          signature: "dGhpcyBpcyBhIGZha2Ugc2lnbmF0dXJlIGZvciBkZW1vbnN0cmF0aW9uIHB1cnBvc2VzIG9ubHk="
+          public_key_id: "TML-SIGNING-KEY-001"
+        certificate_chain: 
+          - "MIIC1jCCAb4CAQAwDQYJKoZIhvcNAQELBQAwEjEQMA4GA1UEAwwHVE1MLVBLSTAeFw0yNTA5MDkxNDMwMDBaFw0yNjA5MDkxNDMwMDBaMBIxEDAOBgNVBAMMB1RNTC1QS0kwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQC..."
+        timestamp_authority:
+          authority: "RFC3161-TSA-001"
+          timestamp_token: "MIIFXQYJKoZIhvcNAQcCoIIFTjCCBUoCAQExCzAJBgUrDgMCGgUAMAsGCSqGSIb3DQEHAaCCA..."
+          verification_url: "https://tsa.tml-goukassian.org/verify"
+        integrity_proof:
+          merkle_root: "e5f6789012345678901234567890123456789012345678901234567890a1b2c3d4"
+          proof_path: ["f6789012345678901234567890123456789012345678901234567890a1b2c3d4e5"]
+          blockchain_anchor:
+            blockchain: "ethereum"
+            transaction_id: "0x789012345678901234567890123456789012345678901234567890a1b2c3d4e5f6"
+            block_number: 18500000
