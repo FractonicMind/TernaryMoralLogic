@@ -105,7 +105,7 @@ The following activities constitute protected whistleblower disclosures:
 - 15% of all penalties recovered from violating organizations
 - 10% of annual profits for systematic violations
 - Additional 5% for vulnerable population violations
-- Minimum $50,000 for verified technical violations
+- Minimum $50,000 (nominal 2025 value) for verified technical violations
 
 **LEGAL PROTECTION**: Complete protection against retaliation including:
 - Criminal penalties for retaliation against whistleblowers
