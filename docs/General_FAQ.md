@@ -1,8 +1,7 @@
 # Ternary Moral Logic (TML) Framework - General FAQ
 
-**Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)  
-**Version**: 4.0.0  
-**Last Updated**: September 7, 2025
+**Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)   
+ September 7, 2025
 
 ---
 
