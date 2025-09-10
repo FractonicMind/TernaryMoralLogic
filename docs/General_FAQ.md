@@ -466,8 +466,8 @@ AGI makes TML more critical, not optional:
 
 Advanced AI demands advanced accountability.
 
-### Q37: If AGI is so powerful, why wouldn’t it just hide or fake the logs?**  
-**A:** Because logging runs outside the AGI. Every decision call is wrapped: the AGI executes immediately, while a background task records the log in parallel. Logs are sealed in tamper-proof external storage (universities, NGOs, blockchain anchors). The AGI never controls or even sees this process.  
+### Q37: If AGI is so powerful, why wouldn’t it just hide or fake the logs?  
+ Because logging runs outside the AGI. Every decision call is wrapped: the AGI executes immediately, while a background task records the log in parallel. Logs are sealed in tamper-proof external storage (universities, NGOs, blockchain anchors). The AGI never controls or even sees this process.  
 
 ### Q38: How will TML adapt to new technologies?
 Evolution maintains enforcement:
