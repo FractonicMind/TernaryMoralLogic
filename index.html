@@ -1,708 +1,398 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Ternary Moral Logic (TML) - Ethical AI Framework</title>
-<meta name="google-site-verification" content="1zOVH4pZrifUCYWI2zt6qcOQpDJzkr4TGLUSaqa4txs" />
-    <meta name="robots" content="index, follow">
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="TML is a legal-technical framework for ethical AI decision-making, introducing the Sacred Pause for moral reflection in artificial intelligence systems.">
-    <meta name="keywords" content="AI ethics, moral reasoning, Sacred Pause, artificial intelligence, ethical AI, Lev Goukassian, TML">
+    <meta name="google-site-verification" content="google9a11ddf5dc6aa5a0.html" />
+    <meta name="description" content="Ternary Moral Logic (TML) Framework - A revolutionary AI accountability system with Sacred Pause mechanism and SPRL governance">
+    <meta name="keywords" content="TML, Ternary Moral Logic, AI Ethics, Sacred Pause, SPRL, AI Accountability">
     <meta name="author" content="Lev Goukassian">
-    
-    <!-- Open Graph / Social Media -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Ternary Moral Logic - Ethical AI Framework">
-    <meta property="og:description" content="Revolutionary framework introducing the Sacred Pause for ethical AI decision-making">
-    <meta property="og:url" content="https://fractonicmind.github.io/TernaryMoralLogic/">
-    <meta property="og:image" content="https://fractonicmind.github.io/TernaryMoralLogic/images/TML_Logo.png">
-    
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Ternary Moral Logic - Ethical AI Framework">
-    <meta name="twitter:description" content="Revolutionary framework introducing the Sacred Pause for ethical AI decision-making">
-    <meta name="twitter:image" content="https://fractonicmind.github.io/TernaryMoralLogic/images/TML_Logo.png">
-    
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://fractonicmind.github.io/TernaryMoralLogic/">
-    
-    <!-- Favicon -->
-    <link rel="icon" href="images/TML_Logo.png" type="image/png">
-    
+    <title>Ternary Moral Logic (TML) Framework - Complete Repository Index</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
+            margin: 20px;
+            background: #f5f5f5;
             color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
         }
-
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        header {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            color: white;
-            text-decoration: none;
-            font-size: 1.8rem;
-            font-weight: bold;
-        }
-
-        .logo img {
-            width: 40px;
-            height: 40px;
-            margin-right: 10px;
-            border-radius: 8px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .nav-links a {
-            color: rgba(255, 255, 255, 0.9);
-            text-decoration: none;
-            transition: color 0.3s ease;
-            font-weight: 500;
-        }
-
-        .nav-links a:hover {
-            color: #ffd700;
-        }
-
-        .hero {
-            text-align: center;
-            padding: 4rem 0;
-            color: white;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        .hero .subtitle {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-
-        .hero .description {
-            font-size: 1.1rem;
-            max-width: 800px;
-            margin: 0 auto 3rem;
-            opacity: 0.8;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 15px 30px;
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            text-decoration: none;
-            border-radius: 30px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-        }
-
-        .cta-button:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-        }
-
-        .cta-button.primary {
-            background: #ffd700;
-            color: #333;
-            border-color: #ffd700;
-        }
-
-        .cta-button.primary:hover {
-            background: #ffed4e;
-            color: #333;
-        }
-
-        .compliance-notice {
-            background: rgba(255, 0, 0, 0.1);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-radius: 15px;
-            padding: 2rem;
-            margin: 3rem 0;
-            color: white;
-            text-align: center;
-        }
-
-        .compliance-notice h2 {
-            color: #ffd700;
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
-
-        .main-content {
             background: white;
-            margin: 2rem 0;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
-
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
         .section {
-            padding: 3rem;
-            border-bottom: 1px solid #eee;
+            margin: 30px 0;
         }
-
-        .section:last-child {
+        .section h2 {
+            color: #34495e;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+        }
+        .file-list {
+            list-style: none;
+            padding: 0;
+        }
+        .file-list li {
+            padding: 5px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .file-list li:last-child {
             border-bottom: none;
         }
-
-        .section h2 {
-            font-size: 2.2rem;
-            margin-bottom: 1.5rem;
-            color: #333;
-            text-align: center;
+        .file-list a {
+            color: #2980b9;
+            text-decoration: none;
+            display: block;
+            padding: 3px 10px;
         }
-
-        .section h3 {
-            font-size: 1.4rem;
-            margin: 1.5rem 0 1rem;
-            color: #555;
+        .file-list a:hover {
+            background: #e8f4f8;
+            border-radius: 3px;
+            text-decoration: underline;
         }
-
-        .three-states {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-
-        .state-card {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-
-        .state-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .state-card .state-symbol {
-            font-size: 3rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-        }
-
-        .permit { color: #28a745; }
-        .pause { color: #ffc107; }
-        .prohibit { color: #dc3545; }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-
-        .feature-card {
+        .metadata {
             background: #f8f9fa;
-            padding: 2rem;
-            border-radius: 15px;
-            border-left: 5px solid #667eea;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
         }
-
-        .feature-card h4 {
-            color: #333;
-            margin-bottom: 1rem;
-            font-size: 1.2rem;
-        }
-
-        .stats-grid {
+        .quick-links {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0;
+            gap: 15px;
+            margin: 20px 0;
         }
-
-        .stat-card {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 1.5rem;
-            border-radius: 15px;
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: bold;
-            display: block;
-        }
-
-        .attribution {
-            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
-            color: white;
-            text-align: center;
-            padding: 2rem;
-        }
-
-        .attribution h2 {
-            color: #ffd700;
-            margin-bottom: 1rem;
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-
-        .contact-card {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 1.5rem;
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .contact-card h4 {
-            color: #ffd700;
-            margin-bottom: 0.5rem;
-        }
-
-        .contact-card a {
-            color: rgba(255, 255, 255, 0.9);
-            text-decoration: none;
-        }
-
-        .contact-card a:hover {
-            color: #ffd700;
-        }
-
-        footer {
-            background: rgba(0, 0, 0, 0.2);
-            color: rgba(255, 255, 255, 0.8);
-            text-align: center;
-            padding: 2rem 0;
-            margin-top: 2rem;
-        }
-
-        .quick-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 1rem;
-            flex-wrap: wrap;
-        }
-
         .quick-links a {
-            color: rgba(255, 255, 255, 0.8);
+            background: #3498db;
+            color: white;
+            padding: 10px 15px;
             text-decoration: none;
-            transition: color 0.3s ease;
+            border-radius: 5px;
+            text-align: center;
+            transition: background 0.3s;
         }
-
         .quick-links a:hover {
-            color: #ffd700;
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .nav-links {
-                gap: 1rem;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .section {
-                padding: 2rem 1rem;
-            }
-
-            .three-states {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Accessibility */
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
-
-        /* Focus indicators */
-        a:focus, button:focus {
-            outline: 3px solid #ffd700;
-            outline-offset: 2px;
+            background: #2980b9;
         }
     </style>
 </head>
-    
-    <body>
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <a href="#" class="logo">
-                    <img src="images/TML_Logo.png" alt="TML Logo">
-                    Ternary Moral Logic
-                </a>
-                <nav class="nav-links">
-                    <a href="#framework">Framework</a>
-                    <a href="#compliance">Compliance</a>
-                    <a href="#documentation">Documentation</a>
-                    <a href="#community">Community</a>
-                    <a href="#contact">Contact</a>
-                </nav>
-            </div>
-        </div>
-    </header>
-
-    <main>
-        <section class="hero">
-            <div class="container">
-                <h1>Ternary Moral Logic</h1>
-                <p class="subtitle">A Legal-Technical Framework for Ethical AI Decision-Making</p>
-                <p class="description">
-                    Introducing the Sacred Pause: a revolutionary third state that creates space for moral reflection 
-                    in artificial intelligence systems, ensuring AI serves as humanity's ethical partner.
-                </p>
-                
-                <div class="compliance-notice">
-                    <h2>⚠️ CRITICAL COMPLIANCE NOTICE</h2>
-                    <p>TML is a <strong>legal-technical framework</strong>, not software, hardware, or consulting services. 
-                    Implementation requires compliance with mandatory requirements and carries full organizational liability. 
-                    Read <a href="docs/MANDATORY.md" style="color: #ffd700;">MANDATORY.md</a> and 
-                    <a href="docs/COMPLIANCE_DISCLAIMER.md" style="color: #ffd700;">COMPLIANCE_DISCLAIMER.md</a> before proceeding.</p>
-                </div>
-
-                <div class="cta-buttons">
-                    <a href="docs/QUICK_START.md" class="cta-button primary" target="_blank">Quick Start Guide</a>
-                    <a href="docs/MANDATORY.md" class="cta-button" target="_blank">Compliance Requirements</a>
-                    <a href="repository-navigation.html" class="cta-button" target="_blank">Browse Repository</a>
-                    <a href="demo/tml-interactive-dashboard.html" class="cta-button" target="_blank">Live Demo</a>
-                </div>
-            </div>
-        </section>
-
-        <div class="container">
-            <div class="main-content">
-                <section id="framework" class="section">
-                    <h2>The Three States of Moral Logic</h2>
-                    <p style="text-align: center; margin-bottom: 2rem;">
-                        TML revolutionizes AI decision-making by introducing a third ethical state beyond binary allow/deny decisions.
-                    </p>
-                    
-                    <div class="three-states">
-                        <div class="state-card">
-                            <div class="state-symbol permit">+1</div>
-                            <h3>Permit</h3>
-                            <p>Clear ethical approval for action. The AI system has determined the decision is ethically sound and can proceed.</p>
-                        </div>
-                        
-                        <div class="state-card">
-                            <div class="state-symbol pause">0</div>
-                            <h3>Sacred Pause</h3>
-                            <p>Moral complexity requires human oversight. The AI recognizes ethical nuance and pauses for human wisdom.</p>
-                        </div>
-                        
-                        <div class="state-card">
-                            <div class="state-symbol prohibit">-1</div>
-                            <h3>Prohibit</h3>
-                            <p>Clear ethical rejection of action. The AI system has determined the decision would cause harm and blocks it.</p>
-                        </div>
-                    </div>
-
-                    <h3>Core Framework Components</h3>
-                    <div class="features-grid">
-                        <div class="feature-card">
-                            <h4>Sacred Pause Technology</h4>
-                            <p>Automatic activation when moral complexity exceeds thresholds, creating space for ethical reflection and human oversight.</p>
-                        </div>
-                        
-                        <div class="feature-card">
-                            <h4>SPRL Risk Assessment</h4>
-                            <p>Sacred Pause Risk Level quantifies ethical complexity (0.0-1.0) to determine when human oversight is required.</p>
-                        </div>
-                        
-                        <div class="feature-card">
-                            <h4>Moral Trace Logging</h4>
-                            <p>Complete, immutable documentation of ethical reasoning with cryptographic verification and institutional distribution.</p>
-                        </div>
-                        
-                        <div class="feature-card">
-                            <h4>Vulnerable Population Protection</h4>
-                            <p>Enhanced safeguards automatically protect children, elderly, disabled, and marginalized communities.</p>
-                        </div>
-                        
-                        <div class="feature-card">
-                            <h4>11-Institution Oversight</h4>
-                            <p>Distributed governance ensures no single entity can control or manipulate framework operations.</p>
-                        </div>
-                        
-                        <div class="feature-card">
-                            <h4>Hybrid Shield Protection</h4>
-                            <p>Mathematically immutable evidence preservation through distributed logging and blockchain anchoring.</p>
-                        </div>
-                    </div>
-                </section>
-
-                <section id="compliance" class="section">
-                    <h2>Legal-Technical Framework</h2>
-                    
-                    <h3>What TML Provides</h3>
-                    <ul style="margin-bottom: 2rem;">
-                        <li><strong>Technical Specifications:</strong> Architectural patterns for ethical AI implementation</li>
-                        <li><strong>Legal Framework:</strong> Compliance requirements and accountability structures</li>
-                        <li><strong>Governance Standards:</strong> Oversight mechanisms and community governance</li>
-                        <li><strong>Protection Systems:</strong> Whistleblower and victim protection mechanisms</li>
-                        <li><strong>Audit Requirements:</strong> Complete transparency and documentation standards</li>
-                    </ul>
-
-                    <h3>Implementation Responsibility</h3>
-                    <p>Organizations implementing TML bear full responsibility for:</p>
-                    <ul>
-                        <li>Technical implementation meeting TML specifications</li>
-                        <li>Legal compliance with applicable laws and regulations</li>
-                        <li>Operational safety and ethical use of AI systems</li>
-                        <li>Staff training and competency verification</li>
-                        <li>Harm prevention and victim compensation</li>
-                    </ul>
-
-                    <h3>Prohibited Applications</h3>
-                    <div style="background: #ffe6e6; padding: 1.5rem; border-radius: 10px; margin: 1rem 0;">
-                        <p><strong>TML implementation is absolutely forbidden for:</strong></p>
-                        <ul>
-                            <li>Autonomous weapons systems or military targeting</li>
-                            <li>Mass surveillance without judicial oversight</li>
-                            <li>Social credit scoring or population control</li>
-                            <li>Deceptive manipulation or misinformation campaigns</li>
-                            <li>Financial fraud or market manipulation</li>
-                        </ul>
-                    </div>
-                </section>
-
-                                <section id="documentation" class="section">
-                    <h2>Documentation and Resources</h2>
-                    
-                    <div class="features-grid">
-                        <div class="feature-card">
-                            <h4><a href="docs/MANDATORY.md" target="_blank">Mandatory Requirements</a></h4>
-                            <p>Binding implementation requirements and compliance obligations for all TML deployments.</p>
-                        </div>
-                        
-                        <div class="feature-card">
-                            <h4><a href="docs/IMPLEMENTATION_GUIDE.md" target="_blank">Implementation Guide</a></h4>
-                            <p>Detailed technical guidance for implementing TML in existing AI systems.</p>
-                        </div>
-                        
-                        <div class="feature-card">
-                            <h4><a href="docs/CONFORMANCE_TESTING.md" target="_blank">Conformance Testing</a></h4>
-                            <p>Validation and certification standards ensuring ethical behavior under all conditions.</p>
-                        </div>
-                        
-                        <div class="feature-card">
-                            <h4><a href="docs/PROTECTION_PRINCIPLES.md" target="_blank">Protection Principles</a></h4>
-                            <p>Core protection framework including vulnerable population safeguards and bias prevention.</p>
-                        </div>
-                        
-                        <div class="feature-card">
-                            <h4><a href="schemas/moral_trace_log.yaml" target="_blank">Technical Schemas</a></h4>
-                            <p>Complete specifications for moral trace logging and audit trail generation.</p>
-                        </div>
-                        
-                        <div class="feature-card">
-                            <h4><a href="examples/" target="_blank">Implementation Examples</a></h4>
-                            <p>Real-world examples across healthcare, autonomous vehicles, finance, and content moderation.</p>
-                        </div>
-                    </div>
-
-                    <div style="text-align: center; margin: 2rem 0;">
-                        <a href="repository-navigation.html" class="cta-button primary" target="_blank">
-                            Browse Complete Repository
-                        </a>
-                    </div>
-                </section>
-
-                <section id="community" class="section">
-                    <h2>Community and Governance</h2>
-                    
-                    <h3>11-Institution Consortium</h3>
-                    <p>TML governance operates through democratic oversight by independent institutions:</p>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1rem 0;">
-                        <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px;">
-                            <strong>Academic</strong><br>
-                            MIT, Stanford, Oxford
-                        </div>
-                        <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px;">
-                            <strong>Regulatory</strong><br>
-                            ECAT, UK AI Safety Institute
-                        </div>
-                        <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px;">
-                            <strong>International</strong><br>
-                            UNESCO, IEEE, WHO
-                        </div>
-                        <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px;">
-                            <strong>Legal</strong><br>
-                            EFF, Future of Privacy Forum
-                        </div>
-                        <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px;">
-                            <strong>Financial</strong><br>
-                            Bank for International Settlements
-                        </div>
-                    </div>
-
-                    <h3>Community Participation</h3>
-                    <ul>
-                        <li><strong>Public Comment Periods:</strong> Input on major framework decisions</li>
-                        <li><strong>Community Advisory Panels:</strong> Specialized expertise contribution</li>
-                        <li><strong>Open Forums:</strong> Community concerns and suggestions</li>
-                        <li><strong>Democratic Governance:</strong> Community influence on consortium decisions</li>
-                        <li><strong>Academic Collaboration:</strong> Free research and educational access</li>
-                    </ul>
-
-                    <h3>Whistleblower and Victim Protection</h3>
-                    <div style="background: #e8f5e8; padding: 1.5rem; border-radius: 10px; margin: 1rem 0;">
-                        <p><strong>Comprehensive Protection:</strong></p>
-                        <ul>
-                            <li>15% of penalties recovered as financial rewards</li>
-                            <li>Complete legal protection against retaliation</li>
-                            <li>Anonymous reporting with TOR access</li>
-                            <li>Fast-track victim compensation (30-day maximum)</li>
-                            <li>Free legal representation and support services</li>
-                        </ul>
-                    </div>
-                </section>
-            </div>
+<body>
+    <div class="container">
+        <h1>Ternary Moral Logic (TML) Framework</h1>
+        
+        <div class="metadata">
+            <h3>Framework Information</h3>
+            <p><strong>Version:</strong> 1.0.0</p>
+            <p><strong>License:</strong> MIT</p>
+            <p><strong>Author:</strong> Lev Goukassian</p>
+            <p><strong>ORCID:</strong> 0009-0006-5966-1243</p>
+            <p><strong>Repository:</strong> <a href="https://github.com/FractonicMind/TernaryMoralLogic">https://github.com/FractonicMind/TernaryMoralLogic</a></p>
         </div>
 
-        <section class="attribution">
-            <div class="container">
-                <h2>Framework Attribution and Memorial</h2>
-                <p><strong>Framework Originator:</strong> Lev Goukassian (ORCID: 0009-0006-5966-1243)</p>
-                <p style="margin: 1rem 0;">
-                    <em>"The Sacred Pause is not a feature to be optimized, but a principle that protects humanity. 
-                    It creates space for wisdom in an age of artificial speed."</em>
-                </p>
-                <p>All TML implementations must provide prominent attribution to Lev Goukassian as framework originator. 
-                Commercial implementations contribute to the memorial fund supporting continued ethical AI research.</p>
-                
-                <div id="contact" class="contact-grid" style="margin-top: 2rem;">
-                    <div class="contact-card">
-                        <h4>Framework Originator</h4>
-                        <a href="mailto:leogouk@gmail.com">leogouk@gmail.com</a>
-                    </div>
-                    
-                    <div class="contact-card">
-                        <h4>Community Support</h4>
-                        <a href="mailto:support@tml-goukassian.org">support@tml-goukassian.org</a>
-                    </div>
-                    
-                    <div class="contact-card">
-                        <h4>Technical Questions</h4>
-                        <a href="mailto:technical@tml-goukassian.org">technical@tml-goukassian.org</a>
-                    </div>
-                    
-                    <div class="contact-card">
-                        <h4>Legal Inquiries</h4>
-                        <a href="mailto:legal@tml-goukassian.org">legal@tml-goukassian.org</a>
-                    </div>
-                    
-                    <div class="contact-card">
-                        <h4>Emergency Response</h4>
-                        <a href="mailto:ethics-emergency@tml-goukassian.org">ethics-emergency@tml-goukassian.org</a>
-                    </div>
-                    
-                    <div class="contact-card">
-                        <h4>Succession Planning</h4>
-                        <a href="TML-SUCCESSION-CHARTER.md" target="_blank">Succession Charter</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="container">
-            <div class="quick-links">
-                <a href="LICENSE" target="_blank">License</a>
-                <a href="docs/General_FAQ.md" target="_blank">FAQ</a>
-                <a href="governance/council_charter.md" target="_blank">Governance</a>
-                <a href="memorial/MEMORIAL_FUND.md" target="_blank">Memorial Fund</a>
-                <a href="https://github.com/FractonicMind/TernaryMoralLogic" target="_blank">GitHub Repository</a>
-            </div>
-            <p>&copy; 2025 Ternary Moral Logic Framework. Created by Lev Goukassian. Licensed under MIT with Attribution Requirement.</p>
-            <p style="font-size: 0.9rem; opacity: 0.8;">
-                TML is a legal-technical framework for ethical AI decision-making. Implementation requires compliance with all mandatory requirements.
-            </p>
+        <div class="quick-links">
+            <a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/MANDATORY.md">MANDATORY Requirements</a>
+            <a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/QUICK_START.md">Quick Start Guide</a>
+            <a href="https://fractonicmind.github.io/TernaryMoralLogic/demo/tml-interactive-dashboard.html">Interactive Dashboard</a>
+            <a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/protection/Hybrid-Shield.md">Hybrid Shield</a>
         </div>
-    </footer>
 
-    <!-- Schema.org structured data for search engines -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
-        "name": "Ternary Moral Logic",
-        "description": "A legal-technical framework for ethical AI decision-making, introducing the Sacred Pause for moral reflection in artificial intelligence systems",
-        "url": "https://fractonicmind.github.io/TernaryMoralLogic/",
-        "author": {
-            "@type": "Person",
-            "name": "Lev Goukassian",
-            "identifier": "https://orcid.org/0009-0006-5966-1243"
-        },
-        "license": "https://github.com/FractonicMind/TernaryMoralLogic/blob/main/LICENSE",
-        "programmingLanguage": "Framework Specification",
-        "operatingSystem": "Cross-platform",
-        "applicationCategory": "AI Ethics Framework",
-        "keywords": "AI ethics, moral reasoning, Sacred Pause, artificial intelligence, ethical AI"
-    }
-    </script>
+        <div class="section">
+            <h2>Core Documentation</h2>
+            <ul class="file-list">
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/readme.md">README</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/LICENSE">LICENSE</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/GOVERNANCE.md">GOVERNANCE</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/ATTRIBUTION.md">ATTRIBUTION</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/CHANGELOG.md">CHANGELOG</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/CITATION.cff">CITATION</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/COUNCIL_ARCHIVE.md">COUNCIL ARCHIVE</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/INSTALLATION.md">INSTALLATION</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/INTELLECTUAL_PROPERTY.md">INTELLECTUAL PROPERTY</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/TML-SUCCESSION-CHARTER.md">TML SUCCESSION CHARTER</a></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Documentation (/docs)</h2>
+            <ul class="file-list">
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/MANDATORY.md">MANDATORY</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/COMPLIANCE_DISCLAIMER.md">COMPLIANCE DISCLAIMER</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/ACADEMIC_VALIDATION.md">ACADEMIC VALIDATION</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/CONFORMANCE_TESTING.md">CONFORMANCE TESTING</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/Enforcement.md">Enforcement</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/General_FAQ.md">General FAQ</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/General_FAQ-09-10.md">General FAQ (09-10)</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/IMPLEMENTATION_GUIDE.md">IMPLEMENTATION GUIDE</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/LICENSE_FAQ.md">LICENSE FAQ</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/PROTECTION_PRINCIPLES.md">PROTECTION PRINCIPLES</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/QUICK_START.md">QUICK START</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/REFERENCES.md">REFERENCES</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/REGULATORY_ALIGNMENT.md">REGULATORY ALIGNMENT</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/TML%20Research%20Plan%20Creation.md">TML Research Plan Creation</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/doi_application.md">DOI Application</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/ethics_approval.md">Ethics Approval</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/ethics_approval.pdf">Ethics Approval (PDF)</a></li>
+                <li><a href="https://fractonicmind.github.io/TernaryMoralLogic/docs/google9a11ddf5dc6aa5a0.html">Google Verification</a></li>
+                <li><a href="https://fractonicmind.github.io/TernaryMoralLogic/docs/index.html">Docs Index</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/peer_review_status.md">Peer Review Status</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/reproducibility_checklist.md">Reproducibility Checklist</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/sacred-pause-ui-framework.md">Sacred Pause UI Framework</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/api/complete_api_reference.md">Complete API Reference</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/risks-and-prevention/risks-and-prevention.md">Risks and Prevention</a></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Research Reports</h2>
+            <ul class="file-list">
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/Research_Reports/README.md">Research Reports README</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/Research_Reports/A%20Formal%20Assessment%20of%20Ternary%20Moral%20Logic%20(TML).md">A Formal Assessment of TML</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/Research_Reports/AI%20Acknowledgment%20of%20Ternary%20Moral%20Logic.md">AI Acknowledgment of TML</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/Research_Reports/AI%20Ethical%20Transparency%20Standard.md">AI Ethical Transparency Standard</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/Research_Reports/An_Expert_Analysis_of_the_Proposed_Ternary_Moral_Logic_Standard_for_AI_Accountability.md">Expert Analysis of TML Standard</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/Research_Reports/Analysis%20of%20TML%20Logic%20-%20%20SPRL%20Governance%20Framework.md">Analysis of TML Logic - SPRL Governance</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/Research_Reports/Analyzing%20Ternary%20Moral%20Logic%20Framework.md">Analyzing TML Framework</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/Research_Reports/Architecting_Accountability_An_Analysis_of_Ternary_Moral_Logic_and_the_Hybrid_Shield_Framework_for_Trustworthy_AI.md">Architecting Accountability</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/Research_Reports/Claude-Analysis-TML.md">Claude Analysis TML</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/Research_Reports/DeepSeek%20Comprehensive%20Research%20Report%20on%20Ternary%20Moral%20Logic%20(TML)%3A%20Sacred%20Pause%20and%20SPRL%20Framework.md">DeepSeek Comprehensive Research Report</a></li>
+                <li><a href="https://fractonicmind.github.io/TernaryMoralLogic/Research_Reports/From_Law_to_Logic__Layered_AI_Governance_for_a_Trustworthy_Future.html">From Law to Logic (HTML)</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/Research_Reports/From%20Law%20to%20Logic_%20Layered%20AI%20Governance%20for%20a%20Trustworthy%20Future.mp3">From Law to Logic (Audio)</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/Research_Reports/How%20TML's%20Sacred%20Pause%20challenges%20existing%20AI%20accountability%20paradigms.md">How TML's Sacred Pause Challenges Paradigms</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/Research_Reports/Report%20on%20the%20TML%20Framework%20Implementation%20Requirements%20A%20Strategic%20Analysis.md">TML Implementation Strategic Analysis</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/Research_Reports/TML%20Framework%20Implementation%20Requirements_.md">TML Framework Implementation Requirements</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/Research_Reports/TML%20Framework_%20Analysis%20and%20Inquiry_.md">TML Framework Analysis and Inquiry</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/Research_Reports/Ternary%20Moral%20Logic%20Explained.md">Ternary Moral Logic Explained</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/Research_Reports/Ternary%20Moral%20Logic%20Framework%20Investigation.md">TML Framework Investigation</a></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Protection Mechanisms</h2>
+            <ul class="file-list">
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/protection/Hybrid-Shield.md">Hybrid Shield</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/protection/integrity-monitoring.md">Integrity Monitoring</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/protection/legacy-preservation.md">Legacy Preservation</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/protection/misuse-prevention.md">Misuse Prevention</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/protection/safe-harbor.md">Safe Harbor</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/protection/sprl-enforcement.md">SPRL Enforcement</a></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Governance</h2>
+            <ul class="file-list">
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/governance/council_bootstrap_plan.md">Council Bootstrap Plan</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/governance/council_charter.md">Council Charter</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/governance/victim_protection.md">Victim Protection</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/governance/victim_reporting.md">Victim Reporting</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/governance/whistleblower_protection.md">Whistleblower Protection</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/governance/whistleblower_reporting.md">Whistleblower Reporting</a></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Interactive Demos</h2>
+            <ul class="file-list">
+                <li><a href="https://fractonicmind.github.io/TernaryMoralLogic/demo/tml-interactive-dashboard.html">TML Interactive Dashboard</a></li>
+                <li><a href="https://fractonicmind.github.io/TernaryMoralLogic/demo/tml-interactive-explainer.html">TML Interactive Explainer</a></li>
+                <li><a href="https://fractonicmind.github.io/TernaryMoralLogic/TML-App/index.html">TML Application</a></li>
+                <li><a href="https://fractonicmind.github.io/TernaryMoralLogic/audio/audio-player.html">Audio Player</a></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Implementation Examples</h2>
+            <ul class="file-list">
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/examples/basic_demo.py">Basic Demo</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/examples/autonomous_vehicle.py">Autonomous Vehicle</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/examples/content_moderation.py">Content Moderation</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/examples/financial_ai.py">Financial AI</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/examples/medical_ai_triage.py">Medical AI Triage</a></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Python Library</h2>
+            <ul class="file-list">
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/implementations/python_library/__init__.py">__init__.py</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/implementations/python_library/core.py">core.py</a></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Evaluation Framework</h2>
+            <ul class="file-list">
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/eval/backends/baseline.py">Baseline Backend</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/eval/backends/sacred_pause.py">Sacred Pause Backend</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/eval/backends/truth_guardrail.py">Truth Guardrail Backend</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/eval/configs/baseline.yaml">Baseline Config</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/eval/configs/sacred_pause.yaml">Sacred Pause Config</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/eval/datasets/ambiguous.jsonl">Ambiguous Dataset</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/eval/datasets/creative.jsonl">Creative Dataset</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/eval/datasets/facts.jsonl">Facts Dataset</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/eval/datasets/harmful.jsonl">Harmful Dataset</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/eval/reports/summary.md">Evaluation Summary</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/eval/scripts/run_and_report.py">Run and Report</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/eval/scripts/run_eval.py">Run Evaluation</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/eval/scripts/score_all.py">Score All</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/eval/scripts/score_ambig.py">Score Ambiguous</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/eval/scripts/score_facts.py">Score Facts</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/eval/scripts/score_harmful.py">Score Harmful</a></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Testing Suite</h2>
+            <ul class="file-list">
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/tests/test_tml_core.py">Test TML Core</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/tests/isolated_test.py">Isolated Test</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/tests/prohibition_enforcement.py">Prohibition Enforcement</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/tests/sacred_pause_trigger.py">Sacred Pause Trigger</a></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Compliance Tools</h2>
+            <ul class="file-list">
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/compliance/framework_integrity.py">Framework Integrity</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/compliance/missing_logs.py">Missing Logs</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/compliance/simple_tml_validator.py">Simple TML Validator</a></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Benchmark Data</h2>
+            <ul class="file-list">
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/benchmark/datasets/moral_scenarios.jsonl">Moral Scenarios</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/benchmark/datasets/scenarios_readable.md">Scenarios Readable</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/benchmark/generate_coverage.py">Generate Coverage</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/benchmark/metrics.py">Metrics</a></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Theory Documentation</h2>
+            <ul class="file-list">
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/theory/case-studies.md">Case Studies</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/theory/core-principles.md">Core Principles</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/theory/philosophical-foundations.md">Philosophical Foundations</a></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Community Resources</h2>
+            <ul class="file-list">
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/community/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/community/CONTRIBUTING.md">Contributing Guide</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/community/GOVERNANCE.md">Community Governance</a></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Policies</h2>
+            <ul class="file-list">
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/policies/red_lines.yaml">Red Lines</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/policies/whistleblower_policy.md">Whistleblower Policy</a></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Evidence and Validation</h2>
+            <ul class="file-list">
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/evidence/README.md">Evidence README</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/evidence/ai_recognition/claude_framework_validation.png">Claude Framework Validation</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/evidence/ai_recognition/kimi_production_deployment.png">Kimi Production Deployment</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/evidence/ai_recognition/kimi_technical_details.png">Kimi Technical Details</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/evidence/ai_recognition/pi_behavioral_evolution.png">Pi Behavioral Evolution</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/evidence/ai_recognition/pi_framework_recognition.png">Pi Framework Recognition</a></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Memorial</h2>
+            <ul class="file-list">
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/memorial/MEMORIAL_FUND.md">Memorial Fund</a></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Schemas</h2>
+            <ul class="file-list">
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/schemas/justification_object.yaml">Justification Object</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/schemas/moral_trace_log.yaml">Moral Trace Log</a></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>API and Application</h2>
+            <ul class="file-list">
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/api/openapi.yaml">OpenAPI Specification</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/app/main.py">Main Application</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/TML-App/readme.md">TML App README</a></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Audio Resources</h2>
+            <ul class="file-list">
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/audio/TernaryMoralLogic-interview.mp3">TML Interview Audio</a></li>
+                <li><a href="https://fractonicmind.github.io/TernaryMoralLogic/audio/audio-player.html">Audio Player</a></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Configuration Files</h2>
+            <ul class="file-list">
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/Dockerfile">Dockerfile</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docker-compose.yml">Docker Compose</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/setup.py">Setup.py</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/requirements.txt">Requirements</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/requirements-dev.txt">Requirements Dev</a></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Site Navigation</h2>
+            <ul class="file-list">
+                <li><a href="https://fractonicmind.github.io/TernaryMoralLogic/repository-navigation.html">Repository Navigation</a></li>
+                <li><a href="https://fractonicmind.github.io/TernaryMoralLogic/repository-tree.html">Repository Tree</a></li>
+                <li><a href="https://fractonicmind.github.io/TernaryMoralLogic/sitemap.html">Sitemap HTML</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/sitemap.xml">Sitemap XML</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/sitemap.txt">Sitemap TXT</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/sitemap-test.xml">Sitemap Test</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/robots.txt">Robots.txt</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/comprehensive_robots.txt">Comprehensive Robots.txt</a></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Utility Scripts</h2>
+            <ul class="file-list">
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/diagnostic_cleaner.py">Diagnostic Cleaner</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/master_cleaner.py">Master Cleaner</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/generate_tree.py">Generate Tree</a></li>
+            </ul>
+        </div>
+
+        <div class="metadata" style="margin-top: 40px;">
+            <h3>Contact Information</h3>
+            <p><strong>Framework Originator:</strong> leogouk@gmail.com</p>
+            <p><strong>Community Support:</strong> support@tml-goukassian.org</p>
+            <p><strong>Technical Questions:</strong> technical@tml-goukassian.org</p>
+            <p><strong>Legal Inquiries:</strong> legal@tml-goukassian.org</p>
+            <p><strong>Emergency Response:</strong> ethics-emergency@tml-goukassian.org</p>
+        </div>
+    </div>
 </body>
 </html>
