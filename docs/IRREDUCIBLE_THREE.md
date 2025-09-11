@@ -19,7 +19,7 @@ Every AI decision ultimately resolves into one of three outcomes:
 
 - **Proceed (+1):** The system acts.  
 - **Pause (0):** The system hesitates, performs, and then records a log.  
-- **Refuse (–1):** The system blocks an impermissible action.  
+- **Refuse (–1):** The system blocks an impermissible action, and then records a log.  
 
 No additional categories are necessary for accountability.  
 Courts and regulators cannot enforce “degrees of hesitation.”  
