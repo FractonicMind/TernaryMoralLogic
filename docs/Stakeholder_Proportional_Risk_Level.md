@@ -12,7 +12,7 @@
 
 **The Stakeholder Proportional Risk Level (SPRL) is the quantitative backbone of Ternary Moral Logic.**
 
-It is *the pulse of the AI Heart Beat* - the metric that signals when the Sacred Pause must activate.
+It is *the pulse of the AI HeartBeat* - the metric that signals when the Sacred Pause must activate.
 
 **SPRL does not stop or delay the AI's action.**
 
