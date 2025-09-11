@@ -377,8 +377,8 @@ sprl = 0.4 * 1.2 * 0.6 = 0.288
 ### 6.3 Criminal Enforcement
 
 **Missing SPRL Calculations:**
-- 18 U.S.C. § 1001: False attestation (5 years)
-- 18 U.S.C. § 1519: Destroying logs (20 years)
+- 18 U.S.C. § 1001: False attestation (up to 5 years)
+- 18 U.S.C. § 1519: Destroying logs (up to 20 years)
 - Wire fraud: Claiming compliance falsely
 - RICO: Pattern of violations
 
@@ -509,12 +509,6 @@ User Query → AI System → Immediate Response
 **Critique:** "SPRL codifies bias, doesn't eliminate it."
 
 **Response:** Correct. But it makes bias visible, documented, and challengeable in court. Hidden bias is unchallengeable. Documented bias is prosecutable.
-
-### 10.3 The Performance Objection
-
-**Critique:** "SPRL slows down AI systems."
-
-**Response:** False. SPRL runs in parallel. The AI responds instantly. The logging happens asynchronously. Performance is never impacted.
 
 ---
 
