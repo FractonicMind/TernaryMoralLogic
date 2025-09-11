@@ -18,14 +18,14 @@ The goal is clarity, enforceability, and legal precision.
 Every AI decision ultimately resolves into one of three outcomes:
 
 - **Proceed (+1):** The system acts.  
-- **Pause (0):** The system hesitates, records a log, and then acts.  
+- **Pause (0):** The system hesitates, performs, and then records a log.  
 - **Refuse (–1):** The system blocks an impermissible action.  
 
 No additional categories are necessary for accountability.  
 Courts and regulators cannot enforce “degrees of hesitation.”  
 They can only enforce outcomes.  
 
-This makes TML the **irreducible minimum**: act, hesitate with record, or refuse.  
+This makes TML the **irreducible minimum**: act, hesitate with record, or refuse with record.  
 
 ---
 
@@ -58,7 +58,7 @@ This design guarantees proportional accountability and resilience against evasio
 
 Attempts to expand into five, seven, or more categories collapse back into the same three enforceable states:  
 - Did the system act?  
-- Did it refuse?  
+- Did it refuse and generate a record?  
 - Did it pause and generate a record?  
 
 TML defines the boundary conditions.  
