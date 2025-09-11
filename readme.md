@@ -169,7 +169,7 @@ Enhanced safeguards automatically protect children, elderly, disabled individual
 Real-time oversight through the Hybrid Shield distributing logs to 11 independent institutions:
 - **Academic institutions** (5): Stanford, MIT, Harvard, Oxford, Cambridge
 - **Research Organizations** (3): Brookings, RAND, Alan Turing Institute
-- **International Bodies** (3): UN, WHO, European Commission
+- **International Organizations** (3): UN, WHO, European Commission
 - Missing logs create irrebuttable presumption of guilt
 - False attestation under **18 U.S.C. §1001**
 - Log tampering under **18 U.S.C. §1519**
