@@ -282,7 +282,7 @@ TML has been independently analyzed by multiple research institutions:
 - Unanimous (11/11) triggers emergency shutdown
 
 **Enforcement Powers**:
-- [Unlimited access in real time to all logs without notice](protection/Hybrid-Shield.md)
+- **[Unlimited access to instantly synchronized logs without notice](protection/Hybrid-Shield.md)**
 - Criminal referral authority
 - Public disclosure rights
 - Emergency shutdown powers
