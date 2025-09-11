@@ -465,7 +465,6 @@ User Query → AI System → Immediate Response
 ### 9.1 Technical Specifications
 
 **Performance Requirements:**
-- SPRL calculation: <40 microseconds
 - Parallel execution: Zero impact on response time
 - Log generation: Asynchronous background process
 - Storage: Write-once, cryptographically sealed
