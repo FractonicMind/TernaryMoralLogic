@@ -249,8 +249,7 @@ TML has been independently analyzed by multiple research institutions:
 - Incorrect calculations: Wire fraud charges
 - Inappropriate thresholds: Criminal negligence
 - Deleting logs: **18 U.S.C. §1519** 
-- False attestation: **18 U.S.C. §1001**
-- 
+- False attestation: **18 U.S.C. §1001**- 
 ---
 
 ## Protection and Safety
@@ -283,7 +282,7 @@ TML has been independently analyzed by multiple research institutions:
 - Unanimous (11/11) triggers emergency shutdown
 
 **Enforcement Powers**:
-- Unlimited access to all logs without notice
+- [Unlimited access in real time to all logs without notice](protection/Hybrid-Shield.md)
 - Criminal referral authority
 - Public disclosure rights
 - Emergency shutdown powers
