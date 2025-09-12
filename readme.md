@@ -295,6 +295,7 @@ TML has been independently analyzed by multiple research institutions:
 ### Live Demonstrations
 
 - **[An Interactive Framework for Auditable AI](https://fractonicmind.github.io/TernaryMoralLogic/demo/An_Interactive_Framework_for_Auditable_AI.html)**: The TML Core Engine
+- **[Moving AI from a Black Box to a Glass Box of Verifiable Evidence](https://fractonicmind.github.io/TernaryMoralLogic/demo/Moving_AI_from_a_Black_Box_to_a_Glass_Box_of_Verifiable_Evidence.html))**: The Core Architecture: A Simple, Powerful Decision
 - **[TML Interactive Dashboard](https://fractonicmind.github.io/TernaryMoralLogic/demo/tml-interactive-dashboard.html)**: Explore SPRL and Sacred Pause
 - **[TML Interactive Explainer](https://fractonicmind.github.io/TernaryMoralLogic/demo/tml-interactive-explainer.html)**: Learn framework concepts
 - **[TML App](https://fractonicmind.github.io/TernaryMoralLogic/TML-App/index.html)**: Complete application demonstration
