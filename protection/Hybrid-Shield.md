@@ -261,4 +261,4 @@ Citizens, researchers, and advocates can independently verify AI ethical behavio
 ## References
 This protection system is detailed in comprehensive analysis:  
 
-[Architecting Accountability: An Analysis of Ternary Moral Logic and the Hybrid Shield Framework for Trustworthy AI](Research_Reports/Architecting_Accountability_An_Analysis_of_Ternary_Moral_Logic_and_the_Hybrid_Shield_Framework_for_Trustworthy_AI.md)  
+[Architecting Accountability: An Analysis of Ternary Moral Logic and the Hybrid Shield Framework for Trustworthy AI](/Research_Reports/Architecting_Accountability_An_Analysis_of_Ternary_Moral_Logic_and_the_Hybrid_Shield_Framework_for_Trustworthy_AI.md)  
