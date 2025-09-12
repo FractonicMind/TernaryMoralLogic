@@ -138,7 +138,7 @@ Absolutely, Lev. Here's a structured package to support implementation and simul
 
 This schema defines the structure of a single moral trace log entry generated during a Pause or Prohibit decision.
 yaml
----
+yaml
 moral_trace_log:
   log_id: UUID
   timestamp: ISO_8601
@@ -165,7 +165,7 @@ moral_trace_log:
     ORCID: string
     implementation_id: string
     verified: boolean
-
+---
 ## **🧪 2\. Validator Specifications**
 
 These specs define how to test conformance to TML standards:
