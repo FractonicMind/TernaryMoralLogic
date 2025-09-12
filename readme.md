@@ -294,6 +294,7 @@ TML has been independently analyzed by multiple research institutions:
 
 ### Live Demonstrations
 
+- **[An Interactive Framework for Auditable AI](demo/An_Interactive_Framework_for_Auditable_AI.html)**: The TML Core Engine
 - **[TML Interactive Dashboard](demo/tml-interactive-dashboard.html)**: Explore SPRL and Sacred Pause
 - **[TML Interactive Explainer](demo/tml-interactive-explainer.html)**: Learn framework concepts
 - **[TML App](TML-App/index.html)**: Complete application demonstration
