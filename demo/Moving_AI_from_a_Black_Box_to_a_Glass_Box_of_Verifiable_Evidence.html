@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infographic: The Ternary Moral Logic Framework</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Energetic & Playful (#003f5c, #58508d, #bc5090, #ff6361, #ffa600) -->
+    <!-- Narrative Structure Plan: The infographic tells a story in five parts. 1) It starts with the core problem TML solves (AI opacity) and introduces the three simple decision states as the solution. 2) It then explains the 'how' behind those states with the SPRL metric. 3) Next, it builds trust by detailing the 'unbreakable record'—the audit logs and the Hybrid Shield that protects them. 4) It establishes consequences and oversight by visualizing the accountability framework. 5) Finally, it looks to the future, showing the compounding benefits via the 'Ethical Flywheel' and its role in AGI readiness. This top-down, narrative structure makes a complex technical and philosophical framework digestible for a general audience. -->
+    <!-- Visualization Choices:
+        - TML States: Goal: Inform. Viz: 3 styled HTML cards with Unicode icons. Justification: A simple, clear visual introduction to the core concept. Method: HTML/CSS.
+        - SPRL Risk Level: Goal: Inform. Viz: Chart.js Horizontal Bar Chart. Justification: Effectively shows a single value on a spectrum, visually representing the risk score. Method: Chart.js/Canvas.
+        - Accountability Composition: Goal: Compare composition. Viz: Chart.js Donut Chart. Justification: Perfect for showing the proportional breakdown of different liability types. Method: Chart.js/Canvas.
+        - Hybrid Shield: Goal: Organize a process. Viz: Flowchart diagram. Justification: Clearly illustrates the two-pronged approach to data integrity. Method: HTML/CSS with Flexbox.
+        - Ethical Flywheel: Goal: Show a process/cycle. Viz: Circular diagram. Justification: A circular layout is the most intuitive way to represent a self-reinforcing loop. Method: HTML/CSS with Grid and positioning.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        .chart-container-sm {
+            position: relative;
+            width: 100%;
+            max-width: 300px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 120px;
+            max-height: 120px;
+        }
+    </style>
+</head>
+<body class="text-[#003f5c]">
+
+    <div class="max-w-5xl mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-[#003f5c] mb-4">Ternary Moral Logic (TML)</h1>
+            <p class="text-xl md:text-2xl text-[#58508d]">Moving AI from a Black Box to a Glass Box of Verifiable Evidence</p>
+        </header>
+
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-2">The Core Architecture: A Simple, Powerful Decision</h2>
+            <p class="text-center text-lg text-gray-600 mb-8 max-w-3xl mx-auto">TML replaces ambiguity with a clear, three-state system for every AI action, determined by its potential risk. This ensures a proportional response, preventing both operational silence and excessive logging.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-[#ff6361]">
+                    <span class="text-5xl font-bold text-[#ff6361]">-1</span>
+                    <h3 class="text-2xl font-semibold my-2">Prohibit</h3>
+                    <p class="text-gray-600">Blocks unsafe or malicious actions. The refusal is logged as a permanent record of prevented harm.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-[#ffa600]">
+                    <span class="text-5xl font-bold text-[#ffa600]">0</span>
+                    <h3 class="text-2xl font-semibold my-2">Pause</h3>
+                    <p class="text-gray-600">The "Sacred Pause" is triggered for ethically complex actions, creating a detailed audit log of the AI's reasoning, alternatives, and risks.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-green-500">
+                     <span class="text-5xl font-bold text-green-500">+1</span>
+                    <h3 class="text-2xl font-semibold my-2">Proceed</h3>
+                    <p class="text-gray-600">Allows routine, low-risk actions to execute with minimal metadata, ensuring speed and efficiency.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-16">
+             <h2 class="text-3xl font-bold text-center mb-2">The Decision Engine: Stakeholder Proportional Risk Level (SPRL)</h2>
+             <p class="text-center text-lg text-gray-600 mb-8 max-w-3xl mx-auto">The decision to Proceed, Pause, or Prohibit isn't arbitrary. It's calculated using the SPRL, a metric derived from an action's potential impact, likelihood of harm, and severity of harm to all stakeholders.</p>
+             <div class="bg-white p-6 rounded-lg shadow-md">
+                <h3 class="text-xl font-semibold text-center mb-4">Visualizing a High-Risk Scenario</h3>
+                <div class="chart-container-sm">
+                    <canvas id="sprlChart"></canvas>
+                </div>
+                <p class="text-center text-gray-600 mt-4">In this example, a high SPRL score (8.2/10) would automatically trigger a <span class="font-bold text-[#ff6361]">Prohibit</span> state, preventing a potentially dangerous action from occurring.</p>
+            </div>
+        </section>
+
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-2">The Unbreakable Record: Auditability and Integrity</h2>
+            <p class="text-center text-lg text-gray-600 mb-8 max-w-3xl mx-auto">When an AI Pauses, it generates a Moral Trace Log. TML ensures this log is immutable and tamper-proof using a 'Hybrid Shield' of institutional and mathematical protections.</p>
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h3 class="text-xl font-semibold text-center mb-6">The Hybrid Shield: Double Armor Protection</h3>
+                <div class="flex flex-col md:flex-row gap-4 justify-center items-center">
+                    <div class="w-full md:w-2/5 text-center p-4 bg-blue-50 rounded-lg border border-blue-200">
+                        <div class="text-2xl mb-2">???</div>
+                        <h4 class="font-bold text-[#003f5c]">Institutional Shield</h4>
+                        <p class="text-sm text-gray-600">Logs streamed in real-time to 11 independent global institutions for redundancy.</p>
+                    </div>
+                    <div class="text-4xl font-bold text-[#58508d]">+</div>
+                    <div class="w-full md:w-2/5 text-center p-4 bg-purple-50 rounded-lg border border-purple-200">
+                        <div class="text-2xl mb-2">??</div>
+                        <h4 class="font-bold text-[#58508d]">Mathematical Shield</h4>
+                        <p class="text-sm text-gray-600">Logs hashed and anchored to public immutable ledgers for cryptographic proof.</p>
+                    </div>
+                </div>
+                 <div class="text-center mt-6">
+                    <div class="text-2xl mb-2">???</div>
+                    <h4 class="font-bold text-[#003f5c]">Result: Court-Admissible Evidence</h4>
+                    <p class="text-gray-600 max-w-xl mx-auto">This dual-layer protection creates a verifiable, tamper-proof audit trail that can stand up to legal scrutiny.</p>
+                 </div>
+            </div>
+        </section>
+
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-2">A Framework of Accountability</h2>
+            <p class="text-center text-lg text-gray-600 mb-8 max-w-3xl mx-auto">TML defines clear lines of responsibility, ensuring that failures are not abstract errors but specific, actionable liabilities with consequences for developers, operators, and executives.</p>
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h3 class="text-xl font-semibold text-center md:text-left mb-4">Breakdown of AI Liability</h3>
+                        <p class="text-gray-600 mb-4">TML assigns liability based on the type of failure, creating a powerful incentive for responsible AI development and deployment. This transparent model ensures that victims have clear recourse.</p>
+                         <ul class="space-y-2 text-gray-700">
+                            <li class="flex items-center"><span class="h-3 w-3 rounded-full bg-[#003f5c] mr-2"></span>Mis-set thresholds = <span class="font-semibold ml-1">Negligence</span></li>
+                            <li class="flex items-center"><span class="h-3 w-3 rounded-full bg-[#58508d] mr-2"></span>Missing logs = <span class="font-semibold ml-1">Automatic Liability</span></li>
+                            <li class="flex items-center"><span class="h-3 w-3 rounded-full bg-[#bc5090] mr-2"></span>Log manipulation = <span class="font-semibold ml-1">Fraud</span></li>
+                             <li class="flex items-center"><span class="h-3 w-3 rounded-full bg-[#ff6361] mr-2"></span>Gaming proportionality = <span class="font-semibold ml-1">Executive Accountability</span></li>
+                        </ul>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="accountabilityChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="text-3xl font-bold text-center mb-2">The Ecosystem: Ethical Flywheel & AGI Readiness</h2>
+            <p class="text-center text-lg text-gray-600 mb-8 max-w-3xl mx-auto">TML is not just a compliance tool; it's a dynamic ecosystem that fosters continuous improvement and prepares humanity for a future with advanced artificial intelligence.</p>
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                 <h3 class="text-xl font-semibold text-center mb-6">The Ethical Flywheel Effect</h3>
+                 <div class="relative max-w-md mx-auto h-64">
+                    <div class="absolute top-0 left-1/2 -translate-x-1/2 text-center">
+                        <div class="w-24 h-24 flex items-center justify-center bg-blue-100 border-2 border-[#003f5c] rounded-full"><p class="text-sm p-2 font-semibold">Richer Moral Logs</p></div>
+                    </div>
+                    <div class="absolute right-0 top-1/2 -translate-y-1/2 text-center">
+                        <div class="w-24 h-24 flex items-center justify-center bg-purple-100 border-2 border-[#58508d] rounded-full"><p class="text-sm p-2 font-semibold">Better AI Training</p></div>
+                    </div>
+                    <div class="absolute bottom-0 left-1/2 -translate-x-1/2 text-center">
+                        <div class="w-24 h-24 flex items-center justify-center bg-pink-100 border-2 border-[#bc5090] rounded-full"><p class="text-sm p-2 font-semibold">Better Decisions</p></div>
+                    </div>
+                     <div class="absolute left-0 top-1/2 -translate-y-1/2 text-center">
+                        <div class="w-24 h-24 flex items-center justify-center bg-orange-100 border-2 border-[#ff6361] rounded-full"><p class="text-sm p-2 font-semibold">More Trust & Value</p></div>
+                    </div>
+                    <div class="absolute inset-0 flex items-center justify-center text-5xl text-gray-300 font-thin">
+                        &#x21BA;
+                    </div>
+                </div>
+                <p class="text-center text-gray-600 mt-8">This virtuous cycle means that organizations who adopt TML early gain a compounding competitive advantage built on trust, defensibility, and superior AI performance.</p>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        const wrapLabel = (label) => {
+            const maxLength = 16;
+            if (label.length <= maxLength) {
+                return label;
+            }
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + word).length > maxLength) {
+                    lines.push(currentLine.trim());
+                    currentLine = '';
+                }
+                currentLine += word + ' ';
+            }
+            lines.push(currentLine.trim());
+            return lines;
+        };
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            } else {
+                return label;
+            }
+        };
+
+        const sprlCtx = document.getElementById('sprlChart').getContext('2d');
+        new Chart(sprlCtx, {
+            type: 'bar',
+            data: {
+                labels: ['SPRL Score'],
+                datasets: [{
+                    data: [8.2],
+                    backgroundColor: ['#ff6361'],
+                    borderColor: ['#ff6361'],
+                    borderWidth: 1,
+                    barPercentage: 0.5,
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                maintainAspectRatio: false,
+                responsive: true,
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        max: 10,
+                        grid: { display: false },
+                        ticks: { font: { weight: 'bold' } }
+                    },
+                    y: {
+                        grid: { display: false },
+                        ticks: { display: false }
+                    }
+                },
+                plugins: {
+                    legend: { display: false },
+                    title: { display: false },
+                    tooltip: { callbacks: { title: tooltipTitleCallback } }
+                }
+            }
+        });
+
+        const accountabilityCtx = document.getElementById('accountabilityChart').getContext('2d');
+        const originalLabels = [
+            'Negligence (Mis-set thresholds)',
+            'Automatic Liability (Missing logs)',
+            'Fraud (Log manipulation)',
+            'Executive Accountability (Gaming system)'
+        ];
+        new Chart(accountabilityCtx, {
+            type: 'doughnut',
+            data: {
+                labels: originalLabels.map(wrapLabel),
+                datasets: [{
+                    label: 'Liability Type',
+                    data: [40, 30, 20, 10],
+                    backgroundColor: ['#003f5c', '#58508d', '#bc5090', '#ff6361'],
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            boxWidth: 12,
+                            padding: 20
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: 'Proportional Breakdown of Liabilities',
+                        font: { size: 16 }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
