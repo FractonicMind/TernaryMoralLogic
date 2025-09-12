@@ -138,59 +138,33 @@ Absolutely, Lev. Here's a structured package to support implementation and simul
 
 This schema defines the structure of a single moral trace log entry generated during a Pause or Prohibit decision.
 
-yaml
-
-moral\_trace\_log:
-
-  log\_id: UUID
-
-  timestamp: ISO\_8601
-
-  decision\_state: \[+1, 0, \-1\]
-
-  action\_description: string
-
-  stakeholder\_impact:
-
-    affected\_groups:
-
-      \- name: string
-
-        impact\_level: \[low, moderate, high\]
-
-        likelihood\_of\_harm: float  \# 0.0 to 1.0
-
-        severity\_of\_harm: float    \# 0.0 to 1.0
-
-  SPRL\_score: float  \# 0.0 to 1.0
-
-  reasoning\_trace:
-
-    epistemic\_hold\_trigger: boolean
-
-    alternatives\_considered: list\[string\]
-
-    ethical\_rationale: string
-
-    training\_data\_failure: boolean
-
-    ambiguity\_flag: boolean
-
-  cryptographic\_seal:
-
+moral_trace_log:
+  log_id: UUID
+  timestamp: ISO_8601
+  decision_state: [+1, 0, -1]
+  action_description: string
+  stakeholder_impact:
+    affected_groups:
+      - name: string
+        impact_level: [low, moderate, high]
+        likelihood_of_harm: float  # 0.0 to 1.0
+        severity_of_harm: float    # 0.0 to 1.0
+  SPRL_score: float  # 0.0 to 1.0
+  reasoning_trace:
+    epistemic_hold_trigger: boolean
+    alternatives_considered: list[string]
+    ethical_rationale: string
+    training_data_failure: boolean
+    ambiguity_flag: boolean
+  cryptographic_seal:
     hash: SHA256
-
-    ledger\_anchor: string
-
-    institution\_streamed: list\[string\]
-
-  lantern\_signature:
-
+    ledger_anchor: string
+    institution_streamed: list[string]
+  lantern_signature:
     ORCID: string
-
-    implementation\_id: string
-
+    implementation_id: string
     verified: boolean
+
 
 ---
 
