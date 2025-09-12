@@ -1,8 +1,3 @@
-Here’s a **drop-in markdown file** for your repo: `docs/TML_Framework_Summary.md`.  
- It’s academic, link-rich, and cross-references your tree exactly as you shared.
-
----
-
 # **Ternary Moral Logic (TML): Framework Summary**
 
 **Originator:** Lev Goukassian (ORCID: 0009-0006-5966-1243)  
@@ -155,8 +150,4 @@ Here’s a **drop-in markdown file** for your repo: `docs/TML_Framework_Summary.
 
 **Change Log:** keep synchronized with [CHANGELOG.md](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/CHANGELOG.md)  
  **Contact:** leogouk@gmail.com · support@tml-goukassian.org · technical@tml-goukassian.org · legal@tml-goukassian.org
-
----
-
-If you want, I can also prep a **short `SUMMARY.md`** (10–12 lines) for the repo root that points straight to this file and the three most important docs for researchers.
 
