@@ -146,37 +146,42 @@ Sacred Pause logs are **instantly synchronized** to all 11 independent instituti
 ## VI. RISK MITIGATION
 
 ### 6.1 Technical Risks
-**Infrastructure Complexity**: 
-- *Risk*: Coordination across 11 institutions creates operational complexity
-- *Mitigation*: Standardized APIs and automated synchronization reduce manual processes
-- *Evolution*: Future network technologies will simplify large-scale distributed logging
+**Infrastructure Complexity**  
+- *Risk*: Coordination across 11 institutions creates operational complexity  
+- *Mitigation*: Standardized APIs and automated synchronization reduce manual processes  
+- *Evolution*: Future network technologies will simplify large-scale distributed logging  
 
-**Storage Scalability**:
+**Storage Scalability**  
 - *Risk*: Growing log volume may strain institutional storage capacity  
-- *Mitigation*: Efficient compression algorithms and distributed storage architecture
-- *Evolution*: Decreasing storage costs and improving compression technology
+- *Mitigation*: Efficient compression algorithms and distributed storage architecture  
+- *Evolution*: Decreasing storage costs and improving compression technology  
 
 ### 6.2 Institutional Risks
-**Institutional Drift**:
-- *Risk*: Participating institutions may lose independence or change priorities over time
-- *Mitigation*: Governance council empowered to rotate or replace failing institutions
-- *Monitoring*: Regular performance assessments and community oversight
+**Institutional Drift**  
+- *Risk*: Participating institutions may lose independence or change priorities over time  
+- *Mitigation*: Governance council empowered to rotate or replace failing institutions  
+- *Monitoring*: Regular performance assessments and community oversight  
 
-**Collusion Attempts**:
-- *Risk*: Multiple institutions might collude to suppress or alter logs
-- *Mitigation*: Mathematical shield provides independent verification regardless of institutional behavior
-- *Detection*: Public blockchain anchoring makes collusion attempts immediately visible
+**Collusion Attempts**  
+- *Risk*: Multiple institutions might collude to suppress or alter logs  
+- *Mitigation*: Mathematical shield provides independent verification regardless of institutional behavior  
+- *Detection*: Public blockchain anchoring makes collusion attempts immediately visible  
 
 ### 6.3 Technology Evolution Risks
-**Ledger Obsolescence**:
-- *Risk*: Current blockchain technologies may become obsolete or compromised
-- *Mitigation*: Migration protocols ensure smooth transition to newer immutable technologies
-- *Preparation*: Multiple ledger systems provide redundancy during technology transitions
+**Ledger Obsolescence**  
+- *Risk*: Current blockchain technologies may become obsolete or compromised  
+- *Mitigation*: Migration protocols ensure smooth transition to newer immutable technologies  
+- *Preparation*: Multiple ledger systems provide redundancy during technology transitions  
 
-**Cryptographic Advances**:
-- *Risk*: Quantum computing or other advances may compromise current cryptographic methods
-- *Mitigation*: Post-quantum cryptographic standards and regular algorithm updates
-- *Monitoring*: Continuous assessment of cryptographic security against emerging threats
+**Cryptographic Advances**  
+- *Risk*: Quantum computing or other advances may compromise current cryptographic methods  
+- *Mitigation*: Post-quantum cryptographic standards and regular algorithm updates  
+- *Monitoring*: Continuous assessment of cryptographic security against emerging threats  
+
+**Update-Based Erasure**  
+- *Risk*: Software or firmware updates could silently weaken or remove the Sacred Pause and log mechanisms  
+- *Mitigation*: Establish a **constitutional kernel** — a minimal Sacred Pause + logging layer that cannot be patched out without producing cryptographic receipts. Updates must provide proof that the kernel remains intact.  
+- *Detection*: Any update without receipts is flagged as invalid by independent auditors.
 
 ---
 
@@ -195,9 +200,9 @@ Sacred Pause logs are **instantly synchronized** to all 11 independent instituti
 **Dispute Resolution**: Arbitration and mediation procedures for institutional conflicts
 
 ### 7.3 Operational Procedures
-**Staff Training**: Personnel education on log handling and security procedures
-**Incident Response**: Coordinated response protocols for security incidents or technical failures
-**Performance Monitoring**: Regular assessment of system performance and reliability
+**Staff Training**: Personnel education on log handling and security procedures.   
+**Incident Response**: Coordinated response protocols for security incidents or technical failures.  
+**Performance Monitoring**: Regular assessment of system performance and reliability.  
 **Community Communication**: Transparent reporting to TML community and general public
 
 ---
@@ -218,18 +223,18 @@ Public verification capabilities enable democratic participation in AI accountab
 ## IX. FUTURE DEVELOPMENTS
 
 ### 9.1 Technology Integration
-**Enhanced Automation**: Machine learning systems for detecting anomalous log patterns or tampering attempts
-**Improved Efficiency**: Advanced compression and deduplication technologies for handling large-scale log volumes
-**Next-Generation Ledgers**: Integration with emerging immutable ledger technologies as they mature
+**Enhanced Automation**: Machine learning systems for detecting anomalous log patterns or tampering attempts.  
+**Improved Efficiency**: Advanced compression and deduplication technologies for handling large-scale log volumes.  
+**Next-Generation Ledgers**: Integration with emerging immutable ledger technologies as they mature.  
 
 ### 9.2 Governance Evolution
-**Expanded Participation**: Additional institutions as the TML framework gains global adoption
-**Specialized Committees**: Domain-specific oversight groups for healthcare, finance, and other critical applications
+**Expanded Participation**: Additional institutions as the TML framework gains global adoption.  
+**Specialized Committees**: Domain-specific oversight groups for healthcare, finance, and other critical applications.  
 **Community Integration**: Enhanced mechanisms for public participation in oversight and governance
 
 ### 9.3 Legal Development
-**International Treaties**: Formal international agreements recognizing log evidence across jurisdictions
-**Standardization**: Global standards for AI accountability logging and verification
+**International Treaties**: Formal international agreements recognizing log evidence across jurisdictions.  
+**Standardization**: Global standards for AI accountability logging and verification.   
 **Enforcement Mechanisms**: Enhanced legal frameworks for prosecuting log tampering and institutional failures
 
 ---
