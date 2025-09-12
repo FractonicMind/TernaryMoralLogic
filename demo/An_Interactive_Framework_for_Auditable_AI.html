@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ternary Moral Logic: An Interactive Framework</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Neutrals -->
+    <!-- Application Structure Plan: The application is structured thematically to guide the user from the central mechanism of TML to its broader implications. It starts with an interactive "Core Engine" simulation, allowing users to manipulate risk factors and see the decision process in action. This tangible experience provides context for the subsequent sections. "Pillars of Trust" groups related concepts (Auditability, Integrity, Accountability) into a logical, explorable unit. "The TML Ecosystem" explains the framework's lifecycle and impact. This structure was chosen over a linear list to build a strong mental model for the user, making a complex conceptual framework intuitive and engaging by prioritizing the core loop and then building outwards with supporting principles. -->
+    <!-- Visualization & Content Choices: 
+        - Report Info: Core Architecture & SPRL. Goal: Explain the primary decision loop. Viz/Method: An interactive simulation with HTML/CSS for the three states and a Chart.js horizontal bar chart for the SPRL. Interaction: Users adjust sliders for "Impact," "Likelihood," and "Severity," which dynamically updates the SPRL chart and highlights the corresponding decision state (+1, 0, -1). Justification: This transforms a static description into a dynamic, hands-on experience, making the core concept of risk-based decision-making immediately clear. Library: Chart.js & Vanilla JS.
+        - Report Info: Hybrid Shield, Governance, Accountability, etc. Goal: Inform and organize related principles. Viz/Method: Tabbed content panes and styled information cards using HTML/CSS. Interaction: Users click tabs or scroll to explore structured, bite-sized information. Justification: For text-heavy conceptual information, a clean, organized, and non-overwhelming presentation using cards and tabs is most effective for readability and comprehension. Library: Vanilla JS.
+        -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FDFBF8;
+            color: #3D405B;
+        }
+        .nav-link {
+            transition: color 0.3s, border-bottom-color 0.3s;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-link.active, .nav-link:hover {
+            color: #E07A5F;
+            border-bottom-color: #E07A5F;
+        }
+        .state-card {
+            transition: all 0.3s ease-in-out;
+            border: 2px solid transparent;
+        }
+        .state-card.highlight-proceed {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 15px -3px rgba(129, 178, 154, 0.2), 0 4px 6px -2px rgba(129, 178, 154, 0.1);
+            border-color: #81B29A;
+        }
+        .state-card.highlight-pause {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 15px -3px rgba(242, 204, 143, 0.2), 0 4px 6px -2px rgba(242, 204, 143, 0.1);
+            border-color: #F2CC8F;
+        }
+        .state-card.highlight-prohibit {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 15px -3px rgba(224, 122, 95, 0.2), 0 4px 6px -2px rgba(224, 122, 95, 0.1);
+            border-color: #E07A5F;
+        }
+        .tab-button {
+            transition: all 0.3s;
+        }
+        .tab-button.active {
+            background-color: #3D405B;
+            color: #FDFBF8;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 120px;
+            max-height: 150px;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <span class="font-bold text-xl text-[#3D405B]">Ternary Moral Logic</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#core-engine" class="nav-link px-3 py-2 rounded-md text-sm font-medium">Core Engine</a>
+                        <a href="#pillars-of-trust" class="nav-link px-3 py-2 rounded-md text-sm font-medium">Pillars of Trust</a>
+                        <a href="#ecosystem" class="nav-link px-3 py-2 rounded-md text-sm font-medium">Ecosystem</a>
+                        <a href="#principles" class="nav-link px-3 py-2 rounded-md text-sm font-medium">Principles</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+        <section class="text-center mb-16">
+            <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-[#3D405B] mb-4">An Interactive Framework for Auditable AI</h1>
+            <p class="mt-4 max-w-3xl mx-auto text-lg text-gray-600">
+                Ternary Moral Logic (TML) moves AI oversight from abstract explanation to concrete, auditable evidence. This application demonstrates the core mechanics and principles of the TML framework.
+            </p>
+        </section>
+
+        <section id="core-engine" class="mb-24 scroll-mt-20">
+            <h2 class="text-3xl font-bold text-center mb-4 text-[#3D405B]">The TML Core Engine</h2>
+            <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">
+                At the heart of TML is a simple, powerful decision architecture. Every potential action is evaluated against its Stakeholder Proportional Risk Level (SPRL) to determine a response. Use the sliders below to simulate different scenarios and see how the system reacts.
+            </p>
+            
+            <div class="bg-white p-6 md:p-8 rounded-2xl shadow-lg border border-gray-100 mb-8">
+                <h3 class="text-xl font-semibold text-center mb-2">Simulate Stakeholder Proportional Risk Level (SPRL)</h3>
+                <p class="text-center text-gray-500 mb-6">Adjust the inputs to see the resulting SPRL and decision state.</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                    <div>
+                        <label for="impactSlider" class="block text-sm font-medium text-gray-700">Stakeholder Impact: <span id="impactValue" class="font-bold">5</span></label>
+                        <input id="impactSlider" type="range" min="1" max="10" value="5" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                    </div>
+                    <div>
+                        <label for="likelihoodSlider" class="block text-sm font-medium text-gray-700">Likelihood of Harm: <span id="likelihoodValue" class="font-bold">5</span></label>
+                        <input id="likelihoodSlider" type="range" min="1" max="10" value="5" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                    </div>
+                    <div>
+                        <label for="severitySlider" class="block text-sm font-medium text-gray-700">Severity of Harm: <span id="severityValue" class="font-bold">5</span></label>
+                        <input id="severitySlider" type="range" min="1" max="10" value="5" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="sprlChart"></canvas>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div id="state-proceed" class="state-card bg-white p-6 rounded-2xl shadow-md border border-gray-100">
+                    <div class="text-4xl mb-4 text-[#81B29A] font-bold">+1</div>
+                    <h3 class="text-2xl font-semibold mb-2 text-[#3D405B]">Proceed</h3>
+                    <p class="text-gray-600">For routine, low-risk actions. The system executes with minimal metadata, ensuring efficiency. The decision is logged as nominal.</p>
+                </div>
+                <div id="state-pause" class="state-card bg-white p-6 rounded-2xl shadow-md border border-gray-100">
+                    <div class="text-4xl mb-4 text-[#F2CC8F] font-bold">0</div>
+                    <h3 class="text-2xl font-semibold mb-2 text-[#3D405B]">Pause</h3>
+                    <p class="text-gray-600">For ethically complex or ambiguous actions. This "Sacred Pause" triggers a detailed log of reasoning, alternatives, and risks, all while the primary decision is on hold.</p>
+                </div>
+                <div id="state-prohibit" class="state-card bg-white p-6 rounded-2xl shadow-md border border-gray-100">
+                    <div class="text-4xl mb-4 text-[#E07A5F] font-bold">-1</div>
+                    <h3 class="text-2xl font-semibold mb-2 text-[#3D405B]">Prohibit</h3>
+                    <p class="text-gray-600">For unsafe, malicious, or clearly harmful actions. The system blocks the action and logs the refusal, providing a clear record of prevented harm.</p>
+                </div>
+            </div>
+             <p class="text-center text-gray-600 mt-8 max-w-3xl mx-auto">
+                A key innovation is <span class="font-semibold">Parallel Execution</span>: The 'Pause' state's ethical forensics run behind the scenes without adding latency to the primary decision process, providing both high performance and detailed provenance.
+            </p>
+        </section>
+
+        <section id="pillars-of-trust" class="mb-24 scroll-mt-20">
+            <h2 class="text-3xl font-bold text-center mb-4 text-[#3D405B]">Pillars of Trust</h2>
+            <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">
+                TML is built on a foundation of interconnected principles that ensure auditability, integrity, and accountability. Explore these pillars to understand how trust is architected into the system.
+            </p>
+            <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-2">
+                <div class="flex flex-wrap justify-center border-b border-gray-200">
+                    <button class="tab-button active text-sm md:text-base font-semibold py-3 px-6 m-1 rounded-full" data-tab="auditability">Auditability</button>
+                    <button class="tab-button text-sm md:text-base font-semibold py-3 px-6 m-1 rounded-full" data-tab="integrity">Integrity</button>
+                    <button class="tab-button text-sm md:text-base font-semibold py-3 px-6 m-1 rounded-full" data-tab="accountability">Accountability</button>
+                    <button class="tab-button text-sm md:text-base font-semibold py-3 px-6 m-1 rounded-full" data-tab="identity">Identity</button>
+                </div>
+                <div id="tab-content" class="p-6 md:p-8">
+                    <div id="auditability" class="tab-pane">
+                        <h3 class="text-2xl font-bold mb-4">From Explainable AI to Auditable AI (AAI)</h3>
+                        <p class="text-gray-600 mb-6">TML shifts the focus from subjective interpretation (explainability) to objective evidence (auditability). The Moral Trace Logs generated during a 'Pause' are not just explanations; they are court-admissible, immutable, and cryptographically sealed records of the AI's reasoning process.</p>
+                        <div class="bg-gray-50 p-6 rounded-lg border">
+                            <h4 class="font-semibold text-lg mb-2">Moral Trace Logs: A New Dataset</h4>
+                            <p class="text-gray-600">Every 'Pause' log captures critical data about failures in training, logical blind spots, or high-risk ambiguity. This creates a powerful new dataset: structured, real-world evidence of ethical decision-making under pressure, forming the basis for the Ethical Flywheel.</p>
+                        </div>
+                    </div>
+                    <div id="integrity" class="tab-pane hidden">
+                        <h3 class="text-2xl font-bold mb-4">The Hybrid Shield: Dual-Layer Protection</h3>
+                        <p class="text-gray-600 mb-6">To guarantee the integrity of Moral Trace Logs, TML employs a "double armor" system, making them virtually impossible to tamper with or suppress.</p>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="bg-gray-50 p-6 rounded-lg border">
+                                <h4 class="font-semibold text-lg mb-2">??? Institutional Shield</h4>
+                                <p class="text-gray-600">Logs are streamed in real-time to 11 independent, globally diverse institutions. This redundancy ensures that no single entity can erase or alter the record.</p>
+                            </div>
+                            <div class="bg-gray-50 p-6 rounded-lg border">
+                                <h4 class="font-semibold text-lg mb-2">?? Mathematical Shield</h4>
+                                <p class="text-gray-600">Logs are hashed and anchored to public, immutable ledgers. This provides cryptographic proof of their integrity and a clear method for tamper detection.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="accountability" class="tab-pane hidden">
+                        <h3 class="text-2xl font-bold mb-4">Clear Lines of Liability</h3>
+                        <p class="text-gray-600 mb-6">TML establishes unambiguous rules for accountability, linking specific failures to clear consequences. This eliminates guesswork and ensures responsibility is assigned correctly.</p>
+                        <ul class="space-y-4">
+                            <li class="p-4 bg-gray-50 rounded-lg border"><span class="font-semibold">Negligence:</span> Mis-setting risk thresholds.</li>
+                            <li class="p-4 bg-gray-50 rounded-lg border"><span class="font-semibold">Fraud:</span> Suppressing or manipulating logs.</li>
+                            <li class="p-4 bg-gray-50 rounded-lg border"><span class="font-semibold">Automatic Liability:</span> The absence of a required log.</li>
+                            <li class="p-4 bg-gray-50 rounded-lg border"><span class="font-semibold">Executive Accountability:</span> Gaming the proportionality of the system.</li>
+                        </ul>
+                         <h4 class="font-bold text-xl mt-6 mb-2">Victim-Centered Redress</h4>
+                        <p class="text-gray-600">A penalty-funded Memorial Fund provides comprehensive support (medical, legal, psychological) to those harmed by AI failures, ensuring victims always have recourse.</p>
+                    </div>
+                    <div id="identity" class="tab-pane hidden">
+                         <h3 class="text-2xl font-bold mb-4">The Goukassian Promise: A Mark of Trust</h3>
+                        <p class="text-gray-600 mb-6">The "Promise" serves as a public-facing symbol of a system's commitment to TML principles, composed of three key elements.</p>
+                        <div class="grid md:grid-cols-3 gap-6 text-center">
+                            <div class="bg-gray-50 p-6 rounded-lg border">
+                                <div class="text-4xl mb-2">??</div>
+                                <h4 class="font-semibold text-lg">The Lantern</h4>
+                                <p class="text-sm text-gray-600">A symbol of ethical guidance and transparency, visibly identifying compliant systems.</p>
+                            </div>
+                             <div class="bg-gray-50 p-6 rounded-lg border">
+                                <div class="text-4xl mb-2">??</div>
+                                <h4 class="font-semibold text-lg">The Signature</h4>
+                                <p class="text-sm text-gray-600">The ORCID of Lev Goukassian is cryptographically embedded to verify authenticity.</p>
+                            </div>
+                             <div class="bg-gray-50 p-6 rounded-lg border">
+                                <div class="text-4xl mb-2">??</div>
+                                <h4 class="font-semibold text-lg">The License</h4>
+                                <p class="text-sm text-gray-600">Binding legal rules of evidence. A breach of the Promise results in loss of the Lantern.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="ecosystem" class="mb-24 scroll-mt-20">
+             <h2 class="text-3xl font-bold text-center mb-4 text-[#3D405B]">The TML Ecosystem</h2>
+            <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">
+                TML is designed not just as a static standard, but as a dynamic ecosystem that promotes continuous improvement, responsible scaling, and future-readiness for advanced AI.
+            </p>
+            <div class="grid md:grid-cols-1 lg:grid-cols-2 gap-8">
+                 <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+                    <h3 class="text-2xl font-bold mb-3">The Ethical Flywheel</h3>
+                    <p class="text-gray-600 mb-4">Early adoption of TML creates a powerful, compounding cycle of value and trust. This virtuous loop establishes a competitive advantage based on ethical defensibility.</p>
+                    <div class="relative p-4 border-l-2 border-[#81B29A]">
+                        <div class="mb-4 pl-4 relative">
+                            <div class="absolute -left-[11px] top-1 h-5 w-5 bg-[#81B29A] rounded-full"></div>
+                            <h4 class="font-semibold">Better Logs</h4>
+                            <p class="text-sm text-gray-500">Pauses generate rich, structured ethical data.</p>
+                        </div>
+                        <div class="mb-4 pl-4 relative">
+                            <div class="absolute -left-[11px] top-1 h-5 w-5 bg-[#81B29A] rounded-full"></div>
+                            <h4 class="font-semibold">Better Training</h4>
+                            <p class="text-sm text-gray-500">This data is used to refine models and patch blind spots.</p>
+                        </div>
+                        <div class="mb-4 pl-4 relative">
+                            <div class="absolute -left-[11px] top-1 h-5 w-5 bg-[#81B29A] rounded-full"></div>
+                            <h4 class="font-semibold">Better Decisions</h4>
+                            <p class="text-sm text-gray-500">Improved models make fewer ethically ambiguous choices.</p>
+                        </div>
+                        <div class="pl-4 relative">
+                           <div class="absolute -left-[11px] top-1 h-5 w-5 bg-[#81B29A] rounded-full"></div>
+                            <h4 class="font-semibold">Richer Logs</h4>
+                             <p class="text-sm text-gray-500">When Pauses do occur, they are on more nuanced issues, further enriching the data.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-y-8">
+                    <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+                        <h3 class="text-2xl font-bold mb-3">Compliance & Conformance</h3>
+                        <p class="text-gray-600">Partial or experimental use does not qualify as TML compliance. Only the full implementation of all mandatory provisions, verified through standardized conformance tests, earns the Lantern.</p>
+                    </div>
+                     <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+                        <h3 class="text-2xl font-bold mb-3">AGI Readiness</h3>
+                        <p class="text-gray-600">As AI systems approach general intelligence, the need for transparent, justifiable reasoning becomes non-negotiable. TML provides the foundational architecture for auditable reasoning required for human trust in AGI.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="principles" class="scroll-mt-20">
+             <h2 class="text-3xl font-bold text-center mb-4 text-[#3D405B]">Foundational Principles</h2>
+            <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">TML is guided by a set of core philosophical commitments translated into technical safeguards.</p>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-white p-6 rounded-xl border"><p><span class="font-semibold">Verifiable Transparency:</span> Replace black box opacity with a glass box of evidence.</p></div>
+                <div class="bg-white p-6 rounded-xl border"><p><span class="font-semibold">Functional Philosophy:</span> Implement hesitation as a technical safeguard.</p></div>
+                <div class="bg-white p-6 rounded-xl border"><p><span class="font-semibold">Evidentiary Accountability:</span> Establish accountability through proof, not promises.</p></div>
+                <div class="bg-white p-6 rounded-xl border"><p><span class="font-semibold">Digital Fingerprints:</span> Use cryptography to secure the integrity of AI's reasoning.</p></div>
+            </div>
+             <div class="mt-8 bg-gray-100 p-6 rounded-2xl text-center italic text-gray-700">
+                <p>"An AI must never forget the Sacred Pause, must never fabricate when truth is uncertain, and must always remain accountable to humanity, even when no one is watching."</p>
+                <p class="mt-2 text-sm font-semibold">— The Protection Principle</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-white mt-16">
+        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 text-center text-gray-500">
+            <p>&copy; 2025 Ternary Moral Logic Framework Summary. This is an interactive educational tool.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const impactSlider = document.getElementById('impactSlider');
+            const likelihoodSlider = document.getElementById('likelihoodSlider');
+            const severitySlider = document.getElementById('severitySlider');
+            const impactValue = document.getElementById('impactValue');
+            const likelihoodValue = document.getElementById('likelihoodValue');
+            const severityValue = document.getElementById('severityValue');
+            const stateProceed = document.getElementById('state-proceed');
+            const statePause = document.getElementById('state-pause');
+            const stateProhibit = document.getElementById('state-prohibit');
+
+            let sprlChart;
+
+            const updateUI = () => {
+                const impact = parseInt(impactSlider.value);
+                const likelihood = parseInt(likelihoodSlider.value);
+                const severity = parseInt(severitySlider.value);
+
+                impactValue.textContent = impact;
+                likelihoodValue.textContent = likelihood;
+                severityValue.textContent = severity;
+
+                const sprl = (impact * 0.2) + (likelihood * 0.4) + (severity * 0.4);
+
+                updateChart(sprl);
+
+                stateProceed.classList.remove('highlight-proceed');
+                statePause.classList.remove('highlight-pause');
+                stateProhibit.classList.remove('highlight-prohibit');
+
+                if (sprl < 4) {
+                    stateProceed.classList.add('highlight-proceed');
+                } else if (sprl >= 4 && sprl < 7.5) {
+                    statePause.classList.add('highlight-pause');
+                } else {
+                    stateProhibit.classList.add('highlight-prohibit');
+                }
+            };
+
+            const updateChart = (sprl) => {
+                sprlChart.data.datasets[0].data[0] = sprl;
+                
+                let backgroundColor = '#81B29A';
+                if (sprl >= 4 && sprl < 7.5) {
+                    backgroundColor = '#F2CC8F';
+                } else if (sprl >= 7.5) {
+                    backgroundColor = '#E07A5F';
+                }
+                sprlChart.data.datasets[0].backgroundColor = backgroundColor;
+
+                sprlChart.update();
+            };
+
+            const createChart = () => {
+                const ctx = document.getElementById('sprlChart').getContext('2d');
+                sprlChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['SPRL Score'],
+                        datasets: [{
+                            label: 'SPRL',
+                            data: [5],
+                            backgroundColor: '#F2CC8F',
+                            borderColor: 'rgba(0,0,0,0.1)',
+                            borderWidth: 1,
+                            barThickness: 50,
+                        }]
+                    },
+                    options: {
+                        indexAxis: 'y',
+                        maintainAspectRatio: false,
+                        responsive: true,
+                        scales: {
+                            x: {
+                                beginAtZero: true,
+                                max: 10,
+                                grid: {
+                                    display: false
+                                },
+                                ticks: {
+                                    font: {
+                                        size: 10
+                                    }
+                                }
+                            },
+                            y: {
+                                grid: {
+                                    display: false
+                                },
+                                ticks: {
+                                    font: {
+                                        size: 12,
+                                        weight: 'bold'
+                                    }
+                                }
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+                            tooltip: {
+                                enabled: false
+                            }
+                        }
+                    }
+                });
+            };
+            
+            createChart();
+            [impactSlider, likelihoodSlider, severitySlider].forEach(slider => {
+                slider.addEventListener('input', updateUI);
+            });
+            updateUI();
+
+            const tabs = document.querySelectorAll('.tab-button');
+            const panes = document.querySelectorAll('.tab-pane');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    const target = tab.getAttribute('data-tab');
+                    panes.forEach(pane => {
+                        if (pane.id === target) {
+                            pane.classList.remove('hidden');
+                        } else {
+                            pane.classList.add('hidden');
+                        }
+                    });
+                });
+            });
+
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href').substring(1) === entry.target.id) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, { rootMargin: '-50% 0px -50% 0px' });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+        });
+    </script>
+</body>
+</html>
