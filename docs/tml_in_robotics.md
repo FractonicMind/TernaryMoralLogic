@@ -54,4 +54,4 @@ Ternary Moral Logic (TML) provides a direct answer. By embedding the **Sacred Pa
 They will build the Terminator before they build its conscience.  
 But conscience — in the form of Sacred Pause and auditable logs — will become the *only thing* that makes such machines lawful, trusted, and ultimately deployable.  
 
-**File link:** [Hybrid Shield Framework](protection/Hybrid-Shield.md) for log protection.
+**File link:** [Hybrid Shield Framework](/protection/Hybrid-Shield.md) for log protection.
