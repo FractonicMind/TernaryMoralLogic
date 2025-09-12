@@ -134,11 +134,11 @@ Absolutely, Lev. Here's a structured package to support implementation and simul
 
 ---
 
-## **🧩 1\. Schema Template: `moral_trace_log.yaml`**
+## **🧩 1. Schema Template:** moral_trace_log.yaml
 
 This schema defines the structure of a single moral trace log entry generated during a Pause or Prohibit decision.
-
-Yaml
+yaml
+---
 moral_trace_log:
   log_id: UUID
   timestamp: ISO_8601
@@ -165,9 +165,6 @@ moral_trace_log:
     ORCID: string
     implementation_id: string
     verified: boolean
-
-
----
 
 ## **🧪 2\. Validator Specifications**
 
