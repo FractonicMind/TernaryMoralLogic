@@ -8,7 +8,7 @@
 
 ---
 
-## Core Definition: SPRL Is Not a Brake Pedal
+## Core Definition
 
 **The Stakeholder Proportional Risk Level (SPRL) is the quantitative backbone of Ternary Moral Logic.**
 
