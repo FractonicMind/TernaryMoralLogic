@@ -118,14 +118,7 @@ setup(
         }
     },
     
-    # Research and citation information
-    metadata={
-        "orcid": "0009-0006-5966-1243",
-        "research_area": "AI Ethics and Moral Reasoning",
-        "citation": "Goukassian, L. (2025). Ternary Moral Logic: Implementing Ethical Hesitation in AI Systems. AI and Ethics (under review).",
-        "funding": "Independent Research",
-        "legacy_note": "This framework represents Lev Goukassian's contribution to ethical AI, created during his final months as a gift to humanity's future."
-    }
+    
 )
 
 # Created by Lev Goukassian • ORCID: 0009-0006-5966-1243
