@@ -358,26 +358,6 @@ of moral partnership between humans and AI systems.
 """
 ```
 
-### Academic Citations
-When citing TML in academic work:
-
-```bibtex
-@article{goukassian2025tml,
-  title={Ternary Moral Logic: Implementing Ethical Hesitation in AI Systems},
-  author={Goukassian, Lev},
-  journal={AI and Ethics},
-  year={2025},
-  note={Under review}
-}
-
-@software{goukassian2025tml_implementation,
-  title={TernaryMoralLogic: Implementation Framework},
-  author={Goukassian, Lev and [Additional Contributors]},
-  url={https://github.com/FractonicMind/TernaryMoralLogic},
-  year={2025}
-}
-```
-
 ---
 
 ## Community Guidelines
