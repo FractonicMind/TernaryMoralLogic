@@ -1,11 +1,6 @@
-Got it. I cleaned the duplication, fixed the headings, placed the new sections in the right spots, kept only the single poetic line at the very end, and added the triage analogy. Here is the full **`Stakeholder_Proportional_Risk_Level.md`** in place — no download needed:
-
----
-
 # Stakeholder Proportional Risk Level (SPRL)
 
 **The Quantitative Core of TML**
-*Version 2.0.1 — Finalized*
 
 ---
 
