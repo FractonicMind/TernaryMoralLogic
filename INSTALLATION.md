@@ -32,13 +32,6 @@ The **Ternary Moral Logic (TML) Framework** is a groundbreaking academic impleme
 
 TML introduces the **Sacred Pause**—a deliberate temporal buffer that enables complex moral reasoning in AI systems, ensuring ethical compliance across medical, automotive, financial, and content moderation domains.
 
-### Academic Validation
-
-- **Peer Review Status**: Under review at *AI and Ethics (Springer Nature)*
-- **Ethical Review**: Approved by Academic Ethics Committee
-- **Regulatory Compliance**: GDPR, HIPAA, SOX compatible
-- **Citation Count**: 47+ academic references (as of 2025)
-
 ---
 
 ## System Requirements
@@ -647,15 +640,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 **Academic Use**: Free for all academic research and educational purposes.
 **Commercial Use**: Requires commercial license for production deployment.
 **Attribution**: Please cite our work in academic publications.
-
----
-
-## Acknowledgments
-
-- **Ethics Advisory Board**: Dr. Sarah Chen (Stanford), Prof. Michael Rodriguez (MIT)
-- **Technical Review**: Google DeepMind Ethics Team
-- **Academic Validation**: Peer reviewers from AI and Ethics (Springer Nature)
-- **Community Contributors**: 150+ open source contributors worldwide
 
 ---
 
