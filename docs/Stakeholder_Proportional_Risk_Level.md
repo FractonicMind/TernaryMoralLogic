@@ -1,6 +1,6 @@
 # Stakeholder Proportional Risk Level (SPRL)
 
-**Version 3.0 - The Quantitative Core of Ternary Moral Logic**
+**The Quantitative Core of Ternary Moral Logic**
 
 ---
 
