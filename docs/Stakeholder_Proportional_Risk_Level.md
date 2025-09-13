@@ -275,4 +275,10 @@ With SPRL: every decision carries weight, every harm leaves evidence, and every 
 
 ---
 
+**Creator:** Lev Goukassian (ORCID: 0009-0006-5966-1243)  
+**Framework:** Ternary Moral Logic (TML)  
+**Repository:** https://github.com/FractonicMind/TernaryMoralLogic  
+**Contact:** leogouk@gmail.com
+
+---
 The Sacred Pause is the heartbeat. SPRL is the pulse of that heartbeat. Together, they keep AI human.
