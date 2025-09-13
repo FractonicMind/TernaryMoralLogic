@@ -3,16 +3,12 @@
 **The Quantitative Core of Ternary Moral Logic**
 
 **Creator:** Lev Goukassian (ORCID: 0009-0006-5966-1243)  
-**Version:** 2.0.0  
-**Date:** September 11, 2025
 
 ---
 
-## Core Definition: SPRL Is Not a Brake Pedal
+## Core Definition
 
 **The Stakeholder Proportional Risk Level (SPRL) is the quantitative backbone of Ternary Moral Logic.**
-
-It is *the pulse of the AI HeartBeat* - the metric that signals when the Sacred Pause must activate.
 
 **SPRL does not stop or delay the AI's action.**
 
