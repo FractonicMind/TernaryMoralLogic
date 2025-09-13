@@ -557,7 +557,7 @@ Through careful implementation of these specifications, AI systems can demonstra
 
 ## References
 
-1. Goukassian, L. (2025). "Ternary Moral Logic: Implementing Ethical Hesitation in AI Systems." *AI and Ethics* (under review).
+1. Goukassian, L. (2025). "Ternary Moral Logic: Implementing Ethical Hesitation in AI Systems." 
 
 2. Norman, D. A. (2013). *The Design of Everyday Things: Revised and Expanded Edition*. Basic Books.
 
