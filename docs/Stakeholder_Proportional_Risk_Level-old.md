@@ -2,8 +2,6 @@
 
 **The Quantitative Core of Ternary Moral Logic**
 
-**Creator:** Lev Goukassian (ORCID: 0009-0006-5966-1243)  
-
 ---
 
 ## Core Definition
