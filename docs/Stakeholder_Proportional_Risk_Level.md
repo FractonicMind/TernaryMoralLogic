@@ -489,17 +489,17 @@ User Query → AI System → Immediate Response
 
 ### 10.1 Computational Overhead
 
-While the Sacred Pause runs asynchronously, SPRL calculations and log generation still consume processing power. This increases operational costs. 
+While the Sacred Pause runs asynchronously, SPRL calculations and log generation still consume processing power. This increases operational costs.    
 **Countermeasure:** proportional logging and compression focus compute where risk is highest.
 
 ### 10.2 Institutional Overload
 
-Real-time synchronization to 11 institutions risks overwhelming storage and bandwidth. 
+Real-time synchronization to 11 institutions risks overwhelming storage and bandwidth.   
 **Countermeasure:** lightweight header streaming, clustering, and selective replication of critical payloads.
 
 ### 10.3 DoS Defense & Compression
 
-Adversaries may flood systems with trivial decisions to bloat logs. 
+Adversaries may flood systems with trivial decisions to bloat logs.   
 **Countermeasure:** canonical **SPRL-driven compression**—persist only the **delta** between expected and observed log density.
 
 ### 10.4 Gaming Prevention
