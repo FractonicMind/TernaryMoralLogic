@@ -242,7 +242,6 @@ The sacred pause between question and answer—this is where wisdom begins, for 
 
 *For implementation details, see `/implementations/` directory.*  
 *For practical examples, see `/examples/` directory.*  
-*For academic foundation, see the research paper under review at AI and Ethics.*
 
 ---
 
