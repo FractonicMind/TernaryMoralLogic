@@ -785,52 +785,6 @@ Failure: Log locally, alert compliance officer
 
 ---
 
-## Annex D: Regulatory Reviews (Transparency Record)
-
-### D.1 Review Summary
-
-**Three Independent Reviews Conducted:**
-
-1. **Gemini (Bureaucrat) Review** - September 13, 2025
-   - Focus: Regulatory and legal vulnerabilities
-   - Key findings: Formula inconsistency, stakeholder gaps, triage liability
-   - 7 major recommendations integrated
-
-2. **Kimi (Proverber) Review** - September 14, 2025
-   - Focus: Technical and forensic vulnerabilities
-   - Key findings: Rounding ambiguity, container resets, calibration gaming
-   - 5 critical amendments integrated
-
-3. **Qwen (Engineer) Review** - September 14, 2025
-   - Focus: Implementation specifications and institutional integrity
-   - Key findings: Missing header specs, Sacred Pause confusion, meta-gaming
-   - 5 specific recommendations integrated
-
-### D.2 Vulnerability Resolution Matrix
-
-| Vulnerability | Identified By | Resolution | Section |
-|--------------|---------------|------------|---------|
-| Formula inconsistency | Gemini | Unified weighted equation | §2.1 |
-| Rounding disputes | Kimi | IEEE 754-2019 to 3 decimals | §2.1 |
-| Stakeholder gaming | Gemini | Mandatory identification protocol | §3.4 |
-| Container resets | Kimi | WORM storage requirements | §9.3 |
-| Calibration capture | Gemini | 50% independent experts | §5.2 |
-| Post-incident gaming | Qwen | 90-day calibration freeze | §5.2 |
-| Missing specs | Qwen | Performance requirements added | §9.1 |
-| Compression exploits | Kimi/Gemini | FIPS-only, no score compression | §B.2 |
-| Sacred Pause confusion | Qwen | Explicit clarification throughout | §1.2 |
-| Test corpus gaming | All | 5%/1% minimums, mutations | §10.5 |
-
-### D.3 Consensus Improvements
-
-All three reviewers independently identified:
-- Need for technical specifications (addressed in Annex B)
-- Gaming vulnerabilities in calibration (multiple safeguards added)
-- Importance of institutional independence (diversity requirements added)
-
-This convergent validation strengthens confidence in the framework's robustness.
-
----
 
 **Creator:** Lev Goukassian (ORCID: 0009-0006-5966-1243)  
 **Framework:** Ternary Moral Logic (TML)  
