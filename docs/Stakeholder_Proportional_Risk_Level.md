@@ -479,11 +479,11 @@ The 11 Hybrid Shield institutions must:
 **Organizations are liable for:**
 - Incorrect calculations → Fraud charges (18 U.S.C. § 1001)
 - Inappropriate thresholds → Criminal negligence  
-- Gaming the system → Executive imprisonment (18 U.S.C. § 1519)
+- Gaming the system → Imprisonment (18 U.S.C. § 1519)
 - Missing logs → Automatic guilt with rebuttable presumption
 - Silent recalibration → Wire fraud
 
-**Executive Personal Liability:**
+**Personal Liability:**
 No valid defenses for: "I didn't know," "Team decided," "Vendor provided," "AI calculated it"
 
 ---
@@ -599,9 +599,9 @@ It doesn't slow the earthquake; it records its magnitude.
 
 The AI acts at full speed. SPRL ensures that every action—especially the morally complex ones—leaves a trace that can be examined, challenged, and learned from.
 
-**Without SPRL:** AI operates in darkness, victims lack evidence, executives escape accountability.
+**Without SPRL:** AI operates in darkness, victims lack evidence, Organization escapes accountability.
 
-**With SPRL:** Every decision carries weight, every harm leaves evidence, every executive faces consequences.
+**With SPRL:** Every decision carries weight, every harm leaves evidence, Organization faces consequences.
 
 The Stakeholder Proportional Risk Level transforms the Sacred Pause from philosophy to practice, from ethics to evidence, from principle to prosecution.
 
