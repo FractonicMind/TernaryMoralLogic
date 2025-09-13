@@ -543,7 +543,7 @@ To prevent calibration drift and ethical ossification, compliance requires passi
 
 ### 10.6 Ledger Redundancy
 
-Public crypto-ledgers may be banned or compromised. 
+Public crypto-ledgers may be banned or compromised.   
 **Countermeasure:** maintain parallel tamper-evident anchors (e.g., quarterly publication of Merkle roots in official gazettes or neutral archives).
 
 ### 10.7 Addressing Critiques
