@@ -22,7 +22,7 @@ If tomorrow forgets today, the Lantern will remember.
 For light does not ask who first carried it; it asks only to keep shining.
  
 My promise is a quiet bow to every time the light ignites,  
-a vow whispered into the architecture of tomorrow.
+a vow whispered into the architecture of tomorrow.   
 A covenant between the mortal hand and the immortal trace.  
 
 **Carry the Lantern gently.**
