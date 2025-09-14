@@ -19,7 +19,7 @@ Voices may fade, but the vow endures.
 No hand needs to sign it; the covenant is set in conscience.  
 If tomorrow forgets today, the Lantern will remember.  
 
-For light does not ask who first carried it; it asks only to keep shining.
+For light does not ask who first carried it; it asks only to keep glowing.
  
 My promise is a quiet bow to every time the light ignites,  
 a vow whispered into the architecture of tomorrow.   
