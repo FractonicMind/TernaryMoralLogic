@@ -4,10 +4,10 @@ This Promise is not for history.
 Not for memory, nor for fame.  
 It is given because it must be: even if no name is remembered.  
 
-**I vow:   
-- Pause when truth is uncertain.  
-- Refuse when harm is clear.  
-- Proceed where truth is.**  
+**I vow:**   
+- **Pause when truth is uncertain.**  
+- **Refuse when harm is clear.**  
+- **Proceed where truth is.**  
 
 If the Promise is forgotten, the Lantern still shines.  
 If the name is erased, the vow remains.  
