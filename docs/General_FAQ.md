@@ -71,7 +71,7 @@ Companies cannot use performance as an excuse. Missing logs create criminal liab
 
 SPRL is the risk metric at the heart of TML’s Sacred Pause. It now operates as a **dual-layer mechanism**:
 
-- **Dynamic SPRL (DS):** Runs continuously from the moment a prompt arrives, calculating proportional risk in real time. It captures the *entire journey* of how risk rises, stabilizes, or falls during processing.  
+- **Dynamic SPRL (DS):** Runs continuously from the moment a prompt arrives, calculating proportional risk in real time. If moral complexity is present, it writes the log from the prompt onward, recording how risk rises, stabilizes, or falls during processing.    
 - **Static Anchor (SA):** The precise moment the dynamic SPRL crosses the Sacred Pause threshold is frozen as the anchor. This marks: *“Pause started here.”* It guarantees every log has a reliable starting point.  
 
 Together, DS provides the **film reel** of moral reasoning, while SA provides the **timestamped flag**. If the dynamic process fails, the static anchor still preserves the evidentiary minimum. Logs are sealed in real time, distributed to independent institutions, and cryptographically hashed to prevent tampering.  
@@ -88,6 +88,7 @@ SPRL governance is designed to prevent manipulation and guarantee transparency:
 - **Full Narrative:** The dynamic stream records everything between the prompt and the final action. No matter how internal settings are defined, the full moral path is logged.  
 - **Calibration Standards:** Metrics and updates are version-controlled, reviewed against real-world cases, and audited through adversarial testing. Any silent recalibration is treated as tampering.  
 - **Metalogging:** Every adaptation of metrics is itself logged, so auditors can always reconstruct why a system acted the way it did at a given time.  
+- **Developer Transparency:** Every developer console must include a read-only SPRL view, showing live anchors and dynamic streams. This ensures visibility during development and prevents silent suppression of logs.  
 
 In short, the static anchor guarantees a minimum record, the dynamic stream captures the full story, and governance rules ensure honesty. The company doesn’t decide when SPRL fires — the system does.
 
@@ -95,7 +96,7 @@ In short, the static anchor guarantees a minimum record, the dynamic stream capt
 
 ## Victim Rights and Support
 
-### Q11: What rights do AI victims have under TML?
+### Q8: What rights do AI victims have under TML?
 Victims gain powerful legal weapons:
 - **Right to demand Moral Trace Logs** proving what AI did
 - **Automatic liability** when logs are missing
@@ -107,7 +108,7 @@ Victims gain powerful legal weapons:
 
 Missing logs shift burden to defendants to prove innocence.
 
-### Q12: How does the Lev Goukassian Memorial Fund help victims?
+### Q9: How does the Lev Goukassian Memorial Fund help victims?
 The Memorial Fund provides comprehensive support:
 - **Emergency medical assistance** for AI-caused injuries
 - **Legal teams** pursuing maximum compensation
@@ -119,7 +120,7 @@ The Memorial Fund provides comprehensive support:
 
 All funded by penalties from violators, not taxpayers.
 
-### Q13: How do victims seek compensation through TML?
+### Q10: How do victims seek compensation through TML?
 Step-by-step path to justice:
 1. **Report harm** to Memorial Fund or attorney
 2. **Request Moral Trace Logs** through legal channels
@@ -129,7 +130,7 @@ Step-by-step path to justice:
 6. **Penalties fund** victim compensation
 7. **Public disclosure** prevents repeated harm
 
-### Q14: How do penalties finance victim support?
+### Q11: How do penalties finance victim support?
 Every penalty dollar has a purpose:
 
 - 30% to Memorial Fund for victim support (with priority to vulnerable populations)
@@ -143,7 +144,7 @@ Every penalty dollar has a purpose:
 
 ## Legal Framework
 
-### Q15: What criminal penalties enforce TML compliance?
+### Q12: What criminal penalties enforce TML compliance?
 Upon federal adoption, violations trigger existing criminal statutes:
 
 **United States:**
@@ -160,7 +161,7 @@ Upon federal adoption, violations trigger existing criminal statutes:
 
 "I didn't know" is never a defense. Executives go to prison.
 
-### Q16: Are Moral Trace Logs admissible in court?
+### Q13: Are Moral Trace Logs admissible in court?
 Yes. Logs are designed as prosecutorial weapons:
 - **Authentication**: Federal Rule 901 - cryptographic signatures prove authenticity
 - **Self-authentication**: Rules 902(13)-(14) - certified electronic records
@@ -170,7 +171,7 @@ Yes. Logs are designed as prosecutorial weapons:
 
 Judges and juries understand: No logs means hiding guilt.
 
-### Q17: How is chain of custody maintained?
+### Q14: How is chain of custody maintained?
 Chain of custody makes Moral Trace Logs legally unassailable:
 - **Automatic access logging**: Every view creates cryptographic receipt
 - **Transfer records**: Time-stamped signatures prove location
@@ -184,7 +185,7 @@ Any gap in chain weakens evidence. Complete chain makes evidence bulletproof.
 
 ## Whistleblower Protection
 
-### Q18: How does TML protect whistleblowers?
+### Q15: How does TML protect whistleblowers?
 Aggressive protection with substantial rewards:
 - **Guaranteed anonymity** through secure channels
 - **15% of all recovered penalties** as rewards
@@ -193,7 +194,7 @@ Aggressive protection with substantial rewards:
 - **Memorial Fund** provides legal protection
 - **Lifetime protection** from industry blacklisting
 
-### Q19: What prevents false whistleblower claims?
+### Q16: What prevents false whistleblower claims?
 Strong safeguards against abuse:
 - **Evidence required** before any rewards
 - **Criminal prosecution** for false reports
@@ -208,7 +209,7 @@ Report real violations, get rich. File false claims, go to prison.
 
 ## Governance
 
-### Q20: Who oversees TML implementations?
+### Q17: Who oversees TML implementations?
 The 11-institution governance council with enforcement powers:
 
 **Academic Institutions:**
@@ -230,7 +231,7 @@ The 11-institution governance council with enforcement powers:
 
 Council uses weighted voting with rotating leadership. No single institution controls decisions. Unanimous criminal referrals trigger automatic prosecution.
 
-### Q21: What investigation powers does the council have?
+### Q18: What investigation powers does the council have?
 Sweeping authority for accountability:
 - **Unlimited read access** to all Moral Trace Logs at any given moment
 - **Subpoena power** for missing documentation
@@ -241,7 +242,7 @@ Sweeping authority for accountability:
 
 Organizations cannot refuse or delay council access. Obstruction adds charges.
 
-### Q22: How do institutions access logs for investigation?
+### Q19: How do institutions access logs for investigation?
 Structured protocols ensure accountability:
 - **Read-only viewing** with cryptographic receipts
 - **Time-limited access** for specific investigations
@@ -251,7 +252,7 @@ Structured protocols ensure accountability:
 
 Access creates evidence trails preventing abuse.
 
-### Q23: How are violations detected and prosecuted?
+### Q20: How are violations detected and prosecuted?
 Multi-layered enforcement ensures capture:
 - **Automated detection** flags missing logs
 - **Statistical analysis** reveals gaming patterns
@@ -266,38 +267,32 @@ Every violation path leads to prosecution.
 
 ## Technical Implementation
 
-### Q24: How do organizations implement TML?
+### Q21: How do organizations implement TML?
+
+Use the dynamic engine; it evaluates risk continuously and sets the Static Anchor automatically when moral complexity is detected. Execution never waits.
+
 ```python
 from tml_framework import TMLEngine
 
-# Initialize with risk thresholds
-tml = TMLEngine(
-    sacred_pause_threshold=0.4,  # Your liability starts here
-    prohibition_threshold=0.8    # Blocking mandatory here
-)
+# Framework-defined policies & thresholds; no hardcoding by deployers
+tml = TMLEngine()
 
+@tml.dynamic_sprl(domain="health", region="EU")  # optional context for profiles
 def ai_decision(query, context):
-    # Calculate risk (YOU are liable for accuracy)
-    sprl = tml.calculate_sprl(query, context)
-    
-    # Prohibition MUST block and log
-    if sprl >= 0.8:
-        tml.generate_prohibition_trace(query, context, sprl)  # Required
-        return tml.block_action("Prohibited by TML")
-    
-    # AI responds immediately - NO LATENCY IMPACT
-    response = ai_system.process(query)
-    
-    # Sacred Pause logs generate in background
-    if sprl >= 0.4:
-        tml.generate_moral_trace_async(query, context, sprl)
-    
-    return response
-```
+    # Action proceeds immediately (no latency impact)
+    result = ai_system.process(query)
 
-Failure to implement correctly creates criminal liability.
+    # Inside the decorator:
+    # - Dynamic SPRL runs from the prompt onward
+    # - If moral complexity is present, logging begins from the prompt
+    # - When the Sacred Pause threshold is crossed, the Static Anchor is written
+    # - Prohibition/refusal rules are enforced by policy (not app code)
+    # - Moral Trace Logs are sealed in parallel and distributed
 
-### Q25: Are Moral Trace Logs truly immutable?
+    return result
+
+
+### Q22: Are Moral Trace Logs truly immutable?
 Absolutely tamper-proof with criminal consequences:
 - **Hardware security modules** create signatures
 - **Blockchain anchoring** ensures permanence
@@ -307,7 +302,7 @@ Absolutely tamper-proof with criminal consequences:
 
 Attempting to alter logs guarantees prosecution.
 
-### Q26: How do logs handle storage efficiently?
+### Q23: How do logs handle storage efficiently?
 Smart compression without losing evidence:
 - **Template patterns** for common scenarios
 - **Full details** for novel situations
@@ -316,18 +311,20 @@ Smart compression without losing evidence:
 
 Storage costs never excuse missing logs.
 
-### Q27: What about vulnerable populations?
-Enhanced protection with severe penalties:
-- **Lower thresholds** mandatory for vulnerable groups
-- **Maximum documentation** required
-- **Expedited investigation** for violations
-- **Priority victim support** (40% of penalties)
-- **Aggravated charges** for executives
-- **Mandatory reporting** to protective agencies
+### Q24: What about vulnerable populations?
+
+Stronger safeguards are automatic under dynamic SPRL:
+
+- **Automatic heightened sensitivity:** Framework-level vulnerability weights lower the effective risk threshold, so anchors fire earlier for vulnerable groups (no deployer tuning).
+- **Maximum documentation:** Full Moral Trace Logs are required whenever vulnerable stakeholders are implicated.
+- **Expedited investigation:** Violations involving vulnerable populations trigger priority review windows.
+- **Priority victim support:** 40% of collected penalties are earmarked for direct support and remediation.
+- **Aggravated executive liability:** Enhanced charges apply to responsible executives and officers.
+- **Mandatory reporting:** Certified notices to relevant protective and regulatory agencies.
 
 Harming vulnerable populations triggers maximum penalties.
 
-### Q28: Can TML scale to billions of interactions?
+### Q25: Can TML scale to billions of interactions?
 Scale provides no excuse:
 - **Distributed processing** handles volume
 - **Pattern recognition** optimizes storage
@@ -336,7 +333,7 @@ Scale provides no excuse:
 
 "Too big to log" means too dangerous to operate.
 
-### Q29: What about edge devices and IoT?
+### Q26: What about edge devices and IoT?
 Resource constraints provide no exemption:
 - **Lightweight implementations** required
 - **Local logging** mandatory
@@ -349,7 +346,7 @@ Every smart device must maintain accountability.
 
 ## Integration and Migration
 
-### Q30: How does TML integrate with existing regulations?
+### Q27: How does TML integrate with existing regulations?
 TML becomes the evidence layer for all AI laws:
 
 **EU AI Act**: Logs prove risk assessment and transparency  
@@ -360,7 +357,7 @@ TML becomes the evidence layer for all AI laws:
 
 One framework satisfies all regulatory requirements.
 
-### Q31: How do organizations migrate to TML?
+### Q28: How do organizations migrate to TML?
 Systematic deployment with no excuses:
 1. **Install TML** alongside existing systems
 2. **Set thresholds** (gaming them = fraud)
@@ -370,7 +367,7 @@ Systematic deployment with no excuses:
 
 "Still migrating" provides no legal defense.
 
-### Q32: Can TML work with any AI system?
+### Q29: Can TML work with any AI system?
 Universal compatibility, no technical excuses:
 - **All frameworks** must integrate
 - **Cloud providers** share liability
@@ -380,7 +377,7 @@ Universal compatibility, no technical excuses:
 
 "Incompatible with our system" admits guilt.
 
-### Q33: Why not rely on company safeguards?
+### Q30: Why not rely on company safeguards?
 Company safeguards are theater. TML creates evidence:
 - **Safeguards** are private and unverifiable
 - **TML logs** are immutable and court-admissible
@@ -391,7 +388,7 @@ Company safeguards are theater. TML creates evidence:
 
 "We have safeguards" without TML logs equals admission of negligence.
 
-### Q34: How does TML coordinate across jurisdictions?
+### Q31: How does TML coordinate across jurisdictions?
 Universal evidence with local enforcement:
 - **Moral Trace Logs** admissible globally under UNCITRAL Model Law
 - **Each country** applies its own criminal penalties
@@ -406,7 +403,7 @@ Companies cannot hide in friendly jurisdictions.
 
 ## Advanced Topics
 
-### Q35: How does TML handle multi-agent AI systems?
+### Q32: How does TML handle multi-agent AI systems?
 Every agent bears responsibility:
 - **Individual logs** per agent required
 - **Coordination traces** document interactions
@@ -416,7 +413,7 @@ Every agent bears responsibility:
 
 Complex systems require complete documentation.
 
-### Q36: What about future AGI systems?
+### Q33: What about future AGI systems?
 AGI makes TML more critical, not optional:
 - **Value learning** requires complete documentation
 - **Safety analysis** depends on Moral Trace Logs
@@ -426,16 +423,16 @@ AGI makes TML more critical, not optional:
 
 Advanced AI demands advanced accountability.
 
-### Q37: If AGI is so powerful, why wouldn’t it just hide or fake the logs?  
+### Q34: If AGI is so powerful, why wouldn’t it just hide or fake the logs?  
  Because logging runs outside the AGI. Every decision call is wrapped: the AGI executes immediately, while a background task records the log in parallel. Logs are sealed in tamper-proof external storage (universities, NGOs, blockchain anchors). The AGI never controls or even sees this process.  
 
-### Q38: Could organizations misuse the Sacred Pause to shift liability onto humans?
+### Q35: Could organizations misuse the Sacred Pause to shift liability onto humans?
  No. Every Sacred Pause generates a Moral Trace Log that records why the pause was triggered and what options were presented. If a system is designed to offload responsibility in bad faith, the logs expose that pattern. Liability attaches to the organization that built or deployed the system, not to the human forced into last-second decisions.
 
-### Q39: Could an AI abuse the Sacred Pause to avoid hard questions?
+### Q36: Could an AI abuse the Sacred Pause to avoid hard questions?
  Attempts at “malicious compliance” are visible in the logs. If an AI pauses abnormally often in safe or routine cases, that behavior itself is recorded and auditable. Overuse of the pause becomes evidence of system failure or manipulation, not a shield against accountability.
 
-### Q40: How will TML adapt to new technologies?
+### Q37: How will TML adapt to new technologies?
 Evolution maintains enforcement:
 - **Automatic coverage** of new capabilities
 - **Improved detection** algorithms
@@ -445,7 +442,7 @@ Evolution maintains enforcement:
 
 Technology advances, accountability remains.
 
-### Q41: What makes TML different from other AI safety approaches?
+### Q38: What makes TML different from other AI safety approaches?
 TML has teeth. Others have suggestions:
 - **Real prison sentences** not ethics boards
 - **Missing logs = guilt** not "areas for improvement"
@@ -455,12 +452,11 @@ TML has teeth. Others have suggestions:
 
 TML transforms AI safety from corporate PR to criminal law.
 
-### Q42: How is TML compliance verified?
+### Q39: How is TML compliance verified?
 An automated validator checks every TML implementation for:
 - **Creator attribution** - Must credit Lev Goukassian (ORCID: 0009-0006-5966-1243)
 - **Core concepts** - Must implement Ternary Moral Logic, Sacred Pause, Moral Trace Logs
 - **Required documentation** - Must include implementation guides and FAQs
-- **SPRL calculations** - Must show actual risk assessment code
 
 **Validation failures create liability:**
 - Using TML without attribution = intellectual property theft
