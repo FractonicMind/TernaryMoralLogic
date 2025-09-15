@@ -469,6 +469,18 @@ Organizations cannot claim "TML compliance" without passing validation. False cl
 The validator is public. Anyone can verify if a company legitimately implements TML or is lying about compliance.
 
 ---
+### Q40: What is the Goukassian Promise?
+
+The Goukassian Promise is the symbolic covenant built into every legitimate TML implementation. It ensures that the framework is not only technical but also ethical, traceable, and enforceable.  
+
+It carries three inseparable elements:  
+
+- 🏮 **The Lantern:** Ethical guidance, visible and active. Every system must demonstrate its capacity to pause and deliberate when moral complexity is present.  
+- ✍️ **The Signature:** A cryptographic embed of Lev Goukassian’s ORCID (0009-0006-5966-1243) to authenticate provenance and protect against forgery.  
+- 📜 **The License:** Binding rules that enforce evidence-based accountability. Breaking the promise means losing the lantern; misuse forfeits ethical standing.  
+
+This Promise is not ornamental. It is how TML ties its technical design to a living legacy of accountability, ensuring the framework cannot be co-opted without its principles.
+---
 
 ## Support
 
