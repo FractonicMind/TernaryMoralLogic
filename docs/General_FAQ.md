@@ -47,9 +47,9 @@ Any AI decision that could harm people or violate their rights:
 If AI makes choices affecting human welfare, dignity, or rights, it requires Moral Trace Logs.
 
 ### Q3: What is the Sacred Pause?
-The Sacred Pause is a mandatory checkpoint for AI - also called the **AI Heart Beat (AIHB)**. When an AI system faces an ethically complex decision, it generates a detailed Moral Trace Log recording who might be affected, what risks exist, and why it chose its action. 
+The Sacred Pause is a mandatory checkpoint for AI. When an AI system faces an ethically complex decision, it generates a detailed Moral Trace Log recording who might be affected, what risks exist, and why it chose its action. 
 
-Think of it like a security camera that only records when something important happens. Without the AI Heart Beat, an AI is just a silent machine. With it, every action carries proof of life.
+Think of it like a security camera that only records when something important happens. Without it an AI is just a silent machine. With it, every action carries proof of life.
 
 ### Q4: What are the three states of TML?
 - **+1 (Proceed)**: Low-risk decision, basic record keeping
