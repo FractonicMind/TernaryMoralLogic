@@ -71,26 +71,25 @@ Companies cannot use performance as an excuse. Missing logs create criminal liab
 
 SPRL is the risk metric at the heart of TML’s Sacred Pause. It now operates as a **dual-layer mechanism**:
 
-- **Static Anchor (SA):** A single immutable flag written the instant risk passes a meaningful threshold. It marks: *“Pause started here.”* This ensures every log has a reliable starting point, no matter what follows.  
-- **Dynamic Stream (DS):** A continuous record of how risk evolves from the initial prompt to the final action. It shows the *story of what happened* between the flag and the finish line — the full moral journey.  
+- **Dynamic SPRL (DS):** Runs continuously from the moment a prompt arrives, calculating proportional risk in real time. It captures the *entire journey* of how risk rises, stabilizes, or falls during processing.  
+- **Static Anchor (SA):** The precise moment the dynamic SPRL crosses the Sacred Pause threshold is frozen as the anchor. This marks: *“Pause started here.”* It guarantees every log has a reliable starting point.  
 
-The combination makes SPRL both resilient and revealing. Even if the dynamic process fails, the static anchor preserves the evidentiary minimum. Even if a company sets its threshold high, the dynamic stream still shows when and how risk began to rise. Logs are sealed in real time, distributed to independent institutions, and cryptographically hashed to prevent tampering.
+Together, DS provides the **film reel** of moral reasoning, while SA provides the **timestamped flag**. If the dynamic process fails, the static anchor still preserves the evidentiary minimum. Logs are sealed in real time, distributed to independent institutions, and cryptographically hashed to prevent tampering.  
 
-In effect, SPRL has shifted from a single snapshot to a moving film reel: it captures not just *what* happened, but *how* it happened.
+This makes SPRL automatic and self-enforcing. You don’t set it. You implement TML, and it shows you when moral complexity began.
 
 ---
 
 ### Q7: How is SPRL governed and calibrated?
 
-SPRL governance is designed so companies cannot game thresholds or weaken accountability.
+SPRL governance is designed to prevent manipulation and guarantee transparency:
 
-- **Static Anchor:** Always records the first moment of moral complexity. It cannot be lowered, delayed, or disabled.  
-- **Dynamic Stream:** Tracks the entire decision journey. Even if a company sets its internal “pause threshold” high, the dynamic stream will still capture when risk rises earlier.  
-- **Calibration Standards:** Threshold ranges must be published, version-controlled, and periodically audited against real-world cases. Any manipulation or silent recalibration is treated as evidence tampering.  
-- **Transparency:** Every change in thresholds or metrics is itself logged (*metalogging*), so auditors can reconstruct why a system acted as it did at a given time.  
+- **Automatic Anchoring:** The static anchor is set by the dynamic SPRL itself. Organizations cannot alter, delay, or disable it.  
+- **Full Narrative:** The dynamic stream records everything between the prompt and the final action. No matter how internal settings are defined, the full moral path is logged.  
+- **Calibration Standards:** Metrics and updates are version-controlled, reviewed against real-world cases, and audited through adversarial testing. Any silent recalibration is treated as tampering.  
+- **Metalogging:** Every adaptation of metrics is itself logged, so auditors can always reconstruct why a system acted the way it did at a given time.  
 
-Together, the static anchor guarantees a baseline record, the dynamic stream guarantees the full narrative, and governance rules guarantee honesty.
-
+In short, the static anchor guarantees a minimum record, the dynamic stream captures the full story, and governance rules ensure honesty. The company doesn’t decide when SPRL fires — the system does.
 
 ---
 
