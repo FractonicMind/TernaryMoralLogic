@@ -65,70 +65,32 @@ Companies cannot use performance as an excuse. Missing logs create criminal liab
 
 ---
 
-## SPRL (Stakeholder Proportional Risk Level) Explained
+## SPRL (Stakeholder Proportional Risk Level)
 
 ### Q6: What is SPRL (Stakeholder Proportional Risk Level)?
-SPRL is the pulse of the AI Heart Beat - a risk score measuring how an AI decision might harm different people. It considers:
-- Who could be affected (stakeholders)
-- How severely they could be harmed (impact)
-- How likely the harm is (probability)
-- Whether vulnerable people are involved (children, elderly, disabled)
 
-Think of SPRL like a weather warning system - higher numbers mean more danger, requiring more documentation.
+SPRL is the risk metric at the heart of TML’s Sacred Pause. It now operates as a **dual-layer mechanism**:
 
-### Q7: How do companies calculate SPRL?
-```python
-# Companies implement SPRL calculation
-def calculate_sprl(decision, context):
-    stakeholders = identify_affected_people(decision)
-    risk_per_stakeholder = assess_individual_risks(stakeholders)
-    vulnerability_factor = check_for_vulnerable_groups(stakeholders)
-    
-    # Company sets their own thresholds
-    if risk_score > company_threshold:
-        trigger_sacred_pause()  # Must generate logs
-    
-    return risk_score
-```
+- **Static Anchor (SA):** A single immutable flag written the instant risk passes a meaningful threshold. It marks: *“Pause started here.”* This ensures every log has a reliable starting point, no matter what follows.  
+- **Dynamic Stream (DS):** A continuous record of how risk evolves from the initial prompt to the final action. It shows the *story of what happened* between the flag and the finish line — the full moral journey.  
 
-Each company decides their thresholds, but they face full liability for getting it wrong.
+The combination makes SPRL both resilient and revealing. Even if the dynamic process fails, the static anchor preserves the evidentiary minimum. Even if a company sets its threshold high, the dynamic stream still shows when and how risk began to rise. Logs are sealed in real time, distributed to independent institutions, and cryptographically hashed to prevent tampering.
 
-### Q8: Who is responsible for SPRL calculations?
-Companies bear absolute liability. TML provides the methodology - companies face consequences:
-- Incorrect calculations = fraud charges
-- Inappropriate thresholds = criminal negligence
-- Gaming the system = executive imprisonment
-- Missing logs = automatic guilt
+In effect, SPRL has shifted from a single snapshot to a moving film reel: it captures not just *what* happened, but *how* it happened.
 
-TML creators bear zero responsibility for implementation failures.
+---
 
-### Q9: What if companies set SPRL thresholds too low to avoid logging?
-Setting thresholds extremely low (like 0.1) but generating no logs proves fraud:
+### Q7: How is SPRL governed and calibrated?
 
-**Gaming Indicators:**
-- Not detecting affected people (stakeholder blindness)
-- Manipulating risk calculations
-- Deleting generated logs
-- Using fake "safe" templates
-- Cosmetic compliance only
+SPRL governance is designed so companies cannot game thresholds or weaken accountability.
 
-**Rule: Low thresholds create "log floods." Silence proves fraud.**
+- **Static Anchor:** Always records the first moment of moral complexity. It cannot be lowered, delayed, or disabled.  
+- **Dynamic Stream:** Tracks the entire decision journey. Even if a company sets its internal “pause threshold” high, the dynamic stream will still capture when risk rises earlier.  
+- **Calibration Standards:** Threshold ranges must be published, version-controlled, and periodically audited against real-world cases. Any manipulation or silent recalibration is treated as evidence tampering.  
+- **Transparency:** Every change in thresholds or metrics is itself logged (*metalogging*), so auditors can reconstruct why a system acted as it did at a given time.  
 
-Upon federal adoption, prosecutors can demand code reviews and pursue criminal charges under 18 U.S.C. § 1001.
+Together, the static anchor guarantees a baseline record, the dynamic stream guarantees the full narrative, and governance rules guarantee honesty.
 
-### Q10: What if companies set SPRL thresholds too high?
-Setting thresholds extremely high (like 0.9) to avoid logging also proves fraud:
-
-**High Threshold Gaming:**
-- Only catastrophic risks generate logs
-- Redefining "risk" to stay below thresholds
-- Never blocking obvious dangers
-- Labeling harmful actions "safe"
-- No evidence when victims need it
-
-**Rule: High thresholds create "log droughts." Too few logs proves gaming.**
-
-Competitors' logging rates expose outliers. Statistical analysis reveals fraud.
 
 ---
 
