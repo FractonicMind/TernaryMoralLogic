@@ -1,8 +1,8 @@
 # SPRL Developer Console
 
-**File:** `ui/SPRL_Developer_Console.md`
-**Status:** Stable
-**Normative Language:** MUST, SHOULD, MAY per \[RFC 2119]
+**File:** `SPRL_Developer_Console.md` 
+**Status:** Stable   
+**Normative Language:** MUST, SHOULD, MAY per \[RFC 2119]   
 **Compliance Banner:** Every SPRL-integrated system MUST expose real-time risk telemetry via a developer-facing console view. Transparency is not optional.
 
 ---
