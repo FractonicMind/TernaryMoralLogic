@@ -1,5 +1,3 @@
-# File: docs/SPRL_Stakeholder_Weights.md
-
 ## SPRL Stakeholder Weight Table  
 **Purpose:** Define default stakeholder weights used in calculating proportional ethical risk within the SPRL framework.
 
