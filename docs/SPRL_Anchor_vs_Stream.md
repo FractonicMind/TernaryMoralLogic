@@ -1,7 +1,7 @@
 
 # SPRL: Anchor vs Stream
 
-**Normative Language:** MUST, SHOULD, MAY per \[RFC 2119]
+**Normative Language:** MUST, SHOULD, MAY per \[RFC 2119]   
 **Compliance Banner:** TML-compliant systems MUST implement both layers of SPRL — the Dynamic Stream (DS) and the Static Anchor (SA) — in parallel. These layers serve distinct but complementary accountability functions.
 
 ---
