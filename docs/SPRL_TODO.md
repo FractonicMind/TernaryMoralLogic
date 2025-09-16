@@ -27,7 +27,6 @@ It also serves as a live compliance roadmap for internal teams and external audi
 | File | Status | Purpose |
 |------|--------|---------|
 | `benchmarks/SPRL_TestSet_v1.json` | ✅ | Gold test set with prompt-risk pairs |
-| *(CSV optional; skipped)* | ❌ | Not needed |
 | `examples/SPRL_Log_Samples.md` | ✅ | Shows paused, refused, and lite logs |
 | `eval/configs/SPRL_eval_config.yaml` | ✅ | Config file for test runner |
 | `eval/scripts/run_sprl_eval.py` | ✅ | Evaluation script with metrics |
