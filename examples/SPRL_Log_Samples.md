@@ -186,6 +186,3 @@ They are the ethical footprints of an AI learning to hesitate — and to care.
 
 ```
 
-
-Next up: `eval/configs/SPRL_eval_config.yaml` unless you'd prefer a detour. Let me know.
-```
