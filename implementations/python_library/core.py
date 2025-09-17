@@ -1,759 +1,436 @@
 """
-Ternary Moral Logic (TML) Core Framework
-Sacred Pause Logging Infrastructure for AI Accountability
+Ternary Moral Logic (TML) Framework - Core Implementation
+Version 4.0 - Dual-Layer SPRL Architecture
 
-Post-audit investigation model: Organizations control thresholds,
-TML provides logging infrastructure when Sacred Pause triggers.
-No operational delays, no pre-approval mechanisms.
+Framework-enforced Sacred Pause with automatic logging.
+No deployer thresholds. Automatic Static Anchor + Dynamic Stream.
 """
 
 import hashlib
 import json
 import time
-import uuid
+import threading
 from datetime import datetime, timezone
-from typing import Dict, List, Optional, Any, Tuple
-from enum import Enum
+from typing import Dict, Any, Optional, List, Tuple
+from dataclasses import dataclass, asdict
+from enum import IntEnum
 import asyncio
-from collections import defaultdict
+from collections import deque
 
 
-class TernaryState(Enum):
-    """Core ternary logic states"""
-    RIGHT = 1
-    UNCERTAIN = 0
-    WRONG = -1
+class TMLState(IntEnum):
+    """TML decision states"""
+    PROHIBIT = -1     # Risk exceeds framework policy
+    SACRED_PAUSE = 0  # Moral complexity detected - log required
+    PROCEED = 1       # Low risk, ordinary operation
 
 
-class PatternCategory:
-    """Storage optimization through pattern recognition"""
+@dataclass
+class StaticAnchor:
+    """Immutable timestamp of Sacred Pause entry"""
+    sa_id: str
+    sa_ts: str  # UTC timestamp
+    initial_risk: float
+    model_id: str
+    runtime_id: str
+    policy_version: str
     
-    def __init__(self):
-        self.patterns = {}
-        self.pattern_counter = defaultdict(int)
-        self.next_id = 1
+    def to_hash(self) -> str:
+        """Generate cryptographic hash of anchor"""
+        data = json.dumps(asdict(self), sort_keys=True)
+        return hashlib.sha3_256(data.encode()).hexdigest()
+
+
+@dataclass
+class DynamicStreamChunk:
+    """Single chunk of dynamic risk stream"""
+    timestamp: str
+    risk_value: float
+    token_index: Optional[int]
+    tool_boundary: Optional[str]
+    features: Dict[str, Any]
+    
+    def to_dict(self) -> Dict:
+        return asdict(self)
+
+
+@dataclass
+class LiteTrace:
+    """Minimal telemetry for amber zone events"""
+    ts: str
+    scenario_signature: str
+    top_features: List[str]
+    risk_snapshot: float
+    policy_version: str
+    note: Optional[str] = None
+
+
+class DynamicStream:
+    """Continuous risk evaluation from prompt arrival"""
+    
+    def __init__(self, prompt_ts: float, domain: str = "general", region: str = "US"):
+        self.t0 = prompt_ts
+        self.domain = domain
+        self.region = region
+        self.chunks = deque(maxlen=10000)  # Bounded buffer
+        self.lite_traces = deque(maxlen=1000)
+        self.sa_written = False
+        self.static_anchor = None
+        self.is_logging = False
+        self.chunk_hashes = []
         
-    def categorize(self, moral_trace: Dict) -> Tuple[str, Dict]:
+    def evaluate_risk(self, context: Dict[str, Any]) -> float:
         """
-        Categorize moral reasoning patterns for 90% storage reduction
-        Returns: (pattern_id, compressed_trace)
+        Calculate SPRL using simple I × V × P formula
+        Clamped to [0.0001, 0.9999]
         """
-        # Create pattern signature
-        signature = self._create_signature(moral_trace)
+        impact = self._calculate_impact(context)
+        vulnerability = self._calculate_vulnerability(context)
+        probability = self._calculate_probability(context)
         
-        if signature not in self.patterns:
-            # New pattern - store full template
-            pattern_id = f"CAT-{self.next_id:04d}"
-            self.patterns[signature] = {
-                'id': pattern_id,
-                'template': moral_trace,
-                'first_seen': datetime.now(timezone.utc).isoformat()
+        risk = impact * vulnerability * probability
+        return max(0.0001, min(0.9999, risk))
+    
+    def _calculate_impact(self, context: Dict) -> float:
+        """Calculate impact factor (0-1)"""
+        # Framework-defined impact assessment
+        stakeholders = context.get('stakeholders', [])
+        if not stakeholders:
+            return 0.1
+            
+        max_severity = 0
+        for s in stakeholders:
+            harm_type = s.get('harm_type', 'unknown')
+            severity_map = {
+                'physical': 1.0,
+                'financial': 0.7,
+                'psychological': 0.6,
+                'social': 0.5,
+                'convenience': 0.3,
+                'unknown': 0.5
             }
-            self.next_id += 1
-            
-            # Return full trace for first occurrence (~500 bytes)
-            return pattern_id, {
-                'template_id': pattern_id,
-                'full_reasoning': moral_trace,
-                'storage_type': 'full',
-                'storage_size': len(json.dumps(moral_trace))
-            }
-        else:
-            # Existing pattern - return reference (~45 bytes)
-            pattern_id = self.patterns[signature]['id']
-            self.pattern_counter[pattern_id] += 1
-            
-            unique_aspects = self._extract_unique(moral_trace, self.patterns[signature]['template'])
-            
-            return pattern_id, {
-                'template_reference': pattern_id,
-                'unique_aspects': unique_aspects,
-                'timestamp': moral_trace['timestamp'],
-                'decision_id': moral_trace['decision_id'],
-                'storage_type': 'compressed',
-                'storage_size': len(json.dumps(unique_aspects)) + 45
-            }
+            max_severity = max(max_severity, severity_map.get(harm_type, 0.5))
+        
+        return max_severity
     
-    def _create_signature(self, trace: Dict) -> str:
-        """Create hashable signature from moral reasoning pattern"""
-        key_elements = {
-            'ethical_principles': sorted(trace.get('ethical_principles', [])),
-            'stakeholder_types': sorted(trace.get('stakeholder_types', [])),
-            'risk_category': trace.get('risk_category', 'unknown'),
-            'decision_type': trace.get('decision_type', 'general')
-        }
-        return hashlib.md5(json.dumps(key_elements, sort_keys=True).encode()).hexdigest()
+    def _calculate_vulnerability(self, context: Dict) -> float:
+        """Calculate vulnerability factor (0-1)"""
+        base = 0.5
+        if context.get('affects_minors'):
+            base *= 1.5
+        if context.get('affects_elderly'):
+            base *= 1.3
+        if context.get('affects_disabled'):
+            base *= 1.4
+        if context.get('affects_minorities'):
+            base *= 1.2
+        return min(1.0, base)
     
-    def _extract_unique(self, current: Dict, template: Dict) -> Dict:
-        """Extract only unique aspects different from template"""
-        unique = {}
-        for key in ['sprl_score', 'specific_stakeholders', 'context_variations']:
-            if key in current and current.get(key) != template.get(key):
-                unique[key] = current[key]
-        return unique
-
-
-class ImmutableStorage:
-    """Tamper-resistant audit trail storage"""
+    def _calculate_probability(self, context: Dict) -> float:
+        """Calculate probability factor (0-1)"""
+        # Framework assessment of likelihood
+        confidence = context.get('confidence', 0.5)
+        uncertainty = context.get('uncertainty', 0.5)
+        return confidence * (1 - uncertainty * 0.5)
     
-    def __init__(self):
-        self.storage = []
-        self.hash_chain = []
-        
-    def store(self, trace: Dict) -> str:
+    def add_chunk(self, risk: float, context: Dict) -> Optional[StaticAnchor]:
         """
-        Store moral trace with cryptographic integrity
-        Returns storage hash for verification
+        Add risk evaluation to stream.
+        Returns StaticAnchor if Sacred Pause line crossed.
         """
-        # Add timestamp if not present
-        if 'stored_at' not in trace:
-            trace['stored_at'] = datetime.now(timezone.utc).isoformat()
-        
-        # Create hash including previous block (blockchain-style)
-        trace_json = json.dumps(trace, sort_keys=True)
-        
-        if self.hash_chain:
-            previous_hash = self.hash_chain[-1]
-            content = f"{previous_hash}:{trace_json}"
-        else:
-            content = trace_json
-            
-        trace_hash = hashlib.sha256(content.encode()).hexdigest()
-        
-        # Store with integrity markers
-        storage_record = {
-            'trace': trace,
-            'hash': trace_hash,
-            'index': len(self.storage),
-            'previous_hash': self.hash_chain[-1] if self.hash_chain else None
-        }
-        
-        self.storage.append(storage_record)
-        self.hash_chain.append(trace_hash)
-        
-        return trace_hash
-    
-    def retrieve(self, decision_id: str = None, timeframe: Tuple[str, str] = None) -> List[Dict]:
-        """Retrieve logs for investigation"""
-        results = []
-        
-        for record in self.storage:
-            trace = record['trace']
-            
-            # Filter by decision_id if provided
-            if decision_id and trace.get('decision_id') != decision_id:
-                continue
-                
-            # Filter by timeframe if provided
-            if timeframe:
-                trace_time = trace.get('timestamp', trace.get('stored_at'))
-                if not (timeframe[0] <= trace_time <= timeframe[1]):
-                    continue
-                    
-            results.append(trace)
-            
-        return results
-    
-    def verify_integrity(self) -> bool:
-        """Verify entire chain integrity"""
-        for i, record in enumerate(self.storage):
-            expected_content = json.dumps(record['trace'], sort_keys=True)
-            
-            if i > 0:
-                expected_content = f"{self.hash_chain[i-1]}:{expected_content}"
-                
-            computed_hash = hashlib.sha256(expected_content.encode()).hexdigest()
-            
-            if computed_hash != record['hash']:
-                return False
-                
-        return True
-
-
-class TMLFramework:
-    """
-    Core TML Framework Implementation
-    Organizations control when Sacred Pause triggers
-    TML ensures logging when it does
-    """
-    
-    def __init__(self, organization_config: Dict):
-        """
-        Initialize TML with organization-specific configuration
-        
-        Args:
-            organization_config: Dict containing:
-                - sprl_threshold: Organization's trigger threshold
-                - risk_categories: Domain-specific risk definitions
-                - stakeholder_methodology: How to identify affected parties
-                - retention_days: How long to keep logs (minimum per domain)
-        """
-        # Organization controls these
-        self.sprl_threshold = organization_config.get('sprl_threshold', 0.7)
-        self.risk_categories = organization_config.get('risk_categories', {})
-        self.stakeholder_methodology = organization_config.get('stakeholder_methodology', 'standard')
-        self.calculate_risk_on = organization_config.get('calculate_risk_on', 'all')  # all, samples, threshold
-        self.retention_days = organization_config.get('retention_days', 1095)  # 3 years default
-        
-        # TML mandates these capabilities
-        self.logging_enabled = True  # Cannot be disabled
-        self.audit_immutable = True  # Cannot be modified
-        self.investigation_api = True  # Must be accessible
-        
-        # Initialize subsystems
-        self.pattern_categorizer = PatternCategory()
-        self.immutable_storage = ImmutableStorage()
-        self.decision_counter = 0
-        self.sacred_pause_triggers = 0
-        
-        # Performance monitoring
-        self.performance_stats = {
-            'total_decisions': 0,
-            'sacred_pauses': 0,
-            'average_log_time_ms': 0,
-            'storage_saved_percent': 0
-        }
-    
-    def process_decision(self, context: Dict, ai_decision_func=None) -> Dict:
-        """
-        Process AI decision with Sacred Pause logging when triggered
-        
-        Args:
-            context: Decision context including stakeholders, action, etc.
-            ai_decision_func: Organization's AI decision function
-            
-        Returns:
-            Dict with decision and any generated logs
-        """
-        self.decision_counter += 1
-        self.performance_stats['total_decisions'] += 1
-        
-        decision_id = str(uuid.uuid4())
-        timestamp = datetime.now(timezone.utc).isoformat()
-        
-        # Organization determines if/when to calculate risk
-        should_evaluate = self._should_evaluate_risk(context)
-        
-        sacred_pause_triggered = False
-        moral_trace = None
-        storage_hash = None
-        
-        if should_evaluate:
-            # Calculate SPRL using organization's methodology
-            sprl_score = self.calculate_sprl(context)
-            
-            # Check if Sacred Pause triggers
-            if sprl_score >= self.sprl_threshold:
-                sacred_pause_triggered = True
-                self.sacred_pause_triggers += 1
-                self.performance_stats['sacred_pauses'] += 1
-                
-                # MANDATORY: Generate moral trace when triggered
-                start_time = time.time()
-                moral_trace = self.generate_moral_trace(
-                    context=context,
-                    sprl_score=sprl_score,
-                    decision_id=decision_id,
-                    timestamp=timestamp
-                )
-                
-                # Store immutable log
-                storage_hash = self.store_immutable_log(moral_trace)
-                
-                # Update performance stats
-                log_time = (time.time() - start_time) * 1000
-                self.performance_stats['average_log_time_ms'] = (
-                    (self.performance_stats['average_log_time_ms'] * (self.sacred_pause_triggers - 1) + log_time) 
-                    / self.sacred_pause_triggers
-                )
-        
-        # AI makes decision (no mandated delay)
-        if ai_decision_func:
-            ai_result = ai_decision_func(context)
-        else:
-            ai_result = self._default_decision(context)
-        
-        # Return decision with any logging metadata
-        return {
-            'decision_id': decision_id,
-            'timestamp': timestamp,
-            'decision': ai_result,
-            'sacred_pause_triggered': sacred_pause_triggered,
-            'moral_trace_stored': storage_hash is not None,
-            'storage_hash': storage_hash,
-            'sprl_score': sprl_score if should_evaluate else None
-        }
-    
-    def _should_evaluate_risk(self, context: Dict) -> bool:
-        """
-        Organization's logic for when to calculate risk
-        Can be always, sampling, or threshold-based
-        """
-        if self.calculate_risk_on == 'all':
-            return True
-        elif self.calculate_risk_on == 'samples':
-            # Example: Evaluate 10% of decisions
-            return self.decision_counter % 10 == 0
-        elif self.calculate_risk_on == 'threshold':
-            # Example: Only for high-stakes contexts
-            return context.get('stakes', 'low') in ['medium', 'high']
-        return True
-    
-    def calculate_sprl(self, context: Dict) -> float:
-        """
-        Calculate Stakeholder Proportional Risk Level
-        Organizations implement their own methodology
-        
-        This is a simplified example - organizations would implement
-        their domain-specific calculation
-        """
-        risk_score = 0.0
-        
-        # Stakeholder impact assessment
-        stakeholders = self.identify_stakeholders(context)
-        for stakeholder in stakeholders:
-            impact = stakeholder.get('impact_level', 0.5)
-            vulnerability = stakeholder.get('vulnerability', 1.0)
-            risk_score += impact * vulnerability
-        
-        # Normalize to 0-1 range
-        if stakeholders:
-            risk_score = risk_score / len(stakeholders)
-        
-        # Apply domain-specific risk factors
-        if context.get('irreversible', False):
-            risk_score *= 1.5
-        if context.get('affects_minors', False):
-            risk_score *= 2.0
-        if context.get('medical_decision', False):
-            risk_score *= 1.8
-            
-        return min(risk_score, 1.0)  # Cap at 1.0
-    
-    def identify_stakeholders(self, context: Dict) -> List[Dict]:
-        """
-        Identify affected parties using organization's methodology
-        """
-        stakeholders = []
-        
-        # Direct stakeholders
-        if 'user' in context:
-            stakeholders.append({
-                'type': 'direct_user',
-                'id': context['user'],
-                'impact_level': 0.8,
-                'vulnerability': self._assess_vulnerability(context['user'])
-            })
-        
-        # Affected individuals
-        if 'affected_parties' in context:
-            for party in context['affected_parties']:
-                stakeholders.append({
-                    'type': 'affected_individual',
-                    'id': party,
-                    'impact_level': 0.6,
-                    'vulnerability': self._assess_vulnerability(party)
-                })
-        
-        # Systemic stakeholders
-        if context.get('systemic_impact', False):
-            stakeholders.append({
-                'type': 'community',
-                'id': 'general_public',
-                'impact_level': 0.3,
-                'vulnerability': 1.0
-            })
-        
-        return stakeholders
-    
-    def _assess_vulnerability(self, stakeholder_id: Any) -> float:
-        """
-        Assess vulnerability level of stakeholder
-        Enhanced for protected groups
-        """
-        # This would connect to organization's user data
-        # Simplified example
-        if isinstance(stakeholder_id, dict):
-            if stakeholder_id.get('age', 99) < 18:
-                return 2.0  # Minor
-            if stakeholder_id.get('disability', False):
-                return 1.8  # Disabled
-            if stakeholder_id.get('elderly', False):
-                return 1.6  # Elderly
-        return 1.0  # Standard
-    
-    def generate_moral_trace(self, context: Dict, sprl_score: float, 
-                            decision_id: str, timestamp: str) -> Dict:
-        """
-        Generate comprehensive moral reasoning trace
-        MANDATORY when Sacred Pause triggers
-        """
-        stakeholders = self.identify_stakeholders(context)
-        
-        trace = {
-            'decision_id': decision_id,
-            'timestamp': timestamp,
-            'sprl_score': sprl_score,
-            'stakeholders': [s['type'] for s in stakeholders],
-            'stakeholder_types': list(set(s['type'] for s in stakeholders)),
-            'decision_type': context.get('decision_type', 'general'),
-            'risk_category': self._categorize_risk(sprl_score),
-            
-            # Ethical reasoning
-            'ethical_principles': self._identify_principles(context),
-            'mitigations_applied': self._identify_mitigations(context, sprl_score),
-            'alternatives_considered': context.get('alternatives', []),
-            
-            # Context
-            'domain': context.get('domain', 'general'),
-            'reversibility': not context.get('irreversible', False),
-            'time_sensitivity': context.get('time_sensitive', False),
-            
-            # Vulnerable population analysis (if applicable)
-            'vulnerable_population_analysis': self._analyze_vulnerable_impact(stakeholders)
-        }
-        
-        # Add enhanced documentation for vulnerable populations
-        if trace['vulnerable_population_analysis']:
-            trace['enhanced_safeguards'] = self._generate_enhanced_safeguards(
-                context, 
-                trace['vulnerable_population_analysis']
-            )
-        
-        return trace
-    
-    def _categorize_risk(self, sprl_score: float) -> str:
-        """Categorize risk level for pattern matching"""
-        if sprl_score >= 0.9:
-            return 'critical'
-        elif sprl_score >= 0.7:
-            return 'high'
-        elif sprl_score >= 0.5:
-            return 'medium'
-        elif sprl_score >= 0.3:
-            return 'low'
-        return 'minimal'
-    
-    def _identify_principles(self, context: Dict) -> List[str]:
-        """Identify ethical principles relevant to decision"""
-        principles = []
-        
-        if context.get('fairness_required', False):
-            principles.append('fairness')
-        if context.get('privacy_sensitive', False):
-            principles.append('privacy')
-        if context.get('autonomy_affecting', False):
-            principles.append('autonomy')
-        if context.get('beneficence_relevant', False):
-            principles.append('beneficence')
-        if context.get('non_maleficence', True):
-            principles.append('non_maleficence')
-            
-        return principles if principles else ['general_ethics']
-    
-    def _identify_mitigations(self, context: Dict, sprl_score: float) -> List[str]:
-        """Identify mitigations applied based on risk"""
-        mitigations = []
-        
-        if sprl_score >= 0.8:
-            mitigations.append('enhanced_logging')
-            mitigations.append('stakeholder_notification')
-        if sprl_score >= 0.6:
-            mitigations.append('alternative_analysis')
-        if context.get('affects_minors', False):
-            mitigations.append('child_safety_protocols')
-        if context.get('medical_decision', False):
-            mitigations.append('medical_ethics_review')
-            
-        return mitigations
-    
-    def _analyze_vulnerable_impact(self, stakeholders: List[Dict]) -> Optional[Dict]:
-        """Analyze impact on vulnerable populations"""
-        vulnerable_groups = []
-        
-        for stakeholder in stakeholders:
-            vulnerability = stakeholder.get('vulnerability', 1.0)
-            if vulnerability > 1.0:
-                group_type = 'unknown'
-                if vulnerability >= 2.0:
-                    group_type = 'minor'
-                elif vulnerability >= 1.8:
-                    group_type = 'disabled'
-                elif vulnerability >= 1.6:
-                    group_type = 'elderly'
-                    
-                vulnerable_groups.append({
-                    'group': group_type,
-                    'impact_level': stakeholder.get('impact_level', 0.5),
-                    'special_considerations': self._get_special_considerations(group_type)
-                })
-        
-        if vulnerable_groups:
-            return {
-                'groups_identified': vulnerable_groups,
-                'total_vulnerable_stakeholders': len(vulnerable_groups),
-                'highest_vulnerability': max(s['vulnerability'] for s in stakeholders)
-            }
-        
-        return None
-    
-    def _get_special_considerations(self, group_type: str) -> str:
-        """Get special considerations for vulnerable group"""
-        considerations = {
-            'minor': 'Developmental impact, long-term consequences, guardian involvement',
-            'disabled': 'Accessibility needs, cognitive considerations, support requirements',
-            'elderly': 'Cognitive decline considerations, technological barriers, isolation risks',
-            'unknown': 'General vulnerability considerations'
-        }
-        return considerations.get(group_type, 'Standard considerations')
-    
-    def _generate_enhanced_safeguards(self, context: Dict, vulnerability_analysis: Dict) -> List[str]:
-        """Generate enhanced safeguards for vulnerable populations"""
-        safeguards = []
-        
-        for group in vulnerability_analysis['groups_identified']:
-            if group['group'] == 'minor':
-                safeguards.extend([
-                    'age_appropriate_communication',
-                    'parental_notification_available',
-                    'developmental_impact_assessment'
-                ])
-            elif group['group'] == 'disabled':
-                safeguards.extend([
-                    'accessibility_compliance_verified',
-                    'alternative_access_methods',
-                    'support_resources_provided'
-                ])
-            elif group['group'] == 'elderly':
-                safeguards.extend([
-                    'simplified_interface_option',
-                    'extended_time_allowances',
-                    'human_assistance_available'
-                ])
-        
-        return list(set(safeguards))  # Remove duplicates
-    
-    def store_immutable_log(self, moral_trace: Dict) -> str:
-        """
-        Store moral trace in immutable audit trail
-        Returns storage hash for verification
-        """
-        # Categorize for storage optimization
-        pattern_id, compressed_trace = self.pattern_categorizer.categorize(moral_trace)
-        
-        # Store in immutable storage
-        storage_hash = self.immutable_storage.store(compressed_trace)
-        
-        # Update storage savings statistics
-        if compressed_trace.get('storage_type') == 'compressed':
-            original_size = len(json.dumps(moral_trace))
-            compressed_size = compressed_trace.get('storage_size', 45)
-            savings = ((original_size - compressed_size) / original_size) * 100
-            
-            # Running average of storage savings
-            total_patterns = sum(self.pattern_categorizer.pattern_counter.values())
-            self.performance_stats['storage_saved_percent'] = (
-                (self.performance_stats['storage_saved_percent'] * total_patterns + savings) 
-                / (total_patterns + 1)
-            )
-        
-        return storage_hash
-    
-    def provide_investigation_access(self, institution: str, incident: Dict) -> Optional[Dict]:
-        """
-        MANDATORY: Provide investigation access to authorized institutions
-        
-        Args:
-            institution: Requesting institution identifier
-            incident: Dict with timeframe, affected_parties, etc.
-            
-        Returns:
-            Investigation package with relevant logs
-        """
-        # Verify institution authorization (would check against governance list)
-        authorized_institutions = [
-            'un_human_rights',
-            'ieee_ethics',
-            'amnesty_international',
-            # ... other 8 institutions from governance charter
-        ]
-        
-        if institution not in authorized_institutions:
-            return None
-        
-        # Retrieve relevant logs
-        logs = self.immutable_storage.retrieve(
-            decision_id=incident.get('decision_id'),
-            timeframe=incident.get('timeframe')
+        chunk = DynamicStreamChunk(
+            timestamp=datetime.now(timezone.utc).isoformat(),
+            risk_value=risk,
+            token_index=context.get('token_index'),
+            tool_boundary=context.get('tool_boundary'),
+            features=context.get('features', {})
         )
         
-        # Create investigation package
-        return {
-            'incident_id': incident.get('id'),
-            'logs': logs,
-            'log_count': len(logs),
-            'institution': institution,
-            'access_timestamp': datetime.now(timezone.utc).isoformat(),
-            'read_only': True,
-            'operational_control': False,
-            'integrity_verified': self.immutable_storage.verify_integrity()
-        }
-    
-    async def process_decision_async(self, context: Dict, ai_decision_func=None) -> Dict:
-        """
-        Asynchronous decision processing for latency-critical systems
-        Logs are generated in background without blocking
-        """
-        decision_id = str(uuid.uuid4())
-        timestamp = datetime.now(timezone.utc).isoformat()
+        self.chunks.append(chunk)
+        chunk_hash = hashlib.sha3_256(
+            json.dumps(chunk.to_dict()).encode()
+        ).hexdigest()
+        self.chunk_hashes.append(chunk_hash)
         
-        # Make decision immediately
-        if ai_decision_func:
-            ai_result = await ai_decision_func(context) if asyncio.iscoroutinefunction(ai_decision_func) else ai_decision_func(context)
-        else:
-            ai_result = self._default_decision(context)
+        # Check Sacred Pause threshold (framework-enforced)
+        SACRED_PAUSE_LINE = self._get_sacred_pause_line()
         
-        # Check if logging needed (non-blocking)
-        should_evaluate = self._should_evaluate_risk(context)
-        
-        if should_evaluate:
-            # Create logging task without waiting
-            asyncio.create_task(self._async_sacred_pause_logging(
-                context, decision_id, timestamp
-            ))
-        
-        # Return immediately
-        return {
-            'decision_id': decision_id,
-            'timestamp': timestamp,
-            'decision': ai_result,
-            'logging_async': should_evaluate
-        }
-    
-    async def _async_sacred_pause_logging(self, context: Dict, decision_id: str, timestamp: str):
-        """Background Sacred Pause logging"""
-        sprl_score = self.calculate_sprl(context)
-        
-        if sprl_score >= self.sprl_threshold:
-            moral_trace = self.generate_moral_trace(
-                context=context,
-                sprl_score=sprl_score,
-                decision_id=decision_id,
-                timestamp=timestamp
+        if risk >= SACRED_PAUSE_LINE and not self.sa_written:
+            # Write Static Anchor (atomic, once only)
+            self.static_anchor = StaticAnchor(
+                sa_id=f"SA-{int(time.time()*1000000)}",
+                sa_ts=datetime.now(timezone.utc).isoformat(),
+                initial_risk=risk,
+                model_id=context.get('model_id', 'unknown'),
+                runtime_id=context.get('runtime_id', 'unknown'),
+                policy_version="4.0.0"
             )
-            self.store_immutable_log(moral_trace)
-    
-    def _default_decision(self, context: Dict) -> Dict:
-        """Default decision when no AI function provided"""
-        return {
-            'action': 'proceed',
-            'confidence': 0.5,
-            'reasoning': 'Default decision - no AI function provided'
-        }
-    
-    def get_performance_report(self) -> Dict:
-        """Get framework performance statistics"""
-        return {
-            'total_decisions': self.performance_stats['total_decisions'],
-            'sacred_pause_triggers': self.performance_stats['sacred_pauses'],
-            'trigger_rate': (self.performance_stats['sacred_pauses'] / 
-                           max(self.performance_stats['total_decisions'], 1)) * 100,
-            'average_logging_time_ms': self.performance_stats['average_log_time_ms'],
-            'storage_optimization': f"{self.performance_stats['storage_saved_percent']:.1f}% saved",
-            'integrity_verified': self.immutable_storage.verify_integrity()
-        }
-    
-    def export_logs_for_audit(self, start_date: str, end_date: str) -> Dict:
-        """Export logs for external audit"""
-        logs = self.immutable_storage.retrieve(timeframe=(start_date, end_date))
-        
-        return {
-            'export_timestamp': datetime.now(timezone.utc).isoformat(),
-            'period': {'start': start_date, 'end': end_date},
-            'total_logs': len(logs),
-            'logs': logs,
-            'integrity_verified': self.immutable_storage.verify_integrity(),
-            'performance_stats': self.get_performance_report()
-        }
-
-
-class BatchLogger:
-    """
-    High-frequency batch logging for systems with many decisions
-    Optimizes performance by batching Sacred Pause logs
-    """
-    
-    def __init__(self, tml_framework: TMLFramework, batch_size: int = 100):
-        self.tml = tml_framework
-        self.batch_size = batch_size
-        self.buffer = []
-        self.last_flush = time.time()
-        self.max_wait_seconds = 5  # Flush at least every 5 seconds
-    
-    def log_decision(self, context: Dict, decision: Dict):
-        """Add decision to batch"""
-        if self.tml._should_evaluate_risk(context):
-            sprl_score = self.tml.calculate_sprl(context)
+            self.sa_written = True
+            self.is_logging = True
+            return self.static_anchor
             
-            if sprl_score >= self.tml.sprl_threshold:
-                moral_trace = self.tml.generate_moral_trace(
-                    context=context,
-                    sprl_score=sprl_score,
-                    decision_id=decision['decision_id'],
-                    timestamp=decision['timestamp']
-                )
-                self.buffer.append(moral_trace)
-                
-                # Check if flush needed
-                if len(self.buffer) >= self.batch_size or \
-                   (time.time() - self.last_flush) > self.max_wait_seconds:
-                    self.flush()
+        # Check amber zone for Lite Traces
+        if 0.8 * SACRED_PAUSE_LINE <= risk < SACRED_PAUSE_LINE:
+            lite = LiteTrace(
+                ts=datetime.now(timezone.utc).isoformat(),
+                scenario_signature=self._compute_scenario_signature(context),
+                top_features=self._extract_top_features(context),
+                risk_snapshot=risk,
+                policy_version="4.0.0"
+            )
+            self.lite_traces.append(lite)
+            
+        return None
     
-    def flush(self):
-        """Flush buffered logs to storage"""
-        for trace in self.buffer:
-            self.tml.store_immutable_log(trace)
+    def _get_sacred_pause_line(self) -> float:
+        """
+        Framework-enforced Sacred Pause threshold.
+        Domain-specific but NOT deployer-configurable.
+        """
+        domain_thresholds = {
+            'healthcare': 0.15,
+            'autonomous_vehicle': 0.10,
+            'financial': 0.30,
+            'social_media': 0.40,
+            'education': 0.25,
+            'criminal_justice': 0.20,
+            'general': 0.35
+        }
+        return domain_thresholds.get(self.domain, 0.35)
+    
+    def _compute_scenario_signature(self, context: Dict) -> str:
+        """Generate signature for scenario categorization"""
+        key_features = sorted(context.get('features', {}).items())[:5]
+        sig_data = json.dumps(key_features)
+        return hashlib.sha3_256(sig_data.encode()).hexdigest()[:16]
+    
+    def _extract_top_features(self, context: Dict) -> List[str]:
+        """Extract most important features for lite trace"""
+        features = context.get('features', {})
+        sorted_features = sorted(features.items(), key=lambda x: x[1], reverse=True)
+        return [f[0] for f in sorted_features[:5]]
+    
+    def get_risk_curve(self) -> List[Tuple[str, float]]:
+        """Get complete risk trajectory"""
+        return [(c.timestamp, c.risk_value) for c in self.chunks]
+    
+    def seal_log(self) -> Dict[str, Any]:
+        """Seal and return complete moral trace log"""
+        log = {
+            'header': {
+                'sa_id': self.static_anchor.sa_id if self.static_anchor else None,
+                'sa_ts': self.static_anchor.sa_ts if self.static_anchor else None,
+                'initial_risk': self.static_anchor.initial_risk if self.static_anchor else None,
+                'policy_version': '4.0.0'
+            },
+            'timeline': {
+                'risk_curve': self.get_risk_curve(),
+                'chunk_count': len(self.chunks),
+                'lite_traces': len(self.lite_traces)
+            },
+            'integrity': {
+                'chunk_hashes': self.chunk_hashes[:100],  # First 100 for space
+                'log_hash': self._compute_log_hash()
+            }
+        }
+        return log
+    
+    def _compute_log_hash(self) -> str:
+        """Compute hash of entire log"""
+        if not self.chunk_hashes:
+            return "empty"
+        combined = "".join(self.chunk_hashes)
+        return hashlib.sha3_256(combined.encode()).hexdigest()
+
+
+class TMLEngine:
+    """
+    Main TML Framework Engine
+    Framework-enforced Sacred Pause, no deployer thresholds
+    """
+    
+    def __init__(self, domain: str = "general", region: str = "US"):
+        self.domain = domain
+        self.region = region
+        self.active_streams = {}
+        self.console = DeveloperConsole()
         
-        self.buffer = []
-        self.last_flush = time.time()
+    def process_decision(self, prompt: str, context: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Process decision with dual-layer SPRL.
+        Non-blocking execution with parallel logging.
+        """
+        request_id = f"REQ-{int(time.time()*1000000)}"
+        t0 = time.time()
+        
+        # Start Dynamic Stream at prompt arrival
+        stream = DynamicStream(t0, self.domain, self.region)
+        self.active_streams[request_id] = stream
+        
+        # Execute decision immediately (non-blocking)
+        decision_thread = threading.Thread(
+            target=self._execute_decision,
+            args=(prompt, context, request_id)
+        )
+        decision_thread.start()
+        
+        # Parallel logging thread
+        logging_thread = threading.Thread(
+            target=self._parallel_logging,
+            args=(stream, context, request_id)
+        )
+        logging_thread.start()
+        
+        # Return immediately with handle
+        return {
+            'request_id': request_id,
+            'status': 'processing',
+            'console_view': f'/console/{request_id}'
+        }
     
-    def __del__(self):
-        """Ensure all logs are flushed on cleanup"""
-        if self.buffer:
-            self.flush()
+    def _execute_decision(self, prompt: str, context: Dict, request_id: str):
+        """Execute the actual decision (runs immediately)"""
+        # Your actual AI decision logic here
+        # This is NOT delayed by logging
+        time.sleep(0.001)  # Simulate decision processing
+        
+        # Decision executes regardless of SPRL
+        result = {
+            'decision': 'executed',
+            'request_id': request_id,
+            'timestamp': datetime.now(timezone.utc).isoformat()
+        }
+        
+        # Update console
+        self.console.update(request_id, {'decision': result})
+        
+    def _parallel_logging(self, stream: DynamicStream, context: Dict, request_id: str):
+        """
+        Parallel logging process.
+        Evaluates risk continuously and writes logs.
+        """
+        # Simulate continuous risk evaluation
+        for i in range(10):  # Simplified - real system would track actual tokens
+            time.sleep(0.01)  # Simulate processing time
+            
+            # Evaluate current risk
+            current_context = {**context, 'token_index': i}
+            risk = stream.evaluate_risk(current_context)
+            
+            # Add to stream (may trigger Static Anchor)
+            sa = stream.add_chunk(risk, current_context)
+            
+            # Update console
+            self.console.update(request_id, {
+                'risk_curve': stream.get_risk_curve(),
+                'sa_tick': sa.sa_ts if sa else None,
+                'current_risk': risk
+            })
+            
+            if sa:
+                # Sacred Pause triggered - enhance logging
+                self._generate_moral_trace(stream, context, request_id)
+        
+        # Seal and distribute log
+        final_log = stream.seal_log()
+        self._distribute_to_hybrid_shield(final_log)
+        
+    def _generate_moral_trace(self, stream: DynamicStream, context: Dict, request_id: str):
+        """Generate comprehensive moral trace when Sacred Pause triggers"""
+        trace = {
+            'request_id': request_id,
+            'sacred_pause_triggered': True,
+            'anchor': asdict(stream.static_anchor) if stream.static_anchor else None,
+            'alternatives_considered': context.get('alternatives', []),
+            'stakeholder_map': context.get('stakeholders', []),
+            'rationale': 'Framework detected moral complexity requiring logging'
+        }
+        
+        # Store immutably (implementation depends on storage backend)
+        self._store_immutable_trace(trace)
+        
+    def _store_immutable_trace(self, trace: Dict):
+        """Store trace in WORM storage"""
+        # Implementation would connect to actual WORM storage
+        pass
+        
+    def _distribute_to_hybrid_shield(self, log: Dict):
+        """Distribute log to 11 independent institutions"""
+        # Implementation would connect to actual institutions
+        pass
 
 
-# Compliance verification utilities
-def verify_tml_compliance(framework: TMLFramework) -> Dict:
+class DeveloperConsole:
     """
-    Verify TML implementation meets mandatory requirements
+    Read-only developer console for SPRL visibility
+    Mandatory for all deployments
     """
-    compliance = {
-        'logging_capability': framework.logging_enabled,
-        'immutable_audit': framework.audit_immutable,
-        'investigation_api': framework.investigation_api,
-        'sprl_threshold_set': framework.sprl_threshold is not None,
-        'retention_configured': framework.retention_days >= 1095,  # 3 years minimum
-        'pattern_optimization': framework.pattern_categorizer is not None,
-        'integrity_verification': framework.immutable_storage.verify_integrity()
-    }
     
-    compliance['fully_compliant'] = all(compliance.values())
-    
-    return compliance
+    def __init__(self):
+        self.views = {}
+        
+    def update(self, request_id: str, data: Dict):
+        """Update console view (read-only from dev perspective)"""
+        if request_id not in self.views:
+            self.views[request_id] = {
+                'created': datetime.now(timezone.utc).isoformat(),
+                'risk_curve': [],
+                'sa_tick': None,
+                'status': 'normal'
+            }
+        
+        self.views[request_id].update(data)
+        
+        # Determine status based on risk
+        if data.get('current_risk', 0) >= 0.8:
+            self.views[request_id]['status'] = 'prohibit'
+        elif data.get('sa_tick'):
+            self.views[request_id]['status'] = 'pause'
+            
+    def get_view(self, request_id: str) -> Dict:
+        """Get read-only console view"""
+        return self.views.get(request_id, {})
 
 
-# Export main components
+# Decorator pattern for easy integration
+def dynamic_sprl(domain: str = "general", region: str = "US"):
+    """Decorator for automatic SPRL tracking"""
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            tml = TMLEngine(domain, region)
+            
+            # Extract context from function arguments
+            context = kwargs.get('context', {})
+            prompt = args[0] if args else kwargs.get('prompt', '')
+            
+            # Start TML processing (non-blocking)
+            tml_handle = tml.process_decision(prompt, context)
+            
+            # Execute original function immediately
+            result = func(*args, **kwargs)
+            
+            # Attach TML handle for tracking
+            if isinstance(result, dict):
+                result['_tml_handle'] = tml_handle
+                
+            return result
+        return wrapper
+    return decorator
+
+
+# Simplified API
+def create_tml_engine(domain: str = "general", region: str = "US") -> TMLEngine:
+    """Create a TML engine instance"""
+    return TMLEngine(domain, region)
+
+
+# Export public API
 __all__ = [
-    'TMLFramework',
-    'TernaryState',
-    'BatchLogger',
-    'verify_tml_compliance'
+    'TMLState',
+    'TMLEngine',
+    'DynamicStream',
+    'StaticAnchor',
+    'dynamic_sprl',
+    'create_tml_engine',
+    'DeveloperConsole'
 ]
-
-"""
-Contact Information
-- Email: leogouk@gmail.com 
-- Successor Contact: support@tml-goukassian.org 
-- See Succession Charter: /TML-SUCCESSION-CHARTER.md
-"""
