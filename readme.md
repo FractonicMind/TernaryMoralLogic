@@ -139,8 +139,6 @@ The framework's protection against tampering:
 -  Real-time replication to 11 independent institutions   
 -  Geographic and jurisdictional diversity   
 -  No single point of failure   
-
-# Second Armor: Blockchain Anchoring
 -  Cryptographic proof on immutable ledgers   
 -  Mathematical impossibility of alteration   
 -  Public verification capability   
