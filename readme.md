@@ -54,7 +54,7 @@ Together, SA and DS provide certainty at the anchor and vigilance in the stream.
 - Both modes produce cryptographically sealed, court-admissible Moral Trace Logs distributed across institutional mirrors.
 
 ### Documentation
-- [SPRL Operation Modes](docs/SPRL_Operation_Modes.md) – formal specification of SA and DS  
+- [SPRL Operation Modes](docs/SPRL_OPERATION_MODES.md) – formal specification of SA and DS  
 - [SPRL Risk Model](docs/SPRL_Risk_Model.md) – mathematical framework for proportionality  
 - [SPRL Compliance Declaration](governance/SPRL_Compliance_Declaration.md) – required for deployment claims  
 - [SPRL Audit Workflow](protection/SPRL_Audit_Workflow.md) – end-to-end evidentiary chain  
