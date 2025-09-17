@@ -101,18 +101,17 @@ Together, SA and DS provide certainty at the anchor and vigilance in the stream.
 -  Clamped to [0.0001, 0.9999]
 -  Thresholds framework-enforced (not configurable)
 
-### Compliance Requirements
-- **Static Anchor is mandatory** in every deployment.  
-- **Dynamic Stream** may be adopted in high-maturity environments with governance capacity.  
+### Compliance Requirements   
+- Static Anchor is mandatory in every deployment.  
+- Dynamic Stream may be adopted in high-maturity environments with governance capacity.  
 - Both modes produce cryptographically sealed, court-admissible Moral Trace Logs distributed across institutional mirrors.
 
-### Compliance Invariants
-
-I1: DS starts at t₀ (no pre-prompt gap)
-I2: SA is singular and atomic
-I3: SA is framework-enforced
-I4: SA present when pause occurs
-I5: DS chunks cryptographically chain to SA
+### Compliance Invariants   
+-  1: DS starts at t₀ (no pre-prompt gap)
+-  2: SA is singular and atomic
+-  3: SA is framework-enforced
+-  4: SA present when pause occurs
+-  5: DS chunks cryptographically chain to SA
 
 ### Documentation
 - [SPRL Operation Modes](docs/SPRL_OPERATION_MODES.md) – formal specification of SA and DS  
@@ -122,13 +121,6 @@ I5: DS chunks cryptographically chain to SA
 - [SPRL Tamper Resistance](security/SPRL_Tamper_Resistance.md) – guarantees of log integrity  
 
 For the full checklist of supporting files, see [SPRL_TODO.md](docs/SPRL_TODO.md).
-
----
-
-
----
-
-
 
 ---
 
