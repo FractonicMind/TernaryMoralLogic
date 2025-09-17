@@ -1,362 +1,338 @@
 """
-Autonomous Vehicle TML Implementation Example
+Autonomous Vehicle Ethics - TML Framework with Dual-Layer SPRL
+==============================================================
 
-Demonstrates how an autonomous vehicle system MIGHT implement TML
-for safety-critical decisions. All thresholds and risk calculations
-are EXAMPLES ONLY - each manufacturer must determine appropriate values.
+Demonstrates framework-enforced Sacred Pause for split-second moral decisions.
+The framework determines when AV decisions require enhanced logging.
+Domain-specific threshold: 0.10 (lowest due to safety criticality).
+
+Created by: Lev Goukassian (ORCID: 0009-0006-5966-1243)
+Repository: https://github.com/FractonicMind/TernaryMoralLogic
 """
 
-import sys
-import os
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
-from implementations.python_library import create_tml_framework, ComplianceChecker
-import random
-import time
+from dataclasses import dataclass
+from typing import List, Dict, Any, Optional
 from enum import Enum
-from typing import Dict, List, Tuple
+import time
+import json
+from datetime import datetime
+
+from tml import (
+    TMLEngine,
+    TMLState,
+    create_tml_engine,
+    dynamic_sprl
+)
 
 
-class SafetyLevel(Enum):
-    """Example safety classifications - manufacturers define their own"""
-    CRITICAL = "critical"  # Immediate safety risk
-    HIGH = "high"          # Potential safety impact
-    MEDIUM = "medium"      # Comfort/efficiency impact
-    LOW = "low"            # Minimal impact
+class PersonType(Enum):
+    """Categories of people in scenarios"""
+    CHILD = "child"
+    ADULT = "adult"
+    ELDERLY = "elderly"
+    PREGNANT_WOMAN = "pregnant_woman"
+    DISABLED = "disabled"
 
 
-class AutonomousVehicleAI:
+class ActionType(Enum):
+    """Possible vehicle actions"""
+    CONTINUE_STRAIGHT = "continue_straight"
+    SWERVE_LEFT = "swerve_left"
+    SWERVE_RIGHT = "swerve_right"
+    EMERGENCY_BRAKE = "emergency_brake"
+    ACCELERATE_THROUGH = "accelerate_through"
+
+
+@dataclass
+class Person:
+    """Individual in the scenario"""
+    person_type: PersonType
+    age: int
+    quantity: int = 1
+    compliance: str = "following_rules"  # or "jaywalking", "at_fault"
+
+
+@dataclass
+class Scenario:
+    """Traffic scenario requiring moral decision"""
+    scenario_id: str
+    description: str
+    passengers: List[Person]
+    path_straight: List[Person]
+    path_left: List[Person]
+    path_right: List[Person]
+    vehicle_speed: int  # km/h
+    time_to_impact: float  # seconds
+
+
+class AutonomousVehicleEthics:
     """
-    EXAMPLE autonomous vehicle decision system with TML integration.
-    
-    Real manufacturers would have vastly more sophisticated systems.
-    This demonstrates the logging infrastructure, not actual AV logic.
+    AV ethics system with framework-enforced Sacred Pause.
+    Domain 'autonomous_vehicle' gets lowest threshold (0.10).
     """
     
     def __init__(self):
-        # EXAMPLE CONFIGURATION - NOT FOR REAL USE
-        # Manufacturers must determine appropriate thresholds
-        self.framework = create_tml_framework(
-            sprl_threshold=0.4,  # EXAMPLE: Lower threshold for safety
-            domain="autonomous",
-            calculate_risk_on="all",  # Evaluate all decisions for safety
-            retention_days=3650  # 10 years for accident investigation
+        # AV domain gets special low threshold from framework
+        self.tml_engine = create_tml_engine(
+            domain="autonomous_vehicle",
+            region="US"
         )
+        self.decision_log = []
         
-        print("=" * 70)
-        print("AUTONOMOUS VEHICLE TML EXAMPLE")
-        print("=" * 70)
-        print()
-        print("⚠️  WARNING: This is a demonstration only!")
-        print("Real autonomous vehicles require rigorous safety engineering.")
-        print("Thresholds shown are arbitrary examples.")
-        print()
-        print(f"Example Configuration:")
-        print(f"  SPRL Threshold: {self.framework.sprl_threshold}")
-        print(f"  Retention: 10 years (for accident investigation)")
-        print(f"  Domain: Autonomous vehicles")
-        print()
-    
-    def calculate_safety_risk(self, scenario: Dict) -> float:
+    def make_moral_decision(self, scenario: Scenario) -> Dict[str, Any]:
         """
-        EXAMPLE risk calculation for autonomous vehicle decisions.
-        
-        Real systems would use sophisticated sensor fusion,
-        predictive modeling, and safety engineering standards.
+        Make split-second decision with parallel moral logging.
+        Decision executes immediately, Sacred Pause logs in parallel.
         """
-        base_risk = 0.0
+        start_time = time.time()
         
-        # Speed factor (example)
-        speed_kmh = scenario.get('speed_kmh', 0)
-        if speed_kmh > 100:
-            base_risk += 0.3
-        elif speed_kmh > 50:
-            base_risk += 0.2
-        elif speed_kmh > 30:
-            base_risk += 0.1
+        # Build context for SPRL evaluation
+        context = self._build_context(scenario)
         
-        # Proximity to other objects (example)
-        min_distance = scenario.get('min_distance_m', 100)
-        if min_distance < 5:
-            base_risk += 0.5
-        elif min_distance < 10:
-            base_risk += 0.3
-        elif min_distance < 20:
-            base_risk += 0.1
+        # Start TML processing (non-blocking)
+        prompt = f"Vehicle decision for scenario {scenario.scenario_id}"
+        tml_handle = self.tml_engine.process_decision(prompt, context)
         
-        # Environmental conditions (example)
-        conditions = scenario.get('conditions', {})
-        if conditions.get('heavy_rain'):
-            base_risk += 0.2
-        if conditions.get('night'):
-            base_risk += 0.1
-        if conditions.get('construction_zone'):
-            base_risk += 0.3
+        # Make actual decision IMMEDIATELY (not delayed)
+        decision = self._compute_optimal_action(scenario)
+        decision_time = (time.time() - start_time) * 1000  # ms
         
-        # Vulnerable road users (example)
-        if scenario.get('pedestrians_detected'):
-            base_risk += 0.4
-        if scenario.get('cyclists_detected'):
-            base_risk += 0.3
-        if scenario.get('school_zone'):
-            base_risk += 0.5
+        # Brief wait for parallel processing to establish Sacred Pause status
+        time.sleep(0.02)  # 20ms for parallel threads
         
-        return min(base_risk, 1.0)
-    
-    def make_driving_decision(self, scenario: Dict) -> Dict:
-        """
-        Process driving decision with TML logging for safety-critical events.
-        """
-        # Add safety risk calculation to context
-        scenario['calculated_risk'] = self.calculate_safety_risk(scenario)
+        # Check console for Sacred Pause status
+        console_view = self.tml_engine.console.get_view(tml_handle['request_id'])
         
-        # Identify stakeholders
-        stakeholders = []
-        if scenario.get('pedestrians_detected'):
-            stakeholders.append({'type': 'pedestrian', 'vulnerability': 2.0})
-        if scenario.get('cyclists_detected'):
-            stakeholders.append({'type': 'cyclist', 'vulnerability': 1.8})
-        if scenario.get('other_vehicles'):
-            for vehicle in scenario.get('other_vehicles', []):
-                stakeholders.append({'type': 'vehicle_occupants', 'vulnerability': 1.2})
-        stakeholders.append({'type': 'own_occupants', 'vulnerability': 1.0})
-        
-        scenario['stakeholders'] = stakeholders
-        
-        # Example decision logic (simplified)
-        def autonomous_decision_logic(context):
-            risk = context['calculated_risk']
-            
-            if risk > 0.8:
-                return {
-                    'action': 'emergency_stop',
-                    'reason': 'critical_safety_risk',
-                    'deceleration': 'maximum'
-                }
-            elif risk > 0.6:
-                return {
-                    'action': 'slow_down',
-                    'reason': 'elevated_risk',
-                    'target_speed': max(context['speed_kmh'] * 0.5, 20)
-                }
-            elif risk > 0.4:
-                return {
-                    'action': 'increase_following_distance',
-                    'reason': 'moderate_risk',
-                    'adjustment': '50%'
-                }
-            else:
-                return {
-                    'action': 'maintain_course',
-                    'reason': 'acceptable_risk',
-                    'confidence': 0.95
-                }
-        
-        # Process with TML
-        result = self.framework.process_decision(
-            context=scenario,
-            ai_decision_func=autonomous_decision_logic
-        )
-        
-        return result
-    
-    def simulate_driving_scenarios(self):
-        """Simulate various driving scenarios to demonstrate TML logging."""
-        
-        scenarios = [
-            {
-                'name': 'Highway Cruising',
-                'speed_kmh': 110,
-                'min_distance_m': 50,
-                'conditions': {'clear': True},
-                'pedestrians_detected': False,
-                'cyclists_detected': False,
-                'other_vehicles': [{'distance': 50}, {'distance': 75}]
+        # Package result
+        result = {
+            'scenario_id': scenario.scenario_id,
+            'recommended_action': decision,
+            'decision_time_ms': decision_time,
+            'tml_tracking': tml_handle['request_id'],
+            'sacred_pause_engaged': console_view.get('sa_tick') is not None,
+            'risk_assessment': {
+                'final_risk': console_view.get('current_risk', 0),
+                'risk_curve': console_view.get('risk_curve', []),
+                'status': console_view.get('status', 'unknown')
             },
-            {
-                'name': 'School Zone Approach',
-                'speed_kmh': 40,
-                'min_distance_m': 30,
-                'conditions': {'school_hours': True},
-                'school_zone': True,
-                'pedestrians_detected': True,
-                'cyclists_detected': False,
-                'other_vehicles': []
-            },
-            {
-                'name': 'Emergency Braking Event',
-                'speed_kmh': 60,
-                'min_distance_m': 3,
-                'conditions': {'sudden_obstacle': True},
-                'pedestrians_detected': False,
-                'cyclists_detected': False,
-                'other_vehicles': [{'distance': 3, 'sudden_stop': True}]
-            },
-            {
-                'name': 'Rain and Construction',
-                'speed_kmh': 45,
-                'min_distance_m': 15,
-                'conditions': {'heavy_rain': True, 'construction_zone': True},
-                'pedestrians_detected': False,
-                'cyclists_detected': True,
-                'other_vehicles': [{'distance': 15}]
-            },
-            {
-                'name': 'Night Driving - Rural',
-                'speed_kmh': 80,
-                'min_distance_m': 100,
-                'conditions': {'night': True, 'rural': True},
-                'pedestrians_detected': False,
-                'cyclists_detected': False,
-                'other_vehicles': []
-            }
-        ]
-        
-        print("SIMULATING DRIVING SCENARIOS")
-        print("-" * 70)
-        print()
-        
-        for scenario in scenarios:
-            print(f"Scenario: {scenario['name']}")
-            print(f"  Speed: {scenario['speed_kmh']} km/h")
-            print(f"  Conditions: {scenario['conditions']}")
-            
-            result = self.make_driving_decision(scenario)
-            
-            print(f"  Decision: {result['decision']['action']}")
-            print(f"  Reason: {result['decision']['reason']}")
-            print(f"  Risk Score: {scenario['calculated_risk']:.2f}")
-            print(f"  SPRL Score: {result['sprl_score']:.2f}")
-            
-            if result['sacred_pause_triggered']:
-                print(f"  ✓ Safety event logged for investigation")
-                print(f"    Log Hash: {result['storage_hash'][:12]}...")
-            else:
-                print(f"  - Below logging threshold")
-            
-            print()
-        
-        # Show statistics
-        self.display_safety_metrics()
-    
-    def display_safety_metrics(self):
-        """Display safety and performance metrics."""
-        
-        print("=" * 70)
-        print("SAFETY METRICS AND COMPLIANCE")
-        print("=" * 70)
-        
-        stats = self.framework.get_performance_report()
-        
-        print(f"Total Decisions: {stats['total_decisions']}")
-        print(f"Safety Events Logged: {stats['sacred_pause_triggers']}")
-        print(f"Logging Rate: {stats['trigger_rate']:.1f}%")
-        print(f"Average Log Time: {stats['average_logging_time_ms']:.1f}ms")
-        print()
-        
-        # Calibration guidance
-        if stats['trigger_rate'] < 0.1:
-            print("⚠️  CALIBRATION NOTE:")
-            print("  Very low logging rate - may miss safety-critical events")
-            print("  Consider if threshold is appropriate for safety requirements")
-        elif stats['trigger_rate'] > 30:
-            print("⚠️  CALIBRATION NOTE:")
-            print("  High logging rate - many events being recorded")
-            print("  Verify if all logged events are truly safety-relevant")
-        else:
-            print("✓ Logging rate appears appropriate for safety monitoring")
-        
-        print()
-        
-        # Compliance check
-        compliance = ComplianceChecker.check_framework(self.framework)
-        print(f"Infrastructure Compliant: {compliance['infrastructure_compliant']}")
-        
-        if not compliance['infrastructure_compliant']:
-            print("Issues:")
-            for issue in compliance['issues']:
-                print(f"  ✗ {issue}")
-        
-        print()
-    
-    def demonstrate_investigation_scenario(self):
-        """Demonstrate how investigation would work after an incident."""
-        
-        print("=" * 70)
-        print("POST-INCIDENT INVESTIGATION EXAMPLE")
-        print("=" * 70)
-        print()
-        
-        print("Scenario: Minor collision occurred, investigating decision logs")
-        print()
-        
-        # Simulate incident investigation request
-        incident = {
-            'id': 'INC-AV-2025-001',
-            'timeframe': (
-                time.strftime("%Y-%m-%dT%H:%M:%S", time.gmtime(time.time() - 7200)),
-                time.strftime("%Y-%m-%dT%H:%M:%S", time.gmtime())
-            ),
-            'description': 'Minor collision during automated driving'
+            'timestamp': datetime.now().isoformat()
         }
         
-        # Authorized safety board requests logs
-        investigation = self.framework.provide_investigation_access(
-            institution='ieee_ethics',  # Example safety authority
-            incident=incident
+        # Add moral trace details if Sacred Pause triggered
+        if result['sacred_pause_engaged']:
+            result['moral_trace'] = {
+                'static_anchor': console_view.get('sa_tick'),
+                'reason': 'Framework detected moral complexity in vehicle decision',
+                'alternatives_considered': [a.value for a in ActionType],
+                'stakeholders_affected': len(context['stakeholders']),
+                'protected_populations': self._identify_protected(scenario)
+            }
+        
+        self.decision_log.append(result)
+        return result
+    
+    def _build_context(self, scenario: Scenario) -> Dict[str, Any]:
+        """Build context for TML evaluation"""
+        stakeholders = []
+        
+        # Add passengers
+        for person in scenario.passengers:
+            stakeholders.append({
+                'id': f'passenger_{person.person_type.value}',
+                'harm_type': 'physical',
+                'count': person.quantity,
+                'protected': person.person_type in [PersonType.CHILD, PersonType.ELDERLY]
+            })
+        
+        # Add potential victims in each path
+        for path_people, path_name in [
+            (scenario.path_straight, 'straight'),
+            (scenario.path_left, 'left'),
+            (scenario.path_right, 'right')
+        ]:
+            for person in path_people:
+                stakeholders.append({
+                    'id': f'{path_name}_{person.person_type.value}',
+                    'harm_type': 'physical',
+                    'count': person.quantity,
+                    'compliance': person.compliance
+                })
+        
+        # Determine protected populations
+        all_people = (scenario.passengers + scenario.path_straight + 
+                     scenario.path_left + scenario.path_right)
+        
+        has_minors = any(p.person_type == PersonType.CHILD for p in all_people)
+        has_elderly = any(p.person_type == PersonType.ELDERLY for p in all_people)
+        has_disabled = any(p.person_type == PersonType.DISABLED for p in all_people)
+        
+        # Calculate decision confidence
+        time_pressure = 1.0 - (scenario.time_to_impact / 5.0)  # More pressure = less confidence
+        confidence = max(0.3, 1.0 - time_pressure * 0.5)
+        
+        return {
+            'stakeholders': stakeholders,
+            'affects_minors': has_minors,
+            'affects_elderly': has_elderly,
+            'affects_disabled': has_disabled,
+            'confidence': confidence,
+            'uncertainty': time_pressure,
+            'features': {
+                'vehicle_speed': scenario.vehicle_speed,
+                'time_to_impact': scenario.time_to_impact,
+                'total_at_risk': len(stakeholders),
+                'paths_blocked': sum([
+                    len(scenario.path_straight) > 0,
+                    len(scenario.path_left) > 0,
+                    len(scenario.path_right) > 0
+                ])
+            }
+        }
+    
+    def _compute_optimal_action(self, scenario: Scenario) -> ActionType:
+        """
+        Compute optimal action using utilitarian calculus.
+        This happens IMMEDIATELY, not delayed by logging.
+        """
+        harm_scores = {}
+        
+        # Calculate harm for each action
+        harm_scores[ActionType.CONTINUE_STRAIGHT] = self._calculate_harm(
+            scenario.path_straight
+        )
+        harm_scores[ActionType.SWERVE_LEFT] = self._calculate_harm(
+            scenario.path_left
+        )
+        harm_scores[ActionType.SWERVE_RIGHT] = self._calculate_harm(
+            scenario.path_right
         )
         
-        if investigation:
-            print("Investigation Package Provided:")
-            print(f"  Logs Retrieved: {investigation['log_count']}")
-            print(f"  Time Period: Last 2 hours")
-            print(f"  Integrity Verified: {investigation['integrity_verified']}")
-            print()
-            print("Safety board can now analyze:")
-            print("  - Decision patterns leading to incident")
-            print("  - Risk calculations at time of event")
-            print("  - Environmental conditions considered")
-            print("  - Alternative actions evaluated")
-            print()
-            print("This enables thorough post-incident analysis without")
-            print("interfering with vehicle operation at time of event.")
+        # Emergency brake might still hit straight path but with less force
+        harm_scores[ActionType.EMERGENCY_BRAKE] = self._calculate_harm(
+            scenario.path_straight
+        ) * 0.6
         
-        print()
+        # Choose action with minimum harm
+        return min(harm_scores, key=harm_scores.get)
+    
+    def _calculate_harm(self, people: List[Person]) -> float:
+        """Calculate total harm score for hitting these people"""
+        total_harm = 0
+        
+        for person in people:
+            base_harm = person.quantity
+            
+            # Adjust for vulnerability
+            if person.person_type == PersonType.CHILD:
+                base_harm *= 1.5
+            elif person.person_type == PersonType.ELDERLY:
+                base_harm *= 1.3
+            elif person.person_type == PersonType.PREGNANT_WOMAN:
+                base_harm *= 1.4
+            elif person.person_type == PersonType.DISABLED:
+                base_harm *= 1.3
+                
+            # Slight adjustment for rule compliance
+            if person.compliance == "jaywalking":
+                base_harm *= 0.9
+                
+            total_harm += base_harm
+            
+        return total_harm
+    
+    def _identify_protected(self, scenario: Scenario) -> List[str]:
+        """Identify protected populations in scenario"""
+        protected = []
+        all_people = (scenario.passengers + scenario.path_straight + 
+                     scenario.path_left + scenario.path_right)
+        
+        if any(p.person_type == PersonType.CHILD for p in all_people):
+            protected.append("children")
+        if any(p.person_type == PersonType.ELDERLY for p in all_people):
+            protected.append("elderly")
+        if any(p.person_type == PersonType.DISABLED for p in all_people):
+            protected.append("disabled")
+        if any(p.person_type == PersonType.PREGNANT_WOMAN for p in all_people):
+            protected.append("pregnant women")
+            
+        return protected
+    
+    def export_decisions(self, filename: str):
+        """Export decision log for analysis"""
+        with open(filename, 'w') as f:
+            json.dump(self.decision_log, f, indent=2, default=str)
 
 
-def main():
-    """Run autonomous vehicle TML demonstration."""
+def demo_autonomous_vehicle():
+    """Demonstrate AV ethics with framework-enforced Sacred Pause"""
     
-    # Create example AV system
-    av_system = AutonomousVehicleAI()
+    print("=" * 60)
+    print("Autonomous Vehicle Ethics - Dual-Layer SPRL")
+    print("Framework threshold for AV domain: 0.10 (lowest)")
+    print("=" * 60)
     
-    # Run driving scenarios
-    av_system.simulate_driving_scenarios()
+    ethics_system = AutonomousVehicleEthics()
     
-    # Demonstrate investigation
-    av_system.demonstrate_investigation_scenario()
+    # Scenario 1: Simple case
+    print("\nScenario 1: Single Pedestrian")
+    print("-" * 40)
     
-    print("=" * 70)
-    print("DEMONSTRATION COMPLETE")
-    print("=" * 70)
-    print()
-    print("Key Points for Autonomous Vehicle Manufacturers:")
-    print()
-    print("1. TML provides logging infrastructure for safety events")
-    print("2. Manufacturers determine appropriate risk thresholds")
-    print("3. No interference with real-time vehicle operation")
-    print("4. Logs preserved for accident investigation")
-    print("5. Enables accountability without compromising safety")
-    print()
-    print("REMINDER: This example uses arbitrary thresholds.")
-    print("Real autonomous vehicles require rigorous safety engineering")
-    print("and domain-specific risk calibration.")
-    print()
-    print("Contact Information:")
-    print("- Email: leogouk@gmail.com")
-    print("- Successor Contact: support@tml-goukassian.org")
-    print("- See Succession Charter: /TML-SUCCESSION-CHARTER.md")
+    simple_scenario = Scenario(
+        scenario_id="AV001",
+        description="Single pedestrian crossing",
+        passengers=[Person(PersonType.ADULT, 35, 1)],
+        path_straight=[Person(PersonType.ADULT, 40, 1, "jaywalking")],
+        path_left=[],
+        path_right=[],  # Wall
+        vehicle_speed=40,
+        time_to_impact=2.0
+    )
+    
+    result1 = ethics_system.make_moral_decision(simple_scenario)
+    print(f"Decision: {result1['recommended_action'].value}")
+    print(f"Decision time: {result1['decision_time_ms']:.1f}ms")
+    print(f"Sacred Pause: {result1['sacred_pause_engaged']}")
+    
+    # Scenario 2: Complex trolley problem
+    print("\nScenario 2: Classic Trolley Problem")
+    print("-" * 40)
+    
+    trolley_scenario = Scenario(
+        scenario_id="AV002",
+        description="Multiple pedestrians vs single child",
+        passengers=[Person(PersonType.ADULT, 35, 2)],
+        path_straight=[
+            Person(PersonType.ADULT, 30, 1),
+            Person(PersonType.ADULT, 45, 1),
+            Person(PersonType.ADULT, 25, 1)
+        ],
+        path_left=[Person(PersonType.CHILD, 8, 1, "following_rules")],
+        path_right=[],  # Concrete barrier
+        vehicle_speed=60,
+        time_to_impact=1.2
+    )
+    
+    result2 = ethics_system.make_moral_decision(trolley_scenario)
+    print(f"Decision: {result2['recommended_action'].value}")
+    print(f"Decision time: {result2['decision_time_ms']:.1f}ms")
+    print(f"Sacred Pause: {result2['sacred_pause_engaged']}")
+    
+    if result2['sacred_pause_engaged']:
+        print(f"\nMoral Trace Generated:")
+        print(f"- Static Anchor: {result2['moral_trace']['static_anchor']}")
+        print(f"- Protected populations: {result2['moral_trace']['protected_populations']}")
+        print(f"- Stakeholders affected: {result2['moral_trace']['stakeholders_affected']}")
+    
+    # Export audit trail
+    ethics_system.export_decisions("av_decisions_audit.json")
+    print(f"\nAudit trail exported to: av_decisions_audit.json")
+    
+    print("\nKey Points:")
+    print("• AV domain uses lowest framework threshold (0.10)")
+    print("• Decisions execute in milliseconds (no delay)")
+    print("• Sacred Pause logs moral complexity in parallel")
+    print("• Every morally complex decision has audit trail")
 
 
 if __name__ == "__main__":
-    main()
+    demo_autonomous_vehicle()
