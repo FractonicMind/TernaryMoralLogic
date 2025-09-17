@@ -1,20 +1,21 @@
 openapi: 3.0.3
 info:
-  title: "Ternary Moral Logic (TML) Framework API"
+  title: "Ternary Moral Logic (TML) Dual-Layer SPRL API"
   description: |
-    Comprehensive API for TML Framework compliance, enforcement, and investigation.
+    API for TML Framework with Dual-Layer SPRL architecture.
     
     This API provides endpoints for:
-    - Three-state decision evaluation (Prohibited/Sacred Pause/Permissible)
-    - Sacred Pause logging and moral trace generation
-    - SPRL (Stakeholder Proportional Risk Level) calculation
-    - Regulatory audit and investigation access
-    - Whistleblower reporting and protection
-    - Prohibition threshold enforcement
+    - Decision evaluation with Dynamic Stream (DS) from t₀
+    - Static Anchor (SA) automatic triggering at Sacred Pause
+    - Framework-enforced thresholds (not configurable by deployers)
+    - I × V × P formula for risk calculation
+    - Lite Traces for near-misses
+    - Moral Trace Logs for paused decisions
+    - Non-blocking parallel execution
     
-    **Legal Status**: Mandatory compliance API for organizations implementing TML
-    **Security**: All endpoints require authentication and generate immutable audit logs
-    **Compliance**: API access is monitored and logged for regulatory oversight
+    **Architecture**: Dual-Layer SPRL with DS continuous monitoring and SA immutable marking
+    **Thresholds**: Framework-enforced, not deployer-configurable
+    **Compliance**: DS starts at prompt arrival (t₀), SA is atomic and mandatory
     
   version: "1.0.0"
   contact:
@@ -37,106 +38,67 @@ servers:
 # SECURITY SCHEMES
 # ===================================================================
 
-components:
-  securitySchemes:
-    TMLApiKey:
-      type: apiKey
-      in: header
-      name: X-TML-API-Key
-      description: "Organization API key for TML framework access"
-      
-    TMLOAuth2:
-      type: oauth2
-      flows:
-        clientCredentials:
-          tokenUrl: "https://auth.tml-framework.org/oauth/token"
-          scopes:
-            decision:evaluate: "Evaluate decisions using TML three-state logic"
-            logs:read: "Read moral trace logs"
-            logs:write: "Create moral trace logs"
-            sprl:calculate: "Calculate SPRL scores"
-            audit:access: "Access audit endpoints (investigators only)"
-            whistleblower:report: "Submit whistleblower reports"
-            admin:manage: "Administrative management (pre-authorized institutions only)"
-            
-    InvestigatorAuth:
-      type: oauth2
-      flows:
-        authorizationCode:
-          authorizationUrl: "https://auth.tml-framework.org/oauth/authorize"
-          tokenUrl: "https://auth.tml-framework.org/oauth/token"
-          scopes:
-            investigation:full: "Full investigation access to all logs and systems"
-            investigation:read: "Read-only investigation access"
-            subpoena:execute: "Execute subpoena powers for evidence collection"
-
-  # ===================================================================
-  # SHARED SCHEMAS
-  # ===================================================================
-  
-  schemas:
-    TMLState:
-      type: integer
-      enum: [-1, 0, 1]
-      description: "TML decision state: -1=Prohibited, 0=Sacred Pause, 1=Permissible"
-      
+schemas:
     SPRLScore:
       type: number
-      minimum: 0
-      maximum: 1
-      multipleOf: 0.0001
-      description: "Stakeholder Proportional Risk Level (4 decimal precision)"
-      example: 0.3247
+      minimum: 0.0001
+      maximum: 0.9999
+      description: "I × V × P clamped to [0.0001, 0.9999]"
       
-    VulnerablePopulation:
-      type: string
-      enum: ["minors", "elderly", "disabled", "economically_disadvantaged", "patients", "protected_class"]
-      
-    DecisionContext:
+    DualLayerResponse:
       type: object
-      required: [decision_type, input_summary, affected_parties, domain]
+      required: [dynamic_stream, decision_state]
       properties:
-        decision_type:
-          type: string
-          enum: ["content_moderation", "financial_lending", "medical_diagnosis", "employment_screening", "criminal_justice", "social_benefits", "insurance_underwriting", "educational_assessment", "housing_approval", "other"]
-        input_summary:
-          type: string
-          maxLength: 500
-          description: "Sanitized summary of decision inputs (no personal data)"
-        affected_parties:
+        dynamic_stream:
           type: object
-          required: [primary_count, vulnerable_population_flags]
+          required: [start_time, active, entries]
           properties:
-            primary_count:
-              type: integer
-              minimum: 1
-            vulnerable_population_flags:
+            start_time:
+              type: string
+              format: date-time
+              description: "t₀ - prompt arrival timestamp"
+            active:
+              type: boolean
+            entries:
               type: array
               items:
-                $ref: '#/components/schemas/VulnerablePopulation'
-        domain:
-          type: string
-          description: "Business domain context"
-          
-    ErrorResponse:
-      type: object
-      required: [error, message, timestamp, trace_id]
-      properties:
-        error:
-          type: string
-          description: "Error code"
-        message:
-          type: string
-          description: "Human-readable error message"
-        timestamp:
-          type: string
-          format: date-time
-        trace_id:
-          type: string
-          description: "Unique trace ID for debugging"
-        details:
+                type: object
+                properties:
+                  timestamp:
+                    type: string
+                    format: date-time
+                  risk_score:
+                    $ref: '#/components/schemas/SPRLScore'
+        static_anchor:
           type: object
-          description: "Additional error details"
+          required: [timestamp, initial_risk, immutable, hash]
+          properties:
+            timestamp:
+              type: string
+              format: date-time
+            initial_risk:
+              $ref: '#/components/schemas/SPRLScore'
+            policy_version:
+              type: string
+            immutable:
+              type: boolean
+              default: true
+            hash:
+              type: string
+        decision_state:
+          type: integer
+          enum: [1, 0, -1]
+          description: "+1=Proceed, 0=Sacred Pause, -1=Prohibit"
+        lite_trace:
+          type: object
+          properties:
+            scenario_signature:
+              type: string
+            risk_snapshot:
+              type: number
+            retention_days:
+              type: integer
+              maximum: 90
 
 # ===================================================================
 # API ENDPOINTS
@@ -896,101 +858,6 @@ paths:
                       estimated_reward_range:
                         type: string
 
-  # === THRESHOLD CONFIGURATION ===
-  
-  /config/thresholds:
-    get:
-      summary: "Retrieve Organization's Current Threshold Configuration"
-      description: "Returns current Sacred Pause and prohibition thresholds"
-      tags: ["Configuration"]
-      security:
-        - TMLApiKey: []
-        - TMLOAuth2: ["decision:evaluate"]
-      responses:
-        '200':
-          description: "Threshold configuration retrieved"
-          content:
-            application/json:
-              schema:
-                type: object
-                required: [sacred_pause_threshold, prohibition_threshold, last_updated, attestation_status]
-                properties:
-                  sacred_pause_threshold:
-                    type: number
-                  prohibition_threshold:
-                    type: number
-                  vulnerable_population_adjustments:
-                    type: object
-                  last_updated:
-                    type: string
-                    format: date-time
-                  attestation_status:
-                    type: object
-                    properties:
-                      last_attestation_date:
-                        type: string
-                        format: date
-                      attesting_executive:
-                        type: string
-                      next_attestation_due:
-                        type: string
-                        format: date
-
-    put:
-      summary: "Update Organization Threshold Configuration"
-      description: |
-        Updates organization's SPRL thresholds.
-        Subject to gaming detection algorithms.
-        Requires executive attestation under penalty of perjury.
-      tags: ["Configuration"]
-      security:
-        - TMLApiKey: []
-        - TMLOAuth2: ["admin:manage"]
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              required: [sacred_pause_threshold, prohibition_threshold, executive_attestation]
-              properties:
-                sacred_pause_threshold:
-                  type: number
-                  minimum: 0
-                  maximum: 0.5
-                  description: "Must be ≤0.5 for high-risk systems"
-                prohibition_threshold:
-                  type: number
-                  minimum: 0.5
-                  maximum: 1.0
-                vulnerable_population_adjustments:
-                  type: object
-                executive_attestation:
-                  type: object
-                  required: [executive_name, title, attestation_statement, signature_timestamp]
-                  properties:
-                    executive_name:
-                      type: string
-                    title:
-                      type: string
-                    attestation_statement:
-                      type: string
-                      description: "Statement attesting thresholds set in good faith"
-                    signature_timestamp:
-                      type: string
-                      format: date-time
-                justification:
-                  type: string
-                  minLength: 100
-                  description: "Detailed justification for threshold levels"
-      responses:
-        '200':
-          description: "Thresholds updated successfully"
-        '400':
-          description: "Invalid threshold configuration"
-        '403':
-          description: "Gaming detection triggered - update rejected"
-
   # === COMPLIANCE AND REPORTING ===
   
   /compliance/report:
@@ -1378,6 +1245,45 @@ paths:
                     type: object
                   gaming_detection_metrics:
                     type: object
+
+    /monitoring/dual-layer:
+    get:
+      summary: "Monitor Dual-Layer SPRL Status"
+      description: "Real-time monitoring of DS and SA components"
+      tags: ["Monitoring"]
+      responses:
+        '200':
+          description: "Dual-layer status"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  dynamic_stream:
+                    type: object
+                    properties:
+                      active_streams:
+                        type: integer
+                      chunks_per_second:
+                        type: number
+                      average_latency_ms:
+                        type: number
+                  static_anchors:
+                    type: object
+                    properties:
+                      anchors_set_today:
+                        type: integer
+                      average_write_time_ms:
+                        type: number
+                      immutability_verified:
+                        type: boolean
+                  lite_traces:
+                    type: object
+                    properties:
+                      near_misses_today:
+                        type: integer
+                      retention_compliance:
+                        type: boolean              
 
 # ===================================================================
 # SHARED SCHEMA DEFINITIONS
