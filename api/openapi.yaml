@@ -16,13 +16,8 @@ info:
     **Architecture**: Dual-Layer SPRL with DS continuous monitoring and SA immutable marking
     **Thresholds**: Framework-enforced, not deployer-configurable
     **Compliance**: DS starts at prompt arrival (t₀), SA is atomic and mandatory
-    
-  version: "1.0.0"
-  contact:
-    name: "Lev Goukassian"
-    email: "leogouk@gmail.com"
-    url: "https://github.com/fractonicmind/TernaryMoralLogic"
-  license:
+   
+license:
     name: "MIT License with Ethical Use Requirements"
     url: "https://github.com/fractonicmind/TernaryMoralLogic/blob/main/LICENSE"
 
