@@ -33,42 +33,22 @@ Ternary Moral Logic introduces a revolutionary third state to artificial intelli
 4. **Vulnerable Population Protection**: Enhanced safeguards for at-risk groups
 5. **11-Institution Oversight**: Distributed governance and accountability
 6. **Hybrid Shield**: Real-time distributed logging to 11 institutions with blockchain anchoring
-
 ---
+### Introduction
+**The Crisis**
+Artificial intelligence systems increasingly make decisions affecting human welfare, dignity, and rights without meaningful accountability. Current approaches rely on voluntary corporate safeguards, opaque algorithms, and unenforceable guidelines. When AI causes harm, victims lack evidence, prosecutors lack tools, and society lacks recourse.
+**The Solution**
+TML provides the first framework combining:
 
-## Stakeholder Proportional Risk Level (SPRL)
+Mandatory logging of ethically complex AI decisions
+Criminal penalties for non-compliance (up to 20 years imprisonment)
+Victim compensation from violator penalties
+Whistleblower rewards incentivizing reporting
+Democratic oversight through institutional governance
+Framework-enforced thresholds that cannot be gamed
 
-SPRL is the core risk-governing mechanism of **Ternary Moral Logic (TML)**.  
-It ensures that every morally significant AI action produces a defensible, auditable record.  
-
-### Dual-Layer Architecture
-SPRL operates in two mandatory layers:
-
-- **Static Anchor (SA)** – the baseline, compliance-guaranteed mode.  
-  A fixed proportional risk threshold determines when the Sacred Pause is triggered and a Moral Trace Log is created.  
-- **Dynamic Stream (DS)** – the adaptive extension.  
-  Risk is evaluated continuously, with Lite Traces for near-misses and automatic fallback to SA if the stream fails.  
-
-Together, SA and DS provide certainty at the anchor and vigilance in the stream.
-
-### Compliance Requirements
-- **Static Anchor is mandatory** in every deployment.  
-- **Dynamic Stream** may be adopted in high-maturity environments with governance capacity.  
-- Both modes produce cryptographically sealed, court-admissible Moral Trace Logs distributed across institutional mirrors.
-
-### Documentation
-- [SPRL Operation Modes](docs/SPRL_OPERATION_MODES.md) – formal specification of SA and DS  
-- [SPRL Risk Model](docs/SPRL_Risk_Model.md) – mathematical framework for proportionality  
-- [SPRL Compliance Declaration](governance/SPRL_Compliance_Declaration.md) – required for deployment claims  
-- [SPRL Audit Workflow](protection/SPRL_Audit_Workflow.md) – end-to-end evidentiary chain  
-- [SPRL Tamper Resistance](security/SPRL_Tamper_Resistance.md) – guarantees of log integrity  
-
-For the full checklist of supporting files, see [SPRL_TODO.md](docs/SPRL_TODO.md).
-
----
-
-
----
+**Core Principle**
+No logs = no action. If the system cannot produce required logs, operation must halt. This is non-negotiable. Missing logs create automatic liability.
 
 ## Legal-Technical Framework Definition
 
@@ -99,6 +79,56 @@ Organizations implementing TML bear full responsibility for:
 - Operational safety and ethical use of AI systems
 - Staff training and competency verification
 - Harm prevention and victim compensation
+---
+
+## Stakeholder Proportional Risk Level (SPRL)
+
+SPRL is the core risk-governing mechanism of **Ternary Moral Logic (TML)**.  
+It ensures that every morally significant AI action produces a defensible, auditable record.  
+
+### Dual-Layer Architecture
+SPRL operates in two mandatory layers:
+
+- **Static Anchor (SA)** – the baseline, compliance-guaranteed mode.  
+  A fixed proportional risk threshold determines when the Sacred Pause is triggered and a Moral Trace Log is created.  
+- **Dynamic Stream (DS)** – the adaptive extension.  
+  Risk is evaluated continuously, with Lite Traces for near-misses and automatic fallback to SA if the stream fails.  
+
+Together, SA and DS provide certainty at the anchor and vigilance in the stream.
+
+### The Formula
+SPRL = Impact × Vulnerability × Probability
+# Clamped to [0.0001, 0.9999]
+# Thresholds framework-enforced (not configurable)
+
+### Compliance Requirements
+- **Static Anchor is mandatory** in every deployment.  
+- **Dynamic Stream** may be adopted in high-maturity environments with governance capacity.  
+- Both modes produce cryptographically sealed, court-admissible Moral Trace Logs distributed across institutional mirrors.
+
+### Compliance Invariants
+
+I1: DS starts at t₀ (no pre-prompt gap)
+I2: SA is singular and atomic
+I3: SA is framework-enforced
+I4: SA present when pause occurs
+I5: DS chunks cryptographically chain to SA
+
+### Documentation
+- [SPRL Operation Modes](docs/SPRL_OPERATION_MODES.md) – formal specification of SA and DS  
+- [SPRL Risk Model](docs/SPRL_Risk_Model.md) – mathematical framework for proportionality  
+- [SPRL Compliance Declaration](governance/SPRL_Compliance_Declaration.md) – required for deployment claims  
+- [SPRL Audit Workflow](protection/SPRL_Audit_Workflow.md) – end-to-end evidentiary chain  
+- [SPRL Tamper Resistance](security/SPRL_Tamper_Resistance.md) – guarantees of log integrity  
+
+For the full checklist of supporting files, see [SPRL_TODO.md](docs/SPRL_TODO.md).
+
+---
+
+
+---
+
+
 
 ---
 
