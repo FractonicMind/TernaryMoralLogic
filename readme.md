@@ -134,18 +134,16 @@ Evidence-based accountability terms - misuse forfeits legal standing, proper use
 Together, these form an unbreakable covenant between technology and humanity.
 ---
 ## Hybrid Shield - Double Armor
--  The framework's protection against tampering:
--  First Armor: Distributed Mirroring
-
--  Real-time replication to 11 independent institutions
--  Geographic and jurisdictional diversity
--  No single point of failure
+The framework's protection against tampering:   
+-  First Armor: Distributed Mirroring   
+-  Real-time replication to 11 independent institutions   
+-  Geographic and jurisdictional diversity   
+-  No single point of failure   
 
 # Second Armor: Blockchain Anchoring
-
--  Cryptographic proof on immutable ledgers
--  Mathematical impossibility of alteration
--  Public verification capability
+-  Cryptographic proof on immutable ledgers   
+-  Mathematical impossibility of alteration   
+-  Public verification capability   
 
 Once a moral decision is logged, it cannot be hidden, altered, or destroyed.
 
