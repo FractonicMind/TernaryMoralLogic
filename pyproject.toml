@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tml-sprl"
+version = "0.1.0"
+description = "TML SPRL demo CLI"
+requires-python = ">=3.9"
+
+[project.scripts]
+sprl-demo = "tml_sprl.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
