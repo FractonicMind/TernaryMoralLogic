@@ -35,17 +35,17 @@ Ternary Moral Logic introduces a revolutionary third state to artificial intelli
 6. **Hybrid Shield**: Real-time distributed logging to 11 institutions with blockchain anchoring
 ---
 ### Introduction
-**The Crisis**
+**The Crisis**   
 Artificial intelligence systems increasingly make decisions affecting human welfare, dignity, and rights without meaningful accountability. Current approaches rely on voluntary corporate safeguards, opaque algorithms, and unenforceable guidelines. When AI causes harm, victims lack evidence, prosecutors lack tools, and society lacks recourse.
-**The Solution**
+**The Solution**   
 TML provides the first framework combining:
 
-Mandatory logging of ethically complex AI decisions
-Criminal penalties for non-compliance (up to 20 years imprisonment)
-Victim compensation from violator penalties
-Whistleblower rewards incentivizing reporting
-Democratic oversight through institutional governance
-Framework-enforced thresholds that cannot be gamed
+**Mandatory logging of ethically complex AI decisions**   
+-  Criminal penalties for non-compliance (up to 20 years imprisonment)
+-  Victim compensation from violator penalties
+-  Whistleblower rewards incentivizing reporting
+-  Democratic oversight through institutional governance
+-  Framework-enforced thresholds that cannot be gamed
 
 **Core Principle**
 No logs = no action. If the system cannot produce required logs, operation must halt. This is non-negotiable. Missing logs create automatic liability.
