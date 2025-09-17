@@ -193,7 +193,7 @@ Criminal Penalties
 ---
 
 ### Implementation
-## Quick Start   
+**Quick Start**   
 from implementations.python_library import create_tml_framework
 
  Framework-enforced thresholds (not configurable)
@@ -201,6 +201,7 @@ framework = create_tml_framework(domain="general")
 
  Process decision - logs or stops
 result = framework.process_decision(context)   
+
 **If logging fails, decision halts immediately**
 
 ---
