@@ -33,19 +33,37 @@ Ternary Moral Logic introduces a revolutionary third state to artificial intelli
 
 ---
 
-## SPRL: The Quantitative Backbone
+## Stakeholder Proportional Risk Level (SPRL)
 
-**[📊 Complete SPRL Documentation](docs/Stakeholder_Proportional_Risk_Level.md)**
+SPRL is the core risk-governing mechanism of **Ternary Moral Logic (TML)**.  
+It ensures that every morally significant AI action produces a defensible, auditable record.  
 
-SPRL (Stakeholder Proportional Risk Level) calculates moral complexity through:
-- **Impact × Vulnerability × Probability** for all affected stakeholders
-- Organizations define their own thresholds and bear full liability
-- **Critical**: SPRL runs in parallel - AI responds instantly while logs generate asynchronously
+### Dual-Layer Architecture
+SPRL operates in two mandatory layers:
 
-**Threshold Ranges** (Organization-defined):
-- 0.0-0.3: Proceed with minimal logging
-- 0.3-0.8: Sacred Pause - comprehensive moral trace required
-- 0.8-1.0: Prohibit action and document
+- **Static Anchor (SA)** – the baseline, compliance-guaranteed mode.  
+  A fixed proportional risk threshold determines when the Sacred Pause is triggered and a Moral Trace Log is created.  
+- **Dynamic Stream (DS)** – the adaptive extension.  
+  Risk is evaluated continuously, with Lite Traces for near-misses and automatic fallback to SA if the stream fails.  
+
+Together, SA and DS provide certainty at the anchor and vigilance in the stream.
+
+### Compliance Requirements
+- **Static Anchor is mandatory** in every deployment.  
+- **Dynamic Stream** may be adopted in high-maturity environments with governance capacity.  
+- Both modes produce cryptographically sealed, court-admissible Moral Trace Logs distributed across institutional mirrors.
+
+### Documentation
+- [SPRL Operation Modes](docs/SPRL_Operation_Modes.md) – formal specification of SA and DS  
+- [SPRL Risk Model](docs/SPRL_Risk_Model.md) – mathematical framework for proportionality  
+- [SPRL Compliance Declaration](governance/SPRL_Compliance_Declaration.md) – required for deployment claims  
+- [SPRL Audit Workflow](protection/SPRL_Audit_Workflow.md) – end-to-end evidentiary chain  
+- [SPRL Tamper Resistance](security/SPRL_Tamper_Resistance.md) – guarantees of log integrity  
+
+For the full checklist of supporting files, see [SPRL_TODO.md](docs/SPRL_TODO.md).
+
+---
+
 
 ---
 
