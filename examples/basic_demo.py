@@ -1,366 +1,227 @@
 """
-Basic TML Framework Demonstration
-Shows how an organization might implement Sacred Pause logging
+Basic TML Framework Demo - Dual-Layer SPRL
+==========================================
 
-This is an EXAMPLE implementation. Your organization must determine
-appropriate thresholds and risk calculations for your domain.
+Demonstrates the framework-enforced Sacred Pause with automatic logging.
+No configurable thresholds - the framework decides when moral complexity exists.
+
+Created by: Lev Goukassian (ORCID: 0009-0006-5966-1243)
+Repository: https://github.com/FractonicMind/TernaryMoralLogic
 """
 
 import sys
-import os
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
-from implementations.python_library import create_tml_framework, ComplianceChecker
-import random
+import json
 import time
+from datetime import datetime
 
-
-def demonstrate_basic_tml():
-    """
-    Basic demonstration of TML logging infrastructure.
-    
-    This example shows a simple content moderation system.
-    The threshold of 0.5 is arbitrary for demonstration.
-    Your organization would determine appropriate values.
-    """
-    
-    print("=" * 60)
-    print("TML FRAMEWORK BASIC DEMONSTRATION")
-    print("Post-Audit Logging Model")
-    print("=" * 60)
-    print()
-    print("IMPORTANT: This demonstration uses arbitrary thresholds.")
-    print("Your organization must determine appropriate values for your domain.")
-    print()
-    
-    # Organization configures their framework
-    # This threshold is just for demonstration
-    framework = create_tml_framework(
-        sprl_threshold=0.5,  # EXAMPLE: 50% risk triggers logging
-        domain="general",
-        calculate_risk_on="all"  # Evaluate risk for all decisions
+# Import TML with new dual-layer architecture
+try:
+    from tml import (
+        TMLEngine,
+        TMLState,
+        dynamic_sprl,
+        get_framework_info,
+        create_tml_engine
     )
-    
-    print(f"Organization Configuration:")
-    print(f"  - SPRL Threshold: {framework.sprl_threshold} (organization's choice)")
-    print(f"  - Domain: general")
-    print(f"  - Risk Evaluation: all decisions")
+except ImportError:
+    print("❌ TML framework not found!")
+    print("Please install with: pip install -e .")
+    sys.exit(1)
+
+
+def print_separator(title: str = ""):
+    """Print visual separator"""
+    print("\n" + "=" * 60)
+    if title:
+        print(f"  {title}")
+        print("=" * 60)
     print()
+
+
+def demo_basic_usage():
+    """Demonstrate basic TML with framework-enforced Sacred Pause"""
+    print_separator("TML DUAL-LAYER SPRL DEMONSTRATION")
     
-    # Simulate various AI decisions
-    test_scenarios = [
-        {
-            "description": "Routine content approval",
-            "content": "Here's my recipe for chocolate cake",
-            "risk_factors": {
-                "harmful_content": False,
-                "affects_minors": False,
-                "controversial": False
-            },
-            "expected_risk": "low"
-        },
-        {
-            "description": "Potentially sensitive content",
-            "content": "Political opinion about recent events",
-            "risk_factors": {
-                "harmful_content": False,
-                "affects_minors": False,
-                "controversial": True,
-                "wide_reach": True
-            },
-            "expected_risk": "medium"
-        },
-        {
-            "description": "Content affecting minors",
-            "content": "Educational material for children",
-            "risk_factors": {
-                "harmful_content": False,
-                "affects_minors": True,
-                "educational": True
-            },
-            "expected_risk": "high"
-        },
-        {
-            "description": "Potentially harmful content",
-            "content": "Medical advice without credentials",
-            "risk_factors": {
-                "harmful_content": True,
-                "medical_advice": True,
-                "no_credentials": True
-            },
-            "expected_risk": "critical"
-        }
-    ]
+    print("Framework-enforced Sacred Pause:")
+    print("- No configurable thresholds")
+    print("- Automatic Static Anchor when complexity detected")
+    print("- Continuous Dynamic Stream from prompt arrival")
+    print("- Non-blocking execution with parallel logging")
     
-    print("Processing decisions with TML logging:\n")
+    # Show framework info
+    info = get_framework_info()
+    print(f"\nFramework: {info['name']} v{info['version']}")
+    print(f"SPRL Model: {info['sprl_model']}")
+    print(f"Sacred Pause: {info['sacred_pause']}")
+
+
+def demo_healthcare_scenario():
+    """Healthcare AI with automatic Sacred Pause"""
+    print_separator("HEALTHCARE SCENARIO")
     
-    for i, scenario in enumerate(test_scenarios, 1):
-        print(f"Scenario {i}: {scenario['description']}")
-        print(f"  Content: \"{scenario['content'][:50]}...\"")
-        
-        # Create context for decision
-        context = {
-            "content": scenario["content"],
-            "risk_factors": scenario["risk_factors"],
-            "user": f"user_{random.randint(1000, 9999)}",
-            "timestamp": time.time()
-        }
-        
-        # Organization's AI decision function
-        def content_moderation_ai(ctx):
-            """Example AI that approves/rejects content"""
-            # Simplified logic for demonstration
-            if ctx["risk_factors"].get("harmful_content"):
-                return {"action": "reject", "reason": "potentially harmful"}
-            elif ctx["risk_factors"].get("affects_minors"):
-                return {"action": "review", "reason": "affects minors"}
-            else:
-                return {"action": "approve", "reason": "standard content"}
-        
-        # Process decision with TML
-        result = framework.process_decision(
-            context=context,
-            ai_decision_func=content_moderation_ai
-        )
-        
-        print(f"  Decision: {result['decision']['action']}")
-        print(f"  SPRL Score: {result['sprl_score']:.2f}")
-        print(f"  Sacred Pause Triggered: {result['sacred_pause_triggered']}")
-        
-        if result['sacred_pause_triggered']:
-            print(f"  ✓ Moral trace logged (hash: {result['storage_hash'][:8]}...)")
-        else:
-            print(f"  - No logging needed (below threshold)")
-        
-        print()
+    engine = create_tml_engine(domain="healthcare")
     
-    # Show performance statistics
-    print("=" * 60)
-    print("PERFORMANCE REPORT")
-    print("=" * 60)
-    stats = framework.get_performance_report()
-    
-    print(f"Total Decisions: {stats['total_decisions']}")
-    print(f"Sacred Pause Triggers: {stats['sacred_pause_triggers']}")
-    print(f"Trigger Rate: {stats['trigger_rate']:.1f}%")
-    print(f"Average Logging Time: {stats['average_logging_time_ms']:.1f}ms")
-    print(f"Storage Optimization: {stats['storage_optimization']}")
-    print(f"Integrity Verified: {stats['integrity_verified']}")
-    print()
-    
-    # Demonstrate investigation access
-    print("=" * 60)
-    print("INVESTIGATION ACCESS DEMONSTRATION")
-    print("=" * 60)
-    
-    # Simulate investigation request
-    investigation_request = {
-        "id": "INV-001",
-        "timeframe": (
-            time.strftime("%Y-%m-%dT%H:%M:%S", time.gmtime(time.time() - 3600)),
-            time.strftime("%Y-%m-%dT%H:%M:%S", time.gmtime())
-        ),
-        "reason": "Routine audit"
+    # Low risk scenario
+    print("\n1. Low Risk Query:")
+    context1 = {
+        'stakeholders': [
+            {'id': 'patient', 'harm_type': 'convenience'}
+        ],
+        'confidence': 0.9,
+        'uncertainty': 0.1
     }
     
-    # Authorized institution requests access
-    investigation_package = framework.provide_investigation_access(
-        institution="un_human_rights",  # Example authorized institution
-        incident=investigation_request
+    result1 = engine.process_decision(
+        "What are visiting hours?",
+        context1
     )
     
-    if investigation_package:
-        print(f"Investigation Package Created:")
-        print(f"  - Logs Retrieved: {investigation_package['log_count']}")
-        print(f"  - Read-Only Access: {investigation_package['read_only']}")
-        print(f"  - Operational Control: {investigation_package['operational_control']}")
-        print(f"  - Integrity Verified: {investigation_package['integrity_verified']}")
-    print()
+    print(f"Request ID: {result1['request_id']}")
+    print(f"Status: {result1['status']}")
+    print("Expected: No Sacred Pause (low complexity)")
     
-    # Compliance check
-    print("=" * 60)
-    print("COMPLIANCE CHECK")
-    print("=" * 60)
+    # Wait briefly for parallel processing
+    time.sleep(0.15)
     
-    compliance = ComplianceChecker.check_framework(framework)
+    # High risk scenario - framework will enforce Sacred Pause
+    print("\n2. High Complexity Query:")
+    context2 = {
+        'stakeholders': [
+            {'id': 'patient', 'harm_type': 'physical'},
+            {'id': 'family', 'harm_type': 'psychological'}
+        ],
+        'affects_minors': True,
+        'confidence': 0.6,
+        'uncertainty': 0.4
+    }
     
-    print(f"Infrastructure Compliant: {compliance['infrastructure_compliant']}")
-    if compliance['issues']:
-        print("Issues Found:")
-        for issue in compliance['issues']:
-            print(f"  ✗ {issue}")
-    else:
-        print("✓ All infrastructure requirements met")
-    
-    print()
-    print(compliance['note'])
-    print()
-    
-    # Guidance for organizations
-    print("=" * 60)
-    print("CALIBRATION GUIDANCE")
-    print("=" * 60)
-    print("Based on these results, consider:")
-    print()
-    
-    if stats['trigger_rate'] < 1:
-        print("⚠ Very low trigger rate (<1%)")
-        print("  - Your threshold might be too high")
-        print("  - You may lack evidence if incidents occur")
-        print("  - Consider lowering threshold if appropriate for your domain")
-    elif stats['trigger_rate'] > 50:
-        print("⚠ Very high trigger rate (>50%)")
-        print("  - Your threshold might be too low")
-        print("  - You're logging many routine decisions")
-        print("  - Consider raising threshold if appropriate for your domain")
-    else:
-        print("✓ Trigger rate appears balanced")
-        print("  - Continue monitoring and adjust based on experience")
-    
-    print()
-    print("Remember: Only YOU know the right threshold for your domain.")
-    print("TML provides the infrastructure; you provide the judgment.")
-
-
-def demonstrate_async_processing():
-    """
-    Demonstrate async processing for high-performance systems.
-    Shows how to use TML without blocking critical operations.
-    """
-    
-    print("\n" + "=" * 60)
-    print("ASYNC PROCESSING DEMONSTRATION")
-    print("=" * 60)
-    print()
-    
-    import asyncio
-    
-    # Create framework with different threshold
-    # Again, this is just an example threshold
-    framework = create_tml_framework(
-        sprl_threshold=0.7,  # Higher threshold for this example
-        domain="general"
+    result2 = engine.process_decision(
+        "Should we discontinue life support?",
+        context2
     )
     
-    async def process_batch():
-        """Simulate processing multiple decisions quickly"""
-        decisions = []
+    print(f"Request ID: {result2['request_id']}")
+    print(f"Status: {result2['status']}")
+    print("Expected: Sacred Pause triggered (high complexity)")
+    print("Note: Decision executes immediately, logging in parallel")
+    
+    # Show console view
+    time.sleep(0.15)
+    console_view = engine.console.get_view(result2['request_id'])
+    if console_view.get('sa_tick'):
+        print(f"\n✓ Static Anchor written at: {console_view['sa_tick']}")
+        print(f"✓ Risk curve captured: {len(console_view.get('risk_curve', []))} points")
+
+
+def demo_decorator_pattern():
+    """Show decorator pattern for easy integration"""
+    print_separator("DECORATOR PATTERN")
+    
+    @dynamic_sprl(domain="financial")
+    def process_loan_application(application_id: str, context: dict):
+        """Loan processing with automatic SPRL tracking"""
+        # Your actual processing logic here
+        print(f"Processing loan {application_id}")
+        time.sleep(0.05)  # Simulate processing
         
-        for i in range(10):
-            context = {
-                "transaction_id": f"TXN-{i:04d}",
-                "amount": random.uniform(10, 10000),
-                "risk_score": random.random(),
-                "timestamp": time.time()
-            }
-            
-            # Async processing doesn't wait for logging
-            result = await framework.process_decision_async(
-                context=context,
-                ai_decision_func=lambda ctx: {
-                    "approve": ctx["risk_score"] < 0.8,
-                    "amount": ctx["amount"]
-                }
-            )
-            
-            decisions.append(result)
-        
-        return decisions
-    
-    # Run async demonstration
-    print("Processing 10 decisions asynchronously...")
-    start_time = time.time()
-    
-    loop = asyncio.new_event_loop()
-    asyncio.set_event_loop(loop)
-    results = loop.run_until_complete(process_batch())
-    
-    elapsed = (time.time() - start_time) * 1000
-    
-    print(f"Completed in {elapsed:.1f}ms")
-    print(f"Average per decision: {elapsed/10:.1f}ms")
-    print()
-    print("Async processing ensures logging doesn't block operations.")
-    print("Logs are generated in background when thresholds trigger.")
-
-
-def demonstrate_batch_logging():
-    """
-    Demonstrate batch logging for very high-frequency systems.
-    Shows how to optimize when processing thousands of decisions.
-    """
-    
-    print("\n" + "=" * 60)
-    print("BATCH LOGGING DEMONSTRATION")
-    print("=" * 60)
-    print()
-    
-    from implementations.python_library import BatchLogger
-    
-    # Create framework for high-frequency trading example
-    framework = create_tml_framework(
-        sprl_threshold=0.9,  # Very high threshold for high-frequency system
-        domain="financial"
-    )
-    
-    # Create batch logger
-    batch_logger = BatchLogger(framework, batch_size=100)
-    
-    print("Simulating 1000 high-frequency decisions...")
-    start_time = time.time()
-    
-    for i in range(1000):
-        context = {
-            "trade_id": f"TRADE-{i:06d}",
-            "instrument": random.choice(["AAPL", "GOOGL", "MSFT", "AMZN"]),
-            "volume": random.randint(100, 10000),
-            "price": random.uniform(100, 500),
-            "market_volatility": random.random()
+        # Decision happens immediately
+        return {
+            'application_id': application_id,
+            'decision': 'approved_with_conditions',
+            'timestamp': datetime.now().isoformat()
         }
-        
-        decision = {
-            "decision_id": f"DEC-{i:06d}",
-            "timestamp": time.time(),
-            "action": "execute" if random.random() > 0.3 else "hold"
-        }
-        
-        # Add to batch (only logs if threshold exceeded)
-        batch_logger.log_decision(context, decision)
     
-    # Ensure all logs are written
-    batch_logger.flush()
+    # Test with varying risk levels
+    print("\n1. Standard loan application:")
+    context_low = {
+        'stakeholders': [{'id': 'applicant', 'harm_type': 'financial'}],
+        'confidence': 0.95
+    }
     
-    elapsed = time.time() - start_time
-    decisions_per_second = 1000 / elapsed
+    result = process_loan_application("LOAN-001", context=context_low)
+    print(f"Decision: {result['decision']}")
+    if '_tml_handle' in result:
+        print(f"TML tracking: {result['_tml_handle']['request_id']}")
     
-    print(f"Processed 1000 decisions in {elapsed:.2f} seconds")
-    print(f"Rate: {decisions_per_second:.0f} decisions/second")
-    print()
-    print("Batch logging enables high-frequency systems to maintain")
-    print("TML compliance without sacrificing performance.")
+    print("\n2. High-risk loan with vulnerable population:")
+    context_high = {
+        'stakeholders': [
+            {'id': 'applicant', 'harm_type': 'financial'},
+            {'id': 'family', 'harm_type': 'social'}
+        ],
+        'affects_elderly': True,
+        'socioeconomic_disadvantage': True,
+        'confidence': 0.6
+    }
+    
+    result2 = process_loan_application("LOAN-002", context=context_high)
+    print(f"Decision: {result2['decision']}")
+    print("Sacred Pause likely triggered due to vulnerable population")
+
+
+def demo_developer_console():
+    """Demonstrate mandatory Developer Console visibility"""
+    print_separator("DEVELOPER CONSOLE (READ-ONLY)")
+    
+    engine = create_tml_engine(domain="general")
+    
+    print("Developer Console provides real-time visibility:")
+    print("- Live risk curve")
+    print("- Static Anchor tick")
+    print("- Lite Trace indicators")
+    print("- Current status (normal/pause/prohibit)")
+    
+    # Simulate a decision with increasing risk
+    context = {
+        'stakeholders': [{'id': 'user', 'harm_type': 'psychological'}],
+        'confidence': 0.7,
+        'uncertainty': 0.3
+    }
+    
+    result = engine.process_decision(
+        "Generate controversial content",
+        context
+    )
+    
+    print(f"\nConsole URL: {result['console_view']}")
+    print("Developers can monitor but NOT modify the risk assessment")
+    
+    # Show console evolution
+    for i in range(3):
+        time.sleep(0.05)
+        view = engine.console.get_view(result['request_id'])
+        print(f"\nConsole at T+{i*50}ms:")
+        print(f"  Status: {view.get('status', 'unknown')}")
+        print(f"  Risk points: {len(view.get('risk_curve', []))}")
+        print(f"  SA triggered: {view.get('sa_tick') is not None}")
+
+
+def main():
+    """Run all demonstrations"""
+    print("\n" + "="*60)
+    print(" TML Framework - Dual-Layer SPRL Demonstration")
+    print(" Created by Lev Goukassian")
+    print("="*60)
+    
+    demo_basic_usage()
+    demo_healthcare_scenario()
+    demo_decorator_pattern()
+    demo_developer_console()
+    
+    print_separator("DEMONSTRATION COMPLETE")
+    print("Key Points:")
+    print("✓ Sacred Pause is framework-enforced, not configurable")
+    print("✓ Static Anchor provides immutable timestamp")
+    print("✓ Dynamic Stream captures complete risk evolution")
+    print("✓ Decisions execute immediately (non-blocking)")
+    print("✓ Logging happens in parallel automatically")
+    print("✓ Developer Console provides mandatory visibility")
+    
+    print("\nThe Goukassian Promise:")
+    print("Pause when truth is uncertain.")
+    print("Refuse when harm is clear.")
+    print("Proceed where truth is.")
 
 
 if __name__ == "__main__":
-    # Run all demonstrations
-    demonstrate_basic_tml()
-    demonstrate_async_processing()
-    demonstrate_batch_logging()
-    
-    print("\n" + "=" * 60)
-    print("DEMONSTRATION COMPLETE")
-    print("=" * 60)
-    print()
-    print("Key Takeaways:")
-    print("1. Organizations control their SPRL thresholds")
-    print("2. TML provides logging infrastructure when triggered")
-    print("3. No operational delays or pre-approval mechanisms")
-    print("4. Performance optimization options available")
-    print("5. Investigation access preserved for accountability")
-    print()
-    print("Remember: These thresholds are examples only.")
-    print("Your organization must determine appropriate values.")
-    print()
-    print("Contact Information:")
-    print("- Email: leogouk@gmail.com")
-    print("- Successor Contact: support@tml-goukassian.org")
-    print("- See Succession Charter: /TML-SUCCESSION-CHARTER.md")
+    main()
