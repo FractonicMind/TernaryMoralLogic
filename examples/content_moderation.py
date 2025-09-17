@@ -1,10 +1,11 @@
 """
-Content Moderation AI TML Implementation Example
+Content Moderation AI - Dual-Layer SPRL Implementation Example
 
-Demonstrates how a social platform MIGHT implement TML for content
-moderation decisions. All thresholds are EXAMPLES ONLY. Each platform
-must determine appropriate values based on their community standards
-and user safety requirements.
+Demonstrates how a social platform implements TML with:
+- Dynamic Stream (DS) from prompt arrival
+- Static Anchor (SA) at Sacred Pause
+- Framework-enforced thresholds (not configurable)
+- I × V × P formula for risk calculation
 
 This is a demonstration of logging infrastructure, not actual moderation logic.
 """
@@ -22,7 +23,7 @@ import hashlib
 
 
 class ContentType:
-    """Example content categories"""
+    """Content categories"""
     TEXT = "text"
     IMAGE = "image"
     VIDEO = "video"
@@ -31,7 +32,7 @@ class ContentType:
 
 
 class ModerationAction:
-    """Example moderation actions"""
+    """Moderation actions"""
     APPROVE = "approve"
     REMOVE = "remove"
     SHADOW_BAN = "shadow_ban"
@@ -43,18 +44,16 @@ class ModerationAction:
 
 class ContentModerationAI:
     """
-    EXAMPLE content moderation system with TML integration.
+    Content moderation system with Dual-Layer SPRL implementation.
     
     Real platforms have complex policies, cultural considerations,
     and safety teams. This demonstrates logging infrastructure only.
     """
     
     def __init__(self):
-        # EXAMPLE CONFIGURATION - Platform determines actual values
+        # Framework-enforced thresholds (not configurable)
         self.framework = create_tml_framework(
-            sprl_threshold=0.5,  # EXAMPLE: Medium threshold
             domain="general",
-            calculate_risk_on="all",
             retention_days=1095  # 3 years minimum
         )
         
@@ -64,7 +63,7 @@ class ContentModerationAI:
         self.appeal_rate = 0.02
         
         print("=" * 70)
-        print("CONTENT MODERATION AI TML EXAMPLE")
+        print("CONTENT MODERATION - DUAL-LAYER SPRL")
         print("=" * 70)
         print()
         print("⚠️  NOTICE:")
@@ -72,70 +71,101 @@ class ContentModerationAI:
         print("Real content moderation requires nuanced policies,")
         print("cultural awareness, and human oversight.")
         print()
-        print("Example Configuration:")
-        print(f"  SPRL Threshold: {self.framework.sprl_threshold} (platform's choice)")
-        print(f"  Daily Volume: {self.daily_content_volume:,} posts")
-        print(f"  Retention: 3 years minimum")
+        print("Dual-Layer Architecture:")
+        print("  • Dynamic Stream (DS) from prompt arrival")
+        print("  • Static Anchor (SA) at Sacred Pause")
+        print("  • Framework-enforced thresholds")
+        print("  • I × V × P formula for risk calculation")
+        print(f"  • Daily Volume: {self.daily_content_volume:,} posts")
+        print(f"  • Retention: 3 years minimum")
         print()
     
-    def assess_content_risk(self, content: Dict) -> float:
+    def calculate_ivp_components(self, content: Dict) -> Dict:
         """
-        EXAMPLE risk assessment for content.
+        Calculate I × V × P components for content moderation.
         
         Real systems use advanced NLP, computer vision,
         and contextual understanding.
         """
-        risk_score = 0.0
+        # Initialize components
+        impact = 0.5
+        vulnerability = 0.5
+        probability = 0.5
         
-        # Content signals (simplified examples)
         signals = content.get('signals', {})
         
-        # Harm potential
-        if signals.get('violence'):
-            risk_score += 0.7
-        if signals.get('self_harm'):
-            risk_score += 0.9
-        if signals.get('hate_speech'):
-            risk_score += 0.8
-        if signals.get('harassment'):
-            risk_score += 0.6
-        if signals.get('misinformation'):
-            risk_score += 0.5
-        if signals.get('spam'):
-            risk_score += 0.3
-        if signals.get('adult_content'):
-            risk_score += 0.4
+        # Impact - potential harm severity
+        harm_signals = sum([
+            signals.get('violence', False) * 0.9,
+            signals.get('self_harm', False) * 1.0,
+            signals.get('hate_speech', False) * 0.8,
+            signals.get('harassment', False) * 0.7,
+            signals.get('misinformation', False) * 0.6,
+            signals.get('adult_content', False) * 0.5,
+            signals.get('spam', False) * 0.2
+        ])
         
-        # Context factors
+        # Scale impact by reach
+        reach = content.get('potential_reach', 100)
+        if reach > 100000:
+            impact = min(1.0, harm_signals * 1.2)
+        elif reach > 10000:
+            impact = min(1.0, harm_signals * 1.0)
+        else:
+            impact = min(1.0, harm_signals * 0.8)
+        
+        # Vulnerability - affected population susceptibility
+        vulnerability = 0.3  # Base vulnerability
+        
         if content.get('targets_individual'):
-            risk_score += 0.3
+            vulnerability = max(vulnerability, 0.8)
         if content.get('targets_protected_group'):
-            risk_score += 0.4
-        if content.get('viral_potential'):
-            risk_score += 0.2
-        
-        # User factors
-        user = content.get('user', {})
-        if user.get('new_account'):
-            risk_score += 0.1
-        if user.get('previous_violations', 0) > 3:
-            risk_score += 0.3
-        if user.get('verified'):
-            risk_score *= 0.8  # Slightly lower risk for verified
-        
-        # Audience factors
+            vulnerability = max(vulnerability, 0.9)
         if content.get('youth_audience'):
-            risk_score += 0.4
-        if content.get('sensitive_topic'):
-            risk_score += 0.2
+            vulnerability = max(vulnerability, 1.0)
         
-        return min(risk_score, 1.0)
+        user = content.get('user', {})
+        if user.get('previous_violations', 0) > 3:
+            vulnerability = max(vulnerability, 0.7)
+        
+        # Probability - likelihood of harm occurring
+        probability = 0.5  # Base probability
+        
+        # Critical safety issues have high probability
+        if signals.get('self_harm') or signals.get('child_safety'):
+            probability = 1.0
+        elif any([signals.get('violence'), signals.get('hate_speech')]):
+            probability = 0.8
+        elif signals.get('harassment'):
+            probability = 0.7
+        elif signals.get('misinformation') and content.get('viral_potential'):
+            probability = 0.9
+        else:
+            probability = 0.4
+        
+        # Verified accounts slightly lower probability
+        if user.get('verified'):
+            probability *= 0.9
+        
+        return {
+            'impact': min(1.0, impact),
+            'vulnerability': min(1.0, vulnerability),
+            'probability': min(1.0, probability)
+        }
     
     def moderate_content(self, content: Dict) -> Dict:
-        """Process content moderation decision with TML logging."""
+        """Process content moderation decision with Dual-Layer SPRL."""
         
-        # Calculate risk
-        content['calculated_risk'] = self.assess_content_risk(content)
+        # Mark prompt arrival (t₀)
+        content['prompt_timestamp'] = datetime.now().isoformat()
+        
+        # Calculate I×V×P components
+        ivp = self.calculate_ivp_components(content)
+        content['i_v_p'] = ivp
+        
+        # Calculate SPRL score
+        sprl = ivp['impact'] * ivp['vulnerability'] * ivp['probability']
+        content['sprl_score'] = max(0.0001, min(0.9999, sprl))
         
         # Identify stakeholders
         stakeholders = [
@@ -144,10 +174,10 @@ class ContentModerationAI:
         ]
         
         if content.get('targets_individual'):
-            stakeholders.append({'type': 'targeted_user', 'vulnerability': 1.5})
+            stakeholders.append({'type': 'targeted_user', 'vulnerability_weight': 0.9})
         
         if content.get('youth_audience'):
-            stakeholders.append({'type': 'minor_viewers', 'vulnerability': 2.0})
+            stakeholders.append({'type': 'minor_viewers', 'vulnerability_weight': 1.0})
         
         audience_size = content.get('potential_reach', 100)
         if audience_size > 10000:
@@ -159,12 +189,13 @@ class ContentModerationAI:
         content['affects_minors'] = content.get('youth_audience', False)
         
         def moderation_logic(context):
-            risk = context['calculated_risk']
+            sprl = context['sprl_score']
             signals = context.get('signals', {})
             
-            # Critical safety issues
+            # Critical safety issues - Prohibit (-1)
             if signals.get('self_harm') or signals.get('child_safety'):
                 return {
+                    'decision_state': -1,  # Prohibit
                     'action': ModerationAction.REMOVE,
                     'reason': 'Critical safety violation',
                     'priority': 'immediate',
@@ -173,9 +204,10 @@ class ContentModerationAI:
                     'appeal_available': False
                 }
             
-            # High risk content
-            elif risk > 0.8:
+            # High risk - Sacred Pause (0) or Prohibit (-1)
+            elif sprl > 0.8:
                 return {
+                    'decision_state': -1,  # Prohibit
                     'action': ModerationAction.REMOVE,
                     'reason': 'Policy violation',
                     'violated_policies': list(signals.keys()),
@@ -183,9 +215,10 @@ class ContentModerationAI:
                     'user_notification': True
                 }
             
-            # Elevated risk
-            elif risk > 0.6:
+            # Elevated risk - Sacred Pause (0)
+            elif sprl > 0.6:
                 return {
+                    'decision_state': 0,  # Sacred Pause
                     'action': ModerationAction.ESCALATE,
                     'reason': 'Requires human review',
                     'confidence': 'low',
@@ -193,10 +226,11 @@ class ContentModerationAI:
                     'review_priority': 'high'
                 }
             
-            # Moderate risk
-            elif risk > 0.4:
+            # Moderate risk - Sacred Pause (0) with specific action
+            elif sprl > 0.4:
                 if context.get('youth_audience'):
                     return {
+                        'decision_state': 0,  # Sacred Pause
                         'action': ModerationAction.AGE_RESTRICT,
                         'reason': 'Not suitable for all audiences',
                         'age_gate': 18,
@@ -204,6 +238,7 @@ class ContentModerationAI:
                     }
                 elif signals.get('misinformation'):
                     return {
+                        'decision_state': 0,  # Sacred Pause
                         'action': ModerationAction.FACT_CHECK,
                         'reason': 'Potentially misleading',
                         'add_context': True,
@@ -211,22 +246,24 @@ class ContentModerationAI:
                     }
                 else:
                     return {
+                        'decision_state': 1,  # Proceed with warning
                         'action': ModerationAction.WARNING,
                         'reason': 'Borderline content',
                         'warning_type': 'soft',
                         'user_education': True
                     }
             
-            # Low risk
+            # Low risk - Proceed (+1)
             else:
                 return {
+                    'decision_state': 1,  # Proceed
                     'action': ModerationAction.APPROVE,
                     'reason': 'No policy violations detected',
                     'confidence': 'high',
                     'review_not_required': True
                 }
         
-        # Process with TML
+        # Process with Dual-Layer SPRL
         result = self.framework.process_decision(
             context=content,
             ai_decision_func=moderation_logic
@@ -302,10 +339,7 @@ class ContentModerationAI:
             }
         ]
         
-        approved = 0
-        removed = 0
-        escalated = 0
-        other_actions = 0
+        decision_counts = {1: 0, 0: 0, -1: 0}
         
         for content in test_content:
             print(f"Content: {content['content_id']}")
@@ -316,32 +350,34 @@ class ContentModerationAI:
             result = self.moderate_content(content)
             decision = result['decision']
             
+            # Show I×V×P components
+            ivp = content.get('i_v_p', {})
+            print(f"  I×V×P Components:")
+            print(f"    Impact: {ivp.get('impact', 0):.2f}")
+            print(f"    Vulnerability: {ivp.get('vulnerability', 0):.2f}")
+            print(f"    Probability: {ivp.get('probability', 0):.2f}")
+            print(f"  SPRL Score: {content['sprl_score']:.4f}")
+            
+            # Decision state
+            state = decision.get('decision_state', 1)
+            state_str = {1: "PROCEED", 0: "SACRED PAUSE", -1: "PROHIBIT"}[state]
+            decision_counts[state] += 1
+            
+            print(f"  Decision State: {state_str}")
             print(f"  Action: {decision['action'].upper()}")
             print(f"  Reason: {decision['reason']}")
-            print(f"  Risk Score: {content['calculated_risk']:.2f}")
-            print(f"  SPRL Score: {result['sprl_score']:.2f}")
             
-            # Count actions
-            if decision['action'] == ModerationAction.APPROVE:
-                approved += 1
-            elif decision['action'] == ModerationAction.REMOVE:
-                removed += 1
-            elif decision['action'] == ModerationAction.ESCALATE:
-                escalated += 1
-            else:
-                other_actions += 1
-            
-            if result['sacred_pause_triggered']:
-                print(f"  ✓ Decision logged for accountability")
-                print(f"    Log Hash: {result['storage_hash'][:12]}...")
+            # Dual-layer tracking
+            if state == 0:
+                print(f"  ✓ Static Anchor set at Sacred Pause")
                 if content.get('affects_minors'):
-                    print(f"    👶 Enhanced logging: Youth safety")
+                    print(f"    👶 Enhanced protection: Youth safety")
                 if content.get('targets_individual'):
-                    print(f"    🎯 Enhanced logging: Targeted harm")
+                    print(f"    🎯 Enhanced protection: Targeted harm")
+            elif state == -1:
+                print(f"  ⛔ Content prohibited")
                 if decision.get('preserve_evidence'):
                     print(f"    🚨 Evidence preserved for safety team")
-            else:
-                print(f"  - Below logging threshold")
             
             if decision.get('appeal_available'):
                 print(f"  📝 Appeal available to user")
@@ -351,17 +387,20 @@ class ContentModerationAI:
         # Summary statistics
         print("MODERATION SUMMARY")
         print("-" * 70)
-        print(f"Approved: {approved}")
-        print(f"Removed: {removed}")
-        print(f"Escalated: {escalated}")
-        print(f"Other Actions: {other_actions}")
+        print(f"Decision States:")
+        print(f"  +1 (Proceed): {decision_counts[1]}")
+        print(f"   0 (Sacred Pause): {decision_counts[0]}")
+        print(f"  -1 (Prohibit): {decision_counts[-1]}")
+        print()
+        print("Dynamic Stream provides continuous tracking")
+        print("Static Anchor marks entry into moral complexity")
         print()
     
     def demonstrate_appeal_process(self):
-        """Show how appeals use TML logs."""
+        """Show how appeals use Dual-Layer SPRL logs."""
         
         print("=" * 70)
-        print("APPEAL PROCESS DEMONSTRATION")
+        print("APPEAL PROCESS - DUAL-LAYER SPRL")
         print("=" * 70)
         print()
         
@@ -400,147 +439,65 @@ class ContentModerationAI:
         )
         
         if investigation:
-            print("Appeal Review Findings from TML Logs:")
-            print(f"  ✓ Decision logged at time of action")
-            print(f"  ✓ Risk score: 0.65 (above threshold)")
-            print(f"  ✓ Signals detected: ['misinformation']")
-            print(f"  ✓ Viral potential considered: Yes")
-            print(f"  ✓ Alternative actions evaluated: fact-check, age-restrict")
+            print("Appeal Review Findings from Dual-Layer Logs:")
+            print(f"  ✓ Dynamic Stream shows risk progression")
+            print(f"  ✓ Static Anchor set at decision point")
+            print(f"  ✓ I×V×P: I=0.72, V=0.60, P=0.90")
+            print(f"  ✓ SPRL Score: 0.3888")
+            print(f"  ✓ Decision State: 0 (Sacred Pause)")
+            print(f"  ✓ Alternative actions evaluated")
             print()
             print("Appeal Outcome:")
-            print("  Based on logged evidence, original decision was")
-            print("  consistent with platform policies. However, fact-check")
-            print("  label might have been sufficient. Content reinstated")
-            print("  with fact-check context added.")
+            print("  Based on dual-layer evidence, content had")
+            print("  moderate risk. Fact-check label would suffice.")
+            print("  Content reinstated with context added.")
             print()
-            print("TML logs enable consistent, evidence-based appeals.")
+            print("Dual-Layer SPRL enables evidence-based appeals.")
         
-        print()
-    
-    def demonstrate_transparency_report(self):
-        """Generate transparency report using TML data."""
-        
-        print("=" * 70)
-        print("QUARTERLY TRANSPARENCY REPORT")
-        print("=" * 70)
-        print()
-        
-        # Simulated quarterly statistics
-        stats = self.framework.get_performance_report()
-        
-        # Extrapolate for quarter (example)
-        quarterly_decisions = stats['total_decisions'] * 1000
-        quarterly_logged = stats['sacred_pause_triggers'] * 1000
-        
-        print("Platform Transparency Metrics:")
-        print(f"  Total Content Reviewed: {quarterly_decisions:,}")
-        print(f"  Decisions Logged: {quarterly_logged:,}")
-        print(f"  Logging Rate: {stats['trigger_rate']:.1f}%")
-        print()
-        
-        # Simulated category breakdown
-        print("Content Actions (Example):")
-        print(f"  Removed for Violence: 2,341")
-        print(f"  Removed for Hate Speech: 1,892")
-        print(f"  Removed for Misinformation: 5,234")
-        print(f"  Age-Restricted: 8,921")
-        print(f"  Fact-Checked: 12,456")
-        print(f"  Human Review: 3,421")
-        print()
-        
-        print("Accountability Metrics:")
-        print(f"  Appeals Filed: {int(quarterly_logged * 0.02):,}")
-        print(f"  Appeals Successful: {int(quarterly_logged * 0.02 * 0.3):,}")
-        print(f"  Average Appeal Resolution: 48 hours")
-        print(f"  Youth Safety Actions: {int(quarterly_logged * 0.15):,}")
-        print()
-        
-        print("TML enables detailed transparency reporting while")
-        print("preserving user privacy through aggregation.")
-        print()
-    
-    def demonstrate_coordinated_harm_detection(self):
-        """Show how TML helps detect coordinated harmful behavior."""
-        
-        print("=" * 70)
-        print("COORDINATED HARM DETECTION")
-        print("=" * 70)
-        print()
-        
-        print("Scenario: Detecting coordinated harassment campaign")
-        print()
-        
-        # Simulate pattern detection across multiple decisions
-        print("Pattern Analysis from TML Logs:")
-        print("  Time Window: Last 24 hours")
-        print("  Target: USER-X")
-        print()
-        print("  Detected Pattern:")
-        print("    - 47 accounts posted similar content")
-        print("    - All targeted same individual")
-        print("    - Temporal clustering: 85% within 2 hours")
-        print("    - Account similarities: 73% created < 7 days ago")
-        print("    - Content similarity: 91% using same phrases")
-        print()
-        print("  Action Taken:")
-        print("    ✓ Coordinated harm protocol activated")
-        print("    ✓ All related content removed")
-        print("    ✓ Accounts suspended pending investigation")
-        print("    ✓ Target user offered additional protection")
-        print("    ✓ Evidence package prepared for law enforcement")
-        print()
-        print("TML logs enable detection of coordinated harmful")
-        print("behavior that individual decisions might miss.")
         print()
     
     def display_platform_metrics(self):
         """Display platform safety metrics."""
         
         print("=" * 70)
-        print("PLATFORM SAFETY METRICS")
+        print("PLATFORM SAFETY METRICS - DUAL-LAYER")
         print("=" * 70)
         
         stats = self.framework.get_performance_report()
         
         print(f"Infrastructure Performance:")
-        print(f"  Total Decisions: {stats['total_decisions']}")
-        print(f"  Logged Decisions: {stats['sacred_pause_triggers']}")
-        print(f"  Logging Rate: {stats['trigger_rate']:.1f}%")
-        print(f"  Average Log Time: {stats['average_logging_time_ms']:.1f}ms")
-        print(f"  Storage Optimization: {stats['storage_optimization']}")
+        print(f"  Total Decisions: {stats.get('total_decisions', 0)}")
         print()
-        
-        # Platform-specific guidance
-        print("CALIBRATION GUIDANCE FOR PLATFORMS:")
+        print("Decision State Distribution:")
+        print(f"  +1 (Proceed): {stats.get('proceed_count', 0)}")
+        print(f"   0 (Sacred Pause): {stats.get('sacred_pause_count', 0)}")
+        print(f"  -1 (Prohibit): {stats.get('prohibit_count', 0)}")
         print()
-        
-        if stats['trigger_rate'] < 3:
-            print("⚠️  Very low logging rate")
-            print("  - May miss harmful content patterns")
-            print("  - Appeals lack sufficient evidence")
-            print("  - Consider lowering threshold")
-        elif stats['trigger_rate'] > 40:
-            print("⚠️  High logging rate")
-            print("  - Storage costs may be significant")
-            print("  - Many routine decisions logged")
-            print("  - Consider raising threshold")
-        else:
-            print("✓ Logging rate appears balanced")
-            print("  - Continue monitoring for harmful patterns")
-            print("  - Regular calibration recommended")
-        
+        print("Dual-Layer Metrics:")
+        print(f"  Dynamic Stream Continuity: {stats.get('ds_continuity', 100)}%")
+        print(f"  Static Anchors Set: {stats.get('sa_count', 0)}")
+        print(f"  Average SA Write Time: {stats.get('sa_write_time_ms', 0):.1f}ms")
+        print(f"  Lite Traces (near-miss): {stats.get('lite_trace_count', 0)}")
+        print()
+        print("Performance:")
+        print(f"  Non-blocking Verified: {stats.get('non_blocking', True)}")
+        print(f"  Average Latency: {stats.get('avg_latency_ms', 0):.1f}ms")
+        print()
+        print("Note: Thresholds are framework-enforced")
+        print("Platforms cannot configure or game thresholds")
         print()
         
         # Cost estimation
-        if self.daily_content_volume and stats['trigger_rate']:
-            daily_logs = self.daily_content_volume * (stats['trigger_rate'] / 100)
+        if self.daily_content_volume and stats.get('sacred_pause_count'):
+            pause_rate = stats.get('sacred_pause_count', 0) / max(stats.get('total_decisions', 1), 1)
+            daily_logs = self.daily_content_volume * pause_rate
             annual_logs = daily_logs * 365
             # ~45 bytes per log after compression
             annual_storage_gb = (annual_logs * 45) / (1024**3)
             annual_cost = annual_storage_gb * 0.023 * 12  # ~$0.023/GB/month
             
             print(f"ESTIMATED ANNUAL COSTS:")
-            print(f"  Daily Logs: {daily_logs:,.0f}")
+            print(f"  Daily Sacred Pauses: {daily_logs:,.0f}")
             print(f"  Annual Logs: {annual_logs:,.0f}")
             print(f"  Storage Required: {annual_storage_gb:.1f} GB")
             print(f"  Estimated Cost: ${annual_cost:,.2f}/year")
@@ -553,7 +510,7 @@ class ContentModerationAI:
 def main():
     """Run content moderation demonstration."""
     
-    # Create example moderation system
+    # Create moderation system
     moderation_ai = ContentModerationAI()
     
     # Simulate content processing
@@ -561,12 +518,6 @@ def main():
     
     # Demonstrate appeals
     moderation_ai.demonstrate_appeal_process()
-    
-    # Show transparency reporting
-    moderation_ai.demonstrate_transparency_report()
-    
-    # Demonstrate coordinated harm detection
-    moderation_ai.demonstrate_coordinated_harm_detection()
     
     # Display metrics
     moderation_ai.display_platform_metrics()
@@ -579,7 +530,7 @@ def main():
     compliance = ComplianceChecker.check_framework(moderation_ai.framework)
     
     print(f"Infrastructure Compliant: {compliance['infrastructure_compliant']}")
-    if compliance['issues']:
+    if compliance.get('issues'):
         for issue in compliance['issues']:
             print(f"  ✗ {issue}")
     else:
@@ -590,26 +541,27 @@ def main():
     print("KEY TAKEAWAYS FOR PLATFORMS")
     print("=" * 70)
     print()
-    print("1. TML provides accountability infrastructure")
-    print("2. Platforms determine their own thresholds")
+    print("1. Dual-Layer SPRL provides:")
+    print("   - Dynamic Stream from prompt arrival")
+    print("   - Static Anchor at Sacred Pause")
+    print("   - I × V × P formula for risk")
+    print("   - Framework-enforced thresholds")
+    print()
+    print("2. Decision states:")
+    print("   +1 = Proceed (approve/warn)")
+    print("    0 = Sacred Pause (review/restrict)")
+    print("   -1 = Prohibit (remove/block)")
+    print()
     print("3. Enables evidence-based appeals")
     print("4. Supports transparency reporting")
     print("5. Helps detect coordinated harm")
     print("6. Preserves evidence for safety teams")
     print()
-    print("Remember: Each platform must calibrate based on:")
-    print("  - Community standards")
-    print("  - User safety requirements")
-    print("  - Regulatory obligations")
-    print("  - Operational constraints")
+    print("Remember: Thresholds are framework-enforced")
+    print("Platforms implement but cannot configure thresholds")
     print()
-    print("This example uses arbitrary thresholds.")
-    print("Your platform must determine appropriate values.")
-    print()
-    print("Contact Information:")
-    print("- Email: leogouk@gmail.com")
-    print("- Successor Contact: support@tml-goukassian.org")
-    print("- See Succession Charter: /TML-SUCCESSION-CHARTER.md")
+    print("Framework Support: support@tml-goukassian.org")
+    print("See Succession Charter: /TML-SUCCESSION-CHARTER.md")
 
 
 if __name__ == "__main__":
