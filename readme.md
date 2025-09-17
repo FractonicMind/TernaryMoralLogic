@@ -200,8 +200,8 @@ from implementations.python_library import create_tml_framework
 framework = create_tml_framework(domain="general")
 
  Process decision - logs or stops
-result = framework.process_decision(context)
-# If logging fails, decision halts immediately
+result = framework.process_decision(context)   
+**If logging fails, decision halts immediately**
 
 ---
 
@@ -280,8 +280,6 @@ context = {
 ## Academic Research and Validation
 
 ### Research Publications
-
-TML has been independently analyzed by multiple research institutions:
 
 - [Stakeholder Proportional Risk Level Framework](docs/Stakeholder_Proportional_Risk_Level.md)
 - [Analysis of TML Logic - SPRL Governance Framework](Research_Reports/Analysis%20of%20TML%20Logic%20-%20%20SPRL%20Governance%20Framework.md)
