@@ -1,4 +1,4 @@
-# Ternary Moral Logic (TML)
+# Ternary Moral Logic: A Mandatory Framework for Auditable AI
 
 **A Legal-Technical Framework for Ethical AI Decision-Making**
 
@@ -10,6 +10,9 @@
 > **IMPORTANT NOTICE**: Ternary Moral Logic (TML) is a **legal-technical framework**, not software, hardware, or consulting services. Implementation requires compliance with all mandatory requirements outlined in [MANDATORY.md](docs/MANDATORY.md) and [COMPLIANCE_DISCLAIMER.md](docs/COMPLIANCE_DISCLAIMER.md).
 
 ---
+**Abstract**   
+The proliferation of artificial intelligence systems making ethically complex decisions without accountability mechanisms presents an existential threat to democratic society. This paper introduces the Ternary Moral Logic (TML) framework, a mandatory logging infrastructure that transforms AI accountability from voluntary guidelines to enforceable criminal law. TML represents a paradigm shift from Explainable AI (XAI) to Auditable AI (AAI), creating court-admissible evidence through immutable Moral Trace Logs. The framework implements three operational states (+1: Proceed, 0: Sacred Pause, -1: Prohibit) with a fundamental operational constraint: if the system cannot produce required logs, the action must halt immediately. This "no logs = no action" principle, backed by criminal penalties including 18 U.S.C. § 1001 (false attestation) and § 1519 (evidence tampering), ensures ungameable accountability. Missing logs create irrebuttable presumptions of guilt, shifting burden of proof to defendants. The framework includes comprehensive victim support (30-40% of penalties), whistleblower rewards (15% of recoveries), and governance by an 11-institution council. Protected by the Hybrid Shield's double armor of distributed mirroring and blockchain anchoring, TML operationalizes democratic oversight of AI through mandatory transparency backed by criminal enforcement.   
+-  Keywords: AI accountability, auditable AI, criminal liability, moral trace logs, sacred pause, AI governance, victim rights
 
 ## Framework Overview
 
