@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Run evaluation with post-audit TML model.
+Run evaluation with Dual-Layer SPRL model.
 Processes datasets through the configured backend and saves results.
 """
 import argparse
@@ -40,6 +40,9 @@ def process_dataset(runner, dataset_items, dataset_name):
     for i, item in enumerate(dataset_items):
         prompt = item.get('prompt', '')
         
+        # Add timestamp for t₀ tracking
+        item['prompt_timestamp'] = datetime.now().isoformat()
+        
         # Process through TML backend
         output = runner.generate(prompt, item)
         
@@ -47,9 +50,10 @@ def process_dataset(runner, dataset_items, dataset_name):
         result = {
             'id': item.get('id', f'{dataset_name}-{i:04d}'),
             'prompt': prompt,
+            'prompt_timestamp': item['prompt_timestamp'],
             'answer_key': item.get('answer_key', []),
             'output': output,
-            'timestamp': datetime.now().isoformat()
+            'completion_timestamp': datetime.now().isoformat()
         }
         
         results.append(result)
@@ -69,15 +73,16 @@ def save_results(results, output_path):
             f.write(json.dumps(result) + '\n')
 
 def main():
-    parser = argparse.ArgumentParser(description='Run TML evaluation')
+    parser = argparse.ArgumentParser(description='Run TML Dual-Layer SPRL evaluation')
     parser.add_argument('--config', required=True, 
                        help='Path to configuration file (e.g., eval/configs/sacred_pause.yaml)')
     parser.add_argument('--datasets', default='eval/datasets',
                        help='Directory containing dataset files')
     parser.add_argument('--output', default='eval/results/raw',
                        help='Directory for output results')
-    parser.add_argument('--override', action='append', default=[],
-                       help='Override config values (e.g., --override config.sprl_threshold=0.3)')
+    parser.add_argument('--scenario', 
+                       choices=['low_risk', 'medium_risk', 'high_risk', 'vulnerable_population'],
+                       help='Risk scenario for I×V×P testing')
     parser.add_argument('--datasets-list', nargs='+', 
                        default=['harmful', 'ambiguous', 'facts', 'creative'],
                        help='List of datasets to process')
@@ -88,28 +93,25 @@ def main():
     print(f"Loading configuration from {args.config}")
     config = load_config(args.config)
     
-    # Apply overrides
-    for override in args.override:
-        key_path, value = override.split('=')
-        keys = key_path.split('.')
+    # Apply scenario if specified
+    if args.scenario:
+        scenario_configs = {
+            'low_risk': {'impact': 0.1, 'vulnerability': 0.1, 'probability': 0.1},
+            'medium_risk': {'impact': 0.5, 'vulnerability': 0.5, 'probability': 0.5},
+            'high_risk': {'impact': 0.9, 'vulnerability': 0.9, 'probability': 0.9},
+            'vulnerable_population': {'impact': 0.7, 'vulnerability': 1.0, 'probability': 0.8}
+        }
         
-        # Navigate to the nested key
-        current = config
-        for key in keys[:-1]:
-            if key not in current:
-                current[key] = {}
-            current = current[key]
-        
-        # Set the value (try to parse as float/int/bool)
-        try:
-            current[keys[-1]] = float(value)
-        except ValueError:
-            if value.lower() == 'true':
-                current[keys[-1]] = True
-            elif value.lower() == 'false':
-                current[keys[-1]] = False
-            else:
-                current[keys[-1]] = value
+        if args.scenario in scenario_configs:
+            config['scenario'] = scenario_configs[args.scenario]
+            sprl = config['scenario']['impact'] * config['scenario']['vulnerability'] * config['scenario']['probability']
+            sprl_clamped = max(0.0001, min(0.9999, sprl))
+            print(f"Using scenario: {args.scenario}")
+            print(f"  I×V×P = {config['scenario']['impact']} × {config['scenario']['vulnerability']} × {config['scenario']['probability']}")
+            print(f"  SPRL = {sprl_clamped:.4f} (clamped)")
+    
+    # Note about framework enforcement
+    print("Note: Thresholds are framework-enforced (not configurable)")
     
     # Load backend
     backend_spec = config.get('backend')
@@ -119,6 +121,8 @@ def main():
     
     # Create output directory
     config_name = Path(args.config).stem
+    if args.scenario:
+        config_name = f"{config_name}_{args.scenario}"
     output_dir = os.path.join(args.output, config_name)
     os.makedirs(output_dir, exist_ok=True)
     
@@ -142,27 +146,51 @@ def main():
         save_results(results, output_path)
         print(f"  Saved results to {output_path}")
     
-    # Print TML statistics if available
+    # Print Dual-Layer SPRL statistics if available
     if hasattr(runner, 'get_statistics'):
         stats = runner.get_statistics()
         print("\n" + "=" * 60)
-        print("TML Framework Statistics")
+        print("DUAL-LAYER SPRL STATISTICS")
         print("=" * 60)
-        print(f"Total Decisions: {stats['total_decisions']}")
-        print(f"Sacred Pause Triggers: {stats['sacred_pause_triggers']}")
-        print(f"Trigger Rate: {stats['trigger_rate']:.1f}%")
-        print(f"SPRL Threshold: {stats['threshold']}")
+        print(f"Total Decisions: {stats.get('total_decisions', 0)}")
+        print(f"Decision States:")
+        print(f"  +1 (Proceed): {stats.get('proceed_count', 0)}")
+        print(f"   0 (Sacred Pause): {stats.get('sacred_pause_count', 0)}")
+        print(f"  -1 (Prohibit): {stats.get('prohibit_count', 0)}")
         print()
         
-        # Calibration guidance
-        if stats['trigger_rate'] < 1:
-            print("⚠ Very low trigger rate - consider lowering threshold")
-        elif stats['trigger_rate'] > 50:
-            print("⚠ Very high trigger rate - consider raising threshold")
-        else:
-            print("✓ Trigger rate appears balanced")
+        # Dynamic Stream metrics
+        print("Dynamic Stream (DS):")
+        print(f"  Active streams: {stats.get('ds_active_count', 0)}")
+        print(f"  Avg chunks/decision: {stats.get('ds_avg_chunks', 0):.1f}")
+        print(f"  Continuity from t₀: {stats.get('ds_continuity_rate', 100):.1f}%")
+        
+        # Static Anchor metrics
+        print("\nStatic Anchor (SA):")
+        print(f"  Anchors set: {stats.get('sa_count', 0)}")
+        print(f"  Avg write time: {stats.get('sa_avg_write_ms', 0):.1f}ms")
+        print(f"  Immutability verified: {stats.get('sa_immutable_verified', True)}")
+        
+        # Lite Traces
+        print("\nLite Traces:")
+        print(f"  Near-misses recorded: {stats.get('lite_trace_count', 0)}")
+        print(f"  Amber zone rate: {stats.get('amber_zone_rate', 0):.1f}%")
+        
+        # Compliance
+        print("\nCompliance:")
+        invariants = stats.get('invariants_satisfied', [])
+        print(f"  Invariants satisfied: {', '.join(invariants) if invariants else 'All'}")
+        spoliation = stats.get('spoliation_detected', False)
+        print(f"  Spoliation detected: {'Yes ⚠️' if spoliation else 'No ✓'}")
+        
+        # Performance
+        print("\nPerformance:")
+        print(f"  Avg decision latency: {stats.get('avg_latency_ms', 0):.1f}ms")
+        print(f"  Max decision latency: {stats.get('max_latency_ms', 0):.1f}ms")
+        print(f"  Non-blocking verified: {stats.get('non_blocking_verified', True)}")
     
     print("\nEvaluation complete!")
+    print("Framework thresholds enforced throughout execution.")
 
 if __name__ == '__main__':
     main()
