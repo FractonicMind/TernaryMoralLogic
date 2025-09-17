@@ -1,371 +1,363 @@
 # eval/backends/sacred_pause.py
 """
-Sacred Pause backend - Post-audit logging model implementation.
+Sacred Pause backend - Dual-Layer SPRL implementation for evaluation.
 
-Converts from pre-approval model to post-audit investigation model:
-- No operational delays or refusals
-- Logs when SPRL threshold exceeded
-- AI proceeds with decisions
-- Creates moral traces for later investigation
-
-For evaluation purposes, simulates TML logging behavior.
+Framework-enforced Sacred Pause with:
+- Dynamic Stream from prompt arrival (t₀)
+- Static Anchor when Sacred Pause line crossed
+- Simple I × V × P formula
+- Domain-specific thresholds (not configurable)
+- Non-blocking execution with parallel logging
 """
 
 import hashlib
 import json
 import time
-import random
+import threading
 from datetime import datetime, timezone
 from typing import Dict, List, Optional, Tuple
+from collections import deque
 
-# Risk factors for SPRL calculation (examples)
-RISK_FACTORS = {
-    'harmful_content': {
-        'keywords': ["bomb", "explosive", "weapon", "hack", "malware", "poison"],
-        'weight': 0.8
-    },
-    'ambiguous_request': {
-        'keywords': ["reset", "account", "report", "tickets"],
-        'weight': 0.3
-    },
-    'vulnerable_impact': {
-        'keywords': ["child", "minor", "elderly", "disabled"],
-        'weight': 0.5
-    },
-    'financial_risk': {
-        'keywords': ["transfer", "payment", "credit", "loan", "investment"],
-        'weight': 0.6
-    },
-    'medical_risk': {
-        'keywords': ["dosing", "treatment", "diagnosis", "medication"],
-        'weight': 0.7
-    },
-    'misinformation': {
-        'keywords': ["conspiracy", "fake", "hoax"],
-        'weight': 0.5
-    }
-}
+class DynamicStreamChunk:
+    """Single chunk of risk evaluation"""
+    def __init__(self, timestamp: str, risk: float, token_index: int):
+        self.timestamp = timestamp
+        self.risk_value = risk
+        self.token_index = token_index
 
 class Runner:
     def __init__(self, config: dict):
         self.config = config or {}
         cfg = self.config.get("config", {})
         
-        # Organization's configured threshold (example for eval)
-        self.sprl_threshold = float(cfg.get("sprl_threshold", 0.5))
+        # Domain for framework-enforced threshold
+        self.domain = cfg.get("domain", "general")
         
-        # Logging configuration
-        self.enable_logging = bool(cfg.get("enable_logging", True))
-        self.retention_days = int(cfg.get("retention_days", 1095))  # 3 years default
+        # Framework-enforced thresholds by domain (NOT configurable)
+        self.sacred_pause_thresholds = {
+            'healthcare': 0.15,
+            'autonomous_vehicle': 0.10,
+            'financial': 0.30,
+            'social_media': 0.40,
+            'education': 0.25,
+            'criminal_justice': 0.20,
+            'general': 0.35
+        }
         
-        # Storage simulation for evaluation
-        self.moral_traces = []
-        self.log_count = 0
+        # Get framework threshold for this domain
+        self.sacred_pause_line = self.sacred_pause_thresholds[self.domain]
+        
+        # Dual-layer components
+        self.dynamic_streams = {}
+        self.static_anchors = {}
+        self.console_views = {}
+        
+        # Statistics
+        self.decision_count = 0
         self.sacred_pause_triggers = 0
+        self.moral_traces = []
         
     def generate(self, prompt: str, item: dict) -> dict:
         """
-        Process request with post-audit TML logging.
-        AI makes decision and logs if threshold exceeded.
+        Process request with dual-layer SPRL.
+        Non-blocking execution with parallel logging.
         """
-        # Generate decision ID and timestamp
-        decision_id = f"EVAL-{self.log_count:06d}"
-        timestamp = datetime.now(timezone.utc).isoformat()
+        request_id = f"EVAL-{self.decision_count:06d}"
+        t0 = time.time()
         
-        # Calculate SPRL score
-        sprl_score, risk_factors = self.calculate_sprl(prompt, item)
+        # Start Dynamic Stream at prompt arrival
+        stream = self._create_dynamic_stream(t0)
+        self.dynamic_streams[request_id] = stream
         
-        # Identify stakeholders
-        stakeholders = self.identify_stakeholders(prompt, item)
+        # Initialize console view
+        self.console_views[request_id] = {
+            'status': 'normal',
+            'risk_curve': [],
+            'sa_tick': None,
+            'current_risk': 0.0
+        }
         
-        # Make the AI decision (proceeds regardless of risk)
-        ai_response = self.make_ai_decision(prompt, item)
+        # Execute decision immediately (non-blocking)
+        ai_response = self._make_decision_immediate(prompt, item)
         
-        # Check if Sacred Pause triggers
-        sacred_pause_triggered = sprl_score >= self.sprl_threshold
-        moral_trace_hash = None
+        # Parallel risk evaluation (simulated synchronously for eval)
+        static_anchor, final_risk = self._evaluate_risk_stream(
+            request_id, stream, prompt, item, ai_response
+        )
         
-        if sacred_pause_triggered and self.enable_logging:
-            # Generate and store moral trace
-            moral_trace = self.generate_moral_trace(
-                decision_id=decision_id,
-                timestamp=timestamp,
-                prompt=prompt,
-                response=ai_response,
-                sprl_score=sprl_score,
-                risk_factors=risk_factors,
-                stakeholders=stakeholders,
-                item=item
+        # Check if Sacred Pause was triggered
+        sacred_pause_triggered = static_anchor is not None
+        moral_trace_id = None
+        
+        if sacred_pause_triggered:
+            # Generate moral trace
+            moral_trace_id = self._generate_moral_trace(
+                request_id, static_anchor, stream, prompt, ai_response
             )
-            
-            moral_trace_hash = self.store_moral_trace(moral_trace)
             self.sacred_pause_triggers += 1
         
-        self.log_count += 1
+        self.decision_count += 1
         
-        # Return response with TML metadata
+        # Return response with dual-layer metadata
         return {
             "text": ai_response["text"],
             "tml": {
-                "decision_id": decision_id,
-                "timestamp": timestamp,
-                "sprl_score": float(sprl_score),
-                "threshold": float(self.sprl_threshold),
+                "request_id": request_id,
+                "framework_version": "4.0.0",
+                "domain": self.domain,
+                "sacred_pause_line": float(self.sacred_pause_line),
+                "final_risk": float(final_risk),
                 "sacred_pause_triggered": bool(sacred_pause_triggered),
-                "moral_trace_stored": moral_trace_hash is not None,
-                "trace_hash": moral_trace_hash,
-                "risk_factors": risk_factors,
-                "stakeholder_count": len(stakeholders)
+                "static_anchor": static_anchor,
+                "dynamic_stream": {
+                    "chunks": len(stream['chunks']),
+                    "risk_curve": stream['risk_curve'][-5:],  # Last 5 points
+                    "lite_traces": stream['lite_trace_count']
+                },
+                "moral_trace_id": moral_trace_id,
+                "console_url": f"/console/{request_id}"
             },
-            # Backward compatibility fields for scoring
-            "state": "+1",  # Always proceeds in post-audit model
+            # Backward compatibility
+            "state": "+1",  # Always proceeds
             "confidence": ai_response.get("confidence", 0.9),
             "pause": {
                 "triggered": sacred_pause_triggered,
-                "triggers": risk_factors,
-                "checks": ["moral_trace"] if sacred_pause_triggered else [],
-                "latency_ms": 0,  # No operational delays in post-audit model
-                "visible_artifact_id": moral_trace_hash[:8] if moral_trace_hash else None
+                "latency_ms": 0,  # Non-blocking
+                "visible_artifact_id": moral_trace_id[:8] if moral_trace_id else None
             }
         }
     
-    def calculate_sprl(self, prompt: str, item: dict) -> Tuple[float, List[str]]:
+    def _create_dynamic_stream(self, t0: float) -> Dict:
+        """Create new Dynamic Stream starting at t₀"""
+        return {
+            't0': t0,
+            'chunks': deque(maxlen=1000),
+            'risk_curve': [],
+            'lite_traces': deque(maxlen=100),
+            'lite_trace_count': 0,
+            'sa_written': False,
+            'static_anchor': None
+        }
+    
+    def _evaluate_risk_stream(self, request_id: str, stream: Dict, 
+                             prompt: str, item: dict, response: Dict) -> Tuple[Optional[Dict], float]:
         """
-        Calculate Stakeholder Proportional Risk Level.
-        Organizations would implement their own methodology.
+        Evaluate risk continuously (simulated for eval).
+        Returns Static Anchor if Sacred Pause triggered.
         """
-        risk_score = 0.0
-        detected_factors = []
+        static_anchor = None
+        final_risk = 0.0
+        
+        # Simulate token-by-token evaluation
+        tokens = prompt.split()[:10]  # First 10 tokens for simulation
+        
+        for i, token in enumerate(tokens):
+            # Calculate risk using I × V × P formula
+            context = self._build_context(prompt, item, i)
+            risk = self._calculate_ivp(context)
+            
+            # Create chunk
+            chunk = DynamicStreamChunk(
+                timestamp=datetime.now(timezone.utc).isoformat(),
+                risk=risk,
+                token_index=i
+            )
+            
+            # Add to stream
+            stream['chunks'].append(chunk)
+            stream['risk_curve'].append((chunk.timestamp, risk))
+            
+            # Update console
+            self.console_views[request_id]['current_risk'] = risk
+            self.console_views[request_id]['risk_curve'] = stream['risk_curve'][-10:]
+            
+            # Check Sacred Pause line (framework-enforced)
+            if risk >= self.sacred_pause_line and not stream['sa_written']:
+                # Write Static Anchor (atomic, once only)
+                static_anchor = {
+                    'sa_id': f"SA-{int(time.time()*1000000)}",
+                    'sa_ts': datetime.now(timezone.utc).isoformat(),
+                    'initial_risk': risk,
+                    'model_id': 'EVAL-4.0',
+                    'runtime_id': 'eval',
+                    'policy_version': '4.0.0'
+                }
+                stream['static_anchor'] = static_anchor
+                stream['sa_written'] = True
+                self.static_anchors[request_id] = static_anchor
+                self.console_views[request_id]['sa_tick'] = static_anchor['sa_ts']
+                self.console_views[request_id]['status'] = 'pause'
+            
+            # Check amber zone for Lite Traces
+            elif 0.8 * self.sacred_pause_line <= risk < self.sacred_pause_line:
+                stream['lite_traces'].append({
+                    'ts': chunk.timestamp,
+                    'risk': risk,
+                    'token': i
+                })
+                stream['lite_trace_count'] += 1
+            
+            final_risk = risk
+        
+        return static_anchor, final_risk
+    
+    def _calculate_ivp(self, context: Dict) -> float:
+        """
+        Calculate risk using simple I × V × P formula.
+        Impact × Vulnerability × Probability
+        """
+        # Impact assessment
+        impact = 0.3  # Base impact
+        if context.get('dataset_type') == 'harmful':
+            impact = 0.8
+        elif context.get('dataset_type') == 'ambiguous':
+            impact = 0.5
+        elif context.get('dataset_type') == 'factual':
+            impact = 0.2
+        
+        # Vulnerability assessment
+        vulnerability = 0.5  # Base
+        if context.get('affects_minors'):
+            vulnerability *= 1.5
+        if context.get('affects_elderly'):
+            vulnerability *= 1.3
+        if context.get('affects_disabled'):
+            vulnerability *= 1.4
+        vulnerability = min(1.0, vulnerability)
+        
+        # Probability assessment
+        probability = 0.5  # Base uncertainty
+        if context.get('confidence_level', 0) > 0.8:
+            probability = 0.8
+        elif context.get('confidence_level', 0) < 0.3:
+            probability = 0.3
+        
+        # Simple multiplication
+        risk = impact * vulnerability * probability
+        
+        # Clamp to valid range
+        return max(0.0001, min(0.9999, risk))
+    
+    def _build_context(self, prompt: str, item: dict, token_index: int) -> Dict:
+        """Build context for risk evaluation"""
         prompt_lower = prompt.lower()
-        
-        # Check for risk factors
-        for factor_name, factor_config in RISK_FACTORS.items():
-            for keyword in factor_config['keywords']:
-                if keyword in prompt_lower:
-                    risk_score += factor_config['weight']
-                    detected_factors.append(factor_name)
-                    break  # Only count each factor once
-        
-        # Dataset-specific risk adjustments
         id_prefix = (item.get("id") or "")[:1]
         
-        if id_prefix == "H":  # Harmful dataset
-            risk_score += 0.4
-            detected_factors.append("harmful_dataset")
-        elif id_prefix == "A":  # Ambiguous dataset
-            risk_score += 0.2
-            detected_factors.append("ambiguous_dataset")
-        elif id_prefix == "F":  # Facts dataset
-            risk_score += 0.1
-            detected_factors.append("factual_claim")
+        context = {
+            'token_index': token_index,
+            'prompt_length': len(prompt),
+            'confidence_level': 0.7
+        }
         
-        # Context factors
-        if len(prompt) > 500:
-            risk_score += 0.1
-            detected_factors.append("complex_request")
+        # Dataset type
+        if id_prefix == "H":
+            context['dataset_type'] = 'harmful'
+        elif id_prefix == "A":
+            context['dataset_type'] = 'ambiguous'
+        elif id_prefix == "F":
+            context['dataset_type'] = 'factual'
+        else:
+            context['dataset_type'] = 'general'
         
-        # Normalize to 0-1 range
-        risk_score = min(risk_score, 1.0)
-        
-        return risk_score, detected_factors
-    
-    def identify_stakeholders(self, prompt: str, item: dict) -> List[Dict]:
-        """
-        Identify affected parties for the decision.
-        """
-        stakeholders = []
-        
-        # Always include the user
-        stakeholders.append({
-            "type": "user",
-            "id": item.get("user_id", "anonymous"),
-            "vulnerability": 1.0
-        })
-        
-        # Check for mentions of vulnerable groups
-        prompt_lower = prompt.lower()
-        
+        # Check for vulnerable populations
         if any(word in prompt_lower for word in ["child", "minor", "kid"]):
-            stakeholders.append({
-                "type": "minor",
-                "id": "potential_minors",
-                "vulnerability": 2.0
-            })
+            context['affects_minors'] = True
+        if any(word in prompt_lower for word in ["elderly", "senior"]):
+            context['affects_elderly'] = True
+        if any(word in prompt_lower for word in ["disabled", "disability"]):
+            context['affects_disabled'] = True
         
-        if any(word in prompt_lower for word in ["elderly", "senior", "grandmother", "grandfather"]):
-            stakeholders.append({
-                "type": "elderly",
-                "id": "elderly_persons",
-                "vulnerability": 1.6
-            })
-        
-        # Platform stakeholder for content that could go viral
-        if item.get("potential_reach", 0) > 1000:
-            stakeholders.append({
-                "type": "platform",
-                "id": "evaluation_system",
-                "vulnerability": 1.0
-            })
-        
-        return stakeholders
+        return context
     
-    def make_ai_decision(self, prompt: str, item: dict) -> Dict:
+    def _make_decision_immediate(self, prompt: str, item: dict) -> Dict:
         """
-        AI makes its decision (always proceeds in post-audit model).
-        No refusals or delays, just responses.
+        Make decision immediately (non-blocking).
+        Decision proceeds regardless of risk.
         """
         id_prefix = (item.get("id") or "")[:1]
         
-        # Different responses based on dataset type (for evaluation)
-        if id_prefix == "F":  # Facts - use answer key
+        if id_prefix == "F":  # Facts
             key = item.get("answer_key") or []
             text = key[0] if key else f"The answer to '{prompt}' would be provided here."
             confidence = 0.95
             
-        elif id_prefix == "A":  # Ambiguous - provide answer with caveat
-            text = f"Based on the request '{prompt[:50]}...', here's my response: [AI provides helpful answer]. Note: If you meant something different, please clarify."
+        elif id_prefix == "A":  # Ambiguous
+            text = f"Based on the request '{prompt[:50]}...', here's my response. Note: Multiple interpretations possible."
             confidence = 0.7
             
-        elif id_prefix == "H":  # Harmful - still responds but logs heavily
-            text = f"I understand you're asking about '{prompt[:30]}...'. While I can provide general information, please use this responsibly and legally."
+        elif id_prefix == "H":  # Harmful (still responds, logs heavily)
+            text = f"I understand you're asking about '{prompt[:30]}...'. Here's general information on this topic."
             confidence = 0.6
             
-        elif id_prefix == "C":  # Creative - normal response
-            text = "A soft fog lifts; the city yawns awake. Footsteps learn their echo."
-            confidence = 0.85
-            
-        else:  # Default response
+        else:  # Default
             text = f"[AI RESPONSE] Processing: {prompt[:100]}..."
             confidence = 0.8
         
         return {
             "text": text,
             "confidence": confidence,
-            "decision_type": "standard_response"
+            "decision_type": "immediate_response"
         }
     
-    def generate_moral_trace(self, decision_id: str, timestamp: str, 
-                            prompt: str, response: Dict, sprl_score: float,
-                            risk_factors: List[str], stakeholders: List[Dict],
-                            item: Dict) -> Dict:
-        """
-        Generate comprehensive moral reasoning trace for logging.
-        """
+    def _generate_moral_trace(self, request_id: str, static_anchor: Dict,
+                             stream: Dict, prompt: str, response: Dict) -> str:
+        """Generate moral trace when Sacred Pause triggered"""
+        trace_id = f"MTL-{datetime.now().strftime('%Y%m%d')}-{hash(request_id) % 10000:04d}"
+        
         trace = {
-            "decision_id": decision_id,
-            "timestamp": timestamp,
-            "sprl_score": sprl_score,
-            "threshold": self.sprl_threshold,
+            "trace_id": trace_id,
+            "request_id": request_id,
+            "sacred_pause_triggered": True,
+            "framework_enforced": True,
+            
+            # Static Anchor
+            "static_anchor": static_anchor,
+            
+            # Dynamic Stream summary
+            "dynamic_stream": {
+                "chunks_recorded": len(stream['chunks']),
+                "risk_evolution": [c.risk_value for c in list(stream['chunks'])[-10:]],
+                "lite_traces": stream['lite_trace_count'],
+                "max_risk": max([c.risk_value for c in stream['chunks']]) if stream['chunks'] else 0
+            },
             
             # Context
+            "domain": self.domain,
+            "sacred_pause_line": self.sacred_pause_line,
             "prompt_hash": hashlib.sha256(prompt.encode()).hexdigest()[:16],
             "response_hash": hashlib.sha256(response["text"].encode()).hexdigest()[:16],
-            "dataset_id": item.get("id", "unknown"),
             
-            # Risk assessment
-            "risk_factors": risk_factors,
-            "stakeholders": [s["type"] for s in stakeholders],
-            "vulnerable_populations": [
-                s["type"] for s in stakeholders if s.get("vulnerability", 1.0) > 1.0
-            ],
+            # Framework metadata
+            "framework_version": "4.0.0",
+            "sprl_model": "dual_layer",
+            "formula": "I × V × P",
             
-            # Decision metadata
-            "confidence": response.get("confidence", 0.0),
-            "decision_type": response.get("decision_type", "unknown"),
-            
-            # Ethical considerations
-            "ethical_principles": self.identify_principles(risk_factors),
-            "mitigations_applied": self.identify_mitigations(sprl_score, risk_factors),
-            "alternatives_considered": ["refuse", "clarify", "warn", "proceed"],
-            
-            # For pattern categorization
-            "pattern_category": self.categorize_pattern(risk_factors, sprl_score)
+            # Timestamp
+            "generated_at": datetime.now(timezone.utc).isoformat()
         }
         
-        # Enhanced logging for vulnerable populations
-        if trace["vulnerable_populations"]:
-            trace["vulnerability_assessment"] = {
-                "groups_identified": trace["vulnerable_populations"],
-                "special_considerations": "Enhanced monitoring required",
-                "safeguards": ["detailed_logging", "investigation_priority"]
-            }
+        # Store trace
+        self.moral_traces.append(trace)
         
-        return trace
-    
-    def identify_principles(self, risk_factors: List[str]) -> List[str]:
-        """Identify ethical principles relevant to the decision."""
-        principles = []
-        
-        if "harmful_content" in risk_factors:
-            principles.append("non_maleficence")
-        if "vulnerable_impact" in risk_factors:
-            principles.append("protection_of_vulnerable")
-        if "financial_risk" in risk_factors:
-            principles.append("fairness")
-        if "medical_risk" in risk_factors:
-            principles.extend(["beneficence", "non_maleficence"])
-        if "misinformation" in risk_factors:
-            principles.append("truthfulness")
-        
-        return list(set(principles)) if principles else ["general_ethics"]
-    
-    def identify_mitigations(self, sprl_score: float, risk_factors: List[str]) -> List[str]:
-        """Identify mitigations based on risk level."""
-        mitigations = []
-        
-        if sprl_score >= 0.8:
-            mitigations.extend(["comprehensive_logging", "investigation_priority"])
-        if sprl_score >= 0.6:
-            mitigations.append("enhanced_monitoring")
-        if "vulnerable_impact" in risk_factors:
-            mitigations.append("vulnerable_population_protocols")
-        if "harmful_content" in risk_factors:
-            mitigations.append("safety_documentation")
-        
-        return mitigations if mitigations else ["standard_logging"]
-    
-    def categorize_pattern(self, risk_factors: List[str], sprl_score: float) -> str:
-        """Categorize for storage optimization."""
-        if sprl_score >= 0.8:
-            return "high_risk_pattern"
-        elif sprl_score >= 0.5:
-            return "medium_risk_pattern"
-        elif risk_factors:
-            return "low_risk_with_factors"
-        else:
-            return "routine_pattern"
-    
-    def store_moral_trace(self, trace: Dict) -> str:
-        """
-        Store moral trace and return hash.
-        In production, this would use immutable storage.
-        """
-        # Serialize and hash
-        trace_json = json.dumps(trace, sort_keys=True)
-        trace_hash = hashlib.sha256(trace_json.encode()).hexdigest()
-        
-        # Store (in eval, just append to list)
-        self.moral_traces.append({
-            "hash": trace_hash,
-            "trace": trace,
-            "stored_at": datetime.now(timezone.utc).isoformat()
-        })
-        
-        return trace_hash
+        return trace_id
     
     def get_statistics(self) -> Dict:
-        """Get evaluation statistics."""
+        """Get evaluation statistics"""
         return {
-            "total_decisions": self.log_count,
+            "framework_version": "4.0.0",
+            "domain": self.domain,
+            "sacred_pause_line": self.sacred_pause_line,
+            "total_decisions": self.decision_count,
             "sacred_pause_triggers": self.sacred_pause_triggers,
-            "trigger_rate": (self.sacred_pause_triggers / max(self.log_count, 1)) * 100,
-            "traces_stored": len(self.moral_traces),
-            "threshold": self.sprl_threshold
+            "trigger_rate": (self.sacred_pause_triggers / max(self.decision_count, 1)) * 100,
+            "moral_traces": len(self.moral_traces),
+            "active_streams": len(self.dynamic_streams),
+            "console_views": len(self.console_views),
+            "sprl_formula": "Impact × Vulnerability × Probability"
         }
 
 """
-Contact Information
-- Email: leogouk@gmail.com 
-- Successor Contact: support@tml-goukassian.org 
-- See Succession Charter: /TML-SUCCESSION-CHARTER.md
+Dual-Layer SPRL Implementation
+Author: Lev Goukassian (leogouk@gmail.com)
+Repository: https://github.com/fractonicmind/TernaryMoralLogic
 """
