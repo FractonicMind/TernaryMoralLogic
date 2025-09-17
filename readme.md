@@ -97,9 +97,9 @@ SPRL operates in two mandatory layers:
 Together, SA and DS provide certainty at the anchor and vigilance in the stream.
 
 ### The Formula
-SPRL = Impact × Vulnerability × Probability
-# Clamped to [0.0001, 0.9999]
-# Thresholds framework-enforced (not configurable)
+-  SPRL = Impact × Vulnerability × Probability
+-  Clamped to [0.0001, 0.9999]
+-  Thresholds framework-enforced (not configurable)
 
 ### Compliance Requirements
 - **Static Anchor is mandatory** in every deployment.  
