@@ -1,7 +1,7 @@
 # Stakeholder Proportional Risk Level (SPRL) Operation Modes — Formal Specification
 
-**Status:** Stable, Normative
-**Version:** 2.0 (2025-09-17)
+**Status:** Stable, Normative   
+**Version:** 2.0 (2025-09-17)   
 **Normative language:** The key words **MUST**, **MUST NOT**, **REQUIRED**, **SHALL**, **SHALL NOT**, **SHOULD**, **SHOULD NOT**, **RECOMMENDED**, **MAY**, and **OPTIONAL** in this document are to be interpreted as described in \[RFC 2119].
 
 ---
