@@ -152,7 +152,9 @@ Together, these form an unbreakable covenant between technology and humanity.
 
 ---
 
-## Hybrid Shield - Double Armor
+## [Hybrid Shield - Double Armor](protection/Hybrid-Shield.md)
+The Hybrid Shield is the enforcement and preservation mechanism of Ternary Moral Logic. It is designed to guarantee the integrity and permanence of the **Moral Trace Logs** generated during a Sacred Pause. Without this protective layer, the logs would be vulnerable to deletion or alteration, rendering the entire framework of accountability meaningless. The shield's architecture is explicitly designed as a "double armor," combining socio-political safeguards with cryptographic guarantees to create a resilient, tamper-evident system. 
+
 The framework's protection against tampering:   
 -  First Armor: Distributed Mirroring   
 -  Real-time replication to 11 independent institutions   
