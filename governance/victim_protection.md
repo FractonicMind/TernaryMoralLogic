@@ -109,7 +109,7 @@ Comprehensive compensation for:
 
 ### Special Provisions
 Vulnerable victims receive:
-- **40% of penalties** instead of 30%
+- **40% of penalties**
 - **Expedited processing** - half normal time
 - **Lower evidence thresholds** for initial support
 - **Mandatory criminal** prosecution of companies
@@ -226,7 +226,7 @@ Collective action support:
 **Outcome**:
 - Victim received immediate treatment funding
 - Company paid equivalent to 7% global revenue
-- Victim awarded 40% of penalties (billions)
+- Victim awarded 30% of penalties (billions)
 - CEO imprisoned for criminal negligence
 - Lifetime medical care guaranteed
 
