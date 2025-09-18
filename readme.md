@@ -30,8 +30,6 @@ TML moves beyond the constraints of binary logic by providing AI systems with a 
 **0 (Hesitate/Inquire):** The Voice of Wisdom and the Sacred Pause. This is the core innovation and the central tenet of the TML framework. This state is activated when an AI encounters potential danger, confusion, or moral ambiguity—the vast middle ground where a simple yes or no is inadequate. The Sacred Pause is not an act of indecision, but a deliberate act of reflection and a system-level checkpoint that compels the AI to reconsider the request, seek additional information, or escalate the decision to a human for oversight. The concept is likened to a doctor who takes time to review test results before issuing a diagnosis, prioritizing thoughtfulness over speed. Practical examples illustrate its function in various domains: a medical app hesitates before diagnosing a strange rash and asks about travel history, a city-planning AI pauses before approving a housing block and discovers it is in a floodplain, and a tutor bot pauses before giving a student the answer, instead asking what part feels hardest. In each case, the pause prevents a potentially harmful outcome and leads to a wiser, more thoughtful resolution.  
 
  
--  Keywords: AI accountability, auditable AI, criminal liability, moral trace logs, sacred pause, AI governance, victim rights
-
 ## Framework Overview
 
 ### What is TML?
