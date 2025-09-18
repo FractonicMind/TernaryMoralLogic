@@ -202,7 +202,7 @@ The "hybrid" nature of the shield is thus revealed to be a sophisticated interpl
 
 ---
 
-### The "Teeth" of TML: Operational and Legal Implications
+### [The "Teeth" of TML: Operational and Legal Implications](GOVERNANCE.md)
 
 **The Legal Imperative: Forensic Readiness**
 
@@ -223,16 +223,20 @@ To ensure compliance, TML's legal framework includes a punitive structure design
 
 Failure to meet the aforementioned standards for log integrity and accuracy could expose an organization to significant legal risk under U.S. federal law:
 
-- **18 U.S.C. § 1001 (False Statements):** Submitting an AI-generated log to a federal agency or in a court proceeding that contains materially false representations about the AI's reasoning could lead to criminal liability.   
+- **18 U.S.C. § 1001 (False Statements):** Submitting an AI-generated log to a federal agency or in a court proceeding that contains materially false representations about the AI's reasoning could lead to criminal liability, including up to 5 years of imprisonment.   
 - **18 U.S.C. § 1519 (Destruction, Alteration, or Falsification of Records):** Once created, a Moral Trace Log becomes a legal record. Any knowing alteration, concealment, or falsification of this log with the intent to impede a federal investigation carries severe penalties, including up to 20 years of imprisonment.
--  **Wire Fraud:** Threshold gaming (treble damages)
--  **RICO:** Systematic violations
+-  **18 U.S.C. § 1343 (Wire Fraud):** Deliberately manipulating TML thresholds (“threshold gaming”) to suppress Moral Trace Logs while marketing or reporting the system as compliant constitutes a scheme to defraud. Each false submission over interstate wires (emails, cloud reports, investor updates) is a separate act of wire fraud, carrying penalties of up to 20 years imprisonment per count.
+-  **18 U.S.C. §§ 1961–1968 (RICO):** Systematically falsifying, suppressing, or manipulating TML logs as part of an ongoing business practice can qualify as a pattern of racketeering activity. Liability includes criminal penalties up to 20 years in prison per count, asset forfeiture, and civil treble damages for private plaintiffs.
 
-### Civil Liability
--  Missing logs = irrebuttable presumption of guilt
--  Shifted burden of proof to defendant
--  Strict executive liability
--  Percentage of revenue fines
+### Civil Liability and Penalties
+
+-  ***Restatement (Second) of Torts § 402A (Strict Product Liability):** Deploying an AI without functional TML logging may be treated as a defective product. Penalties: Companies can face strict liability for all resulting injuries and economic losses, including compensatory damages, regardless of intent.
+-  **Negligence (Common Law & State Statutes):** Ignoring risks revealed in TML logs can be a breach of duty of care. Penalties: Defendants may be ordered to pay economic and non-economic damages (medical bills, lost wages, pain and suffering), plus punitive damages in cases of gross negligence.
+-  **Contractual Liability (U.C.C. §§ 2-314, 2-315):** Breaching an express or implied warranty of TML compliance creates liability. Penalties: Courts may award expectation damages, restitution, rescission of contracts, and attorneys’ fees where provided by statute or contract.
+-  **Fraud & Misrepresentation (Common Law; Securities Exchange Act Rule 10b-5):** Knowingly submitting altered or incomplete logs in commercial or investment contexts can trigger civil fraud. Penalties: Plaintiffs may recover treble damages, disgorgement of profits, rescission of deals, and injunctive relief.
+-  **Spoliation of Evidence (State Tort Doctrine):** Destroying or concealing Moral Trace Logs creates independent liability. Penalties: Courts may impose adverse inference instructions, monetary sanctions, compensatory damages, or default judgment against the offending party.
+-  **Consumer Protection Statutes (FTC Act § 5; State UDAP Laws):** Falsely advertising TML compliance is an unfair or deceptive practice. Penalties: Civil fines up to $50,120 per violation (FTC Act, adjusted for inflation), restitution to consumers, and injunctive orders barring future misconduct.
+-  **Professional Malpractice (Medical, Legal, Financial):** Using or ignoring AI without TML logs in professional practice constitutes malpractice. Penalties: Civil judgments for malpractice damages, license suspension or revocation, and in some states, mandatory treble damages for reckless disregard.
 
 ---
 
