@@ -98,7 +98,7 @@ Organizations implementing TML bear full responsibility for:
 - Harm prevention and victim compensation
 ---
 
-## Stakeholder Proportional Risk Level (SPRL)
+## [Stakeholder Proportional Risk Level (SPRL)](docs/Stakeholder_Proportional_Risk_Level.md)
 
 SPRL is the core risk-governing mechanism of Ternary Moral Logic (TML).  
 It ensures that every morally significant AI action produces a defensible, auditable record.  
