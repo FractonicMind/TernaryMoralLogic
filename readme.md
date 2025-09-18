@@ -159,7 +159,7 @@ The Hybrid Shield is the enforcement and preservation mechanism of Ternary Moral
 
 ### The "Double Armor": Conceptual Overview
 
-The core purpose of the Hybrid Shield is to protect the evidentiary output of the TML framework—the Sacred Pause logs—from being compromised by any single entity, whether corporate, governmental, or otherwise. The "hybrid" nature of the shield refers to its two distinct but interdependent layers of defense:  
+The core purpose of the Hybrid Shield is to protect the evidentiary output of the TML framework, the Sacred Pause logs, from being compromised by any single entity, whether corporate, governmental, or otherwise. The "hybrid" nature of the shield refers to its two distinct but interdependent layers of defense:  
 
  - **The Institutional Shield:** A framework of distributed trust that relies on social and geopolitical diversity to prevent overt censorship or deletion of the logs.
 
