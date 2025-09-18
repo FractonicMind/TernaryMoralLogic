@@ -1,14 +1,5 @@
 # PROTECTION PRINCIPLES
 
-## Core Protection Framework for Ternary Moral Logic
-
-**Framework Originator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)  
-**Contact**: leogouk@gmail.com  
-**Framework Version**: TML 2.0.0  
-**Document Status**: Binding Protection Requirements
-
----
-
 ## I. FOUNDATIONAL PROTECTION PRINCIPLES
 
 ### 1.1 Framework Integrity Protection
@@ -173,6 +164,9 @@
 **Principle**: Individuals reporting TML violations or harmed by improper implementations receive comprehensive protection and support.
 
 **Protection Guarantees**:
+- Whistleblower Rewards: 15% of recovered penalties
+- Victim Compensation: 30-40% of penalties
+- Vulnerable populations: 40% of penalties 
 - Complete legal protection against retaliation
 - Substantial financial rewards for verified violations
 - Free legal representation and litigation support
