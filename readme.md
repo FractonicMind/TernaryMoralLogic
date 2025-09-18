@@ -202,13 +202,31 @@ The "hybrid" nature of the shield is thus revealed to be a sophisticated interpl
 
 ---
 
-### Criminal Enforcement
-Upon federal adoption, violations trigger:
-Criminal Penalties
--  18 U.S.C. § 1001: False attestation (up to 5 years)
--  18 U.S.C. § 1519: Log tampering (up to 20 years)
--  Wire Fraud: Threshold gaming (treble damages)
--  RICO: Systematic violations
+### The "Teeth" of TML: Operational and Legal Implications
+
+**The Legal Imperative: Forensic Readiness**
+
+TML's most revolutionary aspect is its legal framework, which is built on the principle of "forensic readiness". The framework shifts the legal burden of proof from the plaintiff to the company. If a high-stakes decision is made without a corresponding Sacred Pause log, that absence is considered a "critical anomaly". The legal framework attached to TML creates an **irrebuttable presumption of maximum fault** against the company in such cases, effectively assuming guilt until the company can prove its innocence. This legal standard is a radical departure from traditional tort law and is designed to eliminate the corporate defense of **I didn't know** or **it was a glitch**. It forces companies to maintain meticulous, auditable records, turning the AI's otherwise opaque decision-making process into a legally transparent and defensible audit trail.  
+
+**Financial and Personal Liability**
+
+To ensure compliance, TML's legal framework includes a punitive structure designed to make non-compliance financially devastating and personally risky for leadership. Penalties can include astronomical fines of up to **10% of global revenue** or **2% of market cap per incident**. The framework introduces the concept of personal liability for executive" who might attempt to manipulate the system or its thresholds. The inclusion of massive whistleblower rewards, which can net individuals 30% of the fines levied, creates a powerful internal incentive for employees to expose fraud and negligence. This robust penalty structure is designed to align corporate incentives with ethical behavior, ensuring that accountability is embedded not just in the code but in the C-suite.  
+
+**The Legal Framework of TML**
+
+-  Core Principle:	Forensic Readiness. Missing or incomplete logs create an irrebuttable presumption of maximum fault.   
+-  Fines:	Up to 10% of global revenue or 2% of market cap per incident.   
+-  Executive Liability:	Personal liability for executives who manipulate system thresholds.   
+-  Whistleblower Rewards:	30% of the fines, with strong anti-retaliation protections.
+
+**Statutory Liability Risks**
+
+Failure to meet the aforementioned standards for log integrity and accuracy could expose an organization to significant legal risk under U.S. federal law:
+
+- **18 U.S.C. § 1001 (False Statements):** Submitting an AI-generated log to a federal agency or in a court proceeding that contains materially false representations about the AI's reasoning could lead to criminal liability.   
+- **18 U.S.C. § 1519 (Destruction, Alteration, or Falsification of Records):** Once created, a Moral Trace Log becomes a legal record. Any knowing alteration, concealment, or falsification of this log with the intent to impede a federal investigation carries severe penalties, including up to 20 years of imprisonment.
+-  **Wire Fraud:** Threshold gaming (treble damages)
+-  **RICO:** Systematic violations
 
 ### Civil Liability
 -  Missing logs = irrebuttable presumption of guilt
@@ -220,14 +238,14 @@ Criminal Penalties
 
 ## Protection Programs
 
-### Whistleblower Rewards
+### [Whistleblower Rewards](governance/whistleblower_protection.md)
 -  15% of recovered penalties
 -  Anonymous reporting channels
 -  Criminal prosecution for retaliation
 -  Memorial Fund legal support
 
-### Victim Compensation
--  30-40% of penalties to victims
+### [Victim Compensation](governance/victim_protection.md)
+-  30% of penalties to victims
 -  Vulnerable populations receive 40% of victim funds
 -  Immediate emergency support
 -  Lifetime care for permanent injury
