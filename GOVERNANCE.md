@@ -15,7 +15,7 @@ This document establishes the enforcement governance for the TML framework, cent
 - **Hybrid Shield:** Real-time log distribution to 11 institutions simultaneously
 - **Criminal Prosecution:** 18 U.S.C. § 1001 (false attestation) and § 1519 (log tampering)
 - **Imprisonment:** Personal criminal liability for missing logs
-- **Victim Compensation:** 30% of all penalties fund victim support
+- **Victim Compensation:** 30%-40% of all penalties fund victim support
 - **Whistleblower Rewards:** 15% of recovered penalties to exposers
 - **Automatic Guilt:** Missing logs create irrebuttable presumption
 
