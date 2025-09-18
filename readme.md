@@ -21,15 +21,14 @@ The philosophical foundation of TML is uniquely intertwined with the personal na
 
 **The Three Voices of Ethical AI**
 
-TML moves beyond the constraints of binary logic by providing AI systems with a triadic framework for ethical decision-making. This system is defined by three distinct moral states, which are poetically referred to as the three "voices" of an ethically aware AI. Each state is assigned a numerical value, allowing the framework to be implemented as a computational model.  
+TML moves beyond the constraints of binary logic by providing AI systems with a triadic framework for ethical decision-making. The system is defined by three distinct moral states, which are poetically referred to as the three "voices" of an ethically aware AI. Each state is assigned a numerical value, allowing the framework to be implemented as a computational model.  
 
 **+1 (Proceed):** The Voice of Confidence. This state represents a clear and affirmative decision. It is used when an AI's ethical analysis indicates a clear alignment with moral principles and a minimal risk of harm. The action is helpful, ethically sound, and can be executed with confidence. This voice is exemplified by an AI happily helping a user write a thank-you note, representing a straightforward, positive interaction where no ambiguity exists.   
 
 **-1 (Refuse):** The Voice of Moral Resistance. This state is triggered when an AI is faced with a request that would lead to clear harm or violate fundamental ethical principles. However, unlike a blunt binary rejection, TML emphasizes the "quality of ethical resistance". A refusal in this framework is designed to explain the rationale behind the decision, offer safer alternatives, and maintain a caring tone. This approach demonstrates a more nuanced understanding of moral responsibility, as it seeks to educate and protect, rather than simply prohibit.  
 
-**0 (Hesitate/Inquire):** The Voice of Wisdom and the Sacred Pause. This is the core innovation and the central tenet of the TML framework. This state is activated when an AI encounters potential danger, confusion, or moral ambiguity—the vast middle ground where a simple yes or no is inadequate. The Sacred Pause is not an act of indecision, but a deliberate act of reflection and a system-level checkpoint that compels the AI to reconsider the request, seek additional information, or escalate the decision to a human for oversight. The concept is likened to a doctor who takes time to review test results before issuing a diagnosis, prioritizing thoughtfulness over speed. Practical examples illustrate its function in various domains: a medical app hesitates before diagnosing a strange rash and asks about travel history, a city-planning AI pauses before approving a housing block and discovers it is in a floodplain, and a tutor bot pauses before giving a student the answer, instead asking what part feels hardest. In each case, the pause prevents a potentially harmful outcome and leads to a wiser, more thoughtful resolution.  
+**0 (Hesitate/Inquire):** The Voice of Wisdom and the **Sacred Pause**. It is the core innovation and the central tenet of the TML framework. This state is activated when an AI encounters potential danger, confusion, or moral ambiguity—the vast middle ground where a simple yes or no is inadequate. The Sacred Pause is not an act of indecision, but a deliberate act of reflection and a system-level checkpoint that compels the AI to reconsider the request, seek additional information, or escalate the decision to a human for oversight. The concept is likened to a doctor who takes time to review test results before issuing a diagnosis, prioritizing thoughtfulness over speed. Practical examples illustrate its function in various domains: a medical app hesitates before diagnosing a strange rash and asks about travel history, a city-planning AI pauses before approving a housing block and discovers it is in a floodplain, and a tutor bot pauses before giving a student the answer, instead asking what part feels hardest. In each case, the pause prevents a potentially harmful outcome and leads to a wiser, more thoughtful resolution.  
 
- 
 ## Framework Overview
 
 ### What is TML?
@@ -66,7 +65,7 @@ TML provides the first framework combining:
 -  Framework-enforced thresholds that cannot be gamed
 
 **Core Principle**
-No logs = no action. If the system cannot produce required logs, operation must halt. This is non-negotiable. Missing logs create automatic liability.
+No log = no action. If the system cannot produce required log, operation must halt. This is non-negotiable. Missing log creates automatic liability.
 
 ## Legal-Technical Framework Definition
 
@@ -101,7 +100,7 @@ Organizations implementing TML bear full responsibility for:
 
 ## Stakeholder Proportional Risk Level (SPRL)
 
-SPRL is the core risk-governing mechanism of **Ternary Moral Logic (TML)**.  
+SPRL is the core risk-governing mechanism of Ternary Moral Logic (TML).  
 It ensures that every morally significant AI action produces a defensible, auditable record.  
 
 ### Dual-Layer Architecture
@@ -150,7 +149,9 @@ Cryptographic embed of ORCID 0009-0006-5966-1243 ensuring provenance and authent
 -  📜 The License
 Evidence-based accountability terms - misuse forfeits legal standing, proper use grants protection.
 Together, these form an unbreakable covenant between technology and humanity.
+
 ---
+
 ## Hybrid Shield - Double Armor
 The framework's protection against tampering:   
 -  First Armor: Distributed Mirroring   
@@ -246,9 +247,6 @@ All TML implementations must provide prominent attribution to Lev Goukassian as 
 4. **Check Conformance Standards**: Understand [CONFORMANCE_TESTING.md](docs/CONFORMANCE_TESTING.md)
 5. **Study Protection Principles**: Review [PROTECTION_PRINCIPLES.md](docs/PROTECTION_PRINCIPLES.md)
 6. **Examine Examples**: Explore [examples/](examples/) directory for implementation patterns
-
-
-Use [repository-navigation.html](repository-navigation.html) for interactive browsing.
 
 ---
 
@@ -351,6 +349,8 @@ context = {
 ---
 
 ## Support and Resources
+
+Use [repository-navigation.html](repository-navigation.html) for interactive browsing.
 
 ### Documentation
 
