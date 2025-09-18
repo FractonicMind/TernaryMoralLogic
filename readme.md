@@ -140,16 +140,28 @@ Together, SA and DS provide certainty at the anchor and vigilance in the stream.
 For the full checklist of supporting files, see [SPRL_TODO.md](docs/SPRL_TODO.md).
 
 ---
-## The Goukassian Promise   
-The framework embodies three sacred commitments:
--  🔦 The Lantern
-Ethical guidance illuminating the path - systems demonstrate the capacity to pause when facing moral complexity.
--  ✍️ The Signature
-Cryptographic embed of ORCID 0009-0006-5966-1243 ensuring provenance and authenticity.
--  📜 The License
-Evidence-based accountability terms - misuse forfeits legal standing, proper use grants protection.
-Together, these form an unbreakable covenant between technology and humanity.
 
+## [The Goukassian Promise: A Covenant of Accountability](GOUKASSIAN_PROMISE.md)
+
+The Goukassian Promise is not a simple trademark but a complex, interdependent system of symbols and cryptographic safeguards that bind a TML implementation to its core ethical principles. It is a covenant designed to function even when its creator is no longer present, ensuring the framework's integrity and its commitment to a humane future. The Promise is composed of three interconnected elements: **The Lantern, The Signature, and The License**.  
+
+- **The Lantern: The Symbol of Ethical Guidance**
+
+The Lantern (🏮) serves as the public, visible symbol of a system's adherence to the TML framework. It represents "ethical guidance, visible and active" and provides verifiable "proof it can pause". The presence of the Lantern signals to users, regulators, and other stakeholders that the AI system is not only running TML but is also upholding its core tenets. The most significant function of this symbol is embedded in the Promise's central mantra: "Break the promise, lose the lantern". This implies that a company or developer who misuses or tampers with the TML framework forfeits its ethical standing and its public badge of integrity. This powerful metaphorical consequence reinforces the system's reliance on trust and public transparency as a form of decentralized enforcement.  
+
+- **The Signature: A Cryptographic Anchor of Provenance**
+
+The Signature (✍R◯) is the most innovative and personal component of the Promise. It is Goukassian’s unique ORCID, the persistent digital identifier for academic researchers. By embedding his ORCID (0009–0006–5966–1243) into the framework, Goukassian created a novel form of cryptographic provenance. This embedded signature serves as an irrefutable proof of authenticity, verifying that a specific TML implementation is legitimate and has not been tampered with. It places a "very personal stake" on the project, creating a non-commercial, auditable chain of trust that bypasses traditional intellectual property and corporate licensing models. This mechanism ensures that any attempt to use the TML name without adhering to its core principles can be forensically and cryptographically exposed, thus protecting the integrity of Goukassian's legacy.  
+
+- **The License: The Binding Covenant of Accountability**
+
+The License (📜) is the legal mechanism that provides the Promise with its "teeth". It is a covenant that "binds anyone using TML to the rules of evidence". Unlike a traditional software license that primarily governs usage rights, this license formalizes the evidentiary requirements and legal obligations of the framework. By adopting it, users consent to the generation and preservation of the immutable Moral Trace Logs, ensuring that they can be admitted as legal evidence. The License transforms the TML framework from a simple piece of open-source software into a legally defensible infrastructure for AI governance. It codifies the commitment to a future where accountability is not an option but a binding, enforceable rule.  
+
+**The Interdependent System: Legacy and Enforcement**
+
+The three components of The Goukassian Promise: The Lantern, The Signature, and The License, are designed to work in concert as a unified, self-enforcing system. A company cannot simply adopt the TML code; to be a legitimate implementer, it must also display the Lantern, cryptographically embed the Signature, and adhere to the terms of the License. If any part of this covenant is broken, the entire system of trust collapses. The public-facing Lantern is rendered meaningless, and the embedded Signature serves as a cryptographic marker of the transgression. This innovative model for decentralized ethical enforcement, relying on cryptographic verification and public trust rather than a centralized regulatory body, ensures that Goukassian’s vision for a trustworthy AI future will endure.
+
+[The Three Pillars of Purposeful Action](GOUKASSIAN_PROMISE.html)
 ---
 
 ## [Hybrid Shield - Double Armor](protection/Hybrid-Shield.md)
@@ -335,30 +347,14 @@ context = {
 
 ---
 
-## Community and Governance
-
-### 11-Institution Enforcement Council
-
-**Voting Structure**:
-- Simple majority (6/11) triggers investigation
-- Supermajority (8/11) initiates criminal referral
-- Unanimous (11/11) triggers emergency shutdown
-
-**Enforcement Powers**:
-- **[Unlimited access to instantly synchronized logs without notice](protection/Hybrid-Shield.md)**
-- Criminal referral authority
-- Public disclosure rights
-- Emergency shutdown powers
-- Asset freezing coordination
-
----
 ## Proposed Recommendations:
 
-   - For Policymakers: The institutional governance model of TML should be studied as a blueprint for a global governance body independent of corporate and national interests. Its unique financial and enforcement mechanisms offer a potential solution to the "pacing problem" of regulation.
+   **- For Policymakers:** The institutional governance model of TML should be studied as a blueprint for a global governance body independent of corporate and national interests. Its unique financial and enforcement mechanisms offer a potential solution to the "pacing problem" of regulation.
 
-   - For Developers: The open-source TML framework provides a robust foundation for building ethical AI systems. Developers should engage with the community to test and contribute to its security and legal viability, with a particular focus on real-world testing of its tamper-resistance and auditability claims.
+   **- For Developers:** The open-source TML framework provides a robust foundation for building ethical AI systems. Developers should engage with the community to test and contribute to its security and legal viability, with a particular focus on real-world testing of its tamper-resistance and auditability claims.   
 
-   - For Institutions: The academic, research, and international organizations designated as members of the TML council have an opportunity to participate in a novel and potentially powerful new form of global governance. Their involvement would lend the framework the credibility and institutional weight necessary for its widespread adoption and long-term legacy.   
+   **- For Institutions:** The academic, research, and international organizations designated as members of the TML council have an opportunity to participate in a novel and potentially powerful new form of global governance. Their involvement would lend the framework the credibility and institutional weight necessary for its widespread adoption and long-term legacy.   
+
 ---
 
 ## Interactive Demos and Tools
