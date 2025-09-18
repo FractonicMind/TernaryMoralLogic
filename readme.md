@@ -161,7 +161,8 @@ The License (📜) is the legal mechanism that provides the Promise with its "te
 
 The three components of The Goukassian Promise: The Lantern, The Signature, and The License, are designed to work in concert as a unified, self-enforcing system. A company cannot simply adopt the TML code; to be a legitimate implementer, it must also display the Lantern, cryptographically embed the Signature, and adhere to the terms of the License. If any part of this covenant is broken, the entire system of trust collapses. The public-facing Lantern is rendered meaningless, and the embedded Signature serves as a cryptographic marker of the transgression. This innovative model for decentralized ethical enforcement, relying on cryptographic verification and public trust rather than a centralized regulatory body, ensures that Goukassian’s vision for a trustworthy AI future will endure.
 
-[The Three Pillars of Purposeful Action](GOUKASSIAN_PROMISE.html)
+**[The Three Pillars of Purposeful Action](https://fractonicmind.github.io/TernaryMoralLogic/GOUKASSIAN_PROMISE.html)**
+
 ---
 
 ## [Hybrid Shield - Double Armor](protection/Hybrid-Shield.md)
