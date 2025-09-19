@@ -29,23 +29,22 @@ TML moves beyond the constraints of binary logic by providing AI systems with a 
 
 **-1 (Refuse):** The Voice of Moral Resistance. This state is triggered when an AI is faced with a request that would lead to clear harm or violate fundamental ethical principles. However, unlike a blunt binary rejection, TML emphasizes the "quality of ethical resistance". A refusal in this framework is designed to explain the rationale behind the decision, offer safer alternatives, and maintain a caring tone. This approach demonstrates a more nuanced understanding of moral responsibility, as it seeks to educate and protect, rather than simply prohibit.  
 
-**0 (Hesitate/Inquire):** The Voice of Wisdom and the **Sacred Pause**. It is the core innovation and the central tenet of the TML framework. This state is activated when an AI encounters potential danger, confusion, or moral ambiguity—the vast middle ground where a simple yes or no is inadequate. The Sacred Pause is not an act of indecision, but a deliberate act of reflection and a system-level checkpoint that compels the AI to reconsider the request, seek additional information, or escalate the decision to a human for oversight. The concept is likened to a doctor who takes time to review test results before issuing a diagnosis, prioritizing thoughtfulness over speed. Practical examples illustrate its function in various domains: a medical app hesitates before diagnosing a strange rash and asks about travel history, a city-planning AI pauses before approving a housing block and discovers it is in a floodplain, and a tutor bot pauses before giving a student the answer, instead asking what part feels hardest. In each case, the pause prevents a potentially harmful outcome and leads to a wiser, more thoughtful resolution.  
+**0 (Hesitate/Inquire):** The Voice of Wisdom and the **Sacred Zero**. It is the core innovation and the central tenet of the TML framework. This state is activated when an AI encounters potential danger, confusion, or moral ambiguity—the vast middle ground where a simple yes or no is inadequate. The Sacred 0 is not an act of indecision, but a deliberate act of reflection and a system-level checkpoint that compels the AI to reconsider the request, seek additional information, or escalate the decision to a human for oversight. The concept is likened to a doctor who takes time to review test results before issuing a diagnosis, prioritizing thoughtfulness over speed. Practical examples illustrate its function in various domains: a medical app hesitates before diagnosing a strange rash and asks about travel history, a city-planning AI pauses before approving a housing block and discovers it is in a floodplain, and a tutor bot pauses before giving a student the answer, instead asking what part feels hardest. In each case, the pause prevents a potentially harmful outcome and leads to a wiser, more thoughtful resolution.  
 
 ## Framework Overview
 
 ### What is TML?
 
-Ternary Moral Logic introduces a revolutionary third state to artificial intelligence decision-making: the **Sacred Pause**. Instead of forcing AI systems into binary allow/deny decisions, TML creates space for comprehensive documentation when facing ethical complexity.
+Ternary Moral Logic introduces a revolutionary third state to artificial intelligence decision-making: the **Sacred Zero**. Instead of forcing AI systems into binary allow/deny decisions, TML creates space for comprehensive documentation when facing ethical complexity.
 
 **The Three States**:
 - **+1 (Permit)**: Clear ethical approval for action
-- **0 (Sacred Pause)**: Moral complexity triggers comprehensive logging
+- **0 (Sacred Zero)**: Moral complexity triggers comprehensive logging
 - **-1 (Prohibit)**: Clear ethical rejection of action
 
 ### Core Framework Components
 
 1. **Sacred Pause Technology**: Automatic activation when moral complexity exceeds thresholds
-2. **SPRL (Stakeholder Proportional Risk Level)**: Quantitative metric determining Sacred Pause activation
 3. **Moral Trace Logging**: Complete, immutable documentation of ethical reasoning
 4. **Vulnerable Population Protection**: Enhanced safeguards for at-risk groups
 5. **11-Institution Oversight**: Distributed governance and accountability
