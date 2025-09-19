@@ -152,7 +152,7 @@ ALM creates a virtuous cycle that improves AI systems over time:
 **The Cycle:**   
 Better Logs → Better Training → Better Decisions → Richer Logs
      ↑                                                    ↓
-     ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←
+     ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←
 
 **Better Logs:** Complete records reveal edge cases, biases, and failure patterns invisible in selective logging   
 **Better Training:** These logs become training data for next-generation models, teaching them to avoid documented failures   
