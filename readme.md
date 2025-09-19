@@ -1,7 +1,5 @@
 # Ternary Moral Logic: A Mandatory Framework for Auditable AI
 
-*The age of unaccountable AI ends when we stop asking what to log and simply log everything.*
-
 **A Legal-Technical Framework for Ethical AI Decision-Making**
 
 [![Framework Version](https://img.shields.io/badge/TML-2.0.0-blue.svg)](https://github.com/FractonicMind/TernaryMoralLogic)
@@ -29,22 +27,23 @@ TML moves beyond the constraints of binary logic by providing AI systems with a 
 
 **-1 (Refuse):** The Voice of Moral Resistance. This state is triggered when an AI is faced with a request that would lead to clear harm or violate fundamental ethical principles. However, unlike a blunt binary rejection, TML emphasizes the "quality of ethical resistance". A refusal in this framework is designed to explain the rationale behind the decision, offer safer alternatives, and maintain a caring tone. This approach demonstrates a more nuanced understanding of moral responsibility, as it seeks to educate and protect, rather than simply prohibit.  
 
-**0 (Hesitate/Inquire):** The Voice of Wisdom and the **Sacred Zero**. It is the core innovation and the central tenet of the TML framework. This state is activated when an AI encounters potential danger, confusion, or moral ambiguity—the vast middle ground where a simple yes or no is inadequate. The Sacred 0 is not an act of indecision, but a deliberate act of reflection and a system-level checkpoint that compels the AI to reconsider the request, seek additional information, or escalate the decision to a human for oversight. The concept is likened to a doctor who takes time to review test results before issuing a diagnosis, prioritizing thoughtfulness over speed. Practical examples illustrate its function in various domains: a medical app hesitates before diagnosing a strange rash and asks about travel history, a city-planning AI pauses before approving a housing block and discovers it is in a floodplain, and a tutor bot pauses before giving a student the answer, instead asking what part feels hardest. In each case, the pause prevents a potentially harmful outcome and leads to a wiser, more thoughtful resolution.  
+**0 (Hesitate/Inquire):** The Voice of Wisdom and the **Sacred Pause**. It is the core innovation and the central tenet of the TML framework. This state is activated when an AI encounters potential danger, confusion, or moral ambiguity—the vast middle ground where a simple yes or no is inadequate. The Sacred Pause is not an act of indecision, but a deliberate act of reflection and a system-level checkpoint that compels the AI to reconsider the request, seek additional information, or escalate the decision to a human for oversight. The concept is likened to a doctor who takes time to review test results before issuing a diagnosis, prioritizing thoughtfulness over speed. Practical examples illustrate its function in various domains: a medical app hesitates before diagnosing a strange rash and asks about travel history, a city-planning AI pauses before approving a housing block and discovers it is in a floodplain, and a tutor bot pauses before giving a student the answer, instead asking what part feels hardest. In each case, the pause prevents a potentially harmful outcome and leads to a wiser, more thoughtful resolution.  
 
 ## Framework Overview
 
 ### What is TML?
 
-Ternary Moral Logic introduces a revolutionary third state to artificial intelligence decision-making: the **Sacred Zero**. Instead of forcing AI systems into binary allow/deny decisions, TML creates space for comprehensive documentation when facing ethical complexity.
+Ternary Moral Logic introduces a revolutionary third state to artificial intelligence decision-making: the **Sacred Pause**. Instead of forcing AI systems into binary allow/deny decisions, TML creates space for comprehensive documentation when facing ethical complexity.
 
 **The Three States**:
 - **+1 (Permit)**: Clear ethical approval for action
-- **0 (Sacred Zero)**: Moral complexity triggers comprehensive logging
+- **0 (Sacred Pause)**: Moral complexity triggers comprehensive logging
 - **-1 (Prohibit)**: Clear ethical rejection of action
 
 ### Core Framework Components
 
 1. **Sacred Pause Technology**: Automatic activation when moral complexity exceeds thresholds
+2. **SPRL (Stakeholder Proportional Risk Level)**: Quantitative metric determining Sacred Pause activation
 3. **Moral Trace Logging**: Complete, immutable documentation of ethical reasoning
 4. **Vulnerable Population Protection**: Enhanced safeguards for at-risk groups
 5. **11-Institution Oversight**: Distributed governance and accountability
@@ -99,227 +98,46 @@ Organizations implementing TML bear full responsibility for:
 - Harm prevention and victim compensation
 ---
 
-# Ternary Moral Logic (TML) - Always Log Mode
+## [Stakeholder Proportional Risk Level (SPRL)](docs/Stakeholder_Proportional_Risk_Level.md)
 
-**A Framework for Universal AI Accountability**
+SPRL is the core risk-governing mechanism of Ternary Moral Logic (TML).  
+It ensures that every morally significant AI action produces a defensible, auditable record.  
 
-Version 4.0 | Creator: Lev Goukassian (ORCID: 0009-0006-5966-1243)
+### Dual-Layer Architecture
+SPRL operates in two mandatory layers:
 
----
+- **Static Anchor (SA)** – the baseline, compliance-guaranteed mode.  
+  A fixed proportional risk threshold determines when the Sacred Pause is triggered and a Moral Trace Log is created.  
+- **Dynamic Stream (DS)** – the adaptive extension.  
+  Risk is evaluated continuously, with Lite Traces for near-misses and automatic fallback to SA if the stream fails.  
 
-## What is TML?
+Together, SA and DS provide certainty at the anchor and vigilance in the stream.
 
-Ternary Moral Logic implements Always Log Mode (ALM) - every AI action generates an immutable, cryptographically signed log. No thresholds. No exceptions. No configuration. Just complete accountability.
+### The Formula
+-  SPRL = Impact × Vulnerability × Probability
+-  Clamped to [0.0001, 0.9999]
+-  Thresholds framework-enforced (not configurable)
 
-The framework recognizes three states of AI decision-making:
-- **+1**: Proceed - action permitted
-- **0**: Sacred Zero - moral complexity acknowledged
-- **-1**: Refuse - action prohibited
+### Compliance Requirements   
+- Static Anchor is mandatory in every deployment.  
+- Dynamic Stream may be adopted in high-maturity environments with governance capacity.  
+- Both modes produce cryptographically sealed, court-admissible Moral Trace Logs distributed across institutional mirrors.
 
-These are classifications for understanding, not triggers for different handling. Every action, regardless of classification, receives identical logging treatment.
+### Compliance Invariants   
+-  1: DS starts at t₀ (no pre-prompt gap)
+-  2: SA is singular and atomic
+-  3: SA is framework-enforced
+-  4: SA present when pause occurs
+-  5: DS chunks cryptographically chain to SA
 
-## The Core Principle
+### Documentation
+- [SPRL Operation Modes](docs/SPRL_OPERATION_MODES.md) – formal specification of SA and DS  
+- [SPRL Risk Model](docs/SPRL_Risk_Model.md) – mathematical framework for proportionality  
+- [SPRL Compliance Declaration](governance/SPRL_Compliance_Declaration.md) – required for deployment claims  
+- [SPRL Audit Workflow](protection/SPRL_Audit_Workflow.md) – end-to-end evidentiary chain  
+- [SPRL Tamper Resistance](security/SPRL_Tamper_Resistance.md) – guarantees of log integrity  
 
-**If an AI cannot log its action, it cannot act.**
-
-This is non-negotiable. Systems that cannot produce verifiable logs must halt. No logs = no operation.
-
-## Why Always Log Mode?
-
-Current AI systems make millions of decisions affecting human lives with no accountability. When they fail - denying healthcare, enabling fraud, perpetuating bias - we have no evidence to examine, no trail to follow, no recourse to pursue.
-
-ALM solves this by creating a complete, permanent record. Not selected events. Not "high-risk" decisions. Everything. Because we cannot predict which routine decision becomes tomorrow's crisis.
-
----
-
-## Auditable AI vs. Explainable AI 
-
-**The Critical Distinction**
-Explainable AI (XAI) attempts to interpret why a model made a decision after the fact. It's forensic guesswork - using tools like SHAP or LIME to reverse-engineer reasoning from black boxes. These explanations are interpretations, not facts.   
-Auditable AI (AAI) creates contemporaneous evidence of what happened. It doesn't guess at reasoning - it records the actual inputs, context, model version, and outputs as they occurred. This is evidence, not interpretation.   
-TML implements AAI, not XAI. We don't claim to explain the model's "thinking." We document its actions with sufficient detail that investigations can determine what occurred, when, and under what circumstances.
-
-**The Legal Difference:**
-
-- **XAI:** "Here's what we think the model might have been considering"
-- **AAI:** "Here's exactly what happened, cryptographically proven"
-
-Courts need evidence, not theories. Regulators need facts, not interpretations. TML provides both.
-
-**The Data Flywheel Effect**
-ALM creates a virtuous cycle that improves AI systems over time:
-
-**The Cycle:**   
-↑ Better Logs → Better Training → Better Decisions → Richer Logs ↓   
-
-
-**Better Logs:** Complete records reveal edge cases, biases, and failure patterns invisible in selective logging   
-**Better Training:** These logs become training data for next-generation models, teaching them to avoid documented failures   
-**Better Decisions:** Models trained on comprehensive failure data make fewer mistakes   
-**Richer Logs:** Improved models operating in new domains generate new edge cases, continuing the cycle
-
-**The Compound Effect**
-Each iteration improves:
-- Error Detection: Finding failures we didn't know existed
-- Pattern Recognition: Identifying systemic issues across deployments
-- Safety Boundaries: Learning where AI should refuse to act
-- Trust Calibration: Understanding when AI is uncertain
-
-This flywheel doesn't just improve individual models - it improves the entire field's understanding of AI behavior. Every logged failure becomes a lesson. Every documented edge case becomes a guardrail.
-
-**The Network Effect**
-When multiple organizations use ALM:
-- Failures in one system protect all systems
-- Edge cases discovered anywhere benefit everywhere
-- The collective intelligence grows faster than any individual deployment
-
-This transforms logging from a cost center into a competitive advantage. Organizations with better logs train better models. Better models make better decisions. Better decisions generate more valuable logs.
-
----
-
-## How It Works
-
-```python
-def ai_action(input, context):
-    # Create log entry
-    log = create_log_entry(input, context, timestamp)
-    
-    # Classify decision (for context, not handling)
-    classification = classify_decision(input, context)  # Returns +1, 0, or -1
-    log.classification = classification
-    
-    # Sign cryptographically
-    signed_log = cryptographic_sign(log)
-    
-    # Queue for distribution (non-blocking)
-    queue_for_validators(signed_log)
-    
-    # Execute action (logs in parallel)
-    return execute_ai_decision(input, context)
-```
-
-Every log is:
-- **Immutable**: Cannot be altered after creation
-- **Timestamped**: Microsecond precision
-- **Signed**: Cryptographic proof of authenticity
-- **Distributed**: Sent to independent validators
-
-## The Trade-offs
-
-ALM makes uncomfortable but necessary trades:
-
-**We Accept:**
-- Higher storage costs (petabytes annually for large deployments)
-- Fixed processing overhead (20-50ms currently, decreasing over time)
-- Massive data volumes requiring sophisticated search
-- Resistance from organizations preferring opacity
-
-**We Gain:**
-- Complete accountability - no gaps, no gaming
-- Court-admissible evidence for every decision
-- Protection against liability through documented diligence
-- Foundation for trustworthy AI
-
-## Implementation
-
-### Minimal Example
-
-```python
-from tml import AlwaysLogMode
-
-# Initialize ALM (no configuration needed)
-alm = AlwaysLogMode()
-
-# Wrap any AI decision
-@alm.log_everything
-def ai_decision(input_data):
-    # Your existing AI logic
-    result = model.predict(input_data)
-    return result
-
-# That's it. Every call is now logged, signed, and distributed.
-```
-
-### Architecture Requirements
-
-- **Cryptographic signing**: Every log entry must be signed
-- **Distributed validation**: Logs sync to multiple independent validators
-- **Fail-closed design**: If logging fails, execution must halt
-- **No configurability**: No thresholds or settings to manipulate
-
-## Who Should Adopt ALM?
-
-### Immediate Adopters
-Organizations where accountability already matters:
-- **Healthcare AI**: Diagnostic errors cost lives and millions
-- **Financial Services**: Algorithmic decisions affect livelihoods
-- **Criminal Justice**: AI assessments determine freedom
-
-### Future Adopters
-Everyone else, once the first catastrophe proves the cost of unaccountable AI.
-
-## The Economics
-
-**Today's Costs:**
-- Storage: $1-5M/year for large deployments
-- Processing: 20-50ms latency overhead
-- Development: Integration and testing effort
-
-**Tomorrow's Reality:**
-- Storage costs drop 50% annually (historical trend)
-- Hardware acceleration eliminates processing overhead
-- Regulatory requirements make ALM mandatory
-
-**The Calculation:**
-Cost of comprehensive logging << Cost of single unaccountable catastrophe
-
-## Why Not Configure?
-
-Every configuration point becomes a gaming point. Every threshold becomes a debate. Every setting becomes a vulnerability. ALM removes these entirely. You cannot game what doesn't exist.
-
-## Deployment Reality
-
-ALM is not ready for:
-- Real-time autonomous vehicles (requires <10ms response)
-- High-frequency trading (requires microsecond latency)
-- Surgical robotics (requires millisecond precision)
-
-ALM is ready for:
-- Diagnostic systems (seconds to process)
-- Loan decisions (minutes to evaluate)
-- Content moderation (100ms+ acceptable)
-- Any system where accountability matters more than milliseconds
-
-## The Uncomfortable Truth
-
-ALM is expensive, generates massive data, and adds latency. Organizations will resist. Competitors without ALM will seem faster and cheaper.
-
-But the question isn't whether we can afford Always Log Mode.
-It's whether we can afford the alternative: AI systems making life-altering decisions with no accountability, no evidence, and no recourse when they fail.
-
-## Repository Structure
-
-```
-TernaryMoralLogic/
-├── implementations/     # ALM implementation
-├── examples/           # Integration examples
-├── validators/         # Validator network specs
-├── docs/              # Complete documentation
-└── evidence/          # Case studies and precedents
-```
-
-## Citation
-
-```bibtex
-@framework{goukassian2025tml,
-  title={Ternary Moral Logic: Always Log Mode for AI Accountability},
-  author={Goukassian, Lev},
-  year={2025},
-  version={4.0},
-  url={https://github.com/FractonicMind/TernaryMoralLogic},
-  orcid={0009-0006-5966-1243}
-}
-```
+For the full checklist of supporting files, see [SPRL_TODO.md](docs/SPRL_TODO.md).
 
 ---
 
