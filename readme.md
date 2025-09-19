@@ -149,7 +149,7 @@ Courts need evidence, not theories. Regulators need facts, not interpretations. 
 **The Data Flywheel Effect**
 ALM creates a virtuous cycle that improves AI systems over time:
 
-**The Cycle:**
+**The Cycle:**   
 Better Logs → Better Training → Better Decisions → Richer Logs
      ↑                                                    ↓
      ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←
