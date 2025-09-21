@@ -470,6 +470,49 @@ Sacred Zero marks moments requiring special moral consideration. The name carrie
 
 **Q30: Sample Always Memory v5.0 batch structure:**
 
+{
+  "framework": "TML-AlwaysMemory-v5.0",
+  "creator_orcid": "0009-0006-5966-1243",
+  "batch_id": "batch_8a4f2c3b5e1d",
+  "timestamp_range": {
+    "start": "2025-01-07T14:23:45.123456Z",
+    "end": "2025-01-07T14:23:45.223456Z"
+  },
+  "actions": [
+    {
+      "action_id": "act_7f3a9c2b4e1d",
+      "classification": 0,
+      "input_hash": "0x9e2b4d1a3c5f...",
+      "output_hash": "0x4d7e2a9b1c3f...",
+      "sacred_zero_trigger": "loan_denial_protected_class"
+    }
+  ],
+  "tee_attestation": {
+    "platform": "AMD-SEV-SNP",
+    "quote": "attest:sev-snp:...",
+    "runtime": "unikernel-v2.1"
+  },
+  "signature": {
+    "algorithm": "ECDSA-P384",
+    "ephemeral_key_id": "eph_2a3b4c5d",
+    "hsm_root": "hsm_7f8a9b0c",
+    "signature": "0x1a2b3c4d5e6f..."
+  },
+  "guardian_confirms": [
+    {"id": "g1", "type": "full", "sig": "0xf2e4..."},
+    {"id": "g2", "type": "lightweight", "sig": "0x8a9b..."}
+  ],
+  "goukassian_promise": {
+    "lantern": true,
+    "signature": "0009-0006-5966-1243",
+    "license": "MIT-Attribution-Required"
+  },
+  "operational_mode": "normal",
+  "liability_factor": 1.0
+}
+
+---
+
 ## **Conclusion**
 
 TML with **Always Memory** is not about perfection. It is something rarer:
@@ -482,11 +525,7 @@ TML with **Always Memory** is not about perfection. It is something rarer:
 
 * **Moral**: Sacred Zero ensures machines carry conscience as well as code.
 
-This is accountability with a Lantern:
-
-* No log, no action.
-
-* No Lantern, no trust.
+* **This is accountability with a Lantern:  No log, no action. No Lantern, no trust.**
 
 **Always Memory** ensures that tomorrow’s machines carry both memory and humility, not as afterthought, but as foundation.
 
