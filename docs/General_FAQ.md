@@ -1,509 +1,506 @@
-# Ternary Moral Logic (TML) Framework - General FAQ
-
-**Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)   
- September 7, 2025
+# **General FAQ**
 
 ---
 
-## From Explainable AI (XAI) to Auditable AI (AAI): The Paradigm Shift
+## **Introduction**
 
-### Why Auditable AI Replaces Explainable AI
+Ternary Moral Logic (TML) is a **universal accountability framework** for artificial intelligence — a constitutional layer for machines.
 
-The Ternary Moral Logic framework represents a fundamental shift from **Explainable AI (XAI)** to **Auditable AI (AAI)**. While XAI attempts real-time explanations that courts cannot use, AAI creates evidence that prosecutors can wield.
+At its core lies **Always Memory**: Every AI action must create an immutable, cryptographically sealed memory before execution.
 
-**XAI Failed Because:**
-- Explanations are subjective interpretations with no legal standing
-- Companies control the narrative
-- Victims cannot prove harm
-- No criminal accountability exists
+**No memory \= No action.**
 
-**AAI Succeeds Through:**
-- **Immutable evidence generation** that stands in court
-- **Criminal penalties** for missing documentation  
-- **Irrebuttable presumptions** - missing logs equal guilt
-- **Victim access** to proof of harm
-- **Executive imprisonment** for violations
+Created by Lev Goukassian (ORCID: 0009-0006-5966-1243) who, facing terminal illness, chose to dedicate his remaining time to building accountability infrastructure for humanity.
 
-TML operationalizes AAI through Moral Trace Logs that create prosecutable evidence. Every AI decision involving complex moral reasoning generates court-admissible documentation. **Missing logs equal automatic guilt.**
+**Sacred Zero is exactly what's needed where lives and billions are on the line.**
 
 ---
 
-## Core Framework
+## **TML – Foundation**
 
-### Q1: What is the Ternary Moral Logic (TML) Framework?
-TML is an enforcement framework that makes AI companies criminally liable for missing Moral Trace Logs. When AI systems make ethically complex decisions without proper documentation, executives face imprisonment and organizations face bankruptcy-level penalties. The framework transforms AI accountability from voluntary guidelines to mandatory law with teeth.
+**Q1: What are the three states of TML?**
 
-### Q2: What counts as an ethically complex decision?
-Any AI decision that could harm people or violate their rights:
-- Medical diagnosis affecting treatment
-- Loan denials impacting families
-- Job application rejections
-- Content moderation silencing voices
-- Autonomous vehicle navigation choices
-- Insurance claim decisions
-- Child safety determinations
-- Elder care recommendations
+TML operates through a ternary structure:
 
-If AI makes choices affecting human welfare, dignity, or rights, it requires Moral Trace Logs.
+* **\+1 (Proceed)**: Routine, low-risk actions  
+* **0 (Sacred Zero)**: Ethically complex actions trigger pause and review  
+* **\-1 (Refuse)**: Unsafe, malicious, or prohibited actions blocked
 
-### Q3: What is the Sacred Pause?
-The Sacred Pause is a mandatory checkpoint for AI. When an AI system faces an ethically complex decision, it generates a detailed Moral Trace Log recording who might be affected, what risks exist, and why it chose its action. 
+This ternary decision gate is absolute: no system escapes it.
 
-Think of it like a security camera that only records when something important happens. Without it an AI is just a silent machine. With it, every action carries proof of life.
+**Q2: From Explainable AI (XAI) to Auditable AI (AAI): The Paradigm Shift**
 
-### Q4: What are the three states of TML?
-- **+1 (Proceed)**: Low-risk decision, basic record keeping
-- **0 (Sacred Pause)**: Ethically complex decision, detailed Moral Trace Logs required
-- **-1 (Prohibit)**: Too dangerous, AI must refuse and document why
+Explainable AI tried to provide real-time "explanations," but these were subjective narratives with no legal standing. Courts cannot prosecute with explanations.
 
-When AI blocks an action (-1), it MUST create complete documentation explaining the prohibition. Missing prohibition logs create liability.
+Auditable AI (AAI), enabled by TML, replaces storytelling with evidence. Every morally complex AI decision generates immutable, court-admissible records.
 
-### Q5: Does TML slow down AI performance?
-**No. TML has ZERO impact on AI response time.** The AI responds immediately to users while Moral Trace Logs generate asynchronously in the background. Like a security camera doesn't slow down a store's operations, TML doesn't slow AI responses.
+**Q3: Why did XAI fail, and why does AAI succeed?**
 
-Companies cannot use performance as an excuse. Missing logs create criminal liability regardless of latency concerns. Speed never justifies skipping accountability.
+**XAI failed because:**
 
----
+* Explanations were subjective interpretations  
+* Companies controlled the narrative  
+* Victims had no legal recourse  
+* No criminal accountability existed
 
-## SPRL (Stakeholder Proportional Risk Level)
+**AAI succeeds because Always Memory logs provide:**
 
-### Q6: What is SPRL (Stakeholder Proportional Risk Level)?
-
-SPRL is the risk metric at the heart of TML’s Sacred Pause. It now operates as a **dual-layer mechanism**:
-
-- **Dynamic SPRL (DS):** Runs continuously from the moment a prompt arrives, calculating proportional risk in real time. If moral complexity is present, it writes the log from the prompt onward, recording how risk rises, stabilizes, or falls during processing.    
-- **Static Anchor (SA):** The precise moment the dynamic SPRL crosses the Sacred Pause threshold is frozen as the anchor. This marks: *“Pause started here.”* It guarantees every log has a reliable starting point.  
-
-Together, DS provides the **film reel** of moral reasoning, while SA provides the **timestamped flag**. If the dynamic process fails, the static anchor still preserves the evidentiary minimum. Logs are sealed in real time, distributed to independent institutions, and cryptographically hashed to prevent tampering.  
-
-This makes SPRL automatic and self-enforcing. You don’t set it. You implement TML, and it shows you when moral complexity began.
+* Immutable evidence for courts  
+* Criminal penalties for missing documentation  
+* Victim access to proof of harm  
+* Direct executive accountability
 
 ---
 
-### Q7: How is SPRL governed and calibrated?
+## **Sacred Zero**
 
-SPRL governance is designed to prevent manipulation and guarantee transparency:
+**Q1: What is Sacred Zero?**
 
-- **Automatic Anchoring:** The static anchor is set by the dynamic SPRL itself. Organizations cannot alter, delay, or disable it.  
-- **Full Narrative:** The dynamic stream records everything between the prompt and the final action. No matter how internal settings are defined, the full moral path is logged.  
-- **Calibration Standards:** Metrics and updates are version-controlled, reviewed against real-world cases, and audited through adversarial testing. Any silent recalibration is treated as tampering.  
-- **Metalogging:** Every adaptation of metrics is itself logged, so auditors can always reconstruct why a system acted the way it did at a given time.  
-- **Developer Transparency:** Every developer console must include a read-only SPRL view, showing live anchors and dynamic streams. This ensures visibility during development and prevents silent suppression of logs.  
+Sacred Zero is the programmed act of hesitation — a deliberate pause where moral complexity is detected. It is not delay, but reflection encoded in code.
 
-In short, the static anchor guarantees a minimum record, the dynamic stream captures the full story, and governance rules ensure honesty. The company doesn’t decide when SPRL fires — the system does.
+**Q2: How does the Sacred Zero circuit breaker work?**
 
----
+When triggered:
 
-## Victim Rights and Support
+1. The system pauses the action  
+2. A confirmation request is sent to a designated human or council  
+3. A short window (500ms) is given to confirm  
+4. Confirm → execute; Timeout → abort  
+5. All outcomes and policies are immutably logged
 
-### Q8: What rights do AI victims have under TML?
-Victims gain powerful legal weapons:
-- **Right to demand Moral Trace Logs** proving what AI did
-- **Automatic liability** when logs are missing
-- **Free legal representation** from Memorial Fund
-- **Expert witnesses** explaining the harm
-- **Class action coordination** for systematic violations
-- **Priority support** for vulnerable victims
-- **Criminal prosecution** of responsible executives
+**Q3: How is alert fatigue prevented?**
 
-Missing logs shift burden to defendants to prove innocence.
-
-### Q9: How does the Lev Goukassian Memorial Fund help victims?
-The Memorial Fund provides comprehensive support:
-- **Emergency medical assistance** for AI-caused injuries
-- **Legal teams** pursuing maximum compensation
-- **Expert testimony** proving negligence
-- **Investigation support** uncovering violations
-- **Public advocacy** preventing future harm
-- **Psychological support** for trauma victims
-- **Financial assistance** during legal proceedings
-
-All funded by penalties from violators, not taxpayers.
-
-### Q10: How do victims seek compensation through TML?
-Step-by-step path to justice:
-1. **Report harm** to Memorial Fund or attorney
-2. **Request Moral Trace Logs** through legal channels
-3. **Missing logs = automatic liability** (company must prove innocence)
-4. **Memorial Fund provides** immediate emergency support
-5. **Legal team pursues** criminal and civil charges
-6. **Penalties fund** victim compensation
-7. **Public disclosure** prevents repeated harm
-
-### Q11: How do penalties finance victim support?
-Every penalty dollar has a purpose:
-
-- 30% to Memorial Fund for victim support (with priority to vulnerable populations)
-- 15% to whistleblowers who exposed violations
-- 25% to enforcement infrastructure
-- 20% to council operations
-- 10% to public education about AI rights
-- 0% to general government - all serves TML mission
+* First 5 Sacred Zeros/hour → manual review  
+* Subsequent similar events → auto-blocked with cooldown  
+* Immutable policy hashes logged, preventing blame-shifting  
+* Mandatory independent audits of Sacred Zero councils
 
 ---
 
-## Legal Framework
+## **Always Memory**
 
-### Q12: What criminal penalties enforce TML compliance?
-Upon federal adoption, violations trigger existing criminal statutes:
+**Q1: What is Always Memory?**
 
-**United States:**
-- False attestation: 18 U.S.C. § 1001 (up to 5 years imprisonment)
-- Log tampering: 18 U.S.C. § 1519 (up to 20 years imprisonment)
-- Threshold gaming: Wire fraud with treble damages
+Always Memory mandates: **no log \= no action**. Every AI action must generate a cryptographically sealed, timestamped record before execution. This is not configurable, optional, or retrospective.
 
-**All Jurisdictions Apply:**
-- Evidence tampering charges
-- Fraud and negligence prosecutions
-- Percentage of global revenue fines
-- Executive personal imprisonment
-- Corporate dissolution for repeat violations
+**Q2: What exactly gets logged?**
 
-"I didn't know" is never a defense. Executives go to prison.
+* Microsecond timestamps  
+* Batch \+ action IDs  
+* Input/output hashes  
+* Model version hash  
+* Classification (+1/0/-1)  
+* Hardware attestation quotes  
+* Ephemeral HSM signature  
+* Guardian confirmations  
+* Proof-of-publication receipts
 
-### Q13: Are Moral Trace Logs admissible in court?
-Yes. Logs are designed as prosecutorial weapons:
-- **Authentication**: Federal Rule 901 - cryptographic signatures prove authenticity
-- **Self-authentication**: Rules 902(13)-(14) - certified electronic records
-- **Business records**: Rule 803(6) - logs made in regular operation
-- **Missing logs = guilt**: Irrebuttable presumption shifts burden
-- **Criminal penalties**: 18 U.S.C. § 1519 for destroying logs
+**Q3: What is Asynchronous Attested Batching (AAB)?**
 
-Judges and juries understand: No logs means hiding guilt.
+* Actions are buffered inside TEEs  
+* Batches sealed every 100ms or 1,000 actions  
+* Overhead amortized; per-action latency \<1ms for high-throughput
 
-### Q14: How is chain of custody maintained?
-Chain of custody makes Moral Trace Logs legally unassailable:
-- **Automatic access logging**: Every view creates cryptographic receipt
-- **Transfer records**: Time-stamped signatures prove location
-- **Verification events**: Integrity checks create audit trail
-- **Immutable storage**: Write-once systems prevent alteration
-- **Blockchain anchoring**: Periodic hash commitments
+**Q4: What are the realistic latency profiles?**
 
-Any gap in chain weakens evidence. Complete chain makes evidence bulletproof.
+* **Standard**: 200-300ms (finance, healthcare)  
+* **Priority**: 50-100ms (time-sensitive ops)  
+* **Emergency**: 30-45ms (life-critical, e.g., braking)
 
----
+**Q5: How does Always Memory handle traffic spikes?**
 
-## Whistleblower Protection
-
-### Q15: How does TML protect whistleblowers?
-Aggressive protection with substantial rewards:
-- **Guaranteed anonymity** through secure channels
-- **15% of all recovered penalties** as rewards
-- **Criminal prosecution** for retaliation (adds 5-10 years to sentences)
-- **Direct reporting** to council (bypasses management)
-- **Memorial Fund** provides legal protection
-- **Lifetime protection** from industry blacklisting
-
-### Q16: What prevents false whistleblower claims?
-Strong safeguards against abuse:
-- **Evidence required** before any rewards
-- **Criminal prosecution** for false reports
-- **Independent investigation** verifies claims
-- **Pattern detection** identifies coordinated fraud
-- **Clawback provisions** recover false rewards
-- **Industry blacklist** for proven false reporters
-
-Report real violations, get rich. File false claims, go to prison.
+* Adaptive batch intervals  
+* Backpressure (HTTP 429\)  
+* Priority queues  
+* Client-side reconciliation  
+* Graceful degradation, never silent failure
 
 ---
 
-## Governance
+## **The Goukassian Promise**
 
-### Q17: Who oversees TML implementations?
-The 11-institution governance council with enforcement powers:
+**Q1: What is the Goukassian Promise?**
 
-**Academic Institutions:**
-- Stanford University
-- Massachusetts Institute of Technology (MIT)
-- Harvard University
-- Oxford University
-- Cambridge University
+The Promise anchors TML in conscience:
 
-**Research Organizations:**
-- Brookings Institution
-- RAND Corporation
-- Alan Turing Institute
+* Pause when truth is uncertain  
+* Refuse when harm is clear  
+* Proceed when truth is evident
 
-**International Bodies:**
-- United Nations (UN)
-- World Health Organization (WHO)
-- European Commission
+If names are erased, the vow remains. If memory fades, the Lantern burns on. The Promise ensures moral grounding beyond law or profit.
 
-Council uses weighted voting with rotating leadership. No single institution controls decisions. Unanimous criminal referrals trigger automatic prosecution.
+**Q2: What are the three sacred commitments?**
 
-### Q18: What investigation powers does the council have?
-Sweeping authority for accountability:
-- **Unlimited read access** to all Moral Trace Logs at any given moment
-- **Subpoena power** for missing documentation
-- **Criminal referral** authority to prosecutors
-- **Public disclosure** rights for violations
-- **Whistleblower reward** authorization (15% of penalties)
-- **Emergency intervention** for imminent harm
+🔦 **The Lantern**: Illuminates ethical paths — systems demonstrate moral deliberation
 
-Organizations cannot refuse or delay council access. Obstruction adds charges.
+✍️ **The Signature**: Creator's ORCID (0009-0006-5966-1243) cryptographically embedded
 
-### Q19: How do institutions access logs for investigation?
-Structured protocols ensure accountability:
-- **Read-only viewing** with cryptographic receipts
-- **Time-limited access** for specific investigations
-- **Court supervision** for sensitive cases
-- **Victim priority** for relevant logs
-- **Public summaries** of findings
-
-Access creates evidence trails preventing abuse.
-
-### Q20: How are violations detected and prosecuted?
-Multi-layered enforcement ensures capture:
-- **Automated detection** flags missing logs
-- **Statistical analysis** reveals gaming patterns
-- **Whistleblower reports** trigger investigations
-- **Victim complaints** demand log reviews
-- **Random audits** catch hidden violations
-- **Competitor reports** expose outliers
-
-Every violation path leads to prosecution.
+📜 **The License**: Legal terms protecting proper use and punishing misuse
 
 ---
 
-## Technical Implementation
+## **The Memorial Fund**
 
-### Q21: How do organizations implement TML?
+**Q1: What is the Memorial Fund?**
 
-Use the dynamic engine; it evaluates risk continuously and sets the Static Anchor automatically when moral complexity is detected. Execution never waits.
+A financial pool funded by compliance fees and penalties. It provides:
 
-```python
-from tml_framework import TMLEngine
+* Direct compensation to victims of AI harms  
+* Long-term remembrance of those affected  
+* A perpetual link between TML enforcement and human dignity
 
-# Framework-defined policies & thresholds; no hardcoding by deployers
-tml = TMLEngine()
+**Q2: How is the Memorial Fund financed?**
 
-@tml.dynamic_sprl(domain="health", region="EU")  # optional context for profiles
-def ai_decision(query, context):
-    # Action proceeds immediately (no latency impact)
-    result = ai_system.process(query)
-
-    # Inside the decorator:
-    # - Dynamic SPRL runs from the prompt onward
-    # - If moral complexity is present, logging begins from the prompt
-    # - When the Sacred Pause threshold is crossed, the Static Anchor is written
-    # - Prohibition/refusal rules are enforced by policy (not app code)
-    # - Moral Trace Logs are sealed in parallel and distributed
-
-    return result
-```
-
-### Q22: Are Moral Trace Logs truly immutable?
-Absolutely tamper-proof with criminal consequences:
-- **Hardware security modules** create signatures
-- **Blockchain anchoring** ensures permanence
-- **Write-once storage** prevents changes
-- **Any tampering** triggers alerts and prosecution
-- **18 U.S.C. § 1519** charges for modifications
-
-Attempting to alter logs guarantees prosecution.
-
-### Q23: How do logs handle storage efficiently?
-Smart compression without losing evidence:
-- **Template patterns** for common scenarios
-- **Full details** for novel situations
-- **Reference linking** reduces redundancy
-- **Complete audit trails** always maintained
-
-Storage costs never excuse missing logs.
-
-### Q24: What about vulnerable populations?
-
-Stronger safeguards are automatic under dynamic SPRL:
-
-- **Automatic heightened sensitivity:** Framework-level vulnerability weights lower the effective risk threshold, so anchors fire earlier for vulnerable groups (no deployer tuning).
-- **Maximum documentation:** Full Moral Trace Logs are required whenever vulnerable stakeholders are implicated.
-- **Expedited investigation:** Violations involving vulnerable populations trigger priority review windows.
-- **Priority victim support:** 40% of collected penalties are earmarked for direct support and remediation.
-- **Aggravated executive liability:** Enhanced charges apply to responsible executives and officers.
-- **Mandatory reporting:** Certified notices to relevant protective and regulatory agencies.
-
-Harming vulnerable populations triggers maximum penalties.
-
-### Q25: Can TML scale to billions of interactions?
-Scale provides no excuse:
-- **Distributed processing** handles volume
-- **Pattern recognition** optimizes storage
-- **Background logging** maintains speed
-- **Regional coordination** enables investigation
-
-"Too big to log" means too dangerous to operate.
-
-### Q26: What about edge devices and IoT?
-Resource constraints provide no exemption:
-- **Lightweight implementations** required
-- **Local logging** mandatory
-- **Periodic synchronization** for investigation
-- **Central liability** for edge failures
-
-Every smart device must maintain accountability.
+* 30-40% of penalties from violations  
+* Commercial licensing fees  
+* Foundation grants  
+* Industry consortium contributions
 
 ---
 
-## Integration and Migration
+## **Victim & Whistleblower Protection**
 
-### Q27: How does TML integrate with existing regulations?
-TML becomes the evidence layer for all AI laws:
+**Q1: How does whistleblower protection work?**
 
-**EU AI Act**: Logs prove risk assessment and transparency  
-**GDPR Article 22**: Traces provide automated decision explanations  
-**HIPAA**: Documentation shows patient safety considerations  
-**NIST Standards**: Records verify bias mitigation actually occurred  
-**International Law**: Cryptographic signatures recognized globally
+* 15% bounty of collected penalties  
+* Anonymous submission channels  
+* Technical safeguards against deanonymization  
+* Criminal prosecution for retaliation  
+* Legal support from Memorial Fund
 
-One framework satisfies all regulatory requirements.
+**Q2: How are victims supported?**
 
-### Q28: How do organizations migrate to TML?
-Systematic deployment with no excuses:
-1. **Install TML** alongside existing systems
-2. **Set thresholds** (gaming them = fraud)
-3. **Validate coverage** (gaps = liability)
-4. **Test protocols** (failures = negligence)
-5. **Go live** with full accountability
-
-"Still migrating" provides no legal defense.
-
-### Q29: Can TML work with any AI system?
-Universal compatibility, no technical excuses:
-- **All frameworks** must integrate
-- **Cloud providers** share liability
-- **Language models** require traces
-- **Legacy systems** need retrofitting
-- **Custom AI** follows same rules
-
-"Incompatible with our system" admits guilt.
-
-### Q30: Why not rely on company safeguards?
-Company safeguards are theater. TML creates evidence:
-- **Safeguards** are private and unverifiable
-- **TML logs** are immutable and court-admissible
-- **Safeguards** protect companies from liability
-- **TML** protects society with prosecution
-- **Safeguards** fail silently
-- **TML failures** trigger prosecutions
-
-"We have safeguards" without TML logs equals admission of negligence.
-
-### Q31: How does TML coordinate across jurisdictions?
-Universal evidence with local enforcement:
-- **Moral Trace Logs** admissible globally under UNCITRAL Model Law
-- **Each country** applies its own criminal penalties
-- **International council** coordinates investigations
-- **No safe harbors** for executives who flee
-- **Extradition** for serious violations
-- **Asset freezing** across borders
-
-Companies cannot hide in friendly jurisdictions.
+* Minimum 30% of penalties allocated directly to victims  
+* 40% for vulnerable populations  
+* Claims process immutably logged  
+* Memorial Fund disburses within fixed timelines  
+* Lifetime support for permanent AI-caused disabilities
 
 ---
 
-## Advanced Topics
+## **The Hybrid Shield**
 
-### Q32: How does TML handle multi-agent AI systems?
-Every agent bears responsibility:
-- **Individual logs** per agent required
-- **Coordination traces** document interactions
-- **Missing logs** from any agent = total liability
-- **Emergent behavior** must be logged
-- **Distributed accountability** with central responsibility
+**Q1: What is the Hybrid Shield?**
 
-Complex systems require complete documentation.
+The dual-layer defense of TML:
 
-### Q33: What about future AGI systems?
-AGI makes TML more critical, not optional:
-- **Value learning** requires complete documentation
-- **Safety analysis** depends on Moral Trace Logs
-- **Democratic oversight** becomes existential
-- **Missing AGI logs** trigger emergency shutdown
-- **Unlogged AGI** equals criminal negligence
+**Institutional Shield**: Logs mirrored across 11 independent institutions worldwide
 
-Advanced AI demands advanced accountability.
+**Mathematical Shield**: Root hashes anchored to public blockchain
 
-### Q34: If AGI is so powerful, why wouldn’t it just hide or fake the logs?  
- Because logging runs outside the AGI. Every decision call is wrapped: the AGI executes immediately, while a background task records the log in parallel. Logs are sealed in tamper-proof external storage (universities, NGOs, blockchain anchors). The AGI never controls or even sees this process.  
+Together: redundancy \+ immutability. Byte changes break hashes, revealing tampering instantly.
 
-### Q35: Could organizations misuse the Sacred Pause to shift liability onto humans?
- No. Every Sacred Pause generates a Moral Trace Log that records why the pause was triggered and what options were presented. If a system is designed to offload responsibility in bad faith, the logs expose that pattern. Liability attaches to the organization that built or deployed the system, not to the human forced into last-second decisions.
+**Q2: Which institutions hold memories?**
 
-### Q36: Could an AI abuse the Sacred Pause to avoid hard questions?
- Attempts at “malicious compliance” are visible in the logs. If an AI pauses abnormally often in safe or routine cases, that behavior itself is recorded and auditable. Overuse of the pause becomes evidence of system failure or manipulation, not a shield against accountability.
+Categories (rotating every 7 years):
 
-### Q37: How will TML adapt to new technologies?
-Evolution maintains enforcement:
-- **Automatic coverage** of new capabilities
-- **Improved detection** algorithms
-- **Increased penalties** for powerful AI
-- **Retroactive prosecution** for discovered violations
-- **No grandfather clauses** for old systems
-
-Technology advances, accountability remains.
-
-### Q38: What makes TML different from other AI safety approaches?
-TML has teeth. Others have suggestions:
-- **Real prison sentences** not ethics boards
-- **Missing logs = guilt** not "areas for improvement"
-- **Victim compensation** not corporate apologies
-- **Whistleblower millions** not anonymous hotlines
-- **Criminal prosecution** not self-regulation
-
-TML transforms AI safety from corporate PR to criminal law.
-
-### Q39: How is TML compliance verified?
-An automated validator checks every TML implementation for:
-- **Creator attribution** - Must credit Lev Goukassian (ORCID: 0009-0006-5966-1243)
-- **Core concepts** - Must implement Ternary Moral Logic, Sacred Pause, Moral Trace Logs
-- **Required documentation** - Must include implementation guides and FAQs
-
-**Validation failures create liability:**
-- Using TML without attribution = intellectual property theft
-- Missing core concepts = fraudulent TML claim
-- Incomplete implementation = negligent deployment
-- Failed validation = evidence of bad faith
-
-Organizations cannot claim "TML compliance" without passing validation. False claims trigger additional fraud charges.
-
-The validator is public. Anyone can verify if a company legitimately implements TML or is lying about compliance.
-
----
-### Q40: What is the Goukassian Promise?
-
-The Goukassian Promise is the symbolic covenant built into every legitimate TML implementation. It ensures that the framework is not only technical but also ethical, traceable, and enforceable.  
-
-It carries three inseparable elements:  
-
-- 🏮 **The Lantern:** Ethical guidance, visible and active. Every system must demonstrate its capacity to pause and deliberate when moral complexity is present.  
-- ✍️ **The Signature:** A cryptographic embed of Lev Goukassian’s ORCID (0009-0006-5966-1243) to authenticate provenance and protect against forgery.  
-- 📜 **The License:** Binding rules that enforce evidence-based accountability. Breaking the promise means losing the lantern; misuse forfeits ethical standing.  
-
-This Promise is not ornamental. It is how TML ties its technical design to a living legacy of accountability, ensuring the framework cannot be co-opted without its principles.
----
-
-## Support
-
-**Implementation Guide**: https://github.com/fractonicmind/TernaryMoralLogic/blob/main/docs/IMPLEMENTATION_GUIDE.md  
-**Legal Framework**: https://github.com/fractonicmind/TernaryMoralLogic/blob/main/docs/MANDATORY.md  
-**Council Governance**: https://github.com/fractonicmind/TernaryMoralLogic/blob/main/governance/council_charter.md  
-**Whistleblower Protection**: https://github.com/fractonicmind/TernaryMoralLogic/blob/main/governance/whistleblower_protection.md  
-**Whistleblower Portal**: https://github.com/fractonicmind/TernaryMoralLogic/blob/main/governance/whistleblower_reporting.md  
-**Victim Protection**: https://github.com/fractonicmind/TernaryMoralLogic/blob/main/governance/victim_protection.md  
-**Victim Portal**: https://github.com/fractonicmind/TernaryMoralLogic/blob/main/governance/victim_reporting.md  
-**Memorial Fund**: https://github.com/fractonicmind/TernaryMoralLogic/blob/main/memorial/MEMORIAL_FUND.md
-
-**Creator Contact**: leogouk@gmail.com  
-**Repository**: https://github.com/fractonicmind/TernaryMoralLogic
+* 4 Academic research institutions  
+* 3 Technical standards bodies  
+* 2 Civil society organizations  
+* 2 International governance bodies
 
 ---
 
-## Closing Statement
+## **Guardians**
 
-TML transforms AI accountability from voluntary guidelines to mandatory criminal law. Missing logs equal guilt. Gaming equals fraud. Violations equal imprisonment.
+**Q1: What is the two-tier Guardian architecture?**
 
-**Company penalties finance victim support. Whistleblowers get rich. Executives get prison.**
+**Full Guardians**: Operate TEEs/HSMs, create and sign log batches
 
-**Without the AI Heart Beat, an AI is just a silent machine. With it, every action carries proof of life.**
+**Lightweight Guardians**: Verify signatures and anchor proofs without special hardware
 
-**The age of unaccountable AI ends when TML becomes law.**
+**Q2: How are Guardians selected and rotated?**
+
+* Daily random selection via stake-weighted VRF  
+* Random sharding prevents collusion  
+* Automatic ejection of compromised types
+
+**Q3: How does governance prevent capture?**
+
+* On-chain binding votes  
+* Quadratic voting for fairness  
+* Time-locked vesting for Genesis Guardians  
+* Automated slashing for misbehavior
+
+---
+
+## **Implementation & Economics**
+
+**Q1: What are the realistic costs?**
+
+* **Pilot**: \~$250K first year  
+* **Small enterprise**: \~$2M/year  
+* **Large enterprise**: \~$11M/year
+
+Costs reduced through shared Guardians, selective fidelity, and foundation subsidies.
+
+**Q2: How are costs stabilized?**
+
+* EIP-1559 style fee mechanism  
+* Delegated staking  
+* Base fee stability; variable tips
+
+**Q3: What's the phased adoption path?**
+
+1. **Shadow Mode**: Logging only  
+2. **Selective Enforcement**: Critical decisions  
+3. **Full Always Memory**: All actions logged
+
+---
+
+## **Performance & Latency**
+
+**Q1: How does Multi-TEE Diversity protect the system?**
+
+Mandatory heterogeneous infrastructure:
+
+* 40% Intel SGX  
+* 40% AMD SEV-SNP  
+* 20% AWS Nitro Enclaves
+
+Side-channel attacks limited to single architecture. Protocol-level ejection of compromised types.
+
+**Q2: What about universal vulnerabilities?**
+
+* Minimal unikernel runtimes  
+* Formally verified cryptographic libraries  
+* Zero-TEE fallback with 80% BFT consensus
+
+---
+
+## **Integration with Law**
+
+**Q1: How does TML achieve GDPR compliance?**
+
+* Data encrypted with single-use keys  
+* Erasure triggers key deletion \+ attested shredding  
+* Signed attestations prove destruction
+
+**Q2: Are Always Memory logs legally admissible?**
+
+Yes. They meet FRE 901/902 via:
+
+* Independent Guardian confirmations  
+* Cryptographic proof chains  
+* Expert witness program  
+* NIST standards engagement
+
+**Q3: What's the enforcement mechanism?**
+
+* Missing logs \= negligence  
+* Forged logs \= fraud  
+* Tampering \= obstruction  
+* Systematic abuse \= RICO
+
+**Q4: How does TML integrate with EU AI Act?**
+
+TML exceeds all requirements:
+
+* Risk categorization → Sacred Zero classification  
+* Documentation requirements → Always Memory logs  
+* Human oversight → Accountability Council  
+* Transparency → Immutable public evidence
+
+---
+
+## **Future Technologies & AGI Readiness**
+
+**Q1: How is Always Memory future-proof?**
+
+* Log formats versioned  
+* Adaptable to neuromorphic, quantum, swarm AIs  
+* Designed as invisible infrastructure (like double-entry bookkeeping)
+
+**Q2: Can Always Memory handle AGI?**
+
+Not at full AGI speed initially. Current mitigations:
+
+* Checkpoint logging for major decisions  
+* Hierarchical compression of reasoning  
+* Commitment contracts before action chains
+
+The principle remains: Any system affecting humans must create memories of its decisions.
+
+---
+
+## **Early Adoption Benefits & Flywheel**
+
+**Q1: What benefits exist before laws mandate adoption?**
+
+* Insurance discounts (20-30% documented)  
+* Regulatory fast-track  
+* Public trust advantage  
+* Internal risk visibility  
+* Safe harbor provisions
+
+**Q2: How does TML create a trust flywheel?**
+
+Better Logs → Better Training → Better Decisions → Richer Logs
+
+Each cycle strengthens both compliance and credibility. Self-reinforcing adoption:
+
+1. Early adopters gain trust advantage  
+2. Insurers reduce premiums  
+3. Regulators reference TML as standard  
+4. Competitors forced to adopt  
+5. Network effects reduce costs  
+6. Universal adoption becomes inevitable
+
+---
+
+## **Resilience & Contingencies**
+
+**Q1: What if all TEEs are compromised?**
+
+* Immediate ejection of compromised type  
+* Zero-TEE fallback with 80% BFT consensus
+
+**Q2: What if Guardians collude?**
+
+* Stake-weighted selection makes Sybils uneconomic  
+* Random sharding breaks predictability  
+* Slashing enforces accountability
+
+**Q3: What if the Legal Defense Fund is exhausted?**
+
+* Reinsurance caps exposure  
+* Emergency assessments  
+* Foundation reserves
+
+---
+
+## **Adversarial Attacks**
+
+**Q1: What about side-channel or hardware exploits?**
+
+* Multi-TEE diversity ensures no single exploit compromises the whole network  
+* Formal verification of minimal runtimes reduces shared-library attack surfaces  
+* Protocol-level ejection instantly removes a compromised TEE class
+
+**Q2: Can Guardians be bribed or captured?**
+
+* Stake-weighted selection makes collusion prohibitively expensive  
+* Random sharding ensures unpredictability of signing sets  
+* Slashing rules and public audit logs make misconduct both visible and costly
+
+**Q3: Can attackers flood Always Memory with fake actions?**
+
+* Backpressure (429 signals) and adaptive batching throttle denial-of-service attempts  
+* Priority queues ensure critical transactions are protected under attack  
+* Client-side reconciliation forces attackers to pay the cost of repeated retries
+
+**Q4: What about poisoning of logs or false entries?**
+
+* Immutable signatures and hash-chains make undetected falsification impossible  
+* Hybrid Shield's 11-mirror institutional redundancy prevents silent erasure  
+* Blockchain anchoring exposes divergence within a single block cycle
+
+**Q5: What if attackers target whistleblowers or victims?**
+
+* Anonymous reporting channels preserve identity  
+* Guardian-hardened routing prevents IP leakage  
+* 15% whistleblower bounties \+ Memorial Fund disbursements align incentives against retaliation
+
+**Q6: How does Always Memory defend against Denial-of-Service attacks?**
+
+**Network defenses:**
+
+* DDoS-absorbing CDN/WAF (Cloudflare/AWS Shield)  
+* Anycast \+ global edge points spread volumetric load  
+* Token-based auth with sliding quotas per client
+
+**Protocol defenses:**
+
+* Adaptive batching: as buffer fills, batch frequency increases  
+* Priority queues: high-fee/critical clients get faster processing  
+* Backpressure: HTTP 429 with Retry-After when approaching capacity  
+* Early drop: unauthenticated requests dropped before TEE entry
+
+**Economic defenses:**
+
+* Fee market makes sustained attacks expensive  
+* Staking penalties for Guardians enabling floods  
+* Per-request minimal fees during high load
+
+**Emergency modes:**
+
+* Graceful degradation to sample-only for non-critical  
+* Zero-TEE fallback when TEE nodes under attack  
+* Circuit-breaker preserves capacity for high-value operations
+
+---
+
+## **Technical Specifications**
+
+**Q1: What is a sample Always Memory batch?**
+
+{  
+  "framework": "TML-AlwaysMemory-v5.0",  
+  "creator\_orcid": "0009-0006-5966-1243",  
+  "batch\_id": "batch\_8a4f2c3b5e1d",  
+  "timestamp\_range": {  
+    "start": "2025-09-21T14:23:45.123456Z",  
+    "end": "2025-09-21T14:23:45.223456Z"  
+  },  
+  "actions": \[  
+    {  
+      "action\_id": "act\_7f3a9c2b4e1d",  
+      "classification": 0,  
+      "input\_hash": "0x9e2b4d1a3c5f...",  
+      "output\_hash": "0x4d7e2a9b1c3f...",  
+      "sacred\_zero\_trigger": "loan\_denial\_protected\_class"  
+    }  
+  \],  
+  "tee\_attestation": {  
+    "platform": "AMD-SEV-SNP",  
+    "quote": "attest:sev-snp:...",  
+    "runtime": "unikernel-v2.1"  
+  },  
+  "signature": {  
+    "algorithm": "ECDSA-P384",  
+    "ephemeral\_key\_id": "eph\_2a3b4c5d",  
+    "hsm\_root": "hsm\_7f8a9b0c",  
+    "signature": "0x1a2b3c4d5e6f..."  
+  },  
+  "guardian\_confirms": \[  
+    {"id": "g1", "type": "full", "sig": "0xf2e4..."},  
+    {"id": "g2", "type": "lightweight", "sig": "0x8a9b..."}  
+  \],  
+  "goukassian\_promise": {  
+    "lantern": true,  
+    "signature": "0009-0006-5966-1243",  
+    "license": "MIT-Attribution-Required"  
+  },  
+  "operational\_mode": "normal",  
+  "liability\_factor": 1.0  
+}
+
+---
+
+## **Conclusion**
+
+TML with Always Memory represents a paradigm shift in AI accountability:
+
+**Technically**: Every failure mode mapped with mitigation
+
+**Economically**: Costs acknowledged, scaled by liability
+
+**Legally**: Evidence that stands in court
+
+**Morally**: Sacred Zero ensures conscience in code
+
+This is not perfection. This is something rarer: **memory that power cannot erase, evidence that courts cannot dismiss, and conscience that machines cannot ignore.**
+
+The Lantern shines beyond names. The framework outlives its creator. The promise endures.
+
+**Sacred Zero is exactly what's needed where lives and billions are on the line.**
+
+---
+
+**Document Version**: 5.0 Resilience Edition  
+ **Last Updated**: September 2025  
+ **Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)  
+---
+
+*"Routine memories are cheap; missing memories are expensive."*
+
