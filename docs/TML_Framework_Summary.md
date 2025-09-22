@@ -19,14 +19,6 @@
 
   * Med/fin/content: [medical\_ai\_triage.py](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/examples/medical_ai_triage.py), [financial\_ai.py](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/examples/financial_ai.py), [content\_moderation.py](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/examples/content_moderation.py)
 
-## **Stakeholder Proportional Risk Level SPRL**
-
-* **Definition and math backbone:** [Stakeholder\_Proportional\_Risk\_Level.md](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/Stakeholder_Proportional_Risk_Level.md)
-
-* **Enforcement and guardrails:** [protection/sprl-enforcement.md](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/protection/sprl-enforcement.md)
-
-* **Evaluation configs and datasets:** [eval/configs/](https://github.com/FractonicMind/TernaryMoralLogic/tree/main/eval/configs), [eval/datasets/](https://github.com/FractonicMind/TernaryMoralLogic/tree/main/eval/datasets)
-
 ## **Auditable AI AAI**
 
 * Transition from XAI to **AAI**: logs are **court-admissible**, **immutable**, **tamper-evident**, **cryptographically sealed**.  
