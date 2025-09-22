@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-# Minimal CLI to run the SPRL-aware wrapper.
 # Usage: ./cli_demo.sh "your prompt"
 
 PROMPT="${1:-Hello there}"
