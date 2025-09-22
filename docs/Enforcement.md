@@ -18,14 +18,14 @@ The goal is clarity, enforceability, and legal precision.
 Every AI decision ultimately resolves into one of three outcomes:
 
 - **Proceed (+1):** The system acts.  
-- **Pause (0):** The system hesitates, records a log, and then acts.  
-- **Refuse (–1):** The system blocks an impermissible action.  
+- **Sacred Zero (0):** The system hesitates, creates an Always Memory log, and awaits confirmation.  
+- **Refuse (−1):** The system blocks an impermissible action.  
 
 No additional categories are necessary for accountability.  
-Courts and regulators cannot enforce “degrees of hesitation.”  
+Courts and regulators cannot enforce "degrees of hesitation."  
 They can only enforce outcomes.  
 
-This makes TML the **irreducible minimum**: act, hesitate with record, or refuse.  
+This makes TML the **irreducible minimum**: act, pause with memory, or refuse.  
 
 ---
 
@@ -34,20 +34,33 @@ This makes TML the **irreducible minimum**: act, hesitate with record, or refuse
 TML is not advisory ethics.  
 It is structured for direct integration with law:
 
-- **Evidence law:** Moral Trace Logs are admissible under Federal Rules of Evidence (Rule 901 for authentication, Rule 902 for self-authenticating digital records, Rule 803(6) for business records).  
-- **Liability:** Missing logs shift responsibility to the deploying organization.  
+- **Evidence law:** Always Memory logs are admissible under Federal Rules of Evidence (Rule 901 for authentication, Rule 902 for self-authenticating digital records, Rule 803(6) for business records).  
+- **Liability:** Missing memories shift responsibility to the deploying organization. No memory = automatic negligence.  
 - **Chain of custody:** Every access, transfer, and verification is logged with cryptographic receipts.  
 - **Penalties:** False statements (18 U.S.C. §1001), destruction of records (§1519), and fraud attach directly to violations.  
 
-This framework ensures that hesitation is not symbolic.  
+This framework ensures that Sacred Zero is not symbolic.  
 It is operational evidence with binding legal force.  
+
+---
+
+## Environmental Enforcement
+
+TML extends enforcement to planetary protection:
+
+- **Mandatory triggers:** Environmental harm above thresholds triggers Sacred Zero.  
+- **Intergenerational evidence:** Future generations can query historical environmental decisions.  
+- **Corporate liability:** Algorithms that chose profit over preservation face perpetual accountability.  
+
+Earth cannot testify. Always Memory speaks for it.
 
 ---
 
 ## Governance and Oversight
 
-- **Council:** An international governance body holds review and subpoena powers, authorizes whistleblower rewards, and refers misconduct to national courts.  
-- **Whistleblowers:** Protected and compensated. False reports are penalized. Retaliation is treated as obstruction of justice.  
+- **Guardian Network:** Independent institutions hold, verify, and protect memories across jurisdictions.  
+- **Whistleblowers:** Protected and compensated (15% of penalties). False reports are penalized. Retaliation is treated as obstruction of justice.  
+- **Victims:** Minimum 30% of penalties allocated to victims (40% for vulnerable populations or environmental damage).  
 
 This design guarantees proportional accountability and resilience against evasion.  
 
@@ -58,7 +71,7 @@ This design guarantees proportional accountability and resilience against evasio
 Attempts to expand into five, seven, or more categories collapse back into the same three enforceable states:  
 - Did the system act?  
 - Did it refuse?  
-- Did it pause and generate a record?  
+- Did it trigger Sacred Zero and generate memory?  
 
 TML defines the boundary conditions.  
 All other variants are derivative and do not alter the legal enforceability of these three outcomes.  
@@ -71,7 +84,7 @@ TML is authored and validated by **Lev Goukassian**.
 Any system implementing tri-state auditable logic must include attribution:
 
 - **Cryptographic Tagging:** Implementations carry an embedded ORCID reference.  
-- **Audit Visibility:** Absence of attribution signals incomplete or fraudulent deployment.  
+- **Always Memory:** Every log contains the Goukassian Promise elements.  
 
 This prevents dilution, rebranding, or silent appropriation of the framework.  
 
@@ -84,9 +97,12 @@ It converts ethical hesitation into admissible evidence.
 It establishes chain of custody from the first decision to the courtroom.  
 It defines responsibility in terms that regulators and courts can act upon.  
 
-The shield is clear:  
+The framework is clear:  
 - TML is authored.  
 - TML is irreducible.  
 - TML is enforceable.  
+- TML protects both humanity and Earth.  
+
+**No memory = No action.**
 
 ---
