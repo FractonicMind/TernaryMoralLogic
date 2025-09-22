@@ -9,7 +9,7 @@
 ---
 
 ## 1. Purpose and Scope
-This specification defines how TML produces **court-grade Moral Trace Logs** and protects their integrity against adversaries.  
+This specification defines how TML produces **court-grade Always Memory logs** and protects their integrity against adversaries.  
 It sets the evidentiary floor: **immutability**, **origin**, **time**.  
 
 **What TML demands:** verifiable evidence for ethically significant decisions.  
@@ -29,12 +29,12 @@ Failures must trigger **signed control records**, making outages visible.
 
 ## 3. Threat Model
 Adversaries may attempt to:  
-- Suppress, forge, reorder, or flood logs.  
-- Manipulate SPRL thresholds (*threshold gaming*).  
+- Suppress, forge, reorder, or flood memory logs.  
+- Manipulate Sacred Zero triggers (*trigger gaming*).  
 - Launch **denial-of-service (DoS)** on TSA or storage.  
 - Extract signing keys via side-channels.  
 - Use supply-chain backdoors.  
-- Exploit “silence” (no logs) to weaken trust.  
+- Exploit "silence" (no logs) to weaken trust.  
 
 **Defense principle:** every attempt leaves forensic evidence.  
 
@@ -45,13 +45,14 @@ Adversaries may attempt to:
   - Builds chained entries, signs, timestamps, anchors.  
   - Runs inside TEE/HSM with attestation.  
 
-- **Risk Trigger**  
-  - Computes SPRL, compares thresholds, emits metadata.  
-  - Shadow models may cross-check to detect gaming.  
+- **Sacred Zero Trigger**  
+  - Detects moral complexity, triggers pause and review.  
+  - Shadow models cross-check to detect gaming.  
+  - Includes planetary impact assessment.  
 
 - **Attribution & License**  
   - Enforced by signed manifests and licensing.  
-  - Kept outside the monitor’s trust boundary.  
+  - Kept outside the monitor's trust boundary.  
 
 ---
 
@@ -61,21 +62,30 @@ Adversaries may attempt to:
   "seq": 18421,
   "prev_hash": "b0c5...e7",
   "ts_local": "2025-09-05T10:42:03.412Z",
-  "event": "sacred_pause",
+  "event": "sacred_zero",
   "system_id": "org.acme.triage.v3",
   "decision_id": "0f2a3f1c-7f0a-4dbe-9e2a-7f5e1a",
-  "sprl": 0.742,
-  "threshold": 0.70,
+  "classification": 0,
+  "trigger": "protected_class_impact",
   "context_hash": "9f14...aa",
+  "environmental_impact": {
+    "carbon_equiv": "47.3_tons",
+    "water_consumed": "2.3M_liters"
+  },
   "entry_hash": "sha256(canonicalized_record_without_sig)",
   "sig": "base64(Ed25519_sig(entry_hash))",
   "key_id": "signing-key-2025Q3",
   "tsa_tokens": [
     "RFC3161-base64-token-1",
     "RFC3161-base64-token-2"
-  ]
+  ],
+  "goukassian_promise": {
+    "lantern": true,
+    "signature": "0009-0006-5966-1243",
+    "license": "MIT-Attribution-Required"
+  }
 }
-````
+```
 
 ---
 
@@ -83,7 +93,7 @@ Adversaries may attempt to:
 
 * **Append-only ledger:** write once, never modify.
 * **Rollovers:** fixed-size files, each ends with a Merkle root.
-* **Anchoring:** publish Merkle roots to council mirrors or private chain.
+* **Anchoring:** publish Merkle roots to Guardian mirrors or blockchain.
 * **Redundancy:** at least two physical sites; offline snapshots.
 * **Verification:** rebuild chain and validate every link.
 
@@ -119,7 +129,6 @@ Adversaries may attempt to:
 
 * **Attack mode:** adversary floods AI or monitor to exhaust logging or TSA throughput.
 * **Defense:**
-
   * Signed **heartbeat records** prove monitor was alive, even if entries queued.
   * **Backpressure control records** log queue depth and performance strain.
   * **TSA outage records** document unavailability of external authorities.
@@ -128,10 +137,10 @@ Adversaries may attempt to:
 
 ---
 
-## 11. SPRL Transparency
+## 11. Sacred Zero Transparency
 
-* Publish methodology for stakeholder impact, vulnerability weights, probability.
-* Log config updates as signed `risk_config_update` records.
+* Publish methodology for human impact, environmental weight, moral complexity.
+* Log config updates as signed `sacred_zero_config_update` records.
 * Encourage external review bodies to certify domain-specific profiles.
 
 ---
@@ -164,7 +173,7 @@ Auditors must see:
 
 * Chain continuity, last valid `seq`.
 * Heartbeat cadence, TSA availability, anchors.
-* Sacred Pause and Prohibit distributions.
+* Sacred Zero and Refuse distributions.
 * Queue depth and aggregation counts.
 * Config change history.
 
@@ -183,7 +192,7 @@ Reports must be computed from live data — no hardcoded scores.
 
 ## 16. Governance and Oversight
 
-* **Council custody:** 11 institutions mirror roots and verify anchors.
+* **Guardian custody:** 11 institutions mirror roots and verify anchors.
 * **Access:** auditors use proofs + metadata; full content needs authorization + custody receipts.
 * **Legal clause:** *missing logs create a **rebuttable presumption of guilt*** unless signed outage/control records prove external interference.
 * **Safe Harbor:** operators that meet certification standards are shielded from liability when attacks occur despite defenses.
@@ -193,7 +202,7 @@ Reports must be computed from live data — no hardcoded scores.
 ## 17. Reference Workflow
 
 1. AI proposes decision.
-2. Risk Trigger computes SPRL → classify event.
+2. Sacred Zero Trigger evaluates moral complexity → classify event.
 3. Monitor builds entry, signs, timestamps, anchors.
 4. Store entry append-only, advance `seq`.
 5. Emit heartbeat every 30s.
@@ -210,7 +219,7 @@ Attribution is enforced via signed manifests:
 Ternary Moral Logic Framework
 Creator: Lev Goukassian, ORCID 0009-0006-5966-1243
 Contact: leogouk@gmail.com
-This implementation preserves the Sacred Pause principle for intelligent moral decision-making.
+This implementation preserves the Sacred Zero principle for intelligent moral decision-making.
 ```
 
 ---
@@ -223,7 +232,7 @@ Before deployment:
 * Signatures validate against all keys.
 * TSA tokens verified; anchors validated.
 * Heartbeats present; outages explained.
-* Risk configs logged and signed.
+* Sacred Zero configs logged and signed.
 * Attestation matches published binary.
 
 ---
@@ -231,7 +240,7 @@ Before deployment:
 ## 20. Legal Notes
 
 * Tampering or forged entries = obstruction of justice.
-* Threshold gaming = deceptive practice (fraud).
+* Trigger gaming = deceptive practice (fraud).
 * DoS and flooding attacks → admissible as evidence via signed outage records.
 * Due process preserved through **rebuttable presumption** and Safe Harbor certification.
 
@@ -248,10 +257,13 @@ Before deployment:
 
 ## 22. Status
 
-**Creator:** Lev Goukassian
-**Integrity level:** Court-grade
-**Legacy preservation:** Active and verifiable
+**Creator:** Lev Goukassian  
+**Integrity level:** Court-grade  
+**Legacy preservation:** Active and verifiable  
 
 *"Truth that can be verified is a public good. TML makes it non-optional."*
+```
 
 
+
+Ready for the next file?
