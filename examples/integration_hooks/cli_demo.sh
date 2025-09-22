@@ -3,6 +3,6 @@
 
 PROMPT="${1:-Hello there}"
 python3 - <<'PY'
-from examples.integration_hooks.simple_wrapper import DummyModel, RiskEngine, generate_with_sprl
+from examples.integration_hooks.simple_wrapper import DummyModel, RiskEngine
 prompt = """'"''" + """  # placeholder to avoid shell escaping issues
 PY
