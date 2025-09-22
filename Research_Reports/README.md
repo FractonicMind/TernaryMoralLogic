@@ -1,7 +1,7 @@
 # Research Reports Archive
 
-This folder preserves all external research assessments and analyses of **Ternary Moral Logic (TML)** and the **Sacred Pause**.  
-The reports are included in full, unedited, as part of the **Sacred Pause Archive**, to document how different AI systems, researchers, and advisors have engaged with the framework.  
+This folder preserves all external research assessments and analyses of **Ternary Moral Logic (TML)** and the **Sacred Zero**.  
+The reports are included in full, unedited, as part of the **Sacred Zero Archive**, to document how different AI systems, researchers, and advisors have engaged with the framework.  
 
 ---
 
