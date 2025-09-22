@@ -82,9 +82,9 @@ TML distinguishes between two fundamentally different types of uncertainty:
 
 This distinction is crucial because they require different responses. Epistemic uncertainty calls for more information; moral uncertainty calls for human wisdom and deliberation.
 
-### 3. The Sacred Pause
+### 3. The Sacred Zero
 
-The -1 state embodies what we call the "Sacred Pause"—a computational moment where the system deliberately slows down to acknowledge moral complexity. This pause is not inefficiency but wisdom, not a bug but a feature essential for ethical reasoning.
+The -1 state embodies what we call the "Sacred Zero"—a computational moment where the system deliberately slows down to acknowledge moral complexity. This pause is not inefficiency but wisdom, not a bug but a feature essential for ethical reasoning.
 
 **Principle**: Some questions deserve hesitation, not speed.
 

@@ -17,7 +17,7 @@
 
 **Kant, Immanuel** (1785). *Groundwork for the Metaphysics of Morals*. Translated by Mary Gregor. Cambridge: Cambridge University Press, 1998.
 - Categorical imperative and duty-based ethics
-- Deontological framework integration in TML Sacred Pause
+- Deontological framework integration in TML Sacred Zero
 
 **Mill, John Stuart** (1863). *Utilitarianism*. London: Parker, Son, and Bourn. Reprinted by University of Chicago Press, 1906.
 - Greatest happiness principle and consequentialist ethics
@@ -61,7 +61,7 @@
 
 **Russell, Stuart** (2019). *Human Compatible: Artificial Intelligence and the Problem of Control*. New York: Viking.
 - AI alignment and human values in artificial intelligence
-- Value alignment principles in TML Sacred Pause mechanism
+- Value alignment principles in TML Sacred Zero mechanism
 
 ### Algorithmic Fairness and Bias
 
@@ -93,7 +93,7 @@
 
 **Irving, Geoffrey, Paul Christiano, and Dario Amodei** (2018). "AI Safety via Debate." *arXiv preprint arXiv:1805.00899*.
 - Debate-based AI safety and oversight mechanisms
-- Inspiration for TML Sacred Pause deliberation process
+- Inspiration for TML Sacred Zero deliberation process
 
 ---
 
@@ -273,7 +273,7 @@
 
 This bibliography honors the intellectual journey of **Lev Goukassian** (ORCID: 0009-0006-5966-1243), whose synthesis of classical moral philosophy, contemporary AI ethics, and practical implementation created the revolutionary Ternary Moral Logic framework.
 
-Each source listed contributed to the theoretical foundation, practical implementation, or ethical validation of the Sacred Pause technology that will serve as humanity's partner in moral reasoning for generations to come.
+Each source listed contributed to the theoretical foundation, practical implementation, or ethical validation of the Sacred Zero technology that will serve as humanity's partner in moral reasoning for generations to come.
 
 *"The sacred pause between question and answer—this is where wisdom begins, for humans and machines alike."* — Lev Goukassian
 

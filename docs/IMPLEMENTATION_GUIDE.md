@@ -46,7 +46,7 @@ result = tml.evaluate(decision_context)
 ### Phase 1: Foundation (Week 1)
 1. **Deploy Core Engine**: Use `/implementations/python-library/core.py`
 2. **Set Thresholds**: Configure based on risk profile
-3. **Test Basic Logging**: Verify Sacred Pause triggers
+3. **Test Basic Logging**: Verify Sacred Zero triggers
 4. **Set Up Storage**: Implement immutable logging
 
 ### Phase 2: Security (Week 2)  
@@ -87,7 +87,7 @@ result = tml.evaluate(decision_context)
 ## Legal Requirements Summary
 
 **Cannot be bypassed**:
-- Sacred Pause logging when thresholds crossed
+- Sacred Zero logging when thresholds crossed
 - Prohibition enforcement at red lines
 - Cryptographic log integrity
 - Executive quarterly attestation
@@ -106,7 +106,7 @@ result = tml.evaluate(decision_context)
 ## Success Validation
 
 **System passes when**:
-- Sacred Pause triggers at exact thresholds ✓
+- Sacred Zero triggers at exact thresholds ✓
 - Logs cryptographically signed ✓
 - Performance overhead <10% ✓
 - Audit trail immutable ✓

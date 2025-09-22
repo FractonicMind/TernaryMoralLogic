@@ -12,7 +12,7 @@
 ## I. EXECUTIVE SUMMARY
 
 ### 1.1 Purpose and Scope
-The Hybrid Shield Model ensures that Sacred Pause logs generated under the Ternary Moral Logic (TML) framework cannot be erased, tampered with, or quietly ignored by any single actor or coordinated group.  
+The Hybrid Shield Model ensures that Sacred Zero logs generated under the Ternary Moral Logic (TML) framework cannot be erased, tampered with, or quietly ignored by any single actor or coordinated group.  
 
 It establishes a dual-layer protection system combining institutional redundancy with mathematical immutability.  
 
@@ -32,7 +32,7 @@ The model creates **double armor** protection through two independent but comple
 ## II. INSTITUTIONAL SHIELD ARCHITECTURE
 
 ### 2.1 Real-Time Distribution Protocol
-Sacred Pause logs are **instantly synchronized** to all 11 independent institutions upon generation:  
+Sacred Zero logs are **instantly synchronized** to all 11 independent institutions upon generation:  
 
 **Distribution Timing**: Real-time (sub-second) replication  
 **Delivery Method**: Encrypted API endpoints with receipt confirmation  
@@ -175,8 +175,8 @@ Sacred Pause logs are **instantly synchronized** to all 11 independent instituti
 - *Monitoring*: Continuous assessment of cryptographic security against emerging threats  
 
 **Update-Based Erasure**  
-- *Risk*: Software or firmware updates could silently weaken or remove the Sacred Pause and log mechanisms  
-- *Mitigation*: Establish a **constitutional kernel** — a minimal Sacred Pause + logging layer that cannot be patched out without producing cryptographic receipts. Updates must provide proof that the kernel remains intact.  
+- *Risk*: Software or firmware updates could silently weaken or remove the Sacred Zero and log mechanisms  
+- *Mitigation*: Establish a **constitutional kernel** — a minimal Sacred Zero + logging layer that cannot be patched out without producing cryptographic receipts. Updates must provide proof that the kernel remains intact.  
 - *Detection*: Any update without receipts is flagged as invalid by independent auditors.  
 
 ---
@@ -249,7 +249,7 @@ Citizens, researchers, and advocates can independently verify AI ethical behavio
 
 ---
 
-*“The Hybrid Shield ensures that the Sacred Pause becomes more than a moment of reflection — it becomes a permanent testament to AI's capacity for ethical reasoning, protected by both human wisdom and mathematical certainty.”*  
+*“The Hybrid Shield ensures that the Sacred Zero becomes more than a moment of reflection — it becomes a permanent testament to AI's capacity for ethical reasoning, protected by both human wisdom and mathematical certainty.”*  
 
 **Document Version**: 1.0.0  
 **Effective Date**: September 2025  

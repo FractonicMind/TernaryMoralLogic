@@ -10,11 +10,11 @@ The Goukassian Promise represents a comprehensive ethical framework created by L
 
 The Lantern serves as the foundational element of ethical visibility and active guidance within AI systems[\[1\]](#bookmark=id.9gf25322ahs5)[\[2\]](#bookmark=id.4syawyvnvkwy). This safeguard embodies the concept of continuous ethical illumination, ensuring that moral considerations remain transparent and operational throughout an AI system's decision-making process.
 
-Drawing from Goukassian's Sacred Pause framework, the Lantern represents what he calls "ethical hesitation" – a deliberate pause mechanism that allows AI systems to reflect on complex moral decisions rather than rushing to binary conclusions[\[1\]](#bookmark=id.9gf25322ahs5)[\[3\]](#bookmark=id.q3cic0v0ty22). This aligns with his three-state Ternary Moral Logic system:
+Drawing from Goukassian's Always Memory framework, the Lantern represents what he calls "ethical hesitation" – a deliberate pause mechanism that allows AI systems to reflect on complex moral decisions rather than rushing to binary conclusions[\[1\]](#bookmark=id.9gf25322ahs5)[\[3\]](#bookmark=id.q3cic0v0ty22). This aligns with his three-state Ternary Moral Logic system:
 
 * **\+1 Proceed**: Clear ethical approval for routine, low-risk actions
 
-* **0 Sacred Pause**: Requires deliberation and moral reflection
+* **0 Sacred Zero**: Requires deliberation and moral reflection
 
 * **\-1 Refuse**: Clear ethical violation requiring protective action
 

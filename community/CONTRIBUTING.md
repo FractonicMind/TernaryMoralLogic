@@ -5,7 +5,7 @@
 
 ## Welcome Contributors
 
-We welcome contributions from researchers, developers, ethicists, and practitioners who share Lev's vision of more thoughtful, ethical AI decision-making. Whether you're contributing code, research insights, documentation, or real-world applications, your work helps ensure that the Sacred Pause concept continues to evolve and benefit humanity.
+We welcome contributions from researchers, developers, ethicists, and practitioners who share Lev's vision of more thoughtful, ethical AI decision-making. Whether you're contributing code, research insights, documentation, or real-world applications, your work helps ensure that the Sacred Zero concept continues to evolve and benefit humanity.
 
 ### Types of Contributors We Welcome
 
@@ -22,7 +22,7 @@ We welcome contributions from researchers, developers, ethicists, and practition
 
 All contributions must align with Lev's foundational principles:
 
-### 1. The Sacred Pause is Sacred
+### 1. The Sacred Zero is Sacred
 The deliberate pause for moral reflection is not inefficiency—it's wisdom. Contributions should preserve and enhance this core concept, not bypass it for speed.
 
 ### 2. Moral Partnership, Not Automation
@@ -116,7 +116,7 @@ class EnhancedValueDetector(ValueDetector):
             >>> print([v.name for v in values])
             ['privacy', 'beneficence', 'autonomy']
         """
-        # Implementation that preserves the Sacred Pause principle
+        # Implementation that preserves the Always Memory principle
         pass
 ```
 
@@ -299,7 +299,7 @@ How does this contribution align with and advance Lev Goukassian's original visi
 
 ## Memorial Attribution
 - [ ] Appropriate attribution to Lev Goukassian included
-- [ ] Contribution aligns with Sacred Pause principle
+- [ ] Contribution aligns with Always Memory principle
 - [ ] Preserves human-AI moral partnership approach
 ```
 
@@ -352,7 +352,7 @@ Enhanced TML Implementation
 Original Framework: Lev Goukassian (ORCID: 0009-0006-5966-1243)
 Enhancement: [Your Name] ([Date])
 
-This enhancement builds upon Lev's vision of the Sacred Pause,
+This enhancement builds upon Lev's vision of the Sacred Zero,
 extending TML's capability while preserving its core principle
 of moral partnership between humans and AI systems.
 """
@@ -417,7 +417,7 @@ Consider supporting the Lev Goukassian Memorial Fund for Ethical AI Research:
 
 ## Thank You
 
-Every contribution to TML—whether code, research, documentation, or community building—helps ensure that Lev Goukassian's vision of ethical AI continues to benefit humanity. The Sacred Pause concept lives on through your work, creating space for wisdom in an increasingly automated world.
+Every contribution to TML—whether code, research, documentation, or community building—helps ensure that Lev Goukassian's vision of ethical AI continues to benefit humanity. The Sacred Zero concept lives on through your work, creating space for wisdom in an increasingly automated world.
 
 Together, we're building AI systems that serve as moral partners, not just moral automatons. Thank you for being part of this important mission.
 

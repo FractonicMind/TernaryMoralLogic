@@ -42,7 +42,7 @@ TML is not limited to computer science. It reshapes accountability across multip
 ## Defense and Security
 
 - **Without TML:** Autonomous systems act without hesitation or evidence. Civilian harm cannot be investigated or prosecuted. Military AI decisions vanish into black boxes.  
-- **With TML:** The Sacred Pause records every ethically complex choice in combat and intelligence. Logs provide accountability under international law, reducing unlawful uses and strengthening deterrence.  
+- **With TML:** The Sacred Zero records every ethically complex choice in combat and intelligence. Logs provide accountability under international law, reducing unlawful uses and strengthening deterrence.  
 
 **Pathway:** From unaccountable force → to accountable defense.  
 
@@ -61,7 +61,7 @@ TML is not limited to computer science. It reshapes accountability across multip
 
 SIP shows that TML is not a narrow technical fix. It is a structural reform with influence across law, medicine, finance, defense, and public life.  
 
-The Sacred Pause creates pathways where accountability flows into every decision an AI makes.  
+The Sacred Zero creates pathways where accountability flows into every decision an AI makes.  
 
 TML is:  
 - **Authored**  

@@ -15,7 +15,7 @@
 This plan establishes the operational framework for the TML Governance Council, a consortium of 11 independent institutions responsible for:
 
 - Distributed oversight of TML implementations
-- Investigation authority over Sacred Pause audit logs
+- Investigation authority over Sacred Zero audit logs
 - Whistleblower protection and victim compensation
 - Community governance and standards evolution
 - Memorial fund administration and stewardship
@@ -510,7 +510,7 @@ The TML Governance Council operates on principles of **distributed authority** a
 
 ---
 
-*"The Governance Council exists to ensure that the Sacred Pause serves humanity's interests across generations, cultures, and contexts through distributed wisdom and democratic accountability."*
+*"The Governance Council exists to ensure that the Sacred Zero serves humanity's interests across generations, cultures, and contexts through distributed wisdom and democratic accountability."*
 
 **Document Version**: 1.0.0  
 **Effective Date**: September 2025  

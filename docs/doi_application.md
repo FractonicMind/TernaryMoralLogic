@@ -63,14 +63,14 @@
 ```yaml
 # Required Zenodo metadata
 title: "Ternary Moral Logic (TML) Framework"
-description: "A three-state ethical AI framework with Sacred Pause technology"
+description: "A three-state ethical AI framework with Sacred Zero technology"
 creators:
   - name: "Goukassian, Lev"
     orcid: "0009-0006-5966-1243"
 keywords:
   - "AI Ethics"
   - "Moral Reasoning"  
-  - "Sacred Pause"
+  - "Sacred Zero"
   - "Algorithmic Fairness"
   - "Regulatory Compliance"
 license: "MIT"
@@ -124,7 +124,7 @@ git archive --format=zip --prefix=tml-framework-1.0.0/ v1.0.0 > tml-framework-1.
 ### Pre-DOI Citation Format
 ```
 Goukassian, L. (2025). Ternary Moral Logic (TML) Framework: 
-A three-state ethical AI framework with Sacred Pause technology 
+A three-state ethical AI framework with Sacred Zero technology 
 (Version 1.0.0) [Computer software]. GitHub. 
 https://github.com/FractonicMind/TernaryMoralLogic
 ```
@@ -132,7 +132,7 @@ https://github.com/FractonicMind/TernaryMoralLogic
 ### Post-DOI Citation Format
 ```
 Goukassian, L. (2025). Ternary Moral Logic (TML) Framework: 
-A three-state ethical AI framework with Sacred Pause technology 
+A three-state ethical AI framework with Sacred Zero technology 
 (Version 1.0.0) [Computer software]. Zenodo. 
 https://doi.org/10.5281/zenodo.XXXXXX
 ```
@@ -142,7 +142,7 @@ https://doi.org/10.5281/zenodo.XXXXXX
 @software{goukassian2025tml,
   author       = {Goukassian, Lev},
   title        = {{Ternary Moral Logic (TML) Framework: A three-state 
-                   ethical AI framework with Sacred Pause technology}},
+                   ethical AI framework with Sacred Zero technology}},
   month        = jul,
   year         = 2025,
   publisher    = {Zenodo},

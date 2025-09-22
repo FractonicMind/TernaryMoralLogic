@@ -17,7 +17,7 @@ The conceptual chasm between human and machine morality is not merely a technica
 
 **Ternary Moral Logic (TML)** is a framework designed to bridge this chasm by addressing two critical limitations inherent in binary AI ethics. The first is the aforementioned oversimplification of moral complexity, where the richness of ethical analysis is lost in a forced dichotomy. The second is the lack of a genuine human-AI partnership. Traditional frameworks position AI as an "autonomous moral arbiter," making decisions in an opaque manner that prevents transparent deliberation. TML's core innovation is its introduction of a third state that deliberately creates space for reflection and human consultation, repositioning the AI as a collaborative tool that enhances, rather than replaces, human moral reasoning capabilities.  
 
-The philosophical foundation of TML is uniquely intertwined with the personal narrative of its creator, Lev Goukassian. The origin of the framework is traced back to a period during which he was battling a terminal illness and spent time reflecting in a hospital room. The profound contrast between the rapid, unthinking decisions of machines and the deliberate, caring silence of a doctor served as the inspiration for TML's central tenet: the Sacred Pause. The experience of a "borrowed gift" of time and a "dignity of thought" found in hesitation became the central metaphor, grounding the abstract concept of a third logical state in a deeply human, emotional, and life-affirming context. This narrative is not merely an anecdote; it is a foundational component of the framework's philosophical argument, positioning TML as an ethical imperative born from a life-altering experience. It seeks to infuse the technical implementation with a sense of wisdom and care, elevating the framework beyond a purely academic exercise and endowing it with a powerful rhetorical and moral force.  
+The philosophical foundation of TML is uniquely intertwined with the personal narrative of its creator, Lev Goukassian. The origin of the framework is traced back to a period during which he was battling a terminal illness and spent time reflecting in a hospital room. The profound contrast between the rapid, unthinking decisions of machines and the deliberate, caring silence of a doctor served as the inspiration for TML's central tenet: the Sacred Zero. The experience of a "borrowed gift" of time and a "dignity of thought" found in hesitation became the central metaphor, grounding the abstract concept of a third logical state in a deeply human, emotional, and life-affirming context. This narrative is not merely an anecdote; it is a foundational component of the framework's philosophical argument, positioning TML as an ethical imperative born from a life-altering experience. It seeks to infuse the technical implementation with a sense of wisdom and care, elevating the framework beyond a purely academic exercise and endowing it with a powerful rhetorical and moral force.  
 
 **The Three Voices of Ethical AI**
 
@@ -27,22 +27,22 @@ TML moves beyond the constraints of binary logic by providing AI systems with a 
 
 **-1 (Refuse):** The Voice of Moral Resistance. This state is triggered when an AI is faced with a request that would lead to clear harm or violate fundamental ethical principles. However, unlike a blunt binary rejection, TML emphasizes the "quality of ethical resistance". A refusal in this framework is designed to explain the rationale behind the decision, offer safer alternatives, and maintain a caring tone. This approach demonstrates a more nuanced understanding of moral responsibility, as it seeks to educate and protect, rather than simply prohibit.  
 
-**0 (Hesitate/Inquire):** The Voice of Wisdom and the **Sacred Pause**. It is the core innovation and the central tenet of the TML framework. This state is activated when an AI encounters potential danger, confusion, or moral ambiguity—the vast middle ground where a simple yes or no is inadequate. The Sacred Pause is not an act of indecision, but a deliberate act of reflection and a system-level checkpoint that compels the AI to reconsider the request, seek additional information, or escalate the decision to a human for oversight. The concept is likened to a doctor who takes time to review test results before issuing a diagnosis, prioritizing thoughtfulness over speed. Practical examples illustrate its function in various domains: a medical app hesitates before diagnosing a strange rash and asks about travel history, a city-planning AI pauses before approving a housing block and discovers it is in a floodplain, and a tutor bot pauses before giving a student the answer, instead asking what part feels hardest. In each case, the pause prevents a potentially harmful outcome and leads to a wiser, more thoughtful resolution.  
+**0 (Hesitate/Inquire):** The Voice of Wisdom and the **Sacred Zero**. It is the core innovation and the central tenet of the TML framework. This state is activated when an AI encounters potential danger, confusion, or moral ambiguity—the vast middle ground where a simple yes or no is inadequate. The Sacred Zero is not an act of indecision, but a deliberate act of reflection and a system-level checkpoint that compels the AI to reconsider the request, seek additional information, or escalate the decision to a human for oversight. The concept is likened to a doctor who takes time to review test results before issuing a diagnosis, prioritizing thoughtfulness over speed. Practical examples illustrate its function in various domains: a medical app hesitates before diagnosing a strange rash and asks about travel history, a city-planning AI pauses before approving a housing block and discovers it is in a floodplain, and a tutor bot pauses before giving a student the answer, instead asking what part feels hardest. In each case, the pause prevents a potentially harmful outcome and leads to a wiser, more thoughtful resolution.  
 
 ## Framework Overview
 
 ### What is TML?
 
-Ternary Moral Logic introduces a revolutionary third state to artificial intelligence decision-making: the **Sacred Pause**. Instead of forcing AI systems into binary allow/deny decisions, TML creates space for comprehensive documentation when facing ethical complexity.
+Ternary Moral Logic introduces a revolutionary third state to artificial intelligence decision-making: the **Sacred Zero**. Instead of forcing AI systems into binary allow/deny decisions, TML creates space for comprehensive documentation when facing ethical complexity.
 
 **The Three States**:
 - **+1 (Permit)**: Clear ethical approval for action
-- **0 (Sacred Pause)**: Moral complexity triggers comprehensive logging
+- **0 (Sacred Zero)**: Moral complexity triggers comprehensive logging
 - **-1 (Prohibit)**: Clear ethical rejection of action
 
 ### Core Framework Components
 
-1. **Sacred Pause Technology**: Automatic activation when moral complexity exceeds thresholds
+1. **Sacred Zero Technology**: Automatic activation when moral complexity exceeds thresholds
 2. **Moral Trace Logging**: Complete, immutable documentation of ethical reasoning
 3. **Vulnerable Population Protection**: Enhanced safeguards for at-risk groups
 4. **11-Institution Oversight**: Distributed governance and accountability
@@ -71,7 +71,7 @@ No log = no action. If the system cannot produce required log, operation must ha
 ### What TML Is
 
 TML provides **specifications and standards** for implementing ethical decision-making in AI systems:
-- Technical standards for Sacred Pause implementation
+- Technical standards for Sacred Zero implementation
 - Governance structures for accountability and oversight
 - Audit trail requirements for transparency
 - Protection mechanisms for vulnerable populations
@@ -156,13 +156,13 @@ This isn't greenwashing through marketing claims. It's cryptographically sealed 
 
 
 ## [Hybrid Shield - Double Armor](protection/Hybrid-Shield.md)
-The Hybrid Shield is the enforcement and preservation mechanism of Ternary Moral Logic. It is designed to guarantee the integrity and permanence of the **Moral Trace Logs** generated during a Sacred Pause. Without this protective layer, the logs would be vulnerable to deletion or alteration, rendering the entire framework of accountability meaningless. The shield's architecture is explicitly designed as a "double armor," combining socio-political safeguards with cryptographic guarantees to create a resilient, tamper-evident system. 
+The Hybrid Shield is the enforcement and preservation mechanism of Ternary Moral Logic. It is designed to guarantee the integrity and permanence of the **Moral Trace Logs** generated during a Sacred Zero. Without this protective layer, the logs would be vulnerable to deletion or alteration, rendering the entire framework of accountability meaningless. The shield's architecture is explicitly designed as a "double armor," combining socio-political safeguards with cryptographic guarantees to create a resilient, tamper-evident system. 
 
 **Once a moral decision is logged, it cannot be hidden, altered, or destroyed.**
 
 ### The "Double Armor": Conceptual Overview
 
-The core purpose of the Hybrid Shield is to protect the evidentiary output of the TML framework, the Sacred Pause logs, from being compromised by any single entity, whether corporate, governmental, or otherwise. The "hybrid" nature of the shield refers to its two distinct but interdependent layers of defense:  
+The core purpose of the Hybrid Shield is to protect the evidentiary output of the TML framework, the Sacred Zero logs, from being compromised by any single entity, whether corporate, governmental, or otherwise. The "hybrid" nature of the shield refers to its two distinct but interdependent layers of defense:  
 
  - **The Institutional Shield:** A framework of distributed trust that relies on social and geopolitical diversity to prevent overt censorship or deletion of the logs.
 
@@ -171,7 +171,7 @@ The core purpose of the Hybrid Shield is to protect the evidentiary output of th
 These two components work in concert to create a robust system where the integrity of the AI's decision-making record is protected against both political pressure and technical attacks.
 
 **The Institutional Shield: A Framework of Distributed Trust**
-The Institutional Shield addresses the socio-political vulnerabilities inherent in any centralized data storage system. The proposal is to have every Sacred Pause log instantly and automatically synchronized to a consortium of 11 independent institutions distributed across the globe: Stanford, MIT, Harvard, Oxford, Cambridge, Brookings, RAND, Alan Turing Institute, UN, WHO, European Commission. These institutions would be deliberately chosen for their independence and geopolitical diversity, including entities such as universities, non-governmental organizations, and regulatory bodies.  
+The Institutional Shield addresses the socio-political vulnerabilities inherent in any centralized data storage system. The proposal is to have every Sacred Zero log instantly and automatically synchronized to a consortium of 11 independent institutions distributed across the globe: Stanford, MIT, Harvard, Oxford, Cambridge, Brookings, RAND, Alan Turing Institute, UN, WHO, European Commission. These institutions would be deliberately chosen for their independence and geopolitical diversity, including entities such as universities, non-governmental organizations, and regulatory bodies.  
 
 The strategic rationale behind this design is to create a system of checks and balances through radical redundancy and decentralization. By distributing identical copies of the logs across multiple jurisdictions and organizational types, it becomes logistically and politically infeasible for any single powerful actor to unilaterally suppress or erase the record. An attempt by one government to seize the servers of an institution within its borders would be rendered ineffective, as 10 other copies would remain accessible elsewhere. This distributed trust model acts as a "constitutional protection" for AI systems, allowing them to log their ethical reasoning without fear that the record will be conveniently deleted when it becomes politically or commercially inconvenient. The Institutional Shield is the system's defense against overt, top-down censorship.  
 
@@ -183,7 +183,7 @@ While the Institutional Shield protects against overt suppression, the Mathemati
 
 -  Hash-Chains and Public Anchoring: To provide an even higher level of public verifiability, the system anchors cryptographic hashes of the logs to a public, immutable ledger on a daily basis. A hash function creates a unique, fixed-size digital fingerprint for a piece of data. By taking all the logs from a given day, hashing them together in a chain (where each new hash includes the previous one), and then publishing the final "anchor" hash to a public blockchain, the system creates an undeniable timestamped record. If even a single byte in a single log from that day is ever altered, the anchor hash will no longer match. This allows any third party to independently verify the integrity of the entire historical record, ensuring that any tampering would "scream louder than politics".  
 
--  Smart Contracts: The rules that govern when a Sacred Pause must be triggered are encoded in smart contracts—self-executing code that runs on the distributed ledger. These contracts programmatically enforce the TML logic, ensuring that if the conditions for a Sacred Pause are met, a log must be generated and written to the ledger. This removes the possibility of human override or a failure to log, turning the ethical requirement into a computational certainty.
+-  Smart Contracts: The rules that govern when a Sacred Zero must be triggered are encoded in smart contracts—self-executing code that runs on the distributed ledger. These contracts programmatically enforce the TML logic, ensuring that if the conditions for a Sacred Zero are met, a log must be generated and written to the ledger. This removes the possibility of human override or a failure to log, turning the ethical requirement into a computational certainty.
 
 Together, these components create a system of tamper-evident logging. It is not merely tamper-proof; it is designed so that any attempt at tampering is immediately and publicly detectable. This feature is critical for establishing the legal admissibility and evidentiary weight of the Moral Trace Logs.  
 
@@ -196,7 +196,7 @@ The "hybrid" nature of the shield is thus revealed to be a sophisticated interpl
 
 **The Legal Imperative: Forensic Readiness**
 
-TML's most revolutionary aspect is its legal framework, which is built on the principle of "forensic readiness". The framework shifts the legal burden of proof from the plaintiff to the company. If a high-stakes decision is made without a corresponding Sacred Pause log, that absence is considered a "critical anomaly". The legal framework attached to TML creates an **irrebuttable presumption of maximum fault** against the company in such cases, effectively assuming guilt until the company can prove its innocence. This legal standard is a radical departure from traditional tort law and is designed to eliminate the corporate defense of **I didn't know** or **it was a glitch**. It forces companies to maintain meticulous, auditable records, turning the AI's otherwise opaque decision-making process into a legally transparent and defensible audit trail.  
+TML's most revolutionary aspect is its legal framework, which is built on the principle of "forensic readiness". The framework shifts the legal burden of proof from the plaintiff to the company. If a high-stakes decision is made without a corresponding Sacred Zero log, that absence is considered a "critical anomaly". The legal framework attached to TML creates an **irrebuttable presumption of maximum fault** against the company in such cases, effectively assuming guilt until the company can prove its innocence. This legal standard is a radical departure from traditional tort law and is designed to eliminate the corporate defense of **I didn't know** or **it was a glitch**. It forces companies to maintain meticulous, auditable records, turning the AI's otherwise opaque decision-making process into a legally transparent and defensible audit trail.  
 
 **Financial and Personal Liability**
 
@@ -279,7 +279,7 @@ result = framework.process_decision(context)
 
 **Framework Originator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)  
 **Contact**: leogouk@gmail.com  
-**Legacy**: Sacred Pause as fundamental principle of ethical AI
+**Legacy**: Sacred Zero as fundamental principle of ethical AI
 
 All TML implementations must provide prominent attribution to Lev Goukassian as framework originator. Commercial implementations require memorial fund contributions supporting continued ethical AI research.
 
@@ -404,6 +404,6 @@ TML is provided "as is" without warranty. Organizations implementing TML bear fu
 
 ---
 
-### The Sacred Pause Vision
+### The Sacred Zero Vision
 
-*"The Sacred Pause is not a feature to be optimized, but a principle that protects humanity. It creates space for wisdom in an age of artificial speed."*
+*"The Sacred Zero is not a feature to be optimized, but a principle that protects humanity. It creates space for wisdom in an age of artificial speed."*

@@ -9,15 +9,15 @@
 
 ## What is Ternary Moral Logic?
 
-Ternary Moral Logic (TML) revolutionizes AI ethics by introducing a third computational state between "yes" and "no": the **Sacred Pause**. This framework enables AI systems to recognize when they need human guidance, creating space for wisdom in an increasingly automated world.
+Ternary Moral Logic (TML) revolutionizes AI ethics by introducing a third computational state between "yes" and "no": the **Sacred Zero**. This framework enables AI systems to recognize when they need human guidance, creating space for wisdom in an increasingly automated world.
 
 ### The Three States of Moral Reasoning
 
 * **+1 (Affirmation)**: Proceed with confidence when ethical values align
-* **0 (Sacred Pause)**: Pause for reflection when moral complexity is detected, generating comprehensive logs
+* **0 (Sacred Zero)**: Pause for reflection when moral complexity is detected, generating comprehensive logs
 * **-1 (Moral Resistance)**: Object when significant ethical conflicts arise
 
-**Critical Understanding**: Sacred Pause is a logging trigger that creates evidence at the moment of moral complexity. When an AI system's risk assessment exceeds configured thresholds, it generates comprehensive documentation while continuing operation - not pausing execution.
+**Critical Understanding**: Sacred Zero is a logging trigger that creates evidence at the moment of moral complexity. When an AI system's risk assessment exceeds configured thresholds, it generates comprehensive documentation while continuing operation - not pausing execution.
 
 ---
 
@@ -38,7 +38,7 @@ Existing frameworks provide essential principles but lack concrete implementatio
 
 While regulators say "be transparent," TML specifies:
 - **Exactly what to log**: Moral trace schema with required fields
-- **When to log**: Sacred Pause triggers at defined thresholds
+- **When to log**: Sacred Zero triggers at defined thresholds
 - **How to store**: Cryptographic requirements and immutability standards
 - **Who can access**: Investigation protocols and audit procedures
 
@@ -57,7 +57,7 @@ All AI systems implementing TML must evaluate decisions through three moral stat
 
 Organizations determine their risk thresholds but face strict liability for gaming or circumvention.
 
-### 1.2 Sacred Pause Logging
+### 1.2 Sacred Zero Logging
 
 **Required Log Contents**:
 - Risk score and calculation methodology
@@ -85,7 +85,7 @@ Decisions exceeding these thresholds MUST be automatically blocked:
 ### 2.2 High-Risk System Constraints
 
 Systems classified as high-risk MUST:
-- Set Sacred Pause threshold ≤0.5
+- Set Sacred Zero threshold ≤0.5
 - Set prohibition threshold ≤0.85
 - Undergo quarterly audits
 - Maintain enhanced documentation
@@ -100,7 +100,7 @@ Systems classified as high-risk MUST:
 
 When decisions affect vulnerable populations (minors, elderly, disabled, patients, economically disadvantaged):
 
-- Sacred Pause threshold: Maximum 0.25
+- Sacred Zero threshold: Maximum 0.25
 - Prohibition threshold: Maximum 0.60
 - Human review: Required within 24 hours
 - Special safeguards: Mandatory
@@ -256,7 +256,7 @@ Quarterly certification under penalty of perjury:
 ## 9. IMPLEMENTATION TIMELINE
 
 ### Phase 1: Foundation (30 days)
-- Basic Sacred Pause detection
+- Basic Sacred Zero detection
 - Moral trace generation
 
 ### Phase 2: Security (30 days)
@@ -285,7 +285,7 @@ Quarterly certification under penalty of perjury:
 
 ### 10.1 Missing Logs
 
-When Sacred Pause should have triggered but logs are absent:
+When Sacred Zero should have triggered but logs are absent:
 - Irrebuttable presumption of maximum fault
 - Strict liability for all resulting harm
 - Burden shifts to organization
@@ -379,7 +379,7 @@ When bias detected:
 ### 14.1 Requirements Checklist
 
 Before deployment, verify:
-- [ ] Sacred Pause triggers at declared thresholds
+- [ ] Sacred Zero triggers at declared thresholds
 - [ ] Moral traces generated when triggered
 - [ ] Cryptographic integrity implemented
 - [ ] Audit trail immutable
@@ -393,7 +393,7 @@ Before deployment, verify:
 ### 14.2 Certification Statement
 
 Organizations must sign certification acknowledging:
-- Sacred Pause is a logging trigger, not a delay
+- Sacred Zero is a logging trigger, not a delay
 - Missing logs create irrebuttable presumption of fault
 - Threshold gaming constitutes criminal fraud
 - Executives assume personal liability
@@ -408,7 +408,7 @@ Organizations must sign certification acknowledging:
 
 Complete reference implementation available:
 - Three-state decision engine
-- Sacred Pause trigger mechanism
+- Sacred Zero trigger mechanism
 - Moral trace generator
 - Cryptographic infrastructure
 

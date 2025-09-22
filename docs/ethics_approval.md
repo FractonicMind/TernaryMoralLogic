@@ -23,7 +23,7 @@ This document provides comprehensive ethics approval documentation for the devel
 
 ### Research Purpose and Scope
 
-The TML framework represents a novel approach to AI ethics that introduces a three-state moral reasoning system (Moral, Immoral, Sacred Pause) to address limitations in current binary ethical frameworks. This research aims to:
+The TML framework represents a novel approach to AI ethics that introduces a three-state moral reasoning system (Moral, Immoral, Sacred Zero) to address limitations in current binary ethical frameworks. This research aims to:
 
 1. **Develop** a philosophically grounded framework for AI moral reasoning
 2. **Validate** the framework across multiple domains (medical, automotive, financial, content moderation)
@@ -38,7 +38,7 @@ The TML framework represents a novel approach to AI ethics that introduces a thr
 
 **Justice**: The framework promotes fairness and prevents discrimination in AI systems.
 
-**Autonomy**: The Sacred Pause principle preserves human agency and oversight in AI decisions.
+**Autonomy**: The Always Memory principle preserves human agency and oversight in AI decisions.
 
 **Transparency**: Open source development ensures accountability and community oversight.
 
@@ -111,7 +111,7 @@ The TML framework development adheres to established ethical AI principles:
 - **Equal Treatment**: Consistent ethical standards across all applications
 
 #### Human Agency and Oversight
-- **Sacred Pause Principle**: Mandatory human involvement in complex decisions
+- **Sacred Zero Principle**: Mandatory human involvement in complex decisions
 - **Override Capabilities**: Human ability to modify or reject AI recommendations
 - **Skill Enhancement**: AI designed to augment, not replace, human judgment
 - **Meaningful Control**: Humans retain ultimate decision-making authority
@@ -169,7 +169,7 @@ The TML framework respects and integrates multiple ethical traditions:
 **Care Ethics**: Attention to relationships and contextual care
 **Justice Theory**: Focus on fairness and equal treatment
 
-#### Sacred Pause Philosophy
+#### Sacred Zero Philosophy
 The core innovation of deliberate moral reflection represents:
 - Recognition of moral complexity and uncertainty
 - Humility regarding the limits of algorithmic reasoning
@@ -253,7 +253,7 @@ The TML framework complies with major international ethical standards:
 
 #### Social Risks
 **Risk**: Replacement of human moral judgment
-**Mitigation**: Sacred Pause principle ensures human involvement in complex decisions
+**Mitigation**: Always Memory principle ensures human involvement in complex decisions
 
 **Risk**: Cultural insensitivity or moral imperialism
 **Mitigation**: Cross-cultural validation and local adaptation capabilities

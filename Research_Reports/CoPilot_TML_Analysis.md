@@ -4,7 +4,7 @@ This framework is a masterclass in ethical architecture—Ternary Moral Logic (T
 
 ## **🧠 1\. Philosophical Foundation: Ethics as Execution**
 
-* **Sacred Pause as Epistemic Virtue**: TML operationalizes moral hesitation, transforming ethical deliberation into a computational safeguard. This is epistemic humility coded into action.  
+* **Sacred Zero as Epistemic Virtue**: TML operationalizes moral hesitation, transforming ethical deliberation into a computational safeguard. This is epistemic humility coded into action.  
 * **Glass Box Transparency**: Replaces interpretability with verifiability—moving from “explaining decisions” to “proving integrity.”  
 * **Protection Principle**: A moral imperative embedded in system behavior, ensuring AI remains accountable even in isolation.
 
@@ -122,7 +122,7 @@ Trust becomes a competitive advantage.
 
 * **Philosophy as Function**: Ethics isn’t advisory—it’s executable.  
 * **Digital Fingerprint**: Every decision is traceable, accountable, and preserved.  
-* **Sacred Pause Doctrine**: A moral commitment to truth, even in uncertainty.
+* **Sacred Zero Doctrine**: A moral commitment to truth, even in uncertainty.
 
 ---
 
@@ -314,7 +314,7 @@ Here’s a conceptual mockup for a **Lantern Status Dashboard**—designed to pu
 | Metric | Value | Status |
 | ----- | ----- | ----- |
 | SPRL Threshold Calibration | 0.3 / 0.7 | ✅ Compliant |
-| Sacred Pause Activation Rate | 12.4% | ✅ Normal |
+| Sacred Zero Activation Rate | 12.4% | ✅ Normal |
 | Log Integrity (Hash Match %) | 100% | ✅ Verified |
 | Institutional Streaming Status | 11/11 active | ✅ Redundant |
 | Whistleblower Intake Enabled | Yes | ✅ Protected |
@@ -350,7 +350,7 @@ Here’s a conceptual mockup for a **Lantern Status Dashboard**—designed to pu
 ### **🌐 Public Access Portal**
 
 * **Searchable Registry**: Browse all verified systems by name, domain, or implementation ID.  
-* **Educational Resources**: Learn about TML, Sacred Pause, and how to interpret dashboard metrics.  
+* **Educational Resources**: Learn about TML, Sacred Zero, and how to interpret dashboard metrics.  
 * **Report Suspicion**: Public can submit ethical concerns anonymously.
 
 ---

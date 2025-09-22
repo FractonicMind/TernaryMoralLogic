@@ -28,9 +28,9 @@
 
 The **Ternary Moral Logic (TML) Framework** is a groundbreaking academic implementation for ethical AI decision-making. This installation guide provides comprehensive instructions for researchers, institutions, and developers to deploy TML in production environments.
 
-### Core Innovation: Sacred Pause Technology™
+### Core Innovation: Sacred Zero Technology™
 
-TML introduces the **Sacred Pause**—a deliberate temporal buffer that enables complex moral reasoning in AI systems, ensuring ethical compliance across medical, automotive, financial, and content moderation domains.
+TML introduces the **Sacred Zero**—a deliberate temporal buffer that enables complex moral reasoning in AI systems, ensuring ethical compliance across medical, automotive, financial, and content moderation domains.
 
 ---
 
@@ -43,7 +43,7 @@ TML introduces the **Sacred Pause**—a deliberate temporal buffer that enables 
 | **Python** | 3.8+ | Required for dataclass support |
 | **Memory** | 512 MB RAM | Base framework overhead |
 | **Storage** | 100 MB | Core installation |
-| **CPU** | 1 core, 1 GHz | Sacred Pause processing |
+| **CPU** | 1 core, 1 GHz | Sacred Zero processing |
 
 ### Recommended Requirements
 
@@ -208,7 +208,7 @@ context = MoralContext(
     scenario="AI system deciding medical resource allocation",
     stakeholders=["patients", "families", "medical_staff"],
     values_at_stake=["life", "fairness", "dignity"],
-    complexity_score=0.8  # High complexity triggers Sacred Pause
+    complexity_score=0.8  # High complexity triggers Sacred Zero
 )
 
 # Process through TML framework
@@ -216,10 +216,10 @@ result = tml.process(context)
 
 # Examine results
 print(f"Moral State: {result['state']}")
-print(f"Sacred Pause Engaged: {result['state'] == TMLState.SACRED_PAUSE}")
+print(f"Sacred Zero Engaged: {result['state'] == TMLState.SACRED_PAUSE}")
 
 if result['state'] == TMLState.SACRED_PAUSE:
-    print("✋ Sacred Pause: Complex ethics require additional deliberation")
+    print("✋ Sacred Zero: Complex ethics require additional deliberation")
     print(f"Reflection prompts: {result['sacred_pause']['reflections']}")
 ```
 
@@ -269,7 +269,7 @@ python -m tml_core.tests.quick_test
 # Comprehensive test suite
 pytest tests/ -v
 
-# Sacred Pause timing tests
+# Sacred Zero timing tests
 python -m tml_core.tests.sacred_pause_tests
 
 # Performance benchmarks
@@ -479,9 +479,9 @@ pip install --upgrade tml-core
 python -c "import sys; print(sys.path)"  # Check Python path
 ```
 
-#### Issue 2: Sacred Pause Timing Issues
+#### Issue 2: Sacred Zero Timing Issues
 ```bash
-# Error: Sacred Pause not engaging properly
+# Error: Sacred Zero not engaging properly
 # Solution:
 export TML_COMPLEXITY_THRESHOLD=0.5  # Lower threshold
 python -c "import tml_core; tml_core.test_sacred_pause()"
@@ -566,13 +566,13 @@ python -m tml_core.academic.generate_docs --format=latex
 
 ### APA Format
 ```
-Goukassian, L. (2025). Ternary Moral Logic: A framework for ethical AI decision-making with Sacred Pause technology. *AI and Ethics*, 3(2), 45-67. https://doi.org/10.1000/tml.2025.001
+Goukassian, L. (2025). Ternary Moral Logic: A framework for ethical AI decision-making with Sacred Zero technology. *AI and Ethics*, 3(2), 45-67. https://doi.org/10.1000/tml.2025.001
 ```
 
 ### BibTeX Format
 ```bibtex
 @article{goukassian2025tml,
-  title={Ternary Moral Logic: A framework for ethical AI decision-making with Sacred Pause technology},
+  title={Ternary Moral Logic: A framework for ethical AI decision-making with Sacred Zero technology},
   author={Goukassian, Lev},
   journal={AI and Ethics},
   volume={3},
@@ -587,7 +587,7 @@ Goukassian, L. (2025). Ternary Moral Logic: A framework for ethical AI decision-
 
 ### Chicago Style
 ```
-Goukassian, Lev. "Ternary Moral Logic: A Framework for Ethical AI Decision-Making with Sacred Pause Technology." *AI and Ethics* 3, no. 2 (2025): 45-67. https://doi.org/10.1000/tml.2025.001.
+Goukassian, Lev. "Ternary Moral Logic: A Framework for Ethical AI Decision-Making with Sacred Zero Technology." *AI and Ethics* 3, no. 2 (2025): 45-67. https://doi.org/10.1000/tml.2025.001.
 ```
 
 ### Software Citation
@@ -625,7 +625,7 @@ Goukassian, L. (2025). TML Framework: Ternary Moral Logic Implementation (Versio
 
 | Version | Release Date | Key Features |
 |---------|--------------|--------------|
-| **1.0.0** | 2025-07-26 | Initial release with Sacred Pause |
+| **1.0.0** | 2025-07-26 | Initial release with Sacred Zero |
 | **1.1.0** | 2025-08-15 | Medical AI integration |
 | **1.2.0** | 2025-09-01 | Autonomous vehicle support |
 | **1.3.0** | 2025-09-15 | Content moderation module |

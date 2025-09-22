@@ -4,7 +4,7 @@
 
 ## Our Sacred Commitment
 
-This community exists to honor and advance Lev Goukassian's vision of ethical AI through the Ternary Moral Logic framework. Just as TML introduces the Sacred Pause for moral reflection in AI systems, we commit to creating a community space that embodies thoughtful, respectful, and ethical interaction among all participants.
+This community exists to honor and advance Lev Goukassian's vision of ethical AI through the Ternary Moral Logic framework. Just as TML introduces the Sacred Zero for moral reflection in AI systems, we commit to creating a community space that embodies thoughtful, respectful, and ethical interaction among all participants.
 
 > *"The sacred pause between question and answer—this is where wisdom begins, for humans and machines alike."* — Lev Goukassian
 
@@ -30,7 +30,7 @@ We commit to acting in ways that contribute to an open, welcoming, diverse, incl
 
 ## Our Standards
 
-### Behaviors That Honor the Sacred Pause
+### Behaviors That Honor the Sacred Zero
 
 **✓ Respectful Dialogue**
 - Listen thoughtfully before responding
@@ -90,7 +90,7 @@ We commit to acting in ways that contribute to an open, welcoming, diverse, incl
 
 ---
 
-## The Sacred Pause in Community Conflict
+## The Sacred Zero in Community Conflict
 
 When conflicts arise in our community, we apply TML principles:
 
@@ -101,7 +101,7 @@ For clear violations that cause immediate harm:
 - **Support**: Provide support to affected community members
 - **Review**: Follow up with formal enforcement process
 
-### 🟡 Complex Situations (TML State: 0 Sacred Pause)
+### 🟡 Complex Situations (TML State: 0 Sacred Zero)
 For nuanced conflicts requiring reflection:
 - **Pause**: Temporarily halt escalating discussions
 - **Consultation**: Seek input from community moderators
@@ -154,7 +154,7 @@ Every community member shares responsibility for:
    - Initial assessment by community moderators
    - Documentation of incident details
 
-2. **Sacred Pause Application**
+2. **Sacred Zero Application**
    - Apply TML principles to determine appropriate response
    - Consult with Memorial Committee for serious violations
    - Consider impact on all community members
@@ -231,7 +231,7 @@ Appeals will be reviewed within 30 days and decisions communicated clearly.
 ### Preservation of Vision
 
 The community commits to preserving Lev's original vision while allowing for appropriate evolution:
-- **Core Principles**: The Sacred Pause and moral partnership remain inviolate
+- **Core Principles**: The Sacred Zero and moral partnership remain inviolate
 - **Technical Evolution**: Improvements and extensions are welcome within ethical bounds
 - **Cultural Adaptation**: Framework adaptation to diverse contexts is encouraged
 - **Educational Expansion**: Teaching and learning applications strongly supported
@@ -381,9 +381,9 @@ as outlined in the [TML Succession Charter](/TML-SUCCESSION-CHARTER.md).*
 **"Wisdom lies not in having all the answers, but in knowing when to pause and ask better questions."**
 
 ****By Lev Goukassian (ORCID: 0009-0006-5966-1243)****  
-*Creator of the Sacred Pause*
+*Creator of the Sacred Zero*
 
-*This Code of Conduct embodies Lev Goukassian's vision of the Sacred Pause—creating space for reflection, wisdom, and ethical reasoning in all our community interactions. Through respectful collaboration, we honor his memory and advance his mission of building more thoughtful, ethical relationships between humans and AI.*
+*This Code of Conduct embodies Lev Goukassian's vision of the Sacred Zero—creating space for reflection, wisdom, and ethical reasoning in all our community interactions. Through respectful collaboration, we honor his memory and advance his mission of building more thoughtful, ethical relationships between humans and AI.*
 
 ---
 

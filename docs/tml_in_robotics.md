@@ -3,7 +3,7 @@
 ## Overview
 The rise of autonomous humanoid robots and weaponized platforms presents a unique accountability problem. Traditional battlefield doctrine prizes speed, efficiency, and decisive action, but these values collide with the ethical vacuum of machines that act without hesitation or traceable logs.  
 
-Ternary Moral Logic (TML) provides a direct answer. By embedding the **Sacred Pause** and enforcing **Moral Trace Logs**, robotics can move from opaque “black box war crimes” to auditable, lawful, and trustable systems.
+Ternary Moral Logic (TML) provides a direct answer. By embedding the **Sacred Zero** and enforcing **Moral Trace Logs**, robotics can move from opaque “black box war crimes” to auditable, lawful, and trustable systems.
 
 ---
 
@@ -30,7 +30,7 @@ Ternary Moral Logic (TML) provides a direct answer. By embedding the **Sacred Pa
 ### Phase 4 — Retroactive Constitution (2048–2055)
 - Militaries retrofit robots with TML to restore legitimacy.  
 - Every engagement auto-generates **Moral Trace Logs**, admissible in court.  
-- Sacred Pause becomes a compliance mandate, not a luxury.  
+- Sacred Zero becomes a compliance mandate, not a luxury.  
 - Non-TML robots are blacklisted as rogue.  
 - **TML Status:** Enshrined as a constitutional safeguard for AI warfare.  
 
@@ -46,12 +46,12 @@ Ternary Moral Logic (TML) provides a direct answer. By embedding the **Sacred Pa
 - **Weapons come before safeguards.** Nuclear bombs preceded treaties; drones preceded drone law.  
 - **Scandal drives reform.** It will take catastrophe to force TML adoption.  
 - **Logs equal legitimacy.** Without traceable hesitation, robots are unfit for coalition warfare.  
-- **Hesitation is survival.** Sacred Pause is not weakness, it is the only path to lawful strength.  
+- **Hesitation is survival.** Sacred Zero is not weakness, it is the only path to lawful strength.  
 
 ---
 
 ## Closing Note
 They will build the Terminator before they build its conscience.  
-But conscience — in the form of Sacred Pause and auditable logs — will become the *only thing* that makes such machines lawful, trusted, and ultimately deployable.  
+But conscience — in the form of Sacred Zero and auditable logs — will become the *only thing* that makes such machines lawful, trusted, and ultimately deployable.  
 
 **File link:** [Hybrid Shield Framework](/protection/Hybrid-Shield.md) for log protection.

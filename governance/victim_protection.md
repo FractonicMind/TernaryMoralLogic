@@ -222,7 +222,7 @@ Collective action support:
 
 ### Case 1: Medical Misdiagnosis
 **Harm**: AI denied cancer diagnosis, delayed treatment  
-**Missing Logs**: No Sacred Pause documentation  
+**Missing Logs**: No Sacred Zero documentation  
 **Outcome**:
 - Victim received immediate treatment funding
 - Company paid equivalent to 7% global revenue

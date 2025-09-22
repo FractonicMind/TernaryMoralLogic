@@ -178,7 +178,7 @@
 
 ## Legacy Commitment
 
-*"This Council exists to ensure the Sacred Pause serves humanity's highest aspirations. Every decision must honor Lev Goukassian's vision of AI systems as moral partners with humanity."*
+*"This Council exists to ensure the Sacred Zero serves humanity's highest aspirations. Every decision must honor Lev Goukassian's vision of AI systems as moral partners with humanity."*
 
 **Charter Authority**: Lev Goukassian (ORCID: 0009-0006-5966-1243)  
 **Effective Date**: Upon first council formation  

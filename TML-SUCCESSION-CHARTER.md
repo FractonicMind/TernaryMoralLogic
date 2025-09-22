@@ -6,7 +6,7 @@
 
 ## I. PURPOSE AND SCOPE
 
-This Charter establishes consortium-based democratic oversight for the Ternary Moral Logic (TML) framework and Sacred Pause methodology upon incapacity or death of creator Lev Goukassian. This framework prevents monopolization of AI ethics investigation authority through distributed institutional coordination and democratic voting mechanisms.
+This Charter establishes consortium-based democratic oversight for the Ternary Moral Logic (TML) framework and Sacred Zero methodology upon incapacity or death of creator Lev Goukassian. This framework prevents monopolization of AI ethics investigation authority through distributed institutional coordination and democratic voting mechanisms.
 
 ### Framework Coverage
 - **Investigation Authority** coordination across multiple institutions

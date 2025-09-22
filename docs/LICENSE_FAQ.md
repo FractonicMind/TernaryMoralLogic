@@ -12,7 +12,7 @@
 **MIT License** - one of the most permissive open-source licenses. Allows free use, modification, and distribution for commercial and non-commercial applications with minimal restrictions.
 
 ### Q2: Can I use TML in commercial AI systems?
-**Yes, absolutely.** TML is designed for real-world AI accountability. You can integrate Sacred Pause logging into commercial products, consulting services, and enterprise systems without royalties or permission.
+**Yes, absolutely.** TML is designed for real-world AI accountability. You can integrate Sacred Zero logging into commercial products, consulting services, and enterprise systems without royalties or permission.
 
 ### Q3: What are my legal obligations under MIT License?
 Only two requirements:
@@ -44,11 +44,11 @@ Only two requirements:
 The framework is free; you charge for expertise and services.
 
 ### Q7: Can I trademark products using TML?
-**Yes, with limitations:** You can trademark your product names (e.g., "AccountabilityAI Pro™ powered by TML"). Cannot trademark "TML," "Ternary Moral Logic," or "Sacred Pause" - these remain community terms.
+**Yes, with limitations:** You can trademark your product names (e.g., "AccountabilityAI Pro™ powered by TML"). Cannot trademark "TML," "Ternary Moral Logic," or "Sacred Zero" - these remain community terms.
 
 ### Q8: What about patents for TML-based innovations?
 You may patent **specific novel implementations** or **technical improvements** you develop. However:
-- Cannot patent core TML concepts or Sacred Pause mechanism
+- Cannot patent core TML concepts or Sacred Zero mechanism
 - Patents should focus on your unique technical contributions
 - Consider ethical implications of restricting AI accountability innovations
 
@@ -102,7 +102,7 @@ Report violations to TML Governance Council.
 ### Q15: What defines authentic TML implementation?
 Authentic implementation follows enforcement standards:
 - Universal moral trace logging for AI interactions
-- Sacred Pause triggered at organizational thresholds  
+- Sacred Zero triggered at organizational thresholds  
 - Complete audit trail accessibility for investigation
 - Council institution coordination for oversight
 
@@ -187,7 +187,7 @@ Contact via TML Governance Council institutions.
 - Must maintain quality and investigation standards
 
 ### Q25: Can I use TML logos or trademarks?
-TML name and Sacred Pause intentionally unregistered to remain free:
+TML name and Sacred Zero intentionally unregistered to remain free:
 - Create your own logos for implementations
 - Use "TML-Compatible" descriptions
 - Design certification badges

@@ -26,7 +26,7 @@ Ternary Moral Logic (TML) addresses the implementation gap in current AI regulat
 
 
 **Article 14 - Human Oversight**:
-- Sacred Pause generates evidence requiring human investigation when thresholds exceeded
+- Sacred Zero generates evidence requiring human investigation when thresholds exceeded
 - Council institutions provide structured human oversight authority
 - Investigation access enables meaningful human review of AI decisions
 - Immutable logs prevent circumvention of oversight requirements
@@ -136,7 +136,7 @@ TML provides concrete mechanisms for FDA software requirements:
 TML directly implements proposed requirements:
 - Public reporting through council transparency protocols
 - Bias auditing through systematic log analysis
-- Consumer notification through Sacred Pause documentation
+- Consumer notification through Sacred Zero documentation
 
 ---
 
@@ -146,7 +146,7 @@ TML directly implements proposed requirements:
 **TML Implementation of ISO Requirements**:
 
 **Risk Management (Clause 6.1)**:
-- Sacred Pause triggers create risk response protocols
+- Sacred Zero triggers create risk response protocols
 - Investigation capability enables risk monitoring
 - Continuous improvement through audit analysis
 
@@ -158,7 +158,7 @@ TML directly implements proposed requirements:
 
 ### UN AI Ethics Recommendations
 **Human-Centric AI Principles**:
-- Sacred Pause preserves human decision authority
+- Sacred Zero preserves human decision authority
 - Investigation protocols ensure human oversight capability
 - Vulnerable population protection prioritizes human welfare
 - Democratic oversight through council governance
@@ -177,7 +177,7 @@ TML directly implements proposed requirements:
 ### Phase 2: Sector-Specific Mandates
 **High-Risk Domain Requirements**:
 - Healthcare AI: TML logging mandatory for diagnostic systems
-- Criminal justice: Sacred Pause logging for sentencing and parole algorithms
+- Criminal justice: Sacred Zero logging for sentencing and parole algorithms
 - Transportation: Accountability documentation for autonomous vehicle decisions
 
 ### Phase 3: Universal Enforcement
@@ -200,7 +200,7 @@ TML directly implements proposed requirements:
 
 ### TML Solutions for Regulatory Gaps
 **Concrete Technical Specifications**:
-- Sacred Pause mechanism for systematic human oversight integration
+- Sacred Zero mechanism for systematic human oversight integration
 - Moral trace logging for technical explainability requirements
 - Criminal penalties and financial liability for enforceable accountability
 
@@ -228,7 +228,7 @@ TML directly implements proposed requirements:
 
 ### For Technology Companies
 **Risk Management Integration**:
-- Deploy Sacred Pause logging for high-stakes decisions
+- Deploy Sacred Zero logging for high-stakes decisions
 - Create "Visible Pause" user interfaces for trust building
 - Treat audit trails as critical corporate records
 

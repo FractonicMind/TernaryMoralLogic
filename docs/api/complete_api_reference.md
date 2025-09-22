@@ -9,7 +9,7 @@
 1. [Installation](#installation)
 2. [Quick Start](#quick-start)
 3. [Core Classes](#core-classes)
-4. [Sacred Pause Engine](#sacred-pause-engine)
+4. [Sacred Zero Engine](#sacred-pause-engine)
 5. [Context Management](#context-management)
 6. [Threshold Configuration](#threshold-configuration)
 7. [Decision States](#decision-states)
@@ -137,7 +137,7 @@ def configure_thresholds(
     validate: bool = True
 ) -> None:
     """
-    Update Sacred Pause trigger thresholds.
+    Update Sacred Zero trigger thresholds.
     
     Args:
         thresholds: Dictionary of threshold values
@@ -192,16 +192,16 @@ if decision.state == TMLState.SACRED_PAUSE:
 
 ---
 
-## Sacred Pause Engine
+## Sacred Zero Engine
 
 ### SacredPause
 
-Core Sacred Pause implementation.
+Core Sacred Zero implementation.
 
 ```python
 class SacredPause:
     """
-    Sacred Pause mechanism for handling moral uncertainty.
+    Sacred Zero mechanism for handling moral uncertainty.
     
     Attributes:
         threshold_manager: Manages pause trigger thresholds
@@ -230,7 +230,7 @@ def should_pause(
     reversibility: float
 ) -> Tuple[bool, Optional[str]]:
     """
-    Determine if Sacred Pause should be triggered.
+    Determine if Sacred Zero should be triggered.
     
     Args:
         moral_complexity: Complexity score (0-1)
@@ -252,7 +252,7 @@ def escalate(
     urgency: str = "standard"
 ) -> EscalationResult:
     """
-    Escalate Sacred Pause for review.
+    Escalate Sacred Zero for review.
     
     Args:
         pause_context: Context of triggered pause
@@ -263,9 +263,9 @@ def escalate(
     """
 ```
 
-### Example Sacred Pause Configuration
+### Example Sacred Zero Configuration
 ```python
-# Configure Sacred Pause thresholds
+# Configure Sacred Zero thresholds
 threshold_config = ThresholdConfig(
     moral_complexity=0.7,
     stakeholder_conflict=0.6,
@@ -281,7 +281,7 @@ escalation_config = EscalationConfig(
     standard_timeout=86400  # 24 hours
 )
 
-# Initialize Sacred Pause
+# Initialize Sacred Zero
 sacred_pause = SacredPause(threshold_config, escalation_config)
 
 # Check if pause needed
@@ -431,7 +431,7 @@ Dynamic threshold management system.
 ```python
 class ThresholdManager:
     """
-    Manages and adapts Sacred Pause thresholds.
+    Manages and adapts Sacred Zero thresholds.
     """
     
     def __init__(
@@ -602,7 +602,7 @@ if decision.state == TMLState.PROCEED:
     execute_action()
     
 elif decision.state == TMLState.SACRED_PAUSE:
-    print(f"Sacred Pause triggered: {decision.pause_reason}")
+    print(f"Sacred Zero triggered: {decision.pause_reason}")
     escalation_id = escalate_for_review(decision)
     await_human_decision(escalation_id)
     
@@ -750,7 +750,7 @@ app = create_app(engine=tml_engine)
 # Endpoints:
 # POST /evaluate - Evaluate moral context
 # GET /metrics - Retrieve metrics
-# POST /pause/escalate - Escalate Sacred Pause
+# POST /pause/escalate - Escalate Sacred Zero
 # GET /audit/{decision_id} - Get audit record
 ```
 
@@ -919,7 +919,7 @@ class TMLAuditError(TMLError):
 try:
     decision = tml.evaluate(context, timeout=1.0)
 except TMLTimeoutError:
-    # Handle timeout - default to Sacred Pause
+    # Handle timeout - default to Sacred Zero
     decision = TMLDecision(
         state=TMLState.SACRED_PAUSE,
         confidence=0.0,
@@ -1071,7 +1071,7 @@ tml_framework/
 ├── __init__.py
 ├── core/
 │   ├── engine.py          # Main TML engine
-│   ├── sacred_pause.py    # Sacred Pause implementation
+│   ├── sacred_pause.py    # Sacred Zero implementation
 │   ├── context.py         # Context management
 │   └── decision.py        # Decision states
 ├── ethics/

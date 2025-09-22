@@ -304,7 +304,7 @@ The Hybrid Shield ensures no organization can hide violations:
 
 **Permanent Framework Protection:**
 - Creator attribution irrevocable
-- Sacred Pause technology preserved
+- Sacred Zero technology preserved
 - Core principles unchangeable
 - Victim focus maintained
 - Criminal enforcement permanent
@@ -404,7 +404,7 @@ The TML Framework Governance establishes mandatory criminal accountability for A
 
 **Corporate Penalties Fund Victim Support**  
 
-**The Sacred Pause is not a suggestion. It is survival.**
+**The Sacred Zero is not a suggestion. It is survival.**
 
 Through the Hybrid Shield's omnipresent monitoring and the council's enforcement powers, we transform AI accountability from corporate theater to criminal law. Every Moral Trace Log becomes evidence. Every missing log becomes a conviction. Every violation becomes a warning to others.
 

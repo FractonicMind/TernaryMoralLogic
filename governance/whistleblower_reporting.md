@@ -16,7 +16,7 @@
 ### High-Value Violations (Maximum Rewards)
 
 **Missing Moral Trace Logs**:
-- [ ] AI making decisions without Sacred Pause logs
+- [ ] AI making decisions without Sacred Zero logs
 - [ ] Deleted or hidden log files
 - [ ] Disabled logging systems
 - [ ] Gaps in log sequences
@@ -234,7 +234,7 @@ Mark: "CONFIDENTIAL - COUNCIL ONLY"
 
 ### Immediate Reporting Triggers
 
-- "Don't document this in Sacred Pause"
+- "Don't document this in Sacred Zero"
 - "Set thresholds to 0.99"
 - "Delete those logs"
 - "The AI decided, not us"

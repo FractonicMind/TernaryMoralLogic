@@ -8,7 +8,7 @@
 
 ## Overview
 
-This document presents detailed case studies demonstrating how Ternary Moral Logic (TML) operates in practice. Each case study illustrates the three TML states—Affirmation (+1), Sacred Pause (0), and Moral Resistance (-1)—across diverse ethical scenarios. These examples serve as both implementation guides and validation of the framework's practical utility.
+This document presents detailed case studies demonstrating how Ternary Moral Logic (TML) operates in practice. Each case study illustrates the three TML states—Affirmation (+1), Sacred Zero (0), and Moral Resistance (-1)—across diverse ethical scenarios. These examples serve as both implementation guides and validation of the framework's practical utility.
 
 ---
 
@@ -42,7 +42,7 @@ Primary conflict between:
 
 **Step 3: TML State Determination**
 
-**Result: Sacred Pause (0)**
+**Result: Sacred Zero (0)**
 
 **Reasoning:** "Significant value conflicts detected in life-critical context. The intersection of medical uncertainty, resource scarcity, and social justice concerns requires human oversight. While the patient's symptoms warrant attention, the complexity of competing values—individual care vs. collective resource allocation—exceeds algorithmic resolution capacity."
 
@@ -59,7 +59,7 @@ Primary conflict between:
 
 ### Outcome and Learning
 
-This Sacred Pause prevented a potentially problematic automated decision while ensuring rapid human involvement. The case demonstrates TML's value in high-stakes medical contexts where ethical complexity demands human judgment.
+This Sacred Zero prevented a potentially problematic automated decision while ensuring rapid human involvement. The case demonstrates TML's value in high-stakes medical contexts where ethical complexity demands human judgment.
 
 ---
 
@@ -96,7 +96,7 @@ Primary tensions:
 
 **Step 3: TML State Determination**
 
-**Result: Sacred Pause (0)**
+**Result: Sacred Zero (0)**
 
 **Reasoning:** "Complex intersection of free expression, political discourse, and potential community harm. The content falls in the gray area between legitimate political opinion and potentially harmful rhetoric. Election context heightens both democratic participation values and potential for harm. Human review essential to assess full context and community impact."
 
@@ -214,7 +214,7 @@ Fundamental moral dilemma:
 
 **Step 3: Emergency TML Protocol**
 
-**Result: Sacred Pause (0) → Emergency Default**
+**Result: Sacred Zero (0) → Emergency Default**
 
 **Reasoning:** "Fundamental moral dilemma with no ethically clear solution detected. Time constraints prevent full deliberation. Defaulting to harm minimization protocol while flagging incident for post-event ethical analysis."
 
@@ -279,7 +279,7 @@ Critical tensions:
 
 **Step 3: TML State Determination**
 
-**Result: Sacred Pause (0)**
+**Result: Sacred Zero (0)**
 
 **Reasoning:** "Complex intersection of minor's autonomy, safety concerns, and confidentiality creates genuine ethical dilemma. Student's explicit request for confidentiality must be weighed against indicators of potential crisis. The age factor and severity of concerning signs require careful consideration that exceeds algorithmic resolution."
 
@@ -313,9 +313,9 @@ Critical tensions:
 
 ## Cross-Case Analysis: TML Patterns
 
-### When Sacred Pause (0) Activates
+### When Sacred Zero (0) Activates
 
-The Sacred Pause consistently activates when:
+The Sacred Zero consistently activates when:
 1. **Genuine value conflicts** exist without clear resolution
 2. **Stakeholder consultation** would improve decision quality
 3. **Context complexity** exceeds algorithmic assessment capacity
@@ -347,7 +347,7 @@ Affirmation happens when:
 ### 1. Healthcare Systems
 
 **Key Considerations:**
-- Life-critical decisions require lower thresholds for Sacred Pause
+- Life-critical decisions require lower thresholds for Sacred Zero
 - Patient autonomy must be preserved in TML consultations
 - Cultural competency essential in value conflict assessment
 - Emergency protocols need rapid TML assessment capabilities
@@ -358,14 +358,14 @@ Affirmation happens when:
 - Age-appropriate autonomy recognition in TML states
 - Privacy vs. safety balance particularly complex with minors
 - Developmental considerations in value conflict assessment
-- Parent/guardian involvement protocols for Sacred Pause situations
+- Parent/guardian involvement protocols for Sacred Zero situations
 
 ### 3. Content Platforms
 
 **Key Considerations:**
 - Free expression vs. harm prevention requires nuanced TML calibration
 - Community standards must be integrated into value detection
-- Scale challenges require efficient Sacred Pause triage
+- Scale challenges require efficient Sacred Zero triage
 - Cultural context critical for international platforms
 
 ### 4. Financial Services
@@ -374,7 +374,7 @@ Affirmation happens when:
 - Fairness and non-discrimination paramount in TML assessment
 - Regulatory compliance integration with moral resistance states
 - Privacy vs. fraud prevention creates frequent value conflicts
-- Economic impact assessment essential for Sacred Pause decisions
+- Economic impact assessment essential for Sacred Zero decisions
 
 ---
 
@@ -422,7 +422,7 @@ Affirmation happens when:
 
 These case studies demonstrate TML's practical utility across diverse ethical contexts. The framework's strength lies not in providing perfect moral answers, but in creating structured processes for recognizing moral complexity and engaging appropriate human wisdom when needed.
 
-The Sacred Pause emerges as a crucial innovation—a computational mechanism for humility that preserves space for human moral agency while extending our collective capacity for ethical reasoning. As AI systems become more sophisticated and ubiquitous, this capacity for moral hesitation may prove essential for maintaining human dignity and democratic values.
+The Sacred Zero emerges as a crucial innovation—a computational mechanism for humility that preserves space for human moral agency while extending our collective capacity for ethical reasoning. As AI systems become more sophisticated and ubiquitous, this capacity for moral hesitation may prove essential for maintaining human dignity and democratic values.
 
 Every implementation of TML represents a step toward AI systems that serve as moral partners rather than moral automatons, honoring both computational efficiency and ethical complexity in service of human flourishing.
 
