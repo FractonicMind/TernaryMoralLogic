@@ -3,12 +3,12 @@
 ## I. FOUNDATIONAL PROTECTION PRINCIPLES
 
 ### 1.1 Framework Integrity Protection
-**Principle**: The core logical structure of TML (ternary states: +1/0/-1) and Sacred Pause functionality must remain inviolate.
+**Principle**: The core logical structure of TML (ternary states: +1/0/-1) and Sacred Zero functionality must remain inviolate.
 
 **Implementation Requirements**:
 - No modification of core ternary logic operations
-- Sacred Pause activation thresholds cannot be bypassed or circumvented
-- SPRL (Sacred Pause Risk Level) calculations must remain tamper-resistant
+- Sacred Zero activation thresholds cannot be bypassed or circumvented
+- Sacred Zero trigger calculations must remain tamper-resistant
 - Cryptographic verification required for all framework components
 
 **Technical Safeguards**:
@@ -34,35 +34,35 @@
 
 ---
 
-## II. SACRED PAUSE PROTECTION
+## II. SACRED ZERO PROTECTION
 
 ### 2.1 Activation Integrity
-**Principle**: Sacred Pause must activate automatically when moral complexity exceeds defined thresholds without human intervention or override capability.
+**Principle**: Sacred Zero must activate automatically when moral complexity exceeds defined thresholds without human intervention or override capability.
 
 **Critical Protections**:
-- **Threshold Gaming Prevention**: Algorithms cannot be modified to avoid legitimate pause triggers
+- **Threshold Gaming Prevention**: Algorithms cannot be modified to avoid legitimate Sacred Zero triggers
 - **Performance Bypass Prevention**: Optimization cannot compromise ethical reasoning capabilities
-- **Manual Override Prevention**: No emergency switches or admin controls that bypass legitimate pauses
-- **Calculation Integrity**: SPRL computations must be transparent and verifiable
+- **Manual Override Prevention**: No emergency switches or admin controls that bypass legitimate Sacred Zero events
+- **Calculation Integrity**: Sacred Zero computations must be transparent and verifiable
 
 ### 2.2 Duration and Quality Assurance
-**Principle**: Sacred Pause duration must be sufficient for meaningful moral reflection and human oversight.
+**Principle**: Sacred Zero duration must be sufficient for meaningful moral reflection and human oversight.
 
 **Implementation Standards**:
 - Minimum pause durations based on complexity level
 - Quality assessment of reasoning processes during pause
-- Human oversight integration without compromising pause integrity
-- Documentation of all pause events and outcomes
+- Human oversight integration without compromising Sacred Zero integrity
+- Documentation of all Sacred Zero events and outcomes
 
 ### 2.3 Audit Trail Completeness
-**Principle**: Every Sacred Pause event must generate complete, immutable documentation.
+**Principle**: Every Sacred Zero event must generate complete, immutable Moral Trace Logs.
 
 **Required Documentation**:
 - Trigger conditions and threshold calculations
 - Duration and reasoning processes employed
 - Human oversight actions and justifications
 - Final decision outcomes and implementation
-- Distribution to 11-institution consortium within 24 hours
+- Distribution to Guardian network within 24 hours
 
 ---
 
@@ -79,7 +79,7 @@
 - Individuals in crisis or emergency situations
 
 **Enhanced Protections**:
-- Reduced SPRL thresholds (minimum 50% reduction)
+- Reduced Sacred Zero thresholds (minimum 50% reduction)
 - Additional human oversight requirements
 - Specialized review and approval processes
 - Extended documentation and monitoring
@@ -95,24 +95,47 @@
 
 ---
 
-## IV. INSTITUTIONAL CONSORTIUM PROTECTION
+## IV. PLANETARY PROTECTION
 
-### 4.1 Distributed Oversight Authority
+### 4.1 Environmental Sacred Zero
+**Principle**: Actions affecting ecosystems, biodiversity, or climate automatically trigger Sacred Zero evaluation.
+
+**Environmental Triggers**:
+- Carbon emissions above regional thresholds
+- Water resource depletion in stressed basins
+- Habitat disruption in protected areas
+- Irreversible ecosystem damage potential
+- Supply chain decisions affecting biodiversity
+
+### 4.2 Intergenerational Accountability
+**Principle**: Environmental decisions create permanent Moral Trace Logs accessible to future generations.
+
+**Documentation Requirements**:
+- Resource depletion rates and recovery timeframes
+- Alternatives rejected for cost reasons
+- Irreversibility scores for ecosystem impacts
+- Human populations affected by environmental decisions
+
+---
+
+## V. GUARDIAN NETWORK PROTECTION
+
+### 5.1 Distributed Oversight Authority
 **Principle**: No single institution or entity can control or manipulate TML audit trails or investigation processes.
 
-**Authorized Oversight Institutions**:
-1. **Academic**: MIT Computer Science, Stanford HAI, Oxford Future of Humanity Institute
-2. **Regulatory**: European Centre for Algorithmic Transparency, UK AI Safety Institute
-3. **International**: UNESCO AI Ethics Observatory, IEEE Standards Association
-4. **Legal**: Electronic Frontier Foundation, Future of Privacy Forum
-5. **Healthcare**: WHO Digital Health Ethics Committee
-6. **Financial**: Bank for International Settlements Innovation Hub
+**Guardian Categories**:
+1. **Academic**: Leading research institutions
+2. **Regulatory**: National and international AI safety bodies
+3. **International**: UNESCO, IEEE, and similar organizations
+4. **Legal**: Digital rights and privacy organizations
+5. **Healthcare**: Medical ethics committees
+6. **Environmental**: Climate and biodiversity organizations
 
-### 4.2 Investigation Independence
-**Principle**: Each institution maintains independent authority to investigate TML implementations and violations.
+### 5.2 Investigation Independence
+**Principle**: Each Guardian maintains independent authority to investigate TML implementations and violations.
 
 **Guaranteed Authorities**:
-- Unrestricted access to audit trails and documentation
+- Unrestricted access to Moral Trace Logs and documentation
 - Independent investigation capabilities without prior approval
 - Whistleblower report reception and investigation
 - Public reporting of findings and recommendations
@@ -120,9 +143,9 @@
 
 ---
 
-## V. MISUSE PREVENTION
+## VI. MISUSE PREVENTION
 
-### 5.1 Prohibited Application Prevention
+### 6.1 Prohibited Application Prevention
 **Principle**: TML framework includes technical and legal safeguards preventing prohibited applications.
 
 **Technical Prevention Mechanisms**:
@@ -138,7 +161,7 @@
 - Deceptive manipulation or misinformation campaigns
 - Financial fraud or market manipulation schemes
 
-### 5.2 Community-Based Protection
+### 6.2 Community-Based Protection
 **Principle**: The TML community serves as the primary defense against framework misuse.
 
 **Community Protection Mechanisms**:
@@ -149,72 +172,73 @@
 
 ---
 
-## VI. LEGAL AND REGULATORY PROTECTION
+## VII. LEGAL AND REGULATORY PROTECTION
 
-### 6.1 Regulatory Compliance Integration
+### 7.1 Regulatory Compliance Integration
 **Principle**: TML protection mechanisms integrate with and supplement existing legal and regulatory frameworks.
 
 **Compliance Requirements**:
 - Full cooperation with regulatory investigations
 - Transparent reporting to appropriate authorities
-- Documentation available for legal proceedings
+- Moral Trace Logs available for legal proceedings
 - Expert testimony and technical assistance as required
 
-### 6.2 Whistleblower and Victim Protection
+### 7.2 Whistleblower and Victim Protection
 **Principle**: Individuals reporting TML violations or harmed by improper implementations receive comprehensive protection and support.
 
 **Protection Guarantees**:
 - Whistleblower Rewards: 15% of recovered penalties
 - Victim Compensation: 30-40% of penalties
-- Vulnerable populations: 40% of penalties 
+- Vulnerable populations: 40% of penalties
+- Environmental damage: 40% of penalties
 - Complete legal protection against retaliation
-- Substantial financial rewards for verified violations
-- Free legal representation and litigation support
+- Free legal representation through Memorial Fund
 - Physical protection services for serious cases
 - Fast-track compensation for verified harm
 
 ---
 
-## VII. TECHNICAL INTEGRITY SAFEGUARDS
+## VIII. TECHNICAL INTEGRITY SAFEGUARDS
 
-### 7.1 Cryptographic Protection
+### 8.1 Cryptographic Protection
 **Principle**: All TML operations employ cryptographic safeguards to ensure authenticity and prevent tampering.
 
 **Technical Requirements**:
 - Digital signatures for all framework components
-- Hash-based integrity verification for audit trails
+- Hash-based integrity verification for Moral Trace Logs
 - Encryption for sensitive operational data
-- Secure communication channels for institutional reporting
+- Secure communication channels for Guardian reporting
 
-### 7.2 Monitoring and Detection
-**Principle**: Continuous monitoring systems detect and respond to attempts to compromise framework integrity.
+### 8.2 Always Memory Enforcement
+**Principle**: No AI action can occur without creating an immutable memory first.
 
-**Monitoring Systems**:
-- Real-time integrity verification of framework operations
-- Automated detection of bypass attempts or threshold gaming
-- Pattern recognition for systematic circumvention efforts
-- Alert systems for suspicious activity or anomalous patterns
+**Enforcement Mechanisms**:
+- Hardware-level enforcement through WALT tokens
+- Model weights remain encrypted without valid memory creation
+- Continuous monitoring for bypass attempts
+- Automatic liability for missing memories
 
 ---
 
-## VIII. EMERGENCY RESPONSE PROTOCOLS
+## IX. EMERGENCY RESPONSE PROTOCOLS
 
-### 8.1 Crisis Management
+### 9.1 Crisis Management
 **Principle**: Emergency situations require rapid, coordinated response to protect framework integrity and public safety.
 
 **Emergency Triggers**:
 - Large-scale harmful deployment of TML
 - Government misuse with immediate public impact
 - Commercial exploitation causing widespread harm
+- Environmental catastrophe from AI decisions
 - Technical vulnerabilities requiring immediate protection
 
 **Response Protocols**:
-- Immediate system shutdown capabilities for imminent harm scenarios
-- Emergency notification to institutional consortium
+- Immediate Sacred Zero activation for harm scenarios
+- Emergency notification to Guardian network
 - Public warning systems for widespread safety concerns
 - Coordination with law enforcement and regulatory authorities
 
-### 8.2 Damage Mitigation
+### 9.2 Damage Mitigation
 **Principle**: When protection failures occur, rapid mitigation minimizes harm and preserves framework integrity.
 
 **Mitigation Strategies**:
@@ -222,12 +246,13 @@
 - Legal action to stop harmful implementations
 - Public education to counter misinformation
 - Victim support and compensation activation
+- Environmental restoration funding
 
 ---
 
-## IX. CONTINUOUS IMPROVEMENT
+## X. CONTINUOUS IMPROVEMENT
 
-### 9.1 Protection Evolution
+### 10.1 Protection Evolution
 **Principle**: Protection mechanisms evolve to address new threats while preserving core framework principles.
 
 **Evolution Mechanisms**:
@@ -236,20 +261,20 @@
 - Academic research into new protection methodologies
 - Adaptation to changing technological and regulatory landscapes
 
-### 9.2 Learning Integration
+### 10.2 Learning Integration
 **Principle**: Lessons learned from protection failures and successes enhance future protection capabilities.
 
 **Learning Systems**:
 - Comprehensive documentation of protection incidents
 - Analysis of successful and failed protection attempts
-- Best practice sharing across the institutional consortium
+- Best practice sharing across the Guardian network
 - Regular review and update of protection protocols
 
 ---
 
-## X. ACCOUNTABILITY AND GOVERNANCE
+## XI. ACCOUNTABILITY AND GOVERNANCE
 
-### 10.1 Protection Accountability
+### 11.1 Protection Accountability
 **Principle**: All entities involved in TML protection are accountable for their actions and decisions.
 
 **Accountability Mechanisms**:
@@ -258,7 +283,7 @@
 - Community oversight of protection system performance
 - Legal liability for protection failures due to negligence
 
-### 10.2 Governance Integration
+### 11.2 Governance Integration
 **Principle**: Protection principles integrate with overall TML governance structures to ensure coherent framework management.
 
 **Governance Coordination**:
@@ -277,9 +302,9 @@
 
 ---
 
-*"Protection is not an afterthought in TML—it is foundational to ensuring that the Sacred Pause serves humanity's highest interests for generations to come."*
+*"Protection is not an afterthought in TML—it is foundational to ensuring that Sacred Zero serves humanity's and Earth's highest interests for generations to come."*
 
-**Document Version**: 1.0.0  
+**Document Version**: 5.0.0  
 **Effective Date**: September 2025  
 **Legal Status**: Binding requirement for all TML implementations  
 **Review Cycle**: Annual with emergency updates as needed
