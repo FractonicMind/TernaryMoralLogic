@@ -39,7 +39,6 @@ It must never be reduced to hesitation.
 ## 1.2 Implementation Consistency
 
 All TML deployments must maintain:  
-- **SPRL calculation methodology** – Standardized risk assessment defining when the Sacred Pause triggers  
 - **Prohibition threshold enforcement** – Red lines cannot be weakened  
 - **Cryptographic integrity** – Immutable evidence generation  
 - **Council oversight authority** – 11-institution governance structure  
@@ -47,9 +46,6 @@ All TML deployments must maintain:
 **Protection Mechanism**:  
 Any implementation claiming to be "TML" must pass validation against  
 `/compliance/framework_integrity.py`
-
-**SPRL Safeguard**:  
-The Stakeholder Proportional Risk Level (SPRL) ensures every decision with ethical weight is logged, preventing both under-triggering (silence in the face of risk) and over-triggering (noise that hides true dilemmas).
 
 ---
 
@@ -511,20 +507,6 @@ managing endowments of comparable size**.
 
 ---
 
-# Appendix A: SPRL Definition
-
-**Stakeholder Proportional Risk Level (SPRL)**:  
-A quantitative method for defining when the Sacred Pause must trigger.  
-
-- Scale: **0.1 to 0.9999**  
-- **Lower thresholds** → more frequent logging (maximizes caution)  
-- **Higher thresholds** → fewer but critical logs (minimizes drag)  
-- Governance Council approves calibration profiles for each domain  
-- All adjustments must be logged under the Sacred Pause for auditability  
-
-SPRL ensures the trigger is objective, auditable, and immune to manipulation.  
-
----
 
 # Conclusion: Eternal Sacred Pause
 
