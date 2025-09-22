@@ -57,8 +57,6 @@ Complete identity protection:
 ### Evidence Requirements
 What constitutes valid reports:
 - **Missing Moral Trace Logs** for ethically complex decisions
-- **SPRL manipulation** evidence (emails, code, recordings)
-- **Threshold gaming** documentation
 - **Log tampering** attempts or success
 - **Retaliation** against other whistleblowers
 - **Cover-up** communications
@@ -194,7 +192,6 @@ Annual transparency:
 - Systemic bias corrected
 
 ### Example 2: The Threshold Gamer
-**Situation**: Data scientist finds SPRL calculations rigged to stay below 0.1  
 **Action**: Provides emails and manipulated code  
 **Outcome**:
 - Criminal fraud charges filed
