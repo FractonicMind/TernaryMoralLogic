@@ -59,31 +59,13 @@ Organizations determine their risk thresholds but face strict liability for gami
 
 ### 1.2 Sacred Pause Logging
 
-When Stakeholder Proportional Risk Level (SPRL) exceeds organizational thresholds, systems MUST generate comprehensive moral trace logs.
-
 **Required Log Contents**:
-- Decision context and stakeholders affected
 - Risk score and calculation methodology
 - Alternatives considered
 - Mitigations applied
 - Responsible executive identification
 
-**Schema**: `/schemas/moral_trace_log.yaml`  
 **Implementation**: `/implementations/sacred_pause.py`
-
-### 1.3 SPRL Calculation
-
-Risk assessment using weighted factors:
-- Stakeholder impact (30%)
-- Vulnerability score (25%)
-- Reversibility (20%)
-- Scale of impact (15%)
-- Precedent setting (10%)
-
-**Implementation**: `/implementations/sprl_calculator.py`  
-**Methodology**: `/docs/sprl_methodology.md`
-
----
 
 ## 2. PROHIBITION THRESHOLDS
 
@@ -274,8 +256,6 @@ Quarterly certification under penalty of perjury:
 ## 9. IMPLEMENTATION TIMELINE
 
 ### Phase 1: Foundation (30 days)
-- SPRL methodology documentation
-- Stakeholder mapping
 - Basic Sacred Pause detection
 - Moral trace generation
 
@@ -428,7 +408,6 @@ Organizations must sign certification acknowledging:
 
 Complete reference implementation available:
 - Three-state decision engine
-- SPRL calculator with full methodology
 - Sacred Pause trigger mechanism
 - Moral trace generator
 - Cryptographic infrastructure
@@ -460,7 +439,6 @@ Comprehensive compliance tests:
 
 ## Appendices
 
-**Appendix A**: SPRL Calculation Formulas - `/docs/appendices/sprl_formulas.md`  
 **Appendix B**: Threshold Methodologies - `/docs/appendices/thresholds.md`  
 **Appendix C**: API Specifications - `/api/specifications/`  
 **Appendix D**: Legal References - `/legal/references/`  
