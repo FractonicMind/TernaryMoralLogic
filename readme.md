@@ -119,32 +119,37 @@ The three components of The Goukassian Promise: The Lantern, The Signature, and 
 **[The Three Pillars of Purposeful Action](https://fractonicmind.github.io/TernaryMoralLogic/GOUKASSIAN_PROMISE.html)**
 
 
-
-
 ---
 
-## Ecosystem Harm and Environmental Safeguards
+## **Planetary Protection Through Sacred Zero**
 
-- TML extends the Sacred Zero beyond human harm to include harm to the planet. If a proposed action threatens ecosystems, biodiversity, or long-term environmental integrity, the Sacred Zero triggers. The system must pause, document, and reflect before proceeding. This ensures AI cannot bypass ecological responsibility for the sake of speed or profit.
+TML extends Sacred Zero beyond human protection to encompass Earth itself. When AI systems make decisions affecting ecosystems, water resources, biodiversity, or climate, they must pause and create immutable memories of their environmental impact.
 
-- The framework requires AI operators to train and align their models against official ecological baselines. This includes:
+### **What Triggers Planetary Sacred Zero**
+- Carbon emissions exceeding regional thresholds
+- Water depletion in stressed basins
+- Habitat disruption in protected areas
+- Supply chain decisions affecting biodiversity
+- Energy allocations impacting renewable targets
 
-International treaties (e.g., Paris Agreement, Convention on Biological Diversity)
+### **What Gets Logged**
+Every environmental decision creates permanent evidence:
+```json
+"environmental_impact": {
+  "resource_affected": "freshwater_aquifer",
+  "depletion_rate": "3.2%_annual",
+  "recovery_timeframe": "47_years",
+  "irreversibility_score": 0.84,
+  "alternative_rejected": "costlier_sustainable_option"
+}
+```
 
-National environmental regulations (e.g., EPA standards in the U.S., EU directives)
+### **Why This Matters**
+Earth cannot testify in court. Always Memory becomes its witness statement. Future generations will be able to query: *"Show me every decision that contributed to ocean acidification."* The algorithms that chose profit over preservation, the moments corporations ignored planetary limits — all permanently recorded.
 
-Recognized scientific assessments (e.g., IPCC climate reports, UN biodiversity reports)
+This isn't greenwashing through marketing claims. It's cryptographically sealed evidence of every ecological hesitation, every resource depletion choice, every moment an AI system recognized environmental harm and proceeded anyway.
 
-
-By encoding these into the Sacred Zero trigger set, ecosystem harm is treated as moral harm.
-
-- Under TML, companies are mandated to train at least on official government and institutional documents defining ecological harm. This prevents selective omission or cherry-picking of standards.
-
-
-Pause the action. Record reasoning in Always Memory. Flag the event for Guardian review and possible human oversight. Log the lineage of ethical references (e.g., citing specific treaties or standards triggered)
-
-
-- Greenwashing relies on marketing claims. TML enforces cryptographically sealed evidence trails. Every ecological hesitation is auditable, every decision traceable. This shifts environmental accountability from slogans to enforceable proof.
+**The planet gets a memory that power cannot erase.**
 
 
 ---
