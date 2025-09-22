@@ -118,7 +118,37 @@ The three components of The Goukassian Promise: The Lantern, The Signature, and 
 
 **[The Three Pillars of Purposeful Action](https://fractonicmind.github.io/TernaryMoralLogic/GOUKASSIAN_PROMISE.html)**
 
+
+
+
 ---
+
+## Ecosystem Harm and Environmental Safeguards
+
+- TML extends the Sacred Zero beyond human harm to include harm to the planet. If a proposed action threatens ecosystems, biodiversity, or long-term environmental integrity, the Sacred Zero triggers. The system must pause, document, and reflect before proceeding. This ensures AI cannot bypass ecological responsibility for the sake of speed or profit.
+
+- The framework requires AI operators to train and align their models against official ecological baselines. This includes:
+
+International treaties (e.g., Paris Agreement, Convention on Biological Diversity)
+
+National environmental regulations (e.g., EPA standards in the U.S., EU directives)
+
+Recognized scientific assessments (e.g., IPCC climate reports, UN biodiversity reports)
+
+
+By encoding these into the Sacred Zero trigger set, ecosystem harm is treated as moral harm.
+
+- Under TML, companies are mandated to train at least on official government and institutional documents defining ecological harm. This prevents selective omission or cherry-picking of standards.
+
+
+Pause the action. Record reasoning in Always Memory. Flag the event for Guardian review and possible human oversight. Log the lineage of ethical references (e.g., citing specific treaties or standards triggered)
+
+
+- Greenwashing relies on marketing claims. TML enforces cryptographically sealed evidence trails. Every ecological hesitation is auditable, every decision traceable. This shifts environmental accountability from slogans to enforceable proof.
+
+
+---
+
 
 ## [Hybrid Shield - Double Armor](protection/Hybrid-Shield.md)
 The Hybrid Shield is the enforcement and preservation mechanism of Ternary Moral Logic. It is designed to guarantee the integrity and permanence of the **Moral Trace Logs** generated during a Sacred Pause. Without this protective layer, the logs would be vulnerable to deletion or alteration, rendering the entire framework of accountability meaningless. The shield's architecture is explicitly designed as a "double armor," combining socio-political safeguards with cryptographic guarantees to create a resilient, tamper-evident system. 
