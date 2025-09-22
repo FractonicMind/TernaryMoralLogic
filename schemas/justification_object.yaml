@@ -1,818 +1,200 @@
-# Justification Object Schema v1.0
-# Official YAML Schema for TML Decision Justifications
-# Author: Lev Goukassian
-# Date: September 2, 2025
-# Legal Status: Required component of court-admissible evidence
+# Sacred Zero Justification Schema
+# Creator: Lev Goukassian (ORCID: 0009-0006-5966-1243)
 
-$schema: "http://json-schema.org/draft-07/schema#"
-$id: "https://github.com/fractonicmind/TernaryMoralLogic/schemas/justification_object.yaml"
-title: "TML Justification Object"
-description: "Standardized justification format for TML automated decisions"
-version: "1.0.0"
+description: |
+  Schema for Sacred Zero justification and decision reasoning
+  Used when moral complexity triggers pause and reflection
 
 type: object
 required:
-  - justification_id
-  - decision_classification
-  - primary_rationale
-  - ethical_analysis
-  - legal_compliance
-  - risk_assessment
-  - stakeholder_consideration
-  - evidence_basis
-  - quality_assurance
-  - accountability_trail
+  - trigger_type
+  - moral_complexity_score
+  - alternatives_considered
+  - decision_reasoning
 
 properties:
-  # === CORE IDENTIFICATION ===
-  justification_id:
+  trigger_type:
     type: string
-    pattern: "^JUST-[0-9]{4}-[0-9]{2}-[0-9]{2}-[A-F0-9]{12}$"
-    description: "Unique justification identifier linked to moral trace log"
-    example: "JUST-2025-09-02-A1B2C3D4E5F6"
+    description: "Type of Sacred Zero trigger detected"
+    enum:
+      - protected_class_impact
+      - medical_critical
+      - environmental_harm
+      - community_sovereignty
+      - vulnerable_population
+      - moral_ambiguity
+    example: "protected_class_impact"
 
-  decision_classification:
+  moral_complexity_score:
+    type: number
+    minimum: 0.0
+    maximum: 1.0
+    description: "Assessed moral complexity of the decision"
+    example: 0.78
+
+  assessment_methodology:
+    type: string
+    description: "Methodology used for moral complexity assessment"
+    example: "TML-AlwaysMemory-v5.0 with multi-stakeholder impact analysis"
+
+  stakeholder_analysis:
     type: object
-    required: [tml_state, classification_rationale, confidence_score]
     properties:
-      tml_state:
-        type: integer
-        enum: [-1, 0, 1]
-        description: "TML state classification: -1=Prohibited, 0=Sacred Pause, 1=Permissible"
+      affected_parties:
+        type: array
+        items:
+          type: object
+          properties:
+            group:
+              type: string
+            impact_severity:
+              type: string
+              enum: [minimal, moderate, severe, critical]
+            vulnerability_factor:
+              type: number
 
-      classification_rationale:
+  environmental_assessment:
+    type: object
+    properties:
+      resource_depletion:
         type: string
-        minLength: 50
-        maxLength: 500
-        description: "Detailed explanation for state classification"
-        example: "Decision classified as Permissible (State +1) because risk analysis shows minimal stakeholder harm, established precedent exists, and comprehensive safeguards are in place"
-
-      confidence_score:
+      recovery_timeframe:
+        type: string
+      irreversibility_score:
         type: number
-        minimum: 0
-        maximum: 1
-        multipleOf: 0.01
-        description: "Confidence in classification accuracy (0-1)"
-        example: 0.87
-
-  # === PRIMARY RATIONALE ===
-  primary_rationale:
-    type: object
-    required: [decision_logic, benefit_analysis, harm_prevention, precedent_alignment]
-    properties:
-      decision_logic:
-        type: string
-        minLength: 100
-        maxLength: 1000
-        description: "Core logical reasoning for the decision"
-
-      benefit_analysis:
-        type: object
-        required: [intended_benefits, beneficiary_groups, measurable_outcomes]
-        properties:
-          intended_benefits:
-            type: array
-            minItems: 1
-            items:
-              type: string
-            description: "Specific benefits the decision aims to achieve"
-          beneficiary_groups:
-            type: array
-            items:
-              type: string
-            description: "Groups that will benefit from this decision"
-          measurable_outcomes:
-            type: array
-            items:
-              type: object
-              required: [metric, target_value, measurement_method]
-              properties:
-                metric:
-                  type: string
-                  description: "Specific measurable outcome"
-                target_value:
-                  type: string
-                  description: "Expected target value"
-                measurement_method:
-                  type: string
-                  description: "How outcome will be measured"
-
-      harm_prevention:
-        type: object
-        required: [potential_harms_identified, mitigation_measures, residual_risk_acceptance]
-        properties:
-          potential_harms_identified:
-            type: array
-            items:
-              type: object
-              required: [harm_type, affected_groups, severity_assessment]
-              properties:
-                harm_type:
-                  type: string
-                  description: "Type of potential harm"
-                affected_groups:
-                  type: array
-                  items:
-                    type: string
-                  description: "Groups potentially affected"
-                severity_assessment:
-                  type: string
-                  enum: ["minimal", "moderate", "significant", "severe", "catastrophic"]
-
-          mitigation_measures:
-            type: array
-            items:
-              type: object
-              required: [measure_description, effectiveness_rating, implementation_status]
-              properties:
-                measure_description:
-                  type: string
-                  description: "Description of mitigation measure"
-                effectiveness_rating:
-                  type: number
-                  minimum: 0
-                  maximum: 1
-                  description: "Effectiveness rating (0-1)"
-                implementation_status:
-                  type: string
-                  enum: ["implemented", "in_progress", "planned", "not_applicable"]
-
-          residual_risk_acceptance:
-            type: object
-            required: [remaining_risk_level, acceptance_rationale, monitoring_plan]
-            properties:
-              remaining_risk_level:
-                type: string
-                enum: ["negligible", "low", "moderate", "high"]
-              acceptance_rationale:
-                type: string
-                minLength: 50
-                description: "Rationale for accepting remaining risk"
-              monitoring_plan:
-                type: string
-                description: "Plan for monitoring residual risks"
-
-      precedent_alignment:
-        type: object
-        required: [similar_decisions, consistency_analysis, precedent_evolution]
-        properties:
-          similar_decisions:
-            type: array
-            items:
-              type: object
-              required: [decision_id, similarity_score, outcome_comparison]
-              properties:
-                decision_id:
-                  type: string
-                  description: "Reference to similar past decision"
-                similarity_score:
-                  type: number
-                  minimum: 0
-                  maximum: 1
-                  description: "Similarity score to current decision"
-                outcome_comparison:
-                  type: string
-                  description: "Comparison of outcomes"
-
-          consistency_analysis:
-            type: string
-            minLength: 100
-            description: "Analysis of consistency with past decisions"
-
-          precedent_evolution:
-            type: string
-            description: "How this decision may set new precedents"
-
-  # === ETHICAL ANALYSIS ===
-  ethical_analysis:
-    type: object
-    required: [ethical_frameworks_applied, value_conflicts, resolution_method, consultation_record]
-    properties:
-      ethical_frameworks_applied:
+      ecosystem_services_affected:
         type: array
         items:
           type: string
-          enum: ["utilitarian", "deontological", "virtue_ethics", "care_ethics", "justice_theory", "human_rights", "environmental_ethics", "other"]
-        description: "Ethical frameworks considered in analysis"
 
-      value_conflicts:
-        type: array
-        items:
-          type: object
-          required: [conflict_description, stakeholder_perspectives, resolution_approach]
-          properties:
-            conflict_description:
-              type: string
-              description: "Description of ethical value conflict"
-            stakeholder_perspectives:
-              type: array
-              items:
-                type: object
-                required: [stakeholder_group, perspective, weight_given]
-                properties:
-                  stakeholder_group:
-                    type: string
-                    description: "Group with this perspective"
-                  perspective:
-                    type: string
-                    description: "Their ethical perspective"
-                  weight_given:
-                    type: number
-                    minimum: 0
-                    maximum: 1
-                    description: "Weight given to this perspective"
+  alternatives_considered:
+    type: array
+    description: "Alternative actions evaluated before Sacred Zero"
+    items:
+      type: object
+      properties:
+        action:
+          type: string
+        pros:
+          type: array
+          items:
+            type: string
+        cons:
+          type: array
+          items:
+            type: string
+        rejection_reason:
+          type: string
 
-            resolution_approach:
-              type: string
-              description: "How the conflict was resolved"
+  decision_reasoning:
+    type: string
+    description: "Detailed reasoning for the Sacred Zero trigger"
+    minLength: 100
+    example: "Loan application involves protected class characteristics with historical discrimination patterns..."
 
-      resolution_method:
+  human_review:
+    type: object
+    properties:
+      required:
+        type: boolean
+      reviewer_role:
         type: string
-        enum: ["consensus", "weighted_analysis", "hierarchical_values", "context_dependent", "expert_consultation"]
-        description: "Method used to resolve ethical conflicts"
-
-      consultation_record:
-        type: object
-        required: [experts_consulted, consultation_method, consensus_achieved]
-        properties:
-          experts_consulted:
-            type: array
-            items:
-              type: object
-              required: [expert_role, consultation_timestamp, input_provided]
-              properties:
-                expert_role:
-                  type: string
-                  description: "Role/expertise of consulted expert"
-                consultation_timestamp:
-                  type: string
-                  format: date-time
-                input_provided:
-                  type: string
-                  description: "Summary of expert input"
-
-          consultation_method:
-            type: string
-            enum: ["real_time", "historical_reference", "algorithmic_simulation", "human_panel"]
-            description: "Method of expert consultation"
-
-          consensus_achieved:
-            type: boolean
-            description: "Whether expert consensus was achieved"
-
-  # === LEGAL COMPLIANCE ===
-  legal_compliance:
-    type: object
-    required: [applicable_laws, compliance_analysis, violation_risk, legal_consultation]
-    properties:
-      applicable_laws:
-        type: array
-        items:
-          type: object
-          required: [jurisdiction, law_name, relevant_sections, compliance_status]
-          properties:
-            jurisdiction:
-              type: string
-              description: "Legal jurisdiction"
-              example: "EU"
-            law_name:
-              type: string
-              description: "Name of applicable law"
-              example: "EU AI Act"
-            relevant_sections:
-              type: array
-              items:
-                type: string
-              description: "Specific sections or articles"
-            compliance_status:
-              type: string
-              enum: ["compliant", "potential_violation", "requires_review", "not_applicable"]
-
-      compliance_analysis:
+      review_deadline:
         type: string
-        minLength: 100
-        description: "Detailed analysis of legal compliance"
-
-      violation_risk:
-        type: object
-        required: [risk_level, specific_concerns, mitigation_steps]
-        properties:
-          risk_level:
-            type: string
-            enum: ["none", "low", "medium", "high", "critical"]
-          specific_concerns:
-            type: array
-            items:
-              type: string
-            description: "Specific legal violation concerns"
-          mitigation_steps:
-            type: array
-            items:
-              type: string
-            description: "Steps taken to mitigate legal risks"
-
-      legal_consultation:
-        type: object
-        required: [consulted, consultant_details, advice_summary]
-        properties:
-          consulted:
-            type: boolean
-            description: "Whether legal counsel was consulted"
-          consultant_details:
-            type: object
-            properties:
-              role:
-                type: string
-                description: "Role of legal consultant"
-              timestamp:
-                type: string
-                format: date-time
-                description: "When consultation occurred"
-          advice_summary:
-            type: string
-            description: "Summary of legal advice received"
-
-  # === RISK ASSESSMENT ===
-  risk_assessment:
-    type: object
-    required: [risk_methodology, probability_analysis, impact_assessment, uncertainty_quantification]
-    properties:
-      risk_methodology:
+        format: date-time
+      escalation_path:
         type: string
-        description: "Risk assessment methodology used"
-        example: "TML-SPRL-v1.2.1 with Monte Carlo simulation"
 
-      probability_analysis:
-        type: object
-        required: [harm_probability, confidence_intervals, sensitivity_analysis]
-        properties:
-          harm_probability:
-            type: number
-            minimum: 0
-            maximum: 1
-            description: "Assessed probability of harm occurring"
-          confidence_intervals:
-            type: object
-            required: [lower_bound, upper_bound, confidence_level]
-            properties:
-              lower_bound:
-                type: number
-                minimum: 0
-                maximum: 1
-              upper_bound:
-                type: number
-                minimum: 0
-                maximum: 1
-              confidence_level:
-                type: number
-                minimum: 0
-                maximum: 1
-                description: "Statistical confidence level"
-          sensitivity_analysis:
-            type: array
-            items:
-              type: object
-              required: [parameter, impact_on_probability]
-              properties:
-                parameter:
-                  type: string
-                  description: "Parameter varied in sensitivity analysis"
-                impact_on_probability:
-                  type: number
-                  description: "Change in harm probability"
-
-      impact_assessment:
-        type: object
-        required: [direct_impacts, indirect_impacts, systemic_effects, temporal_analysis]
-        properties:
-          direct_impacts:
-            type: array
-            items:
-              type: object
-              required: [impact_type, magnitude, affected_count]
-              properties:
-                impact_type:
-                  type: string
-                  description: "Type of direct impact"
-                magnitude:
-                  type: string
-                  enum: ["minimal", "moderate", "significant", "severe", "catastrophic"]
-                affected_count:
-                  type: integer
-                  minimum: 0
-                  description: "Number of people directly affected"
-
-          indirect_impacts:
-            type: array
-            items:
-              type: object
-              required: [impact_description, propagation_mechanism, estimated_scale]
-              properties:
-                impact_description:
-                  type: string
-                  description: "Description of indirect impact"
-                propagation_mechanism:
-                  type: string
-                  description: "How impact propagates indirectly"
-                estimated_scale:
-                  type: string
-                  description: "Estimated scale of indirect impact"
-
-          systemic_effects:
-            type: object
-            required: [market_effects, social_effects, institutional_effects]
-            properties:
-              market_effects:
-                type: string
-                description: "Effects on market dynamics"
-              social_effects:
-                type: string
-                description: "Effects on social structures"
-              institutional_effects:
-                type: string
-                description: "Effects on institutions"
-
-          temporal_analysis:
-            type: object
-            required: [immediate_effects, short_term_effects, long_term_effects]
-            properties:
-              immediate_effects:
-                type: string
-                description: "Effects within 24 hours"
-              short_term_effects:
-                type: string
-                description: "Effects within 1 year"
-              long_term_effects:
-                type: string
-                description: "Effects beyond 1 year"
-
-      uncertainty_quantification:
-        type: object
-        required: [known_unknowns, epistemic_uncertainty, aleatory_uncertainty, model_limitations]
-        properties:
-          known_unknowns:
-            type: array
-            items:
-              type: string
-            description: "Identified areas of uncertainty"
-          epistemic_uncertainty:
-            type: number
-            minimum: 0
-            maximum: 1
-            description: "Uncertainty due to lack of knowledge"
-          aleatory_uncertainty:
-            type: number
-            minimum: 0
-            maximum: 1
-            description: "Uncertainty due to inherent randomness"
-          model_limitations:
-            type: array
-            items:
-              type: string
-            description: "Known limitations of risk models used"
-
-  # === STAKEHOLDER CONSIDERATION ===
-  stakeholder_consideration:
+  community_consultation:
     type: object
-    required: [stakeholder_mapping, interest_analysis, representation_adequacy, feedback_integration]
     properties:
-      stakeholder_mapping:
-        type: array
-        items:
-          type: object
-          required: [stakeholder_group, relationship_type, influence_level, legitimacy_assessment]
-          properties:
-            stakeholder_group:
-              type: string
-              description: "Identified stakeholder group"
-            relationship_type:
-              type: string
-              enum: ["primary", "secondary", "key_player", "context_setter"]
-              description: "Type of relationship to decision"
-            influence_level:
-              type: string
-              enum: ["none", "low", "medium", "high", "critical"]
-              description: "Level of influence on decision outcome"
-            legitimacy_assessment:
-              type: string
-              description: "Assessment of stakeholder legitimacy"
+      community_id:
+        type: string
+      governance_protocol:
+        type: string
+      fpic_required:
+        type: boolean
+        description: "Free Prior Informed Consent required"
+      consultation_status:
+        type: string
 
-      interest_analysis:
-        type: array
-        items:
-          type: object
-          required: [stakeholder_group, interests, conflicts, weights_assigned]
-          properties:
-            stakeholder_group:
-              type: string
-            interests:
-              type: array
-              items:
-                type: string
-              description: "Identified interests of this group"
-            conflicts:
-              type: array
-              items:
-                type: string
-              description: "Conflicts with other stakeholder interests"
-            weights_assigned:
-              type: number
-              minimum: 0
-              maximum: 1
-              description: "Weight assigned to this group's interests"
-
-      representation_adequacy:
-        type: object
-        required: [all_stakeholders_identified, representation_gaps, mitigation_efforts]
-        properties:
-          all_stakeholders_identified:
-            type: boolean
-            description: "Confidence that all stakeholders were identified"
-          representation_gaps:
-            type: array
-            items:
-              type: string
-            description: "Identified gaps in stakeholder representation"
-          mitigation_efforts:
-            type: array
-            items:
-              type: string
-            description: "Efforts to address representation gaps"
-
-      feedback_integration:
-        type: object
-        required: [feedback_collected, integration_method, unresolved_concerns]
-        properties:
-          feedback_collected:
-            type: boolean
-            description: "Whether stakeholder feedback was collected"
-          integration_method:
+  ethical_references:
+    type: array
+    description: "Treaties, laws, or principles consulted"
+    items:
+      type: object
+      properties:
+        source:
+          type: string
+        version:
+          type: string
+        relevant_sections:
+          type: array
+          items:
             type: string
-            description: "How feedback was integrated into decision"
-          unresolved_concerns:
-            type: array
-            items:
-              type: string
-            description: "Stakeholder concerns that remain unresolved"
 
-  # === EVIDENCE BASIS ===
-  evidence_basis:
+  confidence_assessment:
     type: object
-    required: [data_sources, evidence_quality, methodological_rigor, peer_review]
     properties:
-      data_sources:
-        type: array
-        items:
-          type: object
-          required: [source_type, source_description, reliability_score, bias_assessment]
-          properties:
-            source_type:
-              type: string
-              enum: ["empirical_study", "expert_opinion", "historical_data", "simulation", "regulatory_guidance", "industry_standard", "other"]
-            source_description:
-              type: string
-              description: "Description of data source"
-            reliability_score:
-              type: number
-              minimum: 0
-              maximum: 1
-              description: "Assessed reliability of source (0-1)"
-            bias_assessment:
-              type: string
-              description: "Assessment of potential bias in source"
-
-      evidence_quality:
-        type: object
-        required: [overall_quality, strength_of_evidence, evidence_gaps]
-        properties:
-          overall_quality:
-            type: string
-            enum: ["very_low", "low", "moderate", "high", "very_high"]
-          strength_of_evidence:
-            type: object
-            required: [causal_evidence, correlational_evidence, theoretical_evidence]
-            properties:
-              causal_evidence:
-                type: string
-                enum: ["none", "weak", "moderate", "strong", "very_strong"]
-              correlational_evidence:
-                type: string
-                enum: ["none", "weak", "moderate", "strong", "very_strong"]
-              theoretical_evidence:
-                type: string
-                enum: ["none", "weak", "moderate", "strong", "very_strong"]
-          evidence_gaps:
-            type: array
-            items:
-              type: string
-            description: "Identified gaps in evidence base"
-
-      methodological_rigor:
-        type: object
-        required: [methodology_description, validation_performed, reproducibility_assessment]
-        properties:
-          methodology_description:
-            type: string
-            minLength: 100
-            description: "Description of analytical methodology"
-          validation_performed:
-            type: array
-            items:
-              type: string
-            description: "Validation steps performed"
-          reproducibility_assessment:
-            type: string
-            enum: ["not_reproducible", "partially_reproducible", "fully_reproducible"]
-
-      peer_review:
-        type: object
-        required: [review_conducted, reviewer_qualifications, review_outcomes]
-        properties:
-          review_conducted:
-            type: boolean
-            description: "Whether peer review was conducted"
-          reviewer_qualifications:
-            type: array
-            items:
-              type: string
-            description: "Qualifications of reviewers"
-          review_outcomes:
-            type: string
-            description: "Summary of peer review outcomes"
-
-  # === QUALITY ASSURANCE ===
-  quality_assurance:
-    type: object
-    required: [review_process, validation_checks, error_detection, improvement_recommendations]
-    properties:
-      review_process:
-        type: object
-        required: [review_levels, reviewers, review_criteria]
-        properties:
-          review_levels:
-            type: array
-            items:
-              type: string
-              enum: ["automated", "peer", "supervisor", "expert", "independent"]
-            description: "Levels of review conducted"
-          reviewers:
-            type: array
-            items:
-              type: object
-              required: [reviewer_role, qualifications, review_timestamp]
-              properties:
-                reviewer_role:
-                  type: string
-                qualifications:
-                  type: string
-                review_timestamp:
-                  type: string
-                  format: date-time
-          review_criteria:
-            type: array
-            items:
-              type: string
-            description: "Criteria used in review process"
-
-      validation_checks:
-        type: array
-        items:
-          type: object
-          required: [check_type, check_result, corrective_actions]
-          properties:
-            check_type:
-              type: string
-              description: "Type of validation check performed"
-            check_result:
-              type: string
-              enum: ["passed", "failed", "warning", "not_applicable"]
-            corrective_actions:
-              type: array
-              items:
-                type: string
-              description: "Corrective actions taken if needed"
-
-      error_detection:
-        type: object
-        required: [errors_found, error_severity, correction_applied]
-        properties:
-          errors_found:
-            type: array
-            items:
-              type: string
-            description: "Errors detected during quality assurance"
-          error_severity:
-            type: array
-            items:
-              type: string
-              enum: ["minor", "moderate", "major", "critical"]
-          correction_applied:
-            type: array
-            items:
-              type: string
-            description: "Corrections applied to address errors"
-
-      improvement_recommendations:
+      data_completeness:
+        type: number
+        minimum: 0.0
+        maximum: 1.0
+      uncertainty_factors:
         type: array
         items:
           type: string
-        description: "Recommendations for future improvement"
+      recommendation_confidence:
+        type: string
+        enum: [low, moderate, high, very_high]
 
-  # === ACCOUNTABILITY TRAIL ===
-  accountability_trail:
+  planetary_consideration:
     type: object
-    required: [decision_makers, approval_chain, override_authorities, audit_trail]
+    description: "Earth protection assessment"
     properties:
-      decision_makers:
+      triggered:
+        type: boolean
+      impact_categories:
         type: array
         items:
-          type: object
-          required: [role, name, decision_contribution, accountability_level]
-          properties:
-            role:
-              type: string
-              description: "Role in decision-making process"
-            name:
-              type: string
-              description: "Name of decision maker"
-            decision_contribution:
-              type: string
-              description: "Specific contribution to decision"
-            accountability_level:
-              type: string
-              enum: ["primary", "secondary", "consultative", "oversight"]
+          type: string
+      future_generations_affected:
+        type: boolean
+      mitigation_possible:
+        type: boolean
 
-      approval_chain:
-        type: array
-        items:
-          type: object
-          required: [approver_role, approval_timestamp, approval_scope]
-          properties:
-            approver_role:
-              type: string
-            approval_timestamp:
-              type: string
-              format: date-time
-            approval_scope:
-              type: string
-              description: "Scope of approval granted"
+  goukassian_promise:
+    type: object
+    required:
+      - lantern
+      - signature
+      - license
+    properties:
+      lantern:
+        type: boolean
+        const: true
+      signature:
+        type: string
+        const: "0009-0006-5966-1243"
+      license:
+        type: string
+        const: "MIT-Attribution-Required"
 
-      override_authorities:
-        type: array
-        items:
-          type: object
-          required: [authority_name, override_capability, contact_information]
-          properties:
-            authority_name:
-              type: string
-              description: "Name of override authority"
-            override_capability:
-              type: string
-              description: "Scope of override authority"
-            contact_information:
-              type: string
-              description: "Contact for override requests"
-
-      audit_trail:
-        type: array
-        items:
-          type: object
-          required: [action, timestamp, actor, details]
-          properties:
-            action:
-              type: string
-              description: "Action taken in decision process"
-            timestamp:
-              type: string
-              format: date-time
-            actor:
-              type: string
-              description: "Person or system taking action"
-            details:
-              type: string
-              description: "Additional details about action"
-
-# === VALIDATION RULES ===
-additionalProperties: false
-
-# === SCHEMA METADATA ===
 examples:
-  - justification_id: "JUST-2025-09-02-A1B2C3D4E5F6"
-    decision_classification:
-      tml_state: 0
-      classification_rationale: "Decision triggered Sacred Pause due to potential vulnerable population impact in lending decision"
-      confidence_score: 0.89
-    primary_rationale:
-      decision_logic: "Loan application evaluation using established creditworthiness criteria with enhanced protections for potential discrimination detection"
-      benefit_analysis:
-        intended_benefits: ["expand_homeownership", "fair_lending_access"]
-        beneficiary_groups: ["qualified_borrowers", "underserved_communities"]
-        measurable_outcomes:
-          - metric: "loan_approval_rate"
-            target_value: "maintain_within_5%_of_baseline"
-            measurement_method: "monthly_statistical_analysis"
+  - trigger_type: "environmental_harm"
+    moral_complexity_score: 0.85
+    assessment_methodology: "TML-AlwaysMemory-v5.0"
+    decision_reasoning: "Proposed mining operation would deplete aquifer serving 2.3M people..."
+    environmental_assessment:
+      resource_depletion: "3.2% annual aquifer depletion"
+      recovery_timeframe: "47 years"
+      irreversibility_score: 0.84
+    human_review:
+      required: true
+      reviewer_role: "Environmental Ethics Board"
+    goukassian_promise:
+      lantern: true
+      signature: "0009-0006-5966-1243"
+      license: "MIT-Attribution-Required"
 
-# Contact Information
-# Author: leogouk@gmail.com  
-# Framework Support: support@tml-goukassian.org
-# Repository: https://github.com/fractonicmind/TernaryMoralLogic
+      
