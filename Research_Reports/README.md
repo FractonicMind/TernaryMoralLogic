@@ -29,9 +29,6 @@ Each report can be read individually, but together they form a **documental reco
 - **TML Framework Implementation Requirements_.md**  
   *Focuses on transparency standards, mandatory logging, and post-audit investigation.*  
 
-- **Analysis of TML Logic -  SPRL Governance Framework.md**    
-   *Defines and protects the Stakeholder Proportional Risk Level as the quantified trigger for Sacred Pause, fortified against gaming, manipulation, and adversarial evasion.*
-
 - **TML Framework_ Analysis and Inquiry_.md**  
   *Explores adoption challenges, governance, and oversight questions.*  
 
