@@ -52,13 +52,11 @@
 
 ### Oversight Responsibilities
 - **Audit TML compliance** across implementations
-- **Review SPRL threshold gaming** allegations
 - **Investigate missing log** presumptions
 - **Validate whistleblower** reports
 
 ### Standards Authority
 - **Update prohibition thresholds** in `/policies/red_lines.yaml`
-- **Approve new SPRL methodologies**
 - **Set vulnerable population** protection levels
 - **Define enhanced requirements** for high-risk systems
 
@@ -121,7 +119,7 @@
 ## Investigation Protocol
 
 ### Access Scope
-- **Read-only**: Moral trace logs, SPRL calculations
+- **Read-only**: Moral trace logs
 - **Time-limited**: 90 days unless extended
 - **Cryptographically logged**: All council access recorded
 - **Multi-signature required**: 3 institutions minimum
