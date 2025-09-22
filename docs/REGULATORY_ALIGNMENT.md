@@ -24,22 +24,6 @@ Ternary Moral Logic (TML) addresses the implementation gap in current AI regulat
 
 ### TML Implementation of EU Requirements
 
-**Article 13 - Accuracy and Robustness**:
-```python
-# TML provides concrete accuracy measurement
-def eu_accuracy_compliance(ai_decision, context):
-    sprl = tml.calculate_sprl(ai_decision, context)
-    
-    # Document accuracy assessment
-    accuracy_trace = {
-        "decision_confidence": ai_decision.confidence,
-        "uncertainty_factors": sprl.uncertainty_components,
-        "robustness_score": sprl.reversibility_factor,
-        "bias_assessment": sprl.stakeholder_impact
-    }
-    
-    return tml.store_eu_compliance_record(accuracy_trace)
-```
 
 **Article 14 - Human Oversight**:
 - Sacred Pause generates evidence requiring human investigation when thresholds exceeded
@@ -48,7 +32,6 @@ def eu_accuracy_compliance(ai_decision, context):
 - Immutable logs prevent circumvention of oversight requirements
 
 **Article 15 - Quality Management**:
-- SPRL methodology provides systematic quality assessment
 - Quarterly executive attestations under criminal penalty
 - Independent audit requirements with lottery selection
 - Continuous bias monitoring and correction protocols
@@ -80,30 +63,6 @@ def eu_accuracy_compliance(ai_decision, context):
 ### Current GDPR Requirements
 **Article 22**: Right not to be subject to automated decision-making without explanation
 
-### TML Solution for GDPR Compliance
-
-**Automated Decision Transparency**:
-```python
-def gdpr_explanation_compliance(automated_decision):
-    # Generate comprehensive explanation
-    moral_trace = tml.generate_moral_trace(
-        decision=automated_decision,
-        stakeholder_analysis=identify_data_subjects,
-        processing_logic=explain_algorithm_reasoning,
-        risk_assessment=calculate_individual_impact
-    )
-    
-    # Provide individual-accessible explanation
-    gdpr_explanation = {
-        "decision_reasoning": moral_trace.ethical_analysis,
-        "data_used": moral_trace.stakeholder_data,
-        "algorithmic_logic": moral_trace.processing_steps,
-        "individual_impact": moral_trace.personal_consequences,
-        "contest_mechanism": investigation_access_protocol
-    }
-    
-    return gdpr_explanation
-```
 
 **TML Advantages for GDPR**:
 - Systematic explanation generation for all automated decisions
@@ -122,18 +81,6 @@ def gdpr_explanation_compliance(automated_decision):
 - Independent audit requirements
 - Whistleblower protection with financial rewards
 
-**Implementation for AI Systems**:
-```python
-def quarterly_ai_attestation():
-    return {
-        "logs_complete": verify_complete_moral_trace_logs(),
-        "thresholds_accurate": validate_sprl_implementation(),
-        "no_retaliation": confirm_whistleblower_protection(),
-        "insurance_maintained": verify_victim_coverage(),
-        "executive_certification": sign_under_perjury()
-    }
-```
-
 ### FTC Section 5 Enforcement
 **Unfair or Deceptive Practices** prosecution capability:
 - Missing TML logs constitute evidence of deceptive AI practices
@@ -149,7 +96,6 @@ def quarterly_ai_attestation():
 **21 CFR Part 820 - Quality System Regulation**:
 
 TML provides concrete mechanisms for FDA software requirements:
-- Design controls through SPRL methodology
 - Risk analysis through stakeholder impact assessment
 - Corrective action through investigation-based improvement
 - Management responsibility through executive attestation
@@ -173,24 +119,7 @@ TML provides concrete mechanisms for FDA software requirements:
 - Bias detection and correction through audit analysis
 
 ### Equal Credit Opportunity Act (ECOA)
-**Discrimination Prevention**:
-```python
-def ecoa_compliance_with_tml(credit_decision, applicant_data):
-    # Calculate demographic impact
-    sprl = tml.calculate_sprl(
-        decision=credit_decision,
-        protected_characteristics=applicant_data.demographics,
-        adverse_impact_analysis=True
-    )
-    
-    # Enhanced logging for credit decisions
-    if affects_protected_class(applicant_data):
-        return tml.generate_enhanced_moral_trace(
-            decision_factors=credit_decision.reasoning,
-            bias_assessment=sprl.discrimination_risk,
-            alternative_outcomes=consider_alternative_decisions()
-        )
-```
+
 
 ---
 
@@ -205,7 +134,6 @@ def ecoa_compliance_with_tml(credit_decision, applicant_data):
 
 ### Algorithmic Accountability Act (Proposed)
 TML directly implements proposed requirements:
-- Automated impact assessments through SPRL calculation
 - Public reporting through council transparency protocols
 - Bias auditing through systematic log analysis
 - Consumer notification through Sacred Pause documentation
@@ -218,7 +146,6 @@ TML directly implements proposed requirements:
 **TML Implementation of ISO Requirements**:
 
 **Risk Management (Clause 6.1)**:
-- SPRL methodology provides systematic risk identification
 - Sacred Pause triggers create risk response protocols
 - Investigation capability enables risk monitoring
 - Continuous improvement through audit analysis
@@ -250,7 +177,6 @@ TML directly implements proposed requirements:
 ### Phase 2: Sector-Specific Mandates
 **High-Risk Domain Requirements**:
 - Healthcare AI: TML logging mandatory for diagnostic systems
-- Financial services: SPRL documentation for credit and lending decisions
 - Criminal justice: Sacred Pause logging for sentencing and parole algorithms
 - Transportation: Accountability documentation for autonomous vehicle decisions
 
@@ -274,7 +200,6 @@ TML directly implements proposed requirements:
 
 ### TML Solutions for Regulatory Gaps
 **Concrete Technical Specifications**:
-- SPRL methodology for standardized risk assessment
 - Sacred Pause mechanism for systematic human oversight integration
 - Moral trace logging for technical explainability requirements
 - Criminal penalties and financial liability for enforceable accountability
@@ -287,8 +212,6 @@ TML directly implements proposed requirements:
 - Standardized formats for legal proceedings
 
 ---
-
-## Stakeholder Implementation Guidance
 
 ### For Regulators
 **Immediate Actions**:
@@ -305,7 +228,6 @@ TML directly implements proposed requirements:
 
 ### For Technology Companies
 **Risk Management Integration**:
-- Implement SPRL methodology for internal risk assessment
 - Deploy Sacred Pause logging for high-stakes decisions
 - Create "Visible Pause" user interfaces for trust building
 - Treat audit trails as critical corporate records
@@ -341,7 +263,6 @@ TML directly implements proposed requirements:
 
 ### Year 2-3: Sector Mandates
 - Healthcare AI systems require TML logging
-- Financial services implement SPRL documentation
 - Government AI procurement requires accountability frameworks
 - International coordination through council mechanisms
 
