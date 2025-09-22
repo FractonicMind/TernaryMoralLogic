@@ -46,7 +46,7 @@ Adversaries may attempt to:
   - Runs inside TEE/HSM with attestation.  
 
 - **Sacred Zero Trigger**  
-  - Detects moral complexity, triggers pause and review.  
+  - Detects moral complexity, triggers and review.  
   - Shadow models cross-check to detect gaming.  
   - Includes planetary impact assessment.  
 
