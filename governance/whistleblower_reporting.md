@@ -21,12 +21,6 @@
 - [ ] Disabled logging systems
 - [ ] Gaps in log sequences
 
-**SPRL Manipulation**:
-- [ ] Risk calculations always below thresholds
-- [ ] Hardcoded "safe" values
-- [ ] Stakeholder detection disabled
-- [ ] Threshold gaming evidence
-
 **Cover-ups**:
 - [ ] Emails about avoiding logs
 - [ ] Instructions to hide violations
@@ -91,7 +85,6 @@ Direct participants: ___________________
 
 **Technical Evidence**:
 - [ ] Missing log files
-- [ ] SPRL calculation code
 - [ ] Database queries
 - [ ] System configurations
 - [ ] Threshold settings
@@ -246,7 +239,6 @@ Mark: "CONFIDENTIAL - COUNCIL ONLY"
 - "Delete those logs"
 - "The AI decided, not us"
 - "No logs, no liability"
-- "Gaming the SPRL is easy"
 - "Disable logging for performance"
 
 ---
