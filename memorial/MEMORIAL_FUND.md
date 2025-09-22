@@ -1,17 +1,17 @@
 # The Lev Goukassian Memorial Fund for Ethical AI Research
 
-**Preserving the Sacred Pause Legacy Through Research and Education**  
+**Preserving the Sacred Zero Legacy Through Research and Education**  
 **Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)  
-**Version**: 2.0.0 - Enforcement Framework Integration  
-**Contact**: Via TML Governance Council
+**Version**: 5.0.0 - Always Memory Framework Integration  
+**Contact**: Via TML Guardian Network
 
 ---
 
 ## Memorial Vision
 
-The Lev Goukassian Memorial Fund ensures the Ternary Moral Logic framework and Sacred Pause principle continue advancing ethical AI development worldwide, transforming how humanity approaches moral complexity in artificial intelligence systems.
+The Lev Goukassian Memorial Fund ensures the Ternary Moral Logic framework and Sacred Zero principle continue advancing ethical AI development worldwide, transforming how humanity approaches moral complexity in artificial intelligence systems.
 
-**Core Purpose**: Fund research, education, and implementation of TML principles while preserving Lev Goukassian's vision of AI systems as moral partners with humanity.
+**Core Purpose**: Fund research, education, and implementation of TML principles while preserving Lev Goukassian's vision of AI systems as moral partners with humanity and Earth.
 
 ---
 
@@ -19,29 +19,31 @@ The Lev Goukassian Memorial Fund ensures the Ternary Moral Logic framework and S
 
 ### Alignment with Legal Structure
 
-The Memorial Fund operates within the TML enforcement framework established in `/MANDATORY.md`:
+The Memorial Fund operates within the TML enforcement framework established in `/docs/Enforcement.md`:
 
 **Legal Foundation**:
 - Criminal penalties for TML misuse fund legal defense
-- Whistleblower rewards (15-30% of collected penalties) support fund
-- Insurance requirements create sustainable revenue stream
+- Whistleblower rewards (15% of collected penalties) support fund
+- Victim compensation (30-40% of penalties) flows through fund
+- Environmental violation penalties create sustainable revenue
 - Executive liability creates incentive for proper fund support
 
 **Governance Connection**:
-- 11-institution TML Governance Council oversees fund operations
-- Council investigation powers protect fund from misuse
-- Quarterly executive attestations include fund support verification
+- Guardian Network oversees fund operations
+- Guardian investigation powers protect fund from misuse
+- Quarterly attestations include fund support verification
 - Independent audits ensure fund transparency
 
 ### Revenue from Enforcement Mechanisms
 
 **Primary Revenue Sources**:
-- **Collected Penalties**: 10% of global revenue fines from TML violations
-- **Insurance Premiums**: Percentage of required AI insurance coverage
-- **Compliance Consulting**: Organizations pay for TML implementation guidance
-- **Audit Services**: Revenue from mandatory independent audits
+- **Collected Penalties**: 30-40% of penalties from TML violations
+- **Environmental Penalties**: Violations of planetary Sacred Zero
+- **Commercial Licensing**: Organizations implementing TML
+- **Insurance Requirements**: Percentage of required AI insurance coverage
+- **Compliance Services**: TML implementation guidance and audits
 
-**Estimated Annual Revenue**: $10-50 million (based on enforcement adoption)
+**Estimated Annual Revenue**: $50-200 million (based on global adoption)
 
 ---
 
@@ -49,68 +51,79 @@ The Memorial Fund operates within the TML enforcement framework established in `
 
 ### Governance Authority
 
-**TML Governance Council** (from `/governance/council_charter.md`):
-- Stanford, MIT, Harvard, Oxford, Cambridge (Academic)
-- Brookings, RAND, Alan Turing Institute (Research)  
-- UN, WHO, European Commission (International)
+**TML Guardian Network** (from `/governance/PROTECTION_PRINCIPLES.md`):
+- Academic research institutions (4 seats)
+- Technical standards bodies (3 seats)
+- Civil society organizations (2 seats)
+- International governance bodies (2 seats)
 
-**Memorial Fund Oversight**:
-- Council designates 5-member Memorial Fund Committee
-- Rotating 2-year committee leadership
-- Quarterly fund review and allocation decisions
+**Memorial Fund Committee**:
+- Guardian Network designates 5-member committee
+- Rotating 2-year leadership terms
+- Quarterly fund allocation decisions
 - Annual public transparency reporting
 
 ### Fund Categories and Allocation
 
 **Annual Distribution Framework**:
 
-#### 1. AI Negligence Victim Support (30% of fund)
-**AI Harm Recovery and Justice Program**:
+#### 1. Victim & Environmental Support (40% of fund)
+
+**Human Harm Recovery Program**:
 - Direct financial assistance for AI negligence victims
-- Legal support for cases involving missing TML safeguards
+- Legal support for cases involving missing Always Memory logs
 - Medical and psychological care for AI-caused harm
 - Advocacy for victims in TML compliance litigation
 
-**Victim Support Services**:
-- Emergency financial assistance — up to $50,000 (nominal 2025 value) in immediate support
-- Legal representation for AI harm cases
-- Expert testimony on TML safety standards
-- Rehabilitation and recovery support services
+**Environmental & Community Harm Support**:
+- Communities affected by AI-driven resource depletion
+- Indigenous peoples whose territories were impacted without FPIC
+- Ecosystem restoration funding for AI-caused environmental damage
+- Future generations represented through environmental advocacy groups
 
-**Eligibility**: Individuals harmed by AI systems that lacked proper Sacred Pause logging, SPRL calculation, or prohibition enforcement
+**Emergency Support Services**:
+- 48-hour emergency response for critical cases
+- Up to $100,000 in immediate assistance
+- Legal representation for negligence claims
+- Rehabilitation and recovery support
+
+**Eligibility**: Individuals, communities, or ecosystems harmed by AI systems that lacked proper Sacred Zero triggers, Always Memory logs, or Earth protection safeguards
 
 #### 2. TML Research Grants (25% of fund)
-**Sacred Pause AI Research Initiative**:
-- Major grants for advancing TML theory and applications
-- Priority: Empirical validation of Sacred Pause effectiveness
-- Focus: AI safety, ethics, and human-AI collaboration
-- Requirements: All research must acknowledge TML enforcement framework
+
+**Sacred Zero AI Research Initiative**:
+- Advancing Always Memory implementation
+- Sacred Zero trigger optimization
+- Earth protection algorithm development
+- Human-AI-Earth collaboration frameworks
 
 **Research Grant Tiers**:
-- **Standard Research Grants**: Equivalent to typical academic research funding
-- **Major Initiative Grants**: Multi-year projects for significant TML advancement
-- **Graduate Student Support**: Dissertation research on Sacred Pause applications
-- **International Collaboration**: Cross-border research partnerships
+- **Major Initiative Grants**: $1-5M for transformative projects
+- **Standard Research Grants**: $100-500K for focused studies
+- **Graduate Support**: $50-100K for dissertation research
+- **Community Research**: $25-100K for Indigenous knowledge integration
 
-#### 3. Educational Programs (20% of fund)
+#### 3. Educational Programs (15% of fund)
+
 **AI Ethics Education Initiative**:
-- University curriculum development featuring TML
-- Professional certification programs for TML implementation
-- Public education about AI accountability and Sacred Pause
-- Training materials for TML compliance officers
+- University curriculum featuring TML and Earth protection
+- Professional certification for Always Memory implementation
+- Public education about Sacred Zero and planetary accountability
+- Training materials for Guardian Network participants
 
 **Educational Partnerships**:
-- Course development with council academic institutions
-- Professional training for TML implementation
-- Public awareness campaigns about AI ethics
-- Student research projects on Sacred Pause applications
+- Course development with Guardian institutions
+- Professional training for TML compliance officers
+- Public awareness campaigns about AI and Earth protection
+- Student projects on Sacred Zero applications
 
-#### 3. Legal Protection and Enforcement (20% of fund)
+#### 4. Legal Protection and Enforcement (10% of fund)
+
 **Framework Protection Initiative**:
 - Legal defense of TML intellectual property
 - Prosecution of framework misuse and violations
 - Creator attribution enforcement actions
-- International trademark and copyright protection
+- International protection of Always Memory standards
 
 **Enforcement Support**:
 - Whistleblower protection and reward administration
@@ -118,17 +131,19 @@ The Memorial Fund operates within the TML enforcement framework established in `
 - Compliance audit funding and oversight
 - Criminal referral investigation support
 
-#### 4. Implementation Support (10% of fund)
-**TML Deployment Assistance**:
-- Technical support for organizations implementing TML
-- Open-source tool development for TML compliance
-- Integration consulting for existing AI systems
-- Performance optimization for TML implementations
+#### 5. Implementation Support (7% of fund)
 
-#### 5. Memorial and Legacy Activities (5% of fund)
+**TML Deployment Assistance**:
+- Technical support for Always Memory integration
+- Open-source tool development for Sacred Zero detection
+- Earth protection module implementation
+- Performance optimization for Guardian networks
+
+#### 6. Memorial and Legacy Activities (3% of fund)
+
 **Creator Recognition Program**:
 - Annual Lev Goukassian Memorial Lecture series
-- Digital archive maintenance and enhancement
+- Digital archive maintenance of framework evolution
 - Memorial website and educational portal
 - Community recognition and awards programs
 
@@ -136,130 +151,66 @@ The Memorial Fund operates within the TML enforcement framework established in `
 
 ## Application and Award Process
 
-### AI Negligence Victim Support Applications
+### Victim Support Applications
 
 **Emergency Support** (within 48 hours):
-- Immediate financial assistance for urgent medical care
-- Temporary housing and essential needs support
-- Emergency legal consultation and advocacy
-- Crisis counseling and psychological support
+- Immediate assistance for urgent needs
+- Temporary housing and essential support
+- Emergency legal consultation
+- Crisis counseling and advocacy
+
+**Environmental Harm Support** (within 7 days):
+- Community impact assessment
+- Ecosystem restoration planning
+- FPIC violation documentation
+- Long-term recovery support
 
 **Required Documentation**:
-- Evidence of AI system involvement in harm
-- Medical records documenting injury or damage
-- Timeline of events leading to harm
-- Any available AI system logs or documentation
-- TML compliance assessment (provided by fund experts)
+- Evidence of AI system involvement
+- Missing Always Memory logs or Sacred Zero failures
+- Medical/environmental damage records
+- Timeline of events
+- TML compliance assessment
 
 **Review Process**:
-- Memorial Fund Committee evaluates applications quarterly
-- Expert peer review for technical merit and TML alignment
-- Council vote required for grants exceeding standard thresholds
-- Public transparency reporting of all approved research
-
-**Award Criteria**:
-- Advancement of TML theory or practical applications
-- Potential for reducing AI negligence and harm
-- Quality of research methodology and approach
-- Alignment with Sacred Pause principles and creator vision
-
-### Fellowship and Educational Support
-
-**Annual Fellowship Program**:
-- Young researchers conducting TML-related work
-- Support equivalent to competitive academic fellowships
-- Based at council academic institutions
-- Focus on AI safety and victim protection research
-
-**Educational Initiative Grants**:
-- Curriculum development for AI ethics courses
-- Training materials for TML implementation
-- Public education about AI accountability
-- Professional certification program development
-
----
-
-## Fund Administration and Transparency
-
-### Contact and Operations
-
-**Primary Contact**: TML Governance Council Secretariat
-**Administrative Oversight**: Rotating council institution
-**Emergency Victim Support**: 24-hour response protocol
-**Public Reporting**: Quarterly transparency reports
-
-### Financial Management
-
-**Fiduciary Responsibility**: Council-appointed financial committee
-**Investment Strategy**: Conservative portfolio management
-**Audit Requirements**: Annual independent audits
-**Public Accountability**: Complete financial transparency
-
----
-
-## Memorial Legacy Statement
-
-*"The Lev Goukassian Memorial Fund transforms AI accountability into victim support and safety research. Every person helped, every harm prevented, honors the Sacred Pause principle - creating space for wisdom in technology that serves humanity."*
-
-**The fund succeeds when**: AI negligence victims receive support, safety research prevents future harm, and the Sacred Pause guides ethical AI development worldwide.
-
----
-
-**In memory of Lev Goukassian - who turned his final months into humanity's protection against AI negligence**
-
-**Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)  
-**Fund Governance**: TML Council (see `/governance/council_charter.md`)  
-**Framework**: https://github.com/fractonicmind/TernaryMoralLogic Process**:
-- Initial emergency response team assessment
-- Council-appointed expert review of AI system involved
-- Determination of whether proper TML safeguards were absent
-- Approval of support package within 7 days
-- Ongoing case management and advocacy
-
-**Types of Support Available**:
-- Medical expense coverage (equivalent to regional median annual income)
-- Legal representation for negligence claims
-- Income replacement during recovery (based on local standards)
-- Rehabilitation and therapy services
-- Advocacy for systemic AI safety improvements
+- Emergency response team assessment
+- Guardian-appointed expert review
+- Determination of TML safeguard failures
+- Approval within 7 days for standard cases
+- Ongoing case management
 
 ### Research Grant Applications
 
 **Quarterly Cycles**: March, June, September, December
 
 **Required Materials**:
-- Research proposal (maximum 15 pages)
+- Research proposal (15 pages maximum)
 - Detailed budget with justification
-- Principal investigator CV and publication list
-- Two letters of recommendation from TML experts
+- Principal investigator credentials
+- Two letters from TML/Earth protection experts
 - Institutional commitment letter
-- TML compliance certification from applicant institution
+- Always Memory compliance certification
 
-**Review Process**:
-- Memorial Fund Committee evaluates applications quarterly
-- Expert peer review for technical merit and TML alignment
-- Council vote required for grants exceeding standard thresholds
-- Public transparency reporting of all approved research
-
-**Award Criteria**:
-- Advancement of TML theory or practical applications
-- Potential for reducing AI negligence and harm
-- Quality of research methodology and approach
-- Alignment with Sacred Pause principles and creator vision
+**Review Criteria**:
+- Advancement of TML theory or applications
+- Earth protection innovation
+- Potential for reducing AI/environmental harm
+- Alignment with Sacred Zero principles
+- Creator vision preservation
 
 ### Fellowship and Educational Support
 
 **Annual Fellowship Program**:
-- Young researchers conducting TML-related work
-- Support equivalent to competitive academic fellowships
-- Based at council academic institutions
-- Focus on AI safety and victim protection research
+- Young researchers in TML/Earth protection
+- Support equivalent to competitive fellowships
+- Based at Guardian institutions
+- Focus on Sacred Zero and planetary accountability
 
-**Educational Initiative Grants**:
-- Curriculum development for AI ethics courses
-- Training materials for TML implementation
-- Public education about AI accountability
-- Professional certification program development
+**Community Knowledge Grants**:
+- Indigenous knowledge documentation
+- Traditional ecological wisdom integration
+- Community-based monitoring systems
+- Local governance protocol development
 
 ---
 
@@ -267,30 +218,45 @@ The Memorial Fund operates within the TML enforcement framework established in `
 
 ### Contact and Operations
 
-**Primary Contact**: TML Governance Council Secretariat
-**Administrative Oversight**: Rotating council institution
-**Emergency Victim Support**: 24-hour response protocol
-**Public Reporting**: Quarterly transparency reports
+**Primary Contact**: TML Guardian Network Secretariat  
+**Administrative Oversight**: Rotating Guardian institution  
+**Emergency Victim Support**: 24-hour response protocol  
+**Environmental Harm**: 7-day response commitment  
+**Public Reporting**: Quarterly transparency reports  
 
 ### Financial Management
 
-**Fiduciary Responsibility**: Council-appointed financial committee
-**Investment Strategy**: Conservative portfolio management
-**Audit Requirements**: Annual independent audits
-**Public Accountability**: Complete financial transparency
+**Fiduciary Responsibility**: Guardian-appointed financial committee  
+**Investment Strategy**: ESG-focused conservative portfolio  
+**Audit Requirements**: Annual independent audits  
+**Public Accountability**: Complete financial transparency  
+**Earth Protection**: No investments in extractive industries  
 
 ---
 
 ## Memorial Legacy Statement
 
-*"The Lev Goukassian Memorial Fund transforms AI accountability into victim support and safety research. Every person helped, every harm prevented, honors the Sacred Pause principle - creating space for wisdom in technology that serves humanity."*
+*"The Lev Goukassian Memorial Fund transforms AI accountability into support for humanity and Earth. Every victim helped, every ecosystem restored, every Sacred Zero honored creates the moral pause that guides technology toward wisdom. This is the Pay Forward to Earth principle in action."*
 
-**The fund succeeds when**: AI negligence victims receive support, safety research prevents future harm, and the Sacred Pause guides ethical AI development worldwide.
+**The fund succeeds when**: 
+- AI negligence victims receive immediate support
+- Environmental damage is restored and prevented
+- Sacred Zero protects both humanity and Earth
+- Always Memory creates permanent accountability
+- Future generations inherit a protected planet
 
 ---
 
-**In memory of Lev Goukassian - who turned his final months into humanity's protection against AI negligence**
+## Creator's Final Vision
+
+*"In my remaining time, I chose to build protection for those who cannot protect themselves - victims of AI harm, communities facing algorithmic injustice, and Earth itself. This fund ensures that every Sacred Zero, every Always Memory log, every Guardian attestation serves not just accountability but active protection and restoration. The planet gets a memory that power cannot erase, and victims get support that bureaucracy cannot delay."*
+
+---
+
+**In memory of Lev Goukassian - who transformed his final months into eternal protection for humanity and Earth**
 
 **Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)  
-**Fund Governance**: TML Council (see `/governance/council_charter.md`)  
-**Framework**: https://github.com/fractonicmind/TernaryMoralLogic
+**Fund Governance**: TML Guardian Network  
+**Framework**: https://github.com/fractonicmind/TernaryMoralLogic  
+**Earth Protection**: Integrated with Always Memory v5.0
+
