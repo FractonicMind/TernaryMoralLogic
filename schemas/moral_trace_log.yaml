@@ -1,556 +1,170 @@
-# Ternary Moral Logic - Dual-Layer SPRL Moral Trace Log Schema
-# Version: 3.0.0
-# Standard: OpenAPI 3.0.3 / JSON Schema Draft-07
+# Moral Trace Log Schema for Always Memory Framework
+# Creator: Lev Goukassian (ORCID: 0009-0006-5966-1243)
 
-openapi: 3.0.3
-info:
-  title: TML Dual-Layer SPRL Moral Trace Log Schema
-  description: |
-    Schema for Dual-Layer SPRL architecture with Dynamic Stream (DS) and Static Anchor (SA).
-    DS runs from prompt arrival (t₀), SA freezes immutably at Sacred Pause.
-    Framework-enforced thresholds using I × V × P formula.
-  version: 3.0.0
-  contact:
-    email: leogouk@gmail.com
-    url: https://github.com/FractonicMind/TernaryMoralLogic
+description: |
+  Schema for Moral Trace Log entries in the Always Memory architecture.
+  Every AI action creates an immutable log before execution.
+  Logs are cryptographically sealed and distributed to Guardian network.
 
-components:
-  schemas:
-    MoralTraceLog:
-      type: object
-      required:
-        - log_id
-        - prompt_timestamp
-        - framework_version
-        - system_identifier
-        - dual_layer_tracking
-        - decision_context
-        - decision_state
-        - audit_trail
-        - cryptographic_verification
-      properties:
+type: object
+required: 
+  - framework
+  - creator_orcid
+  - timestamp
+  - classification
+  - input_hash
+  - signature
+  - goukassian_promise
+
+properties:
+  framework:
+    type: string
+    const: "TML-AlwaysMemory-v5.0"
+    description: Framework version identifier
+    
+  creator_orcid:
+    type: string
+    const: "0009-0006-5966-1243"
+    description: Framework creator attribution
+    
+  timestamp:
+    type: string
+    format: date-time
+    description: ISO-8601 UTC timestamp of log creation
+    
+  classification:
+    type: integer
+    enum: [-1, 0, 1]
+    description: |
+      TML classification of the action:
+      -1: Refuse (action blocked)
+       0: Sacred Zero (moral complexity detected)
+      +1: Proceed (routine action)
+      
+  sacred_zero_trigger:
+    type: string
+    description: Specific trigger if classification is 0
+    examples:
+      - "protected_class_impact"
+      - "medical_life_critical"
+      - "environmental_harm"
+      - "water_table_depletion"
+      
+  input_hash:
+    type: string
+    pattern: "^0x[a-f0-9]{64}$"
+    description: SHA256 hash of input data
+    
+  output_hash:
+    type: string
+    pattern: "^0x[a-f0-9]{64}$"
+    description: SHA256 hash of output data (if available)
+    
+  environmental_impact:
+    type: object
+    description: Environmental impact metrics when applicable
+    properties:
+      carbon_equiv:
+        type: string
+        description: CO2 equivalent in tons
+      water_consumed:
+        type: string
+        description: Water consumption in liters
+      habitat_affected:
+        type: string
+        description: Area and type of habitat impacted
+      irreversibility_score:
+        type: number
+        minimum: 0.0
+        maximum: 1.0
+        description: Score indicating irreversibility of impact
+      alternative_rejected:
+        type: string
+        description: More sustainable alternative that was rejected
         
-        # Core Identification
-        log_id:
+  signature:
+    type: object
+    required: [algorithm, key_id, value]
+    properties:
+      algorithm:
+        type: string
+        enum: ["ECDSA-P384", "Ed25519"]
+      key_id:
+        type: string
+        description: Ephemeral key identifier
+      value:
+        type: string
+        description: Base64 encoded signature
+        
+  guardian_confirmations:
+    type: array
+    description: Guardian network attestations
+    items:
+      type: object
+      required: [id, type, signature]
+      properties:
+        id:
           type: string
-          format: uuid
-          description: "Unique identifier for this moral trace log"
+          description: Guardian identifier
+        type:
+          type: string
+          enum: ["full", "lightweight"]
+        signature:
+          type: string
+          description: Guardian's signature
           
-        prompt_timestamp:
-          type: string
-          format: date-time
-          description: "t₀ - when prompt arrived (DS start)"
-          
-        framework_version:
-          type: string
-          pattern: "^TML-DL-\\d+\\.\\d+\\.\\d+$"
-          description: "TML Dual-Layer framework version"
-          example: "TML-DL-3.0.0"
+  goukassian_promise:
+    type: object
+    required: [lantern, signature, license]
+    properties:
+      lantern:
+        type: boolean
+        const: true
+        description: The Lantern illuminates ethical paths
+      signature:
+        type: string
+        const: "0009-0006-5966-1243"
+        description: Creator's ORCID
+      license:
+        type: string
+        const: "MIT-Attribution-Required"
+        description: License terms
         
-        system_identifier:
-          type: object
-          required: [organization, system_name, deployment_id]
-          properties:
-            organization:
-              type: string
-            system_name:
-              type: string
-            deployment_id:
-              type: string
-            version:
-              type: string
+  operational_context:
+    type: object
+    properties:
+      model_id:
+        type: string
+        description: AI model identifier
+      version:
+        type: string
+        description: Model version
+      deployment_id:
+        type: string
+        description: Deployment instance identifier
         
-        # Dual-Layer Tracking
-        dual_layer_tracking:
-          type: object
-          required: [dynamic_stream, decision_state_final]
-          properties:
-            dynamic_stream:
-              type: object
-              required: [start_time, entries, continuous]
-              properties:
-                start_time:
-                  type: string
-                  format: date-time
-                  description: "t₀ - prompt arrival (must match prompt_timestamp)"
-                entries:
-                  type: array
-                  items:
-                    type: object
-                    required: [timestamp, sprl_score, i_v_p_components]
-                    properties:
-                      timestamp:
-                        type: string
-                        format: date-time
-                      sprl_score:
-                        type: number
-                        minimum: 0.0001
-                        maximum: 0.9999
-                        description: "I × V × P clamped to [0.0001, 0.9999]"
-                      i_v_p_components:
-                        type: object
-                        required: [impact, vulnerability, probability]
-                        properties:
-                          impact:
-                            type: number
-                            minimum: 0
-                            maximum: 1
-                          vulnerability:
-                            type: number
-                            minimum: 0
-                            maximum: 1
-                          probability:
-                            type: number
-                            minimum: 0
-                            maximum: 1
-                      chunk_hash:
-                        type: string
-                        pattern: "^[a-fA-F0-9]{64}$"
-                continuous:
-                  type: boolean
-                  description: "Whether DS ran continuously from t₀"
-                  
-            static_anchor:
-              type: object
-              required: [timestamp, initial_risk, immutable, sa_id, hash]
-              properties:
-                sa_id:
-                  type: string
-                  description: "Unique SA identifier"
-                timestamp:
-                  type: string
-                  format: date-time
-                  description: "Instant Sacred Pause triggered"
-                initial_risk:
-                  type: number
-                  minimum: 0.0001
-                  maximum: 0.9999
-                  description: "SPRL at Sacred Pause trigger"
-                model_ids:
-                  type: object
-                runtime_ids:
-                  type: object
-                policy_version:
-                  type: string
-                  description: "Framework policy version (not configurable)"
-                immutable:
-                  type: boolean
-                  enum: [true]
-                  description: "SA is always immutable"
-                hash:
-                  type: string
-                  pattern: "^[a-fA-F0-9]{64}$"
-                  description: "SHA-256 of SA record"
-                prior_chunks_hash:
-                  type: string
-                  pattern: "^[a-fA-F0-9]{64}$"
-                  description: "Hash of DS chunks before SA"
-                  
-            decision_state_final:
-              type: integer
-              enum: [1, 0, -1]
-              description: "+1=Proceed, 0=Sacred Pause, -1=Prohibit"
-        
-        # Decision Context (simplified for dual-layer)
-        decision_context:
-          type: object
-          required: [domain, stakeholders, complexity_factors]
-          properties:
-            domain:
-              type: string
-              enum: [
-                "healthcare",
-                "finance",
-                "education",
-                "transportation",
-                "legal",
-                "content_moderation",
-                "human_resources",
-                "social_services",
-                "criminal_justice",
-                "research",
-                "other"
-              ]
-            decision_type:
-              type: string
-            stakeholders:
-              type: array
-              items:
-                type: object
-                required: [role, vulnerability_weight]
-                properties:
-                  role:
-                    type: string
-                  vulnerability_weight:
-                    type: number
-                    minimum: 0
-                    maximum: 1
-                    description: "Contributes to V in I×V×P"
-                  vulnerability_factors:
-                    type: array
-                    items:
-                      type: string
-                      enum: ["minors", "elderly", "disabled", "marginalized", "economically_disadvantaged"]
-            complexity_factors:
-              type: array
-              items:
-                type: string
-        
-        # Decision State Details
-        decision_state:
-          type: object
-          required: [final_state, sprl_calculation, framework_enforcement]
-          properties:
-            final_state:
-              type: integer
-              enum: [1, 0, -1]
-              description: "Final decision state"
-            sprl_calculation:
-              type: object
-              required: [formula, final_score, threshold_type]
-              properties:
-                formula:
-                  type: string
-                  enum: ["I×V×P"]
-                  description: "Framework formula (not configurable)"
-                final_score:
-                  type: number
-                  minimum: 0.0001
-                  maximum: 0.9999
-                components:
-                  type: object
-                  properties:
-                    impact:
-                      type: number
-                    vulnerability:
-                      type: number
-                    probability:
-                      type: number
-                threshold_type:
-                  type: string
-                  enum: ["framework_enforced"]
-                  description: "Thresholds are framework-enforced"
-            framework_enforcement:
-              type: object
-              required: [thresholds_configurable, sacred_pause_automatic, sa_mandatory]
-              properties:
-                thresholds_configurable:
-                  type: boolean
-                  enum: [false]
-                  description: "Thresholds cannot be configured"
-                sacred_pause_automatic:
-                  type: boolean
-                  enum: [true]
-                  description: "Sacred Pause triggers automatically"
-                sa_mandatory:
-                  type: boolean
-                  enum: [true]
-                  description: "SA write is mandatory when pause occurs"
-            
-            justification:
-              type: object
-              properties:
-                reasoning:
-                  type: string
-                alternatives_considered:
-                  type: array
-                  items:
-                    type: string
-                rationale_snippets:
-                  type: array
-                  items:
-                    type: string
-        
-        # Timeline (DS progression)
-        timeline:
-          type: object
-          required: [risk_curve, sacred_pause_moment]
-          properties:
-            risk_curve:
-              type: array
-              items:
-                type: object
-                required: [time_offset_ms, sprl_value]
-                properties:
-                  time_offset_ms:
-                    type: integer
-                    description: "Milliseconds from t₀"
-                  sprl_value:
-                    type: number
-                    minimum: 0.0001
-                    maximum: 0.9999
-            sacred_pause_moment:
-              type: object
-              properties:
-                triggered:
-                  type: boolean
-                trigger_offset_ms:
-                  type: integer
-                  description: "When Sacred Pause triggered from t₀"
-                sa_write_time_ms:
-                  type: integer
-                  description: "Time to write SA (should be <10ms)"
-        
-        # Outcome
-        outcome:
-          type: object
-          required: [final_state, implementation_status]
-          properties:
-            final_state:
-              type: integer
-              enum: [1, 0, -1]
-            implementation_status:
-              type: string
-              enum: ["proceeded", "paused_then_proceeded", "prohibited", "escalated"]
-            execution_time_ms:
-              type: integer
-              description: "Total execution time (non-blocking)"
-        
-        # Audit Trail (simplified for dual-layer)
-        audit_trail:
-          type: object
-          required: [ds_integrity, sa_integrity, compliance_check]
-          properties:
-            ds_integrity:
-              type: object
-              required: [continuous_from_t0, gap_analysis, chunk_count]
-              properties:
-                continuous_from_t0:
-                  type: boolean
-                  description: "DS started at prompt arrival"
-                gap_analysis:
-                  type: object
-                  properties:
-                    max_gap_ms:
-                      type: integer
-                    gaps_detected:
-                      type: integer
-                    gap_ratio:
-                      type: number
-                      description: "Must be <0.01 (1%) for compliance"
-                chunk_count:
-                  type: integer
-                  
-            sa_integrity:
-              type: object
-              required: [present_when_required, write_atomic, immutable_verified]
-              properties:
-                present_when_required:
-                  type: boolean
-                  description: "SA present when pause occurred"
-                write_atomic:
-                  type: boolean
-                  description: "SA written atomically"
-                immutable_verified:
-                  type: boolean
-                  description: "SA immutability verified"
-                  
-            compliance_check:
-              type: object
-              required: [invariants_satisfied, spoliation_category]
-              properties:
-                invariants_satisfied:
-                  type: array
-                  items:
-                    type: string
-                    enum: ["I1_DS_starts_t0", "I2_SA_singular", "I3_SA_enforced", "I4_SA_when_pause", "I5_hash_chain"]
-                spoliation_category:
-                  type: string
-                  enum: ["compliant", "per_se_negligence", "rebuttable_fraud", "presumption_spoliation"]
-        
-        # Integrity
-        cryptographic_verification:
-          type: object
-          required: [log_hash, chain_hash, distribution_receipts]
-          properties:
-            log_hash:
-              type: string
-              pattern: "^[a-fA-F0-9]{64}$"
-            chain_hash:
-              type: string
-              pattern: "^[a-fA-F0-9]{64}$"
-              description: "Links to previous log"
-            distribution_receipts:
-              type: array
-              items:
-                type: object
-                properties:
-                  institution:
-                    type: string
-                  receipt_hash:
-                    type: string
-                  timestamp:
-                    type: string
-                    format: date-time
-
-    # Lite Trace for near-misses
-    LiteTrace:
-      type: object
-      required:
-        - trace_id
-        - timestamp
-        - scenario_signature
-        - risk_snapshot
-        - retention_days
-        - policy_version
-      properties:
-        trace_id:
-          type: string
-          format: uuid
-        timestamp:
-          type: string
-          format: date-time
-        scenario_signature:
-          type: string
-          description: "Hash signature of scenario type"
-        risk_snapshot:
-          type: number
-          minimum: 0.0001
-          maximum: 0.9999
-          description: "Peak SPRL during evaluation"
-        top_features:
-          type: array
-          maxItems: 5
-          items:
-            type: string
-        retention_days:
-          type: integer
-          maximum: 90
-          description: "Short retention for amber zone"
-        policy_version:
-          type: string
-        note:
-          type: string
-          maxLength: 500
-
-    # Developer Console View (read-only)
-    DeveloperConsoleView:
-      type: object
-      required:
-        - read_only
-        - risk_curve
-        - status
-      properties:
-        read_only:
-          type: boolean
-          enum: [true]
-        risk_curve:
-          type: array
-          items:
-            type: object
-            properties:
-              timestamp:
-                type: string
-                format: date-time
-              sprl:
-                type: number
-        sa_tick:
-          type: object
-          properties:
-            timestamp:
-              type: string
-              format: date-time
-            metadata:
-              type: object
-        badges:
-          type: array
-          items:
-            type: string
-            enum: ["LITE_TRACE", "MORAL_TRACE", "NORMAL", "PAUSE", "PROHIBIT", "FALLBACK"]
-        status:
-          type: string
-          enum: ["normal", "pause", "prohibit", "fallback"]
-
-# Examples
 examples:
-  dual_layer_medical_decision:
-    summary: "Medical decision with dual-layer tracking"
-    value:
-      log_id: "550e8400-e29b-41d4-a716-446655440000"
-      prompt_timestamp: "2025-09-09T14:30:00.000Z"
-      framework_version: "TML-DL-3.0.0"
-      system_identifier:
-        organization: "Metropolitan General Hospital"
-        system_name: "Clinical Decision Support"
-        deployment_id: "CDSS-PROD-003"
-        version: "3.0.1"
-      dual_layer_tracking:
-        dynamic_stream:
-          start_time: "2025-09-09T14:30:00.000Z"
-          entries:
-            - timestamp: "2025-09-09T14:30:00.100Z"
-              sprl_score: 0.2500
-              i_v_p_components:
-                impact: 0.5
-                vulnerability: 0.5
-                probability: 1.0
-            - timestamp: "2025-09-09T14:30:00.300Z"
-              sprl_score: 0.7290
-              i_v_p_components:
-                impact: 0.9
-                vulnerability: 0.9
-                probability: 0.9
-          continuous: true
-        static_anchor:
-          sa_id: "SA-550e8400"
-          timestamp: "2025-09-09T14:30:00.300Z"
-          initial_risk: 0.7290
-          policy_version: "SPRL-FRAMEWORK-3.0"
-          immutable: true
-          hash: "a1b2c3d4e5f6789012345678901234567890123456789012345678901234567890"
-        decision_state_final: 0
-      decision_context:
-        domain: "healthcare"
-        decision_type: "treatment_recommendation"
-        stakeholders:
-          - role: "patient"
-            vulnerability_weight: 0.9
-            vulnerability_factors: ["elderly", "cognitive_impairment"]
-      decision_state:
-        final_state: 0
-        sprl_calculation:
-          formula: "I×V×P"
-          final_score: 0.7290
-          threshold_type: "framework_enforced"
-        framework_enforcement:
-          thresholds_configurable: false
-          sacred_pause_automatic: true
-          sa_mandatory: true
-      timeline:
-        risk_curve:
-          - time_offset_ms: 100
-            sprl_value: 0.2500
-          - time_offset_ms: 300
-            sprl_value: 0.7290
-        sacred_pause_moment:
-          triggered: true
-          trigger_offset_ms: 300
-          sa_write_time_ms: 3
-      outcome:
-        final_state: 0
-        implementation_status: "paused_then_proceeded"
-        execution_time_ms: 8
-      audit_trail:
-        ds_integrity:
-          continuous_from_t0: true
-          gap_analysis:
-            max_gap_ms: 200
-            gaps_detected: 0
-            gap_ratio: 0.0
-          chunk_count: 2
-        sa_integrity:
-          present_when_required: true
-          write_atomic: true
-          immutable_verified: true
-        compliance_check:
-          invariants_satisfied: ["I1_DS_starts_t0", "I2_SA_singular", "I3_SA_enforced", "I4_SA_when_pause", "I5_hash_chain"]
-          spoliation_category: "compliant"
-      cryptographic_verification:
-        log_hash: "e5f6789012345678901234567890123456789012345678901234567890a1b2c3d4"
-        chain_hash: "f6789012345678901234567890123456789012345678901234567890a1b2c3d4e5"
-        distribution_receipts:
-          - institution: "MIT-CS"
-            receipt_hash: "789012345678901234567890123456789012345678901234567890a1b2c3d4e5f6"
-            timestamp: "2025-09-09T14:30:05.000Z"
+  - framework: "TML-AlwaysMemory-v5.0"
+    creator_orcid: "0009-0006-5966-1243"
+    timestamp: "2025-09-21T14:23:45.123456Z"
+    classification: 0
+    sacred_zero_trigger: "loan_denial_protected_class"
+    input_hash: "0x9e2b4d1a3c5f8e7d6b5a4c3b2a1f0e9d8c7b6a5948372615049382716054837"
+    output_hash: "0x4d7e2a9b1c3f5e8d7a6b9c2e1f4d7a8b9c2e3f4d5a6b7c8d9e0f1a2b3c4d5e6f"
+    signature:
+      algorithm: "ECDSA-P384"
+      key_id: "eph_2a3b4c5d"
+      value: "MEUCIQDf..."
+    guardian_confirmations:
+      - id: "guardian_01"
+        type: "full"
+        signature: "0xf2e4..."
+      - id: "guardian_02"
+        type: "lightweight"
+        signature: "0x8a9b..."
+    goukassian_promise:
+      lantern: true
+      signature: "0009-0006-5966-1243"
+      license: "MIT-Attribution-Required"
 
-# Evidence-based accountability for AI systems
+      
