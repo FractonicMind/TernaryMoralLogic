@@ -6,7 +6,6 @@ Interactive web interface for the Ternary Moral Logic (TML) framework - a post-a
 ## Features
 
 ### Core Functionality
-- **SPRL Threshold Configuration**: Organizations set their own Sacred Pause Risk Level triggers
 - **Decision Logging**: Automatic trace generation when thresholds are exceeded
 - **Investigation Portal**: Access to immutable audit logs for post-event analysis
 - **Real-time Monitoring**: Live view of decision patterns and risk assessments
@@ -40,7 +39,6 @@ python -m http.server 8000
 
 ### index.html
 Main application interface providing:
-- SPRL threshold configuration panel
 - Real-time decision stream monitoring
 - Audit log viewer with filtering capabilities
 - Investigation access controls
@@ -49,42 +47,6 @@ Main application interface providing:
 - `styles.css`: Visual design and responsive layout
 - `app.js`: Core application logic and event handling
 - `tml-core.js`: Framework implementation (loaded from CDN)
-
-## Integration
-
-### For Organizations
-```javascript
-// Configure your SPRL thresholds
-const config = {
-  organization: "YourOrgName",
-  sprl_threshold: 0.7,  // Your risk tolerance
-  log_endpoint: "https://your-logs.api/tml",
-  investigation_access: ["security@org.com", "compliance@org.com"]
-};
-
-// Initialize TML monitoring
-TML.initialize(config);
-```
-
-### For Developers
-```javascript
-// Import TML framework
-import { TML } from './tml-core.js';
-
-// Log decisions with moral traces
-TML.logDecision({
-  action: "data_processing",
-  risk_level: 0.8,
-  context: contextData,
-  timestamp: Date.now()
-});
-
-// Access investigation logs
-const logs = await TML.getInvestigationLogs({
-  timeRange: "24h",
-  minRiskLevel: 0.7
-});
-```
 
 ## Security
 
