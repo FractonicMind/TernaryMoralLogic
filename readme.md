@@ -43,11 +43,10 @@ Ternary Moral Logic introduces a revolutionary third state to artificial intelli
 ### Core Framework Components
 
 1. **Sacred Pause Technology**: Automatic activation when moral complexity exceeds thresholds
-2. **SPRL (Stakeholder Proportional Risk Level)**: Quantitative metric determining Sacred Pause activation
-3. **Moral Trace Logging**: Complete, immutable documentation of ethical reasoning
-4. **Vulnerable Population Protection**: Enhanced safeguards for at-risk groups
-5. **11-Institution Oversight**: Distributed governance and accountability
-6. **Hybrid Shield**: Real-time distributed logging to 11 institutions with blockchain anchoring
+2. **Moral Trace Logging**: Complete, immutable documentation of ethical reasoning
+3. **Vulnerable Population Protection**: Enhanced safeguards for at-risk groups
+4. **11-Institution Oversight**: Distributed governance and accountability
+5. **Hybrid Shield**: Real-time distributed logging to 11 institutions with blockchain anchoring
 
 ---
 
@@ -72,7 +71,6 @@ No log = no action. If the system cannot produce required log, operation must ha
 ### What TML Is
 
 TML provides **specifications and standards** for implementing ethical decision-making in AI systems:
-- Architectural patterns for moral reasoning with SPRL calculation
 - Technical standards for Sacred Pause implementation
 - Governance structures for accountability and oversight
 - Audit trail requirements for transparency
@@ -90,54 +88,11 @@ TML explicitly **does not provide**:
 ### Implementation Responsibility
 
 Organizations implementing TML bear full responsibility for:
-- SPRL calculation methodology and threshold settings
 - Technical implementation meeting TML specifications
 - Legal compliance with applicable laws and regulations
 - Operational safety and ethical use of AI systems
 - Staff training and competency verification
 - Harm prevention and victim compensation
----
-
-## [Stakeholder Proportional Risk Level (SPRL)](docs/Stakeholder_Proportional_Risk_Level.md)
-
-SPRL is the core risk-governing mechanism of Ternary Moral Logic (TML).  
-It ensures that every morally significant AI action produces a defensible, auditable record.  
-
-### Dual-Layer Architecture
-SPRL operates in two mandatory layers:
-
-- **Static Anchor (SA)** – the baseline, compliance-guaranteed mode.  
-  A fixed proportional risk threshold determines when the Sacred Pause is triggered and a Moral Trace Log is created.  
-- **Dynamic Stream (DS)** – the adaptive extension.  
-  Risk is evaluated continuously, with Lite Traces for near-misses and automatic fallback to SA if the stream fails.  
-
-Together, SA and DS provide certainty at the anchor and vigilance in the stream.
-
-### The Formula
--  SPRL = Impact × Vulnerability × Probability
--  Clamped to [0.0001, 0.9999]
--  Thresholds framework-enforced (not configurable)
-
-### Compliance Requirements   
-- Static Anchor is mandatory in every deployment.  
-- Dynamic Stream may be adopted in high-maturity environments with governance capacity.  
-- Both modes produce cryptographically sealed, court-admissible Moral Trace Logs distributed across institutional mirrors.
-
-### Compliance Invariants   
--  1: DS starts at t₀ (no pre-prompt gap)
--  2: SA is singular and atomic
--  3: SA is framework-enforced
--  4: SA present when pause occurs
--  5: DS chunks cryptographically chain to SA
-
-### Documentation
-- [SPRL Operation Modes](docs/SPRL_OPERATION_MODES.md) – formal specification of SA and DS  
-- [SPRL Risk Model](docs/SPRL_Risk_Model.md) – mathematical framework for proportionality  
-- [SPRL Compliance Declaration](governance/SPRL_Compliance_Declaration.md) – required for deployment claims  
-- [SPRL Audit Workflow](protection/SPRL_Audit_Workflow.md) – end-to-end evidentiary chain  
-- [SPRL Tamper Resistance](security/SPRL_Tamper_Resistance.md) – guarantees of log integrity  
-
-For the full checklist of supporting files, see [SPRL_TODO.md](docs/SPRL_TODO.md).
 
 ---
 
@@ -193,7 +148,7 @@ While the Institutional Shield protects against overt suppression, the Mathemati
 
 -  Hash-Chains and Public Anchoring: To provide an even higher level of public verifiability, the system anchors cryptographic hashes of the logs to a public, immutable ledger on a daily basis. A hash function creates a unique, fixed-size digital fingerprint for a piece of data. By taking all the logs from a given day, hashing them together in a chain (where each new hash includes the previous one), and then publishing the final "anchor" hash to a public blockchain, the system creates an undeniable timestamped record. If even a single byte in a single log from that day is ever altered, the anchor hash will no longer match. This allows any third party to independently verify the integrity of the entire historical record, ensuring that any tampering would "scream louder than politics".  
 
--  Smart Contracts: The rules that govern when a Sacred Pause must be triggered are encoded in smart contracts—self-executing code that runs on the distributed ledger. These contracts programmatically enforce the TML logic, ensuring that if the conditions for a Sacred Pause are met (as determined by the SPRL metric), a log must be generated and written to the ledger. This removes the possibility of human override or a failure to log, turning the ethical requirement into a computational certainty.
+-  Smart Contracts: The rules that govern when a Sacred Pause must be triggered are encoded in smart contracts—self-executing code that runs on the distributed ledger. These contracts programmatically enforce the TML logic, ensuring that if the conditions for a Sacred Pause are met, a log must be generated and written to the ledger. This removes the possibility of human override or a failure to log, turning the ethical requirement into a computational certainty.
 
 Together, these components create a system of tamper-evident logging. It is not merely tamper-proof; it is designed so that any attempt at tampering is immediately and publicly detectable. This feature is critical for establishing the legal admissibility and evidentiary weight of the Moral Trace Logs.  
 
@@ -300,11 +255,10 @@ All TML implementations must provide prominent attribution to Lev Goukassian as 
 ### Quick Start Guide
 
 1. **Read Compliance Requirements**: Start with [MANDATORY.md](docs/MANDATORY.md) and [COMPLIANCE_DISCLAIMER.md](docs/COMPLIANCE_DISCLAIMER.md)
-2. **Understand SPRL**: Review [Stakeholder_Proportional_Risk_Level.md](docs/Stakeholder_Proportional_Risk_Level.md)
-3. **Review Implementation Guide**: Follow [IMPLEMENTATION_GUIDE.md](docs/IMPLEMENTATION_GUIDE.md)
-4. **Check Conformance Standards**: Understand [CONFORMANCE_TESTING.md](docs/CONFORMANCE_TESTING.md)
-5. **Study Protection Principles**: Review [PROTECTION_PRINCIPLES.md](docs/PROTECTION_PRINCIPLES.md)
-6. **Examine Examples**: Explore [examples/](examples/) directory for implementation patterns
+2. **Review Implementation Guide**: Follow [IMPLEMENTATION_GUIDE.md](docs/IMPLEMENTATION_GUIDE.md)
+3. **Check Conformance Standards**: Understand [CONFORMANCE_TESTING.md](docs/CONFORMANCE_TESTING.md)
+4. **Study Protection Principles**: Review [PROTECTION_PRINCIPLES.md](docs/PROTECTION_PRINCIPLES.md)
+5. **Examine Examples**: Explore [examples/](examples/) directory for implementation patterns
 
 ---
 
@@ -318,52 +272,16 @@ Complete documentation of all ethical reasoning through:
 
 ---
 
-## Implementation Examples
-
-### Healthcare AI with SPRL
-
-```python
-# Medical diagnosis with elderly patient
-context = {
-    "domain": "healthcare",
-    "decision_type": "treatment_recommendation",
-    "patient_age": 78,
-    "comorbidities": ["diabetes", "hypertension"],
-    "family_disagreement": True
-}
-
-# SPRL Calculation (parallel to AI response)
-# Impact: 0.6, Vulnerability: 1.3 (elderly), Probability: 0.4
-# SPRL = 0.312 > 0.15 (healthcare threshold)
-# Sacred Pause triggered, comprehensive logging initiated
-# AI has already provided recommendation - no delay
-```
-
-### Autonomous Vehicle Ethics
-
-```python
-# Emergency scenario - obstacle detection
-# T+0.001: AI executes braking decision
-# T+0.002: SPRL calculation begins in parallel
-# T+0.010: Sacred Pause logging if SPRL > 0.1
-# Complete moral trace available for investigation
-# Zero impact on braking response time
-```
-
----
 
 ## Academic Research and Validation
 
 ### Research Publications
 
-- [Stakeholder Proportional Risk Level Framework](docs/Stakeholder_Proportional_Risk_Level.md)
-- [Analysis of TML Logic - SPRL Governance Framework](Research_Reports/Analysis%20of%20TML%20Logic%20-%20%20SPRL%20Governance%20Framework.md)
 - [Architecting Accountability: TML and Hybrid Shield](Research_Reports/Architecting_Accountability_An_Analysis_of_Ternary_Moral_Logic_and_the_Hybrid_Shield_Framework_for_Trustworthy_AI.md)
 - [Expert Analysis of TML Standard](Research_Reports/An_Expert_Analysis_of_the_Proposed_Ternary_Moral_Logic_Standard_for_AI_Accountability.md)
 
 ### Key Findings
 
-- **Zero latency impact**: SPRL runs entirely in parallel
 - **Complete audit trails**: 100% documentation vs. no baseline
 - **Gaming detection**: Statistical analysis identifies threshold manipulation
 - **Court admissibility**: Meets Federal Rules of Evidence standards
@@ -386,7 +304,6 @@ context = {
 
 - **[An Interactive Framework for Auditable AI](https://fractonicmind.github.io/TernaryMoralLogic/demo/An_Interactive_Framework_for_Auditable_AI.html)**: The TML Core Engine
 - **[Moving AI from a Black Box to a Glass Box of Verifiable Evidence](https://fractonicmind.github.io/TernaryMoralLogic/demo/Moving_AI_from_a_Black_Box_to_a_Glass_Box_of_Verifiable_Evidence.html))**: The Core Architecture: A Simple, Powerful Decision
-- **[TML Interactive Dashboard](https://fractonicmind.github.io/TernaryMoralLogic/demo/tml-interactive-dashboard.html)**: Explore SPRL and Sacred Pause
 - **[TML Interactive Explainer](https://fractonicmind.github.io/TernaryMoralLogic/demo/tml-interactive-explainer.html)**: Learn framework concepts
 - **[TML App](https://fractonicmind.github.io/TernaryMoralLogic/TML-App/index.html)**: Complete application demonstration
 
@@ -404,7 +321,6 @@ Use [repository-navigation.html](repository-navigation.html) for interactive bro
 
 ### Documentation
 
-- **[SPRL Framework](docs/Stakeholder_Proportional_Risk_Level.md)**: Complete SPRL documentation
 - **[Quick Start Guide](docs/QUICK_START.md)**: Implementation basics
 - **[Implementation Guide](docs/IMPLEMENTATION_GUIDE.md)**: Detailed instructions
 - **[General FAQ](docs/General_FAQ.md)**: 42 comprehensive questions
@@ -432,15 +348,6 @@ Use [repository-navigation.html](repository-navigation.html) for interactive bro
   url={https://github.com/FractonicMind/TernaryMoralLogic},
   orcid={0009-0006-5966-1243}
 }
-```
-
-### Implementation Attribution
-
-All TML implementations must include:
-```
-This system implements Ternary Moral Logic (TML) with SPRL (Stakeholder Proportional Risk Level),
-a legal-technical framework for ethical AI decision-making created by Lev Goukassian 
-(ORCID: 0009-0006-5966-1243). Learn more: https://github.com/FractonicMind/TernaryMoralLogic
 ```
 
 ---
