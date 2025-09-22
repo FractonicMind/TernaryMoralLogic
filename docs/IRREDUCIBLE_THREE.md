@@ -46,7 +46,6 @@ It is operational evidence with binding legal force.
 
 ## Governance and Oversight
 
-- **Thresholds (SPRL):** Organizations configure risk thresholds, but manipulation is detectable through statistical audits, peer comparison, and regulatory oversight.  
 - **Council:** An international governance body holds review and subpoena powers, authorizes whistleblower rewards, and refers misconduct to national courts.  
 - **Whistleblowers:** Protected and compensated. False reports are penalized. Retaliation is treated as obstruction of justice.  
 
