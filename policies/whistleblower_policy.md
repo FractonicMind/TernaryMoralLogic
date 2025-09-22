@@ -21,7 +21,6 @@ This policy establishes comprehensive protection for individuals reporting viola
 The following activities constitute protected disclosures under this policy:
 
 #### TML Framework Violations
-- **Threshold Gaming**: Manipulation of SPRL thresholds to avoid Sacred Pause triggers
 - **Log Tampering**: Alteration, deletion, or falsification of moral trace logs
 - **Prohibition Override**: Attempts to bypass automatic blocking of prohibited decisions
 - **Evidence Destruction**: Deletion or corruption of required audit trails
