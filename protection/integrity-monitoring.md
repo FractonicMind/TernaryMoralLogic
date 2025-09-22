@@ -262,8 +262,4 @@ Before deployment:
 **Legacy preservation:** Active and verifiable  
 
 *"Truth that can be verified is a public good. TML makes it non-optional."*
-```
 
-
-
-Ready for the next file?
