@@ -1,1 +1,0 @@
-echo "Script is running!"
