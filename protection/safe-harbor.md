@@ -17,7 +17,7 @@ It balances **strict accountability** with **due process fairness**.
 ## 2. Eligibility for Safe Harbor
 An operator qualifies for Safe Harbor only if:  
 - **Certification**: System is certified TML-compliant by the Oversight Council.  
-- **Controls active**: Integrity Monitor, SPRL trigger, cryptographic signing, and timestamping were active at time of incident.  
+- **Controls active**: Integrity Monitor, cryptographic signing, and timestamping were active at time of incident.  
 - **Control records present**: Outages, backpressure, or TSA failures are documented in signed control records.  
 - **Incident reporting**: Operator submitted an incident report within 72 hours.  
 - **Independent audit**: Third-party audit verifies logs, attestation data, and control records.
@@ -40,7 +40,6 @@ If eligibility conditions are met:
 Safe Harbor does **not** apply if:  
 - The certified Integrity Monitor was not running.  
 - Control records are missing or falsified.  
-- SPRL thresholds were misconfigured to avoid Sacred Pause triggers.  
 - Attribution to Lev Goukassian was stripped or modified.  
 - Incidents were concealed or audits obstructed.
 
