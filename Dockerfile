@@ -1,6 +1,6 @@
 # Ternary Moral Logic (TML) Framework - Docker Container
 # Author: Lev Goukassian (ORCID: 0009-0006-5966-1243)
-# Sacred Pause Technology for Ethical AI Decision-Making
+# Sacred Zero Technology for Ethical AI Decision-Making
 #
 # This Dockerfile provides a complete, reproducible environment for
 # academic reviewers and researchers to test the TML framework
@@ -15,7 +15,7 @@ FROM python:3.11-slim
 # Set maintainer information
 LABEL maintainer="Lev Goukassian <leogouk@gmail.com>"
 LABEL version="1.0.0"
-LABEL description="Ternary Moral Logic Framework with Sacred Pause Technology"
+LABEL description="Ternary Moral Logic Framework with Sacred Zero Technology"
 LABEL org.opencontainers.image.source="https://github.com/FractonicMind/TernaryMoralLogic"
 LABEL org.opencontainers.image.documentation="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/README.md"
 LABEL org.opencontainers.image.url="https://tml-goukassian.org"
@@ -85,7 +85,7 @@ ENV TML_ENV=docker \
 # Creator information for framework
 RUN echo "# Ternary Moral Logic Framework" > /home/tml/.tml_info && \
     echo "# Created by Lev Goukassian (ORCID: 0009-0006-5966-1243)" >> /home/tml/.tml_info && \
-    echo "# Sacred Pause Technology for Ethical AI Decision-Making" >> /home/tml/.tml_info && \
+    echo "# Sacred Zero Technology for Ethical AI Decision-Making" >> /home/tml/.tml_info && \
     echo "# Contact: leogouk@gmail.com" >> /home/tml/.tml_info && \
     echo "# Successor Contact: support@tml-goukassian.org" >> /home/tml/.tml_info && \
     echo "# Website: https://tml-goukassian.org" >> /home/tml/.tml_info && \
