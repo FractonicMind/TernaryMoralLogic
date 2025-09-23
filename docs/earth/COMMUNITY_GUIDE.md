@@ -1,320 +1,296 @@
-# Earth Protection Community Guide
+# Community Participation Guide: Indigenous & Local Ecological Witnesses
 
-**Version**: 5.0.0  
-**Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)  
-**Purpose**: Empowering communities as Earth's data stewards
+## Purpose
 
----
+This guide enables Indigenous peoples, local communities, and ecological stewards to participate as sovereign data contributors to TML's Earth Protection system. Your knowledge triggers Sacred Zero when ecosystems face harm.
 
-## Introduction
+## Core Principles
 
-This guide helps Indigenous peoples, local communities, and environmental stewards integrate with TML's Earth Protection system. Your knowledge of local ecosystems is invaluable. This framework ensures your voice is heard and your sovereignty respected.
+### Indigenous Data Sovereignty (IDS)
 
-**Core Principle**: Earth cannot testify in court. Always Memory becomes its witness statement, and you are its voice.
+Your data remains **yours**:
+- You control collection, storage, and access
+- You define governance protocols
+- You retain ownership permanently
+- TML only receives what you choose to share
 
----
+### CARE Principles
 
-## 1. Community Registration
+- **Collective benefit**: Data serves your community first
+- **Authority to control**: You decide how data is used
+- **Responsibility**: Users must respect your protocols
+- **Ethics**: Relationships built on trust, not extraction
 
-### What You Need
-- Community name and governance structure
-- Territory boundaries (can be approximate)
-- Contact person(s) or council
-- Preferred communication method (online/offline)
+## Registration Process
 
-### Registration Process
+### Online Registration
 
-**Online Registration**:
 ```json
 {
-  "community_name": "Your Community Name",
-  "governance_protocol": "consensus_council",
-  "territory": "geographic_description_or_coordinates",
-  "contact": "community_email_or_representative",
-  "monitoring_focus": ["water", "forest", "wildlife"]
+  "community_id": "auto-generated",
+  "name": "Your community name",
+  "territory": "GeoJSON boundaries or description",
+  "governance": {
+    "type": "consensus_council|elder_council|assembly|custom",
+    "description": "How decisions are made",
+    "representatives": ["Names or roles, not required"],
+    "contact_protocol": "How to reach legitimate representatives"
+  },
+  "ecological_focus": ["watersheds", "forests", "species", "seasonal_patterns"],
+  "connectivity": "online|hybrid|offline"
 }
 ```
 
-**Offline Registration**:
-- SMS to designated numbers
-- Physical forms via NGO partners
-- USB key submission through regional hubs
-- Satellite phone registration
+### Offline Registration
 
-### Governance Models Recognized
-- **Consensus Council**: Decisions by community agreement
-- **Elder Council**: Traditional leadership structures
-- **Village Assembly**: Democratic community meetings
-- **FPIC Process**: Free Prior Informed Consent protocols
-- **Custom Protocol**: Your traditional governance method
+For communities without reliable internet:
 
----
+#### Method 1: SMS Registration
 
-## 2. Indigenous Data Sovereignty
+Send to designated regional numbers:
 
-### Your Rights
-- **Data Ownership**: You own all data about your territory
-- **Access Control**: You decide who sees your data
-- **Withdrawal Right**: Remove your data anytime
-- **Benefit Sharing**: Compensation for data use
+```
+REG COMMUNITY [name]
+TERRITORY [description]
+GOVERN [council type]
+FOCUS [watersheds/forests/etc]
+```
 
-### Data Protection
-- All data cryptographically signed with your community key
-- Cannot be altered without your consent
-- Stored according to your preferences
-- Deletable upon request (crypto-shredding)
+Receive confirmation code within 48 hours.
 
----
+#### Method 2: Partner NGO
 
-## 3. Reporting Ecological Harm
+Work with verified organizations:
+1. Fill paper forms (available in local languages)
+2. NGO verifies and submits
+3. Receive USB key with credentials
+4. Updates via monthly courier
+
+#### Method 3: Satellite Terminal
+
+Periodic access points:
+- Mobile units visit quarterly
+- Government/NGO offices
+- Regional universities
+
+## Submitting Ecological Data
 
 ### What Triggers Sacred Zero
-- Water source contamination
-- Deforestation or illegal logging
-- Wildlife poaching or trafficking
-- Sacred site desecration
-- Mining without consent
-- Agricultural chemical runoff
-- Any activity violating your stewardship
 
-### How to Report
+Your observations can pause AI decisions when detecting:
 
-**Simple Format** (SMS/Offline):
+- Water source contamination or depletion
+- Deforestation or habitat destruction
+- Species population changes
+- Seasonal pattern disruptions
+- Sacred site disturbances
+- Traditional resource degradation
+
+### Data Format
+
+#### Simple Format (SMS/Voice)
+
 ```
-HARM: [Type of harm]
-LOCATION: [Where]
-DATE: [When observed]
-IMPACT: [Who/what affected]
+ALERT WATER
+LOCATION [village/coordinates]
+ISSUE [contamination/depletion/diversion]
+SEVERITY [low/medium/critical]
 ```
 
-**Detailed Format** (Online):
+#### Detailed Format
+
 ```json
 {
-  "harm_type": "deforestation",
-  "location": "North sector, near river",
-  "date": "2025-09-15",
-  "area_affected": "5 hectares",
-  "species_impacted": ["howler monkey", "jaguar"],
-  "evidence": ["photo_links", "coordinates"],
-  "immediate_threat": true
+  "observation": {
+    "type": "water_depletion",
+    "location": "River Name at Village",
+    "gps": [optional],
+    "date": "2025-09-23",
+    "severity": "critical",
+    "evidence": {
+      "description": "River 80% below normal",
+      "traditional_indicator": "Fish migration failed",
+      "photo_hash": "optional",
+      "witnesses": 3
+    }
+  },
+  "governance_approval": {
+    "method": "council_consensus",
+    "date": "2025-09-22",
+    "verification": "threshold_signature"
+  }
 }
 ```
 
----
+### Offline Data Submission
 
-## 4. Stewardship Rewards
+#### USB Courier Protocol
 
-### How You Earn
-- **Verified Reports**: 100 tokens per confirmed harm report
-- **Regular Monitoring**: 50 tokens per monthly update
-- **Emergency Alerts**: 200 tokens for critical time-sensitive reports
-- **Knowledge Sharing**: 75 tokens for ecological education contributions
+1. Record observations on provided encrypted USB
+2. Multiple witnesses sign with PGP keys
+3. Courier collects monthly
+4. Receive confirmation via next courier
+5. Payments/tokens delivered same route
 
-### Token Value
-- Tokens convert to micro-grants for:
-  - Community infrastructure
-  - Monitoring equipment
-  - Education programs
-  - Healthcare support
-  - Direct payments (where preferred)
+#### SMS Bridge
+
+```
+DATA [type] [severity]
+LOC [description]
+DATE [when observed]
+WIT [number of witnesses]
+```
+
+System responds with:
+- Confirmation code
+- Next steps
+- Token credit notification
+
+## Verification Without Internet
+
+### Community Attestation
+
+Instead of digital signatures, use:
+
+1. **Witness Quorum**: Minimum 3 community members
+2. **Traditional Verification**: Elder or council approval
+3. **Physical Tokens**: Tamper-evident seals on USB devices
+4. **Voice Recording**: Oral testimony with multiple speakers
+
+### Trust Building
+
+Your reputation grows through:
+- Consistent accurate reporting
+- Following your stated governance protocol
+- Collaborative verification with neighbors
+- Long-term ecosystem monitoring
+
+## Economic Participation
+
+### Stewardship Tokens
+
+Non-tradeable reputation points:
+- Earned through verified observations
+- Increase influence in Sacred Zero decisions
+- Cannot be sold or transferred
+- Persist across generations
+
+### Micro-Grants
+
+Direct payments for:
+- Critical ecological alerts: $50-500
+- Regular monitoring: $20-100/month
+- Infrastructure support: $200-1000/year
+- Emergency response: $500-5000
 
 ### Payment Methods
-- Mobile money
-- Bank transfer
-- Cryptocurrency (optional)
-- NGO-facilitated distribution
-- Physical pickup points
+
+- **Mobile money** (M-Pesa, etc.)
+- **Bank transfer** (where available)
+- **NGO distribution** (cash/goods)
+- **Community fund** (collective account)
+
+## Governance Participation
+
+### Recognition, Not Accreditation
+
+TML recognizes your existing governance:
+- No external certification required
+- You define legitimate processes
+- Changes updated through same channels
+- Disputes resolved by your protocols
+
+### Council Participation
+
+Communities can nominate members for:
+- Regional Sacred Zero councils
+- Ecosystem-specific working groups
+- Annual Guardian Network assembly
+- Emergency response committees
+
+## Security & Privacy
+
+### Data Protection
+
+- Your location data can be generalized
+- Personal names are optional
+- Sensitive sites can be masked
+- Traditional knowledge marked confidential
+
+### Anti-Retaliation
+
+If reporting threatens your safety:
+- Anonymous submission available
+- Regional aggregation hides sources
+- Legal protection fund access
+- Emergency relocation support
+
+## Technical Support
+
+### Training Available
+
+Free workshops covering:
+- Basic data collection
+- GPS and mapping tools
+- Photo verification
+- Secure communication
+- Token management
+
+### Languages
+
+Materials available in:
+- Major regional languages
+- Indigenous languages (on request)
+- Audio/visual formats
+- Pictographic guides
+
+### Help Channels
+
+- SMS: Text HELP to regional number
+- WhatsApp: Encrypted support groups
+- Voice: Call centers with local languages
+- In-person: Partner NGO offices
+
+## Getting Started Checklist
+
+- [ ] Identify community governance structure
+- [ ] Choose online/hybrid/offline pathway
+- [ ] Register through preferred method
+- [ ] Receive confirmation and credentials
+- [ ] Submit first observation
+- [ ] Receive tokens and confirmation
+- [ ] Join regional network
+
+## FAQ
+
+**Q: Do we need smartphones?**
+No. SMS, voice calls, and paper forms all work.
+
+**Q: Who sees our data?**
+Only what you explicitly share. Location can be generalized, names optional.
+
+**Q: Can our governance change?**
+Yes. Update through the same channel you registered.
+
+**Q: What if we disagree internally?**
+Follow your traditional resolution process. TML doesn't intervene.
+
+**Q: Are tokens real money?**
+No, they're reputation points. Micro-grants are real money.
+
+**Q: Can corporations buy our data?**
+Never. Data sovereignty is permanent and non-transferable.
+
+## Contact
+
+- **Global SMS**: +1-555-TML-EARTH
+- **Regional coordinators**: See appendix
+- **Email**: community@tml-goukassian.org
+- **Emergency**: 24/7 hotline for urgent ecological threats
 
 ---
 
-## 5. Offline-First Design
-
-### Working Without Internet
-
-**Data Collection**:
-- Paper forms with unique IDs
-- SMS reporting via basic phones
-- Voice recording devices
-- Camera phones (no internet needed)
-
-**Data Submission**:
-- Weekly NGO visits
-- USB transfer at regional centers
-- Satellite uplink points
-- Partner organization sync
-
-**Confirmation Receipt**:
-- SMS confirmation codes
-- Physical receipt books
-- Community bulletin boards
-- Radio announcements
-
----
-
-## 6. Free Prior Informed Consent (FPIC)
-
-### Your FPIC Rights
-Before ANY project affecting your territory:
-1. **Free**: No coercion or pressure
-2. **Prior**: Consultation before decisions
-3. **Informed**: Full information in your language
-4. **Consent**: Your agreement required
-
-### FPIC in Always Memory
-- All decisions affecting your territory logged
-- Your consent (or refusal) permanently recorded
-- Cannot be overridden or deleted
-- Available as legal evidence forever
-
----
-
-## 7. Working with NGO Partners
-
-### Trusted Partners Help With:
-- Registration assistance
-- Technical support
-- Data submission
-- Grant applications
-- Legal support
-- Equipment provision
-
-### Partner Responsibilities:
-- Respect your data sovereignty
-- Facilitate, not control
-- Provide training
-- Ensure benefit flow
-- Maintain confidentiality
-
----
-
-## 8. Emergency Procedures
-
-### Immediate Threats
-For urgent ecological harm:
-
-1. **Safety First**: Ensure community safety
-2. **Document**: Photos, videos, witness statements
-3. **Report**: Use emergency channels
-   - SMS: "EMERGENCY" to designated number
-   - Satellite phone hotline
-   - NGO emergency contact
-4. **Receive**: Immediate 48-hour response guarantee
-
-### Response Timeline
-- Emergency: 48 hours
-- Critical: 7 days
-- Standard: 14 days
-- Monitoring: Monthly
-
----
-
-## 9. Training and Support
-
-### Available Training
-- Basic monitoring techniques
-- Photo/video documentation
-- GPS and mapping
-- Report writing
-- Data security
-- Rights awareness
-
-### Training Delivery
-- In-person workshops
-- Pictorial guides
-- Audio instructions in local languages
-- Peer-to-peer learning
-- Youth programs
-
----
-
-## 10. Legal Protection
-
-### Your Protections
-- **Whistleblower Status**: Full legal protection
-- **Anonymity Option**: Report without revealing identity
-- **Retaliation Defense**: Legal support if threatened
-- **Witness Protection**: Physical protection if needed
-
-### Using Your Data in Court
-Your Always Memory logs can:
-- Prove environmental harm
-- Establish timeline of events
-- Show consent was not given
-- Demonstrate sacred site violation
-- Support compensation claims
-
----
-
-## 11. Multi-Language Support
-
-### Currently Supported Languages
-- English, Spanish, Portuguese
-- Mandarin, Hindi, Bahasa
-- Swahili, Yoruba, Amharic
-- French, Arabic, Russian
-
-### Adding Your Language
-Contact us to add your language:
-- Translation support provided
-- Audio guides created
-- Local terminology respected
-
----
-
-## 12. Success Stories
-
-### Case: Amazon Monitoring Network
-- 15 communities registered
-- 47 deforestation events logged
-- 3 successful prosecutions
-- $2M in restoration funding secured
-
-### Case: Coral Triangle Protection
-- 8 island communities participating
-- Illegal fishing reduced 60%
-- Marine sanctuary established
-- Sustainable tourism increased
-
----
-
-## Contact Information
-
-### Primary Support
-**Email**: earth@tml-framework.org  
-**WhatsApp**: +1-XXX-XXX-XXXX  
-**SMS (Free)**: XXX-XXX  
-
-### Regional Coordinators
-- **Americas**: americas@tml-framework.org
-- **Africa**: africa@tml-framework.org  
-- **Asia-Pacific**: asiapac@tml-framework.org
-- **Europe**: europe@tml-framework.org
-
-### Emergency Hotline
-**24/7 Satellite Phone**: +XXX-XXX-XXXX
-
----
-
-## Your Role Matters
-
-You are not just data providers. You are:
-- **Knowledge Holders**: Generations of ecological wisdom
-- **Earth's Voice**: Speaking for those who cannot
-- **Legal Witnesses**: Creating evidence for justice
-- **Change Agents**: Protecting our shared future
-
-Every report you submit, every Sacred Zero you trigger, every memory you create becomes part of humanity's permanent record of our relationship with Earth.
-
----
-
-## The Promise
-
-This framework promises:
-- Your sovereignty will be respected
-- Your knowledge will be valued
-- Your voice will be heard
-- Your rights will be protected
-- Your children will inherit a witnessed world
+**Remember**: Your knowledge has protected ecosystems for generations. TML simply makes that wisdom visible to machines, ensuring AI cannot ignore what you've always known.
 
 ---
 
@@ -322,10 +298,3 @@ This framework promises:
 **Email**: leogouk@gmail.com  
 **Repository**: https://github.com/FractonicMind/TernaryMoralLogic  
 **Support**: support@tml-goukassian.org
-
----
-
-*"The forest knows what the servers don't. The river remembers what the algorithms forget. Through Always Memory, Earth's witnesses become Earth's protectors."*
-```
-
-Both missing files are now created. The Guardian implementation provides the technical infrastructure for distributed attestation, while the Community Guide empowers local and Indigenous communities to participate in Earth protection with full sovereignty and support.
