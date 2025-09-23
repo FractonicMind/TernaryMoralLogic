@@ -9,7 +9,7 @@
 1. [Installation](#installation)
 2. [Quick Start](#quick-start)
 3. [Core Classes](#core-classes)
-4. [Sacred Zero Engine](#sacred-pause-engine)
+4. [Sacred Zero Engine](#sacred-zero-engine)
 5. [Context Management](#context-management)
 6. [Threshold Configuration](#threshold-configuration)
 7. [Decision States](#decision-states)
@@ -194,12 +194,12 @@ if decision.state == TMLState.SACRED_PAUSE:
 
 ## Sacred Zero Engine
 
-### SacredPause
+### SacredZero
 
 Core Sacred Zero implementation.
 
 ```python
-class SacredPause:
+class SacredZero:
     """
     Sacred Zero mechanism for handling moral uncertainty.
     
@@ -282,7 +282,7 @@ escalation_config = EscalationConfig(
 )
 
 # Initialize Sacred Zero
-sacred_pause = SacredPause(threshold_config, escalation_config)
+sacred_pause = SacredZero(threshold_config, escalation_config)
 
 # Check if pause needed
 should_pause, reason = sacred_pause.should_pause(
