@@ -121,7 +121,7 @@ The three components of The Goukassian Promise: The Lantern, The Signature, and 
 
 ---
 
-## **Planetary Protection Through Sacred Zero**
+## [**Planetary Protection Through Sacred Zero**](https://github.com/FractonicMind/TernaryMoralLogic/tree/main/earth/docs)
 TML extends Sacred Zero beyond human protection to encompass Earth itself. When AI systems make decisions affecting ecosystems, water resources, biodiversity, or climate, they must pause and create immutable memories of their environmental impact.
 
 ### **What Triggers Planetary Sacred Zero**
@@ -360,7 +360,6 @@ Complete documentation of all ethical reasoning through:
 
 ### Development Tools
 
-- **[Conformance Validator](compliance/simple_tml_validator.py)**: Automated testing
 - **[Framework Integrity Monitor](compliance/framework_integrity.py)**: Cryptographic verification
 - **[Missing Logs Detector](compliance/missing_logs.py)**: Audit trail validation
 
