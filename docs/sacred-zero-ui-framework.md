@@ -75,7 +75,7 @@ The interface should teach users about ethical reasoning while processing their 
 
 #### Technical Specifications
 ```css
-.sacred-pause-indicator {
+.sacred-zero-indicator {
   color: #F59E0B;
   animation: sacred-pulse 2s infinite ease-in-out;
   font-weight: 500;
@@ -225,7 +225,7 @@ def calculate_pause_duration(complexity_score, stakeholder_count, uncertainty_le
 
 ### 5.2 Reasoning Trace Generation
 ```python
-class SacredPauseReasoning:
+class SacredZeroReasoning:
     def __init__(self, scenario, analysis_result):
         self.scenario = scenario
         self.analysis = analysis_result
@@ -254,7 +254,7 @@ class SacredPauseReasoning:
 
 ### 5.3 Progressive Enhancement Framework
 ```javascript
-class SacredPauseUI {
+class SacredZeroUI {
     constructor(container, options = {}) {
         this.container = container;
         this.options = {
@@ -267,7 +267,7 @@ class SacredPauseUI {
         this.initializeComponents();
     }
     
-    async displaySacredPause(reasoningData) {
+    async displaySacredZero(reasoningData) {
         // Phase 1: Show pause indicator
         await this.showPauseIndicator(reasoningData.duration);
         
@@ -440,12 +440,12 @@ class UsabilityMetrics:
 **For TML Implementation**:
 ```python
 from tml_core import TMLEvaluator
-from sacred_pause_ui import SacredPauseInterface
+from sacred_pause_ui import SacredZeroInterface
 
 class TMLWithUI:
     def __init__(self):
         self.evaluator = TMLEvaluator()
-        self.ui = SacredPauseInterface()
+        self.ui = SacredZeroInterface()
     
     async def process_with_ui(self, scenario, user_interface):
         # Begin TML evaluation
@@ -478,7 +478,7 @@ class TMLWithUI:
 
 ### 10.3 API Integration
 ```typescript
-interface SacredPauseAPI {
+interface SacredZeroAPI {
     initializePause(scenario: string, complexity: number): Promise<PauseSession>;
     displayReasoning(session: PauseSession, reasoning: ReasoningData): void;
     handleUserInteraction(session: PauseSession, interaction: UserAction): void;
