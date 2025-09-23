@@ -1,134 +1,102 @@
-# Environmental FAQ: Ternary Moral Logic and Planetary Protection
+# Earth Protection FAQ  
+*Ternary Moral Logic — Always Memory Extension*  
+
+---
 
 ## Introduction  
 
-Ternary Moral Logic (TML) was conceived to protect humanity from harm through the principles of **Sacred Zero** and **Always Memory**. Today, its mission expands: to safeguard not only people, but also the ecosystems that sustain life.  
-
-This Environmental FAQ explains how TML enforces accountability for ecological harm, integrates global treaties and local truths, protects Indigenous communities, and ensures that every decision touching the planet leaves an auditable, court-admissible trace. The framework blends **technical precision** with **ethical responsibility**, uniting governance, law, and science into a single architecture.  
+This document explains how Ternary Moral Logic (TML), strengthened by the **Sacred Zero** and **Always Memory**, extends its accountability framework to ecological protection. The FAQ answers core questions about how ecosystems, communities, and future generations are safeguarded under TML.  
 
 ---
 
-## Section 1: Core Principles  
+## Q1. What is the purpose of Earth Protection in TML?  
 
-**Q1. What is Sacred Zero in Environmental Protection?**  
-Sacred Zero is TML’s hesitation state. When a decision may cause ecological harm, the system halts and generates an **Always Memory log**. This log documents the risk, the ecological rule triggered, and the reasoning behind the hesitation. The decision cannot proceed until human overseers and affected communities are engaged.  
-
-**Q2. What is Always Memory in this context?**  
-Always Memory ensures that no ecological risk is forgotten or erased. Every log contains:  
-- A hash of the exact ecological rule version (e.g., `ECO_HARM_RULES.yaml`),  
-- The data source (global treaty hash, national regulation, or community oracle),  
-- The decision state (+1 proceed, 0 Sacred Zero, –1 refuse).  
-
-This guarantees **legal admissibility** and prevents regulators or corporations from claiming ignorance.  
+The purpose is to expand TML’s accountability beyond human-centered harm to include ecological harm. This ensures that AI systems must hesitate (`0`), log (`Always Memory`), and escalate decisions when risks to ecosystems, species, or planetary boundaries are detected.  
 
 ---
 
-## Section 2: Data Foundations  
+## Q2. Who are considered stakeholders in TML’s environmental protection framework?  
 
-**Q3. Which global documents must AI companies train on?**  
-AI operators are mandated to integrate datasets from recognized authorities, including:  
-- International treaties (e.g., Paris Agreement, Convention on Biological Diversity),  
-- National regulations (e.g., U.S. EPA standards, EU directives),  
-- Scientific assessments (e.g., IPCC climate reports, UN biodiversity reports).  
+TML expands the definition of “stakeholder” beyond human-centric models. In the context of ecological protection, stakeholders include:  
 
-These datasets form **Tier 1: The Global Baseline**.  
+1. **Human Communities** — individuals, groups, or societies directly impacted by ecological decisions, including vulnerable and Indigenous peoples.  
+2. **Non-Human Entities** — species, habitats, and ecosystems recognized as having intrinsic value. These are represented through scientific proxies (e.g., IUCN Red List species, ecosystem integrity indices) or through registered community data (e.g., local ecological monitoring).  
+3. **Future Generations** — represented by designated guardians, ensuring that long-term ecological impacts are considered in present-day decision-making.  
 
-**Q4. How does TML ensure ecological rules stay current?**  
-- Each rule file (e.g., `ECO_HARM_RULES.yaml`, `LEGAL_MAPPING.md`) is **version-controlled**.  
-- The policy hash of the version used in a decision is embedded in `earth_extension.schema.json`.  
-- Updates to treaties and regulations are automatically ingested and validated via the **Oracle Bridge**, preventing outdated compliance claims.  
+By formally embedding all three categories into **Sacred Zero** triggers and **Always Memory** logs, TML ensures that risks to ecosystems or species—whether or not immediate human harm is visible—are treated as legitimate grounds for hesitation, documentation, and accountability.  
+
+**Legal Note:** This expansion is consistent with international legal precedents. The **Paris Agreement** and **Convention on Biological Diversity** recognize non-human and planetary interests. The constitutions of Ecuador and Bolivia, and numerous court rulings worldwide, recognize the “Rights of Nature.” TML operationalizes these principles in code.  
 
 ---
 
-## Section 3: Protecting Local and Indigenous Communities  
+## Q3. How does TML detect ecological harm?  
 
-**Q5. How are ethnic and Indigenous groups protected?**  
-TML includes **Tier 2: The Local Witness Layer**. This empowers communities to record and submit ecological observations under the principle of **Indigenous Data Sovereignty**.  
+TML uses a **two-tier ecological conscience**:  
 
-- **Community Registration:** Communities define governance protocols in `community_registration.schema.json` (e.g., council consensus, village assembly).  
-- **Peer Verification:** A `verification_quorum` ensures multiple community members must confirm critical alerts before they are published.  
-- **Ownership:** Data remains under community control, governed by CARE principles (Collective Benefit, Authority, Responsibility, Ethics).  
+* **Tier 1: Global Baseline** — mandatory datasets from official treaties, scientific bodies, and environmental regulators (e.g., IPCC, UN biodiversity reports, EPA, EU directives).  
+* **Tier 2: Local Witness Layer** — data collected and cryptographically attested by Indigenous and local communities, integrated via Decentralized Oracle Networks (DONs).  
 
-**Q6. How do communities submit data with limited internet access?**  
-- Offline-first workflows are mandatory in `/docs/earth/COMMUNITY_GUIDE.md`.  
-- Options include SMS-based alerts, portable sensors, and trusted NGO couriers with satellite uplinks.  
-- This design ensures even the most remote groups can participate.  
-
-**Q7. How are internal conflicts handled?**  
-- If contradictory but valid alerts emerge from a community, the system defaults to **Sacred Zero**.  
-- Escalation is triggered to the Ombudsperson.  
-- A red-team test case `/tests/earth/red_team/internal_conflict_case.md` ensures this safeguard is continuously stress-tested.  
+Together, these tiers ensure that both systemic and localized harms can trigger Sacred Zero events.  
 
 ---
 
-## Section 4: Technical Safeguards  
+## Q4. How are Indigenous and ethnic groups protected?  
 
-**Q8. How does the Oracle system work in environmental protection?**  
-Decentralized Oracle Networks (DONs) serve as bridges:  
-- Fetching and validating both global (treaty-based) and local (community) data,  
-- Anchoring data via **threshold cryptography** so no single node can falsify inputs,  
-- Providing **zero-knowledge proofs** to auditors verifying that private community data matches on-chain hashes without exposing sensitive content.  
+Ethnic and Indigenous groups are empowered as **data stewards** of their ecosystems:  
 
-**Q9. How does TML ensure data integrity?**  
-- Logs are signed within Trusted Execution Environments (TEEs) for origin security.  
-- Integrity is enforced by Byzantine Fault Tolerant (BFT) consensus across the Guardian network.  
-- Each log’s cryptographic hash is immutable and tamper-evident.  
+* They register Sovereign Ecological Records under their own governance models.  
+* Data is cryptographically signed and controlled under **Indigenous Data Sovereignty** principles.  
+* Communities receive Stewardship tokens and micro-grants from the **Stewardship Fund**, ensuring their monitoring efforts are rewarded.  
+* In cases of verified ecological harm, Sacred Zero requires AI operators to escalate decisions to human overseers and engage directly with affected communities.  
 
 ---
 
-## Section 5: Economics of Stewardship  
+## Q5. How does TML align with the right to be forgotten (GDPR)?  
 
-**Q10. How are communities incentivized?**  
-The **Stewardship Fund** finances micro-grants for communities and Oracle nodes. It is fed by:  
-- A share of all TML network transaction fees,  
-- Penalties for non-compliant operators.  
+TML uses **hybrid storage and cryptographic erasure**:  
 
-**Q11. How does the system prevent “noise” from minor reports?**  
-- `/policies/earth/ECO_HARM_RULES.yaml` defines **severity tiers** (Tier 1: irreversible damage; Tier 2: significant but reversible; Tier 3: minor breaches).  
-- `/policies/earth/STEWARDSHIP_FUND.md` ties rewards to severity. Critical alerts earn higher rewards, ensuring attention stays on existential threats.  
+* On-chain: only hashes of logs, immutable and permanent.  
+* Off-chain: full logs encrypted with per-user or per-community keys.  
+* When erasure is invoked, the relevant key is destroyed, rendering the data indecipherable while preserving the evidentiary trail.  
 
----
-
-## Section 6: Governance and Escalation  
-
-**Q12. How are communities represented in governance?**  
-- TML rejects accreditation by external bodies.  
-- `/governance/earth/COMMUNITY_SEAT_RULES.md` enforces **Recognition, Not Accreditation**: representatives are chosen through their own governance protocols, verified but not appointed by TML.  
-
-**Q13. What happens in systemic attacks or governance paralysis?**  
-- `/governance/earth/EMERGENCY_COUNCIL.md` defines the **Governance State of Emergency Protocol**.  
-- Triggered if Ombudsperson queues overflow or >10% of communities enter conflict simultaneously.  
-- A temporary council of high-reputation community representatives takes charge, filtering out malicious floods and prioritizing urgent ecological risks.  
+This reconciles Always Memory with privacy laws.  
 
 ---
 
-## Section 7: Audits and Enforcement  
+## Q6. What prevents false or manipulated community data?  
 
-**Q14. How does this system ensure accountability in court?**  
-Every Always Memory log contains:  
-- Decision state (+1, 0, –1),  
-- Hash of ecological ruleset version,  
-- Source of data (global treaty or local oracle),  
-- Digital signatures.  
+TML employs multiple safeguards:  
 
-This creates an immutable, verifiable chain of evidence admissible in court under fraud, environmental, and data protection laws.  
+* **Peer Verification Quorums** — community protocols define how many monitors must confirm a report before it is published.  
+* **Threshold Cryptography** — no single Oracle or monitor can unilaterally control data entry.  
+* **Sacred Zero Default** — if conflicting or suspicious data is detected, the system halts and escalates rather than making a false positive or false negative decision.  
 
-**Q15. What penalties exist for violations?**  
-- Missing or falsified ecological logs create an **irrebuttable presumption of guilt**, triggering criminal penalties for operators.  
-- Executives may face personal liability, including imprisonment, under fraud and environmental statutes.  
+---
+
+## Q7. How are economic incentives structured?  
+
+The **Stewardship Fund** ensures sustainability:  
+
+* A percentage of network fees and penalties funds micro-grants for communities and rewards Oracle nodes.  
+* Reports are valued by ecological severity (Tier 1 > Tier 2 > Tier 3), incentivizing focus on the most critical threats.  
+* Proof-of-Stewardship reputation strengthens trustworthy communities’ long-term influence.  
+
+---
+
+## Q8. How does governance remain fair and inclusive?  
+
+TML uses a **Recognition, Not Accreditation** model:  
+
+* Communities select their representatives through self-determined governance.  
+* The Accountability Council only verifies adherence to the community’s stated governance protocol.  
+* Ombudsperson Protocol and Emergency Council rules ensure fair resolution of internal conflicts or systemic attacks.  
 
 ---
 
 ## Conclusion  
 
-The Environmental Extension of Ternary Moral Logic transforms AI accountability into planetary accountability.  
+With the integration of **Sacred Zero**, **Always Memory**, and Earth Protection, TML becomes the first AI accountability framework that protects not only humans but also ecosystems, species, and future generations. By mandating official datasets, empowering Indigenous communities, and embedding ecological harm into its very logic, TML delivers a Green Readiness architecture designed to withstand the legal, ethical, and technical challenges of planetary governance.  
 
-- **Sacred Zero** ensures hesitation whenever ecological harm is possible.  
-- **Always Memory** guarantees every ecological decision is permanently logged.  
-- **Global Baselines** bring the weight of treaties and science.  
-- **Local Witnesses** give voice to Indigenous and ethnic communities.  
-- **Economic Incentives** sustain vigilance and truth.  
-- **Governance Protocols** ensure sovereignty and fairness.  
-- **Auditability** makes every action court-admissible.  
+This is not only an ethical upgrade. It is a survival architecture.  
 
-This architecture does more than protect ecosystems. It honors the living fabric of Earth, ensuring that AI cannot act against it without leaving behind a trail of truth and accountability. In doing so, it becomes not only a system of logic but a covenant of stewardship.
+---
