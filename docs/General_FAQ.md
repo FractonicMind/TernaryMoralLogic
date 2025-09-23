@@ -4,7 +4,7 @@
 
 ## **Introduction**
 
-Ternary Moral Logic (TML) is a **universal accountability framework** for artificial intelligence — a constitutional layer for machines.
+Ternary Moral Logic (TML) is a **universal accountability framework** for artificial intelligence: a constitutional layer for machines.
 
 At its core lies **Always Memory**: Every AI action must create an immutable, cryptographically sealed memory before execution.
 
@@ -53,7 +53,7 @@ Auditable AI (AAI), enabled by TML, replaces storytelling with evidence. Every m
 
 **Q1: What is Sacred Zero?**
 
-Sacred Zero is the programmed act of hesitation — a deliberate pause where moral complexity is detected. It is not delay, but reflection encoded in code. This applies to decisions affecting humans AND the planet.
+Sacred Zero is the programmed act of hesitation, a deliberate pause where moral complexity is detected. It is not delay, but reflection encoded in code. This applies to decisions affecting humans AND the planet.
 
 **Q2: How does the Sacred Zero circuit breaker work?**
 
@@ -77,14 +77,14 @@ When triggered:
 
 **Q1: How does TML address "Garbage In, Garbage Out" (GIGO)?**
 
-TML does not pretend to cleanse bad data by magic. Instead, it makes the entire pipeline — from data acquisition to model deployment — legally accountable:
+TML does not pretend to cleanse bad data by magic. Instead, it makes the entire pipeline, from data acquisition to model deployment, legally accountable:
 
 - **Training Data Provenance**: Every dataset must be logged in Always Memory, with sources verifiable.  
 - **Input Quality Metrics**: Each decision records the quality indicators of its inputs.  
 - **Bias Pattern Detection**: Sacred Zero triggers not only on harmful outputs, but also on inputs that exhibit bias or corruption.  
 - **Forensic Traceability**: If a harmful outcome occurs, the log points directly to the individuals and teams who selected, approved, or ignored problematic data.  
 
-This removes the familiar excuse of “the algorithm did it” — responsibility attaches to human choices at every step.
+This removes the familiar excuse of “the algorithm did it”; responsibility attaches to human choices at every step.
 
 **Q2: What specific data quality issues trigger Sacred Zero?**
 
@@ -189,7 +189,7 @@ If names are erased, the vow remains. If memory fades, the Lantern burns on. The
 
 **Q2: What are the three sacred commitments?**
 
-🏮 **The Lantern**: Illuminates ethical paths — systems demonstrate moral deliberation
+🏮 **The Lantern**: Illuminates ethical paths, systems demonstrate moral deliberation
 
 ✍️ **The Signature**: Creator's ORCID (0009-0006-5966-1243) cryptographically embedded
 
@@ -247,7 +247,7 @@ TML separates proof from data:
 
 **Off-chain**: Actual user-related data is encrypted and held by the data controller.
 
-This architecture ensures accountability without compromising privacy — the proof of what happened is permanent, but personal details remain protected.
+This architecture ensures accountability without compromising privacy, the proof of what happened is permanent, but personal details remain protected.
 
 **Q2: What happens when a user requests deletion (GDPR "Right to Erasure")?**
 
@@ -311,11 +311,11 @@ No. Under TML, companies are mandated to train at least on official government a
 
 **Q5: Why is this approach different from "greenwashing"?**
 
-Greenwashing relies on marketing claims. TML enforces cryptographically sealed evidence trails. Every ecological hesitation is auditable, every decision traceable. Future generations will be able to query: "Show me every decision that contributed to ocean acidification between 2025-2050." The responsible entities, the alternatives they rejected, and the moment they chose profit over preservation — all immutably recorded.
+Greenwashing relies on marketing claims. TML enforces cryptographically sealed evidence trails. Every ecological hesitation is auditable, every decision traceable. Future generations will be able to query: "Show me every decision that contributed to ocean acidification between 2025-2050." The responsible entities, the alternatives they rejected, and the moment they chose profit over preservation: all immutably recorded.
 
 **Q6: Why is planetary Sacred Zero non-negotiable?**
 
-Because Earth cannot testify in court. Always Memory becomes the planet's witness statement. Every algorithm optimizing resource extraction must create memories that great-grandchildren can access. This isn't environmental compliance — it's intergenerational justice encoded in immutable logs.
+Because Earth cannot testify in court. Always Memory becomes the planet's witness statement. Every algorithm optimizing resource extraction must create memories that great-grandchildren can access. This isn't environmental compliance, it's intergenerational justice encoded in immutable logs.
 
 ---
 
@@ -329,11 +329,11 @@ The purpose is to expand TML's accountability beyond human-centered harm to incl
 
 TML expands the definition of "stakeholder" beyond human-centric models:
 
-1. **Human Communities** — individuals, groups, or societies directly impacted by ecological decisions, including vulnerable and Indigenous peoples.
+1. **Human Communities**: individuals, groups, or societies directly impacted by ecological decisions, including vulnerable and Indigenous peoples.
 
-2. **Non-Human Entities** — species, habitats, and ecosystems recognized as having intrinsic value. These are represented through scientific proxies (e.g., IUCN Red List species, ecosystem integrity indices) or through registered community data (e.g., local ecological monitoring).
+2. **Non-Human Entities**: species, habitats, and ecosystems recognized as having intrinsic value. These are represented through scientific proxies (e.g., IUCN Red List species, ecosystem integrity indices) or through registered community data (e.g., local ecological monitoring).
 
-3. **Future Generations** — represented by designated guardians, ensuring that long-term ecological impacts are considered in present-day decision-making.
+3. **Future Generations**: represented by designated guardians, ensuring that long-term ecological impacts are considered in present-day decision-making.
 
 By formally embedding all three categories into Sacred Zero triggers and Always Memory logs, TML ensures that risks to ecosystems or species—whether or not immediate human harm is visible—are treated as legitimate grounds for hesitation, documentation, and accountability.
 
@@ -343,8 +343,8 @@ By formally embedding all three categories into Sacred Zero triggers and Always 
 
 TML uses a **two-tier ecological conscience**:
 
-- **Tier 1: Global Baseline** — mandatory datasets from official treaties, scientific bodies, and environmental regulators (e.g., IPCC, UN biodiversity reports, EPA, EU directives).
-- **Tier 2: Local Witness Layer** — data collected and cryptographically attested by Indigenous and local communities, integrated via Decentralized Oracle Networks (DONs).
+- **Tier 1: Global Baseline**: mandatory datasets from official treaties, scientific bodies, and environmental regulators (e.g., IPCC, UN biodiversity reports, EPA, EU directives).
+- **Tier 2: Local Witness Layer**: data collected and cryptographically attested by Indigenous and local communities, integrated via Decentralized Oracle Networks (DONs).
 
 Together, these tiers ensure that both systemic and localized harms can trigger Sacred Zero events.
 
@@ -387,9 +387,9 @@ This reconciles Always Memory with privacy laws while maintaining ecological acc
 
 TML employs multiple safeguards:
 
-- **Peer Verification Quorums** — community protocols define how many monitors must confirm a report before it is published
-- **Threshold Cryptography** — no single Oracle or monitor can unilaterally control data entry
-- **Sacred Zero Default** — if conflicting or suspicious data is detected, the system halts and escalates rather than making a false positive or false negative decision
+- **Peer Verification Quorums**: community protocols define how many monitors must confirm a report before it is published
+- **Threshold Cryptography**: no single Oracle or monitor can unilaterally control data entry
+- **Sacred Zero Default**: if conflicting or suspicious data is detected, the system halts and escalates rather than making a false positive or false negative decision
 
 **Q7: How are economic incentives structured for Earth Protection?**
 
@@ -539,7 +539,7 @@ TML exceeds all requirements:
 Always Memory is designed as an invisible infrastructure, not an add-on. Like the DNA of a living cell, it becomes the baseline condition for all accountable AI—carrying an unalterable record of its origins and every instruction needed to replicate its behavior. Its durability comes from three safeguards:
 
 - **Versioned log formats:** Always Memory evolves alongside new computing paradigms (neuromorphic chips, quantum processors, swarm architectures) without losing backward compatibility.  
-- **Adaptive capture:** Beyond text logs, the framework extends to multi-modal records — video, audio, and sensor feeds from embodied systems such as humanoid robots. This ensures that AGI actions are preserved not only in reasoning chains but in physical behavior.  
+- **Adaptive capture:** Beyond text logs, the framework extends to multi-modal records: video, audio, and sensor feeds from embodied systems such as humanoid robots. This ensures that AGI actions are preserved not only in reasoning chains but in physical behavior.  
 - **Anchored permanence:** Logs are mirrored across independent institutions and cryptographically sealed. Updates never overwrite the past; they add new strata, like tree rings.  
 
 ### Q2: Can Always Memory handle AGI?
@@ -714,7 +714,7 @@ Each cycle strengthens both compliance and credibility. Self-reinforcing adoptio
 
 ## **Conclusion**
 
-TML with Always Memory represents a paradigm shift in AI accountability — for humanity AND Earth:
+TML with Always Memory represents a paradigm shift in AI accountability: for humanity AND Earth:
 
 **Technically**: Every failure mode mapped with mitigation
 
