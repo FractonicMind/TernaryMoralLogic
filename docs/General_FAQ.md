@@ -471,22 +471,28 @@ TML exceeds all requirements:
 
 ---
 
-## **Future Technologies & AGI Readiness**
+## Future Technologies & AGI Readiness
 
-**Q1: How is Always Memory future-proof?**
+### Q1: How is Always Memory future-proof?
+Always Memory is designed as an *invisible infrastructure*, not an add-on. Like double-entry bookkeeping in finance, it becomes the baseline condition for all accountable AI. Its durability comes from three safeguards:
 
-- Log formats versioned
-- Adaptable to neuromorphic, quantum, swarm AIs
-- Designed as invisible infrastructure (like double-entry bookkeeping)
+- **Versioned log formats:** Always Memory evolves alongside new computing paradigms (neuromorphic chips, quantum processors, swarm architectures) without losing backward compatibility.  
+- **Adaptive capture:** Beyond text logs, the framework extends to multi-modal records — video, audio, and sensor feeds from embodied systems such as humanoid robots. This ensures that AGI actions are preserved not only in reasoning chains but in physical behavior.  
+- **Anchored permanence:** Logs are mirrored across independent institutions and cryptographically sealed. Updates never overwrite the past; they add new strata, like tree rings.  
 
-**Q2: Can Always Memory handle AGI?**
+### Q2: Can Always Memory handle AGI?
+Yes, by principled design. Always Memory is layered to ensure that even the fastest AGI cannot escape accountability.  
 
-Not at full AGI speed initially. Current mitigations:
-- Checkpoint logging for major decisions
-- Hierarchical compression of reasoning
-- Commitment contracts before action chains
+- **Checkpoint logging:** Major decision nodes and high-impact branches are frozen as immutable records.  
+- **Hierarchical compression:** Long reasoning chains are compressed into structured summaries while preserving critical inflection points.  
+- **Commitment contracts:** Before any irreversible action, the AGI must generate a pre-action contract log, binding it to consequences.  
 
-The principle remains: Any system affecting humans or Earth must create memories of its decisions.
+Most importantly: **the AGI does not “know” about its own logs.** The logging runs at the constitutional layer, enforced externally. To the AGI, it is invisible. It cannot tamper with what it cannot perceive.  
+
+### Q3: Why is this essential for humanity?
+Because future technologies cannot, and will not, be allowed to run out of control. The evolution of TML ensures that *every step of AGI’s growth is remembered*. From its abstract decisions to the physical gestures of its humanoid embodiments, all are written into an unalterable memory.  
+
+This is the covenant: Humanity will not surrender oversight. TML guarantees that the more powerful AI becomes, the deeper and clearer its accountability runs.
 
 ---
 
