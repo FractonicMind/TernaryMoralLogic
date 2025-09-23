@@ -256,6 +256,4 @@ regional:
 **Email**: leogouk@gmail.com  
 **Repository**: https://github.com/FractonicMind/TernaryMoralLogic  
 **Support**: support@tml-goukassian.org
-```
 
-**File created.** Next: `/docs/earth/COMMUNITY_GUIDE.md` for Indigenous sovereignty protocols?
