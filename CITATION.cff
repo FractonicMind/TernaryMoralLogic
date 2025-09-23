@@ -8,11 +8,11 @@ authors:
     email: leogouk@gmail.com
     affiliation: "Independent Researcher"
 title: "Ternary Moral Logic (TML) Framework"
-abstract: "A three-state ethical AI framework introducing the Sacred Pause technology for moral decision-making in artificial intelligence systems. TML transcends binary moral classifications by implementing deliberate pauses for complex ethical scenarios, enabling AI to serve as humanity's moral partner rather than replacement."
+abstract: "A three-state ethical AI framework introducing the Sacred Zero technology for moral decision-making in artificial intelligence systems. TML transcends binary moral classifications by implementing deliberate pauses for complex ethical scenarios, enabling AI to serve as humanity's moral partner rather than replacement."
 keywords:
   - "AI Ethics"
   - "Moral Reasoning"
-  - "Sacred Pause"
+  - "Sacred Zero"
   - "Ternary Logic"
   - "Algorithmic Fairness"
   - "Ethical AI"
@@ -37,7 +37,7 @@ references:
       - family-names: Goukassian
         given-names: Lev
         orcid: "https://orcid.org/0009-0006-5966-1243"
-    title: "Ternary Moral Logic: A Framework for Ethical AI Decision-Making with Sacred Pause Technology"
+    title: "Ternary Moral Logic: A Framework for Ethical AI Decision-Making with Sacred Zero Technology"
     journal: "Journal of AI Ethics"
     volume: 3
     issue: 2
@@ -51,7 +51,7 @@ preferred-citation:
     - family-names: Goukassian
       given-names: Lev
       orcid: "https://orcid.org/0009-0006-5966-1243"
-  title: "Ternary Moral Logic: A Framework for Ethical AI Decision-Making with Sacred Pause Technology"
+  title: "Ternary Moral Logic: A Framework for Ethical AI Decision-Making with Sacred Zero Technology"
   journal: "Journal of AI Ethics"
   volume: 3
   issue: 2
