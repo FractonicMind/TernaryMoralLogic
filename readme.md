@@ -122,7 +122,6 @@ The three components of The Goukassian Promise: The Lantern, The Signature, and 
 ---
 
 ## **Planetary Protection Through Sacred Zero**
-
 TML extends Sacred Zero beyond human protection to encompass Earth itself. When AI systems make decisions affecting ecosystems, water resources, biodiversity, or climate, they must pause and create immutable memories of their environmental impact.
 
 ### **What Triggers Planetary Sacred Zero**
@@ -131,6 +130,8 @@ TML extends Sacred Zero beyond human protection to encompass Earth itself. When 
 - Habitat disruption in protected areas
 - Supply chain decisions affecting biodiversity
 - Energy allocations impacting renewable targets
+- **ADD: Actions violating Indigenous/community sovereignty**
+- **ADD: Decisions affecting territories without FPIC**
 
 ### **What Gets Logged**
 Every environmental decision creates permanent evidence:
@@ -140,17 +141,28 @@ Every environmental decision creates permanent evidence:
   "depletion_rate": "3.2%_annual",
   "recovery_timeframe": "47_years",
   "irreversibility_score": 0.84,
-  "alternative_rejected": "costlier_sustainable_option"
+  "alternative_rejected": "costlier_sustainable_option",
+  "community_affected": "local_indigenous_group",
+  "fpic_status": "not_obtained"
 }
 ```
+
+### **ADD: Community Integration**
+- Indigenous and local communities serve as Earth's data stewards
+- Sovereign Ecological Records respected under Indigenous Data Sovereignty
+- Stewardship Fund rewards verified ecological monitoring
+- Offline-first design ensures participation without digital infrastructure
 
 ### **Why This Matters**
 Earth cannot testify in court. Always Memory becomes its witness statement. Future generations will be able to query: *"Show me every decision that contributed to ocean acidification."* The algorithms that chose profit over preservation, the moments corporations ignored planetary limits — all permanently recorded.
 
-This isn't greenwashing through marketing claims. It's cryptographically sealed evidence of every ecological hesitation, every resource depletion choice, every moment an AI system recognized environmental harm and proceeded anyway.
+This isn't greenwashing through marketing claims. It's cryptographically sealed evidence **attested by the Guardian Network**, every ecological hesitation, every resource depletion choice, every moment an AI system recognized environmental harm and proceeded anyway.
 
-**The planet gets a memory that power cannot erase.**
+**The planet gets a memory that power cannot erase. Communities get a voice that sovereignty protects.**
 
+**ADD: Implementation**: See [docs/earth/](https://github.com/FractonicMind/TernaryMoralLogic/tree/main/docs/earth) for complete Earth Protection framework.
+
+The additions integrate community sovereignty and Guardian attestation, making it clear this isn't just about logging but about empowering Earth's protectors.
 
 ---
 
@@ -171,9 +183,9 @@ The core purpose of the Hybrid Shield is to protect the evidentiary output of th
 These two components work in concert to create a robust system where the integrity of the AI's decision-making record is protected against both political pressure and technical attacks.
 
 **The Institutional Shield: A Framework of Distributed Trust**
-The Institutional Shield addresses the socio-political vulnerabilities inherent in any centralized data storage system. The proposal is to have every Sacred Zero log instantly and automatically synchronized to a consortium of 11 independent institutions distributed across the globe: Stanford, MIT, Harvard, Oxford, Cambridge, Brookings, RAND, Alan Turing Institute, UN, WHO, European Commission. These institutions would be deliberately chosen for their independence and geopolitical diversity, including entities such as universities, non-governmental organizations, and regulatory bodies.  
+The Institutional Shield addresses the socio-political vulnerabilities inherent in any centralized data storage system. The proposal is to have every Sacred Zero log instantly and automatically synchronized to the Guardian Network - a distributed consortium of independent institutions across the globe. The Guardian Network comprises academic research institutions, technical standards bodies, civil society organizations, and environmental protection groups, deliberately chosen for their independence and geopolitical diversity. This creates a system where no single government, corporation, or entity can suppress the memories.
 
-The strategic rationale behind this design is to create a system of checks and balances through radical redundancy and decentralization. By distributing identical copies of the logs across multiple jurisdictions and organizational types, it becomes logistically and politically infeasible for any single powerful actor to unilaterally suppress or erase the record. An attempt by one government to seize the servers of an institution within its borders would be rendered ineffective, as 10 other copies would remain accessible elsewhere. This distributed trust model acts as a "constitutional protection" for AI systems, allowing them to log their ethical reasoning without fear that the record will be conveniently deleted when it becomes politically or commercially inconvenient. The Institutional Shield is the system's defense against overt, top-down censorship.  
+The strategic rationale behind this design is to create a system of checks and balances through radical redundancy and decentralization. By distributing identical copies of the logs across multiple jurisdictions and organizational types, it becomes logistically and politically infeasible for any single powerful actor to unilaterally suppress or erase the record. An attempt by one government to seize the servers of an institution within its borders would be rendered ineffective, other copies would remain accessible elsewhere. This distributed trust model acts as a "constitutional protection" for AI systems, allowing them to log their ethical reasoning without fear that the record will be conveniently deleted when it becomes politically or commercially inconvenient. The Institutional Shield is the system's defense against overt, top-down censorship.  
 
 **The Mathematical Shield: Cryptographic Immutability and Verifiability**
 
@@ -247,15 +259,19 @@ Failure to meet the aforementioned standards for log integrity and accuracy coul
 ---
 
 ## Governance Structure
--  11-Institution Council
--  Academic: Stanford, MIT, Harvard, Oxford, Cambridge
--  Research: Brookings, RAND, Alan Turing Institute
--  International: UN, WHO, European Commission
--  Council Authority
--  Unlimited log access without notice   
--  Criminal referral power   
--  Public disclosure rights   
--  Emergency shutdown capability   
+
+**Guardian Categories:**
+- **Academic Research Institutions** (4 seats)
+- **Technical Standards Bodies** (3 seats)  
+- **Civil Society Organizations** (2 seats)
+- **Environmental Protection Groups** (2 seats)
+
+**Selection Criteria:**
+- Geographic distribution across continents
+- Jurisdictional independence
+- Technical capability for real-time log processing
+- Proven commitment to transparency
+- No single government or corporate control   
 
 ---
 
