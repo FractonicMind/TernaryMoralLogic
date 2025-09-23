@@ -39,35 +39,37 @@ Sacred Zero logs are **instantly synchronized** to all 11 independent institutio
 **Storage Format**: Read-only, tamper-resistant copies  
 **Access Controls**: Institution-specific authentication and audit trails  
 
-### 2.2 Eleven-Institution Consortium
-**Academic Institutions (3):**  
-- MIT Computer Science and Artificial Intelligence Laboratory (CSAIL)  
-- Stanford Human-Centered AI Institute (HAI)  
-- Oxford Future of Humanity Institute  
+### 2.2 Guardian Network Consortium
 
-**Research Organizations (2):**  
-- European Centre for Algorithmic Transparency (ECAT)  
-- UK AI Safety Institute  
+The Guardian Network comprises independent institutions selected for diversity and resilience:
 
-**International Organizations (2):**  
-- UNESCO AI Ethics Observatory  
-- IEEE Standards Association – AI Ethics Committee  
+**Guardian Categories:**
+- **Academic Research Institutions** (4 seats)
+- **Technical Standards Bodies** (3 seats)  
+- **Civil Society Organizations** (2 seats)
+- **Environmental Protection Groups** (2 seats)
 
-**Legal and Civil Rights Organizations (2):**  
-- Electronic Frontier Foundation – AI Rights Division  
-- Future of Privacy Forum  
+**Selection Criteria:**
+- Geographic distribution across continents
+- Jurisdictional independence
+- Technical capability for real-time log processing
+- Proven commitment to transparency
+- No single government or corporate control
 
-**Healthcare Domain Oversight (1):**  
-- WHO Digital Health Ethics Committee  
+**Rotation Protocol:**
+- Institutions serve 7-year terms
+- Staggered rotation (1-2 institutions per year)
+- Performance-based renewal options
+- Community nomination process for replacements
 
-**Financial Domain Oversight (1):**  
-- Bank for International Settlements – Innovation Hub  
+The Guardian Network structure allows for evolution while maintaining the core principle: no single entity can suppress or alter the memories. Unlike a fixed list of institutions, this model adapts to changing global circumstances while preserving independence and diversity. 
 
 ### 2.3 Geopolitical Resilience
-**Geographic Distribution**: Institutions span multiple continents and legal jurisdictions  
+**Geographic Distribution**: Guardian institutions span multiple continents and legal jurisdictions  
 **Political Independence**: No single government or corporate entity can control majority  
 **Legal Diversity**: Multiple legal systems protect against jurisdictional suppression  
 **Cultural Representation**: Diverse ethical and cultural perspectives ensure comprehensive oversight  
+**Environmental Voice**: Dedicated seats for Earth protection organizations ensure planetary interests are represented  
 
 ### 2.4 Governance Safeguards
 **Rotation Protocols**: Institutions may be replaced if they fail to meet independence, transparency, or reliability standards  
@@ -251,14 +253,6 @@ Citizens, researchers, and advocates can independently verify AI ethical behavio
 
 *“The Hybrid Shield ensures that the Sacred Zero becomes more than a moment of reflection — it becomes a permanent testament to AI's capacity for ethical reasoning, protected by both human wisdom and mathematical certainty.”*  
 
-**Document Version**: 1.0.0  
-**Effective Date**: September 2025  
 **Legal Status**: Core protection requirement for all TML implementations  
 **Review Cycle**: Annual with emergency updates as needed  
 
----
-
-## References
-This protection system is detailed in comprehensive analysis:  
-
-[Architecting Accountability: An Analysis of Ternary Moral Logic and the Hybrid Shield Framework for Trustworthy AI](/Research_Reports/Architecting_Accountability_An_Analysis_of_Ternary_Moral_Logic_and_the_Hybrid_Shield_Framework_for_Trustworthy_AI.md)  
