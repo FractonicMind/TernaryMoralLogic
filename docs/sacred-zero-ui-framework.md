@@ -440,7 +440,7 @@ class UsabilityMetrics:
 **For TML Implementation**:
 ```python
 from tml_core import TMLEvaluator
-from sacred_pause_ui import SacredZeroInterface
+from sacred_zero_ui import SacredZeroInterface
 
 class TMLWithUI:
     def __init__(self):
@@ -452,9 +452,9 @@ class TMLWithUI:
         analysis = self.evaluator.analyze(scenario)
         
         # Display Sacred Zero if triggered
-        if analysis.requires_pause:
-            reasoning_data = self.ui.prepare_reasoning_display(analysis)
-            await self.ui.display_sacred_pause(reasoning_data)
+if analysis.state == TMLState.SACRED_ZERO:
+    reasoning_data = self.ui.prepare_reasoning_display(analysis)
+    await self.ui.display_sacred_zero(reasoning_data)
         
         # Return decision with full transparency
         return self.ui.format_decision_response(analysis)
