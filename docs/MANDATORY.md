@@ -65,8 +65,6 @@ Organizations determine their risk thresholds but face strict liability for gami
 - Mitigations applied
 - Responsible executive identification
 
-**Implementation**: `/implementations/sacred_pause.py`
-
 ## 2. PROHIBITION THRESHOLDS
 
 ### 2.1 Quantified Red Lines
