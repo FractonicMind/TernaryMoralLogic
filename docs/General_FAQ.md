@@ -73,6 +73,68 @@ When triggered:
 
 ---
 
+# Data Quality and GIGO Prevention
+
+## Q1: How does TML address "Garbage In, Garbage Out" (GIGO)?
+
+TML does not pretend to cleanse bad data by magic. Instead, it makes the entire pipeline — from data acquisition to model deployment — legally accountable:
+
+- **Training Data Provenance**: Every dataset must be logged in Always Memory, with sources verifiable.  
+- **Input Quality Metrics**: Each decision records the quality indicators of its inputs.  
+- **Bias Pattern Detection**: Sacred Zero triggers not only on harmful outputs, but also on inputs that exhibit bias or corruption.  
+- **Forensic Traceability**: If a harmful outcome occurs, the log points directly to the individuals and teams who selected, approved, or ignored problematic data.  
+
+This removes the familiar excuse of “the algorithm did it” — responsibility attaches to human choices at every step.
+
+## Q2: What specific data quality issues trigger Sacred Zero?
+
+Sacred Zero activates when the system detects:
+
+- Inputs from flagged or historically biased sources  
+- Statistical anomalies suggestive of data poisoning  
+- Omission of required categories (e.g., protected groups in fairness contexts)  
+- Contradictory data that requires human arbitration  
+- Patterns consistent with previously adjudicated discrimination cases  
+
+## Q3: Can organizations hide behind “we didn’t know the data was bad”?
+
+No. Always Memory creates a permanent record of what was known, when, and by whom. For example:
+
+```json
+{
+  "data_sources": ["census_2020", "credit_bureau_v3"],
+  "known_limitations": ["ZIP code bias documented"],
+  "quality_scores": {"completeness": 0.72, "accuracy": 0.89},
+  "bias_warnings": ["demographic skew detected"],
+  "approval_chain": ["data_team_lead", "cto", "ethics_board"],
+  "alternative_datasets_rejected": ["fair_lending_db_v2"]
+}
+````
+
+This makes ignorance indefensible. Auditors and courts can trace exactly which red flags were documented and which alternatives were dismissed.
+
+## Q4: Does TML generate new value for future training?
+
+Yes. Always Memory captures **real moral reasoning under production conditions**. This becomes a dataset in its own right, documenting:
+
+* **Bias Detection Signals**: Patterns of discrimination identified in practice.
+* **Edge Case Records**: Situations where standard training data failed.
+* **Decision Forensics**: The justifications used under uncertainty.
+
+Over time, this creates a growing, evidence-based corpus to improve models and prevent recurrence.
+
+## Q5: How does this differ from current "black box" AI?
+
+Conventional AI systems are black boxes: when harm occurs, the rationale disappears inside the model.
+TML transforms them into **glass boxes**:
+
+* **Before TML**: “The AI denied your loan” (no explanation).
+* **With TML**: “The AI denied your loan due to ZIP code correlation; Sacred Zero triggered; here is the complete decision trace.”
+
+The framework does not guarantee perfection, but it guarantees accountability: bad decisions become visible, auditable, and legally actionable.
+
+---
+
 ## **Always Memory**
 
 **Q1: What is Always Memory?**
