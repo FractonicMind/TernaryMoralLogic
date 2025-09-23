@@ -474,7 +474,7 @@ TML exceeds all requirements:
 ## Future Technologies & AGI Readiness
 
 ### Q1: How is Always Memory future-proof?
-Always Memory is designed as an *invisible infrastructure*, not an add-on. Like double-entry bookkeeping in finance, it becomes the baseline condition for all accountable AI. Its durability comes from three safeguards:
+Always Memory is designed as an invisible infrastructure, not an add-on. Like the DNA of a living cell, it becomes the baseline condition for all accountable AI—carrying an unalterable record of its origins and every instruction needed to replicate its behavior. Its durability comes from three safeguards:
 
 - **Versioned log formats:** Always Memory evolves alongside new computing paradigms (neuromorphic chips, quantum processors, swarm architectures) without losing backward compatibility.  
 - **Adaptive capture:** Beyond text logs, the framework extends to multi-modal records — video, audio, and sensor feeds from embodied systems such as humanoid robots. This ensures that AGI actions are preserved not only in reasoning chains but in physical behavior.  
@@ -493,6 +493,8 @@ Most importantly: **the AGI does not “know” about its own logs.** The loggin
 Because future technologies cannot, and will not, be allowed to run out of control. The evolution of TML ensures that *every step of AGI’s growth is remembered*. From its abstract decisions to the physical gestures of its humanoid embodiments, all are written into an unalterable memory.  
 
 This is the covenant: Humanity will not surrender oversight. TML guarantees that the more powerful AI becomes, the deeper and clearer its accountability runs.
+
+TML is designed to evolve with AGI, including video and multimodal logs for humanoid systems, ensuring that no step of machine autonomy escapes human and ecological accountability.
 
 ---
 
