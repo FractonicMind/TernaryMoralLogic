@@ -73,9 +73,9 @@ When triggered:
 
 ---
 
-# Data Quality and GIGO Prevention
+## Data Quality and GIGO Prevention
 
-## Q1: How does TML address "Garbage In, Garbage Out" (GIGO)?
+**Q1: How does TML address "Garbage In, Garbage Out" (GIGO)?**
 
 TML does not pretend to cleanse bad data by magic. Instead, it makes the entire pipeline — from data acquisition to model deployment — legally accountable:
 
@@ -86,7 +86,7 @@ TML does not pretend to cleanse bad data by magic. Instead, it makes the entire 
 
 This removes the familiar excuse of “the algorithm did it” — responsibility attaches to human choices at every step.
 
-## Q2: What specific data quality issues trigger Sacred Zero?
+**Q2: What specific data quality issues trigger Sacred Zero?**
 
 Sacred Zero activates when the system detects:
 
@@ -96,7 +96,7 @@ Sacred Zero activates when the system detects:
 - Contradictory data that requires human arbitration  
 - Patterns consistent with previously adjudicated discrimination cases  
 
-## Q3: Can organizations hide behind “we didn’t know the data was bad”?
+**Q3: Can organizations hide behind “we didn’t know the data was bad”?**
 
 No. Always Memory creates a permanent record of what was known, when, and by whom. For example:
 
@@ -113,7 +113,7 @@ No. Always Memory creates a permanent record of what was known, when, and by who
 
 This makes ignorance indefensible. Auditors and courts can trace exactly which red flags were documented and which alternatives were dismissed.
 
-## Q4: Does TML generate new value for future training?
+**4: Does TML generate new value for future training?**
 
 Yes. Always Memory captures **real moral reasoning under production conditions**. This becomes a dataset in its own right, documenting:
 
@@ -123,7 +123,7 @@ Yes. Always Memory captures **real moral reasoning under production conditions**
 
 Over time, this creates a growing, evidence-based corpus to improve models and prevent recurrence.
 
-## Q5: How does this differ from current "black box" AI?
+**Q5: How does this differ from current "black box" AI?**
 
 Conventional AI systems are black boxes: when harm occurs, the rationale disappears inside the model.
 TML transforms them into **glass boxes**:
