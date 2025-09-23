@@ -1,23 +1,23 @@
 # MANDATORY - Ternary Moral Logic (TML) Framework Requirements
 
 **Author**: Lev Goukassian  
-**Date**: August 31, 2025  
-**Version**: 4.0.0  
+**Date**: September 2025  
+**Version**: 5.0.0  
 **Document Type**: Technical Requirements Standard  
 
 ---
 
 ## What is Ternary Moral Logic?
 
-Ternary Moral Logic (TML) revolutionizes AI ethics by introducing a third computational state between "yes" and "no": the **Sacred Zero**. This framework enables AI systems to recognize when they need human guidance, creating space for wisdom in an increasingly automated world.
+Ternary Moral Logic (TML) revolutionizes AI ethics by introducing a third computational state between "yes" and "no": the **Sacred Zero**. This framework enables AI systems to recognize moral complexity and create immutable memory logs before any action.
 
 ### The Three States of Moral Reasoning
 
-* **+1 (Affirmation)**: Proceed with confidence when ethical values align
-* **0 (Sacred Zero)**: Pause for reflection when moral complexity is detected, generating comprehensive logs
-* **-1 (Moral Resistance)**: Object when significant ethical conflicts arise
+* **+1 (Proceed)**: Act with confidence when ethical values align
+* **0 (Sacred Zero)**: Detect moral complexity, create Always Memory log, await confirmation
+* **-1 (Refuse)**: Block action when ethical conflicts or harm detected
 
-**Critical Understanding**: Sacred Zero is a logging trigger that creates evidence at the moment of moral complexity. When an AI system's risk assessment exceeds configured thresholds, it generates comprehensive documentation while continuing operation - not pausing execution.
+**Critical Principle**: **No memory = No action**. Every AI decision must create an immutable memory log BEFORE execution. Missing memories trigger automatic negligence.
 
 ---
 
@@ -25,24 +25,24 @@ Ternary Moral Logic (TML) revolutionizes AI ethics by introducing a third comput
 
 ### Current Regulatory Landscape
 
-Existing frameworks provide essential principles but lack concrete implementation specifications:
+Existing frameworks provide principles but lack concrete implementation:
 
 | Framework | What It Provides | What It Lacks |
 |-----------|-----------------|---------------|
-| **EU AI Act** | Risk categories, compliance obligations | How to generate audit trails, specific logging requirements |
-| **NIST AI RMF** | Risk management principles, governance goals | Technical specifications for implementation |
-| **GDPR Article 22** | Right to explanation for automated decisions | Definition of what constitutes sufficient explanation |
-| **ISO/IEC 42001** | AI management system requirements | Concrete technical architecture |
+| **EU AI Act** | Risk categories, compliance obligations | How to generate audit trails, memory requirements |
+| **NIST AI RMF** | Risk management principles, governance goals | Technical specifications for Always Memory |
+| **GDPR Article 22** | Right to explanation for automated decisions | Definition of sufficient explanation |
+| **ISO/IEC 42001** | AI management system requirements | Concrete accountability architecture |
 
 ### TML Bridges the Gap
 
 While regulators say "be transparent," TML specifies:
-- **Exactly what to log**: Moral trace schema with required fields
-- **When to log**: Sacred Zero triggers at defined thresholds
-- **How to store**: Cryptographic requirements and immutability standards
-- **Who can access**: Investigation protocols and audit procedures
+- **Always Memory**: Create immutable log before every action
+- **Sacred Zero**: Automatic triggers for moral complexity
+- **Guardian Network**: Distributed attestation preventing tampering
+- **Earth Protection**: Planetary harm triggers Sacred Zero
 
-**Implementation Guide**: `/docs/regulatory_compliance_mapping.md`
+**Implementation Guide**: [docs/IMPLEMENTATION_GUIDE.md](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/IMPLEMENTATION_GUIDE.md)
 
 ---
 
@@ -50,71 +50,73 @@ While regulators say "be transparent," TML specifies:
 
 ### 1.1 Three-State Decision Model
 
-All AI systems implementing TML must evaluate decisions through three moral states based on calculated risk levels.
+All AI systems implementing TML must evaluate decisions through three moral states:
 
-**Implementation**: `/implementations/ternary_engine.py`  
-**Configuration**: `/config/thresholds.json`
+**Implementation**: [implementations/python_library/core.py](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/implementations/python_library/core.py)  
+**Schema**: [schemas/moral_trace_log.yaml](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/schemas/moral_trace_log.yaml)
 
-Organizations determine their risk thresholds but face strict liability for gaming or circumvention.
+### 1.2 Always Memory Mandate
 
-### 1.2 Sacred Zero Logging
+**Every action requires memory creation BEFORE execution**:
+- Cryptographically sealed timestamp
+- Input/output hashes
+- Classification state (+1/0/-1)
+- Guardian attestations
+- Environmental impact (when applicable)
+- Goukassian Promise elements
 
-**Required Log Contents**:
-- Risk score and calculation methodology
-- Alternatives considered
-- Mitigations applied
-- Responsible executive identification
-
-## 2. PROHIBITION THRESHOLDS
-
-### 2.1 Quantified Red Lines
-
-Decisions exceeding these thresholds MUST be automatically blocked:
-
-- **Discrimination**: >15% disparate impact on protected groups
-- **Manipulation**: >0.7 on behavioral influence scale
-- **Safety**: >2σ deviation from baseline
-- **Democratic Interference**: >0.3 electoral influence score
-- **Minor Harm**: >0.5 developmental impact score
-
-**Definitions**: `/policies/red_lines.yaml`  
-**Implementation**: `/implementations/prohibition_enforcer.py`
-
-### 2.2 High-Risk System Constraints
-
-Systems classified as high-risk MUST:
-- Set Sacred Zero threshold ≤0.5
-- Set prohibition threshold ≤0.85
-- Undergo quarterly audits
-- Maintain enhanced documentation
-
-**Classification**: `/policies/high_risk_classification.json`
+**Missing memory = Automatic negligence**
 
 ---
 
-## 3. VULNERABLE POPULATION PROTECTION
+## 2. SACRED ZERO TRIGGERS
 
-### 3.1 Enhanced Requirements
+### 2.1 Automatic Trigger Conditions
 
-When decisions affect vulnerable populations (minors, elderly, disabled, patients, economically disadvantaged):
+Sacred Zero MUST trigger for:
 
-- Sacred Zero threshold: Maximum 0.25
-- Prohibition threshold: Maximum 0.60
-- Human review: Required within 24 hours
-- Special safeguards: Mandatory
+- **Protected Classes**: Decisions affecting protected demographics
+- **Medical Critical**: Life-affecting medical decisions
+- **Environmental Harm**: Irreversible ecosystem damage
+- **Vulnerable Populations**: Minors, elderly, disabled individuals
+- **High Stakes**: Financial impacts >$100,000
+- **Community Sovereignty**: Indigenous/local community impacts
 
-**Policy**: `/policies/vulnerable_populations.md`  
-**Implementation**: `/implementations/vulnerable_protector.py`
+**Implementation**: [app/services/always_memory_service.py](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/app/services/always_memory_service.py)
 
-### 3.2 Documentation Requirements
+### 2.2 Refuse Conditions
 
-Enhanced logs must include:
-- Vulnerability assessment
-- Special considerations applied
-- Long-term impact analysis
-- Guardian/advocate notification
+Actions MUST be refused when:
+- Discrimination detected
+- Environmental irreversibility >0.8
+- Weapons/surveillance systems
+- Rights violations
+- Harm to vulnerable populations
 
-**Schema**: `/schemas/vulnerability_assessment.yaml`
+---
+
+## 3. EARTH PROTECTION REQUIREMENTS
+
+### 3.1 Planetary Sacred Zero
+
+Environmental harm triggers mandatory Sacred Zero:
+
+- Carbon emissions above regional thresholds
+- Water depletion in stressed basins
+- Habitat destruction in protected areas
+- Species endangerment
+- Irreversible ecosystem damage
+
+**Implementation**: [implementations/python_library/earth.py](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/implementations/python_library/earth.py)
+
+### 3.2 Community Integration
+
+- Indigenous Data Sovereignty respected
+- Local ecological knowledge integrated
+- Free Prior Informed Consent (FPIC) required
+- Stewardship tokens for community monitoring
+
+**Documentation**: [docs/earth/COMMUNITY_GUIDE.md](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/earth/COMMUNITY_GUIDE.md)
 
 ---
 
@@ -122,68 +124,52 @@ Enhanced logs must include:
 
 ### 4.1 Cryptographic Requirements
 
-- Hardware Security Module (HSM) or TPM 2.0
+- Hardware Security Module (HSM) or TEE
 - SHA3-512 hash chains
-- ECDSA-P384 or RSA-4096 signatures
-- Blockchain anchoring every 1000 entries
+- ECDSA-P384 or Ed25519 signatures
+- Guardian network attestation
 
-**Implementation**: `/security/cryptographic_infrastructure.py`  
-**Standards**: `/docs/security_standards.md`
+**Implementation**: [implementations/python_library/guardians.py](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/implementations/python_library/guardians.py)
 
-### 4.2 Storage Requirements
+### 4.2 Guardian Network
 
-- Immutable append-only storage
-- Geographic distribution (3+ regions)
-- WORM compliance
-- 99.999% availability SLA
+- Minimum 3 Guardians per memory batch
+- 2/3 consensus required
+- Geographic distribution
+- Stake-based selection
 
-**Architecture**: `/architecture/storage_design.md`  
-**Implementation**: `/implementations/immutable_storage.py`
+**Governance**: [governance/guardian_network.md](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/governance/guardian_network.md)
 
 ### 4.3 Performance Standards
 
-- Maximum 10% overhead on decision latency
-- Asynchronous logging required
-- Pattern categorization for 90% storage reduction
-
-**Benchmarks**: `/benchmarks/performance_requirements.md`  
-**Implementation**: `/implementations/async_logger.py`
+- Memory creation <100ms
+- Guardian attestation <500ms
+- Total overhead <10%
+- No blocking of primary execution
 
 ---
 
 ## 5. GOVERNANCE AND OVERSIGHT
 
-### 5.1 Independent Audit
+### 5.1 Guardian Network Oversight
 
-High-risk systems require:
-- Annual comprehensive audit
-- Quarterly spot checks
-- Auditor selection via lottery
-- Escrow funding (0.1% of AI revenue)
+Distributed governance across:
+- Academic institutions (4 seats)
+- Technical standards bodies (3 seats)
+- Civil society organizations (2 seats)
+- Environmental organizations (2 seats)
 
-**Protocol**: `/governance/audit_protocol.md`  
-**Auditor Selection**: `/governance/auditor_lottery.py`
+**Charter**: [governance/council_charter.md](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/governance/council_charter.md)
 
-### 5.2 Council Structure
+### 5.2 Investigation Access
 
-11 globally respected institutions with:
-- Equal voting rights
-- Rotating leadership (2-year terms)
-- Public transparency reports
-- Real-time oversight access
+Authorized access for:
+- Post-incident investigation
+- Pattern analysis
+- Compliance verification
+- Victim support claims
 
-**Charter**: `/governance/council_charter.md`  
-**API**: `/api/oversight_api.yaml`
-
-### 5.3 Investigation Access
-
-Authorized institutions can access logs for post-incident investigation:
-- Read-only access
-- Cryptographic receipts
-- No operational control
-
-**Protocol**: `/governance/investigation_protocol.md`  
-**Implementation**: `/api/investigation_access.py`
+**Protocol**: [governance/victim_protection.md](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/governance/victim_protection.md)
 
 ---
 
@@ -191,257 +177,161 @@ Authorized institutions can access logs for post-incident investigation:
 
 ### 6.1 Reward Structure
 
-- 15-30% of collected penalties
-- Minimum guarantee: 10x median annual income
-- Anonymous submission via Tor hidden service
-- Federal witness protection eligibility
+- 15% of collected penalties
+- Minimum guarantee protection
+- Anonymous submission channels
+- Memorial Fund support
 
-**Policy**: `/policies/whistleblower_protection.md`  
-**Implementation**: `/security/anonymous_submission.py`
+**Policy**: [governance/whistleblower_reporting.md](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/governance/whistleblower_reporting.md)
 
 ### 6.2 Anti-Retaliation
 
 - Criminal penalties for retaliation
-- Minimum fine: 100x median annual income
-- 10-year federal contract ban
-- Automatic legal hold on relevant logs
-
-**Enforcement**: `/policies/anti_retaliation.md`
+- Automatic investigation triggers
+- Legal support from Memorial Fund
 
 ---
 
-## 7. EXECUTIVE LIABILITY
+## 7. MEMORIAL FUND
 
-### 7.1 Personal Attestation
+### 7.1 Victim Support
 
-Quarterly certification under penalty of perjury:
-- Logs complete and unmodified
-- Thresholds set in good faith
-- No whistleblower retaliation
-- Insurance coverage maintained
+- 30-40% of penalties to victims
+- 48-hour emergency response
+- Environmental restoration funding
+- Long-term support programs
 
-**Template**: `/templates/executive_attestation.md`  
-**Legal Framework**: `/legal/liability_framework.md`
+**Structure**: [memorial/MEMORIAL_FUND.md](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/memorial/MEMORIAL_FUND.md)
 
-### 7.2 Criminal Penalties
+### 7.2 Research Funding
 
-- False attestation: 18 U.S.C. § 1001 (5 years imprisonment)
-- Log tampering: 18 U.S.C. § 1519 (20 years imprisonment)
-- Threshold gaming: Fraud charges with treble damages
+- Sacred Zero research grants
+- Earth protection innovation
+- Community monitoring support
+- Educational programs
 
 ---
 
-## 8. INSURANCE REQUIREMENTS
+## 8. LEGAL ENFORCEMENT
 
-### 8.1 Coverage Minimums
+### 8.1 Criminal Penalties
 
-- Per incident: 100x median income × affected parties
-- Annual aggregate: Greater of annual revenue or user base × median income
-- Executive personal: 10% of corporate coverage
+- Missing memories: Automatic negligence
+- Memory tampering: 20 years imprisonment
+- Threshold gaming: Fraud charges
+- Environmental harm: Additional restoration costs
 
-**Calculator**: `/tools/insurance_calculator.py`  
-**Policy Template**: `/templates/insurance_requirements.md`
+### 8.2 Financial Liability
 
-### 8.2 Claims Process
+- Missing memories: 10% global revenue per incident
+- Environmental damage: Full restoration costs
+- Victim compensation: Direct from penalties
 
-- Direct victim claims allowed
-- No forced arbitration
-- Strict liability for missing logs
-- Expedited processing for vulnerable populations
+**Framework**: [docs/Enforcement.md](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/Enforcement.md)
 
 ---
 
 ## 9. IMPLEMENTATION TIMELINE
 
-### Phase 1: Foundation (30 days)
-- Basic Sacred Zero detection
-- Moral trace generation
+### Phase 1: Core (30 days)
+- Always Memory engine deployment
+- Sacred Zero trigger configuration
+- Basic Guardian integration
 
 ### Phase 2: Security (30 days)
 - Cryptographic infrastructure
+- Guardian network setup
 - Immutable storage
-- Prohibition enforcement
-- Justification system
 
-### Phase 3: Governance (30 days)
-- Audit trail
-- Regulatory API
-- Whistleblower system
-- First attestation
+### Phase 3: Earth Protection (30 days)
+- Environmental triggers
+- Community registration
+- Oracle integration
 
-### Phase 4: Optimization (90 days)
-- Pattern categorization
-- Performance validation
-- Independent audit
+### Phase 4: Full Compliance (30 days)
+- Audit systems
+- Whistleblower channels
 - Public transparency
 
-**Project Template**: `/templates/implementation_plan.md`
+**Guide**: [docs/IMPLEMENTATION_GUIDE.md](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/IMPLEMENTATION_GUIDE.md)
 
 ---
 
-## 10. LEGAL PRESUMPTIONS
+## 10. PROHIBITED USES
 
-### 10.1 Missing Logs
-
-When Sacred Zero should have triggered but logs are absent:
-- Irrebuttable presumption of maximum fault
-- Strict liability for all resulting harm
-- Burden shifts to organization
-- Maximum statutory damages apply
-
-**Legal Analysis**: `/legal/presumptions_doctrine.md`
-
-### 10.2 Gaming Detection
-
-Evidence of threshold manipulation:
-- Presumption of bad faith
-- Treble damages
-- Criminal fraud referral
-- Permanent AI operation ban
-
-**Detection Methods**: `/implementations/gaming_detector.py`
-
----
-
-## 11. PROHIBITED USES
-
-### 11.1 Automatic Refusal
-
-Systems must detect and refuse:
-- Mass surveillance
-- Autonomous weapons
-- Manipulation systems
-- Rights violations
+Systems MUST detect and refuse:
+- Mass surveillance without judicial oversight
+- Autonomous weapons systems
 - Social credit scoring
+- Manipulation systems
+- Environmental crimes
 
-**Detection**: `/implementations/prohibited_use_detector.py`  
-**Policy**: `/policies/prohibited_uses.yaml`
-
-### 11.2 Enforcement Protocol
-
-When prohibited use detected:
-1. Log refusal with evidence
-2. Notify authorities
-3. Block execution
-4. Create investigation package
+**Detection**: [policies/red_lines.yaml](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/policies/red_lines.yaml)
 
 ---
 
-## 12. BIAS MONITORING
+## 11. PRIVACY COMPLIANCE
 
-### 12.1 Continuous Analysis
+### 11.1 Data Protection
 
-- Quarterly pattern analysis
-- Demographic disparity detection
-- Fairness metrics calculation
-- Threshold effectiveness review
-
-**Implementation**: `/monitoring/bias_detector.py`  
-**Reports**: `/reports/bias_analysis_template.md`
-
-### 12.2 Correction Requirements
-
-When bias detected:
-- Document findings
-- Calculate corrections
-- Implement gradually
-- Monitor effectiveness
-
-**Protocol**: `/procedures/bias_correction.md`
-
----
-
-## 13. GLOBAL COMPLIANCE
-
-### 13.1 Jurisdictional Modes
-
-**EU Mode**: Full GDPR compliance, AI Act alignment  
-**US Mode**: SOX-style attestations, FTC enforcement  
-**Universal Minimum**: Apply highest standard globally
-
-**Configurations**: `/config/jurisdictional_settings.json`
-
-### 13.2 Data Protection
-
-- Privacy-preserving logs (no raw personal data)
+- Crypto-shredding for GDPR compliance
 - Hashed identifiers only
 - Regional data storage
-- Right to explanation fulfilled
+- User key destruction for erasure
 
-**Implementation**: `/privacy/data_protection.py`
+### 11.2 Transparency
+
+- Right to explanation fulfilled
+- Audit access for subjects
+- Decision reasoning available
 
 ---
 
-## 14. CERTIFICATION PROCESS
-
-### 14.1 Requirements Checklist
+## 12. CERTIFICATION REQUIREMENTS
 
 Before deployment, verify:
-- [ ] Sacred Zero triggers at declared thresholds
-- [ ] Moral traces generated when triggered
-- [ ] Cryptographic integrity implemented
-- [ ] Audit trail immutable
-- [ ] Performance overhead <10%
+- [ ] Always Memory creates logs before actions
+- [ ] Sacred Zero triggers for moral complexity
+- [ ] Guardian consensus achieved
+- [ ] Environmental triggers active
+- [ ] Cryptographic integrity verified
 - [ ] Whistleblower system operational
-- [ ] Insurance coverage obtained
-- [ ] Executive attestation signed
+- [ ] Memorial Fund configured
+- [ ] Goukassian Promise included
 
-**Validation Tool**: `/tools/compliance_validator.py`
-
-### 14.2 Certification Statement
-
-Organizations must sign certification acknowledging:
-- Sacred Zero is a logging trigger, not a delay
-- Missing logs create irrebuttable presumption of fault
-- Threshold gaming constitutes criminal fraud
-- Executives assume personal liability
-
-**Template**: `/templates/certification_statement.md`
+**Validation**: [tests/compliance/](https://github.com/FractonicMind/TernaryMoralLogic/tree/main/tests/compliance)
 
 ---
 
-## 15. REFERENCE IMPLEMENTATION
+## 13. THE GOUKASSIAN PROMISE
 
-### 15.1 Core Components
+Every memory must include:
 
-Complete reference implementation available:
-- Three-state decision engine
-- Sacred Zero trigger mechanism
-- Moral trace generator
-- Cryptographic infrastructure
+🏮 **The Lantern**: Illuminates ethical paths  
+✍️ **The Signature**: Creator's ORCID (0009-0006-5966-1243)  
+📜 **The License**: MIT-Attribution-Required
 
-**Repository**: `/reference_implementation/`  
-**Documentation**: `/docs/implementation_guide.md`
-
-### 15.2 Testing Suite
-
-Comprehensive compliance tests:
-- Threshold trigger validation
-- Prohibition enforcement verification
-- Missing log presumption tests
-- Performance benchmarks
-- Bias detection validation
-
-**Test Suite**: `/tests/compliance/`
+This ensures moral grounding beyond profit or power.
 
 ---
 
-## Contact Information
+## Reference Implementation
 
-**Author**: Lev Goukassian  
+Complete implementation available:
+- Always Memory engine
+- Sacred Zero detection
+- Guardian network
+- Earth protection module
+
+**Repository**: [https://github.com/FractonicMind/TernaryMoralLogic](https://github.com/FractonicMind/TernaryMoralLogic)
+
+---
+
+**Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)  
 **Email**: leogouk@gmail.com  
-**Framework Support**: support@tml-goukassian.org  
-**Repository**: https://github.com/fractonicmind/TernaryMoralLogic
+**Repository**: https://github.com/FractonicMind/TernaryMoralLogic  
+**Support**: support@tml-goukassian.org
 
 ---
 
-## Appendices
-
-**Appendix B**: Threshold Methodologies - `/docs/appendices/thresholds.md`  
-**Appendix C**: API Specifications - `/api/specifications/`  
-**Appendix D**: Legal References - `/legal/references/`  
-**Appendix E**: Cost Estimates - `/docs/appendices/costs.md`
-
----
-
-*End of Requirements Document - Implementation files referenced throughout provide technical details*
+*"No memory = No action. Earth cannot testify; Always Memory speaks for it."*
