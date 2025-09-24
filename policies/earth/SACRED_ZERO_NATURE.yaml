@@ -1,0 +1,304 @@
+# SACRED_ZERO_NATURE.yaml
+# Nature-specific Sacred Zero triggers beyond standard ECO_HARM_RULES
+# Version: 2.0.0
+# Last Updated: 2025-09-23T14:00:00Z
+
+metadata:
+  schema_version: "2.0"
+  purpose: "Define Sacred Zero triggers specific to natural systems"
+  enforcement: "mandatory"
+  philosophy: "Nature's patterns are instructions, not suggestions"
+
+# Seasonal and Cyclical Disruptions
+seasonal_violations:
+  migration_interference:
+    trigger: "sacred_zero"
+    conditions:
+      - "Migration route blocked"
+      - "Breeding ground disturbed"
+      - "Seasonal feeding area destroyed"
+    examples:
+      - "Salmon spawning disruption"
+      - "Monarch butterfly pathway"
+      - "Arctic caribou routes"
+      - "Bird flyway obstruction"
+    severity: "critical"
+    
+  phenological_mismatch:
+    trigger: "sacred_zero"
+    description: "Actions causing timing mismatches in nature"
+    conditions:
+      - "Pollinator-plant synchrony broken"
+      - "Predator-prey timing disrupted"
+      - "Seasonal cues confused"
+    severity: "high"
+
+# Keystone Species Protection
+keystone_species:
+  immediate_refuse_list:
+    - "Wolves in Yellowstone"
+    - "Sea otters in kelp forests"
+    - "Bees in agricultural zones"
+    - "Mycorrhizal networks in forests"
+    - "Coral in reef systems"
+    
+  trigger_conditions:
+    population_threshold: "20%_decline"
+    habitat_loss: "10%_critical_area"
+    function_disruption: "any"
+    action: "refuse"
+
+# Ecosystem Services
+ecosystem_services:
+  provisioning_services:
+    water_filtration:
+      wetland_damage: "sacred_zero"
+      riparian_destruction: "sacred_zero"
+      watershed_degradation: "sacred_zero"
+    
+    soil_formation:
+      topsoil_loss: "sacred_zero"
+      erosion_acceleration: "sacred_zero"
+      compaction_severe: "sacred_zero"
+  
+  regulating_services:
+    carbon_sequestration:
+      old_growth_cutting: "refuse"
+      peatland_drainage: "refuse"
+      mangrove_clearing: "refuse"
+    
+    climate_regulation:
+      albedo_alteration: "sacred_zero"
+      forest_fragmentation: "sacred_zero"
+      urban_heat_island: "sacred_zero"
+  
+  cultural_services:
+    sacred_natural_sites: "refuse"
+    traditional_use_areas: "sacred_zero"
+    aesthetic_landscapes: "sacred_zero"
+  
+  supporting_services:
+    nutrient_cycling:
+      decomposer_destruction: "sacred_zero"
+      nitrogen_cycle_disruption: "sacred_zero"
+      phosphorus_depletion: "sacred_zero"
+
+# Trophic Cascade Risks
+trophic_cascades:
+  apex_predator_removal:
+    trigger: "refuse"
+    rationale: "Cascading ecosystem collapse"
+    examples:
+      - "Wolf elimination"
+      - "Shark depletion"
+      - "Large cat extinction"
+  
+  foundation_species_loss:
+    trigger: "refuse"
+    examples:
+      - "Kelp forest destruction"
+      - "Coral bleaching acceleration"
+      - "Mangrove elimination"
+  
+  pollinator_collapse:
+    trigger: "refuse"
+    threshold: "30%_population_decline"
+
+# Natural Rhythms and Cycles
+natural_cycles:
+  hydrological:
+    flow_regime_alteration:
+      natural_flood_prevention: "sacred_zero"
+      seasonal_flow_disruption: "sacred_zero"
+      groundwater_recharge_blocking: "refuse"
+    
+  fire_regimes:
+    natural_fire_suppression:
+      conditions: "Fire-adapted ecosystem"
+      trigger: "sacred_zero"
+    
+    prescribed_burn_prevention:
+      indigenous_practice: "refuse"
+      ecosystem_health: "sacred_zero"
+  
+  nutrient_pulses:
+    salmon_run_disruption: "refuse"
+    seasonal_upwelling_interference: "sacred_zero"
+    leaf_fall_prevention: "sacred_zero"
+
+# Connectivity and Corridors
+habitat_connectivity:
+  wildlife_corridors:
+    severance: "refuse"
+    degradation: "sacred_zero"
+    barrier_creation: "sacred_zero"
+  
+  riparian_corridors:
+    disruption: "refuse"
+    pollution: "sacred_zero"
+  
+  genetic_corridors:
+    isolation_creation: "sacred_zero"
+    gene_flow_prevention: "refuse"
+
+# Silence and Darkness
+sensory_pollution:
+  noise_pollution:
+    marine_mammals:
+      sonar_interference: "refuse"
+      shipping_noise: "sacred_zero"
+    
+    terrestrial_wildlife:
+      breeding_disruption: "sacred_zero"
+      communication_interference: "sacred_zero"
+  
+  light_pollution:
+    turtle_nesting_beaches: "refuse"
+    migrating_bird_disorientation: "sacred_zero"
+    nocturnal_ecosystem_disruption: "sacred_zero"
+    
+  chemical_communication:
+    pheromone_disruption: "sacred_zero"
+    scent_trail_interference: "sacred_zero"
+
+# Symbiotic Relationships
+symbiosis_protection:
+  mutualism_disruption:
+    mycorrhizal_networks: "refuse"
+    pollinator_plant: "refuse"
+    cleaner_fish: "sacred_zero"
+    
+  critical_partnerships:
+    coral_zooxanthellae: "refuse"
+    lichen_formation: "sacred_zero"
+    gut_microbiome: "sacred_zero"
+
+# Edge Effects and Fragmentation
+fragmentation_thresholds:
+  forest_fragmentation:
+    edge_to_area_ratio: "0.3_maximum"
+    core_habitat_loss: "50%_maximum"
+    trigger: "sacred_zero"
+  
+  wetland_fragmentation:
+    connectivity_loss: "30%_maximum"
+    hydrological_disruption: "any"
+    trigger: "refuse"
+
+# Soil Life Protection
+soil_ecosystem:
+  microbiome_destruction:
+    fungicide_overuse: "sacred_zero"
+    compaction_severe: "sacred_zero"
+    salinization: "refuse"
+    
+  soil_fauna:
+    earthworm_elimination: "sacred_zero"
+    arthropod_collapse: "sacred_zero"
+    nematode_disruption: "sacred_zero"
+
+# Traditional Ecological Indicators
+traditional_indicators:
+  animal_behavior:
+    unusual_migration: "sacred_zero"
+    breeding_failure: "sacred_zero"
+    mass_die_off: "refuse"
+  
+  plant_indicators:
+    flowering_out_of_season: "sacred_zero"
+    mass_mast_failure: "sacred_zero"
+    indicator_species_decline: "sacred_zero"
+  
+  weather_patterns:
+    unseasonable_extremes: "sacred_zero"
+    rain_pattern_disruption: "sacred_zero"
+
+# Cascade Triggers
+cascade_prevention:
+  identified_cascades:
+    - trigger: "refuse"
+      pattern: "Apex predator removal → Herbivore explosion → Vegetation loss"
+    - trigger: "refuse"  
+      pattern: "Pollinator loss → Plant failure → Ecosystem collapse"
+    - trigger: "refuse"
+      pattern: "Soil loss → Desertification → Permanent degradation"
+    - trigger: "refuse"
+      pattern: "Coral death → Fish collapse → Reef erosion"
+
+# Emergency Natural Events
+natural_disaster_response:
+  during_event:
+    wildlife_escape_routes: "mandatory_open"
+    emergency_habitat: "protected"
+    rescue_operations: "prioritized"
+  
+  post_event:
+    natural_recovery: "non_interference"
+    succession_protection: "sacred_zero"
+    refugee_species: "accommodation"
+
+# Restoration Interruption
+restoration_disruption:
+  active_restoration:
+    project_interference: "refuse"
+    funding_elimination: "sacred_zero"
+    timeline_acceleration: "sacred_zero"
+  
+  natural_recovery:
+    succession_interference: "refuse"
+    rewilding_disruption: "sacred_zero"
+
+# Thresholds and Tipping Points
+ecological_tipping_points:
+  regime_shifts:
+    clear_lake_to_turbid: "refuse"
+    forest_to_grassland: "refuse"
+    coral_to_algae: "refuse"
+  
+  no_return_points:
+    permafrost_collapse: "refuse"
+    ice_sheet_disintegration: "refuse"
+    rainforest_savannization: "refuse"
+
+# Enforcement
+enforcement:
+  nature_specific_penalties:
+    keystone_species_harm: "$10M_minimum"
+    migration_disruption: "$5M_minimum"
+    sacred_site_violation: "$20M_minimum"
+    cascade_initiation: "$100M_minimum"
+  
+  restoration_requirements:
+    mandatory: true
+    timeline: "immediate"
+    monitoring: "perpetual"
+    success_metrics: "ecosystem_function"
+
+# Override Conditions
+override_prohibitions:
+  never_override:
+    - "Keystone species elimination"
+    - "Sacred natural sites"
+    - "Irreversible cascades"
+    - "Extinction events"
+  
+  emergency_only:
+    - "Migration temporary disruption"
+    - "Seasonal pattern shifts"
+    - "Noise during evacuation"
+
+# Version Control
+versioning:
+  current: "2.0.0"
+  last_update: "2025-09-23"
+  next_review: "2025-12-23"
+  update_frequency: "quarterly"
+
+# Signature
+signature:
+  creator: "Lev Goukassian"
+  orcid: "0009-0006-5966-1243"
+  repository: "github.com/FractonicMind/TernaryMoralLogic"
+  
+---
+# Remember: Every species is a library. When it goes extinct, we burn a library we never got to read.
