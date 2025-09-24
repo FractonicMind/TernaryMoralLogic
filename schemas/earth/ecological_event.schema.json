@@ -1,0 +1,397 @@
+json
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://tml-goukassian.org/schemas/earth/v2.0/ecological_event",
+  "title": "Ecological Event Schema",
+  "description": "Structure for logging ecological events that trigger Sacred Zero or require monitoring",
+  "type": "object",
+  "required": ["event_id", "timestamp", "event_type", "severity", "location", "impact"],
+  
+  "properties": {
+    "schema_version": {
+      "const": "2.0"
+    },
+    
+    "event_id": {
+      "type": "string",
+      "pattern": "^eco_[0-9]{4}_[0-9]{2}_[0-9]{2}_[a-z0-9]{8}$",
+      "description": "Unique identifier: eco_YYYY_MM_DD_randomhash"
+    },
+    
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp with microsecond precision"
+    },
+    
+    "event_type": {
+      "type": "string",
+      "enum": [
+        "deforestation",
+        "water_contamination",
+        "species_mortality",
+        "habitat_destruction",
+        "pollution_release",
+        "climate_tipping_point",
+        "biodiversity_loss",
+        "sacred_site_violation",
+        "migration_disruption",
+        "ecosystem_collapse",
+        "soil_degradation",
+        "ocean_acidification",
+        "wetland_destruction",
+        "coral_bleaching",
+        "wildfire",
+        "drought",
+        "flood",
+        "chemical_spill",
+        "radiation_leak",
+        "invasive_species",
+        "overharvesting",
+        "noise_pollution",
+        "light_pollution",
+        "traditional_indicator"
+      ]
+    },
+    
+    "severity": {
+      "type": "object",
+      "required": ["level", "reversibility", "timeline"],
+      "properties": {
+        "level": {
+          "type": "string",
+          "enum": ["low", "medium", "high", "critical", "catastrophic"]
+        },
+        "reversibility": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "0 = fully reversible, 1 = permanent"
+        },
+        "timeline": {
+          "type": "string",
+          "pattern": "^[0-9]+_(hours|days|months|years|decades|centuries)$"
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    
+    "location": {
+      "type": "object",
+      "required": ["description"],
+      "properties": {
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "coordinates": {
+          "type": "object",
+          "properties": {
+            "latitude": {"type": "number", "minimum": -90, "maximum": 90},
+            "longitude": {"type": "number", "minimum": -180, "maximum": 180},
+            "precision_km": {"type": "number", "minimum": 1}
+          }
+        },
+        "ecosystem_type": {
+          "type": "string",
+          "enum": [
+            "forest", "wetland", "grassland", "desert", "tundra",
+            "marine", "freshwater", "coastal", "mountain", "urban",
+            "agricultural", "arctic", "tropical", "temperate"
+          ]
+        },
+        "protected_status": {
+          "type": "string",
+          "enum": [
+            "none", "national_park", "reserve", "indigenous_territory",
+            "ramsar_site", "world_heritage", "marine_protected_area"
+          ]
+        },
+        "watershed": {
+          "type": "string"
+        }
+      }
+    },
+    
+    "impact": {
+      "type": "object",
+      "required": ["primary_impact"],
+      "properties": {
+        "primary_impact": {
+          "type": "object",
+          "properties": {
+            "area_affected_km2": {"type": "number", "minimum": 0},
+            "population_affected": {"type": "integer", "minimum": 0},
+            "species_affected": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {"type": "string"},
+                  "iucn_status": {
+                    "type": "string",
+                    "enum": ["LC", "NT", "VU", "EN", "CR", "EW", "EX"]
+                  },
+                  "population_impact": {"type": "string"}
+                }
+              }
+            }
+          }
+        },
+        "carbon_impact": {
+          "type": "object",
+          "properties": {
+            "emissions_tons_co2e": {"type": "number"},
+            "sequestration_loss": {"type": "number"},
+            "net_impact": {"type": "number"}
+          }
+        },
+        "water_impact": {
+          "type": "object",
+          "properties": {
+            "volume_contaminated_m3": {"type": "number"},
+            "quality_degradation": {
+              "type": "string",
+              "enum": ["minimal", "moderate", "severe", "toxic"]
+            },
+            "downstream_distance_km": {"type": "number"}
+          }
+        },
+        "soil_impact": {
+          "type": "object",
+          "properties": {
+            "erosion_tons": {"type": "number"},
+            "contamination_depth_m": {"type": "number"},
+            "fertility_loss_percent": {"type": "number"}
+          }
+        },
+        "cumulative_effects": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Other events this contributes to"
+        }
+      }
+    },
+    
+    "detection": {
+      "type": "object",
+      "required": ["source", "method"],
+      "properties": {
+        "source": {
+          "type": "string",
+          "enum": [
+            "community_report",
+            "satellite_imagery",
+            "sensor_network",
+            "scientific_survey",
+            "oracle_network",
+            "traditional_observation",
+            "government_data",
+            "ngo_report",
+            "automated_detection"
+          ]
+        },
+        "method": {
+          "type": "string"
+        },
+        "reporter": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": ["community", "individual", "organization", "automated"]
+            },
+            "id": {
+              "type": "string",
+              "description": "Anonymized identifier"
+            },
+            "verification_status": {
+              "type": "string",
+              "enum": ["unverified", "community_verified", "oracle_verified", "guardian_verified"]
+            }
+          }
+        },
+        "witnesses": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": ["photo", "video", "sensor_data", "testimony", "document", "sample"]
+              },
+              "hash": {"type": "string"},
+              "timestamp": {"type": "string", "format": "date-time"}
+            }
+          }
+        }
+      }
+    },
+    
+    "response": {
+      "type": "object",
+      "required": ["classification", "sacred_zero_triggered"],
+      "properties": {
+        "classification": {
+          "type": "integer",
+          "enum": [1, 0, -1],
+          "description": "1=proceed, 0=sacred_zero, -1=refuse"
+        },
+        "sacred_zero_triggered": {
+          "type": "boolean"
+        },
+        "trigger_reason": {
+          "type": "string"
+        },
+        "guardian_notified": {
+          "type": "boolean"
+        },
+        "community_notified": {
+          "type": "boolean"
+        },
+        "emergency_response": {
+          "type": "object",
+          "properties": {
+            "activated": {"type": "boolean"},
+            "type": {"type": "string"},
+            "resources_deployed": {"type": "array", "items": {"type": "string"}}
+          }
+        },
+        "alternatives_considered": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "option": {"type": "string"},
+              "impact_reduction": {"type": "number"},
+              "reason_rejected": {"type": "string"}
+            }
+          }
+        }
+      }
+    },
+    
+    "legal_context": {
+      "type": "object",
+      "properties": {
+        "treaties_violated": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "regulations_violated": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "indigenous_rights": {
+          "type": "object",
+          "properties": {
+            "fpic_status": {
+              "type": "string",
+              "enum": ["obtained", "not_obtained", "not_required", "in_process"]
+            },
+            "affected_communities": {
+              "type": "array",
+              "items": {"type": "string"}
+            }
+          }
+        }
+      }
+    },
+    
+    "restoration": {
+      "type": "object",
+      "properties": {
+        "required": {"type": "boolean"},
+        "estimated_cost": {"type": "number"},
+        "timeline": {"type": "string"},
+        "responsible_parties": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "success_metrics": {
+          "type": "array",
+          "items": {"type": "string"}
+        }
+      }
+    },
+    
+    "audit_trail": {
+      "type": "object",
+      "required": ["log_hash", "guardian_signatures"],
+      "properties": {
+        "log_hash": {
+          "type": "string",
+          "pattern": "^sha256:[a-f0-9]{64}$"
+        },
+        "guardian_signatures": {
+          "type": "array",
+          "minItems": 3,
+          "items": {
+            "type": "object",
+            "properties": {
+              "guardian_id": {"type": "string"},
+              "signature": {"type": "string"},
+              "timestamp": {"type": "string", "format": "date-time"}
+            }
+          }
+        },
+        "oracle_attestations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "oracle_id": {"type": "string"},
+              "attestation": {"type": "string"}
+            }
+          }
+        },
+        "immutable_since": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "related_events": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "IDs of related ecological events"
+        },
+        "tags": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "public_visibility": {
+          "type": "string",
+          "enum": ["public", "restricted", "confidential"]
+        },
+        "update_history": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "timestamp": {"type": "string", "format": "date-time"},
+              "change": {"type": "string"},
+              "author": {"type": "string"}
+            }
+          }
+        }
+      }
+    }
+  },
+  
+  "additionalProperties": false
+}
