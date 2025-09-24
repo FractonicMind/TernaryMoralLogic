@@ -206,33 +206,31 @@ Community participation: 3 effective seats (27% voice) through environmental and
 
 #### Implementation Structure
 
-```
-/docs/earth/                    # Core documentation
-  ├── LEGAL_MAPPING.md          # Treaty/law integration
-  ├── COMMUNITY_GUIDE.md        # Indigenous participation guide
-  └── ECONOMY.md                # Stewardship Fund design
+[/docs/earth/](https://github.com/FractonicMind/TernaryMoralLogic/tree/main/docs/earth) — Core documentation
+- [LEGAL_MAPPING.md](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/earth/LEGAL_MAPPING.md) — Treaty/law integration
+- [COMMUNITY_GUIDE.md](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/earth/COMMUNITY_GUIDE.md) — Indigenous participation guide  
+- [ECONOMY.md](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/earth/ECONOMY.md) — Stewardship Fund design
 
-/schemas/earth/                 # Data structures
-  ├── earth_extension.schema.json
-  └── community_registration.schema.json
+[/schemas/earth/](https://github.com/FractonicMind/TernaryMoralLogic/tree/main/schemas/earth) — Data structures
+- [earth_extension.schema.json](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/schemas/earth/earth_extension.schema.json)
+- [community_registration.schema.json](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/schemas/earth/community_registration.schema.json)
 
-/policies/earth/                # Rules engine
-  └── ECO_HARM_RULES.yaml       # Sacred Zero triggers
+[/policies/earth/](https://github.com/FractonicMind/TernaryMoralLogic/tree/main/policies/earth) — Rules engine
+- [ECO_HARM_RULES.yaml](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/policies/earth/ECO_HARM_RULES.yaml) — Sacred Zero triggers
 
-/tests/earth/                   # Validation suite
-  ├── baseline_cases.md         # Standard scenarios
-  └── red_team/                 # Security testing
-      ├── attack_surface.md
-      └── internal_conflict_case.md
+[/tests/earth/](https://github.com/FractonicMind/TernaryMoralLogic/tree/main/tests/earth) — Validation suite
+- [baseline_cases.md](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/tests/earth/baseline_cases.md) — Standard scenarios
+- [/red_team/](https://github.com/FractonicMind/TernaryMoralLogic/tree/main/tests/earth/red_team) — Security testing
+  - [attack_surface.md](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/tests/earth/red_team/attack_surface.md)
+  - [internal_conflict_case.md](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/tests/earth/red_team/internal_conflict_case.md)
 
-/governance/earth/              # Decision framework
-  ├── COMMUNITY_SEAT_RULES.md   # Representation structure
-  └── OMBUDSPERSON_PROTOCOL.md  # Dispute resolution
+[/governance/earth/](https://github.com/FractonicMind/TernaryMoralLogic/tree/main/governance/earth) — Decision framework
+- [COMMUNITY_SEAT_RULES.md](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/governance/earth/COMMUNITY_SEAT_RULES.md) — Representation structure
+- [OMBUDSPERSON_PROTOCOL.md](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/governance/earth/OMBUDSPERSON_PROTOCOL.md) — Dispute resolution
 
-/oracles/                       # Data bridges
-  ├── oracle_bridge.py          # Fetch and validate sources
-  └── eco_oracle_network.json   # Network configuration
-```
+[/oracles/](https://github.com/FractonicMind/TernaryMoralLogic/tree/main/oracles) — Data bridges
+- [oracle_bridge.py](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/oracles/oracle_bridge.py) — Fetch and validate sources
+- [eco_oracle_network.json](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/oracles/eco_oracle_network.json) — Network configuration
 
 ### Stewardship Fund Economics
 
@@ -240,7 +238,7 @@ Community participation: 3 effective seats (27% voice) through environmental and
 - **Community payments**: $20-100/month for monitoring, $50-5000 for critical alerts
 - **Infrastructure support**: Connectivity, equipment, training
 - **Emergency response**: Immediate funds for ecological threats
-- **Youth participation**: Mentorship and succession programs
+- **Youth participation**: Mentorship and succession programs   
   *All amounts are nominal to 2025 USD
 
 ### Conflict Resolution
@@ -281,11 +279,10 @@ Validated by independent assessment for:
 ✅ Red team scenarios mapped  
 ✅ Offline-first workflows operational  
 
-**Full Implementation**: See [/docs/earth/](https://github.com/FractonicMind/TernaryMoralLogic/tree/main/docs/earth) for complete Earth Protection framework.
 
 ---
 
-*"Routine memories are cheap; missing memories are expensive. Earth's memories are priceless."*
+## *"Routine memories are cheap; missing memories are expensive. Earth's memories are priceless."*
 
 ---
 
