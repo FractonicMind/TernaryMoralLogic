@@ -121,20 +121,29 @@ The three components of The Goukassian Promise: The Lantern, The Signature, and 
 
 ---
 
-## [**Planetary Protection Through Sacred Zero**](https://github.com/FractonicMind/TernaryMoralLogic/tree/main/earth/docs)
-TML extends Sacred Zero beyond human protection to encompass Earth itself. When AI systems make decisions affecting ecosystems, water resources, biodiversity, or climate, they must pause and create immutable memories of their environmental impact.
+## 🌍 [**Planetary Protection Through Sacred Zero**](https://github.com/FractonicMind/TernaryMoralLogic/tree/main/earth/docs)
 
-### **What Triggers Planetary Sacred Zero**
+## 🌍 Planetary Protection Through Sacred Zero
+
+TML treats Earth's protection as inseparable from human protection. Sacred Zero triggers equally for threats to ecosystems, water resources, biodiversity, or climate—because humanity cannot survive on a dead planet. Every AI decision affecting Earth must create immutable memories of its environmental impact. 
+
+### What Triggers Planetary Sacred Zero
+
 - Carbon emissions exceeding regional thresholds
-- Water depletion in stressed basins
+- Water depletion in stressed basins  
 - Habitat disruption in protected areas
 - Supply chain decisions affecting biodiversity
 - Energy allocations impacting renewable targets
-- **ADD: Actions violating Indigenous/community sovereignty**
-- **ADD: Decisions affecting territories without FPIC**
+- Actions violating Indigenous/community sovereignty
+- Decisions affecting territories without FPIC (Free, Prior, Informed Consent)
+- Primary forest destruction or wetland damage
+- Critical species habitat loss
+- Irreversible ecological damage or tipping points
 
-### **What Gets Logged**
+### What Gets Logged
+
 Every environmental decision creates permanent evidence:
+
 ```json
 "environmental_impact": {
   "resource_affected": "freshwater_aquifer",
@@ -143,26 +152,142 @@ Every environmental decision creates permanent evidence:
   "irreversibility_score": 0.84,
   "alternative_rejected": "costlier_sustainable_option",
   "community_affected": "local_indigenous_group",
-  "fpic_status": "not_obtained"
+  "fpic_status": "not_obtained",
+  "carbon_equivalent": "47.3_tons",
+  "species_at_risk": ["list_of_species"],
+  "treaty_compliance": ["paris_agreement", "cbd_targets"]
 }
 ```
 
-### **ADD: Community Integration**
-- Indigenous and local communities serve as Earth's data stewards
-- Sovereign Ecological Records respected under Indigenous Data Sovereignty
-- Stewardship Fund rewards verified ecological monitoring
-- Offline-first design ensures participation without digital infrastructure
+### Community Integration
 
-### **Why This Matters**
+- Indigenous and local communities serve as Earth's data stewards
+- Sovereign Ecological Records respected under Indigenous Data Sovereignty principles
+- Stewardship Fund rewards verified ecological monitoring ($20-5000 per observation)
+- Offline-first design ensures participation without digital infrastructure
+- Communities control their data permanently - it cannot be sold or transferred
+
+### Why This Matters
+
 Earth cannot testify in court. Always Memory becomes its witness statement. Future generations will be able to query: *"Show me every decision that contributed to ocean acidification."* The algorithms that chose profit over preservation, the moments corporations ignored planetary limits — all permanently recorded.
 
 This isn't greenwashing through marketing claims. It's cryptographically sealed evidence **attested by the Guardian Network**, every ecological hesitation, every resource depletion choice, every moment an AI system recognized environmental harm and proceeded anyway.
 
 **The planet gets a memory that power cannot erase. Communities get a voice that sovereignty protects.**
 
-**ADD: Implementation**: See [docs/earth/](https://github.com/FractonicMind/TernaryMoralLogic/tree/main/docs/earth) for complete Earth Protection framework.
+### Implementation Architecture
 
-The additions integrate community sovereignty and Guardian attestation, making it clear this isn't just about logging but about empowering Earth's protectors.
+#### Guardian Network Structure
+
+11 Guardian Institutions ensuring ecological integrity:
+- **4 Environmental Protection** (36% representation)
+- 3 Academic Research
+- 2 Technical Standards
+- 2 Civil Society
+
+Community participation: 3 effective seats (27% voice) through environmental and civil society categories.
+
+#### Two-Tier Data System
+
+**Tier 1: Global Baselines** (Mandatory)
+- UN treaties (UNFCCC Paris Agreement, CBD, Ramsar)
+- Scientific assessments (IPCC AR6, IUCN Red List, Planetary Boundaries)
+- Regional regulations (EU Taxonomy, EPA standards)
+- Automated daily synchronization via Oracle Network
+- Cryptographic verification of all updates
+
+**Tier 2: Community Witness Layer**
+- Indigenous and local ecological observations
+- Minimum 3 witnesses for validation
+- Multiple submission methods:
+  - Online: Direct portal
+  - SMS: Structured codes
+  - Satellite: Periodic sync
+  - USB Courier: Monthly collection with tamper-evident seals
+- Proof-of-Stewardship tokens (non-tradeable reputation)
+
+#### Implementation Structure
+
+```
+/docs/earth/                    # Core documentation
+  ├── LEGAL_MAPPING.md          # Treaty/law integration
+  ├── COMMUNITY_GUIDE.md        # Indigenous participation guide
+  └── ECONOMY.md                # Stewardship Fund design
+
+/schemas/earth/                 # Data structures
+  ├── earth_extension.schema.json
+  └── community_registration.schema.json
+
+/policies/earth/                # Rules engine
+  └── ECO_HARM_RULES.yaml       # Sacred Zero triggers
+
+/tests/earth/                   # Validation suite
+  ├── baseline_cases.md         # Standard scenarios
+  └── red_team/                 # Security testing
+      ├── attack_surface.md
+      └── internal_conflict_case.md
+
+/governance/earth/              # Decision framework
+  ├── COMMUNITY_SEAT_RULES.md   # Representation structure
+  └── OMBUDSPERSON_PROTOCOL.md  # Dispute resolution
+
+/oracles/                       # Data bridges
+  ├── oracle_bridge.py          # Fetch and validate sources
+  └── eco_oracle_network.json   # Network configuration
+```
+
+### Stewardship Fund Economics
+
+- **Revenue**: 35% of network fees + 60% of environmental penalties
+- **Community payments**: $20-100/month for monitoring, $50-5000 for critical alerts
+- **Infrastructure support**: Connectivity, equipment, training
+- **Emergency response**: Immediate funds for ecological threats
+- **Youth participation**: Mentorship and succession programs
+  *All amounts are nominal to 2025 USD
+
+### Conflict Resolution
+
+When stakeholders disagree:
+- Sacred Zero maintained during all disputes
+- Most protective interpretation prevails
+- Ombudsperson mediation available
+- 30-day resolution timeline
+- Community veto power over their territories
+
+### Security & Validation
+
+- **Multi-oracle consensus**: 5 of 9 nodes must agree
+- **Treaty verification**: Cryptographic signatures required
+- **Community privacy**: K-anonymity (k≥5) for all reports
+- **Anti-greenwashing**: Automated detection of weakened standards
+- **Sybil resistance**: Stake requirements + reputation scoring
+- **Attack resilience**: Tested against data poisoning, collusion, regulatory capture
+
+### [Green Score: 100/100](docs/earth/GEMINI_ASSESSMENT.md)
+
+Validated by independent assessment for:
+- Mandatory ecological triggers in constitutional layer
+- Indigenous peoples as data stewards, not data subjects
+- Future generations as explicit stakeholders
+- Intergenerational justice encoded in immutable logs
+- Beyond compliance to survival architecture
+
+### Status
+
+✅ Core documentation complete  
+✅ Schemas and policies defined  
+✅ Oracle bridge implemented  
+✅ Guardian Network structure established  
+✅ Community participation framework active  
+✅ Test cases comprehensive  
+✅ Red team scenarios mapped  
+✅ Offline-first workflows operational  
+
+**Full Implementation**: See [/docs/earth/](https://github.com/FractonicMind/TernaryMoralLogic/tree/main/docs/earth) for complete Earth Protection framework.
+
+---
+
+*"Routine memories are cheap; missing memories are expensive. Earth's memories are priceless."*
 
 ---
 
@@ -261,10 +386,10 @@ Failure to meet the aforementioned standards for log integrity and accuracy coul
 ## Governance Structure
 
 **Guardian Categories:**
-- **Academic Research Institutions** (4 seats)
-- **Technical Standards Bodies** (3 seats)  
+- **Environmental Protection Groups** (4 seats)
+- **Academic Research Institutions** (3 seats)
+- **Technical Standards Bodies** (2 seats)  
 - **Civil Society Organizations** (2 seats)
-- **Environmental Protection Groups** (2 seats)
 
 **Selection Criteria:**
 - Geographic distribution across continents
