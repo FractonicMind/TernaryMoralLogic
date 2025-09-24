@@ -282,7 +282,7 @@ Validated by independent assessment for:
 
 ---
 
-## *"Routine memories are cheap; missing memories are expensive. Earth's memories are priceless."*
+#### *"Routine memories are cheap; missing memories are expensive. Earth's memories are priceless."*
 
 ---
 
