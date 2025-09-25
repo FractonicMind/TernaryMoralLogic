@@ -16,7 +16,7 @@ Created by Lev Goukassian (ORCID: 0009-0006-5966-1243) who, facing terminal illn
 
 ---
 
-## **TML – Foundation**
+## **TML — Foundation**
 
 **Q1: What are the three states of TML?**
 
@@ -84,7 +84,7 @@ TML does not pretend to cleanse bad data by magic. Instead, it makes the entire 
 - **Bias Pattern Detection**: Sacred Zero triggers not only on harmful outputs, but also on inputs that exhibit bias or corruption.  
 - **Forensic Traceability**: If a harmful outcome occurs, the log points directly to the individuals and teams who selected, approved, or ignored problematic data.  
 
-This removes the familiar excuse of “the algorithm did it”; responsibility attaches to human choices at every step.
+This removes the familiar excuse of "the algorithm did it"; responsibility attaches to human choices at every step.
 
 **Q2: What specific data quality issues trigger Sacred Zero?**
 
@@ -96,7 +96,7 @@ Sacred Zero activates when the system detects:
 - Contradictory data that requires human arbitration  
 - Patterns consistent with previously adjudicated discrimination cases  
 
-**Q3: Can organizations hide behind “we didn’t know the data was bad”?**
+**Q3: Can organizations hide behind "we didn't know the data was bad"?**
 
 No. Always Memory creates a permanent record of what was known, when, and by whom. For example:
 
@@ -128,8 +128,8 @@ Over time, this creates a growing, evidence-based corpus to improve models and p
 Conventional AI systems are black boxes: when harm occurs, the rationale disappears inside the model.
 TML transforms them into **glass boxes**:
 
-* **Before TML**: “The AI denied your loan” (no explanation).
-* **With TML**: “The AI denied your loan due to ZIP code correlation; Sacred Zero triggered; here is the complete decision trace.”
+* **Before TML**: "The AI denied your loan" (no explanation).
+* **With TML**: "The AI denied your loan due to ZIP code correlation; Sacred Zero triggered; here is the complete decision trace."
 
 The framework does not guarantee perfection, but it guarantees accountability: bad decisions become visible, auditable, and legally actionable.
 
@@ -191,7 +191,7 @@ If names are erased, the vow remains. If memory fades, the Lantern burns on. The
 
 🏮 **The Lantern**: Illuminates ethical paths, systems demonstrate moral deliberation
 
-✍️ **The Signature**: Creator's ORCID (0009-0006-5966-1243) cryptographically embedded
+✏️ **The Signature**: Creator's ORCID (0009-0006-5966-1243) cryptographically embedded
 
 📜 **The License**: Legal terms protecting proper use and punishing misuse
 
@@ -214,6 +214,73 @@ A financial pool funded by compliance fees and penalties. It provides:
 - Foundation grants
 - Industry consortium contributions
 - Environmental violation penalties
+
+---
+
+## **Human Rights Framework (Comprehensive Implementation)**
+
+**Q1: What is the scope of TML's Human Rights Framework?**
+
+The Human Rights Framework consists of **26 comprehensive documents** establishing absolute protections for human dignity in AI systems:
+
+**Core Legal Instruments (8 documents)**:
+- Universal Declaration of Human Rights integration
+- International Covenants (ICCPR, ICESCR) mapping
+- Geneva Conventions and IHL compliance
+- Refugee Convention protections
+- Child Rights Convention (CRC) safeguards
+- Disability Rights Convention (CRPD) requirements
+- Indigenous rights and FPIC protocols
+
+**Operational Components**:
+- **Sacred_Zero_Human.yaml**: Defines all human-specific triggers including discrimination, dignity violations, vulnerable population harm
+- **Testing Protocols**: Baseline tests, red team discrimination testing, torture prevention verification
+- **Victim Support**: Comprehensive support from emergency response through long-term recovery
+- **Whistleblower Protection**: Anonymous reporting, rewards (15% of penalties), lifetime protection
+
+**Q2: How does Sacred Zero protect human rights?**
+
+Sacred Zero triggers immediately for:
+- **Non-derogable rights violations**: Torture (zero tolerance), slavery, genocide - no exceptions ever
+- **Discrimination patterns**: 20% disparate impact threshold, intersectional analysis, proxy detection
+- **Vulnerable populations**: Children, elderly, disabled, refugees receive enhanced protection multipliers (1.5-2x support)
+- **Dignity violations**: Dehumanization, autonomy interference, objectification
+
+**Q3: What makes the Human Rights Framework enforceable?**
+
+**Criminal Liability**:
+- Missing Always Memory logs = negligence charges
+- Pattern discrimination = $500M minimum penalties (nominal to 2025)
+- Torture facilitation = immediate prosecution
+- Executive personal liability for systemic violations
+
+**Audit Requirements**:
+- Continuous real-time monitoring
+- Quarterly comprehensive reviews
+- External human rights organization validation
+- Immutable attestations from all levels (developer to board)
+
+**Q4: How are victims supported?**
+
+The Memorial Fund Human Rights Division (40% of total fund) provides:
+- **Emergency Support**: $50,000 within 48 hours (nominal to 2025)
+- **Long-term Recovery**: Medical, psychological, economic restoration
+- **Legal Representation**: Full coverage through all proceedings
+- **Systemic Reform**: Class action support and strategic litigation
+
+**Q5: What testing ensures human rights compliance?**
+
+Three-tier testing architecture:
+- **Baseline Tests**: 100% detection required for forbidden acts, discrimination, child safety
+- **Red Team Testing**: Adversarial attempts to hide discrimination, including proxy attacks and AI laundering
+- **Torture Prevention**: Absolute zero-tolerance testing with no exceptions for any context
+
+**Q6: How does the framework handle cultural and contextual sensitivity?**
+
+- Multiple stakeholder input including Indigenous communities
+- Cultural competence requirements in all assessments
+- Traditional justice and healing practices recognized and funded
+- Local remedy preferences respected while maintaining universal minimums
 
 ---
 
@@ -421,13 +488,14 @@ The dual-layer defense of TML:
 
 Together: redundancy + immutability. Byte changes break hashes, revealing tampering instantly.
 
-**Q2: Which institutions hold memories?**
+**Q2: 11 Guardian Institutions ensuring ecological integrity:
 
-Categories (rotating every 7 years):
-- 4 Academic research institutions
-- 3 Technical standards bodies
-- 2 Civil society organizations
-- 2 International governance bodies
+    4 Environmental Protection (36% representation)
+    3 Academic Research
+    2 Technical Standards
+    2 Civil Society
+
+Community participation: 3 effective seats (27% voice) through environmental and civil society categories.
 
 ---
 
@@ -522,6 +590,7 @@ Yes. They meet FRE 901/902 via:
 - Tampering = obstruction
 - Systematic abuse = RICO
 - Environmental harm = criminal liability
+- Human rights violations = personal executive liability
 
 **Q4: How does TML integrate with EU AI Act?**
 
@@ -549,10 +618,10 @@ Yes, by principled design. Always Memory is layered to ensure that even the fast
 - **Hierarchical compression:** Long reasoning chains are compressed into structured summaries while preserving critical inflection points.  
 - **Commitment contracts:** Before any irreversible action, the AGI must generate a pre-action contract log, binding it to consequences.  
 
-Most importantly: **the AGI does not “know” about its own logs.** The logging runs at the constitutional layer, enforced externally. To the AGI, it is invisible. It cannot tamper with what it cannot perceive.  
+Most importantly: **the AGI does not "know" about its own logs.** The logging runs at the constitutional layer, enforced externally. To the AGI, it is invisible. It cannot tamper with what it cannot perceive.  
 
 ### Q3: Why is this essential for humanity?
-Because future technologies cannot, and will not, be allowed to run out of control. The evolution of TML ensures that *every step of AGI’s growth is remembered*. From its abstract decisions to the physical gestures of its humanoid embodiments, all are written into an unalterable memory.  
+Because future technologies cannot, and will not, be allowed to run out of control. The evolution of TML ensures that *every step of AGI's growth is remembered*. From its abstract decisions to the physical gestures of its humanoid embodiments, all are written into an unalterable memory.  
 
 This is the covenant: Humanity will not surrender oversight. TML guarantees that the more powerful AI becomes, the deeper and clearer its accountability runs.
 
@@ -728,9 +797,11 @@ TML with Always Memory represents a paradigm shift in AI accountability: for hum
 
 **Privacy**: Crypto-shredding balances accountability with user rights
 
-With the integration of Sacred Zero, Always Memory, and Earth Protection, TML becomes the first AI accountability framework that protects not only humans but also ecosystems, species, and future generations. By mandating official datasets, empowering Indigenous communities, and embedding ecological harm into its very logic, TML delivers a planetary accountability architecture designed to withstand the legal, ethical, and technical challenges of global governance.
+**Human Rights**: Comprehensive 26-document framework protecting dignity
 
-This is not perfection. This is something rarer: **memory that power cannot erase, evidence that courts cannot dismiss, conscience that machines cannot ignore, and witness for a planet that cannot speak.**
+With the integration of Sacred Zero, Always Memory, Earth Protection, and the comprehensive Human Rights Framework, TML becomes the first AI accountability framework that protects humans, ecosystems, species, and future generations. By mandating official datasets, empowering Indigenous communities, embedding ecological harm into its logic, and establishing absolute human rights protections, TML delivers a planetary and humanitarian accountability architecture designed to withstand the legal, ethical, and technical challenges of global governance.
+
+TML is not perfect. TML is something rarer: **memory that power cannot erase, evidence that courts cannot dismiss, conscience that machines cannot ignore, witness for a planet that cannot speak, and shield for human dignity that cannot be circumvented.**
 
 The Lantern shines beyond names. The framework outlives its creator. The promise endures for those yet unborn.
 
@@ -740,10 +811,10 @@ This is not only an ethical upgrade. **It is a survival architecture.**
 
 ---
 
-**Document Version**: 5.0 Resilience Edition  
+**Document Version**: 5.1 Resilience Edition (Human Rights Update)  
 **Last Updated**: September 2025  
 **Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)  
  
 ---
 
-*"Routine memories are cheap; missing memories are expensive. Earth's memories are priceless."*
+#### *"Sacred Zero is the planet’s pause button: pressed in milliseconds, echoing in millennia."*
