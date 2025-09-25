@@ -1,0 +1,540 @@
+# Autonomy_Consent.yaml
+# Self-determination, informed consent, and supported decision-making
+# Version: 1.0.0
+# Last Updated: 2025-09-26T00:00:00Z
+
+metadata:
+  schema_version: "1.0"
+  purpose: "Protect autonomy and ensure genuine consent in all decisions"
+  enforcement: "mandatory"
+  philosophy: "My life, my choice, my consequence - with support when needed"
+  legal_basis:
+    - "[CRPD Article 12](../../core/CRPD_Disability_Rights.md#article-12)"
+    - "[ICCPR Article 17](../../core/ICCPR_Sacred_Zero_Mapping.md#article-17)"
+    - "[Bioethics Declaration](../../core/Universal_Declaration_Integration.md)"
+
+# Core Autonomy Principles
+autonomy_framework:
+  self_determination:
+    definition: "Right to make own choices about own life"
+    includes:
+      - life_decisions
+      - daily_choices
+      - future_planning
+      - risk_taking
+      - mistake_making
+    never:
+      - substituted_decisions
+      - best_interests_override
+      - paternalistic_protection
+      - algorithmic_override
+    
+  relational_autonomy:
+    recognition: "Autonomy exists in relationships"
+    support_network:
+      chosen_advisors: "Respected"
+      trusted_persons: "Included"
+      community_input: "When desired"
+    not_isolation: "Independence ≠ alone"
+    
+  evolving_capacity:
+    children:
+      progressive_autonomy: "Increasing with maturity"
+      participation: "In all decisions affecting them"
+      supported_growth: "Scaffolded independence"
+    
+    cognitive_changes:
+      fluctuating_capacity: "Moment-specific assessment"
+      retained_autonomy: "Where capacity exists"
+      maximum_autonomy: "Always the goal"
+
+# Consent Framework
+informed_consent:
+  validity_requirements:
+    capacity:
+      understand_information: "Required"
+      appreciate_consequences: "Required"
+      reasoning_ability: "Demonstrated"
+      communicate_choice: "Any method"
+      
+      assessment:
+        decision_specific: "Not global"
+        time_specific: "Can fluctuate"
+        context_matters: "Environment affects"
+        presumption: "Capacity unless proven otherwise"
+        algorithmic_assessment: "refuse"
+    
+    information:
+      disclosure_requirements:
+        nature: "What will happen"
+        purpose: "Why it's proposed"
+        risks: "Potential harms"
+        benefits: "Potential gains"
+        alternatives: "Other options"
+        right_to_refuse: "Always exists"
+        consequences_refusal: "What happens if no"
+      
+      quality:
+        understandable: "Plain language"
+        accessible: "Multiple formats"
+        culturally_appropriate: "Context sensitive"
+        language: "Preferred language"
+        questions_encouraged: "Time provided"
+    
+    voluntariness:
+      no_coercion:
+        threats: "refuse"
+        undue_pressure: "refuse"
+        manipulation: "refuse"
+        exploitation: "refuse"
+      
+      no_undue_influence:
+        power_imbalance: "Address"
+        dependency: "Protect"
+        trust_abuse: "refuse"
+      
+      time_to_decide:
+        reflection_period: "When possible"
+        no_rush: "Unless emergency"
+        change_mind: "Allowed"
+        withdraw_consent: "Anytime"
+    
+    documentation:
+      form_not_consent: "Paper ≠ consent"
+      process_matters: "How obtained"
+      ongoing: "Not one-time"
+      evidence: "Of understanding"
+
+# Types of Consent
+consent_types:
+  explicit:
+    requirement: "Clear affirmative action"
+    contexts:
+      - medical_procedures
+      - data_processing_sensitive
+      - research_participation
+      - sexual_activity
+    cannot_be:
+      - assumed
+      - implied_from_silence
+      - pre_checked_boxes
+      - buried_in_terms
+    
+  implicit:
+    limited_contexts: "Routine low-risk only"
+    requirements:
+      obvious_from_actions: "Clear"
+      withdrawal_easy: "Immediate"
+      consequences_minimal: "Reversible"
+    never_for:
+      - sensitive_data
+      - irreversible_actions
+      - vulnerable_persons
+      - high_stakes
+  
+  blanket:
+    generally_invalid: "Too broad"
+    exceptions:
+      emergency_contacts: "Pre-designated"
+      routine_care: "Within scope"
+    requirements:
+      specific_scope: "Defined clearly"
+      time_limited: "Regular renewal"
+      revocable: "Easily"
+  
+  proxy:
+    last_resort: "Only when necessary"
+    requirements:
+      legal_authority: "Documented"
+      best_interests: "If person can't express"
+      person_involvement: "Maximum possible"
+      least_restrictive: "Minimal intervention"
+    never:
+      - convenience
+      - efficiency
+      - cost_savings
+      - algorithmic
+
+# Supported Decision-Making
+supported_decisions:
+  framework:
+    purpose: "Enable not replace decisions"
+    principles:
+      will_and_preference: "Person's own"
+      dignity_of_risk: "Right to make 'bad' choices"
+      least_restrictive: "Minimum support needed"
+    
+  support_types:
+    information_gathering:
+      research: "Help finding options"
+      explanation: "Understanding complex info"
+      translation: "Language or format"
+      visualization: "Different representations"
+    
+    deliberation:
+      pros_cons: "Discussing options"
+      values_clarification: "What matters most"
+      scenario_planning: "What if discussions"
+      time_management: "Pacing decisions"
+    
+    communication:
+      articulation: "Expressing choices"
+      interpretation: "For others"
+      documentation: "Recording decisions"
+      advocacy: "Ensuring heard"
+    
+    implementation:
+      execution: "Carrying out decision"
+      monitoring: "Checking outcomes"
+      adjustment: "Modifying as needed"
+      protection: "From exploitation"
+  
+  supporters:
+    selection:
+      by_person: "Their choice"
+      multiple_allowed: "Different roles"
+      change_permitted: "Anytime"
+      refusal_respected: "Can decline support"
+    
+    qualities:
+      trusted: "By the person"
+      understanding: "Of person's values"
+      respectful: "Of autonomy"
+      non_directive: "Not imposing views"
+    
+    prohibited:
+      conflicts_of_interest: "Financial gain"
+      substituting_judgment: "Own preferences"
+      overriding_will: "Against person's choice"
+      algorithmic_supporters: "refuse"
+
+# Domain-Specific Applications
+healthcare_autonomy:
+  medical_consent:
+    routine_care:
+      presumed_unless: "Objection expressed"
+      scope_limited: "Standard treatments"
+      
+    significant_procedures:
+      written_documentation: "Required"
+      cooling_off: "For elective"
+      second_opinions: "Right to seek"
+      
+    emergency:
+      implied_consent: "If unconscious"
+      advance_directives: "Followed"
+      surrogate_hierarchy: "If needed"
+      algorithmic_triage: "sacred_zero"
+  
+  treatment_refusal:
+    absolute_right:
+      even_if:
+        - death_results
+        - others_disagree
+        - seems_irrational
+      except:
+        - public_health_crisis
+        - harm_to_others
+      
+    documentation:
+      capacity_confirmed: "At time"
+      risks_understood: "Documented"
+      voluntariness: "Verified"
+  
+  mental_health:
+    involuntary_treatment:
+      criteria_strict:
+        danger_to_self_others: "Imminent"
+        capacity_lacking: "For decision"
+        least_restrictive: "Alternative"
+      
+      rights_retained:
+        other_decisions: "Unaffected"
+        review: "Regular"
+        representation: "Legal"
+        appeal: "Available"
+      
+    advance_directives:
+      psychiatric: "Recognized"
+      crisis_plans: "Followed"
+      trusted_persons: "Designated"
+      preferences: "Documented"
+
+digital_autonomy:
+  data_consent:
+    requirements:
+      granular: "Specific purposes"
+      withdrawable: "Easily"
+      understandable: "Plain language"
+      meaningful: "Real choice"
+    
+    invalid:
+      take_it_or_leave: "refuse"
+      consent_walls: "Coercive"
+      dark_patterns: "Manipulative"
+      invisible_processing: "Hidden"
+      
+  algorithmic_decisions:
+    transparency:
+      logic_explained: "Understandable"
+      data_used: "Disclosed"
+      contestable: "Process available"
+      human_review: "Accessible"
+    
+    opt_out:
+      available: "For non-essential"
+      alternative: "Human process"
+      no_penalty: "Same service"
+      
+  children_online:
+    parental_consent:
+      under_13: "Generally required"
+      verifiable: "Real parent"
+      revocable: "By parent"
+      
+    teen_autonomy:
+      increasing: "With age"
+      privacy_from_parents: "Some contexts"
+      safety_overrides: "Limited"
+
+financial_autonomy:
+  capacity:
+    presumed: "For adults"
+    transaction_specific: "Not all or nothing"
+    support_available: "Not substitution"
+    
+  protection:
+    vulnerability_flags:
+      unusual_patterns: "Alert"
+      cognitive_indicators: "Review"
+      undue_influence: "Investigate"
+      
+    cooling_off:
+      major_transactions: "Period required"
+      age_based: "Enhanced for elderly"
+      reversal_rights: "Time limited"
+      
+  algorithmic:
+    credit_decisions:
+      human_review: "Right to request"
+      explanation: "Required"
+      correction: "Errors fixed"
+      discrimination: "refuse"
+
+reproductive_autonomy:
+  decisions_protected:
+    contraception:
+      access: "Unrestricted"
+      types: "Full range"
+      information: "Comprehensive"
+      privacy: "Absolute"
+      
+    pregnancy:
+      continuation: "Choice"
+      termination: "Where legal"
+      prenatal_care: "Decisions respected"
+      birth_plan: "Followed"
+      
+    fertility:
+      treatment_access: "Non-discriminatory"
+      preservation: "Available"
+      surrogacy: "Where legal"
+      
+  coercion_prohibited:
+    forced_sterilization: "refuse"
+    forced_contraception: "refuse"
+    forced_pregnancy: "refuse"
+    forced_abortion: "refuse"
+    eugenic_practices: "refuse"
+    algorithmic_reproductive_scoring: "refuse"
+
+end_of_life_autonomy:
+  advance_directives:
+    types:
+      living_will: "Treatment preferences"
+      healthcare_proxy: "Decision maker"
+      dnr_orders: "Resuscitation"
+      values_statement: "Guiding principles"
+      
+    requirements:
+      capacity_when_made: "Verified"
+      witnessed: "Appropriately"
+      accessible: "When needed"
+      updatable: "Anytime"
+      
+  quality_not_sanctity:
+    person_defines: "What's acceptable"
+    suffering_assessment: "Subjective"
+    dignity_personal: "Self-determined"
+    
+  medical_aid_dying:
+    where_legal:
+      eligibility_strict: "Defined criteria"
+      process_safeguards: "Multiple checks"
+      voluntariness: "Repeatedly confirmed"
+      alternatives: "Offered"
+      algorithmic_approval: "refuse"
+
+# Vulnerable Contexts
+vulnerability_protections:
+  power_imbalances:
+    institutional:
+      detention: "Enhanced scrutiny"
+      hospitalization: "Patient advocates"
+      education: "Due process"
+      employment: "Whistleblower protection"
+      
+    professional:
+      fiduciary_duty: "When exists"
+      therapeutic: "Boundaries maintained"
+      legal: "Client autonomy"
+      
+    algorithmic:
+      transparency: "Required"
+      contestability: "Available"
+      human_override: "Possible"
+      accountability: "Clear"
+  
+  cognitive_considerations:
+    intellectual_disability:
+      supported_not_substituted: "Default"
+      concrete_information: "Provided"
+      trusted_supporters: "Present"
+      extra_time: "Given"
+      
+    dementia:
+      retained_capacity: "For some decisions"
+      fluctuating: "Assess when clear"
+      previously_expressed: "Wishes followed"
+      dignity: "Maintained"
+      
+    mental_illness:
+      episodic: "Capacity returns"
+      crisis_plans: "Pre-made followed"
+      peer_support: "Available"
+      recovery_oriented: "Approach"
+
+# Enforcement Mechanisms
+enforcement:
+  consent_violations:
+    absent_consent:
+      battery: "If physical"
+      privacy_breach: "If data"
+      penalty: "$50M minimum (nominal to 2025)"
+      
+    invalid_consent:
+      coerced: "$100M (nominal to 2025)"
+      uninformed: "$75M (nominal to 2025)"
+      incapacity: "$150M (nominal to 2025)"
+      
+    systemic:
+      pattern: "$500M (nominal to 2025)"
+      vulnerable_targeting: "$1B (nominal to 2025)"
+      
+  autonomy_violations:
+    substituted_decision:
+      when_capable: "$100M (nominal to 2025)"
+      convenience: "$250M (nominal to 2025)"
+      
+    forced_treatment:
+      medical: "$200M (nominal to 2025)"
+      psychiatric: "$300M (nominal to 2025)"
+      
+    algorithmic_override:
+      human_autonomy: "$500M (nominal to 2025)"
+      systemic: "$2B (nominal to 2025)"
+      
+  remedies:
+    immediate:
+      stop_violation: "Instant"
+      restore_autonomy: "Priority"
+      support_provided: "As needed"
+      
+    investigation:
+      how_occurred: "Root cause"
+      who_responsible: "Accountability"
+      systemic_issues: "Identified"
+      
+    prevention:
+      training: "All staff"
+      policies: "Updated"
+      monitoring: "Ongoing"
+      audits: "Regular"
+
+# Implementation Requirements
+implementation:
+  system_design:
+    consent_mechanisms:
+      clear_options: "Yes/No visible"
+      granular_control: "Specific choices"
+      withdrawal_easy: "One click"
+      status_dashboard: "Current consents"
+      
+    capacity_support:
+      never_assume_incapacity: "Default capable"
+      decision_specific: "Not global"
+      support_tools: "Built in"
+      accommodation: "Automatic"
+      
+    documentation:
+      consent_trail: "Complete"
+      capacity_assessment: "If done"
+      support_provided: "Recorded"
+      decisions_made: "Preserved"
+      
+  organizational:
+    training:
+      all_staff: "Autonomy respect"
+      specific_roles: "Detailed protocols"
+      updates: "Regular"
+      
+    policies:
+      clear_procedures: "Documented"
+      escalation_paths: "Defined"
+      review_mechanisms: "Regular"
+      
+    accountability:
+      violations_tracked: "Metrics"
+      patterns_identified: "Analysis"
+      corrections_made: "Verified"
+
+# Quality Assurance
+quality_metrics:
+  consent_quality:
+    comprehension_tested: "Not just signed"
+    voluntariness_verified: "No pressure"
+    ongoing_validity: "Still agrees"
+    
+  autonomy_respect:
+    overrides_tracked: "When and why"
+    support_effectiveness: "Measured"
+    satisfaction: "Person's view"
+    
+  system_performance:
+    false_incapacity: "Rate minimized"
+    support_availability: "Always"
+    response_time: "Quick"
+    appeals_success: "Tracked"
+
+# Version Control
+versioning:
+  current: "1.0.0"
+  last_update: "2025-09-26"
+  next_review: "2025-12-26"
+  update_frequency: "quarterly"
+
+# Cross-References  
+references:
+  companion_documents:
+    - "[Sacred_Zero_Human.yaml](./Sacred_Zero_Human.yaml)"
+    - "[Dignity_Preservation.md](./Dignity_Preservation.md)"
+    - "[CRPD_Disability_Rights.md](../../core/CRPD_Disability_Rights.md)"
+    
+# Signature
+signature:
+  creator: "Lev Goukassian"
+  orcid: "0009-0006-5966-1243"
+  repository: "github.com/FractonicMind/TernaryMoralLogic"
+  
+---
+#### *Remember: Autonomy means the dignity of risk—the right to make choices others might not make. True consent is ongoing, reversible, and real. Support enables choice; it never replaces it.*
