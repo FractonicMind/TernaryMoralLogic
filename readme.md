@@ -11,13 +11,23 @@
 
 ---
 ### Introduction
-The rapid acceleration of artificial intelligence (AI) into domains of consequential decision-making has exposed a fundamental limitation in the computational paradigms upon which these systems are built. While human moral reasoning navigates a landscape rich with nuance, ambiguity, and shades of gray, traditional AI systems are overwhelmingly constrained by a binary, true/false logic. This rigid dichotomy, analogous to a simple "light switch," is deemed perfectly adequate for routine computations but profoundly ill-suited for the complexities of real life, which demand "dimmers, candles, and dawn". In forcing multi-dimensional ethical scenarios into simplistic "allowed" or "forbidden" categories, this binary approach oversimplifies moral complexity and obscures the nuanced considerations necessary for responsible action.  
-
-The conceptual chasm between human and machine morality is not merely a technical problem; it is rooted in how we, as a society, have traditionally framed moral narratives. From an early age, educational narratives frequently embed binary moral constructs such as "good versus evil" or "right versus wrong". While this black-and-white thinking may be developmentally appropriate for the early stages of moral socialization, its persistence beyond this stage can inhibit intellectual flexibility, promote a psychological intolerance of ambiguity, and foster a form of moral tribalism where opposing viewpoints are seen as inherently threatening. This societal preference for simplicity over complexity and certainty over doubt is mirrored in the design of conventional AI systems.  
+The rapid acceleration of artificial intelligence (AI) into domains of consequential decision-making has exposed a fundamental limitation in the computational paradigms upon which these systems are built. While human moral reasoning navigates a landscape rich with nuance, ambiguity, and shades of gray, traditional AI systems are overwhelmingly constrained by a binary, true/false logic. 
+This societal preference for simplicity over complexity and certainty over doubt is mirrored in the design of conventional AI systems.  
 
 **Ternary Moral Logic (TML)** is a framework designed to bridge this chasm by addressing two critical limitations inherent in binary AI ethics. The first is the aforementioned oversimplification of moral complexity, where the richness of ethical analysis is lost in a forced dichotomy. The second is the lack of a genuine human-AI partnership. Traditional frameworks position AI as an "autonomous moral arbiter," making decisions in an opaque manner that prevents transparent deliberation. TML's core innovation is its introduction of a third state that deliberately creates space for reflection and human consultation, repositioning the AI as a collaborative tool that enhances, rather than replaces, human moral reasoning capabilities.  
 
 The philosophical foundation of TML is uniquely intertwined with the personal narrative of its creator, Lev Goukassian. The origin of the framework is traced back to a period during which he was battling a terminal illness and spent time reflecting in a hospital room. The profound contrast between the rapid, unthinking decisions of machines and the deliberate, caring silence of a doctor served as the inspiration for TML's central tenet: the Sacred Zero. The experience of a "borrowed gift" of time and a "dignity of thought" found in hesitation became the central metaphor, grounding the abstract concept of a third logical state in a deeply human, emotional, and life-affirming context. This narrative is not merely an anecdote; it is a foundational component of the framework's philosophical argument, positioning TML as an ethical imperative born from a life-altering experience. It seeks to infuse the technical implementation with a sense of wisdom and care, elevating the framework beyond a purely academic exercise and endowing it with a powerful rhetorical and moral force.  
+
+---
+
+## How TML Works: A Technical Poetry
+
+A **prompt** arrives, and TML branches instantly into parallel paths. The primary path delivers the AI's response without delay, while **Sacred Zero** watches for moral complexity in parallel. When uncertainty or potential harm crosses the threshold, a pause is marked and the reasoning flagged—all without blocking execution. From the first token, **Always Memory** begins its witness. Every decision births an immutable log: **+1** to proceed, **0** for Sacred Zero's hesitation, **−1** to refuse harm. Each memory is cryptographically sealed, timestamped, and chained to its predecessors—a continuity that no developer, company, or government can break. At the heart lies the **Goukassian Promise**: *Pause when truth is uncertain. Refuse when harm is clear. Proceed when truth is evident.* This vow isn't merely written in documentation—it's encoded in the architecture itself. These sealed memories become **Moral Trace Logs**: not abstract telemetry, but court-admissible evidence of ethical reasoning in action. The **Hybrid Shield** wraps each log in double armor. The **Institutional Shield** distributes copies in real-time to eleven Guardian institutions across continents. The **Mathematical Shield** anchors cryptographic hashes to public ledgers. Any tampering—even a single bit—breaks the chain and screams its violation to the world. 
+Finally, the **Guardian Network**: eleven institutions chosen for independence and diversity, ensuring no single power can capture or erase the evidence. Through them, TML achieves permanence. Through permanence, accountability. Every decision, however small, lights a 🏮 lantern in tomorrow's archives—a memory that power cannot erase, a testimony that time cannot silence.
+
+#### *"No memory = No action. The framework remembers, so justice can see."*
+
+---
 
 **The Three Voices of Ethical AI**
 
@@ -43,10 +53,14 @@ Ternary Moral Logic introduces a revolutionary third state to artificial intelli
 ### Core Framework Components
 
 1. **Sacred Zero Technology**: Automatic activation when moral complexity exceeds thresholds
-2. **Moral Trace Logging**: Complete, immutable documentation of ethical reasoning
-3. **Vulnerable Population Protection**: Enhanced safeguards for at-risk groups
-4. **11-Institution Oversight**: Distributed governance and accountability
-5. **Hybrid Shield**: Real-time distributed logging to 11 institutions with blockchain anchoring
+2. **Always Memory**: Creates an immutable, cryptographically sealed memory before execution
+3. **The Goukassian Promise**: Composed of three interconnected elements: **The Lantern, The Signature, and The License**
+4. **The Memorial Fund**: A financial pool funded by compliance fees and penalties
+5. **Moral Trace Logging**: Complete, immutable documentation of ethical reasoning
+6. **Human Rights**: Real-time detection mechanisms for identifying human rights violations
+6. **Planetary Protection**: Every AI decision affecting Earth creates immutable memories of its environmental impact
+7. **Hybrid Shield**: Real-time distributed logging to 11 institutions with blockchain anchoring
+8. **11-Institution Oversight**: Distributed governance and accountability
 
 ---
 
@@ -57,7 +71,7 @@ Artificial intelligence systems increasingly make decisions affecting human welf
 TML provides the first framework combining:
 
 **Mandatory logging of ethically complex AI decisions**   
--  Criminal penalties for non-compliance (up to 20 years imprisonment)
+-  Criminal penalties for non-compliance 
 -  Victim compensation from violator penalties
 -  Whistleblower rewards incentivizing reporting
 -  Democratic oversight through institutional governance
