@@ -335,6 +335,15 @@ Together, these components create a system of tamper-evident logging. It is not 
 
 The "hybrid" nature of the shield is thus revealed to be a sophisticated interplay between social and technical trust. The Mathematical Shield alone, while cryptographically secure, could be vulnerable to a coordinated physical seizure of its nodes. The Institutional Shield prevents this by making such a seizure politically unviable. Conversely, the Institutional Shield alone would be weak, as one could not be certain that an individual institution had not been compromised or coerced into altering its copy of the logs. The Mathematical Shield provides the public, verifiable proof that all copies are identical and untampered. The system's resilience emerges from this symbiosis: the technical layer prevents covert manipulation, while the social layer prevents overt coercion.
 
+---
+
+## Privacy and User Rights
+
+Beyond accountability, TML must also protect individual rights. It does this by separating **proof from data**. Immutable records contain only hashes and cryptographic proofs—mathematical fingerprints of actions—while personal data remains encrypted and controlled off-chain.  
+
+When users invoke the GDPR “right to erasure” or similar laws, TML applies **crypto-shredding**. Each user’s data is encrypted with a unique key; destroying that key renders the stored data permanently unreadable.  
+
+This design preserves accountability while protecting privacy. Courts and regulators retain verifiable proof that decisions occurred, yet no one can reconstruct erased personal details. TML thus balances two imperatives often seen as irreconcilable: **permanent accountability and individual privacy**.
 
 ---
 
@@ -409,7 +418,47 @@ Failure to meet the aforementioned standards for log integrity and accuracy coul
 
 ---
 
-### Implementation
+## Guardian Network Resilience
+
+The Hybrid Shield depends on an 11-institution Guardian Network to safeguard Moral Trace Logs. TML addresses the classic risks of capture and collusion by using a **two-tier design**: Full Guardians operate TEEs/HSMs to create and sign log batches, while Lightweight Guardians verify and anchor proofs without specialized hardware.  
+
+Selection and rotation are automated through stake-weighted verifiable random functions (VRF), daily sharding to prevent collusion, and automatic ejection of compromised nodes. Governance is reinforced by on-chain binding votes, quadratic voting for fairness, time-locked vesting for Genesis Guardians, and slashing penalties for misbehavior.  
+
+While international legal recognition will continue to evolve, the Guardian architecture is engineered to remain operational under adversarial conditions. By combining technical randomness, cryptographic enforcement, and distributed diversity, TML transforms what could have been a governance weakness into a resilient oversight layer.  
+
+---
+
+## Performance and Latency
+
+TML is engineered so the primary response path remains untouched—decisions execute instantly, without waiting for logs. Sacred Zero triggers and Always Memory write in parallel, ensuring accountability never delays action.  
+
+To prove this, TML sets explicit targets for the **log pipeline**, not the execution path:  
+- User-visible overhead from logging: ≤2 ms (target), never exceeding 10 ms under stress  
+- Full log sealing, hashing, and Guardian distribution: ≤500 ms at P95  
+
+These figures define how quickly accountability catches up behind the action, not how fast the action itself occurs. Bottlenecks, if they emerge, affect only the log pipeline at scale—not the AI’s ability to brake, steer, or respond in real time.  
+
+Think of it like an airplane: the engines never wait for the flight recorder to write, yet the recorder still produces an immutable trail. TML works the same way—safety is instantaneous, accountability follows within milliseconds.  
+
+The challenge ahead is throughput: high-speed domains like autonomous vehicles or financial trading generate vast numbers of logs, and sustaining these targets across global Guardians will require continued optimization and real-world benchmarks.  
+ 
+
+---
+
+## From Black Box to Glass Box
+
+A common critique is that TML functions only as a “black box”—recording after harm, but not preventing it. This is a misunderstanding. TML was never designed to halt execution like a circuit breaker; it was designed to ensure that no decision, once made, can vanish into opacity.  
+
+Every log is immutable, anchored, and distributed to independent Guardians. This transforms the AI from a black box into a **glass box**: its reasoning remains visible, its hesitations are preserved, and its obligations are traceable long after the moment of action.  
+
+Prevention is not abandoned. Sacred Zero acts as a hesitation trigger in domains where law or rights require escalation, and operators must route those cases to human oversight. But in high-speed or safety-critical contexts, where hesitation could cost lives, TML ensures accountability without delay.  
+
+The real safeguard is this: **harm may still occur, but it cannot disappear**. Victims gain evidence, regulators gain forensic trails, and society gains a permanent ledger of when and why machines faltered. This is not a black box that hides failure; it is a glass box that makes failure undeniable, enforceable, and correctable.  
+ 
+
+---
+
+## Implementation
 **Quick Start**   
 from implementations.python_library import create_tml_framework
 
