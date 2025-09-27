@@ -539,7 +539,6 @@ docker pull tml/protection:blockchain-latest
 **Support**: support@tml-goukassian.org
 
 *All USD amounts are nominal to 2025*  
-*Future website: tml-goukassian.org*
 
 ---
 
