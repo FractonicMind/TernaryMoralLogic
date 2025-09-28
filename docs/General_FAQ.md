@@ -555,6 +555,20 @@ Guardian institutions can enhance credibility and provide governance oversight, 
 Even if one blockchain faces legal challenges, others provide independent verification of the same evidence.
 
 ---
+## Preventing Ethics-Washing
+
+**Q1: Can companies use TML logs for “ethics-washing” (appearing ethical without being ethical)?**  
+**A**: No. TML prevents ethics-washing through three enforcement mechanisms:  
+
+- **Lantern**: Every Sacred Zero hesitation is cryptographically anchored — it cannot be fabricated after the fact.  
+- **Signature**: Each log is tied to a unique operator identity, preventing anonymous or false attribution.  
+- **License**: Use of TML is subject to strict legal licensing; misuse or falsified logs result in maximum liability.  
+
+**Q2: Doesn’t the existence of a log just prove a hesitation occurred, not that the outcome was right?**  
+**A**: Correct — the log is not proof that the outcome was “morally correct.” Instead, it is proof of **accountability**. Logs ensure no harm can be hidden, and courts or regulators can adjudicate whether the action was lawful or ethical.  
+
+**Q3: Why is this stronger than ordinary compliance paperwork?**  
+**A**: Traditional compliance relies on **self-reporting**; TML relies on **cryptographic evidence.** That evidence cannot be erased, forged, or backdated, making it immune to corporate spin or ethics-washing.  
 
 ## Conclusion
 
