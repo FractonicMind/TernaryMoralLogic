@@ -482,7 +482,7 @@ TML uses a **Recognition, Not Accreditation** model:
 
 The dual-layer defense of TML:
 
-**Institutional Shield**: Logs mirrored across 11 independent institutions worldwide
+**Institutional Shield**: Logs mirrored across public blockchains 
 
 **Mathematical Shield**: Root hashes anchored to public blockchain
 
@@ -553,18 +553,6 @@ Guardian institutions can enhance credibility and provide governance oversight, 
 - **Expert testimony**: Different blockchain experts can validate different components
 
 Even if one blockchain faces legal challenges, others provide independent verification of the same evidence.
-
----
-
-## Contact Information
-
-**Creator**: Lev Goukassian  
-**ORCID**: 0009-0006-5966-1243  
-**Email**: leogouk@gmail.com  
-**Repository**: https://github.com/FractonicMind/TernaryMoralLogic  
-**Support**: support@tml-goukassian.org
-
-*All USD amounts are nominal to 2025*
 
 ---
 
