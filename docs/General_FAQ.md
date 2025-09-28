@@ -134,45 +134,77 @@ TML transforms them into **glass boxes**:
 The framework does not guarantee perfection, but it guarantees accountability: bad decisions become visible, auditable, and legally actionable.
 
 ---
+## Preventing Ethics-Washing
+
+**Q1: Can companies use TML logs for “ethics-washing” (appearing ethical without being ethical)?**  
+No. TML prevents ethics-washing through three enforcement mechanisms:  
+
+- **Lantern**: Every Sacred Zero hesitation is cryptographically anchored — it cannot be fabricated after the fact.  
+- **Signature**: Each log is tied to a unique operator identity, preventing anonymous or false attribution.  
+- **License**: Use of TML is subject to strict legal licensing; misuse or falsified logs result in maximum liability.  
+
+**Q2: Doesn’t the existence of a log just prove a hesitation occurred, not that the outcome was right?**  
+Correct — the log is not proof that the outcome was “morally correct.” Instead, it is proof of **accountability**. Logs ensure no harm can be hidden, and courts or regulators can adjudicate whether the action was lawful or ethical.  
+
+**Q3: Why is this stronger than ordinary compliance paperwork?**  
+Traditional compliance relies on **self-reporting**; TML relies on **cryptographic evidence.** That evidence cannot be erased, forged, or backdated, making it immune to corporate spin or ethics-washing.  
+
+---
 
 ## **Always Memory**
 
-**Q1: What is Always Memory?**
+**Q1: What is Always Memory?**  
 
-Always Memory mandates: **no log = no action**. Every AI action must generate a cryptographically sealed, timestamped record before execution. This is not configurable, optional, or retrospective.
+Always Memory is the enforcement engine of TML: **no log = no action**.  
+Every AI action must generate a cryptographically sealed, timestamped record **before execution**.  
+If the log cannot be produced, the action is considered unlawful by default. This principle is non-negotiable and court-enforceable.  
 
-**Q2: What exactly gets logged?**
+**Q2: What exactly gets logged?**  
 
-- Microsecond timestamps
-- Batch + action IDs
-- Input/output hashes
-- Model version hash
-- Classification (+1/0/-1)
-- Hardware attestation quotes
-- Ephemeral HSM signature
-- Guardian confirmations
-- Proof-of-publication receipts
-- Environmental impact metrics (when applicable)
+- Microsecond timestamps  
+- Batch + action IDs  
+- Input/output cryptographic hashes  
+- Model version hash  
+- Decision classification (+1 Proceed / 0 Sacred Zero / −1 Refuse)  
+- Proof-of-publication receipts on public blockchains  
+- Environmental and human rights impact triggers (when applicable)  
 
-**Q3: What is Asynchronous Attested Batching (AAB)?**
+**Q3: How are logs anchored?**  
 
-- Actions are buffered inside TEEs
-- Batches sealed every 100ms or 1,000 actions
-- Overhead amortized; per-action latency <1ms for high-throughput
+- Logs are batched and hashed using Merkle trees.  
+- Merkle roots are anchored to multiple independent public blockchains (e.g., Bitcoin, Ethereum, Algorand) for redundancy.  
+- Anchors create immutable, verifiable proofs that any attempt to alter logs is immediately detectable.  
 
-**Q4: What are the realistic latency profiles?**
+**Q4: What are the realistic latency profiles?**  
 
-- **Standard**: 200-300ms (finance, healthcare, environmental monitoring)
-- **Priority**: 50-100ms (time-sensitive ops)
-- **Emergency**: 30-45ms (life-critical, e.g., braking)
+- **User-visible latency**: ≤ 2ms (no slowdown for decision execution)  
+- **Full log pipeline completion**: ≤ 500ms (anchoring + batching finalize in background)  
+- **Degraded mode**: If blockchain anchoring is temporarily unavailable, logs queue locally and sync automatically once connection is restored.  
 
-**Q5: How does Always Memory handle traffic spikes?**
+**Q5: How does Always Memory handle traffic spikes?**  
 
-- Adaptive batch intervals
-- Backpressure (HTTP 429)
-- Priority queues
-- Client-side reconciliation
-- Graceful degradation, never silent failure
+- **Adaptive batching**: Larger groups of logs during surges maintain throughput.  
+- **Backpressure**: Systems return 429 signals when overloaded, forcing retry logic.  
+- **Priority queues**: Critical safety actions are logged first.  
+- **Graceful degradation**: Anchors may delay under stress, but no action proceeds unlogged.  
+
+**Core Rule**: If the log disappears, the law presumes guilt. Always Memory transforms accountability from “best practice” into an unbreakable operating condition.  
+
+---
+
+## **Moral Trace Logs**
+
+**Q1: What are Moral Trace Logs (MTLs)?**  
+MTLs are the cryptographically sealed records of every AI decision. Each log includes timestamps, input/output hashes, model version, decision classification (+1/0/-1), and anchoring proofs.  
+
+**Q2: How do MTLs ensure accountability?**  
+They transform ephemeral AI decisions into permanent, auditable evidence. Logs are sealed, hashed, and anchored across multiple blockchains. Any attempt to alter or delete them breaks the cryptographic chain, making tampering immediately visible.  
+
+**Q3: How are MTLs used in enforcement?**  
+If harm occurs, courts demand the corresponding MTL. Failure to produce a valid log counts as **spoliation of evidence**, triggering strict liability and maximum penalties against the operator.  
+
+**Q4: Do MTLs compromise privacy?**  
+No. Only cryptographic proofs are written on-chain. Personal or sensitive data is encrypted off-chain and can be crypto-shredded under GDPR or equivalent laws, leaving evidentiary integrity intact while protecting privacy.  
 
 ---
 
@@ -199,21 +231,33 @@ If names are erased, the vow remains. If memory fades, the Lantern burns on. The
 
 ## **The Memorial Fund**
 
-**Q1: What is the Memorial Fund?**
+**Q1: What is the Memorial Fund?**  
 
-A financial pool funded by compliance fees and penalties. It provides:
-- Direct compensation to victims of AI harms
-- Support for ecosystem restoration from AI-caused damage
-- Long-term remembrance of those affected
-- A perpetual link between TML enforcement and human/planetary dignity
+The Memorial Fund is a financial pool funded by compliance fees and penalties.  
+It exists to ensure that accountability produces not just punishment, but repair:  
 
-**Q2: How is the Memorial Fund financed?**
+- **Direct compensation** for victims of AI harms  
+- **Support for ecosystem restoration** when environmental damage occurs  
+- **Long-term remembrance** of individuals and communities harmed  
+- **A perpetual covenant** tying TML enforcement to human and planetary dignity  
 
-- 30-40% of penalties from violations
-- Commercial licensing fees
-- Foundation grants
-- Industry consortium contributions
-- Environmental violation penalties
+**Q2: How is the Memorial Fund financed?**  
+
+- **30–40% of penalties** from violations, automatically routed via smart contracts  
+- **Commercial licensing fees** from certified operators  
+- **Foundation grants** supporting equitable adoption  
+- **Industry consortium contributions** for shared risk mitigation  
+- **Environmental violation penalties** earmarked for ecosystem restoration  
+
+**Q3: Who administers the Fund?**  
+
+- **Automated disbursement**: baseline payouts (e.g., statutory damages, verified harm) are triggered directly from logs via smart contracts.  
+- **Independent trustees**: an oversight board of auditors, ethicists, and community representatives validates discretionary payouts and manages long-term allocations.  
+- **Transparency requirement**: all inflows and outflows are publicly logged and cryptographically auditable, ensuring no silent diversion or misuse of funds.  
+
+**Core Principle**: The Memorial Fund ensures that justice is not abstract.  
+Every log, every penalty, and every verdict translates into tangible restitution.  
+
 
 ---
 
@@ -480,156 +524,145 @@ TML uses a **Recognition, Not Accreditation** model:
 
 **Q1: What is the Hybrid Shield?**
 
-The dual-layer defense of TML:
+The Hybrid Shield is TML’s two-tier defense model: a **mandatory Mathematical Shield** plus an **optional Institutional Shield**.  
 
-**Institutional Shield**: Logs mirrored across public blockchains 
+- **Mathematical Shield**: Every Moral Trace Log is hashed, grouped in Merkle trees, and anchored to multiple public blockchains. Any attempt to alter even a single byte breaks the chain of proofs, exposing tampering instantly.  
+- **Institutional Shield (Optional)**: Independent institutions may also mirror encrypted logs, adding an extra layer of redundancy and long-term custody. This is not mandatory for compliance, but serves as an insurance-grade safeguard.  
 
-**Mathematical Shield**: Root hashes anchored to public blockchain
-
-Together: redundancy + immutability. Byte changes break hashes, revealing tampering instantly.
-
----
-
-## Blockchain-First Architecture
-
-### Q1: Why did TML adopt a blockchain-first approach?
-**A**: Blockchain anchoring provides immediate, tamper-proof evidence without waiting for institutional coordination. Companies can deploy complete protection in 10 minutes and start preventing discrimination today, rather than waiting months or years for institutional governance networks to form.
-
-### Q2: Which blockchains does TML use and why?
-**A**: TML uses a multi-chain strategy for maximum security and efficiency:
-- **Polygon**: Real-time anchoring (2-3 seconds) for immediate accountability
-- **Ethereum**: Smart contract penalty enforcement and DeFi integration  
-- **Bitcoin**: Maximum security for critical evidence with 15+ year track record
-- **OpenTimestamps**: Free archival timestamping using Bitcoin's security
-
-This redundancy ensures no single blockchain failure can compromise evidence integrity.
-
-### Q3: How much does blockchain anchoring cost?
-**A**: Extremely low due to Merkle tree batching:
-- **Per decision**: Half a tenth of a cent (0.0005 USD)
-- **Daily cost**: $7.50 for 10,000 decisions  
-- **Monthly cost**: ~$225 for standard deployment
-- **Insurance savings**: $500-1,500/month (covers costs 2-7x over)
-
-### Q4: What happens if blockchain networks go down?
-**A**: TML has comprehensive fallback systems:
-- **Multi-chain redundancy**: If one network fails, others continue
-- **Local signatures**: Decisions continue with cryptographic signatures
-- **Automatic recovery**: Full sync when networks restore
-- **Graceful degradation**: Zero user impact during network issues
-- **99.9% effective uptime**: Multi-chain strategy ensures continuous protection
-
-### Q5: Is blockchain evidence legally admissible in court?
-**A**: Yes, blockchain evidence meets legal standards globally:
-- **US**: FRE 902(13) for self-authenticating digital records
-- **EU**: eIDAS qualified electronic signatures and timestamps
-- **International**: RFC 3161 timestamp protocol compliance
-- **Precedent**: Bitcoin evidence accepted in 50+ court cases
-- **Multi-jurisdictional**: Evidence valid across legal systems
-
-### Q6: How does blockchain anchoring prevent evidence tampering?
-**A**: Multiple cryptographic layers ensure tamper-proof evidence:
-- **SHA-256 hashing**: Any change to decision data creates completely different hash
-- **Merkle tree integrity**: Changing one decision invalidates entire batch proof
-- **Blockchain immutability**: Once anchored, evidence cannot be altered or deleted
-- **Multi-chain verification**: Attackers would need to compromise Bitcoin AND Ethereum simultaneously (estimated cost: $50+ billion)
-
-### Q7: Can TML work without Guardian institutions?
-**A**: Absolutely. TML's blockchain-first architecture provides complete protection independently:
-- **Full discrimination prevention**: Sacred Zero operates with blockchain anchoring alone
-- **Complete audit trail**: Always Memory creates immutable evidence  
-- **Automatic penalties**: Smart contracts enforce violations
-- **Legal compliance**: Meets all regulatory requirements
-- **Guardian Network**: Optional future enhancement, not requirement
-
-Guardian institutions can enhance credibility and provide governance oversight, but core protection never depends on their participation.
-
-### Q8: How does multi-chain anchoring improve legal defensibility?
-**A**: Multiple blockchain proofs create redundant evidence that's nearly impossible to challenge:
-- **Diverse legal precedents**: Different courts may prefer different blockchain evidence
-- **Jurisdiction shopping protection**: Evidence valid across multiple legal systems  
-- **Attack resistance**: Compromising evidence requires attacking multiple independent networks
-- **Strengthening over time**: Older anchors become more secure as blockchains grow
-- **Expert testimony**: Different blockchain experts can validate different components
-
-Even if one blockchain faces legal challenges, others provide independent verification of the same evidence.
-
----
-## Preventing Ethics-Washing
-
-**Q1: Can companies use TML logs for “ethics-washing” (appearing ethical without being ethical)?**  
-**A**: No. TML prevents ethics-washing through three enforcement mechanisms:  
-
-- **Lantern**: Every Sacred Zero hesitation is cryptographically anchored — it cannot be fabricated after the fact.  
-- **Signature**: Each log is tied to a unique operator identity, preventing anonymous or false attribution.  
-- **License**: Use of TML is subject to strict legal licensing; misuse or falsified logs result in maximum liability.  
-
-**Q2: Doesn’t the existence of a log just prove a hesitation occurred, not that the outcome was right?**  
-**A**: Correct — the log is not proof that the outcome was “morally correct.” Instead, it is proof of **accountability**. Logs ensure no harm can be hidden, and courts or regulators can adjudicate whether the action was lawful or ethical.  
-
-**Q3: Why is this stronger than ordinary compliance paperwork?**  
-**A**: Traditional compliance relies on **self-reporting**; TML relies on **cryptographic evidence.** That evidence cannot be erased, forged, or backdated, making it immune to corporate spin or ethics-washing.  
-
-## Conclusion
-
-**TML's blockchain-first architecture delivers immediate AI accountability without institutional coordination.** Public blockchain anchoring creates tamper-proof evidence that meets legal standards globally while providing economic benefits from day one.
-
-**Key Benefits:**
-- **Immediate deployment** in 10 minutes with complete protection
-- **Half a tenth of a cent** per decision through Merkle tree batching
-- **300-800% ROI** from insurance savings exceeding all costs
-- **Court-admissible evidence** meeting FRE 902(13) and eIDAS standards
-- **Multi-chain security** resistant to nation-state attacks
-- **GDPR compliance** through crypto-shredding technique
-
-**The blockchain-first approach transforms TML from "interesting concept" to "deploy this afternoon and start protecting people."** Companies can begin preventing AI discrimination immediately while building towards enhanced governance over time.
-
-*Every decision creates permanent, tamper-proof evidence. Every violation triggers immediate penalties. Every day strengthens the foundation of AI accountability.*
-
+Together, these layers provide both **immutability** (mathematics cannot be bribed) and **redundancy** (copies cannot be erased silently). Even if a company collapses or a blockchain is attacked, the record of what happened endures.  
 
 
 ---
 
-## **Implementation & Economics**
 
-**Q1: What are the realistic costs?**
+## Performance & Latency
 
-- **Pilot**: ~$250K first year
-- **Small enterprise**: ~$2M/year
-- **Large enterprise**: ~$11M/year
+**Q1: Does TML slow down AI systems, especially in high-speed environments like autonomous vehicles?**  
+No. TML operates in **parallel** with AI actions. The decision executes immediately; the log completes asynchronously. Nothing in TML can block or delay a life-critical action.  
 
-Costs reduced through shared Guardians, selective fidelity, and foundation subsidies.
+**Q2: What are the latency guarantees?**  
+- **≤2 ms**: Added latency for user-visible responses.  
+- **≤500 ms**: Completion of the full log pipeline, including cryptographic anchoring.  
 
-**Q2: How are costs stabilized?**
+**Q3: How does TML avoid bottlenecks?**  
+Logs are batched and hashed using Merkle trees, then anchored asynchronously to multiple blockchains. This ensures that even millions of decisions per second can be logged without introducing a bottleneck.  
 
-- EIP-1559 style fee mechanism
-- Delegated staking
-- Base fee stability; variable tips
+**Q4: What happens if a blockchain is congested or temporarily unavailable?**  
+TML enters **degraded mode**: logs remain sealed and queued for anchoring. Once blockchain access resumes, the backlog is flushed. No logs are lost, and AI execution never halts.  
 
-**Q3: What's the phased adoption path?**
-
-1. **Shadow Mode**: Logging only
-2. **Selective Enforcement**: Critical decisions
-3. **Full Always Memory**: All actions logged
+**Q5: Why is this stronger than ordinary “explainable AI”?**  
+Explainable AI (XAI) produces optional narratives. TML produces **cryptographically anchored evidence** within strict latency bounds. That makes accountability enforceable, not optional.  
 
 ---
 
-## **Performance & Latency**
+## Governance and Guardians
 
-**Q1: How does Multi-TEE Diversity protect the system?**
+**Q1: Are Guardians required for TML to work?**  
+No. TML’s enforcement is grounded in **blockchain anchoring** and **strict liability**. If an operator cannot produce a valid, anchored log, courts can treat it as spoliation of evidence — triggering maximum penalties. This enforcement works today, without Guardians.  
 
-Mandatory heterogeneous infrastructure:
-- 40% Intel SGX
-- 40% AMD SEV-SNP
-- 20% AWS Nitro Enclaves
+**Q2: Then what role do Guardians play?**  
+Guardians are an **optional, insurance-grade layer**. They provide redundancy, cross-border recognition, and independent custody of logs. While not required for TML compliance, they strengthen trust and resilience — especially in international or adversarial contexts.  
 
-Side-channel attacks limited to single architecture. Protocol-level ejection of compromised types.
+**Q3: How would Guardians be selected and rotated?**  
+Future Guardian networks can be designed with mechanisms like:  
+- **Daily random selection** via verifiable randomness (VRF)  
+- **Quadratic voting** for fairness  
+- **Automatic slashing** for misbehavior  
+These ensure independence and minimize the risk of capture.  
 
-**Q2: What about universal vulnerabilities?**
+**Q4: Why present Guardians as optional?**  
+Because TML must be adoptable now. Blockchain anchoring and strict liability make the framework enforceable without delay. Guardians remain the **ideal evolution path**, offering additional protection and legitimacy as global adoption matures.  
 
-- Minimal unikernel runtimes
-- Formally verified cryptographic libraries
-- Zero-TEE fallback with 80% BFT consensus
+**Q5: What is the long-term vision for Guardians?**  
+Over time, Guardians could become a recognized international body — similar to certificate authorities in the web ecosystem. For now, they are an **enhancement, not a prerequisite.**
+
+---
+
+## **Adversarial Attacks**
+
+**Q1: How does TML defend against blockchain-level exploits (forks, re-orgs, 51% attacks)?**  
+TML uses **multi-chain anchoring** as mandatory protection. Each Moral Trace Log batch is hashed into a Merkle root and anchored to multiple independent blockchains (e.g., Bitcoin, Ethereum, Algorand). To erase or alter a proof, attackers would need to compromise all target chains simultaneously — an economically and technically infeasible attack. Divergences across chains are detected within a single block cycle.  
+
+**Q2: How does TML protect against insider threats (e.g., a company deleting logs)?**  
+Anchors are external and immutable. Once written, logs cannot be silently deleted or altered. Missing or inconsistent logs are treated as **spoliation of evidence**, triggering strict liability and maximum penalties.  
+
+**Q3: Can attackers flood Always Memory with fake or spam actions?**  
+- **Adaptive batching** aggregates logs under load to preserve throughput.  
+- **Priority queues** ensure critical transactions are never starved.  
+- **Economic throttle**: minimal per-log anchoring costs make large-scale flooding prohibitively expensive.  
+
+**Q4: What about poisoning of logs or false entries?**  
+- **Cryptographic immutability**: SHA-256 hashes + Merkle trees ensure even a single change alters the entire proof chain.  
+- **Public transparency**: Anchors published on blockchains expose divergence instantly.  
+- **Strict liability**: unverifiable or missing logs automatically count against the operator.  
+
+**Q5: How does TML handle denial-of-service attacks?**  
+- **Network defenses**: CDN/WAF, anycast routing, quota-based authentication.  
+- **Protocol defenses**: backpressure signaling, early drop policies, sliding quotas.  
+- **Economic defenses**: anchoring fees and staking penalties force attackers to burn significant resources.  
+
+**Q6: How does TML address quantum-era threats?**  
+Anchoring currently relies on SHA-256 and elliptic curve cryptography, which are quantum-vulnerable in theory but not in practice today. TML is **crypto-agile**: once quantum-safe algorithms are standardized, the anchoring protocol can be upgraded without breaking existing proofs.  
+
+**Q7: What about whistleblower or victim protection?**  
+- **Anonymous reporting channels** shield identities.  
+- **Immutable anchoring** ensures evidence survives internal deletion attempts.  
+- **Optional institutional custody** (Guardians) can serve as escrow, but core accountability is guaranteed by blockchain anchoring alone.  
+
+---
+
+## Legal Admissibility
+
+**Q1: Are TML logs admissible as legal evidence?**  
+Yes. Each log is cryptographically hashed, batched via Merkle trees, and anchored to multiple public blockchains. This produces immutable, verifiable proofs of existence and integrity. Courts already recognize cryptographic timestamps and hashes as valid evidence under rules such as **FRE 901 (authenticity)** and **FRE 902(13) (electronic records)**.  
+
+**Q2: How do OpenTimestamps (OTS) and Certificate Transparency (CT) improve legal strength?**  
+- **OpenTimestamps**: Provides standardized, decentralized timestamp proofs that can be independently verified.  
+- **Certificate Transparency model**: Creates an append-only log structure, ensuring every entry is visible and auditable.  
+
+Together, they provide interoperable proof formats that align with existing legal frameworks worldwide.  
+
+**Q3: Are Guardians required for legal admissibility?**  
+No. Blockchain anchoring plus OTS/CT proofs are sufficient for domestic legal systems. Guardians are an **optional, insurance-grade feature** that may strengthen cross-border recognition by acting as neutral custodians.  
+
+**Q4: What happens if a company fails to produce a valid anchored log?**  
+Courts can treat the absence of a log as **spoliation of evidence** — shifting the burden of proof to the operator and triggering maximum penalties. This ensures accountability without requiring Guardians.  
+
+**Q5: How is international recognition handled?**  
+Cross-border recognition of digital evidence varies. Anchoring to multiple chains, combined with optional Guardian custody, strengthens trust across jurisdictions. Over time, regulators may recognize Guardian attestation as a “safe harbor” for international admissibility.  
+
+---
+
+## Defining the Threshold
+
+**Q1: Who decides when TML should trigger a Sacred Zero?**  
+TML thresholds are not arbitrary or developer-set. They are anchored in **40 foundational Human Rights documents** and **26 Earth Protection treaties**. These include instruments like the Universal Declaration of Human Rights, Geneva Conventions, Paris Agreement, and Convention on Biological Diversity.  
+
+**Q2: How are these thresholds kept up to date?**  
+TML uses **oracles** to refresh thresholds in real time. Each Sacred Zero log records the exact document and provision that triggered the hesitation. This ensures transparency and prevents silent manipulation.  
+
+**Q3: Doesn’t this solve the problem of companies raising thresholds to avoid logs?**  
+Yes. By mandating thresholds from binding international documents, companies cannot arbitrarily weaken protections. Any attempt to bypass logs becomes legally visible and challengeable in court, since the triggering reference is cryptographically sealed in the log itself.  
+
+**Q4: What happens if ethical standards evolve?**  
+Because oracles continuously update from recognized human rights and ecological treaties, TML adapts without code changes. The framework inherits the pace of law and consensus — ensuring it remains relevant across decades.  
+
+---
+
+## Glass Box Transparency
+
+**Q1: How does TML differ from current "black box" AI?**  
+Conventional AI systems are black boxes: when harm occurs, the rationale disappears inside the model.  
+TML transforms them into **glass boxes**:  
+
+* **Before TML**: "The AI denied your loan" (no explanation).  
+* **With TML**: "The AI denied your loan due to ZIP code correlation; Sacred Zero triggered; here is the complete decision trace."  
+
+The framework does not guarantee perfection, but it guarantees accountability: bad decisions become visible, auditable, and legally actionable.  
+
+**Q2: Why is this important?**  
+Because TML ensures that even when harm occurs, it **cannot vanish into opacity**.  
+Instead, every hesitation and reasoning step is logged, cryptographically anchored, and available for courts, regulators, and affected users.  
 
 ---
 
@@ -677,7 +710,7 @@ Always Memory is designed as an invisible infrastructure, not an add-on. Like th
 
 - **Versioned log formats:** Always Memory evolves alongside new computing paradigms (neuromorphic chips, quantum processors, swarm architectures) without losing backward compatibility.  
 - **Adaptive capture:** Beyond text logs, the framework extends to multi-modal records: video, audio, and sensor feeds from embodied systems such as humanoid robots. This ensures that AGI actions are preserved not only in reasoning chains but in physical behavior.  
-- **Anchored permanence:** Logs are mirrored across independent institutions and cryptographically sealed. Updates never overwrite the past; they add new strata, like tree rings.  
+- **Anchored permanence:** Logs are cryptographically sealed to multiple public blockchains, with optional institutional custody as an added safeguard. Updates never overwrite the past; they add new strata, like tree rings.  
 
 ### Q2: Can Always Memory handle AGI?
 Yes, by principled design. Always Memory is layered to ensure that even the fastest AGI cannot escape accountability.  
@@ -724,76 +757,25 @@ Each cycle strengthens both compliance and credibility. Self-reinforcing adoptio
 
 ## **Resilience & Contingencies**
 
-**Q1: What if all TEEs are compromised?**
+**Q1: What if all blockchains fail or fork?**  
+- **Multi-chain anchoring**: Proofs anchored to multiple independent chains (e.g., Bitcoin, Ethereum, Algorand).  
+- **Immutability by redundancy**: To erase a log, attackers must compromise *all* chains simultaneously — effectively impossible.  
+- **Fallback continuity**: If one chain reorganizes, proofs remain valid on the others.  
 
-- Immediate ejection of compromised type
-- Zero-TEE fallback with 80% BFT consensus
+**Q2: What if a company deletes its logs?**  
+- **Strict liability**: Failure to produce the log is treated as spoliation of evidence; courts issue adverse inference and maximum penalties.  
+- **Automated monitors**: Continuous checks flag missing anchors in real-time.  
+- **No safe harbor**: Companies cannot shield themselves; missing logs are treated as intentional destruction.  
 
-**Q2: What if Guardians collude?**
+**Q3: What if governance is needed across borders?**  
+- **Minimum viable enforcement**: Blockchain + strict liability works domestically today.  
+- **Insurance-grade option**: Independent custodians may later provide attestation for cross-border cases.  
+- **Future-proofing**: Framework is ready for optional Guardian networks, but not dependent on them.  
 
-- Stake-weighted selection makes Sybils uneconomic
-- Random sharding breaks predictability
-- Slashing enforces accountability
-
-**Q3: What if the Legal Defense Fund is exhausted?**
-
-- Reinsurance caps exposure
-- Emergency assessments
-- Foundation reserves
-
----
-
-## **Adversarial Attacks**
-
-**Q1: What about side-channel or hardware exploits?**
-
-- Multi-TEE diversity ensures no single exploit compromises the whole network
-- Formal verification of minimal runtimes reduces shared-library attack surfaces
-- Protocol-level ejection instantly removes a compromised TEE class
-
-**Q2: Can Guardians be bribed or captured?**
-
-- Stake-weighted selection makes collusion prohibitively expensive
-- Random sharding ensures unpredictability of signing sets
-- Slashing rules and public audit logs make misconduct both visible and costly
-
-**Q3: Can attackers flood Always Memory with fake actions?**
-
-- Backpressure (429 signals) and adaptive batching throttle denial-of-service attempts
-- Priority queues ensure critical transactions are protected under attack
-- Client-side reconciliation forces attackers to pay the cost of repeated retries
-
-**Q4: What about poisoning of logs or false entries?**
-
-- Immutable signatures and hash-chains make undetected falsification impossible
-- Hybrid Shield's 11-mirror institutional redundancy prevents silent erasure
-- Blockchain anchoring exposes divergence within a single block cycle
-
-**Q5: What if attackers target whistleblowers or victims?**
-
-- Anonymous reporting channels preserve identity
-- Guardian-hardened routing prevents IP leakage
-- 15% whistleblower bounties + Memorial Fund disbursements align incentives against retaliation
-
-**Q6: How does Always Memory defend against Denial-of-Service attacks?**
-
-**Network defenses:**
-- DDoS-absorbing CDN/WAF
-- Anycast + global edge points
-- Token-based auth with sliding quotas
-
-**Protocol defenses:**
-- Adaptive batching
-- Priority queues
-- Backpressure signaling
-- Early drop policies
-
-**Economic defenses:**
-- Fee market makes attacks expensive
-- Staking penalties for enabling floods
-- Per-request minimal fees during load
 
 ---
+
+
 
 ## **Technical Specifications**
 
