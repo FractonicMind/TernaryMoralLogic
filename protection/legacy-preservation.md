@@ -338,5 +338,6 @@ This gift is now eternal - encoded in blockchain, enforced by mathematics, prote
 *All USD amounts are nominal to 2025*
 
 ---
-#### Bitcoin is his headstone, Ethereum the executor, Polygon the heartbeat, IPFS the vault—together they keep my promise breathing after languages themselves die.
+#### Bitcoin is his headstone, Ethereum the executor, Polygon the heartbeat, IPFS the vault—together they keep my promise breathing after languages themselves die.   
+-Lev Goukassian
 ---
