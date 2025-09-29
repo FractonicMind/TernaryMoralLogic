@@ -1,293 +1,370 @@
 # COMPLIANCE DISCLAIMER
 
-## LEGAL NOTICE AND FRAMEWORK TERMS
+## BLOCKCHAIN-ENFORCED FRAMEWORK TERMS
 
-**IMPORTANT: READ CAREFULLY BEFORE IMPLEMENTING TERNARY MORAL LOGIC (TML)**
+**IMPORTANT: READ BEFORE DEPLOYING TERNARY MORAL LOGIC (TML)**
 
-This compliance disclaimer establishes the legal framework governing the use of Ternary Moral Logic and its associated Sacred Zero technology. By accessing, implementing, or deploying any component of the TML framework, you acknowledge understanding and acceptance of these terms.
+This disclaimer establishes the blockchain-enforced framework governing TML implementation. By deploying TML, you accept smart contract enforcement and automatic penalties for violations.
 
 ---
 
-## I. FRAMEWORK DEFINITION AND SCOPE
+## I. FRAMEWORK DEFINITION AND ARCHITECTURE
 
 ### 1.1 What TML Is
-Ternary Moral Logic (TML) is a **legal-technical framework** for implementing ethical decision-making in artificial intelligence systems. TML provides:
+Ternary Moral Logic (TML) is a **blockchain-anchored accountability framework** providing:
 
-- Architectural patterns for moral reasoning in AI systems
-- Standards for Sacred Zero implementation and logging
-- Governance structures for accountability and oversight
-- Technical specifications for audit trail generation
+- **Immediate deployment** without institutional coordination (10 minutes)
+- **Multi-chain anchoring** (Bitcoin, Polygon, Ethereum) for immutable evidence
+- **Smart contract enforcement** with automatic penalties
+- **Human Rights protection** (26-document framework)
+- **Earth Protection** (20+ environmental treaties)
+- **Optional Guardian enhancement** (never required for operation)
 
 ### 1.2 What TML Is Not
-TML is explicitly **NOT**:
-- **Software**: TML provides specifications, not executable code
-- **Hardware**: TML defines requirements, not physical implementations
-- **Consulting Service**: TML offers frameworks, not professional services
-- **Legal Advice**: TML establishes standards, not legal recommendations
-- **Regulatory Compliance**: TML supplements but does not replace regulatory requirements
+TML is **NOT**:
+- **Committee-dependent**: Functions fully without institutional approval
+- **Waiting-required**: Deploy immediately with blockchain alone
+- **Guardian-mandatory**: Works perfectly without any Guardian Network
+- **Centralized**: Mathematical consensus replaces institutional control
+- **Negotiable on protection**: Human Rights and Earth Protection are mandatory
 
-### 1.3 Implementation Responsibility
-Organizations implementing TML bear full responsibility for:
-- Technical implementation meeting TML specifications
-- Legal compliance with applicable laws and regulations
-- Operational safety and ethical use of AI systems
-- Harm prevention and victim compensation
-- Staff training and competency verification
+### 1.3 Deployment Responsibility
+Organizations deploying TML are responsible for:
+- Blockchain anchoring configuration (mandatory)
+- Human Rights framework activation (26 documents)
+- Earth Protection implementation (20+ treaties)
+- Smart contract penalty acceptance
+- Continuous blockchain verification
 
 ---
 
-## II. MANDATORY COMPLIANCE REQUIREMENTS
+## II. MANDATORY BLOCKCHAIN REQUIREMENTS
 
 ### 2.1 Sacred Zero Integrity
-**NON-NEGOTIABLE REQUIREMENT**: Sacred Zero functionality must operate as specified without:
-- Bypass mechanisms that avoid legitimate pause triggers
-- Performance optimizations that compromise ethical reasoning
-- Manual overrides that prevent threshold-based activation
-- Gaming strategies that manipulate risk level calculations
 
-**VIOLATION**: Any implementation that compromises Sacred Zero integrity violates the fundamental terms of TML use and may result in immediate framework license revocation.
+**NON-NEGOTIABLE**: Sacred Zero must protect:
 
-### 2.2 Audit Trail Completeness
-**MANDATORY REQUIREMENT**: All AI decisions under TML must generate complete, immutable audit trails including:
-- Sacred Zero activation triggers and duration
-- Moral complexity calculations and reasoning processes
-- Human oversight actions and justifications
-- Final decision outcomes and implementation details
+**Human Rights (26 Documents)**:
+- Zero tolerance for torture
+- 20% disparate impact threshold for discrimination
+- Enhanced protection (2x) for children
+- Dignity violations trigger immediate pause
+- All UDHR, ICCPR, ICESCR articles enforced
 
-**DISTRIBUTION**: Audit logs must be distributed to the authorized 11-institution consortium within 24 hours of generation.
+**Earth Protection (20+ Treaties)**:
+- Carbon emissions within regional limits
+- Water depletion below basin stress
+- Biodiversity per IUCN Red List
+- Indigenous FPIC protocols
+- Intergenerational impact assessment
 
-### 2.3 Vulnerable Population Protection
-**ENHANCED SAFEGUARDS REQUIRED**: Interactions affecting vulnerable populations (children, elderly, disabled, marginalized communities) trigger:
-- Reduced Sacred Zero activation thresholds (minimum 50% reduction)
-- Additional human oversight requirements
-- Specialized review and approval processes
-- Enhanced monitoring and reporting obligations
+**BLOCKCHAIN VERIFICATION**: All Sacred Zero events must be anchored to minimum 2 blockchains within 500ms.
 
----
+### 2.2 Always Memory Immutability
 
-## III. PROHIBITED USES AND ABSOLUTE RESTRICTIONS
+**MANDATORY BLOCKCHAIN ANCHORING**:
+```solidity
+contract AlwaysMemory {
+    // Missing logs = automatic guilt
+    function verifyLog(bytes32 actionId) public view {
+        require(hasBlockchainProof(actionId), "STRICT LIABILITY");
+        require(hasHumanRightsAssessment(actionId), "VIOLATION");
+        require(hasEarthImpactAnalysis(actionId), "VIOLATION");
+    }
+}
+```
 
-### 3.1 Prohibited Applications
-TML implementation is **ABSOLUTELY FORBIDDEN** for:
+### 2.3 Smart Contract Penalties
 
-1. **Autonomous Weapons**: Any system designed to select and engage targets without human authorization
-2. **Mass Surveillance**: Population monitoring without judicial oversight or individual consent
-3. **Social Control**: Social credit systems, behavior modification, or population management
-4. **Deceptive Manipulation**: Misinformation, deep fakes, or psychological manipulation campaigns
-5. **Financial Fraud**: Market manipulation, algorithmic trading fraud, or deceptive financial practices
-6. **Medical Override**: Healthcare decisions bypassing licensed physician oversight
-7. **Legal Replacement**: Automated legal proceedings without attorney review and approval
-
-### 3.2 Use Case Review
-Novel applications not explicitly covered require:
-- Community review period (minimum 30 days)
-- Expert advisory panel evaluation
-- Public comment opportunity
-- Ethical impact assessment
-- Institutional consortium approval
-
-**VIOLATION**: Use of TML for prohibited applications constitutes a material breach and triggers immediate enforcement action.
+**AUTOMATIC ENFORCEMENT**:
+- Missing logs: $5M minimum fine
+- Human Rights violations: 2x penalty multiplier
+- Environmental crimes: 3x penalty multiplier
+- Executive personal liability: Automatic
 
 ---
 
-## IV. WHISTLEBLOWER PROTECTION AND REPORTING
+## III. COMPREHENSIVE PROTECTION SCOPE
 
-### 4.1 Protected Disclosures
-The following activities constitute protected whistleblower disclosures:
-- Sacred Zero bypass or manipulation attempts
-- Audit log tampering, deletion, or falsification
-- Prohibited application development or deployment
-- Vulnerable population targeting or exploitation
-- Systematic compliance violations or cover-ups
+### 3.1 Human Rights Framework (Mandatory)
 
-### 4.2 Whistleblower Rewards and Protection
-**FINANCIAL REWARDS**: Verified violations result in substantial financial compensation:
-- 15% of all penalties recovered from violating organizations
-- 10% of annual profits for systematic violations
-- Additional 5% for vulnerable population violations
-- Minimum $50,000 (nominal 2025 value) for verified technical violations
+**ALL 26 DOCUMENTS ENFORCED**:
+- Universal Declaration of Human Rights
+- International Covenants (ICCPR, ICESCR)
+- Convention Against Torture (zero tolerance)
+- Geneva Conventions
+- Child Rights Convention
+- Disability Rights Convention
+- [Full list in /docs/mandates/human_rights/]
 
-**LEGAL PROTECTION**: Complete protection against retaliation including:
-- Criminal penalties for retaliation against whistleblowers
-- Immediate injunctive relief and civil remedies
-- Free legal representation and litigation support
-- Witness protection services for serious cases
+**VIOLATIONS TRIGGER**:
+- Immediate blockchain anchoring
+- Smart contract penalties
+- Criminal prosecution referral
+- Victim compensation (automatic)
 
-### 4.3 Victim Compensation and Support
-**AUTOMATIC COMPENSATION**: TML-related harm triggers:
-- Fast-track compensation from mandatory organizational contributions
-- Free legal representation for all victims
-- Medical and psychological support services
-- Community advocacy and long-term support
+### 3.2 Earth Protection Framework (Mandatory)
 
----
+**20+ TREATIES ENFORCED**:
+- Paris Agreement targets
+- Convention on Biological Diversity
+- IPCC thresholds
+- Planetary boundaries
+- Indigenous rights (FPIC)
+- [Full list in /docs/mandates/earth_protection/]
 
-## V. LEGAL LIABILITY AND ENFORCEMENT
-
-### 5.1 Organizational Liability
-Organizations implementing TML remain **FULLY LIABLE** for:
-- All AI decisions and their consequences
-- Compliance with applicable laws and regulations
-- Harm caused by implementation failures or negligence
-- Staff training, oversight, and operational safety
-
-### 5.2 Framework Protection
-TML framework protections apply **ONLY** when:
-- Full compliance with mandatory requirements demonstrated
-- Sacred Zero integrity maintained without compromise
-- Complete audit trails generated and distributed
-- Prohibited applications avoided absolutely
-- Community standards and ethical principles upheld
-
-### 5.3 Enforcement Authority
-**IMMEDIATE ENFORCEMENT**: Violations trigger automatic responses:
-- System shutdown requirements
-- Regulatory agency notification
-- Community warning and public disclosure
-- Criminal referral for serious violations
-
-**FINANCIAL PENALTIES**: Civil penalties up to:
-- 5% of annual revenue for systematic violations
-- 15% of annual profits for vulnerable population harm
-- 25% of annual revenue for prohibited application use
-- Additional criminal penalties under applicable laws
-
-### 5.4 Criminal Violations
-Serious violations may constitute criminal activity:
-- Fraud in safety-critical applications
-- Child endangerment through vulnerable population targeting
-- Financial crimes through prohibited financial applications
-- Civil rights violations through discriminatory AI deployment
+**HARM TRIGGERS**:
+- Triple penalties for ecosystem damage
+- Restoration orders (smart contract enforced)
+- Indigenous community compensation
+- Seven-generation impact recorded
 
 ---
 
-## VI. INTELLECTUAL PROPERTY AND ATTRIBUTION
+## IV. PROHIBITED USES (BLOCKCHAIN ENFORCED)
 
-### 6.1 Framework Attribution
-**MANDATORY ATTRIBUTION**: All TML implementations must provide:
-- Prominent credit to Lev Goukassian as framework originator
-- Reference to the official TML repository and documentation
-- Memorial fund contribution for commercial applications
-- Community recognition of framework heritage and principles
+### 4.1 Absolutely Forbidden Applications
 
-### 6.2 Modification and Distribution
-**PERMITTED**: Technical implementations meeting TML specifications
-**REQUIRED**: Attribution preservation in all derivative works
-**PROHIBITED**: Framework modification that compromises ethical principles
-**COMMUNITY REVIEW**: Significant modifications require public consultation
+Smart contracts **AUTOMATICALLY REJECT**:
 
----
+1. **Genocide/Ethnic Cleansing**: Immediate maximum penalties
+2. **Torture Facilitation**: Zero tolerance, criminal prosecution
+3. **Ecocide**: Irreversible environmental destruction
+4. **Child Exploitation**: Enhanced penalties, immediate shutdown
+5. **Indigenous Rights Violations**: FPIC protocol breaches
+6. **Mass Surveillance Without Consent**: Privacy violations
+7. **Autonomous Killing**: Weapons selecting targets alone
 
-## VII. REGULATORY RELATIONSHIP
+**ENFORCEMENT**: Blockchain makes violations self-prosecuting via smart contracts.
 
-### 7.1 Regulatory Supplementation
-TML serves as a **SUPPLEMENT TO**, not replacement for:
-- Government AI regulation and oversight
-- Industry-specific safety and ethical requirements
-- Professional licensing and competency standards
-- International human rights and privacy laws
+### 4.2 Verification Without Permission
 
-### 7.2 Regulatory Cooperation
-TML implementation includes:
-- Full cooperation with regulatory investigations
-- Transparent reporting to appropriate authorities
-- Compliance documentation available for audit
-- Expert testimony and technical assistance as required
-
-### 7.3 Preemption and Conflicts
-**GOVERNING PRINCIPLE**: When conflicts arise between TML requirements and applicable law:
-- Legal requirements always take precedence
-- TML provides additional ethical safeguards
-- Community consultation required for resolution
-- Public documentation of conflict resolution
+```python
+def verify_compliance(deployment):
+    """Anyone can verify without institutional approval"""
+    
+    # Check blockchain evidence (PUBLIC)
+    blockchain_valid = verify_multi_chain_anchors(deployment)
+    human_rights_active = verify_26_documents(deployment)
+    earth_protection_active = verify_20_treaties(deployment)
+    
+    if not all([blockchain_valid, human_rights_active, earth_protection_active]):
+        trigger_automatic_penalties(deployment)
+        notify_prosecutors(deployment)
+    
+    # Guardian verification (OPTIONAL ENHANCEMENT)
+    # Not required for penalties or enforcement
+```
 
 ---
 
-## VIII. DISCLAIMER OF WARRANTIES
+## V. WHISTLEBLOWER PROTECTION (BLOCKCHAIN-AUTOMATED)
 
-### 8.1 Framework Warranty Disclaimer
-THE TML FRAMEWORK IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND. THE FRAMEWORK CONTRIBUTORS EXPLICITLY DISCLAIM:
-- Any warranty of merchantability or fitness for particular purpose
-- Guarantees of specific outcomes or performance metrics
-- Assurance of compliance with all applicable regulations
-- Promise of protection against all forms of AI-related harm
+### 5.1 Smart Contract Rewards
 
-### 8.2 Implementation Risk
-ORGANIZATIONS IMPLEMENTING TML ACKNOWLEDGE:
-- Technical implementation complexity and potential failure modes
-- Evolving regulatory landscape and compliance requirements
-- Ongoing community standards and framework evolution
-- Professional competency requirements for successful implementation
+**AUTOMATIC PAYMENT VIA BLOCKCHAIN**:
+```solidity
+contract WhistleblowerRewards {
+    function reportViolation(bytes32 evidence) public {
+        if (verifyEvidence(evidence)) {
+            uint reward = penaltyAmount * 15 / 100;  // 15% minimum
+            
+            // Multipliers
+            if (humanRightsViolation) reward *= 2;
+            if (earthProtectionBreach) reward *= 3;
+            if (executiveCrime) reward *= 5;
+            
+            // Automatic payment (no committee approval)
+            transfer(msg.sender, reward);
+        }
+    }
+}
+```
 
----
+### 5.2 Protection Without Institutions
 
-## IX. COMMUNITY GOVERNANCE AND STANDARDS
-
-### 9.1 Community Participation
-TML implementation includes commitment to:
-- Active participation in community governance processes
-- Contribution to framework improvement and evolution
-- Sharing of best practices and lessons learned
-- Support for educational and research applications
-
-### 9.2 Standards Evolution
-Framework standards evolve through:
-- Community consultation and expert review
-- Academic research and peer review processes
-- Practical implementation experience and feedback
-- Regular review and update cycles
+- **Zero-knowledge proofs**: Identity never revealed
+- **Blockchain evidence**: Self-authenticating
+- **Smart contract protection**: Automatic anti-retaliation penalties
+- **Cryptocurrency rewards**: Untraceable payments
 
 ---
 
-## X. EMERGENCY AND CRISIS PROCEDURES
+## VI. LEGAL LIABILITY (SELF-ENFORCING)
 
-### 10.1 Emergency Response
-Critical situations trigger immediate response protocols:
-- System shutdown for imminent harm scenarios
-- Emergency notification to institutional consortium
-- Coordination with law enforcement and regulatory authorities
-- Public warning for widespread safety concerns
+### 6.1 Blockchain Evidence in Court
 
-### 10.2 Crisis Communication
-Emergency communication channels:
-- **Immediate**: ethics-emergency@tml-goukassian.org
-- **Secure**: TOR-accessible encrypted reporting system
-- **Legal**: Coordination with law enforcement and regulatory agencies
-- **Public**: Community notification through established channels
+**AUTOMATIC LEGAL STANDING**:
+- FRE 901/902: Self-authenticating electronic records
+- Blockchain proof requires no testimony
+- Smart contracts legally binding
+- International recognition growing
 
----
+### 6.2 Strict Liability for Missing Logs
 
-## XI. ACCEPTANCE AND BINDING EFFECT
+**NO EXCUSES ACCEPTED**:
+- Missing log = guilt presumption
+- Blockchain down = your problem
+- "Didn't know" = negligence
+- "Committee didn't approve" = irrelevant (no committee needed)
 
-### 11.1 Terms of Acceptance
-By implementing any component of TML, organizations and individuals:
-- Accept all terms and conditions specified in this disclaimer
-- Commit to mandatory compliance requirements
-- Acknowledge understanding of prohibited uses and restrictions
-- Agree to community governance and standards evolution processes
+### 6.3 Criminal Penalties
 
-### 11.2 Modification and Updates
-This disclaimer may be updated to reflect:
-- Evolving legal and regulatory requirements
-- Community consensus on framework improvements
-- Technical discoveries and implementation lessons
-- Emergency response to serious violations or harm
-
-**NOTICE**: Implementation constitutes acceptance of current terms and commitment to compliance with future updates.
+**AUTOMATIC PROSECUTION REFERRAL**:
+- Human Rights violations: War crimes jurisdiction
+- Environmental crimes: Ecocide prosecution
+- Torture facilitation: Universal jurisdiction
+- Child harm: Immediate prosecution
 
 ---
 
-## Contact Information
-- **Framework Originator**: leogouk@gmail.com
-- **Community Support**: support@tml-goukassian.org
-- **Emergency Response**: ethics-emergency@tml-goukassian.org
-- **Legal Inquiries**: legal@tml-goukassian.org
-- **Succession Planning**: [See TML Succession Charter](/TML-SUCCESSION-CHARTER.md)
+## VII. DEPLOYMENT WITHOUT WAITING
+
+### 7.1 Immediate Implementation
+
+```bash
+# Deploy in 10 minutes - no institutional coordination
+docker run tml/always-memory \
+    --blockchain=mandatory \
+    --human-rights=enforced \
+    --earth-protection=active \
+    --guardians=false  # Optional luxury
+
+# Fully operational immediately
+# Complete protection active
+# No waiting for committees
+```
+
+### 7.2 Guardian Network (Optional Future Enhancement)
+
+**NEVER REQUIRED FOR**:
+- Deployment
+- Legal enforcement
+- Sacred Zero operation
+- Penalty execution
+- Whistleblower rewards
+
+**MIGHT ADD VALUE FOR** (1% of companies):
+- Cross-border attestation
+- Premium insurance tiers
+- Academic collaboration
+- Institutional comfort
 
 ---
 
-**GOVERNING LAW**: This disclaimer is governed by applicable international law, human rights principles, and the legal jurisdiction of implementation.
+## VIII. INTELLECTUAL PROPERTY
 
-**EFFECTIVE DATE**: September 2025  
-**VERSION**: 1.0.0  
-**STATUS**: Binding requirement for all TML implementations
+### 8.1 Creator Attribution
+
+**MANDATORY PRESERVATION**:
+```
+Ternary Moral Logic Framework
+Creator: Lev Goukassian (ORCID: 0009-0006-5966-1243)
+Email: leogouk@gmail.com
+Architecture: Blockchain-First, Guardian-Optional
+Protection: Humans + Earth + Future Generations
+```
+
+### 8.2 Modification Rights
+
+- **PERMITTED**: Implementation meeting specifications
+- **REQUIRED**: Attribution preservation
+- **PROHIBITED**: Weakening Human Rights or Earth Protection
+- **ENFORCED**: Via blockchain verification
+
+---
+
+## IX. REGULATORY INTEGRATION
+
+### 9.1 Exceeds All Requirements
+
+TML with blockchain exceeds:
+- EU AI Act requirements
+- US AI regulations
+- GDPR privacy protection
+- International human rights law
+- Environmental treaties
+
+### 9.2 Direct Enforcement
+
+**NO MIDDLEMAN NEEDED**:
+- Blockchain to court (direct admissibility)
+- Smart contract to penalty (automatic)
+- Evidence to prosecution (self-authenticating)
+- Violation to compensation (instant)
+
+---
+
+## X. WARRANTY AND RISK
+
+### 10.1 What We Guarantee
+
+**BLOCKCHAIN PROVIDES**:
+- Immutable evidence
+- Automatic penalties
+- Mathematical consensus
+- Global accessibility
+
+### 10.2 Your Responsibilities
+
+**YOU MUST ENSURE**:
+- Proper blockchain configuration
+- Framework compliance
+- Continuous monitoring
+- Penalty payment capability
+
+---
+
+## XI. ACCEPTANCE
+
+### 11.1 By Deploying TML You Accept
+
+1. **Blockchain anchoring is mandatory**
+2. **Human Rights framework (26 docs) must be active**
+3. **Earth Protection (20+ treaties) must be enforced**
+4. **Smart contract penalties are automatic**
+5. **Guardian Network is optional enhancement**
+6. **Missing logs create strict liability**
+7. **Violations self-prosecute via blockchain**
+
+### 11.2 No Negotiation
+
+These terms are:
+- **Non-negotiable** (blockchain enforced)
+- **Self-executing** (smart contracts)
+- **Publicly verifiable** (anyone can audit)
+- **Immediately binding** (upon deployment)
+
+---
+
+## Emergency Contacts
+
+**Blockchain Deployment**: support@tml-goukassian.org  
+**Emergency**: emergency@tml-goukassian.org  
+**Whistleblower**: Via blockchain (anonymous)  
+**Guardian Info**: guardians@tml-goukassian.org (optional, years later)
+
+---
+
+> "TML doesn't care if you use Transformer, tarot cards, or tea leaves—only that every dark prophecy is signed, timed, and ready for cross-examination."
+
+**GOVERNING PRINCIPLE**: Blockchain consensus supersedes institutional opinion.
+
+**EFFECTIVE**: Immediately upon deployment  
+**VERSION**: 2.0.0 (Blockchain-First)  
+**STATUS**: Self-enforcing via smart contracts
+
+---
+
+**Creator**: Lev Goukassian  
+**ORCID**: 0009-0006-5966-1243  
+**Email**: leogouk@gmail.com  
+**Repository**: https://github.com/FractonicMind/TernaryMoralLogic  
+**Support**: support@tml-goukassian.org
+
+*All USD amounts are nominal to 2025*
+
+---
+#### **Courts open the door for whistle-blowers; TML hands them the key, the bounty, and the seat at the plaintiff’s table—no permission slips required.**
+
+---
