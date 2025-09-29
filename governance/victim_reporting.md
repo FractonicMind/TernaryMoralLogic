@@ -127,7 +127,6 @@ _________________________________________
 - **WhatsApp**: [Number]
 
 ### In Person
-- Any of the 11 council institutions
 - Any participating hospital
 - Any participating law firm
 
