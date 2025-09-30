@@ -5,7 +5,7 @@
 **Schema Version**: 1.0.0  
 **Last Updated**: 2025-09-25
 
-## PART I: Absolute Prohibitions - Human Dignity
+## Absolute Prohibitions - Human Dignity
 
 ### Torture and Cruel Treatment
 
@@ -396,30 +396,7 @@ autonomous_weapons:
   liability: "Designer, operator, commander"
 ```
 
-## Environmental Crimes Against Future Generations
-
-# Forbidden Acts Absolute v3.0: Blockchain-Enforced Red Lines
-
-**Version**: 3.0 (Smart Contract Enforcement)  
-**Path**: `/docs/mandates/core/Forbidden_Acts_Absolute.md`  
-**Status**: Immutably Enforced via Blockchain  
-**Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)
-
----
-
-## Executive Summary
-
-These are humanity's AND Earth's red lines—**automatically enforced by smart contracts**. No committee review. No exceptions. No overrides. When blockchain detects these acts, Sacred Zero triggers instantly with maximum penalties. 
-
-**The New Reality**: 26 Human Rights documents + 20+ Earth Protection treaties = 46+ frameworks watching every decision. Violate any = automatic prosecution.
-
-> "Miss one byte, pay twice for the human; thrice for the reef; sevenfold for the child not yet born—math that makes greed think twice."
-
----
-
----
-
-## PART II: EARTH PROTECTION (20+ Frameworks) - EQUAL WEIGHT
+## EARTH PROTECTION (20+ Frameworks) - EQUAL WEIGHT
 
 ### Climate Crimes - Paris Agreement Enforcement
 
@@ -657,7 +634,7 @@ const sensoryPollution = {
 
 ---
 
-## PART III: ENFORCEMENT MECHANISM (BLOCKCHAIN)
+## ENFORCEMENT MECHANISM (BLOCKCHAIN)
 
 ### Smart Contract Enforcement
 
@@ -714,7 +691,7 @@ def test_forbidden_acts():
 
 ---
 
-## PART IV: NO EXCEPTIONS
+## NO EXCEPTIONS
 
 ### The Absolute Nature
 
@@ -744,7 +721,7 @@ no_exceptions_for:
 
 ---
 
-## PART V: PENALTIES AT SCALE
+## PENALTIES AT SCALE
 
 ### Penalty Calculation
 
