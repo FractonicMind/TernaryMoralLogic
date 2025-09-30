@@ -52,7 +52,7 @@ Instead, their zero equivalent needs to represent something purely technical or 
 
 Like the classic, clean, unknown logic state. Exactly like that. I lack sufficient data, not I must pause and reflect ethically.
 
-And crucially, this requires defining entirely unique logical operators and unique truth tables. It has to be provably non-overlapping with the TML structure. So serious, fundamental R\&D.
+And crucially, this requires defining entirely unique logical operators and unique truth tables. It has to be provably non-overlapping with the TML structure. So serious, fundamental PR.
 
 Not just a quick rebranding job. Definitely not. It's a ground-up redesign to ensure legal and functional distinction.
 
