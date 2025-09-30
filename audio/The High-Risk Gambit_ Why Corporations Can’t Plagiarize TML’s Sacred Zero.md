@@ -6,7 +6,7 @@ Yeah. Yeah, that triadic ethical framework. The big question we tackled was, can
 
 Right. And it's a really fascinating puzzle because TML isn't your standard binary yes-no system. You've got the usual plus one proceed, minus one refuse, sure.
 
-But then there's this critical third value, zero, zero. And here's the kicker, TML doesn't just treat zero as unknown or hold, it's explicitly defined as sacred zero, which means it's a mandated conscious pause, like specifically intended for moral reflection. Okay, so that definition itself, the moral angle, that's the key bit of intellectual property here.
+But then there's this critical third value, Zero. And here's the kicker, TML doesn't just treat zero as unknown or hold, it's explicitly defined as Sacred Zero, which means it's a mandated conscious pause, like specifically intended for moral reflection. Okay, so that definition itself, the moral angle, that's the key bit of intellectual property here.
 
 That's exactly the hook. And our main finding, trying to erase that or functionally copy it, well, it's loaded with risk, significant legal and maybe even more importantly, reputational risks. The system is actually designed to resist it.
 
