@@ -19,11 +19,6 @@ from .earth import (
     validate_community_directive
 )
 
-from .guardians import (
-    GuardianNetwork,
-    submit_to_guardians,
-    verify_consensus
-)
 
 __version__ = "5.0.0"
 __author__ = "Lev Goukassian"
@@ -42,11 +37,7 @@ __all__ = [
     'check_environmental_harm',
     'validate_community_directive',
     
-    # Guardian Network
-    'GuardianNetwork',
-    'submit_to_guardians',
-    'verify_consensus'
-]
+   ]
 
 def get_framework_info():
     """Return framework information including Earth protection status"""
