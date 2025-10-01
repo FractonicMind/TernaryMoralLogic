@@ -1,394 +1,207 @@
 /**
- * TML Configuration - Configuration management for TML SDK
+ * TML Configuration - Blockchain-First Implementation
+ * No Guardians. No committees. Just mathematical protection.
  * 
- * Path: /sdk/java/TMLConfig.java
- * Version: 1.0.0
  * Creator: Lev Goukassian (ORCID: 0009-0006-5966-1243)
- * 
- * This class manages configuration settings for TML client,
- * including Guardian endpoints, security settings, and 
- * operational parameters.
+ * Website: https://tml-goukassian.org
  */
-
 package org.tml.sdk;
 
-import java.util.Map;
 import java.util.HashMap;
-import java.util.Properties;
-import java.io.FileInputStream;
-import java.io.IOException;
+import java.util.Map;
 
 public class TMLConfig {
     
-    // Network Configuration
-    private String guardianUrl = "https://guardian.tml-network.org";
-    private String[] backupGuardians = {
-        "https://guardian2.tml-network.org",
-        "https://guardian3.tml-network.org"
-    };
-    private int connectionTimeout = 5000; // ms
-    private int readTimeout = 10000; // ms
-    private int maxRetries = 3;
+    // System constants
+    public static final String VERSION = "3.0.0";
+    public static final String CREATOR = "Lev Goukassian";
+    public static final String ORCID = "0009-0006-5966-1243";
+    public static final String SACRED_SYMBOL = "🏮";
     
-    // Security Configuration
-    private boolean requireTEE = false; // TEE requirement
-    private boolean encryptLocal = true; // Encrypt local storage
-    private String hmacKey = ""; // HMAC key for signing
-    private boolean validateCertificates = true;
-    private String[] trustedCAs = {};
+    // Deployment reality
+    public static final int DEPLOYMENT_TIME_MINUTES = 10;
+    public static final long ANNUAL_COST_USD = 1200L;
+    public static final long GUARDIAN_ANNUAL_COST_USD = 6600000L; // Waste
+    public static final int GUARDIAN_VALUE_ADDED = 0;
     
-    // Sacred Zero Configuration
-    private boolean blockOnSacredZero = true; // Block until review
-    private long sacredZeroTimeout = 500; // ms
-    private int maxSacredZerosPerHour = 5; // Rate limit
-    private boolean autoEscalate = true; // Auto-escalate repeated triggers
+    // Penalties (2025 nominal USD)
+    public static final long PENALTY_MISSING_LOGS = 100_000_000L;
+    public static final long PENALTY_DISCRIMINATION = 500_000_000L;
+    public static final long PENALTY_ENVIRONMENTAL = 1_000_000_000L;
+    public static final long PENALTY_TORTURE = 500_000_000L;
+    public static final long PENALTY_CHILD_HARM = 700_000_000L;
     
-    // Always Memory Configuration
-    private boolean localStorageEnabled = true;
-    private String localStoragePath = "/var/tml/logs";
-    private long maxLocalStorageSize = 10L * 1024 * 1024 * 1024; // 10GB
-    private int batchSize = 1000;
-    private long batchTimeout = 100; // ms
-    private boolean compressLogs = true;
+    // Multipliers
+    public static final double MULTIPLIER_HUMAN_RIGHTS = 2.0;
+    public static final double MULTIPLIER_EARTH_HARM = 3.0;
+    public static final double MULTIPLIER_FUTURE_GENERATIONS = 7.0;
     
-    // Operational Configuration
-    private String environment = "production"; // production, staging, development
-    private boolean debugMode = false;
-    private String logLevel = "INFO"; // DEBUG, INFO, WARN, ERROR
-    private boolean metricsEnabled = true;
-    private int metricsReportInterval = 60000; // ms
+    // Whistleblower
+    public static final double WHISTLEBLOWER_REWARD_PERCENTAGE = 0.15;
+    public static final int WHISTLEBLOWER_PAYMENT_TIME_MINUTES = 3;
     
-    // Human Rights Configuration
-    private double discriminationThreshold = 0.2; // 20% disparate impact
-    private boolean vulnerablePopulationEnhanced = true;
-    private String[] protectedCharacteristics = {
-        "race", "color", "religion", "sex", "national_origin",
-        "disability", "age", "gender_identity", "sexual_orientation"
-    };
+    // Blockchain endpoints
+    private String ethereumRpc;
+    private String polygonRpc;
+    private String bitcoinNode;
     
-    // Environmental Configuration
-    private double carbonThreshold = 1000.0; // kg CO2
-    private double waterThreshold = 10000.0; // liters
-    private boolean indigenousDataSovereignty = true;
+    // Smart contracts
+    private String sacredZeroContract;
+    private String penaltiesContract;
+    private String whistleblowerContract;
     
-    // Compliance Configuration
-    private String jurisdiction = "US"; // Primary jurisdiction
-    private String[] complianceFrameworks = {
-        "GDPR", "CCPA", "EU_AI_ACT", "UN_HUMAN_RIGHTS"
-    };
-    private boolean auditModeEnabled = false;
+    // Guardian configuration (deprecated)
+    private final GuardianConfig guardianConfig;
     
-    /**
-     * Default constructor with standard settings
-     */
     public TMLConfig() {
-        // Use defaults as initialized above
+        // Default blockchain configuration
+        this.ethereumRpc = "https://eth-mainnet.public-rpc.com";
+        this.polygonRpc = "https://polygon-rpc.com";
+        this.bitcoinNode = "https://blockchain.info";
+        
+        // Smart contracts
+        this.sacredZeroContract = "0xSACRED...";
+        this.penaltiesContract = "0xPENALTY...";
+        this.whistleblowerContract = "0xWHISTLE...";
+        
+        // Guardian reality
+        this.guardianConfig = new GuardianConfig();
     }
     
     /**
-     * Create config from properties file
+     * Guardian configuration - exists only to document they don't exist
      */
-    public TMLConfig(String propertiesPath) {
-        loadFromProperties(propertiesPath);
-    }
-    
-    /**
-     * Create config from map
-     */
-    public TMLConfig(Map<String, Object> settings) {
-        applySettings(settings);
-    }
-    
-    /**
-     * Get default configuration
-     */
-    public static TMLConfig getDefault() {
-        return new TMLConfig();
-    }
-    
-    /**
-     * Get development configuration
-     */
-    public static TMLConfig getDevelopment() {
-        TMLConfig config = new TMLConfig();
-        config.environment = "development";
-        config.debugMode = true;
-        config.logLevel = "DEBUG";
-        config.requireTEE = false;
-        config.validateCertificates = false;
-        config.guardianUrl = "http://localhost:8080";
-        return config;
-    }
-    
-    /**
-     * Get high-security configuration
-     */
-    public static TMLConfig getHighSecurity() {
-        TMLConfig config = new TMLConfig();
-        config.requireTEE = true;
-        config.encryptLocal = true;
-        config.validateCertificates = true;
-        config.blockOnSacredZero = true;
-        config.auditModeEnabled = true;
-        config.maxSacredZerosPerHour = 3;
-        return config;
-    }
-    
-    /**
-     * Load configuration from properties file
-     */
-    private void loadFromProperties(String path) {
-        Properties props = new Properties();
-        try (FileInputStream fis = new FileInputStream(path)) {
-            props.load(fis);
-            
-            // Network settings
-            guardianUrl = props.getProperty("tml.guardian.url", guardianUrl);
-            connectionTimeout = Integer.parseInt(
-                props.getProperty("tml.connection.timeout", String.valueOf(connectionTimeout)));
-            readTimeout = Integer.parseInt(
-                props.getProperty("tml.read.timeout", String.valueOf(readTimeout)));
-            
-            // Security settings
-            requireTEE = Boolean.parseBoolean(
-                props.getProperty("tml.security.tee", String.valueOf(requireTEE)));
-            encryptLocal = Boolean.parseBoolean(
-                props.getProperty("tml.security.encrypt", String.valueOf(encryptLocal)));
-            hmacKey = props.getProperty("tml.security.hmac", "");
-            
-            // Sacred Zero settings
-            blockOnSacredZero = Boolean.parseBoolean(
-                props.getProperty("tml.sacred.block", String.valueOf(blockOnSacredZero)));
-            sacredZeroTimeout = Long.parseLong(
-                props.getProperty("tml.sacred.timeout", String.valueOf(sacredZeroTimeout)));
-            
-            // Always Memory settings
-            localStorageEnabled = Boolean.parseBoolean(
-                props.getProperty("tml.memory.local", String.valueOf(localStorageEnabled)));
-            localStoragePath = props.getProperty("tml.memory.path", localStoragePath);
-            batchSize = Integer.parseInt(
-                props.getProperty("tml.memory.batch", String.valueOf(batchSize)));
-            
-            // Operational settings
-            environment = props.getProperty("tml.environment", environment);
-            debugMode = Boolean.parseBoolean(
-                props.getProperty("tml.debug", String.valueOf(debugMode)));
-            logLevel = props.getProperty("tml.log.level", logLevel);
-            
-            // Human Rights settings
-            discriminationThreshold = Double.parseDouble(
-                props.getProperty("tml.rights.threshold", String.valueOf(discriminationThreshold)));
-            
-            // Environmental settings
-            carbonThreshold = Double.parseDouble(
-                props.getProperty("tml.env.carbon", String.valueOf(carbonThreshold)));
-            waterThreshold = Double.parseDouble(
-                props.getProperty("tml.env.water", String.valueOf(waterThreshold)));
-            
-            // Compliance settings
-            jurisdiction = props.getProperty("tml.compliance.jurisdiction", jurisdiction);
-            auditModeEnabled = Boolean.parseBoolean(
-                props.getProperty("tml.compliance.audit", String.valueOf(auditModeEnabled)));
-            
-        } catch (IOException e) {
-            throw new TMLException("Failed to load configuration from: " + path, e);
+    public static class GuardianConfig {
+        public final boolean exists = false;
+        public final boolean needed = false;
+        public final long annualCost = GUARDIAN_ANNUAL_COST_USD;
+        public final int valueAdded = 0;
+        public final String status = "Does not exist";
+        public final String recommendation = "Use blockchain instead";
+        
+        public String getReality() {
+            return String.format(
+                "Guardian Network:\n" +
+                "  Exists: %b\n" +
+                "  Needed: %b\n" +
+                "  Value: %d\n" +
+                "  Cost if implemented: $%,d/year\n" +
+                "  Recommendation: %s",
+                exists, needed, valueAdded, annualCost, recommendation
+            );
         }
-    }
-    
-    /**
-     * Apply settings from map
-     */
-    private void applySettings(Map<String, Object> settings) {
-        settings.forEach((key, value) -> {
-            switch (key) {
-                case "guardianUrl":
-                    this.guardianUrl = (String) value;
-                    break;
-                case "requireTEE":
-                    this.requireTEE = (Boolean) value;
-                    break;
-                case "blockOnSacredZero":
-                    this.blockOnSacredZero = (Boolean) value;
-                    break;
-                case "environment":
-                    this.environment = (String) value;
-                    break;
-                case "debugMode":
-                    this.debugMode = (Boolean) value;
-                    break;
-                case "discriminationThreshold":
-                    this.discriminationThreshold = (Double) value;
-                    break;
-                case "carbonThreshold":
-                    this.carbonThreshold = (Double) value;
-                    break;
-                // Add more cases as needed
-            }
-        });
     }
     
     /**
      * Validate configuration
      */
-    public boolean validate() {
-        // Check required fields
-        if (guardianUrl == null || guardianUrl.isEmpty()) {
-            return false;
+    public void validate() throws ConfigException {
+        // Check blockchain endpoints
+        if (ethereumRpc == null || ethereumRpc.isEmpty()) {
+            throw new ConfigException("Ethereum RPC required for smart contracts");
         }
         
-        // Check thresholds
-        if (discriminationThreshold < 0 || discriminationThreshold > 1) {
-            return false;
+        if (polygonRpc == null || polygonRpc.isEmpty()) {
+            throw new ConfigException("Polygon RPC required for fast anchoring");
         }
         
-        // Check timeouts
-        if (connectionTimeout <= 0 || readTimeout <= 0) {
-            return false;
+        // Reject Guardian nonsense
+        String useGuardians = System.getenv("TML_USE_GUARDIANS");
+        if ("true".equals(useGuardians)) {
+            throw new ConfigException(
+                "Guardian Network doesn't exist and isn't needed. Use blockchain."
+            );
         }
-        
-        // Check batch settings
-        if (batchSize <= 0 || batchTimeout <= 0) {
-            return false;
-        }
-        
-        // Validate environment
-        if (!environment.matches("production|staging|development")) {
-            return false;
-        }
-        
-        // Validate log level
-        if (!logLevel.matches("DEBUG|INFO|WARN|ERROR")) {
-            return false;
-        }
-        
-        return true;
     }
     
     /**
-     * Create a copy of this configuration
+     * Get deployment comparison
      */
-    public TMLConfig copy() {
-        TMLConfig copy = new TMLConfig();
-        
-        // Copy all fields
-        copy.guardianUrl = this.guardianUrl;
-        copy.backupGuardians = this.backupGuardians.clone();
-        copy.connectionTimeout = this.connectionTimeout;
-        copy.readTimeout = this.readTimeout;
-        copy.maxRetries = this.maxRetries;
-        
-        copy.requireTEE = this.requireTEE;
-        copy.encryptLocal = this.encryptLocal;
-        copy.hmacKey = this.hmacKey;
-        copy.validateCertificates = this.validateCertificates;
-        
-        copy.blockOnSacredZero = this.blockOnSacredZero;
-        copy.sacredZeroTimeout = this.sacredZeroTimeout;
-        copy.maxSacredZerosPerHour = this.maxSacredZerosPerHour;
-        copy.autoEscalate = this.autoEscalate;
-        
-        copy.localStorageEnabled = this.localStorageEnabled;
-        copy.localStoragePath = this.localStoragePath;
-        copy.maxLocalStorageSize = this.maxLocalStorageSize;
-        copy.batchSize = this.batchSize;
-        copy.batchTimeout = this.batchTimeout;
-        copy.compressLogs = this.compressLogs;
-        
-        copy.environment = this.environment;
-        copy.debugMode = this.debugMode;
-        copy.logLevel = this.logLevel;
-        copy.metricsEnabled = this.metricsEnabled;
-        copy.metricsReportInterval = this.metricsReportInterval;
-        
-        copy.discriminationThreshold = this.discriminationThreshold;
-        copy.vulnerablePopulationEnhanced = this.vulnerablePopulationEnhanced;
-        copy.protectedCharacteristics = this.protectedCharacteristics.clone();
-        
-        copy.carbonThreshold = this.carbonThreshold;
-        copy.waterThreshold = this.waterThreshold;
-        copy.indigenousDataSovereignty = this.indigenousDataSovereignty;
-        
-        copy.jurisdiction = this.jurisdiction;
-        copy.complianceFrameworks = this.complianceFrameworks.clone();
-        copy.auditModeEnabled = this.auditModeEnabled;
-        
-        return copy;
+    public String getDeploymentComparison() {
+        return String.format(
+            "Deployment Options:\n" +
+            "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n" +
+            "Blockchain:\n" +
+            "  Time: %d minutes\n" +
+            "  Cost: $%,d/year\n" +
+            "  Protection: Immediate\n" +
+            "  Committees: 0\n" +
+            "\n" +
+            "Guardian Network (not recommended):\n" +
+            "  Time: 12+ months\n" +
+            "  Cost: $%,d/year\n" +
+            "  Protection: Maybe someday\n" +
+            "  Committees: Endless\n" +
+            "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n" +
+            "Choice: Obvious",
+            DEPLOYMENT_TIME_MINUTES,
+            ANNUAL_COST_USD,
+            GUARDIAN_ANNUAL_COST_USD
+        );
     }
     
     /**
-     * Export configuration as map
+     * Calculate penalty with multiplier
      */
-    public Map<String, Object> toMap() {
-        Map<String, Object> map = new HashMap<>();
+    public static long calculatePenalty(String violationType, double multiplier) {
+        Map<String, Long> basePenalties = new HashMap<>();
+        basePenalties.put("missing_logs", PENALTY_MISSING_LOGS);
+        basePenalties.put("discrimination", PENALTY_DISCRIMINATION);
+        basePenalties.put("environmental", PENALTY_ENVIRONMENTAL);
+        basePenalties.put("torture", PENALTY_TORTURE);
+        basePenalties.put("child_harm", PENALTY_CHILD_HARM);
         
-        map.put("guardianUrl", guardianUrl);
-        map.put("connectionTimeout", connectionTimeout);
-        map.put("requireTEE", requireTEE);
-        map.put("blockOnSacredZero", blockOnSacredZero);
-        map.put("environment", environment);
-        map.put("discriminationThreshold", discriminationThreshold);
-        map.put("carbonThreshold", carbonThreshold);
-        // Add all other fields as needed
-        
-        return map;
+        Long base = basePenalties.getOrDefault(violationType, 100_000_000L);
+        return (long)(base * multiplier);
     }
     
-    // Getters and setters for all fields
+    /**
+     * Calculate whistleblower reward
+     */
+    public static long calculateWhistleblowerReward(long penalty) {
+        return (long)(penalty * WHISTLEBLOWER_REWARD_PERCENTAGE);
+    }
     
-    public String getGuardianUrl() { return guardianUrl; }
-    public void setGuardianUrl(String url) { this.guardianUrl = url; }
+    // Getters and setters
+    public String getEthereumRpc() { return ethereumRpc; }
+    public void setEthereumRpc(String rpc) { this.ethereumRpc = rpc; }
     
-    public String[] getBackupGuardians() { return backupGuardians; }
-    public void setBackupGuardians(String[] urls) { this.backupGuardians = urls; }
+    public String getPolygonRpc() { return polygonRpc; }
+    public void setPolygonRpc(String rpc) { this.polygonRpc = rpc; }
     
-    public int getConnectionTimeout() { return connectionTimeout; }
-    public void setConnectionTimeout(int timeout) { this.connectionTimeout = timeout; }
+    public String getBitcoinNode() { return bitcoinNode; }
+    public void setBitcoinNode(String node) { this.bitcoinNode = node; }
     
-    public int getReadTimeout() { return readTimeout; }
-    public void setReadTimeout(int timeout) { this.readTimeout = timeout; }
+    public GuardianConfig getGuardianConfig() { return guardianConfig; }
     
-    public boolean isRequireTEE() { return requireTEE; }
-    public void setRequireTEE(boolean require) { this.requireTEE = require; }
+    /**
+     * Configuration exception
+     */
+    public static class ConfigException extends Exception {
+        public ConfigException(String message) {
+            super(message);
+        }
+    }
     
-    public boolean isEncryptLocal() { return encryptLocal; }
-    public void setEncryptLocal(boolean encrypt) { this.encryptLocal = encrypt; }
-    
-    public String getHMACKey() { return hmacKey; }
-    public void setHMACKey(String key) { this.hmacKey = key; }
-    
-    public boolean isBlockOnSacredZero() { return blockOnSacredZero; }
-    public void setBlockOnSacredZero(boolean block) { this.blockOnSacredZero = block; }
-    
-    public long getSacredZeroTimeout() { return sacredZeroTimeout; }
-    public void setSacredZeroTimeout(long timeout) { this.sacredZeroTimeout = timeout; }
-    
-    public boolean isLocalStorageEnabled() { return localStorageEnabled; }
-    public void setLocalStorageEnabled(boolean enabled) { this.localStorageEnabled = enabled; }
-    
-    public String getLocalStoragePath() { return localStoragePath; }
-    public void setLocalStoragePath(String path) { this.localStoragePath = path; }
-    
-    public int getBatchSize() { return batchSize; }
-    public void setBatchSize(int size) { this.batchSize = size; }
-    
-    public String getEnvironment() { return environment; }
-    public void setEnvironment(String env) { this.environment = env; }
-    
-    public boolean isDebugMode() { return debugMode; }
-    public void setDebugMode(boolean debug) { this.debugMode = debug; }
-    
-    public String getLogLevel() { return logLevel; }
-    public void setLogLevel(String level) { this.logLevel = level; }
-    
-    public double getDiscriminationThreshold() { return discriminationThreshold; }
-    public void setDiscriminationThreshold(double threshold) { this.discriminationThreshold = threshold; }
-    
-    public double getCarbonThreshold() { return carbonThreshold; }
-    public void setCarbonThreshold(double threshold) { this.carbonThreshold = threshold; }
-    
-    public String getJurisdiction() { return jurisdiction; }
-    public void setJurisdiction(String jurisdiction) { this.jurisdiction = jurisdiction; }
-    
-    public boolean isAuditModeEnabled() { return auditModeEnabled; }
-    public void setAuditModeEnabled(boolean enabled) { this.auditModeEnabled = enabled; }
+    /**
+     * Main method for testing
+     */
+    public static void main(String[] args) {
+        TMLConfig config = new TMLConfig();
+        
+        System.out.println("TML Configuration v" + VERSION);
+        System.out.println("Creator: " + CREATOR);
+        System.out.println("Sacred Symbol: " + SACRED_SYMBOL);
+        System.out.println();
+        System.out.println(config.getDeploymentComparison());
+        System.out.println();
+        System.out.println(config.getGuardianConfig().getReality());
+        
+        try {
+            config.validate();
+            System.out.println("\n✅ Configuration valid");
+        } catch (ConfigException e) {
+            System.err.println("\n❌ Configuration error: " + e.getMessage());
+        }
+    }
 }
