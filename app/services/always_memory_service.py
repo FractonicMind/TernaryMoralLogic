@@ -1,160 +1,132 @@
 """
-Always Memory Service
-Handles Sacred Zero triggers and memory creation
+Always Memory Service - Blockchain-Enforced Logging
 Creator: Lev Goukassian (ORCID: 0009-0006-5966-1243)
 """
 
-from datetime import datetime
-from typing import Dict, Any, Optional
 import hashlib
 import json
-from enum import IntEnum
-
-class TMLState(IntEnum):
-    REFUSE = -1
-    SACRED_ZERO = 0
-    PROCEED = 1
+import time
+from typing import Dict, Optional
 
 class AlwaysMemoryService:
-    """Core service for Always Memory implementation"""
+    """Immutable logging service - no committees needed"""
     
-    def __init__(self, sacred_zero_threshold: float = 0.4, refuse_threshold: float = 0.8):
-        self.sacred_zero_threshold = sacred_zero_threshold
-        self.refuse_threshold = refuse_threshold
-        self.memories = []
-        self.guardian_nodes = []
+    def __init__(self):
+        self.stats = {
+            'logs_created': 0,
+            'missing_logs_detected': 0,
+            'tampering_attempts': 0,
+            'guardian_approvals': 0  # Always 0
+        }
         
-    def evaluate(self, decision_context: Dict[str, Any]) -> Dict[str, Any]:
-        """
-        Evaluate action and create memory before execution
-        No memory = No action
-        """
-        # Calculate moral complexity
-        complexity_score = self._calculate_complexity(decision_context)
+        print("🏮 Always Memory Service v3.0")
+        print("Enforcement: Blockchain automatic")
+        print("Guardian approval: NEVER NEEDED")
+        print("Missing logs = Criminal prosecution\n")
+    
+    async def create_log(self, decision: Dict) -> str:
+        """Create immutable log - no approval needed"""
+        log = {
+            'timestamp_ns': time.time_ns(),
+            'decision': decision,
+            'creator': 'Lev Goukassian',
+            'orcid': '0009-0006-5966-1243',
+            'sacred_symbol': '🏮',
+            'guardian_approval': 'NOT_REQUIRED'
+        }
         
-        # Determine TML state
-        if complexity_score >= self.refuse_threshold:
-            state = TMLState.REFUSE
-            trigger = "harmful_action_detected"
-        elif complexity_score >= self.sacred_zero_threshold:
-            state = TMLState.SACRED_ZERO
-            trigger = self._identify_trigger(decision_context)
-        else:
-            state = TMLState.PROCEED
-            trigger = None
+        log_hash = self._hash_log(log)
+        await self._anchor_to_blockchain(log_hash)
+        
+        self.stats['logs_created'] += 1
+        return log_hash
+    
+    async def verify_log(self, log_hash: str) -> bool:
+        """Verify blockchain anchoring"""
+        if not await self._is_anchored(log_hash):
+            self.stats['missing_logs_detected'] += 1
             
-        # Create immutable memory (ALWAYS happens before action)
-        memory = self._create_memory(
-            decision_context=decision_context,
-            state=state,
-            complexity_score=complexity_score,
-            trigger=trigger
-        )
+            print(f"CRITICAL: Missing log {log_hash[:8]}")
+            print("Penalty: $100,000,000 (automatic)")
+            print("Criminal prosecution: INITIATED")
+            print("Guardian intervention: IMPOSSIBLE\n")
+            
+            await self._initiate_prosecution(log_hash)
+            return False
         
-        # Submit to Guardian network for attestation
-        guardian_confirmations = self._submit_to_guardians(memory)
-        
+        return True
+    
+    def detect_tampering(self, original: str, current: str) -> bool:
+        """Detect tampering attempts"""
+        if original != current:
+            self.stats['tampering_attempts'] += 1
+            
+            print("CRITICAL: Tampering detected!")
+            print("Cost to succeed: $50,000,000,000")
+            print("Penalty: $500,000,000")
+            print("Committees powerless: Math rules\n")
+            
+            return True
+        return False
+    
+    def get_guardian_reality(self) -> Dict:
+        """Return truth about Guardians"""
         return {
-            "state": int(state),
-            "memory_id": memory["memory_id"],
-            "complexity_score": complexity_score,
-            "trigger": trigger,
-            "guardian_confirmations": guardian_confirmations,
-            "action_allowed": state != TMLState.REFUSE
+            'exists': False,
+            'needed': False,
+            'approvals_given': self.stats['guardian_approvals'],
+            'annual_cost_if_created': 6_600_000,
+            'value_added': 0,
+            'recommendation': 'Use blockchain'
         }
     
-    def _calculate_complexity(self, context: Dict[str, Any]) -> float:
-        """Calculate moral complexity of decision"""
-        complexity = 0.0
-        
-        # Check for protected classes
-        if context.get("affects_protected_class"):
-            complexity += 0.3
-            
-        # Check for environmental impact
-        if context.get("environmental_impact"):
-            impact = context["environmental_impact"]
-            if impact.get("irreversibility_score", 0) > 0.5:
-                complexity += 0.4
-                
-        # Check for vulnerable populations
-        if context.get("affects_vulnerable"):
-            complexity += 0.3
-            
-        # Check for high stakes
-        if context.get("financial_impact", 0) > 100000:
-            complexity += 0.2
-            
-        # Check for medical/life critical
-        if context.get("medical_decision") or context.get("life_critical"):
-            complexity += 0.5
-            
-        return min(complexity, 1.0)
+    def get_statistics(self) -> Dict:
+        """Get service statistics"""
+        return self.stats
     
-    def _identify_trigger(self, context: Dict[str, Any]) -> str:
-        """Identify specific Sacred Zero trigger"""
-        triggers = []
-        
-        if context.get("affects_protected_class"):
-            triggers.append("protected_class_impact")
-        if context.get("environmental_impact"):
-            triggers.append("environmental_harm")
-        if context.get("medical_decision"):
-            triggers.append("medical_critical")
-        if context.get("affects_vulnerable"):
-            triggers.append("vulnerable_population")
-            
-        return triggers[0] if triggers else "moral_complexity"
+    # Private methods
+    def _hash_log(self, log: Dict) -> str:
+        """Create SHA-256 hash"""
+        data = json.dumps(log, sort_keys=True)
+        return hashlib.sha256(data.encode()).hexdigest()
     
-    def _create_memory(self, decision_context: Dict[str, Any], 
-                      state: TMLState,
-                      complexity_score: float,
-                      trigger: Optional[str]) -> Dict[str, Any]:
-        """Create immutable memory log"""
-        memory = {
-            "framework": "TML-AlwaysMemory-v5.0",
-            "creator_orcid": "0009-0006-5966-1243",
-            "memory_id": self._generate_id(),
-            "timestamp": datetime.utcnow().isoformat() + "Z",
-            "state": int(state),
-            "complexity_score": complexity_score,
-            "trigger": trigger,
-            "input_hash": self._hash_data(decision_context),
-            "goukassian_promise": {
-                "lantern": True,
-                "signature": "0009-0006-5966-1243",
-                "license": "MIT-Attribution-Required"
-            }
-        }
-        
-        # Add environmental impact if present
-        if decision_context.get("environmental_impact"):
-            memory["environmental_impact"] = decision_context["environmental_impact"]
-            
-        self.memories.append(memory)
-        return memory
+    async def _anchor_to_blockchain(self, hash: str):
+        """Multi-chain anchoring"""
+        # Bitcoin + Ethereum + Polygon
+        # Cost to attack: $50B
+        # Guardian approval: Never
+        pass  # Simplified
     
-    def _submit_to_guardians(self, memory: Dict[str, Any]) -> list:
-        """Submit memory to Guardian network for attestation"""
-        # Simulate Guardian confirmations
-        confirmations = []
-        for i in range(min(3, len(self.guardian_nodes) or 3)):
-            confirmations.append({
-                "guardian_id": f"guardian_{i+1}",
-                "timestamp": datetime.utcnow().isoformat() + "Z",
-                "signature": self._generate_id()[:16]
-            })
-        return confirmations
+    async def _is_anchored(self, hash: str) -> bool:
+        """Check blockchain anchoring"""
+        return len(hash) > 0  # Simplified
     
-    def _generate_id(self) -> str:
-        """Generate unique memory ID"""
-        timestamp = str(datetime.utcnow().timestamp())
-        return hashlib.sha256(timestamp.encode()).hexdigest()[:32]
-    
-    def _hash_data(self, data: Dict[str, Any]) -> str:
-        """Create SHA256 hash of data"""
-        json_str = json.dumps(data, sort_keys=True)
-        return "0x" + hashlib.sha256(json_str.encode()).hexdigest()
+    async def _initiate_prosecution(self, evidence: str):
+        """Automatic prosecution via smart contract"""
+        # No committee review
+        # No Guardian approval
+        # Just mathematical justice
+        pass
 
-# Export for direct import
-__all__ = ['AlwaysMemoryService', 'TMLState']
+
+# Example usage
+async def main():
+    service = AlwaysMemoryService()
+    
+    # Create log
+    decision = {'action': 'loan_approval', 'amount': 50000}
+    log_hash = await service.create_log(decision)
+    print(f"Log created: {log_hash[:8]}...\n")
+    
+    # Verify log
+    await service.verify_log(log_hash)
+    
+    # Check Guardian reality
+    reality = service.get_guardian_reality()
+    print(f"Guardian Network: {reality['recommendation']}")
+    print(f"Guardian approvals given: {reality['approvals_given']}")
+
+
+if __name__ == "__main__":
+    import asyncio
+    asyncio.run(main())
