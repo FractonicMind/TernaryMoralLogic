@@ -1,153 +1,256 @@
-/*
- * TML Client Header - Blockchain-First Implementation
- * No Guardians. No committees. Just mathematical enforcement.
- * 
- * Creator: Lev Goukassian (ORCID: 0009-0006-5966-1243)
- * Website: https://tml-goukassian.org
- * Version: 3.0.0
- */
+// Package tml provides blockchain-enforced AI accountability
+// No Guardians. No committees. Just mathematical protection.
+//
+// Creator: Lev Goukassian (ORCID: 0009-0006-5966-1243)
+package tml
 
-#ifndef TML_CLIENT_H
-#define TML_CLIENT_H
+import (
+	"fmt"
+	"os"
+	"time"
+)
 
-#include <stdint.h>
-#include <stdbool.h>
-#include <time.h>
+// Config represents TML blockchain configuration
+type Config struct {
+	// Blockchain endpoints (required)
+	Ethereum EthereumConfig `json:"ethereum"`
+	Polygon  PolygonConfig  `json:"polygon"`
+	Bitcoin  BitcoinConfig  `json:"bitcoin"`
+	
+	// Smart contracts (required)
+	Contracts ContractsConfig `json:"contracts"`
+	
+	// Penalties (automatic enforcement)
+	Penalties PenaltyConfig `json:"penalties"`
+	
+	// Whistleblower settings
+	Whistleblower WhistleblowerConfig `json:"whistleblower"`
+	
+	// Guardian settings (deprecated - Year 5+ if ever)
+	Guardian GuardianConfig `json:"guardian,omitempty"`
+	
+	// System settings
+	System SystemConfig `json:"system"`
+}
 
-/* Version and configuration */
-#define TML_VERSION "3.0.0"
-#define TML_CREATOR "Lev Goukassian"
-#define TML_ORCID "0009-0006-5966-1243"
-#define TML_LANTERN "🏮"  /* Sacred symbol */
+// EthereumConfig for primary smart contract execution
+type EthereumConfig struct {
+	RPC      string `json:"rpc"`
+	ChainID  int    `json:"chain_id"`
+	GasPrice string `json:"gas_price"`
+}
 
-/* Deployment constants */
-#define TML_DEPLOYMENT_TIME_MINUTES 10
-#define TML_ANNUAL_COST_USD 1200
-#define GUARDIAN_ANNUAL_COST_USD 6600000  /* Waste if implemented */
-#define GUARDIAN_VALUE_ADDED 0
+// PolygonConfig for high-speed anchoring
+type PolygonConfig struct {
+	RPC     string `json:"rpc"`
+	ChainID int    `json:"chain_id"`
+}
 
-/* Penalty constants (2025 nominal USD) */
-#define PENALTY_MISSING_LOGS 100000000L      /* $100M */
-#define PENALTY_DISCRIMINATION 500000000L     /* $500M */
-#define PENALTY_ENVIRONMENTAL 1000000000L     /* $1B */
-#define PENALTY_TORTURE 500000000L           /* $500M */
-#define PENALTY_CHILD_HARM 700000000L        /* $700M */
+// BitcoinConfig for ultimate immutability
+type BitcoinConfig struct {
+	Node string `json:"node"`
+	OTS  bool   `json:"opentimestamps"` // OpenTimestamps integration
+}
 
-/* Multipliers */
-#define MULTIPLIER_HUMAN_RIGHTS 2.0
-#define MULTIPLIER_EARTH_HARM 3.0
-#define MULTIPLIER_FUTURE_GENERATIONS 7.0
+// ContractsConfig holds smart contract addresses
+type ContractsConfig struct {
+	SacredZero    string `json:"sacred_zero"`
+	Penalties     string `json:"penalties"`
+	Whistleblower string `json:"whistleblower"`
+	AlwaysMemory  string `json:"always_memory"`
+}
 
-/* Whistleblower rewards */
-#define WHISTLEBLOWER_REWARD_PERCENTAGE 0.15  /* 15% guaranteed */
-#define WHISTLEBLOWER_PAYMENT_TIME_MINUTES 3
+// PenaltyConfig defines automatic penalties (2025 USD)
+type PenaltyConfig struct {
+	MissingLogs     int64   `json:"missing_logs"`      // $100M default
+	Discrimination  int64   `json:"discrimination"`    // $500M default
+	Environmental   int64   `json:"environmental"`     // $1B default
+	Torture         int64   `json:"torture"`           // $500M default
+	ChildHarm       int64   `json:"child_harm"`        // $700M default
+	
+	// Multipliers
+	HumanRights       float64 `json:"human_rights_multiplier"`       // 2x
+	EarthProtection   float64 `json:"earth_protection_multiplier"`   // 3x
+	FutureGenerations float64 `json:"future_generations_multiplier"` // 7x
+}
 
-/* Blockchain configuration */
-typedef struct {
-    char ethereum_rpc[256];
-    char polygon_rpc[256];
-    char bitcoin_node[256];
-    char sacred_zero_contract[64];
-    char penalty_contract[64];
-    char whistleblower_contract[64];
-} tml_blockchain_config_t;
+// WhistleblowerConfig for direct rewards
+type WhistleblowerConfig struct {
+	RewardPercentage  float64       `json:"reward_percentage"`   // 15%
+	PaymentTime       time.Duration `json:"payment_time"`        // 3 minutes
+	AnonymousReporting bool         `json:"anonymous_reporting"` // true
+	CommitteeApproval  bool         `json:"committee_approval"`  // false - never
+}
 
-/* Always Memory log structure */
-typedef struct {
-    uint64_t timestamp_ns;       /* Nanosecond precision */
-    char decision_hash[65];       /* SHA256 hash */
-    char blockchain_anchor[65];   /* Multi-chain anchor */
-    bool guardian_approval;       /* Always false - not needed */
-    char creator[32];            /* Always "Lev Goukassian" */
-    char orcid[20];              /* Always "0009-0006-5966-1243" */
-} tml_log_t;
+// GuardianConfig (deprecated - not needed)
+type GuardianConfig struct {
+	Enabled      bool   `json:"enabled"`       // Always false
+	Exists       bool   `json:"exists"`        // False
+	AnnualCost   int64  `json:"annual_cost"`   // $6.6M wasted
+	ValueAdded   int    `json:"value_added"`   // 0
+	Recommendation string `json:"recommendation"` // "Use blockchain"
+}
 
-/* Sacred Zero trigger */
-typedef enum {
-    SACRED_ZERO_NONE = 0,
-    SACRED_ZERO_HUMAN_RIGHTS,    /* 2x multiplier */
-    SACRED_ZERO_EARTH_HARM,       /* 3x multiplier */
-    SACRED_ZERO_FUTURE_HARM,      /* 7x multiplier */
-    SACRED_ZERO_MAXIMUM           /* All violations */
-} sacred_zero_type_t;
+// SystemConfig for general settings
+type SystemConfig struct {
+	Creator         string        `json:"creator"`          // Lev Goukassian
+	ORCID           string        `json:"orcid"`            // 0009-0006-5966-1243
+	Version         string        `json:"version"`          // 3.0.0
+	DeploymentTime  time.Duration `json:"deployment_time"`  // 10 minutes
+	AnnualCost      int64         `json:"annual_cost"`      // $1,200
+	SacredSymbol    string        `json:"sacred_symbol"`    // 🏮
+}
 
-/* Violation structure */
-typedef struct {
-    sacred_zero_type_t type;
-    uint64_t penalty_usd;         /* Calculated penalty */
-    float multiplier;             /* Applied multiplier */
-    bool criminal_prosecution;    /* Auto-triggered */
-    bool guardian_review;         /* Always false */
-} tml_violation_t;
+// DefaultConfig returns production-ready configuration
+func DefaultConfig() *Config {
+	return &Config{
+		Ethereum: EthereumConfig{
+			RPC:      "https://eth-mainnet.public-rpc.com",
+			ChainID:  1,
+			GasPrice: "auto",
+		},
+		Polygon: PolygonConfig{
+			RPC:     "https://polygon-rpc.com",
+			ChainID: 137,
+		},
+		Bitcoin: BitcoinConfig{
+			Node: "https://blockchain.info",
+			OTS:  true,
+		},
+		Contracts: ContractsConfig{
+			SacredZero:    "0xSACRED...",
+			Penalties:     "0xPENALTY...",
+			Whistleblower: "0xWHISTLE...",
+			AlwaysMemory:  "0xMEMORY...",
+		},
+		Penalties: PenaltyConfig{
+			MissingLogs:       100_000_000,
+			Discrimination:    500_000_000,
+			Environmental:     1_000_000_000,
+			Torture:           500_000_000,
+			ChildHarm:         700_000_000,
+			HumanRights:       2.0,
+			EarthProtection:   3.0,
+			FutureGenerations: 7.0,
+		},
+		Whistleblower: WhistleblowerConfig{
+			RewardPercentage:   0.15,
+			PaymentTime:        3 * time.Minute,
+			AnonymousReporting: true,
+			CommitteeApproval:  false, // Never true
+		},
+		Guardian: GuardianConfig{
+			Enabled:        false,
+			Exists:         false,
+			AnnualCost:     6_600_000,
+			ValueAdded:     0,
+			Recommendation: "Use blockchain instead of committees",
+		},
+		System: SystemConfig{
+			Creator:        "Lev Goukassian",
+			ORCID:          "0009-0006-5966-1243",
+			Version:        "3.0.0",
+			DeploymentTime: 10 * time.Minute,
+			AnnualCost:     1200,
+			SacredSymbol:   "🏮",
+		},
+	}
+}
 
-/* System status */
-typedef struct {
-    bool blockchain_connected;
-    uint64_t logs_created;
-    uint64_t violations_caught;
-    uint64_t penalties_enforced;
-    uint64_t whistleblower_rewards_paid;
-    uint64_t guardian_meetings_attended;  /* Always 0 */
-} tml_status_t;
+// LoadConfig loads configuration from environment
+func LoadConfig() (*Config, error) {
+	cfg := DefaultConfig()
+	
+	// Override with environment variables if set
+	if rpc := os.Getenv("TML_ETHEREUM_RPC"); rpc != "" {
+		cfg.Ethereum.RPC = rpc
+	}
+	
+	if rpc := os.Getenv("TML_POLYGON_RPC"); rpc != "" {
+		cfg.Polygon.RPC = rpc
+	}
+	
+	// Check for Guardian nonsense
+	if os.Getenv("TML_USE_GUARDIANS") == "true" {
+		return nil, fmt.Errorf("Guardian Network doesn't exist and isn't needed. Use blockchain.")
+	}
+	
+	return cfg, nil
+}
 
-/* Guardian reality (for documentation) */
-typedef struct {
-    bool exists;                  /* false */
-    bool needed;                  /* false */
-    uint64_t annual_cost;         /* $6.6M if implemented */
-    int value_added;              /* 0 */
-    char recommendation[64];       /* "Use blockchain instead" */
-} guardian_status_t;
+// Validate ensures configuration is correct
+func (c *Config) Validate() error {
+	// Required: blockchain endpoints
+	if c.Ethereum.RPC == "" {
+		return fmt.Errorf("Ethereum RPC required for smart contracts")
+	}
+	
+	if c.Polygon.RPC == "" {
+		return fmt.Errorf("Polygon RPC required for fast anchoring")
+	}
+	
+	// Ensure Guardian nonsense is disabled
+	if c.Guardian.Enabled {
+		return fmt.Errorf("Guardian Network is wasteful theater. Set enabled=false")
+	}
+	
+	// Validate penalties are set
+	if c.Penalties.MissingLogs < 100_000_000 {
+		return fmt.Errorf("Missing logs penalty must be >= $100M for deterrence")
+	}
+	
+	// Ensure whistleblower rewards are sufficient
+	if c.Whistleblower.RewardPercentage < 0.15 {
+		return fmt.Errorf("Whistleblower rewards must be >= 15%%")
+	}
+	
+	// Verify no committee approval required
+	if c.Whistleblower.CommitteeApproval {
+		return fmt.Errorf("Committee approval not needed - blockchain handles automatically")
+	}
+	
+	return nil
+}
 
-/* Core functions - Blockchain operations */
-int tml_init(tml_blockchain_config_t *config);
-int tml_create_log(const char *decision, tml_log_t *log);
-int tml_anchor_to_blockchain(const char *hash);
-int tml_verify_anchoring(const char *hash);
+// GetDeploymentComparison returns deployment reality
+func (c *Config) GetDeploymentComparison() string {
+	return fmt.Sprintf(`
+Deployment Options:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Blockchain:
+  Time: %v
+  Cost: $%d/year
+  Protection: Immediate
+  Committees: 0
+  
+Guardian Network (not recommended):
+  Time: 12+ months
+  Cost: $%d/year
+  Protection: Maybe someday
+  Committees: Endless
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Recommendation: Use blockchain
+`,
+		c.System.DeploymentTime,
+		c.System.AnnualCost,
+		c.Guardian.AnnualCost,
+	)
+}
 
-/* Sacred Zero enforcement */
-int tml_check_sacred_zero(const char *action, tml_violation_t *violation);
-uint64_t tml_calculate_penalty(sacred_zero_type_t type, float multiplier);
-int tml_enforce_penalty(uint64_t penalty_usd);
-
-/* Whistleblower operations */
-int tml_submit_violation(const char *evidence, char *reward_address);
-uint64_t tml_calculate_reward(uint64_t penalty);
-int tml_pay_whistleblower(const char *address, uint64_t amount);
-
-/* Community direct access (no seats needed) */
-int tml_community_report(const char *community_id, const char *evidence);
-int tml_verify_community_zk_proof(const char *proof);
-
-/* System operations */
-int tml_get_status(tml_status_t *status);
-int tml_verify_compliance(const char *company_address);
-
-/* Guardian operations (returns errors) */
-int tml_contact_guardian(void);  /* Returns: "Guardians don't exist" */
-int tml_request_guardian_review(void);  /* Returns: "Use blockchain" */
-int tml_get_guardian_approval(void);    /* Returns: "Not needed" */
-
-/* Error codes */
-#define TML_SUCCESS 0
-#define TML_ERROR_MISSING_LOGS -1        /* Criminal liability */
-#define TML_ERROR_TAMPERING -2           /* $500M penalty */
-#define TML_ERROR_BLOCKCHAIN_FAIL -3    /* Retry required */
-#define TML_ERROR_GUARDIAN_NONSENSE -4  /* Stop asking for committees */
-
-/* Utility macros */
-#define TML_IS_CRIMINAL_ERROR(code) \
-    ((code) == TML_ERROR_MISSING_LOGS || (code) == TML_ERROR_TAMPERING)
-
-#define TML_NEEDS_GUARDIAN(action) (false)  /* Never true */
-
-#define TML_DEPLOYMENT_VS_GUARDIAN \
-    printf("Blockchain: 10 min, $1.2K/yr\nGuardian: 12+ months, $6.6M/yr\n")
-
-/* Message strings */
-#define TML_MSG_GUARDIAN_REALITY "Guardian Network does not exist"
-#define TML_MSG_USE_BLOCKCHAIN "Use blockchain instead of committees"
-#define TML_MSG_PROTECTION_ACTIVE "Protection deployed in 10 minutes"
-#define TML_MSG_NO_MEETINGS "Committee meetings attended: 0"
-
-#endif /* TML_CLIENT_H */
+// GetGuardianTruth returns reality about Guardians
+func (c *Config) GetGuardianTruth() string {
+	return fmt.Sprintf(`
+Guardian Network Status:
+  Exists: %v
+  Needed: %v
+  Value Added: %d
+  Annual Cost if Implemented: $%d
+  Recommendation: %s
+`,
+		c.Guardian.Exists,
+		c.Guardian.Enabled,
+		c.Guardian.ValueAdded,
+		c.Guardian.AnnualCost,
+		c.Guardian.Recommendation,
+	)
+}
