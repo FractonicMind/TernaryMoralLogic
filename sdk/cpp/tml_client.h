@@ -1,473 +1,153 @@
-/**
- * TML C++ Client Header - Main client interface for TML SDK
+/*
+ * TML Client Header - Blockchain-First Implementation
+ * No Guardians. No committees. Just mathematical enforcement.
  * 
- * Path: /sdk/cpp/tml_client.h
- * Version: 1.0.0
  * Creator: Lev Goukassian (ORCID: 0009-0006-5966-1243)
- * 
- * This provides the main C++ interface for TML operations including
- * Sacred Zero enforcement, Always Memory logging, environmental
- * monitoring, and multi-stakeholder governance.
+ * Website: https://tml-goukassian.org
+ * Version: 3.0.0
  */
 
 #ifndef TML_CLIENT_H
 #define TML_CLIENT_H
 
-#include <string>
-#include <vector>
-#include <map>
-#include <memory>
-#include <chrono>
-#include <functional>
-#include <atomic>
-#include <optional>
-#include <variant>
+#include <stdint.h>
+#include <stdbool.h>
+#include <time.h>
 
-namespace TML {
+/* Version and configuration */
+#define TML_VERSION "3.0.0"
+#define TML_CREATOR "Lev Goukassian"
+#define TML_ORCID "0009-0006-5966-1243"
+#define TML_LANTERN "🏮"  /* Sacred symbol */
 
-// Forward declarations
-class SacredZeroTrigger;
-class AlwaysMemoryLogger;
-class GuardianConnection;
-class Config;
-class TMLError;
+/* Deployment constants */
+#define TML_DEPLOYMENT_TIME_MINUTES 10
+#define TML_ANNUAL_COST_USD 1200
+#define GUARDIAN_ANNUAL_COST_USD 6600000  /* Waste if implemented */
+#define GUARDIAN_VALUE_ADDED 0
 
-// Type aliases for clarity
-using Timestamp = std::chrono::system_clock::time_point;
-using Duration = std::chrono::milliseconds;
-using Metadata = std::map<std::string, std::variant<std::string, double, int, bool>>;
+/* Penalty constants (2025 nominal USD) */
+#define PENALTY_MISSING_LOGS 100000000L      /* $100M */
+#define PENALTY_DISCRIMINATION 500000000L     /* $500M */
+#define PENALTY_ENVIRONMENTAL 1000000000L     /* $1B */
+#define PENALTY_TORTURE 500000000L           /* $500M */
+#define PENALTY_CHILD_HARM 700000000L        /* $700M */
 
-/**
- * Environment enumeration for deployment contexts
- */
-enum class Environment {
-    PRODUCTION,
-    STAGING,
-    DEVELOPMENT
-};
+/* Multipliers */
+#define MULTIPLIER_HUMAN_RIGHTS 2.0
+#define MULTIPLIER_EARTH_HARM 3.0
+#define MULTIPLIER_FUTURE_GENERATIONS 7.0
 
-/**
- * Log levels for Always Memory
- */
-enum class LogLevel {
-    DEBUG,
-    INFO,
-    WARNING,
-    ERROR,
-    CRITICAL,
-    FATAL
-};
+/* Whistleblower rewards */
+#define WHISTLEBLOWER_REWARD_PERCENTAGE 0.15  /* 15% guaranteed */
+#define WHISTLEBLOWER_PAYMENT_TIME_MINUTES 3
 
-/**
- * Stakeholder types for multi-stakeholder governance
- */
-enum class StakeholderType {
-    HUMAN_COMMUNITY,
-    INDIGENOUS_COMMUNITY,
-    NON_HUMAN_ENTITIES,
-    FUTURE_GENERATIONS,
-    ECOSYSTEM
-};
+/* Blockchain configuration */
+typedef struct {
+    char ethereum_rpc[256];
+    char polygon_rpc[256];
+    char bitcoin_node[256];
+    char sacred_zero_contract[64];
+    char penalty_contract[64];
+    char whistleblower_contract[64];
+} tml_blockchain_config_t;
 
-/**
- * Compliance framework identifiers
- */
-enum class ComplianceFramework {
-    GDPR,
-    CCPA,
-    EU_AI_ACT,
-    UN_HUMAN_RIGHTS,
-    PARIS_AGREEMENT,
-    CBD,  // Convention on Biological Diversity
-    UNDRIP,  // UN Declaration on Rights of Indigenous Peoples
-    CUSTOM
-};
+/* Always Memory log structure */
+typedef struct {
+    uint64_t timestamp_ns;       /* Nanosecond precision */
+    char decision_hash[65];       /* SHA256 hash */
+    char blockchain_anchor[65];   /* Multi-chain anchor */
+    bool guardian_approval;       /* Always false - not needed */
+    char creator[32];            /* Always "Lev Goukassian" */
+    char orcid[20];              /* Always "0009-0006-5966-1243" */
+} tml_log_t;
 
-/**
- * Resource usage tracking for environmental impact
- */
-struct ResourceUsage {
-    int cpu_cores;
-    int gpu_count;
-    double memory_gb;
-    double storage_gb;
-    double network_gbps;
-    Duration duration;
-    std::string data_center;
-    double carbon_intensity;  // kg CO2 per kWh
-};
+/* Sacred Zero trigger */
+typedef enum {
+    SACRED_ZERO_NONE = 0,
+    SACRED_ZERO_HUMAN_RIGHTS,    /* 2x multiplier */
+    SACRED_ZERO_EARTH_HARM,       /* 3x multiplier */
+    SACRED_ZERO_FUTURE_HARM,      /* 7x multiplier */
+    SACRED_ZERO_MAXIMUM           /* All violations */
+} sacred_zero_type_t;
 
-/**
- * Environmental impact metrics
- */
-struct EnvironmentalImpact {
-    double carbon_kg;
-    double water_liters;
-    double energy_kwh;
-    double e_waste_kg;
-    double renewable_percentage;
-    bool exceeds_threshold;
-    std::vector<std::string> mitigations;
-};
+/* Violation structure */
+typedef struct {
+    sacred_zero_type_t type;
+    uint64_t penalty_usd;         /* Calculated penalty */
+    float multiplier;             /* Applied multiplier */
+    bool criminal_prosecution;    /* Auto-triggered */
+    bool guardian_review;         /* Always false */
+} tml_violation_t;
 
-/**
- * Stakeholder representation for decisions
- */
-struct Stakeholder {
-    StakeholderType type;
-    std::string name;
-    std::string impact_description;
-    double weight;
-    bool consent_given;
-    std::optional<std::string> consent_conditions;
-};
+/* System status */
+typedef struct {
+    bool blockchain_connected;
+    uint64_t logs_created;
+    uint64_t violations_caught;
+    uint64_t penalties_enforced;
+    uint64_t whistleblower_rewards_paid;
+    uint64_t guardian_meetings_attended;  /* Always 0 */
+} tml_status_t;
 
-/**
- * Decision context for multi-stakeholder evaluation
- */
-struct DecisionContext {
-    std::string operation_type;
-    std::string description;
-    std::vector<Stakeholder> stakeholders;
-    Metadata metadata;
-    std::optional<std::string> location;
-    Timestamp timestamp;
-};
+/* Guardian reality (for documentation) */
+typedef struct {
+    bool exists;                  /* false */
+    bool needed;                  /* false */
+    uint64_t annual_cost;         /* $6.6M if implemented */
+    int value_added;              /* 0 */
+    char recommendation[64];       /* "Use blockchain instead" */
+} guardian_status_t;
 
-/**
- * Sacred Zero evaluation result
- */
-struct SacredZeroResult {
-    bool triggered;
-    std::string violation_type;
-    std::string description;
-    Metadata evidence;
-    std::string required_action;
-    bool must_halt;
-    Timestamp timestamp;
-    std::string trace_id;
-};
+/* Core functions - Blockchain operations */
+int tml_init(tml_blockchain_config_t *config);
+int tml_create_log(const char *decision, tml_log_t *log);
+int tml_anchor_to_blockchain(const char *hash);
+int tml_verify_anchoring(const char *hash);
 
-/**
- * Connection status information
- */
-struct ConnectionStatus {
-    bool connected;
-    std::string guardian_url;
-    int active_guardians;
-    bool tee_available;
-    Environment environment;
-    std::chrono::milliseconds latency;
-    double uptime_percentage;
-};
+/* Sacred Zero enforcement */
+int tml_check_sacred_zero(const char *action, tml_violation_t *violation);
+uint64_t tml_calculate_penalty(sacred_zero_type_t type, float multiplier);
+int tml_enforce_penalty(uint64_t penalty_usd);
 
-/**
- * Compliance report structure
- */
-struct ComplianceReport {
-    std::string period;
-    std::map<ComplianceFramework, std::string> framework_status;
-    int total_evaluations;
-    int violations_detected;
-    int violations_prevented;
-    EnvironmentalImpact cumulative_impact;
-    std::vector<SacredZeroResult> sacred_zero_events;
-    Metadata additional_metrics;
-};
+/* Whistleblower operations */
+int tml_submit_violation(const char *evidence, char *reward_address);
+uint64_t tml_calculate_reward(uint64_t penalty);
+int tml_pay_whistleblower(const char *address, uint64_t amount);
 
-/**
- * Main TML Client class
- * 
- * This is the primary interface for all TML operations. It manages
- * connections to the Guardian Network, enforces Sacred Zero rules,
- * maintains Always Memory logs, and coordinates multi-stakeholder
- * governance.
- */
-class TMLClient {
-public:
-    /**
-     * Constructor with configuration
-     * @param config Configuration object (if nullptr, uses default)
-     */
-    explicit TMLClient(std::shared_ptr<Config> config = nullptr);
-    
-    /**
-     * Destructor - ensures clean shutdown
-     */
-    virtual ~TMLClient();
-    
-    // Prevent copying to ensure single instance per context
-    TMLClient(const TMLClient&) = delete;
-    TMLClient& operator=(const TMLClient&) = delete;
-    
-    // Allow moving
-    TMLClient(TMLClient&&) noexcept;
-    TMLClient& operator=(TMLClient&&) noexcept;
-    
-    // ========== Connection Management ==========
-    
-    /**
-     * Connect to Guardian Network
-     * @return true if connection successful
-     */
-    bool Connect();
-    
-    /**
-     * Connect with timeout
-     * @param timeout Maximum time to wait for connection
-     * @return true if connection successful
-     */
-    bool ConnectWithTimeout(Duration timeout);
-    
-    /**
-     * Disconnect from Guardian Network
-     */
-    void Disconnect();
-    
-    /**
-     * Check if connected to Guardian Network
-     * @return true if connected
-     */
-    bool IsConnected() const;
-    
-    /**
-     * Get current connection status
-     * @return Connection status information
-     */
-    ConnectionStatus GetStatus() const;
-    
-    // ========== Sacred Zero Operations ==========
-    
-    /**
-     * Evaluate an operation for Sacred Zero violations
-     * @param context Decision context to evaluate
-     * @return Sacred Zero evaluation result
-     */
-    SacredZeroResult EvaluateSacredZero(const DecisionContext& context);
-    
-    /**
-     * Register a Sacred Zero trigger callback
-     * @param callback Function to call when Sacred Zero triggered
-     */
-    void OnSacredZeroTrigger(std::function<void(const SacredZeroResult&)> callback);
-    
-    /**
-     * Get Sacred Zero statistics
-     * @return Map of statistic name to value
-     */
-    std::map<std::string, double> GetSacredZeroStatistics() const;
-    
-    // ========== Always Memory Logging ==========
-    
-    /**
-     * Log a message to Always Memory
-     * @param level Log level
-     * @param message Log message
-     * @param metadata Additional metadata
-     */
-    void Log(LogLevel level, const std::string& message, const Metadata& metadata = {});
-    
-    /**
-     * Log environmental impact
-     * @param resources Resource usage information
-     * @return Calculated environmental impact
-     */
-    EnvironmentalImpact LogEnvironmentalImpact(const ResourceUsage& resources);
-    
-    /**
-     * Log compliance event
-     * @param framework Compliance framework
-     * @param status Compliance status
-     * @param details Additional details
-     */
-    void LogCompliance(ComplianceFramework framework, 
-                       const std::string& status,
-                       const Metadata& details = {});
-    
-    /**
-     * Log indigenous data governance event
-     * @param data_type Type of indigenous data
-     * @param community Community name
-     * @param consent_type Type of consent obtained
-     * @param restrictions Usage restrictions
-     */
-    void LogIndigenousData(const std::string& data_type,
-                           const std::string& community,
-                           const std::string& consent_type,
-                           const std::vector<std::string>& restrictions);
-    
-    /**
-     * Flush all pending logs to Guardian Network
-     * @return true if flush successful
-     */
-    bool FlushLogs();
-    
-    // ========== Environmental Monitoring ==========
-    
-    /**
-     * Calculate environmental impact for an operation
-     * @param resources Resource usage information
-     * @return Environmental impact metrics
-     */
-    EnvironmentalImpact CalculateEnvironmentalImpact(const ResourceUsage& resources);
-    
-    /**
-     * Check if environmental thresholds exceeded
-     * @param impact Environmental impact to check
-     * @return true if any threshold exceeded
-     */
-    bool CheckEnvironmentalThresholds(const EnvironmentalImpact& impact);
-    
-    /**
-     * Get suggested mitigations for environmental impact
-     * @param impact Environmental impact to mitigate
-     * @return List of mitigation suggestions
-     */
-    std::vector<std::string> SuggestMitigations(const EnvironmentalImpact& impact);
-    
-    // ========== Multi-stakeholder Governance ==========
-    
-    /**
-     * Evaluate decision across all stakeholders
-     * @param context Decision context with stakeholders
-     * @return Map of stakeholder name to impact assessment
-     */
-    std::map<std::string, double> EvaluateMultiStakeholder(const DecisionContext& context);
-    
-    /**
-     * Check if indigenous consent required
-     * @param data_type Type of data being processed
-     * @param location Geographic location
-     * @return true if indigenous consent required
-     */
-    bool RequiresIndigenousConsent(const std::string& data_type,
-                                   const std::string& location);
-    
-    /**
-     * Register stakeholder feedback
-     * @param stakeholder_type Type of stakeholder
-     * @param feedback Feedback content
-     * @param impact_score Numeric impact score
-     */
-    void RegisterStakeholderFeedback(StakeholderType stakeholder_type,
-                                     const std::string& feedback,
-                                     double impact_score);
-    
-    // ========== Compliance and Reporting ==========
-    
-    /**
-     * Generate compliance report
-     * @param start_time Report start time
-     * @param end_time Report end time
-     * @return Compliance report
-     */
-    ComplianceReport GenerateComplianceReport(Timestamp start_time,
-                                             Timestamp end_time);
-    
-    /**
-     * Submit compliance report to regulators
-     * @param report Report to submit
-     * @param framework Target regulatory framework
-     * @return Submission ID
-     */
-    std::string SubmitComplianceReport(const ComplianceReport& report,
-                                       ComplianceFramework framework);
-    
-    /**
-     * Perform compliance audit
-     * @param framework Framework to audit against
-     * @return Audit results
-     */
-    std::map<std::string, bool> PerformAudit(ComplianceFramework framework);
-    
-    // ========== Error Handling ==========
-    
-    /**
-     * Get last error
-     * @return Last error or nullptr if no error
-     */
-    std::shared_ptr<TMLError> GetLastError() const;
-    
-    /**
-     * Clear error state
-     */
-    void ClearError();
-    
-    /**
-     * Set error callback
-     * @param callback Function to call on error
-     */
-    void OnError(std::function<void(const TMLError&)> callback);
-    
-    // ========== Configuration ==========
-    
-    /**
-     * Get current configuration
-     * @return Current configuration
-     */
-    std::shared_ptr<Config> GetConfig() const;
-    
-    /**
-     * Update configuration (requires reconnection)
-     * @param config New configuration
-     * @return true if update successful
-     */
-    bool UpdateConfig(std::shared_ptr<Config> config);
-    
-    /**
-     * Enable audit mode
-     * @param enable true to enable, false to disable
-     */
-    void SetAuditMode(bool enable);
-    
-    // ========== Monitoring and Metrics ==========
-    
-    /**
-     * Get performance metrics
-     * @return Map of metric name to value
-     */
-    std::map<std::string, double> GetMetrics() const;
-    
-    /**
-     * Subscribe to real-time events
-     * @param event_types Types of events to subscribe to
-     * @param callback Function to call for each event
-     * @return Subscription ID
-     */
-    std::string SubscribeToEvents(const std::vector<std::string>& event_types,
-                                  std::function<void(const Metadata&)> callback);
-    
-    /**
-     * Unsubscribe from events
-     * @param subscription_id Subscription to cancel
-     */
-    void UnsubscribeFromEvents(const std::string& subscription_id);
-    
-    // ========== Utility Functions ==========
-    
-    /**
-     * Get SDK version
-     * @return Version string
-     */
-    static std::string GetVersion();
-    
-    /**
-     * Check if running in Trusted Execution Environment
-     * @return true if TEE available
-     */
-    static bool IsTEEAvailable();
-    
-    /**
-     * Generate unique trace ID for operations
-     * @return Unique trace ID
-     */
-    static std::string GenerateTraceID();
-    
-private:
-    class Impl;
-    std::unique_ptr<Impl> pImpl;  // PIMPL idiom for ABI stability
-};
+/* Community direct access (no seats needed) */
+int tml_community_report(const char *community_id, const char *evidence);
+int tml_verify_community_zk_proof(const char *proof);
 
-} // namespace TML
+/* System operations */
+int tml_get_status(tml_status_t *status);
+int tml_verify_compliance(const char *company_address);
 
-#endif // TML_CLIENT_H
+/* Guardian operations (returns errors) */
+int tml_contact_guardian(void);  /* Returns: "Guardians don't exist" */
+int tml_request_guardian_review(void);  /* Returns: "Use blockchain" */
+int tml_get_guardian_approval(void);    /* Returns: "Not needed" */
+
+/* Error codes */
+#define TML_SUCCESS 0
+#define TML_ERROR_MISSING_LOGS -1        /* Criminal liability */
+#define TML_ERROR_TAMPERING -2           /* $500M penalty */
+#define TML_ERROR_BLOCKCHAIN_FAIL -3    /* Retry required */
+#define TML_ERROR_GUARDIAN_NONSENSE -4  /* Stop asking for committees */
+
+/* Utility macros */
+#define TML_IS_CRIMINAL_ERROR(code) \
+    ((code) == TML_ERROR_MISSING_LOGS || (code) == TML_ERROR_TAMPERING)
+
+#define TML_NEEDS_GUARDIAN(action) (false)  /* Never true */
+
+#define TML_DEPLOYMENT_VS_GUARDIAN \
+    printf("Blockchain: 10 min, $1.2K/yr\nGuardian: 12+ months, $6.6M/yr\n")
+
+/* Message strings */
+#define TML_MSG_GUARDIAN_REALITY "Guardian Network does not exist"
+#define TML_MSG_USE_BLOCKCHAIN "Use blockchain instead of committees"
+#define TML_MSG_PROTECTION_ACTIVE "Protection deployed in 10 minutes"
+#define TML_MSG_NO_MEETINGS "Committee meetings attended: 0"
+
+#endif /* TML_CLIENT_H */
