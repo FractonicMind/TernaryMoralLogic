@@ -2,11 +2,22 @@
 
 ## Purpose
 
-The Emergency Council activates when ecological crises threaten immediate, widespread, or irreversible harm. It provides rapid response while maintaining Sacred Zero protections, ensuring urgency doesn't override accountability.
+The Emergency Council activates when ecological crises threaten immediate, widespread, or irreversible harm.  
+It is **not a human committee**—it is a **multi-chain smart-contract suite**.  
+Quorum rules (7-of-9, ⅔, etc.) are codified in threshold contracts; signatures are on-chain key-pairs held by independent entities (NGOs, regulators, insurers, Indigenous representatives).  
+Every activation, vote, and dollar-move is immutably anchored to Bitcoin, Ethereum, and Polygon, with cryptographic proofs ready for court.
 
 ## Activation Triggers
 
-### Automatic Activation (No Vote Required)
+### Automatic Activation (Smart-Contract Event)
+
+```solidity
+// Solidity pseudo-code
+function autoActivate(string crisisType) external {
+    require(isAutoTrigger(crisisType), "Not auto-trigger");
+    councilContract.initiateCrisis(crisisType, block.timestamp);
+}
+```
 
 ```yaml
 auto_triggers:
@@ -17,194 +28,193 @@ auto_triggers:
   nuclear_incident: "Radiological release any level"
   genetic_catastrophe: "Gene drive escape laboratory"
   aquifer_poisoning: "Groundwater contamination >50 year cleanup"
-  human_rights_emergency: "Rights violation with >100 yr impact"  # ← new
-  earth_boundary_breach: "Planetary boundary crossed >recovery"   # ← new
+  human_rights_emergency: "Rights violation with >100 yr impact"
+  earth_boundary_breach: "Planetary boundary crossed >recovery"
 ```
 
-### Council Vote Activation
+### Council Vote Activation (Threshold Contract)
 
-Requires 2/3 vote of available Public Blockchains (minimum 5):
+Requires on-chain signatures from **7 of 9 independent key-holders** (minimum 5):
 
-```yaml
-vote_triggers:
-  threshold_requirements:
-    - "Immediate threat to >1000 humans"
-    - "Irreversible damage within 7 days"
-    - "Ecosystem service collapse risk"
-    - "Sacred Zero deadlock >48 hours"
-    - "Community emergency declaration"
-    - "Blockchain network split"
-    - "Human rights emergency <100 yr"     # ← new
-    - "Earth protection urgent <50 yr"     # ← new
-```
-
-## Council Composition
-
-### Standing Members
-
-```yaml
-core_members:
-  indigenous_representative: 1
-  climate_scientist: 1
-  ecologist: 1
-  systems_engineer: 1
-  emergency_coordinator: 1
-  human_rights_advocate: 1              # ← new
-  earth_protection_specialist: 1        # ← new
-
-selection_process:
-  nomination: "By Public Blockchains"
-  term: "2 years"
-  removal: "Only for corruption/incapacity"
-  independence: "Funded from Memorial Fund"
-```
-
-### Ad-Hoc Experts
-
-```python
-def summon_experts(crisis_type):
-    expert_pool = {
-        "biodiversity": ["conservation_biologist", "ecologist"],
-        "climate": ["climate_modeler", "atmospheric_scientist"],
-        "pollution": ["toxicologist", "environmental_chemist"],
-        "nuclear": ["nuclear_engineer", "radiation_expert"],
-        "genetic": ["synthetic_biologist", "bioethicist"],
-        "human_rights": ["intergenerational_rights_lawyer"],   # ← new
-        "earth_systems": ["planetary_boundary_expert"]         # ← new
+```solidity
+function voteActivate(bytes32 crisisHash) external {
+    councilContract.addSignature(msg.sender, crisisHash);
+    if (councilContract.signatureCount(crisisHash) >= 7) {
+        councilContract.activateCrisis(crisisHash);
     }
-    
-    return expert_pool.get(crisis_type, [])
-```
-
-## Emergency Procedures
-
-### Immediate Response (0-1 Hour)
-
-```python
-def immediate_response_protocol(crisis):
-    # 1. Activate Sacred Zero globally
-    broadcast_sacred_zero("EMERGENCY_HOLD")
-    
-    # 2. Preserve evidence
-    freeze_all_relevant_logs()
-    capture_system_snapshots()
-    
-    # 3. Notify council
-    summon_emergency_council()
-    
-    # 4. Alert communities
-    notify_affected_communities()
-    
-    # 5. Document everything
-    log_emergency_activation(crisis)
-    
-    # Sacred Zero remains until council decision
-    return maintain_global_hold()
-```
-
-### Rapid Assessment (1-24 Hours)
-
-```yaml
-assessment_protocol:
-  hour_1:
-    - "Crisis characterization"
-    - "Impact magnitude estimation"
-    - "Affected populations mapping"
-    - "Resource requirements"
-    - "Blockchain anchoring urgency"     # ← updated
-    
-  hour_6:
-    - "Scientific evidence review"
-    - "Traditional knowledge consultation"
-    - "Community impact assessment"
-    - "Irreversibility calculation"
-    - "Human rights violation scan"      # ← new
-    - "Earth protection boundary scan"   # ← new
-    
-  hour_12:
-    - "Response options development"
-    - "Risk-benefit analysis"
-    - "Stakeholder consultation"
-    - "Resource mobilization"
-    - "Public communication prep"
-    
-  hour_24:
-    - "Preliminary decision"
-    - "Implementation planning"
-    - "Monitoring protocols"
-    - "Exit criteria definition"
-    - "Always Memory documentation"
-```
-
-## Decision Authority
-
-### Voting Rules
-
-```yaml
-voting_requirements:
-  quorum: "5 of 9 Blockchains minimum"        # ← updated
-  majority: "2/3 of present members"
-  abstentions: "Allowed with justification"
-  conflicts: "Must recuse"
-  timeline: "Maximum 24 hours"
-  documentation: "Every word recorded"
-```
-
-### Emergency Powers
-
-```python
-EMERGENCY_POWERS = {
-    "immediate_halt": "Stop any AI system globally",
-    "resource_commandeer": "Access any TML resources",
-    "information_access": "Demand any data/logs",
-    "payment_authority": "Access Memorial Fund emergency reserve",
-    "legal_protection": "Immunity for emergency actions",
-    "communication_mandate": "Override any silence period",
-    "blockchain_acceleration": "Priority anchoring fees",  # ← updated
-    "human_rights_emergency": "Override profit motives",   # ← new
-    "earth_protection_emergency": "Override economic args" # ← new
 }
 ```
 
-## Response Options
+```yaml
+vote_triggers:
+  threshold: "7_of_9_keyholders"
+  minimum_keys: 5
+  timeline: "24h voting window"
+  abstention: "Allowed (does not count)"
+  double_vote: "Automatically slashed"
+```
+
+## Council Composition (Key-Holder Entities)
+
+### Standing Key-Holders (9 Total)
+
+| Seat | Entity Type | Selection Method | Term |
+|---|---|---|---|
+| 1 | Indigenous Council | On-chain vote by registered nations | 2 yrs |
+| 2 | Climate Scientist | Public Blockchains nomination | 2 yrs |
+| 3 | Ecologist | Scientific societies nomination | 2 yrs |
+| 4 | Systems Engineer | Open-source dev community vote | 2 yrs |
+| 5 | Emergency NGO | Disaster-relief orgs election | 2 yrs |
+| 6 | Insurer | Memorial Fund board appointment | 2 yrs |
+| 7 | Regulator | Government ministry (rotating) | 2 yrs |
+| 8 | Youth Climate | Global youth orgs vote (age 16-25) | 2 yrs |
+| 9 | Human + Earth Advocate | Joint HR & Earth NGOs vote | 2 yrs |
+
+### Key Requirements
+
+```yaml
+key_requirements:
+  hardware_wallet: "FIPS 140-2 Level 3"
+  multisig_backup: "3-of-5 social recovery"
+  slashing_condition: "Double-sign or collusion"
+  independence: "No extractive-industry funding (10 yr lookback)"
+  attestation: "Annual public report anchored on-chain"
+```
+
+## Emergency Procedures (Smart-Contract Flow)
+
+### Immediate Response (0-1 Block ≈ 12 s)
+
+```solidity
+function immediateResponse(bytes32 crisisHash) external onlyAutoTrigger {
+    // 1. Global Sacred Zero
+    sacredZeroContract.globalHold(crisisHash);
+
+    // 2. Freeze evidence
+    evidenceContract.freezeAll(crisisHash);
+
+    // 3. Open voting window
+    councilContract.openVoting(crisisHash, block.timestamp + 24 hours);
+
+    // 4. Emit alerts
+    emit EmergencyActivated(crisisHash, block.timestamp);
+}
+```
+
+### Rapid Assessment (1-24 Blocks)
+
+```yaml
+on_chain_milestones:
+  block_1:
+    - "Crisis characterization hash uploaded"
+    - "Impact magnitude oracle feed locked"
+    - "Affected populations geohash uploaded"
+    - "Resource requirement oracle polled"
+    
+  block_6:
+    - "Scientific evidence IPFS hash anchored"
+    - "Traditional knowledge IPFS hash anchored"
+    - "Community impact oracle feed locked"
+    - "Irreversibility score oracle computed"
+    - "Human rights oracle feed locked"       # ← new
+    - "Earth protection oracle feed locked"   # ← new
+    
+  block_12:
+    - "Response options IPFS hash uploaded"
+    - "Risk-benefit oracle computed"
+    - "Stakeholder signatures collected"
+    - "Public communication IPFS hash uploaded"
+    
+  block_24:
+    - "Final vote snapshot taken"
+    - "Multi-signature threshold checked"
+    - "Decision hash anchored to 3 chains"
+    - "Emergency fund multisig unlocked"
+```
+
+## Decision Authority (Threshold Contract)
+
+### Voting Rules (On-Chain)
+
+```solidity
+// 7-of-9 threshold enforced by contract
+uint256 constant THRESHOLD_NUMERATOR = 7;
+uint256 constant THRESHOLD_DENOMINATOR = 9;
+```
+
+```yaml
+voting_mechanics:
+  signature_type: "ECDSA secp256k1"
+  chain_anchoring: "Bitcoin + Ethereum + Polygon (simultaneous)"
+  quorum_enforcement: "Automatic by smart contract"
+  timeline: "24h window or 7 signatures, whichever first"
+  abstention: "Non-signature = abstain"
+  collusion_penalty: "Slashing of 10% bond + public exposure"
+```
+
+### Emergency Powers (Codified in Contract)
+
+```solidity
+// Powers unlock only when threshold met
+if (signatureCount >= 7) {
+    treasuryContract.unlockEmergencyFund(crisisHash, 50_000_000);
+    sacredZeroContract.globalHold(crisisHash);
+    evidenceContract.anchorImmutably(crisisHash);
+}
+```
+
+```yaml
+on_chain_powers:
+  immediate_halt: "Global Sacred Zero (auto-executed)"
+  resource_unlock: "$50M emergency fund (multisig)"
+  information_demand: "Oracle request any data feed"
+  legal_immunity: "Immutable record = court evidence"
+  communication_mandate: "Auto-tweet + RSS + IPFS"
+  blockchain_acceleration: "Priority fee pre-funded"
+  human_rights_override: "Dignity > profit (coded)"    # ← new
+  earth_protection_override: "Ecology > profit (coded)" # ← new
+```
+
+## Response Options (Smart-Contract Templates)
 
 ### 1. Global Sacred Zero Extension
 
-Extend Sacred Zero worldwide for:
-- Extinction events
-- Tipping point risks
-- Nuclear incidents
-- Irreversible genetic changes
-- **Human rights catastrophes >100 yr**   # ← new
-- **Earth boundary irreversibility**       # ← new
+```solidity
+function executeGlobalHold(bytes32 crisisHash) external thresholdMet {
+    sacredZeroContract.setGlobalHold(crisisHash, 72 hours);
+    emit HoldExtended(crisisHash, 72 hours, block.timestamp);
+}
+```
 
 ### 2. Targeted Intervention
 
-```yaml
-targeted_options:
-  system_isolation: "Quarantine affected AI"
-  resource_diversion: "Redirect to mitigation"
-  accelerated_monitoring: "Real-time surveillance"
-  community_evacuation: "Human safety priority"
-  ecosystem_restoration: "Immediate remediation"
-  blockchain_evidence_preservation: "Immutable record"  # ← updated
-  human_rights_protection: "Dignity first"             # ← new
-  earth_protection_restoration: "Ecology first"         # ← new
+```solidity
+function targetedIntervention(
+    bytes32 crisisHash,
+    address[] memory affectedSystems,
+    uint256 holdDuration
+) external thresholdMet {
+    for (uint i = 0; i < affectedSystems.length; i++) {
+        sacredZeroContract.isolateSystem(affectedSystems[i], holdDuration);
+    }
+}
 ```
 
 ### 3. Monitored Proceeding
 
-Allow actions under:
-- Continuous oversight
-- Hourly reporting
-- Immediate revocation power
-- Resource limits
-- **Human rights watchdog**     # ← new
-- **Earth protection watchdog**  # ← new
+```solidity
+function monitoredProceeding(
+    bytes32 crisisHash,
+    address targetSystem,
+    uint256 monitoringDuration
+) external thresholdMet {
+    monitoringContract.startMonitoring(targetSystem, monitoringDuration, 1 hours);
+}
+```
 
-## Always Memory Integration
+## Always Memory Integration (Multi-Chain Anchor)
 
-### Emergency Logging
+### Emergency Logging (Immutable)
 
 ```json
 {
@@ -212,161 +222,183 @@ Allow actions under:
     "crisis_id": "eco_2025_10_02_001",
     "activation_time": "2025-10-02T14:30:00Z",
     "trigger_type": "climate_tipping",
-    "council_members": ["member_1", "member_2", "member_3"],
-    "blockchain_consensus": "7_of_9_confirmed",      # ← updated
-    "human_rights_status": "no_violation",           # ← new
-    "earth_protection_status": "boundary_near",      # ← new
+    "council_quorum": {
+      "required": "7_of_9",
+      "blockchain_consensus": "7_confirmed",
+      "signatures": [
+        "0xa7f...c92",
+        "0xb83...f14",
+        "0xc55...ae9"
+      ]
+    },
+    "human_rights_status": "no_violation",
+    "earth_protection_status": "boundary_near",
     "decision": "global_sacred_zero_extension",
     "rationale": "Prevention of irreversible feedback loop",
-    "timeline": "72_hour_initial",
+    "timeline": {
+      "initial": "72_hours",
+      "next_review": "2025-10-05T14:30:00Z"
+    },
     "resources_committed": "$50M_emergency_fund",
-    "community_notifications": "Complete_within_6h",
-    "evidence_preservation": "All_systems_frozen",
-    "blockchain_anchor": "0x9f8e7d6c5b4a...",       # ← updated
-    "next_review": "2025-10-05T14:30:00Z"
+    "community_notifications": {
+      "status": "complete",
+      "deadline": "2025-10-02T20:30:00Z"
+    },
+    "evidence_preservation": {
+      "system_state": "frozen",
+      "anchored_hash": "0x9f8e7d6c5b4a..."
+    },
+    "blockchain_anchor": {
+      "ethereum": "0x2ab4...ff8",
+      "bitcoin_ots": "sha256:7f9c...d21",
+      "polygon": "0x41be...bb7"
+    }
   }
 }
 ```
 
-### Evidence Preservation
+### Evidence Preservation (IPFS + Multi-Chain)
 
-```python
-def preserve_emergency_evidence():
-    evidence_package = {
-        "system_snapshots": capture_all_states(),
-        "decision_logs": extract_all_reasoning(),
-        "communication_records": archive_all_messages(),
-        "scientific_data": seal_research_findings(),
-        "community_input": preserve_all_testimony(),
-        "blockchain_proofs": anchor_immutable_hashes(),  # ← updated
-        "human_rights_log": seal_rights_record(),        # ← new
-        "earth_protection_log": seal_eco_record()        # ← new
-    }
+```solidity
+function preserveEvidence(bytes32 crisisHash) external thresholdMet {
+    // 1. Hash all evidence packages
+    bytes32 evidenceRoot = ipfsHash(crisisHash);
     
-    # Multi-chain anchoring for permanence
-    return anchor_to_multiple_blockchains(evidence_package)  # ← updated
+    // 2. Anchor to three chains simultaneously
+    bitcoinAnchor.anchor(evidenceRoot);
+    ethereumAnchor.anchor(evidenceRoot);
+    polygonAnchor.anchor(evidenceRoot);
+    
+    // 3. Emit immutable proof
+    emit EvidenceAnchored(crisisHash, evidenceRoot, block.timestamp);
+}
 ```
 
-## Resource Mobilization
+## Resource Mobilization (Multisig Contracts)
 
-### Emergency Fund Access
+### Emergency Fund Access (On-Chain)
+
+```solidity
+// $50M immediate, $200M within 24h, $500M within 7d
+contract EmergencyTreasury {
+    mapping(bytes32 => uint256) public unlockedFunds;
+    
+    function unlockEmergency(bytes32 crisisHash) external thresholdMet {
+        unlockedFunds[crisisHash] += 50_000_000 * 1e18; // 50M USD
+        emit FundsUnlocked(crisisHash, 50_000_000);
+    }
+}
+```
 
 ```yaml
-emergency_funding:
-  immediate_access: "$50M within 1 hour"
-  additional_authorization: "$200M within 24 hours"
-  special_assessment: "$500M within 7 days"
+funding_mechanics:
+  immediate_access: "$50M (auto-unlocked on threshold)"
+  additional_unlock: "$200M (second vote after 24h)"
+  special_assessment: "$500M (third vote after 7d)"
   
-  approval_process:
-    - Emergency Council unanimous vote
-    - Public Blockchains notification within 1 h   # ← updated
-    - Community representative consultation
-    - Transparency report within 24 h
-    - Full documentation in Always Memory
-    
-  eligible_expenses:
-    - Immediate mitigation measures
-    - Community evacuation/support
-    - Ecosystem restoration
-    - Scientific monitoring
-    - Legal liabilities
-    - Human rights remediation           # ← new
-    - Earth protection restoration       # ← new
+  approval_on_chain: "Multisig threshold contract"
+  transparency: "Real-time public ledger"
+  reimbursement: "Automatic via smart contract if crisis false"
+  blockchain_proof: "Every satoshi/wei tracked and anchored"
 ```
 
-## Communication Protocols
+## Communication Protocols (On-Chain Events)
 
-### Information Dissemination
+### Information Dissemination (Auto-Emitted)
 
-```python
-COMMUNICATION_HIERARCHY = [
-    "Emergency Council members",
-    "Public Blockchains (immediate)",           # ← updated
-    "Affected communities",
-    "Scientific community",
-    "Regulatory bodies",
-    "General public",
-    "Media outlets",
-    "International organizations"
-]
+```solidity
+event EmergencyActivated(bytes32 indexed crisisHash, uint256 timestamp);
+event VoteCast(address indexed voter, bytes32 indexed crisisHash, bool vote);
+event ThresholdReached(bytes32 indexed crisisHash, uint256 signatureCount);
+event FundsUnlocked(bytes32 indexed crisisHash, uint256 amount);
+event GlobalHoldExtended(bytes32 indexed crisisHash, uint256 duration);
 ```
 
-### Transparency Requirements
+```yaml
+communication_automation:
+  dashboard_feed: "Web3 websocket → public dashboard"
+  community_SMS: "Twilio oracle triggered on-chain"
+  media_RSS: "IPFS feed updated via oracle"
+  legal_notification: "Email oracle to regulators (immutable log)"
+  blockchain_hash: "Tweet hash + IPFS link (immutable)"
+  human_rights_alert: "Auto-notify OHCHR oracle"     # ← new
+  earth_protection_alert: "Auto-notify UNEP oracle"   # ← new
+```
 
-- Real-time public dashboard
-- Hourly status updates
-- Complete decision rationale
-- Dissenting opinions published
-- Community testimony released
-- Blockchain hashes publicized          # ← updated
-- Human rights impact disclosed        # ← new
-- Earth protection impact disclosed    # ← new
+## Post-Emergency Review (Immutable Audit)
 
-## Post-Emergency Review
-
-### Accountability Process
+### Accountability Process (Anchored)
 
 ```yaml
 review_timeline:
-  72_hours: "Initial assessment"
-  1_week: "Preliminary report"
-  1_month: "Comprehensive review"
-  6_months: "Impact evaluation"
-  1_year: "Full accountability report"
+  72_hours: "Initial review hash anchored"
+  1_week: "Preliminary report IPFS + anchor"
+  1_month: "Comprehensive review IPFS + anchor"
+  6_months: "Impact evaluation IPFS + anchor"
+  1_year: "Full accountability report IPFS + anchor"
   
 review_elements:
-  - Decision quality assessment
-  - Timeline adherence evaluation
-  - Resource use audit
-  - Community impact analysis
-  - Blockchain evidence review        # ← updated
-  - Human rights violation check      # ← new
-  - Earth protection effectiveness    # ← new
+  - Decision quality (oracle scored)
+  - Timeline adherence (block timestamp proof)
+  - Resource use (on-chain ledger audit)
+  - Community impact (community oracle feed)
+  - Blockchain evidence review (hash verification)
+  - Human rights violation check (rights oracle)     # ← new
+  - Earth protection effectiveness (eco oracle)      # ← new
   
   outcomes:
-  - Council member performance
-  - Procedure improvements
-  - Legal precedent documentation
-  - Training program updates
-  - Memorial Fund reimbursement
+  - Council member performance (signature analysis)
+  - Procedure improvements (IPFS document)
+  - Legal precedent documentation (court-ready hash)
+  - Training program updates (IPFS curriculum)
+  - Memorial Fund reimbursement (multisig call)
 ```
 
-## Performance Metrics
+## Performance Metrics (On-Chain Score)
 
-### Success Indicators
+### Success Indicators (Auto-Computed)
 
-- Response time: `<15 minutes`
-- Decision time: `<24 hours`
-- Community notification: `<6 hours`
-- Resource deployment: `<1 hour`
-- Blockchain anchoring: `<1 hour`        # ← updated
-- Human rights protection: `100%`        # ← new
-- Earth protection maintained: `100%`     # ← new
-
-### Failure Triggers
+```solidity
+struct PerformanceMetrics {
+    uint256 responseTime;        // blocks from trigger to threshold
+    uint256 decisionTime;        // blocks from threshold to action
+    uint256 communityNotifyTime; // seconds from action to SMS
+    uint256 fundDeployTime;      // seconds from action to transfer
+    uint256 blockchainAnchorTime;// seconds to 3-chain confirmation
+    bool    humanRightsProtected;// oracle boolean
+    bool    earthProtected;      // oracle boolean
+}
+```
 
 ```yaml
-failure_conditions:
-  - Response delay >1 hour
-  - Decision delay >24 hours
-  - Community notification failure
-  - Resource access obstruction
-  - Blockchain evidence loss           # ← updated
-  - Human rights violation during response # ← new
-  - Earth protection breach during response # ← new
+on_chain_metrics:
+  response_time: "<2 blocks (≈24s)"
+  decision_time: "<24 blocks (≈5min)"
+  community_notify: "<6 hours (SMS oracle)"
+  fund_deploy: "<1 hour (multisig auto-call)"
+  blockchain_anchor: "<1 hour (3-chain confirmation)"
+  human_rights_protected: "100% (oracle bool)"     # ← new
+  earth_protection_maintained: "100% (oracle bool)" # ← new
+
+failure_triggers:
+  - Response >2 blocks
+  - Decision >24 blocks
+  - Community notify >6h
+  - Fund deploy >1h
+  - Blockchain anchor >1h
+  - Human rights violation during response
+  - Earth protection breach during response
 ```
 
 ---
 
-**Document Version**: 2.0  
+#### *"When the planet screams, the chain answers before any gavel falls."*
+
+---
+
+**Document Version**: 3.0  
 **Last Updated**: October 2, 2025  
 **Review Cycle**: Annual
 
 **Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)  
 **Repository**: https://github.com/FractonicMind/TernaryMoralLogic
-
----
-#### *"In the crucible of crisis, Sacred Zero is the pause that lets conscience breathe faster than the machines."*
-
----
-
