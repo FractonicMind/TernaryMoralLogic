@@ -51,7 +51,7 @@ Ternary Moral Logic introduces a revolutionary third state to artificial intelli
 
 ### Core Framework Components
 
-1. **Sacred Zero Technology**: Automatic activation when moral complexity exceeds thresholds
+1. **Sacred Zero. Sacred Pause Technology**: Automatic activation when moral complexity exceeds thresholds
 2. **Always Memory**: Creates an immutable, cryptographically sealed memory before execution
 3. **The Goukassian Promise**: Composed of three interconnected elements: **The Lantern, The Signature, and The License**
 4. **The Memorial Fund**: A financial pool funded by compliance fees and penalties
