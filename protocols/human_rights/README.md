@@ -1,120 +1,132 @@
-# Human Rights Protocols
+# Human Rights Protocols (Blockchain-First)
 
 ## Purpose
-This directory contains operational protocols for detecting, escalating, and responding to human rights violations. These documents define the procedures that activate when Sacred Zero triggers or violations are detected.
 
-## Planned Documents
+This directory contains **on-chain operational protocols** for detecting, escalating, and responding to human rights violations.  
+All triggers are **signed oracle feeds**, escalations are **threshold-contract calls**, and remedies are **disbursed from smart-contract bounty pools**.  
+No committees, only cryptographic evidence and immutable logs.
 
-### Detection and Monitoring
-- **`Rights_Violation_Detection.md`** - Real-time detection mechanisms for identifying human rights violations across all systems. Pattern recognition, statistical analysis, and alert thresholds.
+## Blockchain Architecture
 
-### Response Procedures  
-- **`Escalation_Pathways.md`** - Clear escalation procedures from Sacred Zero triggers through human review to emergency intervention. Defines who gets notified and when.
+### Detection & Monitoring (Signed Feeds)
 
-- **`Remedy_Restoration.md`** - Framework for remedying violations including immediate cessation, victim support, compensation, and systemic correction.
+| File | Chain Function |
+|---|---|
+| `Rights_Violation_Detection.md` | Real-time **signed oracle feeds** (secp256k1) for pattern recognition, statistical thresholds, and alert emission. |
+| `Sacred_Zero_Human.md` | **Threshold contract** that auto-executes `pause()` when HR triggers reach 7-of-9 quorum. |
 
-### Support Systems
-- **`Victim_Support_Protocol.md`** - Comprehensive support procedures for those affected by violations. Includes immediate assistance, long-term support, and access to justice.
+### Response Procedures (Threshold Contracts)
 
-- **`Whistleblower_Protection.md`** - Protection mechanisms for those reporting violations. Includes anonymity preservation, retaliation prevention, and reward distribution.
+| File | Chain Function |
+|---|---|
+| `Escalation_Pathways.md` | **Smart-contract flow**: `detect` → `thresholdMet` → `notify` → `remedy`. Who gets alerted is codified, not chosen. |
+| `Remedy_Restoration.md` | **Multi-sig treasury contract**: auto-disburses compensation, funds restoration, and locks repeat violator stake. |
 
-## Protocol Structure
+### Support Systems (Bounty & Privacy Contracts)
 
-Each protocol document includes:
+| File | Chain Function |
+|---|---|
+| `Victim_Support_Protocol.md` | **Automatic payout contract**: victim address → oracle attestation → `transfer(compensation)`. |
+| `Whistleblower_Protection.md` | **Anonymity pool contract**: submit encrypted tip → if penalty collected, 15 % bounty auto-sent to tipper’s stealth address. |
 
-### Trigger Conditions
-- What initiates the protocol
-- Threshold values
-- Pattern definitions
-- Emergency indicators
+## Key Holder Entities (7-of-9 Threshold)
+
+| Seat | Entity Type | Key Custody | Term |
+|---|---|---|---|
+| 1 | OHCHR Regional Office | Hardware wallet (FIPS 140-2) | 2 yrs |
+| 2 | Indigenous Council | SeedSigner air-gapped device | 2 yrs |
+| 3 | Youth Rights NGO | Ledger Nano + social recovery | 2 yrs |
+| 4 | Disability Rights Org | Trezor Model T | 2 yrs |
+| 5 | Women’s Rights Coalition | GridPlus Lattice1 | 2 yrs |
+| 6 | Refugee Legal Clinic | Keystone 3 Pro | 2 yrs |
+| 7 | LGBTQ+ Defense Group | BitBox02 + multisig | 2 yrs |
+| 8 | Labor Rights Union | Coldcard Mk4 | 2 yrs |
+| 9 | Human Rights Tech Lab | Air-gapped laptop + QR codes | 2 yrs |
+
+> Keys are **secp256k1 pairs**; quorum is enforced by `HumanRightsCouncil.sol` threshold contract.  
+> No human vote—only cryptographic signatures.
+
+## On-Chain Evidence Flow
+
+```solidity
+struct HumanRightsEvidence {
+    bytes32 violationId;
+    uint8   severity;        // 1-10
+    string  humanRightsFrameworkVersion; // "HR_FRAMEWORK_v1.4.0"
+    string  earthProtectionFrameworkVersion; // "EARTH_PROT_v3.1.2"
+    bytes32 victimHash;      // salted hash of victim ID
+    bytes32 detailHash;      // IPFS hash of encrypted details
+    uint256 timestamp;
+    address[] keySigners;    // 7-of-9 addresses
+    bytes   aggregateSig;    // BLS aggregate signature
+    bytes32 merkleRoot;      // anchored to BTC + ETH + MATIC
+}
+```
+
+## Planned Documents (Blockchain-First)
+
+### Detection & Monitoring
+
+- `Rights_Violation_Detection.md`  
+  Real-time **signed oracle feeds** for pattern recognition, statistical thresholds, and alert emission.
+
+- `Sacred_Zero_Human.md`  
+  **Threshold contract** that auto-executes `pause()` when HR triggers reach 7-of-9 quorum.
 
 ### Response Procedures
-- Immediate actions (0-1 hour)
-- Short-term response (1-24 hours)
-- Investigation phase (1-7 days)
-- Resolution phase (ongoing)
 
-### Stakeholder Responsibilities
-- System operators
-- Guardian institutions
-- Oversight committees
-- Affected persons
-- External auditors
+- `Escalation_Pathways.md`  
+  **Smart-contract flow**: `detect` → `thresholdMet` → `notify` → `remedy`.  
+  Who gets alerted is **codified**, not chosen.
 
-### Documentation Requirements
-- What must be logged
-- Always Memory integration
-- Evidence preservation
-- Chain of custody
+- `Remedy_Restoration.md`  
+  **Multi-sig treasury contract**: auto-disburses compensation, funds restoration, and locks repeat-violator stake.
 
-## Integration Points
+### Support Systems
 
-### From Mandates
-- Triggered by violations of `/docs/mandates/` requirements
-- Sacred Zero events from categorical frameworks
-- Forbidden acts from core instruments
+- `Victim_Support_Protocol.md`  
+  **Automatic payout contract**: victim address → oracle attestation → `transfer(compensation)`.
 
-### To Compliance
-- Feeds into `/compliance/human_rights/` auditing
-- Generates attestation requirements
-- Triggers Memorial Fund disbursements
+- `Whistleblower_Protection.md`  
+  **Anonymity pool contract**: submit encrypted tip → if penalty collected, 15 % bounty auto-sent to tipper’s stealth address.
 
-### To Tests
-- Validated by `/tests/human_rights/` scenarios
-- Red team exercises test escalation paths
-- Baseline tests verify detection accuracy
+## Performance Metrics (On-Chain SLA)
 
-## Priority Levels
+| Metric | Threshold | Contract Enforcement |
+|---|---|---|
+| Detection latency | `<500 ms` | Auto-slashing after 3 misses |
+| Quorum reach | `<2 min` | Gas-refund if <7 sigs in 120 s |
+| Victim payout | `<24 h` | Treasury auto-call after oracle proof |
+| Whistleblower bounty | `<1 h` | Stealth-transfer after penalty confirmation |
+| Blockchain anchor | `<60 min` | OpenTimestamp proof required |
 
-### P0 - Immediate Danger
-- Life-threatening situations
-- Ongoing torture or violence
-- Imminent refoulement
-- Response: Instant escalation
+## Legal Admissibility
 
-### P1 - Severe Violation
-- Non-derogable rights breaches
-- Systematic discrimination
-- Vulnerable population targeting
-- Response: Within 1 hour
+- **FRE 901/902(13)**: cryptographic signatures + blockchain anchor = self-authenticating.  
+- **Spoliation**: missing `HumanRightsEvidence` ⇒ negligence presumption.  
+- **18 U.S.C. §1001/1519**: on-chain false statements or record destruction = federal crime.
 
-### P2 - Significant Concern
-- Qualified rights violations
-- Consent breaches
-- Dignity undermining
-- Response: Within 24 hours
+## Attribution (Immutable)
 
-### P3 - Pattern Detection
-- Emerging discriminatory patterns
-- Systemic issues developing
-- Preventable escalation
-- Response: Within 72 hours
+Every implementation must embed:
 
-## Automation vs Human
-
-### Automated Actions
-- Detection and flagging
-- Initial classification
-- Stakeholder notification
-- Evidence preservation
-- Emergency stops
-
-### Human Required
-- Violation confirmation
-- Proportionality assessment
-- Remedy determination
-- Systemic reform decisions
-- Victim engagement
-
-## Success Metrics
-
-- Detection accuracy: >99%
-- False positive rate: <1%
-- Response time compliance: 100%
-- Victim satisfaction: Measured
-- Recurrence rate: <5%
-- Remedy completion: Tracked
+```solidity
+string public constant CREATOR_ORCID = "0009-0006-5966-1243";
+string public constant FRAMEWORK_NAME = "TML-HumanRights-v1";
+```
 
 ---
 
-**Principle**: "Detection without response is witnessing without action. Every protocol here ensures violations are not just seen but stopped."
+**Directory Version**: 2.0  
+**Last Updated**: October 2, 2025  
+**Review Cycle**: Quarterly
+
+---
+
+#### *"A right that can be deleted is a privilege—Merkle roots make rights un-forgeable."*
+
+---
+
+**Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)  
+**Repository**: https://github.com/FractonicMind/TernaryMoralLogic
+```
