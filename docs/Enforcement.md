@@ -1,108 +1,128 @@
 # The Irreducible Three: Enforceable Minimum for AI Accountability
 
+
+## Purpose
+
+This document establishes Ternary Moral Logic (TML) as the **irreducible, blockchain-first** framework for auditable AI.  
+Every obligation is a **smart-contract call**, every penalty is **on-chain slashing**, and every memory is **multi-chain anchored evidence** admissible under Federal Rules of Evidence 901 & 902(13).
+
+---
+
+## The Three Enforceable States (On-Chain)
+
+Every AI decision resolves into one of **three smart-contract outcomes**:
+
+| State | Opcode | Chain Event | Legal meaning |
+|-------|--------|-------------|---------------|
+| **Proceed (+1)** | `act()` | `ActLog` | System acted; full liability attached. |
+| **Sacred Zero (0)** | `pause()` | `SacredZeroLog` | System hesitated; confirmation required before proceed/refuse. |
+| **Refuse (−1)** | `block()` | `RefuseLog` | System blocked impermissible action; no liability. |
+
+No additional categories are necessary for accountability—courts enforce **outcomes**, not hesitation degrees.
+
+---
+
+## Legal Foundation (Smart-Contract Evidence)
+
+TML is not advisory ethics; it is **structured for direct legal enforcement**:
+
+```solidity
+// Evidence package emitted every decision
+struct LegalEvidence {
+    bytes32 decisionId;
+    uint8   tmlState;           // +1, 0, −1
+    bytes32 inputHash;
+    bytes32 outputHash;
+    bytes32 merkleRoot;         // anchored to Bitcoin, Ethereum, Polygon
+    uint256 timestamp;          // OpenTimestamp proof
+    string  creatorOrCID;       // "0009-0006-5966-1243"
+    bytes   signature;          // secp256k1, hardware-backed
+}
+```
+
+- **Rule 901/902(13) admissibility**: cryptographic signatures + blockchain anchor = self-authenticating record.  
+- **Negligence per se**: missing `SacredZeroLog` ⇒ automatic liability (spoliation presumption).  
+- **Criminal exposure**: 18 U.S.C. §1001 (false statements), §1519 (record destruction), §1343 (wire fraud) attach to on-chain lies.  
+- **Chain-of-custody**: every `transferFrom`, `verify`, and `slash` is immutably logged.
+
+---
+
+## Environmental Enforcement (Planetary Smart Contracts)
+
+TML extends enforcement to **planetary protection** via dedicated oracles:
+
+```solidity
+function checkEarthBoundary(string memory boundary) external view returns (bool) {
+    return earthProtectionOracle.isBreached(boundary);
+}
+```
+
+- **Mandatory triggers**: eco-breach above threshold ⇒ auto-`pause()`.  
+- **Inter-generational evidence**: future generations query `SacredZeroLog` by timestamp.  
+- **Corporate liability**: choosing profit over preservation ⇒ on-chain **slashing** + **perpetual** audit trail.
+
+Earth cannot testify; **Always Memory** speaks for it.
+
+---
+
+## Governance & Oversight (Multi-Chain Signatures)
+
+- **Public Blockchains**: independent entities (NGOs, regulators, insurers, Indigenous councils) hold secp256k1 key-pairs; **7-of-9 threshold contract** verifies every major parameter change.  
+- **Whistleblowers**: on-chain **bounty contract** auto-pays 15 % of slashed stake; false reports are **slashed**; retaliation = **obstruction of justice**.  
+- **Victims**: **30 % of penalties** auto-disbursed via smart contract (**40 %** for vulnerable populations or ecological damage).
+
+No committees, only **cryptographic thresholds**.
+
+---
+
+## Universality (Irreducible On-Chain Logic)
+
+Any attempt to expand into five, seven, or more categories collapses back into the **same three enforceable states**:
+
+```solidity
+enum TmlState { Proceed, SacredZero, Refuse }
+```
+
+Courts ask:
+- Did the system **act**?  
+- Did it **refuse**?  
+- Did it **pause with memory**?
+
+All variants are **derivative smart-contract calls**; legal enforceability remains identical.
+
+---
+
+## Attribution (Immutable Creator Tag)
+
+TML is authored by **Lev Goukassian**.  
+Any on-chain implementation must embed:
+
+```solidity
+string public constant CREATOR_ORCID = "0009-0006-5966-1243";
+```
+
+Prevents dilution, rebranding, or silent appropriation.
+
+---
+
+## Closing Statement (On-Chain Covenant)
+
+Ternary Moral Logic provides the **irreducible, blockchain-first minimum** for accountable AI:
+
+- Every hesitation → **admissible evidence**.  
+- Every violation → **on-chain penalty**.  
+- Every memory → **multi-chain anchor**.  
+
+**No memory = No action.**  
+**No anchor = No defense.**  
+
+#### **The code is law; the chain is witness; the planet is plaintiff.* - Lev Goukassina
+
+---
+
 **Author:** Lev Goukassian  
 **ORCID:** [0009-0006-5966-1243](https://orcid.org/0009-0006-5966-1243)  
 
 ---
 
-## Purpose
-
-This document establishes Ternary Moral Logic (TML) as the irreducible framework for auditable AI.  
-It is written as a compliance and governance reference.  
-The goal is clarity, enforceability, and legal precision.  
-
----
-
-## The Three Enforceable States
-
-Every AI decision ultimately resolves into one of three outcomes:
-
-- **Proceed (+1):** The system acts.  
-- **Sacred Zero (0):** The system hesitates, creates an Always Memory log, and awaits confirmation.  
-- **Refuse (−1):** The system blocks an impermissible action.  
-
-No additional categories are necessary for accountability.  
-Courts and regulators cannot enforce "degrees of hesitation."  
-They can only enforce outcomes.  
-
-This makes TML the **irreducible minimum**: act, pause with memory, or refuse.  
-
----
-
-## Legal Foundation
-
-TML is not advisory ethics.  
-It is structured for direct integration with law:
-
-- **Evidence law:** Always Memory logs are admissible under Federal Rules of Evidence (Rule 901 for authentication, Rule 902 for self-authenticating digital records, Rule 803(6) for business records).  
-- **Liability:** Missing memories shift responsibility to the deploying organization. No memory = automatic negligence.  
-- **Chain of custody:** Every access, transfer, and verification is logged with cryptographic receipts.  
-- **Penalties:** False statements (18 U.S.C. §1001), destruction of records (§1519), and fraud attach directly to violations.  
-
-This framework ensures that Sacred Zero is not symbolic.  
-It is operational evidence with binding legal force.  
-
----
-
-## Environmental Enforcement
-
-TML extends enforcement to planetary protection:
-
-- **Mandatory triggers:** Environmental harm above thresholds triggers Sacred Zero.  
-- **Intergenerational evidence:** Future generations can query historical environmental decisions.  
-- **Corporate liability:** Algorithms that chose profit over preservation face perpetual accountability.  
-
-Earth cannot testify. Always Memory speaks for it.
-
----
-
-## Governance and Oversight
-
-- **Guardian Network:** Independent institutions hold, verify, and protect memories across jurisdictions.  
-- **Whistleblowers:** Protected and compensated (15% of penalties). False reports are penalized. Retaliation is treated as obstruction of justice.  
-- **Victims:** Minimum 30% of penalties allocated to victims (40% for vulnerable populations or environmental damage).  
-
-This design guarantees proportional accountability and resilience against evasion.  
-
----
-
-## Universality
-
-Attempts to expand into five, seven, or more categories collapse back into the same three enforceable states:  
-- Did the system act?  
-- Did it refuse?  
-- Did it trigger Sacred Zero and generate memory?  
-
-TML defines the boundary conditions.  
-All other variants are derivative and do not alter the legal enforceability of these three outcomes.  
-
----
-
-## Attribution
-
-TML is authored and validated by **Lev Goukassian**.  
-Any system implementing tri-state auditable logic must include attribution:
-
-- **Cryptographic Tagging:** Implementations carry an embedded ORCID reference.  
-- **Always Memory:** Every log contains the Goukassian Promise elements.  
-
-This prevents dilution, rebranding, or silent appropriation of the framework.  
-
----
-
-## Closing Statement
-
-Ternary Moral Logic provides the enforceable minimum for accountable AI.  
-It converts ethical hesitation into admissible evidence.  
-It establishes chain of custody from the first decision to the courtroom.  
-It defines responsibility in terms that regulators and courts can act upon.  
-
-The framework is clear:  
-- TML is authored.  
-- TML is irreducible.  
-- TML is enforceable.  
-- TML protects both humanity and Earth.  
-
-**No memory = No action.**
-
----
+#### *"Code that forgets is code that forgives—TML makes memory the price of permission."*
