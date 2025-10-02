@@ -56,7 +56,7 @@ def calculate_distribution():
 | Regular observation | $20-100 | Monthly | 3+ reports |
 | Critical alert | $50-500 | Per event | Oracle validated |
 | Seasonal assessment | $200-1000 | Quarterly | Community consensus |
-| Emergency response | $500-5000 | Immediate | Guardian confirmed |
+| Emergency response | $500-5000 | Immediate | TML confirmed |
 | Long-term study | $2000-10000 | Annual | Peer reviewed |
 
 ### Calculation Factors
@@ -138,7 +138,7 @@ def calculate_tokens(activity):
 | 100 | Sacred Zero council voting |
 | 500 | Priority emergency support |
 | 1000 | Regional coordinator eligibility |
-| 5000 | Guardian Network assembly seat |
+| 5000 | TML assembly seat |
 | 10000 | Permanent advisory position |
 
 ## Oracle Node Economics
@@ -269,8 +269,7 @@ Monthly publication of:
   "audit_frequency": "Quarterly",
   "auditor_rotation": "Annual",
   "public_ledger": "On-chain summary",
-  "detailed_records": "Guardian institutions",
-  "community_access": "Full transparency"
+   "community_access": "Full transparency"
 }
 ```
 
