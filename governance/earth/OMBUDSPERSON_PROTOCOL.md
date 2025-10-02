@@ -29,8 +29,8 @@ ombudsperson_pool:
     technical_specialist: 1
     
 selection_process:
-  nomination: "By Guardian Network"
-  confirmation: "8/11 Guardians required"
+  nomination: "By Public Blockchains"
+  confirmation: "8/11 Blockchains required"
   term: "5 years"
   removal: "Only for corruption/incapacity"
 ```
@@ -62,8 +62,10 @@ mandatory_triggers:
   - sacred_site_dispute
   - indigenous_sovereignty_challenge
   - conflicting_ecological_data
-  - guardian_vote_tied
+  - blockchain_vote_tied
   - treaty_interpretation_conflict
+  - human_rights_violation_pattern
+  - earth_protection_boundary_breach
 ```
 
 ### Request Activation
@@ -139,10 +141,12 @@ def emergency_override_decision(emergency):
 priority_order:
   1: "Irreversible harm prevention"
   2: "Indigenous sovereignty"
-  3: "Scientific consensus"
-  4: "Traditional knowledge"
-  5: "Affected population size"
-  6: "Economic factors"  # Always last
+  3: "Human rights non-derogable rights"
+  4: "Earth protection planetary boundaries"
+  5: "Scientific consensus"
+  6: "Traditional knowledge"
+  7: "Affected population size"
+  8: "Economic factors"  # Always last
 ```
 
 ### Standard of Evidence
@@ -176,7 +180,7 @@ protective_orders:
   - halt_all_activities
   - maintain_sacred_zero
   - emergency_monitoring
-  - guardian_oversight
+  - blockchain_oversight
   - community_veto_activation
 ```
 
@@ -350,7 +354,7 @@ immediate_response:
 ```yaml
 life_safety_override:
   threshold: "10+ lives at risk"
-  authority: "Ombudsperson + 1 Guardian"
+  authority: "Ombudsperson + 1 Blockchain"
   documentation: "Real-time required"
   followup: "Full investigation"
 ```
@@ -371,7 +375,7 @@ resources:
 
 ---
 
-**Sacred Zero is maintained during all disputes. The Earth cannot wait for humans to resolve their differences, but neither can it be sacrificed to avoid difficult conversations.**
+#### *“When humans argue, the Earth keeps count—Sacred Zero is the pause that lets the planet speak before the gavel falls.”*
 
 ---
 
@@ -379,3 +383,4 @@ resources:
 **Email**: leogouk@gmail.com  
 **Repository**: https://github.com/FractonicMind/TernaryMoralLogic  
 **Support**: support@tml-goukassian.org
+```
