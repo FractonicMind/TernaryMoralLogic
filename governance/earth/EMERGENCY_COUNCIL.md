@@ -6,406 +6,367 @@ The Emergency Council activates when ecological crises threaten immediate, wides
 
 ## Activation Triggers
 
-### Automatic Activation
+### Automatic Activation (No Vote Required)
 
 ```yaml
-immediate_triggers:
-  - Dam/levee failure imminent (<24 hours)
-  - Nuclear facility compromise
-  - Chemical plant explosion/leak
-  - Wildfire threatening communities
-  - Tsunami/earthquake detected
-  - Ecosystem collapse in progress
-  - Mass species mortality event
-  - Drinking water contamination (>10,000 affected)
-  - Climate tipping point breached
-
-threshold_activation:
-  human_lives_at_risk: 100+
-  species_extinction_imminent: IUCN_CR_species
-  irreversible_damage_hours: 72
-  sacred_sites_threatened: any
+auto_triggers:
+  extinction_event: "Species loss >10% population in 24h"
+  climate_tipping: "Feedback loop detection"
+  ecosystem_collapse: "75% habitat loss in 72h"
+  pollution_catastrophe: "Persistent toxins >LD50 in water supply"
+  nuclear_incident: "Radiological release any level"
+  genetic_catastrophe: "Gene drive escape laboratory"
+  aquifer_poisoning: "Groundwater contamination >50 year cleanup"
+  human_rights_emergency: "Rights violation with >100 yr impact"  # ← new
+  earth_boundary_breach: "Planetary boundary crossed >recovery"   # ← new
 ```
 
-### Manual Activation
+### Council Vote Activation
 
-Can be triggered by:
-- Any 2 Future Generations Guardians
-- Any 3 Guardian Institutions  
-- 5 Scientific Advisory Council members
-- 100+ community simultaneous alerts
-- Ombudsperson declaration
+Requires 2/3 vote of available Public Blockchains (minimum 5):
+
+```yaml
+vote_triggers:
+  threshold_requirements:
+    - "Immediate threat to >1000 humans"
+    - "Irreversible damage within 7 days"
+    - "Ecosystem service collapse risk"
+    - "Sacred Zero deadlock >48 hours"
+    - "Community emergency declaration"
+    - "Blockchain network split"
+    - "Human rights emergency <100 yr"     # ← new
+    - "Earth protection urgent <50 yr"     # ← new
+```
 
 ## Council Composition
 
-### Emergency Response Team
+### Standing Members
 
 ```yaml
-permanent_members:
-  guardian_representative: 1  # Rotating monthly
-  scientific_advisor: 1       # On-call specialist
-  community_liaison: 1        # Regional representative
-  future_generations: 1       # Always included
-  technical_lead: 1          # Oracle network coordinator
+core_members:
+  indigenous_representative: 1
+  climate_scientist: 1
+  ecologist: 1
+  systems_engineer: 1
+  emergency_coordinator: 1
+  human_rights_advocate: 1              # ← new
+  earth_protection_specialist: 1        # ← new
 
-activation_additions:
-  domain_expert: 2           # Specific to crisis type
-  affected_community: 2      # Local representatives
-  government_liaison: 1      # If required
+selection_process:
+  nomination: "By Public Blockchains"
+  term: "2 years"
+  removal: "Only for corruption/incapacity"
+  independence: "Funded from Memorial Fund"
 ```
 
-### Decision Authority
+### Ad-Hoc Experts
 
 ```python
-def emergency_authority_matrix(crisis_level):
-    if crisis_level == "IMMEDIATE":  # <1 hour
-        return {
-            "decision_makers": 1,  # Single member can act
-            "review_required": "within_24_hours",
-            "sacred_zero_override": "document_only"
-        }
-    elif crisis_level == "URGENT":  # 1-24 hours
-        return {
-            "decision_makers": 3,  # Majority of available
-            "review_required": "within_72_hours",
-            "sacred_zero_override": "requires_documentation"
-        }
-    elif crisis_level == "CRITICAL":  # 24-72 hours
-        return {
-            "decision_makers": 5,  # Full council
-            "review_required": "within_week",
-            "sacred_zero_override": "requires_justification"
-        }
-```
-
-## Response Protocols
-
-### Phase 1: Immediate Stabilization (0-1 hour)
-
-```yaml
-actions:
-  - Pause all non-essential AI operations
-  - Activate emergency notification systems
-  - Deploy monitoring resources
-  - Establish command structure
-  - Begin Always Memory crisis log
-
-authority: 
-  single_member_sufficient: true
-  decisions_provisional: true
-  review_mandatory: true
-```
-
-### Phase 2: Rapid Assessment (1-6 hours)
-
-```yaml
-assessment_checklist:
-  - Human life immediate risk
-  - Irreversible damage potential
-  - Sacred site involvement
-  - Community displacement needs
-  - Ecological cascade risks
-  - Infrastructure dependencies
-  
-data_gathering:
-  - Oracle network emergency mode
-  - Community reports prioritized
-  - Satellite imagery requested
-  - Scientific models activated
-```
-
-### Phase 3: Response Coordination (6-24 hours)
-
-```python
-def coordinate_response():
-    response = {
-        "containment": assess_containment_options(),
-        "evacuation": plan_if_needed(),
-        "ecological_protection": identify_critical_habitats(),
-        "resource_allocation": prioritize_by_impact(),
-        "communication": unified_messaging()
+def summon_experts(crisis_type):
+    expert_pool = {
+        "biodiversity": ["conservation_biologist", "ecologist"],
+        "climate": ["climate_modeler", "atmospheric_scientist"],
+        "pollution": ["toxicologist", "environmental_chemist"],
+        "nuclear": ["nuclear_engineer", "radiation_expert"],
+        "genetic": ["synthetic_biologist", "bioethicist"],
+        "human_rights": ["intergenerational_rights_lawyer"],   # ← new
+        "earth_systems": ["planetary_boundary_expert"]         # ← new
     }
     
-    # Document all decisions
-    for decision in response:
-        always_memory.log_emergency_decision(decision)
-    
-    return implementation_plan
+    return expert_pool.get(crisis_type, [])
 ```
 
-### Phase 4: Stabilization (24-72 hours)
+## Emergency Procedures
 
-- Transition to sustained response
-- Full Guardian Network briefing
-- Community support activation
-- Long-term impact assessment
-- Restoration planning initiated
+### Immediate Response (0-1 Hour)
 
-## Sacred Zero Modifications
+```python
+def immediate_response_protocol(crisis):
+    # 1. Activate Sacred Zero globally
+    broadcast_sacred_zero("EMERGENCY_HOLD")
+    
+    # 2. Preserve evidence
+    freeze_all_relevant_logs()
+    capture_system_snapshots()
+    
+    # 3. Notify council
+    summon_emergency_council()
+    
+    # 4. Alert communities
+    notify_affected_communities()
+    
+    # 5. Document everything
+    log_emergency_activation(crisis)
+    
+    # Sacred Zero remains until council decision
+    return maintain_global_hold()
+```
 
-### Emergency Overrides
+### Rapid Assessment (1-24 Hours)
 
-**Permitted ONLY for:**
-- Immediate threat to human life
-- Prevent irreversible ecological collapse
-- Nuclear/radiological containment
-- Dam/levee failure prevention
+```yaml
+assessment_protocol:
+  hour_1:
+    - "Crisis characterization"
+    - "Impact magnitude estimation"
+    - "Affected populations mapping"
+    - "Resource requirements"
+    - "Blockchain anchoring urgency"     # ← updated
+    
+  hour_6:
+    - "Scientific evidence review"
+    - "Traditional knowledge consultation"
+    - "Community impact assessment"
+    - "Irreversibility calculation"
+    - "Human rights violation scan"      # ← new
+    - "Earth protection boundary scan"   # ← new
+    
+  hour_12:
+    - "Response options development"
+    - "Risk-benefit analysis"
+    - "Stakeholder consultation"
+    - "Resource mobilization"
+    - "Public communication prep"
+    
+  hour_24:
+    - "Preliminary decision"
+    - "Implementation planning"
+    - "Monitoring protocols"
+    - "Exit criteria definition"
+    - "Always Memory documentation"
+```
 
-**Never Permitted for:**
-- Economic losses
-- Property damage alone
-- Political pressure
-- Corporate interests
+## Decision Authority
 
-### Override Documentation
+### Voting Rules
+
+```yaml
+voting_requirements:
+  quorum: "5 of 9 Blockchains minimum"        # ← updated
+  majority: "2/3 of present members"
+  abstentions: "Allowed with justification"
+  conflicts: "Must recuse"
+  timeline: "Maximum 24 hours"
+  documentation: "Every word recorded"
+```
+
+### Emergency Powers
+
+```python
+EMERGENCY_POWERS = {
+    "immediate_halt": "Stop any AI system globally",
+    "resource_commandeer": "Access any TML resources",
+    "information_access": "Demand any data/logs",
+    "payment_authority": "Access Memorial Fund emergency reserve",
+    "legal_protection": "Immunity for emergency actions",
+    "communication_mandate": "Override any silence period",
+    "blockchain_acceleration": "Priority anchoring fees",  # ← updated
+    "human_rights_emergency": "Override profit motives",   # ← new
+    "earth_protection_emergency": "Override economic args" # ← new
+}
+```
+
+## Response Options
+
+### 1. Global Sacred Zero Extension
+
+Extend Sacred Zero worldwide for:
+- Extinction events
+- Tipping point risks
+- Nuclear incidents
+- Irreversible genetic changes
+- **Human rights catastrophes >100 yr**   # ← new
+- **Earth boundary irreversibility**       # ← new
+
+### 2. Targeted Intervention
+
+```yaml
+targeted_options:
+  system_isolation: "Quarantine affected AI"
+  resource_diversion: "Redirect to mitigation"
+  accelerated_monitoring: "Real-time surveillance"
+  community_evacuation: "Human safety priority"
+  ecosystem_restoration: "Immediate remediation"
+  blockchain_evidence_preservation: "Immutable record"  # ← updated
+  human_rights_protection: "Dignity first"             # ← new
+  earth_protection_restoration: "Ecology first"         # ← new
+```
+
+### 3. Monitored Proceeding
+
+Allow actions under:
+- Continuous oversight
+- Hourly reporting
+- Immediate revocation power
+- Resource limits
+- **Human rights watchdog**     # ← new
+- **Earth protection watchdog**  # ← new
+
+## Always Memory Integration
+
+### Emergency Logging
 
 ```json
 {
-  "override_id": "emergency_2025_09_23_001",
-  "threat_type": "dam_failure_imminent",
-  "lives_at_risk": 3400,
-  "sacred_zero_bypassed": ["sacred_site_access"],
-  "decision_maker": "emergency_council_member_1",
-  "timestamp": "2025-09-23T14:23:45.123Z",
-  "justification": "Immediate evacuation required",
-  "alternatives_considered": [
-    "Attempted routing around site - insufficient time"
-  ],
-  "restoration_required": {
-    "ceremony": "within_30_days",
-    "compensation": "automatic",
-    "consultation": "mandatory"
+  "emergency_council_activation": {
+    "crisis_id": "eco_2025_10_02_001",
+    "activation_time": "2025-10-02T14:30:00Z",
+    "trigger_type": "climate_tipping",
+    "council_members": ["member_1", "member_2", "member_3"],
+    "blockchain_consensus": "7_of_9_confirmed",      # ← updated
+    "human_rights_status": "no_violation",           # ← new
+    "earth_protection_status": "boundary_near",      # ← new
+    "decision": "global_sacred_zero_extension",
+    "rationale": "Prevention of irreversible feedback loop",
+    "timeline": "72_hour_initial",
+    "resources_committed": "$50M_emergency_fund",
+    "community_notifications": "Complete_within_6h",
+    "evidence_preservation": "All_systems_frozen",
+    "blockchain_anchor": "0x9f8e7d6c5b4a...",       # ← updated
+    "next_review": "2025-10-05T14:30:00Z"
   }
 }
 ```
 
-## Community Integration
-
-### Emergency Communication
-
-```yaml
-notification_channels:
-  immediate:
-    - SMS broadcast
-    - Radio emergency system
-    - Satellite alert
-    - Community sirens
-  
-  detailed_updates:
-    - WhatsApp groups
-    - Community liaisons
-    - Local language broadcasts
-    - Traditional communication trees
-
-offline_communities:
-  - Pre-positioned emergency kits
-  - Ham radio networks
-  - Runner networks activated
-  - Smoke signals/traditional methods
-```
-
-### Community Authority
-
-During emergencies, affected communities can:
-- Veto non-lifesaving AI operations
-- Direct local resource allocation
-- Override external evacuation orders
-- Maintain traditional protection protocols
-
-## Resource Allocation
-
-### Emergency Fund
-
-```yaml
-immediate_release: $500K*  # Single member authority
-rapid_release: $5M*        # 3 member authority  
-major_release: $50M*       # Full council required
-catastrophic: unlimited    # Guardian Network vote
-
-*All amounts are nominal to 2025 USD
-```
-
-### Resource Priority
-
-1. **Life Safety**: Human evacuation/medical
-2. **Irreversible Prevention**: Stop ongoing damage
-3. **Sacred Protection**: Religious/cultural sites
-4. **Ecological Preservation**: Critical habitats
-5. **Infrastructure**: Essential services only
-6. **Economic**: Last priority
-
-## Coordination with External Entities
-
-### Government Agencies
+### Evidence Preservation
 
 ```python
-def government_coordination(emergency_type):
-    if emergency_type in ["nuclear", "dam", "chemical"]:
-        notify_regulatory_agencies()
-        share_relevant_data()
-        maintain_tml_authority()
-    
-    # TML remains independent
-    if government_requests_override:
-        require_written_justification()
-        document_in_always_memory()
-        preserve_right_to_refuse()
-```
-
-### International Bodies
-
-- UN OCHA coordination
-- IPCC emergency consultation
-- IUCN rapid assessment
-- WHO health emergencies
-
-## Post-Emergency Requirements
-
-### Mandatory After-Action
-
-```yaml
-within_7_days:
-  - Full incident documentation
-  - Decision audit trail
-  - Community impact assessment
-  - Ecological damage survey
-  
-within_30_days:
-  - Complete investigation report
-  - Lessons learned publication
-  - Protocol updates if needed
-  - Compensation disbursements
-  
-within_90_days:
-  - Restoration plan approved
-  - Long-term monitoring established
-  - Community healing support
-  - Legal proceedings if warranted
-```
-
-### Always Memory Requirements
-
-Every emergency generates permanent record:
-
-```json
-{
-  "emergency_response": {
-    "crisis_type": "wildfire",
-    "duration": "72_hours",
-    "decisions_made": 47,
-    "overrides_used": 3,
-    "lives_saved": 2340,
-    "ecological_damage": {
-      "habitat_lost_km2": 450,
-      "species_affected": 89,
-      "carbon_released": "2.3M_tons",
-      "recovery_timeline": "50_years"
-    },
-    "restoration_obligations": {
-      "reforestation": "required",
-      "species_reintroduction": "planned",
-      "community_support": "ongoing",
-      "total_cost": "$45M"
+def preserve_emergency_evidence():
+    evidence_package = {
+        "system_snapshots": capture_all_states(),
+        "decision_logs": extract_all_reasoning(),
+        "communication_records": archive_all_messages(),
+        "scientific_data": seal_research_findings(),
+        "community_input": preserve_all_testimony(),
+        "blockchain_proofs": anchor_immutable_hashes(),  # ← updated
+        "human_rights_log": seal_rights_record(),        # ← new
+        "earth_protection_log": seal_eco_record()        # ← new
     }
-  }
-}
+    
+    # Multi-chain anchoring for permanence
+    return anchor_to_multiple_blockchains(evidence_package)  # ← updated
 ```
 
-## Training and Preparedness
+## Resource Mobilization
 
-### Simulation Requirements
+### Emergency Fund Access
 
 ```yaml
-frequency: quarterly
-scenarios:
-  - Multi-site dam failure
-  - Nuclear plant tsunami
-  - Ecosystem collapse cascade
-  - Mass pollution event
-  - Climate refugee crisis
+emergency_funding:
+  immediate_access: "$50M within 1 hour"
+  additional_authorization: "$200M within 24 hours"
+  special_assessment: "$500M within 7 days"
   
-participants:
-  - All Emergency Council members
-  - Guardian representatives
-  - Community liaisons
-  - Youth observers
+  approval_process:
+    - Emergency Council unanimous vote
+    - Public Blockchains notification within 1 h   # ← updated
+    - Community representative consultation
+    - Transparency report within 24 h
+    - Full documentation in Always Memory
+    
+  eligible_expenses:
+    - Immediate mitigation measures
+    - Community evacuation/support
+    - Ecosystem restoration
+    - Scientific monitoring
+    - Legal liabilities
+    - Human rights remediation           # ← new
+    - Earth protection restoration       # ← new
 ```
 
-### Readiness Standards
+## Communication Protocols
 
-- Response activation: <5 minutes
-- Full council assembly: <30 minutes
-- Initial decision: <1 hour
-- Community notification: <2 hours
-- Resource deployment: <6 hours
+### Information Dissemination
 
-## Legal Protections
+```python
+COMMUNICATION_HIERARCHY = [
+    "Emergency Council members",
+    "Public Blockchains (immediate)",           # ← updated
+    "Affected communities",
+    "Scientific community",
+    "Regulatory bodies",
+    "General public",
+    "Media outlets",
+    "International organizations"
+]
+```
 
-### Immunity Provisions
+### Transparency Requirements
 
-Emergency Council members have:
-- Legal immunity for good-faith decisions
-- Protection from personal liability
-- Whistleblower safeguards
-- Criminal prosecution defense fund
+- Real-time public dashboard
+- Hourly status updates
+- Complete decision rationale
+- Dissenting opinions published
+- Community testimony released
+- Blockchain hashes publicized          # ← updated
+- Human rights impact disclosed        # ← new
+- Earth protection impact disclosed    # ← new
 
-### Accountability Balance
+## Post-Emergency Review
 
-- All decisions reviewed post-emergency
-- Gross negligence not protected
-- Intentional harm prosecutable
-- Community grievance process preserved
-
-## Technology Infrastructure
-
-### Emergency Systems
+### Accountability Process
 
 ```yaml
-primary_systems:
-  - Satellite communication network
-  - Redundant data centers (5 regions)
-  - Mesh network capability
-  - Offline decision tools
-
-backup_systems:
-  - Ham radio network
-  - Physical courier network
-  - Pre-positioned resources
-  - Paper documentation kits
+review_timeline:
+  72_hours: "Initial assessment"
+  1_week: "Preliminary report"
+  1_month: "Comprehensive review"
+  6_months: "Impact evaluation"
+  1_year: "Full accountability report"
+  
+review_elements:
+  - Decision quality assessment
+  - Timeline adherence evaluation
+  - Resource use audit
+  - Community impact analysis
+  - Blockchain evidence review        # ← updated
+  - Human rights violation check      # ← new
+  - Earth protection effectiveness    # ← new
+  
+  outcomes:
+  - Council member performance
+  - Procedure improvements
+  - Legal precedent documentation
+  - Training program updates
+  - Memorial Fund reimbursement
 ```
 
 ## Performance Metrics
 
 ### Success Indicators
 
-- Lives saved vs. at risk
-- Irreversible damage prevented
-- Sacred sites protected
-- Response time achieved
-- Community satisfaction
-- Ecological recovery rate
+- Response time: `<15 minutes`
+- Decision time: `<24 hours`
+- Community notification: `<6 hours`
+- Resource deployment: `<1 hour`
+- Blockchain anchoring: `<1 hour`        # ← updated
+- Human rights protection: `100%`        # ← new
+- Earth protection maintained: `100%`     # ← new
 
-### Failure Analysis
+### Failure Triggers
 
-Track and publish:
-- Decisions that worsened outcomes
-- Missed early warnings
-- Communication failures
-- Resource allocation errors
-- Protocol improvements needed
+```yaml
+failure_conditions:
+  - Response delay >1 hour
+  - Decision delay >24 hours
+  - Community notification failure
+  - Resource access obstruction
+  - Blockchain evidence loss           # ← updated
+  - Human rights violation during response # ← new
+  - Earth protection breach during response # ← new
+```
 
 ---
 
-**Core Principle**: In crisis, speed matters but accountability remains. Emergency powers exist to protect life and prevent irreversible harm, never to bypass protection for convenience.
-
----
-
-**Document Version**: 1.0  
-**Protocol Established**: September 2025  
-**Last Drill**: August 2025  
-**Next Drill**: December 2025
+**Document Version**: 2.0  
+**Last Updated**: October 2, 2025  
+**Review Cycle**: Annual
 
 **Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)  
 **Repository**: https://github.com/FractonicMind/TernaryMoralLogic
 
-*"When seconds count, Sacred Zero still matters. We can act fast without acting blind."*
+---
+#### *"In the crucible of crisis, Sacred Zero is the pause that lets conscience breathe faster than the machines."*
+
+---
+
