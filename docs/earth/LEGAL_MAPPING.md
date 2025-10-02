@@ -1,9 +1,3 @@
-Below is the **stand-alone, ready-to-save** version of `LEGAL_MAPPING.md` with **all Guardian references removed** and **"Public Blockchains" restored** exactly as you requested.  
-Copy–paste it directly into your file — no edits needed.
-
----
-
-```markdown
 # Legal Mapping: Dynamic Environmental Law Integration
 
 ## Purpose
