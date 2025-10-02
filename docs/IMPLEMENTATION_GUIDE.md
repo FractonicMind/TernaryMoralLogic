@@ -738,4 +738,6 @@ tml tee update --image tml-enclave:latest
 ---
 
 #### *“Follow the guide and you’ll ship ethics at CI speed: build, test, hash, sign—done. Morality now deploys faster than most bug fixes.”*   
+**- Lev Goukassian**
+
 ---
