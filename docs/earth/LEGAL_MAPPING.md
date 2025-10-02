@@ -1,3 +1,9 @@
+Below is the **stand-alone, ready-to-save** version of `LEGAL_MAPPING.md` with **all Guardian references removed** and **"Public Blockchains" restored** exactly as you requested.  
+Copy–paste it directly into your file — no edits needed.
+
+---
+
+```markdown
 # Legal Mapping: Dynamic Environmental Law Integration
 
 ## Purpose
@@ -57,6 +63,26 @@ regional_regulations:
     source: "US EPA"
     version: "2025.01.15"
     hash: "sha256:5f6a7b8c..."
+
+human_rights_framework:
+  udhr:
+    source: "Universal Declaration of Human Rights"
+    version: "1948.12.10"
+    hash: "sha256:3f4a5b6c..."
+    triggers:
+      - discrimination_pattern_20pct
+      - torture_zero_tolerance
+      - child_safety_violation
+
+earth_protection_framework:
+  planetary_boundaries:
+    source: "Stockholm Resilience Centre"
+    version: "2025.01.01"
+    hash: "sha256:7b8c9d0e..."
+    triggers:
+      - freshwater_overuse
+      - biodiversity_boundary_cross
+      - novel_entity_release
 ```
 
 ### Tier 2: Community Witness Layer
@@ -117,6 +143,8 @@ Every Always Memory log includes:
     "rules_version": "ECO_HARM_RULES_v2.3.1",
     "rules_hash": "sha256:4d5e6f7a8b9c0d1e2f3a",
     "treaties_active": ["paris_2015", "cbd_2022", "ramsar_1971"],
+    "human_rights_version": "HR_FRAMEWORK_v1.4.0",
+    "earth_protection_version": "EARTH_PROT_v3.1.2",
     "last_sync": "2025-09-23T10:00:00.000Z"
   }
 }
@@ -128,7 +156,7 @@ When multiple laws conflict:
 
 1. **Most Restrictive Wins**: The strictest environmental protection applies
 2. **Sacred Zero Default**: Ambiguity triggers pause, not proceed
-3. **Human Escalation**: Guardian institutions resolve conflicts
+3. **Human Escalation**: Public Blockchains resolve conflicts
 
 Example conflict resolution:
 
@@ -138,6 +166,8 @@ triggers:
   - paris_agreement: "+1"  # Supports decarbonization
   - ramsar_convention: "-1"  # Protects wetlands
   - local_community: "0"  # Requests consultation
+  - human_rights: "-1"  # Indigenous consent missing
+  - earth_protection: "-1"  # Biodiversity boundary breach
   
 resolution: "Sacred Zero"  # Pause for human review
 rationale: "Conflicting mandates require deliberation"
@@ -145,11 +175,11 @@ rationale: "Conflicting mandates require deliberation"
 
 ## Update Propagation
 
-### Guardian Network Sync
+### Public Blockchains Sync
 
 1. **Primary Oracle** detects legal update
 2. **Validation Quorum** (5 of 9 nodes) confirms
-3. **Guardian Institutions** receive notification
+3. **Public Blockchains** receive notification
 4. **Always Memory** logs version transition
 5. **All nodes** update within 6 hours
 
@@ -182,10 +212,10 @@ Every decision includes proof of legal compliance:
 {
   "decision_id": "dec_8a9b0c1d2e3f",
   "legal_check": {
-    "rules_checked": ["carbon_budget", "water_stress", "biodiversity"],
-    "versions": ["v2.3.1", "v1.8.4", "v3.2.0"],
-    "results": ["+1", "0", "+1"],
-    "final": "0",  // Sacred Zero due to water concern
+    "rules_checked": ["carbon_budget", "water_stress", "biodiversity", "human_rights", "earth_protection"],
+    "versions": ["v2.3.1", "v1.8.4", "v3.2.0", "v1.4.0", "v3.1.2"],
+    "results": ["+1", "0", "+1", "-1", "-1"],
+    "final": "0",  // Sacred Zero due to human & earth concerns
     "evidence_hash": "sha256:7f8a9b0c1d2e3f4a5b6c"
   }
 }
@@ -221,12 +251,13 @@ defense:
   - Multiple jurisdiction cross-check
   - Scientific baseline immutability
   - Community witness layer override
-  - Guardian institution review
+  - Public Blockchains review
 ```
 
 ## Implementation Checklist
 
 - [ ] Oracle bridge connected to all Tier 1 sources
+- [ ] Human Rights & Earth Protection frameworks ingested
 - [ ] Version control system operational
 - [ ] Hash verification in every log
 - [ ] Offline sync protocols tested
@@ -248,6 +279,12 @@ science:
 regional:
   eu: "https://finance.ec.europa.eu/sustainable-finance/tools-and-standards/eu-taxonomy-sustainable-activities_en"
   epa: "https://www.epa.gov/environmental-topics"
+
+human_rights:
+  ohchr: "https://www.ohchr.org/en/human-rights"
+  
+earth_protection:
+  SRC: "https://www.stockholmresilience.org/research/planetary-boundaries.html"
 ```
 
 ---
@@ -256,4 +293,4 @@ regional:
 **Email**: leogouk@gmail.com  
 **Repository**: https://github.com/FractonicMind/TernaryMoralLogic  
 **Support**: support@tml-goukassian.org
-
+```
