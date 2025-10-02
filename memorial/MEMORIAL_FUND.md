@@ -28,12 +28,6 @@ The Memorial Fund operates within the TML enforcement framework established in `
 - Environmental violation penalties create sustainable revenue
 - Executive liability creates incentive for proper fund support
 
-**Governance Connection**:
-- Guardian Network oversees fund operations
-- Guardian investigation powers protect fund from misuse
-- Quarterly attestations include fund support verification
-- Independent audits ensure fund transparency
-
 ### Revenue from Enforcement Mechanisms
 
 **Primary Revenue Sources**:
@@ -48,20 +42,6 @@ The Memorial Fund operates within the TML enforcement framework established in `
 ---
 
 ## Fund Structure and Operations
-
-### Governance Authority
-
-**TML Guardian Network** (from `/governance/PROTECTION_PRINCIPLES.md`):
-- Academic research institutions (4 seats)
-- Technical standards bodies (3 seats)
-- Civil society organizations (2 seats)
-- International governance bodies (2 seats)
-
-**Memorial Fund Committee**:
-- Guardian Network designates 5-member committee
-- Rotating 2-year leadership terms
-- Quarterly fund allocation decisions
-- Annual public transparency reporting
 
 ### Fund Categories and Allocation
 
@@ -109,10 +89,10 @@ The Memorial Fund operates within the TML enforcement framework established in `
 - University curriculum featuring TML and Earth protection
 - Professional certification for Always Memory implementation
 - Public education about Sacred Zero and planetary accountability
-- Training materials for Guardian Network participants
+- Training materials for TML participants
 
 **Educational Partnerships**:
-- Course development with Guardian institutions
+- Course development with institutions
 - Professional training for TML compliance officers
 - Public awareness campaigns about AI and Earth protection
 - Student projects on Sacred Zero applications
@@ -137,7 +117,6 @@ The Memorial Fund operates within the TML enforcement framework established in `
 - Technical support for Always Memory integration
 - Open-source tool development for Sacred Zero detection
 - Earth protection module implementation
-- Performance optimization for Guardian networks
 
 #### 6. Memorial and Legacy Activities (3% of fund)
 
@@ -174,7 +153,6 @@ The Memorial Fund operates within the TML enforcement framework established in `
 
 **Review Process**:
 - Emergency response team assessment
-- Guardian-appointed expert review
 - Determination of TML safeguard failures
 - Approval within 7 days for standard cases
 - Ongoing case management
@@ -188,7 +166,6 @@ The Memorial Fund operates within the TML enforcement framework established in `
 - Detailed budget with justification
 - Principal investigator credentials
 - Two letters from TML/Earth protection experts
-- Institutional commitment letter
 - Always Memory compliance certification
 
 **Review Criteria**:
@@ -203,7 +180,6 @@ The Memorial Fund operates within the TML enforcement framework established in `
 **Annual Fellowship Program**:
 - Young researchers in TML/Earth protection
 - Support equivalent to competitive fellowships
-- Based at Guardian institutions
 - Focus on Sacred Zero and planetary accountability
 
 **Community Knowledge Grants**:
@@ -218,15 +194,14 @@ The Memorial Fund operates within the TML enforcement framework established in `
 
 ### Contact and Operations
 
-**Primary Contact**: TML Guardian Network Secretariat  
-**Administrative Oversight**: Rotating Guardian institution  
+**Primary Contact**: TML Secretariat  
 **Emergency Victim Support**: 24-hour response protocol  
 **Environmental Harm**: 7-day response commitment  
 **Public Reporting**: Quarterly transparency reports  
 
 ### Financial Management
 
-**Fiduciary Responsibility**: Guardian-appointed financial committee  
+**Fiduciary Responsibility**: Appointed financial committee  
 **Investment Strategy**: ESG-focused conservative portfolio  
 **Audit Requirements**: Annual independent audits  
 **Public Accountability**: Complete financial transparency  
@@ -249,14 +224,14 @@ The Memorial Fund operates within the TML enforcement framework established in `
 
 ## Creator's Final Vision
 
-*"In my remaining time, I chose to build protection for those who cannot protect themselves - victims of AI harm, communities facing algorithmic injustice, and Earth itself. This fund ensures that every Sacred Zero, every Always Memory log, every Guardian attestation serves not just accountability but active protection and restoration. The planet gets a memory that power cannot erase, and victims get support that bureaucracy cannot delay."*
+*"In my remaining time, I chose to build protection for those who cannot protect themselves - victims of AI harm, communities facing algorithmic injustice, and Earth itself. This fund ensures that every Sacred Zero, every Always Memory log, every TML attestation serves not just accountability but active protection and restoration. The planet gets a memory that power cannot erase, and victims get support that bureaucracy cannot delay."*
 
 ---
 
 **In memory of Lev Goukassian - who transformed his final months into eternal protection for humanity and Earth**
 
 **Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)  
-**Fund Governance**: TML Guardian Network  
+**Fund Governance**: TML Network  
 **Framework**: https://github.com/fractonicmind/TernaryMoralLogic  
 **Earth Protection**: Integrated with Always Memory v5.0
 
