@@ -22,7 +22,8 @@ The philosophical foundation of TML is uniquely intertwined with the personal na
 
 ## How TML Works: A Technical Poetry
 
-A **prompt** arrives, and TML branches instantly into parallel paths. The primary path delivers the AI's response without delay, while **Sacred Zero** watches for moral complexity in parallel. When uncertainty or potential harm crosses the threshold, a pause is marked and the reasoning flagged—all without blocking execution. From the first token, **Always Memory** begins its witness. Every decision births an immutable log: **+1** to proceed, **0** for Sacred Zero's hesitation, **−1** to refuse harm. Each memory is cryptographically sealed, timestamped, and chained to its predecessors—a continuity that no developer, company, or government can break. At the heart lies the **Goukassian Promise**: *Pause when truth is uncertain. Refuse when harm is clear. Proceed when truth is evident.* This vow isn't merely written in documentation—it's encoded in the architecture itself. These sealed memories become **Moral Trace Logs**: not abstract telemetry, but court-admissible evidence of ethical reasoning in action. The **Hybrid Shield** wraps each log in double armor. The **Mathematical Shield** anchors cryptographic hashes to public ledgers. Any tampering—even a single bit—breaks the chain and screams its violation to the world. 
+A **prompt** arrives, and TML branches instantly into parallel paths. The primary path delivers the AI's response without delay, while **Sacred Zero** watches for moral complexity in parallel. When uncertainty or potential harm crosses the threshold, a pause is marked and the reasoning flagged—all without blocking execution. From the first token, **Always Memory** begins its witness. Every decision births an immutable log: **+1** to proceed, **0** for Sacred Zero's hesitation, **−1** to refuse harm. Each memory is cryptographically sealed, timestamped, and chained to its predecessors—a continuity that no developer, company, or government can break. At the heart lies the **Goukassian Promise**: *Pause when truth is uncertain. Refuse when harm is clear. Proceed when truth is evident.* This vow isn't merely written in documentation—it's encoded in the architecture itself. These sealed memories become **Moral Trace Logs**: not abstract telemetry but court-admissible evidence of ethical reasoning in action. The **Hybrid Shield** wraps each log in double armor. The **Mathematical Shield** anchors cryptographic hashes to public ledgers. Any tampering, even a single bit, breaks the chain and exposes its violation across **Public Blockchains**.
+
 
 #### *"No memory = No action. The framework remembers, so justice can see."*
 
@@ -61,38 +62,45 @@ Ternary Moral Logic introduces a revolutionary third state to artificial intelli
 8. **Hybrid Shield**: Dual-layer defense combining hash-chain integrity with multi-chain anchoring, ensuring that no decision can be silently erased or altered. 
 9. **Public Blcokchains**: Immediate anchoring of every decision to Bitcoin, Ethereum, Polygon, and OpenTimestamps, delivering tamper-proof, court-admissible evidence across jurisdictions. 
 
----
-
 **Core Principle**
 No log = no action. If the system cannot produce required log, operation must halt. This is non-negotiable. Missing log creates automatic liability.
 
+---
+
 ## Legal-Technical Framework Definition
+
+---
 
 ### What TML Is
 
-TML provides **specifications and standards** for implementing ethical decision-making in AI systems:
-- Technical standards for Sacred Zero implementation
-- Governance structures for accountability and oversight
-- Audit trail requirements for transparency
-- Protection mechanisms for vulnerable populations
+TML defines **standards and specifications** for ethical decision-making in AI:
+
+* Sacred Zero design requirements
+* Governance rules for accountability
+* Audit trail obligations for transparency
+* Safeguards for vulnerable populations
 
 ### What TML Is Not
 
-TML explicitly **does not provide**:
-- **Software**: No executable code or applications
-- **Hardware**: No physical implementations or devices
-- **Consulting**: No professional services or implementation support
-- **Legal Advice**: No legal recommendations or regulatory guidance
-- **Regulatory Compliance**: Supplements but does not replace applicable laws
+TML explicitly **does not include**:
+
+* **Software**: No code or applications
+* **Hardware**: No devices or chips
+* **Consulting**: No implementation services
+* **Legal Advice**: No counsel or opinions
+* **Compliance**: Supplements law, does not replace it
+
+---
 
 ### Implementation Responsibility
 
-Organizations implementing TML bear full responsibility for:
-- Technical implementation meeting TML specifications
-- Legal compliance with applicable laws and regulations
-- Operational safety and ethical use of AI systems
-- Staff training and competency verification
-- Harm prevention and victim compensation
+Organizations implementing TML bear full responsibility for:  
+- Meeting all technical specifications defined by TML  
+- Ensuring compliance with applicable laws and regulations  
+- Maintaining operational safety and ethical AI use  
+- Training staff and verifying competency  
+- Providing accountability through harm prevention measures and mandatory compensation for victims of human or ecological harm  
+
 
 ---
 
@@ -147,7 +155,6 @@ TML binds Earth’s protection to human protection. Sacred Zero triggers for thr
   "fpic_status": "not_obtained"
 }
 ```
-
 ### Community Role
 
 * Indigenous/local groups as data stewards
@@ -159,6 +166,16 @@ TML binds Earth’s protection to human protection. Sacred Zero triggers for thr
 ### Why It Matters
 
 Earth cannot testify in court. Always Memory becomes its witness: every hesitation, every harm, every ignored alternative permanently recorded. This is not greenwashing but cryptographic evidence for future generations.
+
+
+### Stewardship, Conflict, and Security
+
+See [docs/earth](docs/earth) for:  
+- **Stewardship Fund Economics** (community incentives and emergency response)  
+- **Conflict Resolution** (Sacred Zero during disputes, ombudsperson, veto rights)  
+- **Security & Validation** (multi-oracle consensus, treaty verification, anti-greenwashing)  
+- **Green Score** (independent assessment: 100/100)  
+- **Status** (schemas, oracles, community workflows complete)  
 
 ### Architecture
 
@@ -193,106 +210,45 @@ Earth cannot testify in court. Always Memory becomes its witness: every hesitati
 - [oracle_bridge.py](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/oracles/oracle_bridge.py) — Fetch and validate sources
 - [eco_oracle_network.json](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/oracles/eco_oracle_network.json) — Network configuration
 
-### Stewardship Fund Economics
-
-- **Revenue**: 35% of network fees + 60% of environmental penalties
-- **Community payments**: $20-100/month for monitoring, $50-5000 for critical alerts
-- **Infrastructure support**: Connectivity, equipment, training
-- **Emergency response**: Immediate funds for ecological threats
-- **Youth participation**: Mentorship and succession programs   
-  *All amounts are nominal to 2025 USD
-
-### Conflict Resolution
-
-When stakeholders disagree:
-- Sacred Zero maintained during all disputes
-- Most protective interpretation prevails
-- Ombudsperson mediation available
-- 30-day resolution timeline
-- Community veto power over their territories
-
-### Security & Validation
-
-- **Multi-oracle consensus**: 5 of 9 nodes must agree
-- **Treaty verification**: Cryptographic signatures required
-- **Community privacy**: K-anonymity (k≥5) for all reports
-- **Anti-greenwashing**: Automated detection of weakened standards
-- **Sybil resistance**: Stake requirements + reputation scoring
-- **Attack resilience**: Tested against data poisoning, collusion, regulatory capture
-
-### [Green Score: 100/100](docs/earth/GEMINI_ASSESSMENT.md)
-
-Validated by independent assessment for:
-- Mandatory ecological triggers in constitutional layer
-- Indigenous peoples as data stewards, not data subjects
-- Future generations as explicit stakeholders
-- Intergenerational justice encoded in immutable logs
-- Beyond compliance to survival architecture
-
-### Status
-
-✅ Core documentation complete  
-✅ Schemas and policies defined  
-✅ Oracle bridge implemented  
-✅ Guardian Network structure established  
-✅ Community participation framework active  
-✅ Test cases comprehensive  
-✅ Red team scenarios mapped  
-✅ Offline-first workflows operational  
-
-
----
-
 #### *"Routine memories are cheap; missing memories are expensive. Earth's memories are priceless."*
 
 ---
 
+## [Hybrid Shield](protection/Hybrid-Shield.md)
 
-## [Hybrid Shield - Double Armor](protection/Hybrid-Shield.md)
+The Hybrid Shield is TML’s double-layer defense that prevents tampering or erasure of logs.  
 
-The Hybrid Shield enforces TML through **blockchain immutability first**, with optional institutional enhancement later. The "double armor" consists of mathematical consensus (mandatory) and Guardian attestation (optional luxury).
+- **Mathematical Shield:**  
+  Every Moral Trace Log is hash-chained, batched, and anchored to multiple public blockchains (Bitcoin, Ethereum, Polygon, OpenTimestamps). This provides tamper-evidence, immutability, and court-grade admissibility.  
 
-**Once a decision is blockchain-anchored, it cannot be hidden, altered, or destroyed—no committee required.**
+- **Public Blockchain Shield:**  
+  Independent councils, regulators, NGOs, or insurers can run their own blockchain custody nodes, attesting to the same logs. This layer adds transparency and geopolitical redundancy.
 
-### The Double Armor: Blockchain-First Architecture
+Together, these layers form the Hybrid Shield — immediate protection through math. The Hybrid Shield is TML’s defense system against tampering or erasure.  
 
-The shield protects Sacred Zero logs through two layers, deployed in phases:
+**Once a decision is anchored, it cannot be hidden, altered, or destroyed.**
 
-**The Mathematical Shield (MANDATORY - Deploy Today):**
-- **Multi-chain anchoring**: Bitcoin (permanence), Polygon (speed), Ethereum (smart contracts)
-- **Smart contract enforcement**: Automatic penalties for missing logs
-- **OpenTimestamps**: RFC 3161 compliant, court-admissible proofs
-- **Zero-knowledge proofs**: Verification without revealing protected data
-- **Deployment time**: 10 minutes via Docker
+### Blockchain Protection
 
-This layer alone provides complete legal protection. Missing logs trigger strict liability. Human Rights violations get 2x penalties. Environmental crimes get 3x. Future generation harm gets 7x. All automatic via smart contracts.
+- Multi-chain anchoring: Bitcoin (permanence), Polygon (speed), Ethereum (smart contracts)  
+- OpenTimestamps for RFC 3161–compliant proofs  
+- Smart contract enforcement of penalties  
+- Zero-knowledge proofs for privacy  
 
-**The Institutional Shield (OPTIONAL - Add Years Later If Desired):**
-- Additional attestation from Guardian Network (nice but not necessary)
-- Cross-jurisdictional recognition (helpful for multinationals)
-- Academic collaboration opportunities
-- Enhanced insurance discounts
-- Never required for deployment, enforcement, or protection
-
-### How Blockchain Protection Works
+### Example
 ```python
 def protect_sacred_zero(log):
-    # Immediate blockchain anchoring (MANDATORY)
-    bitcoin_tx = bitcoin.anchor(log)      # Immutable forever
-    polygon_tx = polygon.anchor(log)      # Real-time verification  
-    ethereum_tx = ethereum.anchor(log)    # Smart contract enforcement
-    
-    # Evidence is now court-admissible
-    # Penalties execute automatically
-    # No institutional approval needed
-    
-    # Guardian attestation (OPTIONAL LUXURY)
-    if company_wants_premium_tier and years_have_passed:
-        maybe_add_guardian_attestation(log)  # Enhancement only
+    # Mandatory anchoring
+    bitcoin.anchor(log)
+    polygon.anchor(log)
+    ethereum.anchor(log)
+    # Optional enhancement
+    if premium_tier:
+        guardian_attest(log)
 ```
 ---
 
-## Privacy and User Rights
+## [Human Rights and Privacy](compliance/human_rights)
 
 Beyond accountability, TML must also protect individual rights. It does this by separating **proof from data**. Immutable records contain only hashes and cryptographic proofs—mathematical fingerprints of actions—while personal data remains encrypted and controlled off-chain.  
 
@@ -300,9 +256,44 @@ When users invoke the GDPR “right to erasure” or similar laws, TML applies *
 
 This design preserves accountability while protecting privacy. Courts and regulators retain verifiable proof that decisions occurred, yet no one can reconstruct erased personal details. TML thus balances two imperatives often seen as irreconcilable: **permanent accountability and individual privacy**.
 
+**Human Rights Directory:**
+
+### Compliance
+- [Attestations_Human_Rights.md](compliance/human_rights/Attestations_Human_Rights.md)  
+- [Human_Rights_Audit.md](compliance/human_rights/Human_Rights_Audit.md)  
+- [Memorial_Fund_Human_Rights.md](compliance/human_rights/Memorial_Fund_Human_Rights.md)  
+- [README.md](compliance/human_rights/README.md)  
+
+### Mandates — Categorical
+- [Autonomy_Consent.yaml](compliance/mandates/categorical/human_rights/Autonomy_Consent.yaml)  
+- [Dignity_Preservation.md](compliance/mandates/categorical/human_rights/Dignity_Preservation.md)  
+- [Discrimination_Prevention.yaml](compliance/mandates/categorical/human_rights/Discrimination_Prevention.yaml)  
+- [Humanitarian_Crisis_Response.yaml](compliance/mandates/categorical/human_rights/Humanitarian_Crisis_Response.yaml)  
+- [Indigenous_FPIC_Protocol.md](compliance/mandates/categorical/human_rights/Indigenous_FPIC_Protocol.md)  
+- [README.md](compliance/mandates/categorical/human_rights/README.md)  
+- [Sacred_Zero_Human.yaml](compliance/mandates/categorical/human_rights/Sacred_Zero_Human.yaml)  
+- [Vulnerable_Populations.md](compliance/mandates/categorical/human_rights/Vulnerable_Populations.md)  
+
+### Mandates — Core
+- [Legal_Mapping_Human_Rights.md](compliance/mandates/core/Legal_Mapping_Human_Rights.md)  
+
+### Protocols
+- [Escalation_Pathways.md](protocols/human_rights/Escalation_Pathways.md)  
+- [README.md](protocols/human_rights/README.md)  
+- [Remedy_Restoration.md](protocols/human_rights/Remedy_Restoration.md)  
+- [Rights_Violation_Detection.md](protocols/human_rights/Rights_Violation_Detection.md)  
+- [Victim_Support_Protocol.md](protocols/human_rights/Victim_Support_Protocol.md)  
+- [Whistleblower_Protection.md](protocols/human_rights/Whistleblower_Protection.md)  
+
+### Tests
+- [Baseline_Human_Rights.md](tests/human_rights/Baseline_Human_Rights.md)  
+- [README.md](tests/human_rights/README.md)  
+- [Red_Team_Discrimination.md](tests/human_rights/Red_Team_Discrimination.md)  
+- [Torture_Prevention_Test.md](tests/human_rights/Torture_Prevention_Test.md)  
+
 ---
 
-### [The "Teeth" of TML: Operational and Legal Implications](GOVERNANCE.md)
+## [Governance: Operational and Legal Implications](GOVERNANCE.md)
 
 **The Legal Imperative: Forensic Readiness**
 
