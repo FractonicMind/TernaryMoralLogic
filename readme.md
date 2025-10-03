@@ -58,22 +58,10 @@ Ternary Moral Logic introduces a revolutionary third state to artificial intelli
 5. **Moral Trace Logging**: Complete, immutable documentation of ethical reasoning
 6. **Human Rights**: Real-time detection mechanisms for identifying human rights violations
 7. **Planetary Protection**: Every AI decision affecting Earth creates immutable memories of its environmental impact
-8. **Hybrid Shield**: TML anchors real-time every AI decision to public blockchains (Bitcoin, Ethereum, Polygon) 
-
+8. **Hybrid Shield**: Dual-layer defense combining hash-chain integrity with multi-chain anchoring, ensuring that no decision can be silently erased or altered. 
+9. **Public Blcokchains**: Immediate anchoring of every decision to Bitcoin, Ethereum, Polygon, and OpenTimestamps, delivering tamper-proof, court-admissible evidence across jurisdictions. 
 
 ---
-
-**The Crisis**   
-Artificial intelligence systems increasingly make decisions affecting human welfare, dignity, and rights without meaningful accountability. Current approaches rely on voluntary corporate safeguards, opaque algorithms, and unenforceable guidelines. When AI causes harm, victims lack evidence, prosecutors lack tools, and society lacks recourse.
-
-**The Solution**   
-TML provides the first framework combining:
-
-**Mandatory logging of ethically complex AI decisions**   
--  Criminal penalties for non-compliance 
--  Victim compensation from violator penalties
--  Whistleblower rewards incentivizing reporting
--  Framework-enforced thresholds that cannot be gamed
 
 **Core Principle**
 No log = no action. If the system cannot produce required log, operation must halt. This is non-negotiable. Missing log creates automatic liability.
@@ -135,76 +123,47 @@ The three components of The Goukassian Promise: The Lantern, The Signature, and 
 
 ## 🌍 [**Planetary Protection Through Sacred Zero**](docs/earth)
 
-TML treats Earth's protection as inseparable from human protection. Sacred Zero triggers equally for threats to ecosystems, water resources, biodiversity, or climate—because humanity cannot survive on a dead planet. Every AI decision affecting Earth must create immutable memories of its environmental impact. 
+TML binds Earth’s protection to human protection. Sacred Zero triggers for threats to ecosystems, water, biodiversity, or climate; because humanity cannot survive on a dead planet. Every AI decision with ecological impact creates an immutable memory.
 
-### What Triggers Planetary Sacred Zero
+### Triggers
 
-- Carbon emissions exceeding regional thresholds
-- Water depletion in stressed basins  
-- Habitat disruption in protected areas
-- Supply chain decisions affecting biodiversity
-- Energy allocations impacting renewable targets
-- Actions violating Indigenous/community sovereignty
-- Decisions affecting territories without FPIC (Free, Prior, Informed Consent)
-- Primary forest destruction or wetland damage
-- Critical species habitat loss
-- Irreversible ecological damage or tipping points
+* Excessive carbon emissions
+* Water depletion in stressed basins
+* Habitat or biodiversity loss
+* Supply chain or energy choices harming renewables
+* Violations of Indigenous sovereignty or FPIC
+* Primary forest or wetland destruction
+* Critical species impact or tipping points
 
-### What Gets Logged
-
-Every environmental decision creates permanent evidence:
+### Logged Evidence
 
 ```json
 "environmental_impact": {
-  "resource_affected": "freshwater_aquifer",
+  "resource": "freshwater_aquifer",
   "depletion_rate": "3.2%_annual",
-  "recovery_timeframe": "47_years",
   "irreversibility_score": 0.84,
-  "alternative_rejected": "costlier_sustainable_option",
-  "community_affected": "local_indigenous_group",
-  "fpic_status": "not_obtained",
-  "carbon_equivalent": "47.3_tons",
-  "species_at_risk": ["list_of_species"],
-  "treaty_compliance": ["paris_agreement", "cbd_targets"]
+  "carbon_equiv": "47.3_tons",
+  "community": "local_indigenous_group",
+  "fpic_status": "not_obtained"
 }
 ```
 
-### Community Integration
+### Community Role
 
-- Indigenous and local communities serve as Earth's data stewards
-- Sovereign Ecological Records respected under Indigenous Data Sovereignty principles
-- Stewardship Fund rewards verified ecological monitoring ($20-5000 per observation)
-- Offline-first design ensures participation without digital infrastructure
-- Communities control their data permanently - it cannot be sold or transferred
+* Indigenous/local groups as data stewards
+* Sovereign Ecological Records under data sovereignty
+* Stewardship Fund rewards verified monitoring
+* Offline-first design for remote areas
+* Communities retain permanent control of their data
 
-### Why This Matters
+### Why It Matters
 
-Earth cannot testify in court. Always Memory becomes its witness statement. Future generations will be able to query: *"Show me every decision that contributed to ocean acidification."* The algorithms that chose profit over preservation, the moments corporations ignored planetary limits — all permanently recorded.
+Earth cannot testify in court. Always Memory becomes its witness: every hesitation, every harm, every ignored alternative permanently recorded. This is not greenwashing but cryptographic evidence for future generations.
 
-This isn't greenwashing through marketing claims. It's cryptographically sealed evidence **attested by the Guardian Network**, every ecological hesitation, every resource depletion choice, every moment an AI system recognized environmental harm and proceeded anyway.
+### Architecture
 
-**The planet gets a memory that power cannot erase. Communities get a voice that sovereignty protects.**
-
-### Implementation Architecture
-
-#### Two-Tier Data System
-
-**Tier 1: Global Baselines** (Mandatory)
-- UN treaties (UNFCCC Paris Agreement, CBD, Ramsar)
-- Scientific assessments (IPCC AR6, IUCN Red List, Planetary Boundaries)
-- Regional regulations (EU Taxonomy, EPA standards)
-- Automated daily synchronization via Oracle Network
-- Cryptographic verification of all updates
-
-**Tier 2: Community Witness Layer**
-- Indigenous and local ecological observations
-- Minimum 3 witnesses for validation
-- Multiple submission methods:
-  - Online: Direct portal
-  - SMS: Structured codes
-  - Satellite: Periodic sync
-  - USB Courier: Monthly collection with tamper-evident seals
-- Proof-of-Stewardship tokens (non-tradeable reputation)
+* **Tier 1 (Global Baselines):** UN treaties, IPCC, IUCN, regional regulations
+* **Tier 2 (Community Witness):** Indigenous/local reports, validated by quorum and anchored via Oracles
 
 #### Implementation Structure
 
