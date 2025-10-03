@@ -330,7 +330,7 @@ def protect_sacred_zero(log):
     # Guardian attestation (OPTIONAL LUXURY)
     if company_wants_premium_tier and years_have_passed:
         maybe_add_guardian_attestation(log)  # Enhancement only
-
+```
 ---
 
 ## Privacy and User Rights
