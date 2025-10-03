@@ -77,9 +77,9 @@ def ai_decision(input_data):
 
 ---
 
-## CORE REQUIREMENTS (Blockchain-First)
+## CORE REQUIREMENTS
 
-### 1. Always Memory: Blockchain Anchoring Mandatory
+### 1. Always Memory 
 
 **Every AI action must create blockchain-anchored proof BEFORE execution:**
 
@@ -116,7 +116,7 @@ always_memory_log:
 
 **Missing blockchain anchor = Criminal spoliation of evidence**
 
-### 2. Sacred Zero Triggers (Enforced by Smart Contracts)
+### 2. Sacred Zero Triggers
 
 Smart contracts automatically detect and enforce Sacred Zero for:
 
@@ -199,9 +199,9 @@ config = TMLConfig(
 
 ---
 
-## IMPLEMENTATION: 10 Minutes to Full Protection
+## IMPLEMENTATION:
 
-### The Blockchain-First Deployment
+### The Blockchain Deployment
 
 ```bash
 # Install TML
@@ -239,7 +239,6 @@ tml verify --all-chains
 # ✓ Protection: FULLY OPERATIONAL
 ```
 
-**Total Time**: 10 minutes  
 **Protection Active**: Immediately  
 **Legal Enforceability**: Complete
 
@@ -394,7 +393,7 @@ function enforceMissingLog(
 
 ---
 
-## TECHNICAL SPECIFICATIONS (Blockchain-First)
+## TECHNICAL SPECIFICATIONS
 
 ### Multi-Chain Anchoring Architecture
 
@@ -520,7 +519,7 @@ def create_merkle_batch(logs: List[Dict]) -> bytes32:
 
 ---
 
-## CERTIFICATION CHECKLIST (Blockchain-First)
+## CERTIFICATION CHECKLIST
 
 Before going to production, verify:
 
@@ -620,7 +619,7 @@ function checkProhibitedUse(
 
 ---
 
-## WHISTLEBLOWER PROTECTION (Blockchain-Enforced)
+## WHISTLEBLOWER PROTECTION
 
 ### Automatic Reward System
 
@@ -668,7 +667,7 @@ contract WhistleblowerRewards {
 ### Anti-Retaliation Protection
 
 - **Anonymous submission**: Zero-knowledge proofs hide identity
-- **Criminal penalties**: 20 years for retaliation (18 U.S.C. § 1513)
+- **Criminal penalties**: 18 U.S.C. § 1513 up to 20 years
 - **Automatic investigation**: Smart contract triggers inquiry
 - **Legal support**: Memorial Fund pays all legal costs
 - **Lifetime protection**: Retaliation decades later still prosecuted
@@ -766,8 +765,6 @@ contract MemorialFundDistribution {
 
 **The mission**: Give every person veto power over algorithms. Give Earth a voice that power cannot silence. Give future generations evidence that we paused when we should have.
 
-**The architecture**: Public blockchain anchoring makes this mission deployable today.
-
 ---
 
 **Document Status**: Constitutional Standard  
@@ -786,6 +783,4 @@ contract MemorialFundDistribution {
 
 *"Sacred Zero is exactly what's needed where lives, billions, and our planet are on the line."*
 
-*"Blockchains raise the stone tablet; 66 frameworks carve the commandments; Guardians are merely the choir—optional, but echoing forever."*
-
-**TML lives because mathematics never dies.**
+---
