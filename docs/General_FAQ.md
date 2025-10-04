@@ -407,7 +407,7 @@ Three-tier testing architecture:
 
 ---
 
-## **Privacy & User Rights**
+## **Privacy & User Rights. GDPR "Right to Erasure"**
 
 **Q1: How does TML protect user privacy?**
 
@@ -581,14 +581,20 @@ TML uses a **Recognition, Not Accreditation** model:
 
 ## **The Hybrid Shield**
 
-**Q1: What is the Hybrid Shield?**
+## **Q1: What is the Hybrid Shield?**
 
-The Hybrid Shield is TML’s two-tier defense model: a **mandatory Mathematical Shield** plus an **optional Institutional Shield**.  
+The Hybrid Shield is TML’s dual-layer defense model: a **mandatory Mathematical Shield** and an **optional Institutional Mirror**, both designed to ensure that no ethical record can vanish.  
 
-- **Mathematical Shield**: Every Moral Trace Log is hashed, grouped in Merkle trees, and anchored to multiple public blockchains. Any attempt to alter even a single byte breaks the chain of proofs, exposing tampering instantly.  
-- **Institutional Shield (Optional)**: Independent institutions may also mirror encrypted logs, adding an extra layer of redundancy and long-term custody. This is not mandatory for compliance, but serves as an insurance-grade safeguard.  
+- **Mathematical Shield (Mandatory):**  
+  Every Moral Trace Log is hashed, grouped into Merkle trees, and anchored across multiple public blockchains. Smart Contracts automatically verify integrity, enforce immutability, and execute penalties for tampering. In this tier, **math replaces institutional trust** — because mathematics cannot be bribed.  
 
-Together, these layers provide both **immutability** (mathematics cannot be bribed) and **redundancy** (copies cannot be erased silently). Even if a company collapses or a blockchain is attacked, the record of what happened endures.  
+- **Institutional Mirror (Optional):**  
+  Independent organizations may also maintain encrypted off-chain mirrors of the logs. These human-governed nodes act as historical custodians and policy interpreters, offering redundancy, context, and continuity beyond the digital layer.  
+
+Together, the two layers ensure **immutability** through cryptography and **resilience** through distributed stewardship.  
+Even if a corporation dissolves or a blockchain fails, the ethical memory of its actions remains verifiable and intact.  
+
+> “Where institutions once guarded paper, Smart Contracts now guard truth.”
 
 
 ---
@@ -630,7 +636,7 @@ Future Guardian networks can be designed with mechanisms like:
 These ensure independence and minimize the risk of capture.  
 
 **Q4: Why present Guardians as optional?**  
-Because TML must be adoptable now. Blockchain anchoring and strict liability make the framework enforceable without delay. Guardians remain the **ideal evolution path**, offering additional protection and legitimacy as global adoption matures.  
+Blockchain anchoring and strict liability make the framework enforceable without delay. Guardians remain the **ideal evolution path**, offering additional protection and legitimacy as global adoption matures.  
 
 **Q5: What is the long-term vision for Guardians?**  
 Over time, Guardians could become a recognized international body — similar to certificate authorities in the web ecosystem. For now, they are an **enhancement, not a prerequisite.**
