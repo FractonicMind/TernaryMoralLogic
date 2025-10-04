@@ -62,8 +62,8 @@ Ternary Moral Logic introduces a revolutionary third state to artificial intelli
 8. **Hybrid Shield**: Dual-layer defense combining hash-chain integrity with multi-chain anchoring, ensuring that no decision can be silently erased or altered. 
 9. **Public Blcokchains**: Immediate anchoring of every decision to Bitcoin, Ethereum, Polygon, and OpenTimestamps, delivering tamper-proof, court-admissible evidence across jurisdictions. 
 
-**Core Principle**
-No log = no action. If the system cannot produce required log, operation must halt. This is non-negotiable. Missing log creates automatic liability.
+**Core Principle**   
+**No log = no action.** If the system cannot produce required log, operation must halt. This is **non-negotiable.** Missing log creates automatic liability.
 
 ---
 
@@ -71,35 +71,43 @@ No log = no action. If the system cannot produce required log, operation must ha
 
 ---
 
-### What TML Is
+### **What TML Is**
 
-TML defines **standards and specifications** for ethical decision-making in AI:
+TML defines **standards and specifications** for ethical decision-making in AI.  
+It transforms moral reasoning into auditable architecture, ensuring accountability across humans, institutions, and the planet.
 
-* Sacred Zero design requirements
-* Governance rules for accountability
-* Audit trail obligations for transparency
-* Safeguards for vulnerable populations
+* **Sacred Zero design requirements** — codified hesitation points for moral and ecological complexity  
+* **Governance rules for accountability** — mandatory oversight structures and human review protocols  
+* **Audit trail obligations for transparency** — cryptographically anchored Moral Trace Logs ensuring “No Memory = No Action”  
+* **Legal enforceability** — built-in compliance mapping to international treaties and national laws  
+* **Planetary protection** — ecological harm thresholds embedded into Sacred Zero triggers, binding AI to Earth’s survival
+* **Safeguards for vulnerable populations** — explicit human rights triggers preventing systemic or algorithmic abuse  
 
-### What TML Is Not
+### **What TML Is Not**
 
-TML explicitly **does not include**:
+TML explicitly **does not include** or provide:
 
-* **Software**: No code or applications
-* **Hardware**: No devices or chips
-* **Consulting**: No implementation services
-* **Legal Advice**: No counsel or opinions
-* **Compliance**: Supplements law, does not replace it
+* **Software** — it defines architecture, not code  
+* **Hardware** — it mandates logic, not devices  
+* **Consulting** — it sets standards, not services  
+* **Legal Advice** — it offers structure, not counsel  
+* **Compliance Replacement** — it supplements regulation, never substitutes for law  
+* **Corporate Branding** — it is a public framework, not proprietary IP  
+
 
 ---
 
-### Implementation Responsibility
+### **Implementation Responsibility**
 
-Organizations implementing TML bear full responsibility for:  
-- Meeting all technical specifications defined by TML  
-- Ensuring compliance with applicable laws and regulations  
-- Maintaining operational safety and ethical AI use  
-- Training staff and verifying competency  
-- Providing accountability through harm prevention measures and mandatory compensation for victims of human or ecological harm  
+Organizations implementing TML bear **full legal and ethical responsibility** for:
+
+- **Technical Conformance** — meeting all specifications and mandatory logging standards defined by TML  
+- **Regulatory Compliance** — adhering to all applicable human rights, environmental, and data protection laws  
+- **Operational Safety** — ensuring systems operate within auditable, risk-bounded parameters at all times  
+- **Human Competency** — training, certifying, and periodically re-evaluating staff responsible for TML oversight  
+- **Accountability and Redress** — guaranteeing transparent harm tracing, immediate mitigation protocols, and mandatory compensation for human or ecological victims  
+- **Audit Cooperation** — granting auditors and regulators access to Moral Trace Logs when evidence of harm or misconduct is suspected  
+
 
 
 ---
@@ -125,7 +133,6 @@ The License (📜) is the legal mechanism that provides the Promise with its "te
 The three components of The Goukassian Promise: The Lantern, The Signature, and The License, are designed to work in concert as a unified, self-enforcing system. A company cannot simply adopt the TML code; to be a legitimate implementer, it must also display the Lantern, cryptographically embed the Signature, and adhere to the terms of the License. If any part of this covenant is broken, the entire system of trust collapses. The public-facing Lantern is rendered meaningless, and the embedded Signature serves as a cryptographic marker of the transgression. This innovative model for decentralized ethical enforcement, relying on cryptographic verification and public trust rather than a centralized regulatory body, ensures that Goukassian’s vision for a trustworthy AI future will endure.
 
 **[The Three Pillars of Purposeful Action](https://fractonicmind.github.io/TernaryMoralLogic/GOUKASSIAN_PROMISE.html)**
-
 
 ---
 
@@ -214,38 +221,55 @@ See [docs/earth](docs/earth) for:
 
 ---
 
+This section is already crisp and forceful, but we can sharpen it in two ways: tighten terminology and clarify the *roles* of each layer so a reader immediately grasps the architectural and legal logic.
+Here’s how I’d refine it:
+
+---
+
 ## [Hybrid Shield](protection/Hybrid-Shield.md)
 
-The Hybrid Shield is TML’s double-layer defense that prevents tampering or erasure of logs.  
+The **Hybrid Shield** is TML’s double-layer integrity system that guarantees the permanence and verifiability of every Moral Trace Log. It fuses **mathematics** and **distributed oversight** into a single armor against tampering or erasure.
 
-- **Mathematical Shield:**  
-  Every Moral Trace Log is hash-chained, batched, and anchored to multiple public blockchains (Bitcoin, Ethereum, Polygon, OpenTimestamps). This provides tamper-evidence, immutability, and court-grade admissibility.  
+### 1. Mathematical Shield
 
-- **Public Blockchain Shield:**  
-  Independent councils, regulators, NGOs, or insurers can run their own blockchain custody nodes, attesting to the same logs. This layer adds transparency and geopolitical redundancy.
+Each log is **hash-chained**, **Merkle-batched**, and **anchored** to multiple public blockchains (Bitcoin, Ethereum, Polygon, OpenTimestamps).
+This cryptographic layer ensures:
 
-Together, these layers form the Hybrid Shield — immediate protection through math. The Hybrid Shield is TML’s defense system against tampering or erasure.  
+* **Tamper-evidence** — any alteration breaks the hash chain.
+* **Immutability** — logs survive across independent ledgers.
+* **Legal admissibility** — RFC 3161-compliant proofs accepted as digital evidence.
 
-**Once a decision is anchored, it cannot be hidden, altered, or destroyed.**
+### 2. Institutional Shield (Public Blockchain Custody)
 
-### Blockchain Protection
+Regulators, NGOs, insurers, and universities may run **custody nodes** or **witness validators** that attest to the same log hashes.
+Their participation adds:
 
-- Multi-chain anchoring: Bitcoin (permanence), Polygon (speed), Ethereum (smart contracts)  
-- OpenTimestamps for RFC 3161–compliant proofs  
-- Smart contract enforcement of penalties  
-- Zero-knowledge proofs for privacy  
+* **Geopolitical redundancy** — truth mirrored across jurisdictions.
+* **Public trust** — human institutions share verification with machines.
+
+Together, these layers form the Hybrid Shield: *mathematical permanence reinforced by institutional eyes*.
+Once a decision is anchored, **it cannot be hidden, altered, or destroyed**.
+
+### Blockchain Protection Suite
+
+* **Multi-chain anchoring:** Bitcoin (permanence), Polygon (speed), Ethereum (contract logic)
+* **OpenTimestamps:** standardized time-stamping (RFC 3161)
+* **Smart-contract penalties:** automatic enforcement for falsified or missing logs
+* **Zero-knowledge proofs:** privacy without opacity
 
 ### Example
+
 ```python
 def protect_sacred_zero(log):
-    # Mandatory anchoring
+    # Mandatory cryptographic anchoring
     bitcoin.anchor(log)
     polygon.anchor(log)
     ethereum.anchor(log)
-    # Optional enhancement
-    if premium_tier:
-        guardian_attest(log)
+    # Optional institutional attestation
+    if guardian_enabled:
+        guardian.attest(log)
 ```
+
 ---
 
 ## [Human Rights and Privacy](compliance/human_rights)
