@@ -49,10 +49,11 @@ Every decision generates a triadic record:
 Each entry is cryptographically sealed, timestamped, and chained to its predecessors, a lineage of accountability no developer, corporation, or government can sever.  
 
 At the center stands the **Goukassian Promise**:  
-*Pause when truth is uncertain. Refuse when harm is clear. Proceed when truth is evident.*  
-This vow is not decorative text; it is executable law encoded into architecture.  
 
-The resulting artifacts are **Moral Trace Logs**, not telemetry, but verifiable testimony.  
+#### *Pause when truth is uncertain. Refuse when harm is clear. Proceed when truth is evident.*  
+
+This vow is not decorative text; it is executable law encoded into architecture. The resulting artifacts are **Moral Trace Logs**, not telemetry, but verifiable testimony.  
+
 Each log is wrapped within the **Hybrid Shield**:  
 - The **Mathematical Shield** anchors hashes to multiple public ledgers, creating cryptographic immutability.  
 - The **Public Blockchain Shield** ensures that any tampering, even by a single bit, exposes itself across networks of record.
