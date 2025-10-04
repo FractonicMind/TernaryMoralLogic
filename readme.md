@@ -489,11 +489,21 @@ result = framework.process_decision(context)
 All TML implementations must include clear and permanent attribution to Lev Goukassian as the originator of the framework and of the Sacred Zero principle.  
 Attribution must appear in documentation, user interfaces, and all derivative technical or legal materials referencing Ternary Moral Logic.  
 
-### Memorial Fund Requirement
+---
 
-Commercial or institutional implementations are required to contribute to the Memorial Fund for Ethical AI Research.  
-These contributions sustain the ongoing protection, audit, and academic development of the TML standard.  
-Fund usage is governed under the [Memorial Fund Charter](/memorial/MEMORIAL_FUND.md) and overseen by the TML Governance Council.
+### [The Memorial Fund](memorial/MEMORIAL_FUND.md)
+
+The **Memorial Fund for Ethical AI Research** provides permanent financial support for governance, academic oversight, and victim restitution.  
+It receives mandatory contributions from commercial TML deployments and allocates resources toward:  
+
+- Independent audit and oversight institutions  
+- Victim compensation and whistleblower legal defense  
+- Open research in AI accountability and planetary ethics  
+
+The Fund institutionalizes gratitude — preserving both the moral and financial sustainability of the framework.
+
+Commercial and institutional implementations are required to contribute to the Memorial Fund as part of their license obligations.  
+All fund disbursements are governed under the [Memorial Fund Charter](/memorial/MEMORIAL_FUND.md) and supervised by the **TML Governance Council**.
 
 ### License Compliance
 
