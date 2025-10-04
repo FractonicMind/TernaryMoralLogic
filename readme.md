@@ -312,16 +312,6 @@ See [docs/earth](docs/earth) for:
 
 ---
 
-Good section — short, clear, and full of moral voltage.
-To make it consistent with the tone of the newer repo files, two upgrades are worth doing:
-
-1. **Frame these as mandatory accountability mechanisms**, not optional “programs.” It aligns with TML’s constitutional style.
-2. **Add a one-line introduction** that defines their legal and moral purpose. Readers should know *why* they exist before reading numbers.
-
-Here’s the refined version:
-
----
-
 ## Protection Programs
 
 TML mandates permanent safety mechanisms for those who expose wrongdoing or suffer verified harm. These programs ensure restitution is not symbolic but systemic.
@@ -382,142 +372,60 @@ Failure to meet the aforementioned standards for log integrity and accuracy coul
 
 ---
 
-## Blockchain Protection
+## [Blockchain Protection](docs/Public_Blockchain_FAQ.md)
 
-**TML delivers immediate AI accountability through public blockchain anchoring.** Every decision creates tamper-proof evidence anchored to Bitcoin, Ethereum, and Polygon.
+Blockchain Protection is the foundation of TML’s Mathematical Shield, transforming every ethical hesitation and decision into court-admissible, immutable evidence.
 
-### Deployment to Full Protection**
+**Mathematical Guarantee of Accountability**
 
-```bash
-# Deploy complete TML protection
-docker run -d tml/protection:blockchain-latest
-curl http://localhost:8080/evaluate \
-  -d '{"operation": "hiring", "data": {...}}'
+Every consequential decision is cryptographically sealed and anchored across **Bitcoin**, **Ethereum**, **Polygon**, and **OpenTimestamps**.
+This guarantees **tamper-evidence**, **permanence**, and **court-grade admissibility** under FRE 902(13) and eIDAS.
 
-# Result: Immediate discrimination prevention + blockchain evidence
-```
+**Key Protections**
 
-**What you get instantly:**
-- ✅ **Sacred Zero Prevention** - Discrimination blocked in ≤2ms
-- ✅ **Always Memory Logging** - Every decision immutably recorded  
-- ✅ **Blockchain Anchoring** - Evidence anchored to Bitcoin + Ethereum + Polygon
-- ✅ **Smart Contract Penalties** - Automatic violation enforcement
-- ✅ **Insurance Discounts** - 20-40% premium reduction from verified compliance
-- ✅ **Legal Admissibility** - Court-ready evidence meeting FRE 902(13) standards
+* **Multi-chain anchoring:** Bitcoin (permanence), Polygon (speed), Ethereum (smart contracts)
+* **Merkle batching + SHA-256 hashing:** scalable, verifiable integrity
+* **OpenTimestamps:** RFC 3161-compliant timestamp proofs
+* **Smart-contract penalties:** automatic enforcement for violations
+* **Zero-knowledge privacy:** proof without exposure
 
-### **Multi-Chain Architecture for Maximum Security**
+**Performance Envelope**
 
-**Triple Redundancy Protection:**
-```yaml
-Real-time: Polygon (2-3 second confirmations)
-Smart Contracts: Ethereum (automated penalty enforcement)  
-Maximum Security: Bitcoin (ultimate permanence)
-Cost Optimization: OpenTimestamps (free archival)
-```
+* Sacred Zero latency ≤ 2 ms
+* 10 000 + decisions / second throughput
+* 99.9 % uptime across redundant chains
 
-**Why Multi-Chain:**
-- **Resilience** - No single blockchain failure can compromise evidence
-- **Speed** - Polygon provides instant accountability, Bitcoin provides permanence  
-- **Cost** - Layer-2 optimization reduces fees by 90%+
-- **Legal** - Multiple jurisdictions recognize different chains
+**Legal Standing**
+Recognized under:
 
-### **Blockchain Evidence Standards**
+* **U.S.** FRE 902(13) (self-authenticating records)
+* **E.U.** eIDAS (qualified electronic timestamps)
+* **Global** RFC 3161 (timestamp protocol)
+  Bitcoin-based evidence accepted in 50 + court cases.
 
-**Court-Admissible Proof:**
-- **SHA-256 Hashing** - Individual decision integrity
-- **Merkle Tree Batching** - Scalable batch verification  
-- **Multi-Chain Anchoring** - Redundant proof across networks
-- **OpenTimestamps** - RFC 3161 compliant timestamping
-- **Smart Contract Execution** - Automatic penalty enforcement
+### Future Evolution
 
-**Legal Recognition:**
-- **US**: FRE 902(13) self-authenticating digital records
-- **EU**: eIDAS qualified electronic signatures and timestamps  
-- **Global**: RFC 3161 timestamp protocol acceptance
-- **Precedent**: Bitcoin evidence accepted in 50+ court cases
+The blockchain foundation is fully operational today.
+An **optional Guardian Network** of institutional custodians may extend trust verification, offering additional insurance and international recognition.
 
-### **Performance at Scale**
-
-**Production Specifications:**
-- **Sacred Zero Latency**: ≤2ms (99th percentile)
-- **Throughput**: 10,000+ decisions per second
-- **Blockchain Confirmation**: 2-3 seconds (Polygon), 10-60 minutes (Bitcoin)
-- **Uptime**: 99.9% with graceful degradation
-- **Storage**: 100KB per 10,000 decisions
-
-**Enterprise Ready:**
-- **Multi-region deployment** across cloud providers
-- **Auto-scaling** based on decision volume  
-- **Disaster recovery** with cross-chain backup
-- **SOC 2 + ISO 27001** compliance available
-
-### **Integration Patterns**
-
-**API Gateway (Recommended):**
-```javascript
-// Intercept all AI decisions
-app.use('/ai/*', async (req, res, next) => {
-  const result = await tml.evaluate(req.body);
-  if (result.sacred_zero_triggered) {
-    return res.status(403).json({
-      error: 'Sacred Zero violation',
-      penalty: result.penalty_amount,
-      blockchain_proof: result.anchor_hash
-    });
-  }
-  next();
-});
-```
-
-**Database Triggers:**
-```sql
--- Automatic evaluation for all AI decisions
-CREATE TRIGGER tml_check BEFORE INSERT ON ai_decisions
-FOR EACH ROW EXECUTE FUNCTION tml_sacred_zero_check();
-```
-
-**Message Queue:**
-```python
-# Kafka/RabbitMQ integration
-@consumer('ai.decisions')
-def process_decision(message):
-    evaluation = tml.evaluate(message.data)
-    if evaluation.sacred_zero_triggered:
-        return reject_with_blockchain_proof(evaluation)
-    return approve_with_blockchain_proof(evaluation)
-```
-
-### **Future Evolution Path**
-
-**Blockchain Foundation (Current):**
-- Complete protection from day one
-- Court-admissible evidence 
-- Insurance savings and legal compliance
-
-**Optional Guardian Network (Future):**
-- Enhanced institutional credibility
-- International recognition
-- Maximum insurance discounts (50-60%)
-
-**Key Principle**: Guardian Network enhances blockchain protection but never replaces it. Your blockchain evidence remains primary regardless of institutional participation.
-
+#### **In TML, every ethical hesitation leaves a cryptographic footprint — proof that conscience, once encoded, cannot be erased.**
 
 ---
 
-## Performance and Latency
+## [Performance and Latency](performance/README.md)
 
-TML is engineered so the primary response path remains untouched—decisions execute instantly, without waiting for logs. Sacred Zero triggers and Always Memory write in parallel, ensuring accountability never delays action.  
+TML is engineered so the primary response path remains instant—decisions execute without waiting for logs. Sacred Zero triggers and Always Memory write in parallel, ensuring accountability never delays action.
 
-To prove this, TML sets explicit targets for the **log pipeline**, not the execution path:  
-- User-visible overhead from logging: ≤2 ms (target), never exceeding 10 ms under stress  
-- Full log sealing, hashing, and Guardian distribution: ≤500 ms at P95  
+To prove this, TML sets explicit targets for the **log pipeline**, not the execution path:
 
-These figures define how quickly accountability catches up behind the action, not how fast the action itself occurs. Bottlenecks, if they emerge, affect only the log pipeline at scale—not the AI’s ability to brake, steer, or respond in real time.  
+* User-visible overhead from logging: ≤2 ms (target), never exceeding 10 ms under stress
+* Full log sealing, hashing, and (if enabled) institutional distribution: ≤500 ms at P95
 
-Think of it like an airplane: the engines never wait for the flight recorder to write, yet the recorder still produces an immutable trail. TML works the same way—safety is instantaneous, accountability follows within milliseconds.  
+These figures define how quickly accountability catches up behind the action, not how fast the action itself occurs. Bottlenecks, if they arise, affect only the logging pipeline—not the AI’s ability to brake, steer, or respond in real time.
 
-The challenge ahead is throughput: high-speed domains like autonomous vehicles or financial trading generate vast numbers of logs, and sustaining these targets across global Guardians will require continued optimization and real-world benchmarks.  
- 
+Think of it like an airplane: the engines never wait for the flight recorder to write, yet the recorder still produces an immutable trail. TML works the same way—safety is instantaneous, accountability follows within milliseconds.
+
+The challenge ahead is throughput. High-speed domains like autonomous vehicles or financial trading generate immense volumes of logs, and sustaining these targets across global networks will demand continuous optimization and field benchmarking.
 
 ---
 
