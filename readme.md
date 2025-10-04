@@ -86,7 +86,7 @@ a city-planning engine halts to notice a floodplain;
 a tutor bot waits, then asks a struggling student *which part feels hardest*.  
 In each case, the hesitation averts harm and uncovers understanding.  
 
-#### **"Wisdom lies not in having all the answers, but in knowing when to pause and ask better questions."** — Lev Goukassian
+#### *"Wisdom lies not in having all the answers, but in knowing when to pause and ask better questions."* — Lev Goukassian
 
 ---
 
