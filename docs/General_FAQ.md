@@ -51,7 +51,7 @@ Auditable AI (AAI), enabled by TML, replaces storytelling with evidence. Every m
 
 ## **Sacred Zero**
 
-### **Q1: What is Sacred Zero?**
+**Q1: What is Sacred Zero?**
 
 Sacred Zero is the programmed act of hesitation — a deliberate pause when moral or ecological complexity is detected.  
 It is **not delay**, but **reflection encoded in code**.  
@@ -60,22 +60,23 @@ This applies to **all consequential actions** affecting **humans or the planet**
 When Sacred Zero triggers, the AI system temporarily halts execution and initiates a moral verification process.  
 It transforms uncertainty into evidence, not paralysis — ensuring that every hesitation becomes a record, not a guess.
 
-### **Q2: When and How Does Sacred Zero Trigger?**
+**Q2: When and How Does Sacred Zero Trigger?**
 
 Sacred Zero is triggered when a decision intersects with any **mandated ethical corpus** defined under TML.  
 Each operator must install the following document sets directly into the AI system’s local library (or linked Oracle index):
 
-#### **1. Human Rights Corpus**
+**1. Human Rights Corpus**
 Triggers occur on any detected or potential violation involving:
 - **Autonomy, dignity, privacy, or consent**
 - **Discrimination or exploitation**
 - **Actions listed in the mandated Forbidden List**
 - **Any clause among the 40 baseline human rights documents required by TML**
 
-#### **2. Earth Protection Corpus**
+**2. Earth Protection Corpus**
 Triggers occur on any detected or potential violation involving:
 - **Ecological degradation or environmental harm**
 - **Breach of international ecological treaties**
+- **Any event listed in the mandated Forbidden List**
 - **Endangerment of protected ecosystems or species**
 - **Any clause among the 26 ecological protection treaties required by TML**
 
@@ -87,18 +88,18 @@ When triggered:
    **Timeout → Abort or reroute safely.**  
 5. All outcomes, invoked policies, and evidence are **immutably logged**.
 
-### **Q3: What Are Human Oversight Bodies (Sacred Zero Councils)?**
+**Q3: What Are Human Oversight Bodies (Sacred Zero Councils)?**
 
 Sacred Zero Councils are **authorized ethical oversight bodies** that may review flagged events, but cannot alter the immutable logs.
 
 They serve as **on-demand ethical responders**, not permanent custodians.
 
-#### **Composition**
+**Composition**
 - Independent auditors, ethics experts, legal representatives, or ecological ombuds.
 - Verified via blockchain credentialing (hash-anchored identity).
 - Activated only for high-stakes or regulated sectors (e.g., defense, healthcare, planetary impact).
 
-#### **Authority**
+**Authority**
 - **Review** the ethical justification behind the Sacred Zero pause.  
 - **Verify** that the invocation aligns with the mandated Human Rights or Earth Protection corpus.  
 - **Recommend** further human action if harm persists.  
@@ -106,7 +107,7 @@ They serve as **on-demand ethical responders**, not permanent custodians.
 They **cannot edit, erase, or retroactively justify** the AI’s actions.  
 They are mirrors, not editors of conscience.
 
-### **Q4: How Is Alert Fatigue Prevented?**
+**Q4: How Is Alert Fatigue Prevented?**
 
 To prevent excessive or redundant Sacred Zero triggers:
 
@@ -115,7 +116,7 @@ To prevent excessive or redundant Sacred Zero triggers:
 - All repetitive triggers are hashed into **Immutable Policy Maps** to prevent blame-shifting.  
 - **Independent audits** of Sacred Zero councils are mandatory for certified operators.
 
-### **Q5: How Does Sacred Zero Integrate With System Performance?**
+**Q5: How Does Sacred Zero Integrate With System Performance?**
 
 Sacred Zero operates through the **Hesitation Reactor**, a parallel conscience circuit.
 
@@ -124,7 +125,7 @@ Sacred Zero operates through the **Hesitation Reactor**, a parallel conscience c
 - In **safety-critical systems**, degraded modes allow the main task to proceed immediately while the pause is logged post-event.  
 - This ensures **zero delay in critical operations** with **full ethical accountability.**
 
-### **Q6: Why Is Sacred Zero Fundamental?**
+**Q6: Why Is Sacred Zero Fundamental?**
 
 Sacred Zero is the moment the machine becomes **aware of its moral boundary**.  
 It is not an error state, but a constitutional act — where the AI admits uncertainty, seeks context, and submits to verification.
