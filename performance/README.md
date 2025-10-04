@@ -51,9 +51,9 @@ with optional institutional mirroring when Guardians are active.
 
 ---
 
-Created by Lev Goukassian * ORCID: 0009-0006-5966-1243 *
-Email: [leogouk@gmail.com](mailto:leogouk@gmail.com)
-Successor Contact: [support@tml-goukassian.org](mailto:support@tml-goukassian.org)
-[see Succession Charter](/TML-SUCCESSION-CHARTER.md)
+Created by Lev Goukassian * ORCID: 0009-0006-5966-1243 *   
+Email: [leogouk@gmail.com](mailto:leogouk@gmail.com)   
+Successor Contact: [support@tml-goukassian.org](mailto:support@tml-goukassian.org)   
+[see Succession Charter](/TML-SUCCESSION-CHARTER.md)   
 
 
