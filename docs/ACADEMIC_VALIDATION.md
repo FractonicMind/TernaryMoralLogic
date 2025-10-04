@@ -332,9 +332,6 @@ def guardian_validation_waste():
 
 Academic validation of TML proves one thing definitively: **blockchain eliminates the need for institutional oversight**. Mathematical consensus provides stronger validation than any committee. Smart contracts enforce more reliably than any institution. Cryptographic proof stands stronger in court than academic opinions.
 
-The age of committee-based governance is over. The era of mathematical accountability has begun.
-
-**Deploy in 10 minutes. Protect forever. No committees required.**
 
 ---
 
@@ -346,7 +343,6 @@ The age of committee-based governance is over. The era of mathematical accountab
 **Repository**: https://github.com/FractonicMind/TernaryMoralLogic  
 
 **For Blockchain Support**: support@tml-goukassian.org  
-**For Guardian Information**: Read this document again. You don't need them.
 
 ---
 
