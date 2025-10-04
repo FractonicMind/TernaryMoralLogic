@@ -136,96 +136,6 @@ The three components of The Goukassian Promise: The Lantern, The Signature, and 
 
 ---
 
-## 🌍 [**Planetary Protection Through Sacred Zero**](docs/earth)
-
-TML binds Earth’s protection to human protection. Sacred Zero triggers for threats to ecosystems, water, biodiversity, or climate; because humanity cannot survive on a dead planet. Every AI decision with ecological impact creates an immutable memory.
-
-### Triggers
-
-* Excessive carbon emissions
-* Water depletion in stressed basins
-* Habitat or biodiversity loss
-* Supply chain or energy choices harming renewables
-* Violations of Indigenous sovereignty or FPIC
-* Primary forest or wetland destruction
-* Critical species impact or tipping points
-
-### Logged Evidence
-
-```json
-"environmental_impact": {
-  "resource": "freshwater_aquifer",
-  "depletion_rate": "3.2%_annual",
-  "irreversibility_score": 0.84,
-  "carbon_equiv": "47.3_tons",
-  "community": "local_indigenous_group",
-  "fpic_status": "not_obtained"
-}
-```
-### Community Role
-
-* Indigenous/local groups as data stewards
-* Sovereign Ecological Records under data sovereignty
-* Stewardship Fund rewards verified monitoring
-* Offline-first design for remote areas
-* Communities retain permanent control of their data
-
-### Why It Matters
-
-Earth cannot testify in court. Always Memory becomes its witness: every hesitation, every harm, every ignored alternative permanently recorded. This is not greenwashing but cryptographic evidence for future generations.
-
-
-### Stewardship, Conflict, and Security
-
-See [docs/earth](docs/earth) for:  
-- **Stewardship Fund Economics** (community incentives and emergency response)  
-- **Conflict Resolution** (Sacred Zero during disputes, ombudsperson, veto rights)  
-- **Security & Validation** (multi-oracle consensus, treaty verification, anti-greenwashing)  
-- **Green Score** (independent assessment: 100/100)  
-- **Status** (schemas, oracles, community workflows complete)  
-
-### Architecture
-
-* **Tier 1 (Global Baselines):** UN treaties, IPCC, IUCN, regional regulations
-* **Tier 2 (Community Witness):** Indigenous/local reports, validated by quorum and anchored via Oracles
-
-#### Implementation Structure
-
-[/docs/earth/](https://github.com/FractonicMind/TernaryMoralLogic/tree/main/docs/earth) — Core documentation
-- [LEGAL_MAPPING.md](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/earth/LEGAL_MAPPING.md) — Treaty/law integration
-- [COMMUNITY_GUIDE.md](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/earth/COMMUNITY_GUIDE.md) — Indigenous participation guide  
-- [ECONOMY.md](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/earth/ECONOMY.md) — Stewardship Fund design
-
-[/schemas/earth/](https://github.com/FractonicMind/TernaryMoralLogic/tree/main/schemas/earth) — Data structures
-- [earth_extension.schema.json](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/schemas/earth/earth_extension.schema.json)
-- [community_registration.schema.json](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/schemas/earth/community_registration.schema.json)
-
-[/policies/earth/](https://github.com/FractonicMind/TernaryMoralLogic/tree/main/policies/earth) — Rules engine
-- [ECO_HARM_RULES.yaml](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/policies/earth/ECO_HARM_RULES.yaml) — Sacred Zero triggers
-
-[/tests/earth/](https://github.com/FractonicMind/TernaryMoralLogic/tree/main/tests/earth) — Validation suite
-- [baseline_cases.md](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/tests/earth/baseline_cases.md) — Standard scenarios
-- [/red_team/](https://github.com/FractonicMind/TernaryMoralLogic/tree/main/tests/earth/red_team) — Security testing
-  - [attack_surface.md](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/tests/earth/red_team/attack_surface.md)
-  - [internal_conflict_case.md](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/tests/earth/red_team/internal_conflict_case.md)
-
-[/governance/earth/](https://github.com/FractonicMind/TernaryMoralLogic/tree/main/governance/earth) — Decision framework
-- [COMMUNITY_SEAT_RULES.md](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/governance/earth/COMMUNITY_SEAT_RULES.md) — Representation structure
-- [OMBUDSPERSON_PROTOCOL.md](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/governance/earth/OMBUDSPERSON_PROTOCOL.md) — Dispute resolution
-
-[/oracles/](https://github.com/FractonicMind/TernaryMoralLogic/tree/main/oracles) — Data bridges
-- [oracle_bridge.py](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/oracles/oracle_bridge.py) — Fetch and validate sources
-- [eco_oracle_network.json](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/oracles/eco_oracle_network.json) — Network configuration
-
-#### *"Routine memories are cheap; missing memories are expensive. Earth's memories are priceless."*
-
----
-
-This section is already crisp and forceful, but we can sharpen it in two ways: tighten terminology and clarify the *roles* of each layer so a reader immediately grasps the architectural and legal logic.
-Here’s how I’d refine it:
-
----
-
 ## [Hybrid Shield](protection/Hybrid-Shield.md)
 
 The **Hybrid Shield** is TML’s double-layer integrity system that guarantees the permanence and verifiability of every Moral Trace Log. It fuses **mathematics** and **distributed oversight** into a single armor against tampering or erasure.
@@ -317,6 +227,123 @@ This design preserves accountability while protecting privacy. Courts and regula
 
 ---
 
+## 🌍 [**Planetary Protection Through Sacred Zero**](docs/earth)
+
+TML binds Earth’s protection to human protection. Sacred Zero triggers for threats to ecosystems, water, biodiversity, or climate; because humanity cannot survive on a dead planet. Every AI decision with ecological impact creates an immutable memory.
+
+### Triggers
+
+* Excessive carbon emissions
+* Water depletion in stressed basins
+* Habitat or biodiversity loss
+* Supply chain or energy choices harming renewables
+* Violations of Indigenous sovereignty or FPIC
+* Primary forest or wetland destruction
+* Critical species impact or tipping points
+
+### Logged Evidence
+
+```json
+"environmental_impact": {
+  "resource": "freshwater_aquifer",
+  "depletion_rate": "3.2%_annual",
+  "irreversibility_score": 0.84,
+  "carbon_equiv": "47.3_tons",
+  "community": "local_indigenous_group",
+  "fpic_status": "not_obtained"
+}
+```
+### Community Role
+
+* Indigenous/local groups as data stewards
+* Sovereign Ecological Records under data sovereignty
+* Stewardship Fund rewards verified monitoring
+* Offline-first design for remote areas
+* Communities retain permanent control of their data
+
+### Why It Matters
+
+Earth cannot testify in court. Always Memory becomes its witness: every hesitation, every harm, every ignored alternative permanently recorded. This is not greenwashing but cryptographic evidence for future generations.
+
+
+### Stewardship, Conflict, and Security
+
+See [docs/earth](docs/earth) for:  
+- **Stewardship Fund Economics** (community incentives and emergency response)  
+- **Conflict Resolution** (Sacred Zero during disputes, ombudsperson, veto rights)  
+- **Security & Validation** (multi-oracle consensus, treaty verification, anti-greenwashing)  
+- **Green Score** (independent assessment: 100/100)  
+- **Status** (schemas, oracles, community workflows complete)  
+
+### Architecture
+
+* **Tier 1 (Global Baselines):** UN treaties, IPCC, IUCN, regional regulations
+* **Tier 2 (Community Witness):** Indigenous/local reports, validated by quorum and anchored via Oracles
+
+#### Implementation Structure
+
+[/docs/earth/](https://github.com/FractonicMind/TernaryMoralLogic/tree/main/docs/earth) — Core documentation
+- [LEGAL_MAPPING.md](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/earth/LEGAL_MAPPING.md) — Treaty/law integration
+- [COMMUNITY_GUIDE.md](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/earth/COMMUNITY_GUIDE.md) — Indigenous participation guide  
+- [ECONOMY.md](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/earth/ECONOMY.md) — Stewardship Fund design
+
+[/schemas/earth/](https://github.com/FractonicMind/TernaryMoralLogic/tree/main/schemas/earth) — Data structures
+- [earth_extension.schema.json](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/schemas/earth/earth_extension.schema.json)
+- [community_registration.schema.json](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/schemas/earth/community_registration.schema.json)
+
+[/policies/earth/](https://github.com/FractonicMind/TernaryMoralLogic/tree/main/policies/earth) — Rules engine
+- [ECO_HARM_RULES.yaml](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/policies/earth/ECO_HARM_RULES.yaml) — Sacred Zero triggers
+
+[/tests/earth/](https://github.com/FractonicMind/TernaryMoralLogic/tree/main/tests/earth) — Validation suite
+- [baseline_cases.md](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/tests/earth/baseline_cases.md) — Standard scenarios
+- [/red_team/](https://github.com/FractonicMind/TernaryMoralLogic/tree/main/tests/earth/red_team) — Security testing
+  - [attack_surface.md](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/tests/earth/red_team/attack_surface.md)
+  - [internal_conflict_case.md](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/tests/earth/red_team/internal_conflict_case.md)
+
+[/governance/earth/](https://github.com/FractonicMind/TernaryMoralLogic/tree/main/governance/earth) — Decision framework
+- [COMMUNITY_SEAT_RULES.md](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/governance/earth/COMMUNITY_SEAT_RULES.md) — Representation structure
+- [OMBUDSPERSON_PROTOCOL.md](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/governance/earth/OMBUDSPERSON_PROTOCOL.md) — Dispute resolution
+
+[/oracles/](https://github.com/FractonicMind/TernaryMoralLogic/tree/main/oracles) — Data bridges
+- [oracle_bridge.py](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/oracles/oracle_bridge.py) — Fetch and validate sources
+- [eco_oracle_network.json](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/oracles/eco_oracle_network.json) — Network configuration
+
+#### *"Routine memories are cheap; missing memories are expensive. Earth's memories are priceless."*
+
+---
+
+Good section — short, clear, and full of moral voltage.
+To make it consistent with the tone of the newer repo files, two upgrades are worth doing:
+
+1. **Frame these as mandatory accountability mechanisms**, not optional “programs.” It aligns with TML’s constitutional style.
+2. **Add a one-line introduction** that defines their legal and moral purpose. Readers should know *why* they exist before reading numbers.
+
+Here’s the refined version:
+
+---
+
+## Protection Programs
+
+TML mandates permanent safety mechanisms for those who expose wrongdoing or suffer verified harm. These programs ensure restitution is not symbolic but systemic.
+
+### [Whistleblower Rewards](governance/whistleblower_protection.md)
+
+* 15% share of recovered penalties
+* Anonymous and encrypted reporting channels
+* Criminal prosecution for retaliation or suppression
+* Legal representation funded by the Memorial Fund
+
+### [Victim Compensation](governance/victim_protection.md)
+
+* 30% of penalties distributed to victims
+* Vulnerable populations receive **40%** of all victim allocations
+* Immediate emergency disbursement from escrow
+* Lifetime care mandated for permanent physical or psychological injury   
+
+#### **Together, these protections turn ethics from a slogan into a ledger — where justice leaves a receipt.**
+
+---
+
 ## [Governance: Operational and Legal Implications](GOVERNANCE.md)
 
 **The Legal Imperative: Forensic Readiness**
@@ -355,30 +382,14 @@ Failure to meet the aforementioned standards for log integrity and accuracy coul
 
 ---
 
-## Protection Programs
+## Blockchain Protection
 
-### [Whistleblower Rewards](governance/whistleblower_protection.md)
--  15% of recovered penalties
--  Anonymous reporting channels
--  Criminal prosecution for retaliation
--  Memorial Fund legal support
+**TML delivers immediate AI accountability through public blockchain anchoring.** Every decision creates tamper-proof evidence anchored to Bitcoin, Ethereum, and Polygon.
 
-### [Victim Compensation](governance/victim_protection.md)
--  30% of penalties to victims
--  Vulnerable populations receive 40% of victim funds
--  Immediate emergency support
--  Lifetime care for permanent injury
-
----
-
-## Blockchain-First Protection - Deploy Today, Protect Immediately
-
-**TML delivers immediate AI accountability through public blockchain anchoring.** Every decision creates tamper-proof evidence anchored to Bitcoin, Ethereum, and Polygon - no waiting for institutional coordination, no committee approvals, no delays.
-
-### **10-Minute Deployment to Full Protection**
+### Deployment to Full Protection**
 
 ```bash
-# Deploy complete TML protection in 10 minutes
+# Deploy complete TML protection
 docker run -d tml/protection:blockchain-latest
 curl http://localhost:8080/evaluate \
   -d '{"operation": "hiring", "data": {...}}'
@@ -409,21 +420,6 @@ Cost Optimization: OpenTimestamps (free archival)
 - **Speed** - Polygon provides instant accountability, Bitcoin provides permanence  
 - **Cost** - Layer-2 optimization reduces fees by 90%+
 - **Legal** - Multiple jurisdictions recognize different chains
-
-### **Real Economics - Profitable from Day One**
-
-**Monthly Cost (2025 USD):**
-- TML Protection: $110/month
-- Blockchain Anchoring: $7.50/day (multi-chain)
-- **Total**: ~$335/month
-
-**Monthly Savings (2025 USD):**
-- Insurance Discounts: $500-1,500/month (20-40% reduction)
-- Lawsuit Prevention: $80,000+ avoided per incident
-- **Net Profit**: $165-1,165/month minimum
-- **ROI**: 300-800% annually
-
-**Per-Decision Cost**: Half a tenth of a cent (0.0005 USD)
 
 ### **Blockchain Evidence Standards**
 
@@ -493,7 +489,7 @@ def process_decision(message):
 
 ### **Future Evolution Path**
 
-**Blockchain-First Foundation (Current):**
+**Blockchain Foundation (Current):**
 - Complete protection from day one
 - Court-admissible evidence 
 - Insurance savings and legal compliance
@@ -505,27 +501,6 @@ def process_decision(message):
 
 **Key Principle**: Guardian Network enhances blockchain protection but never replaces it. Your blockchain evidence remains primary regardless of institutional participation.
 
-### **Why Blockchain-First Wins**
-
-**Immediate Deployment:**
-- No waiting for institutional coordination
-- No committee approvals or bureaucracy
-- Deploy this afternoon, protect people today
-
-**Unbreakable Evidence:**
-- Cryptographically impossible to alter or delete
-- Survives corporate bankruptcy and government change
-- Strengthens over time as blockchain grows
-
-**Economic Advantage:**
-- Insurance savings cover all costs from month one
-- Lawsuit prevention provides massive ROI
-- Competitive advantage through verified ethical AI
-
-**Legal Certainty:**
-- Meets evidence standards in all major jurisdictions
-- Prevents spoliation sanctions
-- Creates defensive legal position
 
 ---
 
