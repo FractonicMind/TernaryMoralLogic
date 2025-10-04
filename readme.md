@@ -312,7 +312,7 @@ See [docs/earth](docs/earth) for:
 
 ---
 
-## Protection Programs
+## [Protection Programs](governance/)
 
 TML mandates permanent safety mechanisms for those who expose wrongdoing or suffer verified harm. These programs ensure restitution is not symbolic but systemic.
 
@@ -474,6 +474,7 @@ framework = create_tml_framework(domain="general")
 result = framework.process_decision(context)
 
 # If logging fails, decision halts immediately
+```
 
 ---
 
