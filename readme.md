@@ -313,7 +313,6 @@ Earth cannot testify in court. Always Memory becomes its witness: every hesitati
 
 ### Stewardship, Conflict, and Security
 
-See [docs/earth](docs/earth) for:  
 - **Stewardship Fund Economics** (community incentives and emergency response)  
 - **Conflict Resolution** (Sacred Zero during disputes, ombudsperson, veto rights)  
 - **Security & Validation** (multi-oracle consensus, treaty verification, anti-greenwashing)  
