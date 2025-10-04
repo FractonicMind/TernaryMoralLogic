@@ -15,44 +15,44 @@
 ### Introduction
 
 The rapid expansion of artificial intelligence into domains of consequential decision-making has revealed a structural limitation in the logic that underlies most computational systems.  
-Human moral reasoning operates within gradients of ambiguity and emotional context, while traditional AI systems remain confined to binary evaluation — true or false, safe or unsafe, allowed or denied.  
+Human moral reasoning operates within gradients of ambiguity and emotional context, while traditional AI systems remain confined to binary evaluation, true or false, safe or unsafe, allowed or denied.  
 
 This cultural preference for certainty over hesitation, simplicity over nuance, is reflected in how machines are built. Binary systems mirror human impatience with doubt.  
 
 **Ternary Moral Logic (TML)** was conceived to address two inherent deficiencies in this paradigm.  
 First, the reduction of moral complexity to a binary choice, where ethical reasoning collapses into mechanical decision trees.  
-Second, the absence of a true human–AI partnership. Traditional ethical frameworks position the machine as an autonomous moral agent — a black box whose internal reasoning remains inaccessible.  
+Second, the absence of a true human–AI partnership. Traditional ethical frameworks position the machine as an autonomous moral agent, a black box whose internal reasoning remains inaccessible.  
 
-TML introduces a *third logical state* — the **Sacred Zero** — a deliberate pause in execution that transforms hesitation into evidence.  
+TML introduces a *third logical state*, the **Sacred Zero**, a deliberate pause in execution that transforms hesitation into evidence.  
 This zero-state does not paralyze; it reflects. It creates the temporal and moral space for human review, dialogue, or deferral.  
 In doing so, TML redefines the machine not as a moral arbiter, but as a collaborator that enhances human judgment.
 
 The philosophical foundation of TML is inseparable from the life of its creator, **Lev Goukassian**.  
-The idea was born during his confrontation with terminal illness — in a hospital room where time itself became sacred.  
+The idea was born during his confrontation with terminal illness, in a hospital room where time itself became sacred.  
 The contrast between the measured compassion of a doctor and the unthinking acceleration of machines revealed the ethical deficit of speed without reflection.  
 From that experience emerged the principle of **Sacred Zero**: the moment when a system chooses consciousness over compulsion, thought over reaction.  
 
-TML, therefore, is not merely a framework of logic but an ethical architecture — born from lived experience, designed to restore dignity to both human and machine reasoning.
+TML, therefore, is not merely a framework of logic but an ethical architecture, born from lived experience, designed to restore dignity to both human and machine reasoning.
 
 ---
 
 ## How TML Works: A Technical Poetry
 
-A **prompt** arrives — and TML divides instantly into parallel streams.  
+A **prompt** arrives, and TML divides instantly into parallel streams.  
 The **primary path** executes the AI’s response without delay, while **Sacred Zero** runs alongside, scanning for ambiguity, conflict, or potential harm.  
 
-When uncertainty breaches its ethical threshold, a pause is marked and the reasoning flagged — never halting execution, but always recording the hesitation.  
+When uncertainty breaches its ethical threshold, a pause is marked and the reasoning flagged, never halting execution, but always recording the hesitation.  
 From the first token, **Always Memory** begins its witness.  
 
 Every decision generates a triadic record:  
 **+1** to proceed, **0** for Sacred Zero’s hesitation, **−1** to refuse harm.  
-Each entry is cryptographically sealed, timestamped, and chained to its predecessors — a lineage of accountability no developer, corporation, or government can sever.  
+Each entry is cryptographically sealed, timestamped, and chained to its predecessors, a lineage of accountability no developer, corporation, or government can sever.  
 
 At the center stands the **Goukassian Promise**:  
 *Pause when truth is uncertain. Refuse when harm is clear. Proceed when truth is evident.*  
 This vow is not decorative text; it is executable law encoded into architecture.  
 
-The resulting artifacts are **Moral Trace Logs** — not telemetry, but verifiable testimony.  
+The resulting artifacts are **Moral Trace Logs**, not telemetry, but verifiable testimony.  
 Each log is wrapped within the **Hybrid Shield**:  
 - The **Mathematical Shield** anchors hashes to multiple public ledgers, creating cryptographic immutability.  
 - The **Public Blockchain Shield** ensures that any tampering, even by a single bit, exposes itself across networks of record.
@@ -63,22 +63,22 @@ Each log is wrapped within the **Hybrid Shield**:
 
 ### **The Three Voices of Ethical AI**
 
-Ternary Moral Logic moves beyond binary constraint by giving AI systems a triadic framework for ethical reasoning — three distinct states of moral awareness, poetically called the **voices** of an ethically awake machine.  
+Ternary Moral Logic moves beyond binary constraint by giving AI systems a triadic framework for ethical reasoning: three distinct states of moral awareness, poetically called the **voices** of an ethically awake machine.  
 Each voice corresponds to a numerical value, forming a structure that is both philosophical and computational.
 
-**+1 (Proceed) — The Voice of Confidence**  
+**+1 (Proceed): The Voice of Confidence**  
 This is the clear affirmative: a decision grounded in alignment with ethical principles and minimal risk of harm.  
-It represents action with integrity — an AI assisting a writer with a thank-you note, or summarizing research without distortion.  
+It represents action with integrity, an AI assisting a writer with a thank-you note, or summarizing research without distortion.  
 The Voice of Confidence is where utility and goodness coincide.
 
-**−1 (Refuse) — The Voice of Moral Resistance**  
+**−1 (Refuse): The Voice of Moral Resistance**  
 This voice speaks when harm is clear or violation unavoidable.  
 Unlike the cold silence of binary refusal, TML encodes a *quality of resistance*: explanation, redirection, and care.  
 The AI must articulate *why* it declines, offering safer paths instead of blank denials.  
-In this, refusal becomes a teaching act — protective, not punitive.
+In this, refusal becomes a teaching act protective, not punitive.
 
-**0 (Hesitate / Inquire) — The Voice of Wisdom, the Sacred Zero**  
-This is the pause — not indecision, but awareness.  
+**0 (Hesitate / Inquire): The Voice of Wisdom, the Sacred Zero**  
+This is the pause, not indecision, but awareness.  
 When facing ambiguity or risk, the AI records a hesitation event, seeking more information or escalating to human review.  
 The Sacred Zero is the system’s conscience checkpoint, the interval where thought replaces reaction.  
 A medical model pauses before diagnosing a rash and asks about travel history;  
@@ -86,7 +86,7 @@ a city-planning engine halts to notice a floodplain;
 a tutor bot waits, then asks a struggling student *which part feels hardest*.  
 In each case, the hesitation averts harm and uncovers understanding.  
 
-#### *"Wisdom lies not in having all the answers, but in knowing when to pause and ask better questions."* — Lev Goukassian
+#### *“Sacred Zero is where wisdom lies, not in having all the answers but in knowing when to pause and ask better questions.”* — Lev Goukassian
 
 ---
 
@@ -125,34 +125,34 @@ Ternary Moral Logic introduces a revolutionary third state to artificial intelli
 TML defines **standards and specifications** for ethical decision-making in AI.  
 It transforms moral reasoning into auditable architecture, ensuring accountability across humans, institutions, and the planet.
 
-* **Sacred Zero design requirements** — codified hesitation points for moral and ecological complexity  
-* **Governance rules for accountability** — mandatory oversight structures and human review protocols  
-* **Audit trail obligations for transparency** — cryptographically anchored Moral Trace Logs ensuring “No Memory = No Action”  
-* **Legal enforceability** — built-in compliance mapping to international treaties and national laws  
-* **Planetary protection** — ecological harm thresholds embedded into Sacred Zero triggers, binding AI to Earth’s survival
-* **Safeguards for vulnerable populations** — explicit human rights triggers preventing systemic or algorithmic abuse  
+* **Sacred Zero design requirements**: codified hesitation points for moral and ecological complexity  
+* **Governance rules for accountability**: mandatory oversight structures and human review protocols  
+* **Audit trail obligations for transparency**: cryptographically anchored Moral Trace Logs ensuring “No Memory = No Action”  
+* **Legal enforceability**: built-in compliance mapping to international treaties and national laws  
+* **Planetary protection**: ecological harm thresholds embedded into Sacred Zero triggers, binding AI to Earth’s survival
+* **Safeguards for vulnerable populations**: explicit human rights triggers preventing systemic or algorithmic abuse  
 
 ### **What TML Is Not**
 
 TML explicitly **does not include** or provide:
 
-* **Software** — it defines architecture, not code  
-* **Hardware** — it mandates logic, not devices  
-* **Consulting** — it sets standards, not services  
-* **Legal Advice** — it offers structure, not counsel  
-* **Compliance Replacement** — it supplements regulation, never substitutes for law  
-* **Corporate Branding** — it is a public framework, not proprietary IP  
+* **Software**: it defines architecture, not code  
+* **Hardware**: it mandates logic, not devices  
+* **Consulting**: it sets standards, not services  
+* **Legal Advice**: it offers structure, not counsel  
+* **Compliance Replacement**: it supplements regulation, never substitutes for law  
+* **Corporate Branding**: it is a public framework, not proprietary IP  
 
 ### **Implementation Responsibility**
 
 Organizations implementing TML bear **full legal and ethical responsibility** for:
 
-- **Technical Conformance** — meeting all specifications and mandatory logging standards defined by TML  
-- **Regulatory Compliance** — adhering to all applicable human rights, environmental, and data protection laws  
-- **Operational Safety** — ensuring systems operate within auditable, risk-bounded parameters at all times  
-- **Human Competency** — training, certifying, and periodically re-evaluating staff responsible for TML oversight  
-- **Accountability and Redress** — guaranteeing transparent harm tracing, immediate mitigation protocols, and mandatory compensation for human or ecological victims  
-- **Audit Cooperation** — granting auditors and regulators access to Moral Trace Logs when evidence of harm or misconduct is suspected  
+- **Technical Conformance**: meeting all specifications and mandatory logging standards defined by TML  
+- **Regulatory Compliance**: adhering to all applicable human rights, environmental, and data protection laws  
+- **Operational Safety**: ensuring systems operate within auditable, risk-bounded parameters at all times  
+- **Human Competency**: training, certifying, and periodically re-evaluating staff responsible for TML oversight  
+- **Accountability and Redress**: guaranteeing transparent harm tracing, immediate mitigation protocols, and mandatory compensation for human or ecological victims  
+- **Audit Cooperation**: granting auditors and regulators access to Moral Trace Logs when evidence of harm or misconduct is suspected  
 
 ---
 
@@ -189,17 +189,17 @@ The **Hybrid Shield** is TML’s double-layer integrity system that guarantees t
 Each log is **hash-chained**, **Merkle-batched**, and **anchored** to multiple public blockchains (Bitcoin, Ethereum, Polygon, OpenTimestamps).
 This cryptographic layer ensures:
 
-* **Tamper-evidence** — any alteration breaks the hash chain.
-* **Immutability** — logs survive across independent ledgers.
-* **Legal admissibility** — RFC 3161-compliant proofs accepted as digital evidence.
+* **Tamper-evidence**: any alteration breaks the hash chain.
+* **Immutability**: logs survive across independent ledgers.
+* **Legal admissibility**: RFC 3161-compliant proofs accepted as digital evidence.
 
 ### 2. Institutional Shield (Public Blockchain Custody)
 
 Regulators, NGOs, insurers, and universities may run **custody nodes** or **witness validators** that attest to the same log hashes.
 Their participation adds:
 
-* **Geopolitical redundancy** — truth mirrored across jurisdictions.
-* **Public trust** — human institutions share verification with machines.
+* **Geopolitical redundancy**: truth mirrored across jurisdictions.
+* **Public trust**: human institutions share verification with machines.
 
 Together, these layers form the Hybrid Shield: *mathematical permanence reinforced by institutional eyes*.
 Once a decision is anchored, **it cannot be hidden, altered, or destroyed**.
@@ -242,7 +242,7 @@ This design preserves accountability while protecting privacy. Courts and regula
 - [Memorial_Fund_Human_Rights.md](compliance/human_rights/Memorial_Fund_Human_Rights.md)  
 - [README.md](compliance/human_rights/README.md)  
 
-### Mandates — Categorical
+### Mandates: Categorical
 - [Autonomy_Consent.yaml](compliance/mandates/categorical/human_rights/Autonomy_Consent.yaml)  
 - [Dignity_Preservation.md](compliance/mandates/categorical/human_rights/Dignity_Preservation.md)  
 - [Discrimination_Prevention.yaml](compliance/mandates/categorical/human_rights/Discrimination_Prevention.yaml)  
@@ -252,7 +252,7 @@ This design preserves accountability while protecting privacy. Courts and regula
 - [Sacred_Zero_Human.yaml](compliance/mandates/categorical/human_rights/Sacred_Zero_Human.yaml)  
 - [Vulnerable_Populations.md](compliance/mandates/categorical/human_rights/Vulnerable_Populations.md)  
 
-### Mandates — Core
+### Mandates: Core
 - [Legal_Mapping_Human_Rights.md](compliance/mandates/core/Legal_Mapping_Human_Rights.md)  
 
 ### Protocols
@@ -374,7 +374,7 @@ TML mandates permanent safety mechanisms for those who expose wrongdoing or suff
 * Immediate emergency disbursement from escrow
 * Lifetime care mandated for permanent physical or psychological injury   
 
-#### **Together, these protections turn ethics from a slogan into a ledger — where justice leaves a receipt.**
+#### **Together, these protections turn ethics from a slogan into a ledger, where justice leaves a receipt.**
 
 ---
 
@@ -465,7 +465,7 @@ Recognized under:
 The blockchain foundation is fully operational today.
 An **optional Guardian Network** of institutional custodians may extend trust verification, offering additional insurance and international recognition.
 
-#### **In TML, every ethical hesitation leaves a cryptographic footprint — proof that conscience, once encoded, cannot be erased.**
+#### **In TML, every ethical hesitation leaves a cryptographic footprint, proof that conscience, once encoded, cannot be erased.**
 
 ---
 
@@ -488,7 +488,7 @@ The challenge ahead is throughput. High-speed domains like autonomous vehicles o
 
 ## [From Black Box to Glass Box](protection/integrity-monitoring.md)
 
-A common misconception is that TML operates as a “black box” — recording events after harm occurs but offering no prevention.  
+A common misconception is that TML operates as a “black box”, recording events after harm occurs but offering no prevention.  
 This view misunderstands its constitutional design. TML was never intended as a kill switch; it is a **forensic safeguard**, ensuring that no consequential decision can vanish into opacity.
 
 Every Moral Trace Log is immutable, cryptographically anchored, and mirrored across independent custodians under the Hybrid Shield.  
@@ -500,7 +500,7 @@ In high-speed or safety-critical environments, where pausing could endanger live
 
 The core safeguard is this: **harm may occur, but it cannot disappear**.  
 Victims gain admissible evidence; regulators gain forensic continuity; society gains a permanent, verifiable record of every hesitation and failure.  
-TML does not hide the past — it makes the past legally permanent.
+TML does not hide the past, it makes the past legally permanent.
 
 ---
 
@@ -544,7 +544,7 @@ It receives mandatory contributions from commercial TML deployments and allocate
 - Victim compensation and whistleblower legal defense  
 - Open research in AI accountability and planetary ethics  
 
-The Fund institutionalizes gratitude — preserving both the moral and financial sustainability of the framework.
+The Fund institutionalizes gratitude, preserving both the moral and financial sustainability of the framework.
 
 Commercial and institutional implementations are required to contribute to the Memorial Fund as part of their license obligations.  
 All fund disbursements are governed under the [Memorial Fund Charter](/memorial/MEMORIAL_FUND.md) and supervised by the **TML Governance Council**.
