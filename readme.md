@@ -342,7 +342,7 @@ TML's most revolutionary aspect is its legal framework, which is built on the pr
 
 **Financial and Personal Liability**
 
-To ensure compliance, TML's legal framework includes a punitive structure designed to make non-compliance financially devastating and personally risky for leadership. Penalties can include astronomical fines of up to **10% of global revenue** or **2% of market cap per incident**. The framework introduces the concept of personal liability for executive" who might attempt to manipulate the system or its thresholds. The inclusion of massive whistleblower rewards, which can net individuals 30% of the fines levied, creates a powerful internal incentive for employees to expose fraud and negligence. This robust penalty structure is designed to align corporate incentives with ethical behavior, ensuring that accountability is embedded not just in the code but in the C-suite.  
+To ensure compliance, TML's legal framework includes a punitive structure designed to make non-compliance financially devastating and personally risky for leadership. Penalties can include astronomical fines of up to **10% of global revenue** or **2% of market cap per incident**. The framework introduces the concept of personal liability for executives" who might attempt to manipulate the system or its thresholds. The inclusion of massive whistleblower rewards, which can net individuals 30% of the fines levied, creates a powerful internal incentive for employees to expose fraud and negligence. This robust penalty structure is designed to align corporate incentives with ethical behavior, ensuring that accountability is embedded not just in the code but in the C-suite.  
 
 **The Legal Framework of TML**
 
@@ -353,7 +353,9 @@ To ensure compliance, TML's legal framework includes a punitive structure design
 
 **Statutory Liability Risks**
 
-Failure to meet the aforementioned standards for log integrity and accuracy could expose an organization to significant legal risk under U.S. federal law:
+### U.S. Federal Criminal Liability
+
+Failure to meet the aforementioned standards for log integrity and accuracy exposes organizations and executives to criminal penalties under U.S. federal law:
 
 - **18 U.S.C. § 1001 (False Statements):** Submitting an AI-generated log to a federal agency or in a court proceeding that contains materially false representations about the AI's reasoning could lead to criminal liability, including up to 5 years of imprisonment.   
 - **18 U.S.C. § 1519 (Destruction, Alteration, or Falsification of Records):** Once created, a Moral Trace Log becomes a legal record. Any knowing alteration, concealment, or falsification of this log with the intent to impede a federal investigation carries severe penalties, including up to 20 years of imprisonment.
@@ -368,7 +370,18 @@ Failure to meet the aforementioned standards for log integrity and accuracy coul
 -  **Fraud & Misrepresentation (Common Law; Securities Exchange Act Rule 10b-5):** Knowingly submitting altered or incomplete logs in commercial or investment contexts can trigger civil fraud. Penalties: Plaintiffs may recover treble damages, disgorgement of profits, rescission of deals, and injunctive relief.
 -  **Spoliation of Evidence (State Tort Doctrine):** Destroying or concealing Moral Trace Logs creates independent liability. Penalties: Courts may impose adverse inference instructions, monetary sanctions, compensatory damages, or default judgment against the offending party.
 -  **Consumer Protection Statutes (FTC Act § 5; State UDAP Laws):** Falsely advertising TML compliance is an unfair or deceptive practice. Penalties: Civil fines up to $50,120 per violation (FTC Act, adjusted for inflation), restitution to consumers, and injunctive orders barring future misconduct.
--  **Professional Malpractice (Medical, Legal, Financial):** Using or ignoring AI without TML logs in professional practice constitutes malpractice. Penalties: Civil judgments for malpractice damages, license suspension or revocation, and in some states, mandatory treble damages for reckless disregard.
+-  **Professional Malpractice (Medical, Legal, Financial):** Using or ignoring AI without TML logs in professional practice constitutes malpractice. Penalties: Civil judgments for malpractice damages, license suspension or revocation, and in some states, mandatory treble damages for reckless disregard.   
+
+Together, these legal provisions ensure that accountability within TML is not theoretical.  
+Every omission, falsification, or delay in Moral Trace Logging has direct legal, financial, and personal consequence.  
+TML thus aligns technological behavior with statutory duty, ensuring ethics are enforceable by design.
+
+For extended reference, see:
+- [Governance Framework](governance/GOVERNANCE.md)
+- [Whistleblower Protection](governance/whistleblower_protection.md)
+- [Victim Compensation Protocol](governance/victim_protection.md)
+- [Integrity Monitoring](protection/integrity-monitoring.md)
+- [Hybrid Shield Overview](protection/Hybrid-Shield.md)
 
 ---
 
@@ -429,118 +442,128 @@ The challenge ahead is throughput. High-speed domains like autonomous vehicles o
 
 ---
 
-## From Black Box to Glass Box
+## [From Black Box to Glass Box](protection/integrity-monitoring.md)
 
-A common critique is that TML functions only as a “black box”—recording after harm, but not preventing it. This is a misunderstanding. TML was never designed to halt execution like a circuit breaker; it was designed to ensure that no decision, once made, can vanish into opacity.  
+A common misconception is that TML operates as a “black box” — recording events after harm occurs but offering no prevention.  
+This view misunderstands its constitutional design. TML was never intended as a kill switch; it is a **forensic safeguard**, ensuring that no consequential decision can vanish into opacity.
 
-Every log is immutable, anchored, and distributed to independent Guardians. This transforms the AI from a black box into a **glass box**: its reasoning remains visible, its hesitations are preserved, and its obligations are traceable long after the moment of action.  
+Every Moral Trace Log is immutable, cryptographically anchored, and mirrored across independent custodians under the Hybrid Shield.  
+This transforms the AI from a black box into a **glass box**: its reasoning remains visible, its hesitations auditable, and its obligations legally traceable long after execution.
 
-Prevention is not abandoned. Sacred Zero acts as a hesitation trigger in domains where law or rights require escalation, and operators must route those cases to human oversight. But in high-speed or safety-critical contexts, where hesitation could cost lives, TML ensures accountability without delay.  
+Prevention is not removed but relocated. Sacred Zero functions as a controlled hesitation trigger where law, risk, or human rights require escalation.  
+Operators must route such cases to human oversight.  
+In high-speed or safety-critical environments, where pausing could endanger lives, TML preserves real-time response while guaranteeing complete post-event accountability.
 
-The real safeguard is this: **harm may still occur, but it cannot disappear**. Victims gain evidence, regulators gain forensic trails, and society gains a permanent ledger of when and why machines faltered. This is not a black box that hides failure; it is a glass box that makes failure undeniable, enforceable, and correctable.  
- 
+The core safeguard is this: **harm may occur, but it cannot disappear**.  
+Victims gain admissible evidence; regulators gain forensic continuity; society gains a permanent, verifiable record of every hesitation and failure.  
+TML does not hide the past — it makes the past legally permanent.
 
 ---
 
-## Implementation
-**Quick Start**   
+## [Implementation](docs/IMPLEMENTATION_GUIDE.md)
+
+**Quick Start**
+
+```python
 from implementations.python_library import create_tml_framework
 
- Framework-enforced thresholds (not configurable)
+# Initialize TML with domain-level thresholds (non-configurable)
 framework = create_tml_framework(domain="general")
 
- Process decision - logs or stops
-result = framework.process_decision(context)   
+# Evaluate and record decision outcome
+result = framework.process_decision(context)
 
-**If logging fails, decision halts immediately**
+# If logging fails, decision halts immediately
 
 ---
 
-## Framework Heritage and Attribution
+## [Framework Heritage and Attribution](memorial/MEMORIAL_FUND.md)
 
 ### Creator Attribution
 
-**Framework Originator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)  
-**Contact**: leogouk@gmail.com  
-**Legacy**: Sacred Zero as fundamental principle of ethical AI
+**Framework Originator:** Lev Goukassian (ORCID: 0009-0006-5966-1243)  
+**Contact:** leogouk@gmail.com  
+**Legacy:** Establishment of Sacred Zero as the foundational principle of ethical AI governance.
 
-All TML implementations must provide prominent attribution to Lev Goukassian as framework originator. Commercial implementations require memorial fund contributions supporting continued ethical AI research.
+All TML implementations must include clear and permanent attribution to Lev Goukassian as the originator of the framework and of the Sacred Zero principle.  
+Attribution must appear in documentation, user interfaces, and all derivative technical or legal materials referencing Ternary Moral Logic.  
+
+### Memorial Fund Requirement
+
+Commercial or institutional implementations are required to contribute to the Memorial Fund for Ethical AI Research.  
+These contributions sustain the ongoing protection, audit, and academic development of the TML standard.  
+Fund usage is governed under the [Memorial Fund Charter](/memorial/MEMORIAL_FUND.md) and overseen by the TML Governance Council.
+
+### License Compliance
+
+Attribution, licensing, and contribution terms form binding conditions under the [LICENSE](/LICENSE) file.  
+Failure to provide attribution or fulfill required memorial obligations constitutes a breach of compliance and voids derivative usage rights under the TML framework.
 
 ---
 
-## Getting Started
+## [Getting Started](docs/QUICK_START.md)
 
 ### Quick Start Guide
 
-1. **Read Compliance Requirements**: Start with [MANDATORY.md](docs/MANDATORY.md) and [COMPLIANCE_DISCLAIMER.md](docs/COMPLIANCE_DISCLAIMER.md)
-2. **Review Implementation Guide**: Follow [IMPLEMENTATION_GUIDE.md](docs/IMPLEMENTATION_GUIDE.md)
-3. **Check Conformance Standards**: Understand [CONFORMANCE_TESTING.md](docs/CONFORMANCE_TESTING.md)
-4. **Study Protection Principles**: Review [PROTECTION_PRINCIPLES.md](docs/PROTECTION_PRINCIPLES.md)
-5. **Examine Examples**: Explore [examples/](examples/) directory for implementation patterns
+1. **Read Compliance Requirements:**  
+   Begin with [MANDATORY.md](docs/MANDATORY.md) and [COMPLIANCE_DISCLAIMER.md](docs/COMPLIANCE_DISCLAIMER.md) to understand mandatory legal and ethical conditions for operation.  
 
----
+2. **Review Implementation Guide:**  
+   Follow [IMPLEMENTATION_GUIDE.md](docs/IMPLEMENTATION_GUIDE.md) for setup, configuration, and framework integration steps.  
+
+3. **Check Conformance Standards:**  
+   Study [CONFORMANCE_TESTING.md](docs/CONFORMANCE_TESTING.md) to verify operational alignment with TML’s required benchmarks.  
+
+4. **Study Protection Principles:**  
+   Review [PROTECTION_PRINCIPLES.md](docs/PROTECTION_PRINCIPLES.md) for the architectural basis of integrity, safety, and ethical accountability.  
+
+5. **Examine Examples:**  
+   Explore the [examples/integration_hooks/](examples/integration_hooks/README.md) directory for implementation templates, command-line demos, and webhook references.
 
 ### Transparency and Immutability
 
-Complete documentation of all ethical reasoning through:
-- Immutable moral trace logs with cryptographic verification
-- Real-time distribution via Hybrid Shield
-- Blockchain anchoring for mathematical immutability
-- Public availability for research and accountability
+Every TML deployment must ensure complete traceability of ethical reasoning through:
+
+- **Immutable Moral Trace Logs:** Cryptographically verified, append-only records of every consequential decision.  
+- **Hybrid Shield Distribution:** Redundant replication across mathematical and institutional layers.  
+- **Blockchain Anchoring:** Multi-chain verification ensuring mathematical immutability and forensic readiness.  
+- **Public Accessibility:** Log proofs available for academic, regulatory, and forensic research under open verification standards.
 
 ---
 
+## [License and Legal Information](LICENSE)
 
-## Academic Research and Validation
+### Framework License
 
-### Research Publications
+Ternary Moral Logic (TML) is distributed under the [MIT License with Attribution Requirement](LICENSE).  
+The license grants unrestricted use for educational, research, and commercial purposes, provided all conditions below are met.
 
-- [Architecting Accountability: TML and Hybrid Shield](Research_Reports/Architecting_Accountability_An_Analysis_of_Ternary_Moral_Logic_and_the_Hybrid_Shield_Framework_for_Trustworthy_AI.md)
-- [Expert Analysis of TML Standard](Research_Reports/An_Expert_Analysis_of_the_Proposed_Ternary_Moral_Logic_Standard_for_AI_Accountability.md)
+### Conditions of Use
 
-### Key Findings
+- **Attribution:** Prominent and permanent credit to **Lev Goukassian (ORCID: 0009-0006-5966-1243)** as the originator of the framework and the Sacred Zero principle.  
+- **Memorial Fund Contribution:** Commercial or institutional users must support the [Memorial Fund for Ethical AI Research](/memorial/MEMORIAL_FUND.md), which sustains long-term governance, transparency, and open ethical development.  
+- **Mandatory Compliance:** All implementations must conform to the technical and ethical obligations outlined in [MANDATORY.md](/docs/MANDATORY.md).  
+- **Governance Respect:** Users must adhere to TML’s community governance model and institutional standards defined in [GOVERNANCE.md](/GOVERNANCE.md).  
+- **Prohibition of Misuse:** Alteration or suppression of Sacred Zero or Always Memory functionality constitutes a material violation and voids derivative usage rights.
 
-- **Complete audit trails**: 100% documentation vs. no baseline
-- **Gaming detection**: Statistical analysis identifies threshold manipulation
-- **Court admissibility**: Meets Federal Rules of Evidence standards
+### Legal Enforcement
 
----
-
-## Proposed Recommendations:
-
-   **- For Policymakers:** The institutional governance model of TML should be studied as a blueprint for a global governance body independent of corporate and national interests. Its unique financial and enforcement mechanisms offer a potential solution to the "pacing problem" of regulation.
-
-   **- For Developers:** The open-source TML framework provides a robust foundation for building ethical AI systems. Developers should engage with the community to test and contribute to its security and legal viability, with a particular focus on real-world testing of its tamper-resistance and auditability claims.   
-
-   **- For Institutions:** The academic, research, and international organizations designated as members of the TML council have an opportunity to participate in a novel and potentially powerful new form of global governance. Their involvement would lend the framework the credibility and institutional weight necessary for its widespread adoption and long-term legacy.   
+Non-compliance with the above terms may trigger civil and criminal penalties under applicable international and national law.  
+All logs, licenses, and derivative works are auditable under the Hybrid Shield for attribution verification and legal traceability.
 
 ---
 
-## Interactive Demos and Tools
+## [Legal Disclaimers](docs/COMPLIANCE_DISCLAIMER.md)
 
-### Live Demonstrations
+Ternary Moral Logic (TML) is provided **“as is”**, without any express or implied warranties, including but not limited to merchantability, fitness for a particular purpose, or non-infringement.  
 
-- **[An Interactive Framework for Auditable AI](https://fractonicmind.github.io/TernaryMoralLogic/demo/An_Interactive_Framework_for_Auditable_AI.html)**: The TML Core Engine
-- **[Moving AI from a Black Box to a Glass Box of Verifiable Evidence](https://fractonicmind.github.io/TernaryMoralLogic/demo/Moving_AI_from_a_Black_Box_to_a_Glass_Box_of_Verifiable_Evidence.html))**: The Core Architecture: A Simple, Powerful Decision
-- **[TML Interactive Explainer](https://fractonicmind.github.io/TernaryMoralLogic/demo/tml-interactive-explainer.html)**: Learn framework concepts
-- **[TML App](https://fractonicmind.github.io/TernaryMoralLogic/TML-App/index.html)**: Complete application demonstration
+Organizations implementing TML bear full responsibility for verifying compliance with all applicable local, national, and international laws, regulations, and ethical standards.  
 
-### Development Tools
-
-- **[Framework Integrity Monitor](compliance/framework_integrity.py)**: Cryptographic verification
-- **[Missing Logs Detector](compliance/missing_logs.py)**: Audit trail validation
+For full terms and liability limitations, see [COMPLIANCE_DISCLAIMER.md](docs/COMPLIANCE_DISCLAIMER.md).
 
 ---
 
 ## Support and Resources
-
-Use [repository-navigation.html](repository-navigation.html) for interactive browsing.
-
-### Documentation
-
-- **[Quick Start Guide](docs/QUICK_START.md)**: Implementation basics
-- **[Implementation Guide](docs/IMPLEMENTATION_GUIDE.md)**: Detailed instructions
-- **[General FAQ](docs/General_FAQ.md)**: 42 comprehensive questions
 
 ### Contact Information
 
@@ -548,41 +571,9 @@ Use [repository-navigation.html](repository-navigation.html) for interactive bro
 - **Community Support**: support@tml-goukassian.org
 - **Technical Questions**: technical@tml-goukassian.org
 - **Legal Inquiries**: legal@tml-goukassian.org
-- **Emergency Response**: ethics-emergency@tml-goukassian.org
-
----
-
-## Citation and Attribution
-
-### Academic Citation
-
-```bibtex
-@framework{goukassian2025tml,
-  title={Ternary Moral Logic: A Framework for Ethical AI Decision-Making},
-  author={Goukassian, Lev},
-  year={2025},
-  publisher={GitHub},
-  url={https://github.com/FractonicMind/TernaryMoralLogic},
-  orcid={0009-0006-5966-1243}
-}
-```
-
----
-
-## License and Legal Information
-
-### Framework License
-
-TML is released under the [MIT License with Attribution Requirement](LICENSE). This allows free use for educational, research, and commercial purposes while requiring:
-
-- Prominent attribution to Lev Goukassian as framework originator
-- Memorial fund contribution for commercial applications
-- Compliance with all mandatory framework requirements
-- Respect for community governance and standards
-
-### Legal Disclaimers
-
-TML is provided "as is" without warranty. Organizations implementing TML bear full responsibility for compliance with applicable laws and regulations. See [COMPLIANCE_DISCLAIMER.md](docs/COMPLIANCE_DISCLAIMER.md) for complete legal terms.
+- **Emergency Response**: ethics-emergency@tml-goukassian.org   
+- **Successor Contact**: support@tml-goukassian.org 
+- **[see Succession Charter](/TML-SUCCESSION-CHARTER.md)**
 
 ---
 
