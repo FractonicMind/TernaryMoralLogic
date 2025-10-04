@@ -174,7 +174,7 @@ TML and the AI each maintain complementary corpora:
 * **AI’s operational corpora** provide contextual data — describing the environment, users, or systems in which the AI acts.
 
 When these two corpora meet, **context meets conscience**.
-If the AI’s corpus is missing, corrupted, or silent, TML detects the void, records a **Type-0 anomaly**, and automatically flags or suspends the system’s license.
+If the AI’s corpus is missing, corrupted, or silent, TML detects the void, records a **Type-0 anomaly**, and automatically flags or suspends the system’s license. TML also notifies the AI in real time, issuing a Sacred Zero Lock that halts or restricts execution until integrity is restored.
 
 This dual-corpora architecture ensures that even the *absence* of hesitation becomes traceable evidence.
 
