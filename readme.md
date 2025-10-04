@@ -412,7 +412,7 @@ An **optional Guardian Network** of institutional custodians may extend trust ve
 
 ---
 
-## [Performance and Latency](performance/README.md)
+## [Performance and Latency](performance/)
 
 TML is engineered so the primary response path remains instant—decisions execute without waiting for logs. Sacred Zero triggers and Always Memory write in parallel, ensuring accountability never delays action.
 
