@@ -1,38 +1,25 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Lantern, Signature, and License Framework</title>
-    <!-- Chosen Palette: Warm & Earthy -->
-    <!-- Application Structure Plan: The application is designed as a single-page, top-to-bottom narrative. This structure guides the user from high-level concepts to detailed components, then to process flow, and finally to a practical interactive application. This thematic, scrolling journey was chosen over a dashboard layout because the source material is a conceptual framework, not a dataset. The goal is education and application, and a linear story is the most effective way to build understanding and lead the user to an interactive conclusion (the checklist) that solidifies the learning. -->
-    <!-- Visualization & Content Choices: 
-        - Report Info: Core concepts (Lantern, Signature, License). Goal: Inform/Compare. Viz/Method: 3-column card layout using HTML/Tailwind. Interaction: Hover effects. Justification: Allows for quick, side-by-side understanding of the distinct pillars. Library: N/A.
-        - Report Info: Components of each pillar. Goal: Organize. Viz/Method: Grid of lists in cards (HTML/Tailwind). Interaction: None. Justification: Clearly organizes hierarchical information without complexity. Library: N/A.
-        - Report Info: Resource allocation for 'License'. Goal: Compare/Inform. Viz/Method: Donut Chart. Interaction: Tooltips on hover. Justification: Excellent for showing the composition of a whole, visually representing the different types of resources needed. Library: Chart.js (Canvas).
-        - Report Info: Sequential relationship of pillars. Goal: Organize/Change. Viz/Method: HTML/CSS Flexbox diagram. Interaction: None. Justification: Creates a clear, responsive process flow diagram without using any prohibited graphics libraries. Library: N/A.
-        - Report Info: Practical application of framework. Goal: Engagement. Viz/Method: Interactive checklist with a dynamic progress bar and score. Interaction: User clicks. Justification: Transforms a passive reading experience into an active one, allowing users to engage with the concepts directly. Library: Vanilla JS.
-    -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <title>TML Deep Dive: The Goukassian Promise</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Lato', sans-serif;
-            background-color: #F7F1E5; /* Lightest shade for background */
-            color: #65451F;
-        }
-        h1, h2, h3 {
-            font-family: 'Merriweather', serif;
+            font-family: 'Inter', sans-serif;
         }
         .chart-container {
             position: relative;
             width: 100%;
-            max-width: 450px;
+            max-width: 600px;
             margin-left: auto;
             margin-right: auto;
-            height: 350px;
+            height: 320px;
             max-height: 400px;
         }
         @media (min-width: 768px) {
@@ -40,268 +27,263 @@
                 height: 400px;
             }
         }
-        .nav-link {
-            transition: color 0.3s, border-color 0.3s;
-            border-bottom: 2px solid transparent;
+        .component-card.active {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            border-color: #0d9488;
         }
-        .nav-link.active, .nav-link:hover {
-            color: #EAC696;
-            border-bottom-color: #EAC696;
+        .diagram-node {
+            transition: all 0.3s ease-in-out;
+        }
+        .diagram-node:hover {
+            transform: scale(1.05);
+        }
+        .diagram-line {
+            position: absolute;
+            background-color: #9ca3af;
+            transform-origin: 0 0;
         }
     </style>
 </head>
-<body class="bg-[#F7F1E5] text-[#65451F]">
+<body class="bg-stone-50 text-stone-800">
+    <!-- Chosen Palette: Calm Neutrals -->
+    <!-- Application Structure Plan: The application is designed as a single-page, focused dashboard to facilitate deep understanding of a complex topic. The structure avoids traditional navigation, instead using an interactive, exploratory model. It starts with a high-level introduction, then encourages users to dive into the three core components via clickable cards. This prevents information overload. A visual diagram then contextualizes the Promise within the broader TML framework, and a final interactive chart provides a powerful visual metaphor for its impact. This user-driven flow from 'what' to 'how' to 'why' is more effective for learning than a linear document. -->
+    <!-- Visualization & Content Choices: 
+        1. Promise Components (Lantern, Signature, License) -> Goal: Organize & Inform -> Method: Interactive HTML/CSS Cards -> Interaction: Click to reveal details in a central panel. Justification: Breaks down a complex concept into digestible parts, promoting active user engagement rather than passive reading. Method: Vanilla JS.
+        2. Promise's Role in TML -> Goal: Show Relationships -> Method: HTML/CSS Flexbox Diagram -> Interaction: Hover effects to highlight connections. Justification: Visually clarifies the abstract architectural connections between TML pillars, making the system's logic easier to grasp. Method: HTML/CSS.
+        3. Promise's Impact -> Goal: Compare & Persuade -> Method: Interactive Radar Chart -> Interaction: Toggle buttons to switch between 'Legacy AI' and 'TML AI' datasets. Justification: Offers a stark, quantitative visualization of the security and integrity improvements the Promise provides, making a compelling case for its necessity. Method: Chart.js.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
 
-    <header id="header" class="bg-[#765827] text-[#F7F1E5] p-4 sticky top-0 z-50 shadow-md">
-        <nav class="container mx-auto flex justify-center space-x-4 md:space-x-8">
-            <a href="#introduction" class="nav-link px-2 py-1">Introduction</a>
-            <a href="#components" class="nav-link px-2 py-1">Components</a>
-            <a href="#flow" class="nav-link px-2 py-1">Process Flow</a>
-            <a href="#application" class="nav-link px-2 py-1">Application</a>
-        </nav>
-    </header>
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-teal-800 tracking-tight">The Goukassian Promise</h1>
+            <p class="mt-4 text-lg text-stone-600">The Immutable Guarantee of AI's Ethical Core</p>
+        </header>
 
-    <main class="container mx-auto px-4 py-8 md:py-16">
+        <section id="introduction" class="mb-16 bg-white p-8 rounded-lg shadow-sm">
+            <h2 class="text-2xl font-bold text-stone-900 mb-4">A Survival Architecture</h2>
+            <p class="text-stone-700 leading-relaxed">
+                The Goukassian Promise is the ultimate safeguard of Ternary Moral Logic (TML), ensuring its ethical framework can never be removed or compromised. It is not merely a feature but a foundational survival architecture, designed to perpetuate the AI's core commitments across generations, regardless of ownership or external pressures. This pillar transforms TML from a set of rules into a system with an unalienable conscience, binding the AI to its primary mission of protecting humanity and the planet through an unbreakable, cryptographically-secured commitment.
+            </p>
+        </section>
 
-        <section id="introduction" class="text-center min-h-screen flex flex-col justify-center">
-            <h1 class="text-4xl md:text-7xl font-black text-[#65451F] tracking-tight">The Three Pillars of Purposeful Action</h1>
-            <p class="mt-4 text-lg md:text-xl text-[#765827] max-w-3xl mx-auto">This framework provides a structure for ensuring any initiative is guided by purpose, executed with a unique identity, and empowered with the full authority to succeed. Explore the three pillars: The Lantern, The Signature, and The License.</p>
-            <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-[#EAC696] bg-opacity-30 rounded-lg p-6 shadow-sm hover:shadow-xl hover:scale-105 transition-all duration-300">
-                    <span class="text-6xl" role="img" aria-label="Lantern">🏮</span>
-                    <h2 class="mt-4 text-2xl font-bold text-[#65451F]">The Lantern</h2>
-                    <p class="mt-2 text-[#765827]">The 'Why'. It is the guiding light of purpose, vision, and core values that provides direction and clarity, preventing aimless effort.</p>
+        <section id="core-components" class="mb-16">
+            <h2 class="text-3xl font-bold text-center text-stone-900 mb-8">Three Core Safeguards</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div id="card-lantern" class="component-card cursor-pointer p-6 bg-white rounded-lg shadow-md border-2 border-transparent hover:border-teal-600 transition-all duration-300">
+                    <div class="flex items-center mb-3">
+                        <span class="text-3xl mr-4">💡</span>
+                        <h3 class="text-xl font-semibold text-teal-700">The Lantern</h3>
+                    </div>
+                    <p class="text-stone-600">The public key ensuring perpetual, transparent auditing of AI actions and decisions.</p>
                 </div>
-                <div class="bg-[#EAC696] bg-opacity-30 rounded-lg p-6 shadow-sm hover:shadow-xl hover:scale-105 transition-all duration-300">
-                    <span class="text-6xl" role="img" aria-label="Signature">✒️</span>
-                    <h2 class="mt-4 text-2xl font-bold text-[#65451F]">The Signature</h2>
-                    <p class="mt-2 text-[#765827]">The 'How'. It is the unique identity, methodology, and style of execution that makes the work distinct and recognizable.</p>
+                <div id="card-signature" class="component-card cursor-pointer p-6 bg-white rounded-lg shadow-md border-2 border-transparent hover:border-teal-600 transition-all duration-300">
+                     <div class="flex items-center mb-3">
+                        <span class="text-3xl mr-4">✍️</span>
+                        <h3 class="text-xl font-semibold text-teal-700">The Signature</h3>
+                    </div>
+                    <p class="text-stone-600">The non-revocable, signed commitment binding the AI to the complete TML framework.</p>
                 </div>
-                <div class="bg-[#EAC696] bg-opacity-30 rounded-lg p-6 shadow-sm hover:shadow-xl hover:scale-105 transition-all duration-300">
-                    <span class="text-6xl" role="img" aria-label="License">📜</span>
-                    <h2 class="mt-4 text-2xl font-bold text-[#65451F]">The License</h2>
-                    <p class="mt-2 text-[#765827]">The 'What'. It is the explicit permission, resources, and trust required to operate effectively and legitimately.</p>
+                <div id="card-license" class="component-card cursor-pointer p-6 bg-white rounded-lg shadow-md border-2 border-transparent hover:border-teal-600 transition-all duration-300">
+                     <div class="flex items-center mb-3">
+                        <span class="text-3xl mr-4">📜</span>
+                        <h3 class="text-xl font-semibold text-teal-700">The License</h3>
+                    </div>
+                    <p class="text-stone-600">The legally and technically enforced rule prioritizing Human Rights and Earth Protection.</p>
                 </div>
+            </div>
+            <div id="component-display" class="bg-white p-8 rounded-lg shadow-inner min-h-[200px] transition-opacity duration-500">
+                <p class="text-center text-stone-500 text-lg">Click on a safeguard above to learn more about its function.</p>
             </div>
         </section>
 
-        <section id="components" class="py-16 md:py-24">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-5xl font-bold text-[#65451F]">Deconstructing the Pillars</h2>
-                <p class="mt-3 text-lg text-[#765827]">Each pillar is built upon a foundation of key components. Understanding these is crucial to applying the framework effectively.</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-white rounded-lg shadow-lg p-8">
-                    <h3 class="text-2xl font-bold text-center mb-4 text-[#765827]">Lantern Components</h3>
-                    <ul class="space-y-3">
-                        <li class="flex items-start"><strong class="w-24 text-[#65451F]">Vision:</strong><span>The long-term, aspirational goal.</span></li>
-                        <li class="flex items-start"><strong class="w-24 text-[#65451F]">Mission:</strong><span>The core purpose and what you do.</span></li>
-                        <li class="flex items-start"><strong class="w-24 text-[#65451F]">Values:</strong><span>The non-negotiable guiding principles.</span></li>
-                    </ul>
-                </div>
-                 <div class="bg-white rounded-lg shadow-lg p-8">
-                    <h3 class="text-2xl font-bold text-center mb-4 text-[#765827]">Signature Components</h3>
-                    <ul class="space-y-3">
-                        <li class="flex items-start"><strong class="w-24 text-[#65451F]">Style:</strong><span>The aesthetic and functional approach.</span></li>
-                        <li class="flex items-start"><strong class="w-24 text-[#65451F]">Voice:</strong><span>The tone and method of communication.</span></li>
-                        <li class="flex items-start"><strong class="w-24 text-[#65451F]">Process:</strong><span>The proprietary methods and workflows.</span></li>
-                    </ul>
-                </div>
-                <div class="bg-white rounded-lg shadow-lg p-8 md:col-span-2 lg:col-span-1">
-                    <h3 class="text-2xl font-bold text-center mb-4 text-[#765827]">License Components</h3>
-                    <ul class="space-y-3">
-                        <li class="flex items-start"><strong class="w-24 text-[#65451F]">Authority:</strong><span>The formal permission to act.</span></li>
-                        <li class="flex items-start"><strong class="w-24 text-[#65451F]">Resources:</strong><span>The necessary assets (people, time, money).</span></li>
-                        <li class="flex items-start"><strong class="w-24 text-[#65451F]">Trust:</strong><span>The buy-in and confidence from stakeholders.</span></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="mt-12 bg-white rounded-lg shadow-xl p-8">
-                <div class="text-center mb-6">
-                     <h3 class="text-2xl font-bold text-[#765827]">Visualizing 'License': Resource Composition</h3>
-                     <p class="mt-2 text-[#765827]">A project's "License" is not just permission; it's being equipped for success. This chart illustrates a typical composition of resources required to fully empower an initiative.</p>
-                </div>
-                <div class="chart-container">
-                    <canvas id="resourceChart"></canvas>
-                </div>
-            </div>
-        </section>
-
-        <section id="flow" class="py-16 md:py-24">
-             <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-5xl font-bold text-[#65451F]">The Process Flow: From Purpose to Action</h2>
-                <p class="mt-3 text-lg text-[#765827]">The pillars are not isolated concepts; they form a sequential and interdependent pathway that ensures clarity, identity, and authority are established before action is taken.</p>
-            </div>
-            <div class="flex flex-col md:flex-row items-center justify-around text-center">
-                <div class="p-4 flex-1">
-                     <div class="bg-white rounded-lg shadow-md p-6">
-                        <span class="text-5xl" role="img" aria-label="Lantern">🏮</span>
-                        <h3 class="mt-2 text-xl font-bold text-[#765827]">1. Illuminate with The Lantern</h3>
-                        <p class="text-sm mt-1">Establish the 'Why'.</p>
-                    </div>
-                </div>
-                <div class="text-5xl font-black text-[#C8AE7D] transform -rotate-90 md:rotate-0 my-4 md:my-0">➔</div>
-                 <div class="p-4 flex-1">
-                    <div class="bg-white rounded-lg shadow-md p-6">
-                        <span class="text-5xl" role="img" aria-label="Signature">✒️</span>
-                        <h3 class="mt-2 text-xl font-bold text-[#765827]">2. Define with The Signature</h3>
-                        <p class="text-sm mt-1">Determine the 'How'.</p>
-                    </div>
-                </div>
-                <div class="text-5xl font-black text-[#C8AE7D] transform -rotate-90 md:rotate-0 my-4 md:my-0">➔</div>
-                 <div class="p-4 flex-1">
-                     <div class="bg-white rounded-lg shadow-md p-6">
-                        <span class="text-5xl" role="img" aria-label="License">📜</span>
-                        <h3 class="mt-2 text-xl font-bold text-[#765827]">3. Empower with The License</h3>
-                        <p class="text-sm mt-1">Secure the 'What'.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <section id="application" class="py-16 md:py-24">
-             <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-5xl font-bold text-[#65451F]">Interactive Application: Project Readiness Checklist</h2>
-                <p class="mt-3 text-lg text-[#765827]">Use this checklist to assess the readiness of your own project. How well have you established your Lantern, Signature, and License?</p>
-            </div>
-            <div class="bg-white rounded-lg shadow-2xl p-8 max-w-4xl mx-auto">
-                <div class="flex flex-col md:flex-row items-center justify-between mb-6">
-                    <div id="score-card" class="text-center md:text-left mb-4 md:mb-0">
-                        <h3 class="text-2xl font-bold text-[#765827]">Readiness Score: <span id="readiness-score" class="text-[#65451F]">0%</span></h3>
-                        <p id="readiness-text" class="text-[#765827] mt-1">Begin by selecting the components you have in place.</p>
-                    </div>
-                    <div class="w-full md:w-1/2">
-                        <div class="bg-[#F7F1E5] rounded-full h-4">
-                            <div id="progress-bar" class="bg-[#C8AE7D] h-4 rounded-full transition-all duration-500" style="width: 0%;"></div>
+        <section id="framework-integration" class="mb-16">
+            <h2 class="text-3xl font-bold text-center text-stone-900 mb-12">Integration within TML Framework</h2>
+            <div class="max-w-4xl mx-auto p-8 bg-white rounded-lg shadow-sm">
+                <div class="flex flex-col md:flex-row items-center justify-center space-y-8 md:space-y-0 md:space-x-12">
+                    <div class="flex flex-col items-center space-y-6">
+                        <div id="hr-node" class="diagram-node text-center p-4 border-2 border-blue-300 bg-blue-50 rounded-lg shadow-sm">
+                            <h4 class="font-bold text-blue-800">Human Rights</h4>
+                            <p class="text-sm text-blue-600">Absolute Protection</p>
+                        </div>
+                        <div id="ep-node" class="diagram-node text-center p-4 border-2 border-green-300 bg-green-50 rounded-lg shadow-sm">
+                            <h4 class="font-bold text-green-800">Earth Protection</h4>
+                             <p class="text-sm text-green-600">Planetary Mandate</p>
                         </div>
                     </div>
-                </div>
-                <div id="checklist" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div>
-                        <h4 class="font-bold text-lg mb-2 border-b-2 border-[#EAC696] pb-1">🏮 Lantern</h4>
-                        <label class="flex items-center space-x-3 p-2 rounded hover:bg-[#F7F1E5] cursor-pointer"><input type="checkbox" class="form-checkbox h-5 w-5 text-[#765827] rounded border-gray-300 focus:ring-[#C8AE7D]"><span>Clear Vision</span></label>
-                        <label class="flex items-center space-x-3 p-2 rounded hover:bg-[#F7F1E5] cursor-pointer"><input type="checkbox" class="form-checkbox h-5 w-5 text-[#765827] rounded border-gray-300 focus:ring-[#C8AE7D]"><span>Defined Mission</span></label>
-                        <label class="flex items-center space-x-3 p-2 rounded hover:bg-[#F7F1E5] cursor-pointer"><input type="checkbox" class="form-checkbox h-5 w-5 text-[#765827] rounded border-gray-300 focus:ring-[#C8AE7D]"><span>Established Values</span></label>
+                    
+                    <div class="text-5xl text-stone-400 font-thin hidden md:block">→</div>
+                     <div class="text-5xl text-stone-400 font-thin block md:hidden">↓</div>
+
+
+                    <div id="promise-node" class="diagram-node text-center p-6 border-4 border-teal-500 bg-teal-50 rounded-xl shadow-lg">
+                        <h3 class="text-xl font-bold text-teal-800">Goukassian Promise</h3>
+                        <p class="text-sm text-teal-600">(The License)</p>
                     </div>
-                     <div>
-                        <h4 class="font-bold text-lg mb-2 border-b-2 border-[#EAC696] pb-1">✒️ Signature</h4>
-                        <label class="flex items-center space-x-3 p-2 rounded hover:bg-[#F7F1E5] cursor-pointer"><input type="checkbox" class="form-checkbox h-5 w-5 text-[#765827] rounded border-gray-300 focus:ring-[#C8AE7D]"><span>Distinct Style</span></label>
-                        <label class="flex items-center space-x-3 p-2 rounded hover:bg-[#F7F1E5] cursor-pointer"><input type="checkbox" class="form-checkbox h-5 w-5 text-[#765827] rounded border-gray-300 focus:ring-[#C8AE7D]"><span>Consistent Voice</span></label>
-                        <label class="flex items-center space-x-3 p-2 rounded hover:bg-[#F7F1E5] cursor-pointer"><input type="checkbox" class="form-checkbox h-5 w-5 text-[#765827] rounded border-gray-300 focus:ring-[#C8AE7D]"><span>Unique Process</span></label>
-                    </div>
-                     <div>
-                        <h4 class="font-bold text-lg mb-2 border-b-2 border-[#EAC696] pb-1">📜 License</h4>
-                        <label class="flex items-center space-x-3 p-2 rounded hover:bg-[#F7F1E5] cursor-pointer"><input type="checkbox" class="form-checkbox h-5 w-5 text-[#765827] rounded border-gray-300 focus:ring-[#C8AE7D]"><span>Clear Authority</span></label>
-                        <label class="flex items-center space-x-3 p-2 rounded hover:bg-[#F7F1E5] cursor-pointer"><input type="checkbox" class="form-checkbox h-5 w-5 text-[#765827] rounded border-gray-300 focus:ring-[#C8AE7D]"><span>Sufficient Resources</span></label>
-                        <label class="flex items-center space-x-3 p-2 rounded hover:bg-[#F7F1E5] cursor-pointer"><input type="checkbox" class="form-checkbox h-5 w-5 text-[#765827] rounded border-gray-300 focus:ring-[#C8AE7D]"><span>Stakeholder Trust</span></label>
+
+                    <div class="text-5xl text-stone-400 font-thin hidden md:block">→</div>
+                    <div class="text-5xl text-stone-400 font-thin block md:hidden">↓</div>
+
+                    <div id="pb-node" class="diagram-node text-center p-4 border-2 border-purple-300 bg-purple-50 rounded-lg shadow-sm">
+                        <h4 class="font-bold text-purple-800">Public Blockchains</h4>
+                        <p class="text-sm text-purple-600">Immutable Enforcement</p>
                     </div>
                 </div>
+                 <p class="text-center mt-8 text-stone-600">This diagram illustrates how the <b class="text-teal-700">License</b> component of the Goukassian Promise serves as a bridge, ensuring the core pillars of <b class="text-blue-700">Human Rights</b> and <b class="text-green-700">Earth Protection</b> are perpetually and transparently enforced via <b class="text-purple-700">Public Blockchains</b>.</p>
             </div>
         </section>
 
-    </main>
+        <section id="impact-visualization" class="text-center">
+            <h2 class="text-3xl font-bold text-stone-900 mb-4">Visualizing the Impact</h2>
+            <p class="max-w-3xl mx-auto text-stone-600 mb-8">
+                The Goukassian Promise fundamentally hardens an AI's ethical integrity. This chart compares key accountability metrics for a standard AI system versus one built on TML with the Promise embedded. Select a system to see the difference.
+            </p>
+            <div class="flex justify-center space-x-4 mb-8">
+                <button id="btn-legacy" class="px-6 py-2 rounded-md bg-stone-200 text-stone-700 font-semibold transition-colors">Legacy AI</button>
+                <button id="btn-tml" class="px-6 py-2 rounded-md bg-teal-600 text-white font-semibold transition-colors">TML with Promise</button>
+            </div>
+            <div class="chart-container bg-white p-4 rounded-lg shadow-md">
+                <canvas id="impactChart"></canvas>
+            </div>
+        </section>
 
-    <footer class="text-center py-6 bg-[#65451F] text-[#F7F1E5]">
-        <p>Interactive Framework Application by Gemini</p>
-    </footer>
+        <footer class="text-center mt-16 pt-8 border-t border-stone-200">
+             <p class="text-sm text-stone-500">Document Version: 5.1 Resilience Edition (Human Rights Update) | Last Updated: September 2025</p>
+             <p class="text-sm text-stone-500">Creator: Lev Goukassian (ORCID: 0009-0006-5966-1243)</p>
+        </footer>
+    </main>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            const componentContent = {
+                lantern: {
+                    title: '💡 The Lantern: Perpetual Transparency',
+                    text: 'The Lantern is a public key infrastructure that guarantees permanent, uncensorable access to the AI’s Moral Trace Logs. It ensures that all stakeholders, from regulators to the public, can independently audit high-stakes decisions, especially those triggering a Sacred Zero event. It shines a light that cannot be extinguished by any single entity, ensuring that accountability is never obscured.'
+                },
+                signature: {
+                    title: '✍️ The Signature: Irrevocable Commitment',
+                    text: 'This is a cryptographic signature from the creator, Lev Goukassian, that is permanently bound to the AI’s core operating system. This non-revocable signature legally and technically locks the entire TML framework into place. Any attempt to fork the code or create a version without TML would invalidate the signature, signaling a non-compliant and untrustworthy system.'
+                },
+                license: {
+                    title: '📜 The License: Enforced Prioritization',
+                    text: 'The License is a dual legal-technical instrument that hard-codes the prioritization of the Human Rights and Earth Protection pillars above all other objectives, including profit or efficiency. Its integrity is enforced through the Public Blockchains pillar, making the commitment globally verifiable and tamper-proof. This ensures the AI’s foundational values are an immutable and enforceable contract.'
+                }
+            };
 
-            // Chart.js: Resource Chart
-            const ctx = document.getElementById('resourceChart').getContext('2d');
-            new Chart(ctx, {
-                type: 'doughnut',
+            const display = document.getElementById('component-display');
+            const cards = {
+                lantern: document.getElementById('card-lantern'),
+                signature: document.getElementById('card-signature'),
+                license: document.getElementById('card-license')
+            };
+
+            const updateDisplay = (componentKey) => {
+                const content = componentContent[componentKey];
+                display.style.opacity = 0;
+                setTimeout(() => {
+                    display.innerHTML = `
+                        <h3 class="text-2xl font-bold text-stone-800 mb-4">${content.title}</h3>
+                        <p class="text-stone-700 leading-relaxed">${content.text}</p>
+                    `;
+                    display.style.opacity = 1;
+                }, 300);
+
+                Object.values(cards).forEach(card => card.classList.remove('active'));
+                cards[componentKey].classList.add('active');
+            };
+
+            cards.lantern.addEventListener('click', () => updateDisplay('lantern'));
+            cards.signature.addEventListener('click', () => updateDisplay('signature'));
+            cards.license.addEventListener('click', () => updateDisplay('license'));
+
+            const ctx = document.getElementById('impactChart').getContext('2d');
+            const chartLabels = ['Tamper Resistance', 'Long-Term Accountability', 'Ethical Integrity', 'Legal Enforceability', 'Public Trust', 'Generational Resilience'];
+            const tmlData = [95, 90, 100, 85, 90, 98];
+            const legacyData = [20, 30, 40, 25, 35, 10];
+
+            const impactChart = new Chart(ctx, {
+                type: 'radar',
                 data: {
-                    labels: ['Personnel', 'Financial', 'Technology', 'Time', 'Trust'],
+                    labels: chartLabels,
                     datasets: [{
-                        label: 'Resource Composition',
-                        data: [35, 25, 15, 15, 10],
-                        backgroundColor: ['#765827', '#C8AE7D', '#65451F', '#EAC696', 'rgba(118, 88, 39, 0.4)'],
-                        borderColor: '#ffffff',
-                        borderWidth: 3,
+                        label: 'TML with Promise',
+                        data: tmlData,
+                        fill: true,
+                        backgroundColor: 'rgba(13, 148, 136, 0.2)',
+                        borderColor: 'rgb(13, 148, 136)',
+                        pointBackgroundColor: 'rgb(13, 148, 136)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgb(13, 148, 136)'
                     }]
                 },
                 options: {
-                    responsive: true,
                     maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: { color: 'rgba(0, 0, 0, 0.1)' },
+                            grid: { color: 'rgba(0, 0, 0, 0.1)' },
+                            pointLabels: {
+                                font: {
+                                    size: 13,
+                                    weight: 500,
+                                },
+                                color: '#44403c'
+                            },
+                            ticks: {
+                                backdropColor: 'rgba(255, 255, 255, 0.75)',
+                                color: '#57534e',
+                                stepSize: 20
+                            },
+                            suggestedMin: 0,
+                            suggestedMax: 100
+                        }
+                    },
                     plugins: {
                         legend: {
-                            position: 'bottom',
                             labels: {
-                                color: '#65451F',
-                                font: { size: 14, family: "'Lato', sans-serif" }
-                            }
-                        },
-                        tooltip: {
-                            callbacks: {
-                                title: (tooltipItems) => tooltipItems[0].label,
+                                font: { size: 14 }
                             }
                         }
                     }
                 }
             });
 
-            // Interactive Checklist
-            const checkboxes = document.querySelectorAll('#checklist input[type="checkbox"]');
-            const totalCheckboxes = checkboxes.length;
-            const scoreEl = document.getElementById('readiness-score');
-            const textEl = document.getElementById('readiness-text');
-            const progressEl = document.getElementById('progress-bar');
-            
-            const scoreTextMap = [
-                { limit: 0, text: "Begin by selecting the components you have in place." },
-                { limit: 30, text: "A foundational plan is forming. Keep defining your pillars." },
-                { limit: 60, text: "Good progress. The project's framework is becoming solid." },
-                { limit: 90, text: "Excellent! The project is well-defined and empowered." },
-                { limit: 100, text: "Fully prepared! This project is ready for purposeful execution." }
-            ];
+            const btnLegacy = document.getElementById('btn-legacy');
+            const btnTml = document.getElementById('btn-tml');
 
-            function updateReadiness() {
-                const checkedCount = Array.from(checkboxes).filter(cb => cb.checked).length;
-                const percentage = Math.round((checkedCount / totalCheckboxes) * 100);
-                
-                scoreEl.textContent = `${percentage}%`;
-                progressEl.style.width = `${percentage}%`;
-                
-                let currentText = scoreTextMap[0].text;
-                for(const item of scoreTextMap) {
-                    if (percentage >= item.limit) {
-                        currentText = item.text;
-                    }
+            const updateChartData = (system) => {
+                if (system === 'legacy') {
+                    impactChart.data.datasets[0].label = 'Legacy AI';
+                    impactChart.data.datasets[0].data = legacyData;
+                    impactChart.data.datasets[0].backgroundColor = 'rgba(120, 113, 108, 0.2)';
+                    impactChart.data.datasets[0].borderColor = 'rgb(120, 113, 108)';
+                    impactChart.data.datasets[0].pointBackgroundColor = 'rgb(120, 113, 108)';
+                    impactChart.data.datasets[0].pointHoverBorderColor = 'rgb(120, 113, 108)';
+                    btnLegacy.classList.remove('bg-stone-200', 'text-stone-700');
+                    btnLegacy.classList.add('bg-stone-600', 'text-white');
+                    btnTml.classList.add('bg-stone-200', 'text-stone-700');
+                    btnTml.classList.remove('bg-teal-600', 'text-white');
+                } else {
+                    impactChart.data.datasets[0].label = 'TML with Promise';
+                    impactChart.data.datasets[0].data = tmlData;
+                    impactChart.data.datasets[0].backgroundColor = 'rgba(13, 148, 136, 0.2)';
+                    impactChart.data.datasets[0].borderColor = 'rgb(13, 148, 136)';
+                    impactChart.data.datasets[0].pointBackgroundColor = 'rgb(13, 148, 136)';
+                    impactChart.data.datasets[0].pointHoverBorderColor = 'rgb(13, 148, 136)';
+                    btnTml.classList.remove('bg-stone-200', 'text-stone-700');
+                    btnTml.classList.add('bg-teal-600', 'text-white');
+                    btnLegacy.classList.add('bg-stone-200', 'text-stone-700');
+                    btnLegacy.classList.remove('bg-stone-600', 'text-white');
                 }
-                textEl.textContent = currentText;
-            }
-
-            checkboxes.forEach(cb => cb.addEventListener('change', updateReadiness));
-
-            // Smooth Scroll & Active Nav Link
-            const navLinks = document.querySelectorAll('.nav-link');
-            const sections = document.querySelectorAll('section');
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        navLinks.forEach(link => {
-                            link.classList.remove('active');
-                            if (link.getAttribute('href').substring(1) === entry.target.id) {
-                                link.classList.add('active');
-                            }
-                        });
-                    }
-                });
-            }, { rootMargin: '-30% 0px -70% 0px', threshold: 0 });
-
-            sections.forEach(section => observer.observe(section));
+                impactChart.update();
+            };
             
-            navLinks.forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    document.querySelector(this.getAttribute('href')).scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                });
-            });
+            btnLegacy.addEventListener('click', () => updateChartData('legacy'));
+            btnTml.addEventListener('click', () => updateChartData('tml'));
+
+            updateDisplay('lantern');
         });
     </script>
 </body>
