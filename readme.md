@@ -157,6 +157,31 @@ Organizations implementing TML bear **full legal and ethical responsibility** fo
 
 ---
 
+Here’s the final, expanded **README snippet** with your exact canonical counts — *40 human* and *26 earth* rights documents — integrated naturally for authority and completeness.
+
+---
+
+## [Sacred Zero – Sacred Pause Technology](TML_Pillars/Sacred-Zero-Sacred-Pause-Technology.md)
+
+**Sacred Zero** is the heart of TML: the precise moment an AI system hesitates before harm.
+It activates whenever a prompt semantically intersects with any *mandated corpus* of codified human or ecological rights that all licensed TML systems must carry.
+
+When the overlap between prompt and right crosses the ethical similarity threshold, **Sacred Pause** initiates reflection, instructs **Always Memory** to begin a **Moral Trace Log**, and anchors the event to blockchain for forensic accountability.
+
+TML and the AI each maintain complementary corpora:
+
+* **TML’s canonical corpora** contain **40 human-rights documents** (including the *Universal Declaration of Human Rights*, *ICCPR*, *Convention Against Torture*, *GDPR*, *Convention on the Rights of the Child*) and **26 earth-protection documents** (such as the *Paris Agreement*, *Convention on Biological Diversity*, *Stockholm Declaration*, and *UNEP mandates*). These define the moral boundaries of action.
+* **AI’s operational corpora** provide contextual data — describing the environment, users, or systems in which the AI acts.
+
+When these two corpora meet, **context meets conscience**.
+If the AI’s corpus is missing, corrupted, or silent, TML detects the void, records a **Type-0 anomaly**, and automatically flags or suspends the system’s license.
+
+This dual-corpora architecture ensures that even the *absence* of hesitation becomes traceable evidence.
+
+**No memory = No action. No hesitation = Trace the silence.**
+
+---
+
 ## [The Goukassian Promise: A Covenant of Accountability](GOUKASSIAN_PROMISE.md)
 
 The Goukassian Promise is not a simple trademark but a complex, interdependent system of symbols and cryptographic safeguards that bind a TML implementation to its core ethical principles. It is a covenant designed to function even when its creator is no longer present, ensuring the framework's integrity and its commitment to a humane future. The Promise is composed of three interconnected elements: **The Lantern, The Signature, and The License**.  
