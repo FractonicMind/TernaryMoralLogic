@@ -62,7 +62,7 @@ See also: [MANDATORY.md](/docs/MANDATORY.md), [GOVERNANCE.md](/GOVERNANCE.md), [
 
 Sacred Zero triggers **deterministically** based on semantic and legal thresholds, not operator discretion.
 
-#### 4.1 Overview
+#### 4.1 [Overview](Sacred_Zero-Sacred_Pause_Technology.html)
 
 1. **Prompt Intake** →  
 2. **Semantic Mapping** (Prompt ↔ Operational Corpora) →  
