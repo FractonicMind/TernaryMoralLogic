@@ -60,7 +60,7 @@
                 </div>
 
                 <!-- Real audio element with fallbacks -->
-                <audio id="audioPlayer" preload="metadata" aria-label="Always Memory overview audio">
+                <audio id="audioPlayer" preload="metadata" playsinline controls style="width:100%;max-width:420px;margin-top:8px;"></audio>
                     <!-- Put the MP3 in the same folder as this HTML -->
                     <source src="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/TML_Pillars/Always_Memory.mp3" type="audio/mpeg"  preload="metadata">
                     <!-- Fallback to the alternate filename if that’s the file you committed -->
@@ -70,6 +70,111 @@
                     Your browser does not support the audio element.
                 </audio>
             </div>
+       <script>
+document.addEventListener('DOMContentLoaded', () => {
+  const audioPlayer = document.getElementById('audioPlayer');
+  const playPauseBtn = document.getElementById('playPauseBtn');
+  const playIcon = document.getElementById('playIcon');
+  const pauseIcon = document.getElementById('pauseIcon');
+  const progressBar = document.getElementById('progressBar');
+  const timeDisplay = document.getElementById('timeDisplay');
+
+  // Try these in order (covers common naming/path slips)
+  const candidates = [
+    'Always_Memory.mp3',
+    'Always_MemoryI.mp3',
+    './Always_Memory.mp3',
+    './Always_MemoryI.mp3',
+    'audio/Always_Memory.mp3',
+    'assets/Always_Memory.mp3'
+  ];
+
+  let selected = null;
+  let tried = false;
+
+  function formatTime(s) {
+    if (!isFinite(s)) return '0:00';
+    const m = Math.floor(s / 60);
+    const sec = Math.floor(s % 60);
+    return `${m}:${sec.toString().padStart(2, '0')}`;
+  }
+
+  async function trySetAndPlay() {
+    // only attempt selection once per page load
+    if (!tried) {
+      tried = true;
+      for (const src of candidates) {
+        try {
+          // set candidate
+          audioPlayer.src = src;
+          // wait up to 1500ms for metadata so we know the file exists/loads
+          await new Promise((resolve, reject) => {
+            const t = setTimeout(() => reject(new Error('timeout')), 1500);
+            const onMeta = () => { clearTimeout(t); resolve(); };
+            const onErr  = () => { clearTimeout(t); reject(new Error('error')); };
+            audioPlayer.addEventListener('loadedmetadata', onMeta, { once: true });
+            audioPlayer.addEventListener('error', onErr, { once: true });
+            // kick the load
+            audioPlayer.load();
+          });
+          selected = src;
+          break; // got one
+        } catch (e) {
+          // try next
+          continue;
+        }
+      }
+      if (!selected) {
+        timeDisplay && (timeDisplay.textContent = 'Audio not found. Check filename/path.');
+        console.error('No audio candidate loaded. Tried:', candidates);
+        return;
+      }
+    }
+
+    // Now play/pause with user gesture
+    try {
+      if (audioPlayer.paused) {
+        await audioPlayer.play();
+        playIcon && playIcon.classList.add('hidden');
+        pauseIcon && pauseIcon.classList.remove('hidden');
+      } else {
+        audioPlayer.pause();
+        playIcon && playIcon.classList.remove('hidden');
+        pauseIcon && pauseIcon.classList.add('hidden');
+      }
+    } catch (err) {
+      console.error('Playback failed:', err);
+      timeDisplay && (timeDisplay.textContent = 'Tap again to allow audio ▶');
+    }
+  }
+
+  // Wire the button
+  playPauseBtn && playPauseBtn.addEventListener('click', trySetAndPlay);
+
+  // Progress/time UI (keeps your existing bar)
+  audioPlayer.addEventListener('timeupdate', () => {
+    if (isFinite(audioPlayer.duration) && audioPlayer.duration > 0) {
+      const pct = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+      progressBar && (progressBar.style.width = `${pct}%`);
+      timeDisplay && (timeDisplay.textContent = `${formatTime(audioPlayer.currentTime)} / ${formatTime(audioPlayer.duration)}`);
+    }
+  });
+  audioPlayer.addEventListener('loadedmetadata', () => {
+    timeDisplay && (timeDisplay.textContent = `0:00 / ${formatTime(audioPlayer.duration)}`);
+  });
+  audioPlayer.addEventListener('ended', () => {
+    playIcon && playIcon.classList.remove('hidden');
+    pauseIcon && pauseIcon.classList.add('hidden');
+    progressBar && (progressBar.style.width = '0%');
+    audioPlayer.currentTime = 0;
+    timeDisplay && (timeDisplay.textContent = `0:00 / ${formatTime(audioPlayer.duration)}`);
+  });
+  audioPlayer.addEventListener('error', () => {
+    timeDisplay && (timeDisplay.textContent = 'Audio failed to load. Check filename/path.');
+  });
+});
+</script>
+
         </section>
 
         <main>
