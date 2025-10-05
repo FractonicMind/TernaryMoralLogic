@@ -44,7 +44,7 @@
     <div class="max-w-3xl mx-auto bg-white rounded-lg shadow-2xl p-6">
         <h2 class="text-xl font-bold text-center text-[#087E8B] mb-4">Listen to the Overview</h2>
         <div class="flex items-center space-x-4">
-            <button id="playPauseBtn" class="w-12 h-12 flex-shrink-0 rounded-full bg-[#0B3954] text-white flex items-center justify-center hover:bg-[#087E8B] transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#087E8B]">
+            <button id="playPauseBtn" class="w-12 h-12 flex-shrink-0 rounded-full bg-[#0B3S954] text-white flex items-center justify-center hover:bg-[#087E8B] transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#087E8B]">
                 <svg id="playIcon" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M4.018 15.132A1.25 1.25 0 005.25 14.053V5.947a1.25 1.25 0 00-1.85-1.055l-7.256 4.053a1.25 1.25 0 000 2.11l7.256 4.053z"></path></svg>
                 <svg id="pauseIcon" class="w-6 h-6 hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M5.75 3a.75.75 0 00-.75.75v12.5c0 .414.336.75.75.75h1.5a.75.75 0 00.75-.75V3.75A.75.75 0 007.25 3h-1.5zM12.75 3a.75.75 0 00-.75.75v12.5c0 .414.336.75.75.75h1.5a.75.75 0 00.75-.75V3.75a.75.75 0 00-.75-.75h-1.5z"></path></svg>
             </button>
@@ -59,7 +59,6 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-    // This is the simple, original script that works with the audio tag above.
     const audioPlayer = document.getElementById('audioPlayer');
     const playPauseBtn = document.getElementById('playPauseBtn');
     const playIcon = document.getElementById('playIcon');
@@ -76,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     playPauseBtn.addEventListener('click', () => {
         if (audioPlayer.paused) {
-            audioPlayer.play();
+            audioPlayer.play().catch(error => console.error("Playback failed:", error));
             playIcon.classList.add('hidden');
             pauseIcon.classList.remove('hidden');
         } else {
@@ -95,7 +94,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     audioPlayer.addEventListener('loadedmetadata', () => {
-        timeDisplay.textContent = `0:00 / ${formatTime(audioPlayer.duration)}`;
+        if (audioPlayer.duration) {
+            timeDisplay.textContent = `0:00 / ${formatTime(audioPlayer.duration)}`;
+        }
     });
 
     audioPlayer.addEventListener('ended', () => {
