@@ -3,36 +3,308 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ternary Moral Logic Interview</title>
+    <title>Ternary Moral Logic: The Always Memory Pillar</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #F8FAFC; /* Light background from your infographic palette */
+            background-color: #BFD7EA; /* Light Blue from Brilliant Blues Palette */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 450px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
         }
     </style>
 </head>
-<body class="flex items-center justify-center min-h-screen p-4">
-    <div class="bg-white rounded-lg shadow-xl p-8 max-w-xl w-full text-center">
-        <h1 class="text-3xl font-bold text-[#005F73] mb-4">Ternary Moral Logic: The Interview</h1>
-        <p class="text-gray-700 mb-6">Always Memory</p>
+<body class="text-[#0B3954]">
 
-        <audio controls class="w-full max-w-md mx-auto">
-            <!-- Corrected path: the MP3 file is in the same directory as this HTML file. -->
-            <source src="https://fractonicmind.github.io/TernaryMoralLogic/TML_Pillars/Always_Memory.mp3" type="audio/mpeg">
-            Your browser does not support the audio element.
-        </audio>
+    <div class="container mx-auto p-4 md:p-8">
 
-        <p class="text-sm text-gray-500 mt-4">Interview Duration: 6 minutes 02 seconds</p>
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-6xl font-black text-[#0B3954] uppercase tracking-wide">Always Memory</h1>
+            <p class="text-xl md:text-2xl text-[#087E8B] mt-2">The Foundational Pillar of Ternary Moral Logic</p>
+            <p class="mt-4 max-w-3xl mx-auto">Ternary Moral Logic (TML) is a universal accountability framework for AI. At its core lies Always Memory: an unbreakable mandate that every AI action must create an immutable, cryptographically sealed memory before execution.</p>
+        </header>
 
-        <a href="https://github.com/FractonicMind/TernaryMoralLogic/" class="mt-8 inline-block bg-[#0A9396] hover:bg-[#005F73] text-white font-bold py-2 px-4 rounded transition duration-300">
-            Back to Repository
-        </a>
+        <section id="interview-audio" class="mb-12">
+            <div class="bg-white rounded-lg shadow-xl p-8 max-w-xl w-full text-center mx-auto">
+                <h2 class="text-3xl font-bold text-[#087E8B] mb-4">Always Memory — The Mind That Never Forgets</h2>
+                <p class="text-gray-700 mb-6">Listen to a detailed explanation of Always Memory, the core system in TML that transforms AI decisions into immutable, cryptographically sealed moral trace logs.</p>
+        
+                <audio controls class="w-full max-w-md mx-auto">
+                    <source src="https://fractonicmind.github.io/TernaryMoralLogic/TML_Pillars/Always_Memory.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+        
+                <p class="text-sm text-gray-500 mt-4">Interview Duration: 6 minutes 18 seconds</p>
+        
+                <a href="https://github.com/FractonicMind/TernaryMoralLogic/" class="mt-8 inline-block bg-[#0B3954] hover:bg-[#087E8B] text-white font-bold py-2 px-4 rounded transition duration-300">
+                    Back to Repository
+                </a>
+            </div>
+        </section>
+
+        <main>
+            <section id="mandate" class="mb-16">
+                <div class="bg-white rounded-lg shadow-2xl p-8 text-center">
+                    <h2 class="text-2xl font-bold text-[#087E8B] mb-4">The Absolute Mandate</h2>
+                    <div class="text-8xl font-black text-[#C81D25]">100%</div>
+                    <p class="text-3xl font-bold text-[#0B3954] mt-2">No Memory = No Action.</p>
+                    <p class="mt-4 text-lg">This principle is the master switch for AI accountability. It ensures that every operation, no matter how small, is preceded by the creation of a permanent, unalterable record. There are no exceptions.</p>
+                </div>
+            </section>
+            
+            <section id="paradigm-shift" class="mb-16">
+                <h2 class="text-3xl font-bold text-center mb-8">The Shift: From Explanation to Evidence</h2>
+                 <p class="text-center max-w-3xl mx-auto mb-8">Previous attempts at AI safety, known as Explainable AI (XAI), failed because they produced subjective narratives, not evidence. TML enables Auditable AI (AAI), creating court-admissible records that transform accountability from a theoretical goal into a practical reality.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-white rounded-lg shadow-xl p-6 border-l-8 border-[#FF5A5F]">
+                        <h3 class="text-2xl font-bold flex items-center"><span class="text-3xl text-[#C81D25] mr-3">✗</span>Explainable AI (XAI)</h3>
+                        <ul class="list-disc list-inside mt-4 space-y-2 text-lg">
+                            <li>Subjective narratives</li>
+                            <li>No legal standing in court</li>
+                            <li>Can be manipulated or biased</li>
+                            <li>Focuses on "storytelling"</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-xl p-6 border-l-8 border-[#087E8B]">
+                        <h3 class="text-2xl font-bold flex items-center"><span class="text-3xl text-[#087E8B] mr-3">✓</span>Auditable AI (AAI)</h3>
+                        <ul class="list-disc list-inside mt-4 space-y-2 text-lg">
+                            <li>Immutable, factual evidence</li>
+                            <li>Court-admissible records</li>
+                            <li>Cryptographically secure</li>
+                            <li>Focuses on "evidence"</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="how-it-works" class="mb-16">
+                <h2 class="text-3xl font-bold text-center mb-8">How Always Memory Secures AI Actions</h2>
+                <p class="text-center max-w-3xl mx-auto mb-12">Always Memory isn't just a log file; it's a multi-layered security architecture designed for integrity and resilience. Before any AI action is executed, it passes through this rigorous process, ensuring every step is recorded and protected against tampering.</p>
+                <div class="bg-white rounded-lg shadow-2xl p-8">
+                    <div class="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0 md:space-x-4 text-center">
+                        <div class="w-full md:w-1/4">
+                            <div class="p-4 bg-[#BFD7EA] rounded-lg">
+                                <p class="font-bold text-lg">1. AI Intent</p>
+                                <p>An action is proposed.</p>
+                            </div>
+                        </div>
+                        <div class="text-2xl font-bold text-[#087E8B]">→</div>
+                         <div class="w-full md:w-1/2">
+                            <div class="p-4 bg-[#0B3954] text-white rounded-lg shadow-lg">
+                                <p class="font-bold text-lg">2. Pre-Execution Logging & Safeguards</p>
+                                <div class="text-left mt-2 text-sm grid grid-cols-1 sm:grid-cols-2 gap-2 p-2 rounded">
+                                    <p><span class="font-bold">Immutable Logs:</span> Cryptographically sealed.</p>
+                                    <p><span class="font-bold">Chain of Custody:</span> Securely linked data.</p>
+                                    <p><span class="font-bold">Redundant Storage:</span> Geographically distributed.</p>
+                                    <p><span class="font-bold">Crypto-shredding:</span> Protects user rights.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-2xl font-bold text-[#087E8B]">→</div>
+                        <div class="w-full md:w-1/4">
+                            <div class="p-4 bg-[#BFD7EA] rounded-lg">
+                                <p class="font-bold text-lg">3. TML Action</p>
+                                <p>Action is executed.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-16">
+                <section id="decision-framework">
+                    <h2 class="text-3xl font-bold text-center mb-4">The TML Decision Framework</h2>
+                    <p class="text-center max-w-xl mx-auto mb-8">Based on the evidence provided by Always Memory, the TML gate triages every action into one of three states. This ensures that routine tasks proceed efficiently while ethically complex decisions trigger a mandatory pause for review.</p>
+                    <div class="bg-white rounded-lg shadow-2xl p-6">
+                        <div class="chart-container">
+                            <canvas id="tmlStatesChart"></canvas>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="pillars">
+                    <h2 class="text-3xl font-bold text-center mb-4">The Eight Pillars of TML</h2>
+                    <p class="text-center max-w-xl mx-auto mb-8">Always Memory is one of eight interconnected pillars that form the complete TML framework. Each pillar is essential, creating a comprehensive architecture for AI safety, human rights, and planetary protection.</p>
+                    <div class="bg-white rounded-lg shadow-2xl p-6">
+                         <div class="chart-container">
+                            <canvas id="tmlPillarsChart"></canvas>
+                        </div>
+                    </div>
+                </section>
+            </div>
+             <section id="deprecated" class="mb-16">
+                <div class="bg-white rounded-lg shadow-xl p-8 text-center border-t-8 border-[#0B3954]">
+                    <p class="text-lg text-[#0B3954]"><b>Always Memory carved each hesitation into stone—microsecond, hash, signature—so no shrug of doubt could ever be blamed on foggy recollection.</b></p>
+                <p class="text-2xl font-bold text-[#087E8B] mb-4"> <b>- Lev Goukassian</b> </p>
+                    </div>
+            </section>
+        </main>
+
+        <footer class="text-center mt-12 pt-8 border-t-2 border-[#087E8B]">
+            <p class="text-2xl font-black text-[#0B3954]">This is not only an ethical upgrade. It is a survival architecture.</p>
+            <p class="text-sm text-[#087E8B] mt-4">Analysis based on TML Document Version 5.1 (Resilience Edition)</p>
+        </footer>
+
     </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+    const wrapLabel = (label, maxLength = 16) => {
+        if (typeof label !== 'string' || label.length <= maxLength) {
+            return label;
+        }
+        const words = label.split(' ');
+        const lines = [];
+        let currentLine = '';
+        words.forEach(word => {
+            if ((currentLine + ' ' + word).trim().length > maxLength) {
+                lines.push(currentLine.trim());
+                currentLine = word;
+            } else {
+                currentLine = (currentLine + ' ' + word).trim();
+            }
+        });
+        if (currentLine) {
+            lines.push(currentLine.trim());
+        }
+        return lines;
+    };
+
+    const tooltipTitleCallback = (tooltipItems) => {
+        const item = tooltipItems[0];
+        let label = item.chart.data.labels[item.dataIndex];
+        if (Array.isArray(label)) {
+            return label.join(' ');
+        }
+        return label;
+    };
+    
+    const brilliantBluesPalette = {
+        darkBlue: '#0B3954',
+        teal: '#087E8B',
+        lightBlue: '#BFD7EA',
+        red: '#FF5A5F',
+        darkRed: '#C81D25',
+    };
+
+    const tmlStatesCtx = document.getElementById('tmlStatesChart').getContext('2d');
+    new Chart(tmlStatesCtx, {
+        type: 'doughnut',
+        data: {
+            labels: ['+1 (Proceed)', '0 (Sacred Zero)', '-1 (Refuse)'],
+            datasets: [{
+                label: 'TML Action Distribution',
+                data: [85, 10, 5],
+                backgroundColor: [
+                    brilliantBluesPalette.teal,
+                    brilliantBluesPalette.red,
+                    brilliantBluesPalette.darkRed
+                ],
+                borderColor: '#FFFFFF',
+                borderWidth: 4
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        font: { size: 14 }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    }
+                }
+            },
+            cutout: '60%'
+        }
+    });
+
+    const pillarLabels = [
+        'Sacred Zero: Sacred Pause Technology',
+        'Always Memory',
+        'Goukassian Promise',
+        'Moral Trace Logs',
+        'Human Rights',
+        'Earth Protection',
+        'Hybrid Shield',
+        'Public Blockchains'
+    ];
+
+    const wrappedPillarLabels = pillarLabels.map(label => wrapLabel(label));
+
+    const tmlPillarsCtx = document.getElementById('tmlPillarsChart').getContext('2d');
+    new Chart(tmlPillarsCtx, {
+        type: 'radar',
+        data: {
+            labels: wrappedPillarLabels,
+            datasets: [{
+                label: 'TML Pillars',
+                data: [10, 10, 10, 10, 10, 10, 10, 10],
+                backgroundColor: 'rgba(8, 126, 139, 0.2)',
+                borderColor: brilliantBluesPalette.teal,
+                pointBackgroundColor: brilliantBluesPalette.teal,
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: brilliantBluesPalette.teal,
+                borderWidth: 2
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                r: {
+                    angleLines: { color: 'rgba(11, 57, 84, 0.2)' },
+                    grid: { color: 'rgba(11, 57, 84, 0.2)' },
+                    pointLabels: {
+                        font: {
+                            size: 12
+                        },
+                        color: brilliantBluesPalette.darkBlue
+                    },
+                    ticks: {
+                        display: false,
+                        stepSize: 5
+                    },
+                    suggestedMin: 0,
+                    suggestedMax: 12
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    }
+                }
+            }
+        }
+    });
+});
+</script>
 </body>
-
 </html>
-
