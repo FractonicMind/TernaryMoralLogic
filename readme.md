@@ -184,18 +184,25 @@ This dual-corpora architecture ensures that even the *absence* of hesitation bec
 
 ## [Always Memory](TML_Pillars/Always_Memory.md)
 
-Always Memory is TML’s enforcement backbone: **no memory = no action**.  
-Before any consequential operation executes, the framework verifies an authenticated logging channel and then writes a **Moral Trace Log** in parallel, so responsiveness remains intact (≤ 2 ms user-visible overhead) while full sealing/anchoring completes asynchronously (≤ 500 ms P95).
+Always Memory is TML’s enforcement backbone — **no memory = no action**.  
+It continuously records every consequential decision, preserving context, risk analysis, and justification as a **Moral Trace Log**. These logs are cryptographically sealed and anchored under the **Hybrid Shield**, ensuring that no decision ever disappears into opacity.
 
-**What it records:** prompt/context, stakeholders and potential harms, risk analysis (including any Sacred Zero event), alternatives considered, justification, jurisdiction, and clause references to the **mandated corpora** (40 human-rights documents and 26 earth-protection instruments).
+**Relationship to Sacred Zero and Sacred Pause:**  
+When **Sacred Zero** detects moral uncertainty and triggers a **Sacred Pause**, it is Always Memory that captures that moment. The hesitation itself becomes evidence — timestamped, sealed, and anchored. Sacred Zero decides *when to pause*; Always Memory ensures that the pause is *never lost*. Together, they turn reflection into record and conscience into code.
 
-**Integrity & anchoring:** every log is signed, hash-chained, Merkle-batched, and anchored via the **Hybrid Shield:**  
-- **Mathematical Shield:** multi-chain anchoring (Bitcoin permanence; Ethereum smart contracts; Polygon speed; OpenTimestamps archival)  
-- **Institutional Shield (optional):** independent custodians (regulators, NGOs, universities, insurers) attest to the same hashes for geopolitical redundancy
+**Integrity and Anchoring:**  
+- **Mathematical Shield:** Multi-chain anchoring (Bitcoin permanence, Ethereum smart contracts, Polygon speed, OpenTimestamps archival).  
+- **Institutional Shield (optional):** Independent guardians — regulators, NGOs, universities — mirror and attest to the same hashes for legal redundancy.  
 
-**Licensing mandate:** Always Memory is **not optional**. If the logging channel is missing, corrupted, or disabled, the action is blocked or restricted, a compliance anomaly is recorded, and the system’s TML license enters risk state until integrity is restored.
+**Licensing Mandate:**  
+Always Memory is **mandatory**. If the logging channel is unavailable, corrupted, or tampered with, all high-risk actions are halted, a compliance anomaly is recorded, and the system’s TML license enters risk state until the fault is corrected.  
 
-**Legal standing:** logs are engineered as **court-admissible evidence** (FRE 901/902/803(6)) with internationally recognized timestamping; transparency shifts disputes from claims to proofs.
+**Performance:**  
+- ≤ **2 ms** user-visible overhead  
+- ≤ **500 ms** P95 for full sealing and anchoring  
+
+**Legal Standing:**  
+Moral Trace Logs are **court-admissible evidence** (FRE 901/902/803(6); eIDAS-qualified timestamps). Every record turns accountability into proof — no conjecture, no erasure.
 
 ---
 
