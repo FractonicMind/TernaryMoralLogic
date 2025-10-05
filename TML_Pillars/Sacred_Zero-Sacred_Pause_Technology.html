@@ -345,7 +345,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         try {
             const apiKey = "";
-            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent?key=${apiKey}`;
+            const response = await fetch("/api/tts", {
             const payload = {
                 contents: [{ parts: [{ text: ttsText }] }],
                 generationConfig: { responseModalities: ["AUDIO"] },
