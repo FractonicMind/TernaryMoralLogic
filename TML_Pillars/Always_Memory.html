@@ -45,15 +45,30 @@
                 <h2 class="text-xl font-bold text-center text-[#087E8B] mb-4">Listen to the Overview</h2>
                 <div class="flex items-center space-x-4">
                     <button id="playPauseBtn" class="w-12 h-12 flex-shrink-0 rounded-full bg-[#0B3954] text-white flex items-center justify-center hover:bg-[#087E8B] transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#087E8B]">
-                        <svg id="playIcon" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M4.018 15.132A1.25 1.25 0 005.25 14.053V5.947a1.25 1.25 0 00-1.85-1.055l-7.256 4.053a1.25 1.25 0 000 2.11l7.256 4.053z"></path></svg>
-                        <svg id="pauseIcon" class="w-6 h-6 hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M5.75 3a.75.75 0 00-.75.75v12.5c0 .414.336.75.75.75h1.5a.75.75 0 00.75-.75V3.75A.75.75 0 007.25 3h-1.5zM12.75 3a.75.75 0 00-.75.75v12.5c0 .414.336.75.75.75h1.5a.75.75 0 00.75-.75V3.75a.75.75 0 00-.75-.75h-1.5z"></path></svg>
+                        <svg id="playIcon" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                            <path d="M6 4l10 6-10 6V4z"></path>
+                        </svg>
+                        <svg id="pauseIcon" class="w-6 h-6 hidden" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                            <path d="M6 4h3v12H6V4zm5 0h3v12h-3V4z"></path>
+                        </svg>
+                        <span class="sr-only">Play/Pause</span>
                     </button>
                     <div class="w-full bg-[#BFD7EA] rounded-full h-2.5">
                         <div id="progressBar" class="bg-[#0B3954] h-2.5 rounded-full" style="width: 0%"></div>
                     </div>
-                     <div id="timeDisplay" class="text-sm font-mono text-[#0B3954]">0:00 / 0:00</div>
+                    <div id="timeDisplay" class="text-sm font-mono text-[#0B3954]">0:00 / 0:00</div>
                 </div>
-                <audio id="audioPlayer" src="Always_Memory.mp3" preload="metadata"></audio>
+
+                <!-- Real audio element with fallbacks -->
+                <audio id="audioPlayer" preload="metadata" aria-label="Always Memory overview audio">
+                    <!-- Put the MP3 in the same folder as this HTML -->
+                    <source src="Always_Memory.mp3" type="audio/mpeg">
+                    <!-- Fallback to the alternate filename if that’s the file you committed -->
+                    <source src="Always_MemoryI.mp3" type="audio/mpeg">
+                    <!-- Optional OGG fallback if you add it later -->
+                    <source src="Always_Memory.ogg" type="audio/ogg">
+                    Your browser does not support the audio element.
+                </audio>
             </div>
         </section>
 
@@ -69,7 +84,7 @@
             
             <section id="paradigm-shift" class="mb-16">
                 <h2 class="text-3xl font-bold text-center mb-8">The Shift: From Explanation to Evidence</h2>
-                 <p class="text-center max-w-3xl mx-auto mb-8">Previous attempts at AI safety, known as Explainable AI (XAI), failed because they produced subjective narratives, not evidence. TML enables Auditable AI (AAI), creating court-admissible records that transform accountability from a theoretical goal into a practical reality.</p>
+                <p class="text-center max-w-3xl mx-auto mb-8">Previous attempts at AI safety, known as Explainable AI (XAI), failed because they produced subjective narratives, not evidence. TML enables Auditable AI (AAI), creating court-admissible records that transform accountability from a theoretical goal into a practical reality.</p>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div class="bg-white rounded-lg shadow-xl p-6 border-l-8 border-[#FF5A5F]">
                         <h3 class="text-2xl font-bold flex items-center"><span class="text-3xl text-[#C81D25] mr-3">✗</span>Explainable AI (XAI)</h3>
@@ -104,7 +119,7 @@
                             </div>
                         </div>
                         <div class="text-2xl font-bold text-[#087E8B]">→</div>
-                         <div class="w-full md:w-1/2">
+                        <div class="w-full md:w-1/2">
                             <div class="p-4 bg-[#0B3954] text-white rounded-lg shadow-lg">
                                 <p class="font-bold text-lg">2. Pre-Execution Logging & Safeguards</p>
                                 <div class="text-left mt-2 text-sm grid grid-cols-1 sm:grid-cols-2 gap-2 p-2 rounded">
@@ -141,16 +156,17 @@
                     <h2 class="text-3xl font-bold text-center mb-4">The Eight Pillars of TML</h2>
                     <p class="text-center max-w-xl mx-auto mb-8">Always Memory is one of eight interconnected pillars that form the complete TML framework. Each pillar is essential, creating a comprehensive architecture for AI safety, human rights, and planetary protection.</p>
                     <div class="bg-white rounded-lg shadow-2xl p-6">
-                         <div class="chart-container">
+                        <div class="chart-container">
                             <canvas id="tmlPillarsChart"></canvas>
                         </div>
                     </div>
                 </section>
             </div>
-             <section id="deprecated" class="mb-16">
+
+            <section id="deprecated" class="mb-16">
                 <div class="bg-white rounded-lg shadow-xl p-8 text-center border-t-8 border-[#0B3954]">
-                    <h2 class="text-2xl font-bold text-[#087E8B] mb-4"> <b>Lev Goukassian:</b> </h2>
-                    <p class="text-lg text-[#0B3954]"><b>Always Memory carved each hesitation into stone—microsecond, hash, signature—so no shrug of doubt could ever be blamed on foggy recollection.</b></p>
+                   <p class="text-lg text-[#0B3954]"><b>Always Memory carved each hesitation into stone—microsecond, hash, signature—so no shrug of doubt could ever be blamed on foggy recollection.</b></p>
+                 <h2 class="text-2xl font-bold text-[#087E8B] mb-4"><b>Lev Goukassian:</b></h2>
                 </div>
             </section>
         </main>
@@ -166,9 +182,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     const wrapLabel = (label, maxLength = 16) => {
-        if (typeof label !== 'string' || label.length <= maxLength) {
-            return label;
-        }
+        if (typeof label !== 'string' || label.length <= maxLength) return label;
         const words = label.split(' ');
         const lines = [];
         let currentLine = '';
@@ -180,19 +194,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 currentLine = (currentLine + ' ' + word).trim();
             }
         });
-        if (currentLine) {
-            lines.push(currentLine.trim());
-        }
+        if (currentLine) lines.push(currentLine.trim());
         return lines;
     };
 
     const tooltipTitleCallback = (tooltipItems) => {
         const item = tooltipItems[0];
-        let label = item.chart.data.labels[item.dataIndex];
-        if (Array.isArray(label)) {
-            return label.join(' ');
-        }
-        return label;
+        const label = item.chart.data.labels[item.dataIndex];
+        return Array.isArray(label) ? label.join(' ') : label;
     };
     
     const brilliantBluesPalette = {
@@ -212,27 +221,36 @@ document.addEventListener('DOMContentLoaded', () => {
     const timeDisplay = document.getElementById('timeDisplay');
 
     const formatTime = (seconds) => {
+        if (!isFinite(seconds)) return '0:00';
         const minutes = Math.floor(seconds / 60);
         const secs = Math.floor(seconds % 60);
         return `${minutes}:${secs.toString().padStart(2, '0')}`;
     };
 
-    playPauseBtn.addEventListener('click', () => {
-        if (audioPlayer.paused) {
-            audioPlayer.play();
-            playIcon.classList.add('hidden');
-            pauseIcon.classList.remove('hidden');
-        } else {
-            audioPlayer.pause();
-            playIcon.classList.remove('hidden');
-            pauseIcon.classList.add('hidden');
+    // Ensure play is user-gesture driven and catch blocked autoplay
+    playPauseBtn.addEventListener('click', async () => {
+        try {
+            if (audioPlayer.paused) {
+                await audioPlayer.play();
+                playIcon.classList.add('hidden');
+                pauseIcon.classList.remove('hidden');
+            } else {
+                audioPlayer.pause();
+                playIcon.classList.remove('hidden');
+                pauseIcon.classList.add('hidden');
+            }
+        } catch (err) {
+            console.error('Playback failed:', err);
+            timeDisplay.textContent = 'Tap again to allow audio ▶';
         }
     });
 
     audioPlayer.addEventListener('timeupdate', () => {
-        const progress = (audioPlayer.currentTime / audioPlayer.duration) * 100;
-        progressBar.style.width = `${progress}%`;
-        timeDisplay.textContent = `${formatTime(audioPlayer.currentTime)} / ${formatTime(audioPlayer.duration)}`;
+        if (isFinite(audioPlayer.duration) && audioPlayer.duration > 0) {
+            const progress = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+            progressBar.style.width = `${progress}%`;
+            timeDisplay.textContent = `${formatTime(audioPlayer.currentTime)} / ${formatTime(audioPlayer.duration)}`;
+        }
     });
 
     audioPlayer.addEventListener('loadedmetadata', () => {
@@ -244,9 +262,14 @@ document.addEventListener('DOMContentLoaded', () => {
         pauseIcon.classList.add('hidden');
         progressBar.style.width = '0%';
         audioPlayer.currentTime = 0;
+        timeDisplay.textContent = `0:00 / ${formatTime(audioPlayer.duration)}`;
     });
 
+    audioPlayer.addEventListener('error', () => {
+        timeDisplay.textContent = 'Audio failed to load. Check filename/path.';
+    });
 
+    // Charts
     const tmlStatesCtx = document.getElementById('tmlStatesChart').getContext('2d');
     new Chart(tmlStatesCtx, {
         type: 'doughnut',
@@ -270,15 +293,9 @@ document.addEventListener('DOMContentLoaded', () => {
             plugins: {
                 legend: {
                     position: 'bottom',
-                    labels: {
-                        font: { size: 14 }
-                    }
+                    labels: { font: { size: 14 } }
                 },
-                tooltip: {
-                    callbacks: {
-                        title: tooltipTitleCallback
-                    }
-                }
+                tooltip: { callbacks: { title: tooltipTitleCallback } }
             },
             cutout: '60%'
         }
@@ -322,28 +339,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     angleLines: { color: 'rgba(11, 57, 84, 0.2)' },
                     grid: { color: 'rgba(11, 57, 84, 0.2)' },
                     pointLabels: {
-                        font: {
-                            size: 12
-                        },
+                        font: { size: 12 },
                         color: brilliantBluesPalette.darkBlue
                     },
-                    ticks: {
-                        display: false,
-                        stepSize: 5
-                    },
+                    ticks: { display: false, stepSize: 5 },
                     suggestedMin: 0,
                     suggestedMax: 12
                 }
             },
             plugins: {
-                legend: {
-                    display: false
-                },
-                tooltip: {
-                    callbacks: {
-                        title: tooltipTitleCallback
-                    }
-                }
+                legend: { display: false },
+                tooltip: { callbacks: { title: tooltipTitleCallback } }
             }
         }
     });
