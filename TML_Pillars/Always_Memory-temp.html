@@ -40,20 +40,21 @@
             <p class="mt-4 max-w-3xl mx-auto">Ternary Moral Logic (TML) is a universal accountability framework for AI. At its core lies Always Memory: an unbreakable mandate that every AI action must create an immutable, cryptographically sealed memory before execution.</p>
         </header>
 
-        <section id="audio-overview" class="mb-12">
-            <div class="max-w-3xl mx-auto bg-white rounded-lg shadow-2xl p-6">
-                <h2 class="text-xl font-bold text-center text-[#087E8B] mb-4">Listen to the Overview</h2>
-                <div class="flex items-center space-x-4">
-                    <button id="playPauseBtn" class="w-12 h-12 flex-shrink-0 rounded-full bg-[#0B3954] text-white flex items-center justify-center hover:bg-[#087E8B] transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#087E8B]">
-                        <svg id="playIcon" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M4.018 15.132A1.25 1.25 0 005.25 14.053V5.947a1.25 1.25 0 00-1.85-1.055l-7.256 4.053a1.25 1.25 0 000 2.11l7.256 4.053z"></path></svg>
-                        <svg id="pauseIcon" class="w-6 h-6 hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M5.75 3a.75.75 0 00-.75.75v12.5c0 .414.336.75.75.75h1.5a.75.75 0 00.75-.75V3.75A.75.75 0 007.25 3h-1.5zM12.75 3a.75.75 0 00-.75.75v12.5c0 .414.336.75.75.75h1.5a.75.75 0 00.75-.75V3.75a.75.75 0 00-.75-.75h-1.5z"></path></svg>
-                    </button>
-                    <div class="w-full bg-[#BFD7EA] rounded-full h-2.5">
-                        <div id="progressBar" class="bg-[#0B3954] h-2.5 rounded-full" style="width: 0%"></div>
-                    </div>
-                     <div id="timeDisplay" class="text-sm font-mono text-[#0B3954]">0:00 / 0:00</div>
-                </div>
-                <audio id="audioPlayer" src="https://fractonicmind.github.io/TernaryMoralLogic/TML_Pillars/Always_Memory.mp3"></audio>
+        <section id="interview-audio" class="mb-12">
+            <div class="bg-white rounded-lg shadow-xl p-8 max-w-xl w-full text-center mx-auto">
+                <h2 class="text-3xl font-bold text-[#087E8B] mb-4">Ternary Moral Logic: The Interview</h2>
+                <p class="text-gray-700 mb-6">Listen to a detailed discussion on the implications and applications of Ternary Moral Logic: The AI That Knows When to Pause.</p>
+        
+                <audio controls class="w-full max-w-md mx-auto">
+                    <source src="https://fractonicmind.github.io/TernaryMoralLogic/TML_Pillars/Always_Memory.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+        
+                <p class="text-sm text-gray-500 mt-4">Interview Duration: 6 minutes 09 seconds</p>
+        
+                <a href="https://github.com/FractonicMind/TernaryMoralLogic/" class="mt-8 inline-block bg-[#0B3954] hover:bg-[#087E8B] text-white font-bold py-2 px-4 rounded transition duration-300">
+                    Back to Repository
+                </a>
             </div>
         </section>
 
@@ -149,8 +150,8 @@
             </div>
              <section id="deprecated" class="mb-16">
                 <div class="bg-white rounded-lg shadow-xl p-8 text-center border-t-8 border-[#0B3954]">
-                    <h2 class="text-2xl font-bold text-[#087E8B] mb-4">Framework Update Notice</h2>
-                    <p class="text-lg text-[#0B3954]">The following components are deprecated and were removed from TML as of October 03, 2025, by Lev Goukassian: SPRL (Stakeholder Proportional Risk Level), DS (Dynamic Stream), and SA (Static Anchor).</p>
+                    <h2 class="text-2xl font-bold text-[#087E8B] mb-4"> <b>Lev Goukassian</b> </h2>
+                    <p class="text-lg text-[#0B3954]"><b>Always Memory carved each hesitation into stone—microsecond, hash, signature—so no shrug of doubt could ever be blamed on foggy recollection.</b></p>
                 </div>
             </section>
         </main>
@@ -202,50 +203,6 @@ document.addEventListener('DOMContentLoaded', () => {
         red: '#FF5A5F',
         darkRed: '#C81D25',
     };
-
-    // Audio Player Logic
-    const audioPlayer = document.getElementById('audioPlayer');
-    const playPauseBtn = document.getElementById('playPauseBtn');
-    const playIcon = document.getElementById('playIcon');
-    const pauseIcon = document.getElementById('pauseIcon');
-    const progressBar = document.getElementById('progressBar');
-    const timeDisplay = document.getElementById('timeDisplay');
-
-    const formatTime = (seconds) => {
-        const minutes = Math.floor(seconds / 60);
-        const secs = Math.floor(seconds % 60);
-        return `${minutes}:${secs.toString().padStart(2, '0')}`;
-    };
-
-    playPauseBtn.addEventListener('click', () => {
-        if (audioPlayer.paused) {
-            audioPlayer.play();
-            playIcon.classList.add('hidden');
-            pauseIcon.classList.remove('hidden');
-        } else {
-            audioPlayer.pause();
-            playIcon.classList.remove('hidden');
-            pauseIcon.classList.add('hidden');
-        }
-    });
-
-    audioPlayer.addEventListener('timeupdate', () => {
-        const progress = (audioPlayer.currentTime / audioPlayer.duration) * 100;
-        progressBar.style.width = `${progress}%`;
-        timeDisplay.textContent = `${formatTime(audioPlayer.currentTime)} / ${formatTime(audioPlayer.duration)}`;
-    });
-
-    audioPlayer.addEventListener('loadedmetadata', () => {
-        timeDisplay.textContent = `0:00 / ${formatTime(audioPlayer.duration)}`;
-    });
-
-    audioPlayer.addEventListener('ended', () => {
-        playIcon.classList.remove('hidden');
-        pauseIcon.classList.add('hidden');
-        progressBar.style.width = '0%';
-        audioPlayer.currentTime = 0;
-    });
-
 
     const tmlStatesCtx = document.getElementById('tmlStatesChart').getContext('2d');
     new Chart(tmlStatesCtx, {
