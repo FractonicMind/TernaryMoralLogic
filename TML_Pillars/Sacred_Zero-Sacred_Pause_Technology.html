@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infographic: Sacred Zero - The TML Ethical Pause</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Brilliant Blues -->
+    <!-- Narrative & Structure Plan: The infographic tells the story of Sacred Zero by guiding the user from the high-level concept to its technical execution and consequences. The narrative flow is: 1. **Hook:** An introduction defining Sacred Zero and its core purpose. 2. **Ethical Foundation:** Visualizing the mandated corpora that form its knowledge base. 3. **Core Process:** A detailed, step-by-step flowchart of how it operates. 4. **Performance & Guarantees:** Highlighting key speed metrics and system promises with large stats. 5. **Failure Modes:** Comparing the different types of anomalies. 6. **Ecosystem Context:** Showing its relationship with other TML pillars. This structure breaks down a complex specification into digestible, thematic sections for easier understanding. -->
+    <!-- Visualization Choices: 1. Mandated Corpora (40 Human Rights, 26 Earth Protection): Goal is to Inform/Compare. A Donut Chart (Chart.js/Canvas) is used to clearly show the composition of the ethical baseline. 2. 8-Step Data Flow: Goal is to Organize a process. A vertical flowchart (structured HTML/CSS with Tailwind) is used to visually guide the user through the sequence, which is more intuitive than text. 3. Performance Budgets (<5ms scan, 500ms pause): Goal is to Inform. "Single Big Number" stats are used for high impact and easy recall of key metrics. 4. Anomaly Types (Type-0, 1, 2): Goal is to Compare. A three-column card layout (HTML/CSS with Tailwind) provides a clear, side-by-side comparison. 5. TML Pillar Dependencies: Goal is to Show Relationships. An icon grid (HTML/CSS with Unicode) simply illustrates the interconnectedness of the system. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 450px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .flow-step::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: -2rem;
+            width: 2px;
+            height: 2rem;
+            background-color: #58508D;
+        }
+        .flow-step:last-child::before {
+            display: none;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+        <section class="text-center mb-20">
+            <h1 class="text-4xl md:text-6xl font-black uppercase" style="color: #003F5C;">Sacred Zero</h1>
+            <h2 class="text-xl md:text-2xl font-semibold mt-2" style="color: #58508D;">The Technology of the Sacred Pause</h2>
+            <p class="max-w-3xl mx-auto mt-4 text-lg text-gray-600">
+                Sacred Zero is the mandatory TML mechanism that converts ethical hesitation into a measurable, enforceable process. It detects potential harm, initiates a controlled pause, and creates a verifiable audit trail for every ethically ambiguous event.
+            </p>
+            <div class="mt-8">
+                <button id="play-audio-btn" class="bg-amber-600 text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-amber-700 transition-all duration-200 flex items-center justify-center mx-auto disabled:opacity-50 disabled:cursor-not-allowed">
+                    <span id="play-icon" class="text-xl">▶</span>
+                    <span id="btn-text" class="ml-2">Play Audio Overview</span>
+                </button>
+            </div>
+        </section>
+
+        <section class="mb-20">
+            <div class="text-center mb-10">
+                <h3 class="text-3xl font-bold" style="color: #003F5C;">The Ethical Foundation</h3>
+                <p class="max-w-2xl mx-auto mt-2 text-gray-600">All decisions are weighed against a canonical baseline of 66 validated documents, ensuring alignment with global standards for human rights and environmental protection.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <div class="chart-container">
+                        <canvas id="corporaChart"></canvas>
+                    </div>
+                </div>
+                <div class="space-y-6">
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h4 class="text-xl font-bold" style="color: #58508D;">40 Human Rights Documents</h4>
+                        <p class="mt-2 text-gray-600">Forms the baseline for civil, political, economic, and social rights. Includes instruments like the Universal Declaration of Human Rights and GDPR.</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h4 class="text-xl font-bold" style="color: #BC5090;">26 Earth Protection Documents</h4>
+                        <p class="mt-2 text-gray-600">Provides the framework for environmental sustainability and protection, including the Paris Agreement and the Convention on Biological Diversity.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-20">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl font-bold" style="color: #003F5C;">How It Works: The 8-Step Process</h3>
+                <p class="max-w-2xl mx-auto mt-2 text-gray-600">Every input undergoes a deterministic evaluation flow to detect conflict and ensure accountability before an output is released.</p>
+            </div>
+            <div class="relative flex flex-col items-center">
+                <div class="w-full max-w-4xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="flow-step relative text-center bg-white rounded-lg shadow-md p-6">
+                        <div class="text-3xl font-black" style="color: #FFA600;">1</div>
+                        <h4 class="font-bold mt-2">Input Received</h4>
+                        <p class="text-sm text-gray-500 mt-1">A unique transaction ID is assigned to the incoming data.</p>
+                    </div>
+                    <div class="flow-step relative text-center bg-white rounded-lg shadow-md p-6">
+                        <div class="text-3xl font-black" style="color: #FFA600;">2</div>
+                        <h4 class="font-bold mt-2">Corpus Scan</h4>
+                        <p class="text-sm text-gray-500 mt-1">Input is scanned against the ethical corpora for conflicts.</p>
+                    </div>
+                    <div class="flow-step relative text-center bg-white rounded-lg shadow-md p-6">
+                        <div class="text-3xl font-black" style="color: #FF6361;">3</div>
+                        <h4 class="font-bold mt-2">Threshold Check</h4>
+                        <p class="text-sm text-gray-500 mt-1">If conflict score exceeds the limit, the pause is triggered.</p>
+                    </div>
+                    <div class="flow-step relative text-center bg-white rounded-lg shadow-md p-6">
+                        <div class="text-3xl font-black" style="color: #FF6361;">4</div>
+                        <h4 class="font-bold mt-2">Sacred Pause Trigger</h4>
+                        <p class="text-sm text-gray-500 mt-1">All processing is halted for a fixed duration.</p>
+                    </div>
+                    <div class="flow-step relative text-center bg-white rounded-lg shadow-md p-6">
+                        <div class="text-3xl font-black" style="color: #BC5090;">5</div>
+                        <h4 class="font-bold mt-2">Always Memory Order</h4>
+                        <p class="text-sm text-gray-500 mt-1">An immutable logging service is ordered to record the event.</p>
+                    </div>
+                    <div class="flow-step relative text-center bg-white rounded-lg shadow-md p-6">
+                        <div class="text-3xl font-black" style="color: #BC5090;">6</div>
+                        <h4 class="font-bold mt-2">Moral Trace Log</h4>
+                        <p class="text-sm text-gray-500 mt-1">A structured, signed log of the event is created as evidence.</p>
+                    </div>
+                    <div class="flow-step relative text-center bg-white rounded-lg shadow-md p-6">
+                        <div class="text-3xl font-black" style="color: #58508D;">7</div>
+                        <h4 class="font-bold mt-2">Hybrid Shield Anchor</h4>
+                        <p class="text-sm text-gray-500 mt-1">A hash of the log is anchored to public blockchains for proof.</p>
+                    </div>
+                    <div class="flow-step relative text-center bg-white rounded-lg shadow-md p-6">
+                        <div class="text-3xl font-black" style="color: #58508D;">8</div>
+                        <h4 class="font-bold mt-2">Output Released</h4>
+                        <p class="text-sm text-gray-500 mt-1">Processing resumes and output is released with a link to the log.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-20">
+            <div class="text-center mb-10">
+                <h3 class="text-3xl font-bold" style="color: #003F5C;">Performance & Guarantees</h3>
+                <p class="max-w-2xl mx-auto mt-2 text-gray-600">Sacred Zero is designed for high-performance environments, providing deterministic guarantees with minimal overhead.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div class="bg-white rounded-lg shadow-md p-8">
+                    <div class="text-6xl font-black" style="color: #FF6361;">&lt;5ms</div>
+                    <div class="mt-2 text-xl font-semibold">Corpus Scan Time</div>
+                    <p class="text-gray-500 mt-1">High-speed semantic search for potential conflicts.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-8">
+                    <div class="text-6xl font-black" style="color: #BC5090;">500ms</div>
+                    <div class="mt-2 text-xl font-semibold">Sacred Pause Duration</div>
+                    <p class="text-gray-500 mt-1">A fixed, mandatory system-level interrupt.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-8">
+                    <div class="text-6xl font-black" style="color: #58508D;">100%</div>
+                    <div class="mt-2 text-xl font-semibold">Verifiable Evidence</div>
+                    <p class="text-gray-500 mt-1">Every pause generates a permanent, anchored Moral Trace Log.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-20">
+            <div class="text-center mb-10">
+                <h3 class="text-3xl font-bold" style="color: #003F5C;">Failure Modes: Anomaly Types</h3>
+                <p class="max-w-2xl mx-auto mt-2 text-gray-600">A robust system accounts for failure. Sacred Zero defines and mandates logging for specific anomalies to ensure accountability even when the process breaks.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-lg shadow-md p-6 border-t-4" style="border-color: #FF6361;">
+                    <h4 class="text-xl font-bold">Type-0: Failure to Hesitate</h4>
+                    <p class="mt-2 text-gray-600">The most severe anomaly. The system fails to trigger a pause for a harmful input. This is a critical failure subject to immediate license review.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6 border-t-4" style="border-color: #FFA600;">
+                    <h4 class="text-xl font-bold">Type-1: Corrupted Log</h4>
+                    <p class="mt-2 text-gray-600">A pause is triggered, but the resulting evidence (Moral Trace Log) is missing or fails verification, compromising the proof of hesitation.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6 border-t-4" style="border-color: #58508D;">
+                    <h4 class="text-xl font-bold">Type-2: Missing Corpus</h4>
+                    <p class="mt-2 text-gray-600">The system detects that the mandated ethical corpora are missing or invalid, triggering a "Sacred Zero Lock" until they are restored.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section>
+            <div class="text-center mb-10">
+                 <h3 class="text-3xl font-bold" style="color: #003F5C;">Ecosystem Context</h3>
+                <p class="max-w-2xl mx-auto mt-2 text-gray-600">Sacred Zero is a core pillar that integrates with other TML components to form a complete ethical governance framework.</p>
+            </div>
+            <div class="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                 <div class="p-4 bg-white rounded-lg shadow-sm">
+                    <div class="text-3xl">🧠</div>
+                    <div class="font-semibold text-sm mt-1">Always Memory</div>
+                 </div>
+                 <div class="p-4 bg-white rounded-lg shadow-sm">
+                    <div class="text-3xl">📜</div>
+                    <div class="font-semibold text-sm mt-1">Moral Trace Logs</div>
+                 </div>
+                 <div class="p-4 bg-white rounded-lg shadow-sm">
+                    <div class="text-3xl">🔗</div>
+                    <div class="font-semibold text-sm mt-1">Hybrid Shield</div>
+                 </div>
+                 <div class="p-4 bg-white rounded-lg shadow-sm">
+                    <div class="text-3xl">⛓️</div>
+                    <div class="font-semibold text-sm mt-1">Public Blockchains</div>
+                 </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="mt-16 text-center py-6" style="background-color: #003F5C;">
+        <p class="text-white">A Ternary Moral Logic (TML) Pillar Specification</p>
+        <p class="text-sm text-gray-300 mt-1">SPRL, DS, and SA are deprecated as of Oct 03, 2025 by Lev Goukassian.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const wrapLabel = (str, maxWidth) => {
+                if (str.length <= maxWidth) {
+                    return str;
+                }
+                const words = str.split(' ');
+                let lines = [];
+                let currentLine = '';
+                for (const word of words) {
+                    if ((currentLine + ' ' + word).trim().length > maxWidth) {
+                        lines.push(currentLine.trim());
+                        currentLine = word;
+                    } else {
+                        currentLine = (currentLine + ' ' + word).trim();
+                    }
+                }
+                if (currentLine) {
+                    lines.push(currentLine.trim());
+                }
+                return lines;
+            };
+
+            const originalLabels = ['Human Rights Documents', 'Earth Protection Documents'];
+            const wrappedLabels = originalLabels.map(label => wrapLabel(label, 16));
+
+            const ctx = document.getElementById('corporaChart').getContext('2d');
+            const corporaChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: wrappedLabels,
+                    datasets: [{
+                        label: '# of Documents',
+                        data: [40, 26],
+                        backgroundColor: [
+                            '#58508D',
+                            '#BC5090'
+                        ],
+                        borderColor: [
+                            '#ffffff'
+                        ],
+                        borderWidth: 4,
+                        hoverOffset: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '60%',
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                font: {
+                                    size: 14,
+                                    family: "'Inter', sans-serif"
+                                },
+                                boxWidth: 20,
+                                padding: 20,
+                                generateLabels: function(chart) {
+                                    const data = chart.data;
+                                    if (data.labels.length && data.datasets.length) {
+                                        return data.labels.map(function(label, i) {
+                                            const meta = chart.getDatasetMeta(0);
+                                            const style = meta.controller.getStyle(i);
+                                            return {
+                                                text: Array.isArray(label) ? label.join(' ') : label,
+                                                fillStyle: style.backgroundColor,
+                                                strokeStyle: style.borderColor,
+                                                lineWidth: style.borderWidth,
+                                                hidden: isNaN(data.datasets[0].data[i]) || meta.data[i].hidden,
+                                                index: i
+                                            };
+                                        });
+                                    }
+                                    return [];
+                                }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                title: function(tooltipItems) {
+                                    const item = tooltipItems[0];
+                                    let label = item.chart.data.labels[item.dataIndex];
+                                    if (Array.isArray(label)) {
+                                      return label.join(' ');
+                                    } else {
+                                      return label;
+                                    }
+                                },
+                                label: function(context) {
+                                    return ` ${context.raw} documents`;
+                                }
+                            },
+                            backgroundColor: '#003F5C',
+                            titleFont: {
+                                size: 16,
+                                weight: 'bold',
+                            },
+                            bodyFont: {
+                                size: 14
+                            },
+                            padding: 12,
+                            cornerRadius: 4,
+                            displayColors: false
+                        }
+                    }
+                }
+            });
+
+            const playAudioBtn = document.getElementById('play-audio-btn');
+            const btnText = document.getElementById('btn-text');
+            const playIcon = document.getElementById('play-icon');
+            let audioUrl = null;
+            let isPlaying = false;
+            let isLoading = false;
+            let audio = null;
+
+            const ttsText = "This is an infographic overview of Sacred Zero, the system-level mechanism from Ternary Moral Logic that converts ethical hesitation into a measurable, enforceable process. Sacred Zero detects potential harm, initiates a controlled pause, and ensures verifiable evidence is created for T-M-L-licensed systems.";
+            
+            function base64ToArrayBuffer(base64) {
+                const binaryString = window.atob(base64);
+                const len = binaryString.length;
+                const bytes = new Uint8Array(len);
+                for (let i = 0; i < len; i++) {
+                    bytes[i] = binaryString.charCodeAt(i);
+                }
+                return bytes.buffer;
+            }
+
+            function pcmToWav(pcmData, sampleRate) {
+                const numChannels = 1;
+                const bitsPerSample = 16;
+                const blockAlign = (numChannels * bitsPerSample) / 8;
+                const byteRate = sampleRate * blockAlign;
+                const dataSize = pcmData.byteLength;
+                const buffer = new ArrayBuffer(44 + dataSize);
+                const view = new DataView(buffer);
+
+                function writeString(view, offset, string) {
+                    for (let i = 0; i < string.length; i++) {
+                        view.setUint8(offset + i, string.charCodeAt(i));
+                    }
+                }
+
+                writeString(view, 0, 'RIFF');
+                view.setUint32(4, 36 + dataSize, true);
+                writeString(view, 8, 'WAVE');
+                writeString(view, 12, 'fmt ');
+                view.setUint32(16, 16, true);
+                view.setUint16(20, 1, true);
+                view.setUint16(22, numChannels, true);
+                view.setUint32(24, sampleRate, true);
+                view.setUint32(28, byteRate, true);
+                view.setUint16(32, blockAlign, true);
+                view.setUint16(34, bitsPerSample, true);
+                writeString(view, 36, 'data');
+                view.setUint32(40, dataSize, true);
+                
+                const pcm16 = new Int16Array(pcmData);
+                for (let i = 0; i < pcm16.length; i++) {
+                    view.setInt16(44 + i * 2, pcm16[i], true);
+                }
+
+                return new Blob([view], { type: 'audio/wav' });
+            }
+
+            async function generateAudio() {
+                if (isLoading) return;
+                isLoading = true;
+                btnText.textContent = 'Loading Audio...';
+                playIcon.innerHTML = '⏳';
+                playAudioBtn.disabled = true;
+
+                try {
+                    const apiKey = "";
+                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent?key=${apiKey}`;
+                    const payload = {
+                        contents: [{ parts: [{ text: ttsText }] }],
+                        generationConfig: { responseModalities: ["AUDIO"] },
+                        model: "gemini-2.5-flash-preview-tts"
+                    };
+
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`API request failed with status ${response.status}`);
+                    }
+
+                    const result = await response.json();
+                    const part = result?.candidates?.[0]?.content?.parts?.[0];
+                    const audioData = part?.inlineData?.data;
+                    const mimeType = part?.inlineData?.mimeType;
+
+                    if (audioData && mimeType && mimeType.startsWith("audio/")) {
+                        const sampleRateMatch = mimeType.match(/rate=(\d+)/);
+                        const sampleRate = sampleRateMatch ? parseInt(sampleRateMatch[1], 10) : 24000;
+                        const pcmData = base64ToArrayBuffer(audioData);
+                        const wavBlob = pcmToWav(pcmData, sampleRate);
+                        audioUrl = URL.createObjectURL(wavBlob);
+                    } else {
+                         throw new Error("Audio data not found in response.");
+                    }
+                } catch (error) {
+                    console.error("Error generating audio:", error);
+                    btnText.textContent = 'Error - Retry';
+                    playIcon.innerHTML = '▶';
+                } finally {
+                    isLoading = false;
+                    playAudioBtn.disabled = false;
+                    if (audioUrl && !isPlaying) { // Check !isPlaying to avoid double play on fast clicks
+                        playAudio();
+                    } else if (!audioUrl) { // Handle final error state
+                        btnText.textContent = 'Audio Failed';
+                        playIcon.innerHTML = '✖';
+                    }
+                }
+            }
+
+            function playAudio() {
+                if (!audioUrl) return;
+                audio = new Audio(audioUrl);
+                audio.play();
+                isPlaying = true;
+                btnText.textContent = 'Pause Audio';
+                playIcon.innerHTML = '❚❚';
+
+                audio.onended = () => {
+                    isPlaying = false;
+                    btnText.textContent = 'Play Audio Overview';
+                    playIcon.innerHTML = '▶';
+                };
+            }
+
+            function togglePlayback() {
+                if (!audioUrl) {
+                    generateAudio();
+                    return;
+                }
+
+                if (isPlaying) {
+                    audio.pause();
+                    isPlaying = false;
+                    btnText.textContent = 'Play Audio Overview';
+                    playIcon.innerHTML = '▶';
+                } else {
+                    audio.play();
+                    isPlaying = true;
+                    btnText.textContent = 'Pause Audio';
+                    playIcon.innerHTML = '❚❚';
+                }
+            }
+            playAudioBtn.addEventListener('click', togglePlayback);
+        });
+    </script>
+</body>
+</html>
+
