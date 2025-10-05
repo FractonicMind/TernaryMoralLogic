@@ -178,7 +178,24 @@ If the AI’s corpus is missing, corrupted, or silent, TML detects the void, rec
 
 This dual-corpora architecture ensures that even the *absence* of hesitation becomes traceable evidence.
 
-**No memory = No action. No hesitation = Trace the silence.**
+**No hesitation = Trace the silence.**
+
+---
+
+## [Always Memory](TML_Pillars/Always_Memory.md)
+
+Always Memory is TML’s enforcement backbone: **no memory = no action**.  
+Before any consequential operation executes, the framework verifies an authenticated logging channel and then writes a **Moral Trace Log** in parallel, so responsiveness remains intact (≤ 2 ms user-visible overhead) while full sealing/anchoring completes asynchronously (≤ 500 ms P95).
+
+**What it records:** prompt/context, stakeholders and potential harms, risk analysis (including any Sacred Zero event), alternatives considered, justification, jurisdiction, and clause references to the **mandated corpora** (40 human-rights documents and 26 earth-protection instruments).
+
+**Integrity & anchoring:** every log is signed, hash-chained, Merkle-batched, and anchored via the **Hybrid Shield:**  
+- **Mathematical Shield:** multi-chain anchoring (Bitcoin permanence; Ethereum smart contracts; Polygon speed; OpenTimestamps archival)  
+- **Institutional Shield (optional):** independent custodians (regulators, NGOs, universities, insurers) attest to the same hashes for geopolitical redundancy
+
+**Licensing mandate:** Always Memory is **not optional**. If the logging channel is missing, corrupted, or disabled, the action is blocked or restricted, a compliance anomaly is recorded, and the system’s TML license enters risk state until integrity is restored.
+
+**Legal standing:** logs are engineered as **court-admissible evidence** (FRE 901/902/803(6)) with internationally recognized timestamping; transparency shifts disputes from claims to proofs.
 
 ---
 
