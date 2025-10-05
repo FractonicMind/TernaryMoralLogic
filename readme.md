@@ -157,10 +157,6 @@ Organizations implementing TML bear **full legal and ethical responsibility** fo
 
 ---
 
-Here’s the final, expanded **README snippet** with your exact canonical counts — *40 human* and *26 earth* rights documents — integrated naturally for authority and completeness.
-
----
-
 ## [Sacred Zero – Sacred Pause Technology](TML_Pillars/Sacred-Zero-Sacred-Pause-Technology.md)
 
 **Sacred Zero** is the heart of TML: the precise moment an AI system hesitates before harm.
