@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sacred Zero: Sacred Pause Technology</title>
+    <title>Sacred Zero: An Interactive Exploration</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -181,7 +181,7 @@
 
     <footer class="mt-24 bg-slate-800 text-center py-8">
         <p class="text-white">A Ternary Moral Logic (TML) Pillar Specification</p>
-        <p class="mt-2 text-white font-semibold">"The Sacred Zero is not a feature to be optimized, but a principle that protects humanity. It creates space for wisdom in an age of artificial speed." - Lev Goukassian.</p>
+        <p class="text-white">"The Sacred Zero is not a feature to be optimized, but a principle that protects humanity. It creates space for wisdom in an age of artificial speed." - Lev Goukassian.</p>
     </footer>
 
 <script>
@@ -345,7 +345,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         try {
             const apiKey = "";
-            const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent?key=${apiKey}`, {
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent?key=${apiKey}`;
             const payload = {
                 contents: [{ parts: [{ text: ttsText }] }],
                 generationConfig: { responseModalities: ["AUDIO"] },
