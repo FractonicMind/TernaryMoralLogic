@@ -41,21 +41,77 @@
         </header>
 
         <section id="interview-audio" class="mb-12">
-            <div class="bg-white rounded-lg shadow-xl p-8 max-w-xl w-full text-center mx-auto">
-                <h2 class="text-3xl font-bold text-[#087E8B] mb-4">Ternary Moral Logic: The Interview</h2>
-                <p class="text-gray-700 mb-6">Listen to a detailed discussion on the implications and applications of Ternary Moral Logic: The AI That Knows When to Pause.</p>
-        
-                <audio controls class="w-full max-w-md mx-auto">
-                    <source src="Always_Memory.mp3" type="audio/mpeg">
-                    Your browser does not support the audio element.
-                </audio>
-        
-                <p class="text-sm text-gray-500 mt-4">Interview Duration: 6 minutes 09 seconds</p>
-        
-                <a href="https://github.com/FractonicMind/TernaryMoralLogic/" class="mt-8 inline-block bg-[#0B3954] hover:bg-[#087E8B] text-white font-bold py-2 px-4 rounded transition duration-300">
-                    Back to Repository
-                </a>
-            </div>
+            <!-- Audio: simple, native, reliable -->
+<div class="max-w-3xl mx-auto bg-white rounded-lg shadow-2xl p-6 text-center">
+  <h2 class="text-xl font-bold text-[#087E8B] mb-4">Listen to the Overview</h2>
+  <p class="text-gray-700 mb-6">Hear the spoken overview of Always Memory — where every act of reasoning becomes a permanent record of conscience.</p>
+
+  <audio id="audioPlayer" controls preload="metadata" playsinline class="w-full max-w-md mx-auto">
+    <source id="srcLocal" src="Always_Memory.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- Direct link to confirm the file path works when clicked -->
+  <p class="text-sm text-gray-500 mt-2">
+    <a id="directLink" href="Always_Memory.mp3" class="underline text-[#087E8B]" target="_blank" rel="noopener">Open the audio file directly</a>
+  </p>
+
+  <!-- Status line prints what the browser is seeing -->
+  <div id="audioStatus" class="text-xs text-gray-600 mt-3">Checking audio…</div>
+</div>
+
+<script>
+  (function () {
+    const status = document.getElementById('audioStatus');
+    const audio  = document.getElementById('audioPlayer');
+    const link   = document.getElementById('directLink');
+    const local  = document.getElementById('srcLocal');
+
+    // 1) Quick environment hint
+    const here = location.href;
+    if (here.startsWith('https://github.com/')) {
+      status.textContent = 'GitHub repo pages sandbox HTML and break relative media. Click "Raw" or use GitHub Pages / local hosting.';
+    } else if (here.startsWith('file://')) {
+      status.textContent = 'Opened from file:// — should work locally. If not, check filename case sensitivity.';
+    } else if (here.includes('github.io')) {
+      status.textContent = 'Served via GitHub Pages. Verifying the MP3 path…';
+    } else {
+      status.textContent = 'Verifying the MP3 path…';
+    }
+
+    // 2) HEAD-check the MP3 so you see a concrete success/failure
+    const testUrl = local.getAttribute('src');
+    link.href = testUrl;
+
+    // Use fetch when allowed; if blocked (file://), skip to audio events
+    if (location.protocol.startsWith('http')) {
+      fetch(testUrl, { method: 'HEAD', cache: 'no-store' })
+        .then(r => {
+          if (r.ok) {
+            status.textContent = `MP3 reachable (${r.status}). Try Play.`;
+          } else {
+            status.textContent = `MP3 fetch error: HTTP ${r.status}. Check path or case (Always_Memory.mp3).`;
+          }
+        })
+        .catch(err => {
+          status.textContent = `Fetch failed (likely cross-origin or path issue). Try the "Open the audio file" link above.`;
+          console.error('HEAD check error:', err);
+        });
+    }
+
+    // 3) Report detailed audio events for clarity
+    audio.addEventListener('loadedmetadata', () => {
+      status.textContent = `Loaded: ${Math.round(audio.duration)}s total. Click Play.`;
+    });
+    audio.addEventListener('error', () => {
+      const e = audio.error;
+      const codes = {1:'ABORTED',2:'NETWORK',3:'DECODE',4:'SRC_NOT_SUPPORTED'};
+      status.textContent = `Audio error: ${codes[e && e.code] || 'UNKNOWN'}. Confirm the file is in the SAME folder and name matches exactly.`;
+      console.error('Audio error object:', e);
+    });
+  })();
+</script>
+
         </section>
 
         <main>
