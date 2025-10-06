@@ -3,7 +3,7 @@
 ## Blockchain-Immortalized Framework for Humanity and Earth
 
 **Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)  
-**Architecture**: Blockchain-First (Eternal), Guardian-Optional (Temporal)  
+**Architecture**: blockchain (Eternal), Guardian-Optional (Temporal)  
 **Protection Scope**: Human Rights + Earth + Future Generations  
 **Version**: 3.0.0  
 

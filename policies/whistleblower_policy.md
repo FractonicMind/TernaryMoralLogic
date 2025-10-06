@@ -1,6 +1,6 @@
 # TML Whistleblower Protection Policy
 
-**Version**: 2.0.0 (Blockchain-First Architecture)  
+**Version**: 2.0.0 (blockchain Architecture)  
 **Status**: Active Protection Protocol  
 **Architecture**: Blockchain Evidence, Smart Contract Rewards, Optional Guardian Enhancement  
 **Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)  
@@ -467,7 +467,7 @@ function emergencyResponse(bytes32 threatProof) public {
 - Limited international reach
 - Manual reward distribution
 
-**New Model (Blockchain-First)**:
+**New Model (blockchain)**:
 - Self-authenticating evidence
 - Instant verification
 - Impossible to capture

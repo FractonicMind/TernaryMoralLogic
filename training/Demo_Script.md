@@ -95,7 +95,7 @@ mkdir tml-demo && cd tml-demo
 
 # Create configuration (show each line on screen)
 cat > .env << EOF
-# Blockchain-First Configuration
+# blockchain Configuration
 TML_MODE=blockchain_primary
 TML_BLOCKCHAIN_NETWORKS=bitcoin,polygon
 TML_SACRED_ZERO_ENABLED=true

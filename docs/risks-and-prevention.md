@@ -1,6 +1,6 @@
 # TML Risk Prevention Framework v3.0
 
-**Version**: 3.0 (Blockchain-First Architecture)  
+**Version**: 3.0 (blockchain Architecture)  
 **Status**: Active Protection via Smart Contracts  
 **Core Protection**: Blockchain Anchoring + Criminal Liability  
 **Optional Enhancement**: Guardian Network (Years 3-5, if bored)
@@ -336,7 +336,7 @@ class AuthenticTML:
 
 **Created by**: Lev Goukassian  
 **Date**: September 2025  
-**Architecture**: Blockchain-First, Guardian-Never  
+**Architecture**: blockchain, Guardian-Never  
 **Deployment Time**: 10 minutes  
 **Protection Level**: Maximum
 

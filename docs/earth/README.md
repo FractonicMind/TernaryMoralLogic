@@ -257,7 +257,7 @@ Earth Protection is **mandatory**, not optional. Contributions should:
 ---
 
 **Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)  
-**Version**: 3.0 (Blockchain-First)  
+**Version**: 3.0 (blockchain)  
 **Architecture**: Smart Contracts, Not Committees  
 **Repository**: https://github.com/FractonicMind/TernaryMoralLogic
 

@@ -57,7 +57,7 @@ attack_categories:
 
 ## Security Architecture
 
-### 1. Blockchain-First Integrity
+### 1. blockchain Integrity
 
 ```solidity
 // Solidity pseudo-code

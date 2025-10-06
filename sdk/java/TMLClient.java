@@ -1,5 +1,5 @@
 /**
- * TML Client - Blockchain-First Implementation
+ * TML Client - blockchain Implementation
  * Creator: Lev Goukassian (ORCID: 0009-0006-5966-1243)
  */
 package org.tml.sdk;

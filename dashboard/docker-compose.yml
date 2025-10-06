@@ -1,4 +1,4 @@
-# TML Complete Monitoring Stack - Blockchain-First Production Deployment
+# TML Complete Monitoring Stack - blockchain Production Deployment
 # Path: /dashboard/docker-compose.yml
 # Version: 2.0.0
 # Creator: Lev Goukassian (ORCID: 0009-0006-5966-1243)
@@ -30,7 +30,7 @@ services:
       - "8080:8080"    # TML API endpoint
       - "8443:8443"    # TLS/SSL endpoint for production
     environment:
-      # Blockchain-First Configuration
+      # blockchain Configuration
       TML_MODE: "blockchain_primary"
       TML_BLOCKCHAIN_NETWORKS: "bitcoin,polygon,ethereum"
       TML_GUARDIAN_MODE: "optional"  # No longer required

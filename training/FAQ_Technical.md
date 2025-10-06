@@ -1,4 +1,4 @@
-# TML Technical FAQ - Blockchain-First Implementation
+# TML Technical FAQ - blockchain Implementation
 
 **Path**: `/training/FAQ_Technical.md`  
 **Version**: 2.0.0  

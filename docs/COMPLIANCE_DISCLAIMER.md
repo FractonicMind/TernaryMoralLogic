@@ -261,7 +261,7 @@ docker run tml/always-memory \
 Ternary Moral Logic Framework
 Creator: Lev Goukassian (ORCID: 0009-0006-5966-1243)
 Email: leogouk@gmail.com
-Architecture: Blockchain-First, Guardian-Optional
+Architecture: blockchain, Guardian-Optional
 Protection: Humans + Earth + Future Generations
 ```
 
@@ -351,7 +351,7 @@ These terms are:
 **GOVERNING PRINCIPLE**: Blockchain consensus supersedes institutional opinion.
 
 **EFFECTIVE**: Immediately upon deployment  
-**VERSION**: 2.0.0 (Blockchain-First)  
+**VERSION**: 2.0.0 (blockchain)  
 **STATUS**: Self-enforcing via smart contracts
 
 ---

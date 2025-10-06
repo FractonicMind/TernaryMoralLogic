@@ -3,7 +3,7 @@
 
 **Creator:** Lev Goukassian (ORCID: 0009-0006-5966-1243)  
 **Contact:** leogouk@gmail.com  
-**Architecture:** Blockchain-First, Guardian-Optional  
+**Architecture:** blockchain, Guardian-Optional  
 **Protection Scope:** Human Rights (26 docs) + Earth Protection (20+ docs)
 
 ---
@@ -47,7 +47,7 @@ Adversaries may attempt to:
 
 ## 4. Architecture
 
-### 4.1 Blockchain-First Components
+### 4.1 blockchain Components
 
 **Primary Protection Layer (MANDATORY)**
 - **Multi-Chain Anchor**: Bitcoin + Polygon + Ethereum redundancy
@@ -390,7 +390,7 @@ Ternary Moral Logic Framework
 Creator: Lev Goukassian, ORCID 0009-0006-5966-1243
 Contact: leogouk@gmail.com
 Protection: Humans + Earth + Future Generations
-Architecture: Blockchain-First, Guardian-Optional
+Architecture: blockchain, Guardian-Optional
 ```
 
 ---
@@ -422,7 +422,7 @@ Before deployment:
 ## 17. Status
 
 **Creator:** Lev Goukassian  
-**Architecture:** Blockchain-First (Deploy Today)  
+**Architecture:** blockchain (Deploy Today)  
 **Protection:** Comprehensive (Humans + Earth + Future)  
 **Integrity:** Court-Grade via Mathematical Consensus  
 **Deployment:** Immediate (No Waiting)

@@ -481,7 +481,7 @@ tml-oracle start --autodiscover --autointegrate
 
 ---
 
-**Protocol Version**: 3.0 (Blockchain-First)  
+**Protocol Version**: 3.0 (blockchain)  
 **Effectiveness**: Immediate upon deployment  
 **Review Schedule**: Never (it's automated)  
 **Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)  

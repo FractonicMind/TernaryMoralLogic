@@ -24,7 +24,7 @@ The Sacred Zero UI Framework provides real-time visualization of **blockchain-en
 - Show institutional approvals
 - Hide behind "processing" screens
 
-### NEW UI Reality (Blockchain-First)
+### NEW UI Reality (blockchain)
 ```javascript
 // Sacred Zero triggers automatically via smart contract
 const sacredZeroUI = {

@@ -2,7 +2,7 @@
 
 **Version**: 6.0.0  
 **Status**: Optional Enhancement (Not Required for Deployment)
-**Architecture**: Blockchain-First with Guardian Enhancement Option
+**Architecture**: blockchain with Guardian Enhancement Option
 **Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)
 
 ---

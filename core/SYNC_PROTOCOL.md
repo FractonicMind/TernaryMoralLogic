@@ -23,7 +23,7 @@
 
 ---
 
-## Current Architecture - Blockchain-First Foundation
+## Current Architecture - blockchain Foundation
 
 ### **Primary Design Principles**
 

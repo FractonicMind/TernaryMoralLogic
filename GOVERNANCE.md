@@ -58,7 +58,7 @@ This document establishes the enforcement governance for the TML framework, cent
 
 ## The Multi-Chain Protection Architecture
 
-### Blockchain-First Evidence System
+### blockchain Evidence System
 
 TML ensures no organization can hide violations through cryptographic immutability:
 
@@ -111,7 +111,7 @@ TML ensures no organization can hide violations through cryptographic immutabili
 
 ### Evolution from Blockchain to Institutional Oversight
 
-**Current State: Blockchain-First Protection**
+**Current State: blockchain Protection**
 - Complete discrimination prevention via Sacred Zero
 - Immutable evidence via multi-chain anchoring
 - Automatic penalties via smart contracts

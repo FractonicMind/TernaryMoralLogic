@@ -1,10 +1,10 @@
 # HYBRID SHIELD MODEL
 
-## Blockchain-First Protection with Optional Guardian Enhancement
+## blockchain Protection with Optional Guardian Enhancement
 
 **Framework Originator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)  
 **Document Version**: 2.0.0  
-**Architecture**: Blockchain-First, Guardian-Optional  
+**Architecture**: blockchain, Guardian-Optional  
 **Deployment**: Immediate  
 
 ---

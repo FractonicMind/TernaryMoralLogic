@@ -480,7 +480,7 @@ def governance_comparison():
 
 *"Protection is not negotiated in committee rooms—it is forged in mathematics, sealed in blockchain, and enforced by algorithms that never sleep, never compromise, and never forget."*
 
-**Document Version**: 3.0 (Blockchain-First)  
+**Document Version**: 3.0 (blockchain)  
 **Deployment Time**: 10 minutes  
 **Committee Meetings Needed**: Zero  
 **Protection Level**: Maximum

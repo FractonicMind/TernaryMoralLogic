@@ -438,14 +438,14 @@ tml:
 | Deployment Model | Setup Time | Monthly Cost | Protection Level |
 |-----------------|------------|--------------|------------------|
 | Guardian Network (11 nodes) | 6-12 months | $50,000+ | Perfect (if ever achieved) |
-| Blockchain-First | **10 minutes** | **$100** | **Good (deployable today)** |
+| blockchain | **10 minutes** | **$100** | **Good (deployable today)** |
 | Hybrid (3 Guardians) | 1-3 months | $15,000 | Better |
 | Full Evolution | 2-3 years | $50,000+ | Perfect |
 
 ## Performance Metrics
 
 ```yaml
-Blockchain-First Performance:
+blockchain Performance:
   Sacred Zero Evaluation: <10ms (local)
   Blockchain Anchoring: 1-3 seconds (async)
   OTS Proof Generation: <100ms

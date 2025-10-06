@@ -1,4 +1,4 @@
-# Human Rights Protocols (Blockchain-First)
+# Human Rights Protocols (blockchain)
 
 ## Purpose
 
@@ -63,7 +63,7 @@ struct HumanRightsEvidence {
 }
 ```
 
-## Planned Documents (Blockchain-First)
+## Planned Documents (blockchain)
 
 ### Detection & Monitoring
 

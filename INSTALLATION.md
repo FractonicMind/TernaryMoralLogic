@@ -1,6 +1,6 @@
 # Installation Guide - 10 Minute Deployment
 
-## Ternary Moral Logic (TML) - Blockchain-First Framework
+## Ternary Moral Logic (TML) - blockchain Framework
 
 **Deploy in 10 minutes. Protect humans and Earth immediately. No committees required.**
 
@@ -339,7 +339,7 @@ docker run tml/always-memory:latest
 
 ```bibtex
 @software{goukassian2025tml,
-  title={Ternary Moral Logic: Blockchain-First Framework},
+  title={Ternary Moral Logic: blockchain Framework},
   author={Goukassian, Lev},
   year={2025},
   note={Protects Humans + Earth + Future Generations},
@@ -361,7 +361,7 @@ docker run tml/always-memory:latest
 
 > "# Installation Guide - 10 Minute Deployment
 
-## Ternary Moral Logic (TML) - Blockchain-First Framework
+## Ternary Moral Logic (TML) - blockchain Framework
 
 **Deploy in 10 minutes. Protect humans and Earth immediately. No committees required.**
 
@@ -700,7 +700,7 @@ docker run tml/always-memory:latest
 
 ```bibtex
 @software{goukassian2025tml,
-  title={Ternary Moral Logic: Blockchain-First Framework},
+  title={Ternary Moral Logic: blockchain Framework},
   author={Goukassian, Lev},
   year={2025},
   note={Protects Humans + Earth + Future Generations},
@@ -729,7 +729,7 @@ docker run tml/always-memory:latest
 **Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)  
 **Email**: leogouk@gmail.com  
 **Repository**: https://github.com/FractonicMind/TernaryMoralLogic  
-**Architecture**: Blockchain-First, Guardian-Never-Needed
+**Architecture**: blockchain, Guardian-Never-Needed
 
 *All USD amounts are nominal to 2025*"
 
@@ -740,6 +740,6 @@ docker run tml/always-memory:latest
 **Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)  
 **Email**: leogouk@gmail.com  
 **Repository**: https://github.com/FractonicMind/TernaryMoralLogic  
-**Architecture**: Blockchain-First, Guardian-Never-Needed
+**Architecture**: blockchain, Guardian-Never-Needed
 
 *All USD amounts are nominal to 2025*

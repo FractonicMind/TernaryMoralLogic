@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-TML Main Application - Blockchain-First Implementation
+TML Main Application - blockchain Implementation
 No Guardians. No committees. Just mathematical protection.
 
 Creator: Lev Goukassian (ORCID: 0009-0006-5966-1243)
@@ -161,7 +161,7 @@ class TMLApplication:
     def get_system_status(self) -> Dict:
         """Get current system status"""
         return {
-            'system': 'TML v3.0 - Blockchain-First',
+            'system': 'TML v3.0 - blockchain',
             'protection': 'Active',
             'statistics': self.stats,
             'blockchain': {
