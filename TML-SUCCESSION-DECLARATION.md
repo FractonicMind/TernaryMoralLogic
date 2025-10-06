@@ -27,6 +27,22 @@ This declaration establishes succession under:
 - Memorial Fund stewardship
 - Repository custodianship
 
+### Scope of Repositories
+
+This succession declaration applies to **all repositories** under the GitHub organization "FractonicMind" (https://github.com/FractonicMind/), including but not limited to:
+- All current repositories as of the date of this declaration
+- Any repositories created before transition completion
+- All associated documentation, code, and intellectual property
+- All derived works and implementations
+
+This coverage applies regardless of:
+- Repository name or specific content
+- Whether repositories are public or private
+- Whether repositories are later archived or deleted
+- The state of development or completion
+
+**Exception**: If I explicitly exclude a specific repository in writing before signing this declaration, that exclusion shall be documented in an addendum to this declaration.
+
 ---
 
 ## II. REASON FOR VOLUNTARY SUCCESSION
