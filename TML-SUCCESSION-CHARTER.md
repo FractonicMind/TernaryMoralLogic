@@ -587,7 +587,7 @@ From Lev Goukassian's writings:
 **Creator**: Lev Goukassian  
 **ORCID**: 0009-0006-5966-1243  
 **Email**: leogouk@gmail.com  
-**[TML-SUCCESSION-DECLARATION]**(TML-SUCCESSION-DECLARATION.md)
+**[TML-SUCCESSION-DECLARATION](TML-SUCCESSION-DECLARATION.md)**   
 **Repository**: https://github.com/FractonicMind/TernaryMoralLogic  
 **Community**: community@tml-goukassian.org
 
