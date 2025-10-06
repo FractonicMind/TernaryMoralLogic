@@ -1,11 +1,11 @@
-# TML Complete Monitoring Stack - blockchain Production Deployment
+# TML Complete Monitoring Stack - Blockchain Production Deployment
 # Path: /dashboard/docker-compose.yml
 # Version: 2.0.0
 # Creator: Lev Goukassian (ORCID: 0009-0006-5966-1243)
 # Last Updated: 2025-09-27
 #
-# Production-ready TML deployment with blockchain anchoring, monitoring, and compliance reporting
-# No Guardian Network required - blockchain protection from day one
+# Production-ready TML deployment with Blockchain anchoring, monitoring, and compliance reporting
+# No Guardian Network required - Blockchain protection from day one
 #
 # Quick Start:
 #   1. Copy this file to your server
@@ -23,14 +23,14 @@ services:
   # Sacred Zero + Always Memory + Blockchain Anchoring
   # ========================================================================================
   tml-core:
-    image: tml/protection:blockchain-latest
+    image: tml/protection:Blockchain-latest
     container_name: tml-protection
     restart: unless-stopped
     ports:
       - "8080:8080"    # TML API endpoint
       - "8443:8443"    # TLS/SSL endpoint for production
     environment:
-      # blockchain Configuration
+      # Blockchain Configuration
       TML_MODE: "blockchain_primary"
       TML_BLOCKCHAIN_NETWORKS: "bitcoin,polygon,ethereum"
       TML_GUARDIAN_MODE: "optional"  # No longer required
@@ -102,7 +102,7 @@ services:
 
   # ========================================================================================
   # TML DASHBOARD - Visual Monitoring Interface
-  # Standalone HTML dashboard with real-time blockchain monitoring
+  # Standalone HTML dashboard with real-time Blockchain monitoring
   # ========================================================================================
   tml-dashboard:
     image: nginx:alpine
@@ -236,18 +236,18 @@ services:
   # BLOCKCHAIN MONITOR - Multi-Chain Status Monitoring
   # Tracks Bitcoin, Ethereum, Polygon health and anchoring success
   # ========================================================================================
-  blockchain-monitor:
-    image: tml/blockchain-monitor:latest
-    container_name: tml-blockchain-monitor
+  Blockchain-monitor:
+    image: tml/Blockchain-monitor:latest
+    container_name: tml-Blockchain-monitor
     restart: unless-stopped
     environment:
       - BITCOIN_RPC=https://blockstream.info/api
       - ETHEREUM_RPC=https://cloudflare-eth.com
       - POLYGON_RPC=https://polygon-rpc.com
       - MONITOR_INTERVAL=30  # seconds
-      - ALERT_WEBHOOK=http://tml-core:8080/alerts/blockchain
+      - ALERT_WEBHOOK=http://tml-core:8080/alerts/Blockchain
     volumes:
-      - ./blockchain-config.yml:/etc/monitor/config.yml:ro
+      - ./Blockchain-config.yml:/etc/monitor/config.yml:ro
     networks:
       - tml-network
     depends_on:
@@ -400,9 +400,9 @@ networks:
 #     metrics_path: '/metrics'
 #     scrape_interval: 10s
 # 
-#   - job_name: 'blockchain-monitor'
+#   - job_name: 'Blockchain-monitor'
 #     static_configs:
-#       - targets: ['blockchain-monitor:9091']
+#       - targets: ['Blockchain-monitor:9091']
 
 # File: nginx.conf
 # events {
@@ -476,7 +476,7 @@ networks:
 # 1. PREREQUISITES:
 #    - Docker 24.0+ with Compose V2
 #    - Minimum 8GB RAM, 4 CPU cores, 100GB storage
-#    - Stable internet connection (blockchain APIs)
+#    - Stable internet connection (Blockchain APIs)
 #    - Domain names for production (optional)
 #
 # 2. QUICK DEPLOYMENT:
@@ -494,7 +494,7 @@ networks:
 # 4. FIRST TIME SETUP:
 #    - Visit http://localhost:3000 to see dashboard
 #    - Click "Simulate Discrimination" to test Sacred Zero
-#    - Check blockchain anchoring in real-time
+#    - Check Blockchain anchoring in real-time
 #    - Generate compliance report for insurance
 #
 # 5. PRODUCTION CONFIGURATION:
@@ -533,7 +533,7 @@ networks:
 # Support: support@tml-goukassian.org
 #
 # All USD amounts are nominal to 2025
-# blockchain protection without Guardian Network coordination
+# Blockchain protection without Guardian Network coordination
 # Deploy today, evolve governance tomorrow
 #
 # ========================================================================================

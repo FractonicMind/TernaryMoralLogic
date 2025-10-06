@@ -11,7 +11,7 @@
 
 ## Standards Philosophy - Don't Reinvent, Integrate
 
-**TML is not locked into a single blockchain or timestamping method.** It is a **modular anchoring framework** that combines existing standards into a **multi-layered defense**: cost-efficient, future-proof, and court-ready.
+**TML is not locked into a single Blockchain or timestamping method.** It is a **modular anchoring framework** that combines existing standards into a **multi-layered defense**: cost-efficient, future-proof, and court-ready.
 
 **Core Principle**: "*Don't reinvent, integrate.*" TML adopts proven cryptographic standards rather than creating new ones, ensuring maximum compatibility and legal acceptance.
 
@@ -56,7 +56,7 @@
 
 ### **Multi-Standard Anchoring = Defense in Depth**
 
-**Strategic Principle**: If one proof is questioned in court, another stands. If one blockchain fails, others continue. If one jurisdiction rejects a standard, others accept it.
+**Strategic Principle**: If one proof is questioned in court, another stands. If one Blockchain fails, others continue. If one jurisdiction rejects a standard, others accept it.
 
 ```yaml
 anchoring_layers:
@@ -228,7 +228,7 @@ tml migrate --from=v1.0 --to=v2.0 --add-standards=ots,ct
 
 **United States**:
 - **FRE 902(13)**: Self-authenticating electronic records with digital signatures
-- **FRE 901(b)(9)**: Authentication through distinctive characteristics (blockchain hashes)
+- **FRE 901(b)(9)**: Authentication through distinctive characteristics (Blockchain hashes)
 - **FRE 1001**: Original vs. copy distinction preserved through cryptographic verification
 - **ESIGN Act**: Electronic signatures and records legal equivalence
 
@@ -402,7 +402,7 @@ modular_integration:
 ots_integration:
   protocol: "RFC 3161 compliant timestamp protocol"
   calendar_servers: "Multiple independent aggregators"
-  bitcoin_anchoring: "Merkle tree inclusion in Bitcoin blockchain"
+  bitcoin_anchoring: "Merkle tree inclusion in Bitcoin Blockchain"
   verification: "Mathematically verifiable timestamp proofs"
   cost: "Free (calendar server aggregation)"
   
@@ -510,7 +510,7 @@ bitcoin_anchoring:
 evidence_strength:
   tamper_resistance: "Would require $50B+ attack"
   global_recognition: "Legal tender in multiple countries"
-  time_tested: "Longest-running blockchain network"
+  time_tested: "Longest-running Blockchain network"
   immutability: "Never been successfully attacked at protocol level"
 ```
 

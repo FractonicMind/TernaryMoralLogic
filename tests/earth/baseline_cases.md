@@ -387,7 +387,7 @@ def run_baseline_tests():
         # Verify Guardian signatures
         assert len(log.guardian_signatures) >= 3
         
-        # Confirm blockchain anchor
+        # Confirm Blockchain anchor
         assert verify_blockchain_anchor(log.block_hash)
     
     return test_results

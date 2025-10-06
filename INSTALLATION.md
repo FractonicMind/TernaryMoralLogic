@@ -1,6 +1,6 @@
 # Installation Guide - 10 Minute Deployment
 
-## Ternary Moral Logic (TML) - blockchain Framework
+## Ternary Moral Logic (TML) - Blockchain Framework
 
 **Deploy in 10 minutes. Protect humans and Earth immediately. No committees required.**
 
@@ -54,8 +54,8 @@ curl http://localhost:8080/health
 ### Minimum (Works Fine)
 - **Docker**: 20.10+
 - **Memory**: 2GB RAM
-- **Storage**: 10GB (for blockchain proofs)
-- **Network**: Internet for blockchain anchoring
+- **Storage**: 10GB (for Blockchain proofs)
+- **Network**: Internet for Blockchain anchoring
 
 ### Recommended (Better Performance)
 - **Docker**: Latest version
@@ -69,7 +69,7 @@ curl http://localhost:8080/health
 
 ### Blockchain Anchoring (MANDATORY)
 ```yaml
-blockchain:
+Blockchain:
   bitcoin:
     enabled: true
     confirmation_blocks: 6
@@ -161,7 +161,7 @@ docker run tml/always-memory deploy-contracts \
 
 ### Check Blockchain Anchoring
 ```bash
-curl http://localhost:8080/verify/blockchain
+curl http://localhost:8080/verify/Blockchain
 # Should return: {"bitcoin": "active", "polygon": "active", "ethereum": "active"}
 ```
 
@@ -283,7 +283,7 @@ result = client.log_decision({
     'stakeholders': ['patients', 'hospitals']
 })
 
-# Verify blockchain proof
+# Verify Blockchain proof
 proof = client.verify_on_blockchain(result['log_id'])
 assert proof['bitcoin_tx'] is not None
 assert proof['polygon_tx'] is not None
@@ -293,10 +293,10 @@ assert proof['polygon_tx'] is not None
 
 ## Troubleshooting
 
-### Issue: "Cannot connect to blockchain"
+### Issue: "Cannot connect to Blockchain"
 ```bash
 # Solution: Check RPC endpoints
-docker logs tml-production | grep blockchain
+docker logs tml-production | grep Blockchain
 
 # Use public endpoints if needed
 POLYGON_RPC=https://polygon-rpc.com
@@ -313,7 +313,7 @@ GUARDIAN_NETWORK=false
 ### Issue: "Waiting for institutional approval?"
 ```bash
 # Solution: There is no waiting!
-# Deploy immediately with blockchain
+# Deploy immediately with Blockchain
 # No committees exist
 # No approval needed
 ```
@@ -327,7 +327,7 @@ GUARDIAN_NETWORK=false
 # Stop waiting for committees
 docker stop old-tml
 
-# Deploy blockchain version NOW
+# Deploy Blockchain version NOW
 docker run tml/always-memory:latest
 
 # Migration complete in 10 minutes
@@ -339,7 +339,7 @@ docker run tml/always-memory:latest
 
 ```bibtex
 @software{goukassian2025tml,
-  title={Ternary Moral Logic: blockchain Framework},
+  title={Ternary Moral Logic: Blockchain Framework},
   author={Goukassian, Lev},
   year={2025},
   note={Protects Humans + Earth + Future Generations},
@@ -361,7 +361,7 @@ docker run tml/always-memory:latest
 
 > "# Installation Guide - 10 Minute Deployment
 
-## Ternary Moral Logic (TML) - blockchain Framework
+## Ternary Moral Logic (TML) - Blockchain Framework
 
 **Deploy in 10 minutes. Protect humans and Earth immediately. No committees required.**
 
@@ -415,8 +415,8 @@ curl http://localhost:8080/health
 ### Minimum (Works Fine)
 - **Docker**: 20.10+
 - **Memory**: 2GB RAM
-- **Storage**: 10GB (for blockchain proofs)
-- **Network**: Internet for blockchain anchoring
+- **Storage**: 10GB (for Blockchain proofs)
+- **Network**: Internet for Blockchain anchoring
 
 ### Recommended (Better Performance)
 - **Docker**: Latest version
@@ -430,7 +430,7 @@ curl http://localhost:8080/health
 
 ### Blockchain Anchoring (MANDATORY)
 ```yaml
-blockchain:
+Blockchain:
   bitcoin:
     enabled: true
     confirmation_blocks: 6
@@ -522,7 +522,7 @@ docker run tml/always-memory deploy-contracts \
 
 ### Check Blockchain Anchoring
 ```bash
-curl http://localhost:8080/verify/blockchain
+curl http://localhost:8080/verify/Blockchain
 # Should return: {"bitcoin": "active", "polygon": "active", "ethereum": "active"}
 ```
 
@@ -644,7 +644,7 @@ result = client.log_decision({
     'stakeholders': ['patients', 'hospitals']
 })
 
-# Verify blockchain proof
+# Verify Blockchain proof
 proof = client.verify_on_blockchain(result['log_id'])
 assert proof['bitcoin_tx'] is not None
 assert proof['polygon_tx'] is not None
@@ -654,10 +654,10 @@ assert proof['polygon_tx'] is not None
 
 ## Troubleshooting
 
-### Issue: "Cannot connect to blockchain"
+### Issue: "Cannot connect to Blockchain"
 ```bash
 # Solution: Check RPC endpoints
-docker logs tml-production | grep blockchain
+docker logs tml-production | grep Blockchain
 
 # Use public endpoints if needed
 POLYGON_RPC=https://polygon-rpc.com
@@ -674,7 +674,7 @@ GUARDIAN_NETWORK=false
 ### Issue: "Waiting for institutional approval?"
 ```bash
 # Solution: There is no waiting!
-# Deploy immediately with blockchain
+# Deploy immediately with Blockchain
 # No committees exist
 # No approval needed
 ```
@@ -688,7 +688,7 @@ GUARDIAN_NETWORK=false
 # Stop waiting for committees
 docker stop old-tml
 
-# Deploy blockchain version NOW
+# Deploy Blockchain version NOW
 docker run tml/always-memory:latest
 
 # Migration complete in 10 minutes
@@ -700,7 +700,7 @@ docker run tml/always-memory:latest
 
 ```bibtex
 @software{goukassian2025tml,
-  title={Ternary Moral Logic: blockchain Framework},
+  title={Ternary Moral Logic: Blockchain Framework},
   author={Goukassian, Lev},
   year={2025},
   note={Protects Humans + Earth + Future Generations},
@@ -729,7 +729,7 @@ docker run tml/always-memory:latest
 **Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)  
 **Email**: leogouk@gmail.com  
 **Repository**: https://github.com/FractonicMind/TernaryMoralLogic  
-**Architecture**: blockchain, Guardian-Never-Needed
+**Architecture**: Blockchain, Guardian-Never-Needed
 
 *All USD amounts are nominal to 2025*"
 
@@ -740,6 +740,6 @@ docker run tml/always-memory:latest
 **Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)  
 **Email**: leogouk@gmail.com  
 **Repository**: https://github.com/FractonicMind/TernaryMoralLogic  
-**Architecture**: blockchain, Guardian-Never-Needed
+**Architecture**: Blockchain, Guardian-Never-Needed
 
 *All USD amounts are nominal to 2025*

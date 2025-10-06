@@ -1,5 +1,5 @@
 /**
- * TML Client - blockchain Implementation
+ * TML Client - Blockchain Implementation
  * Creator: Lev Goukassian (ORCID: 0009-0006-5966-1243)
  */
 package org.tml.sdk;
@@ -97,7 +97,7 @@ public class TMLClient {
      */
     public WhistleblowerResult processWhistleblower(String evidence) {
         if (!verifyEvidence(evidence)) {
-            throw new IllegalArgumentException("Evidence not verified on blockchain");
+            throw new IllegalArgumentException("Evidence not verified on Blockchain");
         }
         
         long penalty = TMLConfig.PENALTY_DISCRIMINATION; // Example

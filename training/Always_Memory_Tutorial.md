@@ -15,7 +15,7 @@
 After this tutorial, you will:
 1. **Understand** why immutable logging is critical
 2. **Implement** Always Memory in your applications  
-3. **Verify** blockchain anchoring and proofs
+3. **Verify** Blockchain anchoring and proofs
 4. **Generate** compliance reports for auditors
 5. **Recover** from incidents using audit trails
 
@@ -50,12 +50,12 @@ class TraditionalLogger {
 ### The Always Memory Solution
 
 ```javascript
-// Always Memory - blockchain-enforced truth
+// Always Memory - Blockchain-enforced truth
 class AlwaysMemory {
     log(message) {
-        // 1. Cannot be deleted (blockchain immutable)
+        // 1. Cannot be deleted (Blockchain immutable)
         const hash = sha256(message);
-        blockchain.anchor(hash);
+        Blockchain.anchor(hash);
         
         // 2. Cannot be modified (cryptographic proof)
         const signature = sign(message, privateKey);
@@ -163,7 +163,7 @@ const AlwaysMemoryCategories = {
 // always-memory-setup.js
 const { AlwaysMemory } = require('tml-protection');
 
-// Initialize with blockchain mode
+// Initialize with Blockchain mode
 const logger = new AlwaysMemory({
     blockchainMode: true,
     network: 'bitcoin',  // Maximum security
@@ -321,7 +321,7 @@ function processPaymentWithAlwaysMemory(payment) {
 ```python
 def blockchain_anchor_flow():
     """
-    Complete flow from log to blockchain proof
+    Complete flow from log to Blockchain proof
     """
     
     # 1. Create log entry
@@ -383,7 +383,7 @@ async function verifyLogIntegrity(logId) {
         throw new Error('Merkle proof invalid!');
     }
     
-    // Step 3: Verify blockchain anchor
+    // Step 3: Verify Blockchain anchor
     const bitcoinValid = await verifyBitcoinBlock(
         proof.merkleRoot,
         proof.bitcoinBlock,
@@ -423,7 +423,7 @@ def verify_compliance_report(report_id):
     
     # YOUR CODE: Verify hash
     
-    # YOUR CODE: Verify blockchain anchor
+    # YOUR CODE: Verify Blockchain anchor
     
     # YOUR CODE: Generate verification URL
     
@@ -621,7 +621,7 @@ async function investigateComplaint(customerId, complaintTime) {
     
     // YOUR CODE: Check if Sacred Zero was evaluated
     
-    // YOUR CODE: Verify blockchain proof
+    // YOUR CODE: Verify Blockchain proof
     
     // YOUR CODE: Generate investigation report
     
@@ -785,7 +785,7 @@ class BatchedAlwaysMemory {
         );
         const merkleTree = new MerkleTree(hashes);
         
-        // Single blockchain anchor for entire batch
+        // Single Blockchain anchor for entire batch
         const proof = await openTimestamps.stamp(merkleTree.root);
         
         // Store batch with proof
@@ -1001,7 +1001,7 @@ class HealthcareAlwaysMemory:
 
 class LoanPlatformAlwaysMemory {
     constructor() {
-        // YOUR CODE: Initialize Always Memory with blockchain
+        // YOUR CODE: Initialize Always Memory with Blockchain
     }
     
     async evaluateLoanApplication(application) {
@@ -1011,14 +1011,14 @@ class LoanPlatformAlwaysMemory {
         // 3. Log decision with full context
         // 4. Track environmental impact
         // 5. Generate compliance proof
-        // 6. Return decision with blockchain proof
+        // 6. Return decision with Blockchain proof
     }
     
     async generateRegulatoryReport() {
         // YOUR CODE:
         // 1. Query last quarter's logs
         // 2. Analyze for compliance
-        // 3. Generate blockchain proofs
+        // 3. Generate Blockchain proofs
         // 4. Create signed report
     }
     
@@ -1026,7 +1026,7 @@ class LoanPlatformAlwaysMemory {
         // YOUR CODE:
         // 1. Verify auditor credentials
         // 2. Query relevant logs
-        // 3. Provide blockchain verification
+        // 3. Provide Blockchain verification
         // 4. Log the audit access itself
     }
 }
@@ -1092,7 +1092,7 @@ result = company.wins()  # Injustice
 
 # With Always Memory  
 company.lie()  # "We don't discriminate"
-always_memory.reveal()  # "Here's blockchain proof of discrimination"
+always_memory.reveal()  # "Here's Blockchain proof of discrimination"
 regulator.fine()  # "Evidence is irrefutable"
 victim.compensate()  # "Justice served"
 result = truth.wins()  # Justice

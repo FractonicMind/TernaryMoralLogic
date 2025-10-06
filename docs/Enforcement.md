@@ -3,7 +3,7 @@
 
 ## Purpose
 
-This document establishes Ternary Moral Logic (TML) as the **irreducible, blockchain** framework for auditable AI.  
+This document establishes Ternary Moral Logic (TML) as the **irreducible, Blockchain** framework for auditable AI.  
 Every obligation is a **smart-contract call**, every penalty is **on-chain slashing**, and every memory is **multi-chain anchored evidence** admissible under Federal Rules of Evidence 901 & 902(13).
 
 ---
@@ -40,7 +40,7 @@ struct LegalEvidence {
 }
 ```
 
-- **Rule 901/902(13) admissibility**: cryptographic signatures + blockchain anchor = self-authenticating record.  
+- **Rule 901/902(13) admissibility**: cryptographic signatures + Blockchain anchor = self-authenticating record.  
 - **Negligence per se**: missing `SacredZeroLog` ⇒ automatic liability (spoliation presumption).  
 - **Criminal exposure**: 18 U.S.C. §1001 (false statements), §1519 (record destruction), §1343 (wire fraud) attach to on-chain lies.  
 - **Chain-of-custody**: every `transferFrom`, `verify`, and `slash` is immutably logged.
@@ -107,7 +107,7 @@ Prevents dilution, rebranding, or silent appropriation.
 
 ## Closing Statement (On-Chain Covenant)
 
-Ternary Moral Logic provides the **irreducible, blockchain minimum** for accountable AI:
+Ternary Moral Logic provides the **irreducible, Blockchain minimum** for accountable AI:
 
 - Every hesitation → **admissible evidence**.  
 - Every violation → **on-chain penalty**.  

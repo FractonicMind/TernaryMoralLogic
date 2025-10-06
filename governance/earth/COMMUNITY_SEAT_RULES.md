@@ -11,9 +11,9 @@
 
 ## Executive Summary
 
-Communities don't need "seats" in committees—they need **direct blockchain access** to report violations and receive automatic rewards. Our smart contracts accept evidence from anyone, anywhere, instantly. No voting. No representation politics. Just mathematical justice.
+Communities don't need "seats" in committees—they need **direct Blockchain access** to report violations and receive automatic rewards. Our smart contracts accept evidence from anyone, anywhere, instantly. No voting. No representation politics. Just mathematical justice.
 
-> "Why beg for a seat at a table that doesn't exist when you can report directly to the blockchain and get paid immediately?"
+> "Why beg for a seat at a table that doesn't exist when you can report directly to the Blockchain and get paid immediately?"
 
 ---
 
@@ -79,7 +79,7 @@ contract CommunityProtection {
 
 ```python
 def integrate_traditional_knowledge():
-    # Direct blockchain submission
+    # Direct Blockchain submission
     knowledge_submission = {
         "method": "Blockchain oracle",
         "verification": "Community cryptographic signature",
@@ -90,7 +90,7 @@ def integrate_traditional_knowledge():
     }
     
     # No seats needed - knowledge speaks directly
-    return blockchain.submit(knowledge_submission)
+    return Blockchain.submit(knowledge_submission)
 ```
 
 ---
@@ -112,7 +112,7 @@ const communityRewards = {
         };
     },
     
-    payment_method: "Direct blockchain transfer",
+    payment_method: "Direct Blockchain transfer",
     approval_needed: "NONE",
     timeline: "Instant upon verification"
 };
@@ -174,7 +174,7 @@ def guardian_seat_reality():
         "outcome": "Evidence wins"
     }
     
-    return "Why want seats when blockchain gives power?"
+    return "Why want seats when Blockchain gives power?"
 ```
 
 ### Cost-Benefit Analysis
@@ -199,7 +199,7 @@ community_oracles = {
     "Amazon_communities": {
         "reports": "Deforestation detected",
         "evidence": "GPS + photos + testimony",
-        "blockchain": "Immediate submission",
+        "Blockchain": "Immediate submission",
         "reward": "$15M from $100M penalty",
         "guardian_approval": "NOT REQUIRED"
     },
@@ -207,7 +207,7 @@ community_oracles = {
     "Pacific_islands": {
         "reports": "Sea level rise acceleration",
         "evidence": "Traditional markers + data",
-        "blockchain": "Oracle verification",
+        "Blockchain": "Oracle verification",
         "compensation": "Automatic climate fund",
         "committee_vote": "IRRELEVANT"
     },
@@ -215,7 +215,7 @@ community_oracles = {
     "Arctic_peoples": {
         "reports": "Permafrost methane release",
         "evidence": "Traditional observation",
-        "blockchain": "Smart contract trigger",
+        "Blockchain": "Smart contract trigger",
         "result": "Immediate Sacred Zero",
         "seats_needed": 0
     }
@@ -228,10 +228,10 @@ community_oracles = {
 // Youth don't need "observer" status in committees
 const youthParticipation = {
     age_16_25: {
-        access: "Full blockchain reporting rights",
+        access: "Full Blockchain reporting rights",
         rewards: "Same 15% as adults",
         verification: "Zero-knowledge age proof",
-        mentorship: "Learn blockchain, not bureaucracy",
+        mentorship: "Learn Blockchain, not bureaucracy",
         future: "Direct power, not inherited seats"
     }
 };
@@ -256,7 +256,7 @@ guardian_seats_year_5:
     - "Generates reports no one reads"
     - "Makes companies feel important"
   
-  community_benefit: "None - blockchain pays better"
+  community_benefit: "None - Blockchain pays better"
 ```
 
 ### What Communities Should Do Instead
@@ -266,7 +266,7 @@ def community_strategy():
     # Skip the Guardian nonsense
     
     actions = {
-        "step_1": "Learn blockchain reporting",
+        "step_1": "Learn Blockchain reporting",
         "step_2": "Document violations directly",
         "step_3": "Submit to smart contracts",
         "step_4": "Receive automatic rewards",
@@ -287,14 +287,14 @@ def community_strategy():
 # Total cost: $0
 # Committees needed: 0
 
-# Step 1: Get blockchain wallet
+# Step 1: Get Blockchain wallet
 curl https://tml-community.org/wallet-setup
 
 # Step 2: Register as guardian
-tml-blockchain register --community "name" --area "coords"
+tml-Blockchain register --community "name" --area "coords"
 
 # Step 3: Start reporting
-tml-blockchain report --violation "deforestation" --evidence "ipfs://..."
+tml-Blockchain report --violation "deforestation" --evidence "ipfs://..."
 
 # Step 4: Get paid (3 minutes later)
 # $15,000 received from $100,000 penalty
@@ -307,7 +307,7 @@ tml-blockchain report --violation "deforestation" --evidence "ipfs://..."
 # Step 2: Argue about seats (3 months)
 # Step 3: Select representatives (3 months)
 # Step 4: Hold meetings (forever)
-# Step 5: Realize blockchain already solved everything
+# Step 5: Realize Blockchain already solved everything
 # Step 6: Dissolve committees
 
 # Total value added: -$6.6M/year
@@ -334,7 +334,7 @@ const languageSupport = {
 
 ```python
 cultural_accommodation = {
-    "blockchain": {
+    "Blockchain": {
         "24/7/365": "Always available",
         "religious_observance": "Report anytime",
         "traditional_knowledge": "Cryptographically preserved",
@@ -369,7 +369,7 @@ cultural_accommodation = {
 ❌ Token representation  
 ❌ Still marginalized
 
-**The Choice**: Report directly to blockchain and get paid immediately, or waste years begging for seats at tables that shouldn't exist.
+**The Choice**: Report directly to Blockchain and get paid immediately, or waste years begging for seats at tables that shouldn't exist.
 
 ---
 
@@ -383,6 +383,6 @@ cultural_accommodation = {
 
 ---
 
-*"Communities protected Earth for 10,000 years without committees. Now blockchain gives them the power to continue—with automatic payments instead of political theater."*
+*"Communities protected Earth for 10,000 years without committees. Now Blockchain gives them the power to continue—with automatic payments instead of political theater."*
 
 *All USD amounts are nominal to 2025*

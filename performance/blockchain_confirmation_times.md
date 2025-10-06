@@ -1,11 +1,11 @@
 # Blockchain Confirmation Times
 
-This document provides standardized confirmation benchmarks for blockchain anchoring within the Ternary Moral Logic (TML) framework.  
+This document provides standardized confirmation benchmarks for Blockchain anchoring within the Ternary Moral Logic (TML) framework.  
 These metrics quantify how long it takes for each supported network to finalize anchoring events and make Moral Trace Logs permanently immutable.
 
 ## 1. Objective
 
-To establish measurable and reproducible confirmation times across different blockchains used in the Mathematical Shield layer of TML.  
+To establish measurable and reproducible confirmation times across different Blockchains used in the Mathematical Shield layer of TML.  
 Performance values ensure predictable anchoring speed without compromising legal integrity or cryptographic permanence.
 
 ## 2. Supported Networks
@@ -17,7 +17,7 @@ Performance values ensure predictable anchoring speed without compromising legal
 | Polygon | Rapid confirmation layer | Proof-of-Stake | Real-time operational anchoring |
 | OpenTimestamps | Lightweight timestamping | Merkle Proof | Cost-effective archival verification |
 
-Each blockchain contributes a complementary layer of assurance, combining speed, programmability, and permanence.
+Each Blockchain contributes a complementary layer of assurance, combining speed, programmability, and permanence.
 
 ## 3. Benchmark Results
 
@@ -43,7 +43,7 @@ TML anchors to at least one Class A or B network in every operation to ensure im
 
 ## 5. Verification Procedure
 
-1. Submit log hash to all configured blockchain nodes simultaneously.  
+1. Submit log hash to all configured Blockchain nodes simultaneously.  
 2. Record block height and transaction hash for each submission.  
 3. Poll confirmation status every second until verified inclusion.  
 4. Store confirmation timestamp in Always Memory.  

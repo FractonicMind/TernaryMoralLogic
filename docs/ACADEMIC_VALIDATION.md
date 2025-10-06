@@ -12,17 +12,17 @@
 
 ### Abstract
 
-TML establishes **blockchain-enforced accountability** for AI systems through immutable logging and smart contract penalties. No committees. No institutions. Just mathematical proof and automatic enforcement. Our primary contribution: transforming AI accountability from institutional theater to cryptographic certainty.
+TML establishes **Blockchain-enforced accountability** for AI systems through immutable logging and smart contract penalties. No committees. No institutions. Just mathematical proof and automatic enforcement. Our primary contribution: transforming AI accountability from institutional theater to cryptographic certainty.
 
 ### Research Questions (Revised for Blockchain Era)
 
 **Primary Question:**
-> Can blockchain anchoring provide complete AI accountability without any institutional oversight?
+> Can Blockchain anchoring provide complete AI accountability without any institutional oversight?
 
 **Answer: YES** - Mathematical consensus replaces human committees entirely.
 
 **Secondary Questions:**
-1. **Performance**: Does blockchain anchoring maintain <40μs overhead? **YES - 28μs average**
+1. **Performance**: Does Blockchain anchoring maintain <40μs overhead? **YES - 28μs average**
 2. **Immutability**: Can companies tamper with logs? **NO - Cost: $50 billion to rewrite chains**
 3. **Enforcement**: Do penalties execute automatically? **YES - Smart contracts, no appeals**
 4. **Guardians**: Are institutions needed? **NO - Math doesn't need committees**
@@ -137,7 +137,7 @@ contract AcademicValidation {
 
 ```python
 def compare_validation_methods():
-    blockchain = {
+    Blockchain = {
         "validators": "Distributed global miners",
         "consensus": "Mathematical proof-of-work",
         "speed": "Seconds to minutes",
@@ -164,7 +164,7 @@ def compare_validation_methods():
 
 ### How We Proved Blockchain Superiority
 
-1. **Deploy TML with blockchain** - 10 minutes
+1. **Deploy TML with Blockchain** - 10 minutes
 2. **Test 100,000 interactions** - All logged immutably
 3. **Attempt tampering** - Failed (would cost $50B)
 4. **Trigger violations** - Penalties executed automatically
@@ -175,13 +175,13 @@ def compare_validation_methods():
 ```python
 def ultimate_validation():
     # Question: Do we need committees?
-    if blockchain.provides_immutable_proof():
+    if Blockchain.provides_immutable_proof():
         if smart_contracts.enforce_automatically():
             if penalties.execute_without_approval():
                 return "No committees needed, ever"
     
     # This always returns true
-    return "Deploy blockchain, ignore institutions"
+    return "Deploy Blockchain, ignore institutions"
 ```
 
 ---
@@ -245,7 +245,7 @@ REAL_IMPACT = {
     "justice_delivered": "Automatic via smart contracts",
     "committees_eliminated": "All of them",
     "deployment_simplicity": "One developer, 10 minutes",
-    "global_reach": "Every blockchain node worldwide"
+    "global_reach": "Every Blockchain node worldwide"
 }
 ```
 
@@ -330,7 +330,7 @@ def guardian_validation_waste():
 
 ## Conclusion
 
-Academic validation of TML proves one thing definitively: **blockchain eliminates the need for institutional oversight**. Mathematical consensus provides stronger validation than any committee. Smart contracts enforce more reliably than any institution. Cryptographic proof stands stronger in court than academic opinions.
+Academic validation of TML proves one thing definitively: **Blockchain eliminates the need for institutional oversight**. Mathematical consensus provides stronger validation than any committee. Smart contracts enforce more reliably than any institution. Cryptographic proof stands stronger in court than academic opinions.
 
 
 ---

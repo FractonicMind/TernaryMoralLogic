@@ -9,7 +9,7 @@
 
 ## Executive Summary
 
-TML governance operates through **mathematical consensus on immutable blockchains**, not institutional committees. This enables:
+TML governance operates through **mathematical consensus on immutable Blockchains**, not institutional committees. This enables:
 - **Immediate deployment** without coordination
 - **Automatic enforcement** via smart contracts
 - **Tamper-proof evidence** via cryptographic proofs
@@ -114,7 +114,7 @@ Earth Protection (20+ documents):
 
 ### Blockchain-Based Investigation
 **Evidence Access**:
-- Anyone can verify logs via blockchain explorers
+- Anyone can verify logs via Blockchain explorers
 - Cryptographic proofs publicly available
 - No permission needed to investigate
 - Whistleblowers can act anonymously
@@ -128,7 +128,7 @@ Earth Protection (20+ documents):
 ### Legal Enforcement
 **Automatic Liability**:
 ```python
-if not blockchain.has_valid_log(action_id):
+if not Blockchain.has_valid_log(action_id):
     liability = "STRICT_LIABILITY"
     penalties = "MAXIMUM"
     criminal_charges = "NEGLIGENCE"
@@ -136,7 +136,7 @@ if not blockchain.has_valid_log(action_id):
 ```
 
 **No Committee Needed**:
-- Courts read blockchain directly
+- Courts read Blockchain directly
 - Evidence speaks for itself
 - Missing logs = guilt presumption
 - Smart contracts execute penalties
@@ -218,7 +218,7 @@ docker run -e BLOCKCHAIN_GOVERNANCE=true \
 ```
 
 ### Month 1-12: Optimize and Scale
-- Monitor blockchain costs
+- Monitor Blockchain costs
 - Optimize batching strategies
 - Build internal expertise
 - Document ROI metrics
@@ -227,7 +227,7 @@ docker run -e BLOCKCHAIN_GOVERNANCE=true \
 - Evaluate Guardian candidates
 - Build relationships gradually
 - Migrate when beneficial
-- Never lose blockchain foundation
+- Never lose Blockchain foundation
 
 ---
 
@@ -291,7 +291,7 @@ docker run -e BLOCKCHAIN_GOVERNANCE=true \
 ## Community Participation
 
 ### Open Verification
-- **Public blockchain explorers** for transparency
+- **Public Blockchain explorers** for transparency
 - **Open-source verification tools**
 - **Community monitoring encouraged**
 - **Anonymous whistleblowing supported**
@@ -344,7 +344,7 @@ docker run -e BLOCKCHAIN_GOVERNANCE=true \
 
 ## Conclusion
 
-TML governance through blockchain provides:
+TML governance through Blockchain provides:
 - **Immediate deployment** without institutional coordination
 - **Automatic enforcement** without committees
 - **Immutable evidence** without custodians

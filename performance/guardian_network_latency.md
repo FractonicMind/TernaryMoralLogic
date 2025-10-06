@@ -13,10 +13,10 @@ To measure and maintain predictable propagation times for log replication, attes
 |------------|-----------|--------------|
 | Guardian Node | Institutional verifier | Hosts verified mirror of Moral Trace Logs |
 | Regional Hub | Aggregation relay | Coordinates nodes within a geographic region |
-| Root Anchor | Reference endpoint | Synchronizes time and hash alignment with public blockchains |
+| Root Anchor | Reference endpoint | Synchronizes time and hash alignment with public Blockchains |
 | Mirror Ledger | Optional redundancy | Provides read-only access for audit and public evidence |
 
-Each Guardian node must synchronize directly with at least one blockchain-anchored reference to prevent local tampering.
+Each Guardian node must synchronize directly with at least one Blockchain-anchored reference to prevent local tampering.
 
 ## 3. Latency Targets
 
@@ -32,7 +32,7 @@ All metrics represent round-trip latency across the slowest regional link.
 
 ## 4. Synchronization Protocols
 
-- **Time Alignment:** NTP + blockchain timestamp correlation.  
+- **Time Alignment:** NTP + Blockchain timestamp correlation.  
 - **Integrity Validation:** Periodic Merkle hash comparison among nodes.  
 - **Heartbeat Signaling:** JSON payload every 5 seconds with cumulative log count.  
 - **Error Recovery:** Automatic re-sync triggered by 3 consecutive failed heartbeats.  

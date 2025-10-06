@@ -1,4 +1,4 @@
-// Package tml - Always Memory blockchain implementation
+// Package tml - Always Memory Blockchain implementation
 // Creator: Lev Goukassian (ORCID: 0009-0006-5966-1243)
 package tml
 
@@ -23,7 +23,7 @@ type Stats struct {
 	GuardianApprovals    int64 // Always 0
 }
 
-// NewAlwaysMemory creates blockchain-enforced logger
+// NewAlwaysMemory creates Blockchain-enforced logger
 func NewAlwaysMemory(cfg *Config) *AlwaysMemory {
 	fmt.Println("🏮 Always Memory v3.0 initialized")
 	fmt.Println("Enforcement: Blockchain (automatic)")
@@ -60,7 +60,7 @@ func (am *AlwaysMemory) CreateLog(decision map[string]interface{}) (string, erro
 	return hash, nil
 }
 
-// VerifyLog checks blockchain anchoring
+// VerifyLog checks Blockchain anchoring
 func (am *AlwaysMemory) VerifyLog(logHash string) error {
 	if !am.isAnchored(logHash) {
 		am.stats.MissingLogsDetected++
@@ -105,7 +105,7 @@ func (am *AlwaysMemory) GetGuardianStatus() string {
 		"  Needed: false\n"+
 		"  Approvals given: %d\n"+
 		"  Annual cost if created: $6,600,000\n"+
-		"  Recommendation: Use blockchain",
+		"  Recommendation: Use Blockchain",
 		am.stats.GuardianApprovals,
 	)
 }

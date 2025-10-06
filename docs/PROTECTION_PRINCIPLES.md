@@ -11,9 +11,9 @@
 
 ## Executive Summary
 
-TML protection is **mathematically guaranteed by blockchain**, not committees. Multi-chain anchoring makes tampering impossible ($50B attack cost). Smart contracts enforce penalties automatically. Criminal law prosecutes violations. Guardian institutions are an expensive future option that adds nothing to core protection.
+TML protection is **mathematically guaranteed by Blockchain**, not committees. Multi-chain anchoring makes tampering impossible ($50B attack cost). Smart contracts enforce penalties automatically. Criminal law prosecutes violations. Guardian institutions are an expensive future option that adds nothing to core protection.
 
-> "Protection isn't voted on by committees; it's carved into blockchain by mathematics that neither bribes nor politics can erase."
+> "Protection isn't voted on by committees; it's carved into Blockchain by mathematics that neither bribes nor politics can erase."
 
 ---
 
@@ -24,7 +24,7 @@ TML protection is **mathematically guaranteed by blockchain**, not committees. M
 **Mathematical Protection**:
 ```solidity
 contract TMLIntegrity {
-    // Core logic immutable on blockchain
+    // Core logic immutable on Blockchain
     bytes32 constant FRAMEWORK_HASH = 0x7f3a9c2b4e1d...;
     
     // Cannot be modified, ever
@@ -57,7 +57,7 @@ def create_moral_trace_log(decision):
         "framework": "TML v3.0",
         "creator": "Lev Goukassian",
         "orcid": "0009-0006-5966-1243",
-        "immutable": True,  # Cannot be removed from blockchain
+        "immutable": True,  # Cannot be removed from Blockchain
         "committee_approval_needed": False
     }
 ```
@@ -77,7 +77,7 @@ const sacredZeroProtection = {
     activation: "Automatic via smart contract",
     human_override: "IMPOSSIBLE",
     committee_bypass: "IMPOSSIBLE",
-    threshold_modification: "Requires blockchain consensus",
+    threshold_modification: "Requires Blockchain consensus",
     
     // Violations trigger instantly
     onViolation: (violation) => {
@@ -317,7 +317,7 @@ protection_layers = {
 
 **No log = Criminal prosecution**
 ```javascript
-if (!blockchain.hasLog(transaction)) {
+if (!Blockchain.hasLog(transaction)) {
     return {
         liability: "STRICT",
         prosecution: "AUTOMATIC",
@@ -462,7 +462,7 @@ def governance_comparison():
 ❌ Academic validation  
 ❌ $600K/year/institution
 
-**The Choice**: Deploy blockchain protection in 10 minutes, or wait years for committees that add no security.
+**The Choice**: Deploy Blockchain protection in 10 minutes, or wait years for committees that add no security.
 
 ---
 
@@ -478,9 +478,9 @@ def governance_comparison():
 
 ---
 
-*"Protection is not negotiated in committee rooms—it is forged in mathematics, sealed in blockchain, and enforced by algorithms that never sleep, never compromise, and never forget."*
+*"Protection is not negotiated in committee rooms—it is forged in mathematics, sealed in Blockchain, and enforced by algorithms that never sleep, never compromise, and never forget."*
 
-**Document Version**: 3.0 (blockchain)  
+**Document Version**: 3.0 (Blockchain)  
 **Deployment Time**: 10 minutes  
 **Committee Meetings Needed**: Zero  
 **Protection Level**: Maximum

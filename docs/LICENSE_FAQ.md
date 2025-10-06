@@ -9,10 +9,10 @@
 ## Core License Reality
 
 ### Q1: What license governs TML?
-**MIT License** - completely permissive. But violations trigger **blockchain penalties** automatically. The license is free; the accountability is mathematical.
+**MIT License** - completely permissive. But violations trigger **Blockchain penalties** automatically. The license is free; the accountability is mathematical.
 
 ### Q2: Can I use TML commercially?
-**Yes.** But missing Always Memory logs = criminal prosecution. The license permits everything; the blockchain enforces everything.
+**Yes.** But missing Always Memory logs = criminal prosecution. The license permits everything; the Blockchain enforces everything.
 
 ### Q3: What are my real obligations?
 **Legal (MIT)**: Just attribution  
@@ -53,13 +53,13 @@ contract FakeCertificationDetection {
 ## Framework Protection
 
 ### Q8: Can someone capture TML?
-**No.** Blockchain is distributed globally. Would cost $50B to attack. MIT License is irrevocable. Guardian committees (if they existed) have no power over blockchain.
+**No.** Blockchain is distributed globally. Would cost $50B to attack. MIT License is irrevocable. Guardian committees (if they existed) have no power over Blockchain.
 
 ### Q9: What if someone trademarked "TML"?
 **Irrelevant.** Blockchain doesn't care about trademarks. Smart contracts execute based on cryptographic proof, not brand names.
 
 ### Q10: Will TML become paid?
-**Never.** MIT License is permanent. Blockchain is public. Smart contracts are immutable. Even if someone tried, the blockchain continues regardless.
+**Never.** MIT License is permanent. Blockchain is public. Smart contracts are immutable. Even if someone tried, the Blockchain continues regardless.
 
 ---
 
@@ -73,13 +73,13 @@ misuse_detection = {
     "fake_compliance": "$1B + fraud charges",
     "circumvention": "10x penalties",
     
-    "enforcement": "Automatic via blockchain",
+    "enforcement": "Automatic via Blockchain",
     "committee_review": "Doesn't exist"
 }
 ```
 
 ### Q12: Who investigates violations?
-**Whistleblowers** report to blockchain → **Smart contracts** verify → **Penalties** execute → **Prosecutors** follow blockchain evidence
+**Whistleblowers** report to Blockchain → **Smart contracts** verify → **Penalties** execute → **Prosecutors** follow Blockchain evidence
 
 No committees involved.
 
@@ -101,23 +101,23 @@ No committees involved.
 }
 ```
 
-### Q15: Must I mention blockchain enforcement?
-**Yes.** Claiming TML without blockchain anchoring = fraud. The accountability isn't optional.
+### Q15: Must I mention Blockchain enforcement?
+**Yes.** Claiming TML without Blockchain anchoring = fraud. The accountability isn't optional.
 
 ---
 
 ## Guardian Council Questions (Obsolete)
 
 ### Q16: How do I contact the TML Council?
-**You don't.** It doesn't exist yet and won't matter when it does. Contact the blockchain:
+**You don't.** It doesn't exist yet and won't matter when it does. Contact the Blockchain:
 - Report violations: Direct to smart contracts
 - Get rewards: Automatic 15% bounty
-- Verify compliance: Check blockchain explorers
+- Verify compliance: Check Blockchain explorers
 
 ### Q17: Do Guardians approve implementations?
 **No.** Blockchain validates automatically. Guardian approval (Year 5+) would be expensive theater adding no security.
 
-### Q18: Can Guardians override blockchain?
+### Q18: Can Guardians override Blockchain?
 ```solidity
 function guardianOverride() public pure {
     revert("Mathematics doesn't negotiate");
@@ -171,7 +171,7 @@ decentralization_proof = {
 Because companies keep asking about "approval" from authorities that:
 - Don't exist yet
 - Won't have power when they do
-- Are replaced by blockchain
+- Are replaced by Blockchain
 - Would cost $6.6M/year for nothing
 
 ---
@@ -183,7 +183,7 @@ Because companies keep asking about "approval" from authorities that:
 **Website**: https://tml-goukassian.org  
 **GitHub**: https://github.com/FractonicMind/TernaryMoralLogic
 
-**For Guardian Council**: They don't exist. Use blockchain.
+**For Guardian Council**: They don't exist. Use Blockchain.
 
 ---
 

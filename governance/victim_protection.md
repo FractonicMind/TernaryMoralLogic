@@ -22,7 +22,7 @@ Blockchain evidence and smart contracts ensure victims receive **automatic compe
 ```solidity
 contract VictimCompensation {
     function claimHarm(bytes32 harmProof) public {
-        // Verify blockchain evidence
+        // Verify Blockchain evidence
         require(verifyHarm(harmProof), "Invalid proof");
         
         // Check for missing logs
@@ -55,7 +55,7 @@ contract VictimCompensation {
 - **$50,000 emergency funds** via smart contract
 - **Medical coverage activation** automatic
 - **Legal representation assignment** via DAO
-- **Safe housing vouchers** blockchain-issued
+- **Safe housing vouchers** Blockchain-issued
 - **No proof required** - claim triggers investigation
 
 ---
@@ -65,7 +65,7 @@ contract VictimCompensation {
 ### Missing Logs = Automatic Guilt
 
 **Blockchain Makes It Simple**:
-- No log on blockchain = strict liability
+- No log on Blockchain = strict liability
 - Smart contract calculates penalties
 - Victim gets automatic judgment
 - No court appearance needed
@@ -76,8 +76,8 @@ contract VictimCompensation {
 **Anyone Can Verify**:
 ```python
 def verify_harm(victim_claim):
-    # Check public blockchain
-    logs = blockchain.query(victim_claim.incident_id)
+    # Check public Blockchain
+    logs = Blockchain.query(victim_claim.incident_id)
     
     if not logs:
         return {
@@ -93,7 +93,7 @@ def verify_harm(victim_claim):
 **Decentralized Legal Network**:
 - Smart contracts assign attorneys
 - Contingency fees automated
-- International coordination via blockchain
+- International coordination via Blockchain
 - Class actions self-organize
 - Appeals funded automatically
 
@@ -130,7 +130,7 @@ function calculateTotal(Damages memory d) public pure returns (uint) {
 ```
 
 ### Payment Timeline (Blockchain Speed)
-1. **Instant**: Claim submitted to blockchain
+1. **Instant**: Claim submitted to Blockchain
 2. **<1 hour**: Smart contract verification
 3. **<24 hours**: Emergency funds released
 4. **<7 days**: Full compensation calculated
@@ -178,7 +178,7 @@ function calculateTotal(Damages memory d) public pure returns (uint) {
 ```python
 def investigate_automatically():
     # Anyone can investigate
-    all_logs = blockchain.get_all_logs(company_id)
+    all_logs = Blockchain.get_all_logs(company_id)
     violations = []
     
     for decision in company_decisions:
@@ -248,7 +248,7 @@ contract MemorialFund {
 def detect_class_patterns():
     """Automatic class identification"""
     
-    all_violations = blockchain.get_violations()
+    all_violations = Blockchain.get_violations()
     
     # Group by patterns
     patterns = group_by_similarity(all_violations)
@@ -287,7 +287,7 @@ def detect_class_patterns():
 - 4x penalties (vulnerable + human rights)
 - Immediate intervention via smart contract
 - Foster system reformed
-- All via blockchain evidence
+- All via Blockchain evidence
 
 ---
 
@@ -308,8 +308,8 @@ def submit_claim():
         'missing_log': True
     }
     
-    # Submit to blockchain
-    tx_hash = blockchain.submit(claim)
+    # Submit to Blockchain
+    tx_hash = Blockchain.submit(claim)
     
     # Smart contract handles everything
     return {
@@ -321,10 +321,10 @@ def submit_claim():
 ```
 
 ### Multiple Channels
-- **Direct blockchain**: Via any chain interface
+- **Direct Blockchain**: Via any chain interface
 - **Smart contract**: Call claim function
 - **Web interface**: Simple form submission
-- **Anonymous**: Via Tor + blockchain
+- **Anonymous**: Via Tor + Blockchain
 - **Anyone can help**: Submit for others
 
 ---
@@ -356,7 +356,7 @@ A: Smart contracts use preset formulas. No human bias.
 **Every victim has the right to:**
 1. Automatic compensation via smart contract
 2. No committee approval required
-3. Anonymous claims through blockchain
+3. Anonymous claims through Blockchain
 4. 2x for Human Rights violations
 5. 3x for Environmental harm
 6. 7x for Future Generation impact
@@ -384,7 +384,7 @@ A: Smart contracts use preset formulas. No human bias.
 **Primary (Blockchain)**:
 - Submit claims directly on-chain
 - Smart contract: `0xTML-Victim-Protection`
-- Anonymous: Via Tor + blockchain
+- Anonymous: Via Tor + Blockchain
 
 **Secondary (Human Support)**:
 - Email: victims@tml-goukassian.org
@@ -394,7 +394,7 @@ A: Smart contracts use preset formulas. No human bias.
 
 > "Courts open the door for whistle-blowers; TML hands them the key, the bounty, and the seat at the plaintiff's table—no permission slips required."
 
-**In memory of all harmed by unaccountable AI. Your suffering triggers automatic justice. Their missing logs become your compensation. The blockchain never forgets.**
+**In memory of all harmed by unaccountable AI. Your suffering triggers automatic justice. Their missing logs become your compensation. The Blockchain never forgets.**
 
 ---
 

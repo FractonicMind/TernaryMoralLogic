@@ -9,7 +9,7 @@ import (
 	"time"
 )
 
-// Client provides TML blockchain operations
+// Client provides TML Blockchain operations
 type Client struct {
 	config   *Config
 	ethereum interface{} // Web3 connection
@@ -26,7 +26,7 @@ type Statistics struct {
 	GuardianMeetings       int64 // Always 0
 }
 
-// NewClient creates blockchain-connected client
+// NewClient creates Blockchain-connected client
 func NewClient(cfg *Config) (*Client, error) {
 	if cfg == nil {
 		cfg = DefaultConfig()
@@ -109,9 +109,9 @@ func (c *Client) CheckSacredZero(action map[string]interface{}) (*Violation, err
 
 // ProcessWhistleblower handles reports with instant rewards
 func (c *Client) ProcessWhistleblower(evidence string) (*WhistleblowerResult, error) {
-	// Verify on blockchain
+	// Verify on Blockchain
 	if !c.verifyEvidence(evidence) {
-		return nil, fmt.Errorf("evidence not verified on blockchain")
+		return nil, fmt.Errorf("evidence not verified on Blockchain")
 	}
 	
 	// Calculate reward

@@ -2,22 +2,22 @@
 
 **Version**: 6.0.0  
 **Status**: Optional Enhancement (Not Required for Deployment)
-**Architecture**: blockchain with Guardian Enhancement Option
+**Architecture**: Blockchain with Guardian Enhancement Option
 **Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)
 
 ---
 
 ## Executive Summary
 
-The Guardian Network is an **OPTIONAL enhancement layer** that organizations can adopt after establishing blockchain-based TML protection. 
+The Guardian Network is an **OPTIONAL enhancement layer** that organizations can adopt after establishing Blockchain-based TML protection. 
 
 **Key Points:**
-- **NOT required for deployment** - TML works fully with blockchain alone
+- **NOT required for deployment** - TML works fully with Blockchain alone
 - **NOT required for legal enforcement** - Blockchain evidence is court-admissible
 - **NOT required for Sacred Zero** - Functions completely without Guardians
 - **Enhancement only** - Adds credibility, redundancy, and cross-border recognition
 
-**Deploy today with blockchain, add Guardians tomorrow (or never).**
+**Deploy today with Blockchain, add Guardians tomorrow (or never).**
 
 ---
 
@@ -41,7 +41,7 @@ The Guardian Network is an **OPTIONAL enhancement layer** that organizations can
 - Research collaboration benefits
 - **Cost**: $300/month
 - **ROI**: 500-1,200%
-- **Migration**: Seamless from blockchain-only
+- **Migration**: Seamless from Blockchain-only
 
 ### Stage 3: Mature Guardian Network (Years 3-5+)
 **Premium Governance Tier**
@@ -51,7 +51,7 @@ The Guardian Network is an **OPTIONAL enhancement layer** that organizations can
 - Academic research access
 - **Cost**: $500/month
 - **ROI**: 800-1,500%
-- **Foundation**: Still blockchain-based
+- **Foundation**: Still Blockchain-based
 
 ---
 
@@ -90,7 +90,7 @@ Guardian_Additions:
 - Provide institutional credibility
 
 **Lightweight Guardians** (Optional Basic Tier)
-- Verify blockchain anchors
+- Verify Blockchain anchors
 - Add signature redundancy
 - Lower barriers to entry
 - Community participation
@@ -100,7 +100,7 @@ Guardian_Additions:
 class TMLDeployment:
     def __init__(self):
         # MANDATORY - Deploy immediately
-        self.blockchain = BlockchainAnchoring(
+        self.Blockchain = BlockchainAnchoring(
             chains=["bitcoin", "polygon", "ethereum"],
             required=True
         )
@@ -143,7 +143,7 @@ class TMLDeployment:
 ```bash
 # Deploy immediately - no Guardians needed
 docker run tml/always-memory \
-  --blockchain=true \
+  --Blockchain=true \
   --guardians=false \
   --protection=complete
 ```
@@ -159,7 +159,7 @@ docker run tml/always-memory \
 1. **Identify candidates** - Universities, NGOs, standards bodies
 2. **Build relationships** - Start with 1-2 partners
 3. **Integrate systems** - Add Guardian attestation layer
-4. **Maintain blockchain** - Never remove foundational protection
+4. **Maintain Blockchain** - Never remove foundational protection
 5. **Scale gradually** - Add Guardians as beneficial
 
 ---
@@ -210,7 +210,7 @@ Year 3+ (Multiple Guardians): 600-1500% ROI ⚠️ Only if beneficial
 ## Common Misconceptions
 
 ### MYTH: "Guardians are required for TML"
-**REALITY**: TML deploys fully functional with blockchain alone
+**REALITY**: TML deploys fully functional with Blockchain alone
 
 ### MYTH: "Courts won't accept logs without Guardians"
 **REALITY**: Blockchain evidence is legally admissible today
@@ -230,9 +230,9 @@ Year 3+ (Multiple Guardians): 600-1500% ROI ⚠️ Only if beneficial
 
 ### Speed and Efficiency
 - **Sacred Zero latency**: ≤2ms (same as with Guardians)
-- **Log completion**: ≤500ms (blockchain anchoring)
+- **Log completion**: ≤500ms (Blockchain anchoring)
 - **User impact**: Zero delay
-- **Throughput**: Unlimited (blockchain scales)
+- **Throughput**: Unlimited (Blockchain scales)
 
 ### Legal Strength
 - **Evidence admissibility**: 100% (FRE 901/902)
@@ -245,7 +245,7 @@ Year 3+ (Multiple Guardians): 600-1500% ROI ⚠️ Only if beneficial
 ## For Organizations Considering Guardians
 
 ### Ask Yourself First:
-1. **Is blockchain protection sufficient?** (Usually yes)
+1. **Is Blockchain protection sufficient?** (Usually yes)
 2. **What specific benefit would Guardians add?** (Often minimal)
 3. **Is the extra cost justified?** (Calculate carefully)
 4. **Can we deploy now and decide later?** (Always yes)
@@ -284,7 +284,7 @@ Year 3+ (Multiple Guardians): 600-1500% ROI ⚠️ Only if beneficial
 
 **Guardian Network is a luxury, not a necessity.**
 
-Like choosing between a Toyota and a Lexus - both get you there, one just has leather seats. TML with blockchain-only is the reliable Toyota that works perfectly. Guardian Network is the Lexus upgrade you might consider after you're successful.
+Like choosing between a Toyota and a Lexus - both get you there, one just has leather seats. TML with Blockchain-only is the reliable Toyota that works perfectly. Guardian Network is the Lexus upgrade you might consider after you're successful.
 
 **Deploy the Toyota today. Buy the Lexus later (if ever).**
 
@@ -313,4 +313,4 @@ Like choosing between a Toyota and a Lexus - both get you there, one just has le
 
 ---
 
-*"The Guardian Network ensures additional attestation for those who want it. But blockchain ensures accountability for everyone who needs it - which is everyone, starting today."*
+*"The Guardian Network ensures additional attestation for those who want it. But Blockchain ensures accountability for everyone who needs it - which is everyone, starting today."*

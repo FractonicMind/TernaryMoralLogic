@@ -15,7 +15,7 @@ This checklist ensures your TML implementation:
 1. **Prevents discrimination** effectively
 2. **Meets regulatory requirements** globally
 3. **Qualifies for insurance discounts** (20-40% reduction)
-4. **Provides legal protection** via blockchain proof
+4. **Provides legal protection** via Blockchain proof
 5. **Protects the ecosystem** and future generations
 
 **Complete all items = Full compliance = Maximum protection**
@@ -321,7 +321,7 @@ This checklist ensures your TML implementation:
 
 - [ ] **CCPA/CPRA (California)**
   - [ ] Right to know
-  - [ ] Right to delete (except blockchain)
+  - [ ] Right to delete (except Blockchain)
   - [ ] Right to opt-out
   - [ ] Right to non-discrimination
 
@@ -375,7 +375,7 @@ This checklist ensures your TML implementation:
 - [ ] **Monthly Compliance Report**
   ```bash
   tml-cli generate report --type compliance --period monthly
-  # Generates PDF with blockchain proofs
+  # Generates PDF with Blockchain proofs
   ```
 
 - [ ] **Insurance Discount Report**
@@ -403,7 +403,7 @@ This checklist ensures your TML implementation:
 - [ ] **API Verification Endpoint**
   ```bash
   GET https://api.your-company.com/tml/verify
-  Returns: Compliance status + blockchain proofs
+  Returns: Compliance status + Blockchain proofs
   ```
 
 ---
@@ -638,7 +638,7 @@ These items MUST be true or certification is denied:
 ### Daily
 - [ ] Check Sacred Zero triggers
 - [ ] Monitor carbon/water usage
-- [ ] Verify blockchain anchoring
+- [ ] Verify Blockchain anchoring
 
 ### Weekly
 - [ ] Review violation attempts
@@ -679,7 +679,7 @@ docker ps | grep tml-protection > /dev/null && echo "✓" || echo "✗"
 echo -n "2. Sacred Zero Active: "
 curl -s http://localhost:8080/config | jq -r .block_on_sacred_zero | grep true > /dev/null && echo "✓" || echo "✗"
 
-# Check blockchain
+# Check Blockchain
 echo -n "3. Blockchain Mode: "
 curl -s http://localhost:8080/config | jq -r .blockchain_mode | grep true > /dev/null && echo "✓" || echo "✗"
 
@@ -714,7 +714,7 @@ echo "Run full checklist for certification"
 const compliancePromise = {
     protect: "Every person equally",
     prevent: "All discrimination",
-    prove: "Compliance with blockchain",
+    prove: "Compliance with Blockchain",
     penalize: "Violations automatically",
     preserve: "Truth in Always Memory"
 };

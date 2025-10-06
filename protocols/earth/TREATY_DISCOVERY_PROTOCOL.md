@@ -9,7 +9,7 @@
 
 ## Executive Summary
 
-Treaties protecting Earth are discovered and integrated **automatically via blockchain oracles**. No committees. No institutions. No 72-hour review periods. Just mathematical consensus and immediate enforcement.
+Treaties protecting Earth are discovered and integrated **automatically via Blockchain oracles**. No committees. No institutions. No 72-hour review periods. Just mathematical consensus and immediate enforcement.
 
 > "Earth's laws are written in many languages, in many lands. Our oracles learn them all instantly, so Sacred Zero speaks every tongue that defends the planet—without asking permission from committees."
 
@@ -381,7 +381,7 @@ optional_guardian_enhancement:
     - "Cultural context for treaties" (oracles already translate)
     - "Political interpretation" (math doesn't need politics)  
     - "Diplomatic relations" (smart contracts don't need diplomacy)
-    - "Committee oversight" (blockchain provides transparency)
+    - "Committee oversight" (Blockchain provides transparency)
     
   reality_check:
     - 99% of treaties discovered by oracles first
@@ -477,11 +477,11 @@ tml-oracle start --autodiscover --autointegrate
 
 ---
 
-**Discovery Philosophy**: Earth's laws need no permission to be enforced. Oracles find them, smart contracts integrate them, blockchain enforces them—all while committees are still scheduling their first meeting.
+**Discovery Philosophy**: Earth's laws need no permission to be enforced. Oracles find them, smart contracts integrate them, Blockchain enforces them—all while committees are still scheduling their first meeting.
 
 ---
 
-**Protocol Version**: 3.0 (blockchain)  
+**Protocol Version**: 3.0 (Blockchain)  
 **Effectiveness**: Immediate upon deployment  
 **Review Schedule**: Never (it's automated)  
 **Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)  

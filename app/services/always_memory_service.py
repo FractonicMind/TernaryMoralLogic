@@ -42,7 +42,7 @@ class AlwaysMemoryService:
         return log_hash
     
     async def verify_log(self, log_hash: str) -> bool:
-        """Verify blockchain anchoring"""
+        """Verify Blockchain anchoring"""
         if not await self._is_anchored(log_hash):
             self.stats['missing_logs_detected'] += 1
             
@@ -77,7 +77,7 @@ class AlwaysMemoryService:
             'approvals_given': self.stats['guardian_approvals'],
             'annual_cost_if_created': 6_600_000,
             'value_added': 0,
-            'recommendation': 'Use blockchain'
+            'recommendation': 'Use Blockchain'
         }
     
     def get_statistics(self) -> Dict:
@@ -98,7 +98,7 @@ class AlwaysMemoryService:
         pass  # Simplified
     
     async def _is_anchored(self, hash: str) -> bool:
-        """Check blockchain anchoring"""
+        """Check Blockchain anchoring"""
         return len(hash) > 0  # Simplified
     
     async def _initiate_prosecution(self, evidence: str):

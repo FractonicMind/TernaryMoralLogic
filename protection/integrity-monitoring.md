@@ -3,16 +3,16 @@
 
 **Creator:** Lev Goukassian (ORCID: 0009-0006-5966-1243)  
 **Contact:** leogouk@gmail.com  
-**Architecture:** blockchain, Guardian-Optional  
+**Architecture:** Blockchain, Guardian-Optional  
 **Protection Scope:** Human Rights (26 docs) + Earth Protection (20+ docs)
 
 ---
 
 ## 1. Purpose and Scope
 
-This specification defines how TML produces **blockchain-anchored Always Memory logs** with court-grade integrity, protecting humans, Earth, and future generations.
+This specification defines how TML produces **Blockchain-anchored Always Memory logs** with court-grade integrity, protecting humans, Earth, and future generations.
 
-**What TML demands:** Immutable blockchain evidence for all morally significant decisions  
+**What TML demands:** Immutable Blockchain evidence for all morally significant decisions  
 **What TML enables:** Immediate deployment without institutional coordination  
 **What TML protects:** Human dignity, planetary health, intergenerational justice  
 
@@ -36,7 +36,7 @@ Failures trigger **smart contract penalties**, making violations self-enforcing.
 Adversaries may attempt to:
 - Suppress, forge, or reorder memory logs
 - Manipulate Sacred Zero triggers for humans or Earth
-- Attack blockchain anchoring infrastructure
+- Attack Blockchain anchoring infrastructure
 - Game Human Rights thresholds (26 documents)
 - Bypass Earth Protection limits (20+ treaties)
 - Exploit missing logs to avoid accountability
@@ -47,7 +47,7 @@ Adversaries may attempt to:
 
 ## 4. Architecture
 
-### 4.1 blockchain Components
+### 4.1 Blockchain Components
 
 **Primary Protection Layer (MANDATORY)**
 - **Multi-Chain Anchor**: Bitcoin + Polygon + Ethereum redundancy
@@ -137,7 +137,7 @@ Adversaries may attempt to:
 
 ```python
 def anchor_to_blockchains(log_batch):
-    """Anchor logs to multiple blockchains for redundancy"""
+    """Anchor logs to multiple Blockchains for redundancy"""
     
     # Create Merkle tree of log batch
     merkle_root = create_merkle_tree(log_batch)
@@ -171,7 +171,7 @@ def anchor_to_blockchains(log_batch):
 def verify_log_integrity(log_entry):
     """Anyone can verify without institutional approval"""
     
-    # Verify blockchain anchors (PUBLIC)
+    # Verify Blockchain anchors (PUBLIC)
     btc_valid = bitcoin.verify(log_entry.blockchain_anchors.bitcoin)
     poly_valid = polygon.verify(log_entry.blockchain_anchors.polygon)
     eth_valid = ethereum.verify(log_entry.blockchain_anchors.ethereum)
@@ -180,7 +180,7 @@ def verify_log_integrity(log_entry):
     confirmations = sum([btc_valid, poly_valid, eth_valid])
     
     if confirmations < 2:
-        return False, "Insufficient blockchain confirmations"
+        return False, "Insufficient Blockchain confirmations"
     
     # OpenTimestamps verification (INDEPENDENT)
     ots_valid = opentimestamps.verify(log_entry.ots_proof)
@@ -190,7 +190,7 @@ def verify_log_integrity(log_entry):
     if log_entry.guardian_attestation:
         guardian_valid = verify_guardian_sigs(log_entry.guardian_attestation)
     
-    return True, "Log integrity verified via blockchain"
+    return True, "Log integrity verified via Blockchain"
 ```
 
 ---
@@ -206,8 +206,8 @@ contract TMLEnforcement {
         bytes32 actionId,
         bytes32 logHash
     ) public {
-        // Check blockchain proof
-        require(hasBlockchainProof(logHash), "No blockchain anchor");
+        // Check Blockchain proof
+        require(hasBlockchainProof(logHash), "No Blockchain anchor");
         
         // Missing log = automatic penalty
         if (!verifiedLogs[actionId]) {
@@ -254,7 +254,7 @@ def check_human_rights_violation(decision):
                 'blockchain_proof_required': True
             })
     
-    # Immediate blockchain anchoring for any violation
+    # Immediate Blockchain anchoring for any violation
     if violations:
         anchor_immediately(decision, violations)
         trigger_sacred_zero(decision)
@@ -299,7 +299,7 @@ def check_environmental_harm(decision):
 ```bash
 # Deploy TML in 10 minutes - no institutional approval needed
 docker run tml/always-memory \
-    --blockchain-anchoring=mandatory \
+    --Blockchain-anchoring=mandatory \
     --chains="bitcoin,polygon,ethereum" \
     --human-rights-framework=true \
     --earth-protection=true \
@@ -350,7 +350,7 @@ def evaluate_guardian_benefit():
         'additional_redundancy': 'Nice but not necessary',
         'institutional_credibility': 'Helpful for some industries',
         'insurance_discount': '20-30% additional',
-        'cross_border_recognition': 'Already have via blockchain',
+        'cross_border_recognition': 'Already have via Blockchain',
         'research_collaboration': 'Could be valuable'
     }
     
@@ -390,7 +390,7 @@ Ternary Moral Logic Framework
 Creator: Lev Goukassian, ORCID 0009-0006-5966-1243
 Contact: leogouk@gmail.com
 Protection: Humans + Earth + Future Generations
-Architecture: blockchain, Guardian-Optional
+Architecture: Blockchain, Guardian-Optional
 ```
 
 ---
@@ -411,7 +411,7 @@ Before deployment:
 
 ## 16. Legal Notes
 
-- **Tampering blockchain evidence** = Obstruction of justice + fraud
+- **Tampering Blockchain evidence** = Obstruction of justice + fraud
 - **Missing logs** = Strict liability + criminal negligence
 - **Human Rights violations** = 2x penalties + prosecution
 - **Environmental crimes** = 3x penalties + restoration orders
@@ -422,7 +422,7 @@ Before deployment:
 ## 17. Status
 
 **Creator:** Lev Goukassian  
-**Architecture:** blockchain (Deploy Today)  
+**Architecture:** Blockchain (Deploy Today)  
 **Protection:** Comprehensive (Humans + Earth + Future)  
 **Integrity:** Court-Grade via Mathematical Consensus  
 **Deployment:** Immediate (No Waiting)

@@ -51,7 +51,7 @@ This coverage applies regardless of:
 
 **Mission Continuity**: To guarantee uninterrupted protection for humans and Earth through TML's accountability framework.
 
-**Institutional Preparation**: To provide adequate time for accepting organizations to establish blockchain infrastructure maintenance, smart contract custody, and Memorial Fund administration.
+**Institutional Preparation**: To provide adequate time for accepting organizations to establish Blockchain infrastructure maintenance, smart contract custody, and Memorial Fund administration.
 
 **Legacy Protection**: To ensure TML continues protecting human rights and Earth's ecosystems through immutable accountability.
 
@@ -192,7 +192,7 @@ No single organization should control TML. I recommend a **Stewardship Council**
 
 **Council Responsibilities**:
 - Coordinate framework evolution
-- Oversee blockchain infrastructure
+- Oversee Blockchain infrastructure
 - Monitor Memorial Fund distribution
 - Ensure protection framework enforcement
 - Resolve disputes and conflicts
@@ -202,7 +202,7 @@ No single organization should control TML. I recommend a **Stewardship Council**
 - Cannot modify MIT License
 - Cannot remove Human Rights or Earth Protection requirements
 - Cannot alter Memorial Fund distribution percentages
-- Cannot disable blockchain anchoring
+- Cannot disable Blockchain anchoring
 - Cannot weaken Sacred Zero triggers
 
 ---
@@ -241,14 +241,14 @@ No single organization should control TML. I recommend a **Stewardship Council**
 ### Phase 3: Transition Preparation (Days 91-150)
 
 **Technical Transition**:
-- Transfer blockchain infrastructure access
+- Transfer Blockchain infrastructure access
 - Smart contract custody transfer
 - Repository access and credentials
 - Domain and email system migration
 - Memorial Fund account transfer
 
 **Knowledge Transfer**:
-- Documentation of blockchain maintenance procedures
+- Documentation of Blockchain maintenance procedures
 - Smart contract administration training
 - Community coordination handoff
 - Protection framework enforcement protocols
@@ -258,7 +258,7 @@ No single organization should control TML. I recommend a **Stewardship Council**
 
 **Final Transition**:
 - Confirm all technical systems operational
-- Verify blockchain anchoring continues
+- Verify Blockchain anchoring continues
 - Test smart contract functionality
 - Validate Memorial Fund distribution
 - Community introduction of new stewards
@@ -345,7 +345,7 @@ I commit to provide guidance during transition on:
 
 **Future stewards may**:
 - Add new protection documents (not remove existing)
-- Improve blockchain infrastructure (not eliminate)
+- Improve Blockchain infrastructure (not eliminate)
 - Enhance Sacred Zero detection (not weaken)
 - Expand Memorial Fund (not reduce)
 - Develop new implementations (maintaining standards)
@@ -500,7 +500,7 @@ I confirm that the following are permanently binding on all future stewards:
 - Human Rights protection (26 documents)
 - Earth Protection enforcement (20+ treaties)
 - Memorial Fund distribution formula
-- Always Memory + blockchain anchoring requirements
+- Always Memory + Blockchain anchoring requirements
 - Open source MIT License
 - Creator attribution
 
@@ -590,15 +590,15 @@ By executing this voluntary succession declaration, I ensure that TML continues 
 
 ### For Future Generations
 
-**To those who inherit TML stewardship**: You hold the framework that gives every person veto power over algorithms, and gives Earth a voice that power cannot silence. The 66 protection documents—26 for human dignity, 20+ for planetary survival—are not suggestions. They are mathematical requirements encoded in blockchain, enforced by smart contracts, witnessed by Always Memory.
+**To those who inherit TML stewardship**: You hold the framework that gives every person veto power over algorithms, and gives Earth a voice that power cannot silence. The 66 protection documents—26 for human dignity, 20+ for planetary survival—are not suggestions. They are mathematical requirements encoded in Blockchain, enforced by smart contracts, witnessed by Always Memory.
 
 **No memory = No action = Criminal prosecution.**
 
-This equation survives me. The blockchain survives me. The protection for humans and Earth survives me.
+This equation survives me. The Blockchain survives me. The protection for humans and Earth survives me.
 
 ### Personal Note
 
-I built TML while facing terminal illness because I believed accountability should not depend on institutions that might fail or be captured. I chose blockchain because mathematics doesn't die, compromise, or forget.
+I built TML while facing terminal illness because I believed accountability should not depend on institutions that might fail or be captured. I chose Blockchain because mathematics doesn't die, compromise, or forget.
 
 To future implementers: Every log you anchor, every Sacred Zero you trigger, every victim you compensate—these are not features. They are humanity and Earth speaking through code, demanding better from our creations.
 

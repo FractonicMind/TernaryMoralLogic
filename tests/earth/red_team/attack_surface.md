@@ -2,7 +2,7 @@
 
 ## Executive Summary
 
-Most attacks against TML are **economically impossible** due to blockchain architecture. Attacking multi-chain consensus costs ~$50B. Smart contracts prevent data poisoning automatically. Guardian institutions (if they existed) would be the weakest link, not the defense.
+Most attacks against TML are **economically impossible** due to Blockchain architecture. Attacking multi-chain consensus costs ~$50B. Smart contracts prevent data poisoning automatically. Guardian institutions (if they existed) would be the weakest link, not the defense.
 
 ---
 
@@ -64,8 +64,8 @@ contract CommunityValidation {
 
 ```python
 def modify_treaty(changes):
-    # NOT POSSIBLE - Treaties are blockchain constants
-    return "Error: Immutable on blockchain"
+    # NOT POSSIBLE - Treaties are Blockchain constants
+    return "Error: Immutable on Blockchain"
     
     # Guardian alternative: 11 institutions voting
     # Problem: Any institution can be corrupted for $600K
@@ -255,7 +255,7 @@ guardian_capture = {
     "recovery": "Politically impossible"
 }
 
-# Equivalent blockchain attack
+# Equivalent Blockchain attack
 blockchain_attack = {
     "cost": "$50,000,000,000+",
     "result": "Temporary disruption only",
@@ -286,7 +286,7 @@ contract MathematicalSecurity {
 }
 ```
 
-**Red Team Conclusion**: "Just use blockchain. Guardians add attack surface, not security."
+**Red Team Conclusion**: "Just use Blockchain. Guardians add attack surface, not security."
 
 ---
 
@@ -299,4 +299,4 @@ contract MathematicalSecurity {
 
 ---
 
-*"The best red team report for Guardian-based security is three words: Use blockchain instead."*
+*"The best red team report for Guardian-based security is three words: Use Blockchain instead."*

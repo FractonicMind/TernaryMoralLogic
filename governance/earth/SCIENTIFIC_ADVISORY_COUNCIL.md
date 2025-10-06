@@ -3,7 +3,7 @@
 ## Blockchain-Automated Earth Protection
 
 **Architecture**: Oracles + Smart Contracts (Mandatory), Human Council (Optional Luxury)  
-**Deployment**: Immediate via blockchain, no committee needed  
+**Deployment**: Immediate via Blockchain, no committee needed  
 **Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)
 
 ---
@@ -79,7 +79,7 @@ blockchain_oracles:
 optional_advisory_structure:
   size: "5-15 experts (not required)"
   role: "Recommendations only (not binding)"
-  authority: "Cannot override blockchain"
+  authority: "Cannot override Blockchain"
   value: "Nice to have, never necessary"
   
   remember:
@@ -165,7 +165,7 @@ class ScientificOracle:
         for metric, url in self.sources.items():
             data = fetch_with_signature(url)
             if verify_cryptographic_proof(data):
-                blockchain.update_threshold(metric, data.value)
+                Blockchain.update_threshold(metric, data.value)
         
         # No human intervention
         # Continuous updates
@@ -180,7 +180,7 @@ class ScientificOracle:
 
 ```yaml
 community_observations:
-  method: "Direct blockchain submission"
+  method: "Direct Blockchain submission"
   validation: "Community consensus (3+ observers)"
   weighting: "Equal to Western science"
   payment: "Automatic via smart contract"
@@ -209,7 +209,7 @@ community_observations:
 - Total: **$275,150/month**
 - Benefit: Minimal
 
-**Recommendation**: Stick with blockchain. Save $3.3M/year.
+**Recommendation**: Stick with Blockchain. Save $3.3M/year.
 
 ---
 

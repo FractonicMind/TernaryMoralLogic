@@ -13,10 +13,10 @@ from dataclasses import dataclass
 import json
 
 class TMLBlockchain:
-    """Direct blockchain enforcement - no Guardian institutions needed"""
+    """Direct Blockchain enforcement - no Guardian institutions needed"""
     
     def __init__(self, config: Dict):
-        """Initialize blockchain connections"""
+        """Initialize Blockchain connections"""
         self.ethereum = Web3(Web3.HTTPProvider(config['ethereum_rpc']))
         self.polygon = Web3(Web3.HTTPProvider(config['polygon_rpc']))
         
@@ -27,7 +27,7 @@ class TMLBlockchain:
             'whistleblower': config['whistleblower_contract']
         }
         
-        # No Guardian addresses needed - blockchain handles everything
+        # No Guardian addresses needed - Blockchain handles everything
         
     def create_always_memory_log(self, decision: Dict) -> str:
         """Create immutable log - no committee approval needed"""
@@ -145,7 +145,7 @@ class TMLBlockchain:
         # Zero-knowledge proof of community identity
         zk_proof = self._generate_zk_proof(community_id)
         
-        # Submit evidence directly to blockchain
+        # Submit evidence directly to Blockchain
         evidence_hash = self._submit_evidence(report)
         
         # Calculate reward
@@ -166,7 +166,7 @@ class TMLBlockchain:
     
     def verify_compliance(self, company_address: str) -> Dict:
         """Public verification - no Guardian review"""
-        # Check blockchain for logs
+        # Check Blockchain for logs
         logs = self._query_blockchain_logs(company_address)
         
         # Calculate missing logs
@@ -211,7 +211,7 @@ class TMLBlockchain:
             'guardian_approval': 'Not needed',
             'guardian_value': 0,
             'guardian_cost': '$6,600,000/year if deployed',
-            'recommendation': 'Use blockchain instead',
+            'recommendation': 'Use Blockchain instead',
             'deployment_year': 'Year 5+ if ever',
             'actual_protection': 'Blockchain provides 100%'
         }
@@ -229,7 +229,7 @@ def deploy_tml_protection():
         'whistleblower_contract': '0xWHISTLE...'
     }
     
-    # Initialize blockchain protection
+    # Initialize Blockchain protection
     tml = TMLBlockchain(config)
     
     # Everything works without Guardians

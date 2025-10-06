@@ -8,9 +8,9 @@
 ## 🚀 The Breakthrough: Immediate TML Protection
 
 **Old Model**: Wait for 11 Guardian institutions → Never deploy  
-**New Model**: Deploy with blockchain today → Add Guardians later
+**New Model**: Deploy with Blockchain today → Add Guardians later
 
-This adapter enables your existing TML SDKs to operate in blockchain mode, providing immediate Sacred Zero protection without requiring Guardian Network coordination.
+This adapter enables your existing TML SDKs to operate in Blockchain mode, providing immediate Sacred Zero protection without requiring Guardian Network coordination.
 
 ## Architecture Overview
 
@@ -42,7 +42,7 @@ This adapter enables your existing TML SDKs to operate in blockchain mode, provi
 //     .withGuardianUrl("https://guardian.tml-network.org") // BLOCKED!
 //     .build();
 
-// Use blockchain configuration:
+// Use Blockchain configuration:
 TMLConfig config = new TMLConfig.Builder()
     .withBlockchainMode(true)
     .withNetwork(BlockchainNetwork.BITCOIN)
@@ -58,7 +58,7 @@ TMLConfig config = new TMLConfig.Builder()
 // config := tml.DefaultConfig()
 // config.GuardianURL = "https://guardian.tml-network.org" // BLOCKED!
 
-// Use blockchain:
+// Use Blockchain:
 config := &tml.Config{
     BlockchainMode:    true,
     BlockchainNetwork: "bitcoin",
@@ -77,7 +77,7 @@ config := &tml.Config{
 // Instead of Guardian-required:
 // config->guardian_url = "https://guardian.tml-network.org"; // BLOCKED!
 
-// Use blockchain:
+// Use Blockchain:
 auto config = std::make_shared<TML::Config>();
 config->blockchain_mode = true;
 config->blockchain_network = "bitcoin";
@@ -94,7 +94,7 @@ import com.tml.adapter.BlockchainAdapter;
 
 public class TMLApplication {
     public static void main(String[] args) {
-        // Create blockchain-enabled client
+        // Create Blockchain-enabled client
         TMLClient client = BlockchainAdapter.createClient(config);
         
         // No Guardian connection required!
@@ -103,7 +103,7 @@ public class TMLApplication {
         // Sacred Zero works instantly
         SacredZeroResult result = client.evaluateSacredZero(context);
         if (result.triggered) {
-            // Violation recorded on blockchain permanently
+            // Violation recorded on Blockchain permanently
             // Economic penalty triggered automatically
         }
     }
@@ -112,16 +112,16 @@ public class TMLApplication {
 
 **Go**
 ```go
-import "github.com/tml/adapter/blockchain"
+import "github.com/tml/adapter/Blockchain"
 
 func main() {
-    // Create blockchain-enabled client
-    client := blockchain.NewTMLClient(config)
+    // Create Blockchain-enabled client
+    client := Blockchain.NewTMLClient(config)
     
     // No Guardian connection required!
     client.Initialize()  // Ready immediately
     
-    // Always Memory writes to blockchain
+    // Always Memory writes to Blockchain
     client.Log(tml.LogLevelInfo, "System operational", metadata)
     // This is now immutably anchored to Bitcoin
 }
@@ -132,13 +132,13 @@ func main() {
 #include "blockchain_adapter.h"
 
 int main() {
-    // Create blockchain-enabled client
+    // Create Blockchain-enabled client
     auto client = BlockchainAdapter::CreateClient(config);
     
     // Deploy protection immediately
     client->Initialize();  // No Guardian wait
     
-    // Environmental monitoring with blockchain proof
+    // Environmental monitoring with Blockchain proof
     auto impact = client->CalculateEnvironmentalImpact(resources);
     // Permanently recorded, publicly verifiable
 }
@@ -152,7 +152,7 @@ docker-compose up -d
 
 # Your TML protection is now active with:
 # ✅ Sacred Zero discrimination prevention
-# ✅ Immutable audit logs on blockchain  
+# ✅ Immutable audit logs on Blockchain  
 # ✅ Environmental impact tracking
 # ✅ Economic penalties for violations
 # ✅ Public verifiability
@@ -200,7 +200,7 @@ public class BlockchainAdapter {
             // Hash the entry
             byte[] hash = SHA256.hash(entry.serialize());
             
-            // Anchor to blockchain via OpenTimestamps
+            // Anchor to Blockchain via OpenTimestamps
             Timestamp timestamp = otsClient.stamp(hash);
             
             // If Sacred Zero violation, trigger penalty
@@ -208,7 +208,7 @@ public class BlockchainAdapter {
                 penaltyContract.triggerViolationPenalty(hash, entry);
             }
             
-            // Store locally with blockchain proof
+            // Store locally with Blockchain proof
             entry.setBlockchainProof(timestamp);
             localStorage.save(entry);
             
@@ -229,7 +229,7 @@ public class BlockchainAdapter {
 
 **Go Implementation**
 ```go
-package blockchain
+package Blockchain
 
 import (
     "github.com/tml/sdk/go/tml"
@@ -271,7 +271,7 @@ func (c *BlockchainTMLClient) Log(level tml.LogLevel, message string, metadata t
         Metadata: metadata,
     }
     
-    // Create blockchain anchor
+    // Create Blockchain anchor
     hash := sha256.Sum256(entry.Serialize())
     timestamp := c.adapter.otsClient.Stamp(hash[:])
     
@@ -315,7 +315,7 @@ class OTSAnchor {
     }
     
     async verify(hash, proof) {
-        // Verify against Bitcoin blockchain
+        // Verify against Bitcoin Blockchain
         const response = await fetch(`${this.calendar}/verify`, {
             method: 'POST',
             body: JSON.stringify({hash, proof}),
@@ -405,7 +405,7 @@ graph LR
 ```yaml
 # Phase 1: Blockchain Only (TODAY)
 tml:
-  blockchain:
+  Blockchain:
     enabled: true
     primary: bitcoin
     ots: true
@@ -414,7 +414,7 @@ tml:
 
 # Phase 2: Hybrid (MONTHS)
 tml:
-  blockchain:
+  Blockchain:
     enabled: true
     primary: bitcoin
   guardians:
@@ -424,7 +424,7 @@ tml:
 
 # Phase 3: Full Guardian (YEARS)
 tml:
-  blockchain:
+  Blockchain:
     enabled: true
     fallback: true
   guardians:
@@ -438,14 +438,14 @@ tml:
 | Deployment Model | Setup Time | Monthly Cost | Protection Level |
 |-----------------|------------|--------------|------------------|
 | Guardian Network (11 nodes) | 6-12 months | $50,000+ | Perfect (if ever achieved) |
-| blockchain | **10 minutes** | **$100** | **Good (deployable today)** |
+| Blockchain | **10 minutes** | **$100** | **Good (deployable today)** |
 | Hybrid (3 Guardians) | 1-3 months | $15,000 | Better |
 | Full Evolution | 2-3 years | $50,000+ | Perfect |
 
 ## Performance Metrics
 
 ```yaml
-blockchain Performance:
+Blockchain Performance:
   Sacred Zero Evaluation: <10ms (local)
   Blockchain Anchoring: 1-3 seconds (async)
   OTS Proof Generation: <100ms
@@ -496,7 +496,7 @@ export TML_BLOCKCHAIN_MODE=true
 export TML_GUARDIAN_OPTIONAL=true
 npm test
 
-# 2. Verify blockchain anchoring
+# 2. Verify Blockchain anchoring
 curl https://alice.btc.calendar.opentimestamps.org/timestamp/YOUR_HASH
 
 # 3. Check penalty contract
@@ -541,30 +541,30 @@ auto verified = VerifyOnBitcoin(proof);
 
 ## FAQ
 
-**Q: Is blockchain-only less secure than Guardians?**  
+**Q: Is Blockchain-only less secure than Guardians?**  
 A: No, just different. Blockchain provides cryptographic immutability and public verifiability. Guardians add governance and institutional oversight. Both are valuable.
 
 **Q: What if Bitcoin fees are high?**  
 A: OpenTimestamps batches operations, costing ~$0.01 per thousands of logs. L2 solutions cost even less.
 
-**Q: Can we switch from blockchain to Guardians later?**  
-A: Yes! The architecture supports seamless evolution. Start with blockchain, add Guardians gradually.
+**Q: Can we switch from Blockchain to Guardians later?**  
+A: Yes! The architecture supports seamless evolution. Start with Blockchain, add Guardians gradually.
 
 **Q: Do penalties work without Guardians?**  
 A: Yes, smart contracts enforce penalties automatically. No human intervention needed.
 
 ## Next Steps
 
-1. **Choose your blockchain**: Bitcoin (maximum security) or L2 (lower cost)
+1. **Choose your Blockchain**: Bitcoin (maximum security) or L2 (lower cost)
 2. **Deploy the adapter**: 10 minutes with our Docker image
 3. **Start protecting**: Sacred Zero active immediately
 4. **Add Guardians later**: When institutions are ready
 
 ## Support
 
-- **Quick Start**: https://tml.org/blockchain-quickstart
-- **Docker Image**: `docker pull tml/blockchain-adapter:latest`
-- **Support**: blockchain@tml-goukassian.org
+- **Quick Start**: https://tml.org/Blockchain-quickstart
+- **Docker Image**: `docker pull tml/Blockchain-adapter:latest`
+- **Support**: Blockchain@tml-goukassian.org
 
 ---
 

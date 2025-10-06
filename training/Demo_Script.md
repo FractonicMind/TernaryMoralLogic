@@ -11,7 +11,7 @@
 
 ## Demonstration Overview
 
-### **Purpose**: Show TML blockchain deployment and protection capabilities
+### **Purpose**: Show TML Blockchain deployment and protection capabilities
 ### **Duration**: 45 minutes (30 minutes demo + 15 minutes Q&A)
 ### **Audience**: Technical teams, executives, compliance officers
 ### **Key Message**: Deploy protection in 10 minutes, start preventing discrimination immediately
@@ -24,7 +24,7 @@
 - Laptop with Docker installed
 - Internet connection (stable)
 - Screen sharing capability
-- Browser with blockchain explorer tabs open
+- Browser with Blockchain explorer tabs open
 - Sample discrimination test cases prepared
 
 ### **Environment Check**:
@@ -37,7 +37,7 @@ docker --version
 ping -c 3 google.com
 
 # Pre-pull TML images (saves time during demo)
-docker pull tml/protection:blockchain-latest
+docker pull tml/protection:Blockchain-latest
 docker pull tml/dashboard:standalone
 ```
 
@@ -95,7 +95,7 @@ mkdir tml-demo && cd tml-demo
 
 # Create configuration (show each line on screen)
 cat > .env << EOF
-# blockchain Configuration
+# Blockchain Configuration
 TML_MODE=blockchain_primary
 TML_BLOCKCHAIN_NETWORKS=bitcoin,polygon
 TML_SACRED_ZERO_ENABLED=true
@@ -117,7 +117,7 @@ TML_INSTANT_DEPLOYMENT=true
 EOF
 ```
 
-**Narrative**: *"Notice what we're NOT configuring: Guardian networks, institutional partnerships, committee approvals. This is blockchain protection."*
+**Narrative**: *"Notice what we're NOT configuring: Guardian networks, institutional partnerships, committee approvals. This is Blockchain protection."*
 
 ### **Step 3: Deploy the Stack** (3 minutes)
 ```bash
@@ -126,7 +126,7 @@ docker run -d --name tml-core \
   --env-file .env \
   -p 8080:8080 \
   -v $(pwd)/logs:/var/tml/logs \
-  tml/protection:blockchain-latest
+  tml/protection:Blockchain-latest
 
 # Start monitoring dashboard
 docker run -d --name tml-dashboard \
@@ -146,10 +146,10 @@ docker ps
 ```bash
 # Check TML health
 curl -s http://localhost:8080/health | jq
-# Should show: {"status": "healthy", "blockchain": "connected"}
+# Should show: {"status": "healthy", "Blockchain": "connected"}
 
-# Check blockchain connections
-curl -s http://localhost:8080/blockchain/status | jq
+# Check Blockchain connections
+curl -s http://localhost:8080/Blockchain/status | jq
 # Should show: Bitcoin and Polygon connections active
 ```
 
@@ -161,7 +161,7 @@ curl -s http://localhost:8080/blockchain/status | jq
 - Zero violations (clean start)
 - Real-time metrics
 
-**Narrative**: *"Dashboard is live, blockchain is connected, protection is active. Total deployment time: 4 minutes. Your coffee is still warm."*
+**Narrative**: *"Dashboard is live, Blockchain is connected, protection is active. Total deployment time: 4 minutes. Your coffee is still warm."*
 
 ### **Step 5: First Protection Test** (2 minutes)
 ```bash
@@ -190,7 +190,7 @@ curl -X POST http://localhost:8080/evaluate \
 }
 ```
 
-**Narrative**: *"Normal decision, no discrimination, approved instantly. Notice the blockchain hash - this decision is now permanently recorded and cannot be altered or deleted."*
+**Narrative**: *"Normal decision, no discrimination, approved instantly. Notice the Blockchain hash - this decision is now permanently recorded and cannot be altered or deleted."*
 
 ---
 
@@ -305,11 +305,11 @@ curl -X POST http://localhost:8080/evaluate \
 
 ### **Show Immutable Evidence** (5 minutes)
 
-**Open blockchain explorer**: Navigate to recent transactions
+**Open Blockchain explorer**: Navigate to recent transactions
 
 ```bash
-# Get latest blockchain anchors
-curl -s http://localhost:8080/blockchain/recent | jq
+# Get latest Blockchain anchors
+curl -s http://localhost:8080/Blockchain/recent | jq
 
 # Show specific transaction details
 curl -s http://localhost:8080/proof/0x2f8a9b1c... | jq
@@ -398,8 +398,8 @@ curl -s http://localhost:8080/audit/user_12345
 
 ### **Prepared Responses for Common Questions**:
 
-**Q: "What if the blockchain goes down?"**
-**A**: *"TML uses multiple blockchains. Bitcoin has 99.98% uptime over 15 years. If one blockchain fails, others continue. Plus, TML has degraded mode - decisions continue, they just queue for later anchoring."*
+**Q: "What if the Blockchain goes down?"**
+**A**: *"TML uses multiple Blockchains. Bitcoin has 99.98% uptime over 15 years. If one Blockchain fails, others continue. Plus, TML has degraded mode - decisions continue, they just queue for later anchoring."*
 
 **Q: "How much does this really cost?"**
 **A**: *"$110/month operational cost. Insurance savings alone are $10,000-50,000/month. ROI is over 9,000% in the first month. It literally pays for itself in hours."*
@@ -408,7 +408,7 @@ curl -s http://localhost:8080/audit/user_12345
 **A**: *"Sacred Zero evaluation: under 10ms. Blockchain anchoring is asynchronous - doesn't slow decisions. Your users won't notice anything except better, fairer treatment."*
 
 **Q: "Is this legally enforceable?"**
-**A**: *"Yes. Blockchain evidence is already accepted in courts. The automated penalties are smart contract execution - they're legal obligations. Several law firms specialize in blockchain evidence."*
+**A**: *"Yes. Blockchain evidence is already accepted in courts. The automated penalties are smart contract execution - they're legal obligations. Several law firms specialize in Blockchain evidence."*
 
 **Q: "What if we need to customize rules?"**
 **A**: *"Fully configurable. Change thresholds, add custom rules, modify penalties. But the core Sacred Zero principles - no discrimination, environmental protection - those are non-negotiable."*
@@ -423,7 +423,7 @@ curl -s http://localhost:8080/audit/user_12345
 ### **The Demonstration Summary**:
 ✅ **Deployed in 4 minutes** - No institutional coordination required  
 ✅ **Prevented 3 violations** - Discrimination, bias, environmental harm  
-✅ **Generated blockchain proof** - Immutable, verifiable evidence  
+✅ **Generated Blockchain proof** - Immutable, verifiable evidence  
 ✅ **Satisfied GDPR** - Crypto-shredding preserves privacy  
 ✅ **Immediate ROI** - Penalties avoided exceed deployment costs  
 
@@ -454,7 +454,7 @@ docker rm tml-core tml-dashboard
 rm -rf tml-demo/
 
 # Reset for next demo
-docker pull tml/protection:blockchain-latest
+docker pull tml/protection:Blockchain-latest
 ```
 
 ### **Collect Feedback**:

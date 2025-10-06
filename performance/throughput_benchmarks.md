@@ -12,7 +12,7 @@ To validate that large-scale deployments of TML maintain both speed and reliabil
 Benchmarks are divided into two operational domains:
 
 - **Inference Domain:** AI decision throughput under Sacred Zero monitoring.  
-- **Logging Domain:** Moral Trace Log creation, batching, and blockchain anchoring.
+- **Logging Domain:** Moral Trace Log creation, batching, and Blockchain anchoring.
 
 Each domain is measured independently and combined for total system throughput.
 

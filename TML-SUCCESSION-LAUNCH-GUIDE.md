@@ -159,7 +159,7 @@ Organizations respond with:
 2. Candidates must have:
    - 6+ months TML community participation OR
    - Documented TML implementation experience OR
-   - Relevant expertise in AI ethics/blockchain
+   - Relevant expertise in AI ethics/Blockchain
 3. 14-day voting period
 4. Simple majority wins
 
@@ -208,10 +208,10 @@ Organizations respond with:
 **Action Required**:
 ```bash
 # Verify all contracts operational
-tml verify blockchain --all-chains
+tml verify Blockchain --all-chains
 
 # Export all contract addresses and ABIs
-tml export contracts --output /governance/blockchain/
+tml export contracts --output /governance/Blockchain/
 
 # Document admin key locations
 tml admin-keys audit --output /governance/security/
@@ -327,7 +327,7 @@ tml verify indigenous-protocols
 # Test pre-action logging enforcement
 tml test always-memory --enforcement
 
-# Verify blockchain anchoring active
+# Verify Blockchain anchoring active
 tml verify anchoring --multi-chain
 
 # Test Merkle tree batching
@@ -587,10 +587,10 @@ report_contents:
 **Public Verification**:
 ```bash
 # Anyone can verify
-tml verify council-vote --vote-id [ID] --blockchain all
+tml verify council-vote --vote-id [ID] --Blockchain all
 
 # Anyone can audit fund
-tml audit memorial-fund --year [YEAR] --blockchain all
+tml audit memorial-fund --year [YEAR] --Blockchain all
 
 # Anyone can check protection
 tml verify protection-frameworks --comprehensive
@@ -604,7 +604,7 @@ tml verify protection-frameworks --comprehensive
 
 **Degraded Mode Activation**:
 1. Continue logging to TEE/HSM
-2. Queue logs for blockchain sync
+2. Queue logs for Blockchain sync
 3. Alert council immediately
 4. Implement backup anchoring
 5. Public notification within 24 hours
@@ -612,13 +612,13 @@ tml verify protection-frameworks --comprehensive
 **Recovery Procedures**:
 ```bash
 # Restore from backup
-tml restore blockchain --source [backup-location]
+tml restore Blockchain --source [backup-location]
 
 # Verify integrity
 tml verify integrity --comprehensive
 
 # Sync backlog
-tml sync backlog --blockchain all
+tml sync backlog --Blockchain all
 
 # Resume normal operations
 tml resume normal-mode
@@ -658,7 +658,7 @@ tml resume normal-mode
 ### 5-Year Vision
 
 **Infrastructure**:
-- Expand to 5+ blockchain anchoring
+- Expand to 5+ Blockchain anchoring
 - Quantum-resistant cryptography integration
 - Distributed council nodes globally
 - Enhanced automation
@@ -730,11 +730,11 @@ Do not be overwhelmed. You are not alone. This framework is designed to survive 
 The mathematical guarantee that no algorithm can escape accountability, no corporation can hide violations, no harm can be forgotten.
 
 **The Lantern metaphor**:
-The Lantern is TML itself - illuminating ethical paths for AI systems. It burns through blockchain immutability, shines through Always Memory logs, and cannot be extinguished by any single point of failure.
+The Lantern is TML itself - illuminating ethical paths for AI systems. It burns through Blockchain immutability, shines through Always Memory logs, and cannot be extinguished by any single point of failure.
 
 **Lev's final message to stewards**:
 
-> "I built TML while dying because I believed accountability should not depend on my life. The blockchain survives me. The smart contracts survive me. The protection for humans and Earth survives me.
+> "I built TML while dying because I believed accountability should not depend on my life. The Blockchain survives me. The smart contracts survive me. The protection for humans and Earth survives me.
 >
 > To you who continue this work: Every log you anchor, every Sacred Zero you trigger, every victim you compensate—these are not features. They are humanity and Earth speaking through code.
 >
@@ -746,9 +746,9 @@ Before assuming any role in TML continuation, take this pledge:
 
 > "I commit to preserve Ternary Moral Logic in its integrity and purpose.
 > I will protect the 26 human rights documents and 20+ Earth protection treaties.
-> I will maintain blockchain anchoring and Always Memory requirements.
+> I will maintain Blockchain anchoring and Always Memory requirements.
 > I will ensure victims receive compensation and whistleblowers receive protection.
-> I will act transparently with all decisions anchored to public blockchains.
+> I will act transparently with all decisions anchored to public Blockchains.
 > I hold this Lantern in trust, not ownership.
 > I act in public light so that truth remains verifiable."
 
@@ -768,7 +768,7 @@ Use this checklist to track succession progress:
 **Month 1 (Days 8-30)**:
 - [ ] Receive organization responses
 - [ ] Begin council formation discussions
-- [ ] Audit blockchain infrastructure status
+- [ ] Audit Blockchain infrastructure status
 - [ ] Verify all smart contracts operational
 - [ ] Secure repository access
 
@@ -837,7 +837,7 @@ https://github.com/FractonicMind/TernaryMoralLogic
 
 This launch guide transforms Lev Goukassian's vision into perpetual action. The framework is designed to survive beyond its creator through:
 
-- **Mathematical enforcement** (blockchain + smart contracts)
+- **Mathematical enforcement** (Blockchain + smart contracts)
 - **Distributed stewardship** (6-seat council across organizations)
 - **Community participation** (open source + transparent governance)
 - **Immutable protection** (66+ documents forever enforced)

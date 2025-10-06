@@ -1,4 +1,4 @@
-// Package tml provides blockchain-enforced AI accountability
+// Package tml provides Blockchain-enforced AI accountability
 // Creator: Lev Goukassian (ORCID: 0009-0006-5966-1243)
 package tml
 
@@ -29,9 +29,9 @@ var (
 	ErrInsufficientStake = fmt.Errorf("Insufficient stake for operation")
 	
 	// Guardian errors (for Year 5+ if ever implemented)
-	ErrGuardianNotExist = fmt.Errorf("Guardian Network does not exist - use blockchain")
-	ErrGuardianWaste = fmt.Errorf("Guardian operation would waste $600K/year - use blockchain instead")
-	ErrCommitteeTheater = fmt.Errorf("Committee review not needed - blockchain handles automatically")
+	ErrGuardianNotExist = fmt.Errorf("Guardian Network does not exist - use Blockchain")
+	ErrGuardianWaste = fmt.Errorf("Guardian operation would waste $600K/year - use Blockchain instead")
+	ErrCommitteeTheater = fmt.Errorf("Committee review not needed - Blockchain handles automatically")
 )
 
 // Error severity levels
@@ -56,7 +56,7 @@ type TMLError struct {
 	Severity   string
 	Penalty    int64  // In 2025 nominal USD
 	Criminal   bool
-	Blockchain bool   // True = blockchain handles, False = imaginary Guardian theater
+	Blockchain bool   // True = Blockchain handles, False = imaginary Guardian theater
 }
 
 func (e *TMLError) Error() string {
@@ -74,7 +74,7 @@ func NewCriminalError(code string, message string, penalty int64) *TMLError {
 		Severity:   SeverityCriminal,
 		Penalty:    penalty,
 		Criminal:   true,
-		Blockchain: true, // Always blockchain enforced
+		Blockchain: true, // Always Blockchain enforced
 	}
 }
 
@@ -105,10 +105,10 @@ func ValidateCompliance(logs []string) error {
 		return MissingLogsError
 	}
 	
-	// Check blockchain anchoring
+	// Check Blockchain anchoring
 	for _, log := range logs {
 		if !IsAnchoredOnBlockchain(log) {
-			return fmt.Errorf("Log not anchored on blockchain: criminal liability")
+			return fmt.Errorf("Log not anchored on Blockchain: criminal liability")
 		}
 	}
 	
@@ -144,7 +144,7 @@ func CalculatePenalty(violation string, multiplier float64) (int64, error) {
 func GuardianError() error {
 	return &TMLError{
 		Code:       "GUARDIAN_REALITY",
-		Message:    "Guardian Network doesn't exist and isn't needed - use blockchain",
+		Message:    "Guardian Network doesn't exist and isn't needed - use Blockchain",
 		Severity:   SeverityTheater,
 		Penalty:    0,
 		Criminal:   false,
@@ -161,7 +161,7 @@ func HandleError(err error) {
 			InitiateProsecution(e)
 		}
 		if e.Penalty > 0 {
-			// Automatic penalty via blockchain
+			// Automatic penalty via Blockchain
 			ExecutePenalty(e.Penalty)
 		}
 	default:

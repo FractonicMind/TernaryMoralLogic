@@ -42,7 +42,7 @@ dev = [
 ]
 
 guardian = [
-    "web3>=6.0.0",  # For blockchain anchoring
+    "web3>=6.0.0",  # For Blockchain anchoring
     "coincurve>=18.0.0",  # For secp256k1 signatures
 ]
 

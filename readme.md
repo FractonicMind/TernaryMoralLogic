@@ -162,7 +162,7 @@ Organizations implementing TML bear **full legal and ethical responsibility** fo
 **Sacred Zero** is the heart of TML: the precise moment an AI system hesitates before harm.
 It activates whenever a prompt semantically intersects with any *mandated corpus* of codified human or ecological rights that all licensed TML systems must carry.
 
-When the overlap between prompt and right crosses the ethical similarity threshold, **Sacred Pause** initiates reflection, instructs **Always Memory** to begin a **Moral Trace Log**, and anchors the event to blockchain for forensic accountability.
+When the overlap between prompt and right crosses the ethical similarity threshold, **Sacred Pause** initiates reflection, instructs **Always Memory** to begin a **Moral Trace Log**, and anchors the event to Blockchain for forensic accountability.
 
 TML and the AI each maintain complementary corpora:
 
@@ -232,7 +232,7 @@ The **Hybrid Shield** is TML’s double-layer integrity system that guarantees t
 
 ### 1. Mathematical Shield
 
-Each log is **hash-chained**, **Merkle-batched**, and **anchored** to multiple public blockchains (Bitcoin, Ethereum, Polygon, OpenTimestamps).
+Each log is **hash-chained**, **Merkle-batched**, and **anchored** to multiple public Blockchains (Bitcoin, Ethereum, Polygon, OpenTimestamps).
 This cryptographic layer ensures:
 
 * **Tamper-evidence**: any alteration breaks the hash chain.
@@ -507,7 +507,7 @@ Recognized under:
 
 ### Future Evolution
 
-The blockchain foundation is fully operational today.
+The Blockchain foundation is fully operational today.
 An **optional Guardian Network** of institutional custodians may extend trust verification, offering additional insurance and international recognition.
 
 #### **In TML, every ethical hesitation leaves a cryptographic footprint, proof that conscience, once encoded, cannot be erased.**

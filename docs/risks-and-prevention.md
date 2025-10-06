@@ -1,6 +1,6 @@
 # TML Risk Prevention Framework v3.0
 
-**Version**: 3.0 (blockchain Architecture)  
+**Version**: 3.0 (Blockchain Architecture)  
 **Status**: Active Protection via Smart Contracts  
 **Core Protection**: Blockchain Anchoring + Criminal Liability  
 **Optional Enhancement**: Guardian Network (Years 3-5, if bored)
@@ -9,7 +9,7 @@
 
 ## Executive Summary
 
-TML's blockchain architecture **eliminates most traditional risks** through mathematical consensus and criminal liability. No committees needed. No institutions required. Just immutable evidence and automatic penalties.
+TML's Blockchain architecture **eliminates most traditional risks** through mathematical consensus and criminal liability. No committees needed. No institutions required. Just immutable evidence and automatic penalties.
 
 **Key Protection: Missing logs = Criminal prosecution. Blockchain anchoring = Tamper-proof evidence. Smart contracts = Unstoppable enforcement.**
 
@@ -32,11 +32,11 @@ TML's blockchain architecture **eliminates most traditional risks** through math
 ```python
 def verify_tml_compliance(company_logs):
     # Blockchain verification - instant, mathematical
-    if not blockchain.verify_anchors(company_logs):
+    if not Blockchain.verify_anchors(company_logs):
         return CriminalProsecution(
             charge="Spoliation of Evidence",
             penalty=calculate_smart_contract_penalty(),
-            enforcement="Automatic via blockchain"
+            enforcement="Automatic via Blockchain"
         )
     return "Compliant"
 ```
@@ -92,9 +92,9 @@ contract TMLEnforcement {
 
 **BLOCKCHAIN Reality**:
 ```javascript
-// Every Sacred Zero hesitation is blockchain-anchored
+// Every Sacred Zero hesitation is Blockchain-anchored
 const ethicsWashingDetection = async (company) => {
-    const sacredZeros = await blockchain.query(company.address);
+    const sacredZeros = await Blockchain.query(company.address);
     
     if (sacredZeros.count === 0) {
         // No hesitations = no ethics = criminal liability
@@ -116,7 +116,7 @@ const ethicsWashingDetection = async (company) => {
 def detect_selective_logging(system):
     # ALL interactions must be logged
     total_api_calls = system.request_counter
-    total_logs = blockchain.count_anchors(system.id)
+    total_logs = Blockchain.count_anchors(system.id)
     
     if total_logs < total_api_calls:
         # Immediate criminal prosecution
@@ -231,7 +231,7 @@ class AuthenticTML:
 1. Claims "Guardian approval pending" (not needed!)
 2. Says "Working with institutions" (irrelevant!)
 3. Mentions "Compliance committee" (doesn't exist!)
-4. No blockchain anchors visible
+4. No Blockchain anchors visible
 5. Can't show immutable logs on-chain
 
 **Verification**: Ask for Bitcoin transaction ID of their latest batch. No ID = Fake TML.
@@ -241,7 +241,7 @@ class AuthenticTML:
 ## Cost-Benefit Analysis
 
 ### Cost to Attack TML (Blockchain)
-- Rewrite multiple blockchains: ~$50 billion
+- Rewrite multiple Blockchains: ~$50 billion
 - Bribe smart contracts: Impossible
 - Delete evidence: Mathematically infeasible
 - Escape prosecution: Blockchain is global
@@ -271,7 +271,7 @@ class AuthenticTML:
 - No ability to block logs
 
 ### Year 5+: Lessons Learned
-- 99% stay blockchain-only
+- 99% stay Blockchain-only
 - 1% who added Guardians regret complexity
 - Mathematical consensus proven superior
 - Institutional oversight shown redundant
@@ -304,7 +304,7 @@ class AuthenticTML:
 
 ## Contact & Verification
 
-**Blockchain Verification**: https://tml-verify.blockchain
+**Blockchain Verification**: https://tml-verify.Blockchain
 **Smart Contract Address**: [Deployed on Ethereum/Polygon]
 **Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)
 **Email**: leogouk@gmail.com
@@ -332,11 +332,11 @@ class AuthenticTML:
 
 ---
 
-*"The greatest risk to TML is adding unnecessary institutions that delay protection while Earth burns and humans suffer. Deploy blockchain today. Protect immediately. Evolve later (or never)."*
+*"The greatest risk to TML is adding unnecessary institutions that delay protection while Earth burns and humans suffer. Deploy Blockchain today. Protect immediately. Evolve later (or never)."*
 
 **Created by**: Lev Goukassian  
 **Date**: September 2025  
-**Architecture**: blockchain, Guardian-Never  
+**Architecture**: Blockchain, Guardian-Never  
 **Deployment Time**: 10 minutes  
 **Protection Level**: Maximum
 

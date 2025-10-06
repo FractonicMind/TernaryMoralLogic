@@ -1,6 +1,6 @@
 # Reproducibility Checklist
 
-## Ternary Moral Logic (TML) blockchain Framework
+## Ternary Moral Logic (TML) Blockchain Framework
 
 **Computational Reproducibility for Immediate Deployment**  
 
@@ -8,10 +8,10 @@
 
 ## Executive Summary
 
-This document provides a comprehensive reproducibility checklist for TML's blockchain architecture, ensuring that Sacred Zero protection for humans, Earth, and future generations can be independently deployed in 10 minutes without institutional coordination.
+This document provides a comprehensive reproducibility checklist for TML's Blockchain architecture, ensuring that Sacred Zero protection for humans, Earth, and future generations can be independently deployed in 10 minutes without institutional coordination.
 
 **Deployment Status**: Immediate (no waiting required)  
-**Architecture**: blockchain, Guardian-optional  
+**Architecture**: Blockchain, Guardian-optional  
 **Protection Scope**: Human Rights (26 docs) + Earth Protection (20+ docs)  
 **Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)
 
@@ -19,14 +19,14 @@ This document provides a comprehensive reproducibility checklist for TML's block
 
 ## Core Reproducibility Principles
 
-### blockchain Foundation
+### Blockchain Foundation
 
 The TML framework achieves reproducibility through mathematical consensus:
 
 1. **Immediate Deployment**: 10 minutes from download to protection
 2. **Zero Coordination**: No institutional approval needed
 3. **Complete Protection**: Human discrimination, rights violations, Earth harm
-4. **Immutable Evidence**: Multi-chain blockchain anchoring
+4. **Immutable Evidence**: Multi-chain Blockchain anchoring
 5. **Optional Enhancement**: Guardian Network can be added later (or never)
 
 ### Standards Compliance
@@ -100,7 +100,7 @@ BLOCKCHAIN_CONFIG = {
 
 **Blockchain Dependencies**: Exact Versions
 ```python
-# requirements.txt - blockchain implementation
+# requirements.txt - Blockchain implementation
 web3==6.5.0              # Ethereum interaction
 bitcoin-utils==0.2.5     # Bitcoin anchoring
 opentimestamps==0.4.2    # OTS protocol
@@ -115,7 +115,7 @@ jsonschema==4.19.0      # Validation schemas
 
 **Container Reproducibility**: Production-Ready Docker
 ```dockerfile
-# Dockerfile - blockchain deployment
+# Dockerfile - Blockchain deployment
 FROM python:3.11-slim
 WORKDIR /app
 
@@ -127,8 +127,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY frameworks/human_rights/ ./frameworks/human_rights/
 COPY frameworks/earth_protection/ ./frameworks/earth_protection/
 
-# Copy blockchain anchoring
-COPY blockchain/ ./blockchain/
+# Copy Blockchain anchoring
+COPY Blockchain/ ./Blockchain/
 COPY always_memory/ ./always_memory/
 
 # Configure for immediate deployment
@@ -223,7 +223,7 @@ def verify_earth_protection():
 def verify_blockchain_anchoring():
     """Verify multi-chain anchoring works"""
     
-    from tml.blockchain import MultiChainAnchor
+    from tml.Blockchain import MultiChainAnchor
     
     anchor = MultiChainAnchor(
         chains=['bitcoin', 'polygon', 'ethereum'],
@@ -239,11 +239,11 @@ def verify_blockchain_anchoring():
         'timestamp': '2025-09-29T10:15:30Z'
     }
     
-    # Anchor to blockchains
+    # Anchor to Blockchains
     anchors = anchor.submit(test_log)
     
     # Verify minimum redundancy
-    assert len(anchors) >= 2, "Insufficient blockchain redundancy"
+    assert len(anchors) >= 2, "Insufficient Blockchain redundancy"
     
     # Verify each anchor
     for chain, proof in anchors.items():
@@ -262,7 +262,7 @@ def verify_opentimestamps():
     """Verify OpenTimestamps integration"""
     
     import opentimestamps as ots
-    from tml.blockchain import OTSIntegration
+    from tml.Blockchain import OTSIntegration
     
     integration = OTSIntegration()
     
@@ -303,7 +303,7 @@ cd TernaryMoralLogic
 # Step 2: Pull Docker image (2 minutes)
 docker pull tml/always-memory:latest
 
-# Step 3: Configure blockchain (1 minute)
+# Step 3: Configure Blockchain (1 minute)
 cat > .env << EOF
 BLOCKCHAIN_ANCHORING=true
 BITCOIN_RPC=https://btc.example.com
@@ -317,7 +317,7 @@ docker run --env-file .env tml/always-memory
 
 # Step 5: Verify deployment (1 minute)
 curl http://localhost:8000/health
-curl http://localhost:8000/verify/blockchain
+curl http://localhost:8000/verify/Blockchain
 curl http://localhost:8000/verify/frameworks
 
 END_TIME=$(date +%s)
@@ -346,7 +346,7 @@ def verify_no_coordination_required():
     assert requirements['approval_needed'] == False
     assert requirements['coordination_time'] == '0 minutes'
     
-    # Verify blockchain is sufficient
+    # Verify Blockchain is sufficient
     assert requirements['blockchain_sufficient'] == True
     assert requirements['legal_enforcement'] == 'Active'
     assert requirements['sacred_zero_functional'] == True
@@ -409,7 +409,7 @@ def verify_sacred_zero_latency():
 **Blockchain Cost Analysis**:
 ```python
 def verify_deployment_costs():
-    """Verify blockchain deployment costs"""
+    """Verify Blockchain deployment costs"""
     
     from tml.economics import CostCalculator
     
@@ -449,7 +449,7 @@ def verify_deployment_costs():
 **Court Admissibility Test**:
 ```python
 def verify_legal_admissibility():
-    """Verify blockchain evidence meets legal standards"""
+    """Verify Blockchain evidence meets legal standards"""
     
     from tml.legal import EvidenceValidator
     
@@ -492,13 +492,13 @@ def verify_legal_admissibility():
 def complete_system_verification():
     """Full TML deployment verification"""
     
-    print("Starting TML blockchain Verification")
+    print("Starting TML Blockchain Verification")
     
     # 1. Verify immediate deployment
     print("✓ Deployment in 10 minutes")
     assert verify_no_coordination_required()
     
-    # 2. Verify blockchain anchoring
+    # 2. Verify Blockchain anchoring
     print("✓ Multi-chain anchoring active")
     assert verify_blockchain_anchoring()
     
@@ -576,7 +576,7 @@ def test_guardian_migration():
 
 ### Quantitative Assessment
 
-**blockchain Reproducibility Score**:
+**Blockchain Reproducibility Score**:
 ```python
 def calculate_reproducibility_score():
     """Comprehensive reproducibility assessment"""
@@ -609,7 +609,7 @@ def calculate_reproducibility_score():
 
 ## Conclusion
 
-TML's blockchain architecture achieves exceptional reproducibility:
+TML's Blockchain architecture achieves exceptional reproducibility:
 
 **Key Achievements**:
 - **10-minute deployment** without institutional coordination
@@ -625,7 +625,7 @@ This reproducibility framework ensures that Lev Goukassian's vision of immediate
 
 ---
 
-**Document Version**: 3.0 (blockchain)  
+**Document Version**: 3.0 (Blockchain)  
 **Last Updated**: September 2025  
 **Deployment Status**: Immediate
 

@@ -8,7 +8,7 @@
 ## 💰 Making Discrimination Economically Painful
 
 **Old Model**: Discrimination → Maybe lawsuit in 3 years → Maybe payment  
-**New Model**: Discrimination → Immediate blockchain penalty → Automatic payment
+**New Model**: Discrimination → Immediate Blockchain penalty → Automatic payment
 
 This framework creates unstoppable economic consequences for Sacred Zero violations using smart contracts, making discrimination prevention a financial imperative.
 
@@ -152,7 +152,7 @@ contract TMLPenaltyEscrow {
 class InsurancePenalty:
     def report_violation(self, company_id, violation):
         # Blockchain-verified violation
-        proof = blockchain.get_proof(violation.hash)
+        proof = Blockchain.get_proof(violation.hash)
         
         # Notify all insurance providers
         for insurer in self.insurers:

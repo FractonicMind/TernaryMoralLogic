@@ -2,7 +2,7 @@
 
 ## Overview
 
-This document defines the security architecture, threat model, and defensive measures for TML's Decentralized Oracle Network (DON) supporting Earth Protection under a **blockchain** paradigm.  
+This document defines the security architecture, threat model, and defensive measures for TML's Decentralized Oracle Network (DON) supporting Earth Protection under a **Blockchain** paradigm.  
 Feeds are **signed messages**, integrity is **on-chain Merkle roots**, and quorum is **threshold-contract enforcement**—not human consensus.
 
 ## Threat Landscape
@@ -57,7 +57,7 @@ attack_categories:
 
 ## Security Architecture
 
-### 1. blockchain Integrity
+### 1. Blockchain Integrity
 
 ```solidity
 // Solidity pseudo-code
@@ -156,7 +156,7 @@ hardware_stack:
   primary: "Ledger Nano X / Trezor Model T"
   backup: "SeedSigner offline device"
   airgap: "Never touches Internet; PSBT only"
-  entropy: "TRNG + environmental noise + blockchain hash"
+  entropy: "TRNG + environmental noise + Blockchain hash"
   shard_storage: "Shamir 3-of-5 split across continents"
   
 ceremony:

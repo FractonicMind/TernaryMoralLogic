@@ -9,7 +9,7 @@
 
 ## Executive Summary
 
-Whistleblowers exposing TML violations receive **automatic smart contract rewards** - no committees, no approval process, no delays. Report violations with blockchain proof, get paid instantly. Companies that retaliate face criminal prosecution with executive imprisonment.
+Whistleblowers exposing TML violations receive **automatic smart contract rewards** - no committees, no approval process, no delays. Report violations with Blockchain proof, get paid instantly. Companies that retaliate face criminal prosecution with executive imprisonment.
 
 > "Courts open the door for whistleblowers; TML hands them the key, the bounty, and the seat at the plaintiff's table—no permission slips required."
 
@@ -35,7 +35,7 @@ contract WhistleblowerRewards {
         address violator,
         uint256 violationType
     ) public {
-        // Step 1: Verify evidence on blockchain
+        // Step 1: Verify evidence on Blockchain
         require(verifyEvidence(evidenceHash), "Invalid proof");
         
         // Step 2: Calculate penalty automatically
@@ -61,11 +61,11 @@ contract WhistleblowerRewards {
 
 ```python
 def report_violation_timeline():
-    # Minute 0: Submit evidence hash to blockchain
+    # Minute 0: Submit evidence hash to Blockchain
     evidence = hash_evidence(violation_proof)
     
     # Minute 1: Smart contract verifies
-    if blockchain.verify(evidence):
+    if Blockchain.verify(evidence):
         
         # Minute 2: Automatic calculation
         penalty = smart_contract.calculate_penalty()
@@ -90,7 +90,7 @@ const reportAnonymously = async (violation) => {
     // Generate one-time address
     const anonymousAddress = generateBurnerAddress();
     
-    // Submit via TOR + blockchain
+    // Submit via TOR + Blockchain
     const proof = {
         evidenceHash: sha256(violation.logs),
         companyAddress: violation.company,
@@ -121,7 +121,7 @@ const reportAnonymously = async (violation) => {
 
 ```python
 class ValidEvidence:
-    """All evidence must be blockchain-verifiable"""
+    """All evidence must be Blockchain-verifiable"""
     
     def missing_logs_proof(self):
         return {
@@ -141,7 +141,7 @@ class ValidEvidence:
     
     def retaliation_proof(self):
         return {
-            "report_timestamp": blockchain.timestamp,
+            "report_timestamp": Blockchain.timestamp,
             "retaliation_action": document_action(),
             "temporal_correlation": "Obvious",
             "proof": "Chronological - self-evident"
@@ -186,7 +186,7 @@ contract RetaliationProsecution {
 }
 ```
 
-**No council needed to determine retaliation - blockchain timestamps prove it.**
+**No council needed to determine retaliation - Blockchain timestamps prove it.**
 
 ---
 
@@ -223,18 +223,18 @@ def automatic_support(whistleblower_address):
 ### Mathematical Prevention
 
 ```javascript
-// False claims impossible with blockchain evidence
+// False claims impossible with Blockchain evidence
 const validateClaim = (claim) => {
     // Can't fake missing logs
-    const logsExist = blockchain.query(claim.period);
+    const logsExist = Blockchain.query(claim.period);
     if (logsExist) return "INVALID - Logs found on chain";
     
     // Can't fake tampering  
-    const hashesMatch = blockchain.verify(claim.hashes);
+    const hashesMatch = Blockchain.verify(claim.hashes);
     if (hashesMatch) return "INVALID - No tampering detected";
     
     // Can't fake timeline
-    const timeline = blockchain.getTimestamps();
+    const timeline = Blockchain.getTimestamps();
     if (!timeline.supports(claim)) return "INVALID - Timeline impossible";
     
     // Only valid claims proceed
@@ -279,11 +279,11 @@ const validateClaim = (claim) => {
 class MandatoryWhistleblowerProtection:
     
     def __init__(self):
-        # Connect to blockchain
+        # Connect to Blockchain
         self.contract = WhistleblowerContract(MAINNET)
         
         # Post required notices
-        self.post_notices("Whistleblowers get 15% bounty via blockchain")
+        self.post_notices("Whistleblowers get 15% bounty via Blockchain")
         
         # Cannot block reporting
         self.nda_exceptions = ["TML violations always reportable"]
@@ -301,7 +301,7 @@ evidence = collect_tml_violations()
 # Step 2: Generate proof
 proof = hash_evidence(evidence)
 
-# Step 3: Submit to blockchain
+# Step 3: Submit to Blockchain
 tml-whistleblow submit \
     --evidence-hash $proof \
     --company-address 0x... \
@@ -319,7 +319,7 @@ tml-whistleblow submit \
 ```
 Timeline:
 - 10:00 AM: Engineer notices AI denying services to minorities
-- 10:01 AM: Checks blockchain - no Sacred Zero logs found
+- 10:01 AM: Checks Blockchain - no Sacred Zero logs found
 - 10:02 AM: Submits evidence hash to smart contract
 - 10:03 AM: Contract verifies missing logs
 - 10:04 AM: 15% of $500M penalty ($75M) transferred
@@ -328,7 +328,7 @@ Timeline:
 
 ### Example 2: Executive Retaliation Attempt
 ```
-Day 1: Whistleblower reports via blockchain
+Day 1: Whistleblower reports via Blockchain
 Day 2: Company fires whistleblower
 Day 2 + 1 hour: Smart contract detects retaliation
 Day 2 + 2 hours: Executive assets frozen

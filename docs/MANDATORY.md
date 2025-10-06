@@ -59,7 +59,7 @@ def ai_decision(input_data):
 # Missing log = Prosecution for evidence spoliation
 ```
 
-**Annual cost**: $1,200 (blockchain fees)  
+**Annual cost**: $1,200 (Blockchain fees)  
 
 ### What Blockchains Provide
 
@@ -81,7 +81,7 @@ def ai_decision(input_data):
 
 ### 1. Always Memory 
 
-**Every AI action must create blockchain-anchored proof BEFORE execution:**
+**Every AI action must create Blockchain-anchored proof BEFORE execution:**
 
 ```yaml
 always_memory_log:
@@ -114,7 +114,7 @@ always_memory_log:
   creator_orcid: "0009-0006-5966-1243"
 ```
 
-**Missing blockchain anchor = Criminal spoliation of evidence**
+**Missing Blockchain anchor = Criminal spoliation of evidence**
 
 ### 2. Sacred Zero Triggers
 
@@ -205,11 +205,11 @@ config = TMLConfig(
 
 ```bash
 # Install TML
-pip install tml-blockchain
+pip install tml-Blockchain
 
-# Configure blockchain anchors
+# Configure Blockchain anchors
 cat > config.yaml <<EOF
-blockchain:
+Blockchain:
   bitcoin: true
   ethereum: true
   polygon: true
@@ -262,7 +262,7 @@ function enforceMissingLog(
     bytes32 expectedLogHash,
     uint256 actionTimestamp
 ) external {
-    // Check blockchain anchors
+    // Check Blockchain anchors
     require(
         !bitcoinHasAnchor(expectedLogHash) &&
         !ethereumHasAnchor(expectedLogHash) &&
@@ -299,7 +299,7 @@ function enforceMissingLog(
 
 **Plaintiff's Evidence**:
 1. Show action occurred (transaction record)
-2. Show no blockchain anchor exists
+2. Show no Blockchain anchor exists
 3. Prove harm resulted
 
 **Defendant's Defense**: None. Missing log = strict liability.
@@ -475,7 +475,7 @@ class BlockchainAnchorSystem:
 - No bottlenecks, ever
 
 **Degraded Mode**:
-- If blockchain unavailable: Queue logs locally
+- If Blockchain unavailable: Queue logs locally
 - If all chains down: Continue logging to TEE/HSM
 - When chains recover: Automatic sync
 - **Actions never blocked by logging**
@@ -500,7 +500,7 @@ class BlockchainAnchorSystem:
 **Merkle Tree Construction**:
 ```python
 def create_merkle_batch(logs: List[Dict]) -> bytes32:
-    """Create Merkle tree for blockchain anchoring"""
+    """Create Merkle tree for Blockchain anchoring"""
     # Hash individual logs
     leaf_hashes = [sha3_512(json.dumps(log)) for log in logs]
     
@@ -508,7 +508,7 @@ def create_merkle_batch(logs: List[Dict]) -> bytes32:
     tree = MerkleTree(leaf_hashes)
     root = tree.root
     
-    # Anchor root to blockchains
+    # Anchor root to Blockchains
     anchors = blockchain_system.anchor_log_batch(root)
     
     # Store tree for verification
@@ -563,7 +563,7 @@ Before going to production, verify:
 - [ ] License terms visible and enforced
 - [ ] Attribution requirements met
 
-**Deployment Approval**: If blockchain checklist complete, deploy immediately.
+**Deployment Approval**: If Blockchain checklist complete, deploy immediately.
 
 ---
 

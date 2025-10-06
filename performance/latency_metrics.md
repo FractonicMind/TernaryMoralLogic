@@ -15,7 +15,7 @@ Latency is measured across two distinct domains:
 - **Execution Path:** The primary AI decision loop.  
   Target: No measurable delay from TML operations.  
 
-- **Accountability Path:** Sacred Zero evaluation, hashing, and blockchain anchoring.  
+- **Accountability Path:** Sacred Zero evaluation, hashing, and Blockchain anchoring.  
   Target: Completion within 500 ms at P95 percentile.
 
 ## 3. Latency Classification

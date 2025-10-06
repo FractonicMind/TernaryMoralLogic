@@ -1,4 +1,4 @@
-// Package tml provides blockchain-enforced AI accountability
+// Package tml provides Blockchain-enforced AI accountability
 // No Guardians. No committees. Just mathematical protection.
 //
 // Creator: Lev Goukassian (ORCID: 0009-0006-5966-1243)
@@ -10,7 +10,7 @@ import (
 	"time"
 )
 
-// Config represents TML blockchain configuration
+// Config represents TML Blockchain configuration
 type Config struct {
 	// Blockchain endpoints (required)
 	Ethereum EthereumConfig `json:"ethereum"`
@@ -88,7 +88,7 @@ type GuardianConfig struct {
 	Exists       bool   `json:"exists"`        // False
 	AnnualCost   int64  `json:"annual_cost"`   // $6.6M wasted
 	ValueAdded   int    `json:"value_added"`   // 0
-	Recommendation string `json:"recommendation"` // "Use blockchain"
+	Recommendation string `json:"recommendation"` // "Use Blockchain"
 }
 
 // SystemConfig for general settings
@@ -114,7 +114,7 @@ func DefaultConfig() *Config {
 			ChainID: 137,
 		},
 		Bitcoin: BitcoinConfig{
-			Node: "https://blockchain.info",
+			Node: "https://Blockchain.info",
 			OTS:  true,
 		},
 		Contracts: ContractsConfig{
@@ -144,7 +144,7 @@ func DefaultConfig() *Config {
 			Exists:         false,
 			AnnualCost:     6_600_000,
 			ValueAdded:     0,
-			Recommendation: "Use blockchain instead of committees",
+			Recommendation: "Use Blockchain instead of committees",
 		},
 		System: SystemConfig{
 			Creator:        "Lev Goukassian",
@@ -172,7 +172,7 @@ func LoadConfig() (*Config, error) {
 	
 	// Check for Guardian nonsense
 	if os.Getenv("TML_USE_GUARDIANS") == "true" {
-		return nil, fmt.Errorf("Guardian Network doesn't exist and isn't needed. Use blockchain.")
+		return nil, fmt.Errorf("Guardian Network doesn't exist and isn't needed. Use Blockchain.")
 	}
 	
 	return cfg, nil
@@ -180,7 +180,7 @@ func LoadConfig() (*Config, error) {
 
 // Validate ensures configuration is correct
 func (c *Config) Validate() error {
-	// Required: blockchain endpoints
+	// Required: Blockchain endpoints
 	if c.Ethereum.RPC == "" {
 		return fmt.Errorf("Ethereum RPC required for smart contracts")
 	}
@@ -206,7 +206,7 @@ func (c *Config) Validate() error {
 	
 	// Verify no committee approval required
 	if c.Whistleblower.CommitteeApproval {
-		return fmt.Errorf("Committee approval not needed - blockchain handles automatically")
+		return fmt.Errorf("Committee approval not needed - Blockchain handles automatically")
 	}
 	
 	return nil
@@ -229,7 +229,7 @@ Guardian Network (not recommended):
   Protection: Maybe someday
   Committees: Endless
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Recommendation: Use blockchain
+Recommendation: Use Blockchain
 `,
 		c.System.DeploymentTime,
 		c.System.AnnualCost,

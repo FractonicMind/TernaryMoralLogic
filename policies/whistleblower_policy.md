@@ -1,6 +1,6 @@
 # TML Whistleblower Protection Policy
 
-**Version**: 2.0.0 (blockchain Architecture)  
+**Version**: 2.0.0 (Blockchain Architecture)  
 **Status**: Active Protection Protocol  
 **Architecture**: Blockchain Evidence, Smart Contract Rewards, Optional Guardian Enhancement  
 **Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)  
@@ -9,12 +9,12 @@
 
 ## Executive Summary
 
-This policy protects individuals reporting TML violations through **blockchain-verified evidence** and **smart contract-automated rewards**. No institutional investigation required - blockchain proof speaks for itself.
+This policy protects individuals reporting TML violations through **Blockchain-verified evidence** and **smart contract-automated rewards**. No institutional investigation required - Blockchain proof speaks for itself.
 
 **Key Features**:
 - **15% automatic reward** of collected penalties via smart contract
 - **Blockchain evidence** is self-authenticating (no committee needed)
-- **Anonymous reporting** through Tor and blockchain submission
+- **Anonymous reporting** through Tor and Blockchain submission
 - **Criminal penalties** for retaliation (enforced automatically)
 - **Guardian Network optional** for cross-border protection enhancement
 
@@ -140,7 +140,7 @@ def submit_whistleblower_report(evidence):
     # Create zero-knowledge proof of violation
     zk_proof = create_zk_proof(evidence_hash)
     
-    # Submit to multiple blockchains
+    # Submit to multiple Blockchains
     btc_tx = bitcoin.submit(zk_proof)
     eth_tx = ethereum.submit(zk_proof)
     polygon_tx = polygon.submit(zk_proof)
@@ -160,7 +160,7 @@ def submit_whistleblower_report(evidence):
 - End-to-end encryption
 - No JavaScript required
 - Automatic metadata stripping
-- Evidence converted to blockchain proof
+- Evidence converted to Blockchain proof
 
 ### 3.3 Identity Protection
 
@@ -174,7 +174,7 @@ def submit_whistleblower_report(evidence):
 - Blockchain evidence stands alone (no testimony needed)
 - Smart contracts enforce penalties (no court appearance)
 - Cryptographic proof sufficient (no identity disclosure)
-- International recognition (blockchain transcends borders)
+- International recognition (Blockchain transcends borders)
 
 ---
 
@@ -226,9 +226,9 @@ contract RetaliationPenalty {
 
 **Corporate Penalties**:
 - **Organization fine**: $100M minimum
-- **License revocation**: Automatic via blockchain registry
+- **License revocation**: Automatic via Blockchain registry
 - **Contract ban**: 10-year exclusion (enforced on-chain)
-- **Mandatory disclosure**: Permanent blockchain record
+- **Mandatory disclosure**: Permanent Blockchain record
 
 ---
 
@@ -239,7 +239,7 @@ contract RetaliationPenalty {
 **No Committee Required**:
 - Blockchain proof is self-authenticating
 - Smart contracts verify violations automatically
-- Courts accept blockchain evidence directly
+- Courts accept Blockchain evidence directly
 - Penalties execute without human approval
 
 ### 5.2 Optional Guardian Enhancement
@@ -267,7 +267,7 @@ contract RetaliationPenalty {
 **Smart Contract Triggers Protection**:
 ```python
 def check_protection_eligibility(report_hash):
-    violation = blockchain.get_violation(report_hash)
+    violation = Blockchain.get_violation(report_hash)
     
     # Automatic eligibility
     if violation.type in ['executive_crime', 'human_rights', 'torture']:
@@ -285,7 +285,7 @@ def check_protection_eligibility(report_hash):
 ### 6.2 Protection Services
 
 **Blockchain-Coordinated Protection**:
-- Identity protection (new documents via blockchain verification)
+- Identity protection (new documents via Blockchain verification)
 - Relocation assistance ($100,000 via smart contract)
 - Security services (coordinated through encrypted channels)
 - Career transition support ($50,000 automatic disbursement)
@@ -306,7 +306,7 @@ All violations of the comprehensive Human Rights framework trigger:
 **Special Provisions**:
 - Torture: Zero tolerance, immediate maximum penalties
 - Child harm: Triple damages, enhanced protection
-- Discrimination: Pattern detection via blockchain analysis
+- Discrimination: Pattern detection via Blockchain analysis
 - Refugee violations: UN notification, asylum coordination
 
 ### 7.2 Earth Protection Framework
@@ -358,7 +358,7 @@ contract WhistleblowerProgram {
 **Blockchain-Driven Evolution**:
 - Automatic pattern detection for new violation types
 - Smart contract upgrades via DAO governance
-- Machine learning on blockchain data for better detection
+- Machine learning on Blockchain data for better detection
 - Community-proposed improvements via on-chain voting
 
 ---
@@ -399,7 +399,7 @@ function emergencyResponse(bytes32 threatProof) public {
 ### 10.1 Borderless Protection
 
 **Blockchain Transcends Jurisdictions**:
-- Evidence valid globally (blockchain is universal)
+- Evidence valid globally (Blockchain is universal)
 - Rewards paid anywhere (cryptocurrency)
 - Protection coordinated internationally
 - Penalties enforced cross-border
@@ -467,14 +467,14 @@ function emergencyResponse(bytes32 threatProof) public {
 - Limited international reach
 - Manual reward distribution
 
-**New Model (blockchain)**:
+**New Model (Blockchain)**:
 - Self-authenticating evidence
 - Instant verification
 - Impossible to capture
 - Global by default
 - Automatic rewards via smart contracts
 
-> "In blockchain we trust, in smart contracts we enforce, in whistleblowers we protect."
+> "In Blockchain we trust, in smart contracts we enforce, in whistleblowers we protect."
 
 **Deployment**: Immediate (no institutional coordination required)  
 **Protection Scope**: Human Rights + Earth + Future Generations  

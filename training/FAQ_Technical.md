@@ -1,4 +1,4 @@
-# TML Technical FAQ - blockchain Implementation
+# TML Technical FAQ - Blockchain Implementation
 
 **Path**: `/training/FAQ_Technical.md`  
 **Version**: 2.0.0  
@@ -16,7 +16,7 @@
 
 ```bash
 # Basic deployment (10 minutes)
-docker run -d tml/protection:blockchain-latest
+docker run -d tml/protection:Blockchain-latest
 curl http://localhost:8080/health
 
 # Full production setup (1 hour)
@@ -116,7 +116,7 @@ def process_decision(message):
 
 ## Blockchain & Performance
 
-### Q5: Which blockchains does TML use?
+### Q5: Which Blockchains does TML use?
 **A**: **Multi-chain architecture** for maximum resilience and cost efficiency.
 
 **Primary Networks**:
@@ -145,14 +145,14 @@ def process_decision(message):
 **Blockchain Anchoring**:
 - **Asynchronous**: Non-blocking operations
 - **Batched**: 1,000+ logs per transaction
-- **Cached**: Local verification before blockchain
-- **Degraded mode**: Continues if blockchain unreachable
+- **Cached**: Local verification before Blockchain
+- **Degraded mode**: Continues if Blockchain unreachable
 
 **Real-world impact**: Users won't notice any difference.
 
 ---
 
-### Q7: How much do blockchain transactions cost?
+### Q7: How much do Blockchain transactions cost?
 **A**: **Extremely low cost** due to batching and Layer-2 optimization.
 
 **Cost Breakdown** (2025 USD):
@@ -170,22 +170,22 @@ Enterprise (1M decisions/day):
 - Total: $100/day = $3,000/month
 ```
 
-**ROI**: Insurance savings of $10,000-50,000/month make blockchain costs irrelevant.
+**ROI**: Insurance savings of $10,000-50,000/month make Blockchain costs irrelevant.
 
 ---
 
-### Q8: What happens if blockchain networks go down?
+### Q8: What happens if Blockchain networks go down?
 **A**: **Graceful degradation** - protection continues, anchoring queues for later.
 
 **Degraded Mode Features**:
 - Sacred Zero continues working (local evaluation)
 - Penalties queue for later smart contract execution
 - Local cryptographic signatures maintained
-- Full sync when blockchain reconnects
+- Full sync when Blockchain reconnects
 - No user-facing impact
 
 **Network Redundancy**:
-- Multiple blockchain networks
+- Multiple Blockchain networks
 - Automatic failover between chains
 - Local backup verification
 - 99.9% effective uptime
@@ -209,7 +209,7 @@ def erase_user_data(user_id):
     # Destroy the encryption key
     delete_key(user_id)
     # Data becomes mathematically unreadable
-    # But audit trail (hash) remains on blockchain
+    # But audit trail (hash) remains on Blockchain
     return "data_cryptographically_shredded"
 ```
 
@@ -221,7 +221,7 @@ def erase_user_data(user_id):
 
 ---
 
-### Q10: How secure are the blockchain anchors?
+### Q10: How secure are the Blockchain anchors?
 **A**: **Military-grade security** using established cryptographic standards.
 
 **Security Layers**:
@@ -236,7 +236,7 @@ def erase_user_data(user_id):
 - **State Actor**: Distributed across multiple jurisdictions
 - **Time Decay**: Evidence gets stronger over time
 
-**Proven in Practice**: Same cryptography secures $2 trillion in blockchain assets.
+**Proven in Practice**: Same cryptography secures $2 trillion in Blockchain assets.
 
 ---
 
@@ -300,7 +300,7 @@ jobs:
 
 **Integration Points**:
 - Unit tests verify Sacred Zero rules
-- Integration tests check blockchain connectivity
+- Integration tests check Blockchain connectivity
 - Performance tests measure latency impact
 - Security tests validate encryption
 
@@ -388,8 +388,8 @@ netstat -tulpn | grep 8080
 # 3. Check environment
 docker logs tml-core
 
-# 4. Check blockchain connectivity
-curl localhost:8080/blockchain/status
+# 4. Check Blockchain connectivity
+curl localhost:8080/Blockchain/status
 
 # 5. Check configuration
 curl localhost:8080/config/validate
@@ -399,7 +399,7 @@ curl localhost:8080/config/validate
 - **Port conflict**: Change TML_PORT in .env
 - **Firewall**: Open ports 8080, 3000
 - **Memory**: Increase Docker memory limit
-- **Network**: Check internet connectivity for blockchain
+- **Network**: Check internet connectivity for Blockchain
 
 ---
 
@@ -434,7 +434,7 @@ curl localhost:8080/bias/analysis
 **Optimization Strategies**:
 ```yaml
 # Use Layer-2 for speed
-blockchain:
+Blockchain:
   primary: "polygon"      # 2-3 second confirmations
   backup: "arbitrum"      # Sub-second confirmations
   archive: "bitcoin"      # Daily batch for permanence
@@ -447,9 +447,9 @@ batching:
 ```
 
 **Performance Tuning**:
-- **Geographic nodes**: Use blockchain nodes in your region
-- **Premium RPC**: Pay for faster blockchain API access
-- **Local validation**: Verify locally before blockchain submission
+- **Geographic nodes**: Use Blockchain nodes in your region
+- **Premium RPC**: Pay for faster Blockchain API access
+- **Local validation**: Verify locally before Blockchain submission
 - **Async processing**: Never block user operations
 
 ---
@@ -663,7 +663,7 @@ pytest tests/test_new_feature.py
 **A**: **Continuous evolution** while maintaining backward compatibility.
 
 **2025 Roadmap**:
-- ✅ blockchain deployment (complete)
+- ✅ Blockchain deployment (complete)
 - 🚧 Guardian Network integration (optional)
 - 🚧 Post-quantum cryptography
 - 🚧 Hardware security module support
@@ -680,7 +680,7 @@ pytest tests/test_new_feature.py
 - AI-to-AI Sacred Zero communication
 - Ecosystem-wide discrimination elimination
 
-**Commitment**: blockchain architecture remains core - companies can deploy and rely on TML protection regardless of governance evolution.
+**Commitment**: Blockchain architecture remains core - companies can deploy and rely on TML protection regardless of governance evolution.
 
 ---
 
@@ -725,7 +725,7 @@ pytest tests/test_new_feature.py
 
 ---
 
-**Remember**: The best technical solution is the one that gets deployed and protects people. TML's blockchain architecture means you can start protecting people today while the perfect governance evolves tomorrow.
+**Remember**: The best technical solution is the one that gets deployed and protects people. TML's Blockchain architecture means you can start protecting people today while the perfect governance evolves tomorrow.
 
 **Every technical question comes down to**: "How can we prevent discrimination faster and more reliably?" The answer is always: deploy protection now, optimize later.
 

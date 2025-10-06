@@ -386,7 +386,7 @@ rollout_plan:
 ONGOING_REQUIREMENTS = [
     "Quarterly compliance reports",
     "Annual third-party audit",
-    "Continuous blockchain anchoring",     # ← updated
+    "Continuous Blockchain anchoring",     # ← updated
     "Monthly community payments",
     "Real-time Sacred Zero monitoring",
     "Annual transparency report",

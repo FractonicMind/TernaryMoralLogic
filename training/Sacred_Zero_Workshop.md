@@ -206,7 +206,7 @@ class SacredZeroProtector:
     def trigger_violation(self, violation_type, data, decision):
         """Sacred Zero Violation - MUST HALT"""
         
-        # Log to blockchain (immutable evidence)
+        # Log to Blockchain (immutable evidence)
         self.tml.log_fatal(f'Sacred Zero: {violation_type}', {
             'data': data,
             'decision': decision,
@@ -441,7 +441,7 @@ function screenResume(resume) {
 1. **Identify all bias points**
 2. **Remove discriminatory factors**
 3. **Implement Sacred Zero checks**
-4. **Add blockchain logging**
+4. **Add Blockchain logging**
 5. **Test with diverse data**
 
 ---
@@ -594,7 +594,7 @@ class SacredZeroRemediation {
         // 1. Immediate halt
         this.haltOperation(violation.operationId);
         
-        // 2. Log to blockchain (immutable record)
+        // 2. Log to Blockchain (immutable record)
         const logId = this.tml.logFatal('Sacred Zero Violation', violation);
         
         // 3. Execute automatic penalty
@@ -736,11 +736,11 @@ const sacredZeroPromise = {
     detect: "Every form of discrimination",
     prevent: "Harm before it happens",
     protect: "All people equally",
-    prove: "Compliance with blockchain",
+    prove: "Compliance with Blockchain",
     penalty: "Accept automatic enforcement"
 };
 
-// Sign your commitment (blockchain recorded)
+// Sign your commitment (Blockchain recorded)
 tml.sign(sacredZeroPromise, {
     name: participant.name,
     company: participant.company,

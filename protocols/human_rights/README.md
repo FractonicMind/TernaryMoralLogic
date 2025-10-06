@@ -1,4 +1,4 @@
-# Human Rights Protocols (blockchain)
+# Human Rights Protocols (Blockchain)
 
 ## Purpose
 
@@ -63,7 +63,7 @@ struct HumanRightsEvidence {
 }
 ```
 
-## Planned Documents (blockchain)
+## Planned Documents (Blockchain)
 
 ### Detection & Monitoring
 
@@ -102,7 +102,7 @@ struct HumanRightsEvidence {
 
 ## Legal Admissibility
 
-- **FRE 901/902(13)**: cryptographic signatures + blockchain anchor = self-authenticating.  
+- **FRE 901/902(13)**: cryptographic signatures + Blockchain anchor = self-authenticating.  
 - **Spoliation**: missing `HumanRightsEvidence` ⇒ negligence presumption.  
 - **18 U.S.C. §1001/1519**: on-chain false statements or record destruction = federal crime.
 

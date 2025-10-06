@@ -3,7 +3,7 @@
 ## Blockchain-Immortalized Framework for Humanity and Earth
 
 **Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)  
-**Architecture**: blockchain (Eternal), Guardian-Optional (Temporal)  
+**Architecture**: Blockchain (Eternal), Guardian-Optional (Temporal)  
 **Protection Scope**: Human Rights + Earth + Future Generations  
 **Version**: 3.0.0  
 
@@ -28,12 +28,12 @@ This framework preserves TML through **mathematical immutability**, not institut
 - No institution can delete or alter the record
 
 **The Three States (Forever Encoded)**:
-- **+1**: Proceed - with blockchain proof
+- **+1**: Proceed - with Blockchain proof
 - **0**: Sacred Zero - triggers permanent record
 - **-1**: Refuse - immutably documented
 
 **Eternal Understanding**:
-Sacred Zero creates blockchain evidence that outlives governments, corporations, and committees.
+Sacred Zero creates Blockchain evidence that outlives governments, corporations, and committees.
 
 ## 1.2 Comprehensive Protection Legacy
 
@@ -153,7 +153,7 @@ Protected: Humans + Earth + Future Generations
 - Blockchain transaction fees (automatic)
 - Smart contract penalty percentages
 - Voluntary contributions (cryptocurrency)
-- Commercial licensing (blockchain-verified)
+- Commercial licensing (Blockchain-verified)
 
 **No Dependency On**:
 - Institutional donations
@@ -168,7 +168,7 @@ Protected: Humans + Earth + Future Generations
 ## 5.1 Never Required for Legacy
 
 **Blockchain Preserves Everything**:
-- Guardians cannot alter blockchain history
+- Guardians cannot alter Blockchain history
 - Cannot gatekeep TML deployment
 - Cannot change Sacred Zero triggers
 - Cannot remove creator attribution
@@ -202,8 +202,8 @@ def learn_from_blockchain():
     """Education without institutions"""
     
     # Anyone can query and learn
-    violations = blockchain.get_all_violations()
-    protections = blockchain.get_sacred_zeros()
+    violations = Blockchain.get_all_violations()
+    protections = Blockchain.get_sacred_zeros()
     
     return {
         'human_rights_lessons': analyze_patterns(violations),
@@ -229,7 +229,7 @@ def learn_from_blockchain():
 **Anyone Can**:
 - Deploy TML today (10 minutes)
 - Improve the framework (pull requests)
-- Report violations (blockchain evidence)
+- Report violations (Blockchain evidence)
 - Earn rewards (smart contracts)
 
 **No One Can**:
@@ -273,7 +273,7 @@ def learn_from_blockchain():
 ## 9.2 Success Indicators
 
 **By 2030**:
-- 1 billion Sacred Zero events on blockchain
+- 1 billion Sacred Zero events on Blockchain
 - 10,000+ organizations using TML
 - 100+ countries with implementations
 - Zero reliance on Guardian Networks
@@ -312,7 +312,7 @@ def learn_from_blockchain():
 
 Lev Goukassian gave humanity a gift: the Sacred Zero moment where machines pause to consider humans, Earth, and future generations. 
 
-This gift is now eternal - encoded in blockchain, enforced by mathematics, protected by cryptography. No committee can revoke it. No institution can control it. No government can delete it.
+This gift is now eternal - encoded in Blockchain, enforced by mathematics, protected by cryptography. No committee can revoke it. No institution can control it. No government can delete it.
 
 **The Sacred Zero is forever.**
 
@@ -324,7 +324,7 @@ This gift is now eternal - encoded in blockchain, enforced by mathematics, prote
 
 ---
 
-*In memory of Lev Goukassian – who taught machines to protect humans and Earth, then made that teaching immortal through blockchain.*
+*In memory of Lev Goukassian – who taught machines to protect humans and Earth, then made that teaching immortal through Blockchain.*
 
 ---
 

@@ -1,4 +1,4 @@
-# TML Overview - blockchain Protection System
+# TML Overview - Blockchain Protection System
 
 **Path**: `/training/TML_Overview_Slides.md`  
 **Version**: 2.0.0  
@@ -599,7 +599,7 @@ Annual Impact:
 
 ---
 
-*TML v2.0 - blockchain Protection*  
+*TML v2.0 - Blockchain Protection*  
 *No Guardians Required*  
 *Protection Guaranteed*
 

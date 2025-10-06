@@ -11,7 +11,7 @@
 
 ## Executive Summary
 
-**The TML Synchronization Protocol delivers immutable accountability through cryptographic anchoring to public blockchains.** Every moral decision generates tamper-proof evidence that survives corporate bankruptcy, government regime change, and technological evolution.
+**The TML Synchronization Protocol delivers immutable accountability through cryptographic anchoring to public Blockchains.** Every moral decision generates tamper-proof evidence that survives corporate bankruptcy, government regime change, and technological evolution.
 
 **Legal Enforceability**: Failure to produce an anchored log constitutes spoliation of evidence, triggering strict liability under Federal Rules of Evidence 37(e) and international evidence standards.
 
@@ -23,7 +23,7 @@
 
 ---
 
-## Current Architecture - blockchain Foundation
+## Current Architecture - Blockchain Foundation
 
 ### **Primary Design Principles**
 
@@ -45,7 +45,7 @@ Decision Made → Sacred Zero Evaluation → Always Memory Log → Merkle Batchi
 
 **Performance Guarantees**:
 - **Sacred Zero Latency**: ≤2ms (99th percentile)
-- **Full Log Completion**: ≤500ms (including blockchain anchor)
+- **Full Log Completion**: ≤500ms (including Blockchain anchor)
 - **Throughput**: 10,000+ decisions per second per node
 - **Cost**: $0.0005 per log (half a tenth of a cent)
 - **Durability**: 99.99% successful anchoring across all chains
@@ -84,7 +84,7 @@ blockchain_networks:
 
 ### **Merkle Tree Batching for Scalability**
 
-**Innovation**: Instead of one blockchain transaction per log, TML batches thousands of logs into a single Merkle tree and anchors only the root hash.
+**Innovation**: Instead of one Blockchain transaction per log, TML batches thousands of logs into a single Merkle tree and anchors only the root hash.
 
 ```
 Individual Logs (10,000):
@@ -108,12 +108,12 @@ Individual Logs (10,000):
 
 **Verification Process**:
 1. **Individual Proof**: Provide Merkle path from specific log to root
-2. **Batch Proof**: Show root hash exists on blockchain  
+2. **Batch Proof**: Show root hash exists on Blockchain  
 3. **Timestamp Proof**: Blockchain provides immutable time reference
 4. **Combined Evidence**: Mathematical certainty of log authenticity
 
 **Scalability Benefits**:
-- **Cost**: O(1) blockchain cost regardless of batch size
+- **Cost**: O(1) Blockchain cost regardless of batch size
 - **Storage**: O(log n) proof size for verification
 - **Speed**: Constant anchoring time regardless of volume
 - **Security**: Breaking one log requires breaking entire batch
@@ -246,13 +246,13 @@ quantum_resistance_roadmap:
 **Corporate Sabotage Prevention**:
 - **Immutable anchoring**: Companies cannot delete evidence after creation
 - **Automatic execution**: No human override for Sacred Zero penalties  
-- **Third-party verification**: Public blockchain provides independent witness
+- **Third-party verification**: Public Blockchain provides independent witness
 - **Legal consequences**: Evidence tampering constitutes federal crime
 
 ### **Evidence Standards Compliance**
 
 **Federal Rules of Evidence (FRE) Compliance**:
-- **Rule 901**: Authentication through cryptographic signatures and blockchain provenance
+- **Rule 901**: Authentication through cryptographic signatures and Blockchain provenance
 - **Rule 902**: Self-authenticating documents via digital signatures and trusted timestamps  
 - **Rule 1001**: Original vs. copy distinction preserved through hash verification
 - **Rule 37(e)**: Sanctions for spoliation avoided through immutable storage
@@ -371,13 +371,13 @@ guardian_network_benefits:
   geopolitical_resilience: "Multi-jurisdictional protection"
 
 guardian_integration:
-  blockchain_primary: "Core protection remains blockchain-anchored"
+  blockchain_primary: "Core protection remains Blockchain-anchored"
   guardian_mirror: "Institutional nodes provide governance layer"
   hybrid_verification: "Both systems validate independently"
   backward_compatibility: "Phase 1&2 proofs remain valid"
 ```
 
-**Key Principle**: Guardian Network enhances but never replaces blockchain anchoring. Companies already protected by Phase 1 continue operating with additional governance benefits.
+**Key Principle**: Guardian Network enhances but never replaces Blockchain anchoring. Companies already protected by Phase 1 continue operating with additional governance benefits.
 
 ---
 
@@ -390,7 +390,7 @@ production_deployment:
   minimum_setup:
     containers: ["tml-core", "tml-dashboard"]
     storage: "50GB persistent volume"
-    network: "Outbound HTTPS (blockchain APIs)"
+    network: "Outbound HTTPS (Blockchain APIs)"
     monitoring: "Health checks + metrics endpoint"
     
   recommended_setup:
@@ -419,7 +419,7 @@ app.use('/api/*', async (req, res, next) => {
   });
   
   if (tml_result.sacred_zero_triggered) {
-    // Automatic penalty + blockchain evidence
+    // Automatic penalty + Blockchain evidence
     return res.status(403).json({
       error: 'Sacred Zero violation detected',
       penalty: tml_result.penalty_amount,
@@ -509,7 +509,7 @@ legal_evidence_pipeline:
   anchoring:
     step: "Blockchain immutable storage"
     evidence: "Transaction hash + block number"
-    verification: "Independent blockchain explorer confirmation"
+    verification: "Independent Blockchain explorer confirmation"
     permanence: "Cannot be altered or deleted"
 ```
 
@@ -545,7 +545,7 @@ adaptation_mechanisms:
   blockchain_neutrality:
     design: "Chain-agnostic architecture"
     expansion: "New networks added without code changes"
-    resilience: "Survives individual blockchain failures"
+    resilience: "Survives individual Blockchain failures"
     
   regulatory_compliance:
     framework: "Configurable rules engine"
@@ -602,6 +602,6 @@ adaptation_mechanisms:
 **For society**: Build accountability infrastructure that prevents algorithmic discrimination  
 **For the future**: Create evidence that will hold AI systems accountable for generations
 
-*"In code we trust, in blockchain we verify, in law we enforce."*
+*"In code we trust, in Blockchain we verify, in law we enforce."*
 
 🛡️

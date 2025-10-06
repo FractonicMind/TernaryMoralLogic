@@ -327,7 +327,7 @@ void Example5_AlwaysMemoryLogging() {
     logger.ConnectToGuardian();
     std::cout << "Connected to Guardian: " << (logger.IsConnectedToGuardian() ? "Yes" : "No") << std::endl;
     
-    // Enable blockchain anchoring
+    // Enable Blockchain anchoring
     logger.EnableBlockchainAnchoring("ethereum", 3600s);
     std::cout << "Blockchain anchoring enabled" << std::endl;
     

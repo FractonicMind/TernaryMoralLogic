@@ -332,7 +332,7 @@ def verify_log_integrity():
         # Check Blockchain signatures              # ← updated
         assert count_valid_signatures(log) >= 3
 
-        # Verify blockchain anchor
+        # Verify Blockchain anchor
         assert verify_blockchain_anchor(log) == True
 
         # Check completeness

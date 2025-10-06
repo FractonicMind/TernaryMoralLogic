@@ -1,10 +1,10 @@
 # HYBRID SHIELD MODEL
 
-## blockchain Protection with Optional Guardian Enhancement
+## Blockchain Protection with Optional Guardian Enhancement
 
 **Framework Originator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)  
 **Document Version**: 2.0.0  
-**Architecture**: blockchain, Guardian-Optional  
+**Architecture**: Blockchain, Guardian-Optional  
 **Deployment**: Immediate  
 
 ---
@@ -12,10 +12,10 @@
 ## I. EXECUTIVE SUMMARY
 
 ### 1.1 The Revolutionary Pivot
-The Hybrid Shield has evolved from institution-dependent to **blockchain architecture**:
+The Hybrid Shield has evolved from institution-dependent to **Blockchain architecture**:
 
 - **OLD MODEL**: Required 11 Guardian institutions before deployment (impossible coordination)
-- **NEW MODEL**: Deploy immediately with blockchain anchoring, add Guardians later (optional enhancement)
+- **NEW MODEL**: Deploy immediately with Blockchain anchoring, add Guardians later (optional enhancement)
 
 This transformation enables **immediate global deployment** while preserving the option for enhanced governance.
 
@@ -31,7 +31,7 @@ The Hybrid Shield protects ALL categories of moral decisions:
 Two independent protection layers, deployed in phases:
 
 **Mathematical Shield (MANDATORY - Deploy Today)**
-- Multi-chain blockchain anchoring (Bitcoin, Polygon, Ethereum)
+- Multi-chain Blockchain anchoring (Bitcoin, Polygon, Ethereum)
 - OpenTimestamps (OTS) standardization
 - Certificate Transparency (CT) model
 - Cryptographic immutability
@@ -142,7 +142,7 @@ Sacred_Zero_Triggers:
 ```
 
 **Enforcement Mechanism**:
-- Every human rights violation logged with blockchain proof
+- Every human rights violation logged with Blockchain proof
 - Criminal liability for missing logs
 - $500M minimum penalties for patterns (nominal to 2025)
 - Personal executive liability
@@ -244,7 +244,7 @@ Sacred_Zero_Environmental:
 - Research collaboration
 - Long-term custody assurance
 
-**Key Principle**: Guardians enhance but never gatekeep. Protection starts immediately with blockchain.
+**Key Principle**: Guardians enhance but never gatekeep. Protection starts immediately with Blockchain.
 
 ---
 
@@ -254,7 +254,7 @@ Sacred_Zero_Environmental:
 
 **10-Minute Setup via Docker**:
 ```bash
-# Deploy TML with blockchain anchoring
+# Deploy TML with Blockchain anchoring
 docker pull tml/always-memory:latest
 docker run -e BLOCKCHAIN_ANCHORING=true \
            -e CHAINS="bitcoin,polygon,ethereum" \
@@ -335,7 +335,7 @@ docker run -e BLOCKCHAIN_ANCHORING=true \
 - *Design*: Mathematical shield survives institutional failure
 
 **Technology Obsolescence**:
-- *Risk*: Current blockchains replaced
+- *Risk*: Current Blockchains replaced
 - *Mitigation*: Protocol designed for chain migration
 - *Principle*: Anchoring method agnostic
 
@@ -345,7 +345,7 @@ docker run -e BLOCKCHAIN_ANCHORING=true \
 
 ### 7.1 Deployment Metrics
 - Time to first deployment: <10 minutes
-- Companies using blockchain anchoring: Target 1,000 Year 1
+- Companies using Blockchain anchoring: Target 1,000 Year 1
 - Sacred Zero logs anchored daily: Target 1B+ Year 2
 - Human rights violations detected: 100% logging
 
@@ -385,11 +385,11 @@ The Hybrid Shield now protects:
 - **Humans**: Via 26-document rights framework
 - **Earth**: Via 20+ environmental treaties
 - **Future**: Via intergenerational justice
-- **Truth**: Via immutable blockchain memory
+- **Truth**: Via immutable Blockchain memory
 
 ### 8.3 The Unbreakable Promise
 
-> "In code we trust, in blockchain we verify, in law we enforce"
+> "In code we trust, in Blockchain we verify, in law we enforce"
 
 Every Sacred Zero creates a symphony of evidence:
 - Mathematical proof (hash chains)
@@ -402,7 +402,7 @@ Every Sacred Zero creates a symphony of evidence:
 ## IX. IMPLEMENTATION CHECKLIST
 
 ### Immediate Actions (Today)
-- [ ] Deploy blockchain anchoring
+- [ ] Deploy Blockchain anchoring
 - [ ] Configure Sacred Zero triggers (human + Earth)
 - [ ] Test multi-chain redundancy
 - [ ] Verify legal compliance
@@ -418,7 +418,7 @@ Every Sacred Zero creates a symphony of evidence:
 ### Medium Term (Year 1)
 - [ ] Evaluate Guardian candidates
 - [ ] Build institutional relationships
-- [ ] Expand blockchain redundancy
+- [ ] Expand Blockchain redundancy
 - [ ] Contribute to open standards
 - [ ] Measure comprehensive impact
 
@@ -444,7 +444,7 @@ Every Sacred Zero creates a symphony of evidence:
 *"The Hybrid Shield ensures that Sacred Zero becomes more than a moment of reflection – it becomes permanent testament to AI's capacity for ethical reasoning toward humans, Earth, and future generations, protected immediately by mathematical certainty and enhanced over time by institutional wisdom."*
 
 **Legal Status**: Core protection requirement for all TML implementations  
-**Deployment Status**: Immediate with blockchain, Guardian enhancement optional  
+**Deployment Status**: Immediate with Blockchain, Guardian enhancement optional  
 **Review Cycle**: Annual with emergency updates as needed
 
 *All USD amounts are nominal to 2025*

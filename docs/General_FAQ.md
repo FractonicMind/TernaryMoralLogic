@@ -96,7 +96,7 @@ They serve as **on-demand ethical responders**, not permanent custodians.
 
 **Composition**
 - Independent auditors, ethics experts, legal representatives, or ecological ombuds.
-- Verified via blockchain credentialing (hash-anchored identity).
+- Verified via Blockchain credentialing (hash-anchored identity).
 - Activated only for high-stakes or regulated sectors (e.g., defense, healthcare, planetary impact).
 
 **Authority**
@@ -225,20 +225,20 @@ If the log cannot be produced, the action is considered unlawful by default. Thi
 - Input/output cryptographic hashes  
 - Model version hash  
 - Decision classification (+1 Proceed / 0 Sacred Zero / −1 Refuse)  
-- Proof-of-publication receipts on public blockchains  
+- Proof-of-publication receipts on public Blockchains  
 - Environmental and human rights impact triggers (when applicable)  
 
 **Q3: How are logs anchored?**  
 
 - Logs are batched and hashed using Merkle trees.  
-- Merkle roots are anchored to multiple independent public blockchains (e.g., Bitcoin, Ethereum, Algorand) for redundancy.  
+- Merkle roots are anchored to multiple independent public Blockchains (e.g., Bitcoin, Ethereum, Algorand) for redundancy.  
 - Anchors create immutable, verifiable proofs that any attempt to alter logs is immediately detectable.  
 
 **Q4: What are the realistic latency profiles?**  
 
 - **User-visible latency**: ≤ 2ms (no slowdown for decision execution)  
 - **Full log pipeline completion**: ≤ 500ms (anchoring + batching finalize in background)  
-- **Degraded mode**: If blockchain anchoring is temporarily unavailable, logs queue locally and sync automatically once connection is restored.  
+- **Degraded mode**: If Blockchain anchoring is temporarily unavailable, logs queue locally and sync automatically once connection is restored.  
 
 **Q5: How does Always Memory handle traffic spikes?**  
 
@@ -257,7 +257,7 @@ If the log cannot be produced, the action is considered unlawful by default. Thi
 MTLs are the cryptographically sealed records of every AI decision. Each log includes timestamps, input/output hashes, model version, decision classification (+1/0/-1), and anchoring proofs.  
 
 **Q2: How do MTLs ensure accountability?**  
-They transform ephemeral AI decisions into permanent, auditable evidence. Logs are sealed, hashed, and anchored across multiple blockchains. Any attempt to alter or delete them breaks the cryptographic chain, making tampering immediately visible.  
+They transform ephemeral AI decisions into permanent, auditable evidence. Logs are sealed, hashed, and anchored across multiple Blockchains. Any attempt to alter or delete them breaks the cryptographic chain, making tampering immediately visible.  
 
 **Q3: How are MTLs used in enforcement?**  
 If harm occurs, courts demand the corresponding MTL. Failure to produce a valid log counts as **spoliation of evidence**, triggering strict liability and maximum penalties against the operator.  
@@ -586,13 +586,13 @@ TML uses a **Recognition, Not Accreditation** model:
 The Hybrid Shield is TML’s dual-layer defense model: a **mandatory Mathematical Shield** and an **optional Institutional Mirror**, both designed to ensure that no ethical record can vanish.  
 
 - **Mathematical Shield (Mandatory):**  
-  Every Moral Trace Log is hashed, grouped into Merkle trees, and anchored across multiple public blockchains. Smart Contracts automatically verify integrity, enforce immutability, and execute penalties for tampering. In this tier, **math replaces institutional trust** — because mathematics cannot be bribed.  
+  Every Moral Trace Log is hashed, grouped into Merkle trees, and anchored across multiple public Blockchains. Smart Contracts automatically verify integrity, enforce immutability, and execute penalties for tampering. In this tier, **math replaces institutional trust** — because mathematics cannot be bribed.  
 
 - **Institutional Mirror (Optional):**  
   Independent organizations may also maintain encrypted off-chain mirrors of the logs. These human-governed nodes act as historical custodians and policy interpreters, offering redundancy, context, and continuity beyond the digital layer.  
 
 Together, the two layers ensure **immutability** through cryptography and **resilience** through distributed stewardship.  
-Even if a corporation dissolves or a blockchain fails, the ethical memory of its actions remains verifiable and intact.  
+Even if a corporation dissolves or a Blockchain fails, the ethical memory of its actions remains verifiable and intact.  
 
 > “Where institutions once guarded paper, Smart Contracts now guard truth.”
 
@@ -610,10 +610,10 @@ No. TML operates in **parallel** with AI actions. The decision executes immediat
 - **≤500 ms**: Completion of the full log pipeline, including cryptographic anchoring.  
 
 **Q3: How does TML avoid bottlenecks?**  
-Logs are batched and hashed using Merkle trees, then anchored asynchronously to multiple blockchains. This ensures that even millions of decisions per second can be logged without introducing a bottleneck.  
+Logs are batched and hashed using Merkle trees, then anchored asynchronously to multiple Blockchains. This ensures that even millions of decisions per second can be logged without introducing a bottleneck.  
 
-**Q4: What happens if a blockchain is congested or temporarily unavailable?**  
-TML enters **degraded mode**: logs remain sealed and queued for anchoring. Once blockchain access resumes, the backlog is flushed. No logs are lost, and AI execution never halts.  
+**Q4: What happens if a Blockchain is congested or temporarily unavailable?**  
+TML enters **degraded mode**: logs remain sealed and queued for anchoring. Once Blockchain access resumes, the backlog is flushed. No logs are lost, and AI execution never halts.  
 
 **Q5: Why is this stronger than ordinary “explainable AI”?**  
 Explainable AI (XAI) produces optional narratives. TML produces **cryptographically anchored evidence** within strict latency bounds. That makes accountability enforceable, not optional.  
@@ -623,7 +623,7 @@ Explainable AI (XAI) produces optional narratives. TML produces **cryptographica
 ## Governance and Guardians
 
 **Q1: Are Guardians required for TML to work?**  
-No. TML’s enforcement is grounded in **blockchain anchoring** and **strict liability**. If an operator cannot produce a valid, anchored log, courts can treat it as spoliation of evidence — triggering maximum penalties. This enforcement works today, without Guardians.  
+No. TML’s enforcement is grounded in **Blockchain anchoring** and **strict liability**. If an operator cannot produce a valid, anchored log, courts can treat it as spoliation of evidence — triggering maximum penalties. This enforcement works today, without Guardians.  
 
 **Q2: Then what role do Guardians play?**  
 Guardians are an **optional, insurance-grade layer**. They provide redundancy, cross-border recognition, and independent custody of logs. While not required for TML compliance, they strengthen trust and resilience — especially in international or adversarial contexts.  
@@ -645,8 +645,8 @@ Over time, Guardians could become a recognized international body — similar to
 
 ## **Adversarial Attacks**
 
-**Q1: How does TML defend against blockchain-level exploits (forks, re-orgs, 51% attacks)?**  
-TML uses **multi-chain anchoring** as mandatory protection. Each Moral Trace Log batch is hashed into a Merkle root and anchored to multiple independent blockchains (e.g., Bitcoin, Ethereum, Algorand). To erase or alter a proof, attackers would need to compromise all target chains simultaneously — an economically and technically infeasible attack. Divergences across chains are detected within a single block cycle.  
+**Q1: How does TML defend against Blockchain-level exploits (forks, re-orgs, 51% attacks)?**  
+TML uses **multi-chain anchoring** as mandatory protection. Each Moral Trace Log batch is hashed into a Merkle root and anchored to multiple independent Blockchains (e.g., Bitcoin, Ethereum, Algorand). To erase or alter a proof, attackers would need to compromise all target chains simultaneously — an economically and technically infeasible attack. Divergences across chains are detected within a single block cycle.  
 
 **Q2: How does TML protect against insider threats (e.g., a company deleting logs)?**  
 Anchors are external and immutable. Once written, logs cannot be silently deleted or altered. Missing or inconsistent logs are treated as **spoliation of evidence**, triggering strict liability and maximum penalties.  
@@ -658,7 +658,7 @@ Anchors are external and immutable. Once written, logs cannot be silently delete
 
 **Q4: What about poisoning of logs or false entries?**  
 - **Cryptographic immutability**: SHA-256 hashes + Merkle trees ensure even a single change alters the entire proof chain.  
-- **Public transparency**: Anchors published on blockchains expose divergence instantly.  
+- **Public transparency**: Anchors published on Blockchains expose divergence instantly.  
 - **Strict liability**: unverifiable or missing logs automatically count against the operator.  
 
 **Q5: How does TML handle denial-of-service attacks?**  
@@ -672,14 +672,14 @@ Anchoring currently relies on SHA-256 and elliptic curve cryptography, which are
 **Q7: What about whistleblower or victim protection?**  
 - **Anonymous reporting channels** shield identities.  
 - **Immutable anchoring** ensures evidence survives internal deletion attempts.  
-- **Optional institutional custody** (Guardians) can serve as escrow, but core accountability is guaranteed by blockchain anchoring alone.  
+- **Optional institutional custody** (Guardians) can serve as escrow, but core accountability is guaranteed by Blockchain anchoring alone.  
 
 ---
 
 ## Legal Admissibility
 
 **Q1: Are TML logs admissible as legal evidence?**  
-Yes. Each log is cryptographically hashed, batched via Merkle trees, and anchored to multiple public blockchains. This produces immutable, verifiable proofs of existence and integrity. Courts already recognize cryptographic timestamps and hashes as valid evidence under rules such as **FRE 901 (authenticity)** and **FRE 902(13) (electronic records)**.  
+Yes. Each log is cryptographically hashed, batched via Merkle trees, and anchored to multiple public Blockchains. This produces immutable, verifiable proofs of existence and integrity. Courts already recognize cryptographic timestamps and hashes as valid evidence under rules such as **FRE 901 (authenticity)** and **FRE 902(13) (electronic records)**.  
 
 **Q2: How do OpenTimestamps (OTS) and Certificate Transparency (CT) improve legal strength?**  
 - **OpenTimestamps**: Provides standardized, decentralized timestamp proofs that can be independently verified.  
@@ -775,7 +775,7 @@ Always Memory is designed as an invisible infrastructure, not an add-on. Like th
 
 - **Versioned log formats:** Always Memory evolves alongside new computing paradigms (neuromorphic chips, quantum processors, swarm architectures) without losing backward compatibility.  
 - **Adaptive capture:** Beyond text logs, the framework extends to multi-modal records: video, audio, and sensor feeds from embodied systems such as humanoid robots. This ensures that AGI actions are preserved not only in reasoning chains but in physical behavior.  
-- **Anchored permanence:** Logs are cryptographically sealed to multiple public blockchains, with optional institutional custody as an added safeguard. Updates never overwrite the past; they add new strata, like tree rings.  
+- **Anchored permanence:** Logs are cryptographically sealed to multiple public Blockchains, with optional institutional custody as an added safeguard. Updates never overwrite the past; they add new strata, like tree rings.  
 
 ### Q2: Can Always Memory handle AGI?
 Yes, by principled design. Always Memory is layered to ensure that even the fastest AGI cannot escape accountability.  
@@ -822,7 +822,7 @@ Each cycle strengthens both compliance and credibility. Self-reinforcing adoptio
 
 ## **Resilience & Contingencies**
 
-**Q1: What if all blockchains fail or fork?**  
+**Q1: What if all Blockchains fail or fork?**  
 - **Multi-chain anchoring**: Proofs anchored to multiple independent chains (e.g., Bitcoin, Ethereum, Algorand).  
 - **Immutability by redundancy**: To erase a log, attackers must compromise *all* chains simultaneously — effectively impossible.  
 - **Fallback continuity**: If one chain reorganizes, proofs remain valid on the others.  

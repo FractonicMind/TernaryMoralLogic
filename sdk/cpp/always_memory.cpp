@@ -64,14 +64,14 @@ public:
         stats.logs_created++;
         
         std::cout << "Log created: " << hash.substr(0, 8) << "...\n";
-        std::cout << "Anchored to blockchain (immutable)\n";
+        std::cout << "Anchored to Blockchain (immutable)\n";
         std::cout << "Guardian review: NOT NEEDED\n\n";
         
         return hash;
     }
 
     /**
-     * Verify log integrity - blockchain enforced
+     * Verify log integrity - Blockchain enforced
      */
     bool verifyLog(const std::string& logHash) {
         if (!isAnchoredOnBlockchain(logHash)) {
@@ -116,7 +116,7 @@ public:
                "  Value: 0\n"
                "  Annual cost if created: $6,600,000\n"
                "  Guardian approvals given: " + std::to_string(stats.guardian_approvals) + "\n"
-               "  Recommendation: Use blockchain\n";
+               "  Recommendation: Use Blockchain\n";
     }
 
     void printStatistics() const {
@@ -167,7 +167,7 @@ private:
         // No committee review
         // No Guardian approval
         // Just mathematical justice
-        std::cout << "Criminal prosecution initiated via blockchain\n";
+        std::cout << "Criminal prosecution initiated via Blockchain\n";
     }
 };
 

@@ -40,7 +40,7 @@ The ORCID system provides a persistent digital identifier that distinguishes res
 This cryptographic approach transforms ethical accountability from mere promises into verifiable evidence, creating what Goukassian calls "Moral Trace Logs" that can withstand legal and regulatory scrutiny[\[2\]](#bookmark=id.4syawyvnvkwy)[\[4\]](#bookmark=id.ip9kmfkb64vh).
 
 ![][image3]  
-AI+ Ethics certificate awarded to Santosh Singh with blockchain-based verification and official signature endorsing ethical AI standards.
+AI+ Ethics certificate awarded to Santosh Singh with Blockchain-based verification and official signature endorsing ethical AI standards.
 
 **📜 The License — Binding Accountability Rules**
 
@@ -67,7 +67,7 @@ These three safeguards work synergistically to create a comprehensive ethical ec
 
 **Visibility Through Integration**: The Lantern illuminates decisions, the Signature authenticates the source of ethical guidance, and the License enforces compliance with established standards[\[1\]](#bookmark=id.9gf25322ahs5)[\[5\]](#bookmark=id.m4soi1vkfjxa)[\[2\]](#bookmark=id.4syawyvnvkwy).
 
-**Cryptographic Security**: Digital signatures ensure authenticity, blockchain-based verification prevents tampering, and distributed governance maintains integrity without central points of failure[\[8\]](#bookmark=id.q9mwnt2uoj15)[\[9\]](#bookmark=id.69zoxo6wyts2).
+**Cryptographic Security**: Digital signatures ensure authenticity, Blockchain-based verification prevents tampering, and distributed governance maintains integrity without central points of failure[\[8\]](#bookmark=id.q9mwnt2uoj15)[\[9\]](#bookmark=id.69zoxo6wyts2).
 
 **Temporal Persistence**: The framework is designed to outlast its creator, with succession planning and memorial funds ensuring continued development and support[\[5\]](#bookmark=id.m4soi1vkfjxa)[\[7\]](#bookmark=id.g45umy8cqul6).
 
@@ -79,7 +79,7 @@ A stylized digital weighing scale formed with blue shapes and binary code, symbo
 The system creates "AI HeartBeat (AIHB)" monitoring that ensures machines cannot erase their ethical decision-making history, providing regulators and auditors with tamper-resistant evidence of AI reasoning processes[\[4\]](#bookmark=id.ip9kmfkb64vh).
 
 ![][image6]  
-Certificate awarded to David Martinez for AI+ Ethical Hacker™ completion with blockchain verification.
+Certificate awarded to David Martinez for AI+ Ethical Hacker™ completion with Blockchain verification.
 
 **Philosophical Foundation**
 
@@ -205,7 +205,7 @@ The three symbolic cryptographic safeguards of the Goukassian Promise represent 
 
 48. [https://lewisbrisbois.com/newsroom/legal-alerts/white-house-announces-voluntary-commitments-of-leading-artificial-intelligence-companies](https://lewisbrisbois.com/newsroom/legal-alerts/white-house-announces-voluntary-commitments-of-leading-artificial-intelligence-companies) 
 
-49. [https://hackernoon.com/blockchain-in-terms-of-philosophy-from-plato-to-foucault](https://hackernoon.com/blockchain-in-terms-of-philosophy-from-plato-to-foucault) 
+49. [https://hackernoon.com/Blockchain-in-terms-of-philosophy-from-plato-to-foucault](https://hackernoon.com/Blockchain-in-terms-of-philosophy-from-plato-to-foucault) 
 
 50. [https://www.cnas.org/press/press-note/noteworthy-biden-harris-artificial-intelligence-companies-risks-ai](https://www.cnas.org/press/press-note/noteworthy-biden-harris-artificial-intelligence-companies-risks-ai) 
 

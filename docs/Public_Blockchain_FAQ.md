@@ -10,17 +10,17 @@
 
 ## Overview and Architecture
 
-### Q1: What is TML's blockchain architecture?
-**A**: TML anchors every AI decision to public blockchains (Bitcoin, Ethereum, Polygon) creating tamper-proof evidence without requiring institutional coordination. This enables immediate deployment and protection while maintaining legal admissibility and maximum security.
+### Q1: What is TML's Blockchain architecture?
+**A**: TML anchors every AI decision to public Blockchains (Bitcoin, Ethereum, Polygon) creating tamper-proof evidence without requiring institutional coordination. This enables immediate deployment and protection while maintaining legal admissibility and maximum security.
 
 **Key components:**
 - **Sacred Zero evaluation**: ≤2ms discrimination detection
 - **Always Memory logging**: Encrypted decision records  
-- **Merkle tree batching**: Efficient blockchain anchoring
+- **Merkle tree batching**: Efficient Blockchain anchoring
 - **Multi-chain redundancy**: Bitcoin + Ethereum + Polygon + OpenTimestamps
 - **Smart contract penalties**: Automatic violation enforcement
 
-### Q2: Why use multiple blockchains instead of just one?
+### Q2: Why use multiple Blockchains instead of just one?
 **A**: Multi-chain strategy provides optimal balance of speed, security, cost, and legal recognition:
 
 ```yaml
@@ -43,7 +43,7 @@ legal_optimization:
 **Redundancy benefit**: Attacking TML evidence requires compromising Bitcoin AND Ethereum simultaneously - estimated cost exceeds $50 billion.
 
 ### Q3: How does Merkle tree batching work?
-**A**: Instead of one blockchain transaction per decision, TML batches thousands of decisions into a single Merkle tree and anchors only the root hash:
+**A**: Instead of one Blockchain transaction per decision, TML batches thousands of decisions into a single Merkle tree and anchors only the root hash:
 
 ```
 10,000 Individual Decisions
@@ -57,12 +57,12 @@ Blockchain Transaction Cost: 1 instead of 10,000
 
 **Verification process:**
 1. **Merkle path**: Prove specific decision belongs to anchored batch
-2. **Root verification**: Confirm root hash exists on blockchain
+2. **Root verification**: Confirm root hash exists on Blockchain
 3. **Timestamp proof**: Blockchain provides immutable time reference
 4. **Mathematical certainty**: Cryptographic proof of decision authenticity
 
 **Efficiency gains:**
-- **Cost**: O(1) blockchain cost regardless of batch size
+- **Cost**: O(1) Blockchain cost regardless of batch size
 - **Storage**: O(log n) proof size for individual decisions  
 - **Speed**: Constant anchoring time regardless of volume
 - **Security**: Breaking one decision requires breaking entire batch
@@ -71,12 +71,12 @@ Blockchain Transaction Cost: 1 instead of 10,000
 
 ## Implementation and Integration
 
-### Q4: How do I integrate TML blockchain anchoring with my existing system?
+### Q4: How do I integrate TML Blockchain anchoring with my existing system?
 **A**: TML provides multiple integration patterns for different architectures:
 
 **Pattern 1: API Gateway (Recommended)**
 ```javascript
-const tml = require('@tml/blockchain-sdk');
+const tml = require('@tml/Blockchain-sdk');
 
 app.use('/api/*', async (req, res, next) => {
   const evaluation = await tml.evaluate({
@@ -102,15 +102,15 @@ app.use('/api/*', async (req, res, next) => {
 
 **Pattern 2: Database Triggers**
 ```sql
--- PostgreSQL example with blockchain anchoring
+-- PostgreSQL example with Blockchain anchoring
 CREATE OR REPLACE FUNCTION tml_blockchain_check()
 RETURNS TRIGGER AS $$
 BEGIN
-  -- Call TML evaluation with blockchain anchoring
+  -- Call TML evaluation with Blockchain anchoring
   SELECT tml_evaluate_with_blockchain(NEW.*) INTO result;
   
   IF result.sacred_zero_triggered THEN
-    -- Store blockchain proofs
+    -- Store Blockchain proofs
     INSERT INTO blockchain_evidence (
       decision_id, polygon_tx, ethereum_tx, bitcoin_batch
     ) VALUES (
@@ -127,8 +127,8 @@ $$ LANGUAGE plpgsql;
 
 **Pattern 3: Message Queue**
 ```python
-# Kafka integration with blockchain anchoring
-from tml.blockchain import MultiChainAnchor
+# Kafka integration with Blockchain anchoring
+from tml.Blockchain import MultiChainAnchor
 
 @kafka_consumer('ai.decisions')
 async def process_decision(message):
@@ -143,7 +143,7 @@ async def process_decision(message):
     )
     
     if evaluation.sacred_zero_triggered:
-        # Immediate penalty with blockchain proof
+        # Immediate penalty with Blockchain proof
         await penalty_processor.execute({
             'amount': evaluation.penalty,
             'evidence': evaluation.blockchain_proofs,
@@ -154,7 +154,7 @@ async def process_decision(message):
     return 'APPROVED'
 ```
 
-### Q5: What are the system requirements for blockchain integration?
+### Q5: What are the system requirements for Blockchain integration?
 **A**: Minimal infrastructure requirements - designed for standard cloud deployment:
 
 **Minimum Requirements:**
@@ -166,7 +166,7 @@ compute:
   
 network:
   bandwidth: "10Mbps stable internet"
-  latency: "<100ms to blockchain RPC endpoints"
+  latency: "<100ms to Blockchain RPC endpoints"
   
 dependencies:
   docker: "20.10+"
@@ -182,7 +182,7 @@ compute:
   
 network:
   bandwidth: "100Mbps redundant internet"
-  latency: "<50ms to blockchain RPC endpoints"
+  latency: "<50ms to Blockchain RPC endpoints"
   
 infrastructure:
   load_balancer: "Multi-region deployment"
@@ -192,11 +192,11 @@ infrastructure:
 
 **Blockchain Node Requirements**: None - TML uses public RPC endpoints. Optional: Run your own nodes for maximum independence.
 
-### Q6: How do I configure blockchain network priorities?
-**A**: TML allows flexible blockchain configuration based on your needs:
+### Q6: How do I configure Blockchain network priorities?
+**A**: TML allows flexible Blockchain configuration based on your needs:
 
 ```yaml
-# config/blockchain.yml
+# config/Blockchain.yml
 blockchain_networks:
   primary_anchoring:
     polygon:
@@ -223,7 +223,7 @@ blockchain_networks:
     critical_evidence: ["polygon", "ethereum", "bitcoin"]  # Maximum security
     
   cost_optimization:
-    batch_size: 1000  # Decisions per blockchain transaction
+    batch_size: 1000  # Decisions per Blockchain transaction
     batch_timeout: "5 minutes"  # Maximum wait time
     gas_price_strategy: "standard"  # or "fast" or "economy"
 ```
@@ -232,8 +232,8 @@ blockchain_networks:
 
 ## Performance and Scalability
 
-### Q7: What are the performance characteristics of blockchain anchoring?
-**A**: TML blockchain anchoring is designed for production-scale performance:
+### Q7: What are the performance characteristics of Blockchain anchoring?
+**A**: TML Blockchain anchoring is designed for production-scale performance:
 
 **Latency Specifications:**
 ```yaml
@@ -243,7 +243,7 @@ polygon_confirmation: "2-3 seconds"
 ethereum_confirmation: "15-60 seconds"  
 bitcoin_confirmation: "10-60 minutes"
 
-user_facing_impact: "Zero (blockchain anchoring is asynchronous)"
+user_facing_impact: "Zero (Blockchain anchoring is asynchronous)"
 ```
 
 **Throughput Capabilities:**
@@ -251,7 +251,7 @@ user_facing_impact: "Zero (blockchain anchoring is asynchronous)"
 decisions_per_second: "10,000+ per node"
 blockchain_anchors_per_hour: "60 (once per minute batching)"
 concurrent_evaluations: "Unlimited (stateless Sacred Zero)"
-batch_processing: "1,000-100,000 decisions per blockchain transaction"
+batch_processing: "1,000-100,000 decisions per Blockchain transaction"
 ```
 
 **Scalability Characteristics:**
@@ -264,7 +264,7 @@ storage_growth: "~100KB per 10,000 decisions"
 blockchain_cost_scaling: "O(1) - constant cost regardless of decision volume"
 ```
 
-### Q8: How does TML handle blockchain network congestion?
+### Q8: How does TML handle Blockchain network congestion?
 **A**: Comprehensive congestion management ensures continuous operation:
 
 **Dynamic Gas Pricing:**
@@ -315,7 +315,7 @@ automated_responses:
   network_failure: "Graceful degradation with full recovery"
 ```
 
-### Q9: What happens during blockchain outages or attacks?
+### Q9: What happens during Blockchain outages or attacks?
 **A**: TML's multi-chain architecture provides comprehensive failure resilience:
 
 **Network Failure Scenarios:**
@@ -334,7 +334,7 @@ multiple_chain_failure:
   recovery: "Automatic sync when networks restore"
   
 complete_blockchain_failure:
-  scenario: "All blockchain networks inaccessible"
+  scenario: "All Blockchain networks inaccessible"
   response: "Degraded mode with local signatures only"
   duration: "TML continues operating indefinitely"
   evidence: "Cryptographic signatures create admissible evidence"
@@ -354,8 +354,8 @@ state_actor_attacks:
   time_strengthening: "Evidence becomes more secure over time"
   
 smart_contract_attacks:
-  isolated_impact: "Smart contract failure doesn't affect blockchain anchoring"
-  fallback_mechanisms: "Direct blockchain interaction if smart contracts compromised"
+  isolated_impact: "Smart contract failure doesn't affect Blockchain anchoring"
+  fallback_mechanisms: "Direct Blockchain interaction if smart contracts compromised"
   upgrade_protection: "Immutable anchoring independent of smart contract changes"
 ```
 
@@ -363,8 +363,8 @@ smart_contract_attacks:
 
 ## Cost and Economics
 
-### Q10: What are the detailed costs of blockchain anchoring?
-**A**: TML blockchain costs are extremely low due to Merkle tree batching:
+### Q10: What are the detailed costs of Blockchain anchoring?
+**A**: TML Blockchain costs are extremely low due to Merkle tree batching:
 
 **Per-Decision Costs (2025 USD):**
 ```yaml
@@ -410,16 +410,16 @@ medium_deployment_monthly:
   roi: "300-800% annually"
 ```
 
-### Q11: How do blockchain costs scale with volume?
+### Q11: How do Blockchain costs scale with volume?
 **A**: Merkle tree batching provides economies of scale - higher volume reduces per-decision costs:
 
 **Batching Economics:**
 ```yaml
 batch_efficiency:
-  1_decision: "$5-50 blockchain transaction cost = $5-50 per decision"
-  100_decisions: "$5-50 blockchain transaction cost = $0.05-0.50 per decision"  
-  1000_decisions: "$5-50 blockchain transaction cost = $0.005-0.05 per decision"
-  10000_decisions: "$5-50 blockchain transaction cost = $0.0005-0.005 per decision"
+  1_decision: "$5-50 Blockchain transaction cost = $5-50 per decision"
+  100_decisions: "$5-50 Blockchain transaction cost = $0.05-0.50 per decision"  
+  1000_decisions: "$5-50 Blockchain transaction cost = $0.005-0.05 per decision"
+  10000_decisions: "$5-50 Blockchain transaction cost = $0.0005-0.005 per decision"
 
 volume_incentive: "Higher volume = dramatically lower per-decision costs"
 ```
@@ -432,7 +432,7 @@ volume_tiers:
   enterprise_100k_daily: "$0.005-0.05 per decision"  
   hyperscale_1m_daily: "$0.0005-0.005 per decision"
 
-cost_ceiling: "Even at startup scale, blockchain costs <1% of insurance savings"
+cost_ceiling: "Even at startup scale, Blockchain costs <1% of insurance savings"
 ```
 
 **Cost Prediction Tools:**
@@ -510,7 +510,7 @@ const anchoringConfig = {
 cost_prediction:
   historical_analysis: "Learn optimal anchoring times based on network patterns"
   gas_price_forecasting: "Predict high-congestion periods and batch accordingly"
-  budget_management: "Set monthly blockchain budget with automatic enforcement"
+  budget_management: "Set monthly Blockchain budget with automatic enforcement"
   
 enterprise_features:
   gas_token_integration: "Use gas tokens during low-cost periods"
@@ -522,7 +522,7 @@ enterprise_features:
 
 ## Security and Legal
 
-### Q13: How secure is blockchain-anchored evidence against tampering?
+### Q13: How secure is Blockchain-anchored evidence against tampering?
 **A**: Multi-layered cryptographic protection makes tampering essentially impossible:
 
 **Security Layers:**
@@ -538,9 +538,9 @@ batch_level:
   batch_metadata: "Additional verification of batch creation circumstances"
   
 blockchain_level:
-  immutability: "Once anchored, cannot be altered without rewriting blockchain"
+  immutability: "Once anchored, cannot be altered without rewriting Blockchain"
   multi_chain: "Attackers must compromise multiple independent networks"
-  time_strengthening: "Evidence becomes more secure as blockchain grows"
+  time_strengthening: "Evidence becomes more secure as Blockchain grows"
 ```
 
 **Attack Resistance Analysis:**
@@ -558,18 +558,18 @@ threat_model:
     detection: "Attack would be visible globally, evidence would remain on unattacked chains"
     
   quantum_computer:
-    current_threat: "None - quantum computers cannot break SHA-256 or blockchain consensus"
+    current_threat: "None - quantum computers cannot break SHA-256 or Blockchain consensus"
     future_timeline: "Post-quantum cryptography available before quantum threat emerges"
     migration_path: "TML supports post-quantum hash functions (SPHINCS+, XMSS)"
 ```
 
-### Q14: What legal standards does blockchain evidence meet?
-**A**: TML blockchain evidence meets the highest legal standards globally:
+### Q14: What legal standards does Blockchain evidence meet?
+**A**: TML Blockchain evidence meets the highest legal standards globally:
 
 **United States:**
 ```yaml
 federal_rules_evidence:
-  fre_901: "Authentication through cryptographic signatures and blockchain provenance"
+  fre_901: "Authentication through cryptographic signatures and Blockchain provenance"
   fre_902_13: "Self-authenticating documents via digital signatures and trusted timestamps"
   fre_1001: "Original vs copy distinction preserved through hash verification"
   fre_37e: "Sanctions for spoliation avoided through immutable storage"
@@ -580,9 +580,9 @@ case_precedents:
   state_v_espinoza: "Cryptocurrency transaction evidence admissible"
   
 legal_recognition:
-  federal_courts: "50+ cases accepting blockchain evidence"
+  federal_courts: "50+ cases accepting Blockchain evidence"
   state_courts: "Widespread adoption across jurisdictions"
-  regulatory_agencies: "SEC, CFTC, IRS accept blockchain records"
+  regulatory_agencies: "SEC, CFTC, IRS accept Blockchain records"
 ```
 
 **European Union:**
@@ -594,7 +594,7 @@ eidas_regulation:
   
 gdpr_compliance:
   crypto_shredding: "Personal data erasure while preserving audit trail"
-  data_minimization: "Only necessary decision data included in blockchain anchors"
+  data_minimization: "Only necessary decision data included in Blockchain anchors"
   purpose_limitation: "Evidence used only for accountability and legal compliance"
   
 legal_frameworks:
@@ -613,23 +613,23 @@ global_recognition:
 cross_border_enforcement:
   hague_convention: "Electronic evidence in cross-border legal proceedings"
   mutual_legal_assistance: "Blockchain evidence accepted in international cooperation"
-  arbitration: "Commercial arbitration panels accept blockchain evidence"
+  arbitration: "Commercial arbitration panels accept Blockchain evidence"
 ```
 
 ### Q15: How does multi-chain anchoring enhance legal defensibility?
-**A**: Multiple blockchain proofs create redundant evidence that's nearly impossible to challenge:
+**A**: Multiple Blockchain proofs create redundant evidence that's nearly impossible to challenge:
 
 **Legal Advantages:**
 ```yaml
 jurisdiction_shopping_protection:
-  scenario: "Plaintiff forum shops to jurisdiction hostile to specific blockchain"
-  protection: "Alternative blockchain evidence accepted in same jurisdiction"
+  scenario: "Plaintiff forum shops to jurisdiction hostile to specific Blockchain"
+  protection: "Alternative Blockchain evidence accepted in same jurisdiction"
   example: "If Bitcoin evidence questioned, Ethereum evidence provides backup"
   
 evidence_redundancy:
   standard: "Single source evidence can be challenged"
   tml_approach: "Multiple independent sources prove same facts"
-  legal_impact: "Opposing counsel must challenge ALL blockchain networks"
+  legal_impact: "Opposing counsel must challenge ALL Blockchain networks"
   
 expert_testimony:
   blockchain_specific: "Different experts can testify about different networks"
@@ -640,12 +640,12 @@ expert_testimony:
 **Strengthening Over Time:**
 ```yaml
 temporal_enhancement:
-  immediate: "Evidence anchored to current blockchain state"
+  immediate: "Evidence anchored to current Blockchain state"
   months_later: "Thousands of subsequent blocks confirm evidence"
   years_later: "Millions of confirmations make alteration impossible"
   
 legal_precedent_building:
-  early_cases: "TML evidence helps establish blockchain precedents"
+  early_cases: "TML evidence helps establish Blockchain precedents"
   widespread_adoption: "Industry standard status increases court acceptance"
   regulatory_approval: "Government endorsement enhances admissibility"
 ```
@@ -666,7 +666,7 @@ automatic_generation:
   
 verification_process:
   ots_file: "Cryptographic proof linking decision to Bitcoin block"
-  bitcoin_verification: "Independent verification using Bitcoin blockchain"
+  bitcoin_verification: "Independent verification using Bitcoin Blockchain"
   calendar_servers: "Multiple independent timestamp aggregators"
   
 legal_advantages:
@@ -700,21 +700,21 @@ async function anchorDecision(decision) {
 }
 ```
 
-### Q17: How does TML handle GDPR compliance with immutable blockchain evidence?
+### Q17: How does TML handle GDPR compliance with immutable Blockchain evidence?
 **A**: Crypto-shredding technique satisfies both GDPR erasure rights and evidence preservation:
 
 **Crypto-Shredding Process:**
 ```yaml
 data_encryption:
   process: "Each user's data encrypted with unique key"
-  storage: "Encrypted data + hash anchored to blockchain"
+  storage: "Encrypted data + hash anchored to Blockchain"
   key_management: "User-specific encryption keys stored separately"
   
 gdpr_erasure:
   request: "User invokes right to be forgotten"
   action: "Destroy user's encryption key"
   result: "Data becomes mathematically unreadable forever"
-  audit_trail: "Hash remains on blockchain as evidence proof"
+  audit_trail: "Hash remains on Blockchain as evidence proof"
   
 legal_compliance:
   gdpr_satisfaction: "Personal data effectively erased"
@@ -733,7 +733,7 @@ class GDPRCompliantLogging {
     // Encrypt personal data with user-specific key
     const encryptedData = await crypto.encrypt(decision.personalData, userKey);
     
-    // Create hash of decision for blockchain anchoring
+    // Create hash of decision for Blockchain anchoring
     const decisionHash = sha256({
       operation: decision.operation,
       outcome: decision.outcome,
@@ -741,10 +741,10 @@ class GDPRCompliantLogging {
       encrypted_data_hash: sha256(encryptedData)
     });
     
-    // Anchor hash to blockchain (no personal data)
-    await blockchain.anchor(decisionHash);
+    // Anchor hash to Blockchain (no personal data)
+    await Blockchain.anchor(decisionHash);
     
-    // Store encrypted data locally with reference to blockchain anchor
+    // Store encrypted data locally with reference to Blockchain anchor
     await storage.save({
       decision_id: decision.id,
       encrypted_data: encryptedData,
@@ -771,7 +771,7 @@ class GDPRCompliantLogging {
 ```
 
 ### Q18: How does smart contract penalty enforcement work?
-**A**: Automated penalty execution through blockchain smart contracts:
+**A**: Automated penalty execution through Blockchain smart contracts:
 
 **Smart Contract Architecture:**
 ```solidity
@@ -840,7 +840,7 @@ automatic_enforcement:
   fund_distribution: "Penalty distributed to victims and restoration funds"
   
 transparency:
-  public_record: "All penalties visible on blockchain"
+  public_record: "All penalties visible on Blockchain"
   audit_trail: "Complete history of violations and enforcement"
   verification: "Anyone can verify penalty was properly executed"
 ```
@@ -849,13 +849,13 @@ transparency:
 
 ## Monitoring and Compliance
 
-### Q19: How do I monitor blockchain anchoring status in real-time?
+### Q19: How do I monitor Blockchain anchoring status in real-time?
 **A**: Comprehensive monitoring dashboard and API for complete visibility:
 
 **Real-Time Dashboard:**
 ```yaml
 anchoring_status:
-  pending_queue: "Decisions awaiting blockchain confirmation"
+  pending_queue: "Decisions awaiting Blockchain confirmation"
   confirmation_times: "Current network performance across chains"
   cost_tracking: "Real-time gas prices and anchoring costs"
   success_rates: "Percentage of successful anchoring by network"
@@ -863,10 +863,10 @@ anchoring_status:
 violation_monitoring:
   sacred_zero_triggers: "Real-time discrimination detection alerts"
   penalty_execution: "Smart contract penalty enforcement status"
-  blockchain_evidence: "Links to blockchain explorers for verification"
+  blockchain_evidence: "Links to Blockchain explorers for verification"
   
 system_health:
-  network_connectivity: "Status of all blockchain network connections"
+  network_connectivity: "Status of all Blockchain network connections"
   latency_monitoring: "Sacred Zero response times and performance"
   error_tracking: "Failed anchoring attempts and resolution"
 ```
@@ -899,7 +899,7 @@ monitoring.onViolation((violation) => {
   });
 });
 
-// Monitor blockchain network health
+// Monitor Blockchain network health
 monitoring.onNetworkIssue((issue) => {
   if (issue.severity === 'critical') {
     // Network failure - switch to backup or degraded mode
@@ -908,8 +908,8 @@ monitoring.onNetworkIssue((issue) => {
 });
 ```
 
-### Q20: How do I generate compliance reports with blockchain evidence?
-**A**: Automated compliance reporting with blockchain-verified evidence:
+### Q20: How do I generate compliance reports with Blockchain evidence?
+**A**: Automated compliance reporting with Blockchain-verified evidence:
 
 **Compliance Report Generation:**
 ```javascript
@@ -960,7 +960,7 @@ executive_summary:
   penalties_assessed: "Financial penalties and distribution"
   
 evidence_package:
-  blockchain_transactions: "List of all blockchain anchoring transactions"
+  blockchain_transactions: "List of all Blockchain anchoring transactions"
   smart_contract_calls: "Penalty enforcement smart contract interactions"
   ots_proofs: "OpenTimestamps verification files"
   merkle_proofs: "Individual decision verification proofs"
@@ -993,7 +993,7 @@ appendices:
 
 ## Conclusion
 
-**TML's blockchain architecture delivers immediate AI accountability without institutional coordination.** Public blockchain anchoring creates tamper-proof evidence that meets legal standards globally while providing economic benefits from day one.
+**TML's Blockchain architecture delivers immediate AI accountability without institutional coordination.** Public Blockchain anchoring creates tamper-proof evidence that meets legal standards globally while providing economic benefits from day one.
 
 **Key Benefits:**
 - **Immediate deployment** in 10 minutes with complete protection
@@ -1003,7 +1003,7 @@ appendices:
 - **Multi-chain security** resistant to nation-state attacks
 - **GDPR compliance** through crypto-shredding technique
 
-**The blockchain approach transforms TML from "interesting concept" to "deploy this afternoon and start protecting people."** Companies can begin preventing AI discrimination immediately while building towards enhanced governance over time.
+**The Blockchain approach transforms TML from "interesting concept" to "deploy this afternoon and start protecting people."** Companies can begin preventing AI discrimination immediately while building towards enhanced governance over time.
 
 *Every decision creates permanent, tamper-proof evidence. Every violation triggers immediate penalties. Every day strengthens the foundation of AI accountability.*
 

@@ -38,7 +38,7 @@ Real-world performance is validated through:
 ## Scalability Roadmap
 
 * Continuous optimization for edge inference chips and neuromorphic hardware
-* Layer-2 blockchain batching for sub-cent-per-log costs
+* Layer-2 Blockchain batching for sub-cent-per-log costs
 * Dynamic load adaptation for multi-region Always Memory clusters
 * Open telemetry pipeline for independent verification
 

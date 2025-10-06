@@ -13,12 +13,12 @@
 Guardian Network is an **OPTIONAL luxury enhancement** that 95% of TML deployments will never need. Like adding a wine cellar to a perfectly functional house - nice to have, never necessary.
 
 **Reality Check**:
-- **Year 1-2**: Deploy with blockchain only (fully operational, legally enforceable)
+- **Year 1-2**: Deploy with Blockchain only (fully operational, legally enforceable)
 - **Year 3-5**: Maybe 5% of companies consider adding 1-2 Guardians
 - **Year 5+**: Perhaps 1% build full Guardian Networks
 - **Most Companies**: Will never need or want Guardian enhancement
 
-**Bottom Line**: Deploy blockchain protection today. Forget about Guardians until you're wildly successful (if ever).
+**Bottom Line**: Deploy Blockchain protection today. Forget about Guardians until you're wildly successful (if ever).
 
 ---
 
@@ -77,7 +77,7 @@ def year_one_deployment():
 ```
 
 **What You're Doing**: 
-- Running production with blockchain protection
+- Running production with Blockchain protection
 - Collecting evidence of ROI
 - Building internal expertise
 - Protecting humans and Earth
@@ -185,14 +185,14 @@ Guardian Network = Adding a wine cellar
 ### Year 3 Evaluation Checklist
 
 Ask yourself:
-- [ ] Are we already getting 300%+ ROI from blockchain-only?
+- [ ] Are we already getting 300%+ ROI from Blockchain-only?
 - [ ] Do we have $5000+/month to spend on nice-to-haves?
 - [ ] Are we operating in 10+ jurisdictions?
 - [ ] Do we have dedicated compliance staff with free time?
 - [ ] Has anyone actually asked for Guardian attestation?
 - [ ] Would our customers even notice?
 
-If you checked fewer than 4 boxes, stick with blockchain.
+If you checked fewer than 4 boxes, stick with Blockchain.
 
 ### How to Add One Guardian (If You Must)
 
@@ -281,7 +281,7 @@ graph TD
 
 ### The Honest Advice
 
-> "If you're reading this section, you probably don't need Guardians. Deploy blockchain protection today. Revisit Guardians in 5 years if you're bored and have money to burn."
+> "If you're reading this section, you probably don't need Guardians. Deploy Blockchain protection today. Revisit Guardians in 5 years if you're bored and have money to burn."
 
 ---
 
@@ -290,7 +290,7 @@ graph TD
 Guardian Networks are like yacht clubs - impressive to talk about, expensive to join, and completely unnecessary for getting across the water.
 
 **What You Should Do**:
-1. Deploy TML with blockchain today (10 minutes)
+1. Deploy TML with Blockchain today (10 minutes)
 2. Protect humans and Earth immediately
 3. Achieve 300-800% ROI this year
 4. Forget Guardians exist
@@ -314,6 +314,6 @@ Guardian Networks are like yacht clubs - impressive to talk about, expensive to 
 
 *"Deploy protection today, dream about Guardians tomorrow (or never)."*
 
-**Remember**: Every day spent planning Guardian coordination is a day without protection. Deploy blockchain now. Protect people today.
+**Remember**: Every day spent planning Guardian coordination is a day without protection. Deploy Blockchain now. Protect people today.
 
 *All USD amounts are nominal to 2025*

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-TML Main Application - blockchain Implementation
+TML Main Application - Blockchain Implementation
 No Guardians. No committees. Just mathematical protection.
 
 Creator: Lev Goukassian (ORCID: 0009-0006-5966-1243)
@@ -19,7 +19,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 class TMLApplication:
-    """Main TML application - blockchain-enforced accountability"""
+    """Main TML application - Blockchain-enforced accountability"""
     
     def __init__(self):
         """Initialize without Guardian committees"""
@@ -43,9 +43,9 @@ class TMLApplication:
         }
         
     async def initialize(self):
-        """Initialize blockchain connections"""
+        """Initialize Blockchain connections"""
         try:
-            # Connect to blockchains
+            # Connect to Blockchains
             self.ethereum = Web3(Web3.HTTPProvider('https://eth.public-rpc.com'))
             self.polygon = Web3(Web3.HTTPProvider('https://polygon-rpc.com'))
             
@@ -64,7 +64,7 @@ class TMLApplication:
             
         except Exception as e:
             logger.error(f"Initialization failed: {e}")
-            logger.info("Tip: Check blockchain connections, not Guardian availability")
+            logger.info("Tip: Check Blockchain connections, not Guardian availability")
             return False
     
     def _load_contract(self, filename: str) -> Dict:
@@ -84,7 +84,7 @@ class TMLApplication:
             'blockchain_anchored': True
         }
         
-        # Hash and anchor to blockchain
+        # Hash and anchor to Blockchain
         log_hash = self._hash_log(log)
         await self._anchor_to_blockchain(log_hash)
         
@@ -132,7 +132,7 @@ class TMLApplication:
         """Process whistleblower report - instant rewards"""
         logger.info("🎯 Whistleblower report received")
         
-        # Verify evidence on blockchain
+        # Verify evidence on Blockchain
         if not await self._verify_evidence(report['evidence']):
             return {'status': 'invalid', 'reason': 'Evidence not verified'}
         
@@ -161,10 +161,10 @@ class TMLApplication:
     def get_system_status(self) -> Dict:
         """Get current system status"""
         return {
-            'system': 'TML v3.0 - blockchain',
+            'system': 'TML v3.0 - Blockchain',
             'protection': 'Active',
             'statistics': self.stats,
-            'blockchain': {
+            'Blockchain': {
                 'ethereum': 'Connected' if self.ethereum else 'Disconnected',
                 'polygon': 'Connected' if self.polygon else 'Disconnected',
                 'attack_cost': '$50,000,000,000',
@@ -175,15 +175,15 @@ class TMLApplication:
                 'needed': False,
                 'cost_if_implemented': '$6,600,000/year',
                 'value_added': 0,
-                'recommendation': 'Use blockchain instead'
+                'recommendation': 'Use Blockchain instead'
             }
         }
     
     async def _anchor_to_blockchain(self, hash: str):
         """Multi-chain anchoring for immutability"""
-        # Simplified - in production, actual blockchain calls
+        # Simplified - in production, actual Blockchain calls
         await asyncio.sleep(0.1)
-        logger.info(f"⛓️ Anchored to blockchain: {hash[:8]}...")
+        logger.info(f"⛓️ Anchored to Blockchain: {hash[:8]}...")
     
     async def _calculate_penalty(self, action: Dict, violations: list) -> int:
         """Calculate penalties mathematically"""
@@ -227,8 +227,8 @@ class TMLApplication:
         return action.get('long_term_harm', False)
     
     async def _verify_evidence(self, evidence: str) -> bool:
-        """Verify evidence on blockchain"""
-        # Simplified - check blockchain anchoring
+        """Verify evidence on Blockchain"""
+        # Simplified - check Blockchain anchoring
         return len(evidence) > 0
     
     async def _pay_whistleblower(self, address: str, amount: int) -> str:
@@ -268,7 +268,7 @@ async def main():
     
     if await app.initialize():
         print("\n✅ System initialized successfully")
-        print("🏮 The Lantern burns eternal in blockchain")
+        print("🏮 The Lantern burns eternal in Blockchain")
         print()
         
         # Show status

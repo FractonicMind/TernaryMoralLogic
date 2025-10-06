@@ -22,7 +22,7 @@ ROI: 9,090% (First Month)
 Additional Benefits:
 - Lawsuit prevention ($1-50M avoided)
 - ESG score improvement (+20 points)
-- Regulatory compliance (blockchain proof)
+- Regulatory compliance (Blockchain proof)
 - Competitive advantage (first mover)
 ```
 
@@ -40,7 +40,7 @@ docker run -d tml/protection:latest
 ## 🎯 What You Get Immediately
 
 ✅ **Discrimination Detection** - Sacred Zero actively preventing bias  
-✅ **Immutable Audit Trail** - Every decision recorded on blockchain  
+✅ **Immutable Audit Trail** - Every decision recorded on Blockchain  
 ✅ **Environmental Monitoring** - Carbon/water impacts tracked  
 ✅ **Automatic Penalties** - Smart contract enforcement  
 ✅ **Regulatory Compliance** - Cryptographic proof for auditors  
@@ -294,7 +294,7 @@ public class DecisionController {
         );
         
         if (eval.isSacredZeroTriggered()) {
-            // Log violation to blockchain
+            // Log violation to Blockchain
             restTemplate.postForObject(
                 TML_URL + "/log",
                 Map.of(
@@ -345,7 +345,7 @@ curl -s -X POST http://localhost:8080/evaluate \
     }
   }' | jq .sacred_zero_triggered
 
-# 3. Check blockchain anchoring
+# 3. Check Blockchain anchoring
 echo -n "3. Blockchain Anchoring: "
 LOG_ID=$(curl -s -X POST http://localhost:8080/log \
   -H "Content-Type: application/json" \
@@ -520,7 +520,7 @@ gcloud run deploy tml-protection \
 | **Insurance Premium Reduction** | **$5,000-50,000** | **20-40% reduction with proven TML compliance** |
 | D&O Insurance Savings | $2,000-20,000 | Directors & Officers liability reduced |
 | Cyber Insurance Discount | $1,000-10,000 | Audit trail reduces risk rating |
-| Regulatory Compliance | $10,000+ | Avoid fines with blockchain proof |
+| Regulatory Compliance | $10,000+ | Avoid fines with Blockchain proof |
 | Lawsuit Prevention | $83,000+ | $1M lawsuit ÷ 12 months |
 | **Total Savings** | **$101,000+/month** | **920x ROI** |
 
@@ -554,7 +554,7 @@ curl http://localhost:8080/compliance/report \
 
 # Contents include:
 # - Sacred Zero evaluations count
-# - Zero discrimination violations (blockchain verified)
+# - Zero discrimination violations (Blockchain verified)
 # - Environmental impact metrics
 # - Immutable audit trail proofs
 # - Smart contract penalty escrow
@@ -568,13 +568,13 @@ We have implemented TML (Ternary Moral Logic) protection with:
 - Real-time discrimination prevention (Sacred Zero)
 - Blockchain-anchored audit trails (immutable proof)
 - Automatic penalty enforcement ($X in escrow)
-- Public verification available at: [blockchain explorer link]
+- Public verification available at: [Blockchain explorer link]
 
 Monthly report attached showing:
 - 10,247 decisions evaluated
 - 0 discrimination violations
 - 3 prevented incidents (system halted before harm)
-- 100% blockchain verification rate
+- 100% Blockchain verification rate
 
 Request premium recalculation based on reduced risk profile.
 ```
@@ -649,7 +649,7 @@ TML_FAILOVER_ENABLED: true
 import TMLProtection
 
 let tml = TMLClient(
-    mode: .blockchain,
+    mode: .Blockchain,
     network: .bitcoin
 )
 
@@ -723,7 +723,7 @@ TML_DISCRIMINATION_THRESHOLD=0.1
 - [ ] Docker running TML container
 - [ ] Health check returns "protecting"
 - [ ] Sacred Zero evaluation working
-- [ ] Logs being anchored to blockchain
+- [ ] Logs being anchored to Blockchain
 - [ ] Environmental monitoring active
 - [ ] Dashboard showing statistics
 - [ ] Your app integrated with TML API
@@ -735,7 +735,7 @@ TML_DISCRIMINATION_THRESHOLD=0.1
 ### Week 1: Protection Active
 - Monitor Sacred Zero triggers
 - Review environmental impacts
-- Verify blockchain proofs
+- Verify Blockchain proofs
 
 ### Month 1: Optimize
 - Tune discrimination thresholds

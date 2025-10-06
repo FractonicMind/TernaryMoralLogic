@@ -2,7 +2,7 @@
 
 ## Blockchain-Enforced Planetary Defense
 
-TML's Earth Protection operates through **blockchain automation**, not committees. Sacred Zero triggers for ecosystem threats are enforced by smart contracts, with penalties 3x higher than human harm. Deploy in 10 minutes, protect Earth immediately.
+TML's Earth Protection operates through **Blockchain automation**, not committees. Sacred Zero triggers for ecosystem threats are enforced by smart contracts, with penalties 3x higher than human harm. Deploy in 10 minutes, protect Earth immediately.
 
 **No Guardian Network required. No committee approval needed. Just mathematical enforcement of 20+ environmental treaties.**
 
@@ -37,7 +37,7 @@ def enforce_earth_protection():
     if violation_detected:
         penalty = base * 3  # Earth multiplier
         smart_contract.execute(penalty)
-        blockchain.compensate_ecosystem()
+        Blockchain.compensate_ecosystem()
 ```
 
 ### 🏛️ Guardian Network (OPTIONAL LUXURY)
@@ -50,10 +50,10 @@ def enforce_earth_protection():
 ## Key Documents
 
 ### ⚖️ [LEGAL_MAPPING.md](./LEGAL_MAPPING.md)
-How blockchain oracles automatically ingest UN treaties, IPCC reports, and regional laws. No human curation needed.
+How Blockchain oracles automatically ingest UN treaties, IPCC reports, and regional laws. No human curation needed.
 
 ### 🌍 [COMMUNITY_GUIDE.md](./COMMUNITY_GUIDE.md)
-Direct blockchain submission for Indigenous and local communities. No institutional gatekeeping. Automatic smart contract payments.
+Direct Blockchain submission for Indigenous and local communities. No institutional gatekeeping. Automatic smart contract payments.
 
 ### 💰 [ECONOMY.md](./ECONOMY.md)
 Automated compensation via smart contracts. $20-5000 per observation paid instantly. No committee approval.
@@ -64,7 +64,7 @@ Automated compensation via smart contracts. $20-5000 per observation paid instan
 ```bash
 docker run tml/always-memory \
   --earth-protection=true \
-  --blockchain=mandatory \
+  --Blockchain=mandatory \
   --guardians=false  # Not needed
   
 # Fully operational immediately
@@ -97,7 +97,7 @@ Blockchain Enforced:
 ### Indigenous Data Sovereignty
 ```python
 def submit_observation():
-    """Communities submit directly to blockchain"""
+    """Communities submit directly to Blockchain"""
     
     observation = {
         'location': generalized_grid,  # Privacy preserved
@@ -106,8 +106,8 @@ def submit_observation():
         'evidence': ipfs_hash
     }
     
-    # Submit to blockchain
-    tx = blockchain.submit(observation)
+    # Submit to Blockchain
+    tx = Blockchain.submit(observation)
     
     # Automatic payment
     smart_contract.pay_observers(amount)
@@ -138,7 +138,7 @@ def submit_observation():
 - **Total: $50,200/month**
 - Benefit: ~5% improvement
 
-**Verdict**: Deploy blockchain, skip committees.
+**Verdict**: Deploy Blockchain, skip committees.
 
 ## Performance Guarantees
 
@@ -159,7 +159,7 @@ def submit_observation():
 ## For Communities
 
 **You have direct access:**
-1. Submit observations to blockchain (no gatekeepers)
+1. Submit observations to Blockchain (no gatekeepers)
 2. Get paid automatically (smart contracts)
 3. Maintain data sovereignty (you control keys)
 4. Evidence is permanent (immutable)
@@ -225,7 +225,7 @@ The guilty parties, rejected alternatives, and moments of recognition—all perm
 # Stop waiting
 docker stop committee-based-tml
 
-# Deploy blockchain version NOW
+# Deploy Blockchain version NOW
 docker run tml/always-memory --earth-protection=true
 
 # Earth protected in 10 minutes
@@ -257,7 +257,7 @@ Earth Protection is **mandatory**, not optional. Contributions should:
 ---
 
 **Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)  
-**Version**: 3.0 (blockchain)  
+**Version**: 3.0 (Blockchain)  
 **Architecture**: Smart Contracts, Not Committees  
 **Repository**: https://github.com/FractonicMind/TernaryMoralLogic
 

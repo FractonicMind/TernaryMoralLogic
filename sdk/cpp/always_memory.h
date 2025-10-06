@@ -429,7 +429,7 @@ public:
     // ========== Blockchain Anchoring ==========
     
     /**
-     * Enable blockchain anchoring
+     * Enable Blockchain anchoring
      * @param network Blockchain network to use
      * @param interval Anchoring interval
      */
@@ -437,14 +437,14 @@ public:
                                    std::chrono::seconds interval);
     
     /**
-     * Get blockchain transaction for log
+     * Get Blockchain transaction for log
      * @param log_id Log ID
      * @return Transaction ID or nullopt
      */
     std::optional<std::string> GetBlockchainTransaction(const std::string& log_id);
     
     /**
-     * Verify blockchain anchor
+     * Verify Blockchain anchor
      * @param log_id Log ID
      * @return True if anchor valid
      */

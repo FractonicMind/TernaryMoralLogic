@@ -460,7 +460,7 @@ const oceanProtection = {
         // Plastics and chemicals
         "microplastic_dumping": {
             penalty: "$1M per ton",
-            detection: "Satellite + blockchain oracles",
+            detection: "Satellite + Blockchain oracles",
             enforcement: "Automatic smart contract"
         },
         
@@ -756,10 +756,10 @@ guardian_role_in_forbidden_acts = {
     "detection": "Smart contracts detect instantly",
     "enforcement": "Mathematics enforces immediately",
     "review": "No review possible - absolute",
-    "override": "Cannot override blockchain",
+    "override": "Cannot override Blockchain",
     "value_added": 0,
     "cost": "$600K/year wasted",
-    "recommendation": "Let blockchain handle it"
+    "recommendation": "Let Blockchain handle it"
 }
 ```
 

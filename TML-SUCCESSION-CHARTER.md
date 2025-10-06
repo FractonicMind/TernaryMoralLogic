@@ -12,19 +12,19 @@ This Charter establishes the continuity and governance of the Ternary Moral Logi
 
 **Core Principle: The Framework Already Survives**
 
-Unlike traditional frameworks requiring institutional succession, TML's blockchain architecture ensures **permanent survival independent of any person or institution**. This Charter does not transfer control - it establishes community stewardship of a framework that cannot be destroyed, captured, or controlled.
+Unlike traditional frameworks requiring institutional succession, TML's Blockchain architecture ensures **permanent survival independent of any person or institution**. This Charter does not transfer control - it establishes community stewardship of a framework that cannot be destroyed, captured, or controlled.
 
 ### Why Traditional Succession Planning Is Unnecessary
 
 **Blockchain Immutability:**
-- Framework rules anchored to Bitcoin blockchain (permanent, immutable)
+- Framework rules anchored to Bitcoin Blockchain (permanent, immutable)
 - Sacred Zero algorithms open source on GitHub (forkable, uncapturable)
 - Smart contracts execute penalties automatically (no human discretion)
 - Multi-chain evidence survives any institutional collapse
 - OpenTimestamps provides permanent timestamp proofs
 
 **No Single Point of Failure:**
-- No person controls the blockchain networks
+- No person controls the Blockchain networks
 - No institution can delete the evidence
 - No government can erase the code
 - No company can stop the penalties
@@ -128,7 +128,7 @@ contract GoukassianMemorialFund {
 - No institution can redirect funds
 - No government can seize smart contract assets
 - Operates perpetually without human intervention
-- Transparent blockchain verification by anyone
+- Transparent Blockchain verification by anyone
 
 ---
 
@@ -171,20 +171,20 @@ contract GoukassianMemorialFund {
 4. Testing: Community testing and feedback
 5. Vote: Rough consensus through community support
 6. Deployment: Gradual rollout with monitoring
-7. Anchoring: Accepted changes anchored to blockchain
+7. Anchoring: Accepted changes anchored to Blockchain
 ```
 
 **What CAN Be Changed (Community Consensus):**
 - Performance optimizations
 - Additional bias detection algorithms
-- New blockchain network integration
+- New Blockchain network integration
 - Enhanced privacy protections
 - Improved user interfaces
 - Better documentation
 - Language translations
 
 **What CANNOT Be Changed (Constitutional):**
-- Sacred Zero thresholds (anchored to blockchain)
+- Sacred Zero thresholds (anchored to Blockchain)
 - Universal logging requirement
 - Penalty distribution percentages
 - Whistleblower protection minimums
@@ -214,7 +214,7 @@ no_monopolization:
 - Peer review through decentralized academic community
 - No single institution controls grant decisions
 - Open access publication requirement
-- Public blockchain record of all grants
+- Public Blockchain record of all grants
 
 ---
 
@@ -264,7 +264,7 @@ education: "5% of fund"
 ### Community Oversight Without Control
 
 **Transparent Operations:**
-- All transactions visible on blockchain
+- All transactions visible on Blockchain
 - Public dashboard shows fund status
 - Annual reports generated automatically
 - Community can audit but not redirect
@@ -306,7 +306,7 @@ institutional_succession:
 ```
 
 **Guardian Network Cannot:**
-- Override blockchain-anchored constitutional principles
+- Override Blockchain-anchored constitutional principles
 - Stop automatic penalty enforcement
 - Redirect Memorial Fund allocations
 - Prevent community forking
@@ -354,7 +354,7 @@ capture_prevention:
     community_governance: "Consensus required for changes"
     
   distributed_infrastructure:
-    no_central_servers: "Public blockchains provide infrastructure"
+    no_central_servers: "Public Blockchains provide infrastructure"
     no_single_institution: "Community replaces any failed maintainer"
     no_corporate_control: "Framework exists independent of companies"
 ```
@@ -379,7 +379,7 @@ capture_prevention:
 **No Transition Period Required:**
 
 **Day 1 After Creator's Death:**
-- Framework continues operating (blockchain immutability)
+- Framework continues operating (Blockchain immutability)
 - Smart contracts continue enforcing penalties
 - Memorial Fund continues automatic distributions
 - Community continues maintaining code
@@ -393,9 +393,9 @@ capture_prevention:
 - Documentation updated to reflect community stewardship
 
 **What Doesn't Change:**
-- Constitutional principles (blockchain-anchored)
+- Constitutional principles (Blockchain-anchored)
 - Penalty enforcement (smart contract automatic)
-- Evidence immutability (blockchain permanence)
+- Evidence immutability (Blockchain permanence)
 - Victim prioritization (Memorial Fund allocation)
 - Open source requirement (community forks ensure)
 
@@ -414,7 +414,7 @@ capture_prevention:
 ### Continuity Verification
 
 **Community Self-Check:**
-- Verify blockchain anchoring operational
+- Verify Blockchain anchoring operational
 - Confirm smart contracts executing correctly
 - Ensure open source repository accessible
 - Test Memorial Fund distributions
@@ -435,7 +435,7 @@ capture_prevention:
 
 **Year 5-10:**
 - International adoption accelerates
-- Legal precedents strengthen blockchain evidence acceptance
+- Legal precedents strengthen Blockchain evidence acceptance
 - Memorial Fund reaches significant endowment scale
 - Community-driven improvements enhance framework
 
@@ -443,14 +443,14 @@ capture_prevention:
 - TML becomes global standard for AI accountability
 - Framework influences international AI governance treaties
 - Memorial Fund supports next generation of AI ethics researchers
-- Creator's legacy permanent through blockchain immortality
+- Creator's legacy permanent through Blockchain immortality
 
 ### Protection of Creator's Legacy
 
 **Lev Goukassian's Vision Preserved:**
 
 **Immutable Attribution:**
-- Creator credit anchored to Bitcoin blockchain
+- Creator credit anchored to Bitcoin Blockchain
 - All forks must maintain attribution (social contract)
 - Memorial Fund permanently named in creator's honor
 - Documentation preserves creator's philosophy
@@ -465,7 +465,7 @@ capture_prevention:
 **Philosophy Immortalized:**
 *"The sacred pause between question and answer—this is where wisdom begins, for humans and machines alike."* 
 
-This principle anchored to blockchain, preserved in code, maintained by community—surviving forever.
+This principle anchored to Blockchain, preserved in code, maintained by community—surviving forever.
 
 ---
 
@@ -474,7 +474,7 @@ This principle anchored to blockchain, preserved in code, maintained by communit
 ### Framework Under Attack Scenarios
 
 **If Governments Attempt Suppression:**
-- Framework continues via international blockchain networks
+- Framework continues via international Blockchain networks
 - Code forks operate from multiple jurisdictions
 - Evidence already anchored cannot be erased
 - Community maintains development offshore
@@ -498,7 +498,7 @@ This principle anchored to blockchain, preserved in code, maintained by communit
 threat_detected:
   1_community_alert: "Public notification of threat"
   2_fork_preparation: "Backup forks activated"
-  3_evidence_verification: "Confirm blockchain integrity"
+  3_evidence_verification: "Confirm Blockchain integrity"
   4_fund_protection: "Smart contract operation verified"
   5_communication: "Media and stakeholder notification"
   6_legal_response: "Coordinate community legal defense"
@@ -524,7 +524,7 @@ threat_detected:
 3. **Penalties Are Automatic**: Smart contracts execute without human intervention
 4. **Funds Operate Perpetually**: Memorial Fund smart contract runs indefinitely
 5. **Community Endures**: Global distributed community cannot be silenced
-6. **Principles Are Anchored**: Constitutional rules written to Bitcoin blockchain
+6. **Principles Are Anchored**: Constitutional rules written to Bitcoin Blockchain
 
 **No Successor Can:**
 - Weaken the protections
@@ -576,7 +576,7 @@ Message: "In memory of Lev Goukassian (1XXX-2025)
 
 From Lev Goukassian's writings:
 
-*"When I am gone, the framework will remain. Not because institutions preserve it, but because mathematics demands it. Not because governments enforce it, but because blockchains guarantee it. Not because successors control it, but because community maintains it.*
+*"When I am gone, the framework will remain. Not because institutions preserve it, but because mathematics demands it. Not because governments enforce it, but because Blockchains guarantee it. Not because successors control it, but because community maintains it.*
 
 *The Sacred Zero is not mine to take away. It belongs to every person who ever faced discrimination from an algorithm. The Always Memory is not mine to erase. It belongs to history itself, written in immutable cryptographic proof.*
 
@@ -599,6 +599,6 @@ From Lev Goukassian's writings:
 
 ---
 
-*"Through blockchain we achieve permanence. Through community we achieve resilience. Through open source we achieve immortality."*
+*"Through Blockchain we achieve permanence. Through community we achieve resilience. Through open source we achieve immortality."*
 
 **TML Lives Forever**

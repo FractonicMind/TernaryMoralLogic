@@ -157,7 +157,7 @@ from tml_protection import TMLClient
 
 app = FastAPI()
 
-# Initialize TML (blockchain, no Guardian needed)
+# Initialize TML (Blockchain, no Guardian needed)
 tml = TMLClient(
     blockchain_mode=True,
     endpoint="http://localhost:8080"
@@ -281,7 +281,7 @@ import (
 )
 
 func main() {
-    // Initialize TML (blockchain)
+    // Initialize TML (Blockchain)
     tml := protection.NewClient(protection.Config{
         BlockchainMode: true,
         Endpoint: "http://localhost:8080",
@@ -456,7 +456,7 @@ testDiscrimination();
 ### Test Blockchain Anchoring
 
 ```python
-# test-blockchain.py
+# test-Blockchain.py
 import tml_protection
 import time
 
@@ -465,12 +465,12 @@ tml = tml_protection.Client(blockchain_mode=True)
 # Log something
 log_id = tml.log("Test entry", {"timestamp": time.time()})
 
-# Wait for blockchain confirmation
+# Wait for Blockchain confirmation
 time.sleep(5)
 
 # Verify it's anchored
 proof = tml.get_blockchain_proof(log_id)
-print(f"✅ Log anchored to blockchain: {proof['transaction_hash']}")
+print(f"✅ Log anchored to Blockchain: {proof['transaction_hash']}")
 print(f"✅ Bitcoin block: {proof['block_height']}")
 print(f"✅ Immutable proof: {proof['merkle_root']}")
 ```
@@ -549,7 +549,7 @@ app.post('/api/loan', async (req, res) => {
             // Discrimination detected!
             console.error('SACRED ZERO VIOLATION');
             
-            // Log to blockchain (permanent record)
+            // Log to Blockchain (permanent record)
             await tml.logFatal('Loan discrimination', {
                 application: application.id,
                 evidence: check.evidence,
@@ -751,7 +751,7 @@ Before going to production:
 const promise = {
     protect: "every user equally",
     prevent: "discrimination before it happens",
-    prove: "compliance with blockchain evidence",
+    prove: "compliance with Blockchain evidence",
     profit: "from insurance savings, not bias"
 };
 

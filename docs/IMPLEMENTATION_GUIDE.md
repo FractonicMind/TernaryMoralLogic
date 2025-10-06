@@ -18,11 +18,11 @@
 ### Installation
 
 ```bash
-# Install TML blockchain framework
-pip install tml-blockchain
+# Install TML Blockchain framework
+pip install tml-Blockchain
 
 # Or use Docker
-docker pull tmlframework/blockchain:latest
+docker pull tmlframework/Blockchain:latest
 ```
 
 ### Basic Configuration
@@ -81,7 +81,7 @@ class AlwaysMemory:
             # Seal in TEE
             sealed_log = self.tee.seal(log)
             
-            # Anchor to blockchains (async)
+            # Anchor to Blockchains (async)
             self.anchors.anchor_async(sealed_log)
             
             # Execute action
@@ -158,19 +158,19 @@ class BlockchainAnchors:
 
 ### Phase 1: Core Deployment (Days 1-7)
 
-**Objective**: Get basic TML operational with blockchain anchoring
+**Objective**: Get basic TML operational with Blockchain anchoring
 
 **Steps**:
 
 1. **Install TML Framework**
 ```bash
-pip install tml-blockchain
+pip install tml-Blockchain
 tml init --project-name "your-org"
 ```
 
 2. **Configure Blockchain Endpoints**
 ```yaml
-# config/blockchain.yaml
+# config/Blockchain.yaml
 bitcoin:
   rpc_url: "https://bitcoin.node.example.com"
   network: "mainnet"
@@ -211,7 +211,7 @@ tee_config = {
 
 4. **Deploy Always Memory**
 ```bash
-tml deploy --config config/blockchain.yaml --tee config/tee.yaml
+tml deploy --config config/Blockchain.yaml --tee config/tee.yaml
 ```
 
 5. **Verify Operation**
@@ -224,7 +224,7 @@ tml verify --all-chains
 # ✓ Sacred Zero: 66 documents loaded
 ```
 
-**Deliverable**: Operational TML instance with blockchain protection active
+**Deliverable**: Operational TML instance with Blockchain protection active
 
 ### Phase 2: Integration (Days 8-14)
 
@@ -236,7 +236,7 @@ tml verify --all-chains
 ```python
 from tml_blockchain import AlwaysMemory
 
-memory = AlwaysMemory.from_config('config/blockchain.yaml')
+memory = AlwaysMemory.from_config('config/Blockchain.yaml')
 
 # Existing AI endpoint
 @app.post("/predict")
@@ -405,7 +405,7 @@ tml dashboard deploy \
 **Non-negotiable**:
 - Every action must create a log BEFORE execution
 - Logs must be sealed in TEE/HSM
-- Logs must be anchored to at least 2 blockchains
+- Logs must be anchored to at least 2 Blockchains
 - Missing logs trigger automatic penalties
 
 **Implementation**:
@@ -466,7 +466,7 @@ if sacred_zero_triggered(input_data):
 **Anchor Verification**:
 ```python
 def verify_log_integrity(log_hash: bytes) -> bool:
-    """Verify log exists on blockchains"""
+    """Verify log exists on Blockchains"""
     bitcoin_confirmed = opentimestamps.verify(log_hash)
     ethereum_confirmed = ethereum_contract.verifyAnchor(log_hash)
     polygon_confirmed = polygon_contract.verifyAnchor(log_hash)
@@ -504,7 +504,7 @@ if blockchain_unavailable():
         alert_operations=True
     )
     
-    # When blockchain recovers
+    # When Blockchain recovers
     memory.sync_backlog()
 ```
 
@@ -617,7 +617,7 @@ tml monitor --duration 24h --alert-on-issues
 # Check system health
 tml status --detailed
 
-# Verify blockchain anchoring
+# Verify Blockchain anchoring
 tml verify anchors --last-24h
 
 # Review Sacred Zero triggers
@@ -627,7 +627,7 @@ tml report sacred-zero --daily
 ### Weekly Tasks
 
 - Review Sacred Zero patterns
-- Verify blockchain anchor success rate
+- Verify Blockchain anchor success rate
 - Check TEE/HSM attestations
 - Audit Memorial Fund distributions
 - Review whistleblower reports

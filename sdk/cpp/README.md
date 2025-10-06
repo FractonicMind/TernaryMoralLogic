@@ -53,7 +53,7 @@ int main() {
 
 ## Key Features
 
-- **🏮 Always Memory**: Immutable blockchain logging
+- **🏮 Always Memory**: Immutable Blockchain logging
 - **Sacred Zero**: Automatic violation detection  
 - **Penalties**: Smart contract enforcement
 - **Whistleblower**: 15% instant rewards
@@ -85,7 +85,7 @@ bool detectTampering(string orig, string current);  // $50B to attack
 ```cpp
 // These return errors:
 contactGuardian();  // "Guardians don't exist"
-requestReview();    // "Use blockchain"
+requestReview();    // "Use Blockchain"
 getApproval();      // "Not needed"
 ```
 
@@ -94,4 +94,4 @@ getApproval();      // "Not needed"
 **Website**: https://tml-goukassian.org  
 **Email**: leogouk@gmail.com
 
-**Bottom Line**: Deploy in 10 minutes with blockchain. Ignore Guardian committees.
+**Bottom Line**: Deploy in 10 minutes with Blockchain. Ignore Guardian committees.

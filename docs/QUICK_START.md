@@ -4,7 +4,7 @@
 
 * Processing Time: 40μs per decision
 * Implementation Time: 30 minutes
-* **Deployment: Immediate with blockchain anchoring**
+* **Deployment: Immediate with Blockchain anchoring**
 * **Guardian Network: Optional future enhancement**
 
 ---
@@ -15,7 +15,7 @@ By the end of this guide, you will have:
 -  Installed TML Transparency Framework
 -  Implemented universal moral logging (100% coverage)
 -  Configured 40μs processing guarantee
--  **Set up blockchain anchoring (Bitcoin, Polygon, Ethereum)**
+-  **Set up Blockchain anchoring (Bitcoin, Polygon, Ethereum)**
 -  Tested transparency infrastructure
 -  **Deployed immediately without waiting for institutional coordination**
 
@@ -29,7 +29,7 @@ By the end of this guide, you will have:
 - Python 3.8 or higher
 - 2GB free disk space for audit logs
 - High-performance SSD for 40μs guarantee
-- Internet connection for blockchain anchoring
+- Internet connection for Blockchain anchoring
 
 ### Check Python Version
 ```bash
@@ -87,7 +87,7 @@ python test_install.py
 
 ### Install Performance Dependencies
 ```bash
-# For 40μs guarantee and blockchain anchoring
+# For 40μs guarantee and Blockchain anchoring
 pip install numpy ujson msgpack asyncio web3 bitcoin-utils
 ```
 
@@ -102,7 +102,7 @@ from tml_transparency import TMLLogger, MoralTrace
 import time
 
 def main():
-    # Step 1: Initialize TML Logger with blockchain anchoring
+    # Step 1: Initialize TML Logger with Blockchain anchoring
     print(" Initializing TML Transparency Logger...")
     logger = TMLLogger(
         domain="general",
@@ -135,7 +135,7 @@ def main():
     else:
         print(" Exceeded 40μs - optimizing required")
     
-    # Step 4: Show trace with blockchain anchoring
+    # Step 4: Show trace with Blockchain anchoring
     print(f"\n Moral Trace ID: {trace.id}")
     print(f"Timestamp: {trace.timestamp}")
     print(f"Action: {trace.action}")
@@ -143,7 +143,7 @@ def main():
     print(f"Decision: {trace.decision}")
     print(f"Blockchain Anchors: Bitcoin, Polygon, Ethereum")
     print("\n AI decision proceeded immediately after logging")
-    print(" Immutable proof anchored on multiple blockchains")
+    print(" Immutable proof anchored on multiple Blockchains")
     print(" Deployed immediately - no institutional coordination needed!")
     
     return trace
@@ -173,7 +173,7 @@ Decision: PROCEED
 Blockchain Anchors: Bitcoin, Polygon, Ethereum
 
  AI decision proceeded immediately after logging
- Immutable proof anchored on multiple blockchains
+ Immutable proof anchored on multiple Blockchains
  Deployed immediately - no institutional coordination needed!
 ```
 
@@ -190,7 +190,7 @@ import asyncio
 
 class HealthcareTransparencySystem:
     def __init__(self):
-        # Initialize with healthcare-specific logging and blockchain anchoring
+        # Initialize with healthcare-specific logging and Blockchain anchoring
         self.logger = TMLLogger(
             domain="healthcare",
             max_processing_us=40,
@@ -249,7 +249,7 @@ class HealthcareTransparencySystem:
         return triggers
     
     async def generate_transparency_report(self):
-        """Generate transparency report with blockchain verification."""
+        """Generate transparency report with Blockchain verification."""
         print("\n TRANSPARENCY REPORT")
         print("=" * 40)
         print(f"Total Decisions Logged: {self.decisions_logged}")
@@ -267,7 +267,7 @@ class HealthcareTransparencySystem:
             print("\n No investigations required")
         
         print("\n All decisions proceeded without delay")
-        print(" Complete audit trail anchored on blockchains")
+        print(" Complete audit trail anchored on Blockchains")
         print(" Guardian Network available as future enhancement")
 
 # Test the healthcare system
@@ -296,7 +296,7 @@ async def test_healthcare():
     
     print(" Healthcare Transparency System\n")
     print("=" * 50)
-    print(" blockchain Architecture")
+    print(" Blockchain Architecture")
     print(" Deploy immediately without institutional coordination")
     print("=" * 50)
     
@@ -337,8 +337,8 @@ class TransparencyInfrastructure:
             max_processing_us=40
         )
         
-        # Initialize blockchain anchoring (MANDATORY)
-        self.blockchain = BlockchainAnchor(
+        # Initialize Blockchain anchoring (MANDATORY)
+        self.Blockchain = BlockchainAnchor(
             chains=["bitcoin", "polygon", "ethereum"],
             opentimestamps=True,
             certificate_transparency=True
@@ -347,7 +347,7 @@ class TransparencyInfrastructure:
         # Initialize audit chain (immutable)
         self.audit_chain = AuditChain(
             hash_algorithm="sha256",
-            blockchain_anchor=self.blockchain
+            blockchain_anchor=self.Blockchain
         )
         
         # Guardian Network preparation (OPTIONAL FUTURE ENHANCEMENT)
@@ -362,7 +362,7 @@ class TransparencyInfrastructure:
         ]
         
     def log_with_immutable_audit(self, action, stakeholders, risk_level):
-        """Log decision with immutable blockchain trail."""
+        """Log decision with immutable Blockchain trail."""
         
         # Create trace (40μs)
         trace = self.logger.log_decision(
@@ -372,10 +372,10 @@ class TransparencyInfrastructure:
             decision="PROCEED"
         )
         
-        # Add to audit chain and anchor to blockchains
+        # Add to audit chain and anchor to Blockchains
         # (happens async, doesn't delay AI)
         self.audit_chain.add_async(trace)
-        self.blockchain.anchor_async(trace)
+        self.Blockchain.anchor_async(trace)
         
         # AI proceeds immediately
         return trace
@@ -394,11 +394,11 @@ class TransparencyInfrastructure:
         return is_valid
     
     def verify_blockchain_anchors(self):
-        """Verify blockchain anchoring is active."""
+        """Verify Blockchain anchoring is active."""
         print(f"\n BLOCKCHAIN VERIFICATION")
         print(f"   Primary Protection: Active")
         
-        anchors = self.blockchain.get_anchor_status()
+        anchors = self.Blockchain.get_anchor_status()
         for chain, status in anchors.items():
             print(f"   • {chain}: {status}")
         
@@ -421,7 +421,7 @@ if __name__ == "__main__":
     infra = TransparencyInfrastructure()
     
     print(" Transparency Infrastructure Test\n")
-    print(" blockchain ARCHITECTURE")
+    print(" Blockchain ARCHITECTURE")
     print(" Deploy immediately without institutional coordination\n")
     
     # Log some decisions
@@ -439,14 +439,14 @@ if __name__ == "__main__":
     # Verify integrity
     infra.verify_audit_integrity()
     
-    # Verify blockchain anchoring
+    # Verify Blockchain anchoring
     infra.verify_blockchain_anchors()
     
     # Show optional Guardian evolution
     infra.prepare_guardian_evolution()
     
     print("\n All decisions proceeded without delay")
-    print(" Complete transparency via blockchain anchoring")
+    print(" Complete transparency via Blockchain anchoring")
     print(" Deploy today, enhance with Guardians tomorrow (optional)")
 ```
 
@@ -514,7 +514,7 @@ def investigate():
     """Get traces for investigation (post-harm analysis)."""
     trace_id = request.args.get('trace_id')
     
-    # This would retrieve from blockchain-anchored audit chain
+    # This would retrieve from Blockchain-anchored audit chain
     return jsonify({
         "trace_id": trace_id,
         "investigation_status": "available",
@@ -547,7 +547,7 @@ if __name__ == '__main__':
     print("   • GET  /investigate - Post-harm investigation")
     print("   • GET  /metrics    - Transparency metrics")
     print("\nNo operational delays - AI proceeds immediately!")
-    print("Deploy today with blockchain, add Guardians tomorrow (optional)")
+    print("Deploy today with Blockchain, add Guardians tomorrow (optional)")
     
     app.run(debug=True, port=5000)
 ```
@@ -572,7 +572,7 @@ def validate_processing_guarantee():
     )
     
     print(" VALIDATING 40μs PROCESSING GUARANTEE\n")
-    print("Running 10,000 decision logs with blockchain anchoring...")
+    print("Running 10,000 decision logs with Blockchain anchoring...")
     
     times = []
     
@@ -626,7 +626,7 @@ def validate_processing_guarantee():
     print("\n KEY INSIGHTS:")
     print("   All 10,000 decisions proceeded immediately")
     print("   No user experienced any delay")
-    print("   Complete audit trail anchored on blockchains")
+    print("   Complete audit trail anchored on Blockchains")
     print("   No institutional coordination required")
     print("   Deploy immediately, enhance with Guardians later (optional)")
 
@@ -643,20 +643,20 @@ In just 30 minutes, you've:
 1. **Installed** TML Transparency Framework
 2. **Implemented** universal moral logging (100% coverage)
 3. **Achieved** 40μs processing guarantee
-4. **Deployed** blockchain anchoring (Bitcoin, Polygon, Ethereum)
+4. **Deployed** Blockchain anchoring (Bitcoin, Polygon, Ethereum)
 5. **Created** immutable audit infrastructure
 6. **Validated** zero operational delays
 
 Your AI now has **complete transparency without any institutional coordination!**
 
-**Key Achievement: Deploy immediately with blockchain protection. Guardian Network available as optional future enhancement.**
+**Key Achievement: Deploy immediately with Blockchain protection. Guardian Network available as optional future enhancement.**
 
 ---
 
 ##  Next Steps
 
 ### Immediate Actions
-1. **Review blockchain anchors** - Ensure proper anchoring
+1. **Review Blockchain anchors** - Ensure proper anchoring
 2. **Test investigation triggers** - Verify evidence immutability
 3. **Optimize for 40μs** - Hardware/software tuning
 
@@ -680,7 +680,7 @@ Your AI now has **complete transparency without any institutional coordination!*
 ##  Getting Help
 
 ### Documentation
-- [Blockchain Anchoring Guide](./docs/blockchain-anchoring.md)
+- [Blockchain Anchoring Guide](./docs/Blockchain-anchoring.md)
 - [Investigation Protocols](./docs/investigation-protocols.md)
 - [Guardian Evolution Path](./docs/guardian-evolution.md)
 
@@ -702,7 +702,7 @@ Your transparency implementation succeeds when:
 
 ---
 
-##  The blockchain Advantage
+##  The Blockchain Advantage
 
 **Deploy Today**: No need to coordinate with 11 institutions first
 **Immediate Protection**: Blockchain anchoring provides legal evidence now
@@ -716,12 +716,12 @@ Your transparency implementation succeeds when:
 
 ---
 
-*Quick Start Guide Version: 3.0.0 (blockchain Architecture)*
+*Quick Start Guide Version: 3.0.0 (Blockchain Architecture)*
 *Framework Version: TML Transparency 3.0.0*
 *Processing Guarantee: 40 microseconds*
 *Deployment: Immediate*
 
-**"Deploy protection today, evolve governance tomorrow."** - blockchain Philosophy
+**"Deploy protection today, evolve governance tomorrow."** - Blockchain Philosophy
 
 ---
 
