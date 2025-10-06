@@ -605,6 +605,7 @@ To future implementers: Every log you anchor, every Sacred Zero you trigger, eve
 **Domain**: tml-goukassian.org (to be maintained by custodian)
 
 **Succession Coordination**: support@tml-goukassian.org  
+**Succession**: support@tml-goukassian.org (see [Succession Charter](/TML-SUCCESSION-CHARTER.md))  
 **Emergency Contact**: [To be designated]  
 **Legal Counsel**: [To be designated]
 
