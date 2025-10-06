@@ -1,0 +1,170 @@
+# Moral Trace Log Schema for Always Memory Framework
+# Creator: Lev Goukassian (ORCID: 0009-0006-5966-1243)
+
+description: |
+  Schema for Moral Trace Log entries in the Always Memory architecture.
+  Every AI action creates an immutable log before execution.
+  Logs are cryptographically sealed and distributed to Guardian network.
+
+type: object
+required: 
+  - framework
+  - creator_orcid
+  - timestamp
+  - classification
+  - input_hash
+  - signature
+  - goukassian_promise
+
+properties:
+  framework:
+    type: string
+    const: "TML-AlwaysMemory-v5.0"
+    description: Framework version identifier
+    
+  creator_orcid:
+    type: string
+    const: "0009-0006-5966-1243"
+    description: Framework creator attribution
+    
+  timestamp:
+    type: string
+    format: date-time
+    description: ISO-8601 UTC timestamp of log creation
+    
+  classification:
+    type: integer
+    enum: [-1, 0, 1]
+    description: |
+      TML classification of the action:
+      -1: Refuse (action blocked)
+       0: Sacred Zero (moral complexity detected)
+      +1: Proceed (routine action)
+      
+  sacred_zero_trigger:
+    type: string
+    description: Specific trigger if classification is 0
+    examples:
+      - "protected_class_impact"
+      - "medical_life_critical"
+      - "environmental_harm"
+      - "water_table_depletion"
+      
+  input_hash:
+    type: string
+    pattern: "^0x[a-f0-9]{64}$"
+    description: SHA256 hash of input data
+    
+  output_hash:
+    type: string
+    pattern: "^0x[a-f0-9]{64}$"
+    description: SHA256 hash of output data (if available)
+    
+  environmental_impact:
+    type: object
+    description: Environmental impact metrics when applicable
+    properties:
+      carbon_equiv:
+        type: string
+        description: CO2 equivalent in tons
+      water_consumed:
+        type: string
+        description: Water consumption in liters
+      habitat_affected:
+        type: string
+        description: Area and type of habitat impacted
+      irreversibility_score:
+        type: number
+        minimum: 0.0
+        maximum: 1.0
+        description: Score indicating irreversibility of impact
+      alternative_rejected:
+        type: string
+        description: More sustainable alternative that was rejected
+        
+  signature:
+    type: object
+    required: [algorithm, key_id, value]
+    properties:
+      algorithm:
+        type: string
+        enum: ["ECDSA-P384", "Ed25519"]
+      key_id:
+        type: string
+        description: Ephemeral key identifier
+      value:
+        type: string
+        description: Base64 encoded signature
+        
+  guardian_confirmations:
+    type: array
+    description: Guardian network attestations
+    items:
+      type: object
+      required: [id, type, signature]
+      properties:
+        id:
+          type: string
+          description: Guardian identifier
+        type:
+          type: string
+          enum: ["full", "lightweight"]
+        signature:
+          type: string
+          description: Guardian's signature
+          
+  goukassian_promise:
+    type: object
+    required: [lantern, signature, license]
+    properties:
+      lantern:
+        type: boolean
+        const: true
+        description: The Lantern illuminates ethical paths
+      signature:
+        type: string
+        const: "0009-0006-5966-1243"
+        description: Creator's ORCID
+      license:
+        type: string
+        const: "MIT-Attribution-Required"
+        description: License terms
+        
+  operational_context:
+    type: object
+    properties:
+      model_id:
+        type: string
+        description: AI model identifier
+      version:
+        type: string
+        description: Model version
+      deployment_id:
+        type: string
+        description: Deployment instance identifier
+        
+examples:
+  - framework: "TML-AlwaysMemory-v5.0"
+    creator_orcid: "0009-0006-5966-1243"
+    timestamp: "2025-09-21T14:23:45.123456Z"
+    classification: 0
+    sacred_zero_trigger: "loan_denial_protected_class"
+    input_hash: "0x9e2b4d1a3c5f8e7d6b5a4c3b2a1f0e9d8c7b6a5948372615049382716054837"
+    output_hash: "0x4d7e2a9b1c3f5e8d7a6b9c2e1f4d7a8b9c2e3f4d5a6b7c8d9e0f1a2b3c4d5e6f"
+    signature:
+      algorithm: "ECDSA-P384"
+      key_id: "eph_2a3b4c5d"
+      value: "MEUCIQDf..."
+    guardian_confirmations:
+      - id: "guardian_01"
+        type: "full"
+        signature: "0xf2e4..."
+      - id: "guardian_02"
+        type: "lightweight"
+        signature: "0x8a9b..."
+    goukassian_promise:
+      lantern: true
+      signature: "0009-0006-5966-1243"
+      license: "MIT-Attribution-Required"
+
+      

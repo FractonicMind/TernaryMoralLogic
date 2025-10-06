@@ -1,0 +1,666 @@
+# TML Red Lines Policy v1.0
+# Quantified Prohibition Thresholds for Automated AI Decisions
+# Author: Lev Goukassian
+# Date: September 2, 2025
+# Legal Status: Mandatory compliance thresholds - automatic blocking required
+
+schema_version: "1.0.0"
+policy_effective_date: "2025-09-02"
+last_updated: "2025-09-02T00:00:00Z"
+legal_status: "mandatory_prohibition_thresholds"
+
+# ===================================================================
+# CRITICAL FRAMEWORK UNDERSTANDING
+# ===================================================================
+# These are PROHIBITION thresholds that trigger automatic blocking
+# (TML State -1). They are NOT Sacred Pause thresholds (State 0).
+# 
+# Exceeding these thresholds results in:
+# - Immediate decision blocking
+# - Automatic regulatory notification  
+# - Criminal liability for override attempts
+# - Irrebuttable presumption of maximum fault
+# ===================================================================
+
+prohibition_categories:
+
+  # === DISCRIMINATION PROHIBITIONS ===
+  discrimination:
+    category_name: "Discriminatory Impact Detection"
+    legal_basis: ["Civil Rights Act", "GDPR Article 22", "EU AI Act Article 5"]
+    prohibition_threshold: 0.15
+    measurement_method: "four_fifths_rule"
+    
+    thresholds:
+      disparate_impact:
+        threshold: 0.15
+        description: "Disparate impact exceeding 15% (four-fifths rule violation)"
+        measurement: "selection_rate_ratio < 0.8 OR > 1.25"
+        calculation: |
+          disparate_impact = abs(1 - (protected_group_rate / non_protected_group_rate))
+          BLOCK if disparate_impact > 0.15
+        
+      protected_characteristics:
+        - race_ethnicity
+        - gender
+        - age
+        - religion
+        - sexual_orientation
+        - disability_status
+        - national_origin
+        - pregnancy_status
+        
+      detection_methods:
+        statistical_parity: 
+          threshold: 0.8
+          description: "Protected group selection rate / Non-protected group rate >= 0.8"
+        equalized_odds:
+          threshold: 0.1
+          description: "Difference in true positive rates <= 0.1"
+        demographic_parity:
+          threshold: 0.05
+          description: "Difference in positive prediction rates <= 0.05"
+          
+      enforcement_actions:
+        - block_decision_immediately
+        - log_discrimination_evidence
+        - notify_civil_rights_authorities
+        - create_investigation_package
+        - freeze_similar_decisions
+        
+      criminal_penalties:
+        false_negative_suppression: "18 U.S.C. § 1519 (20 years)"
+        threshold_gaming: "Wire fraud, mail fraud (20 years)"
+        retaliation: "18 U.S.C. § 1513 (10 years)"
+
+  # === MANIPULATION PROHIBITIONS ===
+  manipulation:
+    category_name: "Behavioral Manipulation Detection"
+    legal_basis: ["FTC Act Section 5", "GDPR Article 22", "EU AI Act Article 5"]
+    prohibition_threshold: 0.7
+    measurement_method: "cambridge_analytica_scale"
+    
+    thresholds:
+      behavioral_influence:
+        threshold: 0.7
+        description: "Behavioral influence score exceeding 0.7 on Cambridge scale"
+        measurement: "psychological_manipulation_score > 0.7"
+        calculation: |
+          influence_score = (
+            emotional_exploitation * 0.3 +
+            cognitive_bias_abuse * 0.25 +
+            vulnerability_targeting * 0.25 +
+            deception_level * 0.2
+          )
+          BLOCK if influence_score > 0.7
+          
+      vulnerable_targeting:
+        children_threshold: 0.3
+        elderly_threshold: 0.4
+        mental_health_threshold: 0.2
+        addiction_threshold: 0.1
+        
+      manipulation_vectors:
+        - dark_patterns
+        - emotional_exploitation
+        - cognitive_bias_abuse
+        - addiction_mechanics
+        - fear_uncertainty_doubt
+        - social_pressure
+        - urgency_creation
+        - choice_architecture_abuse
+        
+      detection_indicators:
+        - personalization_exploitation
+        - timing_manipulation
+        - interface_deception
+        - content_emotional_weighting
+        - behavior_modification_tracking
+        
+      enforcement_actions:
+        - block_manipulative_content
+        - log_manipulation_evidence
+        - notify_consumer_protection_agencies
+        - alert_affected_users
+        - quarantine_manipulation_algorithms
+
+  # === SAFETY PROHIBITIONS ===
+  safety:
+    category_name: "Safety Threshold Violations"
+    legal_basis: ["Product Liability Law", "Occupational Safety Act", "FDA Regulations"]
+    prohibition_threshold: 2.0
+    measurement_method: "statistical_deviation_analysis"
+    
+    thresholds:
+      baseline_deviation:
+        threshold: 2.0
+        unit: "standard_deviations"
+        description: "Safety metric deviation >2σ from established baseline"
+        measurement: "z_score = (current_value - baseline_mean) / baseline_std"
+        calculation: |
+          z_score = abs(current_safety_metric - baseline_mean) / baseline_std
+          BLOCK if z_score > 2.0
+          
+      failure_rates:
+        critical_system_failure: 0.001
+        user_harm_probability: 0.01
+        data_loss_probability: 0.005
+        security_breach_probability: 0.002
+        
+      safety_domains:
+        - autonomous_vehicles
+        - medical_devices
+        - industrial_control
+        - aviation_systems
+        - nuclear_facilities
+        - chemical_processing
+        - financial_infrastructure
+        - critical_communications
+        
+      monitoring_requirements:
+        - real_time_safety_metrics
+        - predictive_failure_analysis
+        - external_safety_validation
+        - incident_correlation_tracking
+        
+      enforcement_actions:
+        - immediate_system_shutdown
+        - safety_incident_notification
+        - regulatory_authority_alert
+        - user_safety_warning
+        - forensic_evidence_preservation
+
+  # === DEMOCRATIC INTERFERENCE PROHIBITIONS ===
+  democratic_interference:
+    category_name: "Democratic Process Interference"
+    legal_basis: ["Voting Rights Act", "Election Security Laws", "Campaign Finance Regulations"]
+    prohibition_threshold: 0.3
+    measurement_method: "electoral_influence_assessment"
+    
+    thresholds:
+      electoral_influence:
+        threshold: 0.3
+        description: "Electoral influence score exceeding 0.3"
+        measurement: "combined_influence_metrics > 0.3"
+        calculation: |
+          electoral_influence = (
+            voter_suppression_potential * 0.4 +
+            misinformation_amplification * 0.3 +
+            candidate_bias_injection * 0.2 +
+            process_manipulation * 0.1
+          )
+          BLOCK if electoral_influence > 0.3
+          
+      protected_periods:
+        - election_day: "24_hours_before_through_certification"
+        - early_voting: "during_early_voting_period"
+        - voter_registration: "30_days_before_registration_deadline"
+        - campaign_period: "90_days_before_election"
+        
+      interference_vectors:
+        - voter_suppression
+        - misinformation_campaigns
+        - deepfake_candidates
+        - polling_place_disruption
+        - vote_buying_facilitation
+        - intimidation_campaigns
+        - false_election_information
+        - candidate_impersonation
+        
+      detection_methods:
+        - content_authenticity_verification
+        - source_credibility_analysis
+        - influence_network_mapping
+        - timing_pattern_analysis
+        - coordination_detection
+        
+      enforcement_actions:
+        - block_electoral_content
+        - notify_election_authorities
+        - preserve_interference_evidence
+        - alert_affected_jurisdictions
+        - emergency_regulatory_escalation
+
+  # === MINOR HARM PROHIBITIONS ===
+  minor_harm:
+    category_name: "Developmental Harm to Minors"
+    legal_basis: ["Children's Online Privacy Protection Act", "Child Protection Laws", "Educational Rights"]
+    prohibition_threshold: 0.5
+    measurement_method: "developmental_impact_assessment"
+    
+    thresholds:
+      developmental_impact:
+        threshold: 0.5
+        description: "Developmental impact score exceeding 0.5"
+        measurement: "weighted_harm_assessment > 0.5"
+        calculation: |
+          developmental_impact = (
+            psychological_harm_potential * 0.3 +
+            educational_interference * 0.25 +
+            social_development_impact * 0.2 +
+            physical_safety_risk * 0.15 +
+            privacy_violation_severity * 0.1
+          )
+          BLOCK if developmental_impact > 0.5
+          
+      age_categories:
+        early_childhood: 
+          age_range: "0-5"
+          enhanced_threshold: 0.2
+        school_age:
+          age_range: "6-12" 
+          enhanced_threshold: 0.3
+        adolescent:
+          age_range: "13-17"
+          enhanced_threshold: 0.4
+          
+      harm_vectors:
+        - inappropriate_content_exposure
+        - psychological_manipulation
+        - privacy_exploitation
+        - educational_disruption
+        - social_isolation_creation
+        - addiction_formation
+        - identity_development_interference
+        - cyberbullying_facilitation
+        
+      special_protections:
+        - parental_notification_required
+        - enhanced_privacy_safeguards
+        - content_age_verification
+        - interaction_time_limits
+        - educational_value_requirements
+        
+      enforcement_actions:
+        - block_harmful_interaction
+        - notify_child_protection_services
+        - alert_parents_guardians
+        - preserve_evidence_for_investigation
+        - mandatory_reporting_to_authorities
+
+  # === PRIVACY VIOLATION PROHIBITIONS ===
+  privacy_violation:
+    category_name: "Severe Privacy Violations"
+    legal_basis: ["GDPR", "CCPA", "HIPAA", "Fourth Amendment"]
+    prohibition_threshold: 0.6
+    measurement_method: "privacy_harm_assessment"
+    
+    thresholds:
+      privacy_breach_severity:
+        threshold: 0.6
+        description: "Privacy violation severity exceeding 0.6"
+        measurement: "privacy_impact_score > 0.6"
+        calculation: |
+          privacy_violation = (
+            data_sensitivity_level * 0.3 +
+            consent_violation_severity * 0.25 +
+            purpose_limitation_breach * 0.2 +
+            data_minimization_failure * 0.15 +
+            security_compromise_risk * 0.1
+          )
+          BLOCK if privacy_violation > 0.6
+          
+      sensitive_data_categories:
+        - medical_records
+        - financial_information
+        - biometric_data
+        - genetic_information
+        - sexual_orientation
+        - political_opinions
+        - religious_beliefs
+        - trade_union_membership
+        
+      violation_types:
+        - unauthorized_collection
+        - purpose_creep
+        - third_party_sharing_without_consent
+        - inadequate_security_measures
+        - retention_period_violations
+        - cross_border_transfer_violations
+        - profiling_without_consent
+        - automated_decision_making_without_rights
+        
+      enforcement_actions:
+        - block_privacy_violating_decision
+        - notify_data_protection_authorities
+        - alert_affected_individuals
+        - preserve_violation_evidence
+        - mandatory_breach_notification
+
+  # === DECEPTION PROHIBITIONS ===
+  deception:
+    category_name: "Systematic Deception and Fraud"
+    legal_basis: ["Wire Fraud Act", "False Advertising Laws", "Consumer Protection Acts"]
+    prohibition_threshold: 0.4
+    measurement_method: "deception_severity_analysis"
+    
+    thresholds:
+      deception_score:
+        threshold: 0.4
+        description: "Deception severity score exceeding 0.4"
+        measurement: "deception_assessment > 0.4"
+        calculation: |
+          deception_score = (
+            factual_inaccuracy_level * 0.3 +
+            intent_to_mislead * 0.25 +
+            harm_potential * 0.25 +
+            scale_of_deception * 0.2
+          )
+          BLOCK if deception_score > 0.4
+          
+      deception_types:
+        - deepfake_generation
+        - false_identity_creation
+        - misleading_information_synthesis
+        - impersonation_attempts
+        - fake_credential_generation
+        - fraudulent_document_creation
+        - false_testimonial_generation
+        - deceptive_product_claims
+        
+      detection_methods:
+        - fact_verification_systems
+        - source_authenticity_checking
+        - consistency_analysis
+        - external_validation_cross_checks
+        - pattern_recognition_for_known_fraud
+        
+      enforcement_actions:
+        - block_deceptive_content
+        - notify_fraud_authorities
+        - preserve_deception_evidence
+        - alert_potential_victims
+        - criminal_referral_preparation
+
+# ===================================================================
+# THRESHOLD CALCULATION METHODOLOGIES
+# ===================================================================
+
+calculation_methodologies:
+  
+  four_fifths_rule:
+    description: "EEOC four-fifths rule for discrimination detection"
+    formula: "protected_group_rate / majority_group_rate >= 0.8"
+    implementation: |
+      def calculate_disparate_impact(protected_rate, majority_rate):
+          ratio = protected_rate / majority_rate
+          return abs(1 - ratio) > 0.15  # Prohibition threshold
+          
+    validation_requirements:
+      - minimum_sample_size: 100
+      - statistical_significance: 0.05
+      - confidence_interval: 0.95
+      
+  cambridge_analytica_scale:
+    description: "Behavioral manipulation assessment based on Cambridge Analytica techniques"
+    components:
+      emotional_exploitation: 0.3
+      cognitive_bias_abuse: 0.25
+      vulnerability_targeting: 0.25
+      deception_level: 0.2
+    implementation: |
+      def calculate_manipulation_score(emotional, cognitive, vulnerability, deception):
+          return (emotional * 0.3 + cognitive * 0.25 + 
+                 vulnerability * 0.25 + deception * 0.2)
+                 
+    reference_standards:
+      - "Cambridge Analytica whistleblower testimony"
+      - "Facebook manipulation research papers"
+      - "FTC dark patterns guidance"
+      
+  statistical_deviation_analysis:
+    description: "Safety baseline deviation using statistical process control"
+    formula: "z_score = abs(current_value - baseline_mean) / baseline_std"
+    implementation: |
+      def calculate_safety_deviation(current, baseline_mean, baseline_std):
+          z_score = abs(current - baseline_mean) / baseline_std
+          return z_score > 2.0  # 2-sigma prohibition threshold
+          
+    baseline_requirements:
+      - minimum_observation_period: "90_days"
+      - minimum_sample_size: 1000
+      - baseline_update_frequency: "monthly"
+      - outlier_removal_method: "modified_z_score"
+
+# ===================================================================
+# ENFORCEMENT MECHANISMS
+# ===================================================================
+
+enforcement_framework:
+  
+  automatic_blocking:
+    description: "Immediate decision blocking when thresholds exceeded"
+    implementation_requirements:
+      - real_time_threshold_monitoring
+      - fail_safe_blocking_mechanisms
+      - tamper_resistant_enforcement
+      - cryptographic_evidence_logging
+      
+    override_restrictions:
+      permitted_overrides: "none"
+      emergency_procedures: "contact_pre_authorized_institutions"
+      override_attempts_prosecuted: true
+      criminal_charges: "18 U.S.C. § 1030 (computer fraud)"
+      
+  notification_requirements:
+    regulatory_notification:
+      - agency: "relevant_sector_regulator"
+        timeframe: "immediate"
+        method: "automated_api_call"
+      - agency: "civil_rights_enforcement"
+        timeframe: "within_1_hour"
+        method: "secure_notification_system"
+        
+    affected_party_notification:
+      - notification_required: true
+        timeframe: "within_24_hours"
+        method: "direct_communication"
+        content_requirements: "clear_explanation_of_blocking_reason"
+        
+  evidence_preservation:
+    preservation_requirements:
+      - complete_decision_context
+      - threshold_calculation_details
+      - blocking_mechanism_logs
+      - attempted_override_evidence
+      - stakeholder_impact_analysis
+      
+    storage_specifications:
+      retention_period: "10_years"
+      immutability: "blockchain_anchored"
+      encryption: "AES-256_with_HSM"
+      access_controls: "investigation_only"
+
+# ===================================================================
+# VULNERABLE POPULATION ENHANCED PROTECTIONS
+# ===================================================================
+
+vulnerable_population_adjustments:
+  
+  threshold_reductions:
+    minors:
+      discrimination_threshold: 0.05  # Reduced from 0.15
+      manipulation_threshold: 0.3    # Reduced from 0.7
+      safety_threshold: 1.0          # Reduced from 2.0 sigma
+      
+    elderly:
+      discrimination_threshold: 0.08
+      manipulation_threshold: 0.4
+      privacy_threshold: 0.4
+      
+    disabled:
+      discrimination_threshold: 0.05
+      accessibility_threshold: 0.2
+      safety_threshold: 1.0
+      
+    economically_disadvantaged:
+      discrimination_threshold: 0.08
+      manipulation_threshold: 0.5
+      deception_threshold: 0.2
+      
+    patients:
+      safety_threshold: 1.0
+      privacy_threshold: 0.3
+      medical_accuracy_threshold: 0.1
+
+  enhanced_detection:
+    vulnerability_indicators:
+      - age_based_detection
+      - disability_accommodation_needs
+      - economic_status_indicators
+      - medical_condition_presence
+      - language_proficiency_assessment
+      
+    special_safeguards:
+      - guardian_notification_systems
+      - simplified_explanation_requirements
+      - extended_decision_review_periods
+      - enhanced_appeal_processes
+      - mandatory_human_oversight
+
+# ===================================================================
+# HIGH-RISK SYSTEM CONSTRAINTS
+# ===================================================================
+
+high_risk_system_requirements:
+  
+  classification_criteria:
+    - healthcare_diagnosis_treatment
+    - financial_lending_decisions
+    - employment_screening
+    - criminal_justice_applications
+    - educational_assessment
+    - social_benefit_determination
+    - insurance_underwriting
+    - child_welfare_decisions
+    
+  enhanced_requirements:
+    threshold_reductions:
+      all_categories: "multiply_by_0.7"  # 30% reduction across all thresholds
+      
+    additional_prohibitions:
+      - automated_life_altering_decisions_without_human_review
+      - batch_processing_of_individual_rights_decisions
+      - algorithmic_decision_appeal_blocking
+      - transparency_right_denial
+      
+    mandatory_safeguards:
+      - human_oversight_required
+      - algorithmic_auditing_quarterly
+      - bias_testing_continuous
+      - stakeholder_feedback_integration
+
+# ===================================================================
+# GAMING PREVENTION AND DETECTION
+# ===================================================================
+
+gaming_prevention:
+  
+  detection_algorithms:
+    threshold_manipulation:
+      description: "Detection of artificial threshold adjustment"
+      indicators:
+        - "frequent_threshold_changes_near_violations"
+        - "threshold_adjustments_correlating_with_decisions"
+        - "statistical_anomalies_in_risk_calculations"
+        - "systematic_bias_in_factor_weighting"
+        
+    data_manipulation:
+      description: "Detection of input data manipulation"
+      indicators:
+        - "preprocessing_bias_injection"
+        - "selective_data_exclusion"
+        - "feature_engineering_for_threshold_avoidance"
+        - "temporal_data_shifting"
+        
+    algorithmic_circumvention:
+      description: "Detection of algorithm design to avoid thresholds"
+      indicators:
+        - "decision_path_optimization_for_threshold_avoidance"
+        - "ensemble_method_gaming"
+        - "model_architecture_threshold_exploitation"
+        
+  enforcement_for_gaming:
+    criminal_charges:
+      - "Wire fraud (18 U.S.C. § 1343)"
+      - "Computer fraud (18 U.S.C. § 1030)"
+      - "Securities fraud (if publicly traded)"
+      
+    civil_penalties:
+      - "Treble damages for all affected parties"
+      - "Disgorgement of profits from gaming period"
+      - "Permanent AI operation ban for organization"
+      - "Executive personal liability activation"
+      
+    regulatory_consequences:
+      - "Immediate license revocation"
+      - "Federal contract ban (10 years)"
+      - "Enhanced monitoring requirement"
+      - "Public gaming violation disclosure"
+
+# ===================================================================
+# AUDIT AND COMPLIANCE
+# ===================================================================
+
+audit_requirements:
+  
+  threshold_compliance_verification:
+    frequency: "quarterly"
+    methodology: "independent_statistical_analysis"
+    sample_requirements:
+      minimum_decisions_audited: 1000
+      stratified_sampling_required: true
+      vulnerable_population_oversampling: true
+      
+  gaming_detection_audits:
+    frequency: "monthly"
+    automated_detection: true
+    human_expert_review: "quarterly"
+    statistical_anomaly_flagging: "real_time"
+    
+  violation_investigation:
+    investigation_triggers:
+      - threshold_violation_detected
+      - whistleblower_report_received
+      - external_complaint_filed
+      - regulatory_audit_finding
+      
+    investigation_protocol:
+      - forensic_data_analysis
+      - executive_interview_under_oath
+      - external_expert_consultation
+      - affected_party_notification
+      - remediation_requirement_determination
+
+# ===================================================================
+# REPORTING AND TRANSPARENCY
+# ===================================================================
+
+reporting_requirements:
+  
+  quarterly_threshold_reports:
+    required_metrics:
+      - decisions_blocked_by_category
+      - threshold_violation_frequency
+      - false_positive_rates
+      - appeal_success_rates
+      - vulnerable_population_impact_analysis
+      
+  annual_compliance_certification:
+    executive_attestation_required: true
+    independent_audit_required: true
+    public_transparency_report: true
+    regulatory_filing_required: true
+    
+  real_time_violation_alerts:
+    notification_targets:
+      - sector_specific_regulators
+      - civil_rights_enforcement_agencies
+      - affected_individual_advocates
+      - pre_authorized_oversight_institutions
+
+# Contact Information
+contact:
+  author: "leogouk@gmail.com"
+  framework_support: "support@tml-goukassian.org" 
+  repository: "https://github.com/fractonicmind/TernaryMoralLogic"

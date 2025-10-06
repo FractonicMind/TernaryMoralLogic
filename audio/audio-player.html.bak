@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ternary Moral Logic Interview</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8FAFC; /* Light background from your infographic palette */
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-4">
+    <div class="bg-white rounded-lg shadow-xl p-8 max-w-xl w-full text-center">
+        <h1 class="text-3xl font-bold text-[#005F73] mb-4">Ternary Moral Logic: The Interview</h1>
+        <p class="text-gray-700 mb-6">Listen to a detailed discussion on the implications and applications of Ternary Moral Logic: The AI That Knows When to Pause.</p>
+
+        <audio controls class="w-full max-w-md mx-auto">
+            <!-- Corrected path: the MP3 file is in the same directory as this HTML file. -->
+            <source src="TernaryMoralLogic-interview.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+
+        <p class="text-sm text-gray-500 mt-4">Interview Duration: 7 minutes 15 seconds</p>
+
+        <a href="https://github.com/FractonicMind/TernaryMoralLogic/" class="mt-8 inline-block bg-[#0A9396] hover:bg-[#005F73] text-white font-bold py-2 px-4 rounded transition duration-300">
+            Back to Repository
+        </a>
+    </div>
+</body>
+</html>

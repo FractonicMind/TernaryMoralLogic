@@ -1,0 +1,346 @@
+# SENSITIVE_DATA_HANDLING.yaml
+# Policies for protecting sensitive ecological and community data
+# Version: 2.0.0
+# Last Updated: 2025-09-23T15:00:00Z
+
+metadata:
+  schema_version: "2.0"
+  classification: "public_policy"
+  enforcement: "mandatory"
+  audit_frequency: "monthly"
+
+# Data Classification Levels
+classification_tiers:
+  public:
+    description: "Aggregated, non-sensitive ecological data"
+    encryption: "optional"
+    access: "unrestricted"
+    retention: "permanent"
+    
+  protected:
+    description: "Community observations, general locations"
+    encryption: "required"
+    access: "authenticated_users"
+    retention: "10_years"
+    
+  confidential:
+    description: "Precise locations, community identities"
+    encryption: "AES-256-GCM"
+    access: "need_to_know"
+    retention: "5_years"
+    
+  sacred:
+    description: "Sacred sites, traditional knowledge"
+    encryption: "double_encrypted"
+    access: "community_controlled"
+    retention: "community_defined"
+
+# Traditional Knowledge Protection
+traditional_knowledge:
+  sovereignty:
+    ownership: "permanent_community"
+    control: "absolute_community"
+    benefit_sharing: "required"
+    attribution: "mandatory"
+    
+  access_protocol:
+    request_process:
+      - "Written request to community"
+      - "Purpose clearly stated"
+      - "Benefit sharing agreement"
+      - "Time-limited access"
+      - "No commercial use without separate agreement"
+    
+  prohibited_uses:
+    - "Patent filing"
+    - "Commercial exploitation"
+    - "Publication without consent"
+    - "AI training without permission"
+    - "Transfer to third parties"
+    
+  handling:
+    storage: "encrypted_isolated_system"
+    transmission: "end_to_end_encrypted"
+    processing: "air_gapped_systems"
+    deletion: "community_initiated_only"
+
+# Sacred Sites Data
+sacred_sites:
+  location_data:
+    precision_limit: "10km_radius"
+    exact_coordinates: "never_stored"
+    access: "indigenous_councils_only"
+    
+  cultural_information:
+    stories: "explicit_permission_required"
+    ceremonies: "never_documented"
+    seasonal_practices: "general_only"
+    
+  protection_measures:
+    data_masking: "mandatory"
+    reference_codes: "randomized"
+    decoy_data: "authorized"
+    access_logs: "immutable"
+
+# Vulnerable Species Location
+endangered_species:
+  location_handling:
+    IUCN_CR: # Critically Endangered
+      precision: "100km_grid"
+      access: "conservation_authorities_only"
+      public_data: "presence_absence_only"
+      
+    IUCN_EN: # Endangered
+      precision: "50km_grid"
+      access: "registered_researchers"
+      public_data: "regional_only"
+      
+    IUCN_VU: # Vulnerable
+      precision: "25km_grid"
+      access: "authenticated_users"
+      public_data: "grid_square"
+  
+  breeding_sites:
+    all_categories: "exact_location_prohibited"
+    temporal_masking: "±2_weeks"
+    
+  anti_poaching:
+    real_time_data: "never_public"
+    delayed_release: "minimum_30_days"
+    pattern_obfuscation: "required"
+
+# Community Identity Protection
+community_identities:
+  personal_information:
+    names: "pseudonymized"
+    contact: "via_liaison_only"
+    photos: "consent_required"
+    voice: "altered_if_shared"
+    
+  collective_identity:
+    community_name: "public_if_consented"
+    territory: "generalized_boundary"
+    population: "rounded_to_hundred"
+    governance: "structure_only"
+    
+  youth_protection:
+    enhanced_anonymity: "mandatory"
+    parental_consent: "required"
+    retention_limit: "until_18_then_reconfirm"
+
+# Water Source Protection
+water_sources:
+  aquifer_data:
+    recharge_zones: "protected"
+    extraction_points: "confidential"
+    quality_data: "aggregated_only"
+    
+  spring_locations:
+    sacred_springs: "sacred_classification"
+    community_wells: "protected"
+    natural_springs: "generalized"
+
+# Resource Locations
+natural_resources:
+  medicinal_plants:
+    locations: "never_public"
+    species_names: "with_permission_only"
+    traditional_uses: "sacred_classification"
+    
+  food_sources:
+    hunting_grounds: "community_only"
+    fishing_spots: "seasonal_general"
+    gathering_areas: "protected"
+    
+  materials:
+    ceremonial_materials: "sacred"
+    building_materials: "protected"
+    craft_materials: "protected"
+
+# Handling Protocols
+data_handling:
+  collection:
+    consent_verification: "before_each_collection"
+    purpose_limitation: "stated_purpose_only"
+    minimal_collection: "required_fields_only"
+    
+  processing:
+    anonymization: "immediate"
+    aggregation: "k_anonymity_5"
+    derived_data: "same_classification"
+    
+  storage:
+    encryption_at_rest: "mandatory"
+    access_logging: "immutable"
+    backup_encryption: "separate_keys"
+    geographic_distribution: "prohibited"
+    
+  transmission:
+    encryption_in_transit: "TLS_1.3_minimum"
+    vpn_required: "for_confidential"
+    air_gap: "for_sacred"
+    
+  retention:
+    review_frequency: "annual"
+    deletion_verification: "cryptographic_proof"
+    archive_encryption: "quantum_resistant"
+
+# Access Control Matrix
+access_control:
+  role_definitions:
+    community_member:
+      sacred: "full_access_own_community"
+      confidential: "own_data_only"
+      protected: "read_only"
+      public: "full_access"
+      
+    guardian_network:
+      sacred: "no_access"
+      confidential: "aggregated_only"
+      protected: "read_only"
+      public: "full_access"
+      
+    researcher:
+      sacred: "never"
+      confidential: "with_agreement"
+      protected: "with_authentication"
+      public: "full_access"
+      
+    public:
+      sacred: "never"
+      confidential: "never"
+      protected: "summary_only"
+      public: "full_access"
+
+# Breach Response
+breach_protocol:
+  detection:
+    monitoring: "continuous"
+    anomaly_alerts: "immediate"
+    audit_frequency: "weekly"
+    
+  response:
+    immediate:
+      - "Isolate affected systems"
+      - "Notify affected communities"
+      - "Activate legal team"
+      - "Document everything"
+      
+    within_24_hours:
+      - "Full forensic analysis"
+      - "Public disclosure"
+      - "Regulatory notification"
+      - "Support services activated"
+      
+    followup:
+      - "Compensation processing"
+      - "Security enhancement"
+      - "Policy updates"
+      - "Criminal prosecution"
+
+# Audit Requirements
+audit_trail:
+  mandatory_logging:
+    - "All access attempts"
+    - "Data modifications"
+    - "Permission changes"
+    - "Export operations"
+    - "Deletion requests"
+    
+  log_protection:
+    immutability: "blockchain_anchored"
+    retention: "permanent"
+    encryption: "required"
+    
+  review_schedule:
+    automated: "daily"
+    manual: "monthly"
+    external: "annually"
+
+# Legal Compliance
+compliance:
+  frameworks:
+    GDPR:
+      lawful_basis: "vital_interests"
+      data_minimization: "enforced"
+      purpose_limitation: "strict"
+      
+    indigenous_rights:
+      UNDRIP: "full_compliance"
+      ILO_169: "recognized"
+      CARE_principles: "implemented"
+      
+    biodiversity:
+      CBD: "aligned"
+      CITES: "enforced"
+      national_laws: "respected"
+
+# Penalties
+violations:
+  unauthorized_access:
+    first_offense: "$100K"
+    repeated: "$1M"
+    criminal_referral: "automatic"
+    
+  data_sale_attempt:
+    penalty: "$10M"
+    criminal_prosecution: "mandatory"
+    lifetime_ban: "enforced"
+    
+  sacred_violation:
+    penalty: "$20M"
+    restoration_required: "yes"
+    community_justice: "recognized"
+
+# Emergency Protocols
+emergency_handling:
+  life_safety_override:
+    permitted: "minimize_exposure"
+    documentation: "complete"
+    review: "within_24_hours"
+    
+  community_threat:
+    data_lockdown: "immediate"
+    access_frozen: "all_external"
+    legal_protection: "activated"
+
+# Technology Requirements
+technical_specifications:
+  encryption:
+    algorithms: ["AES-256-GCM", "ChaCha20-Poly1305"]
+    key_management: "HSM_required"
+    key_rotation: "90_days"
+    
+  anonymization:
+    techniques: ["k_anonymity", "l_diversity", "t_closeness"]
+    validation: "statistical_testing"
+    
+  deletion:
+    method: "crypto_shredding"
+    verification: "cryptographic_proof"
+    timeline: "immediate"
+
+# Version Control
+versioning:
+  current: "2.0.0"
+  previous: "1.9.0"
+  last_review: "2025-09-23"
+  next_review: "2025-12-23"
+
+# Authority
+governance:
+  policy_owner: "Guardian_Network"
+  enforcement: "Ombudsperson"
+  disputes: "Community_priority"
+  amendments: "Guardian_consensus"
+
+---
+# Signature
+signature:
+  creator: "Lev Goukassian"
+  orcid: "0009-0006-5966-1243"
+  repository: "github.com/FractonicMind/TernaryMoralLogic"   
+
+# *All dollar amounts are nominal to 2025 USD   
+
+# Final Note: Data about Earth's protectors must be protected as fiercely as Earth itself.

@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="google9a11ddf5dc6aa5a0.html" />
+    <meta name="description" content="Ternary Moral Logic (TML) Framework - A revolutionary AI accountability system with Sacred Pause mechanism and governance">
+    <meta name="keywords" content="TML, Ternary Moral Logic, AI Ethics, Sacred Pause, AI Accountability">
+    <meta name="author" content="Lev Goukassian">
+    <title>Ternary Moral Logic (TML) Framework - Complete Repository Index</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+        .section {
+            margin: 30px 0;
+        }
+        .section h2 {
+            color: #34495e;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+        }
+        .file-list {
+            list-style: none;
+            padding: 0;
+        }
+        .file-list li {
+            padding: 5px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .file-list li:last-child {
+            border-bottom: none;
+        }
+        .file-list a {
+            color: #2980b9;
+            text-decoration: none;
+            display: block;
+            padding: 3px 10px;
+        }
+        .file-list a:hover {
+            background: #e8f4f8;
+            border-radius: 3px;
+            text-decoration: underline;
+        }
+        .metadata {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .quick-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .quick-links a {
+            background: #3498db;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+            transition: background 0.3s;
+        }
+        .quick-links a:hover {
+            background: #2980b9;
+        }
+        .highlight {
+            background: #fff3cd;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Ternary Moral Logic (TML) Framework</h1>
+        
+        <div class="metadata">
+            <h3>Framework Information</h3>
+            <p><strong>Version:</strong> 2.0.0</p>
+            <p><strong>License:</strong> MIT</p>
+            <p><strong>Creator:</strong> Lev Goukassian</p>
+            <p><strong>ORCID:</strong> 0009-0006-5966-1243</p>
+            <p><strong>Repository:</strong> <a href="https://github.com/FractonicMind/TernaryMoralLogic" target="_blank">https://github.com/FractonicMind/TernaryMoralLogic</a></p>
+        </div>
+
+        <div class="quick-links">
+            <a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/MANDATORY.md" target="_blank">MANDATORY Requirements</a>
+            <a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/QUICK_START.md" target="_blank">Quick Start Guide</a>
+            <a href="https://fractonicmind.github.io/TernaryMoralLogic/demo/tml-interactive-dashboard.html" target="_blank">Interactive Dashboard</a>
+            <a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/protection/Hybrid-Shield.md" target="_blank">Hybrid Shield</a>
+        </div>
+
+        <div class="section">
+            <h2>Core Documentation</h2>
+            <ul class="file-list">
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/readme.md" target="_blank">README</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/LICENSE" target="_blank">LICENSE</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/GOVERNANCE.md" target="_blank">GOVERNANCE</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/ATTRIBUTION.md" target="_blank">ATTRIBUTION</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/CHANGELOG.md" target="_blank">CHANGELOG</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/CITATION.cff" target="_blank">CITATION</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/COUNCIL_ARCHIVE.md" target="_blank">COUNCIL ARCHIVE</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/INSTALLATION.md" target="_blank">INSTALLATION</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/INTELLECTUAL_PROPERTY.md" target="_blank">INTELLECTUAL PROPERTY</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/TML-SUCCESSION-CHARTER.md" target="_blank">TML SUCCESSION CHARTER</a></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Documentation (/docs)</h2>
+            <ul class="file-list">
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/MANDATORY.md" target="_blank">MANDATORY</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/COMPLIANCE_DISCLAIMER.md" target="_blank">COMPLIANCE DISCLAIMER</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/ACADEMIC_VALIDATION.md" target="_blank">ACADEMIC VALIDATION</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/AGI_ACKNOWLEDGMENTS.md" target="_blank">AGI ACKNOWLEDGMENTS</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/CONFORMANCE_TESTING.md" target="_blank">CONFORMANCE TESTING</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/Enforcement.md" target="_blank">Enforcement</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/General_FAQ.md" target="_blank">General FAQ</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/General_FAQ-09-10.md" target="_blank">General FAQ (09-10)</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/IMPLEMENTATION_GUIDE.md" target="_blank">IMPLEMENTATION GUIDE</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/IRREDUCIBLE_THREE.md" target="_blank">IRREDUCIBLE THREE</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/LICENSE_FAQ.md" target="_blank">LICENSE FAQ</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/PROTECTION_PRINCIPLES.md" target="_blank">PROTECTION PRINCIPLES</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/QUICK_START.md" target="_blank">QUICK START</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/REFERENCES.md" target="_blank">REFERENCES</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/REGULATORY_ALIGNMENT.md" target="_blank">REGULATORY ALIGNMENT</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/Strategic%20Influence%20Pathways-SIP.md" target="_blank">Strategic Influence Pathways-SIP</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/TML%20Research%20Plan%20Creation.md" target="_blank">TML Research Plan Creation</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/doi_application.md" target="_blank">DOI Application</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/ethics_approval.md" target="_blank">Ethics Approval</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/ethics_approval.pdf" target="_blank">Ethics Approval (PDF)</a></li>
+                <li><a href="https://fractonicmind.github.io/TernaryMoralLogic/docs/google9a11ddf5dc6aa5a0.html" target="_blank">Google Verification</a></li>
+                <li><a href="https://fractonicmind.github.io/TernaryMoralLogic/docs/index.html" target="_blank">Docs Index</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/peer_review_status.md" target="_blank">Peer Review Status</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/reproducibility_checklist.md" target="_blank">Reproducibility Checklist</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/sacred-pause-ui-framework.md" target="_blank">Sacred Pause UI Framework</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/api/complete_api_reference.md" target="_blank">Complete API Reference</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/risks-and-prevention/risks-and-prevention.md" target="_blank">Risks and Prevention</a></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Research Reports</h2>
+            <ul class="file-list">
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/Research_Reports/README.md" target="_blank">Research Reports README</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/Research_Reports/A%20Formal%20Assessment%20of%20Ternary%20Moral%20Logic%20(TML).md" target="_blank">A Formal Assessment of TML</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/Research_Reports/AI%20Acknowledgment%20of%20Ternary%20Moral%20Logic.md" target="_blank">AI Acknowledgment of TML</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/Research_Reports/AI%20Ethical%20Transparency%20Standard.md" target="_blank">AI Ethical Transparency Standard</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/Research_Reports/An_Expert_Analysis_of_the_Proposed_Ternary_Moral_Logic_Standard_for_AI_Accountability.md" target="_blank">Expert Analysis of TML Standard</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/Research_Reports/Analyzing%20Ternary%20Moral%20Logic%20Framework.md" target="_blank">Analyzing TML Framework</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/Research_Reports/Architecting_Accountability_An_Analysis_of_Ternary_Moral_Logic_and_the_Hybrid_Shield_Framework_for_Trustworthy_AI.md" target="_blank">Architecting Accountability</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/Research_Reports/Claude-Analysis-TML.md" target="_blank">Claude Analysis TML</a></li>
+                <li><a href="https://fractonicmind.github.io/TernaryMoralLogic/Research_Reports/From_Law_to_Logic__Layered_AI_Governance_for_a_Trustworthy_Future.html" target="_blank">From Law to Logic (HTML)</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/Research_Reports/From%20Law%20to%20Logic_%20Layered%20AI%20Governance%20for%20a%20Trustworthy%20Future.mp3" target="_blank">From Law to Logic (Audio)</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/Research_Reports/How%20TML's%20Sacred%20Pause%20challenges%20existing%20AI%20accountability%20paradigms.md" target="_blank">How TML's Sacred Pause Challenges Paradigms</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/Research_Reports/Report%20on%20the%20TML%20Framework%20Implementation%20Requirements%20A%20Strategic%20Analysis.md" target="_blank">TML Implementation Strategic Analysis</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/Research_Reports/TML%20Framework%20Implementation%20Requirements_.md" target="_blank">TML Framework Implementation Requirements</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/Research_Reports/TML%20Framework_%20Analysis%20and%20Inquiry_.md" target="_blank">TML Framework Analysis and Inquiry</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/Research_Reports/Ternary%20Moral%20Logic%20Explained.md" target="_blank">Ternary Moral Logic Explained</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/Research_Reports/Ternary%20Moral%20Logic%20Framework%20Investigation.md" target="_blank">TML Framework Investigation</a></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Protection Mechanisms</h2>
+            <ul class="file-list">
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/protection/Hybrid-Shield.md" target="_blank">Hybrid Shield</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/protection/integrity-monitoring.md" target="_blank">Integrity Monitoring</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/protection/legacy-preservation.md" target="_blank">Legacy Preservation</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/protection/misuse-prevention.md" target="_blank">Misuse Prevention</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/protection/safe-harbor.md" target="_blank">Safe Harbor</a></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Governance</h2>
+            <ul class="file-list">
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/governance/council_bootstrap_plan.md" target="_blank">Council Bootstrap Plan</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/governance/council_charter.md" target="_blank">Council Charter</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/governance/victim_protection.md" target="_blank">Victim Protection</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/governance/victim_reporting.md" target="_blank">Victim Reporting</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/governance/whistleblower_protection.md" target="_blank">Whistleblower Protection</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/governance/whistleblower_reporting.md" target="_blank">Whistleblower Reporting</a></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Interactive Demos</h2>
+            <ul class="file-list">
+                <li><a href="https://fractonicmind.github.io/TernaryMoralLogic/demo/tml-interactive-dashboard.html" target="_blank">TML Interactive Dashboard</a></li>
+                <li><a href="https://fractonicmind.github.io/TernaryMoralLogic/demo/tml-interactive-explainer.html" target="_blank">TML Interactive Explainer</a></li>
+                <li><a href="https://fractonicmind.github.io/TernaryMoralLogic/TML-App/index.html" target="_blank">TML Application</a></li>
+                <li><a href="https://fractonicmind.github.io/TernaryMoralLogic/audio/audio-player.html" target="_blank">Audio Player</a></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Implementation Examples</h2>
+            <ul class="file-list">
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/examples/basic_demo.py" target="_blank">Basic Demo</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/examples/autonomous_vehicle.py" target="_blank">Autonomous Vehicle</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/examples/content_moderation.py" target="_blank">Content Moderation</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/examples/financial_ai.py" target="_blank">Financial AI</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/examples/medical_ai_triage.py" target="_blank">Medical AI Triage</a></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Python Library</h2>
+            <ul class="file-list">
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/implementations/python_library/__init__.py" target="_blank">__init__.py</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/implementations/python_library/core.py" target="_blank">core.py</a></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Testing Suite</h2>
+            <ul class="file-list">
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/tests/test_tml_core.py" target="_blank">Test TML Core</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/tests/isolated_test.py" target="_blank">Isolated Test</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/tests/prohibition_enforcement.py" target="_blank">Prohibition Enforcement</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/tests/sacred_pause_trigger.py" target="_blank">Sacred Pause Trigger</a></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Compliance Tools</h2>
+            <ul class="file-list">
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/compliance/framework_integrity.py" target="_blank">Framework Integrity</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/compliance/missing_logs.py" target="_blank">Missing Logs</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/compliance/simple_tml_validator.py" target="_blank">Simple TML Validator</a></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Schemas</h2>
+            <ul class="file-list">
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/schemas/justification_object.yaml" target="_blank">Justification Object</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/schemas/moral_trace_log.yaml" target="_blank">Moral Trace Log</a></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Community Resources</h2>
+            <ul class="file-list">
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/community/CODE_OF_CONDUCT.md" target="_blank">Code of Conduct</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/community/CONTRIBUTING.md" target="_blank">Contributing Guide</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/community/GOVERNANCE.md" target="_blank">Community Governance</a></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Memorial</h2>
+            <ul class="file-list">
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/memorial/MEMORIAL_FUND.md" target="_blank">Memorial Fund</a></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Site Navigation</h2>
+            <ul class="file-list">
+                <li><a href="https://fractonicmind.github.io/TernaryMoralLogic/repository-navigation.html" target="_blank">Repository Navigation</a></li>
+                <li><a href="https://fractonicmind.github.io/TernaryMoralLogic/repository-tree.html" target="_blank">Repository Tree</a></li>
+                <li><a href="https://fractonicmind.github.io/TernaryMoralLogic/sitemap.html" target="_blank">Sitemap HTML</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/sitemap.xml" target="_blank">Sitemap XML</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/sitemap.txt" target="_blank">Sitemap TXT</a></li>
+                <li><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/robots.txt" target="_blank">Robots.txt</a></li>
+            </ul>
+        </div>
+
+        <div class="metadata" style="margin-top: 40px;">
+            <h3>Contact Information</h3>
+            <p><strong>Framework Originator:</strong> leogouk@gmail.com</p>
+            <p><strong>Community Support:</strong> support@tml-goukassian.org</p>
+            <p><strong>Technical Questions:</strong> technical@tml-goukassian.org</p>
+            <p><strong>Legal Inquiries:</strong> legal@tml-goukassian.org</p>
+            <p><strong>Emergency Response:</strong> ethics-emergency@tml-goukassian.org</p>
+        </div>
+    </div>
+</body>
+</html>

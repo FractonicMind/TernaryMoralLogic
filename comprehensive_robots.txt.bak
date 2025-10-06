@@ -1,0 +1,21 @@
+Robots.txt for TernaryMoralLogic
+
+Last updated: August 8, 2025
+
+XML Sitemaps
+
+Sitemap: https://fractonicmind.github.io/TernaryMoralLogic/bare-minimum-sitemap.xml
+Sitemap: https://fractonicmind.github.io/TernaryMoralLogic/sitemap.xml
+
+
+Text Sitemap
+
+Sitemap: https://fractonicmind.github.io/TernaryMoralLogic/sitemap.txt
+
+
+HTML Sitemap (not standard but included for reference)
+
+HTML Sitemap is available at: https://fractonicmind.github.io/TernaryMoralLogic/sitemap.html
+
+User-agent: *
+Disallow:
