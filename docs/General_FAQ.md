@@ -845,7 +845,7 @@ Each cycle strengthens both compliance and credibility. Self-reinforcing adoptio
 **Q1. What happens to TML if its creator can no longer oversee it?**
 
 TML is covered by a signed **Voluntary Succession Plan** that transfers stewardship of repositories, blockchain anchoring, domains, and the Memorial Fund to a decentralized **[Stewardship Council](/TML-VOLUNTARY-SUCCESSION.md)**. The plan is transparent and auditable.
-Read and listen here: [`TML-Succession-Plan.html`](TML-Succession-Plan.html)
+Read and listen here: [TML-Succession-Plan.html](https://fractonicmind.github.io/TernaryMoralLogic/TML-Succession-Plan.html)
 
 **Q2. Who holds custody after succession, and how is power limited?**
 
@@ -854,7 +854,7 @@ Custody moves to an independent multi-institution Council representing technolog
 **Q3. What parts of TML are immutable under succession?**
 
 The ethical floor and its machinery remain fixed: **Sacred Zero**, **Always Memory**, **Hybrid Shield**, public blockchain anchoring, and enforcement of **46+ foundational documents** in total, 26+ Human Rights and 20+ Earth Protection. Any intervention must be public, signed, append-only, and anchored.
-Overview with audio: [TML-Succession-Plan.html](/TML-Succession-Plan.html)
+Overview with audio: [TML-Succession-Plan.html](https://fractonicmind.github.io/TernaryMoralLogic/TML-Succession-Plan.html)
 
 ---
 
