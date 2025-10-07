@@ -6,7 +6,8 @@
 
 ---
 
-#### *"I taught machines to feel the weight of action, and the beauty of hesitation. I paused, and made the future pause with me."* **— Lev Goukassian**
+#### *"I taught machines to feel the weight of action, and the beauty of hesitation. I paused, and made the future pause with me."*   
+**— Lev Goukassian**
 
 ---
 
