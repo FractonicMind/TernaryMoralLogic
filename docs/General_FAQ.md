@@ -69,16 +69,16 @@ Each operator must install the following document sets directly into the AI syst
 Triggers occur on any detected or potential violation involving:
 - **Autonomy, dignity, privacy, or consent**
 - **Discrimination or exploitation**
-- **Actions listed in the mandated Forbidden List**
-- **Any clause among the 40 baseline human rights documents required by TML**
+- **Actions listed in the mandated [Forbidden List](docs/mandates/core/Forbidden_Acts_Absolute.md)**
+- **Any clause among the 26+ baseline human rights documents required by TML**
 
 **2. Earth Protection Corpus**
 Triggers occur on any detected or potential violation involving:
 - **Ecological degradation or environmental harm**
 - **Breach of international ecological treaties**
-- **Any event listed in the mandated Forbidden List**
+- **Any event listed in the mandated [Forbidden List](docs/earth/FORBIDDEN.md)**
 - **Endangerment of protected ecosystems or species**
-- **Any clause among the 26 ecological protection treaties required by TML**
+- **Any clause among the 20+ ecological protection treaties required by TML**
 
 When triggered:
 1. The system pauses the action.  
@@ -324,7 +324,7 @@ Every log, every penalty, and every verdict translates into tangible restitution
 
 **Q1: What is the scope of TML's Human Rights Framework?**
 
-The Human Rights Framework consists of **26 comprehensive documents** establishing absolute protections for human dignity in AI systems:
+The Human Rights Framework consists of **26+ comprehensive documents** establishing absolute protections for human dignity in AI systems:
 
 **Core Legal Instruments (8 documents)**:
 - Universal Declaration of Human Rights integration
@@ -701,7 +701,7 @@ Cross-border recognition of digital evidence varies. Anchoring to multiple chain
 ## Defining the Threshold
 
 **Q1: Who decides when TML should trigger a Sacred Zero?**  
-TML thresholds are not arbitrary or developer-set. They are anchored in **40 foundational Human Rights documents** and **26 Earth Protection treaties**. These include instruments like the Universal Declaration of Human Rights, Geneva Conventions, Paris Agreement, and Convention on Biological Diversity.  
+TML thresholds are not arbitrary or developer-set. They are anchored in **40 foundational Human Rights documents** and **26+ Earth Protection treaties**. These include instruments like the Universal Declaration of Human Rights, Geneva Conventions, Paris Agreement, and Convention on Biological Diversity.  
 
 **Q2: How are these thresholds kept up to date?**  
 TML uses **oracles** to refresh thresholds in real time. Each Sacred Zero log records the exact document and provision that triggered the hesitation. This ensures transparency and prevents silent manipulation.  
@@ -912,7 +912,7 @@ TML with Always Memory represents a paradigm shift in AI accountability: for hum
 
 **Privacy**: Crypto-shredding balances accountability with user rights
 
-**Human Rights**: Comprehensive 26-document framework protecting dignity
+**Human Rights**: Comprehensive 26+ document framework protecting dignity
 
 With the integration of Sacred Zero, Always Memory, Earth Protection, and the comprehensive Human Rights Framework, TML becomes the first AI accountability framework that protects humans, ecosystems, species, and future generations. By mandating official datasets, empowering Indigenous communities, embedding ecological harm into its logic, and establishing absolute human rights protections, TML delivers a planetary and humanitarian accountability architecture designed to withstand the legal, ethical, and technical challenges of global governance.
 
