@@ -15,38 +15,6 @@ Treaties protecting Earth are discovered and integrated **automatically via Bloc
 
 ---
 
-## The OLD Problem (Now Solved)
-
-**BEFORE (Guardian-Dependent)**:
-```yaml
-old_discovery:
-  step_1: "Guardian institution finds treaty"
-  step_2: "3 of 11 Guardians review (72 hours)"
-  step_3: "Committee votes on inclusion"
-  step_4: "Technical team integrates (2-4 hours)"
-  step_5: "Finally starts monitoring"
-  
-  total_time: "4-7 days minimum"
-  human_dependency: "100%"
-  failure_points: "Multiple"
-```
-
-**NOW (Blockchain Oracles)**:
-```python
-def discover_and_integrate_treaty(oracle_network):
-    # Automated discovery - no humans needed
-    new_treaty = oracle_network.discover()
-    
-    # Smart contract validation - instant
-    if smart_contract.validate(new_treaty):
-        oracle_network.integrate(new_treaty)
-        return "Protected immediately"
-    
-    # Total time: <10 minutes
-```
-
----
-
 ## Blockchain Oracle Discovery System
 
 ### Decentralized Treaty Oracles
@@ -221,33 +189,6 @@ contract AutoIntegration {
 
 ---
 
-## Why Guardian Discovery is Obsolete
-
-### Guardian Problems (Eliminated)
-
-| Old Guardian Method | New Blockchain Method |
-|-------------------|---------------------|
-| Human must discover | Oracles scan continuously |
-| 72-hour review period | Instant consensus |
-| 3 of 11 must approve | 51% oracle agreement |
-| Committee can disagree | Math doesn't argue |
-| Political influence risk | Algorithms have no politics |
-| Can miss treaties | Nothing escapes oracles |
-| Costs $600K/year per Guardian | Oracles cost ~$100/month |
-
-### The Math
-
-- **Guardian Discovery Rate**: ~1 treaty/quarter (if lucky)
-- **Oracle Discovery Rate**: ~100% within 24 hours
-- **Guardian Integration Time**: 4-7 days
-- **Oracle Integration Time**: <10 minutes
-- **Guardian Annual Cost**: $6.6M (11 institutions)
-- **Oracle Annual Cost**: $12,000
-
-**Oracles are 550x cheaper and 1000x faster.**
-
----
-
 ## Incentive Structure (Fully Automated)
 
 ### Oracle Rewards
@@ -304,7 +245,7 @@ def incentivize_government_apis():
 
 ---
 
-## Emergency Protocols (Still Automated)
+## Emergency Protocols
 
 ### Environmental Crisis Discovery
 
@@ -371,9 +312,9 @@ contract MissedTreatyProtocol {
 
 ---
 
-## The Guardian Option (Year 5+, If Bored)
+## The Guardian Option
 
-### What Guardians Could Add (But Don't Need To)
+### What Guardians Could Add
 
 ```yaml
 optional_guardian_enhancement:
@@ -389,8 +330,7 @@ optional_guardian_enhancement:
     - Adds 72 hours delay for no benefit
     - Costs $600K/year per institution
     
-  honest_assessment: "Complete waste of money"
-```
+  ```
 
 ---
 
@@ -406,19 +346,6 @@ ORACLE_METRICS = {
     "annual_cost": "$12,000 total",
     "human_involvement": "Zero",
     "failure_rate": "0.01% (network outage only)"
-}
-```
-
-### Guardian Performance (Hypothetical)
-
-```python
-GUARDIAN_METRICS = {
-    "discovery_speed": "Days to weeks",
-    "coverage_rate": "Maybe 60% if lucky",
-    "integration_time": "4-7 days minimum",
-    "annual_cost": "$6,600,000",
-    "human_involvement": "Dozens of people",
-    "failure_rate": "30%+ (politics, delays, disagreements)"
 }
 ```
 
@@ -442,24 +369,11 @@ tml-oracle start --autodiscover --autointegrate
 # Human involvement: 5 minutes once, then never again
 ```
 
-### Guardian Alternative (Not Recommended)
-
-```bash
-# Step 1: Form committee (6 months)
-# Step 2: Hire staff (3 months)  
-# Step 3: Establish procedures (3 months)
-# Step 4: Begin manual monitoring (ongoing forever)
-# Step 5: Realize oracles do it better (inevitable)
-
-# Total deployment: 1+ year
-# Human involvement: Endless
-```
-
 ---
 
 ## Summary: The Choice is Clear
 
-### Blockchain Oracles (Deploy Today)
+### Blockchain Oracles
 ✅ Continuous 24/7 scanning  
 ✅ Instant integration (<10 min)  
 ✅ Zero human involvement  
@@ -467,17 +381,9 @@ tml-oracle start --autodiscover --autointegrate
 ✅ 100% coverage of digital sources  
 ✅ Immediate protection active
 
-### Guardian Institutions (Never Needed)
-❌ Sporadic discovery (quarterly maybe)  
-❌ 4-7 day integration minimum  
-❌ Dozens of humans required  
-❌ $6.6M/year cost  
-❌ 60% coverage at best  
-❌ Months to become operational
-
 ---
 
-**Discovery Philosophy**: Earth's laws need no permission to be enforced. Oracles find them, smart contracts integrate them, Blockchain enforces them—all while committees are still scheduling their first meeting.
+**Discovery Philosophy**: Earth's laws need no permission to be enforced. Oracles find them, smart contracts integrate them, Blockchain enforces them—all.
 
 ---
 
@@ -486,8 +392,6 @@ tml-oracle start --autodiscover --autointegrate
 **Review Schedule**: Never (it's automated)  
 **Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)  
 **Repository**: https://github.com/FractonicMind/TernaryMoralLogic
-
-*"By the time a Guardian committee finishes voting on whether to include a treaty, our oracles have already integrated it, enforced it, and moved on to discover ten more."*
 
 *All USD amounts are nominal to 2025*
 
