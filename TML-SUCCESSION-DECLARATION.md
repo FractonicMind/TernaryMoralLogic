@@ -29,7 +29,7 @@ This declaration establishes succession under:
 
 ### Scope of Repositories
 
-This succession declaration applies to **all repositories** under the GitHub organization "FractonicMind" (https://github.com/FractonicMind/), including but not limited to:
+This succession declaration applies to **all repositories** under the GitHub organization "FractonicMind" ([https://github.com/FractonicMind/](https://github.com/FractonicMind?tab=repositories)), including but not limited to:
 - All current repositories as of the date of this declaration
 - Any repositories created before transition completion
 - All associated documentation, code, and intellectual property
