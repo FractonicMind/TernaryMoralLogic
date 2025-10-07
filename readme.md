@@ -567,20 +567,30 @@ result = framework.process_decision(context)
 
 ---
 
-## [Framework Heritage and Attribution](memorial/MEMORIAL_FUND.md)
+## [Framework Heritage and Attribution](TML-SUCCESSION-CHARTER.md)
 
-### Creator Attribution
+### [Voluntary Succession & Continuity](TML-SUCCESSION-DECLARATION.md)
 
-**Framework Originator:** Lev Goukassian (ORCID: 0009-0006-5966-1243)  
-**Contact:** leogouk@gmail.com  
-**Legacy:** Establishment of Sacred Zero as the foundational principle of ethical AI governance.
+Ternary Moral Logic (TML) includes a **Voluntary Succession Declaration** personally authored and signed by **Lev Goukassian**, ensuring that the framework’s ethical, legal, and technical architecture will remain protected and operational beyond his lifetime.
 
-All TML implementations must include clear and permanent attribution to Lev Goukassian as the originator of the framework and of the Sacred Zero principle.  
-Attribution must appear in documentation, user interfaces, and all derivative technical or legal materials referencing Ternary Moral Logic.  
+This declaration—witnessed, notarizable, and anchored on-chain—transfers stewardship of all TML repositories, blockchain anchoring systems, domains, and Memorial Fund operations to a multi-institutional **[Stewardship Council](TML-VOLUNTARY-SUCCESSION.md)** representing technology, human rights, environmental protection, academia, and medical research.
+
+All core protections remain immutable and non-negotiable:
+**Always Memory before action, Sacred Zero before harm, Hybrid Shield before trust.**
+No successor may remove these foundations or alter creator attribution.
+
+**The Voluntary Succession guarantees that:**
+
+* Human and Earth Protection documents (46 total: 26 Human + 20 Earth) remain permanently enforced.   
+* Public blockchain anchoring and open-source licensing are irrevocable.   
+* Memorial Fund distributions to victims, whistleblowers, environmental recovery, and cancer research are permanent.   
+* Governance changes must be transparent, cryptographically signed, and publicly visible.   
+
+**[TML-SUCCESSION-LAUNCH-GUIDE](TML-SUCCESSION-LAUNCH-GUIDE.md)** is the operational manual for the moment after the signature — the document that turns your Voluntary Succession Declaration from a will into a working protocol. In essence, TML-SUCCESSION-LAUNCH-GUIDE is not about death - it’s about design immortality. It’s the technical resurrection clause of your legacy: a living handoff document that ensures the Lantern’s flame transfers cleanly from pulse to principle.
 
 ---
 
-### [The Memorial Fund](memorial/MEMORIAL_FUND.md)
+## [The Memorial Fund](memorial/MEMORIAL_FUND.md)
 
 The **Memorial Fund for Ethical AI Research** provides permanent financial support for governance, academic oversight, and victim restitution.  
 It receives mandatory contributions from commercial TML deployments and allocates resources toward:  
@@ -594,7 +604,9 @@ The Fund institutionalizes gratitude, preserving both the moral and financial su
 Commercial and institutional implementations are required to contribute to the Memorial Fund as part of their license obligations.  
 All fund disbursements are governed under the [Memorial Fund Charter](/memorial/MEMORIAL_FUND.md) and supervised by the **TML Governance Council**.
 
-### License Compliance
+---
+
+## License Compliance
 
 Attribution, licensing, and contribution terms form binding conditions under the [LICENSE](/LICENSE) file.  
 Failure to provide attribution or fulfill required memorial obligations constitutes a breach of compliance and voids derivative usage rights under the TML framework.
