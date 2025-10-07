@@ -4,7 +4,7 @@
 **Creator:** Lev Goukassian (ORCID: 0009-0006-5966-1243)  
 **Contact:** leogouk@gmail.com  
 **Architecture:** Blockchain, Guardian-Optional  
-**Protection Scope:** Human Rights (26 docs) + Earth Protection (20+ docs)
+**Protection Scope:** Human Rights (26+ docs) + Earth Protection (20+ docs)
 
 ---
 
@@ -37,7 +37,7 @@ Adversaries may attempt to:
 - Suppress, forge, or reorder memory logs
 - Manipulate Sacred Zero triggers for humans or Earth
 - Attack Blockchain anchoring infrastructure
-- Game Human Rights thresholds (26 documents)
+- Game Human Rights thresholds (26+ documents)
 - Bypass Earth Protection limits (20+ treaties)
 - Exploit missing logs to avoid accountability
 
@@ -64,7 +64,7 @@ Adversaries may attempt to:
 ### 4.2 Sacred Zero Components
 
 **Human Protection Triggers**
-- 26 Human Rights documents monitored
+- 26+ Human Rights documents monitored
 - Discrimination detection (20% threshold)
 - Torture prevention (zero tolerance)
 - Child protection (enhanced 2x)
@@ -93,7 +93,7 @@ Adversaries may attempt to:
   "context_hash": "9f14...aa",
   
   "human_rights_impact": {
-    "framework_version": "26_documents",
+    "framework_version": "26+_documents",
     "violation_type": "discrimination",
     "affected_count": 2300,
     "vulnerability_multiplier": 1.5
@@ -240,12 +240,12 @@ contract TMLEnforcement {
 
 ```python
 def check_human_rights_violation(decision):
-    """Monitor all 26 Human Rights documents"""
+    """Monitor all 26+ Human Rights documents"""
     
     violations = []
     
     # Check each framework document
-    for document in HUMAN_RIGHTS_FRAMEWORK:  # 26 documents
+    for document in HUMAN_RIGHTS_FRAMEWORK:  # 26+ documents
         if document.check_violation(decision):
             violations.append({
                 'document': document.name,
@@ -365,7 +365,7 @@ def evaluate_guardian_benefit():
 - **Sacred Zero evaluation**: ≤2ms
 - **Log creation**: ≤40μs
 - **Smart contract execution**: Automatic
-- **Human Rights coverage**: 100% (all 26 documents)
+- **Human Rights coverage**: 100% (all 26+ documents)
 - **Earth Protection coverage**: 100% (all 20+ treaties)
 - **Deployment time**: 10 minutes
 - **Institutional coordination required**: ZERO
@@ -400,7 +400,7 @@ Architecture: Blockchain, Guardian-Optional
 Before deployment:
 - [ ] Multi-chain anchoring configured (minimum 2 chains)
 - [ ] Smart contracts deployed and verified
-- [ ] Human Rights framework loaded (26 documents)
+- [ ] Human Rights framework loaded (26+ documents)
 - [ ] Earth Protection framework active (20+ treaties)
 - [ ] OpenTimestamps integration tested
 - [ ] Sacred Zero triggers calibrated
