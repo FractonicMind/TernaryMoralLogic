@@ -74,7 +74,7 @@ This coverage applies regardless of:
 - Victim compensation automation
 
 **3. Protection Frameworks**
-- Human Rights enforcement (26 documents: UDHR, ICCPR, ICESCR, Geneva Conventions, CRC, CRPD, etc.)
+- Human Rights enforcement (26+ documents: UDHR, ICCPR, ICESCR, Geneva Conventions, CRC, CRPD, etc.)
 - Earth Protection enforcement (20+ treaties: Paris Agreement, CBD, Ramsar Convention, etc.)
 - Sacred Zero trigger maintenance
 - Always Memory integrity monitoring
@@ -118,7 +118,7 @@ This coverage applies regardless of:
 **Recommended: Amnesty International Tech Division**
 - **Mission alignment**: Human rights protection expertise
 - **Responsibilities**:
-  - Monitor Human Rights framework enforcement (26 documents)
+  - Monitor Human Rights framework enforcement (26+ documents)
   - Victim support coordination
   - Whistleblower protection advocacy
   - Legal compliance verification
@@ -292,7 +292,7 @@ No single organization should control TML. I recommend a **Stewardship Council**
 
 **Protection Framework Maintenance**:
 - Sacred Zero trigger document updates
-- Human Rights framework evolution (26 documents)
+- Human Rights framework evolution (26+ documents)
 - Earth Protection treaty additions (20+ documents)
 - Discrimination threshold calibration
 - Environmental irreversibility scoring
@@ -425,7 +425,7 @@ All reports published publicly at: tml-goukassian.org/memorial-fund/annual-repor
 - IMPLEMENTATION_GUIDE.md (deployment procedures)
 - General_FAQ.md (comprehensive guidance)
 - CONFORMANCE_TESTING.md (validation standards)
-- All Human Rights documents (26 files)
+- All Human Rights documents (26+ files)
 - All Earth Protection documents (20+ files)
 - Smart contract source code
 - Blockchain anchoring specifications
@@ -497,7 +497,7 @@ I confirm my authority to:
 ### Binding Requirements
 
 I confirm that the following are permanently binding on all future stewards:
-- Human Rights protection (26 documents)
+- Human Rights protection (26+ documents)
 - Earth Protection enforcement (20+ treaties)
 - Memorial Fund distribution formula
 - Always Memory + Blockchain anchoring requirements
