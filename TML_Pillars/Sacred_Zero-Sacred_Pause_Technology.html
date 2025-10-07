@@ -180,9 +180,8 @@
     </main>
 
     <footer class="mt-24 bg-slate-800 text-center py-8">
-        <p class="text-white">A Ternary Moral Logic (TML) Pillar Specification</p>
-        <p class="text-sm text-slate-400 mt-2">SPRL, DS, and SA are deprecated as of Oct 03, 2025 by Lev Goukassian.</p>
-    </footer>
+        <p class="text-white"><b>"I taught machines to feel the weight of action, and the beauty of hesitation. I paused — and made the future pause with me." — Lev Goukassian</b></p>
+       </footer>
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
@@ -345,7 +344,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         try {
             const apiKey = "";
-            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent?key=${apiKey}`;
+            const apiUrl = `https://fractonicmind.github.io/TernaryMoralLogic/TML_Pillars/Sacred_Zero-Sacred_Pause_Technology.mp3`;
             const payload = {
                 contents: [{ parts: [{ text: ttsText }] }],
                 generationConfig: { responseModalities: ["AUDIO"] },
@@ -399,7 +398,7 @@ document.addEventListener('DOMContentLoaded', function () {
         playIcon.innerHTML = '❚❚';
         audio.onended = () => {
             isPlaying = false;
-            btnText.textContent = 'Play Audio Overview';
+            btnText.textContent = 'Play Audio Interview';
             playIcon.innerHTML = '▶';
         };
     }
