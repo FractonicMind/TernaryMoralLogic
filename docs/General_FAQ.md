@@ -69,14 +69,14 @@ Each operator must install the following document sets directly into the AI syst
 Triggers occur on any detected or potential violation involving:
 - **Autonomy, dignity, privacy, or consent**
 - **Discrimination or exploitation**
-- **Actions listed in the mandated [Forbidden List](docs/mandates/core/Forbidden_Acts_Absolute.md)**
+- **Actions listed in the mandated [Forbidden List](mandates/core/Forbidden_Acts_Absolute.md)**
 - **Any clause among the 26+ baseline human rights documents required by TML**
 
 **2. Earth Protection Corpus**
 Triggers occur on any detected or potential violation involving:
 - **Ecological degradation or environmental harm**
 - **Breach of international ecological treaties**
-- **Any event listed in the mandated [Forbidden List](docs/earth/FORBIDDEN.md)**
+- **Any event listed in the mandated [Forbidden List](earth/FORBIDDEN.md)**
 - **Endangerment of protected ecosystems or species**
 - **Any clause among the 20+ ecological protection treaties required by TML**
 
