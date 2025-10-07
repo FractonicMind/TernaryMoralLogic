@@ -331,9 +331,9 @@ I commit to provide guidance during transition on:
 **These elements cannot be modified or removed by any future steward**:
 
 1. **Always Memory**: Pre-action logging remains mandatory
-2. **Sacred Zero**: 66+ protection documents remain enforced
+2. **Sacred Zero**: 46+ protection documents remain enforced
 3. **Blockchain Anchoring**: Multi-chain verification continues
-4. **Human Rights**: 26 documents permanently protected
+4. **Human Rights**: 26+ documents permanently protected
 5. **Earth Protection**: 20+ treaties permanently enforced
 6. **Memorial Fund**: Distribution percentages fixed
 7. **Whistleblower Rewards**: 15% bounty remains
