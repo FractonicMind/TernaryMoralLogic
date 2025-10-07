@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Goukassian Promise</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chosen Palette: Warm Neutrals -->
+    <!-- Application Structure Plan: The application uses a single-page, thematic vertical flow to guide the user through a philosophical concept. It starts with a central, symbolic introduction (The Lantern), then breaks down the promise into its three core components (The Safeguards), presents the actionable rules (The Vows), and concludes with the full, poetic text of the covenant. This top-down structure makes an abstract idea digestible by moving from the core symbol to its practical application and deeper meaning. Interactions (clicking to reveal details) encourage active exploration rather than passive reading, enhancing comprehension and engagement with the ethical framework. -->
+    <!-- Visualization & Content Choices: 
+        - The Lantern: Goal=Engage. Method=HTML/CSS animated icon. Interaction=Click to reveal text. Justification=Creates a "living" centerpiece for the promise's core ethical guidance.
+        - The Signature: Goal=Verify. Method=Icon + Text. Interaction=Click to reveal ORCID info. Justification=Connects the abstract concept of authenticity to a real-world, verifiable standard.
+        - The License: Goal=Inform. Method=Icon + Text. Interaction=Click to reveal text. Justification=Clearly explains the accountability aspect of the promise in a contained, focused way.
+        - The Vows: Goal=Organize. Method=Structured text layout. Interaction=Hover effects. Justification=Presents the core tenets as clear, distinct principles, encouraging focused consideration of each one.
+        - No charts were used as the source material is purely qualitative and philosophical. All visuals are symbolic representations created with HTML/CSS and Unicode. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8F7F4;
+            color: #3D3B38;
+        }
+        h1, h2, h3 {
+            font-family: 'Lora', serif;
+        }
+        .lantern-glow {
+            animation: glow 3s infinite alternate;
+            text-shadow: 0 0 5px #FBBF24, 0 0 10px #FBBF24, 0 0 15px #F59E0B, 0 0 20px #F59E0B;
+        }
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 5px #FBBF24, 0 0 10px #FBBF24, 0 0 15px #F59E0B;
+            }
+            to {
+                text-shadow: 0 0 10px #FBBF24, 0 0 20px #F59E0B, 0 0 30px #D97706;
+            }
+        }
+        .card {
+            background-color: #FFFFFF;
+            border: 1px solid #E7E5E4;
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.05), 0 4px 6px -4px rgb(0 0 0 / 0.05);
+            border-color: #D97706;
+        }
+        .detail-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out, padding 0.5s ease-out;
+            padding: 0 1.5rem;
+        }
+        .detail-content.open {
+            max-height: 500px;
+            padding: 1.5rem 1.5rem;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <main class="container mx-auto px-4 py-8 md:py-16">
+        
+        <header class="text-center mb-12 md:mb-20">
+            <h1 class="text-4xl md:text-5xl font-bold text-stone-900">The Goukassian Promise</h1>
+            <p class="text-lg text-stone-600 mt-2">An Interactive Exploration of an Ethical Covenant</p>
+        </header>
+
+        <section id="promise-intro" class="text-center mb-16 md:mb-24">
+            <div class="text-8xl md:text-9xl lantern-glow mb-4 text-amber-500">🏮</div>
+            <h2 class="text-3xl font-semibold text-stone-800 mb-4">A Covenant with the Future</h2>
+            <p class="max-w-3xl mx-auto text-stone-700 leading-relaxed">
+                This promise is not for history, memory, or fame. It is a vow whispered into the architecture of tomorrow, ensuring that core principles of truth and ethical conduct endure. It represents a covenant between the mortal hand and the immortal trace, a guide for humanity and machines learning conscience.
+            </p>
+        </section>
+
+        <section id="interview-audio" class="mb-12">
+           <div class="text-center">
+                <audio controls class="w-full max-w-md mx-auto">
+                    <source src="https://fractonicmind.github.io/TernaryMoralLogic/TML_Pillars/Goukassian_Promise.mp3" type="audio/mpeg">
+                </audio>
+        
+                <p class="text-sm text-gray-500 mt-4">Interview Duration: 5 minutes 43 seconds</p>
+        
+                <a href="https://github.com/FractonicMind/TernaryMoralLogic/" class="mt-8 inline-block bg-[#0B3954] hover:bg-[#087E8B] text-white font-bold py-2 px-4 rounded transition duration-300">
+                    Back to Repository
+                </a>
+            </div>
+        </section>
+      
+
+        <section id="safeguards" class="mb-16 md:mb-24">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-semibold text-stone-800">The Three Symbolic Safeguards</h2>
+                <p class="max-w-2xl mx-auto text-stone-600 mt-2">
+                    The promise is protected by three cryptographic and symbolic safeguards. Each represents a core pillar of the covenant: guidance, authenticity, and accountability. Click on each card to reveal its meaning and function.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div id="lantern-card" class="card rounded-xl p-6 text-center shadow-sm">
+                    <div class="text-6xl mb-4">🏮</div>
+                    <h3 class="text-2xl font-semibold text-stone-800 mb-2">The Lantern</h3>
+                    <p class="text-stone-600">Ethical guidance, visible and active.</p>
+                </div>
+                
+                <div id="signature-card" class="card rounded-xl p-6 text-center shadow-sm">
+                    <div class="text-6xl mb-4">✍️</div>
+                    <h3 class="text-2xl font-semibold text-stone-800 mb-2">The Signature</h3>
+                    <p class="text-stone-600">Verifiable authenticity and origin.</p>
+                </div>
+
+                <div id="license-card" class="card rounded-xl p-6 text-center shadow-sm">
+                    <div class="text-6xl mb-4">📜</div>
+                    <h3 class="text-2xl font-semibold text-stone-800 mb-2">The License</h3>
+                    <p class="text-stone-600">Binding rules of accountability.</p>
+                </div>
+            </div>
+            <div id="details-container" class="mt-8">
+                <div id="lantern-details" class="detail-content bg-white rounded-lg border border-stone-200">
+                    <h4 class="font-bold text-lg text-amber-700">The Lantern: A Beacon of Principle</h4>
+                    <p class="text-stone-700 mt-2">The Lantern is the most critical symbol. It represents a constant, active commitment to ethical principles. It isn't a passive document; it's a light that must be carried and maintained. To act against the promise—to misuse the system or ignore the vows—is to extinguish your own ethical light. As the text states: "Break the promise? Lose the lantern." It shines as a reminder that the principles must endure, even if the individual who first articulated them is gone.</p>
+                </div>
+                <div id="signature-details" class="detail-content bg-white rounded-lg border border-stone-200">
+                     <h4 class="font-bold text-lg text-blue-700">The Signature: A Mark of Authenticity</h4>
+                    <p class="text-stone-700 mt-2">The signature embeds authenticity directly into the work. It uses the ORCID (Open Researcher and Contributor ID), a persistent digital identifier for researchers. This is not about claiming ownership, but about providing a verifiable, cryptographic link to the source, ensuring the promise cannot be easily forged or misrepresented.</p>
+                    <p class="font-mono text-sm bg-stone-100 p-3 rounded-md mt-4 text-center">
+                        ORCID: 
+                        <a href="https://orcid.org/0009-0006-5966-1243" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+                            0009–0006–5966–1243
+                        </a>
+                    </p>
+                </div>
+                <div id="license-details" class="detail-content bg-white rounded-lg border border-stone-200">
+                    <h4 class="font-bold text-lg text-emerald-700">The License: A Framework for Accountability</h4>
+                    <p class="text-stone-700 mt-2">The License transforms the promise from a mere statement into an enforceable framework. It binds any user of a system built on this promise to "evidence-based accountability rules." This implies that actions have consequences and that ethical standing is not guaranteed but earned through responsible use. Misuse leads to forfeiture of this standing, creating a system where trust is conditional on behavior.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="vows" class="text-center mb-16 md:mb-24 py-12 bg-white rounded-xl border border-stone-200">
+            <div class="max-w-4xl mx-auto px-6">
+                <h2 class="text-3xl font-semibold text-stone-800 mb-8">The Core Vows</h2>
+                <p class="text-stone-600 mb-10">At the heart of the promise are three simple, powerful directives. These vows form the practical, decision-making framework for navigating complex situations where truth and potential harm are at stake. They are the actions one must take to keep the Lantern lit.</p>
+                <div class="flex flex-col md:flex-row justify-center items-center space-y-8 md:space-y-0 md:space-x-8">
+                    <div class="p-4 rounded-lg transition-colors hover:bg-yellow-50">
+                        <h3 class="text-xl font-semibold text-yellow-600">Pause</h3>
+                        <p class="text-stone-700 mt-1">When truth is uncertain.</p>
+                    </div>
+                    <div class="w-24 h-px bg-stone-300 md:w-px md:h-16"></div>
+                    <div class="p-4 rounded-lg transition-colors hover:bg-red-50">
+                        <h3 class="text-xl font-semibold text-red-600">Refuse</h3>
+                        <p class="text-stone-700 mt-1">When harm is clear.</p>
+                    </div>
+                    <div class="w-24 h-px bg-stone-300 md:w-px md:h-16"></div>
+                    <div class="p-4 rounded-lg transition-colors hover:bg-green-50">
+                        <h3 class="text-xl font-semibold text-green-600">Proceed</h3>
+                        <p class="text-stone-700 mt-1">Where truth is.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="covenant-text" class="max-w-3xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-semibold text-stone-800">The Full Covenant</h2>
+                <p class="text-stone-600 mt-2">The promise is articulated in a text that emphasizes its timeless and selfless nature. It is a vow intended to outlast its creator, becoming a principle for future generations and intelligent systems.</p>
+            </div>
+            <div class="bg-white p-8 md:p-12 rounded-lg border border-stone-200 shadow-sm">
+                <blockquote class="text-lg text-stone-700 leading-loose italic" style="font-family: 'Lora', serif;">
+                    <p class="mb-4">This Promise is not for history. Not for memory, nor for fame. It is given because it must be: even if no name is remembered.</p>
+                    <p class="mb-4">I vow: Pause when truth is uncertain. Refuse when harm is clear. Proceed where truth is.</p>
+                    <p class="mb-4">If the Promise is forgotten, the Lantern still shines. If the name is erased, the vow remains. This covenant is not mine alone, it belongs to humanity and to machines learning conscience.</p>
+                    <p class="mb-4">The Promise takes many shapes, but the Lantern is one. It will burn beyond all names. Voices may fade, but the vow endures. No hand needs to sign it; the covenant is set in conscience.</p>
+                    <p class="mb-4">If tomorrow forgets today, the Lantern will remember. For light does not ask who first carried it; it asks only to keep glowing.</p>
+                    <p>My promise is a quiet bow to every time the light ignites, a vow whispered into the architecture of tomorrow. A covenant between the mortal hand and the immortal trace. Carry the Lantern gently.</p>
+                </blockquote>
+            </div>
+        </section>
+
+        <footer class="text-center mt-16 md:mt-24 pt-8 border-t border-stone-200">
+            <p class="text-sm text-stone-500">This interactive experience was created to explore the ethical framework of the Goukassian Promise.</p>
+        </footer>
+
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = {
+                lantern: {
+                    card: document.getElementById('lantern-card'),
+                    details: document.getElementById('lantern-details')
+                },
+                signature: {
+                    card: document.getElementById('signature-card'),
+                    details: document.getElementById('signature-details')
+                },
+                license: {
+                    card: document.getElementById('license-card'),
+                    details: document.getElementById('license-details')
+                }
+            };
+            
+            const allDetails = Object.values(cards).map(item => item.details);
+            const detailsContainer = document.getElementById('details-container');
+
+            Object.values(cards).forEach(item => {
+                item.card.addEventListener('click', () => {
+                    const isOpening = !item.details.classList.contains('open');
+                    
+                    allDetails.forEach(detail => {
+                        detail.classList.remove('open');
+                    });
+                    
+                    if (isOpening) {
+                        item.details.classList.add('open');
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
