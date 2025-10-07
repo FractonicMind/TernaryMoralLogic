@@ -1,255 +1,684 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Infographic: The TML Succession Plan</title>
+
+    <title>Ternary Moral Logic - Succession Plan</title>
+
     <script src="https://cdn.tailwindcss.com"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
-    <!-- Chosen Palette: Brilliant Blues (#003F5C, #444E86, #955196, #DD5182, #FF6E54, #FFA600) -->
-    <!-- Application Structure Plan: The infographic follows a top-down narrative flow, designed to guide a user from the "what" and "why" to the "how" and "who." It starts with the core problem and TML's solution, then visually breaks down its key functional parts (Memorial Fund), its governance structure (Stewardship Council), and the transition process (Timeline). This logical progression tells a complete story and is more digestible for a general audience than the formal structure of the source paper. The use of cards, clear headings, and a single-column layout ensures a smooth, scroll-based user journey. -->
-    <!-- Visualization & Content Choices: 
-    1. Memorial Fund Distribution -> Goal: Inform (Composition) -> Viz: Donut Chart -> Justification: Best for showing simple, powerful part-to-whole data. It's immediately clear how funds are allocated. -> Library: Chart.js/Canvas.
-    2. Stewardship Council -> Goal: Organize (Relationships) -> Viz: HTML/CSS Diagram -> Justification: A visual diagram of separate but connected entities clearly communicates the decentralized nature of the governance model, which a simple list cannot. -> Method: Structured HTML/CSS with Tailwind.
-    3. Succession Plan -> Goal: Change (Process over time) -> Viz: Horizontal Timeline -> Justification: A timeline is the most intuitive way to present a chronological process, breaking a 180-day plan into four distinct, understandable phases. -> Method: Structured HTML/CSS with Tailwind.
-    4. Core TML Components -> Goal: Inform (Key Features) -> Viz: Big Number + Icon Cards -> Justification: "Big Number" for the 66+ documents immediately grabs attention. Icon-like Unicode characters on cards make the four abstract components easy to scan and remember. -> Method: HTML/CSS.
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Chosen Palette: Alabaster, Midnight Blue, Royal Blue, Terra Cotta -->
+
+    <!-- Application Structure Plan: The application is designed as a single-page narrative dashboard. The structure guides the user from the high-level concept ("What is TML?") through its operational details ("Governance," "Memorial Fund") and future ("Transition Plan"). This thematic flow, supported by a sticky navigation, is more intuitive for understanding the project's legacy than the original document's legalistic structure. Key interactions like tabbed sections for the timeline and clickable cards for council members are chosen to present dense information in digestible, user-initiated chunks, enhancing comprehension and engagement without overwhelming the user. -->
+
+    <!-- Visualization & Content Choices:
+
+        1. Memorial Fund -> Goal: Inform proportions -> Viz: Donut Chart -> Interaction: Hover tooltips -> Justification: Best for showing parts-of-a-whole distribution clearly -> Library: Chart.js/Canvas.
+
+        2. Governance Council -> Goal: Organize relationships -> Viz: Diagrammatic layout -> Interaction: Click to reveal details on cards -> Justification: Visually represents the decentralized structure better than a list -> Library/Method: HTML/CSS with Tailwind.
+
+        3. Transition Plan -> Goal: Show change over time -> Viz: Interactive Timeline Tabs -> Interaction: Click tabs to switch content -> Justification: Segments a complex process into clear, chronological phases for better understanding -> Library/Method: HTML/CSS/JS.
+
+        4. TML Core Components -> Goal: Inform on key features -> Viz: Icon-based feature grid -> Interaction: Static display with concise text -> Justification: Provides a quick, scannable overview of the framework's pillars at the start -> Library/Method: HTML/CSS with Tailwind.
+
     -->
+
     <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
     <style>
+
         body {
+
             font-family: 'Inter', sans-serif;
-            background-color: #f0f4f8;
-            color: #003F5C;
+
+            background-color: #F8F7F4;
+
+            color: #2C3E50;
+
         }
+
+        .nav-link {
+
+            transition: color 0.3s, border-bottom-color 0.3s;
+
+            border-bottom: 2px solid transparent;
+
+        }
+
+        .nav-link:hover, .nav-link.active {
+
+            color: #4A90E2;
+
+            border-bottom-color: #4A90E2;
+
+        }
+
         .chart-container {
+
             position: relative;
+
             width: 100%;
-            max-width: 400px;
+
+            max-width: 450px;
+
             margin-left: auto;
+
             margin-right: auto;
-            height: 350px;
-            max-height: 400px;
+
+            height: 300px;
+
+            max-height: 450px;
+
         }
+
         @media (min-width: 768px) {
+
             .chart-container {
+
                 height: 400px;
+
             }
+
         }
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            top: -20px;
-            transform: translateX(-50%);
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background-color: #FF6E54;
-            border: 4px solid #f0f4f8;
-            z-index: 1;
+
+        .timeline-btn {
+
+            transition: background-color 0.3s, color 0.3s;
+
         }
-        .timeline-line {
-            position: absolute;
-            left: 50%;
-            top: 0;
-            bottom: 0;
-            width: 4px;
-            background-color: #DD5182;
-            transform: translateX(-50%);
+
+        .timeline-btn.active {
+
+            background-color: #4A90E2;
+
+            color: #FFFFFF;
+
         }
+
+        .council-card {
+
+            transition: transform 0.3s, box-shadow 0.3s;
+
+        }
+
+        .council-card:hover {
+
+            transform: translateY(-5px);
+
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
+        }
+
+        .section-fade-in {
+
+            opacity: 0;
+
+            transform: translateY(20px);
+
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+
+        }
+
+        .section-fade-in.visible {
+
+            opacity: 1;
+
+            transform: translateY(0);
+
+        }
+
     </style>
+
 </head>
+
 <body class="antialiased">
-    <div class="container mx-auto px-4 py-12">
 
-        <header class="text-center mb-16">
-            <h1 class="text-4xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#DD5182] to-[#FFA600] mb-4">A Legacy of Accountability</h1>
-            <p class="text-lg md:text-xl max-w-3xl mx-auto text-[#003F5C] font-semibold">The succession plan for Ternary Moral Logic (TML), a framework for embedding permanent ethical constraints into AI.</p>
-        </header>
+    <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
 
-        <section class="mb-20">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-[#003F5C]">What is Ternary Moral Logic?</h2>
-                <p class="mt-3 text-md max-w-2xl mx-auto text-[#444E86]">TML is an open-source system of prior restraint and immutable auditing for automated actions, ensuring AI operates within non-negotiable ethical boundaries.</p>
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+
+            <h1 class="text-xl md:text-2xl font-bold text-[#2C3E50]">TML Succession Plan</h1>
+
+            <div class="hidden md:flex space-x-8">
+
+                <a href="#framework" class="nav-link font-medium pb-1">The Framework</a>
+
+                <a href="#governance" class="nav-link font-medium pb-1">Governance</a>
+
+                <a href="#fund" class="nav-link font-medium pb-1">Memorial Fund</a>
+
+                <a href="#timeline" class="nav-link font-medium pb-1">Timeline</a>
+
             </div>
+
+            <a href="#cta" class="bg-[#4A90E2] text-white px-4 py-2 rounded-lg hover:bg-[#357ABD] transition-colors font-semibold">
+
+                Call to Action
+
+            </a>
+
+        </nav>
+
+    </header>
+
+    <main class="container mx-auto px-6 py-12 md:py-16">
+
+        <section id="intro" class="text-center mb-20 md:mb-24 section-fade-in">
+
+            <h2 class="text-4xl md:text-5xl font-bold mb-4">A Legacy of Accountability</h2>
+
+            <p class="text-lg md:text-xl max-w-3xl mx-auto text-gray-600">
+
+                This document outlines the formal succession plan for the Ternary Moral Logic (TML) framework. It details a decentralized, multi-stakeholder governance model to ensure the long-term viability and integrity of this open-source system for AI ethics and accountability.
+
+            </p>
+
+        </section>
+
+        <section id="framework" class="mb-20 md:mb-24 section-fade-in">
+
+            <div class="text-center mb-12">
+
+                <h3 class="text-3xl md:text-4xl font-bold">The TML Framework: Core Components</h3>
+
+                <p class="mt-3 text-lg text-gray-600 max-w-2xl mx-auto">TML is built on mandatory transparency and non-negotiable ethical constraints, enforced through cryptographic and economic incentives.</p>
+
+            </div>
+
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-[#DD5182]">
-                    <div class="text-4xl mb-3">🗄️</div>
-                    <h3 class="font-bold text-xl mb-2 text-[#955196]">Always Memory</h3>
-                    <p class="text-[#444E86]">Mandates a permanent, unchangeable log on a public blockchain *before* an AI can act.</p>
+
+                <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200">
+
+                    <div class="text-3xl mb-3">🗄️</div>
+
+                    <h4 class="font-bold text-xl mb-2">Always Memory</h4>
+
+                    <p class="text-gray-600">Mandates the creation of an immutable log on a public blockchain *before* any significant automated action can occur. This ensures a permanent, auditable trail.</p>
+
                 </div>
-                <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-[#DD5182]">
-                    <div class="text-4xl mb-3">🛡️</div>
-                    <h3 class="font-bold text-xl mb-2 text-[#955196]">Sacred Zero</h3>
-                    <p class="text-[#444E86]">An automatic kill-switch that halts any process predicted to violate core human or environmental rights.</p>
+
+                <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200">
+
+                    <div class="text-3xl mb-3">🛡️</div>
+
+                    <h4 class="font-bold text-xl mb-2">Sacred Zero</h4>
+
+                    <p class="text-gray-600">A fail-safe that automatically halts any process predicted to violate one of 46+ foundational human rights and environmental protection documents.</p>
+
                 </div>
-                <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-[#FF6E54]">
-                    <div class="text-4xl mb-3">🔗</div>
-                    <h3 class="font-bold text-xl mb-2 text-[#955196]">Smart Contracts</h3>
-                    <p class="text-[#444E86]">Automates penalty enforcement, whistleblower rewards, and victim compensation on-chain.</p>
+
+                <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200">
+
+                    <div class="text-3xl mb-3">🔗</div>
+
+                    <h4 class="font-bold text-xl mb-2">Smart Contract Enforcement</h4>
+
+                    <p class="text-gray-600">Uses multi-chain infrastructure (Bitcoin, Ethereum, Polygon) to automate penalty enforcement, whistleblower rewards, and victim compensation.</p>
+
                 </div>
-                <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-[#FF6E54]">
-                    <div class="text-4xl mb-3">💸</div>
-                    <h3 class="font-bold text-xl mb-2 text-[#955196]">Memorial Fund</h3>
-                    <p class="text-[#444E86]">Fines from violations are automatically distributed to victims, restoration, and research.</p>
+
+                <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200">
+
+                    <div class="text-3xl mb-3">💸</div>
+
+                    <h4 class="font-bold text-xl mb-2">The Memorial Fund</h4>
+
+                    <p class="text-gray-600">Penalties from violations are automatically distributed to victims, environmental restoration, whistleblowers, and research.</p>
+
                 </div>
+
             </div>
+
         </section>
 
-        <section class="mb-20 bg-white rounded-xl shadow-xl p-8 md:p-12">
-            <div class="grid md:grid-cols-2 gap-8 items-center">
-                <div class="text-center md:text-left">
-                    <h2 class="text-3xl md:text-4xl font-bold text-[#003F5C]">The Memorial Fund</h2>
-                    <p class="mt-3 text-md max-w-2xl text-[#444E86]">Penalties from TML violations are permanently allocated by a smart contract. This creates a self-sustaining ecosystem where accountability directly funds restitution and research.</p>
-                </div>
-                <div>
-                    <div class="chart-container">
-                        <canvas id="fundChart"></canvas>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <section id="governance" class="mb-20 md:mb-24 section-fade-in">
 
-        <section class="mb-20">
             <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-[#003F5C]">Decentralized Governance: The Stewardship Council</h2>
-                <p class="mt-3 text-md max-w-2xl mx-auto text-[#444E86]">To prevent capture, TML is governed by a council of expert organizations. No single entity has control, ensuring long-term alignment with its public-interest mission.</p>
+
+                <h3 class="text-3xl md:text-4xl font-bold">A Decentralized Governance Model</h3>
+
+                <p class="mt-3 text-lg text-gray-600 max-w-2xl mx-auto">To prevent capture and ensure long-term mission alignment, TML's governance is decentralized across a multi-organization Stewardship Council. No single entity has control.</p>
+
             </div>
+
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-white p-6 rounded-xl shadow-lg text-center transform hover:scale-105 transition-transform">
-                    <h3 class="font-bold text-xl text-[#955196]">Technical Custodian</h3>
-                    <p class="font-semibold text-[#DD5182]">EFF (Recommended)</p>
-                    <p class="text-sm text-[#444E86] mt-2">Manages code, infrastructure, and community.</p>
+
+                <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200 council-card">
+
+                    <h4 class="font-bold text-xl mb-2 text-[#4A90E2]">Primary Technical Custodian</h4>
+
+                    <p class="font-semibold text-gray-700 mb-3">Recommended: Electronic Frontier Foundation</p>
+
+                    <p class="text-gray-600">Manages the open-source repository, oversees blockchain infrastructure, and provides technical community support.</p>
+
                 </div>
-                <div class="bg-white p-6 rounded-xl shadow-lg text-center transform hover:scale-105 transition-transform">
-                    <h3 class="font-bold text-xl text-[#955196]">Human Rights Partner</h3>
-                    <p class="font-semibold text-[#DD5182]">Amnesty Int'l (Rec.)</p>
-                    <p class="text-sm text-[#444E86] mt-2">Monitors rights enforcement and victim support.</p>
+
+                <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200 council-card">
+
+                    <h4 class="font-bold text-xl mb-2 text-[#4A90E2]">Human Rights Partner</h4>
+
+                    <p class="font-semibold text-gray-700 mb-3">Recommended: Amnesty International</p>
+
+                    <p class="text-gray-600">Monitors enforcement of 26+ human rights documents and coordinates support for victims of AI harm.</p>
+
                 </div>
-                <div class="bg-white p-6 rounded-xl shadow-lg text-center transform hover:scale-105 transition-transform">
-                    <h3 class="font-bold text-xl text-[#955196]">Earth Protection Partner</h3>
-                    <p class="font-semibold text-[#DD5182]">Indigenous Env. Network (Rec.)</p>
-                    <p class="text-sm text-[#444E86] mt-2">Monitors environmental treaty enforcement.</p>
+
+                <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200 council-card">
+
+                    <h4 class="font-bold text-xl mb-2 text-[#4A90E2]">Earth Protection Partner</h4>
+
+                    <p class="font-semibold text-gray-700 mb-3">Recommended: Indigenous Environmental Network</p>
+
+                    <p class="text-gray-600">Monitors enforcement of 20+ environmental treaties and oversees Indigenous Data Sovereignty.</p>
+
                 </div>
-                <div class="bg-white p-6 rounded-xl shadow-lg text-center transform hover:scale-105 transition-transform">
-                    <h3 class="font-bold text-xl text-[#955196]">AI Ethics Research</h3>
-                    <p class="font-semibold text-[#DD5182]">MIT / Stanford (Rec.)</p>
-                    <p class="text-sm text-[#444E86] mt-2">Guides future research and standards.</p>
+
+                <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200 council-card">
+
+                    <h4 class="font-bold text-xl mb-2 text-[#E87461]">AI Ethics Research Partner</h4>
+
+                    <p class="font-semibold text-gray-700 mb-3">Recommended: MIT Media Lab or Stanford HAI</p>
+
+                    <p class="text-gray-600">Guides future research, evolves implementation standards, and coordinates academic collaboration.</p>
+
                 </div>
-                <div class="bg-white p-6 rounded-xl shadow-lg text-center transform hover:scale-105 transition-transform">
-                    <h3 class="font-bold text-xl text-[#955196]">Memorial Fund Admin</h3>
-                    <p class="font-semibold text-[#DD5182]">MSK Cancer Center (Rec.)</p>
-                    <p class="text-sm text-[#444E86] mt-2">Administers the cancer research fund.</p>
+
+                <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200 council-card">
+
+                    <h4 class="font-bold text-xl mb-2 text-[#E87461]">Memorial Fund Administrator</h4>
+
+                    <p class="font-semibold text-gray-700 mb-3">Recommended: Memorial Sloan Kettering</p>
+
+                    <p class="text-gray-600">Administers the 5% of the fund dedicated to computational cancer research, in memory of the creator.</p>
+
                 </div>
-                <div class="bg-white p-6 rounded-xl shadow-lg text-center transform hover:scale-105 transition-transform">
-                    <h3 class="font-bold text-xl text-[#955196]">Community Rep</h3>
-                    <p class="font-semibold text-[#DD5182]">Elected Position</p>
-                    <p class="text-sm text-[#444E86] mt-2">Represents implementers and users.</p>
+
+                 <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200 council-card">
+
+                    <h4 class="font-bold text-xl mb-2 text-[#E87461]">Community Representative</h4>
+
+                    <p class="font-semibold text-gray-700 mb-3">To be elected</p>
+
+                    <p class="text-gray-600">Represents the interests of the implementers, developers, and the broader user community in council decisions.</p>
+
                 </div>
+
             </div>
+
         </section>
 
-        <section>
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-[#003F5C]">The 180-Day Succession Plan</h2>
-                <p class="mt-3 text-md max-w-2xl mx-auto text-[#444E86]">The transition is structured in four distinct phases to ensure a smooth and responsible handoff of stewardship.</p>
+        <section id="fund" class="mb-20 md:mb-24 section-fade-in">
+
+             <div class="text-center mb-12">
+
+                <h3 class="text-3xl md:text-4xl font-bold">The Memorial Fund Distribution</h3>
+
+                <p class="mt-3 text-lg text-gray-600 max-w-2xl mx-auto">Penalties from TML violations are collected into the Memorial Fund and distributed according to a fixed, permanent formula. Hover over the chart for details.</p>
+
             </div>
-            <div class="relative">
-                <div class="timeline-line hidden md:block"></div>
-                <div class="grid md:grid-cols-2 gap-x-12">
-                    <div class="md:text-right mb-8 md:mb-0">
-                        <div class="bg-white p-6 rounded-xl shadow-lg relative timeline-item">
-                             <h3 class="font-bold text-xl text-[#955196]">Phase 1: Notification</h3>
-                             <p class="font-semibold text-[#DD5182]">Days 1-30</p>
-                             <p class="text-sm text-[#444E86] mt-2">Public announcement and formal notification to all recommended custodian organizations to begin the process.</p>
-                        </div>
-                    </div>
-                    <div></div>
-                    <div></div>
-                    <div class="md:text-left mb-8 md:mb-0">
-                         <div class="bg-white p-6 rounded-xl shadow-lg relative timeline-item">
-                             <h3 class="font-bold text-xl text-[#955196]">Phase 2: Response</h3>
-                             <p class="font-semibold text-[#DD5182]">Days 31-90</p>
-                             <p class="text-sm text-[#444E86] mt-2">Potential custodians evaluate the proposal, assess their capabilities, and confirm their commitment to the TML mission.</p>
-                        </div>
-                    </div>
-                     <div class="md:text-right mb-8 md:mb-0">
-                        <div class="bg-white p-6 rounded-xl shadow-lg relative timeline-item">
-                             <h3 class="font-bold text-xl text-[#955196]">Phase 3: Preparation</h3>
-                             <p class="font-semibold text-[#DD5182]">Days 91-150</p>
-                             <p class="text-sm text-[#444E86] mt-2">Technical and knowledge transfer begins, including moving blockchain infrastructure access and smart contract custody.</p>
-                        </div>
-                    </div>
-                    <div></div>
-                     <div></div>
-                    <div class="md:text-left">
-                         <div class="bg-white p-6 rounded-xl shadow-lg relative timeline-item">
-                             <h3 class="font-bold text-xl text-[#955196]">Phase 4: Handoff</h3>
-                             <p class="font-semibold text-[#DD5182]">Days 151-180</p>
-                             <p class="text-sm text-[#444E86] mt-2">Final transfer of all assets and responsibilities. The new Stewardship Council becomes fully operational.</p>
-                        </div>
-                    </div>
+
+            <div class="bg-white p-6 md:p-8 rounded-xl shadow-xl border border-gray-200">
+
+                <div class="chart-container">
+
+                    <canvas id="fundChart"></canvas>
+
                 </div>
+
             </div>
+
         </section>
 
-        <footer class="text-center mt-20 pt-10 border-t-2 border-dashed border-[#955196]">
-             <h3 class="text-2xl font-bold text-[#003F5C]">The Mission Continues</h3>
-             <p class="mt-2 text-md max-w-2xl mx-auto text-[#444E86]">This is a formal invitation to the digital rights, human rights, and environmental communities to engage in this succession process and carry the mission forward.</p>
-             <p class="mt-6 text-sm text-[#955196]">Authored by Lev Goukassian (ORCID: 0009-0006-5966-1243)</p>
-        </footer>
+        <section id="timeline" class="mb-20 md:mb-24 section-fade-in">
 
-    </div>
+            <div class="text-center mb-12">
+
+                <h3 class="text-3xl md:text-4xl font-bold">Succession Timeline: A 180-Day Plan</h3>
+
+                <p class="mt-3 text-lg text-gray-600 max-w-2xl mx-auto">The transition is structured in four distinct phases. Select a phase to see the key actions and objectives.</p>
+
+            </div>
+
+            <div class="flex flex-col md:flex-row bg-white rounded-xl shadow-xl border border-gray-200 overflow-hidden">
+
+                <div class="md:w-1/4 flex flex-row md:flex-col border-b md:border-b-0 md:border-r border-gray-200">
+
+                    <button id="phase1-btn" class="timeline-btn w-full text-left p-4 font-semibold active">Phase 1: Notification</button>
+
+                    <button id="phase2-btn" class="timeline-btn w-full text-left p-4 font-semibold">Phase 2: Response</button>
+
+                    <button id="phase3-btn" class="timeline-btn w-full text-left p-4 font-semibold">Phase 3: Preparation</button>
+
+                    <button id="phase4-btn" class="timeline-btn w-full text-left p-4 font-semibold">Phase 4: Handoff</button>
+
+                </div>
+
+                <div class="md:w-3/4 p-8">
+
+                    <div id="phase1-content" class="timeline-content">
+
+                        <h4 class="font-bold text-2xl mb-2 text-[#4A90E2]">Phase 1: Notification (Days 1-30)</h4>
+
+                        <p class="text-gray-600">The initial phase focuses on public announcement and formal communication with potential custodians.</p>
+
+                        <ul class="list-disc list-inside mt-4 space-y-2 text-gray-700">
+
+                            <li>Publish the succession declaration to the public repository.</li>
+
+                            <li>Formally notify all recommended custodian organizations.</li>
+
+                            <li>Announce the transition to the TML community via all channels.</li>
+
+                            <li>Archive all current documentation to ensure preservation.</li>
+
+                        </ul>
+
+                    </div>
+
+                    <div id="phase2-content" class="timeline-content hidden">
+
+                        <h4 class="font-bold text-2xl mb-2 text-[#4A90E2]">Phase 2: Organization Response (Days 31-90)</h4>
+
+                        <p class="text-gray-600">During this period, potential custodians evaluate the proposal and submit their intent to participate.</p>
+
+                        <ul class="list-disc list-inside mt-4 space-y-2 text-gray-700">
+
+                            <li>Review custodianship proposals from interested organizations.</li>
+
+                            <li>Assess technical capabilities and resource commitments.</li>
+
+                            <li>Verify mission alignment with TML's core principles.</li>
+
+                            <li>Select partners based on stability, capability, and commitment.</li>
+
+                        </ul>
+
+                    </div>
+
+                    <div id="phase3-content" class="timeline-content hidden">
+
+                        <h4 class="font-bold text-2xl mb-2 text-[#4A90E2]">Phase 3: Transition Preparation (Days 91-150)</h4>
+
+                        <p class="text-gray-600">This phase is dedicated to the technical and operational transfer of assets and knowledge.</p>
+
+                        <ul class="list-disc list-inside mt-4 space-y-2 text-gray-700">
+
+                            <li>Transfer access to blockchain infrastructure and smart contracts.</li>
+
+                            <li>Migrate domain names, email systems, and repository credentials.</li>
+
+                            <li>Conduct knowledge transfer sessions for maintenance and administration.</li>
+
+                            <li>Transfer control of Memorial Fund accounts.</li>
+
+                        </ul>
+
+                    </div>
+
+                    <div id="phase4-content" class="timeline-content hidden">
+
+                        <h4 class="font-bold text-2xl mb-2 text-[#4A90E2]">Phase 4: Operational Handoff (Days 151-180)</h4>
+
+                        <p class="text-gray-600">The final phase ensures all systems are fully operational under the new stewardship of the Council.</p>
+
+                        <ul class="list-disc list-inside mt-4 space-y-2 text-gray-700">
+
+                            <li>Confirm all technical systems are stable and functional.</li>
+
+                            <li>Verify blockchain anchoring and smart contract execution.</li>
+
+                            <li>Validate the Memorial Fund distribution mechanisms.</li>
+
+                            <li>Formally introduce the new stewards to the community.</li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <section id="cta" class="text-center bg-white p-8 md:p-12 rounded-xl shadow-xl border border-gray-200 section-fade-in">
+
+             <h3 class="text-3xl md:text-4xl font-bold">Carry the Mission Forward</h3>
+
+             <p class="mt-3 text-lg text-gray-600 max-w-2xl mx-auto">The TML framework was designed to persist. This is an invitation to the digital rights, human rights, and environmental communities to engage in this succession process.</p>
+
+             <div class="mt-8 flex justify-center items-center gap-4">
+
+                 <a href="https://github.com/FractonicMind/TernaryMoralLogic" target="_blank" rel="noopener noreferrer" class="bg-[#2C3E50] text-white px-6 py-3 rounded-lg hover:bg-black transition-colors font-semibold">
+
+                    View GitHub Repository
+
+                 </a>
+
+                 <a href="mailto:leogouk@gmail.com" class="bg-gray-200 text-[#2C3E50] px-6 py-3 rounded-lg hover:bg-gray-300 transition-colors font-semibold">
+
+                    Contact Author
+
+                 </a>
+
+             </div>
+
+        </section>
+
+    </main>
+
+    <footer class="text-center py-8 mt-12 border-t border-gray-200">
+
+        <p class="text-gray-500">Authored by Lev Goukassian (ORCID: 0009-0006-5966-1243)</p>
+
+        <p class="text-gray-500 mt-1">The framework remembers so justice can see.</p>
+
+    </footer>
 
     <script>
-        const fundCtx = document.getElementById('fundChart').getContext('2d');
-        const fundData = {
-            labels: ['Victims of AI Harm', 'Environmental Restoration', 'Whistleblowers', 'Framework Operations & Cancer Research'],
-            datasets: [{
-                data: [40, 30, 15, 15],
-                backgroundColor: ['#444E86', '#955196', '#FF6E54', '#FFA600'],
-                borderColor: '#FFFFFF',
-                borderWidth: 5,
-                hoverOffset: 15,
-            }]
-        };
 
-        new Chart(fundCtx, {
-            type: 'doughnut',
-            data: fundData,
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                cutout: '65%',
-                plugins: {
-                    legend: {
-                        display: false
-                    },
-                    tooltip: {
-                        callbacks: {
-                            title: function(tooltipItems) {
-                                const item = tooltipItems[0];
-                                let label = item.chart.data.labels[item.dataIndex];
-                                if (Array.isArray(label)) {
-                                  return label.join(' ');
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const fundCtx = document.getElementById('fundChart').getContext('2d');
+
+            const fundChart = new Chart(fundCtx, {
+
+                type: 'doughnut',
+
+                data: {
+
+                    labels: ['Victims of AI Harm', 'Environmental Restoration', 'Whistleblowers', 'Operations & Cancer Research'],
+
+                    datasets: [{
+
+                        label: 'Memorial Fund Distribution',
+
+                        data: [40, 30, 15, 15],
+
+                        backgroundColor: [
+
+                            '#4A90E2',
+
+                            '#50E3C2',
+
+                            '#F5A623',
+
+                            '#E87461'
+
+                        ],
+
+                        borderColor: '#F8F7F4',
+
+                        borderWidth: 4,
+
+                        hoverOffset: 10
+
+                    }]
+
+                },
+
+                options: {
+
+                    responsive: true,
+
+                    maintainAspectRatio: false,
+
+                    plugins: {
+
+                        legend: {
+
+                            position: 'bottom',
+
+                            labels: {
+
+                                padding: 20,
+
+                                font: {
+
+                                    size: 14,
+
+                                    family: "'Inter', sans-serif"
+
                                 }
-                                return label;
-                            },
-                            label: function(context) {
-                                return context.parsed + '%';
+
                             }
+
                         },
-                        backgroundColor: '#003F5C',
-                        titleFont: { size: 16, weight: 'bold' },
-                        bodyFont: { size: 14 },
-                        padding: 12,
-                        cornerRadius: 4,
-                        displayColors: false,
-                    }
+
+                        tooltip: {
+
+                            callbacks: {
+
+                                label: function(context) {
+
+                                    let label = context.label || '';
+
+                                    if (label) {
+
+                                        label += ': ';
+
+                                    }
+
+                                    if (context.parsed !== null) {
+
+                                        label += context.parsed + '%';
+
+                                    }
+
+                                    return label;
+
+                                }
+
+                            },
+
+                            bodyFont: {
+
+                                size: 14,
+
+                                family: "'Inter', sans-serif"
+
+                            },
+
+                            titleFont: {
+
+                                size: 16,
+
+                                family: "'Inter', sans-serif"
+
+                            },
+
+                            padding: 12,
+
+                            backgroundColor: '#2C3E50'
+
+                        }
+
+                    },
+
+                    cutout: '60%'
+
                 }
-            }
+
+            });
+
+            const timelineBtns = document.querySelectorAll('.timeline-btn');
+
+            const timelineContents = document.querySelectorAll('.timeline-content');
+
+            timelineBtns.forEach(btn => {
+
+                btn.addEventListener('click', () => {
+
+                    const targetId = btn.id.replace('-btn', '-content');
+
+                   
+
+                    timelineBtns.forEach(b => b.classList.remove('active'));
+
+                    btn.classList.add('active');
+
+                    timelineContents.forEach(content => {
+
+                        if (content.id === targetId) {
+
+                            content.classList.remove('hidden');
+
+                        } else {
+
+                            content.classList.add('hidden');
+
+                        }
+
+                    });
+
+                });
+
+            });
+
+            const sections = document.querySelectorAll('.section-fade-in');
+
+            const observer = new IntersectionObserver((entries) => {
+
+                entries.forEach(entry => {
+
+                    if (entry.isIntersecting) {
+
+                        entry.target.classList.add('visible');
+
+                    }
+
+                });
+
+            }, {
+
+                threshold: 0.1
+
+            });
+
+            sections.forEach(section => {
+
+                observer.observe(section);
+
+            });
+
         });
+
     </script>
+
 </body>
+
 </html>
+
