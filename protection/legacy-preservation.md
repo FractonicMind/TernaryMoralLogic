@@ -39,7 +39,7 @@ Sacred Zero creates Blockchain evidence that outlives governments, corporations,
 
 Lev's vision protected THREE realms:
 
-**Human Dignity** (26 Documents):
+**Human Dignity** (26+ Documents):
 - Universal Declaration of Human Rights
 - International Covenants
 - Zero tolerance for torture
