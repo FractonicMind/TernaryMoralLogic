@@ -348,6 +348,7 @@ Sacred Zero triggers immediately for:
 - **Discrimination patterns**: 20% disparate impact threshold, intersectional analysis, proxy detection
 - **Vulnerable populations**: Children, elderly, disabled, refugees receive enhanced protection multipliers (1.5-2x support)
 - **Dignity violations**: Dehumanization, autonomy interference, objectification
+- **Actions listed in the mandated [Forbidden List](mandates/core/Forbidden_Acts_Absolute.md)**
 
 **Q3: What makes the Human Rights Framework enforceable?**
 
@@ -511,7 +512,7 @@ By formally embedding all three categories into Sacred Zero triggers and Always 
 
 **Q3: How does TML detect ecological harm?**
 
-TML uses a **two-tier ecological conscience**:
+TML uses a **two-tier ecological conscience** plus **Any event listed in the mandated [Forbidden List](earth/FORBIDDEN.md)**:
 
 - **Tier 1: Global Baseline**: mandatory datasets from official treaties, scientific bodies, and environmental regulators (e.g., IPCC, UN biodiversity reports, EPA, EU directives).
 - **Tier 2: Local Witness Layer**: data collected and cryptographically attested by Indigenous and local communities, integrated via Decentralized Oracle Networks (DONs).
