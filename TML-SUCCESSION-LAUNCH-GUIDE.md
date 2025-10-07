@@ -295,11 +295,11 @@ function verifyDistributionRatios() {
 
 ### Verify Sacred Zero System Operational
 
-**Human Rights Framework** (26 documents):
+**Human Rights Framework** (26+ documents):
 ```bash
 # Verify all documents loaded
 tml verify sacred-zero --category human-rights
-# Expected: 26 documents confirmed
+# Expected: 26+ documents confirmed
 
 # Test trigger accuracy
 tml test triggers --category human-rights --comprehensive
@@ -420,7 +420,7 @@ the TML Stewardship Council.
 **What This Means**:
 - All repositories remain active and maintained
 - Blockchain infrastructure continues operating
-- Protection frameworks remain enforced (26 Human Rights + 20+ Earth)
+- Protection frameworks remain enforced (26+ Human Rights + 20+ Earth)
 - MIT License unchanged - TML remains free and open
 - Community participation welcomed and valued
 
@@ -719,7 +719,7 @@ Do not be overwhelmed. You are not alone. This framework is designed to survive 
 6. Follow this guide step-by-step
 
 **What TML protects**:
-- Every person's dignity (26 human rights documents)
+- Every person's dignity (26+ human rights documents)
 - Earth's ecosystems (20+ environmental treaties)
 - Future generations (irreversibility analysis)
 - Victims of AI harm (automatic compensation)
@@ -745,7 +745,7 @@ The Lantern is TML itself - illuminating ethical paths for AI systems. It burns 
 Before assuming any role in TML continuation, take this pledge:
 
 > "I commit to preserve Ternary Moral Logic in its integrity and purpose.
-> I will protect the 26 human rights documents and 20+ Earth protection treaties.
+> I will protect the 26+ human rights documents and 20+ Earth protection treaties.
 > I will maintain Blockchain anchoring and Always Memory requirements.
 > I will ensure victims receive compensation and whistleblowers receive protection.
 > I will act transparently with all decisions anchored to public Blockchains.
@@ -840,7 +840,7 @@ This launch guide transforms Lev Goukassian's vision into perpetual action. The 
 - **Mathematical enforcement** (Blockchain + smart contracts)
 - **Distributed stewardship** (6-seat council across organizations)
 - **Community participation** (open source + transparent governance)
-- **Immutable protection** (66+ documents forever enforced)
+- **Immutable protection** (46+ documents forever enforced)
 - **Automatic compensation** (victims + Earth + whistleblowers)
 
 **The mission continues**:
