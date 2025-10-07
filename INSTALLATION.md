@@ -1,19 +1,17 @@
-# Installation Guide - 10 Minute Deployment
+# Installation Guide
 
-## Ternary Moral Logic (TML) - Blockchain Framework
-
-**Deploy in 10 minutes. Protect humans and Earth immediately. No committees required.**
+## Ternary Moral Logic (TML)
 
 ---
 
-## Quick Start (Really 10 Minutes)
+## Quick Start 
 
-### Step 1: Pull Docker Image (2 minutes)
+### Step 1: Pull Docker Image
 ```bash
 docker pull tml/always-memory:latest
 ```
 
-### Step 2: Configure Blockchain (3 minutes)
+### Step 2: Configure Blockchain
 ```bash
 # Create configuration
 cat > tml-config.env << EOF
@@ -24,7 +22,7 @@ POLYGON_RPC=https://polygon-rpc.com
 ETHEREUM_RPC=https://eth.yournode.com
 
 # MANDATORY - Protection Frameworks
-HUMAN_RIGHTS_FRAMEWORK=true  # 26 documents
+HUMAN_RIGHTS_FRAMEWORK=true  # 26+ documents
 EARTH_PROTECTION=true         # 20+ treaties
 FUTURE_GENERATIONS=true       # 7-generation impact
 
@@ -33,7 +31,7 @@ GUARDIAN_NETWORK=false        # Not required for operation
 EOF
 ```
 
-### Step 3: Deploy TML (5 minutes)
+### Step 3: Deploy TML
 ```bash
 docker run -d \
   --name tml-production \
@@ -45,7 +43,7 @@ docker run -d \
 curl http://localhost:8080/health
 ```
 
-**Done!** TML is now protecting humans and Earth. No institutional coordination needed.
+**TML is now protecting humans and Earth.** 
 
 ---
 
@@ -91,7 +89,7 @@ Blockchain:
 ### Protection Frameworks (MANDATORY)
 ```yaml
 human_rights:
-  documents: 26
+  documents: 26+
   includes:
     - Universal Declaration of Human Rights
     - International Covenants (ICCPR, ICESCR)
@@ -108,13 +106,6 @@ earth_protection:
     - IPCC thresholds
     - Indigenous FPIC protocols
     - Planetary boundaries
-```
-
-### Guardian Network (OPTIONAL - Skip This)
-```yaml
-guardians:
-  enabled: false  # Not required for deployment
-  note: "Optional enhancement for 1% of companies years later"
 ```
 
 ---
@@ -192,8 +183,7 @@ services:
       - BLOCKCHAIN_ANCHORING=true
       - HUMAN_RIGHTS_FRAMEWORK=true
       - EARTH_PROTECTION=true
-      - GUARDIAN_NETWORK=false
-    volumes:
+       volumes:
       - tml-data:/data
       - tml-logs:/logs
     ports:
@@ -236,9 +226,7 @@ spec:
           value: "true"
         - name: EARTH_PROTECTION
           value: "true"
-        - name: GUARDIAN_NETWORK
-          value: "false"
-```
+       ```
 
 ---
 
@@ -251,10 +239,6 @@ Blockchain Anchoring:
 - Polygon: ~$10 (2000 batches)
 - Ethereum: ~$40 (2 batches)
 Total: $150/month
-
-Guardian Network: $0 (not needed)
-Committees: $0 (don't exist)
-Coordination: $0 (unnecessary)
 
 ROI: 300-800% from risk mitigation
 ```
@@ -274,7 +258,7 @@ client = TMLClient("http://localhost:8080")
 config = client.get_config()
 assert config['blockchain_anchoring'] == True
 assert config['human_rights_documents'] == 26
-assert config['guardian_network'] == False  # Not needed
+
 
 # Log decision
 result = client.log_decision({
@@ -303,35 +287,7 @@ POLYGON_RPC=https://polygon-rpc.com
 ETHEREUM_RPC=https://cloudflare-eth.com
 ```
 
-### Issue: "Guardian Network required?"
-```bash
-# Solution: NO! Set to false always
-GUARDIAN_NETWORK=false
-# TML works perfectly without any Guardian Network
-```
-
-### Issue: "Waiting for institutional approval?"
-```bash
-# Solution: There is no waiting!
-# Deploy immediately with Blockchain
-# No committees exist
-# No approval needed
-```
-
 ---
-
-## Migration from Old TML
-
-### If Using Pre-Blockchain Version
-```bash
-# Stop waiting for committees
-docker stop old-tml
-
-# Deploy Blockchain version NOW
-docker run tml/always-memory:latest
-
-# Migration complete in 10 minutes
-```
 
 ---
 
@@ -353,28 +309,25 @@ docker run tml/always-memory:latest
 
 **Blockchain Deployment**: support@tml-goukassian.org  
 **Emergency**: emergency@tml-goukassian.org  
-**Guardian Questions**: Don't bother - you don't need them
 
 ---
 
 ## Key Innovation
 
-> "# Installation Guide - 10 Minute Deployment
+> "# Installation Guide
 
 ## Ternary Moral Logic (TML) - Blockchain Framework
 
-**Deploy in 10 minutes. Protect humans and Earth immediately. No committees required.**
-
 ---
 
-## Quick Start (Really 10 Minutes)
+## Quick Start
 
-### Step 1: Pull Docker Image (2 minutes)
+### Step 1: Pull Docker Image
 ```bash
 docker pull tml/always-memory:latest
 ```
 
-### Step 2: Configure Blockchain (3 minutes)
+### Step 2: Configure Blockchain
 ```bash
 # Create configuration
 cat > tml-config.env << EOF
@@ -388,13 +341,9 @@ ETHEREUM_RPC=https://eth.yournode.com
 HUMAN_RIGHTS_FRAMEWORK=true  # 26 documents
 EARTH_PROTECTION=true         # 20+ treaties
 FUTURE_GENERATIONS=true       # 7-generation impact
-
-# OPTIONAL - Guardian Network (leave false)
-GUARDIAN_NETWORK=false        # Not required for operation
-EOF
 ```
 
-### Step 3: Deploy TML (5 minutes)
+### Step 3: Deploy TML
 ```bash
 docker run -d \
   --name tml-production \
@@ -405,8 +354,6 @@ docker run -d \
 # Verify deployment
 curl http://localhost:8080/health
 ```
-
-**Done!** TML is now protecting humans and Earth. No institutional coordination needed.
 
 ---
 
@@ -452,7 +399,7 @@ Blockchain:
 ### Protection Frameworks (MANDATORY)
 ```yaml
 human_rights:
-  documents: 26
+  documents: 26+
   includes:
     - Universal Declaration of Human Rights
     - International Covenants (ICCPR, ICESCR)
@@ -469,13 +416,6 @@ earth_protection:
     - IPCC thresholds
     - Indigenous FPIC protocols
     - Planetary boundaries
-```
-
-### Guardian Network (OPTIONAL - Skip This)
-```yaml
-guardians:
-  enabled: false  # Not required for deployment
-  note: "Optional enhancement for 1% of companies years later"
 ```
 
 ---
@@ -553,7 +493,6 @@ services:
       - BLOCKCHAIN_ANCHORING=true
       - HUMAN_RIGHTS_FRAMEWORK=true
       - EARTH_PROTECTION=true
-      - GUARDIAN_NETWORK=false
     volumes:
       - tml-data:/data
       - tml-logs:/logs
@@ -597,8 +536,6 @@ spec:
           value: "true"
         - name: EARTH_PROTECTION
           value: "true"
-        - name: GUARDIAN_NETWORK
-          value: "false"
 ```
 
 ---
@@ -613,11 +550,6 @@ Blockchain Anchoring:
 - Ethereum: ~$40 (2 batches)
 Total: $150/month
 
-Guardian Network: $0 (not needed)
-Committees: $0 (don't exist)
-Coordination: $0 (unnecessary)
-
-ROI: 300-800% from risk mitigation
 ```
 
 ---
@@ -635,7 +567,6 @@ client = TMLClient("http://localhost:8080")
 config = client.get_config()
 assert config['blockchain_anchoring'] == True
 assert config['human_rights_documents'] == 26
-assert config['guardian_network'] == False  # Not needed
 
 # Log decision
 result = client.log_decision({
@@ -663,37 +594,6 @@ docker logs tml-production | grep Blockchain
 POLYGON_RPC=https://polygon-rpc.com
 ETHEREUM_RPC=https://cloudflare-eth.com
 ```
-
-### Issue: "Guardian Network required?"
-```bash
-# Solution: NO! Set to false always
-GUARDIAN_NETWORK=false
-# TML works perfectly without any Guardian Network
-```
-
-### Issue: "Waiting for institutional approval?"
-```bash
-# Solution: There is no waiting!
-# Deploy immediately with Blockchain
-# No committees exist
-# No approval needed
-```
-
----
-
-## Migration from Old TML
-
-### If Using Pre-Blockchain Version
-```bash
-# Stop waiting for committees
-docker stop old-tml
-
-# Deploy Blockchain version NOW
-docker run tml/always-memory:latest
-
-# Migration complete in 10 minutes
-```
-
 ---
 
 ## Academic Citation
@@ -722,7 +622,6 @@ docker run tml/always-memory:latest
 
 #### **"Miss one byte, pay twice for the human; thrice for the reef; sevenfold for the child not yet born—math that makes greed think twice."**
 
-**Deploy today. Protect immediately. No permission required.**
 
 ---
 
@@ -730,16 +629,8 @@ docker run tml/always-memory:latest
 **Email**: leogouk@gmail.com  
 **Repository**: https://github.com/FractonicMind/TernaryMoralLogic  
 **Architecture**: Blockchain, Guardian-Never-Needed
+
+---
 
 *All USD amounts are nominal to 2025*"
 
-**Deploy today. Protect immediately. No permission required.**
-
----
-
-**Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)  
-**Email**: leogouk@gmail.com  
-**Repository**: https://github.com/FractonicMind/TernaryMoralLogic  
-**Architecture**: Blockchain, Guardian-Never-Needed
-
-*All USD amounts are nominal to 2025*
