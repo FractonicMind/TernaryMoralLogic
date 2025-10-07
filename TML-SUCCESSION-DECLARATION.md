@@ -12,7 +12,7 @@ I, **Lev Goukassian** (ORCID: 0009-0006-5966-1243), creator of the Ternary Moral
 
 This succession applies to all TML components:
 - Ternary Moral Logic theoretical framework and Always Memory architecture
-- Sacred Zero detection system and 66 protection documents (26 Human Rights + 20+ Earth Protection)
+- Sacred Zero detection system and 46+ protection documents (26+ Human Rights + 20+ Earth Protection)
 - Blockchain anchoring infrastructure (Bitcoin, Ethereum, Polygon smart contracts)
 - Memorial Fund governance and victim compensation systems
 - All research, documentation, and intellectual property
@@ -458,7 +458,7 @@ TML is released under MIT License and shall remain perpetually open source. No f
 **Required Attribution** (permanent):
 ```
 Creator: Lev Goukassian
-ORCID: 0009-0006-5966-1243
+ORCID: 0009-0006-59-1243
 Email: leogouk@gmail.com
 ```
 
@@ -516,7 +516,7 @@ This declaration, once executed and witnessed, is irrevocable. The succession pr
 
 **Declarant**: Lev Goukassian  
 **Signature**: _________________________ **Date**: _____________  
-**ORCID**: 0009-0006-5966-1243  
+**ORCID**: 0009-0006-59-1243  
 **Email**: leogouk@gmail.com  
 
 ### Witness Requirements
@@ -584,13 +584,13 @@ By executing this voluntary succession declaration, I ensure that TML continues 
 
 🏮 **The Lantern**: Illuminates ethical paths in algorithmic decisions
 
-✍️ **The Signature**: Creator's ORCID (0009-0006-5966-1243) embedded in every log
+✍️ **The Signature**: Creator's ORCID (0009-0006-59-1243) embedded in every log
 
 📜 **The License**: MIT terms protecting freedom while ensuring accountability
 
 ### For Future Generations
 
-**To those who inherit TML stewardship**: You hold the framework that gives every person veto power over algorithms, and gives Earth a voice that power cannot silence. The 66 protection documents—26 for human dignity, 20+ for planetary survival—are not suggestions. They are mathematical requirements encoded in Blockchain, enforced by smart contracts, witnessed by Always Memory.
+**To those who inherit TML stewardship**: You hold the framework that gives every person veto power over algorithms, and gives Earth a voice that power cannot silence. The 46+ protection documents—26+ for human dignity, 20+ for planetary survival—are not suggestions. They are mathematical requirements encoded in Blockchain, enforced by smart contracts, witnessed by Always Memory.
 
 **No memory = No action = Criminal prosecution.**
 
