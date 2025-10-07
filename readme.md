@@ -586,7 +586,9 @@ No successor may remove these foundations or alter creator attribution.
 * Memorial Fund distributions to victims, whistleblowers, environmental recovery, and cancer research are permanent.   
 * Governance changes must be transparent, cryptographically signed, and publicly visible.   
 
-**[TML-SUCCESSION-LAUNCH-GUIDE](TML-SUCCESSION-LAUNCH-GUIDE.md)** is the operational manual for the moment after the signature — the document that turns your Voluntary Succession Declaration from a will into a working protocol. In essence, TML-SUCCESSION-LAUNCH-GUIDE is not about death - it’s about design immortality. It’s the technical resurrection clause of your legacy: a living handoff document that ensures the Lantern’s flame transfers cleanly from pulse to principle.
+**[TML-SUCCESSION-LAUNCH-GUIDE](TML-SUCCESSION-LAUNCH-GUIDE.md)** is the operational manual for the moment after the signature - the document that turns your Voluntary Succession Declaration from a will into a working protocol. In essence, TML-SUCCESSION-LAUNCH-GUIDE is not about death - it’s about design immortality. It’s the technical resurrection clause of your legacy: a living handoff document that ensures the Lantern’s flame transfers cleanly from pulse to principle.
+
+#### **[A Legacy of Accountability Webpage](TML-Succession-Plan.html)** and listen to the full Succession Declaration 
 
 ---
 
