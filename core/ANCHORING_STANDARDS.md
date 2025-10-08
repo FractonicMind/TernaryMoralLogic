@@ -1,9 +1,9 @@
 # **ANCHORING STANDARDS: Constitutional Framework for Immutable Proof**
 
-**Path:** `/core/ANCHORING_STANDARDS.md`
-**Creator:** Lev Goukassian (ORCID 0009-0006-5966-1243)
-**Version:** 1.0.0-final
-**Date:** October 2025
+**Path:** `/core/ANCHORING_STANDARDS.md`   
+**Creator:** Lev Goukassian (ORCID 0009-0006-5966-1243)   
+**Version:** 1.0.0-final   
+**Date:** October 2025   
 
 ---
 
