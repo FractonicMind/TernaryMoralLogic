@@ -615,36 +615,36 @@ To future implementers: Every log you anchor, every Sacred Zero you trigger, eve
 
 ## XVI. CONTACT INFORMATION
 
-**Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)
-**Email**: [leogouk@gmail.com](mailto:leogouk@gmail.com)
-**Repository**: [https://github.com/FractonicMind/TernaryMoralLogic](https://github.com/FractonicMind/TernaryMoralLogic)
-**Domain**: tml-goukassian.org (to be maintained by custodian)
+**Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)   
+**Email**: [leogouk@gmail.com](mailto:leogouk@gmail.com)   
+**Repository**: [https://github.com/FractonicMind/TernaryMoralLogic](https://github.com/FractonicMind/TernaryMoralLogic)   
+**Domain**: tml-goukassian.org (to be maintained by custodian)   
 
-**Succession Coordination**: [support@tml-goukassian.org](mailto:support@tml-goukassian.org)
-**Succession**: [support@tml-goukassian.org](mailto:support@tml-goukassian.org) (see [Succession Charter](/TML-SUCCESSION-CHARTER.md))
-**Emergency Contact**: [To be designated]
-**Legal Counsel**: [To be designated]
+**Succession Coordination**: [support@tml-goukassian.org](mailto:support@tml-goukassian.org)   
+**Succession**: [support@tml-goukassian.org](mailto:support@tml-goukassian.org) (see [Succession Charter](/TML-SUCCESSION-CHARTER.md))   
+**Emergency Contact**: [To be designated]   
+**Legal Counsel**: [To be designated]   
 
 ---
 
 ## Chain of Custody Metadata
 
-chain_of_custody:
-created_by: Lev Goukassian (ORCID: 0009-0006-5966-1243)
-notarized_at: 2025-10-10T00:00Z
-verified_by: OpenTimestamps Proof (pending)
-file_hash: e31168a5813bd7f8461649794ebdc005d1de0b88779d033de65a0bcf4a716547
-anchor_targets:
+chain_of_custody:   
+created_by: Lev Goukassian (ORCID: 0009-0006-5966-1243)   
+notarized_at: 2025-10-09T00:00Z   
+verified_by: OpenTimestamps Proof (pending)   
+file_hash: e31168a5813bd7f8461649794ebdc005d1de0b88779d033de65a0bcf4a716547   
+anchor_targets:   
 - Bitcoin (OTS)
 - Ethereum AnchorLog (optional)
-- Polygon AnchorLog (optional)
-context: "TML Succession Declaration establishing custodial and governance continuity"
-repository: [https://github.com/FractonicMind/TernaryMoralLogic](https://github.com/FractonicMind/TernaryMoralLogic)
-version: 1.0.0-final
-checksum_verified: true
-last_modified: 2025-10-08T23:40Z
+- Polygon AnchorLog (optional)   
+context: "TML Succession Declaration establishing custodial and governance continuity"   
+repository: [https://github.com/FractonicMind/TernaryMoralLogic](https://github.com/FractonicMind/TernaryMoralLogic)   
+version: 1.0.0-final   
+checksum_verified: true   
+last_modified: 2025-10-08T23:40Z   
 
-verification_method: sha256 + opentimestamps
+verification_method: sha256 + opentimestamps   
 
 ---
 
@@ -653,7 +653,6 @@ verification_method: sha256 + opentimestamps
 *"Sacred Zero is exactly what's needed where lives, billions, and our planet are on the line."*
 
 *A single hash can carry the weight of a promise.*
-
 
 
 **TML lives because mathematics never dies.**
