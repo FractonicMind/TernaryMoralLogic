@@ -789,9 +789,9 @@ chain_of_custody:
   verified_by: OpenTimestamps Proof (pending)   
   file_hash: 07a8c9c10f680fc14fbd59635f4b59240c148494d8007afac94f2a817c33a561   
   anchor_targets:   
-    - Bitcoin (OTS)
-    - Ethereum AnchorLog (optional)
-    - Polygon AnchorLog (optional)
+    - Bitcoin (OTS)   
+    - Ethereum AnchorLog (optional)   
+    - Polygon AnchorLog (optional)   
   context: "MANDATORY.md — Constitutional requirements of Ternary Moral Logic"   
   repository: https://github.com/FractonicMind/TernaryMoralLogic   
   version: 1.0.0-final   
