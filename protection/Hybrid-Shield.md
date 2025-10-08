@@ -11,15 +11,7 @@
 
 ## I. EXECUTIVE SUMMARY
 
-### 1.1 The Revolutionary Pivot
-The Hybrid Shield has evolved from institution-dependent to **Blockchain architecture**:
-
-- **OLD MODEL**: Required 11 Guardian institutions before deployment (impossible coordination)
-- **NEW MODEL**: Deploy immediately with Blockchain anchoring, add Guardians later (optional enhancement)
-
-This transformation enables **immediate global deployment** while preserving the option for enhanced governance.
-
-### 1.2 Comprehensive Protection Scope
+### 1.1 Comprehensive Protection Scope
 The Hybrid Shield protects ALL categories of moral decisions:
 
 1. **Human Discrimination** - Algorithmic bias, vulnerable populations
@@ -27,10 +19,10 @@ The Hybrid Shield protects ALL categories of moral decisions:
 3. **Earth Protection** - Environmental harm, Indigenous rights (20+ document framework)
 4. **Future Generations** - Ecosystem preservation, intergenerational justice
 
-### 1.3 Double Armor Architecture
+### 1.2 Double Armor Architecture
 Two independent protection layers, deployed in phases:
 
-**Mathematical Shield (MANDATORY - Deploy Today)**
+**Mathematical Shield (MANDATORY)**
 - Multi-chain Blockchain anchoring (Bitcoin, Polygon, Ethereum)
 - OpenTimestamps (OTS) standardization
 - Certificate Transparency (CT) model
@@ -52,19 +44,16 @@ Two independent protection layers, deployed in phases:
 ```yaml
 bitcoin:
   role: "Maximum security anchor"
-  confirmation: "10-60 minutes"
   immutability: "Highest (10+ years proven)"
   cost: "$0.50-2.00 per batch"
 
 polygon:
   role: "Real-time accountability"
-  confirmation: "2-3 seconds"
   throughput: "65,000 TPS"
   cost: "$0.001-0.005 per batch"
 
 ethereum:
   role: "Smart contract penalties"
-  confirmation: "15-60 seconds"
   ecosystem: "Largest DeFi/legal integration"
   cost: "$5-20 per batch"
 ```
@@ -200,40 +189,24 @@ Sacred_Zero_Environmental:
 
 ### 4.1 Guardian Network Evolution Path
 
-**Year 1: Blockchain-Only (Current State)**
+**Year 1: Blockchain (Current State)**
 - Full deployment with mathematical protection
 - $110/month operational cost
 - 300-800% ROI from risk mitigation
 - Complete legal enforceability
 
 **Year 2-3: Early Guardian Adoption**
-- Add 1-3 Guardian institutions
+- Add 1-3 Guardians
 - Enhanced credibility and trust
 - $300/month operational cost
 - 500-1,200% ROI
 
 **Year 5+: Full Guardian Network**
-- 9-11 Guardian institutions
+- 9-11 Guardians
 - Maximum insurance discounts (50-60%)
 - $500/month operational cost
 - 800-1,500% ROI
 - International treaty-level recognition
-
-### 4.2 Guardian Selection Criteria (When Ready)
-
-**Institution Categories**:
-- Academic Research (3-4 seats)
-- Technical Standards Bodies (2-3 seats)
-- Human Rights Organizations (2 seats)
-- Environmental Protection Groups (2 seats)
-- Indigenous Representatives (1-2 seats)
-
-**Independence Requirements**:
-- No single government control
-- Geographic distribution
-- Jurisdictional diversity
-- Technical capability
-- Proven integrity record
 
 ### 4.3 Migration Benefits
 
@@ -244,7 +217,7 @@ Sacred_Zero_Environmental:
 - Research collaboration
 - Long-term custody assurance
 
-**Key Principle**: Guardians enhance but never gatekeep. Protection starts immediately with Blockchain.
+**Key Principle**: Protection starts immediately with Blockchain.
 
 ---
 
@@ -252,7 +225,6 @@ Sacred_Zero_Environmental:
 
 ### 5.1 Immediate Deployment (Day 1)
 
-**10-Minute Setup via Docker**:
 ```bash
 # Deploy TML with Blockchain anchoring
 docker pull tml/always-memory:latest
@@ -263,7 +235,6 @@ docker run -e BLOCKCHAIN_ANCHORING=true \
            tml/always-memory
 
 # System operational immediately
-# No institutional coordination required
 ```
 
 ### 5.2 Performance Specifications
@@ -356,7 +327,7 @@ docker run -e BLOCKCHAIN_ANCHORING=true \
 - Evidence admissibility rate: >99% in court
 
 ### 7.3 Evolution Metrics
-- Guardian institutions recruited: 0-2 Year 1, 3-5 Year 3, 9-11 Year 5
+- Guardians recruited: 0-2 Year 1, 3-5 Year 3, 9-11 Year 5
 - Cross-border recognition: 5 countries Year 1, 50+ Year 5
 - Insurance adoption: 20% Year 1, 80% Year 5
 - ROI achievement: 300% minimum Year 1
@@ -375,7 +346,6 @@ docker run -e BLOCKCHAIN_ANCHORING=true \
 
 **New Model (Blockchain First)**:
 - "Good protection today, perfect governance tomorrow"
-- Deploy in 10 minutes
 - Blockchain as foundation
 - Guardian enhancement when ready
 
@@ -444,7 +414,7 @@ Every Sacred Zero creates a symphony of evidence:
 *"The Hybrid Shield ensures that Sacred Zero becomes more than a moment of reflection – it becomes permanent testament to AI's capacity for ethical reasoning toward humans, Earth, and future generations, protected immediately by mathematical certainty and enhanced over time by institutional wisdom."*
 
 **Legal Status**: Core protection requirement for all TML implementations  
-**Deployment Status**: Immediate with Blockchain, Guardian enhancement optional  
+**Deployment Status**: Immediate with Blockchain  
 **Review Cycle**: Annual with emergency updates as needed
 
 *All USD amounts are nominal to 2025*
