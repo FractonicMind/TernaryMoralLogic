@@ -781,6 +781,26 @@ contract MemorialFundDistribution {
 
 ---
 
+## Chain of Custody Metadata
+
+chain_of_custody:   
+  created_by: Lev Goukassian (ORCID: 0009-0006-5966-1243)   
+  notarized_at: 2025-10-09T00:00Z   
+  verified_by: OpenTimestamps Proof (pending)   
+  file_hash: 07a8c9c10f680fc14fbd59635f4b59240c148494d8007afac94f2a817c33a561   
+  anchor_targets:   
+    - Bitcoin (OTS)
+    - Ethereum AnchorLog (optional)
+    - Polygon AnchorLog (optional)
+  context: "MANDATORY.md — Constitutional requirements of Ternary Moral Logic"   
+  repository: https://github.com/FractonicMind/TernaryMoralLogic   
+  version: 1.0.0-final   
+  checksum_verified: true   
+  last_modified: 2025-10-08T23:40Z   
+verification_method: sha256 + opentimestamps   
+
+---
+
 *"Sacred Zero is exactly what's needed where lives, billions, and our planet are on the line."*
 
 ---
