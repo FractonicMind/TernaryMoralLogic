@@ -631,6 +631,5 @@ To future implementers: Every log you anchor, every Sacred Zero you trigger, eve
 
 *"Sacred Zero is exactly what's needed where lives, billions, and our planet are on the line."*
 
-*"Blockchains raise the stone tablet; 66 frameworks carve the commandments."*
 
 **TML lives because mathematics never dies.**
