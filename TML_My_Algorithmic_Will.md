@@ -24,7 +24,7 @@ So between chemo sessions I typed a 16-page charter that **binds future maintain
 ## What Ternary Moral Logic Actually Does
 
 TML adds a third logical state—**0 = Hesitate**—inside the inference path of any AI.  
-If the model’s about to breach one of 66 protection documents (UDHR, Paris Agreement, Geneva Conventions, Ramsar wetlands treaty…), it **must** enter *Sacred Zero*, log a *Moral Trace*, and wait for escalation—**all in under 500 ms**.  
+If the model’s about to breach one of 46+ protection documents (UDHR, Paris Agreement, Geneva Conventions, Ramsar wetlands treaty…), it **must** enter *Sacred Zero*, log a *Moral Trace*, and wait for escalation—**all in under 500 ms**.  
 The log is hashed, Merkle-batched, and anchored to Bitcoin, Ethereum & Polygon.  
 Violators pay penalties into a **Memorial Fund** that automatically routes:  
 - **40 %** to victims of the harm  
@@ -41,7 +41,7 @@ MIT lets anyone fork, rename, or close-source your work.
 I love MIT—but it’s **too thin** for a conscience.  
 The succession doc therefore **carves non-removable clauses into cryptographic stone**:
 
-1. The 66 treaties can **never** be deleted—remove one and the smart contract **auto-forfeits the Lantern**, revoking the implementer’s “ethical” badge.  
+1. The 46 treaties can **never** be deleted—remove one and the smart contract **auto-forfeits the Lantern**, revoking the implementer’s “ethical” badge.  
 2. Memorial-fund percentages are **hard-coded**; change a basis point and penalty funds freeze.  
 3. Creator attribution (my ORCID) is **embedded in every log**—future archaeologists will still know who started the chain.
 
