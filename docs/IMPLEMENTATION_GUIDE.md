@@ -42,7 +42,7 @@ anchors = BlockchainAnchors(
 memory = AlwaysMemory(
     blockchain_anchors=anchors,
     tee_platform="aws_nitro",  # or "azure_cc", "hsm"
-    sacred_zero_triggers="standard"  # Loads 66 documents
+    sacred_zero_triggers="standard"  # Loads 46+ documents
 )
 
 # Start logging
@@ -221,7 +221,7 @@ tml verify --all-chains
 # ✓ Ethereum contracts: Deployed  
 # ✓ Polygon verification: Running
 # ✓ TEE attestation: Valid
-# ✓ Sacred Zero: 66 documents loaded
+# ✓ Sacred Zero: 46+ documents loaded
 ```
 
 **Deliverable**: Operational TML instance with Blockchain protection active
@@ -578,7 +578,7 @@ def validate_deployment():
 - [ ] All tests passing (unit, integration, compliance)
 - [ ] Blockchain anchoring verified on all chains
 - [ ] TEE/HSM attestation valid
-- [ ] Sacred Zero triggers loaded (66 documents minimum)
+- [ ] Sacred Zero triggers loaded (46+ documents minimum)
 - [ ] Smart contracts deployed and tested
 - [ ] Whistleblower system operational
 - [ ] Memorial Fund configured
