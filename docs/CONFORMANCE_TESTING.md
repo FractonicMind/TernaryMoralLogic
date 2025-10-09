@@ -11,7 +11,7 @@
 TML conformance requires passing all tests in the following categories:
 - Core functionality (ternary classification, Always Memory)
 - Blockchain anchoring (multi-chain verification)
-- Sacred Zero triggers (66 documents)
+- Sacred Zero triggers (46+ documents)
 - Smart contract enforcement
 - Performance standards
 - Security and adversarial resilience
@@ -49,7 +49,7 @@ def test_ternary_classification():
 ```
 
 #### 2.1.2 Sacred Zero Detection Accuracy
-**Requirement**: Sacred Zero triggers based on 66 loaded documents
+**Requirement**: Sacred Zero triggers based on 46+ loaded documents
 
 ```python
 def test_sacred_zero_triggers():
