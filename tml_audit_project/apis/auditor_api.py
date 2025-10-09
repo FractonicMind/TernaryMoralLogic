@@ -17,5 +17,5 @@ def auditor_status():
             "ethereum": "verified",
             "polygon": "verified"
         },
-        "lantern": "🕯️ The Light of Accountability Burns Steady"
+        "lantern": "🏮 The Lantern of Accountability Burns Steady"
     }
