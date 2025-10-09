@@ -590,7 +590,7 @@ By executing this voluntary succession declaration, I ensure that TML continues 
 
 ### For Future Generations
 
-**To those who inherit TML stewardship**: You hold the framework that gives every person veto power over algorithms, and gives Earth a voice that power cannot silence. The 46+ protection documents—26+ for human dignity, 20+ for planetary survival—are not suggestions. They are mathematical requirements encoded in Blockchain, enforced by smart contracts, witnessed by Always Memory.
+**To those who inherit TML stewardship**: You hold the framework that gives every person veto power over algorithms, and gives Earth a voice that power cannot silence. The 46+ protection documents: 26+ for human dignity, 20+ for planetary survival—are not suggestions. They are mathematical requirements encoded in Blockchain, enforced by smart contracts, witnessed by Always Memory.
 
 **No memory = No action = Criminal prosecution.**
 
