@@ -363,12 +363,10 @@ def evaluate_guardian_benefit():
 
 - **Blockchain confirmation**: 2-60 seconds (chain dependent)
 - **Sacred Zero evaluation**: ≤2ms
-- **Log creation**: ≤40μs
+- **Log creation**: ≤500ms
 - **Smart contract execution**: Automatic
 - **Human Rights coverage**: 100% (all 26+ documents)
 - **Earth Protection coverage**: 100% (all 20+ treaties)
-- **Deployment time**: 10 minutes
-- **Institutional coordination required**: ZERO
 
 ---
 
@@ -390,7 +388,7 @@ Ternary Moral Logic Framework
 Creator: Lev Goukassian, ORCID 0009-0006-5966-1243
 Contact: leogouk@gmail.com
 Protection: Humans + Earth + Future Generations
-Architecture: Blockchain, Guardian-Optional
+Architecture: Blockchain
 ```
 
 ---
@@ -425,9 +423,6 @@ Before deployment:
 **Architecture:** Blockchain (Deploy Today)  
 **Protection:** Comprehensive (Humans + Earth + Future)  
 **Integrity:** Court-Grade via Mathematical Consensus  
-**Deployment:** Immediate (No Waiting)
-
-#### **"TML doesn’t care if you use Transformer, tarot cards, or tea leaves—only that every dark prophecy is signed, timed, and ready for cross-examination."** - Lev Goukassian
 
 ---
 
