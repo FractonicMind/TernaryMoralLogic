@@ -120,7 +120,7 @@ always_memory_log:
 
 Smart contracts automatically detect and enforce Sacred Zero for:
 
-**Human Rights (26 Documents)**:
+**Human Rights (26+ Documents)**:
 - UDHR violations (dignity, privacy, autonomy)
 - ICCPR civil/political rights
 - ICESCR economic/social rights
@@ -219,7 +219,7 @@ anchoring:
   smart_contracts: true
   
 protection:
-  human_rights: true  # 26 documents enforced
+  human_rights: true  # 26+ documents enforced
   earth_protection: true  # 20+ treaties active
 
 EOF
@@ -233,7 +233,7 @@ tml verify --all-chains
 # ✓ Ethereum contracts: Deployed
 # ✓ Polygon verification: Running
 # ✓ Sacred Zero triggers: 46+ documents loaded
-# ✓ Human Rights: 26 docs enforced
+# ✓ Human Rights: 26+ docs enforced
 # ✓ Earth Protection: 20+ treaties active
 # ✓ Penalties: Smart contracts ready
 # ✓ Protection: FULLY OPERATIONAL
@@ -308,7 +308,7 @@ function enforceMissingLog(
 
 ## PROTECTION SCOPE: Comprehensive Coverage
 
-### Human Rights Framework (26 Documents Enforced)
+### Human Rights Framework (26+ Documents Enforced)
 
 **Core Treaties Enforced via Smart Contracts**:
 - Universal Declaration of Human Rights (30 articles)
@@ -537,7 +537,7 @@ Before going to production, verify:
 - [ ] Missing log detection triggers alerts
 
 ### Sacred Zero System
-- [ ] Human Rights triggers loaded (26 documents)
+- [ ] Human Rights triggers loaded (26+ documents)
 - [ ] Earth Protection triggers active (20+ treaties)
 - [ ] Discrimination detection tested (20% threshold)
 - [ ] Vulnerable population multipliers configured
@@ -741,7 +741,7 @@ contract MemorialFundDistribution {
 
 ### The Protection
 
-**For Humans** (26 documents enforced):
+**For Humans** (26+ documents enforced):
 - UDHR dignity protections
 - Anti-discrimination safeguards
 - Vulnerable population shields
