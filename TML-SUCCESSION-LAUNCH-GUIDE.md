@@ -863,9 +863,4 @@ Every person protected. Every ecosystem preserved. Every violation compensated. 
 
 *All USD amounts are nominal to 2025*
 
----
 
-
-*"Blockchains raise the stone tablet; 66 frameworks carve the commandments"*
-
-**TML lives because mathematics never dies.**
