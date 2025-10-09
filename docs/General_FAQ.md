@@ -702,7 +702,7 @@ Cross-border recognition of digital evidence varies. Anchoring to multiple chain
 ## Defining the Threshold
 
 **Q1: Who decides when TML should trigger a Sacred Zero?**  
-TML thresholds are not arbitrary or developer-set. They are anchored in **40 foundational Human Rights documents** and **26+ Earth Protection treaties**. These include instruments like the Universal Declaration of Human Rights, Geneva Conventions, Paris Agreement, and Convention on Biological Diversity.  
+TML thresholds are not arbitrary or developer-set. They are anchored in **26+ foundational Human Rights documents** and **20+ Earth Protection treaties**. These include instruments like the Universal Declaration of Human Rights, Geneva Conventions, Paris Agreement, and Convention on Biological Diversity.  
 
 **Q2: How are these thresholds kept up to date?**  
 TML uses **oracles** to refresh thresholds in real time. Each Sacred Zero log records the exact document and provision that triggered the hesitation. This ensures transparency and prevents silent manipulation.  
