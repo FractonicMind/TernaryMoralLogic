@@ -232,7 +232,7 @@ tml verify --all-chains
 # ✓ Bitcoin anchoring: Active
 # ✓ Ethereum contracts: Deployed
 # ✓ Polygon verification: Running
-# ✓ Sacred Zero triggers: 66 documents loaded
+# ✓ Sacred Zero triggers: 46+ documents loaded
 # ✓ Human Rights: 26 docs enforced
 # ✓ Earth Protection: 20+ treaties active
 # ✓ Penalties: Smart contracts ready
