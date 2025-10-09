@@ -1,0 +1,30 @@
+
+$schema: "https://json-schema.org/draft/2020-12/schema"
+title: MoralTraceLog
+description: Canonical structure for TML moral trace logs (hash-only public representation).
+type: object
+properties:
+  sha256:
+    type: string
+    pattern: "^[A-Fa-f0-9]{64}$"
+  timestamp:
+    type: string
+    format: date-time
+  justification_hash:
+    type: string
+    pattern: "^[A-Fa-f0-9]{64}$"
+  lantern_certificate_hash:
+    type: string
+    pattern: "^[A-Fa-f0-9]{64}$"
+  anchors:
+    type: array
+    items:
+      type: object
+      properties:
+        system:
+          type: string
+          enum: [OpenTimestamps, Bitcoin, Ethereum, Polygon]
+        proof_ref:
+          type: string
+      required: [system, proof_ref]
+required: [sha256, timestamp]

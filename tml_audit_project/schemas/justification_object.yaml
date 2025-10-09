@@ -1,0 +1,27 @@
+
+$schema: "https://json-schema.org/draft/2020-12/schema"
+title: JustificationObject
+description: Structured rationale for a decision; public form uses only hashes/pointers.
+type: object
+properties:
+  sha256:
+    type: string
+    pattern: "^[A-Fa-f0-9]{64}$"
+  principles:
+    type: array
+    items:
+      type: string
+  evidence_hashes:
+    type: array
+    items:
+      type: string
+      pattern: "^[A-Fa-f0-9]{64}$"
+  human_rights_refs:
+    type: array
+    items:
+      type: string
+  earth_protection_refs:
+    type: array
+    items:
+      type: string
+required: [sha256]
