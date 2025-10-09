@@ -49,3 +49,13 @@ async def startup_event():
     logging.info(f"{LANTERN} {APP_NAME} started")
     logging.info(f"Creator: {CREATOR}")
     logging.info("Mode: Public Auditor Node — transparent, read-mostly, no private content.")
+
+
+@app.get("/", tags=["root"])
+def read_root():
+    return {
+        "message": "TML Auditor Node: Active",
+        "framework": "Ternary Moral Logic",
+        "status": "Online",
+        "lantern": "🕯️ The Light of Accountability Burns Steady"
+    }
