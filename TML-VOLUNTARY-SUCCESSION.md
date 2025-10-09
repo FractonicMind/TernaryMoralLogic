@@ -45,7 +45,7 @@ To prevent capture and ensure long-term alignment with its public-interest missi
 * **Memorial Fund Administrator (Recommended: Memorial Sloan Kettering Cancer Center):** Responsible for administering the cancer research portion of the Memorial Fund.  
 * **Community Representative:** An elected position to represent the interests of implementers and the broader user community.
 
-**3.2 Governance Limitations:** The Council's power is constitutionally limited. It cannot modify the framework's open-source MIT License, alter the Memorial Fund's distribution percentages, or remove any of the 66 core protection documents. Major changes require a 5/6 consensus.  
+**3.2 Governance Limitations:** The Council's power is constitutionally limited. It cannot modify the framework's open-source MIT License, alter the Memorial Fund's distribution percentages, or remove any of the 46 core protection documents. Major changes require a 5/6 consensus.  
 
 **3.3 Transition Plan:** The succession is structured in a 180-day, four-phase process:
 
