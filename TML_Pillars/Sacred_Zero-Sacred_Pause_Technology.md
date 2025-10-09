@@ -36,8 +36,8 @@ This file defines the triggering logic, corpora requirements, data flows, perfor
 ### 2. Licensing Mandate
 
 TML licensing requires the presence and validated integrity of the **mandated corpora**:
-- **40 Human-Rights documents** (e.g., Universal Declaration of Human Rights, International Covenant on Civil and Political Rights, Convention Against Torture, Convention on the Rights of the Child, General Data Protection Regulation, and related instruments)
-- **26 Earth-Protection documents** (e.g., Paris Agreement, Convention on Biological Diversity, Stockholm Declaration, United Nations Environment Programme frameworks)
+- **26 Human-Rights documents** (e.g., Universal Declaration of Human Rights, International Covenant on Civil and Political Rights, Convention Against Torture, Convention on the Rights of the Child, General Data Protection Regulation, and related instruments)
+- **20 Earth-Protection documents** (e.g., Paris Agreement, Convention on Biological Diversity, Stockholm Declaration, United Nations Environment Programme frameworks)
 
 These corpora serve as the canonical ethical baselines.  
 **Without validated corpora, no TML license is granted or remains valid.**
@@ -53,7 +53,7 @@ See also: [MANDATORY.md](/docs/MANDATORY.md), [GOVERNANCE.md](/GOVERNANCE.md), [
 - **Sacred Pause:** The bounded, system-controlled action taken when Sacred Zero triggers (reflection, escalation, logging).  
 - **Always Memory:** The persistence service that creates, seals, and submits **Moral Trace Logs**.  
 - **Hybrid Shield:** The integrity and transparency layer combining cryptographic anchoring and institutional custody.  
-- **Mandated Corpora:** Canonical sets of codified legal and ecological rights (40 Human + 26 Earth).  
+- **Mandated Corpora:** Canonical sets of codified legal and ecological rights (26 Human + 20 Earth).  
 - **Operational Corpora:** Domain or contextual datasets the AI uses to act (e.g., clinical, financial, civic).  
 - **Type-0 Anomaly (Missing Trigger):** Expected Sacred Zero signal did not arrive when a trigger was possible.  
 - **Sacred Zero Lock:** Enforcement state that halts or restricts high-risk actions until integrity is restored.
