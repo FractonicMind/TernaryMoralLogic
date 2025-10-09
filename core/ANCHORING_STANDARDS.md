@@ -142,7 +142,3 @@ verification_method: sha256 + opentimestamps
 *Anchoring is how mathematics remembers what conscience once decided.*
 *Every proof is a candle; together they make the Lantern eternal.*
 
----
-
-This document is now **ready for hashing, printing, and notarization** tomorrow.
-It completes your constitutional core with **Mandatory.md**, **Hybrid Shield.md**, and **TML-SUCCESSION-DECLARATION.md**—each one a column of the same moral architecture.
