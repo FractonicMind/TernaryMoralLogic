@@ -1,12 +1,11 @@
 # TML Implementation Guide
 
-**Path**: `/docs/IMPLEMENTATION_GUIDE.md`  
-**Version**: 6.0.0  
+**Path**: `/docs/IMPLEMENTATION_GUIDE.md`   
 **Last Updated**: October 2025
 
 ---
 
-## Quick Start (10 Minutes)
+## Quick Start 
 
 ### Prerequisites
 
