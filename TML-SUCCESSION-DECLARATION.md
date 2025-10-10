@@ -254,21 +254,38 @@ No single organization should control TML. I recommend a **Stewardship Council**
 - Protection framework enforcement protocols
 - Memorial Fund distribution procedures
 
-### Phase 4: Operational Handoff (Days 151-180)
+### Phase 4: Operational Handoff (Days 151–180)
 
-**Final Transition**:
-- Confirm all technical systems operational
-- Verify Blockchain anchoring continues
-- Test smart contract functionality
-- Validate Memorial Fund distribution
-- Community introduction of new stewards
+**Primary Objective:**  
+Finalize technical and custodial transitions while guaranteeing that the framework remains fully operational throughout and beyond this period.
 
-**Completion Verification**:
-- All infrastructure functional under new stewardship
-- Blockchain anchoring verified on all chains
-- Smart contracts executing correctly
-- Memorial Fund distributions active
-- Community engagement continuing
+**Actions:**
+- Confirm all systems functioning under new or provisional stewardship
+- Verify Blockchain anchoring on all chains
+- Validate Memorial Fund smart contracts
+- Confirm communication and repository access continuity
+- Publish first post-succession public report
+
+**Continuity Clause:**  
+If, by Day 180, formal stewardship is not yet established, TML automatically enters **Continuity Mode**.
+
+**Continuity Mode** maintains all protections, blockchain anchors, and memorial functions indefinitely under existing automation and public proof systems until a qualified council or custodian assumes stewardship.  
+No lapse of human action shall suspend or terminate TML operations, licenses, or protections.
+
+*TML does not expire by absence; it persists by design.*
+
+**Autonomy Baseline (Non-Expiry Clause)**
+
+TML defaults to **self-preservation**.  
+Regardless of founder or council status, the following continue in perpetuity:
+
+- Always Memory pre-action logging  
+- Sacred Zero trigger enforcement  
+- Multi-chain blockchain anchoring  
+- Memorial Fund smart contracts and transparency logs  
+- Open-source public access and licensing  
+
+Time-based milestones are for coordination only; they never serve as termination thresholds.
 
 ---
 
@@ -650,9 +667,8 @@ verification_method: sha256 + opentimestamps
 
 *This declaration preserves Lev Goukassian's final gift to humanity and Earth: a framework where algorithms cannot escape accountability, where human dignity has veto power, where the planet's survival is mathematically enforced, and where every violation funds victims, restoration, and the fight against cancer.*
 
-*"Sacred Zero is exactly what's needed where lives, billions, and our planet are on the line."*
+---
 
-*A single hash can carry the weight of a promise.*
+#### *In law, in code, and in memory TML can trust.* **-Lev Goukassian**
 
-
-**TML lives because mathematics never dies.**
+---
