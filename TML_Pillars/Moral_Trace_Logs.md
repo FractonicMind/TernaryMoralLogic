@@ -109,6 +109,45 @@ A missing Moral Trace Log, in a system designed for universal logging, creates a
 
 This reverses the traditional burden of proof in a way that serves victims. Normally, a victim must prove harm occurred and that the AI's reasoning caused it. With TML, the organization must prove the log exists and shows compliance. If it doesn't exist, liability is automatic.
 
+## **GDPR and Data Subject Rights: Transparency Without Exposure**
+
+TML integrates European Union **General Data Protection Regulation (GDPR)** principles directly into the Moral Trace Log architecture.  
+Its design balances *immutability* with *individual transparency*—ensuring human rights to access, explanation, and correction are honored without compromising evidentiary integrity.
+
+### **Right of Access (Article 15)**
+Any individual affected by an AI decision has the right to request:
+- A verification that a Moral Trace Log exists related to their case  
+- A human-readable summary of the decision rationale and applied safeguards  
+- A cryptographically validated proof of inclusion (hash reference and timestamp)  
+without revealing confidential system logic or third-party data.
+
+### **Right to Rectification and Erasure (Articles 16–17)**
+Because Moral Trace Logs are immutable, records cannot be deleted or rewritten.  
+Instead, TML implements a **Redaction-Overlay Protocol**:
+- The original log remains sealed and time-stamped.  
+- A new *rectification overlay* is appended, referencing the disputed log’s hash and documenting the correction, consent withdrawal, or court order.  
+- Both entries are anchored, preserving transparency and due process.
+
+This approach satisfies the GDPR principle of accountability while maintaining evidentiary continuity—*the truth is amended, not erased.*
+
+### **Data Minimization and Privacy by Design (Article 25)**
+Each Moral Trace Log stores **hashes and metadata**, not personal data in clear text.  
+Sensitive identifiers are encrypted or pseudonymized before logging, ensuring that:
+- Logs remain meaningful as legal proof but reveal no private content.  
+- Only authorized custodians can decrypt contextual layers when legally required.
+
+### **Right to Explanation (Recital 71 & Article 22)**
+Upon request, affected individuals receive:
+- The ethical reasoning path that led to the decision (Sacred Zero traces)  
+- The protection frameworks invoked (human-rights and environmental checks)  
+- Contact channels for independent review by designated custodians or regulators.
+
+### **Cross-Jurisdictional Compliance**
+TML treats GDPR as the *baseline standard*; regional privacy laws (CCPA, LGPD, PIPEDA, etc.) inherit the same structural guarantees.  
+Anchoring proofs remain global, but personal-data disclosures remain jurisdictionally contained.
+
+**Privacy is not anonymity from accountability—it is dignity preserved within it.**
+
 ## **Legal Admissibility: Evidence That Courts Accept**
 
 For Moral Trace Logs to serve their purpose, they must be admissible in legal proceedings. TML's design carefully addresses the Federal Rules of Evidence that govern digital evidence admissibility.
