@@ -226,6 +226,41 @@ The three components of The Goukassian Promise: The Lantern, The Signature, and 
 
 ---
 
+## [Moral Trace Logs](Moral_Trace_Logs.md)
+
+**Moral Trace Logs** are the evidentiary core of **Ternary Moral Logic (TML)** — immutable records that capture every consequential AI decision before it executes.  
+They transform accountability from policy into architecture.
+
+### 🔹 Core Principle
+> **No Memory = No Action**  
+> Every decision must generate a cryptographically sealed Moral Trace Log before execution.
+
+### 🔹 What Each Log Contains
+- **Decision Layer** — The original input, output, and reasoning chain (including any *Sacred Zero* pauses).  
+- **Protection Layer** — Verifications against 26+ Human Rights and 20+ Earth Protection frameworks.  
+- **Integrity Layer** — RFC-3161 timestamp, SHA-256 hash, and chained cryptographic proofs.  
+- **Distribution Layer** — Simultaneous custody across multiple institutions and blockchain anchors (Bitcoin, Ethereum, Polygon).
+
+### 🔹 Legal and Ethical Force
+Moral Trace Logs are **court-admissible digital evidence**, satisfying:
+- **FRE 902(13)** (self-authenticating electronic records)  
+- **FRE 901(b)(9)** (distinctive characteristics)  
+- **18 U.S.C. §1519** (criminal penalties for tampering)  
+and directly aligned with **GDPR transparency and rectification rights**.
+
+### 🔹 Enforcement by Design
+Missing or tampered logs invoke the **spoliation inference** doctrine —  
+the legal presumption that destroyed evidence would have been incriminating.  
+In TML, *absence itself becomes proof of violation.*
+
+### 🔹 Purpose
+Moral Trace Logs give humanity permanent, verifiable memory of machine reasoning —  
+evidence that outlives organizations, governments, and even civilizations.
+
+*In law, in code, and in memory TML can trust.*
+
+---
+
 ## [Hybrid Shield](protection/Hybrid-Shield.md)
 
 The **Hybrid Shield** is TML’s double-layer integrity system that guarantees the permanence and verifiability of every Moral Trace Log. It fuses **mathematics** and **distributed oversight** into a single armor against tampering or erasure.
