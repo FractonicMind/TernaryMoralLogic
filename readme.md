@@ -202,7 +202,7 @@ Moral Trace Logs are **court-admissible evidence** (FRE 901/902/803(6); eIDAS-qu
 
 ---
 
-## [The Goukassian Promise: A Covenant of Accountability](GOUKASSIAN_PROMISE.md)
+## [The Goukassian Promise: A Covenant of Accountability](TML_Pillars/Goukassian_Promise.md)
 
 The Goukassian Promise is not a simple trademark but a complex, interdependent system of symbols and cryptographic safeguards that bind a TML implementation to its core ethical principles. It is a covenant designed to function even when its creator is no longer present, ensuring the framework's integrity and its commitment to a humane future. The Promise is composed of three interconnected elements: **The Lantern, The Signature, and The License**.  
 
@@ -226,7 +226,7 @@ The three components of The Goukassian Promise: The Lantern, The Signature, and 
 
 ---
 
-## [Moral Trace Logs](Moral_Trace_Logs.md)
+## [Moral Trace Logs](TML_Pillars/Moral_Trace_Logs.md)
 
 **Moral Trace Logs** are the evidentiary core of **Ternary Moral Logic (TML)** — immutable records that capture every consequential AI decision before it executes.  
 They transform accountability from policy into architecture.
