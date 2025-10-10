@@ -13,6 +13,18 @@ If you are reading this, it means Lev Goukassian is no longer able to maintain t
 **Do not panic. Everything you need is documented here.**
 
 ---
+## AUTONOMY BASELINE (Non-Expiry Clause)
+
+TML defaults to **self-preservation**.  
+Regardless of founder or council status, the following remain active in perpetuity:
+- Pre-action logging (Always Memory)
+- Blockchain anchoring and timestamp proofs
+- Sacred Zero triggers and protection frameworks
+- Memorial and transparency smart contracts
+
+Time-based thresholds initiate stewardship. Only verified catastrophic system failure may invoke emergency re-formation—never dormancy by date.
+
+---
 
 ## 1. ACTIVATION CONDITIONS
 
@@ -22,10 +34,22 @@ This guide becomes operational upon **any** of the following:
 
 1. **Death**: Verified public notice or death certificate of Lev Goukassian
 2. **Incapacity**: Medical certification of permanent incapacity
-3. **Prolonged Absence**: 180 consecutive days of complete inactivity across:
+3. **Continuity Trigger (Prolonged Absence)**:  
+   If 180 consecutive days pass without verified activity from Lev Goukassian across:
    - GitHub account (FractonicMind)
    - Email (leogouk@gmail.com)
    - All designated communication channels
+
+   then the framework automatically enters **Continuity Mode**.
+
+   **Continuity Mode** ensures that all TML protections, Blockchain anchors, and smart contracts remain active and verifiable in full autonomy.  
+   During this period:
+   - The system continues operating under existing automated rules.
+   - The Stewardship Council (or any verified custodian) may activate formal succession, but inactivity alone shall **never** suspend, terminate, or invalidate TML’s ethical, legal, or technical functions.
+   - All components, logs, and memorial systems persist indefinitely until stewardship is reestablished.
+
+*TML does not expire by absence. It endures by design.*
+
 4. **Written Activation**: Pre-signed declaration by Lev Goukassian designating immediate succession
 
 ### Verification Required
@@ -48,6 +72,7 @@ Before proceeding, verify the activation condition through:
 - Anyone named in the TML-SUCCESSION-DECLARATION.md as custodian
 - Any organization on the priority custodian list
 - Any three verified TML community members acting in good faith
+- Community activators must prove control of a long-standing GitHub account (≥6 months), sign their activation notice with a PGP key or ETH address previously anchored in repo logs, and cross-sign in a public GitHub Discussion.
 
 **What you need**:
 - Access to this GitHub repository
@@ -203,7 +228,9 @@ Organizations respond with:
 3. **Polygon Smart Contracts**
    - High-speed verification contract
    - Backup anchoring system
-   - Verify operational status
+   - Verify operational status   
+  
+Configure a **Sustainer Contract** or multi-sig treasury pre-funded for ≥24 months of anchoring and critical gas/fees, with public on-chain address and read-only monitor.
 
 **Action Required**:
 ```bash
@@ -228,6 +255,8 @@ tml test smart-contracts --comprehensive
 3. Set up repository protection rules
 4. Enable required approvals (2 council members minimum)
 5. Configure branch protection on main
+6. Publish read-only mirrors (GitLab, Codeberg) and register with Software Heritage; verify weekly sync jobs.
+
 
 **Backup Repositories**:
 - Ensure GitLab mirror active
@@ -261,8 +290,9 @@ TXT: DMARC policy
 # Subdomain structure
 docs.tml-goukassian.org -> documentation
 api.tml-goukassian.org -> API reference
-memorial.tml-goukassian.org -> Memorial Fund reports
+memorial.tml-goukassian.org -> Memorial Fund reports   
 ```
+Place registrar credentials in escrow with n-of-m Shamir secret sharing.
 
 ### Priority #4: Memorial Fund Accounts
 
@@ -651,6 +681,15 @@ tml resume normal-mode
 - Protection frameworks remain active
 - Community can self-organize if needed
 
+### If No Steward Responds (180–365+ days)
+
+- TML remains in Continuity Mode and continues anchoring/triggering protections.
+- Any three verifiable community members may form a **Provisional Operations Circle (POC)** with **limited powers**:
+- Keep infrastructure running (nodes, anchors, mirrors, domains).
+- Publish transparency reports.
+- **No** changes to ethical core, licenses, or fund ratios.
+- Upon first qualified custodian response, POC hands off and dissolves.
+
 ---
 
 ## 11. LONG-TERM EVOLUTION
@@ -692,13 +731,14 @@ Year 10+: Fully decentralized governance with on-chain voting
 ```
 
 **Immutable Core**:
-- 26 Human Rights documents
+- 26+ Human Rights documents
 - 20+ Earth Protection treaties
 - Always Memory requirement
 - Blockchain anchoring
 - Memorial Fund percentages
 - MIT License
 - Creator attribution
+- All protection counts (e.g., “26+ Human Rights”, “20+ Earth treaties”) are **minimum baselines**. Additions are encouraged through documented council process.
 
 ---
 
@@ -803,9 +843,11 @@ Use this checklist to track succession progress:
 **Month 6 (Days 151-180)**:
 - [ ] Publish first quarterly report
 - [ ] Launch public memorial page
-- [ ] Complete all legal transitions
-- [ ] Verify long-term sustainability
-- [ ] Celebrate succession completion
+- [ ] Complete all feasible legal transitions (carry forward any remaining items)
+- [ ] Verify long-term sustainability and publish gaps/backlog
+- [ ] Mark Milestone 1; **project continues until stewardship is fully established**
+
+**Note:** All day/month markers are **targets for momentum**, not termination dates. Missing a target does not pause, reduce, or void TML operations.
 
 ---
 
@@ -846,8 +888,6 @@ This launch guide transforms Lev Goukassian's vision into perpetual action. The 
 **The mission continues**:
 Every person protected. Every ecosystem preserved. Every violation compensated. Every whistleblower rewarded. Every log remembered.
 
-**Sacred Zero is exactly what's needed where lives, billions, and our planet are on the line.**
-
 **The Lantern burns beyond names. Keep it lit.**
 
 ---
@@ -863,4 +903,7 @@ Every person protected. Every ecosystem preserved. Every violation compensated. 
 
 *All USD amounts are nominal to 2025*
 
+---
+**TML is exactly what's needed where lives and our planet are on the line.**
 
+---
