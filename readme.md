@@ -190,7 +190,7 @@ When **Sacred Zero** detects moral uncertainty and triggers a **Sacred Pause**, 
 
 **Integrity and Anchoring:**  
 - **Mathematical Shield:** Multi-chain anchoring (Bitcoin permanence, Ethereum smart contracts, Polygon speed, OpenTimestamps archival).  
-- **Institutional Shield (optional):** Independent guardians — regulators, NGOs, universities — mirror and attest to the same hashes for legal redundancy.  
+- **Stewardship Council:** Representing technology, human rights, environmental protection, academia, and medical research.  
 
 **Licensing Mandate:**  
 Always Memory is **mandatory**. If the logging channel is unavailable, corrupted, or tampered with, all high-risk actions are halted, a compliance anomaly is recorded, and the system’s TML license enters risk state until the fault is corrected.  
