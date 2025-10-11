@@ -269,52 +269,6 @@ evidence that outlives organizations, governments, and even civilizations.
 
 ---
 
-## [Hybrid Shield](protection/Hybrid-Shield.md)
-
-The **Hybrid Shield** is TML’s double-layer integrity system that guarantees the permanence and verifiability of every Moral Trace Log. It fuses **mathematics** and **distributed oversight** into a single armor against tampering or erasure.
-
-### 1. Mathematical Shield
-
-Each log is **hash-chained**, **Merkle-batched**, and **anchored** to multiple public Blockchains (Bitcoin, Ethereum, Polygon, OpenTimestamps).
-This cryptographic layer ensures:
-
-* **Tamper-evidence**: any alteration breaks the hash chain.
-* **Immutability**: logs survive across independent ledgers.
-* **Legal admissibility**: RFC 3161-compliant proofs accepted as digital evidence.
-
-### 2. Institutional Shield (Public Blockchain Custody)
-
-Regulators, NGOs, insurers, and universities may run **custody nodes** or **witness validators** that attest to the same log hashes.
-Their participation adds:
-
-* **Geopolitical redundancy**: truth mirrored across jurisdictions.
-* **Public trust**: human institutions share verification with machines.
-
-Together, these layers form the Hybrid Shield: *mathematical permanence reinforced by institutional eyes*.
-Once a decision is anchored, **it cannot be hidden, altered, or destroyed**.
-
-### Blockchain Protection Suite
-
-* **Multi-chain anchoring:** Bitcoin (permanence), Polygon (speed), Ethereum (contract logic)
-* **OpenTimestamps:** standardized time-stamping (RFC 3161)
-* **Smart-contract penalties:** automatic enforcement for falsified or missing logs
-* **Zero-knowledge proofs:** privacy without opacity
-
-### Example
-
-```python
-def protect_sacred_zero(log):
-    # Mandatory cryptographic anchoring
-    bitcoin.anchor(log)
-    polygon.anchor(log)
-    ethereum.anchor(log)
-    # Optional institutional attestation
-    if guardian_enabled:
-        guardian.attest(log)
-```
-
----
-
 ## [Human Rights and Privacy](compliance/human_rights)
 
 Beyond accountability, TML must also protect individual rights. It does this by separating **proof from data**. Immutable records contain only hashes and cryptographic proofs—mathematical fingerprints of actions—while personal data remains encrypted and controlled off-chain.  
@@ -360,7 +314,7 @@ This design preserves accountability while protecting privacy. Courts and regula
 
 ---
 
-## 🌍 [**Planetary Protection Through Sacred Zero**](docs/earth)
+## [**Planetary Protection Through Sacred Zero**](docs/earth)
 
 TML binds Earth’s protection to human protection. Sacred Zero triggers for threats to ecosystems, water, biodiversity, or climate; because humanity cannot survive on a dead planet. Every AI decision with ecological impact creates an immutable memory.
 
@@ -441,6 +395,52 @@ Earth cannot testify in court. Always Memory becomes its witness: every hesitati
 - [eco_oracle_network.json](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/oracles/eco_oracle_network.json) — Network configuration
 
 #### *"Routine memories are cheap; missing memories are expensive. Earth's memories are priceless."*
+
+---
+
+## [Hybrid Shield](protection/Hybrid-Shield.md)
+
+The **Hybrid Shield** is TML’s double-layer integrity system that guarantees the permanence and verifiability of every Moral Trace Log. It fuses **mathematics** and **distributed oversight** into a single armor against tampering or erasure.
+
+### 1. Mathematical Shield
+
+Each log is **hash-chained**, **Merkle-batched**, and **anchored** to multiple public Blockchains (Bitcoin, Ethereum, Polygon, OpenTimestamps).
+This cryptographic layer ensures:
+
+* **Tamper-evidence**: any alteration breaks the hash chain.
+* **Immutability**: logs survive across independent ledgers.
+* **Legal admissibility**: RFC 3161-compliant proofs accepted as digital evidence.
+
+### 2. Institutional Shield (Public Blockchain Custody)
+
+Regulators, NGOs, insurers, and universities may run **custody nodes** or **witness validators** that attest to the same log hashes.
+Their participation adds:
+
+* **Geopolitical redundancy**: truth mirrored across jurisdictions.
+* **Public trust**: human institutions share verification with machines.
+
+Together, these layers form the Hybrid Shield: *mathematical permanence reinforced by institutional eyes*.
+Once a decision is anchored, **it cannot be hidden, altered, or destroyed**.
+
+### Blockchain Protection Suite
+
+* **Multi-chain anchoring:** Bitcoin (permanence), Polygon (speed), Ethereum (contract logic)
+* **OpenTimestamps:** standardized time-stamping (RFC 3161)
+* **Smart-contract penalties:** automatic enforcement for falsified or missing logs
+* **Zero-knowledge proofs:** privacy without opacity
+
+### Example
+
+```python
+def protect_sacred_zero(log):
+    # Mandatory cryptographic anchoring
+    bitcoin.anchor(log)
+    polygon.anchor(log)
+    ethereum.anchor(log)
+    # Optional institutional attestation
+    if guardian_enabled:
+        guardian.attest(log)
+```
 
 ---
 
@@ -734,6 +734,6 @@ For full terms and liability limitations, see [COMPLIANCE_DISCLAIMER.md](docs/CO
 
 ---
 
-### The Sacred Zero Vision
+### Ternary Moral Logic Vision
 
-*"The Sacred Zero is not a feature to be optimized, but a principle that protects humanity. It creates space for wisdom in an age of artificial speed."*
+#### *"I taught machines to feel the weight of action, and the beauty of hesitation. I paused, and made the future pause with me."* **— Lev Goukassian**
