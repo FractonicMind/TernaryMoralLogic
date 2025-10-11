@@ -177,6 +177,7 @@ This dual-corpora architecture ensures that even the *absence* of hesitation bec
 #### **[Interactive Overview of Sacred Zero](https://fractonicmind.github.io/TernaryMoralLogic/TML_Pillars/Sacred_Zero-Sacred_Pause_Technology.html)**
 
 **No hesitation = Trace the silence.**
+
 ---
 
 ## [Always Memory](TML_Pillars/Always_Memory.md)
@@ -225,7 +226,9 @@ The License (📜) is the legal mechanism that provides the Promise with its "te
 
 The three components of The Goukassian Promise: The Lantern, The Signature, and The License, are designed to work in concert as a unified, self-enforcing system. A company cannot simply adopt the TML code; to be a legitimate implementer, it must also display the Lantern, cryptographically embed the Signature, and adhere to the terms of the License. If any part of this covenant is broken, the entire system of trust collapses. The public-facing Lantern is rendered meaningless, and the embedded Signature serves as a cryptographic marker of the transgression. This innovative model for decentralized ethical enforcement, relying on cryptographic verification and public trust rather than a centralized regulatory body, ensures that Goukassian’s vision for a trustworthy AI future will endure.
 
-**[The Goukassian Vow](GOUKASSIAN_PROMISE.md)**
+#### **[The Goukassian Vow](Goukassian_Vow.md)**
+
+#### **[Interactive Overview of the Goukassian Promise](https://fractonicmind.github.io/TernaryMoralLogic/TML_Pillars/Goukassian_Promise.html)**
 
 ---
 
@@ -259,6 +262,8 @@ In TML, *absence itself becomes proof of violation.*
 ### 🔹 Purpose
 Moral Trace Logs give humanity permanent, verifiable memory of machine reasoning —  
 evidence that outlives organizations, governments, and even civilizations.
+
+#### **[Interactive Overview of Moral Trace Logs](https://fractonicmind.github.io/TernaryMoralLogic/TML_Pillars/Moral_Trace_Logs.html)**
 
 *In law, in code, and in memory TML can trust.*
 
