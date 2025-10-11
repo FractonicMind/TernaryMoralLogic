@@ -38,12 +38,11 @@ Rather than succession of control, this Charter establishes:
 1. **Community Stewardship** - How the community maintains and evolves the framework
 2. **Memorial Fund Continuity** - Smart contract governance ensuring perpetual victim support
 3. **Research Coordination** - How academics continue improving bias detection
-4. **Guardian Network Succession** - Optional institutional governance (if/when active)
-5. **Protection Against Capture** - Safeguards preventing corporate or government control
+4. **Protection Against Capture** - Safeguards preventing corporate or government control
 
 ---
 
-## II. FRAMEWORK PERMANENCE ARCHITECTURE
+I. FRAMEWORK PERMANENCE ARCHITECTURE
 
 ### Code Immortality Through Open Source
 
@@ -132,7 +131,7 @@ contract GoukassianMemorialFund {
 
 ---
 
-## III. COMMUNITY STEWARDSHIP MODEL
+II. COMMUNITY STEWARDSHIP MODEL
 
 ### Distributed Maintenance Responsibility
 
@@ -283,58 +282,10 @@ education: "5% of fund"
 - Report bugs or issues
 - Fork fund for alternative approaches
 
----
-
-## V. GUARDIAN NETWORK SUCCESSION (OPTIONAL)
-
-### If Guardian Network Active Upon Creator's Death
-
-**Guardian Network Continuity Protocol:**
-
-**Automatic Succession:**
-```yaml
-guardian_continuation:
-  no_disruption: "Guardian Network continues operating"
-  no_new_authority: "Powers remain as defined"
-  democratic_governance: "Existing voting mechanisms persist"
-  
-institutional_succession:
-  automatic_replacement: "Institutions fill own vacancies"
-  term_limits: "7-year terms continue as planned"
-  rotating_leadership: "No single institution dominates"
-  community_input: "Public input on Guardian performance"
-```
-
-**Guardian Network Cannot:**
-- Override Blockchain-anchored constitutional principles
-- Stop automatic penalty enforcement
-- Redirect Memorial Fund allocations
-- Prevent community forking
-- Weaken core protections
-- Control open source development
-
-**Guardian Network Can (If Active):**
-- Provide institutional validation of evidence
-- Coordinate international legal support
-- Conduct research using Guardian-specific resources
-- Offer policy recommendations to community
-- Facilitate cross-border enforcement
-- Support academic collaboration
-
-### If Guardian Network Not Active
-
-**No Impact on Framework Operation:**
-- Blockchain anchoring continues unchanged
-- Smart contracts enforce penalties automatically
-- Community stewardship proceeds normally
-- Open source development continues
-- Memorial Fund operates perpetually
-
-**Guardian Network remains optional enhancement, never requirement.**
 
 ---
 
-## VI. PROTECTION AGAINST INSTITUTIONAL CAPTURE
+## V. PROTECTION AGAINST INSTITUTIONAL CAPTURE
 
 ### Anti-Monopolization Safeguards
 
@@ -372,7 +323,7 @@ capture_prevention:
 
 ---
 
-## VII. TRANSITION AND ACTIVATION
+## VI. TRANSITION AND ACTIVATION
 
 ### Immediate Upon Creator's Death or Incapacity
 
@@ -383,7 +334,7 @@ capture_prevention:
 - Smart contracts continue enforcing penalties
 - Memorial Fund continues automatic distributions
 - Community continues maintaining code
-- Guardian Network continues governance (if active)
+- Stewardship Council continues governance
 - Research continues with open data access
 
 **What Changes:**
@@ -408,7 +359,7 @@ capture_prevention:
 3. Memorial Fund: Rename to "Lev Goukassian Memorial Fund" formally
 4. Website: Update to community stewardship model
 5. Media: Public announcement of transition
-6. Academic Community: Notify Guardian Network (if active)
+6. Academic Community: Notify Stewardship Council (if active)
 ```
 
 ### Continuity Verification
@@ -418,12 +369,12 @@ capture_prevention:
 - Confirm smart contracts executing correctly
 - Ensure open source repository accessible
 - Test Memorial Fund distributions
-- Validate Guardian Network (if active)
+- Validate Stewardship Council (if active)
 - Confirm community communication channels
 
 ---
 
-## VIII. LONG-TERM FRAMEWORK EVOLUTION
+## VII. LONG-TERM FRAMEWORK EVOLUTION
 
 ### Decade-Scale Vision
 
@@ -431,7 +382,7 @@ capture_prevention:
 - Community establishes stable governance patterns
 - Multiple implementations prove resilience
 - Academic research demonstrates effectiveness
-- Guardian Network matures (if active)
+- Stewardship Council matures (if active)
 
 **Year 5-10:**
 - International adoption accelerates
@@ -469,7 +420,7 @@ This principle anchored to Blockchain, preserved in code, maintained by communit
 
 ---
 
-## IX. EMERGENCY PROTOCOLS
+## VIII. EMERGENCY PROTOCOLS
 
 ### Framework Under Attack Scenarios
 
@@ -513,7 +464,7 @@ threat_detected:
 
 ---
 
-## X. DECLARATION OF PERMANENCE
+## IX. DECLARATION OF PERMANENCE
 
 ### Framework Immortality Statement
 
@@ -534,7 +485,7 @@ threat_detected:
 - Capture the governance
 - Erase the code
 
-**The Community Will:**
+**The Stewardship Council Will:**
 - Maintain the code
 - Improve the algorithms
 - Support the victims
@@ -544,7 +495,7 @@ threat_detected:
 
 ---
 
-## XI. MEMORIAL AND TRIBUTE
+## X. MEMORIAL AND TRIBUTE
 
 ### Honoring Lev Goukassian
 
