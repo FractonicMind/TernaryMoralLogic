@@ -14,7 +14,7 @@ This Charter establishes the continuity and governance of the Ternary Moral Logi
 
 Unlike traditional frameworks requiring institutional succession, TML's Blockchain architecture ensures **permanent survival independent of any person or institution**. This Charter does not transfer control - it establishes community stewardship of a framework that cannot be destroyed, captured, or controlled.
 
-**[Formal Succession Plan Interactive Overview](TML-Succession-Plan.html)**
+**[Formal Succession Plan Interactive Overview](https://fractonicmind.github.io/TernaryMoralLogic/TML-Succession-Plan.html)**
  
 ### Why Traditional Succession Planning Is Unnecessary
 
