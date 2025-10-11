@@ -13,25 +13,23 @@ This disclaimer establishes the Blockchain-enforced framework governing TML impl
 ### 1.1 What TML Is
 Ternary Moral Logic (TML) is a **Blockchain-anchored accountability framework** providing:
 
-- **Immediate deployment** without institutional coordination (10 minutes)
 - **Multi-chain anchoring** (Bitcoin, Polygon, Ethereum) for immutable evidence
 - **Smart contract enforcement** with automatic penalties
-- **Human Rights protection** (26-document framework)
+- **Human Rights protection** (26+ document framework)
 - **Earth Protection** (20+ environmental treaties)
-- **Optional Guardian enhancement** (never required for operation)
+- **Stewardship Council** (Leading non-profit organizations in technology, human rights, and environmental protection)
 
 ### 1.2 What TML Is Not
 TML is **NOT**:
 - **Committee-dependent**: Functions fully without institutional approval
 - **Waiting-required**: Deploy immediately with Blockchain alone
-- **Guardian-mandatory**: Works perfectly without any Guardian Network
 - **Centralized**: Mathematical consensus replaces institutional control
 - **Negotiable on protection**: Human Rights and Earth Protection are mandatory
 
 ### 1.3 Deployment Responsibility
 Organizations deploying TML are responsible for:
 - Blockchain anchoring configuration (mandatory)
-- Human Rights framework activation (26 documents)
+- Human Rights framework activation (26+ documents)
 - Earth Protection implementation (20+ treaties)
 - Smart contract penalty acceptance
 - Continuous Blockchain verification
@@ -44,7 +42,7 @@ Organizations deploying TML are responsible for:
 
 **NON-NEGOTIABLE**: Sacred Zero must protect:
 
-**Human Rights (26 Documents)**:
+**Human Rights (26+ Documents)**:
 - Zero tolerance for torture
 - 20% disparate impact threshold for discrimination
 - Enhanced protection (2x) for children
@@ -88,7 +86,7 @@ contract AlwaysMemory {
 
 ### 3.1 Human Rights Framework (Mandatory)
 
-**ALL 26 DOCUMENTS ENFORCED**:
+**ALL 26+ DOCUMENTS ENFORCED**:
 - Universal Declaration of Human Rights
 - International Covenants (ICCPR, ICESCR)
 - Convention Against Torture (zero tolerance)
@@ -152,8 +150,6 @@ def verify_compliance(deployment):
         trigger_automatic_penalties(deployment)
         notify_prosecutors(deployment)
     
-    # Guardian verification (OPTIONAL ENHANCEMENT)
-    # Not required for penalties or enforcement
 ```
 
 ---
@@ -204,9 +200,8 @@ contract WhistleblowerRewards {
 
 **NO EXCUSES ACCEPTED**:
 - Missing log = guilt presumption
-- Blockchain down = your problem
 - "Didn't know" = negligence
-- "Committee didn't approve" = irrelevant (no committee needed)
+- "Committee didn't approve" = irrelevant
 
 ### 6.3 Criminal Penalties
 
@@ -223,32 +218,15 @@ contract WhistleblowerRewards {
 ### 7.1 Immediate Implementation
 
 ```bash
-# Deploy in 10 minutes - no institutional coordination
 docker run tml/always-memory \
     --Blockchain=mandatory \
     --human-rights=enforced \
     --earth-protection=active \
-    --guardians=false  # Optional luxury
-
+    
 # Fully operational immediately
 # Complete protection active
-# No waiting for committees
 ```
 
-### 7.2 Guardian Network (Optional Future Enhancement)
-
-**NEVER REQUIRED FOR**:
-- Deployment
-- Legal enforcement
-- Sacred Zero operation
-- Penalty execution
-- Whistleblower rewards
-
-**MIGHT ADD VALUE FOR** (1% of companies):
-- Cross-border attestation
-- Premium insurance tiers
-- Academic collaboration
-- Institutional comfort
 
 ---
 
@@ -261,7 +239,7 @@ docker run tml/always-memory \
 Ternary Moral Logic Framework
 Creator: Lev Goukassian (ORCID: 0009-0006-5966-1243)
 Email: leogouk@gmail.com
-Architecture: Blockchain, Guardian-Optional
+Architecture: Blockchain, Stewardship Council
 Protection: Humans + Earth + Future Generations
 ```
 
@@ -287,7 +265,6 @@ TML with Blockchain exceeds:
 
 ### 9.2 Direct Enforcement
 
-**NO MIDDLEMAN NEEDED**:
 - Blockchain to court (direct admissibility)
 - Smart contract to penalty (automatic)
 - Evidence to prosecution (self-authenticating)
@@ -320,12 +297,11 @@ TML with Blockchain exceeds:
 ### 11.1 By Deploying TML You Accept
 
 1. **Blockchain anchoring is mandatory**
-2. **Human Rights framework (26 docs) must be active**
+2. **Human Rights framework (26+ docs) must be active**
 3. **Earth Protection (20+ treaties) must be enforced**
 4. **Smart contract penalties are automatic**
-5. **Guardian Network is optional enhancement**
-6. **Missing logs create strict liability**
-7. **Violations self-prosecute via Blockchain**
+5. **Missing logs create strict liability**
+6. **Violations self-prosecute via Blockchain**
 
 ### 11.2 No Negotiation
 
@@ -342,13 +318,9 @@ These terms are:
 **Blockchain Deployment**: support@tml-goukassian.org  
 **Emergency**: emergency@tml-goukassian.org  
 **Whistleblower**: Via Blockchain (anonymous)  
-**Guardian Info**: guardians@tml-goukassian.org (optional, years later)
+**Stewardship Council**: support@tml-goukassian.org
 
 ---
-
-> "TML doesn't care if you use Transformer, tarot cards, or tea leaves—only that every dark prophecy is signed, timed, and ready for cross-examination."
-
-**GOVERNING PRINCIPLE**: Blockchain consensus supersedes institutional opinion.
 
 **EFFECTIVE**: Immediately upon deployment  
 **VERSION**: 2.0.0 (Blockchain)  
