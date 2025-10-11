@@ -4,7 +4,7 @@
 
 The Goukassian Promise is the ethical constitution of the Ternary Moral Logic framework. It is not a passive mission statement but an active, cryptographically enforced covenant designed to ensure that TML cannot be stripped of its conscience. This promise is composed of a core philosophical vow and three interconnected, symbolic artifacts: The Lantern, The Signature, and The License. Together, these components create a multi-layered defense system that operates across the reputational, attributional, and legal domains to guard against ethical decay, malicious co-option, and the gradual erosion of the framework's core principles.
 
-**[The philosophical heart of the Goukassian Promise](/GOUKASSIAN_PROMISE.md)** is articulated in its core vow: **"Pause when truth is uncertain. Refuse when harm is clear. Proceed where truth is"**. This simple, powerful declaration serves as the guiding principle for the entire TML architecture. It directly maps to the three logical states that define the system's operation:
+**[The philosophical heart of the Goukassian Promise](/Goukassian_Vow.md)** is articulated in its core vow: **"Pause when truth is uncertain. Refuse when harm is clear. Proceed where truth is"**. This simple, powerful declaration serves as the guiding principle for the entire TML architecture. It directly maps to the three logical states that define the system's operation:
 
 * "Pause when truth is uncertain" corresponds to the **0 (Sacred Pause)** state.  
 * "Refuse when harm is clear" corresponds to the **−1 (Refuse)** state.  
