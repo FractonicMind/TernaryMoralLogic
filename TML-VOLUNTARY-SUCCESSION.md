@@ -39,13 +39,13 @@ To prevent capture and ensure long-term alignment with its public-interest missi
 **3.1 Stewardship Council Composition:** The proposed council structure allocates seats to specialists in key domains:
 
 * **Primary Technical Custodian (Recommended: Electronic Frontier Foundation):** Responsible for the open-source repository, blockchain infrastructure, and technical community support.  
-* **Human Rights Enforcement Partner (Recommended: Amnesty International):** Responsible for monitoring the enforcement of the 26 human rights documents and coordinating victim support.  
+* **Human Rights Enforcement Partner (Recommended: Amnesty International):** Responsible for monitoring the enforcement of the 26+ human rights documents and coordinating victim support.  
 * **Earth Protection Enforcement Partner (Recommended: Indigenous Environmental Network):** Responsible for monitoring the enforcement of the 20+ environmental treaties.  
 * **AI Ethics Research Partner (Recommended: MIT Media Lab or Stanford HAI):** Responsible for guiding future research and the evolution of implementation standards.  
 * **Memorial Fund Administrator (Recommended: Memorial Sloan Kettering Cancer Center):** Responsible for administering the cancer research portion of the Memorial Fund.  
 * **Community Representative:** An elected position to represent the interests of implementers and the broader user community.
 
-**3.2 Governance Limitations:** The Council's power is constitutionally limited. It cannot modify the framework's open-source MIT License, alter the Memorial Fund's distribution percentages, or remove any of the 46 core protection documents. Major changes require a 5/6 consensus.  
+**3.2 Governance Limitations:** The Council's power is constitutionally limited. It cannot modify the framework's open-source MIT License, alter the Memorial Fund's distribution percentages, or remove any of the 46+ core protection documents. Major changes require a 5/6 consensus.  
 
 **3.3 Transition Plan:** The succession is structured in a 180-day, four-phase process:
 
