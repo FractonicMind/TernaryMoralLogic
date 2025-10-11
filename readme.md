@@ -50,7 +50,7 @@ Each entry is cryptographically sealed, timestamped, and chained to its predeces
 
 At the center stands the **Goukassian Promise**:  
 
-#### *Pause when truth is uncertain. Refuse when harm is clear. Proceed when truth is evident.*  
+#### *Pause when truth is uncertain. Refuse when harm is clear. Proceed where truth is.*  
 
 This vow is not decorative text; it is executable law encoded into architecture. The resulting artifacts are **Moral Trace Logs**, not telemetry, but verifiable testimony.  
 
@@ -157,7 +157,7 @@ Organizations implementing TML bear **full legal and ethical responsibility** fo
 
 ---
 
-## [Sacred Zero – Sacred Pause Technology](TML_Pillars/Sacred-Zero-Sacred-Pause-Technology.md)
+## [Sacred Zero – Sacred Pause Technology](TML_Pillars/Sacred_Zero-Sacred_Pause_Technology.md)
 
 **Sacred Zero** is the heart of TML: the precise moment an AI system hesitates before harm.
 It activates whenever a prompt semantically intersects with any *mandated corpus* of codified human or ecological rights that all licensed TML systems must carry.
@@ -174,8 +174,9 @@ If the AI’s corpus is missing, corrupted, or silent, TML detects the void, rec
 
 This dual-corpora architecture ensures that even the *absence* of hesitation becomes traceable evidence.
 
-**No hesitation = Trace the silence.**
+#### **[Interactive Overview of Sacred Zero](https://fractonicmind.github.io/TernaryMoralLogic/TML_Pillars/Sacred_Zero-Sacred_Pause_Technology.html)**
 
+**No hesitation = Trace the silence.**
 ---
 
 ## [Always Memory](TML_Pillars/Always_Memory.md)
@@ -200,6 +201,8 @@ Always Memory is **mandatory**. If the logging channel is unavailable, corrupted
 **Legal Standing:**  
 Moral Trace Logs are **court-admissible evidence** (FRE 901/902/803(6); eIDAS-qualified timestamps). Every record turns accountability into proof — no conjecture, no erasure.
 
+#### **[Interactive Overview of Always Memory](https://fractonicmind.github.io/TernaryMoralLogic/TML_Pillars/Always_Memory.html)**
+
 ---
 
 ## [The Goukassian Promise: A Covenant of Accountability](TML_Pillars/Goukassian_Promise.md)
@@ -222,7 +225,7 @@ The License (📜) is the legal mechanism that provides the Promise with its "te
 
 The three components of The Goukassian Promise: The Lantern, The Signature, and The License, are designed to work in concert as a unified, self-enforcing system. A company cannot simply adopt the TML code; to be a legitimate implementer, it must also display the Lantern, cryptographically embed the Signature, and adhere to the terms of the License. If any part of this covenant is broken, the entire system of trust collapses. The public-facing Lantern is rendered meaningless, and the embedded Signature serves as a cryptographic marker of the transgression. This innovative model for decentralized ethical enforcement, relying on cryptographic verification and public trust rather than a centralized regulatory body, ensures that Goukassian’s vision for a trustworthy AI future will endure.
 
-**[The Three Pillars of Purposeful Action](https://fractonicmind.github.io/TernaryMoralLogic/GOUKASSIAN_PROMISE.html)**
+**[The Goukassian Vow](GOUKASSIAN_PROMISE.md)**
 
 ---
 
