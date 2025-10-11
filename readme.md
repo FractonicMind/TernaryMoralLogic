@@ -354,9 +354,38 @@ This pillar shifts AI governance from *corporate discretion* to **codified human
 
 ---
 
-## [**Planetary Protection Through Sacred Zero**](docs/earth)
+## [**Earth Protection**](docs/earth)
 
-TML binds Earth’s protection to human protection. Sacred Zero triggers for threats to ecosystems, water, biodiversity, or climate; because humanity cannot survive on a dead planet. Every AI decision with ecological impact creates an immutable memory.
+### When the Planet Speaks in Code
+
+The **Earth Protection Pillar** gives the planet a legal and cryptographic voice. It turns 50 years of environmental law—Paris Agreement, Convention on Biological Diversity, Ramsar, CITES, and Indigenous sovereignty frameworks—into **machine-readable, enforceable constraints** checked before any AI system acts.
+
+**Core Mechanism**
+
+Every TML-compliant decision with ecological impact must:
+
+1. **Ingest** current scientific and legal data (UNFCCC, IPCC, CBD, IUCN).
+2. **Consult** the *Community Witness Layer* where Indigenous and local communities submit verified ecological observations under Data Sovereignty and FPIC protocols.
+3. **Evaluate** planetary boundaries—climate, biodiversity, freshwater, land use, pollution, and tipping points.
+4. **Render** a ternary judgment: Proceed (+1) · Sacred Zero (0 pause for review) · Refuse (–1).
+5. **Anchor** cryptographic proof of the decision to public blockchains for seven-generation accountability.
+
+**Automatic Refusals**
+
+* Ecocide and primary-forest destruction
+* Critical-habitat loss or freshwater exhaustion
+* Indigenous sovereignty or FPIC violations
+* Any action breaching carbon budgets or tipping-point thresholds
+
+**Remedy & Restoration**
+
+Violations generate **immutable evidence** and **smart-contract penalties**:
+30 % of every penalty flows directly into ecosystem restoration and community-led recovery.
+When in doubt, the code protects Earth.
+
+“The planet has no voice, no vote, no lobby—so we gave her a cryptographic signature and a seat on every AI board.” — Lev Goukassian
+
+When the ledger remembers every forest spared, accountability stops being optional.
 
 ### Triggers
 
@@ -368,18 +397,6 @@ TML binds Earth’s protection to human protection. Sacred Zero triggers for thr
 * Primary forest or wetland destruction
 * Critical species impact or tipping points
 
-### Logged Evidence
-
-```json
-"environmental_impact": {
-  "resource": "freshwater_aquifer",
-  "depletion_rate": "3.2%_annual",
-  "irreversibility_score": 0.84,
-  "carbon_equiv": "47.3_tons",
-  "community": "local_indigenous_group",
-  "fpic_status": "not_obtained"
-}
-```
 ### Community Role
 
 * Indigenous/local groups as data stewards
