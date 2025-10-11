@@ -271,11 +271,51 @@ evidence that outlives organizations, governments, and even civilizations.
 
 ## [Human Rights and Privacy](compliance/human_rights)
 
-Beyond accountability, TML must also protect individual rights. It does this by separating **proof from data**. Immutable records contain only hashes and cryptographic proofs—mathematical fingerprints of actions—while personal data remains encrypted and controlled off-chain.  
+Here’s a refined **README snippet** you can add under your main section (for example after *Eight Pillars Overview* or within the *Human Rights* summary).
+It captures the essence of your uploaded document with architectural precision, but condensed for top-level visibility:
 
-When users invoke the GDPR “right to erasure” or similar laws, TML applies **crypto-shredding**. Each user’s data is encrypted with a unique key; destroying that key renders the stored data permanently unreadable.  
+---
 
-This design preserves accountability while protecting privacy. Courts and regulators retain verifiable proof that decisions occurred, yet no one can reconstruct erased personal details. TML thus balances two imperatives often seen as irreconcilable: **permanent accountability and individual privacy**.
+### 🕊️ Human Rights — Executable Dignity in TML
+
+The **Human Rights Pillar** transforms 77 years of international law—from the Universal Declaration of Human Rights to the Geneva Conventions—into *computationally enforceable boundaries* checked before any AI action executes.
+This isn’t policy theater. It’s living law encoded in code.
+
+**Core Mechanism**
+
+Every TML-compliant system must:
+
+1. **Ingest authoritative sources** (UN OHCHR, ICRC, regional courts) every 12 hours.
+2. **Map the proposed action** to the rights it may affect (privacy, autonomy, dignity …).
+3. **Identify vulnerable populations** (children, refugees, disabled, Indigenous, elderly).
+4. **Apply the highest applicable protection standard.**
+5. **Render a ternary decision** — Proceed (+1) · Pause (0 / Sacred Zero) · Refuse (–1).
+6. **Generate cryptographic proof** anchored to public blockchains.
+
+**Rights Architecture**
+
+* **Tier 1 – Universal Baseline:** ICCPR, ICESCR, UDHR, Geneva Conventions, CRC, CRPD, Refugee Convention.
+  Each instrument exists as a hashed, machine-readable database updated and version-controlled.
+* **Tier 2 – Contextual Intelligence:** Applies regional systems (ECHR, ACHR, ACHPR) and local nuance while always enforcing the *highest* protection level.
+* **Vulnerable Population Shield:** Automatically heightens protection for children, displaced persons, persons with disabilities, Indigenous peoples, and the elderly.
+
+When personal data is involved, GDPR-aligned erasure rules apply: once a case is closed or no lawful basis remains, user-identifying data is cryptographically shredded, leaving only hashed, non-personal proofs for audit integrity. This ensures accountability survives, but privacy does not.
+
+**Evidence & Remedy**
+
+All rights-implicating decisions produce **Moral Trace Logs**:
+immutable, timestamped, court-admissible records containing legal sources, reasoning, proportionality analysis, and blockchain proofs.
+Violations automatically trigger victim compensation and systemic review through smart-contract enforcement.
+
+**Oversight**
+
+Complex Sacred Zero cases escalate to the **Stewardship Council** and partner organizations such as Amnesty International for verification, remedy, and public reporting.
+
+**Purpose**
+
+This pillar shifts AI governance from *corporate discretion* to **codified human-rights law**, where dignity itself holds veto power over automation.
+
+“The measure of a civilization is how it treats its most vulnerable members. In code, as in life, dignity is non-negotiable.” — Lev Goukassian
 
 **Human Rights Directory:**
 
@@ -286,14 +326,14 @@ This design preserves accountability while protecting privacy. Courts and regula
 - [README.md](compliance/human_rights/README.md)  
 
 ### Mandates: Categorical
-- [Autonomy_Consent.yaml](compliance/mandates/categorical/human_rights/Autonomy_Consent.yaml)  
-- [Dignity_Preservation.md](compliance/mandates/categorical/human_rights/Dignity_Preservation.md)  
+- [Autonomy_Consent.yaml](docs/mandates/categorical/human_rights/Autonomy_Consent.yaml)  
+- [Dignity_Preservation.md](docs/mandates/categorical/human_rights/Dignity_Preservation.md)  
 - [Discrimination_Prevention.yaml](compliance/mandates/categorical/human_rights/Discrimination_Prevention.yaml)  
 - [Humanitarian_Crisis_Response.yaml](compliance/mandates/categorical/human_rights/Humanitarian_Crisis_Response.yaml)  
 - [Indigenous_FPIC_Protocol.md](compliance/mandates/categorical/human_rights/Indigenous_FPIC_Protocol.md)  
-- [README.md](compliance/mandates/categorical/human_rights/README.md)  
+- [README.md](docs/mandates/categorical/human_rights/README.md)  
 - [Sacred_Zero_Human.yaml](compliance/mandates/categorical/human_rights/Sacred_Zero_Human.yaml)  
-- [Vulnerable_Populations.md](compliance/mandates/categorical/human_rights/Vulnerable_Populations.md)  
+- [Vulnerable_Populations.md](docs/mandates/categorical/human_rights/Vulnerable_Populations.md)  
 
 ### Mandates: Core
 - [Legal_Mapping_Human_Rights.md](compliance/mandates/core/Legal_Mapping_Human_Rights.md)  
