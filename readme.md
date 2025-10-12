@@ -502,7 +502,7 @@ def protect_sacred_zero(log):
     if guardian_enabled:
         guardian.attest(log)
 ```
-#### **[Interactive Overview of Earth Protection](https://fractonicmind.github.io/TernaryMoralLogic/TML_Pillars/Earth_Protection.html)**
+#### **[Interactive Overview of Hybrid Shield](https://fractonicmind.github.io/TernaryMoralLogic/TML_Pillars/Hybrid_Shield.html)**
 
 ---
 
@@ -619,7 +619,7 @@ An **optional Guardian Network** of institutional custodians may extend trust ve
 
 #### **In TML, every ethical hesitation leaves a cryptographic footprint, proof that conscience, once encoded, cannot be erased.**
 
-#### **[Interactive Overview of Earth Protection](https://fractonicmind.github.io/TernaryMoralLogic/TML_Pillars/Earth_Protection.html)**
+#### **[Interactive Overview of Blockchain Protection](https://fractonicmind.github.io/TernaryMoralLogic/TML_Pillars/Blockchain_Protection.html)**
 ---
 
 ## [Performance and Latency](performance/)
