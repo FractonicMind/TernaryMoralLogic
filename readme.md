@@ -317,6 +317,8 @@ This pillar shifts AI governance from *corporate discretion* to **codified human
 
 “The measure of a civilization is how it treats its most vulnerable members. In code, as in life, dignity is non-negotiable.” — Lev Goukassian
 
+#### **[Interactive Overview of Human Rights](https://fractonicmind.github.io/TernaryMoralLogic/TML_Pillars/Human_Rights.html)**
+
 **Human Rights Directory:**
 
 ### Compliance
@@ -423,6 +425,8 @@ Earth cannot testify in court. Always Memory becomes its witness: every hesitati
 * **Tier 1 (Global Baselines):** UN treaties, IPCC, IUCN, regional regulations
 * **Tier 2 (Community Witness):** Indigenous/local reports, validated by quorum and anchored via Oracles
 
+#### **[Interactive Overview of Earth Protection](https://fractonicmind.github.io/TernaryMoralLogic/TML_Pillars/Earth_Protection.html)**
+
 #### Implementation Structure
 
 [/docs/earth/](https://github.com/FractonicMind/TernaryMoralLogic/tree/main/docs/earth) — Core documentation
@@ -498,6 +502,7 @@ def protect_sacred_zero(log):
     if guardian_enabled:
         guardian.attest(log)
 ```
+#### **[Interactive Overview of Earth Protection](https://fractonicmind.github.io/TernaryMoralLogic/TML_Pillars/Earth_Protection.html)**
 
 ---
 
@@ -520,6 +525,8 @@ TML mandates permanent safety mechanisms for those who expose wrongdoing or suff
 * Lifetime care mandated for permanent physical or psychological injury   
 
 #### **Together, these protections turn ethics from a slogan into a ledger, where justice leaves a receipt.**
+
+
 
 ---
 
@@ -612,6 +619,7 @@ An **optional Guardian Network** of institutional custodians may extend trust ve
 
 #### **In TML, every ethical hesitation leaves a cryptographic footprint, proof that conscience, once encoded, cannot be erased.**
 
+#### **[Interactive Overview of Earth Protection](https://fractonicmind.github.io/TernaryMoralLogic/TML_Pillars/Earth_Protection.html)**
 ---
 
 ## [Performance and Latency](performance/)
