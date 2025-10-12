@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ternary Moral Logic: Human Rights Infographic</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Brilliant Blues -->
+    <!-- Application Structure Plan: The infographic follows a top-down narrative structure to guide the user from the core problem to the proposed solution and its impact. It begins with a high-impact "Hero" section stating the mission. It then frames "The Problem" by contrasting historical legal documents with modern AI risks. The centerpiece is "The Solution," which uses a custom HTML/CSS flow chart to visualize the TML architecture (Sentry, Oracle, Chronicler). This is followed by a "Principles & Scope" section that uses cards for qualitative principles and a bar chart for a quantitative look at the legal data mapped. The infographic concludes with the "Impact," summarizing the paradigm shift. This structure turns a complex document into a digestible, compelling visual story. -->
+    <!-- Visualization & Content Choices: 1. TML Architecture Flow: Data Point -> The three-part system (Sentry, Oracle, Chronicler) and their interaction. Goal -> Organize/Show a process. Chosen Visualization -> Custom Flow Chart built with styled HTML divs and CSS flexbox. Justification -> This method is chosen to create a clear, visually engaging process diagram without using the prohibited SVG or Mermaid JS libraries, effectively communicating the core technical solution. Library/Method -> HTML/CSS with Tailwind. 2. Legal Corpus Scope: Data Point -> The number of legal provisions mapped from various international treaties. Goal -> Compare quantities. Chosen Visualization -> Vertical Bar Chart. Justification -> A bar chart is the most effective way to compare the scale of mapped data across different legal sources, providing a quick, powerful quantitative insight into the project's scope. Library/Method -> Chart.js (Canvas), confirming NO SVG. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F7FBFF;
+            color: #1A202C;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 50vh;
+            max-height: 450px;
+        }
+        @media (max-width: 768px) {
+            .chart-container {
+                height: 60vh;
+                max-height: 500px;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+
+        <header class="text-center py-16">
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-[#0077B5] tracking-tight">
+                Giving Dignity Cryptographic Power
+            </h1>
+            <p class="mt-4 max-w-3xl mx-auto text-lg text-gray-600">
+                Ternary Moral Logic's Human Rights pillar transforms 77 years of international law into computationally enforceable boundaries for AI.
+            </p>
+        </header>
+      </section>
+            <section id="interview-audio" class="mb-12">
+           <div class="text-center">
+                <audio controls class="w-full max-w-md mx-auto">
+                    <source src="https://fractonicmind.github.io/TernaryMoralLogic/TML_Pillars/Human_Rights.mp3" type="audio/mpeg">
+                </audio>
+        
+                <p class="text-sm text-gray-500 mt-4">Interview Duration: 5 minutes 59 seconds</p>
+        
+                <a href="https://github.com/FractonicMind/TernaryMoralLogic/" class="mt-8 inline-block bg-[#0B3954] hover:bg-[#087E8B] text-white font-bold py-2 px-4 rounded transition duration-300">
+                    Back to Repository
+                </a>
+            </div>
+        </section>
+        <main>
+            <section id="problem" class="py-12">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800">The Problem: A Moral Consensus Built for a Bygone Era</h2>
+                    <p class="mt-2 max-w-2xl mx-auto text-gray-500">International law was written for human decision-makers. AI operates at a scale and speed that legacy enforcement cannot match, leaving a dangerous gap.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-xl font-bold text-[#0077B5] flex items-center">
+                            <span class="text-3xl mr-3">📜</span> Paper Treaties
+                        </h3>
+                        <p class="mt-2 text-gray-600">A robust architecture of moral consensus, including:</p>
+                        <ul class="mt-4 space-y-2 list-disc list-inside text-gray-700">
+                            <li>Universal Declaration of Human Rights</li>
+                            <li>The Geneva Conventions</li>
+                            <li>Convention on the Rights of the Child</li>
+                            <li>Convention on the Rights of Persons with Disabilities</li>
+                            <li>The Refugee Convention & Protocol</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-xl font-bold text-[#4A90E2] flex items-center">
+                             <span class="text-3xl mr-3">🤖</span> Algorithmic Risks
+                        </h3>
+                        <p class="mt-2 text-gray-600">Automated systems can directly violate these principles:</p>
+                        <ul class="mt-4 space-y-2 list-disc list-inside text-gray-700">
+                            <li>Algorithmic bias leading to discrimination</li>
+                            <li>Autonomous weapons systems violating IHL</li>
+                            <li>Data exploitation of vulnerable populations</li>
+                            <li>Automated censorship infringing on expression</li>
+                            <li>Predictive policing undermining due process</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="solution" class="py-16">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800">The Solution: An Architecture of Accountability</h2>
+                    <p class="mt-2 max-w-2xl mx-auto text-gray-500">TML makes compliance architecturally mandatory through a three-part system that checks actions *before* they occur and creates an immutable record.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-xl p-8">
+                    <div class="flex flex-col md:flex-row items-center justify-around space-y-8 md:space-y-0 md:space-x-4">
+
+                        <div class="flex-1 text-center">
+                            <div class="p-6 bg-[#F7FBFF] border-2 border-dashed border-gray-300 rounded-lg">
+                                <h4 class="text-lg font-semibold">AI Action Request</h4>
+                                <p class="text-sm text-gray-500">e.g., "Analyze asylum application data"</p>
+                            </div>
+                        </div>
+
+                        <div class="text-4xl text-gray-300 font-light hidden md:block">→</div>
+                        <div class="text-4xl text-gray-300 font-light rotate-90 md:hidden">↓</div>
+
+                        <div class="flex-1 text-center p-4">
+                            <div class="p-6 bg-white border-2 border-[#4A90E2] rounded-lg shadow-md">
+                                <div class="text-4xl">🛡️</div>
+                                <h4 class="text-lg font-bold mt-2 text-[#0077B5]">The Sentry</h4>
+                                <p class="text-sm text-gray-600">The mandatory gateway. It queries The Oracle for compliance before any action is executed.</p>
+                            </div>
+                        </div>
+
+                        <div class="text-4xl text-gray-300 font-light hidden md:block">→</div>
+                        <div class="text-4xl text-gray-300 font-light rotate-90 md:hidden">↓</div>
+
+                        <div class="flex-1 text-center p-4">
+                            <div class="p-6 bg-white border-2 border-[#00A8E8] rounded-lg shadow-md">
+                                <div class="text-4xl">⚖️</div>
+                                <h4 class="text-lg font-bold mt-2 text-[#0077B5]">The Oracle</h4>
+                                <p class="text-sm text-gray-600">The living legal system. A decentralized knowledge base of computationally mapped human rights law.</p>
+                            </div>
+                        </div>
+
+                        <div class="text-4xl text-gray-300 font-light hidden md:block">→</div>
+                         <div class="text-4xl text-gray-300 font-light rotate-90 md:hidden">↓</div>
+
+                        <div class="flex-1 text-center p-4">
+                            <div class="p-6 bg-white border-2 border-[#90D5FF] rounded-lg shadow-md">
+                                <div class="text-4xl">🔗</div>
+                                <h4 class="text-lg font-bold mt-2 text-[#0077B5]">The Chronicler</h4>
+                                <p class="text-sm text-gray-600">The immutable ledger. It creates a tamper-proof blockchain record of the query and response for accountability.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="principles" class="py-12">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800">Principles & Scope</h2>
+                    <p class="mt-2 max-w-2xl mx-auto text-gray-500">The framework is built on robust principles and an extensive, ever-growing legal foundation.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="font-bold text-xl text-[#0077B5]">Legal Mapping</h3>
+                        <p class="mt-2 text-gray-600">International law is translated into machine-readable formats (.law files) by legal experts, ensuring high fidelity to original legal intent.</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="font-bold text-xl text-[#0077B5]">Sacred Zero</h3>
+                        <p class="mt-2 text-gray-600">An absolute, non-negotiable "dignity veto" that halts any action posing a threat to core, non-derogable rights like the prohibition of torture.</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6 lg:col-span-1 md:col-span-2">
+                        <h3 class="font-bold text-xl text-[#0077B5]">Continuous Adaptation</h3>
+                        <p class="mt-2 text-gray-600">The Oracle is a living system, continuously updated with new treaties and case law from vetted sources to reflect evolving legal standards.</p>
+                    </div>
+                </div>
+                <div class="mt-12 bg-white rounded-lg shadow-lg p-6">
+                     <h3 class="text-xl font-bold text-center text-gray-800 mb-4">Scope of Mapped Legal Corpus</h3>
+                     <p class="text-center text-gray-500 mb-6">The TML Oracle contains a wide array of computationally mapped provisions from key international human rights documents.</p>
+                    <div class="chart-container">
+                        <canvas id="legalCorpusChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <section id="impact" class="py-16 text-center">
+                 <h2 class="text-3xl font-bold text-gray-800">The Impact: The Beginning of Enforceable Accountability</h2>
+                 <p class="mt-4 max-w-3xl mx-auto text-lg text-gray-600">
+                    This is a foundational shift from abstract principles to architectural requirements.
+                 </p>
+                 <div class="mt-8 max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+                     <div class="bg-white p-6 rounded-lg shadow-md">
+                        <p class="font-bold text-[#0077B5]">FROM</p>
+                        <p class="text-lg text-gray-700">"Trust Me" Ethics</p>
+                     </div>
+                      <div class="bg-white p-6 rounded-lg shadow-md">
+                        <p class="font-bold text-[#4A90E2]">TO</p>
+                        <p class="text-lg text-gray-700">"Show Me the Proof"</p>
+                     </div>
+                      <div class="bg-gradient-to-r from-[#4A90E2] to-[#00A8E8] text-white p-6 rounded-lg shadow-lg">
+                        <p class="font-bold">WHERE</p>
+                        <p class="text-lg">Dignity is Non-Negotiable</p>
+                     </div>
+                 </div>
+                 <blockquote class="mt-12 max-w-2xl mx-auto text-xl italic text-gray-700">
+                    "The measure of a civilization is how it treats its most vulnerable members. In code, as in life, dignity is non-negotiable."-Lev Goukassian
+                 </blockquote>
+            </section>
+        </main>
+
+      </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+    const wrapLabel = (label, maxLength = 16) => {
+        if (label.length <= maxLength) {
+            return label;
+        }
+        const words = label.split(' ');
+        const lines = [];
+        let currentLine = '';
+        words.forEach(word => {
+            if ((currentLine + ' ' + word).trim().length > maxLength) {
+                lines.push(currentLine.trim());
+                currentLine = word;
+            } else {
+                currentLine = (currentLine + ' ' + word).trim();
+            }
+        });
+        if (currentLine) {
+            lines.push(currentLine.trim());
+        }
+        return lines;
+    };
+
+    const rawLabels = [
+        'UDHR (Articles)',
+        'Geneva Conventions (Rules)',
+        'ICCPR (Articles)',
+        'CRC (Articles)',
+        'CRPD (Articles)',
+        'Refugee Convention (Articles)'
+    ];
+
+    const processedLabels = rawLabels.map(label => wrapLabel(label));
+
+    const ctx = document.getElementById('legalCorpusChart').getContext('2d');
+    const legalCorpusChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: processedLabels,
+            datasets: [{
+                label: 'Mapped Legal Provisions',
+                data: [30, 161, 53, 54, 50, 46],
+                backgroundColor: '#4A90E2',
+                borderColor: '#0077B5',
+                borderWidth: 1,
+                borderRadius: 4,
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            indexAxis: 'y',
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        color: '#4A5568',
+                        font: {
+                            size: 12,
+                            weight: '500'
+                        }
+                    },
+                     grid: {
+                        display: false
+                    }
+                },
+                x: {
+                    grid: {
+                        color: '#E2E8F0',
+                        borderDash: [5, 5]
+                    },
+                    ticks: {
+                        color: '#4A5568'
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false,
+                },
+                tooltip: {
+                    enabled: true,
+                    backgroundColor: '#1A202C',
+                    titleFont: {
+                        size: 14,
+                        weight: 'bold'
+                    },
+                    bodyFont: {
+                        size: 12
+                    },
+                    padding: 12,
+                    cornerRadius: 6,
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) {
+                              return label.join(' ');
+                            }
+                            return label;
+                        }
+                    }
+                }
+            }
+        }
+    });
+});
+</script>
+</body>
+</html>
+
