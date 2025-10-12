@@ -1,4 +1,4 @@
-# The Goukassian Promise  
+# The Goukassian Vow  
 
 This Promise is not for history.  
 Not for memory, nor for fame.  
