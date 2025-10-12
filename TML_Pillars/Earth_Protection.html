@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TML Earth Protection Infographic</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 60vh;
+            max-height: 450px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 40vh;
+                max-height: 500px;
+            }
+        }
+        .flow-arrow {
+            position: relative;
+            width: 2px;
+            background-color: #F2C40E;
+            margin: 0.5rem auto;
+        }
+        .flow-arrow.h-line {
+             width: 100%;
+             height: 2px;
+        }
+        .flow-arrow::after {
+            content: '▼';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #F2C40E;
+            font-size: 1.25rem;
+        }
+        .flow-arrow.right::after {
+             content: '►';
+             top: 50%;
+             left: 100%;
+             bottom: auto;
+             transform: translateY(-50%) translateX(-2px);
+        }
+    </style>
+</head>
+<body class="bg-[#0B3954] text-[#BFD7EA]">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center my-12">
+            <h1 class="text-4xl md:text-6xl font-black text-white leading-tight">Giving the Planet a Cryptographic Voice</h1>
+            <p class="text-xl md:text-2xl text-[#F2C40E] mt-4">Earth Protection in Ternary Moral Logic</p>
+        </header>
+
+        <section id="problem" class="my-16 md:my-24 text-center">
+             <div class="max-w-4xl mx-auto bg-[#087E8B]/30 rounded-xl shadow-2xl p-8">
+                <h2 class="text-2xl md:text-4xl font-bold text-white mb-4">The Voiceless Stakeholder</h2>
+                <p class="text-lg md:text-xl leading-relaxed">
+                    Artificial intelligence makes millions of decisions per second affecting planetary systems. Yet, the Earth has no seat at the table, no voice in the algorithms. Its living systems—atmosphere, oceans, forests—are treated as externalities to be optimized away. TML addresses this fundamental, catastrophic asymmetry.
+                </p>
+             </div>
+        </section>
+      <section id="interview-audio" class="mb-12">
+           <div class="text-center">
+                <audio controls class="w-full max-w-md mx-auto">
+                    <source src="https://fractonicmind.github.io/TernaryMoralLogic/TML_Pillars/Earth_Protection.mp3" type="audio/mpeg">
+                </audio>
+        
+                <p class="text-sm text-gray-500 mt-4">Interview Duration: 6 minutes 26 seconds</p>
+        
+                <a href="https://github.com/FractonicMind/TernaryMoralLogic/" class="mt-8 inline-block bg-[#0B3954] hover:bg-[#087E8B] text-white font-bold py-2 px-4 rounded transition duration-300">
+                    Back to Repository
+                </a>
+            </div>
+        </section>
+        <section id="solution" class="my-16 md:my-24">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-white mb-12">The TML Solution: A System of Enforceable Trust</h2>
+            <p class="max-w-3xl mx-auto text-center text-lg mb-16">TML embeds Earth's rights directly into AI's operational logic. It's not a suggestion; it's a computational requirement enforced by three core components working in unison.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div class="bg-white/10 p-6 rounded-lg">
+                    <h3 class="text-2xl font-bold text-[#F2C40E] mb-2">The Rules Engine</h3>
+                    <p>Defines what cannot be broken: scientifically-backed Planetary Boundaries and culturally-vital Sacred Sites identified by Indigenous communities.</p>
+                </div>
+                <div class="bg-white/10 p-6 rounded-lg">
+                    <h3 class="text-2xl font-bold text-[#F2C40E] mb-2">The Enforcement Mechanism</h3>
+                    <p>An immutable command, "Sacred Zero," that halts any AI operation threatening the rules. It is non-negotiable and absolute.</p>
+                </div>
+                <div class="bg-white/10 p-6 rounded-lg">
+                     <h3 class="text-2xl font-bold text-[#F2C40E] mb-2">The Verification Layer</h3>
+                    <p>A decentralized Oracle Network and an immutable Blockchain Ledger ("Always Memory") provide real-world data and a permanent, transparent record of every action.</p>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="sacred-zero" class="my-16 md:my-24">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-white mb-12">The Core Commandment: "Sacred Zero"</h2>
+            <p class="max-w-3xl mx-auto text-center text-lg mb-16">Sacred Zero is the ultimate failsafe. It is not a penalty, but a preventative, immutable instruction that halts operations *before* a boundary is crossed. This flowchart shows its logic.</p>
+            <div class="w-full max-w-4xl mx-auto bg-[#087E8B]/30 p-6 md:p-8 rounded-xl">
+                <div class="flex flex-col items-center">
+                    <div class="bg-[#BFD7EA] text-[#0B3954] p-4 rounded-lg text-center shadow-lg w-full md:w-3/4">
+                        <h4 class="font-bold text-lg">AI System Proposes Action</h4>
+                        <p class="text-sm">(e.g., Optimize Supply Chain, Plan Infrastructure)</p>
+                    </div>
+                    <div class="flow-arrow h-16"></div>
+                    <div class="bg-[#BFD7EA] text-[#0B3954] p-4 rounded-lg text-center shadow-lg w-full md:w-3/4">
+                        <h4 class="font-bold text-lg">TML Core Analyzes Impact</h4>
+                        <p class="text-sm">Cross-references with Planetary Boundaries & Sacred Site data from Oracle Network</p>
+                    </div>
+                    <div class="flow-arrow h-16"></div>
+                    <div class="bg-[#F2C40E] text-[#0B3954] p-4 rounded-lg text-center shadow-lg w-full md:w-3/4 relative">
+                         <h4 class="font-bold text-lg">Boundary Threat Detected?</h4>
+                    </div>
+                    <div class="h-16 w-full flex justify-center">
+                        <div class="w-1/2 h-full border-r-2 border-[#F2C40E]"></div>
+                        <div class="w-1/2 h-full"></div>
+                    </div>
+                    <div class="w-full flex">
+                         <div class="w-1/2 pr-4 flex flex-col items-center">
+                             <div class="w-full flex items-center">
+                                 <div class="flex-grow h-0.5 bg-[#F2C40E]"></div>
+                                 <p class="mx-2 font-bold text-green-300">NO</p>
+                                 <div class="flex-grow h-0.5 bg-green-300"></div>
+                             </div>
+                             <div class="flow-arrow h-8" style="background-color: #4ade80;"></div>
+                              <div class="bg-green-200 text-green-900 p-4 rounded-lg text-center shadow-lg w-full">
+                                <h4 class="font-bold text-lg">Proceed with Action</h4>
+                                <p class="text-sm">Decision logged to Always Memory</p>
+                            </div>
+                         </div>
+                         <div class="w-1/2 pl-4 flex flex-col items-center">
+                              <div class="w-full flex items-center">
+                                 <div class="flex-grow h-0.5 bg-[#FF5A5F]"></div>
+                                 <p class="mx-2 font-bold text-red-400">YES</p>
+                                 <div class="flex-grow h-0.5 bg-red-400"></div>
+                             </div>
+                             <div class="flow-arrow h-8" style="background-color: #FF5A5F;"></div>
+                             <div class="bg-[#FF5A5F] text-white p-4 rounded-lg text-center shadow-lg w-full animate-pulse">
+                                <h4 class="font-bold text-lg">TRIGGER SACRED ZERO</h4>
+                                <p class="text-sm">Operation Halted. Event logged immutably.</p>
+                            </div>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="boundaries" class="my-16 md:my-24">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-white mb-12">Defining The Boundaries</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
+                <div class="bg-white/10 p-6 rounded-lg">
+                    <h3 class="text-2xl font-bold text-[#F2C40E] mb-4 text-center">The 9 Planetary Boundaries</h3>
+                    <p class="text-center mb-6">These are the scientifically defined thresholds for Earth's life-support systems. The goal of TML is to ensure AI operations never push humanity outside this safe operating space. The chart visualizes these boundaries and a hypothetical current status.</p>
+                    <div class="chart-container">
+                        <canvas id="planetaryBoundariesChart"></canvas>
+                    </div>
+                </div>
+                 <div class="bg-white/10 p-6 rounded-lg flex flex-col">
+                    <h3 class="text-2xl font-bold text-[#F2C40E] mb-4 text-center">Sacred Sites & Indigenous Knowledge</h3>
+                     <p class="text-center mb-6">Beyond global data, TML integrates hyperlocal, ancestral knowledge. Indigenous communities define sacred lands, waters, and ecosystems, which are given the same absolute protection as Planetary Boundaries, enforced through community-verified data.</p>
+                    <div class="flex-grow space-y-4 flex flex-col justify-center">
+                        <div class="bg-[#087E8B] p-4 rounded-lg">
+                             <h4 class="font-bold text-white">● Community Sovereignty</h4>
+                             <p class="text-sm text-[#BFD7EA]">Indigenous communities have autonomous control over defining and verifying their sacred sites within the network.</p>
+                        </div>
+                         <div class="bg-[#087E8B] p-4 rounded-lg">
+                             <h4 class="font-bold text-white">● Living Data</h4>
+                             <p class="text-sm text-[#BFD7EA]">Knowledge is not static. Community observations of ecosystem health are fed into the Oracle Network as real-time data.</p>
+                        </div>
+                         <div class="bg-[#087E8B] p-4 rounded-lg">
+                             <h4 class="font-bold text-white">● Absolute Veto</h4>
+                             <p class="text-sm text-[#BFD7EA]">A verified threat to a Sacred Site triggers Sacred Zero with the same authority as a planetary-level breach.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+         <section id="enforcement" class="my-16 md:my-24">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-white mb-12">Pillars of Trust: The Verification Layer</h2>
+             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+                 <div class="bg-white/10 p-6 rounded-lg">
+                     <h3 class="text-2xl font-bold text-[#F2C40E] mb-4 text-center">The Oracle Network</h3>
+                     <p class="text-center mb-8">This decentralized network acts as the system's eyes and ears, feeding verifiable, real-world data to the TML core to make informed decisions.</p>
+                     <div class="space-y-4">
+                        <div class="bg-[#087E8B] p-4 rounded-lg flex items-center">
+                            <span class="text-3xl mr-4">🛰️</span>
+                            <div>
+                                <h4 class="font-bold text-white">Satellite & Remote Sensing</h4>
+                                <p class="text-sm text-[#BFD7EA]">Monitors deforestation, ice melt, atmospheric changes.</p>
+                            </div>
+                        </div>
+                        <div class="bg-[#087E8B] p-4 rounded-lg flex items-center">
+                             <span class="text-3xl mr-4">🌡️</span>
+                            <div>
+                                <h4 class="font-bold text-white">IoT & Ground Sensors</h4>
+                                <p class="text-sm text-[#BFD7EA]">Tracks water quality, soil health, biodiversity metrics.</p>
+                            </div>
+                        </div>
+                        <div class="bg-[#087E8B] p-4 rounded-lg flex items-center">
+                            <span class="text-3xl mr-4">🧑‍🤝‍🧑</span>
+                             <div>
+                                <h4 class="font-bold text-white">Community Witness Reports</h4>
+                                <p class="text-sm text-[#BFD7EA]">Verified human observations, especially for Sacred Site integrity.</p>
+                            </div>
+                        </div>
+                     </div>
+                 </div>
+
+                 <div class="bg-white/10 p-6 rounded-lg">
+                     <h3 class="text-2xl font-bold text-[#F2C40E] mb-4 text-center">Always Memory</h3>
+                     <p class="text-center mb-8">An immutable, public blockchain ledger that creates a permanent, unchangeable record of every AI decision, every data point considered, and every Sacred Zero event.</p>
+                     <div class="overflow-x-auto p-2">
+                         <div class="flex items-center space-x-2 min-w-max">
+                            <div class="bg-[#BFD7EA] text-[#0B3954] p-3 rounded w-48 h-32 flex flex-col justify-between">
+                                <p class="font-bold text-sm">Block #6B31</p>
+                                <p class="text-xs"><strong>Type:</strong> Decision<br/><strong>Action:</strong> Route_Fleet_7<br/><strong>Result:</strong> OK</p>
+                                <p class="text-xs self-end opacity-50">...A4E1</p>
+                            </div>
+                            <div class="text-[#F2C40E] font-bold text-2xl">- -</div>
+                            <div class="bg-[#BFD7EA] text-[#0B3954] p-3 rounded w-48 h-32 flex flex-col justify-between">
+                                <p class="font-bold text-sm">Block #6B32</p>
+                                <p class="text-xs"><strong>Type:</strong> Decision<br/><strong>Action:</strong> Energy_Grid_Adj<br/><strong>Result:</strong> OK</p>
+                                <p class="text-xs self-end opacity-50">...C9B2</p>
+                            </div>
+                            <div class="text-[#F2C40E] font-bold text-2xl">- -</div>
+                             <div class="bg-[#FF5A5F] text-white p-3 rounded w-48 h-32 flex flex-col justify-between shadow-lg ring-2 ring-white/50">
+                                <p class="font-bold text-sm">Block #6B33</p>
+                                <p class="text-xs"><strong>Type:</strong> <span class="font-extrabold">SACRED_ZERO</span><br/><strong>Action:</strong> Mine_Permit_8<br/><strong>Trigger:</strong> Watershed_Limit</p>
+                                <p class="text-xs self-end opacity-75">...F0A8</p>
+                            </div>
+                         </div>
+                     </div>
+                     <p class="text-center mt-6 text-sm">This creates radical transparency and accountability for generations.</p>
+                 </div>
+             </div>
+        </section>
+
+        <footer class="text-center my-16 md:my-24">
+            <div class="max-w-4xl mx-auto border-t-2 border-[#F2C40E] pt-8">
+                <blockquote class="text-2xl md:text-4xl font-bold italic text-white leading-relaxed">
+                    "The planet has no voice, no vote, no lobby; so we gave her a cryptographic signature and a seat on every AI board."
+                </blockquote>
+                <cite class="block text-lg text-[#BFD7EA] mt-4 not-italic">- Lev Goukassian</cite>
+            </div>
+        </footer>
+
+    </div>
+
+    <script>
+        const processLabels = (labels) => {
+            const charLimit = 16;
+            return labels.map(label => {
+                if (label.length <= charLimit) {
+                    return label;
+                }
+                const words = label.split(' ');
+                const lines = [];
+                let currentLine = '';
+                for (const word of words) {
+                    if ((currentLine + ' ' + word).trim().length > charLimit && currentLine.length > 0) {
+                        lines.push(currentLine);
+                        currentLine = word;
+                    } else {
+                        currentLine = (currentLine + ' ' + word).trim();
+                    }
+                }
+                if (currentLine) {
+                    lines.push(currentLine);
+                }
+                return lines;
+            });
+        };
+        
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            } else {
+                return label;
+            }
+        };
+
+        const originalLabels = [
+            'Climate Change', 
+            'Biosphere Integrity', 
+            'Land-System Change', 
+            'Freshwater Use', 
+            'Biogeochemical Flows', 
+            'Ocean Acidification', 
+            'Atmospheric Aerosol Loading', 
+            'Stratospheric Ozone Depletion', 
+            'Novel Entities'
+        ];
+        
+        const chartData = {
+            labels: processLabels(originalLabels),
+            datasets: [{
+                label: 'Current Status',
+                data: [7, 8, 6, 5, 9, 7, 4, 2, 6],
+                backgroundColor: 'rgba(242, 196, 14, 0.2)',
+                borderColor: '#F2C40E',
+                borderWidth: 2,
+                pointBackgroundColor: '#F2C40E',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: '#F2C40E'
+            },
+            {
+                label: 'Safe Boundary',
+                data: [5, 5, 5, 5, 5, 5, 5, 5, 5],
+                backgroundColor: 'rgba(8, 126, 139, 0.2)',
+                borderColor: '#087E8B',
+                borderWidth: 2,
+                pointBackgroundColor: '#087E8B',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: '#087E8B'
+            }
+            ]
+        };
+
+        const chartConfig = {
+            type: 'radar',
+            data: chartData,
+            options: {
+                maintainAspectRatio: false,
+                scales: {
+                    r: {
+                        angleLines: {
+                            color: 'rgba(191, 215, 234, 0.2)'
+                        },
+                        grid: {
+                            color: 'rgba(191, 215, 234, 0.2)'
+                        },
+                        pointLabels: {
+                            color: '#BFD7EA',
+                            font: {
+                                size: 10
+                            }
+                        },
+                        ticks: {
+                            color: '#0B3954',
+                            backdropColor: 'rgba(191, 215, 234, 0.8)',
+                            stepSize: 2,
+                             font: {
+                                size: 10
+                            }
+                        },
+                        suggestedMin: 0,
+                        suggestedMax: 10
+                    }
+                },
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: '#BFD7EA'
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        }
+                    }
+                }
+            }
+        };
+
+        window.onload = function() {
+            const ctx = document.getElementById('planetaryBoundariesChart').getContext('2d');
+            new Chart(ctx, chartConfig);
+        };
+    </script>
+</body>
+</html>
