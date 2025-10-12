@@ -2,23 +2,7 @@
 
 ---
 
-## **The Evidence That Vanishes**
-
-In 2018, Cambridge Analytica dissolved. With it went the detailed records of how 87 million people's Facebook data was harvested and weaponized for political manipulation. The company's bankruptcy filing erased servers, destroyed documentation, and scattered evidence across jurisdictions. Years of potential accountability—proof of who knew what, when decisions were made to proceed despite privacy violations, which algorithms were deployed—simply disappeared.
-
-This is the pattern of corporate harm in the digital age: **operate, extract value, cause damage, then dissolve before accountability arrives**. Delete the logs. Shred the documentation. Declare bankruptcy. The evidence evaporates, and with it, any chance of justice.
-
-When Theranos collapsed after defrauding investors and endangering patients with faulty blood tests, critical evidence vanished. When cryptocurrency exchanges fail and billions disappear, the transaction logs that could reveal fraud often go missing. When AI systems are accused of discrimination, the decision logs that would prove or disprove the claims are frequently "unavailable," "corrupted," or "not retained per company policy."
-
-The current accountability architecture for algorithmic systems has a fatal flaw: **it depends on the good faith custody of the very entities most incentivized to destroy evidence**.
-
-We ask corporations to log their AI decisions, then trust them to preserve those logs even when the logs prove liability. We ask governments to maintain records, then hope political pressure won't make those records disappear. We create ethical frameworks and compliance standards, then watch helplessly as the evidence of violations is erased by those who committed them.
-
-This is the weakness that kept Lev Goukassian awake. He had built Ternary Moral Logic—a framework where AI systems create detailed moral trace logs of every decision, where Sacred Zero pauses generate evidence of ethical reasoning, where Human Rights and Earth Protection frameworks ensure boundaries are checked before action. But what good is the most sophisticated accountability architecture in the world if the logs can be deleted with a keystroke?
-
-His response was radical: **build evidence that cannot be erased, not by corporations, not by governments, not by time itself**. This vision manifests in the Hybrid Shield—the seventh pillar of TML, but arguably its most crucial architectural innovation.
-
-The Hybrid Shield isn't just a backup system or security measure. It's a **constitutional protection framework** that guarantees moral evidence survives the actors who created it. It transforms accountability from a voluntary practice into a mathematical and institutional inevitability.
+The Hybrid Shield is a **constitutional protection framework** that guarantees moral evidence survives the actors who created it. It transforms accountability from a voluntary practice into a mathematical and institutional inevitability. It is the mechanism by which truth becomes durable. Hybrid Shield joins mathematics with governance, ensuring that moral evidence remains both verifiable and institutionally protected.
 
 ---
 
