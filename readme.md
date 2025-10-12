@@ -358,6 +358,8 @@ This pillar shifts AI governance from *corporate discretion* to **codified human
 
 ## [**Earth Protection**](docs/earth)
 
+#### *The planet has no voice in boardrooms, no lawyers in courts, no vote in parliaments—TML gave it all three. In code. Permanently. Enforceably.* **-Lev Goukassian**
+
 ### When the Planet Speaks in Code
 
 The **Earth Protection Pillar** gives the planet a legal and cryptographic voice. It turns 50 years of environmental law—Paris Agreement, Convention on Biological Diversity, Ramsar, CITES, and Indigenous sovereignty frameworks—into **machine-readable, enforceable constraints** checked before any AI system acts.
@@ -384,8 +386,6 @@ Every TML-compliant decision with ecological impact must:
 Violations generate **immutable evidence** and **smart-contract penalties**:
 30 % of every penalty flows directly into ecosystem restoration and community-led recovery.
 When in doubt, the code protects Earth.
-
-“The planet has no voice, no vote, no lobby—so we gave her a cryptographic signature and a seat on every AI board.” — Lev Goukassian
 
 When the ledger remembers every forest spared, accountability stops being optional.
 
