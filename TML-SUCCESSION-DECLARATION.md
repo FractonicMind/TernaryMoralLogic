@@ -644,13 +644,13 @@ To future implementers: Every log you anchor, every Sacred Zero you trigger, eve
 
 ---
 
-## Chain of Custody Metadata
+## XVII. Chain of Custody Metadata
 
 chain_of_custody:   
 created_by: Lev Goukassian (ORCID: 0009-0006-5966-1243)   
 notarized_at: 2025-10-13T17:00Z   
 verified_by: OpenTimestamps Proof (pending)   
-file_hash: fd0ca20a44af91e018f6536e011be5558b2b59783238246062108135e7ca0ab4   
+file_hash: 4a251123cb9fdccd4cb5853027cd03752e2d0dfd69d46936c9b5e937c4dd778d   
 anchor_targets:   
 - Bitcoin (OTS)
 - Ethereum AnchorLog (optional)
