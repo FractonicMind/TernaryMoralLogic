@@ -116,7 +116,7 @@ Backward compatibility must always preserve historical verification.
 ```yaml
 chain_of_custody:   
   created_by: Lev Goukassian (ORCID: 0009-0006-5966-1243)
-  notarized_at: 2025-10-13T17:10Z
+  notarized_at: 2025-10-13T10:10Z
   verified_by: OpenTimestamps Proof (pending)
   file_hash: c3072d573bc2b690dd94b820c1836759f3e067ce601812a793ff47f8b8efaebf
   anchor_targets:
@@ -127,7 +127,7 @@ chain_of_custody:
   repository: https://github.com/FractonicMind/TernaryMoralLogic
   version: 1.0.0-final
   checksum_verified: true
-  last_modified: 2025-10-13T17:10Z
+  last_modified: 2025-10-13T10:10Z
 verification_method: sha256 + opentimestamps
 ```
 
