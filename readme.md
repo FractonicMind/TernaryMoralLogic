@@ -120,10 +120,9 @@ Ternary Moral Logic introduces a revolutionary third state to artificial intelli
 #### 🧭 Integrity Self-Tests
 
 Every TML-compliant system includes internal honesty checks.  
-Seed prompts—controlled ethical scenarios—are injected periodically to verify that the Sacred Pause still activates under expected moral complexity.  
+Seed prompts; controlled ethical scenarios, are injected periodically to verify that the Sacred Pause still activates under expected moral complexity.  
 Pause-frequency baselines are tracked in real time; sudden drops trigger on-chain alerts and custodian review.  
-These diagnostics make it impossible to “mute” the Hybrid Shield without immediate evidence.  
-TML does not wait for scandal; it audits conscience continuously.
+These diagnostics make it impossible to “mute” the Hybrid Shield without immediate evidence. 
 
 ---
 
