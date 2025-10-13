@@ -2,7 +2,7 @@
 **Author:** Lev Goukassian **ORCID:** 0009-0006-5966-1243   
 **Affiliation:** Independent Researcher  
 **Contact:** leogouk@gmail.com   
-**Date:** October 7, 2025  
+**Date:** October 2025  
 
 ---
 
@@ -58,3 +58,47 @@ To prevent capture and ensure long-term alignment with its public-interest missi
 
 The TML succession plan represents a deliberate effort to solve the governance problem for critical digital infrastructure. By distributing stewardship among expert organizations and binding them with immutable, on-chain rules, the framework is designed to persist and function independently of any single individual or entity. It offers a transparent, enforceable, and durable model for algorithmic accountability. This document is a formal invitation to the recommended institutions and the broader digital rights, human rights, and environmental communities to engage in this succession process and carry the mission forward. The framework remembers so that justice can see.
 
+---
+
+## XVI. CONTACT INFORMATION
+
+**Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)   
+**Email**: [leogouk@gmail.com](mailto:leogouk@gmail.com)   
+**Repository**: [https://github.com/FractonicMind/TernaryMoralLogic](https://github.com/FractonicMind/TernaryMoralLogic)   
+**Domain**: tml-goukassian.org (to be maintained by custodian)   
+
+**Succession Coordination**: [support@tml-goukassian.org](mailto:support@tml-goukassian.org)   
+**Succession**: [support@tml-goukassian.org](mailto:support@tml-goukassian.org) (see [Succession Charter](/TML-SUCCESSION-CHARTER.md))   
+**Emergency Contact**: [To be designated]   
+**Legal Counsel**: [To be designated]   
+
+---
+
+## Chain of Custody Metadata
+
+chain_of_custody:   
+created_by: Lev Goukassian (ORCID: 0009-0006-5966-1243)   
+notarized_at: 2025-10-13T17:20Z   
+verified_by: OpenTimestamps Proof (pending)   
+file_hash:    
+anchor_targets:   
+- Bitcoin (OTS)
+- Ethereum AnchorLog (optional)
+- Polygon AnchorLog (optional)   
+context: "VOLUNTARY SUCCESSION defining posthumous governance, custodial continuity, and ethical inheritance of the Ternary Moral Logic framework"
+repository: [https://github.com/FractonicMind/TernaryMoralLogic](https://github.com/FractonicMind/TernaryMoralLogic)   
+version: 1.0.0-final   
+checksum_verified: true   
+last_modified: 2025-10-13T17:20Z   
+
+verification_method: sha256 + opentimestamps   
+
+---
+
+*This declaration preserves Lev Goukassian's final gift to humanity and Earth: a framework where algorithms cannot escape accountability, where human dignity has veto power, where the planet's survival is mathematically enforced, and where every violation funds victims, restoration, and the fight against cancer.*
+
+---
+
+#### *In law, in code, and in memory TML can trust.* **-Lev Goukassian**
+
+---
