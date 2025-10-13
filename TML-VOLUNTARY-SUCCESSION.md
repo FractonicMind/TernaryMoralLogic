@@ -80,12 +80,12 @@ chain_of_custody:
 created_by: Lev Goukassian (ORCID: 0009-0006-5966-1243)   
 notarized_at: 2025-10-13T17:20Z   
 verified_by: OpenTimestamps Proof (pending)   
-file_hash:    
+file_hash: 7e8ca23bff8a3d5ceb2180c80c696ae6d0e542ce4c5b77ebf0a62b450378422b   
 anchor_targets:   
 - Bitcoin (OTS)
 - Ethereum AnchorLog (optional)
 - Polygon AnchorLog (optional)   
-context: "VOLUNTARY SUCCESSION defining posthumous governance, custodial continuity, and ethical inheritance of the Ternary Moral Logic framework"
+context: "VOLUNTARY SUCCESSION establishing posthumous governance, custodial continuity, and ethical inheritance of the Ternary Moral Logic framework"
 repository: [https://github.com/FractonicMind/TernaryMoralLogic](https://github.com/FractonicMind/TernaryMoralLogic)   
 version: 1.0.0-final   
 checksum_verified: true   
