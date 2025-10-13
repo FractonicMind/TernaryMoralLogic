@@ -781,13 +781,48 @@ contract MemorialFundDistribution {
 
 ---
 
+## EXECUTION AND WITNESSING
+
+### Declaration Execution
+
+**Declarant**: Lev Goukassian  
+**Signature**: _________________________ **Date**: _____________  
+**ORCID**: 0009-0006-59-1243  
+**Email**: leogouk@gmail.com  
+
+### Witness Requirements
+
+This declaration requires two witnesses who can attest to:
+- The mental capacity of Lev Goukassian at time of signing
+- The voluntary nature of this succession declaration
+- The identity of the declarant
+
+**Witness 1**:  
+**Name**: _________________________  
+**Signature**: _________________________ **Date**: _____________  
+**Relationship**: _________________________  
+
+**Witness 2**:  
+**Name**: _________________________  
+**Signature**: _________________________ **Date**: _____________  
+**Relationship**: _________________________  
+
+### Notarization (Optional)
+
+**Notary Public**:  
+**Name**: _________________________  
+**Signature and Seal**: _________________________ **Date**: _____________  
+**Commission Expires**: _____________  
+
+---
+
 ## Chain of Custody Metadata
 
 chain_of_custody:   
   created_by: Lev Goukassian (ORCID: 0009-0006-5966-1243)   
   notarized_at: 2025-13-09T17:06Z   
   verified_by: OpenTimestamps Proof (pending)   
-  file_hash: 7cf142d8248f6bac6cd69a4dc648e53a4fedfb3af338f7201e29f11211ed0ed2   
+  file_hash: f5db038f74d398813b2392c1e317df6f34145a28cfad88f0b649db87863c5a61   
   anchor_targets:   
     - Bitcoin (OTS)   
     - Ethereum AnchorLog (optional)   
