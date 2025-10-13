@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ternary Moral Logic: The Hybrid Shield</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Chosen Palette: Calm Harmony -->
+    <!-- Application Structure Plan: This application is structured as a narrative journey to make a complex framework digestible. It starts with the core promise ('why'), moves to the problem it solves ('what'), details the solution's components ('how'), visualizes its effectiveness, and concludes with the ultimate impact ('so what'). This thematic flow, enhanced with an audio overview, was chosen to transform passive reading into an active, multi-modal learning experience. Interactive elements like tabs and a sequential flow diagram break down dense information, ensuring users can grasp each concept before moving to the next. -->
+    <!-- Visualization & Content Choices: 
+        - The Problem: Report Info: Failures of Corporate, Govt, Self-Regulation models. -> Goal: Compare. -> Viz: Interactive Tabs. -> Interaction: Click to switch content. -> Justification: A familiar UI pattern for comparing distinct but related categories, preventing information overload. -> Method: HTML/Tailwind/JS.
+        - How It Works: Report Info: The process flow from decision to attestation. -> Goal: Explain a process. -> Viz: A step-by-step interactive diagram. -> Interaction: User clicks a "Next Step" button to reveal each stage sequentially. -> Justification: Making the flow diagram interactive forces the user to process each step individually, dramatically improving comprehension. -> Method: HTML/Tailwind/JS.
+        - Defenses Quantified: Report Info: Effectiveness against 5 key threats. -> Goal: Compare/Inform -> Viz: Radar Chart -> Interaction: Hover for tooltips. -> Justification: A radar chart is perfect for visualizing multi-dimensional strengths from a central point, fitting the "shield" metaphor and providing a quick, data-rich summary. -> Library/Method: Chart.js (Canvas).
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FDFBF8;
+            color: #333D44;
+        }
+        @import url('https://rsms.me/inter/inter.css');
+        .active-tab {
+            border-color: #3B82F6;
+            color: #3B82F6;
+            background-color: #EFF6FF;
+        }
+        .step-inactive {
+            opacity: 0.3;
+            transform: scale(0.95);
+        }
+        .step-active {
+            opacity: 1;
+            transform: scale(1);
+            border-color: #3B82F6;
+            box-shadow: 0 4px 14px 0 rgba(59, 130, 246, 0.2);
+        }
+        .flow-line {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            background-color: #D1D5DB;
+            transition: height 0.5s ease-in-out;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 400px;
+        }
+         @media (min-width: 768px) {
+            .chart-container {
+                height: 500px;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <span class="text-2xl font-bold text-gray-800">Ternary Moral Logic</span>
+                </div>
+                <h1 class="text-xl font-semibold text-blue-600">The Hybrid Shield</h1>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <section id="intro" class="text-center mb-16">
+            <h2 class="text-4xl font-extrabold tracking-tight text-gray-900 mb-4">Making Accountability Immortal</h2>
+            <p class="max-w-3xl mx-auto text-lg text-gray-600">
+                The Hybrid Shield is a constitutional protection framework within TML that guarantees moral evidence survives the actors who created it. It transforms accountability from a voluntary practice into a mathematical and institutional inevitability. This interactive experience explores how it works.
+            </p>
+            <div class="mt-8">
+                <button id="audio-overview-btn" class="bg-blue-500 text-white font-semibold py-3 px-6 rounded-lg hover:bg-blue-600 transition shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+                    <span class="flex items-center justify-center">
+                        <span class="mr-2">▶️</span>
+                        Listen to Overview
+                    </span>
+                </button>
+            </div>
+        </section>
+
+        <section id="problem" class="mb-20">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl font-bold text-gray-900">The Foundational Problem: Custody Equals Control</h3>
+                <p class="mt-2 max-w-2xl mx-auto text-md text-gray-500">
+                    Traditional accountability systems fail because they place evidence in the custody of those who have an incentive to destroy it. Explore the vulnerabilities in three common models.
+                </p>
+            </div>
+            <div>
+                <div class="flex justify-center border-b border-gray-200 mb-6">
+                    <button id="tab-corporate" class="tab-button px-6 py-3 font-medium text-lg border-b-2 active-tab">Corporate Model</button>
+                    <button id="tab-government" class="tab-button px-6 py-3 font-medium text-lg border-b-2 border-transparent text-gray-500">Government Model</button>
+                    <button id="tab-self-regulation" class="tab-button px-6 py-3 font-medium text-lg border-b-2 border-transparent text-gray-500">Self-Regulation Model</button>
+                </div>
+                <div id="tab-content" class="bg-white p-8 rounded-xl shadow-sm border border-gray-100 min-h-[200px]">
+                </div>
+            </div>
+        </section>
+
+        <div class="w-full border-t border-gray-200 my-20"></div>
+
+        <section id="solution" class="mb-20">
+             <div class="text-center mb-12">
+                <h3 class="text-3xl font-bold text-gray-900">The Solution: The Hybrid Shield</h3>
+                <p class="mt-2 max-w-2xl mx-auto text-md text-gray-500">
+                    The Hybrid Shield solves the custody problem by separating evidence creation from its storage and verification. It joins mathematics with governance to ensure that moral evidence remains both verifiable and institutionally protected, forever.
+                </p>
+            </div>
+            <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100 flex flex-col md:flex-row items-center justify-around gap-8">
+                 <div class="text-center">
+                    <div class="text-6xl mb-2">🏛️</div>
+                    <h4 class="font-bold text-xl">Evidence Creator</h4>
+                    <p class="text-gray-600">(e.g., Corporation)</p>
+                </div>
+                <div class="text-5xl font-thin text-blue-500 animate-pulse hidden md:block">→</div>
+                 <div class="text-5xl font-thin text-blue-500 animate-pulse md:hidden">↓</div>
+                <div class="text-center">
+                    <div class="text-6xl mb-2">🛡️</div>
+                    <h4 class="font-bold text-xl">The Hybrid Shield</h4>
+                    <p class="text-gray-600">(Immutable Math & Diverse Institutions)</p>
+                </div>
+                <div class="text-5xl font-thin text-blue-500 animate-pulse hidden md:block">→</div>
+                 <div class="text-5xl font-thin text-blue-500 animate-pulse md:hidden">↓</div>
+                <div class="text-center">
+                    <div class="text-6xl mb-2">🌍</div>
+                    <h4 class="font-bold text-xl">Independent Custodians</h4>
+                    <p class="text-gray-600">(Geographically & Legally Diverse)</p>
+                </div>
+            </div>
+        </section>
+        
+        <div class="w-full border-t border-gray-200 my-20"></div>
+
+        <section id="pillars" class="mb-20">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl font-bold text-gray-900">The Two Pillars of the Shield</h3>
+                <p class="mt-2 max-w-2xl mx-auto text-md text-gray-500">
+                    The shield's strength comes from two mutually reinforcing principles: the unbreakable certainty of mathematics and the resilient diversity of global institutions.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
+                    <h4 class="text-2xl font-bold mb-4">⛓️ The Mathematical Pillar</h4>
+                    <p class="text-gray-600 mb-6">A decentralized public ledger (blockchain) provides a permanent, unchangeable, and publicly verifiable record of every moral decision's fingerprint (hash).</p>
+                    <ul class="space-y-3">
+                        <li class="flex items-start"><span class="font-bold text-blue-500 mr-2">✓</span><span><strong>Cryptographic Hashing:</strong> Turns large evidence files into a small, tamper-proof fingerprint.</span></li>
+                        <li class="flex items-start"><span class="font-bold text-blue-500 mr-2">✓</span><span><strong>Consensus Mechanism:</strong> No single entity can alter the record; changes require massive, independent agreement.</span></li>
+                        <li class="flex items-start"><span class="font-bold text-blue-500 mr-2">✓</span><span><strong>Public Transparency:</strong> Anyone, at any time, can verify that a specific hash exists on the ledger.</span></li>
+                    </ul>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
+                    <h4 class="text-2xl font-bold mb-4">🏛️ The Institutional Pillar</h4>
+                    <p class="text-gray-600 mb-6">A network of legally and geographically diverse organizations holds the full evidence. This redundancy protects the truth from any single point of failure.</p>
+                     <ul class="space-y-3">
+                        <li class="flex items-start"><span class="font-bold text-blue-500 mr-2">✓</span><span><strong>Jurisdictional Diversity:</strong> Custodians operate under different legal systems, making widespread censorship impossible.</span></li>
+                        <li class="flex items-start"><span class="font-bold text-blue-500 mr-2">✓</span><span><strong>Physical Redundancy:</strong> The loss of one or even several custodians does not compromise the evidence.</span></li>
+                        <li class="flex items-start"><span class="font-bold text-blue-500 mr-2">✓</span><span><strong>Independent Operation:</strong> Custodians are mission-driven and not controlled by the evidence creators.</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <div class="w-full border-t border-gray-200 my-20"></div>
+
+        <section id="how-it-works" class="mb-20">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl font-bold text-gray-900">An Interactive Journey of Evidence</h3>
+                <p class="mt-2 max-w-2xl mx-auto text-md text-gray-500">
+                    Follow the path of a single piece of moral evidence as it's generated and secured by the Hybrid Shield. Click "Next Step" to see how accountability becomes permanent.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+                <div id="flow-explanation" class="lg:col-span-1 bg-white p-6 rounded-xl shadow-sm border border-gray-100 sticky top-24">
+                    <h4 id="flow-title" class="text-xl font-bold mb-2"></h4>
+                    <p id="flow-description" class="text-gray-600"></p>
+                    <div class="mt-6 flex gap-2">
+                        <button id="prev-step" class="w-1/2 bg-gray-200 text-gray-700 font-semibold py-2 px-4 rounded-lg hover:bg-gray-300 transition disabled:opacity-50">Previous</button>
+                        <button id="next-step" class="w-1/2 bg-blue-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-600 transition">Next Step</button>
+                    </div>
+                </div>
+                <div class="lg:col-span-2 relative min-h-[600px] flex flex-col items-center justify-between py-8">
+                    <div class="flow-line top-0" style="height: 0%;"></div>
+                    <div id="step-1" class="step-card w-full md:w-3/4 p-4 bg-white rounded-lg border-2 border-gray-300 text-center transition-all duration-500 step-inactive">
+                        <h5 class="font-bold">1. AI Decision</h5>
+                        <p class="text-sm text-gray-500">An AI system makes a significant decision.</p>
+                    </div>
+                    <div id="step-2" class="step-card w-full md:w-3/4 p-4 bg-white rounded-lg border-2 border-gray-300 text-center transition-all duration-500 step-inactive">
+                        <h5 class="font-bold">2. Evidence Generation</h5>
+                        <p class="text-sm text-gray-500">TML generates a full "evidence package".</p>
+                    </div>
+                    <div id="step-3" class="step-card w-full md:w-3/4 p-4 bg-white rounded-lg border-2 border-gray-300 text-center transition-all duration-500 step-inactive">
+                        <h5 class="font-bold">3. Cryptographic Hash</h5>
+                        <p class="text-sm text-gray-500">The package is converted into a unique, unbreakable hash.</p>
+                    </div>
+                    <div id="step-4" class="step-card w-full md:w-3/4 p-4 bg-white rounded-lg border-2 border-gray-300 text-center transition-all duration-500 step-inactive">
+                         <h5 class="font-bold">4. On-Chain Commitment</h5>
+                        <p class="text-sm text-gray-500">The hash is permanently written to a public blockchain.</p>
+                    </div>
+                    <div id="step-5" class="step-card w-full md:w-3/4 p-4 bg-white rounded-lg border-2 border-gray-300 text-center transition-all duration-500 step-inactive">
+                        <h5 class="font-bold">5. Off-Chain Redundancy</h5>
+                        <p class="text-sm text-gray-500">The full evidence package is sent to multiple, independent custodians.</p>
+                    </div>
+                    <div id="step-6" class="step-card w-full md:w-3/4 p-4 bg-white rounded-lg border-2 border-gray-300 text-center transition-all duration-500 step-inactive">
+                        <h5 class="font-bold">6. Independent Attestation</h5>
+                        <p class="text-sm text-gray-500">An auditor verifies the on-chain hash matches the off-chain evidence.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="w-full border-t border-gray-200 my-20"></div>
+
+        <section id="defenses" class="mb-20">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl font-bold text-gray-900">Defenses Quantified</h3>
+                <p class="mt-2 max-w-2xl mx-auto text-md text-gray-500">
+                    The Hybrid Shield is purpose-built to withstand the ways accountability systems typically fail. This chart visualizes its effectiveness against key threats.
+                </p>
+            </div>
+             <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                <div class="chart-container">
+                    <canvas id="defensesChart"></canvas>
+                </div>
+            </div>
+        </section>
+        
+        <div class="w-full border-t border-gray-200 my-20"></div>
+
+        <section id="outcome" class="text-center">
+             <h3 class="text-3xl font-bold text-gray-900">The Wall of Light</h3>
+             <p class="mt-2 max-w-3xl mx-auto text-md text-gray-500 mb-8">
+                By making truth immortal, the Hybrid Shield transforms TML from a passive ethical framework into an active, enforceable accountability system. It ensures that when future generations look back, the evidence of our choices—good and bad—will be there for them to find.
+            </p>
+            <div class="bg-gray-800 text-white p-8 rounded-xl shadow-lg border border-gray-700 max-w-3xl mx-auto">
+                <blockquote class="text-2xl italic font-serif relative">
+                    <span class="absolute -top-4 -left-6 text-6xl text-gray-600 opacity-50">“</span>
+                    The Hybrid Shield stands as the wall of light around the Lantern. Where power tempts silence, immutability speaks instead.
+                    <span class="absolute -bottom-8 -right-2 text-6xl text-gray-600 opacity-50">”</span>
+                </blockquote>
+                <p class="text-right mt-4 text-gray-400">— Lev Goukassian</p>
+            </div>
+            <p class="mt-8 text-sm text-gray-500"><b>The Hybrid Shield doesn’t defend machines from truth, it defends truth from machines. It watches not to punish, but to prevent forgetting, listening to the past so the future can testify. -Lev Goukassian.</b></p>
+        </section>
+
+    </main>
+
+    <footer class="bg-white border-t border-gray-200 mt-20">
+        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 text-center text-gray-500">
+            <p><b>The Hybrid Shield doesn’t defend machines from truth, it defends truth from machines. It watches not to punish, but to prevent forgetting, listening to the past so the future can testify.</b></p>
+          <p class="text-right mt-4 text-gray-400">— Lev Goukassian</p>
+        </div>
+    </footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const problemData = {
+        corporate: {
+            title: 'The Corporate Model',
+            points: [
+                'Company logs its AI decisions on its own servers.',
+                'Company controls all access to those logs.',
+                'When liability emerges, logs suddenly become "unavailable".',
+                'No independent verification is possible for victims.'
+            ]
+        },
+        government: {
+            title: 'The Government Model',
+            points: [
+                'An agency requires AI logging and stores data in its databases.',
+                'Political winds change, and a new administration takes over.',
+                'The database is "reformed" or logs become "inaccessible".',
+                'Accountability disappears with regime change.'
+            ]
+        },
+        'self-regulation': {
+            title: 'The Self-Regulation Model',
+            points: [
+                'An industry creates its own voluntary standards.',
+                'Companies attest to compliance, but audits happen years later.',
+                'Critical logs are often "outside the retention period".',
+                'Standards evolve to weaken requirements over time.'
+            ]
+        }
+    };
+
+    const tabContent = document.getElementById('tab-content');
+    const tabButtons = document.querySelectorAll('.tab-button');
+
+    function renderTabContent(key) {
+        const data = problemData[key];
+        let content = `<h4 class="text-xl font-bold mb-4">${data.title}</h4><ul class="space-y-3 list-disc list-inside text-gray-700">`;
+        data.points.forEach(point => {
+            content += `<li>${point}</li>`;
+        });
+        content += '</ul>';
+        tabContent.innerHTML = content;
+    }
+
+    tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            tabButtons.forEach(btn => btn.classList.remove('active-tab'));
+            button.classList.add('active-tab');
+            const tabKey = button.id.replace('tab-', '');
+            renderTabContent(tabKey);
+        });
+    });
+    renderTabContent('corporate');
+
+    const flowSteps = [
+        {
+            title: 'Step 1: AI Decision',
+            description: 'An AI system makes a significant decision that falls under the purview of TML. This could be anything from a loan application denial to a content moderation action.'
+        },
+        {
+            title: 'Step 2: Evidence Generation',
+            description: 'TML automatically generates a comprehensive "evidence package." This package includes the decision logs, the data used, the Human Rights impact assessment, and the Earth Protection checks.'
+        },
+        {
+            title: 'Step 3: Cryptographic Hash',
+            description: 'The entire evidence package is put through a hashing algorithm, creating a unique, fixed-length string of characters (the hash). This hash acts as a tamper-proof digital fingerprint.'
+        },
+        {
+            title: 'Step 4: On-Chain Commitment',
+            description: 'The small hash is written as a transaction to a public, decentralized blockchain. This action is permanent, timestamped, and cannot be undone or altered by anyone.'
+        },
+        {
+            title: 'Step 5: Off-Chain Redundancy',
+            description: 'Simultaneously, the full, unhashed evidence package is securely transmitted to multiple independent, geographically, and legally diverse custodial organizations.'
+        },
+        {
+            title: 'Step 6: Independent Attestation',
+            description: 'Periodically, an independent auditor can take the full evidence from a custodian, hash it, and prove that the resulting hash matches the one permanently stored on the blockchain, confirming the evidence is authentic and unaltered.'
+        },
+        {
+            title: 'Completed: Truth is Immortal',
+            description: 'The process is complete. The evidence is now protected by both mathematical certainty and institutional redundancy. Accountability can be enforced at any point in the future.'
+        }
+    ];
+
+    let currentStep = 0;
+    const flowTitle = document.getElementById('flow-title');
+    const flowDescription = document.getElementById('flow-description');
+    const stepCards = document.querySelectorAll('.step-card');
+    const nextStepBtn = document.getElementById('next-step');
+    const prevStepBtn = document.getElementById('prev-step');
+    const flowLine = document.querySelector('.flow-line');
+
+    function updateFlowState() {
+        if (currentStep > flowSteps.length -1) currentStep = flowSteps.length -1;
+        if (currentStep < 0) currentStep = 0;
+
+        const data = flowSteps[currentStep];
+        flowTitle.textContent = data.title;
+        flowDescription.textContent = data.description;
+        
+        stepCards.forEach((card, index) => {
+            card.classList.remove('step-active', 'step-inactive');
+            if (index < currentStep) {
+                card.classList.add('step-inactive');
+                card.style.opacity = '1';
+                card.style.transform = 'scale(1)';
+            } else if (index === currentStep) {
+                card.classList.add('step-active');
+            } else {
+                 card.classList.add('step-inactive');
+            }
+        });
+        
+        const totalSteps = stepCards.length;
+        const linePercentage = (currentStep > 0) ? (currentStep / (totalSteps - 1)) * 100 : 0;
+        flowLine.style.height = `${linePercentage}%`;
+
+        prevStepBtn.disabled = currentStep === 0;
+        nextStepBtn.disabled = currentStep === flowSteps.length - 1;
+        nextStepBtn.textContent = currentStep === flowSteps.length - 2 ? 'Finish' : 'Next Step';
+    }
+    updateFlowState();
+
+    nextStepBtn.addEventListener('click', () => {
+        if (currentStep < flowSteps.length - 1) {
+            currentStep++;
+            updateFlowState();
+        }
+    });
+
+    prevStepBtn.addEventListener('click', () => {
+        if (currentStep > 0) {
+            currentStep--;
+            updateFlowState();
+        }
+    });
+
+    const defensesChartCtx = document.getElementById('defensesChart').getContext('2d');
+    new Chart(defensesChartCtx, {
+        type: 'radar',
+        data: {
+            labels: ['Technical Attacks', 'Physical Destruction', 'Legal Pressure', 'Time (Decay)', 'Power (Control)'],
+            datasets: [{
+                label: 'Defensive Strength',
+                data: [9.5, 10, 9, 8.5, 10],
+                fill: true,
+                backgroundColor: 'rgba(59, 130, 246, 0.2)',
+                borderColor: 'rgb(59, 130, 246)',
+                pointBackgroundColor: 'rgb(59, 130, 246)',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: 'rgb(59, 130, 246)'
+            }]
+        },
+        options: {
+            maintainAspectRatio: false,
+            scales: {
+                r: {
+                    angleLines: { color: '#e9ecef' },
+                    grid: { color: '#e9ecef' },
+                    pointLabels: { font: { size: 14 }, color: '#495057' },
+                    ticks: {
+                        backdropColor: '#f8f9fa',
+                        color: '#495057',
+                        stepSize: 2,
+                        beginAtZero: true,
+                        max: 10
+                    }
+                }
+            },
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    callbacks: {
+                        title: (tooltipItems) => {
+                            return tooltipItems[0].label;
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+    const audioBtn = document.getElementById('audio-overview-btn');
+    const synth = window.speechSynthesis;
+    let utterance;
+    let isSpeaking = false;
+    let isPaused = false;
+
+    function generateAndPlayAudio() {
+        if (isPaused) {
+            synth.resume();
+            isPaused = false;
+            isSpeaking = true;
+            audioBtn.innerHTML = `<span class="flex items-center justify-center"><span class="mr-2">⏸️</span>Pause Overview</span>`;
+            return;
+        }
+
+        if (isSpeaking) {
+            synth.pause();
+            isPaused = true;
+            isSpeaking = false;
+             audioBtn.innerHTML = `<span class="flex items-center justify-center"><span class="mr-2">▶️</span>Resume Overview</span>`;
+            return;
+        }
+
+        const textToSpeak = Array.from(document.querySelectorAll('h2, h3, p, li'))
+            .map(el => el.textContent)
+            .join('. ');
+
+        utterance = new SpeechSynthesisUtterance(textToSpeak);
+        utterance.onstart = () => {
+            isSpeaking = true;
+            isPaused = false;
+            audioBtn.innerHTML = `<span class="flex items-center justify-center"><span class="mr-2">⏸️</span>Pause Overview</span>`;
+        };
+        utterance.onend = () => {
+            isSpeaking = false;
+            isPaused = false;
+            audioBtn.innerHTML = `<span class="flex items-center justify-center"><span class="mr-2">▶️</span>Listen to Overview</span>`;
+        };
+        utterance.onpause = () => {
+            isSpeaking = false;
+            isPaused = true;
+        };
+        utterance.onresume = () => {
+            isSpeaking = true;
+            isPaused = false;
+        };
+
+        synth.cancel();
+        synth.speak(utterance);
+    }
+    
+    audioBtn.addEventListener('click', generateAndPlayAudio);
+});
+</script>
+</body>
+</html>
+
