@@ -675,6 +675,11 @@ Anchoring currently relies on SHA-256 and elliptic curve cryptography, which are
 - **Immutable anchoring** ensures evidence survives internal deletion attempts.  
 - **Optional institutional custody** (Guardians) can serve as escrow, but core accountability is guaranteed by Blockchain anchoring alone.  
 
+**Q8: Can an organization game the Sacred Pause trigger?**   
+
+Any attempt to disable or miscalibrate the Sacred Pause is automatically detected.  
+TML continuously runs integrity self-tests: seed prompts, deviation analysis, and pause-rate telemetry. If the system’s hesitation frequency diverges from its historical baseline, an alert and forensic log are generated. This means an operator cannot silently bypass accountability; the absence of hesitation becomes its own evidence.
+
 ---
 
 ## Legal Admissibility
