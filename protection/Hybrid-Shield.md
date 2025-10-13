@@ -111,14 +111,49 @@ Backward compatibility must always preserve historical verification.
 
 ---
 
-## X. Chain of Custody Metadata
+## X. EXECUTION AND WITNESSING
+
+### Declaration Execution
+
+**Declarant**: Lev Goukassian  
+**Signature**: _________________________ **Date**: _____________  
+**ORCID**: 0009-0006-59-1243  
+**Email**: leogouk@gmail.com  
+
+### Witness Requirements
+
+This declaration requires two witnesses who can attest to:
+- The mental capacity of Lev Goukassian at time of signing
+- The voluntary nature of this succession declaration
+- The identity of the declarant
+
+**Witness 1**:  
+**Name**: _________________________  
+**Signature**: _________________________ **Date**: _____________  
+**Relationship**: _________________________  
+
+**Witness 2**:  
+**Name**: _________________________  
+**Signature**: _________________________ **Date**: _____________  
+**Relationship**: _________________________  
+
+### Notarization (Optional)
+
+**Notary Public**:  
+**Name**: _________________________  
+**Signature and Seal**: _________________________ **Date**: _____________  
+**Commission Expires**: _____________  
+
+---
+
+## XI. Chain of Custody Metadata
 
 ```yaml
 chain_of_custody:   
   created_by: Lev Goukassian (ORCID: 0009-0006-5966-1243)
   notarized_at: 2025-10-13T17:15Z
   verified_by: OpenTimestamps Proof (pending)
-  file_hash: 292aa21b7c0873f75c4fd6bc930293a25556383979153097a08e84e1328346fa
+  file_hash: 7c88673a62a5fcb103e7ecf2b83ee7e11bb9d643839b06033881e0c90515d43c
   anchor_targets:
     - Bitcoin (OTS)
     - Ethereum AnchorLog (optional)
