@@ -648,7 +648,7 @@ To future implementers: Every log you anchor, every Sacred Zero you trigger, eve
 
 chain_of_custody:   
 created_by: Lev Goukassian (ORCID: 0009-0006-5966-1243)   
-notarized_at: 2025-10-09T00:00Z   
+notarized_at: 2025-10-13T17:00Z   
 verified_by: OpenTimestamps Proof (pending)   
 file_hash: fd0ca20a44af91e018f6536e011be5558b2b59783238246062108135e7ca0ab4   
 anchor_targets:   
@@ -659,7 +659,7 @@ context: "TML Succession Declaration establishing custodial and governance conti
 repository: [https://github.com/FractonicMind/TernaryMoralLogic](https://github.com/FractonicMind/TernaryMoralLogic)   
 version: 1.0.0-final   
 checksum_verified: true   
-last_modified: 2025-10-08T23:40Z   
+last_modified: 2025-10-13T17:00Z   
 
 verification_method: sha256 + opentimestamps   
 
