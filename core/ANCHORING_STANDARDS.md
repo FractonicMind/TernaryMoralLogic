@@ -115,16 +115,50 @@ Successor councils may integrate new standards (e.g., post-quantum or decentrali
 * preserve verifiability of all prior proofs;
 * publish public audit results for every new integration.
 
+ ## X. EXECUTION AND WITNESSING
+
+### Declaration Execution
+
+**Declarant**: Lev Goukassian  
+**Signature**: _________________________ **Date**: _____________  
+**ORCID**: 0009-0006-59-1243  
+**Email**: leogouk@gmail.com  
+
+### Witness Requirements
+
+This declaration requires two witnesses who can attest to:
+- The mental capacity of Lev Goukassian at time of signing
+- The voluntary nature of this succession declaration
+- The identity of the declarant
+
+**Witness 1**:  
+**Name**: _________________________  
+**Signature**: _________________________ **Date**: _____________  
+**Relationship**: _________________________  
+
+**Witness 2**:  
+**Name**: _________________________  
+**Signature**: _________________________ **Date**: _____________  
+**Relationship**: _________________________  
+
+### Notarization (Optional)
+
+**Notary Public**:  
+**Name**: _________________________  
+**Signature and Seal**: _________________________ **Date**: _____________  
+**Commission Expires**: _____________  
+
+---
 ---
 
-## X. Chain of Custody Metadata
+## XI. Chain of Custody Metadata
 
 ```yaml
 chain_of_custody:
   created_by: Lev Goukassian (ORCID 0009-0006-5966-1243)
   notarized_at: 2025-10-13T17:40Z
   verified_by: OpenTimestamps Proof (pending)
-  file_hash: fff7647084e69626ec2e244189351acb3add940dde436b85497c525c39de3974
+  file_hash: 559909acb2db343b96b8615614820ad7e00fefc492f885f652705e41aa014762
   anchor_targets:
     - Bitcoin (OTS)
     - Ethereum AnchorLog (optional)
