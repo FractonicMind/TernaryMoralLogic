@@ -60,7 +60,7 @@ The TML succession plan represents a deliberate effort to solve the governance p
 
 ---
 
-## XVI. CONTACT INFORMATION
+## CONTACT INFORMATION
 
 **Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)   
 **Email**: [leogouk@gmail.com](mailto:leogouk@gmail.com)   
@@ -74,13 +74,48 @@ The TML succession plan represents a deliberate effort to solve the governance p
 
 ---
 
+## EXECUTION AND WITNESSING
+
+### Declaration Execution
+
+**Declarant**: Lev Goukassian  
+**Signature**: _________________________ **Date**: _____________  
+**ORCID**: 0009-0006-59-1243  
+**Email**: leogouk@gmail.com  
+
+### Witness Requirements
+
+This declaration requires two witnesses who can attest to:
+- The mental capacity of Lev Goukassian at time of signing
+- The voluntary nature of this succession declaration
+- The identity of the declarant
+
+**Witness 1**:  
+**Name**: _________________________  
+**Signature**: _________________________ **Date**: _____________  
+**Relationship**: _________________________  
+
+**Witness 2**:  
+**Name**: _________________________  
+**Signature**: _________________________ **Date**: _____________  
+**Relationship**: _________________________  
+
+### Notarization (Optional)
+
+**Notary Public**:  
+**Name**: _________________________  
+**Signature and Seal**: _________________________ **Date**: _____________  
+**Commission Expires**: _____________  
+
+---
+
 ## Chain of Custody Metadata
 
 chain_of_custody:   
 created_by: Lev Goukassian (ORCID: 0009-0006-5966-1243)   
 notarized_at: 2025-10-13T17:20Z   
 verified_by: OpenTimestamps Proof (pending)   
-file_hash: 7e8ca23bff8a3d5ceb2180c80c696ae6d0e542ce4c5b77ebf0a62b450378422b   
+file_hash: 2a737fbb45d0dde3142a4f460d6ef592e1002260d013a9c7db4e12d6d2bc642b   
 anchor_targets:   
 - Bitcoin (OTS)
 - Ethereum AnchorLog (optional)
