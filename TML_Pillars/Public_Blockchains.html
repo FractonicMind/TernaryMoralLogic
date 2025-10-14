@@ -1,1 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TML Public Blockchain Interactive Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Neutrals & Subtle Tech Blue -->
+    <!-- Application Structure Plan: A thematic, single-page scrolling experience designed for storytelling. It starts with a high-level intro, moves to an interactive step-by-step diagram of the TML architecture, presents a dashboard of key benefits with a comparative chart, dives into legal/compliance details with an accordion, and concludes. This structure guides the user from the 'what' and 'why' to the 'how' and 'so what', making complex information digestible and more engaging than a simple FAQ format. -->
+    <!-- Visualization & Content Choices: 
+        - TML Architecture: Report Info -> System process flow. Goal -> Organize. Viz -> Interactive HTML/CSS diagram. Interaction -> Clickable steps reveal detailed text. Justification -> Visually breaks down a complex process into manageable, user-explorable steps. Method -> Vanilla JS + Tailwind.
+        - Blockchain Comparison: Report Info -> Cost/speed data for BTC, ETH, POLY. Goal -> Compare. Viz -> Bar Chart. Interaction -> Toggle button switches view between 'Cost' and 'Confirmation Time'. Justification -> Allows direct, dynamic comparison of key trade-offs between the blockchains used. Library -> Chart.js.
+        - Legal/GDPR Info: Report Info -> Detailed text on legal standards and privacy methods. Goal -> Inform. Viz -> Accordion/Collapsible sections. Interaction -> Click to expand/collapse. Justification -> Manages information density, preventing user overload while keeping details accessible. Method -> Vanilla JS + Tailwind.
+        - CONFIRMING NO SVG/Mermaid used. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FDFBF8;
+            color: #333D4B;
+        }
+        .accent-bg { background-color: #E0E7FF; }
+        .accent-text { color: #3730A3; }
+        .accent-border { border-color: #3730A3; }
+        .nav-link {
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover {
+            color: #3730A3;
+        }
+        .step-item {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .step-item.active {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            background-color: #E0E7FF;
+            border-color: #3730A3;
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 450px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold accent-text">TML Blockchain</div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#architecture" class="nav-link font-medium text-gray-600">Architecture</a>
+                <a href="#benefits" class="nav-link font-medium text-gray-600">Benefits</a>
+                <a href="#compliance" class="nav-link font-medium text-gray-600">Compliance</a>
+                <a href="#contact" class="nav-link font-medium text-gray-600">Contact</a>
+            </div>
+            <div class="md:hidden">
+                <select id="mobile-nav" class="bg-gray-100 border border-gray-300 rounded-md p-2">
+                    <option value="#architecture">Architecture</option>
+                    <option value="#benefits">Benefits</option>
+                    <option value="#compliance">Compliance</option>
+                    <option value="#contact">Contact</option>
+                </select>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+
+        <section id="hero" class="text-center mb-20">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4">Immediate AI Accountability</h1>
+            <p class="text-lg md:text-xl max-w-3xl mx-auto text-gray-600">
+                TML anchors every AI decision to public blockchains, creating tamper-proof, court-admissible evidence without requiring institutional coordination. This delivers immediate protection, security, and economic benefits from day one.
+            </p>
+        </section>
+
+        <section id="architecture" class="mb-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-2">The Architecture of Trust</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    This five-step process transforms a fleeting AI decision into a permanent, verifiable record. Each step is designed for maximum efficiency, security, and legal integrity. Click on each step below to explore how it contributes to the overall system.
+                </p>
+            </div>
+
+            <div class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-4 mb-8">
+                <div class="step-item p-4 border-2 rounded-lg shadow-sm w-full md:w-auto text-center" data-step="1">
+                    <div class="text-2xl font-bold accent-text mb-1">1</div>
+                    <div class="font-semibold">AI Decision Scan</div>
+                </div>
+                <div class="text-2xl text-gray-300 hidden md:block">&rarr;</div>
+                <div class="step-item p-4 border-2 rounded-lg shadow-sm w-full md:w-auto text-center" data-step="2">
+                    <div class="text-2xl font-bold accent-text mb-1">2</div>
+                    <div class="font-semibold">Encrypted Logging</div>
+                </div>
+                <div class="text-2xl text-gray-300 hidden md:block">&rarr;</div>
+                <div class="step-item p-4 border-2 rounded-lg shadow-sm w-full md:w-auto text-center" data-step="3">
+                    <div class="text-2xl font-bold accent-text mb-1">3</div>
+                    <div class="font-semibold">Merkle Batching</div>
+                </div>
+                <div class="text-2xl text-gray-300 hidden md:block">&rarr;</div>
+                <div class="step-item p-4 border-2 rounded-lg shadow-sm w-full md:w-auto text-center" data-step="4">
+                    <div class="text-2xl font-bold accent-text mb-1">4</div>
+                    <div class="font-semibold">Multi-Chain Anchor</div>
+                </div>
+                <div class="text-2xl text-gray-300 hidden md:block">&rarr;</div>
+                <div class="step-item p-4 border-2 rounded-lg shadow-sm w-full md:w-auto text-center" data-step="5">
+                    <div class="text-2xl font-bold accent-text mb-1">5</div>
+                    <div class="font-semibold">Penalty Enforcement</div>
+                </div>
+            </div>
+
+            <div id="step-details" class="bg-white p-8 rounded-lg shadow-lg min-h-[200px] transition-opacity duration-500">
+                <h3 id="step-title" class="text-2xl font-bold accent-text mb-4"></h3>
+                <p id="step-description" class="text-gray-700"></p>
+            </div>
+        </section>
+        
+        <section id="benefits" class="mb-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-2">Quantifiable Benefits</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    TML's architecture is not just a theoretical framework; it delivers concrete, measurable advantages in cost, return on investment, and security. Explore the data below.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 text-center">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="text-4xl font-bold accent-text mb-2">$0.0005</div>
+                    <h3 class="text-xl font-semibold">Cost Per Decision</h3>
+                    <p class="text-gray-600">Achieved through efficient Merkle tree batching, making comprehensive accountability economically feasible.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="text-4xl font-bold accent-text mb-2">300-800%</div>
+                    <h3 class="text-xl font-semibold">Return on Investment</h3>
+                    <p class="text-gray-600">Generated from insurance premium savings that significantly exceed all operational costs.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="text-4xl font-bold accent-text mb-2">Multi-Chain</div>
+                    <h3 class="text-xl font-semibold">Nation-State Resistance</h3>
+                    <p class="text-gray-600">Anchoring to Bitcoin, Ethereum, and Polygon creates security far beyond any single point of failure.</p>
+                </div>
+            </div>
+
+            <div class="bg-white p-8 rounded-lg shadow-lg">
+                <h3 class="text-2xl font-bold text-center mb-4">Blockchain Strategy: Speed, Cost & Security</h3>
+                <p class="text-center text-gray-600 mb-6 max-w-2xl mx-auto">
+                    The multi-chain approach provides a balanced portfolio of speed, cost, and security. Use the toggle below to compare the average transaction costs and confirmation times across the networks TML utilizes.
+                </p>
+                <div class="flex justify-center mb-6">
+                    <div class="bg-gray-200 rounded-full p-1 flex">
+                        <button id="cost-btn" class="px-4 py-2 rounded-full font-semibold text-sm focus:outline-none">Cost</button>
+                        <button id="time-btn" class="px-4 py-2 rounded-full font-semibold text-sm focus:outline-none">Time</button>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="blockchainChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="compliance" class="mb-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-2">Legal & Privacy Compliance</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    TML is engineered for global legal standards and user privacy, ensuring that accountability evidence is both court-admissible and compliant with regulations like GDPR.
+                </p>
+            </div>
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-white rounded-lg shadow-md mb-4">
+                    <button class="accordion-header w-full text-left p-6 font-semibold text-lg flex justify-between items-center">
+                        <span>Court-Admissible Evidence</span>
+                        <span class="accordion-icon text-2xl accent-text transform transition-transform">+</span>
+                    </button>
+                    <div class="accordion-content px-6 pb-6">
+                        <p class="text-gray-700">TML's cryptographic evidence is designed to meet stringent legal standards for digital records. This includes compliance with Federal Rules of Evidence (FRE) 902(13) in the United States and eIDAS Regulation (910/2014) in the European Union. By anchoring data to public blockchains, TML creates a verifiable, timestamped record that is inherently resistant to tampering, providing a high degree of legal certainty and admissibility in court proceedings.</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-md">
+                    <button class="accordion-header w-full text-left p-6 font-semibold text-lg flex justify-between items-center">
+                        <span>GDPR & The Right to be Forgotten</span>
+                        <span class="accordion-icon text-2xl accent-text transform transition-transform">+</span>
+                    </button>
+                    <div class="accordion-content px-6 pb-6">
+                        <p class="text-gray-700">While blockchain data is immutable, TML ensures GDPR compliance through a technique called **crypto-shredding**. User data is never written directly to the blockchain. Instead, it is encrypted locally using a unique key. Only the hash (a cryptographic fingerprint) of this encrypted data is anchored. To honor a "right to be forgotten" request, the system simply deletes the corresponding encryption key. This action renders the encrypted data permanently inaccessible and unreadable, effectively "shredding" it without altering the blockchain itself, thus satisfying GDPR requirements.</p>
+                    </div>
+                </div>
+                 <div class="bg-white rounded-lg shadow-md mt-4">
+                    <button class="accordion-header w-full text-left p-6 font-semibold text-lg flex justify-between items-center">
+                        <span>Deprecated Framework Components</span>
+                        <span class="accordion-icon text-2xl accent-text transform transition-transform">+</span>
+                    </button>
+                    <div class="accordion-content px-6 pb-6">
+                        <p class="text-gray-700">The following components are deprecated and removed from the TML framework as of October 03, 2025, by Lev Goukassian: Stakeholder Proportional Risk Level (SPRL), Dynamic Stream (DS), and Static Anchor (SA). They are no longer referenced or utilized within the current architecture.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer id="contact" class="text-center pt-12 border-t">
+             <h2 class="text-3xl font-bold mb-4">Contact & Resources</h2>
+             <div class="text-gray-600 space-y-2 mb-4">
+                 <p><strong>Creator:</strong> Lev Goukassian</p>
+                 <p><strong>ORCID:</strong> <a href="https://orcid.org/0009-0006-5966-1243" target="_blank" class="accent-text hover:underline">0009-0006-5966-1243</a></p>
+                 <p><strong>Email:</strong> leogouk@gmail.com</p>
+                 <p><strong>Repository:</strong> <a href="https://github.com/FractonicMind/TernaryMoralLogic" target="_blank" class="accent-text hover:underline">GitHub</a></p>
+                 <p><strong>Support:</strong> support@tml-goukassian.org</p>
+             </div>
+             <p class="text-sm text-gray-500 mt-8">&copy; 2025 Ternary Moral Logic. All financial values are nominal to 2025 USD.</p>
+        </footer>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            
+            const stepData = {
+                "1": {
+                    title: "Step 1: AI Decision & Sacred Zero Scan",
+                    description: "Every AI decision is instantly scanned by the 'Sacred Zero' evaluation component. This high-speed check (≤2ms) detects potential discrimination or violations against predefined ethical rules before any action is taken."
+                },
+                "2": {
+                    title: "Step 2: Encrypted Logging in Always Memory",
+                    description: "The complete context of the decision—inputs, outputs, and the Sacred Zero evaluation result—is logged and encrypted. This encrypted record is stored in the 'Always Memory' component, creating a secure, unalterable local ledger."
+                },
+                "3": {
+                    title: "Step 3: Merkle Tree Batching",
+                    description: "To minimize costs and maximize efficiency, individual decision records are not sent to the blockchain one by one. Instead, they are cryptographically bundled into a Merkle tree. This process creates a single, compact 'Merkle root' hash that represents thousands of individual decisions."
+                },
+                "4": {
+                    title: "Step 4: Multi-Chain Anchoring",
+                    description: "The Merkle root is anchored to multiple public blockchains—Polygon for speed, Ethereum for smart contract functionality, and Bitcoin for maximum security and permanence. This redundancy ensures the evidence is virtually impossible to tamper with or erase, even against nation-state level attacks."
+                },
+                "5": {
+                    title: "Step 5: Smart Contract Penalty Enforcement",
+                    description: "If a violation is detected and confirmed, pre-defined smart contracts on the Ethereum blockchain are automatically triggered. These contracts can enforce financial penalties, issue public notifications, or execute other remediation actions without human intervention, ensuring immediate consequences for violations."
+                }
+            };
+
+            const stepItems = document.querySelectorAll('.step-item');
+            const stepTitle = document.getElementById('step-title');
+            const stepDescription = document.getElementById('step-description');
+
+            function updateStepDetails(step) {
+                stepItems.forEach(item => item.classList.remove('active'));
+                const activeItem = document.querySelector(`.step-item[data-step="${step}"]`);
+                if(activeItem) {
+                    activeItem.classList.add('active');
+                }
+                
+                const data = stepData[step];
+                stepTitle.textContent = data.title;
+                stepDescription.textContent = data.description;
+            }
+
+            stepItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    updateStepDetails(item.dataset.step);
+                });
+            });
+
+            updateStepDetails('1');
+
+            const costBtn = document.getElementById('cost-btn');
+            const timeBtn = document.getElementById('time-btn');
+            const ctx = document.getElementById('blockchainChart').getContext('2d');
+            
+            const costData = {
+                labels: ['Polygon', 'Ethereum', 'Bitcoin'],
+                datasets: [{
+                    label: 'Average Cost per Batch ($)',
+                    data: [0.01, 11, 27.5],
+                    backgroundColor: ['#A7B5FF', '#6B7FFF', '#3730A3'],
+                    borderColor: ['#A7B5FF', '#6B7FFF', '#3730A3'],
+                    borderWidth: 1
+                }]
+            };
+
+            const timeData = {
+                labels: ['Polygon', 'Ethereum', 'Bitcoin'],
+                datasets: [{
+                    label: 'Confirmation Time (seconds)',
+                    data: [2.5, 37.5, 2400],
+                    backgroundColor: ['#A7B5FF', '#6B7FFF', '#3730A3'],
+                    borderColor: ['#A7B5FF', '#6B7FFF', '#3730A3'],
+                    borderWidth: 1
+                }]
+            };
+
+            let blockchainChart = new Chart(ctx, {
+                type: 'bar',
+                data: costData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'USD ($)'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed.y !== null) {
+                                        if (context.chart.config.data === costData) {
+                                            label += new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(context.parsed.y);
+                                        } else {
+                                           label += context.parsed.y + ' s';
+                                        }
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            function updateChart(type) {
+                if (type === 'cost') {
+                    costBtn.classList.add('bg-white', 'text-indigo-700', 'shadow-sm');
+                    timeBtn.classList.remove('bg-white', 'text-indigo-700', 'shadow-sm');
+                    blockchainChart.data = costData;
+                    blockchainChart.options.scales.y.title.text = 'USD ($)';
+                    blockchainChart.options.scales.y.type = 'linear';
+                } else {
+                    timeBtn.classList.add('bg-white', 'text-indigo-700', 'shadow-sm');
+                    costBtn.classList.remove('bg-white', 'text-indigo-700', 'shadow-sm');
+                    blockchainChart.data = timeData;
+                    blockchainChart.options.scales.y.title.text = 'Seconds (log scale)';
+                    blockchainChart.options.scales.y.type = 'logarithmic';
+                }
+                blockchainChart.update();
+            }
+
+            costBtn.addEventListener('click', () => updateChart('cost'));
+            timeBtn.addEventListener('click', () => updateChart('time'));
+
+            updateChart('cost');
+
+            const accordions = document.querySelectorAll('.accordion-header');
+            accordions.forEach(accordion => {
+                accordion.addEventListener('click', () => {
+                    const content = accordion.nextElementSibling;
+                    const icon = accordion.querySelector('.accordion-icon');
+                    
+                    accordion.parentElement.classList.toggle('open');
+                    
+                    if (content.style.maxHeight) {
+                        content.style.maxHeight = null;
+                        icon.textContent = '+';
+                        icon.classList.remove('rotate-45');
+
+                    } else {
+                        content.style.maxHeight = content.scrollHeight + "px";
+                        icon.textContent = '-';
+                        icon.classList.add('rotate-45');
+                    }
+                });
+            });
+
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            const mobileNav = document.getElementById('mobile-nav');
+            mobileNav.addEventListener('change', function(e) {
+                const targetId = e.target.value;
+                document.querySelector(targetId).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
 
