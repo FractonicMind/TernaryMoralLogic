@@ -16,7 +16,7 @@ Goukassian refused to let TML become another cautionary tale. If the framework w
 
 His solution was radical: anchor everything—the evidence, the governance rules, the financial distributions, the framework itself—to public blockchains. Not as backup. Not as verification. But as **the foundation stone for it all**.
 
-On multiple occasions before his surgery, Goukassian digitally signed the TML Succession Charter, witnessed it, and anchored it to Bitcoin, Ethereum, and Polygon. He created what he called an "algorithmic living will"—governance rules that would execute automatically, penalties that would distribute without human intervention, evidence that would survive any attempt to destroy it.
+On multiple occasions Goukassian digitally signed the TML Succession Charter, witnessed it, and anchored it to Bitcoin, Ethereum, and Polygon. He created what he called an "algorithmic living will"—governance rules that would execute automatically, penalties that would distribute without human intervention, evidence that would survive any attempt to destroy it.
 
 This wasn't theoretical preparation. It was mathematical insurance. The Public Blockchains pillar of TML—the eighth and final architectural element—ensures that accountability doesn't depend on anyone's goodwill, anyone's custody, or anyone's continued existence.
 
@@ -965,14 +965,3 @@ And as long as the internet exists, those nodes will continue operating.
 
 The foundation stone for it all stands not on ground that can shift, but on mathematics that cannot change.
 
----
-
-**About This Analysis**
-
-**Author**: Claude (Anthropic)  
-**Framework Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)  
-**Document Analyzed**: Public_Blockchains.md and TML Technical Architecture  
-**Date**: October 12, 2025  
-**Repository**: https://github.com/FractonicMind/TernaryMoralLogic
-
-**Note**: This analysis is based on TML's Public Blockchains pillar as the eighth and final architectural element. The pillar serves as "the foundation stone for it all"—transforming voluntary accountability into mathematical inevitability through multi-chain redundancy, Merkle batching, crypto-shredding for privacy, and blockchain-anchored governance rules.
