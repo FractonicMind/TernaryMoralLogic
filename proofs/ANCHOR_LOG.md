@@ -1,25 +1,24 @@
-# 🔗 TML Anchor Log
+# ANCHOR LOG — TML Proofs  
+**Date:** October 14, 2025  
+**Method:** OpenTimestamps Web Calendar  
+**Anchor Type:** Bitcoin Mainnet (Calendar Aggregation)  
+**Verification Level:** Pending deep confirmation (~24 hrs)  
 
-This file records all blockchain anchoring events for the **Ternary Moral Logic – Notarized Constitutional Core (October 2025)**.
+### Files Anchored
+| File                                         | SHA-256 Hash                                                       | Proof                                                 |
+| -------------------------------------------- | ------------------------------------------------------------------ | ----------------------------------------------------- |
+| **TML-SUCCESSION-DECLARATION_notarized.pdf** | `3fbb9a5e6fdab9d7ab584a79fc0b32b8398a6d53b79ddf83280b76ab5a5e3386` | [Proof](TML-SUCCESSION-DECLARATION_notarized.pdf.ots) |
+| **TML-VOLUNTARY-SUCCESSION_notarized.pdf**   | `389ff1c14d76f4c615a9e9bb12a25ae2db7e3a8f8badca9efae98a45ee1e1a44` | [Proof](TML-VOLUNTARY-SUCCESSION_notarized.pdf.ots)   |
+| **MANDATORY_notarized.pdf**                  | `ca6d188c3e55ed8975e2cccde4124db20a35945b000e93ef2432aaedcb353011` | [Proof](MANDATORY_notarized.pdf.ots)                  |
+| **Hybrid-Shield_notarized.pdf**              | `f3dc12d9a283ad253f5145ea68bafb465249ff3d24d7237b00ef55b24be7ffcb` | [Proof](Hybrid-Shield_notarized.pdf.ots)              |
+| **ANCHORING_STANDARDS_notarized.pdf**        | `3e7ed2bff6a115bfe077219a50257b9835eaf04936b8a778376cfeeef91afe55` | [Proof](ANCHORING_STANDARDS_notarized.pdf.ots)        |
+| **TML_Notarized_Manifest.txt**               | `5d60472c4626f84d6be701e9d3c9550118949b3f92a1758e1fde60af5807736a` | [Proof](TML_Notarized_Manifest.txt.ots)               |
 
-Each entry lists the document’s SHA-256 hash, proof type, and network used for timestamping.  
-Proofs created with **OpenTimestamps (OTS)** are anchored to the Bitcoin blockchain and stored locally in the `/proofs/` directory.  
-Additional anchors (Ethereum / Polygon) may be added later.
 
-| File | SHA-256 Hash | Proof Type | Anchor Network | Proof File | Date (UTC) | Verified |
-|------|---------------|-------------|----------------|-------------|-------------|-----------|
-| TML-SUCCESSION-DECLARATION_notarized.pdf | 3FBB9A5E6FDAB9D7AB584A79FC0B32B8398A6D53B79DDF83280B76AB5A5E3386 | OTS | Bitcoin | `TML-SUCCESSION-DECLARATION_notarized.pdf.ots` | 2025-10-14 | ⏳ pending |
-| TML-VOLUNTARY-SUCCESSION_notarized.pdf | 389FF1C14D76F4C615A9E9BB12A25AE2DB7E3A8F8BADCA9EFAE98A45EE1E1A44 | OTS | Bitcoin | `TML-VOLUNTARY-SUCCESSION_notarized.pdf.ots` | 2025-10-14 | ⏳ pending |
-| MANDATORY_notarized.pdf | CA6D188C3E55ED8975E2CCCDE4124DB20A35945B000E93EF2432AAEDCB353011 | OTS | Bitcoin | `MANDATORY_notarized.pdf.ots` | 2025-10-14 | ⏳ pending |
-| ANCHORING_STANDARDS_notarized.pdf | 3E7ED2BFF6A115BFE077219A50257B9835EAF04936B8A778376CFEEEF91AFE55 | OTS | Bitcoin | `ANCHORING_STANDARDS_notarized.pdf.ots` | 2025-10-14 | ⏳ pending |
-| Hybrid-Shield_notarized.pdf | F3DC12D9A283AD253F5145EA68BAFB465249FF3D24D7237B00EF55B24BE7FFCB | OTS | Bitcoin | `Hybrid-Shield_notarized.pdf.ots` | 2025-10-14 | ⏳ pending |
-| TML_Notarized_Manifest.txt | — | OTS | Bitcoin | `TML_Notarized_Manifest.txt.ots` | 2025-10-14 | ⏳ pending |
+**Remarks:**  
+All notarized TML constitutional documents successfully timestamped via OpenTimestamps.org.  
+Receipts confirm inclusion in Bitcoin block calendar; immutable proofs stored locally and publicly on GitHub.
 
 ---
 
-**Notes**
-- “⏳ pending” will change to “✅ verified” after each OTS proof confirms on-chain.  
-- This log ensures public traceability between notarized documents, their cryptographic proofs, and their blockchain timestamps.  
-- When Ethereum or Polygon anchors are added, include transaction hashes in a new “TX / Proof Link” column.
-
-> *“Anchors hold truth steady when time tries to drift it away.”*
+> “Time itself is the notary.”  
