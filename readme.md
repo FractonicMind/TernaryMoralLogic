@@ -591,7 +591,7 @@ For extended reference, see:
 
 ---
 
-## [Blockchain Protection](docs/Public_Blockchain_FAQ.md)
+## [Public Blockchains](docs/Public_Blockchain_FAQ.md)
 
 Blockchain Protection is the foundation of TML’s Mathematical Shield, transforming every ethical hesitation and decision into court-admissible, immutable evidence.
 
