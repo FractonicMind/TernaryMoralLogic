@@ -629,7 +629,8 @@ An **optional Guardian Network** of institutional custodians may extend trust ve
 
 #### **In TML, every ethical hesitation leaves a cryptographic footprint, proof that conscience, once encoded, cannot be erased.**
 
-#### **[Interactive Overview of Blockchain Protection](https://fractonicmind.github.io/TernaryMoralLogic/TML_Pillars/Blockchain_Protection.html)**
+#### **[Interactive Overview of Public Blockchains](https://fractonicmind.github.io/TernaryMoralLogic/TML_Pillars/Public_Blockchains.html)**
+
 ---
 
 ## [Performance and Latency](performance/)
