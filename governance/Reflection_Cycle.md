@@ -10,13 +10,13 @@ The core insight is simple but powerful: the most valuable learning happens not 
 
 The Reflection Cycle follows a natural flow that mirrors how humans handle uncertainty—pause, reflect, learn, and improve.
 
-### Step 1: The Sacred Pause
+### The Sacred Pause
 
 When an AI system encounters a situation where it's genuinely uncertain about the right ethical path, it triggers what we call a "Sacred Pause." This isn't an error or a bug—it's the system recognizing its own limitations and asking for help.
 
 For example, imagine an AI content moderation system that encounters a post discussing historical events in a way that could be educational or could be promoting harmful ideologies. The ambiguity triggers a pause rather than a potentially wrong decision.
 
-### Step 2: Creating a Moral Trace Log
+### Creating a Moral Trace Log
 
 During the pause, the system creates a detailed record of its dilemma—a Moral Trace Log. This isn't just an error report; it's a rich snapshot that includes:
 
@@ -28,19 +28,19 @@ During the pause, the system creates a detailed record of its dilemma—a Moral 
 
 This detailed record ensures human reviewers have all the context they need to provide meaningful guidance.
 
-### Step 3: Human Review and Wisdom
+### Human Review and Wisdom
 
 The Moral Trace Log goes to a review team—ideally a diverse group with relevant expertise. These reviewers don't just pick the "right" answer; they explain their reasoning, helping the system understand not just what to do but why.
 
 This human-in-the-loop approach ensures that complex ethical judgments benefit from human wisdom, cultural understanding, and contextual knowledge that pure algorithms might miss.
 
-### Step 4: Learning and Improving
+### Learning and Improving
 
 The system uses these human judgments to refine its understanding through a process similar to how language models are fine-tuned with human feedback. It's not memorizing specific cases but learning general patterns about how to handle ethical uncertainty.
 
 Over time, the AI becomes better at handling similar dilemmas on its own, reducing the need for pauses while improving the quality of its ethical decision-making.
 
-### Step 5: Deployment and Monitoring
+### Deployment and Monitoring
 
 Once updated, the improved system returns to operation. But the cycle continues—new uncertainties lead to new pauses, more learning, and continuous refinement.
 
