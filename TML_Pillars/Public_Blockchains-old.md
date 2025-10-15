@@ -4,6 +4,8 @@
 
 ---
 
+
+
 ## The Algorithmic Living Will
 
 In early 2024, Lev Goukassian sat facing his mortality. Stage 4 cancer. Urgent surgery ahead. Limited time remaining. But his mind wasn't on legacy or recognition—it was on a problem that had haunted him since conceiving Ternary Moral Logic: **What happens to accountability when I'm gone?**
