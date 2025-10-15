@@ -38,3 +38,18 @@ This capacity addresses a critical pathology in institutional governance: moral 
 
 Always Memory represents more than an advanced logging system; it is a proposal for how machines can develop something approximating moral character. By mandating that every significant action leaves an indelible trace, the framework creates the substrate for moral continuity, learning, and accountability across time. The principle doesn't solve what decisions AI should make, but it ensures that whatever decisions are made occur within a framework of radical transparency where the reasoning can be examined, challenged, and learned from by present and future stakeholders. In transforming the question from "Can we trust this AI?" to "Can we verify what this AI did and why?" Always Memory shifts AI ethics from faith-based to evidence-based—from principles we hope systems follow to facts we can prove in court.
 
+---
+
+#### **[Interactive Overview of Always Memory](https://fractonicmind.github.io/TernaryMoralLogic/TML_Pillars/Always_Memory.html)**
+
+---
+
+Created by Lev Goukassian * ORCID: 0009-0006-5966-1243 *   
+Email: [leogouk@gmail.com](mailto:leogouk@gmail.com)   
+Successor Contact: [support@tml-goukassian.org](mailto:support@tml-goukassian.org)   
+[see Succession Charter](/TML-SUCCESSION-CHARTER.md)  
+
+---
+
+#### *Always Memory carved each hesitation into stone—microsecond, hash, signature—so no shrug of doubt could ever be blamed on foggy recollection.* **- Lev Goukassian**
+
