@@ -1,6 +1,6 @@
-# **The Eighth Pillar: Mathematical Accountability**
+# Public Blockchains: The Foundation Stone for It All
 
-**How Public Blockchains Forge an Unbreakable Chain of Evidence**
+**How Public Ternary Moral Logic Forge an Unbreakable Chain of Evidence**
 
 ### **The Custodian Problem**
 
