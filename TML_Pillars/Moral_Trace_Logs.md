@@ -225,5 +225,16 @@ It gives Earth what it has always lacked: a voice in decisions affecting its sur
 And it gives future generations what they deserve: proof of whether we acted responsibly, sealed in cryptographic amber, impossible to erase or deny.
 
 ---
+
+#### **[Interactive Overview of Moral Trace Logs](https://fractonicmind.github.io/TernaryMoralLogic/TML_Pillars/Moral_Trace_Logs.html)**
+
+---
+
+Created by Lev Goukassian * ORCID: 0009-0006-5966-1243 *   
+Email: [leogouk@gmail.com](mailto:leogouk@gmail.com)   
+Successor Contact: [support@tml-goukassian.org](mailto:support@tml-goukassian.org)   
+[see Succession Charter](/TML-SUCCESSION-CHARTER.md)  
+
+---
 #### *Moral Trace Logs are how AI becomes accountable not someday, not eventually, but by design, from the first prompt to the final archive, from individual decisions to civilizational memory.* **-Lev Goukassian**
 ---
