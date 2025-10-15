@@ -1,4 +1,4 @@
-# The Reflection Cycle: How TML Systems Learn from Ethical Uncertainty
+# The Reflection Cycle: How AI Systems Learn from Ethical Uncertainty
 
 ## What Is the Reflection Cycle?
 
