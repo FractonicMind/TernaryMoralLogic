@@ -65,3 +65,18 @@ This creates an "algorithmic living will." It prevents future custodians from al
 
 The Public Blockchains pillar transforms accountability from a fragile promise into a mathematical certainty. It replaces the fallible custodian with an incorruptible, global ledger.  
 The evidence of an AI's actions is no longer a file that can be deleted but a fact that is woven into the fabric of a global, decentralized network. It ensures that the principles of Human Rights, Earth Protection, and the foundational pause of Sacred Zero are not just aspirational guidelines but are enforced by an unblinking, unchangeable, and eternal witness.
+
+---
+
+#### **[Interactive Overview of Public Blockchains](https://fractonicmind.github.io/TernaryMoralLogic/TML_Pillars/Public_Blockchains.html)**
+
+---
+
+Created by Lev Goukassian * ORCID: 0009-0006-5966-1243 *   
+Email: [leogouk@gmail.com](mailto:leogouk@gmail.com)   
+Successor Contact: [support@tml-goukassian.org](mailto:support@tml-goukassian.org)   
+[see Succession Charter](/TML-SUCCESSION-CHARTER.md)  
+
+---
+
+#### *Anchor the charter itself to the chain and governance becomes an algorithmic living will: immortal code that can’t be re-written by mortal hands.* **- Lev Goukassian**
