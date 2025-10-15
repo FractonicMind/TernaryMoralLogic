@@ -678,3 +678,17 @@ The wall is mathematical proof and institutional redundancy. The light is eviden
 
 This is not just protection. It's constitutional guarantee encoded in the fabric of reality itself.
 
+---
+
+#### **[Interactive Overview of Hybrid Shield](https://fractonicmind.github.io/TernaryMoralLogic/TML_Pillars/Hybrid_Shield.html)**
+
+---
+
+Created by Lev Goukassian * ORCID: 0009-0006-5966-1243 *   
+Email: [leogouk@gmail.com](mailto:leogouk@gmail.com)   
+Successor Contact: [support@tml-goukassian.org](mailto:support@tml-goukassian.org)   
+[see Succession Charter](/TML-SUCCESSION-CHARTER.md)  
+
+---
+
+#### *The Hybrid Shield doesn’t defend machines from truth, it defends truth from machines. It watches not to punish, but to prevent forgetting, listening to the past so the future can testify.* **- Lev Goukassian**
