@@ -93,41 +93,6 @@ The Reflection Cycle isn't a completely new idea—it builds on proven approache
 
 **Scientific Peer Review**: The human review process acts like peer review in science, ensuring that new "knowledge" meets quality standards before being accepted.
 
-## Common Concerns and How to Address Them
-
-### "Won't this make our AI too slow?"
-
-The Reflection Cycle does add some latency, but think of it as an investment. A system that learns from uncertainty becomes more capable over time, reducing future pauses. You can also batch non-urgent reviews and set different sensitivity thresholds for time-critical applications.
-
-### "What if our reviewers introduce bias?"
-
-This is a real risk. Mitigation strategies include:
-- Ensuring reviewer diversity
-- Regular external audits of decisions
-- Red teams that challenge the consensus
-- Clear documentation of review criteria
-
-### "How do we prevent the system from becoming overly cautious?"
-
-If the system is rewarded for pausing, it might pause too often. Address this by:
-- Setting performance benchmarks that must be maintained
-- Adjusting pause thresholds based on context
-- Monitoring pause frequency and investigating anomalies
-
-## Getting Started
-
-If you're considering implementing a Reflection Cycle in your TML system:
-
-1. **Assess Your Readiness**: Do you have the technical infrastructure for model updates? Can you commit the human resources for review?
-
-2. **Define Your Scope**: Which decisions warrant reflection? What level of uncertainty triggers a pause?
-
-3. **Build Your Team**: Identify who will review dilemmas and establish their training and support structure.
-
-4. **Create Your Infrastructure**: Set up systems for logging, review, retraining, and deployment.
-
-5. **Start with a Pilot**: Test the cycle on a limited, lower-stakes application before full deployment.
-
 ## The Virtuous Cycle: Why It Compounds Over Time
 
 The true power of the Reflection Cycle lies in its self-reinforcing nature. Like a flywheel that gains momentum with each rotation, every Sacred Pause strengthens the entire system:
