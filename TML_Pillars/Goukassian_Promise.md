@@ -43,3 +43,19 @@ The Goukassian Promise, when viewed through the integrated lens of its philosoph
 Ultimately, the Goukassian Promise is rendered meaningless if viewed in isolation. Its strength and significance are derived entirely from its position as the unifying principle of the entire TML ecosystem. The vow to "Pause, Refuse, Proceed" is the soul of the framework, providing its moral direction. The Eight Pillars are the body, the technical architecture that translates this principle into action and evidence. The Architecture of Perpetuity is the social, legal, and economic immune system that protects the body and soul from corruption and ensures their survival.
 
 Ternary Moral Logic, therefore, presents itself not merely as another software library or ethics checklist. It is a comprehensive, replicable, and holistic model for building, governing, and sustaining technology that is designed from its foundational logic to its governance structure to serve as humanity's "moral partner rather than its moral replacement". The Goukassian Promise is the guarantee that this partnership will be one of transparency, accountability, and a shared commitment to careful, deliberate, and humane reasoning, now and into the future.
+
+---
+
+#### **[Interactive Overview of Goukassian Promise](https://fractonicmind.github.io/TernaryMoralLogic/TML_Pillars/Goukassian_Promise.html)**
+
+---
+
+Created by Lev Goukassian * ORCID: 0009-0006-5966-1243 *   
+Email: [leogouk@gmail.com](mailto:leogouk@gmail.com)   
+Successor Contact: [support@tml-goukassian.org](mailto:support@tml-goukassian.org)   
+[see Succession Charter](/TML-SUCCESSION-CHARTER.md)  
+
+---
+
+#### *"I taught machines to feel the weight of action, and the beauty of hesitation. I paused, and made the future pause with me."* — **Lev Goukassian*
+
