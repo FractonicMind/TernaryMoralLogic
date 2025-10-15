@@ -1123,3 +1123,17 @@ And Earth learned to use it.
 
 **Note**: This analysis is based on the current implementation of TML's Earth Protection pillar. The framework is actively developed and may evolve beyond what's described here. The 20+ mandatory documents include treaties, scientific frameworks, and Indigenous rights instruments enforced through the Oracle Network and Always Memory architecture.
 
+---
+
+#### **[Interactive Overview of Always Memory](https://fractonicmind.github.io/TernaryMoralLogic/TML_Pillars/Earth_Protection.html)**
+
+---
+
+Created by Lev Goukassian * ORCID: 0009-0006-5966-1243 *   
+Email: [leogouk@gmail.com](mailto:leogouk@gmail.com)   
+Successor Contact: [support@tml-goukassian.org](mailto:support@tml-goukassian.org)   
+[see Succession Charter](/TML-SUCCESSION-CHARTER.md)  
+
+---
+
+#### *"The planet has no voice, no vote, no lobby; so we gave her a cryptographic signature and a seat on every AI board."* **- Lev Goukassian**
