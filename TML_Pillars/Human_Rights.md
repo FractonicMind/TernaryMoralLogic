@@ -1109,3 +1109,19 @@ In Goukassian's words, captured at the bottom of the Legal Mapping document:
 "The measure of a civilization is how it treats its most vulnerable members. In code, as in life, dignity is non-negotiable."
 
 Human Rights makes that non-negotiability executable.
+
+---
+
+#### **[Interactive Overview of Human Rights](https://fractonicmind.github.io/TernaryMoralLogic/TML_Pillars/Human_Rights.html)**
+
+---
+
+Created by Lev Goukassian * ORCID: 0009-0006-5966-1243 *   
+Email: [leogouk@gmail.com](mailto:leogouk@gmail.com)   
+Successor Contact: [support@tml-goukassian.org](mailto:support@tml-goukassian.org)   
+[see Succession Charter](/TML-SUCCESSION-CHARTER.md)  
+
+---
+
+#### *"The measure of a civilization is how it treats its most vulnerable members. In code, as in life, dignity is non-negotiable."* **- Lev Goukassian**
+
