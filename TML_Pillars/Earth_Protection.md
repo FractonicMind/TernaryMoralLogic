@@ -1125,7 +1125,7 @@ And Earth learned to use it.
 
 ---
 
-#### **[Interactive Overview of Always Memory](https://fractonicmind.github.io/TernaryMoralLogic/TML_Pillars/Earth_Protection.html)**
+#### **[Interactive Overview of Earth Protection](https://fractonicmind.github.io/TernaryMoralLogic/TML_Pillars/Earth_Protection.html)**
 
 ---
 
