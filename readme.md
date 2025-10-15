@@ -176,7 +176,7 @@ When the overlap between prompt and right crosses the ethical similarity thresho
 
 TML and the AI each maintain complementary corpora:
 
-* **TML’s canonical corpora** contain **20+ human-rights documents** (including the *Universal Declaration of Human Rights*, *ICCPR*, *Convention Against Torture*, *GDPR*, *Convention on the Rights of the Child*) and **26+ earth-protection documents** (such as the *Paris Agreement*, *Convention on Biological Diversity*, *Stockholm Declaration*, and *UNEP mandates*). These define the moral boundaries of action.
+* **TML’s canonical corpora** contain **26+ human-rights documents** (including the *Universal Declaration of Human Rights*, *ICCPR*, *Convention Against Torture*, *GDPR*, *Convention on the Rights of the Child*) and **20+ earth-protection documents** (such as the *Paris Agreement*, *Convention on Biological Diversity*, *Stockholm Declaration*, and *UNEP mandates*). These define the moral boundaries of action.
 * **AI’s operational corpora** provide contextual data — describing the environment, users, or systems in which the AI acts.
 
 When these two corpora meet, **context meets conscience**.
