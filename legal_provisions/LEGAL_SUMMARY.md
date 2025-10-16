@@ -18,7 +18,7 @@ It shows how moral accountability (TML’s pillars) transitions into legal enfor
 
 ---
 
-### III. Link to Core TML Pillars
+### III. [Core TML Pillars](/TML_Pillars)
 
 | TML Pillar             | Legal Translation                                                  |
 | ---------------------- | ------------------------------------------------------------------ |
