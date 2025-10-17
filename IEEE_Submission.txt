@@ -1,0 +1,343 @@
+﻿# Ternary Moral Logic (TML): A Governance Framework for Ethical Accountability and Immutable AI Systems
+
+
+**Lev Goukassian**  
+Independent Researcher  
+ORCID: 0009-0006-5966-1243
+
+
+---
+
+
+## Abstract
+
+
+The increasing autonomy of artificial intelligence systems demands more than regulatory oversight—it demands a paradigm shift from reactive compliance to proactive, architecturally enforced ethical governance. Current accountability models struggle to penetrate the opacity of AI decision-making, leaving a critical gap where verifiable trust should reside. This paper introduces Ternary Moral Logic (TML), a computational ethics architecture designed to bridge the divide between immutable technical systems and enforceable moral reasoning. TML operates on a triadic framework that transcends binary right/wrong evaluations, embracing instead a more nuanced, context-aware logic grounded in deliberate restraint. We detail its Eight Pillars—Sacred Zero and Pause, Always Memory, the Goukassian Promise, Moral Trace Logs, Human Rights, Earth Protection, the Hybrid Shield, and Public Blockchains—which collectively weave a system for traceable, verifiable, and auditable accountability across AI operations. By integrating cryptographically sealed logs with ethical directives, TML provides a robust mechanism for ensuring that an AI's actions are not only recorded but remain aligned with predefined moral constraints throughout their operational lifetime. We demonstrate TML's practical interoperability with leading international standards, including the EU AI Act, the NIST AI Risk Management Framework, and the IEEE 7000-series, illustrating how it addresses their conceptual gaps by providing an implementable technical backbone for ethical principles that might otherwise remain aspirational. This work concludes that architecturally enforced morality, as embodied by TML, represents the next frontier in AI governance—enabling a future where ethical accountability becomes a computational reality, not merely a regulatory hope.
+
+
+**Index Terms**—AI ethics, computational governance, immutable logs, accountability, Ternary Moral Logic, blockchain, risk management, regulatory technology.
+
+
+---
+
+
+## I. Introduction
+
+
+The proliferation of artificial intelligence across critical societal domains has surfaced a governance crisis unlike any before it. As AI systems evolve from tools wielded by human hands to autonomous agents with their own operational authority, traditional legal and regulatory frameworks reveal themselves inadequate for ensuring meaningful accountability [1]. The core of this crisis lies in what has come to be known as the "black box" problem: the inherent opacity of complex machine learning models makes it difficult—often impossible—to retrospectively determine why a system made a particular decision [15]. This lack of causal transparency does more than complicate technical debugging. It undermines trust. It obstructs the enforcement of ethical norms. It leaves liability assignments hovering in legal ambiguity. When an autonomous system errs, the absence of a verifiable "why" creates a vacuum where accountability should reside—a void that no amount of post-hoc explanation can adequately fill.
+
+
+Current responses range from ethical guidelines to impact assessments, yet they often remain tethered to the policy level, lacking the technical teeth to enforce their principles within the operational logic of the AI itself. They are reactive rather than proactive, applied after the fact rather than woven into the fabric of design. This paper argues that to solve a technical problem of this magnitude, we need a technical solution of equal sophistication. Ethical principles must be translated from aspirational documents into computational architecture—from words on a page into logic in a system.
+
+
+To address this fundamental challenge, we propose Ternary Moral Logic (TML), a governance framework designed to embed ethical reasoning and immutable accountability directly into the architecture of AI systems. TML moves beyond the limitations of simplistic binary logic—the stark choices of allowed versus disallowed—to embrace a more sophisticated triadic model. This model evaluates actions not only on their adherence to rules and their anticipated consequences, but also on their respect for a foundational principle we call Sacred Zero: the power of the strategic pause, the choice to refrain when certainty eludes us. Its objective is singular yet profound: to create an unbroken, cryptographically secure chain of evidence that links every significant AI action to its underlying ethical and operational justification, rendering the invisible visible and the ephemeral permanent.
+
+
+This paper details the TML framework and its Eight Pillars, explores its design methodology, and examines its implementation in practice. We provide a comparative analysis against existing approaches and a qualitative evaluation of its efficacy. Finally, we demonstrate its alignment with major international standards and conclude by positing TML as a necessary evolution in AI governance—a shift from regulation by policy to governance by design, from aspirational ethics to architectural morality.
+
+
+---
+
+
+## II. Background: Regulatory and Ethical Standards Landscape
+
+
+The global conversation on AI governance has produced several landmark frameworks, each representing significant progress in the collective effort to shape AI's trajectory. These initiatives form the foundation upon which TML is built, yet each reveals conceptual or implementational gaps—spaces where principles articulated with conviction await the technical means to enforce them.
+
+
+### A. The EU AI Act
+
+
+The European Union's AI Act stands as a pioneering legal framework, adopting a risk-based approach that recognizes not all AI systems pose equal danger [2]. For high-risk systems, it mandates stringent requirements, including logging capabilities designed to ensure traceability [3]. The Act's ambition is clear, its intent admirable. Yet it primarily specifies *what* must be logged without architecturally defining *how* to immutably and verifiably link these logs to the AI's internal reasoning or to an enforceable framework of ethical justification. It sets the regulatory expectation for accountability while leaving the technical implementation—the means by which principle becomes practice—in an ambiguous state that risks remaining perpetually unresolved.
+
+
+### B. NIST AI Risk Management Framework (AI RMF)
+
+
+The U.S. National Institute of Standards and Technology's AI RMF provides a voluntary framework designed to manage AI risks through four foundational functions: Govern, Map, Measure, and Manage [4]. The framework emphasizes trustworthiness as a north star, offering guidance that is both comprehensive and thoughtful [5]. Yet its guidance on technical implementation remains necessarily high-level, describing what should be measured without prescribing an architecture for creating the immutable, verifiable evidence needed for post-hoc audits of an AI's ethical state—particularly for autonomous systems operating in dynamic, unpredictable environments where traditional oversight falters.
+
+
+### C. IEEE 7000-Series on Ethically Aligned Design
+
+
+The IEEE's P7000 series of standards represents a crucial bridge, translating high-level ethical principles into concrete engineering practices [6], [7], [13]. These standards are essential for operationalizing ethics at the design stage, providing engineers with actionable guidance. Their primary focus, however, centers on pre-deployment design and risk assessment. TML complements this vital work by providing a continuous, post-deployment architecture that verifies whether the system's ongoing operations remain in alignment with its ethically-aligned design principles. It provides the lifelong memory and audit trail that allow the values embedded during design to persist—and be proven to persist—throughout the system's operational existence.
+
+
+---
+
+
+## III. The TML Framework: The Eight Pillars
+
+
+Ternary Moral Logic is an architectural framework built upon Eight Pillars that work in concert to create a system that is at once resilient, auditable, and ethically aware. Each pillar serves a distinct purpose; together, they form a structure capable of bearing the weight of genuine accountability.
+
+
+1. **Sacred Zero and Pause**: The foundational principle upon which all else rests. "Sacred Zero" represents the system's default state—not action, but deliberate inaction. Before any non-trivial action, the system must computationally justify its decision to move from this state of pause. This enforces what we term a "reflection cycle," preventing impulsive outputs and honoring the complexity inherent in consequential decisions. It is the architectural embodiment of a profound ethical choice: the choice of silence over certainty, of restraint over reaction.
+
+
+2. **Always Memory**: The system possesses a persistent, immutable memory of its operational history. This is not a conventional log file subject to rotation or deletion, but rather a cryptographically chained ledger, ensuring that past actions cannot be erased, altered, or conveniently forgotten. Memory, in this context, is not merely technical—it is moral. It is the system's acknowledgment that its actions have consequences that persist beyond the moment of execution.
+
+
+3. **The Goukassian Promise**: The system operates under a sworn, computationally verifiable charter that defines its objectives, its ethical boundaries, and its prohibited actions with clarity and precision. Every decision must be traceable to this foundational promise—a commitment not to users alone, but to the broader social fabric within which the system operates. This is covenant as code.
+
+
+4. **Moral Trace Logs**: For every significant action, the system generates a log that captures not only the *what*—the action itself—but the *why*: the specific rules, data points, and state evaluations that justified it. These logs are cryptographically signed and linked to the Always Memory, creating a chain of evidence that resists manipulation and enables genuine accountability.
+
+
+5. **Human Rights**: The charter must explicitly incorporate tenets of internationally recognized human rights frameworks, such as the Universal Declaration of Human Rights [8], rendering them not aspirational guidelines but architectural constraints—hard limits written into the system's operational logic.
+
+
+6. **Earth Protection**: The charter includes ecological constraints grounded in principles of planetary well-being [9], ensuring that actions are evaluated not solely for human benefit but against environmental impact thresholds. The system acknowledges that it operates within an ecosystem, not apart from one.
+
+
+7. **The Hybrid Shield**: A two-part cognitive structure that balances capability with accountability. A high-performance core model provides the system's operational capability, while a deterministic, logic-based "shield" model interprets the core's proposed actions against the Goukassian Promise. The shield holds final authority and generates the Moral Trace Logs, serving as the system's conscience—the pause between impulse and action.
+
+
+8. **Public Blockchains**: For systems with significant public impact, cryptographic hashes of Moral Trace Logs are anchored to a public blockchain, making the ethical compliance record not only internally verifiable but publicly auditable and demonstrably tamper-resistant. Accountability, in this paradigm, is not a private assurance but a public commitment.
+
+
+---
+
+
+## IV. Methodology
+
+
+The TML framework was developed using a design science research (DSR) methodology [16], an approach particularly suited for problems where the goal is to create and evaluate an innovative artifact—in this case, a governance architecture—that addresses a clearly defined real-world problem. The process unfolded across three main stages, each building upon insights from the last.
+
+
+**1. Problem Identification and Motivation**: This initial stage involved a systematic review of existing AI governance literature and regulatory standards, examining frameworks such as the EU AI Act [2], the NIST AI RMF [4], and related policy documents [14]. The review revealed a recurring pattern—a persistent gap between the articulation of high-level ethical principles and their technical enforcement in live AI systems. The problem crystallized: we lack an architecture for verifiable, immutable, and continuous ethical accountability. We have built the vocabulary of AI ethics without constructing its grammar, its syntax, its means of enforcement.
+
+
+**2. Artifact Design and Development**: The TML framework and its Eight Pillars were conceived as the solution artifact. This was an iterative process guided by axiomatic design principles, beginning with foundational axioms: (a) accountability requires immutable evidence—words without records are merely wishes; (b) ethical compliance must be continuously verifiable, not merely asserted at deployment; and (c) proactive restraint (Sacred Zero) is inherently safer than reactive correction. Each pillar was developed to satisfy one or more of these axioms, synthesizing concepts drawn from computer science (cryptography, distributed ledgers), ethics (deontology, consequentialism), and systems engineering into a coherent whole.
+
+
+**3. Evaluation and Refinement**: The artifact was evaluated qualitatively against a set of predefined criteria (detailed in Section VII) and tested through thought experiments based on high-risk AI use cases. This evaluative process led to significant refinements, particularly in the development of the Hybrid Shield concept as a pragmatic solution to the tension between performance and verifiability—a recognition that perfect accountability need not come at the cost of operational paralysis.
+
+
+This methodology ensures that TML is not merely a theoretical construct floating in academic abstraction, but rather a purposefully designed artifact aimed at solving a clearly defined problem in AI governance—one that matters deeply to the future we are collectively building.
+
+
+---
+
+
+## V. Implementation in Practice
+
+
+The synergy between the Hybrid Shield, Always Memory, and Moral Trace Logs forms the practical core of TML, transforming abstract principles into operational reality. Fig. 1 illustrates this architecture in conceptual form.
+
+
+**Conceptual Architecture Diagram Placeholder**  
+*(As described in the caption)*
+
+
+**Fig. 1.** *Conceptual Architecture of TML Implementation. The Core AI Model proposes an action, which is intercepted by the Hybrid Shield. The Shield verifies the action against the Goukassian Promise, generates a Moral Trace Log, and commits it to the immutable Always Memory before execution—creating a deliberate pause between intention and action.*
+
+
+Consider a concrete example: an autonomous AI-powered drone tasked with managing agricultural resources, operating in a context where decisions carry both economic and ecological weight.
+
+
+1. **Proposal**: The core model—a neural network trained on yield optimization—proposes spraying a specific field with a pesticide, predicting a significant increase in crop yield.
+
+
+2. **Verification (Hybrid Shield)**: The Hybrid Shield intercepts this proposal before it can be executed. It accesses the drone's Goukassian Promise, which includes rules derived from the Earth Protection pillar ("do not spray within 500 meters of a watershed to prevent aquatic contamination") and the Human Rights pillar ("ensure food security without compromising local water safety or public health").
+
+
+3. **Moral Trace Log Generation**: The shield performs its evaluation and generates a comprehensive log. If the proposed target lies 450 meters from a river—close enough to pose risk—the log records the full decision chain:
+   - **Action Proposed**: Spray Field X with Pesticide Y.
+   - **Justification**: Predicted crop yield increase of 30%.
+   - **Constraint Check**: Violation of Earth Protection rule 2.1 (watershed proximity).
+   - **Decision**: Action REJECTED.
+
+
+4. **Immutable Record (Always Memory)**: This entire log—the proposal, the reasoning, the rejection—is cryptographically signed and chained into the drone's Always Memory. A cryptographic hash of this log is then anchored to a public blockchain, creating a permanent, auditable record accessible to regulators, stakeholders, and affected communities. The decision becomes not a fleeting moment but a permanent part of the historical record.
+
+
+What might appear as operational overhead is, in fact, the computational cost of conscience—the price of ensuring that efficiency does not silently override safety, that optimization does not casually sacrifice protection.
+
+
+---
+
+
+## VI. Comparative Analysis
+
+
+TML provides a distinct approach to AI governance when compared to existing frameworks and technologies, not as a replacement but as the technical means by which their ambitions can be realized. Table I provides a summary of this comparative analysis.
+
+
+### A. Comparison with Regulatory Frameworks
+
+
+Unlike the EU AI Act and NIST AI RMF, which are fundamentally process- and policy-oriented, TML is an architectural framework—a technical substrate upon which regulatory requirements can be built and enforced. While regulators mandate accountability, TML provides the concrete means to achieve it. TML's Moral Trace Logs satisfy the logging requirements of the AI Act but with crucial additions: cryptographic immutability that prevents retrospective alteration and the inclusion of the "why" that transforms mere compliance records into genuine accountability artifacts. Similarly, TML provides the infrastructure to execute the NIST RMF's lifecycle approach, turning its governance principles from process documents into machine-readable rules embedded within the Goukassian Promise. It is the difference between stating that a system *should* be accountable and engineering it such that it *cannot* be otherwise.
+
+
+### B. Comparison with Technical Approaches
+
+
+Explainable AI (XAI) techniques such as SHAP and LIME represent essential tools for model debugging and interpretation [17], yet they prove insufficient for governance in high-stakes contexts. XAI provides post-hoc interpretations of a model's behavior—explanations generated after the fact that can be inconsistent, manipulated, or gamed to present a more favorable narrative [18]. These explanations are not inherently immutable, nor are they tied to a binding ethical charter established before the model's deployment. TML, in contrast, does not merely explain a decision after it has been made; its Hybrid Shield *enforces* decisions based on pre-committed, auditable logic before they can be executed. The "why" captured in a Moral Trace Log is not a post-hoc rationalization or probabilistic guess, but rather a precise record of the deterministic rule or set of rules that permitted the action—or rejected it. It is the difference between explaining what happened and ensuring it should have happened in the first place.
+
+
+---
+
+
+## VII. Evaluation of TML's Efficacy
+
+
+The efficacy of a governance framework like TML cannot be measured by traditional performance metrics alone—response time, throughput, accuracy—though these matter. It must be evaluated against the deeper criteria required for robust AI accountability in contexts where failure carries moral weight.
+
+
+1. **Traceability**: TML provides an unbroken, end-to-end chain of evidence from a high-level ethical principle (encoded in the Goukassian Promise) to a specific operational action (recorded in the Moral Trace Log). An auditor—human or algorithmic—can trace any action back to the exact rule that permitted it, reconstructing not only what happened but why it was allowed to happen. Nothing is lost in translation.
+
+
+2. **Non-repudiation**: Through cryptographic signatures and chaining within the Always Memory—and optionally through anchoring on a public blockchain—a system operating under TML cannot repudiate its past actions. The evidence is mathematically undeniable, resistant to the convenient amnesia that often accompanies organizational liability. The system cannot claim "that wasn't us" or "we don't know what happened." The record speaks with cryptographic certainty.
+
+
+3. **Resilience**: The framework demonstrates resilience to tampering at multiple levels. Altering a past Moral Trace Log would break the cryptographic chain, making tampering immediately evident to any auditor. The Hybrid Shield provides additional resilience against undesirable emergent behaviors from the complex core AI, serving as a deterministic safeguard that cannot be persuaded, confused, or bypassed through adversarial prompting.
+
+
+4. **Evolvability**: TML is not a static system frozen at the moment of deployment. The framework's "Reflection Cycle" (detailed in Section IX) allows the Goukassian Promise to be updated based on systematic analysis of Moral Trace Logs, enabling the system's ethical framework to evolve with societal norms, new information, and lessons learned from operational experience. It learns not only how to perform its task but how to perform it ethically.
+
+
+5. **Completeness**: TML provides full-lifecycle coverage, a rare quality in governance frameworks. It begins with pre-deployment design (codifying the Promise) and continues through every operational decision post-deployment, maintaining continuous accountability from conception through retirement.
+
+
+A key trade-off must be acknowledged: computational efficiency. The verification step performed by the Hybrid Shield introduces latency—a deliberate pause that slows execution. However, for high-risk systems where the cost of an ethical failure is catastrophic, this trade-off for verifiable safety is not merely acceptable but necessary. It is the computational equivalent of the Hippocratic principle: first, do no harm. And if ensuring "no harm" requires taking an extra moment to verify, that moment is time well spent.
+
+
+---
+
+
+**TABLE I**  
+**Comparative Analysis of AI Governance Approaches**
+
+
+| Criterion | Ternary Moral Logic (TML) | EU AI Act (as written) | NIST AI RMF | Explainable AI (XAI) |
+|-----------|---------------------------|------------------------|-------------|----------------------|
+| **Enforcement Mechanism** | Architectural & Computational | Legal & Procedural | Process & Documentation | Technical (Post-hoc) |
+| **Immutability of Record** | ✓ Yes (Cryptographic) | ◐ Partial (Specifies logs) | ✗ No (Process-based) | ✗ No (Explanations not binding) |
+| **Focus** | "What" and Architected "Why" | "What" (Compliance data) | Process Adherence | Technical "Why" (Post-hoc) |
+| **Verifiability** | Publicly Verifiable (Optional) | Regulator Verifiable | Internally Auditable | User/Developer Interpretable |
+| **Lifecycle Stage** | Full Lifecycle (Continuous) | Primarily Pre-market & Post-hoc | Full Lifecycle (Process) | Post-hoc Analysis |
+| **Proactive vs. Reactive** | Proactive (Hybrid Shield) | Both | Primarily Proactive (Process) | Reactive (Explains past) |
+
+
+---
+
+
+## VIII. Governance Integration
+
+
+TML is not designed to replace existing standards but rather to provide the technical architecture that makes them enforceable and interoperable—to serve as the substrate upon which regulatory ambitions can be realized.
+
+
+- **EU AI Act**: TML's Moral Trace Logs directly satisfy and exceed the logging requirements for high-risk systems outlined in the Act. The Hybrid Shield provides a concrete, implementable form of "human oversight" translated into computational terms—oversight that operates at machine speed without requiring constant human attention, yet remains transparent and auditable when human judgment is needed.
+
+
+- **NIST AI RMF**: TML operationalizes the RMF's core functions, transforming them from process guidance into architectural reality. The Goukassian Promise serves as a direct output of the "Govern" and "Map" phases, crystallizing stakeholder values into machine-readable rules. The Moral Trace Logs provide the structured data necessary for the "Measure" function, enabling quantitative assessment of ethical compliance over time.
+
+
+- **IEEE 7000-Series**: TML functions as the post-deployment enforcement mechanism for principles embedded during an IEEE 7000-compliant design process. Values carefully identified through these standards are codified into the Goukassian Promise, ensuring that "ethically aligned design" remains not merely a design-time achievement but a continuous operational reality—a promise kept, not just made.
+
+
+---
+
+
+## IX. Discussion
+
+
+### A. Limitations and Challenges
+
+
+The implementation of TML, while technically feasible, is not without significant challenges that warrant honest acknowledgment. The primary limitation lies in the inherent complexity of codifying ethics—of translating nuanced human values into logical rules executable by machines. Defining the rules within the Goukassian Promise is fundamentally a sociotechnical task, one that requires deep domain expertise, sustained ethical deliberation, and genuine stakeholder consensus. A poorly defined promise—one that fails to capture the nuances of the ethical context—will inevitably lead to a poorly behaving system, no matter how technically sophisticated the architecture. The old programmer's maxim holds: garbage in, garbage out. TML can enforce ethics with precision, but it cannot itself determine what those ethics should be.
+
+
+Furthermore, the computational overhead of the Hybrid Shield—the cost of that deliberate pause—could prove significant for certain real-time applications where milliseconds matter. Careful optimization and thoughtful system design are required to balance the imperative of verifiable safety against the practical demands of performance. This is not a limitation unique to TML but rather an instance of the broader challenge facing all accountability mechanisms: doing the right thing sometimes takes longer than doing the expedient thing.
+
+
+### B. The Reflection Cycle and Evolution
+
+
+TML is explicitly designed not to be static but to evolve. The framework incorporates what we term a "Reflection Cycle"—a structured process for periodically reviewing the accumulated Moral Trace Logs to identify patterns, ambiguities, and opportunities to update and refine the Goukassian Promise. This is analogous to the development of legal precedent in common law systems: by analyzing patterns of approved and rejected actions across diverse contexts, system owners can identify rules that have become outdated, discover edge cases that require new guidance, and generally allow the AI's ethical framework to evolve in response to operational experience and changing societal norms. The Sacred Pause—that foundational principle of deliberate inaction—serves as the enabler of this reflection, creating space for learning and adaptation rather than mindless repetition.
+
+
+### C. Beyond Binary Logic
+
+
+The core philosophical shift embodied by TML is the move from binary to ternary logic—from the stark dichotomy of good versus bad to a more nuanced three-state model. These states can be conceptualized as: (1) the action is clearly permissible under established rules; (2) the action is clearly prohibited; and (3) the action is ambiguous, falling into ethically uncertain territory that requires reverting to Sacred Zero for inaction or escalation to human judgment. This third state is perhaps the most critical innovation, providing a safety buffer that prevents systems from making unguided decisions in ethically complex situations. It is an acknowledgment of epistemic humility—a recognition that not all questions have clear answers, and that in the face of genuine uncertainty, restraint is the wisest course. It is better to pause than to proceed blindly.
+
+
+---
+
+
+## X. Conclusion
+
+
+The current trajectory of AI development demands more than incremental policy adjustments. It demands a new social contract, one grounded in verifiable trust and computational accountability that can withstand scrutiny. Frameworks like the EU AI Act and NIST AI RMF have defined the ethical and regulatory map with admirable clarity, charting the terrain we must navigate. Yet we still lack the vehicles capable of traversing that terrain—the technical means to translate principle into practice, aspiration into enforcement.
+
+
+Ternary Moral Logic offers a blueprint for such a vehicle. By embedding an immutable, auditable ethical core directly into AI architecture—by making the "why" as permanent and verifiable as the "what"—TML transforms abstract principles into enforceable logic, aspirational guidelines into operational constraints. It represents a fundamental shift from asking AI systems to be "good" to engineering them in such a way that they cannot easily be otherwise, according to a transparent, verifiable, and publicly accountable charter.
+
+
+The transition from reactive regulation to proactive, architecturally enforced morality is not merely the next step in AI governance—it is the necessary step if we are to build systems worthy of the trust we increasingly place in them. It is a move from hoping that AI systems will act ethically to ensuring that they must, from treating accountability as an afterthought to making it a foundational architectural property. TML provides a pragmatic pathway toward this future, one where ethical accountability is no longer just a policy goal documented in frameworks and manifestos, but a fundamental, computational property of the systems we build and deploy.
+
+
+The pause, the promise, the permanence—these are not mere features of a technical system. They are the architectural expression of our values, our acknowledgment that the systems we create must be worthy of the power we grant them. TML is one answer to the question of how we might achieve this. It is offered not as a final solution but as a beginning—a technical foundation upon which genuine AI accountability can be built.
+
+
+---
+
+
+## References
+
+
+[1] D. L. Shrier, T. Hardjono, and A. Pentland, "Trust::Data: A New Framework for Identity and Data Sharing," MIT Connection Science, 2016.
+
+
+[2] European Commission, "Proposal for a Regulation of the European Parliament and of the Council Laying Down Harmonised Rules on Artificial Intelligence (Artificial Intelligence Act)," COM(2021) 206 final, 2021.
+
+
+[3] A. L. Maas, "The European Union's Proposed AI Act: The Role of Audits and Conformity Assessments," European Parliament Research Service, PE 698.835, 2021.
+
+
+[4] National Institute of Standards and Technology, "Artificial Intelligence Risk Management Framework (AI RMF 1.0)," NIST AI 100-1, Jan. 2023.
+
+
+[5] C. S. Tabassi, et al., "Towards a Standard for Identifying and Managing Bias in Artificial Intelligence," NIST Special Publication 1270, 2022.
+
+
+[6] IEEE, "IEEE 7001-2021 - IEEE Standard for Transparency of Autonomous Systems," IEEE Standards Association, 2021.
+
+
+[7] IEEE, "IEEE 7002-2022 - IEEE Standard for Data Privacy Process," IEEE Standards Association, 2022.
+
+
+[8] United Nations, "Universal Declaration of Human Rights," 1948.
+
+
+[9] UNESCO, "Recommendation on the Ethics of Artificial Intelligence," 2021.
+
+
+[10] International Organization for Standardization, "ISO 31000:2018 - Risk management — Guidelines," 2018.
+
+
+[11] V. C. Müller, "Ethics of Artificial Intelligence and Robotics," in *The Stanford Encyclopedia of Philosophy*, E. N. Zalta (ed.), Winter 2021.
+
+
+[12] B. Mittelstadt, "The ethics of algorithms: Mapping the debate," *Big Data & Society*, vol. 3, no. 2, 2016.
+
+
+[13] IEEE Global Initiative on Ethics of Autonomous and Intelligent Systems, "Ethically Aligned Design: A Vision for Prioritizing Human Well-being with Autonomous and Intelligent Systems," Version 1, IEEE, 2019.
+
+
+[14] R. Calo, "Artificial Intelligence Policy: A Primer and Roadmap," *U.C. Davis Law Review*, vol. 51, no. 2, pp. 399-435, 2017.
+
+
+[15] F. Pasquale, *The Black Box Society: The Secret Algorithms That Control Money and Information.* Harvard University Press, 2015.
+
+
+[16] A. Hevner, S. March, J. Park, and S. Ram, "Design Science in Information Systems Research," *MIS Quarterly*, vol. 28, no. 1, pp. 75-105, 2004.
+
+
+[17] S. M. Lundberg and S.-I. Lee, "A unified approach to interpreting model predictions," in *Proc. 31st Int. Conf. Neural Inf. Process. Syst.*, 2017, pp. 4765–4774.
+
+
+[18] A. Rudin, "Stop explaining black box machine learning models for high stakes decisions and use interpretable models instead," *Nature Machine Intelligence*, vol. 1, no. 5, pp. 206-215, 2019.
