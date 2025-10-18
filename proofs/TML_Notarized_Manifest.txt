@@ -17,3 +17,7 @@ Notarized at: 2025-10-13T18:00Z
 File: Hybrid-Shield_notarized.pdf
 SHA-256: 7c88673a62a5fcb103e7ecf2b83ee7e11bb9d643839b06033881e0c90515d43c
 Notarized at: 2025-10-13T18:20Z
+
+File: Goukassian_Covenant_notarized.pdf
+SHA-256: e50bebdf9b9c8beb48d41a5b031ad93efcc8c0e8a9724cd72416a6c96125f2bc
+Notarized at: 2025-10-21T17:00Z
