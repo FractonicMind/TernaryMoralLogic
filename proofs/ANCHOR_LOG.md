@@ -13,7 +13,8 @@
 | **Hybrid-Shield_notarized.pdf**              | `f3dc12d9a283ad253f5145ea68bafb465249ff3d24d7237b00ef55b24be7ffcb` | [Proof](Hybrid-Shield_notarized.pdf.ots)              |
 | **ANCHORING_STANDARDS_notarized.pdf**        | `3e7ed2bff6a115bfe077219a50257b9835eaf04936b8a778376cfeeef91afe55` | [Proof](ANCHORING_STANDARDS_notarized.pdf.ots)        |
 | **TML_Notarized_Manifest.txt**               | `5d60472c4626f84d6be701e9d3c9550118949b3f92a1758e1fde60af5807736a` | [Proof](TML_Notarized_Manifest.txt.ots)               |
-| **Goukassian_Covenant_notarized.pdf**        | `d55b1026fa80a6dd7188a84dd0501d1779b9b47a0f391afe4b953ba3b3bc1d8f` | [Proof](Goukassian_Covenant_notarized.md.ots)         |
+| **Goukassian_Covenant_notarized.md**         | `d55b1026fa80a6dd7188a84dd0501d1779b9b47a0f391afe4b953ba3b3bc1d8f` | [Proof](Goukassian_Covenant_notarized.md.ots)         |
+| **Goukassian_Covenant_notarized.pdf**        | `e50bebdf9b9c8beb48d41a5b031ad93efcc8c0e8a9724cd72416a6c96125f2bc` | [Proof](Goukassian_Covenant_notarized.md.ots)         |
 
 
 **Remarks:**  
