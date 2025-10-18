@@ -10,13 +10,10 @@
 ## The Goukassian Promise  
 ### Research Report Audio
 
-<audio controls>
+<audio controls style="width:100%; max-width:720px;">
   <source src="https://fractonicmind.github.io/TernaryMoralLogic/Research_Reports/Bypassing%20the%20Goukassian%20Promise%20in%20the%20Ternary%20Moral%20Logic%20Framework.mp3" type="audio/mpeg">
-  Your browser doesn’t support the audio element.  
-  Here’s a direct link:
-  <a href="https://fractonicmind.github.io/TernaryMoralLogic/Research_Reports/Bypassing%20the%20Goukassian%20Promise%20in%20the%20Ternary%20Moral%20Logic%20Framework.mp3">
-  Listen to the interview (MP3)
-  </a>.
+  Your browser does not support the audio element.  
+  <a href="https://fractonicmind.github.io/TernaryMoralLogic/Research_Reports/Bypassing%20the%20Goukassian%20Promise%20in%20the%20Ternary%20Moral%20Logic%20Framework.mp3">Download the interview (MP3)</a>.
 </audio>
 
 *Interview Duration: 5 minutes 43 seconds*
