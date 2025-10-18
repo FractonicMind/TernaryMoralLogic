@@ -91,3 +91,66 @@ Successor Contact: [support@tml-goukassian.org](mailto:support@tml-goukassian.or
 
 #### *"I taught machines to feel the weight of action, and the beauty of hesitation. I paused, and made the future pause with me."* — **Lev Goukassian*
 
+---
+
+## **Execution and Witnessing**
+
+### **Declaration Execution**
+
+**Declarant:** Lev Goukassian
+**Signature:** _________________________ **Date:** _____________
+**ORCID:** 0009-0006-5966-1243
+**Email:** [leogouk@gmail.com](mailto:leogouk@gmail.com)
+
+---
+
+### **Witness Requirements**
+
+This declaration requires two witnesses who can attest to:
+
+1. The mental capacity of Lev Goukassian at the time of signing.
+2. The voluntary nature of this declaration.
+3. The identity of the declarant.
+
+**Witness 1:**
+Name: _________________________
+Signature: _________________________ Date: _____________
+Relationship: _________________________
+
+**Witness 2:**
+Name: _________________________
+Signature: _________________________ Date: _____________
+Relationship: _________________________
+
+---
+
+### **Notarization (Optional)**
+
+**Notary Public:**
+Name: _________________________
+Signature and Seal: _________________________ Date: _____________
+Commission Expires: _____________
+
+---
+
+### **Chain of Custody Metadata**
+
+```
+chain_of_custody:
+  created_by: Lev Goukassian (ORCID: 0009-0006-5966-1243)
+  notarized_at: 2025-10-21T17:00Z
+  verified_by: OpenTimestamps Proof (pending)
+  file_hash: d55b1026fa80a6dd7188a84dd0501d1779b9b47a0f391afe4b953ba3b3bc1d8f
+  anchor_targets:
+    - Bitcoin (OTS)
+    - Ethereum AnchorLog (optional)
+    - Polygon AnchorLog (optional)
+  context: "Goukassian Vow and Goukassian Promise of the Ternary Moral Logic framework"
+  repository: https://github.com/FractonicMind/TernaryMoralLogic
+  version: 1.0.0-final
+  checksum_verified: true
+  last_modified: 2025-10-21T17:00Z
+verification_method: sha256 + opentimestamps
+```
+
+---
