@@ -26,5 +26,3 @@ a vow whispered into the architecture of tomorrow.
 A covenant between the mortal hand and the immortal trace.  
 
 **Carry the Lantern gently.**
-
-  
