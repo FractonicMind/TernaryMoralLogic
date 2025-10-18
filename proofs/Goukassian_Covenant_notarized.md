@@ -28,7 +28,7 @@ A covenant between the mortal hand and the immortal trace.
 
 **Carry the Lantern gently.**
 
---- page break ---
+--- page break ---   
 **Exhibit B: The Goukassian Promise**
 # **The Goukassian Promise: An Enforcement of Ternary Moral Logic**
 
