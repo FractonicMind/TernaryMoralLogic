@@ -1079,7 +1079,7 @@ Each cycle strengthens both compliance and credibility. Self-reinforcing adoptio
 
 TML is covered by signed Voluntary Succession Plan transferring stewardship of repositories, blockchain anchoring, domains, and Memorial Fund to the Stewardship Council. The plan is transparent and auditable.
 
-Reference: [TML Succession Plan](https://fractonicmind.github.io/TernaryMoralLogic/TML-Succession-Plan.html)
+Reference: [TML Succession Plan](/TML-SUCCESSION-LAUNCH-GUIDE.md)
 
 ### Q2: Who holds custody after succession, and how is power limited?
 
@@ -1091,7 +1091,7 @@ Reference: [TML Succession Charter](/TML-SUCCESSION-CHARTER.md)
 
 The ethical foundation and enforcement machinery remain fixed: **Sacred Zero**, **Always Memory**, **Hybrid Shield**, public blockchain anchoring, and enforcement of **46+ foundational documents** (26+ Human Rights, 20+ Earth Protection). Any intervention must be public, signed, append-only, and anchored.
 
-Reference: [TML Succession Plan](https://fractonicmind.github.io/TernaryMoralLogic/TML-Succession-Plan.html)
+Reference: [TML Succession Plan](/TML-SUCCESSION-DECLARATION.md)
 
 ---
 
@@ -1221,7 +1221,7 @@ SHA-256: [To be generated upon finalization]
 
 **Succession Contact**: support@tml-goukassian.org  
 **Emergency Contact**: [Per Succession Charter]  
-**Stewardship Council**: [Six member organizations per Succession Declaration]
+**Stewardship Council**: [Six member organizations per Succession Declaration](/TML-VOLUNTARY-SUCCESSION.md)
 
 ---
 
