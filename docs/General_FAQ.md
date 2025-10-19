@@ -468,7 +468,7 @@ The destroyed key ensures:
 - Trade secrets cannot be reconstructed
 - Privacy rights are respected
 
-As framework creator articulated: "Transparency may hide content, but never truth." Through EKR, immutability becomes compatible with legitimate confidentiality, and secrecy becomes accountable.
+As framework creator articulated: *"Transparency may hide content, but never truth."* Through EKR, immutability becomes compatible with legitimate confidentiality, and secrecy becomes accountable.
 
 ### Q5: What prevents abuse of EKR to hide misconduct?
 
