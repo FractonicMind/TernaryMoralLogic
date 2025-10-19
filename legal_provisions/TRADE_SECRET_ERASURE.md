@@ -120,10 +120,11 @@ Use with the TML license: Implementation of EKR does not waive trade secret prot
 ```
 ---
 
-Creator: Lev Goukassian (ORCID: 0009-0006-5966-1243)
-Email: leogouk@gmail.com
-Repository: https://github.com/FractonicMind/TernaryMoralLogic
-Support: support@tml-goukassian.org
+Created by Lev Goukassian * ORCID: 0009-0006-5966-1243 *  
+   Email: leogouk@gmail.com  
+   Successor Contact: support@tml-goukassian.org  
+   [see Succession Charter](/TML-SUCCESSION-CHARTER.md)
+
 ---
 
 ## Glossary
