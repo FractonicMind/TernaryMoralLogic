@@ -1,9 +1,5 @@
 # General FAQ: Ternary Moral Logic Framework
 
-**Document Version**: 5.2 (Stewardship Edition)  
-**Last Updated**: October 19, 2025  
-**Status**: Prepared for Notarization and Archival  
-
 ---
 
 ## Introduction
@@ -203,6 +199,10 @@ Negative. Logs constitute proof of accountability, not moral correctness. Logs e
 
 Traditional compliance relies on self-reporting mechanisms. TML employs cryptographic evidence that cannot be erased, forged, or backdated, rendering it resistant to organizational manipulation or ethics-washing.
 
+### Q4: Can companies use EKR to hide violations?
+
+No. Ethical Key Revocation applies only to legitimate confidentiality claims (trade secrets, privacy). The system logs every EKR invocation with full justification. Pattern abuse triggers investigation. See Privacy & User Rights Q4-Q5 for technical details.
+
 ---
 
 ## Always Memory
@@ -271,7 +271,7 @@ Negative. Only cryptographic proofs are written on-chain. Personal or sensitive 
 The Promise establishes TML's ethical foundation:
 - Pause when truth is uncertain
 - Refuse when harm is clear
-- Proceed when truth is evident
+- Proceed where truth is
 
 This commitment transcends individual identity. The framework's moral grounding persists independent of organizational control or profit motive.
 
@@ -438,6 +438,69 @@ By preserving immutable hashes while destroying decryption keys, TML delivers:
 - Forensic integrity, as evidence of decision-making cannot be tampered with
 
 Hashes prove actions occurred. Destroyed keys ensure personal details are permanently inaccessible. Courts receive evidence; users receive privacy protection.
+
+### Q4: How does TML protect trade secrets while maintaining accountability?
+
+TML employs Ethical Key Revocation (EKR) to reconcile immutable accountability with legitimate confidentiality requirements. Rather than erasing Moral Trace Logs, EKR destroys the cryptographic keys that decrypt proprietary content.
+
+**Technical Architecture**:
+- AES-256 encryption protects sensitive log contents
+- Shamir Secret Sharing distributes key fragments across Stewardship Council quorum
+- Upon legitimate claims (trade secrets, privacy, data minimization), quorum authorizes key destruction
+- What remains: verifiable tombstone—hash and timestamp proving ethical event occurred without disclosing internal methodology
+
+**Legal Reconciliation**:
+- Extends GDPR Article 17 principle: effective erasure through key destruction rather than data deletion
+- Satisfies EU Trade Secrets Directive (2016/943) protection requirements
+- Maintains public verification rights through preserved hashes
+- Transforms secrecy from concealment into integrity: system conceals only what must remain confidential for lawful reasons
+
+**Evidentiary Preservation**:
+The blockchain-anchored hash proves:
+- A decision occurred at specific time
+- Sacred Zero triggered (or did not trigger)
+- Assessment was performed per TML requirements
+- Record was not tampered with
+
+The destroyed key ensures:
+- Proprietary algorithms remain confidential
+- Competitive advantages are protected
+- Trade secrets cannot be reconstructed
+- Privacy rights are respected
+
+As framework creator articulated: "Transparency may hide content, but never truth." Through EKR, immutability becomes compatible with legitimate confidentiality, and secrecy becomes accountable.
+
+### Q5: What prevents abuse of EKR to hide misconduct?
+
+Multiple safeguards prevent EKR misuse:
+
+**Quorum Requirement**: Key destruction requires Stewardship Council supermajority (5/6), preventing unilateral erasure
+
+**Public Audit Trail**: Every EKR invocation is itself immutably logged, including:
+- Justification for key destruction
+- Legal basis invoked (GDPR, trade secrets, etc.)
+- Stewardship Council votes
+- Timestamp of destruction
+
+**Hash Preservation**: The cryptographic hash remains permanently anchored, enabling:
+- Verification that log existed
+- Detection of pattern abuse (multiple EKR requests)
+- Statistical analysis of EKR frequency
+- Court subpoena of justification records
+
+**Prohibited Uses**: EKR cannot be invoked for:
+- Concealing human rights violations
+- Hiding environmental harm
+- Obscuring discrimination patterns
+- Evading criminal liability
+
+**Penalty for Abuse**: Fraudulent EKR invocation triggers:
+- Automatic strict liability
+- Criminal obstruction charges
+- Maximum penalties under 18 U.S.C. § 1519
+- Permanent loss of TML certification
+
+The tombstone remains as evidence: courts can compel testimony about what the log contained, but the proprietary method remains protected.
 
 ---
 
@@ -925,6 +988,10 @@ TML exceeds all EU AI Act requirements:
 - Documentation requirements → Always Memory logs
 - Human oversight → Sacred Zero Councils
 - Environmental impact → Planetary Sacred Zero
+
+### Q5: How does TML reconcile with trade secret protection laws?
+
+Through Ethical Key Revocation (EKR), which implements EU Trade Secrets Directive (2016/943) and GDPR Article 17 principles. See Privacy & User Rights Q4 for complete technical and legal framework.
 
 ---
 
