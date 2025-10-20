@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="google9a11ddf5dc6aa5a0.html" />
+    <meta name="description" content="Ternary Moral Logic (TML) - A comprehensive ethical framework for AI accountability, featuring Sacred Zero technology, Human Rights protection, and Earth Protection principles.">
+    <meta name="keywords" content="TML, Ternary Moral Logic, AI Ethics, Sacred Zero, AI Accountability, Moral Trace Logs, Hybrid Shield, Human Rights AI, Earth Protection AI">
+    <meta name="author" content="Lev Goukassian">
+    <title>Ternary Moral Logic (TML) - Ethical AI Framework</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #34495e;
+            --accent: #3498db;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --border-radius: 8px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .badges {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 1rem 0;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            text-decoration: none;
+            transition: transform 0.2s;
+        }
+
+        .badge:hover {
+            transform: translateY(-2px);
+        }
+
+        .notice {
+            background: var(--warning);
+            color: white;
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            margin: 1rem 0;
+            border-left: 4px solid var(--dark);
+        }
+
+        .content {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            color: var(--primary);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            color: var(--secondary);
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 0.5rem;
+            margin: 2rem 0 1rem 0;
+        }
+
+        h3 {
+            color: var(--primary);
+            margin: 1.5rem 0 0.5rem 0;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        ul, ol {
+            margin: 1rem 0;
+            padding-left: 2rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        blockquote {
+            border-left: 4px solid var(--accent);
+            padding-left: 1rem;
+            margin: 1rem 0;
+            font-style: italic;
+            color: var(--secondary);
+        }
+
+        .pillar-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .pillar-card {
+            background: var(--light);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            border-left: 4px solid var(--accent);
+            transition: transform 0.2s;
+        }
+
+        .pillar-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .code-block {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: var(--border-radius);
+            padding: 1rem;
+            margin: 1rem 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        .table th, .table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .table th {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .nav-link {
+            background: var(--accent);
+            color: white;
+            padding: 10px 20px;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .nav-link:hover {
+            background: var(--secondary);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            background: var(--dark);
+            color: white;
+            border-radius: var(--border-radius);
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .header {
+                padding: 1rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .pillar-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Ternary Moral Logic: A Mandatory Framework for Auditable AI</h1>
+            <p><strong>A Legal-Technical Framework for Ethical AI Decision-Making</strong></p>
+            
+            <div class="badges">
+                <a href="https://github.com/FractonicMind/TernaryMoralLogic" class="badge" style="background: #3498db; color: white;">Framework Version: TML-2.0.0</a>
+                <a href="LICENSE" class="badge" style="background: #27ae60; color: white;">License: MIT with Attribution</a>
+                <a href="docs/CONFORMANCE_TESTING.md" class="badge" style="background: #e67e22; color: white;">Conformance: Level 3 Certified</a>
+                <a href="memorial/MEMORIAL_FUND.md" class="badge" style="background: #9b59b6; color: white;">Memorial: Lev Goukassian</a>
+            </div>
+
+            <div class="notice">
+                <strong>IMPORTANT NOTICE:</strong> Ternary Moral Logic (TML) is a <strong>legal-technical framework</strong>, not software, hardware, or consulting services.<br>
+                Implementation requires compliance with all mandatory requirements outlined in <a href="docs/MANDATORY.md">MANDATORY.md</a> and <a href="docs/COMPLIANCE_DISCLAIMER.md">COMPLIANCE_DISCLAIMER.md</a>.
+            </div>
+
+            <p><strong>Official Citation:</strong><br>
+            Goukassian, L. (2025). <em>Ternary Moral Logic — Notarized Constitutional Core, October 2025</em> [Data set]. Zenodo. 
+            <a href="https://doi.org/10.5281/zenodo.17352897">https://doi.org/10.5281/zenodo.17352897</a></p>
+        </header>
+
+        <nav class="nav-links">
+            <a href="#introduction" class="nav-link">Introduction</a>
+            <a href="#how-it-works" class="nav-link">How TML Works</a>
+            <a href="#framework" class="nav-link">Framework Overview</a>
+            <a href="#pillars" class="nav-link">Core Pillars</a>
+            <a href="#governance" class="nav-link">Governance</a>
+            <a href="#implementation" class="nav-link">Implementation</a>
+        </nav>
+
+        <main class="content">
+            <!-- Introduction Section -->
+            <section id="introduction">
+                <h2>Introduction</h2>
+                <p>The rapid expansion of artificial intelligence into domains of consequential decision-making has revealed a structural limitation in the logic that underlies most computational systems.</p>
+                <p>Human moral reasoning operates within gradients of ambiguity and emotional context, while traditional AI systems remain confined to binary evaluation, true or false, safe or unsafe, allowed or denied.</p>
+                <p>This cultural preference for certainty over hesitation, simplicity over nuance, is reflected in how machines are built. Binary systems mirror human impatience with doubt.</p>
+                <p><strong>Ternary Moral Logic (TML)</strong> was conceived to address two inherent deficiencies in this paradigm.</p>
+                <p>First, the reduction of moral complexity to a binary choice, where ethical reasoning collapses into mechanical decision trees.</p>
+                <p>Second, the absence of a true human–AI partnership. Traditional ethical frameworks position the machine as an autonomous moral agent, a black box whose internal reasoning remains inaccessible.</p>
+                
+                <blockquote>
+                    "I taught machines to feel the weight of action, and the beauty of hesitation. I paused, and made the future pause with me."<br>
+                    <strong>— Lev Goukassian</strong>
+                </blockquote>
+            </section>
+
+            <!-- How TML Works Section -->
+            <section id="how-it-works">
+                <h2>How TML Works: A Technical Poetry</h2>
+                <p>A <strong>prompt</strong> arrives, and TML divides instantly into parallel streams.</p>
+                <p>The <strong>primary path</strong> executes the AI's response without delay, while <strong>Sacred Zero</strong> runs alongside, scanning for ambiguity, conflict, or potential harm.</p>
+                <p>When uncertainty breaches its ethical threshold, a pause is marked and the reasoning flagged, never halting execution, but always recording the hesitation.</p>
+                <p>From the first token, <strong>Always Memory</strong> begins its witness.</p>
+                
+                <h3>The Three Voices of Ethical AI</h3>
+                
+                <div class="pillar-grid">
+                    <div class="pillar-card">
+                        <h4>+1 (Proceed): The Voice of Confidence</h4>
+                        <p>This is the clear affirmative: a decision grounded in alignment with ethical principles and minimal risk of harm.</p>
+                    </div>
+                    
+                    <div class="pillar-card">
+                        <h4>-1 (Refuse): The Voice of Moral Resistance</h4>
+                        <p>This voice speaks when harm is clear or violation unavoidable. Unlike the cold silence of binary refusal, TML encodes a <em>quality of resistance</em>.</p>
+                    </div>
+                    
+                    <div class="pillar-card">
+                        <h4>0 (Hesitate / Inquire): The Voice of Wisdom, the Sacred Zero</h4>
+                        <p>This is the pause, not indecision, but awareness. When facing ambiguity or risk, the AI records a hesitation event, seeking more information or escalating to human review.</p>
+                    </div>
+                </div>
+
+                <blockquote>
+                    "Sacred Zero is where wisdom lies, not in having all the answers but in knowing when to pause and ask better questions."<br>
+                    <strong>— Lev Goukassian</strong>
+                </blockquote>
+            </section>
+
+            <!-- Framework Overview -->
+            <section id="framework">
+                <h2>Framework Overview</h2>
+                <h3>What is TML?</h3>
+                <p>Ternary Moral Logic introduces a revolutionary third state to artificial intelligence decision-making: the <strong>Sacred Zero</strong>. Instead of forcing AI systems into binary allow/deny decisions, TML creates space for comprehensive documentation when facing ethical complexity.</p>
+                
+                <h3>Core Framework Components</h3>
+                <ol>
+                    <li><strong>Sacred Zero. Sacred Pause Technology</strong>: Automatic activation when moral complexity exceeds thresholds</li>
+                    <li><strong>Always Memory</strong>: Creates an immutable, cryptographically sealed memory before execution</li>
+                    <li><strong>The Goukassian Promise</strong>: Composed of three interconnected elements: <strong>The Lantern, The Signature, and The License</strong></li>
+                    <li><strong>The Memorial Fund</strong>: A financial pool funded by compliance fees and penalties</li>
+                    <li><strong>Moral Trace Logging</strong>: Complete, immutable documentation of ethical reasoning</li>
+                    <li><strong>Human Rights</strong>: Real-time detection mechanisms for identifying human rights violations</li>
+                    <li><strong>Planetary Protection</strong>: Every AI decision affecting Earth creates immutable memories of its environmental impact</li>
+                    <li><strong>Hybrid Shield</strong>: Dual-layer defense combining hash-chain integrity with multi-chain anchoring</li>
+                    <li><strong>Public Blockchains</strong>: Immediate anchoring of every decision to Bitcoin, Ethereum, Polygon, and OpenTimestamps</li>
+                </ol>
+
+                <div class="code-block">
+                    <strong>Core Principle</strong><br>
+                    <strong>No log = no action.</strong> If the system cannot produce required log, operation must halt. This is <strong>non-negotiable.</strong> Missing log creates automatic liability.
+                </div>
+            </section>
+
+            <!-- Core Pillars Section -->
+            <section id="pillars">
+                <h2>Core Framework Pillars</h2>
+                
+                <div class="pillar-grid">
+                    <div class="pillar-card">
+                        <h4><a href="TML_Pillars/Sacred_Zero-Sacred_Pause_Technology.md">Sacred Zero</a></h4>
+                        <p>The heart of TML: the precise moment an AI system hesitates before harm. Activates when prompt intersects with mandated human rights and ecological protections.</p>
+                        <p><a href="https://fractonicmind.github.io/TernaryMoralLogic/TML_Pillars/Sacred_Zero-Sacred_Pause_Technology.html">Interactive Overview →</a></p>
+                    </div>
+                    
+                    <div class="pillar-card">
+                        <h4><a href="TML_Pillars/Always_Memory.md">Always Memory</a></h4>
+                        <p>TML's enforcement backbone — no memory = no action. Continuously records every consequential decision as cryptographically sealed Moral Trace Logs.</p>
+                        <p><a href="https://fractonicmind.github.io/TernaryMoralLogic/TML_Pillars/Always_Memory.html">Interactive Overview →</a></p>
+                    </div>
+                    
+                    <div class="pillar-card">
+                        <h4><a href="TML_Pillars/Goukassian_Promise.md">Goukassian Promise</a></h4>
+                        <p>A covenant of accountability composed of The Lantern (symbol), The Signature (cryptographic anchor), and The License (binding covenant).</p>
+                        <p><a href="https://fractonicmind.github.io/TernaryMoralLogic/TML_Pillars/Goukassian_Promise.html">Interactive Overview →</a></p>
+                    </div>
+                    
+                    <div class="pillar-card">
+                        <h4><a href="TML_Pillars/Moral_Trace_Logs.md">Moral Trace Logs</a></h4>
+                        <p>The evidentiary core of TML — immutable records that capture every consequential AI decision before it executes.</p>
+                        <p><a href="https://fractonicmind.github.io/TernaryMoralLogic/TML_Pillars/Moral_Trace_Logs.html">Interactive Overview →</a></p>
+                    </div>
+                    
+                    <div class="pillar-card">
+                        <h4><a href="compliance/human_rights">Human Rights</a></h4>
+                        <p>Transforms 77 years of international law into computationally enforceable boundaries checked before any AI action executes.</p>
+                        <p><a href="https://fractonicmind.github.io/TernaryMoralLogic/TML_Pillars/Human_Rights.html">Interactive Overview →</a></p>
+                    </div>
+                    
+                    <div class="pillar-card">
+                        <h4><a href="docs/earth">Earth Protection</a></h4>
+                        <p>Gives the planet a legal and cryptographic voice. Turns 50 years of environmental law into machine-readable, enforceable constraints.</p>
+                        <p><a href="https://fractonicmind.github.io/TernaryMoralLogic/TML_Pillars/Earth_Protection.html">Interactive Overview →</a></p>
+                    </div>
+                    
+                    <div class="pillar-card">
+                        <h4><a href="protection/Hybrid-Shield.md">Hybrid Shield</a></h4>
+                        <p>TML's double-layer integrity system guaranteeing permanence and verifiability of every Moral Trace Log through mathematical and institutional layers.</p>
+                        <p><a href="https://fractonicmind.github.io/TernaryMoralLogic/TML_Pillars/Hybrid_Shield.html">Interactive Overview →</a></p>
+                    </div>
+                    
+                    <div class="pillar-card">
+                        <h4><a href="docs/Public_Blockchain_FAQ.md">Public Blockchains</a></h4>
+                        <p>The foundation of TML's Mathematical Shield, transforming every ethical hesitation into court-admissible, immutable evidence.</p>
+                        <p><a href="https://fractonicmind.github.io/TernaryMoralLogic/TML_Pillars/Public_Blockchains.html">Interactive Overview →</a></p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Governance Section -->
+            <section id="governance">
+                <h2>Governance and Legal Framework</h2>
+                <p>TML's most revolutionary aspect is its legal framework built on the principle of "forensic readiness". The framework shifts the legal burden of proof from the plaintiff to the company.</p>
+                
+                <h3>Key Legal Provisions</h3>
+                <ul>
+                    <li><strong>Forensic Readiness:</strong> Missing logs create irrebuttable presumption of maximum fault</li>
+                    <li><strong>Executive Liability:</strong> Personal liability for executives who manipulate system thresholds</li>
+                    <li><strong>Whistleblower Protection:</strong> 30% of fines as rewards with strong anti-retaliation protections</li>
+                    <li><strong>Victim Compensation:</strong> 30% of penalties distributed to victims, 40% for vulnerable populations</li>
+                </ul>
+
+                <p>For detailed governance information, see <a href="GOVERNANCE.md">GOVERNANCE.md</a></p>
+            </section>
+
+            <!-- Implementation Section -->
+            <section id="implementation">
+                <h2>Implementation and Getting Started</h2>
+                
+                <h3>Quick Start</h3>
+                <div class="code-block">
+# Initialize TML with domain-level thresholds (non-configurable)<br>
+framework = create_tml_framework(domain="general")<br><br>
+
+# Evaluate and record decision outcome<br>
+result = framework.process_decision(context)<br><br>
+
+# If logging fails, decision halts immediately
+                </div>
+
+                <h3>Implementation Steps</h3>
+                <ol>
+                    <li><strong>Read Compliance Requirements:</strong> Begin with <a href="docs/MANDATORY.md">MANDATORY.md</a> and <a href="docs/COMPLIANCE_DISCLAIMER.md">COMPLIANCE_DISCLAIMER.md</a></li>
+                    <li><strong>Review Implementation Guide:</strong> Follow <a href="docs/IMPLEMENTATION_GUIDE.md">IMPLEMENTATION_GUIDE.md</a></li>
+                    <li><strong>Check Conformance Standards:</strong> Study <a href="docs/CONFORMANCE_TESTING.md">CONFORMANCE_TESTING.md</a></li>
+                    <li><strong>Study Protection Principles:</strong> Review <a href="docs/PROTECTION_PRINCIPLES.md">PROTECTION_PRINCIPLES.md</a></li>
+                    <li><strong>Examine Examples:</strong> Explore the <a href="examples/integration_hooks/README.md">examples directory</a></li>
+                </ol>
+            </section>
+
+            <!-- Contact Information -->
+            <section>
+                <h2>Support and Resources</h2>
+                
+                <table class="table">
+                    <tr>
+                        <th>Contact Type</th>
+                        <th>Email Address</th>
+                    </tr>
+                    <tr>
+                        <td>Framework Originator</td>
+                        <td>leogouk@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td>Community Support</td>
+                        <td>support@tml-goukassian.org</td>
+                    </tr>
+                    <tr>
+                        <td>Technical Questions</td>
+                        <td>technical@tml-goukassian.org</td>
+                    </tr>
+                    <tr>
+                        <td>Legal Inquiries</td>
+                        <td>legal@tml-goukassian.org</td>
+                    </tr>
+                    <tr>
+                        <td>Emergency Response</td>
+                        <td>ethics-emergency@tml-goukassian.org</td>
+                    </tr>
+                </table>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p><strong>Ternary Moral Logic Framework</strong></p>
+            <p>Created by Lev Goukassian | ORCID: 0009-0006-5966-1243</p>
+            <p>Repository: <a href="https://github.com/FractonicMind/TernaryMoralLogic" style="color: #3498db;">https://github.com/FractonicMind/TernaryMoralLogic</a></p>
+            <p>Support: support@tml-goukassian.org</p>
+            <p>Succession: <a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/TML-SUCCESSION-CHARTER.md" style="color: #3498db;">TML Succession Charter</a></p>
+        </footer>
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add subtle animation to pillar cards on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all pillar cards
+        document.querySelectorAll('.pillar-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
