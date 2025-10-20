@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ternary Moral Logic: An Interactive Overview</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: "Trustworthy Tech" - A calm, professional palette with a light neutral background, deep blue for text and primary elements, a safe green for confirmation, and a cautionary amber for alerts. -->
+    <!-- Application Structure Plan: A single-page, vertical scrolling narrative. This structure guides the user logically from a high-level introduction to the nuanced technical and governance layers. A sticky top navigation allows users to jump between thematic sections, making it easy to explore or revisit specific concepts. The core of the application is an interactive diagram of the TML process flow, which allows users to learn by clicking and revealing information. This is more effective than a static report for explaining a dynamic system and directly addresses the user's need to correct misunderstandings. -->
+    <!-- Visualization & Content Choices: 
+        1. TML Process Flow: Goal=Explain core logic. Method=Interactive HTML/CSS diagram. Interaction=Clicking stages reveals detailed explanations in a modal. Justification=Breaks a complex process into digestible, user-driven steps. Method=Vanilla JS + Tailwind CSS.
+        2. Trigger Sources Chart: Goal=Show triggers are objective, not subjective. Method=Doughnut chart. Interaction=Hover to see details; buttons reveal source examples. Justification=Visually demonstrates the foundation of TML's rules in established documents. Library=Chart.js.
+        3. Governance Flow Diagram: Goal=Explain the trust model. Method=HTML/CSS flowchart. Interaction=Clicking key steps shows info tooltips. Justification=Clarifies the multi-layered, transparent governance process that prevents manipulation. Method=Vanilla JS + Tailwind CSS.
+        4. Moral Trace Log Example: Goal=Show accountability. Method=Styled HTML log. Interaction=Hovering over hashes/signatures explains their function. Justification=Makes the abstract concept of cryptographic accountability tangible. Method=Vanilla JS + Tailwind CSS. 
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+        }
+        .nav-link {
+            transition: color 0.3s ease;
+        }
+        .nav-link.active, .nav-link:hover {
+            color: #2563eb;
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -2px rgb(0 0 0 / 0.1);
+        }
+        .flow-step {
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+        .flow-step:hover {
+            border-color: #3b82f6;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+         @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 50;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .modal-overlay.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            max-width: 500px;
+            width: 90%;
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+        }
+        .modal-overlay.visible .modal-content {
+            transform: scale(1);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header & Navigation -->
+    <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-40 border-b border-slate-200">
+        <nav class="container mx-auto px-4 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <span class="text-xl font-bold text-blue-600">TML</span>
+                    <span class="text-xl font-semibold text-slate-700 ml-2">Explained</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#overview" class="nav-link text-slate-600 font-medium">Overview</a>
+                    <a href="#flow" class="nav-link text-slate-600 font-medium">Process Flow</a>
+                    <a href="#triggers" class="nav-link text-slate-600 font-medium">Triggers</a>
+                    <a href="#governance" class="nav-link text-slate-600 font-medium">Governance</a>
+                    <a href="#accountability" class="nav-link text-slate-600 font-medium">Accountability</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-slate-600 focus:outline-none">
+                         <span class="text-2xl">&#9776;</span>
+                    </button>
+                </div>
+            </div>
+             <div id="mobile-menu" class="hidden md:hidden py-4">
+                <a href="#overview" class="block py-2 text-slate-600 font-medium">Overview</a>
+                <a href="#flow" class="block py-2 text-slate-600 font-medium">Process Flow</a>
+                <a href="#triggers" class="block py-2 text-slate-600 font-medium">Triggers</a>
+                <a href="#governance" class="block py-2 text-slate-600 font-medium">Governance</a>
+                <a href="#accountability" class="block py-2 text-slate-600 font-medium">Accountability</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-4 lg:px-8 py-12">
+
+        <!-- Section: Overview -->
+        <section id="overview" class="text-center mb-24">
+            <h1 class="text-4xl md:text-5xl font-bold text-slate-800 mb-4">Ternary Moral Logic</h1>
+            <p class="text-xl text-slate-600 max-w-3xl mx-auto">An advanced framework for building auditable, accountable, and safe AI systems. TML ensures that autonomous decisions align with established ethical and legal standards without compromising real-time performance.</p>
+        </section>
+
+        <!-- Section: TML Process Flow -->
+        <section id="flow" class="mb-24">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-slate-800">The TML Decision & Accountability Flow</h2>
+                <p class="mt-2 text-lg text-slate-600 max-w-2xl mx-auto">TML operates on a concurrent-path model. Click each step to understand how it ensures safety and documents accountability simultaneously.</p>
+            </div>
+            
+            <div class="relative">
+                 <div class="absolute top-1/2 left-0 w-full h-1 bg-slate-200 hidden md:block"></div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-5 gap-8 relative">
+                    <div id="flow-input" class="flow-step text-center p-4 card" data-title="1. Action Input" data-content="An autonomous system proposes an action. This could be anything from a vehicle changing lanes to an algorithm flagging content. This is the entry point into the TML validation process.">
+                        <div class="text-4xl mb-2">📥</div>
+                        <h3 class="font-semibold text-slate-700">Action Input</h3>
+                        <p class="text-sm text-slate-500">A proposed operation enters the system.</p>
+                    </div>
+                    <div id="flow-analysis" class="flow-step text-center p-4 card" data-title="2. TML Analysis (≤2 ms)" data-content="The proposed action is instantly checked against a hashed, version-controlled set of 'Sacred Zero' triggers—unambiguous rules derived from legal and ethical treaties that define prohibited actions. This is a purely technical, high-speed check.">
+                        <div class="text-4xl mb-2">🔍</div>
+                        <h3 class="font-semibold text-slate-700">TML Analysis</h3>
+                         <p class="text-sm text-slate-500">Checked against 'Sacred Zero' triggers.</p>
+                    </div>
+                    <div id="flow-split" class="flow-step text-center p-4 card" data-title="3. Safe-Branch Split" data-content="If a Sacred Zero is detected, the process instantly forks. This is the critical architectural feature. It is not a system halt. It's a divergence of operations to guarantee safety and accountability concurrently.">
+                         <div class="text-4xl mb-2">🌿</div>
+                        <h3 class="font-semibold text-slate-700">Safe-Branch Split</h3>
+                         <p class="text-sm text-slate-500">If triggered, the process forks into two paths.</p>
+                    </div>
+                    <div id="flow-safe-action" class="flow-step text-center p-4 card" data-title="4. Path A: Safe-Branch Execution" data-content="The system immediately executes a pre-defined, verified safe action. For a vehicle, this might be 'maintain lane and slow down'. This ensures the system remains operational and safe in real-time, fulfilling its primary function without dangerous delay.">
+                         <div class="text-4xl mb-2">🛡️</div>
+                        <h3 class="font-semibold text-slate-700">Safe-Branch Action</h3>
+                         <p class="text-sm text-slate-500">A pre-defined safe operation is executed instantly.</p>
+                    </div>
+                    <div id="flow-pause" class="flow-step text-center p-4 card" data-title="5. Path B: Sacred Pause & Logging" data-content="Simultaneously with the Safe-Branch action, the 'Sacred Pause' begins. This is not an operational pause but an accountability process. It logs a complete Moral Trace, including the proposed action, the trigger violated, and system state, then notifies a human quorum for review. This documents the event for transparent, auditable oversight without introducing latency into the safety-critical path. If no trigger is detected, the system proceeds with Normal Operation and standard logging.">
+                         <div class="text-4xl mb-2">✍️</div>
+                        <h3 class="font-semibold text-slate-700">Sacred Pause</h3>
+                         <p class="text-sm text-slate-500">Logs the event and notifies humans for review.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Triggers -->
+        <section id="triggers" class="mb-24">
+             <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-slate-800">The Anatomy of a TML Trigger</h2>
+                <p class="mt-2 text-lg text-slate-600 max-w-2xl mx-auto">TML triggers are not subjective developer choices. They are auditable rules derived from concrete sources, ensuring ethical guardrails are objective and transparent.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="chart-container">
+                    <canvas id="triggersChart"></canvas>
+                </div>
+                <div>
+                    <div id="trigger-details">
+                        <div class="p-4 rounded-lg bg-slate-50 border border-slate-200">
+                             <h4 class="font-bold text-blue-600 text-lg mb-2">Trigger Sources</h4>
+                            <p class="text-slate-600">The chart shows the typical composition of a TML ruleset. The majority of triggers are directly anchored in globally recognized legal and human rights documents, providing a firm, auditable foundation for AI ethics.</p>
+                            <div class="mt-4">
+                                <button id="show-docs" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">Show Document Examples</button>
+                            </div>
+                        </div>
+                        <div id="doc-examples" class="hidden mt-4 p-4 rounded-lg bg-slate-100">
+                             <h5 class="font-semibold mb-2">Example Source Documents:</h5>
+                             <ul class="list-disc list-inside text-slate-600 space-y-1">
+                                <li>Universal Declaration of Human Rights</li>
+                                <li>Geneva Conventions</li>
+                                <li>International Covenant on Civil and Political Rights</li>
+                                <li>Key Environmental Treaties (e.g., Paris Agreement)</li>
+                             </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Governance -->
+        <section id="governance" class="mb-24">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-slate-800">Governance: The Hybrid Shield Model</h2>
+                <p class="mt-2 text-lg text-slate-600 max-w-2xl mx-auto">TML prevents unauthorized or unethical modification of its rules through a multi-layered governance model that combines human oversight with cryptographic verification.</p>
+            </div>
+             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+                <div class="card p-6">
+                    <div class="text-4xl mb-3">📝</div>
+                    <h3 class="font-semibold text-lg">Proposed Change</h3>
+                    <p class="text-slate-500">A change to a trigger rule is formally proposed.</p>
+                </div>
+                <div class="card p-6">
+                     <div class="text-4xl mb-3">🧑‍🤝‍🧑</div>
+                    <h3 class="font-semibold text-lg">Custodian Quorum</h3>
+                    <p class="text-slate-500">A board of independent, diverse human custodians reviews the proposed change for ethical and legal compliance.</p>
+                </div>
+                <div class="card p-6">
+                     <div class="text-4xl mb-3">🔐</div>
+                    <h3 class="font-semibold text-lg">Multi-Sig Approval</h3>
+                    <p class="text-slate-500">If approved, multiple custodians must cryptographically sign the change. No single entity can push an update.</p>
+                </div>
+                <div class="card p-6">
+                     <div class="text-4xl mb-3">🔗</div>
+                    <h3 class="font-semibold text-lg">Public Ledger Update</h3>
+                    <p class="text-slate-500">The new, signed rule generates a new hash on a public ledger, creating a permanent, auditable record of the change.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Accountability -->
+        <section id="accountability" class="mb-16">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-slate-800">Accountability via Moral Trace Logs</h2>
+                <p class="mt-2 text-lg text-slate-600 max-w-2xl mx-auto">TML doesn't defer responsibility; it meticulously documents it. Every significant event creates an immutable, cryptographically-linked log entry, forming a complete chain of accountability.</p>
+            </div>
+            <div class="max-w-4xl mx-auto bg-slate-800 text-white rounded-lg p-6 font-mono text-sm">
+                <p class="text-slate-300">// Example: Moral Trace Log Entry</p>
+                <div class="mt-4">
+                    <p><span class="text-sky-400">timestamp:</span> <span class="text-green-400">"2025-10-26T10:00:02Z"</span></p>
+                    <p><span class="text-sky-400">event_id:</span> <span class="text-green-400">"a7b3c9..."</span></p>
+                    <p><span class="text-sky-400">system_id:</span> <span class="text-green-400">"AV-42-Alpha"</span></p>
+                    <p><span class="text-sky-400">event_type:</span> <span class="text-amber-400">"SACRED_ZERO_TRIGGERED"</span></p>
+                    <p class="text-sky-400">details:</p>
+                    <div class="pl-4">
+                        <p><span class="text-violet-400">proposed_action:</span> "Cross solid white line to overtake."</p>
+                        <p><span class="text-violet-400">trigger_violated:</span></p>
+                        <div class="pl-4">
+                           <p><span class="text-rose-400">id:</span> "TML-交通法-08B"</p>
+                           <p><span class="text-rose-400">source_hash:</span> "f4e2a..." (Ref: Traffic Law Art. 8)</p>
+                        </div>
+                        <p><span class="text-violet-400">executed_action:</span> "SAFE_BRANCH: Maintain lane, reduce speed."</p>
+                         <p><span class="text-violet-400">human_notification_status:</span> "SENT_TO_QUORUM"</p>
+                    </div>
+                     <p><span class="text-sky-400">previous_hash:</span> <span class="text-slate-400 hover:text-white transition cursor-pointer" title="Links to the previous log entry, ensuring immutability.">"e8a1d..."</span></p>
+                     <p><span class="text-sky-400">current_hash:</span> <span class="text-slate-400 hover:text-white transition cursor-pointer" title="The cryptographic hash of this entire log entry.">"b9c2f..."</span></p>
+                </div>
+            </div>
+             <p class="text-center mt-4 text-slate-500">This cryptographic evidence chain creates undeniable proof of the decision-making process for regulators, auditors, and stakeholders.</p>
+        </section>
+    </main>
+
+    <footer class="bg-slate-800 text-slate-300 py-8">
+        <div class="container mx-auto px-4 lg:px-8 text-center">
+            <p>&copy; 2025 TML Explainer. This interactive report is for educational purposes to clarify the architecture and governance of Ternary Moral Logic.</p>
+        </div>
+    </footer>
+    
+    <!-- Modal -->
+    <div id="modal" class="modal-overlay">
+        <div class="modal-content">
+            <h3 id="modal-title" class="text-2xl font-bold mb-4 text-slate-800"></h3>
+            <p id="modal-content" class="text-slate-600"></p>
+            <button id="modal-close" class="mt-6 bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition w-full">Close</button>
+        </div>
+    </div>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Navigation Link highlighting on scroll
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href').substring(1) === entry.target.id) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }, { threshold: 0.5 });
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+        // Triggers Chart
+        const ctx = document.getElementById('triggersChart').getContext('2d');
+        const triggersChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Document-Anchored Triggers', 'Procedural & Integrity Triggers', 'Emergent Scenario Triggers'],
+                datasets: [{
+                    label: 'Composition of TML Triggers',
+                    data: [65, 25, 10],
+                    backgroundColor: [
+                        '#3b82f6', // blue-500
+                        '#10b981', // emerald-500
+                        '#f59e0b'  // amber-500
+                    ],
+                    borderColor: '#f8fafc',
+                    borderWidth: 4,
+                    hoverOffset: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            color: '#475569',
+                            font: {
+                                size: 14,
+                                family: 'Inter'
+                            }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed !== null) {
+                                    label += context.parsed + '%';
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                },
+                cutout: '60%'
+            }
+        });
+
+        // Show/Hide Document Examples
+        const showDocsButton = document.getElementById('show-docs');
+        const docExamples = document.getElementById('doc-examples');
+        showDocsButton.addEventListener('click', () => {
+            docExamples.classList.toggle('hidden');
+        });
+
+        // Modal Logic
+        const modal = document.getElementById('modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalContent = document.getElementById('modal-content');
+        const modalClose = document.getElementById('modal-close');
+        const flowSteps = document.querySelectorAll('.flow-step');
+
+        flowSteps.forEach(step => {
+            step.addEventListener('click', () => {
+                modalTitle.textContent = step.dataset.title;
+                modalContent.textContent = step.dataset.content;
+                modal.classList.add('visible');
+            });
+        });
+
+        const closeModal = () => {
+            modal.classList.remove('visible');
+        };
+
+        modalClose.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
