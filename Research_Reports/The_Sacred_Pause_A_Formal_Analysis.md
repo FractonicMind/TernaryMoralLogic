@@ -48,7 +48,7 @@ Ternary Moral Logic is presented not merely as a philosophical concept but as a 
 
 ### **Anatomy of the TML Repository**
 
-The public GitHub repository for TML (FractonicMind/TernaryMoralLogic) is structured to be a complete ecosystem for developers, researchers, and auditors. According to its index, the framework is designated as Version 2.0.0 and is distributed under an MIT License, created by Lev Goukassian (ORCID: 0009-0006-5946+-1243). The repository is organized into several key sections:
+The public GitHub repository for TML (FractonicMind/TernaryMoralLogic) is structured to be a complete ecosystem for developers, researchers, and auditors. According to its index, the framework is designated as Version 2.0.0 and is distributed under an MIT License, created by Lev Goukassian (ORCID: 0009-0006-5966-1243). The repository is organized into several key sections:
 
 * **Core Documentation:** This includes foundational texts such as the README, LICENSE, GOVERNANCE charter, and ATTRIBUTION files, which establish the legal and operational principles of the framework.  
 * **Protection Mechanisms:** This section details built-in safeguards like the Hybrid Shield, Integrity Monitoring, and a formal Misuse Prevention protocol, designed to ensure the framework's resilience against tampering and malicious use.  
