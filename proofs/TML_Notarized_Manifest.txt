@@ -21,3 +21,8 @@ Notarized at: 2025-10-21T17:00Z
 File: Goukassian_Covenant_notarized.pdf
 SHA-256: e50bebdf9b9c8beb48d41a5b031ad93efcc8c0e8a9724cd72416a6c96125f2bc
 Notarized at: 2025-10-21T17:00Z
+
+File: Goukassian_Promise_notarized.pdf
+SHA-256: 7970fbdd38618b264dc69d1c6094f54db833f2863e2b410e5f1a096b385e6b72
+Notarized at: 2025-10-21T18:00Z
+Description: Foundational personal vow anchoring the moral intent of TML. Complements the Goukassian Covenant.
