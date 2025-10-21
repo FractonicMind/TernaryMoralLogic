@@ -20,6 +20,7 @@
 | **TML_Notarized_Manifest.txt**               | `4f95ef5e285dd649ea7cb32aaf97319cb557ba6d9b062336387253f4feccd981` | [Proof](TML_Notarized_Manifest.txt.ots)               |
 | **Goukassian_Covenant_notarized.md**         | `d55b1026fa80a6dd7188a84dd0501d1779b9b47a0f391afe4b953ba3b3bc1d8f` | [Proof](Goukassian_Covenant_notarized.md.ots)         |
 | **Goukassian_Covenant_notarized.pdf**        | `e50bebdf9b9c8beb48d41a5b031ad93efcc8c0e8a9724cd72416a6c96125f2bc` | [Proof](Goukassian_Covenant_notarized.pdf)         |
+| **Goukassian_Promise_notarized.pdf**         | `7970fbdd38618b264dc69d1c6094f54db833f2863e2b410e5f1a096b385e6b72` | [Proof](Goukassian_Covenant_notarized.pdf)         |
 
 
 **Remarks:**  
