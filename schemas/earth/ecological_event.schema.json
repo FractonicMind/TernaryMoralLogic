@@ -1,4 +1,3 @@
-json
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://tml-goukassian.org/schemas/earth/v2.0/ecological_event",
@@ -213,7 +212,7 @@ json
             },
             "verification_status": {
               "type": "string",
-              "enum": ["unverified", "community_verified", "oracle_verified", "guardian_verified"]
+              "enum": ["unverified", "community_verified", "oracle_verified", "stewardship_verified"]
             }
           }
         },
@@ -253,7 +252,7 @@ json
         "trigger_reason": {
           "type": "string"
         },
-        "guardian_notified": {
+        "stewardship_notified": {
           "type": "boolean"
         },
         "community_notified": {
@@ -327,19 +326,19 @@ json
     
     "audit_trail": {
       "type": "object",
-      "required": ["log_hash", "guardian_signatures"],
+      "required": ["log_hash", "stewardship_signatures"],
       "properties": {
         "log_hash": {
           "type": "string",
           "pattern": "^sha256:[a-f0-9]{64}$"
         },
-        "guardian_signatures": {
+        "stewardship_signatures": {
           "type": "array",
           "minItems": 3,
           "items": {
             "type": "object",
             "properties": {
-              "guardian_id": {"type": "string"},
+              "stewardship_member_id": {"type": "string"},
               "signature": {"type": "string"},
               "timestamp": {"type": "string", "format": "date-time"}
             }
