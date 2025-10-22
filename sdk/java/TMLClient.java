@@ -19,7 +19,7 @@ public class TMLClient {
         public long violationsCaught = 0;
         public long penaltiesEnforced = 0;
         public long whistleblowerRewards = 0;
-        public final long guardianMeetings = 0; // Always zero
+        public final long councilMeetings = 0; // Always zero
     }
     
     public TMLClient() {
@@ -33,7 +33,7 @@ public class TMLClient {
         System.out.println("🏮 TML v" + TMLConfig.VERSION + " initialized");
         System.out.println("Deployment: " + TMLConfig.DEPLOYMENT_TIME_MINUTES + " minutes");
         System.out.println("Annual cost: $" + TMLConfig.ANNUAL_COST_USD);
-        System.out.println("Guardian Network: " + config.getGuardianConfig().recommendation);
+        System.out.println("Stewardship Council: " + config.getCouncilConfig().recommendation);
     }
     
     /**
@@ -46,7 +46,7 @@ public class TMLClient {
         log.put("creator", TMLConfig.CREATOR);
         log.put("orcid", TMLConfig.ORCID);
         log.put("sacred_symbol", TMLConfig.SACRED_SYMBOL);
-        log.put("guardian_approval", "NOT_REQUIRED");
+        log.put("council_approval", "NOT_REQUIRED");
         
         String hash = hashLog(log);
         anchorToBlockchain(hash);
@@ -82,7 +82,7 @@ public class TMLClient {
         if (violation != null) {
             // Automatic enforcement
             enforcePenalty(violation.penalty);
-            violation.guardianReview = "NONE - Blockchain handles";
+            violation.councilReview = "NONE - Blockchain handles";
             violation.enforcementTime = "< 10 minutes";
             
             stats.violationsCaught++;
@@ -117,10 +117,10 @@ public class TMLClient {
     }
     
     /**
-     * Get Guardian Network status (the truth)
+     * Get Stewardship Council status (the truth)
      */
-    public String getGuardianStatus() {
-        return config.getGuardianConfig().getReality();
+    public String getCouncilStatus() {
+        return config.getCouncilConfig().getReality();
     }
     
     public Statistics getStatistics() {
@@ -137,7 +137,7 @@ public class TMLClient {
     private void anchorToBlockchain(String hash) {
         // Multi-chain anchoring: Bitcoin, Ethereum, Polygon
         // Cost to attack: $50B
-        // No Guardian approval needed
+        // No Stewardship Council approval needed
     }
     
     private boolean violatesHumanRights(Map<String, Object> action) {
@@ -183,7 +183,7 @@ public class TMLClient {
         public String type;
         public long penalty;
         public double multiplier;
-        public String guardianReview;
+        public String councilReview;
         public String enforcementTime;
     }
     
@@ -216,9 +216,9 @@ public class TMLClient {
         // Show stats
         Statistics stats = client.getStatistics();
         System.out.println("\nStatistics:");
-        System.out.println("Guardian meetings attended: " + stats.guardianMeetings);
+        System.out.println("Council meetings attended: " + stats.councilMeetings);
         
-        // Show Guardian reality
-        System.out.println("\n" + client.getGuardianStatus());
+        // Show Stewardship Council reality
+        System.out.println("\n" + client.getCouncilStatus());
     }
 }
