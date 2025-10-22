@@ -1,6 +1,6 @@
 /**
  * Always Memory - Blockchain-Enforced Logging
- * No Guardians. No committees. Just immutable evidence.
+ * Immutable evidence through cryptographic verification.
  * 
  * Creator: Lev Goukassian (ORCID: 0009-0006-5966-1243)
  */
@@ -19,7 +19,7 @@ private:
         uint64_t logs_created = 0;
         uint64_t missing_logs_detected = 0;
         uint64_t tampering_attempts = 0;
-        uint64_t guardian_approvals = 0;  // Always 0
+        uint64_t council_approvals = 0;  // Always 0
     } stats;
 
     std::string ethereum_rpc;
@@ -33,8 +33,7 @@ public:
         
         std::cout << "🏮 Always Memory v3.0 initialized\n";
         std::cout << "Enforcement: Blockchain (automatic)\n";
-        std::cout << "Guardian approval needed: NEVER\n";
-        std::cout << "Deployment time: 10 minutes\n\n";
+        std::cout << "Stewardship Council approval needed: NEVER\n\n";
         
         blockchain_connected = true;
     }
@@ -51,7 +50,7 @@ public:
         log["creator"] = "Lev Goukassian";
         log["orcid"] = "0009-0006-5966-1243";
         log["sacred_symbol"] = "🏮";
-        log["guardian_approval"] = "NOT_REQUIRED";
+        log["council_approval"] = "NOT_REQUIRED";
         
         // Add decision data
         for (const auto& [key, value] : decision) {
@@ -65,7 +64,7 @@ public:
         
         std::cout << "Log created: " << hash.substr(0, 8) << "...\n";
         std::cout << "Anchored to Blockchain (immutable)\n";
-        std::cout << "Guardian review: NOT NEEDED\n\n";
+        std::cout << "Council review: NOT NEEDED\n\n";
         
         return hash;
     }
@@ -80,7 +79,7 @@ public:
             std::cerr << "CRITICAL: Missing log detected!\n";
             std::cerr << "Penalty: $100,000,000 (automatic)\n";
             std::cerr << "Criminal prosecution: INITIATED\n";
-            std::cerr << "Guardian intervention: NOT POSSIBLE\n\n";
+            std::cerr << "Stewardship Council intervention: NOT POSSIBLE\n\n";
             
             initiateProsecution(logHash);
             return false;
@@ -107,15 +106,15 @@ public:
     }
 
     /**
-     * Get Guardian reality
+     * Get Stewardship Council reality
      */
-    std::string getGuardianStatus() const {
-        return "Guardian Network Status:\n"
+    std::string getCouncilStatus() const {
+        return "Stewardship Council Status:\n"
                "  Exists: false\n"
                "  Needed: false\n"
                "  Value: 0\n"
                "  Annual cost if created: $6,600,000\n"
-               "  Guardian approvals given: " + std::to_string(stats.guardian_approvals) + "\n"
+               "  Stewardship Council approvals given: " + std::to_string(stats.council_approvals) + "\n"
                "  Recommendation: Use Blockchain\n";
     }
 
@@ -124,7 +123,7 @@ public:
         std::cout << "Logs created: " << stats.logs_created << "\n";
         std::cout << "Missing logs detected: " << stats.missing_logs_detected << "\n";
         std::cout << "Tampering attempts: " << stats.tampering_attempts << "\n";
-        std::cout << "Guardian approvals needed: " << stats.guardian_approvals << "\n";
+        std::cout << "Stewardship Council approvals needed: " << stats.council_approvals << "\n";
         std::cout << "==================\n\n";
     }
 
@@ -154,7 +153,7 @@ private:
         // Ethereum: Smart contract verification  
         // Polygon: Fast confirmation
         // Cost to attack: $50 billion
-        // Guardian approval: Not needed
+        // Stewardship Council approval: Not needed
     }
 
     bool isAnchoredOnBlockchain(const std::string& hash) {
@@ -165,7 +164,7 @@ private:
     void initiateProsecution(const std::string& evidence) {
         // Automatic via smart contract
         // No committee review
-        // No Guardian approval
+        // No Stewardship Council approval
         // Just mathematical justice
         std::cout << "Criminal prosecution initiated via Blockchain\n";
     }
@@ -191,8 +190,8 @@ int main() {
     // Check for tampering
     memory.detectTampering(logHash, logHash);
     
-    // Show Guardian reality
-    std::cout << memory.getGuardianStatus() << "\n";
+    // Show Stewardship Council reality
+    std::cout << memory.getCouncilStatus() << "\n";
     
     // Show statistics
     memory.printStatistics();
