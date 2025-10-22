@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
 """
 TML Main Application - Blockchain Implementation
-No Guardians. No committees. Just mathematical protection.
+Immutable accountability through cryptographic verification.
 
 Creator: Lev Goukassian (ORCID: 0009-0006-5966-1243)
-Deployment: 10 minutes to global protection
 """
 
 import asyncio
@@ -22,13 +21,12 @@ class TMLApplication:
     """Main TML application - Blockchain-enforced accountability"""
     
     def __init__(self):
-        """Initialize without Guardian committees"""
+        """Initialize without institutional committees"""
         logger.info("🏮 TML Protection System v3.0 Starting...")
-        logger.info("Guardian Network: Not required")
-        logger.info("Deployment time: 10 minutes")
-        logger.info("Annual cost: $1,200 vs Guardian $6.6M")
+        logger.info("Stewardship Council: Not required")
+        logger.info("Annual cost: $1,200 vs Council $6.6M")
         
-        # Blockchain connections (no Guardian endpoints)
+        # Blockchain connections (no Council endpoints)
         self.ethereum = None
         self.polygon = None
         self.smart_contracts = {}
@@ -39,7 +37,7 @@ class TMLApplication:
             'violations_caught': 0,
             'penalties_enforced': 0,
             'whistleblower_rewards': 0,
-            'guardian_meetings': 0  # Always zero
+            'council_meetings': 0  # Always zero
         }
         
     async def initialize(self):
@@ -58,13 +56,13 @@ class TMLApplication:
             
             logger.info("✅ Blockchain connections established")
             logger.info("✅ Smart contracts loaded")
-            logger.info("❌ Guardian committees: None (not needed)")
+            logger.info("❌ Institutional committees: None (not needed)")
             
             return True
             
         except Exception as e:
             logger.error(f"Initialization failed: {e}")
-            logger.info("Tip: Check Blockchain connections, not Guardian availability")
+            logger.info("Tip: Check Blockchain connections, not Council availability")
             return False
     
     def _load_contract(self, filename: str) -> Dict:
@@ -80,7 +78,7 @@ class TMLApplication:
             'sacred_symbol': '🏮',
             'creator': 'Lev Goukassian',
             'orcid': '0009-0006-5966-1243',
-            'guardian_approval': 'NOT_REQUIRED',
+            'council_approval': 'NOT_REQUIRED',
             'blockchain_anchored': True
         }
         
@@ -123,7 +121,7 @@ class TMLApplication:
                 'violations': violations,
                 'penalty': penalty,
                 'enforcement': 'automatic_blockchain',
-                'guardian_review': 'NONE'
+                'council_review': 'NONE'
             }
         
         return {'sacred_zero': False, 'proceed': True}
@@ -148,7 +146,7 @@ class TMLApplication:
         
         logger.info(f"✅ Whistleblower paid: ${reward:,}")
         logger.info(f"⏱️ Time to payment: 3 minutes")
-        logger.info(f"👥 Guardian approval needed: NONE")
+        logger.info(f"👥 Council approval needed: NONE")
         
         return {
             'status': 'paid',
@@ -170,7 +168,7 @@ class TMLApplication:
                 'attack_cost': '$50,000,000,000',
                 'security': 'Mathematical'
             },
-            'guardian_network': {
+            'stewardship_council': {
                 'status': 'Does not exist',
                 'needed': False,
                 'cost_if_implemented': '$6,600,000/year',
@@ -259,8 +257,8 @@ async def main():
     print("Website: https://tml-goukassian.org")
     print()
     print("Deployment Options:")
-    print("  [1] Blockchain (10 minutes, $1,200/year) ✅")
-    print("  [2] Guardian Network (12+ months, $6.6M/year) ❌")
+    print("  [1] Blockchain ($1,200/year) ✅")
+    print("  [2] Stewardship Council (12+ months, $6.6M/year) ❌")
     print()
     
     # Initialize application
@@ -277,7 +275,7 @@ async def main():
         print(f"  Protection: {status['protection']}")
         print(f"  Logs created: {status['statistics']['logs_created']}")
         print(f"  Violations caught: {status['statistics']['violations_caught']}")
-        print(f"  Guardian meetings attended: {status['statistics']['guardian_meetings']}")
+        print(f"  Council meetings attended: {status['statistics']['council_meetings']}")
         
         # Example: Create a log
         decision = {'action': 'loan_decision', 'outcome': 'approved'}
@@ -300,7 +298,7 @@ async def main():
         
     else:
         print("\n❌ Initialization failed")
-        print("Tip: Blockchain required, Guardians not needed")
+        print("Tip: Blockchain required, Stewardship Council not needed")
 
 
 if __name__ == "__main__":
