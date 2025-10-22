@@ -28,7 +28,7 @@ namespace TML {
 
 // Forward declarations
 class Config;
-class GuardianConnection;
+class CouncilConnection;
 
 /**
  * Log levels for Always Memory
@@ -156,13 +156,13 @@ struct LogBatch {
 };
 
 /**
- * Guardian receipt for log submission
+ * Stewardship Council receipt for log submission
  */
-struct GuardianReceipt {
+struct CouncilReceipt {
     std::string receipt_id;
     std::string batch_id;
     std::chrono::system_clock::time_point received_at;
-    std::string guardian_node;
+    std::string council_node;
     std::array<uint8_t, 64> signature;  // Ed25519 signature
     std::optional<std::string> blockchain_tx_id;
     bool verified;
@@ -289,11 +289,11 @@ public:
     bool AddToBatch(const std::string& batch_id, const LogEntry& entry);
     
     /**
-     * Commit batch to Guardian Network
+     * Commit batch to Stewardship Council
      * @param batch_id Batch to commit
-     * @return Guardian receipt
+     * @return Council receipt
      */
-    std::optional<GuardianReceipt> CommitBatch(const std::string& batch_id);
+    std::optional<CouncilReceipt> CommitBatch(const std::string& batch_id);
     
     /**
      * Get pending batch size
@@ -314,7 +314,7 @@ public:
                     const LogMetadata& metadata = {});
     
     /**
-     * Flush all pending logs to Guardian Network
+     * Flush all pending logs to Stewardship Council
      * @return True if all logs flushed successfully
      */
     bool Flush();
@@ -398,33 +398,33 @@ public:
      */
     std::vector<std::array<uint8_t, 32>> GetMerkleProof(const std::string& log_id);
     
-    // ========== Guardian Network ==========
+    // ========== Stewardship Council ==========
     
     /**
-     * Connect to Guardian Network
+     * Connect to Stewardship Council
      * @return True if connection successful
      */
-    bool ConnectToGuardian();
+    bool ConnectToCouncil();
     
     /**
-     * Check Guardian connection
+     * Check Council connection
      * @return True if connected
      */
-    bool IsConnectedToGuardian() const;
+    bool IsConnectedToCouncil() const;
     
     /**
-     * Get Guardian receipt for log
+     * Get Council receipt for log
      * @param log_id Log ID
-     * @return Guardian receipt or nullopt
+     * @return Council receipt or nullopt
      */
-    std::optional<GuardianReceipt> GetGuardianReceipt(const std::string& log_id);
+    std::optional<CouncilReceipt> GetCouncilReceipt(const std::string& log_id);
     
     /**
-     * Verify Guardian signature
+     * Verify Council signature
      * @param receipt Receipt to verify
      * @return True if signature valid
      */
-    bool VerifyGuardianSignature(const GuardianReceipt& receipt);
+    bool VerifyCouncilSignature(const CouncilReceipt& receipt);
     
     // ========== Blockchain Anchoring ==========
     
@@ -543,10 +543,10 @@ public:
     bool ValidateConfiguration() const;
     
     /**
-     * Test Guardian connection
+     * Test Council connection
      * @return Latency in milliseconds or -1 if failed
      */
-    double TestGuardianConnection();
+    double TestCouncilConnection();
     
 private:
     class Impl;
