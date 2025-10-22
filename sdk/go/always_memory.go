@@ -20,19 +20,19 @@ type Stats struct {
 	LogsCreated          int64
 	MissingLogsDetected  int64
 	TamperingAttempts    int64
-	GuardianApprovals    int64 // Always 0
+	CouncilApprovals    int64 // Always 0
 }
 
 // NewAlwaysMemory creates Blockchain-enforced logger
 func NewAlwaysMemory(cfg *Config) *AlwaysMemory {
 	fmt.Println("🏮 Always Memory v3.0 initialized")
 	fmt.Println("Enforcement: Blockchain (automatic)")
-	fmt.Println("Guardian approval: NEVER NEEDED")
+	fmt.Println("Stewardship Council approval: NEVER NEEDED")
 	fmt.Println("Missing logs = Criminal prosecution\n")
 	
 	return &AlwaysMemory{
 		config: cfg,
-		stats: Stats{GuardianApprovals: 0}, // Forever zero
+		stats: Stats{CouncilApprovals: 0}, // Forever zero
 	}
 }
 
@@ -44,7 +44,7 @@ func (am *AlwaysMemory) CreateLog(decision map[string]interface{}) (string, erro
 		"creator":           "Lev Goukassian",
 		"orcid":            "0009-0006-5966-1243",
 		"sacred_symbol":     "🏮",
-		"guardian_approval": "NOT_REQUIRED",
+		"council_approval": "NOT_REQUIRED",
 	}
 	
 	hash := am.computeHash(log)
@@ -69,7 +69,7 @@ func (am *AlwaysMemory) VerifyLog(logHash string) error {
 		fmt.Printf("Hash: %s\n", logHash[:8])
 		fmt.Printf("Penalty: $100,000,000 (automatic)\n")
 		fmt.Printf("Prosecution: INITIATED\n")
-		fmt.Printf("Guardian help: IMPOSSIBLE\n\n")
+		fmt.Printf("Stewardship Council help: IMPOSSIBLE\n\n")
 		
 		am.initiateProsecution(logHash)
 		return fmt.Errorf("missing log - criminal liability")
@@ -97,16 +97,16 @@ func (am *AlwaysMemory) GetStats() Stats {
 	return am.stats
 }
 
-// GetGuardianStatus returns the truth
-func (am *AlwaysMemory) GetGuardianStatus() string {
+// GetCouncilStatus returns the truth
+func (am *AlwaysMemory) GetCouncilStatus() string {
 	return fmt.Sprintf(
-		"Guardian Status:\n"+
+		"Stewardship Council Status:\n"+
 		"  Exists: false\n"+
 		"  Needed: false\n"+
 		"  Approvals given: %d\n"+
 		"  Annual cost if created: $6,600,000\n"+
 		"  Recommendation: Use Blockchain",
-		am.stats.GuardianApprovals,
+		am.stats.CouncilApprovals,
 	)
 }
 
@@ -116,21 +116,4 @@ func (am *AlwaysMemory) computeHash(data map[string]interface{}) string {
 	return hex.EncodeToString(h[:])
 }
 
-func (am *AlwaysMemory) anchorToBlockchain(hash string) error {
-	// Multi-chain anchoring
-	// Bitcoin + Ethereum + Polygon
-	// Cost to attack: $50B
-	// Guardian approval: Never needed
-	return nil // Simplified
-}
-
-func (am *AlwaysMemory) isAnchored(hash string) bool {
-	// Check all chains
-	return len(hash) > 0 // Simplified
-}
-
-func (am *AlwaysMemory) initiateProsecution(evidence string) {
-	// Automatic via smart contract
-	// No committee review possible
-	fmt.Printf("Prosecution initiated: %s\n", evidence[:8])
-}
+func (am *AlwaysMemory) anchor
