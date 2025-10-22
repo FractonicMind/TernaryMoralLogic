@@ -73,5 +73,5 @@ Because the future should inherit our best compile-time decisions, not our worst
 
 ---
 
-*The declaration is public at* [*github.com/FractonicMind/TML-SUCCESSION-DECLARATION.md*](https://github.com/FractonicMind/TML-SUCCESSION-DECLARATION.md)  
+*The declaration is public at* [*TML-SUCCESSION-DECLARATION.md*](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/TML-SUCCESSION-DECLARATION.md)  
 *ORCID: 0009-0006-5966-1243*
