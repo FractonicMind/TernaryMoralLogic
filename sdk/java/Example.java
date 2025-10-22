@@ -15,7 +15,7 @@ public class Example {
         System.out.println("🏮 TML BLOCKCHAIN DEMONSTRATION");
         System.out.println("=================================\n");
         
-        // Initialize TML (10 minutes, not 12+ months)
+        // Initialize TML
         TMLConfig config = new TMLConfig();
         TMLClient client = new TMLClient(config);
         AlwaysMemoryLogger logger = new AlwaysMemoryLogger();
@@ -33,7 +33,7 @@ public class Example {
         String logHash = logger.createLog(decision);
         System.out.println("Log created: " + logHash.substring(0, 8) + "...");
         System.out.println("Blockchain anchored: YES");
-        System.out.println("Guardian approval: NOT NEEDED\n");
+        System.out.println("Stewardship Council approval: NOT NEEDED\n");
         
         // Example 2: Sacred Zero trigger
         System.out.println("--- Example 2: Sacred Zero ---");
@@ -46,7 +46,7 @@ public class Example {
             System.out.printf("Penalty: $%,d\n", result.penalty);
             System.out.printf("Multiplier: %.1fx\n", result.multiplier);
             System.out.printf("Enforcement: AUTOMATIC\n");
-            System.out.printf("Committee review: %s\n\n", result.guardianReview);
+            System.out.printf("Committee review: %s\n\n", result.councilReview);
         }
         
         // Example 3: Whistleblower reward
@@ -65,22 +65,20 @@ public class Example {
             System.out.println("Result: CRIMINAL PROSECUTION");
         }
         
-        // Show Guardian reality
-        System.out.println("--- Guardian Network Truth ---");
-        System.out.println(config.getGuardianConfig().getReality());
+        // Show Stewardship Council reality
+        System.out.println("--- Stewardship Council Truth ---");
+        System.out.println(config.getCouncilConfig().getReality());
         
         // Final statistics
         System.out.println("\n--- Session Statistics ---");
         TMLClient.Statistics stats = client.getStatistics();
         System.out.println("Logs created: " + stats.logsCreated);
         System.out.println("Violations caught: " + stats.violationsCaught);
-        System.out.println("Guardian meetings: " + stats.guardianMeetings);
+        System.out.println("Council meetings: " + stats.councilMeetings);
         
         System.out.println("\n=================================");
-        System.out.println("Deployment: 10 minutes");
-        System.out.println("Annual cost: $1,200");
         System.out.println("Protection: ACTIVE");
-        System.out.println("Guardians: NOT NEEDED");
+        System.out.println("Stewardship Council: NOT NEEDED");
         System.out.println("=================================");
     }
 }
