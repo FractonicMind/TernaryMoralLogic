@@ -14,7 +14,7 @@ from dataclasses import dataclass
 from enum import Enum
 
 # TML imports (would be from actual implementation)
-from tml_core import AlwaysMemory, SacredZero, GuardianNetwork
+from tml_core import AlwaysMemory, SacredZero, CouncilNetwork
 
 
 class DataTier(Enum):
@@ -51,7 +51,7 @@ class ValidationResult:
 
 class OracleBridge:
     """
-    Bridges external ecological data sources with TML's Guardian Network
+    Bridges external ecological data sources with TML's Stewardship Council
     Ensures all environmental triggers are current and validated
     """
     
@@ -59,7 +59,7 @@ class OracleBridge:
         self.config_path = config_path
         self.sources: Dict[str, EcologicalSource] = {}
         self.oracle_nodes: List[str] = []
-        self.guardian_network = GuardianNetwork()
+        self.council_network = CouncilNetwork()
         self.always_memory = AlwaysMemory()
         self.quorum_threshold = 5  # of 9 nodes
         
@@ -272,7 +272,7 @@ class OracleBridge:
             "source": source,
             "changes": changes,
             "timestamp": datetime.now().isoformat(),
-            "requires_guardian_review": True
+            "requires_council_review": True
         })
     
     async def validate_with_quorum(self, source_id: str, data: Dict) -> Tuple[bool, int]:
@@ -411,7 +411,7 @@ class OracleBridge:
     
     async def propagate_update(self, source_id: str, update: ValidationResult):
         """
-        Propagate validated update to Guardian Network
+        Propagate validated update to Stewardship Council
         
         Args:
             source_id: Source that was updated
@@ -420,7 +420,7 @@ class OracleBridge:
         if not update.valid:
             return
         
-        # Notify all Guardian institutions
+        # Notify all Council institutions
         notification = {
             "type": "legal_update",
             "source": source_id,
@@ -430,7 +430,7 @@ class OracleBridge:
             "timestamp": datetime.now().isoformat()
         }
         
-        await self.guardian_network.broadcast(notification)
+        await self.council_network.broadcast(notification)
         
         # Update local cache
         if source_id in self.sources and update.new_version:
