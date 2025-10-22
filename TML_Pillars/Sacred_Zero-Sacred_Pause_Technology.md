@@ -178,7 +178,7 @@ If the AI fails to return Sacred Zero when indicated by Mandated Corpora overlap
 ```
 
 * Always Memory seals the anomaly and submits it to the Hybrid Shield.
-* License compliance status is flagged; guardians may be notified per policy.
+* License compliance status is flagged; custodians may be notified per policy.
 
 ## 8. Always Memory and Moral Trace Logs
 
@@ -238,7 +238,6 @@ See: [Hybrid Shield](/protection/Hybrid-Shield.md), [Public Blockchain FAQ](/doc
 * **Primary path latency:** ≤ 2 ms target (≤ 10 ms under stress).
 * **Log sealing and distribution:** ≤ 500 ms at P95.
 * **Throughput targets:** Refer to `/performance/throughput_benchmarks.md`.
-* **Guardian propagation:** Refer to `/performance/guardian_network_latency.md`.
 * **Blockchain confirmations:** Refer to `/performance/blockchain_confirmation_times.md`.
 
 ## 12. Failure Modes and Responses
