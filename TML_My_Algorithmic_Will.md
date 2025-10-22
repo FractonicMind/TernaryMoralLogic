@@ -57,7 +57,7 @@ I deliberately spread power across five missions:
 - **MIT Media Lab / Stanford HAI** – research seat; evolves the spec without loosening it.  
 - **Memorial Sloan Kettering** – holds the cancer-research purse; every penalty finances another fellowship.
 
-Five seats, **5-of-6 multi-sig** required for any change. No single org—nor any government—can water the framework down.
+Five seats, **5-of-6 multi-sig** required for any change. No single org, nor any government, can water the framework down.
 
 ---
 
