@@ -1,4 +1,4 @@
-Sitemap: https://fractonicmind.github.io/TernaryMoralLogic/sitemap-v2.xml
+Sitemap: https://fractonicmind.github.io/TernaryMoralLogic/sitemaps/sitemap-v2.xml
 
 User-agent: *
 Disallow:
