@@ -36,7 +36,7 @@ public class TMLException extends RuntimeException {
         VALIDATION("Input validation error"),
         SACRED_ZERO("Sacred Zero trigger error"),
         ALWAYS_MEMORY("Always Memory logging error"),
-        GUARDIAN("Guardian network error"),
+        COUNCIL("Stewardship Council error"),
         TEE("Trusted Execution Environment error"),
         COMPLIANCE("Compliance violation error"),
         HUMAN_RIGHTS("Human rights protection error"),
@@ -330,3 +330,7 @@ public class TMLException extends RuntimeException {
             context.isEmpty() ? "No additional context" : context.toString());
     }
 }
+
+================================================================================
+NOTE: TMLConfig.java in the repository contains Go code, not Java code.
+================================================================================
