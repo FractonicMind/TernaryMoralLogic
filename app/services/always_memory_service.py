@@ -16,12 +16,12 @@ class AlwaysMemoryService:
             'logs_created': 0,
             'missing_logs_detected': 0,
             'tampering_attempts': 0,
-            'guardian_approvals': 0  # Always 0
+            'council_approvals': 0  # Always 0
         }
         
         print("🏮 Always Memory Service v3.0")
         print("Enforcement: Blockchain automatic")
-        print("Guardian approval: NEVER NEEDED")
+        print("Stewardship Council approval: NEVER NEEDED")
         print("Missing logs = Criminal prosecution\n")
     
     async def create_log(self, decision: Dict) -> str:
@@ -32,7 +32,7 @@ class AlwaysMemoryService:
             'creator': 'Lev Goukassian',
             'orcid': '0009-0006-5966-1243',
             'sacred_symbol': '🏮',
-            'guardian_approval': 'NOT_REQUIRED'
+            'council_approval': 'NOT_REQUIRED'
         }
         
         log_hash = self._hash_log(log)
@@ -49,7 +49,7 @@ class AlwaysMemoryService:
             print(f"CRITICAL: Missing log {log_hash[:8]}")
             print("Penalty: $100,000,000 (automatic)")
             print("Criminal prosecution: INITIATED")
-            print("Guardian intervention: IMPOSSIBLE\n")
+            print("Stewardship Council intervention: IMPOSSIBLE\n")
             
             await self._initiate_prosecution(log_hash)
             return False
@@ -69,12 +69,12 @@ class AlwaysMemoryService:
             return True
         return False
     
-    def get_guardian_reality(self) -> Dict:
-        """Return truth about Guardians"""
+    def get_council_reality(self) -> Dict:
+        """Return truth about Stewardship Council"""
         return {
             'exists': False,
             'needed': False,
-            'approvals_given': self.stats['guardian_approvals'],
+            'approvals_given': self.stats['council_approvals'],
             'annual_cost_if_created': 6_600_000,
             'value_added': 0,
             'recommendation': 'Use Blockchain'
@@ -94,7 +94,7 @@ class AlwaysMemoryService:
         """Multi-chain anchoring"""
         # Bitcoin + Ethereum + Polygon
         # Cost to attack: $50B
-        # Guardian approval: Never
+        # Stewardship Council approval: Never
         pass  # Simplified
     
     async def _is_anchored(self, hash: str) -> bool:
@@ -104,7 +104,7 @@ class AlwaysMemoryService:
     async def _initiate_prosecution(self, evidence: str):
         """Automatic prosecution via smart contract"""
         # No committee review
-        # No Guardian approval
+        # No Council approval
         # Just mathematical justice
         pass
 
@@ -121,10 +121,10 @@ async def main():
     # Verify log
     await service.verify_log(log_hash)
     
-    # Check Guardian reality
-    reality = service.get_guardian_reality()
-    print(f"Guardian Network: {reality['recommendation']}")
-    print(f"Guardian approvals given: {reality['approvals_given']}")
+    # Check Stewardship Council reality
+    reality = service.get_council_reality()
+    print(f"Stewardship Council: {reality['recommendation']}")
+    print(f"Council approvals given: {reality['approvals_given']}")
 
 
 if __name__ == "__main__":
