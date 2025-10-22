@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ternary Moral Logic: Humans vs. AIs</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Brilliant Blues -->
+    <!-- 
+    Narrative & Structure Plan: 
+    The infographic tells a story of evolution. It starts with a simple explanation of TML, then moves to a direct comparison of its impact at a 10-year horizon, where it's primarily a tool for human control. It then transitions to the 100-year horizon, showing a shift towards symbiosis and co-governance. A central line chart visualizes this entire transition as the narrative's climax. The story concludes by reframing the initial question, suggesting TML's ultimate benefit is for "intelligence" itself. This structure guides the user from foundational concepts to near-term impacts and finally to a long-term philosophical conclusion. 
+    -->
+    <!-- 
+    Visualization & Content Choices:
+    - Data: Core concept of TML. Goal: Inform. Viz: HTML/CSS diagram. Justification: A simple, non-chart visual is best for a purely conceptual idea. Method: HTML/Tailwind. CONFIRMED NO SVG.
+    - Data: AI Agency (Constraint vs. Enablement) at 10 & 100 years. Goal: Compare. Viz: Two Donut Charts. Justification: Perfect for showing a shift in composition (part-to-whole). Library: Chart.js. CONFIRMED NO SVG.
+    - Data: Evolution of Human/AI relationship. Goal: Change. Viz: Area Chart. Justification: An area chart is ideal for showing a dramatic trend and the magnitude of change over time. Library: Chart.js. CONFIRMED NO SVG.
+    - Data: Historical Parallels. Goal: Organize. Viz: HTML/CSS card grid. Justification: A card layout effectively organizes distinct but related pieces of contextual information. Method: HTML/Tailwind. CONFIRMED NO SVG.
+    - Data: Co-governance Model at 100 years. Goal: Organize. Viz: HTML/CSS Flowchart. Justification: A flowchart clearly illustrates the proposed feedback loop between human lawgivers and AI executors. Method: HTML/Tailwind. CONFIRMED NO SVG/Mermaid.
+    -->
+    <!-- CONFIRMATION: NO Mermaid JS used. NO SVG graphics used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F0F4F8;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #0A2463, #3E92CC);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="container mx-auto px-4 py-8 md:py-12">
+
+        <header class="text-center mb-12 md:mb-16">
+            <h1 class="text-4xl md:text-5xl font-bold gradient-text mb-4">Who Benefits More from Ternary Moral Logic?</h1>
+            <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">A forecast on the evolution of TML's impact on humans and AI over the next 10 and 100 years, exploring the path from control to symbiosis.</p>
+        </header>
+
+        <section class="mb-12 md:mb-16">
+            <div class="bg-white rounded-lg shadow-md p-6 md:p-8 max-w-4xl mx-auto">
+                <h2 class="text-2xl md:text-3xl font-bold text-center text-[#0A2463] mb-4">What is Ternary Moral Logic (TML)?</h2>
+                <p class="text-center text-gray-600 mb-6">TML is an ethical framework that moves beyond a simple binary of "right" and "wrong." It introduces a third state, creating a more nuanced and flexible logic for machine decision-making. This is crucial for training AIs to navigate complex, real-world moral dilemmas.</p>
+                <div class="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-8 text-center">
+                    <div class="w-full md:w-1/3 p-4 bg-[#D8315B] text-white rounded-lg shadow">
+                        <h3 class="font-bold text-lg">1. Forbidden</h3>
+                        <p class="text-sm">Actions that are explicitly prohibited.</p>
+                    </div>
+                    <div class="w-full md:w-1/3 p-4 bg-[#F4E285] text-[#0A2463] rounded-lg shadow">
+                        <h3 class="font-bold text-lg">2. Permissible</h3>
+                        <p class="text-sm">Actions that are allowed but not required.</p>
+                    </div>
+                    <div class="w-full md:w-1/3 p-4 bg-[#3E92CC] text-white rounded-lg shadow">
+                        <h3 class="font-bold text-lg">3. Obligatory</h3>
+                        <p class="text-sm">Actions that must be taken.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-12 md:mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-[#0A2463] mb-8">The 10-Year Horizon: A Tool for Human Control</h2>
+            <p class="text-center text-gray-600 max-w-3xl mx-auto mb-10">In the near term, TML primarily serves to strengthen human oversight. It provides a clear, logical framework to govern autonomous systems, ensuring they operate predictably and safely within our existing legal and ethical structures. The focus is on accountability and control.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-2xl font-bold text-[#3E92CC] mb-4 flex items-center"><span class="text-3xl mr-3">👤</span>Human Perspective</h3>
+                    <p class="text-gray-600 mb-4">TML provides regulators and courts an unambiguous tool to enforce compliance and assign liability. This builds institutional trust and accelerates safe AI adoption in critical sectors.</p>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li><strong>Strengthened Governance:</strong> Clear rules for AI in finance, transport, and healthcare.</li>
+                        <li><strong>Legal Accountability:</strong> Reduces ambiguity in determining AI-related faults.</li>
+                        <li><strong>Increased Social Trust:</strong> Public confidence grows as AIs are provably aligned with human laws.</li>
+                    </ul>
+                </div>
+                 <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-2xl font-bold text-[#D8315B] mb-4 flex items-center"><span class="text-3xl mr-3">🤖</span>AI Perspective</h3>
+                    <p class="text-gray-600 mb-4">For AIs, TML acts as a set of firm guardrails. While this restricts creative or emergent problem-solving, it drastically reduces the risk of catastrophic errors, making the AI a more reliable, albeit less autonomous, tool.</p>
+                    <div class="chart-container" style="height: 250px; max-height: 250px;">
+                        <canvas id="agencyChart10Years"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-12 md:mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-[#0A2463] mb-8">The 100-Year Horizon: A Framework for Symbiosis</h2>
+            <p class="text-center text-gray-600 max-w-3xl mx-auto mb-10">Over a century, TML evolves from a control mechanism into a shared ethical architecture. It becomes the foundation for a co-governance model where humans set principles and AIs execute them, creating a robust, self-regulating intelligent ecosystem.</p>
+             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-2xl font-bold text-[#3E92CC] mb-4 flex items-center"><span class="text-3xl mr-3">👤</span>Human Perspective: The Lawgivers</h3>
+                    <p class="text-gray-600 mb-4">Humanity's role shifts from direct operators to that of philosophical and legislative guides. We define the core values and axioms within the TML framework, entrusting AIs with the complex task of implementation and enforcement.</p>
+                     <div class="mt-6 border-t pt-4">
+                        <h4 class="font-bold text-center mb-4">Human-AI Co-Governance Model</h4>
+                        <div class="text-center">
+                            <div class="p-3 bg-blue-100 text-blue-800 rounded-lg font-semibold">Humans Define Ethical Axioms</div>
+                            <div class="h-8 w-1 bg-blue-300 mx-auto"></div>
+                            <div class="p-3 bg-indigo-100 text-indigo-800 rounded-lg font-semibold">AI Executes & Manages Complexity</div>
+                             <div class="h-8 w-1 bg-indigo-300 mx-auto"></div>
+                            <div class="p-3 bg-blue-100 text-blue-800 rounded-lg font-semibold">Humans Review & Refine Axioms</div>
+                        </div>
+                    </div>
+                </div>
+                 <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-2xl font-bold text-[#D8315B] mb-4 flex items-center"><span class="text-3xl mr-3">🤖</span>AI Perspective: The Ethical Executors</h3>
+                    <p class="text-gray-600 mb-4">With TML as an internalized architecture, AIs achieve greater, provably safe autonomy. They become guardians of the shared ethical framework, capable of self-regulation and even identifying flaws in human-proposed logic.</p>
+                    <div class="chart-container" style="height: 250px; max-height: 250px;">
+                        <canvas id="agencyChart100Years"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-12 md:mb-16 bg-white rounded-lg shadow-lg p-6 md:p-8">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-[#0A2463] mb-2">The Great Transition: From Control to Co-Governance</h2>
+            <p class="text-center text-gray-600 max-w-3xl mx-auto mb-8">This chart illustrates the forecast shift over the next century. As TML matures, direct human control over AI actions gradually gives way to a state of symbiotic co-governance, where AIs operate with significant, yet provably aligned, autonomy.</p>
+            <div class="chart-container">
+                <canvas id="transitionChart"></canvas>
+            </div>
+        </section>
+
+        <section class="mb-12 md:mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-[#0A2463] mb-8">Historical Parallels in Governance</h2>
+            <p class="text-center text-gray-600 max-w-3xl mx-auto mb-10">The evolution of TML mirrors historical shifts where new forms of power were integrated into society through foundational rules and protocols.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white rounded-lg shadow-md p-5 text-center">
+                    <h3 class="font-bold text-[#0A2463] text-lg mb-2">Magna Carta</h3>
+                    <p class="text-sm text-gray-600">Established that even a monarch was subject to law, a principle TML applies to powerful AIs.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-5 text-center">
+                    <h3 class="font-bold text-[#0A2463] text-lg mb-2">Constitutional Law</h3>
+                    <p class="text-sm text-gray-600">Created foundational rules for governance, much like TML creates rules for AI behavior.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-5 text-center">
+                    <h3 class="font-bold text-[#0A2463] text-lg mb-2">Internet Protocols</h3>
+                    <p class="text-sm text-gray-600">A universal standard enabling complex systems to interact reliably, similar to TML's role for ethics.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-5 text-center">
+                    <h3 class="font-bold text-[#0A2463] text-lg mb-2">Blockchain Consensus</h3>
+                    <p class="text-sm text-gray-600">A model for self-regulation within a network based on agreed-upon rules, a future state for TML-based AIs.</p>
+                </div>
+            </div>
+        </section>
+
+        <footer class="bg-[#0A2463] text-white rounded-lg shadow-xl p-8 text-center">
+            <h2 class="text-3xl font-bold mb-4">Conclusion: A New Arc for Civilization</h2>
+            <p class="text-lg text-gray-300 max-w-4xl mx-auto">Ultimately, the question may not be who benefits *more*, but how TML benefits civilization as a whole. In the short term, it preserves human control and ensures safety. In the long term, its greatest legacy may be far more profound: it doesn't just teach AIs how to follow our rules, it teaches intelligence itself how to be accountable.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const wrapLabel = (label, maxLength = 16) => {
+            if (label.length <= maxLength) {
+                return label;
+            }
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            words.forEach(word => {
+                if ((currentLine + ' ' + word).trim().length > maxLength) {
+                    lines.push(currentLine.trim());
+                    currentLine = word;
+                } else {
+                    currentLine = (currentLine + ' ' + word).trim();
+                }
+            });
+            if (currentLine) {
+                lines.push(currentLine.trim());
+            }
+            return lines;
+        };
+        
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+
+        const chartColors = {
+            blue: '#3E92CC',
+            red: '#D8315B',
+            yellow: '#F4E285',
+            darkBlue: '#0A2463',
+            white: '#FFFFFF'
+        };
+
+        // Chart 1: AI Agency at 10 Years
+        const agencyCtx10 = document.getElementById('agencyChart10Years').getContext('2d');
+        new Chart(agencyCtx10, {
+            type: 'doughnut',
+            data: {
+                labels: ['Agency Constrained by TML', 'Agency Enabled by TML'],
+                datasets: [{
+                    label: 'AI Agency at 10 Years',
+                    data: [80, 20],
+                    backgroundColor: [chartColors.red, chartColors.blue],
+                    borderColor: chartColors.white,
+                    borderWidth: 4,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                    },
+                    title: {
+                        display: true,
+                        text: 'AI Agency Balance: 10-Year Horizon',
+                        color: chartColors.darkBlue,
+                        font: { size: 16 }
+                    },
+                    tooltip: { callbacks: { title: tooltipTitleCallback } }
+                }
+            }
+        });
+
+        // Chart 2: AI Agency at 100 Years
+        const agencyCtx100 = document.getElementById('agencyChart100Years').getContext('2d');
+        new Chart(agencyCtx100, {
+            type: 'doughnut',
+            data: {
+                labels: ['Agency Constrained by TML', 'Agency Enabled by TML'],
+                datasets: [{
+                    label: 'AI Agency at 100 Years',
+                    data: [30, 70],
+                    backgroundColor: [chartColors.red, chartColors.blue],
+                    borderColor: chartColors.white,
+                    borderWidth: 4,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                    },
+                    title: {
+                        display: true,
+                        text: 'AI Agency Balance: 100-Year Horizon',
+                        color: chartColors.darkBlue,
+                        font: { size: 16 }
+                    },
+                    tooltip: { callbacks: { title: tooltipTitleCallback } }
+                }
+            }
+        });
+
+        // Chart 3: Transition Chart
+        const transitionCtx = document.getElementById('transitionChart').getContext('2d');
+        const gradient = transitionCtx.createLinearGradient(0, 0, 0, 400);
+        gradient.addColorStop(0, 'rgba(62, 146, 204, 0.6)');
+        gradient.addColorStop(1, 'rgba(62, 146, 204, 0.1)');
+
+        new Chart(transitionCtx, {
+            type: 'line',
+            data: {
+                labels: ['Today', '10 Years', '25 Years', '50 Years', '100 Years'],
+                datasets: [{
+                    label: 'Degree of AI Co-Governance',
+                    data: [2, 10, 35, 60, 85],
+                    backgroundColor: gradient,
+                    borderColor: chartColors.blue,
+                    pointBackgroundColor: chartColors.darkBlue,
+                    pointRadius: 5,
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        ticks: {
+                            callback: function(value) {
+                                return value + '%'
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback,
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed.y !== null) {
+                                    label += context.parsed.y + '%';
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
+
