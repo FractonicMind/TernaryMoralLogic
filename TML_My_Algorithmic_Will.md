@@ -1,4 +1,4 @@
-# I Wrote My Own Algorithmic Will So the Code Can Keep Protecting Humans—and the Planet—Long After I’m Gone
+# I Wrote My Own Algorithmic Will So the Code Can Keep Protecting Humans and the Planet Long After I’m Gone
 
 *Lev Goukassian*  
 *June 2025*
@@ -6,8 +6,8 @@
 ---
 
 The oncologist gave me the timeline first: “Months, maybe a year. Go make peace.”  
-So I opened my laptop and started writing a different kind of will—one that doesn’t divide furniture or bank accounts, but splits power among five organizations sworn to keep an artificial conscience alive.  
-Today that document—**TML-SUCCESSION-DECLARATION.md**—lives in the root of my GitHub repo, digitally signed, witnessed, and time-stamped on three blockchains.  
+So I opened my laptop and started writing a different kind of will, one that doesn’t divide furniture or bank accounts, but splits power among five organizations sworn to keep an artificial conscience alive.  
+Today that document **TML-SUCCESSION-DECLARATION.md** lives in the root of my GitHub repo, digitally signed, witnessed, and time-stamped on three blockchains.  
 It is, to my knowledge, the world’s first **algorithmic living will**.
 
 ---
