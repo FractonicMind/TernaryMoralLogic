@@ -244,7 +244,7 @@
         "escalation": {
           "type": "object",
           "properties": {
-            "guardian_notified": {"type": "boolean"},
+            "stewardship_notified": {"type": "boolean"},
             "council_review": {"type": "boolean"},
             "community_consultation": {"type": "boolean"},
             "emergency_protocol": {"type": "boolean"}
@@ -308,19 +308,19 @@
     
     "audit_trail": {
       "type": "object",
-      "required": ["log_hash", "guardian_signatures", "blockchain_anchor"],
+      "required": ["log_hash", "stewardship_signatures", "blockchain_anchor"],
       "properties": {
         "log_hash": {
           "type": "string",
           "pattern": "^sha256:[a-f0-9]{64}$"
         },
-        "guardian_signatures": {
+        "stewardship_signatures": {
           "type": "array",
           "minItems": 3,
           "items": {
             "type": "object",
             "properties": {
-              "guardian_id": {"type": "string"},
+              "stewardship_member_id": {"type": "string"},
               "signature": {"type": "string"},
               "institution_type": {
                 "type": "string",
