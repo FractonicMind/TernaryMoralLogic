@@ -1020,7 +1020,7 @@ This is planetary protection not as policy statement but as executable law.
 
 ---
 
-## **The Stewardship Council: Earth's Guardians**
+## **The Stewardship Council: Earth's Custodians**
 
 While the Earth Protection pillar is largely automated through the Oracle Network and Always Memory, complex cases and enforcement require institutional support. The Stewardship Council includes:
 
