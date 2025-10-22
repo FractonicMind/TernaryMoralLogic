@@ -21,9 +21,9 @@ class AlwaysMemory:
     
     def __init__(self, 
                  system_id: str,
-                 guardian_endpoints: Optional[list] = None):
+                 council_endpoints: Optional[list] = None):
         self.system_id = system_id
-        self.guardian_endpoints = guardian_endpoints or []
+        self.council_endpoints = council_endpoints or []
         self.creator_orcid = "0009-0006-5966-1243"
     
     def create_memory(self, 
@@ -90,7 +90,7 @@ def always_memory(system_id: str = "default",
                 sacred_zero_trigger=sacred_trigger
             )
             
-            # Log would be sent to Guardians here
+            # Log would be sent to Stewardship Council here
             # For now, just proceed with function
             
             result = func(*args, **kwargs)
