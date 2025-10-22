@@ -2,7 +2,6 @@
 
 **Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)  
 **Version**: 3.0.0  
-**Deployment**: 10 minutes (not 12+ months with committees)
 
 ## Installation
 
@@ -12,8 +11,6 @@ git clone https://github.com/FractonicMind/TernaryMoralLogic
 cd sdk/cpp
 make install
 
-# Time: 5 minutes
-# Guardian approval: NOT NEEDED
 ```
 
 ## Quick Start
@@ -34,8 +31,7 @@ int main() {
     };
     
     std::string hash = logger.createLog(decision);
-    // Guardian approval: NOT REQUIRED
-    // Blockchain anchored: YES
+      // Blockchain anchored: YES
     
     // Check Sacred Zero
     if (client.detectViolation(decision)) {
@@ -43,9 +39,6 @@ int main() {
         // Committee review: NONE
     }
     
-    // Guardian Network reality
-    std::cout << client.getGuardianStatus() << std::endl;
-    // Output: "Exists: false, Needed: false"
     
     return 0;
 }
@@ -57,14 +50,8 @@ int main() {
 - **Sacred Zero**: Automatic violation detection  
 - **Penalties**: Smart contract enforcement
 - **Whistleblower**: 15% instant rewards
-- **Guardian Network**: Not required
 
-## Deployment Comparison
 
-| Method | Time | Cost/Year | Protection |
-|--------|------|-----------|------------|
-| Blockchain | 10 min | $1,200 | Immediate |
-| Guardians | 12+ months | $6,600,000 | Maybe someday |
 
 ## API Reference
 
@@ -81,13 +68,6 @@ bool detectTampering(string orig, string current);  // $50B to attack
 - Environmental: $1B
 - Multipliers: 2x (human), 3x (earth), 7x (future)
 
-## Guardian Functions (Deprecated)
-```cpp
-// These return errors:
-contactGuardian();  // "Guardians don't exist"
-requestReview();    // "Use Blockchain"
-getApproval();      // "Not needed"
-```
 
 ## Support
 
