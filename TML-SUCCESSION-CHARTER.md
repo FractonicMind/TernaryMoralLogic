@@ -441,8 +441,6 @@ This principle anchored to Blockchain, preserved in code, maintained by communit
 **If Institutions Abandon Framework:**
 - Blockchain operation continues automatically
 - Community maintains open source code
-- New institutions can join Guardian Network
-- Framework operates with or without Guardian participation
 
 ### Community Defense Activation
 
