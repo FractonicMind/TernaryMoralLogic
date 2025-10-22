@@ -500,18 +500,6 @@ Once a decision is anchored, **it cannot be hidden, altered, or destroyed**.
 * **Smart-contract penalties:** automatic enforcement for falsified or missing logs
 * **Zero-knowledge proofs:** privacy without opacity
 
-### Example
-
-```python
-def protect_sacred_zero(log):
-    # Mandatory cryptographic anchoring
-    bitcoin.anchor(log)
-    polygon.anchor(log)
-    ethereum.anchor(log)
-    # Optional institutional attestation
-    if guardian_enabled:
-        guardian.attest(log)
-```
 #### **[Interactive Overview of Hybrid Shield](https://fractonicmind.github.io/TernaryMoralLogic/TML_Pillars/Hybrid_Shield.html)**
 
 ---
@@ -621,11 +609,6 @@ Recognized under:
 * **E.U.** eIDAS (qualified electronic timestamps)
 * **Global** RFC 3161 (timestamp protocol)
   Bitcoin-based evidence accepted in 50 + court cases.
-
-### Future Evolution
-
-The Blockchain foundation is fully operational today.
-An **optional Guardian Network** of institutional custodians may extend trust verification, offering additional insurance and international recognition.
 
 #### **In TML, every ethical hesitation leaves a cryptographic footprint, proof that conscience, once encoded, cannot be erased.**
 
