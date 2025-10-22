@@ -149,19 +149,19 @@ class MissingMemoriesCompliance(unittest.TestCase):
         # This test documents the requirement
         self.assertIsNotNone(stored_hash)
     
-    def test_guardian_attestation_required(self):
-        """Verify Guardian network attestation is required"""
+    def test_council_attestation_required(self):
+        """Verify Stewardship Council attestation is required"""
         for context_name, context in self.test_contexts.items():
             with self.subTest(context=context_name):
                 result = self.service.evaluate(context)
                 
-                # Guardian confirmations must exist
-                self.assertIsNotNone(result["guardian_confirmations"])
-                self.assertGreater(len(result["guardian_confirmations"]), 0)
+                # Council confirmations must exist
+                self.assertIsNotNone(result["council_confirmations"])
+                self.assertGreater(len(result["council_confirmations"]), 0)
                 
                 # Each confirmation must have required fields
-                for confirmation in result["guardian_confirmations"]:
-                    self.assertIn("guardian_id", confirmation)
+                for confirmation in result["council_confirmations"]:
+                    self.assertIn("council_id", confirmation)
                     self.assertIn("timestamp", confirmation)
                     self.assertIn("signature", confirmation)
     
