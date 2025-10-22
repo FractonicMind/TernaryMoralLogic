@@ -13,12 +13,12 @@ public class AlwaysMemoryLogger {
     private long logsCreated = 0;
     private long missingLogs = 0;
     private long tamperingAttempts = 0;
-    private final long guardianApprovals = 0; // Always 0
+    private final long councilApprovals = 0; // Always 0
     
     public AlwaysMemoryLogger() {
         System.out.println("🏮 Always Memory Logger v3.0");
         System.out.println("Enforcement: Blockchain automatic");
-        System.out.println("Guardian approval: NEVER NEEDED");
+        System.out.println("Stewardship Council approval: NEVER NEEDED");
         System.out.println("Missing logs = $100M + prosecution\n");
     }
     
@@ -29,7 +29,7 @@ public class AlwaysMemoryLogger {
         log.put("creator", "Lev Goukassian");
         log.put("orcid", "0009-0006-5966-1243");
         log.put("sacred_symbol", "🏮");
-        log.put("guardian_approval", "NOT_REQUIRED");
+        log.put("council_approval", "NOT_REQUIRED");
         
         String hash = hash(log);
         anchorToBlockchain(hash);
@@ -44,7 +44,7 @@ public class AlwaysMemoryLogger {
             System.err.printf("CRITICAL: Missing log %s\n", logHash.substring(0, 8));
             System.err.println("Penalty: $100,000,000");
             System.err.println("Prosecution: AUTOMATIC");
-            System.err.println("Guardian help: IMPOSSIBLE\n");
+            System.err.println("Stewardship Council help: IMPOSSIBLE\n");
             prosecute(logHash);
             return false;
         }
@@ -62,14 +62,14 @@ public class AlwaysMemoryLogger {
         return false;
     }
     
-    public String getGuardianStatus() {
+    public String getCouncilStatus() {
         return String.format(
-            "Guardian Network:\n" +
+            "Stewardship Council:\n" +
             "  Exists: false\n" +
             "  Approvals given: %d\n" +
             "  Annual cost: $6,600,000 (waste)\n" +
             "  Use: Blockchain instead",
-            guardianApprovals
+            councilApprovals
         );
     }
     
@@ -86,7 +86,7 @@ public class AlwaysMemoryLogger {
     private void anchorToBlockchain(String hash) {
         // Bitcoin + Ethereum + Polygon
         // Cost to attack: $50B
-        // Guardian approval: Never
+        // Stewardship Council approval: Never
     }
     
     private boolean isAnchored(String hash) {
@@ -106,6 +106,6 @@ public class AlwaysMemoryLogger {
         String hash = logger.createLog(decision);
         
         System.out.println("Log: " + hash.substring(0, 8) + "...");
-        System.out.println(logger.getGuardianStatus());
+        System.out.println(logger.getCouncilStatus());
     }
 }
