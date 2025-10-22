@@ -61,14 +61,6 @@ Five seats, **5-of-6 multi-sig** required for any change. No single org—nor an
 
 ---
 
-## How the “Dead-Man’s Switch” Works
-
-If the council isn’t formed within **180 days**, the smart contract **disowns any implementation** that can’t produce a valid recent anchor.  
-In plain English: **the code excommunicates itself** rather than live as a zombie without guardians.  
-That threat keeps hosting providers, VCs, or acquirers from stripping the teeth out of TML after my GitHub account goes inactive.
-
----
-
 ## Peace in Pull-Requests
 
 I’ve accepted that bodies fail; repositories don’t have to.  
@@ -83,36 +75,3 @@ Because the future should inherit our best compile-time decisions, not our worst
 
 *The declaration is public at* [*github.com/FractonicMind/TML-SUCCESSION-DECLARATION.md*](https://github.com/FractonicMind/TML-SUCCESSION-DECLARATION.md)  
 *ORCID: 0009-0006-5966-1243*
-Five seats, 5-of-6 multi-sig required for any change. No single org—nor any government—can water the framework down.
-
----
-
-How the “Dead-Man’s Switch” Works
-
-If the council isn’t formed within 180 days, the smart contract disowns any implementation that can’t produce a valid recent anchor.
-
-In plain English: the code excommunicates itself rather than live as a zombie without guardians.
-
-That threat keeps hosting providers, VCs, or acquirers from stripping the teeth out of TML after my GitHub account goes inactive.
-
----
-
-Peace in Pull-Requests
-
-I’ve accepted that bodies fail; repositories don’t have to.
-
-Every night I push another signed commit, and the blockchain quietly stamps it “forever.”
-
-When my heart stops, the hashes keep ticking.
-
-Somewhere a server will still refuse to green-light a loan-algorithm that discriminates, a drone that bombs, or a model that strips a rainforest—because my code, my council, and my cancer fund are still watching.
-
-If you’re building systems that shape lives, consider writing your own algorithmic will.
-
-Because the future should inherit our best compile-time decisions, not our worst post-mortem silence.
-
----
-
-The declaration is public at [github.com/FractonicMind/TML-SUCCESSION-DECLARATION.md](https://github.com/FractonicMind/TML-SUCCESSION-DECLARATION.md)
-
-ORCID: 0009-0006-5966-1243
