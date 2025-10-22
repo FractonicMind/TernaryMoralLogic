@@ -32,7 +32,7 @@ void Example1_BasicSetup() {
     
     // Create configuration
     auto config = std::make_shared<Config>();
-    config->guardian_url = "https://guardian.tml-network.org";
+    config->council_url = "https://council.tml-network.org";
     config->environment = Environment::PRODUCTION;
     config->discrimination_threshold = 0.2;
     config->carbon_threshold_kg = 1000.0;
@@ -42,15 +42,15 @@ void Example1_BasicSetup() {
     // Create TML client
     TMLClient client(config);
     
-    // Connect to Guardian Network
-    std::cout << "Connecting to Guardian Network..." << std::endl;
+    // Connect to Stewardship Council
+    std::cout << "Connecting to Stewardship Council..." << std::endl;
     if (client.Connect()) {
         std::cout << "✓ Connected successfully" << std::endl;
         
         // Get connection status
         auto status = client.GetStatus();
-        std::cout << "Guardian URL: " << status.guardian_url << std::endl;
-        std::cout << "Active Guardians: " << status.active_guardians << std::endl;
+        std::cout << "Council URL: " << status.council_url << std::endl;
+        std::cout << "Active Council Members: " << status.active_members << std::endl;
         std::cout << "TEE Available: " << (status.tee_available ? "Yes" : "No") << std::endl;
         std::cout << "Environment: " << (status.environment == Environment::PRODUCTION ? 
                                          "Production" : "Development") << std::endl;
@@ -64,7 +64,7 @@ void Example1_BasicSetup() {
     
     // Disconnect
     client.Disconnect();
-    std::cout << "Disconnected from Guardian Network" << std::endl;
+    std::cout << "Disconnected from Stewardship Council" << std::endl;
 }
 
 // ========== Example 2: Sacred Zero in Hiring Algorithm ==========
@@ -323,9 +323,9 @@ void Example5_AlwaysMemoryLogging() {
     auto config = std::make_shared<Config>();
     AlwaysMemoryLogger logger(config);
     
-    // Connect to Guardian
-    logger.ConnectToGuardian();
-    std::cout << "Connected to Guardian: " << (logger.IsConnectedToGuardian() ? "Yes" : "No") << std::endl;
+    // Connect to Council
+    logger.ConnectToCouncil();
+    std::cout << "Connected to Council: " << (logger.IsConnectedToCouncil() ? "Yes" : "No") << std::endl;
     
     // Enable Blockchain anchoring
     logger.EnableBlockchainAnchoring("ethereum", 3600s);
@@ -414,7 +414,7 @@ void Example5_AlwaysMemoryLogging() {
     
     // Flush all logs
     logger.Flush();
-    std::cout << "\nAll logs flushed to Guardian Network" << std::endl;
+    std::cout << "\nAll logs flushed to Stewardship Council" << std::endl;
 }
 
 // ========== Example 6: Real-time Monitoring Dashboard ==========
@@ -606,7 +606,7 @@ void Example8_EmergencyResponse() {
     AlwaysMemoryLogger logger(config);
     
     client.Connect();
-    logger.ConnectToGuardian();
+    logger.ConnectToCouncil();
     
     std::cout << "Simulating critical discrimination event..." << std::endl;
     
