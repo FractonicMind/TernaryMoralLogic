@@ -177,7 +177,7 @@
     "dispute_resolution": {
       "escalation_path": [
         "oracle_consensus",
-        "guardian_review",
+        "stewardship_review",
         "ombudsperson"
       ],
       "max_resolution_time_hours": 72
@@ -298,7 +298,7 @@
     
     "emergency_procedures": {
       "activation_threshold": "critical_vulnerability",
-      "decision_makers": ["guardian_network", "ombudsperson"],
+      "decision_makers": ["stewardship_council", "ombudsperson"],
       "max_response_time_hours": 1
     }
   },
