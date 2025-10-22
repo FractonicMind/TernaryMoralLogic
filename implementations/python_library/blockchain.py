@@ -1,6 +1,6 @@
 """
 TML Blockchain Implementation v3.0
-No Guardians. No committees. Just mathematical enforcement.
+Immutable accountability through cryptographic verification.
 
 Creator: Lev Goukassian (ORCID: 0009-0006-5966-1243)
 """
@@ -13,7 +13,7 @@ from dataclasses import dataclass
 import json
 
 class TMLBlockchain:
-    """Direct Blockchain enforcement - no Guardian institutions needed"""
+    """Direct Blockchain enforcement - no institutional committees needed"""
     
     def __init__(self, config: Dict):
         """Initialize Blockchain connections"""
@@ -27,7 +27,7 @@ class TMLBlockchain:
             'whistleblower': config['whistleblower_contract']
         }
         
-        # No Guardian addresses needed - Blockchain handles everything
+        # No Stewardship Council addresses needed - Blockchain handles everything
         
     def create_always_memory_log(self, decision: Dict) -> str:
         """Create immutable log - no committee approval needed"""
@@ -38,7 +38,7 @@ class TMLBlockchain:
             'creator': 'Lev Goukassian',
             'orcid': '0009-0006-5966-1243',
             'lantern': '🏮',  # Sacred symbol
-            'guardian_approval': 'NOT_REQUIRED'
+            'council_approval': 'NOT_REQUIRED'
         }
         
         # Hash for immutability
@@ -88,13 +88,13 @@ class TMLBlockchain:
             [violation['hash'], penalty]
         )
         
-        # No Guardian approval needed
+        # No Stewardship Council approval needed
         return {
             'triggered': True,
             'penalty': penalty,
             'multiplier': multiplier,
             'execution': 'automatic',
-            'guardian_review': 'NONE',
+            'council_review': 'NONE',
             'time_to_enforce': '< 10 minutes'
         }
     
@@ -137,7 +137,7 @@ class TMLBlockchain:
             'reward': reward,
             'transaction': tx_hash,
             'time_to_payment': '3 minutes',
-            'guardian_approval': 'NOT_REQUIRED'
+            'council_approval': 'NOT_REQUIRED'
         }
     
     def community_direct_access(self, community_id: str, report: Dict) -> Dict:
@@ -161,11 +161,11 @@ class TMLBlockchain:
             'reward': reward,
             'identity_protected': True,
             'committee_membership': 'IRRELEVANT',
-            'guardian_seats': 'NOT_NEEDED'
+            'council_seats': 'NOT_NEEDED'
         }
     
     def verify_compliance(self, company_address: str) -> Dict:
-        """Public verification - no Guardian review"""
+        """Public verification - no Council review"""
         # Check Blockchain for logs
         logs = self._query_blockchain_logs(company_address)
         
@@ -183,7 +183,7 @@ class TMLBlockchain:
                 'missing_logs': missing,
                 'penalty': penalty,
                 'prosecution': prosecution,
-                'guardian_review': 'UNNECESSARY'
+                'council_review': 'UNNECESSARY'
             }
         
         return {
@@ -204,13 +204,13 @@ class TMLBlockchain:
         # Cryptographic verification only
         return len(evidence) > 0  # Simplified
     
-    def get_guardian_status(self) -> Dict:
-        """The truth about Guardians"""
+    def get_council_status(self) -> Dict:
+        """The truth about Stewardship Council"""
         return {
-            'guardian_network': 'Does not exist',
-            'guardian_approval': 'Not needed',
-            'guardian_value': 0,
-            'guardian_cost': '$6,600,000/year if deployed',
+            'stewardship_council': 'Does not exist',
+            'council_approval': 'Not needed',
+            'council_value': 0,
+            'council_cost': '$6,600,000/year if deployed',
             'recommendation': 'Use Blockchain instead',
             'deployment_year': 'Year 5+ if ever',
             'actual_protection': 'Blockchain provides 100%'
@@ -219,7 +219,7 @@ class TMLBlockchain:
 
 # Deployment example
 def deploy_tml_protection():
-    """Deploy real protection in 10 minutes"""
+    """Deploy real protection"""
     
     config = {
         'ethereum_rpc': 'https://eth-mainnet.alchemyapi.io/v2/YOUR_KEY',
@@ -232,10 +232,9 @@ def deploy_tml_protection():
     # Initialize Blockchain protection
     tml = TMLBlockchain(config)
     
-    # Everything works without Guardians
+    # Everything works without Stewardship Council
     print("TML Protection Active")
-    print("Guardian Network: Not Required")
-    print("Deployment Time: 10 minutes")
+    print("Stewardship Council: Not Required")
     print("Annual Cost: $1,200")
     print("Protection Level: Maximum")
     
@@ -253,7 +252,7 @@ if __name__ == "__main__":
         'location': 'global'
     }
     
-    # Triggers automatically, no Guardian review
+    # Triggers automatically, no Council review
     result = tml.trigger_sacred_zero(violation)
     print(f"Penalty enforced: ${result['penalty']:,}")
-    print(f"Guardian approval needed: {result['guardian_review']}")
+    print(f"Council approval needed: {result['council_review']}")
