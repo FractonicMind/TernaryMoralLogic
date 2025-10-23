@@ -19,8 +19,8 @@ This document establishes the enforcement governance for the TML framework, cent
 - **Whistleblower Rewards:** 15% of recovered penalties to exposers
 - **Automatic Guilt:** Missing logs create irrebuttable presumption
 
-**Optional Governance Enhancement:**
-- **Guardian Network:** Institutional oversight for enhanced credibility (recommended but not required)
+**Governance Enhancement:**
+- **Stewardship Council:** Institutional oversight for enhanced credibility
 - **Democratic Governance:** Multi-institution consensus for policy evolution (long-term vision)
 
 ---
@@ -107,7 +107,7 @@ TML ensures no organization can hide violations through cryptographic immutabili
 
 ---
 
-## Guardian Network Governance (Optional Enhancement)
+## Stewardship Council Governance
 
 ### Evolution from Blockchain to Institutional Oversight
 
@@ -118,41 +118,55 @@ TML ensures no organization can hide violations through cryptographic immutabili
 - Legal admissibility via established Blockchain precedent
 - No institutional coordination required
 
-**Future Enhancement: Guardian Network Governance**
+**Future Enhancement: Stewardship Council Governance**
 - Institutional validation adds credibility to Blockchain evidence
 - Democratic policy evolution through multi-institution consensus
 - Research collaboration improves bias detection algorithms
 - International recognition enhances cross-border legal acceptance
 - Enhanced insurance discounts (50-60% vs 20-40% Blockchain-only)
 
-### Recommended Guardian Network Structure
+**Composition and Distribution:**
+#### This is where the second armor layer activates: the Stewardship Council.
 
-**If/When Institutions Participate:**
+Six independent institutions hold synchronized copies of every TML log:
 
-**Academic Institutions (4 seats recommended):**
-- Leading universities with AI ethics programs
-- Research institutes focused on algorithmic fairness
-- International academic collaborations
-- Geographic diversity across continents
+1. **Technical Custodian (Recommended: Electronic Frontier Foundation)**
+   * Maintains the open-source repository  
+   * Manages blockchain infrastructure  
+   * Provides technical community support  
+   * Ensures code integrity and updates  
 
-**Technical Standards Bodies (3 seats recommended):**
-- Organizations with Blockchain and cryptography expertise
-- Standards development organizations (ISO, IEEE)
-- Open source foundation representatives
+2. **Human Rights Enforcement Partner (Recommended: Amnesty International)**
+   * Monitors enforcement of 26+ human rights documents  
+   * Reviews complex Human Rights Sacred Zero cases  
+   * Coordinates with international human rights mechanisms  
+   * Supports victims in seeking remedy and justice  
 
-**Civil Society Organizations (2 seats recommended):**
-- Human rights advocacy groups
-- Digital rights organizations
-- Environmental protection groups
+3. **Earth Protection Enforcement Partner (Recommended: Indigenous Environmental Network)**
+   * Monitors enforcement of 20+ environmental treaties  
+   * Reviews Earth Protection Sacred Zero cases  
+   * Represents Indigenous sovereignty in environmental decisions  
+   * Coordinates ecosystem restoration from Memorial Fund  
 
-**International Bodies (2 seats recommended):**
-- UN specialized agencies
-- Regional governance organizations
-- Cross-border treaty bodies
+4. **AI Ethics Research Partner (Recommended: MIT Media Lab or Stanford HAI)**
+   * Conducts research on TML effectiveness  
+   * Validates ethical framework evolution  
+   * Publishes findings on algorithmic accountability  
+   * Guides implementation standards development  
 
-**Total: 11 institutions (aspirational)**
+5. **Memorial Fund Administrator (Recommended: Memorial Sloan Kettering Cancer Center)**
+   * Administers the cancer research portion of Memorial Fund  
+   * Honors Goukassian's personal commitment to medical research  
+   * Ensures victim compensation reaches intended recipients  
+   * Provides transparency reporting on fund allocation  
 
-### Guardian Network Powers (When Active)
+6. **Community Representative (Elected Position)**
+   * Represents implementers and user community interests  
+   * Elected by TML stakeholder community  
+   * Ensures framework serves real-world needs  
+   * Provides accountability for Council decisions
+
+### Stewardship Council Powers (When Active)
 
 **Investigation Authority:**
 - Read-only access to anonymized Blockchain-anchored logs
@@ -168,12 +182,12 @@ TML ensures no organization can hide violations through cryptographic immutabili
 - International standards development participation
 
 **No Veto Powers:**
-- Guardians cannot override Blockchain evidence
-- Guardians cannot prevent automatic penalties
-- Guardians cannot delete or modify logs
-- Blockchain anchoring continues regardless of Guardian status
+- Council members cannot override Blockchain evidence
+- Council cannot prevent automatic penalties
+- Council cannot delete or modify logs
+- Blockchain anchoring continues regardless of Council status
 
-**Key Principle:** Guardian Network enhances but never replaces Blockchain protection. Companies operate with full protection whether Guardians participate or not.
+**Key Principle:** Stewardship Council enhances but never replaces Blockchain protection. Companies operate with full protection whether Council participates or not.
 
 ---
 
@@ -212,7 +226,7 @@ TML ensures no organization can hide violations through cryptographic immutabili
 - 30% to Memorial Fund for victim support
 - 15% to whistleblowers who exposed violations
 - 25% to Blockchain infrastructure and maintenance
-- 20% to Guardian Network operations (when active)
+- 20% to Stewardship Council operations (when active)
 - 10% to public education
 - 0% to general government revenue
 
@@ -292,7 +306,7 @@ TML ensures no organization can hide violations through cryptographic immutabili
 **Multiple Secure Paths:**
 - Direct Blockchain submission (anonymous possible)
 - Encrypted portal with cryptocurrency payment
-- Guardian Network institutions (when active)
+- Stewardship Council institutions (when active)
 - Legal firm intermediaries
 - International safe harbors
 - Journalist privilege protection
@@ -371,7 +385,7 @@ TML ensures no organization can hide violations through cryptographic immutabili
 - Blockchain smart contracts enforce automatically
 - Any modification attempt creates additional criminal charges
 - Academic consensus required for threshold changes
-- Guardian Network vote required (when active)
+- Stewardship Council vote required (when active)
 
 ### Calculation Auditing
 
@@ -420,7 +434,7 @@ TML ensures no organization can hide violations through cryptographic immutabili
 - International coordination through open protocols
 - Asset freezing via multi-chain enforcement
 
-**Guardian Network Role (When Active):**
+**Stewardship Council Role (When Active):**
 - Emergency consensus for coordinated response
 - International liaison and diplomatic support
 - Public communication coordination
@@ -458,7 +472,7 @@ TML ensures no organization can hide violations through cryptographic immutabili
 
 ### Institutional Succession
 
-**Guardian Network Continuity (If Active):**
+**Stewardship Council Continuity (If Active):**
 - Automatic replacement protocols
 - No gaps in governance oversight
 - Distributed authority model
@@ -534,7 +548,7 @@ TML ensures no organization can hide violations through cryptographic immutabili
 - Survivor advisory board
 - International coordination
 
-**Guardian Network Input (When Active):**
+**Stewardship Council Input (When Active):**
 - Institutional testimony and research
 - Academic expert witnesses
 - Policy evolution recommendations
@@ -554,14 +568,6 @@ TML ensures no organization can hide violations through cryptographic immutabili
 - Whistleblower portal live (Blockchain-secured)
 - Victim support operational (Memorial Fund)
 - No grace period
-
-**Guardian Network Timeline:**
-- Year 1: Blockchain-only (complete protection)
-- Year 2: First Guardian partnerships (1-2 institutions)
-- Year 3: Regional network (3-5 institutions)
-- Year 5: Full network (9-11 institutions, aspirational)
-
-**Key Principle:** Protection is complete from Day 1. Guardian Network enhances but never delays accountability.
 
 ---
 
@@ -647,7 +653,7 @@ function enforcePenalty(
 - **Whistleblower Reports:** whistleblower@tml-goukassian.org
 - **Victim Support:** victims@tml-goukassian.org
 - **Emergency Response:** emergency@tml-goukassian.org
-- **Guardian Network (when active):** council@tml-goukassian.org
+- **Stewardship Council (when active):** council@tml-goukassian.org
 
 ### Framework Contacts
 - **Creator:** leogouk@gmail.com
@@ -674,11 +680,9 @@ The TML Framework Governance establishes mandatory criminal accountability for A
 
 Through cryptographic immutability and multi-chain redundancy, we transform AI accountability from corporate theater to criminal law. Every Moral Trace Log becomes evidence that survives bankruptcy, political pressure, and time itself. Every missing log becomes a conviction. Every violation becomes a permanent warning to others.
 
-**Guardian Network Enhances But Never Delays**
+**Stewardship Council Enhances But Never Delays**
 
-Institutional oversight strengthens governance over time, but protection begins immediately through Blockchain anchoring. Companies deploy today with complete protection, then evolve governance as institutions join the network.
-
-**The age of unaccountable AI ends now.**
+Institutional oversight strengthens governance over time, but protection begins immediately through Blockchain anchoring. Companies deploy with complete protection, then evolve governance as institutions join the network.
 
 ---
 
@@ -686,7 +690,7 @@ Institutional oversight strengthens governance over time, but protection begins 
 
 **Created by Lev Goukassian (ORCID: 0009-0006-5966-1243)**  
 **Protected by Multi-Chain Blockchain Anchoring**  
-**Enhanced by Guardian Network (Optional)**  
+**Enhanced by Stewardship Council**  
 **Enforced by Criminal Law**
 
 ---
