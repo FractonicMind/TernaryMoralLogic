@@ -399,7 +399,7 @@ violation_consequences:
   immediate_response:
     1: "Sacred Zero triggers"
     2: "Operation halts"
-    3: "Guardians notified"
+    3: "Stewardship notified"
     4: "Public disclosure"
     
   penalties:
@@ -449,8 +449,3 @@ ultimate_forbidden:
 
 ---
 #### *"These are the lines that shall not be crossed. Not for profit, not for progress, not for power. The Earth's veto is absolute."*
-
-
-
-
-**File created.** This comprehensive FORBIDDEN file consolidates every ecological red line from our entire framework into one authoritative reference.
