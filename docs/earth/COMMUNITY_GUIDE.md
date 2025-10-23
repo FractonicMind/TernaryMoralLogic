@@ -205,7 +205,7 @@ TML recognizes your existing governance:
 Communities can nominate members for:
 - Regional Sacred Zero councils
 - Ecosystem-specific working groups
-- Annual Guardian Network assembly
+- Annual assembly
 - Emergency response committees
 
 ## Security & Privacy
