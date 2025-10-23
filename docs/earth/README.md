@@ -1,10 +1,11 @@
+
 # Earth Protection Framework
 
 ## Blockchain-Enforced Planetary Defense
 
-TML's Earth Protection operates through **Blockchain automation**, not committees. Sacred Zero triggers for ecosystem threats are enforced by smart contracts, with penalties 3x higher than human harm. Deploy in 10 minutes, protect Earth immediately.
+TML's Earth Protection operates through **Blockchain automation**, not committees. Sacred Zero triggers for ecosystem threats are enforced by smart contracts, with penalties 3x higher than human harm. Implementation proceeds through validated mechanisms.
 
-**No Guardian Network required. No committee approval needed. Just mathematical enforcement of 20+ environmental treaties.**
+**No Stewardship Council required. No committee approval needed. Mathematical enforcement of 20+ environmental treaties.**
 
 ## Core Architecture
 
@@ -40,12 +41,12 @@ def enforce_earth_protection():
         Blockchain.compensate_ecosystem()
 ```
 
-### 🏛️ Guardian Network (OPTIONAL LUXURY)
+### 🏛️ Stewardship Council
 - **Not required** for deployment
 - **Not required** for enforcement  
 - **Not required** for penalties
-- Maybe useful for 1% of companies after 5 years
-- Adds institutional attestation (nice, not necessary)
+- Useful for complex scenarios
+- Adds institutional attestation when available
 
 ## Key Documents
 
@@ -60,14 +61,14 @@ Automated compensation via smart contracts. $20-5000 per observation paid instan
 
 ## Implementation Reality
 
-### Deploy in 10 Minutes
+### Functional Implementation
 ```bash
 docker run tml/always-memory \
   --earth-protection=true \
-  --Blockchain=mandatory \
-  --guardians=false  # Not needed
+  --blockchain=mandatory \
+  --stewardship=false  # Not needed
   
-# Fully operational immediately
+# Fully operational
 # 20+ treaties enforced
 # No waiting for committees
 ```
@@ -124,21 +125,14 @@ def submit_observation():
 
 ## Cost Analysis
 
-### Blockchain-Only (What You Need)
+### Blockchain-Only (Functional Requirement)
 - Oracle subscriptions: $100/month
 - Smart contract gas: $50/month
 - IPFS storage: $50/month
 - **Total: $200/month**
-- Guardian Network: $0
+- Stewardship Council: $0
 
-### With Optional Guardians (Waste)
-- Everything above: $200/month
-- Guardian coordination: $50,000/month
-- Committee meetings: Priceless time wasted
-- **Total: $50,200/month**
-- Benefit: ~5% improvement
-
-**Verdict**: Deploy Blockchain, skip committees.
+**Recommendation**: Implement Blockchain core, add stewardship when beneficial.
 
 ## Performance Guarantees
 
@@ -149,12 +143,12 @@ def submit_observation():
 - Ecosystem compensation: Automatic
 - Evidence creation: Immutable
 
-### Committee Speed (If Using Guardians)
+### Committee Speed (If Using Stewardship)
 - Treaty review: Quarterly meetings
 - Violation discussion: Weeks
 - Penalty negotiation: Months
-- Maybe implementation: Years
-- Evidence: Debatable
+- Implementation timeline: Variable
+- Evidence: Verifiable
 
 ## For Communities
 
@@ -165,10 +159,10 @@ def submit_observation():
 4. Evidence is permanent (immutable)
 
 **You DON'T need:**
-- Guardian approval
-- Committee review
-- Institutional permission
-- Anyone's consent
+- Stewardship approval for submissions
+- Committee review for payments
+- Institutional permission for access
+- External consent for participation
 
 ## Security & Privacy
 
@@ -216,19 +210,19 @@ WHERE chose_profit_over_planet = true
 AND year BETWEEN 2025 AND 2050
 ```
 
-The guilty parties, rejected alternatives, and moments of recognition—all permanently recorded on chains that outlive governments and corporations.
+The responsible parties, rejected alternatives, and moments of recognition—all permanently recorded on chains that outlive governments and corporations.
 
 ## Migration from Committee-Based
 
-### If Still Waiting for Guardians
+### If Transitioning to Blockchain
 ```bash
-# Stop waiting
+# Previous committee-based system
 docker stop committee-based-tml
 
-# Deploy Blockchain version NOW
+# Deploy Blockchain version
 docker run tml/always-memory --earth-protection=true
 
-# Earth protected in 10 minutes
+# Earth protection active
 # No committees needed
 ```
 
@@ -238,7 +232,7 @@ Earth Protection is **mandatory**, not optional. Contributions should:
 - Strengthen smart contract enforcement
 - Improve oracle reliability
 - Enhance community access
-- Never require Guardian approval
+- Support stewardship coordination when beneficial
 
 ## The Truth
 
@@ -248,23 +242,23 @@ Earth Protection is **mandatory**, not optional. Contributions should:
 - Oracle treaty updates
 - Mathematical consensus
 
-**What doesn't:**
-- Committee meetings
-- Institutional coordination
-- Guardian attestations
+**What enhances protection:**
+- Committee coordination
+- Institutional verification
+- Stewardship attestations
 - Human deliberation
 
 ---
 
 **Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)  
 **Version**: 3.0 (Blockchain)  
-**Architecture**: Smart Contracts, Not Committees  
+**Architecture**: Smart Contracts with Optional Enhancement  
 **Repository**: https://github.com/FractonicMind/TernaryMoralLogic
 
 *All USD amounts are nominal to 2025*
 
 ---
 
-#### **"Miss one byte, pay twice for the human; thrice for the reef; sevenfold for the child not yet born—math that makes greed think twice."**
+#### *"Miss one byte, pay twice for the human; thrice for the reef; sevenfold for the child not yet born—math that makes greed think twice."* **-Lev Goukassian**
 
 ---
