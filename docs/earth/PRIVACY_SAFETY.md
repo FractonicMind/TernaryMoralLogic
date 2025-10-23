@@ -317,7 +317,7 @@ access_levels:
     - Set privacy preferences
     - Designate representatives
     
-  guardian_network:
+  stewardship_council:
     - View aggregated data only
     - Cannot access identities
     - Cannot override community consent
@@ -386,7 +386,7 @@ transparency_metrics:
 
 **Core Promise**: Communities protecting Earth should never fear that their service makes them targets. Every technical decision prioritizes their safety.
 
-#### *"The planet has no voice, no vote, no lobby; so we gave her a cryptographic signature and a seat on every AI board."*
+#### *"The planet has no voice, no vote, no lobby; so we gave her a cryptographic signature and a seat on every AI board."* **-Lev Goukassian**
 
 ---
 
