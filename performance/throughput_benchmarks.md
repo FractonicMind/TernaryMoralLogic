@@ -1,3 +1,4 @@
+
 # Throughput Benchmarks
 
 This document presents the throughput evaluation standards for the Ternary Moral Logic (TML) framework.  
@@ -20,9 +21,9 @@ Each domain is measured independently and combined for total system throughput.
 
 | Category | Description | Target | Sustained Capacity |
 |-----------|--------------|--------|--------------------|
-| Decision Evaluation | Ethical checks per second | 10 000 + | 600 000 per minute |
-| Log Creation | Hash generation and queueing | 8 000 + | 480 000 per minute |
-| Merkle Batching | Log aggregation and sealing | 1 000 batches/s | 100 logs per batch |
+| Decision Evaluation | Ethical checks per second | 10,000+ | 600,000 per minute |
+| Log Creation | Hash generation and queueing | 8,000+ | 480,000 per minute |
+| Merkle Batching | Log aggregation and sealing | 1,000 batches/s | 100 logs per batch |
 | Blockchain Anchoring | Anchors to Polygon / Ethereum | 500 / s | Confirmation < 3 s |
 | Audit Synchronization | Cross-chain verification | 50 / s | Depends on node distance |
 
@@ -32,7 +33,7 @@ Each domain is measured independently and combined for total system throughput.
 |--------------|----------------|-------------|-----------|
 | Local Test | Single instance | 1 | 5 minutes |
 | Cluster | Cloud or datacenter | 8 | 30 minutes |
-| Global Distribution | Multi-region guardians | 40 | 60 minutes |
+| Global Distribution | Multi-region custodians | 40 | 60 minutes |
 
 All tests run using real decision datasets generated from TML simulations and production-grade ethical workloads.
 
