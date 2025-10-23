@@ -1,3 +1,4 @@
+
 # Human Rights Protocols
 
 ## Purpose
@@ -36,7 +37,7 @@ Each protocol document includes:
 
 ### Stakeholder Responsibilities
 - System operators
-- Guardian institutions
+- Stewardship institutions
 - Oversight committees
 - Affected persons
 - External auditors
