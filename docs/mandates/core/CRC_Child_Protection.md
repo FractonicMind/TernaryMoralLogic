@@ -1,3 +1,4 @@
+
 # CRC Child Protection: Sacred Zero for Every Child
 
 **Path**: `/docs/mandates/core/CRC_Child_Protection.md`  
@@ -119,7 +120,7 @@ expression_rights:
 ```yaml
 family_rights:
   article_5_parental_guidance:
-    respect_responsibilities: "Parents/legal guardians"
+    respect_responsibilities: "Parents/legal custodians"
     evolving_capacities: "Child's development considered"
     direction_and_guidance: "Appropriate"
     algorithmic_parenting_override: "refuse"
