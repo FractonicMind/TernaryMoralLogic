@@ -48,12 +48,11 @@ technical_compliance_attestation:
     - "All environmental triggers implemented"
     - "Cannot be overridden programmatically"
     - "Escalation protocols functional"
-    - "Guardian notification automatic"
+    - ""All environmental triggers implemented""
     
   always_memory:
     - "Every action creates immutable log"
     - "Hash chains unbroken"
-    - "Guardian signatures required"
     - "Blockchain anchoring active"
     
   data_protection:
