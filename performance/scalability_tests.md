@@ -1,3 +1,4 @@
+
 # Scalability Tests
 
 This document defines the scalability testing framework for the Ternary Moral Logic (TML) system.  
@@ -13,7 +14,7 @@ To evaluate how the TML architecture scales under real-world operational stress 
 |---------|--------------|------------|
 | Horizontal Scaling | Adding parallel Always Memory and Sacred Zero nodes | Linear performance increase |
 | Vertical Scaling | Expanding CPU, GPU, or memory capacity | Efficiency gain without delay |
-| Geographic Scaling | Distributed Guardians and ledgers across regions | Synchronization within ≤ 500 ms |
+| Geographic Scaling | Distributed Custodians and ledgers across regions | Synchronization within ≤ 500 ms |
 | Blockchain Scaling | Multiple anchoring chains and batching protocols | Stable confirmation rates |
 
 ## 3. Test Parameters
@@ -22,9 +23,9 @@ To evaluate how the TML architecture scales under real-world operational stress 
 |------------|----------|---------|---------------|
 | Node Count | 1 | 8 | 32 |
 | Active Regions | 1 | 4 | 12 |
-| Log Volume | 10 000 | 1 000 000 | 10 000 000 |
-| Concurrent Users | 100 | 10 000 | 100 000 |
-| Blockchain Anchors | 100 / min | 10 000 / min | 100 000 / min |
+| Log Volume | 10,000 | 1,000,000 | 10,000,000 |
+| Concurrent Users | 100 | 10,000 | 100,000 |
+| Blockchain Anchors | 100 / min | 10,000 / min | 100,000 / min |
 
 ## 4. Methodology
 
