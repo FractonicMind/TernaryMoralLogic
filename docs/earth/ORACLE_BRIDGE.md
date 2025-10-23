@@ -13,7 +13,7 @@ graph LR
     A[Tier 1: Global Sources] --> C[Oracle Bridge]
     B[Tier 2: Community Data] --> C
     C --> D[Validation Layer]
-    D --> E[Guardian Network]
+    D --> E[Stewardship Council]
     E --> F[Always Memory]
     F --> G[Sacred Zero Triggers]
 ```
@@ -166,7 +166,7 @@ def detect_protection_weakening(old_rules, new_rules):
     
     if weakening_indicators:
         trigger_sacred_zero("Protection weakening detected")
-        alert_guardians(weakening_indicators)
+        alert_stewardship(weakening_indicators)
         require_scientific_review()
     
     return weakening_indicators
@@ -366,7 +366,7 @@ Oracle bridge can trigger Sacred Zero for:
 - Consensus failure on critical data
 - Version conflicts unresolved
 
-### With Guardian Network
+### With Stewardship Council
 
 - Daily update notifications
 - Weakening detection alerts
@@ -385,7 +385,7 @@ Oracle bridge can trigger Sacred Zero for:
 - [ ] Performance benchmarks met
 - [ ] Emergency protocols tested
 - [ ] Always Memory integration confirmed
-- [ ] Guardian notifications working
+- [ ] Stewardship notifications working
 
 ---
 
