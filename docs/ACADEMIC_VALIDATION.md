@@ -22,7 +22,6 @@ TML establishes Blockchain-enforced accountability for AI systems through immuta
 1. **Performance**: Does Blockchain anchoring maintain <40μs overhead?
 2. **Immutability**: Can companies tamper with logs?
 3. **Enforcement**: Do penalties execute automatically?
-4. **Governance**: Are institutions necessary for validation?
 
 ### Hypotheses
 
