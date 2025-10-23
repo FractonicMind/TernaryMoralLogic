@@ -2,7 +2,7 @@
 
 **Version**: 2.0.0 (Blockchain Architecture)  
 **Status**: Active Protection Protocol  
-**Architecture**: Blockchain Evidence, Smart Contract Rewards, Optional Guardian Enhancement  
+**Architecture**: Blockchain Evidence, Smart Contract Rewards, Stewardship Council Enhancement  
 **Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)  
 
 ---
@@ -16,7 +16,7 @@ This policy protects individuals reporting TML violations through **Blockchain-v
 - **Blockchain evidence** is self-authenticating (no committee needed)
 - **Anonymous reporting** through Tor and Blockchain submission
 - **Criminal penalties** for retaliation (enforced automatically)
-- **Guardian Network optional** for cross-border protection enhancement
+- **Stewardship Council Network** for cross-border protection enhancement
 
 ---
 
@@ -242,21 +242,21 @@ contract RetaliationPenalty {
 - Courts accept Blockchain evidence directly
 - Penalties execute without human approval
 
-### 5.2 Optional Guardian Enhancement
+### 5.2 Stewardship Council Enhancement
 
-**When Guardian Network Might Help**:
+**When Stewardship Council Network Might Help**:
 - Cross-border witness protection
 - Physical safety concerns
 - Complex international violations
 - Diplomatic intervention needed
 
-**Guardian Role (If Utilized)**:
-- Additional attestation (not required)
+**Council Role (If Utilized)**:
+- Additional attestation
 - Cross-jurisdictional coordination
 - Physical protection arrangements
 - International legal support
 
-**Key Point**: Guardians enhance but never gatekeep. Blockchain evidence alone is sufficient for rewards and penalties.
+**Key Point**: Custodians enhance but never gatekeep. Blockchain evidence alone is sufficient for rewards and penalties.
 
 ---
 
@@ -267,7 +267,7 @@ contract RetaliationPenalty {
 **Smart Contract Triggers Protection**:
 ```python
 def check_protection_eligibility(report_hash):
-    violation = Blockchain.get_violation(report_hash)
+    violation = blockchain.get_violation(report_hash)
     
     # Automatic eligibility
     if violation.type in ['executive_crime', 'human_rights', 'torture']:
@@ -404,15 +404,13 @@ function emergencyResponse(bytes32 threatProof) public {
 - Protection coordinated internationally
 - Penalties enforced cross-border
 
-### 10.2 Optional Guardian Network for Complex Cases
+### 10.2 Stewardship Council Network for Complex Cases
 
-**When International Guardians Help**:
+**When International Custodians Help**:
 - Diplomatic intervention needed
 - Physical extraction required
 - Multi-government coordination
 - Treaty-level protection
-
-**Remember**: Basic protection works without Guardians. They're enhancement only.
 
 ---
 
@@ -478,10 +476,10 @@ function emergencyResponse(bytes32 threatProof) public {
 
 **Deployment**: Immediate (no institutional coordination required)  
 **Protection Scope**: Human Rights + Earth + Future Generations  
-**Guardian Network**: Optional enhancement (never required)
+**Stewardship Council Network**: Enhancement
 
 *All USD amounts are nominal to 2025*
 
 ---
-#### **Anonymity is the policy, immutability is the receipt; together they turn fear into forever-proof.**
+#### **Anonymity is the policy, immutability is the receipt; together they turn fear into forever-proof.** **-Lev Goukassian**
 ---
