@@ -1,8 +1,9 @@
+
 # Oracle Bridge Specification
 
 ## Overview
 
-The Oracle Bridge serves as the critical data ingestion and validation layer for TML's Earth Protection framework. It connects external ecological data sources with the Guardian Network through a decentralized oracle system.
+The Oracle Bridge serves as the critical data ingestion and validation layer for TML's Earth Protection framework. It connects external ecological data sources with the Stewardship Council Network through a decentralized oracle system.
 
 ## Architecture
 
@@ -469,5 +470,4 @@ spec:
 
 ---
 
-#### *Sacred Zero is the planet’s pause button: pressed in milliseconds, echoing in millennia.*
-
+#### *Sacred Zero is the planet's pause button: pressed in milliseconds, echoing in millennia.* **-Lev Goukassian**
