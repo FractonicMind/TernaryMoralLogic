@@ -1,3 +1,4 @@
+
 # Vulnerable Populations: Enhanced Protection Framework
 
 **Path**: `/docs/mandates/categorical/human_rights/Vulnerable_Populations.md`  
@@ -120,7 +121,7 @@ child_protections:
 
   special_circumstances:
     unaccompanied_minors:
-      guardian_appointment: "Immediate"
+      custodian_appointment: "Immediate"
       family_tracing: "Priority"
       age_assessment: "Benefit of doubt"
       detention: "refuse"
@@ -351,7 +352,7 @@ refugee_protections:
       
   vulnerable_refugees:
     unaccompanied_children:
-      guardian: "Immediate appointment"
+      custodian: "Immediate appointment"
       family_tracing: "Priority"
       special_reception: "Child-friendly"
       
@@ -758,7 +759,7 @@ enforcement:
 
 ---
 
-#### *Liberty is measured by the freedom of the most stigmatised person in the farthest cell.*
+#### *Liberty is measured by the freedom of the most stigmatised person in the farthest cell.* **-Lev Goukassian**
 
 ---
 
