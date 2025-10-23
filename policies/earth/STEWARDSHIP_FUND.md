@@ -1,3 +1,4 @@
+
 # Stewardship Fund Policy
 
 ## Purpose
@@ -135,7 +136,7 @@ class StewardshipToken:
 | 100+ | Sacred Zero council participation |
 | 500+ | Priority emergency support |
 | 1000+ | Regional coordinator eligibility |
-| 5000+ | Guardian Network assembly invitation |
+| 5000+ | Stewardship Council assembly invitation |
 | 10000+ | Permanent advisory position |
 
 ## Disbursement Protocols
@@ -187,7 +188,7 @@ emergency_activation:
   ecological_crisis:
     threshold: "imminent_irreversible_damage"
     amount: $5000-50000
-    approval: "single_guardian"
+    approval: "single_custodian"
     
   community_threat:
     threshold: "immediate_danger"
@@ -197,7 +198,7 @@ emergency_activation:
   mass_displacement:
     threshold: "100+_people"
     amount: $10000-100000
-    approval: "guardian_majority"
+    approval: "custodian_majority"
 ```
 
 ## Fund Governance
@@ -207,14 +208,43 @@ emergency_activation:
 ```yaml
 governance:
   fund_committee:
-    members: 7
+    members: 6
     composition:
-      - 2 community representatives
-      - 2 Guardian Network members
-      - 1 Scientific Advisory Council
-      - 1 Future Generations Guardian
-      - 1 Financial auditor
-      
+1. **Technical Custodian (Recommended: Electronic Frontier Foundation)**
+   * Maintains the open-source repository  
+   * Manages blockchain infrastructure  
+   * Provides technical community support  
+   * Ensures code integrity and updates  
+
+2. **Human Rights Enforcement Partner (Recommended: Amnesty International)**
+   * Monitors enforcement of 26+ human rights documents  
+   * Reviews complex Human Rights Sacred Zero cases  
+   * Coordinates with international human rights mechanisms  
+   * Supports victims in seeking remedy and justice  
+
+3. **Earth Protection Enforcement Partner (Recommended: Indigenous Environmental Network)**
+   * Monitors enforcement of 20+ environmental treaties  
+   * Reviews Earth Protection Sacred Zero cases  
+   * Represents Indigenous sovereignty in environmental decisions  
+   * Coordinates ecosystem restoration from Memorial Fund  
+
+4. **AI Ethics Research Partner (Recommended: MIT Media Lab or Stanford HAI)**
+   * Conducts research on TML effectiveness  
+   * Validates ethical framework evolution  
+   * Publishes findings on algorithmic accountability  
+   * Guides implementation standards development  
+
+5. **Memorial Fund Administrator (Recommended: Memorial Sloan Kettering Cancer Center)**
+   * Administers the cancer research portion of Memorial Fund  
+   * Honors Goukassian's personal commitment to medical research  
+   * Ensures victim compensation reaches intended recipients  
+   * Provides transparency reporting on fund allocation  
+
+6. **Community Representative (Elected Position)**
+   * Represents implementers and user community interests  
+   * Elected by TML stakeholder community  
+   * Ensures framework serves real-world needs  
+   * Provides accountability for Council decisions      
   responsibilities:
     - Monthly distribution approval
     - Emergency allocation decisions
@@ -353,7 +383,7 @@ compliance:
 
 - Community consultation required
 - 60-day public comment period
-- Guardian Network approval (8/11)
+- Stewardship Council Network approval (5/6)
 - Cannot reduce payment amounts
 - Cannot weaken protections
 
@@ -373,4 +403,4 @@ compliance:
 *All dollar amounts are nominal to 2025 USD
 
 ---
-#### *While CEOs rotate, forests cannot reboot; TML logs the irreversible so grandchildren can litigate the irresponsible.*
+#### *While CEOs rotate, forests cannot reboot; TML logs the irreversible so grandchildren can litigate the irresponsible.* **-Lev Goukassian**
