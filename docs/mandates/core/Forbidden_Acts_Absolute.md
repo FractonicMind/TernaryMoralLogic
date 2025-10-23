@@ -1,3 +1,4 @@
+
 # Forbidden Acts Absolute: Red Lines That Cannot Be Crossed
 
 **Path**: `/docs/mandates/core/Forbidden_Acts_Absolute.md`  
@@ -748,18 +749,18 @@ def calculate_total_penalty(violation):
 
 ---
 
-## Guardian Institution Role (None Needed)
+## Stewardship Institution Role (Advisory Only)
 
 ```python
-guardian_role_in_forbidden_acts = {
+stewardship_role_in_forbidden_acts = {
     "prevention": "Blockchain prevents automatically",
     "detection": "Smart contracts detect instantly",
     "enforcement": "Mathematics enforces immediately",
     "review": "No review possible - absolute",
     "override": "Cannot override Blockchain",
-    "value_added": 0,
-    "cost": "$600K/year wasted",
-    "recommendation": "Let Blockchain handle it"
+    "value_added": "Advisory perspective",
+    "cost": "Variable based on implementation",
+    "recommendation": "Blockchain handles enforcement"
 }
 ```
 
@@ -770,8 +771,6 @@ guardian_role_in_forbidden_acts = {
 The 46+ frameworks (26 Human Rights + 20+ Earth Protection) create an unbreakable mesh of protection. Every decision passes through this filter. Violations trigger instant Sacred Zero with automatic penalties. No committee can approve exceptions. No profit can justify violations. No emergency can override protections.
 
 **Blockchain makes these protections permanent, automatic, and inescapable.**
-
-
 
 ## Implementation Requirements
 
@@ -876,7 +875,6 @@ absolute_nature:
 
 ---
 
-#### *No human votes, no mercy appeals, no ‘emergency override’—only iron-clad code that sentences faster than any judge can reach the gavel.*
+#### *No human votes, no mercy appeals, no 'emergency override'—only iron-clad code that sentences faster than any judge can reach the gavel.* **-Lev Goukassian**
 
 ---
-
