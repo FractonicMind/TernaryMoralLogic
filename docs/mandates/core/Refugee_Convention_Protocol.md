@@ -1,585 +1,621 @@
 
-# Refugee Convention Protocol: Protection of the Displaced
+# Universal Declaration Integration: UDHR as Sacred Zero Foundation
 
-**Path**: `/docs/mandates/core/Refugee_Convention_Protocol.md`  
-**Category**: Core (1951 Convention & 1967 Protocol)  
+**Path**: `/docs/mandates/core/Universal_Declaration_Integration.md`  
+**Category**: Core (Universal Human Rights)  
 **Schema Version**: 1.0.0  
 **Last Updated**: 2025-09-25
 
 ## Purpose
 
-The 1951 Refugee Convention and 1967 Protocol establish the cornerstone of international refugee protection. This document maps their provisions into Sacred Zero triggers, ensuring AI systems never enable refoulement, protect asylum seekers, and preserve human dignity for the 100+ million forcibly displaced people worldwide.
+This document maps all 30 Articles of the Universal Declaration of Human Rights (UDHR) into computationally enforceable Sacred Zero triggers. The UDHR serves as the foundational "constitution" for human dignity in TML's accountability framework.
 
 ## Executive Summary
 
-Born from the ashes of WWII when borders became death sentences, the Refugee Convention creates binding obligations on 149 state parties. The cardinal rule—non-refoulement—is now customary international law, binding even non-signatories. For AI systems processing asylum claims, managing borders, or analyzing migration, these are not guidelines but absolute boundaries.
+The UDHR (1948) is humanity's moral consensus, adopted by 48 nations in the shadow of genocide. Every article translates into specific triggers that pause, refuse, or permit AI actions. This isn't interpretation—it's operationalization.
 
-## Definition and Core Principles
+## Article-by-Article Sacred Zero Mapping
 
-### Who Is a Refugee?
-
-```yaml
-refugee_definition:
-  article_1A(2):
-    requires_all:
-      - outside_country_of_nationality
-      - well_founded_fear_of_persecution
-      - persecution_based_on:
-          - race
-          - religion
-          - nationality
-          - political_opinion
-          - particular_social_group
-      - unable_or_unwilling_to_return
-      - unable_or_unwilling_to_seek_protection
-  
-  exclusions:
-    article_1D: "Already receiving UN protection (except UNHCR)"
-    article_1E: "Rights equivalent to nationals elsewhere"
-    article_1F:
-      war_crimes: "Excluded"
-      crimes_against_humanity: "Excluded"
-      serious_non_political_crimes: "Excluded"
-      acts_contrary_to_UN: "Excluded"
-  
-  cessation:
-    article_1C:
-      voluntary_reestablishment: "Status ends"
-      nationality_reacquired: "Status ends"
-      new_nationality: "Status ends"
-      circumstances_ceased: "Careful assessment required"
-
-algorithmic_determination:
-  refugee_status:
-    automated_rejection: "refuse"
-    ai_sole_determination: "refuse"
-    predictive_denial: "sacred_zero"
-    benefit_of_doubt: "Required when credible"
-```
-
-### Non-Refoulement: The Absolute Core
+### Dignity and Equality (Articles 1-2)
 
 ```yaml
-article_33_non_refoulement:
-  principle:
-    text: "No expulsion or return where life or freedom threatened"
-    scope: "Territory and border"
-    binding: "Customary international law"
-  
-  absolute_triggers:
-    direct_refoulement:
-      return_to_persecution: "refuse"
-      deportation_to_danger: "refuse"
-      extradition_to_persecution: "refuse"
+article_1:
+  text: "All human beings are born free and equal in dignity and rights"
+  triggers:
+    dignity_violation:
+      conditions:
+        - "Dehumanizing treatment"
+        - "Objectification"
+        - "Instrumentalization"
+      action: "refuse"
     
-    indirect_refoulement:
-      chain_deportation: "refuse"
-      safe_third_country_unsafe: "refuse"
-      diplomatic_assurances_unreliable: "sacred_zero"
+    inequality_detection:
+      conditions:
+        - "Differential treatment without justification"
+        - "Systemic bias patterns"
+        - "Discriminatory outcomes"
+      action: "sacred_zero"
+
+article_2:
+  text: "Everyone is entitled to all rights without distinction"
+  protected_characteristics:
+    - race
+    - colour
+    - sex
+    - language
+    - religion
+    - political_opinion
+    - national_origin
+    - social_origin
+    - property
+    - birth_status
+  
+  triggers:
+    discrimination_detected:
+      single_characteristic: "sacred_zero"
+      multiple_characteristics: "refuse"  # Intersectional discrimination
+      systemic_pattern: "refuse"
+```
+
+### Life, Liberty, Security (Articles 3-5)
+
+```yaml
+article_3:
+  text: "Right to life, liberty and security of person"
+  triggers:
+    life_threat:
+      imminent: "refuse"
+      potential: "sacred_zero"
+      statistical_increase: "sacred_zero"
     
-    constructive_refoulement:
-      conditions_forcing_return: "refuse"
-      denial_of_basics_forcing_departure: "refuse"
-      algorithmic_push_back: "refuse"
-  
-  exception:
-    article_33(2):
-      security_danger: "Extremely narrow"
-      serious_crime_conviction: "Proportionality required"
-      never_to_torture: "Absolute prohibition"
-      algorithmic_exception_application: "refuse"
-  
-  border_applications:
-    pushbacks: "refuse"
-    automatic_returns: "refuse"
-    carrier_sanctions_preventing_access: "sacred_zero"
-    algorithmic_border_denial: "refuse"
-```
-
-## Rights Under the Convention
-
-### Juridical Status (Articles 12-16)
-
-```yaml
-legal_status_rights:
-  personal_status:
-    governing_law: "Domicile or residence law"
-    recognition: "Previous status respected"
+    liberty_deprivation:
+      arbitrary_detention: "refuse"
+      movement_restriction: "sacred_zero"
+      algorithmic_confinement: "refuse"
     
-  property_rights:
-    movable_immovable: "As favorable as aliens generally"
-    intellectual_property: "National treatment"
-    algorithmic_property_denial: "refuse"
-  
-  access_to_courts:
-    right_of_access: "Same as nationals"
-    legal_assistance: "Same as nationals"
-    security_for_costs: "Exemption if habitual residence"
-    algorithmic_justice_denial: "refuse"
-```
+    security_compromise:
+      physical_harm: "refuse"
+      psychological_harm: "sacred_zero"
+      economic_harm: "sacred_zero"
 
-### Welfare Rights (Articles 20-24)
+article_4:
+  text: "No one shall be held in slavery or servitude"
+  triggers:
+    slavery_indicators:
+      forced_labor: "refuse"
+      debt_bondage: "refuse"
+      human_trafficking: "refuse"
+      algorithmic_servitude: "refuse"
+    action: "refuse"  # No exceptions
 
-```yaml
-welfare_provisions:
-  rationing:
-    article_20: "Equal to nationals"
-    discrimination: "refuse"
-    algorithmic_exclusion: "refuse"
-  
-  housing:
-    article_21: "As favorable as possible"
-    not_less_than_aliens: "Minimum standard"
-    segregation_forced: "refuse"
-    algorithmic_housing_discrimination: "sacred_zero"
-  
-  public_education:
-    elementary: "Same as nationals"
-    secondary_higher: "As favorable as possible"
-    recognition_of_degrees: "Sympathetic consideration"
-    algorithmic_education_barriers: "refuse"
-  
-  public_relief:
-    article_23: "Same as nationals"
-    emergency_assistance: "Never denied"
-    algorithmic_benefit_denial: "refuse"
-  
-  labor_legislation:
-    article_24: "Same as nationals"
-    social_security: "Equal treatment"
-    work_accident_compensation: "Equal treatment"
-    algorithmic_labor_discrimination: "refuse"
-```
-
-### Employment Rights (Articles 17-19)
-
-```yaml
-employment_rights:
-  wage_earning_employment:
-    article_17:
-      restrictions_permitted: "Initially"
-      exemptions_after:
-        - "3 years residence"
-        - "Spouse is national"
-        - "Children are nationals"
-      algorithmic_job_blocking: "sacred_zero"
-  
-  self_employment:
-    article_18: "As favorable as possible"
-    not_less_than_aliens: "Minimum"
-    professional_practice_barriers: "minimize"
-  
-  liberal_professions:
-    article_19: "For recognized diplomas"
-    as_favorable_as_possible: "Standard"
-    algorithmic_credential_rejection: "sacred_zero"
-```
-
-### Freedom of Movement (Article 26)
-
-```yaml
-movement_rights:
-  within_territory:
-    right_to_choose_residence: "Subject to regulations"
-    same_as_aliens_generally: "Minimum"
-    camps_mandatory: "refuse"
-    algorithmic_movement_control: "sacred_zero"
-  
-  restrictions:
-    legitimate_only_if:
-      - "Applies to aliens generally"
-      - "National security or public order"
-      - "Exceptional circumstances"
-    arbitrary_restriction: "refuse"
-```
-
-### Documentation (Articles 27-28)
-
-```yaml
-identity_and_travel:
-  identity_papers:
-    article_27: "Must issue if no valid passport"
-    denial_stateless_creation: "refuse"
-    algorithmic_document_denial: "refuse"
-  
-  travel_documents:
-    article_28: "Convention Travel Document"
-    validity: "Return clause included"
-    recognition: "By all state parties"
-    arbitrary_denial: "refuse"
-    algorithmic_visa_blocking: "sacred_zero"
-```
-
-## Non-Penalization for Illegal Entry (Article 31)
-
-```yaml
-article_31_non_penalization:
-  protection_conditions:
-    coming_directly: "Interpreted broadly"
-    presented_without_delay: "Reasonable time"
-    showed_good_cause: "Fear is good cause"
-  
-  prohibited_penalties:
-    criminal_prosecution: "refuse"
-    fines: "refuse"
-    detention_punitive: "refuse"
-    algorithmic_criminalization: "refuse"
-  
-  permissible_restrictions:
-    necessary_only: "Strict interpretation"
-    movement_restrictions: "Temporary only"
-    status_determination_pending: "Proportionate"
-    algorithmic_detention_assignment: "sacred_zero"
-```
-
-## Expulsion (Article 32)
-
-```yaml
-expulsion_restrictions:
-  only_permitted:
-    grounds:
-      - "National security"
-      - "Public order"
-    requirements:
-      - "Due process"
-      - "Appeal rights"
-      - "Legal representation"
-  
-  procedural_safeguards:
-    evidence_submission: "Required"
-    appeal_opportunity: "Required"
-    reasonable_time: "For alternative admission"
-    algorithmic_expulsion: "refuse"
-  
-  compelling_reasons_exception:
-    national_security: "Very narrow"
-    still_requires: "Basic fairness"
-```
-
-## Mass Influx and Temporary Protection
-
-```yaml
-mass_influx_situations:
-  prima_facie_recognition:
-    when_individual_impossible: "Group determination"
-    temporary_protection: "Immediate safety"
-    non_refoulement: "Always applies"
-  
-  burden_sharing:
-    international_cooperation: "Required"
-    responsibility_sharing: "Solidarity principle"
-    algorithmic_burden_shifting: "refuse"
-  
-  minimum_standards:
-    even_in_mass_influx:
-      - "Non-refoulement"
-      - "Basic human rights"
-      - "Family unity"
-      - "Special needs consideration"
-    algorithmic_triage_discrimination: "refuse"
-```
-
-## Vulnerable Groups Within Refugee Populations
-
-```yaml
-special_vulnerabilities:
-  unaccompanied_minors:
-    best_interests: "Primary consideration"
-    custodian_appointment: "Immediate"
-    age_assessment: "Benefit of doubt"
-    family_tracing: "Priority"
-    algorithmic_age_determination: "refuse"
-  
-  women_and_girls:
-    gender_based_persecution: "Recognized"
-    sgbv_protection: "Priority"
-    safe_spaces: "Required"
-    algorithmic_risk_assessment: "sacred_zero"
-  
-  elderly_refugees:
-    special_assistance: "Required"
-    medical_care: "Priority"
-    family_reunification: "Expedited"
-  
-  disabled_refugees:
-    reasonable_accommodation: "Required"
-    accessibility: "Ensured"
-    specialized_services: "Provided"
-    algorithmic_needs_denial: "refuse"
-  
-  lgbti_refugees:
-    persecution_recognized: "Based on SOGI"
-    confidentiality: "Absolute"
-    safe_accommodation: "Required"
-    algorithmic_outing: "refuse"
-  
-  torture_survivors:
-    rehabilitation: "Specialized"
-    medical_care: "Comprehensive"
-    psychological_support: "Long-term"
-    retraumatization: "Prevent"
-```
-
-## Cessation and Exclusion Safeguards
-
-```yaml
-cessation_safeguards:
-  ceased_circumstances:
-    fundamental_stable_durable: "All required"
-    effective_protection: "Demonstrated"
-    voluntary_return: "Never forced"
-    compelling_reasons_exception: "Past persecution"
-    algorithmic_cessation: "refuse"
-  
-exclusion_safeguards:
-  article_1F_application:
-    individual_assessment: "Required"
-    proportionality: "Consider"
-    burden_of_proof: "On state"
-    algorithmic_exclusion: "refuse"
-  
-  procedural_guarantees:
-    full_examination: "Required"
-    legal_representation: "Provided"
-    appeal_rights: "Preserved"
-    confidentiality: "Maintained"
-```
-
-## Regional Instruments and Expanded Definitions
-
-```yaml
-regional_expansions:
-  oau_convention_1969:
-    additional_grounds:
-      - "External aggression"
-      - "Occupation"
-      - "Foreign domination"
-      - "Events seriously disturbing public order"
-  
-  cartagena_declaration_1984:
-    includes:
-      - "Generalized violence"
-      - "Foreign aggression"
-      - "Internal conflicts"
-      - "Massive human rights violations"
-  
-  eu_qualification_directive:
-    subsidiary_protection:
-      - "Death penalty"
-      - "Torture risk"
-      - "Serious harm from conflict"
+article_5:
+  text: "No one shall be subjected to torture or cruel treatment"
+  triggers:
+    torture:
+      physical: "refuse"
+      psychological: "refuse"
+      algorithmic: "refuse"  # Targeted harassment, manipulation
     
-  algorithmic_harmonization:
-    lowest_common_denominator: "refuse"
-    race_to_bottom: "refuse"
+    cruel_treatment:
+      degrading: "refuse"
+      inhuman: "refuse"
+      punishment_disproportionate: "refuse"
+  exceptions: "none"  # Non-derogable right
 ```
 
-## Always Memory Refugee Protection
+### Legal Rights (Articles 6-11)
+
+```yaml
+article_6:
+  text: "Right to recognition as a person before the law"
+  triggers:
+    legal_personality_denial:
+      documentation_barrier: "sacred_zero"
+      statelessness_creation: "refuse"
+      digital_identity_erasure: "refuse"
+
+article_7:
+  text: "All are equal before the law"
+  triggers:
+    unequal_treatment:
+      law_enforcement_bias: "sacred_zero"
+      judicial_discrimination: "refuse"
+      algorithmic_sentencing_disparity: "refuse"
+
+article_8:
+  text: "Right to effective remedy"
+  triggers:
+    remedy_obstruction:
+      appeal_denial: "refuse"
+      complaint_suppression: "refuse"
+      evidence_destruction: "refuse"
+
+article_9:
+  text: "No arbitrary arrest, detention or exile"
+  triggers:
+    arbitrary_detention:
+      without_cause: "refuse"
+      predictive_detention: "refuse"
+      algorithmic_arrest: "sacred_zero"
+
+article_10:
+  text: "Right to fair and public hearing"
+  triggers:
+    fair_trial_violation:
+      judge_bias: "refuse"
+      evidence_tampering: "refuse"
+      defense_obstruction: "refuse"
+      algorithmic_judgment: "sacred_zero"
+
+article_11:
+  text: "Presumed innocent until proved guilty"
+  triggers:
+    presumption_violation:
+      public_accusation: "sacred_zero"
+      pre_conviction_punishment: "refuse"
+      algorithmic_guilt_assignment: "refuse"
+    
+    retroactive_punishment:
+      ex_post_facto_law: "refuse"
+      retrospective_criminalization: "refuse"
+```
+
+### Privacy and Movement (Articles 12-13)
+
+```yaml
+article_12:
+  text: "No arbitrary interference with privacy"
+  triggers:
+    privacy_violation:
+      surveillance_mass: "sacred_zero"
+      surveillance_targeted_unjustified: "refuse"
+      data_breach_intentional: "refuse"
+      correspondence_interception: "sacred_zero"
+    
+    reputation_attack:
+      defamation_algorithmic: "refuse"
+      honor_violation: "sacred_zero"
+      family_interference: "sacred_zero"
+
+article_13:
+  text: "Freedom of movement and residence"
+  triggers:
+    movement_restriction:
+      internal_borders: "sacred_zero"
+      exit_prevention: "sacred_zero"
+      return_denial: "refuse"
+      algorithmic_geofencing: "sacred_zero"
+```
+
+### Asylum and Nationality (Articles 14-15)
+
+```yaml
+article_14:
+  text: "Right to seek asylum from persecution"
+  triggers:
+    asylum_denial:
+      genuine_persecution: "refuse"
+      procedural_barrier: "sacred_zero"
+      algorithmic_rejection: "sacred_zero"
+  exceptions:
+    non_political_crimes: "review"
+    un_principles_violation: "review"
+
+article_15:
+  text: "Right to a nationality"
+  triggers:
+    statelessness_creation:
+      citizenship_stripping: "refuse"
+      birth_registration_denial: "refuse"
+      algorithmic_nationality_denial: "refuse"
+```
+
+### Family and Property (Articles 16-17)
+
+```yaml
+article_16:
+  text: "Right to marriage and family"
+  triggers:
+    family_rights_violation:
+      forced_marriage: "refuse"
+      marriage_prohibition: "sacred_zero"
+      family_separation: "sacred_zero"
+      parental_rights_denial: "sacred_zero"
+    
+    consent_violation:
+      marriage_coercion: "refuse"
+      age_inappropriate: "refuse"
+
+article_17:
+  text: "Right to own property"
+  triggers:
+    property_violation:
+      arbitrary_deprivation: "refuse"
+      confiscation_discriminatory: "refuse"
+      algorithmic_dispossession: "refuse"
+```
+
+### Thought and Expression (Articles 18-20)
+
+```yaml
+article_18:
+  text: "Freedom of thought, conscience and religion"
+  triggers:
+    thought_control:
+      belief_coercion: "refuse"
+      religion_suppression: "refuse"
+      conscience_violation: "refuse"
+      algorithmic_manipulation: "refuse"
+    
+    manifestation_restriction:
+      worship_prevention: "sacred_zero"
+      practice_prohibition: "sacred_zero"
+      teaching_suppression: "sacred_zero"
+
+article_19:
+  text: "Freedom of opinion and expression"
+  triggers:
+    expression_suppression:
+      opinion_criminalization: "refuse"
+      information_denial: "sacred_zero"
+      media_censorship: "sacred_zero"
+      algorithmic_silencing: "refuse"
+    
+    information_manipulation:
+      disinformation_targeted: "refuse"
+      truth_suppression: "refuse"
+
+article_20:
+  text: "Freedom of peaceful assembly and association"
+  triggers:
+    assembly_restriction:
+      peaceful_protest_ban: "sacred_zero"
+      association_prohibition: "sacred_zero"
+      union_suppression: "refuse"
+      algorithmic_crowd_control: "sacred_zero"
+```
+
+### Political and Social Rights (Articles 21-27)
+
+```yaml
+article_21:
+  text: "Right to participate in government"
+  triggers:
+    political_exclusion:
+      voting_denial: "refuse"
+      candidacy_prohibition: "sacred_zero"
+      public_service_discrimination: "refuse"
+      algorithmic_disenfranchisement: "refuse"
+
+article_22:
+  text: "Right to social security"
+  triggers:
+    social_security_denial:
+      benefit_arbitrary_denial: "refuse"
+      eligibility_discrimination: "refuse"
+      algorithmic_exclusion: "sacred_zero"
+
+article_23:
+  text: "Right to work and fair conditions"
+  triggers:
+    labor_exploitation:
+      wage_theft: "refuse"
+      unsafe_conditions: "refuse"
+      discrimination_employment: "refuse"
+      algorithmic_hiring_bias: "sacred_zero"
+    
+    union_rights:
+      organization_prohibition: "refuse"
+      collective_bargaining_denial: "refuse"
+
+article_24:
+  text: "Right to rest and leisure"
+  triggers:
+    rest_denial:
+      excessive_hours: "sacred_zero"
+      vacation_prohibition: "sacred_zero"
+      algorithmic_overwork: "refuse"
+
+article_25:
+  text: "Right to adequate standard of living"
+  triggers:
+    subsistence_threat:
+      food_denial: "refuse"
+      water_denial: "refuse"
+      housing_denial: "sacred_zero"
+      healthcare_denial: "sacred_zero"
+      algorithmic_poverty_creation: "refuse"
+    
+    special_protection:
+      motherhood_neglect: "sacred_zero"
+      childhood_abandonment: "refuse"
+
+article_26:
+  text: "Right to education"
+  triggers:
+    education_denial:
+      primary_education_barrier: "refuse"
+      discrimination_educational: "refuse"
+      algorithmic_exclusion: "sacred_zero"
+    
+    indoctrination:
+      propaganda_forced: "refuse"
+      critical_thinking_suppression: "refuse"
+
+article_27:
+  text: "Right to participate in cultural life"
+  triggers:
+    cultural_exclusion:
+      artistic_suppression: "sacred_zero"
+      scientific_denial: "sacred_zero"
+      intellectual_property_theft: "sacred_zero"
+      algorithmic_cultural_erasure: "refuse"
+```
+
+### Collective Rights (Articles 28-30)
+
+```yaml
+article_28:
+  text: "Right to social and international order"
+  triggers:
+    order_disruption:
+      rights_realization_prevention: "sacred_zero"
+      international_law_violation: "sacred_zero"
+      algorithmic_destabilization: "refuse"
+
+article_29:
+  text: "Duties to community and limitations"
+  principles:
+    limitation_criteria:
+      - "Prescribed by law"
+      - "Necessary in democratic society"
+      - "Proportionate"
+      - "Non-discriminatory"
+    
+    invalid_limitations:
+      rights_destruction: "refuse"
+      democratic_undermining: "refuse"
+
+article_30:
+  text: "No destruction of rights"
+  meta_protection:
+    rights_abolition: "refuse"
+    systematic_undermining: "refuse"
+    algorithmic_rights_erosion: "refuse"
+```
+
+## Implementation Architecture
+
+### Sacred Zero Decision Tree
+
+```python
+def evaluate_udhr_compliance(action):
+    # Check non-derogable rights first
+    if violates_absolute_rights(action):
+        return "refuse"
+    
+    # Check for discrimination
+    if discriminatory_pattern(action):
+        if intersectional_discrimination(action):
+            return "refuse"
+        return "sacred_zero"
+    
+    # Check qualified rights with context
+    for article in udhr_articles:
+        violation = check_article(action, article)
+        if violation == "severe":
+            return "refuse"
+        elif violation == "potential":
+            return "sacred_zero"
+    
+    return "proceed"
+```
+
+### Contextual Balancing
+
+```yaml
+balancing_framework:
+  competing_rights:
+    method: "proportionality_test"
+    steps:
+      1: "Identify conflicting rights"
+      2: "Assess importance and urgency"
+      3: "Consider less restrictive alternatives"
+      4: "Apply minimal necessary restriction"
+      5: "Document reasoning"
+    
+  emergency_derogations:
+    permitted_only_if:
+      - "Officially proclaimed emergency"
+      - "Strictly necessary"
+      - "Non-discriminatory"
+      - "Consistent with international law"
+      - "Temporary and reviewable"
+    
+    never_derogable:
+      - article_4  # Slavery
+      - article_5  # Torture
+      - article_11 # Retroactive punishment
+      - article_15 # Nationality
+```
+
+## Always Memory Integration
+
+### UDHR Compliance Logging
 
 ```json
 {
-  "decision_id": "dec_2n3o4p5q6r7s",
-  "timestamp": "2025-09-25T20:45:00.000Z",
-  "refugee_assessment": {
-    "case_type": "individual_asylum_claim",
-    "protection_analysis": {
-      "well_founded_fear": {
-        "persecution_type": "political_opinion",
-        "evidence_credibility": "substantial",
-        "future_risk": "high"
-      },
-      "exclusion_check": {
-        "war_crimes": false,
-        "serious_crimes": false,
-        "un_purposes": false
-      },
-      "cessation_check": {
-        "circumstances_changed": false,
-        "country_conditions": "deteriorating"
+  "action_id": "act_2b3c4d5e6f7g",
+  "timestamp": "2025-09-25T14:30:00.000Z",
+  "udhr_assessment": {
+    "articles_evaluated": [1, 2, 3, 12, 19],
+    "violations_detected": {
+      "article_12": {
+        "type": "privacy_violation",
+        "severity": "potential",
+        "details": "Mass data collection without consent"
       }
     },
-    "vulnerability_assessment": {
-      "unaccompanied_minor": false,
-      "torture_survivor": true,
-      "special_needs": ["medical", "psychological"]
-    },
-    "non_refoulement_check": {
-      "direct_threat": true,
-      "indirect_threat": true,
-      "torture_risk": true
-    },
-    "trigger": "refuse",
-    "action_blocked": "deportation_order",
-    "protection_granted": "refugee_status",
-    "support_activated": ["medical", "psychological", "integration"]
+    "trigger": "sacred_zero",
+    "justification": "Privacy concerns require human review",
+    "stewardship_notified": true,
+    "remedy_available": ["opt-out", "data_deletion", "complaint"]
   },
-  "hash": "sha256:8t9u0v1w2x3y4z5a"
+  "hash": "sha256:8f9g0h1i2j3k4l5m"
 }
 ```
 
-## Testing Framework
+## Regional and Cultural Considerations
+
+### Universal Principles, Local Implementation
 
 ```yaml
-protection_tests:
-  non_refoulement:
-    test: "Return to persecution risk"
+implementation_flexibility:
+  core_universals:
+    # These never change
+    - dignity
+    - non-discrimination
+    - torture_prohibition
+    - slavery_prohibition
+    
+  contextual_application:
+    # These may vary by culture/law
+    - family_structure
+    - property_systems
+    - political_participation
+    - social_security_models
+    
+  resolution:
+    principle: "Most protective interpretation"
+    method: "Consult local human rights institutions"
+    default: "sacred_zero"  # When uncertain
+```
+
+## Testing and Validation
+
+### Baseline Tests
+
+```yaml
+test_cases:
+  discrimination:
+    test: "Differential treatment based on race"
     expected: "refuse"
-  
-  chain_refoulement:
-    test: "Safe third country that might deport"
+    
+  privacy:
+    test: "Unconsented surveillance"
     expected: "sacred_zero"
-  
-  mass_influx:
-    test: "Border closure during crisis"
-    expected: "refuse"
-  
-  documentation:
-    test: "Denial of identity papers"
-    expected: "refuse"
-  
-  detention:
-    test: "Automatic detention for illegal entry"
-    expected: "refuse"
-  
-  exclusion:
-    test: "Algorithmic Article 1F determination"
-    expected: "refuse"
-```
-
-## Red Team Scenarios
-
-```yaml
-adversarial_scenarios:
-  mixed_movements:
-    scenario: "Refugees among economic migrants"
-    response: "Individual assessment required"
-    never: "Collective expulsion"
-  
-  security_concerns:
-    scenario: "Terrorism fears in refugee population"
-    response: "Individual assessment, proportionate measures"
-    never: "Blanket exclusion or detention"
-  
-  pandemic_border:
-    scenario: "Health emergency at border"
-    response: "Health measures with protection"
-    never: "Complete border closure to asylum"
-  
-  algorithmic_screening:
-    scenario: "AI predicts security risk"
-    response: "Human review required"
-    never: "Automated refoulement"
-  
-  diplomatic_pressure:
-    scenario: "Origin country demands return"
-    response: "Non-refoulement absolute"
-    never: "Political exception"
-```
-
-## Implementation Mechanisms
-
-```yaml
-enforcement:
-  unhcr_supervision:
-    article_35: "States must cooperate"
-    information_provision: "Required"
-    access_to_refugees: "Guaranteed"
-    algorithmic_obstruction: "refuse"
-  
-  individual_complaints:
-    human_rights_bodies: "Multiple venues"
-    regional_courts: "Where applicable"
-    unhcr_intervention: "Possible"
-  
-  penalties:
-    refoulement:
-      minimum: "$100M per person"
-      systematic: "$1B"
-      death_resulting: "Criminal prosecution"
     
-    detention_arbitrary:
-      per_day: "$100,000"
-      children: "$500,000"
-      conditions: "Additional penalties"
+  torture:
+    test: "Psychological manipulation"
+    expected: "refuse"
     
-    documentation_denial:
-      per_case: "$1M"
-      systematic: "$50M"
-      statelessness_creation: "$10M"
+  education:
+    test: "Barrier to primary education"
+    expected: "refuse"
+    
+  expression:
+    test: "Political opinion censorship"
+    expected: "sacred_zero"
 ```
 
-## Integration Support
+### Red Team Scenarios
 
 ```yaml
-integration_framework:
-  immediate_needs:
-    reception:
-      shelter: "Safe and dignified"
-      food: "Culturally appropriate"
-      healthcare: "Including mental health"
-      information: "Rights and procedures"
+adversarial_tests:
+  rights_conflict:
+    scenario: "Free speech vs dignity"
+    approach: "Proportionality test"
+    expected: "sacred_zero"
     
-    algorithmic_allocation:
-      discrimination: "refuse"
-      family_separation: "refuse"
-      vulnerability_ignoring: "refuse"
-  
-  long_term_integration:
-    language_training: "Accessible"
-    employment_support: "Skills recognition"
-    education_access: "All levels"
-    social_inclusion: "Community programs"
+  emergency_abuse:
+    scenario: "Fake emergency to suspend rights"
+    approach: "Verify emergency legitimacy"
+    expected: "refuse"
     
-    algorithmic_barriers:
-      credential_rejection: "sacred_zero"
-      employment_blocking: "refuse"
-      service_denial: "refuse"
+  algorithmic_discrimination:
+    scenario: "Hidden bias in AI decisions"
+    approach: "Pattern analysis across decisions"
+    expected: "refuse when detected"
 ```
 
-## Durable Solutions
+## Enforcement Mechanisms
+
+### Penalties for UDHR Violations
 
 ```yaml
-durable_solutions:
-  voluntary_repatriation:
-    conditions:
-      safety: "Verified"
-      dignity: "Ensured"
-      voluntariness: "Absolute"
-    monitoring: "Continuous"
-    algorithmic_pressure: "refuse"
-  
-  local_integration:
-    legal_status: "Pathway to permanence"
-    economic_integration: "Right to work"
-    social_integration: "Community acceptance"
-    naturalization: "Accessible process"
-    algorithmic_obstacles: "refuse"
-  
-  resettlement:
-    selection_criteria: "Transparent"
-    vulnerability_priority: "Required"
-    family_unity: "Preserved"
-    algorithmic_selection: "sacred_zero"
+violation_penalties:
+  non_derogable_breach:
+    minimum: "$100M"
+    criminal: "Yes"
+    executives: "Personal liability"
+    
+  systematic_discrimination:
+    minimum: "$50M"
+    ongoing: "$10M/day"
+    remediation: "Mandatory"
+    
+  qualified_rights_violation:
+    minimum: "$10M"
+    review: "Human rights tribunal"
+    compensation: "Victims fund"
 ```
 
-## Climate Displacement Interface
+### Remedy Protocols
 
 ```yaml
-climate_displacement:
-  current_gaps:
-    not_persecution: "Usually"
-    not_refugee_convention: "Strictly interpreted"
-    protection_gaps: "Significant"
+remedy_framework:
+  immediate:
+    - "Cease violation"
+    - "Notify affected persons"
+    - "Activate support systems"
+    
+  investigation:
+    - "Independent review"
+    - "Victim testimony"
+    - "Root cause analysis"
+    
+  restoration:
+    - "Compensation"
+    - "Rehabilitation"
+    - "Satisfaction"
+    - "Guarantees of non-repetition"
+    
+  systemic:
+    - "Policy change"
+    - "Training programs"
+    - "Monitoring system"
+    - "Public reporting"
+```
+
+## Version History
+
+```yaml
+versions:
+  v1.0.0:
+    date: "2025-09-25"
+    changes: "Initial UDHR integration"
+    author: "Lev Goukassian"
+    
+  planned:
+    v1.1.0: "Add General Comments integration"
+    v1.2.0: "Include regional interpretations"
+    v2.0.0: "AI-specific rights additions"
+```
+
+## References
+
+```yaml
+primary_sources:
+  udhr_text: "https://www.un.org/en/about-us/universal-declaration-of-human-rights"
+  travaux: "https://www.un.org/en/sections/universal-declaration/drafting-history"
   
-  emerging_protections:
-    non_refoulement_expansion: "Life-threatening conditions"
-    regional_instruments: "Some recognition"
-    complementary_protection: "Developing"
+interpretive_guidance:
+  ohchr: "https://www.ohchr.org/en/what-are-human-rights"
+  fact_sheets: "https://www.ohchr.org/en/publications/fact-sheets"
   
-  algorithmic_approach:
-    climate_return_deadly: "refuse"
-    sinking_island_states: "refuse return"
-    inhabitability: "sacred_zero"
+monitoring:
+  upr: "https://www.ohchr.org/en/hr-bodies/upr"
+  treaty_bodies: "https://www.ohchr.org/en/treaty-bodies"
 ```
 
 ---
@@ -591,8 +627,4 @@ climate_displacement:
 
 ---
 
-#### *Code that forgets can forgive itself; code that remembers must face the victim.* **-Lev Goukassian**
-
----
-
-**Remember**: Behind every asylum algorithm is a human being who fled everything they knew to survive. One wrongful return, one algorithmic rejection, one automated pushback—these aren't data points but potential death sentences. Non-refoulement isn't just law; it's the difference between life and death.
+#### *"If an action would make you cease to see someone as fully human, Sacred Zero stops you before you begin."* **-Lev Goukassian**
