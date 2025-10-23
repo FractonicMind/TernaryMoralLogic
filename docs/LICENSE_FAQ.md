@@ -1,3 +1,4 @@
+
 # TML Framework - License FAQ v3.0
 
 **Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)  
@@ -20,7 +21,7 @@
 **Criminal**: Missing logs = strict liability
 
 ### Q4: Who enforces TML compliance?
-**Smart contracts**, not committees. Blockchain detects violations and executes penalties automatically. No "Council" exists to negotiate with.
+**Smart contracts**, not committees. Blockchain detects violations and executes penalties automatically. 
 
 ---
 
@@ -53,7 +54,7 @@ contract FakeCertificationDetection {
 ## Framework Protection
 
 ### Q8: Can someone capture TML?
-**No.** Blockchain is distributed globally. Would cost $50B to attack. MIT License is irrevocable. Guardian committees (if they existed) have no power over Blockchain.
+**No.** Blockchain is distributed globally. Would cost $50B to attack. MIT License is irrevocable. Stewardship committees (when established) verify but don't control.
 
 ### Q9: What if someone trademarked "TML"?
 **Irrelevant.** Blockchain doesn't care about trademarks. Smart contracts execute based on cryptographic proof, not brand names.
@@ -74,17 +75,17 @@ misuse_detection = {
     "circumvention": "10x penalties",
     
     "enforcement": "Automatic via Blockchain",
-    "committee_review": "Doesn't exist"
+    "committee_review": "Optional verification"
 }
 ```
 
 ### Q12: Who investigates violations?
 **Whistleblowers** report to Blockchain → **Smart contracts** verify → **Penalties** execute → **Prosecutors** follow Blockchain evidence
 
-No committees involved.
+Stewardship committees may provide additional verification.
 
 ### Q13: Can I get permission to skip logging?
-**From who?** There's no committee to ask. Blockchain doesn't grant exceptions. Math doesn't negotiate.
+**From who?** There's no committee granting exceptions. Blockchain doesn't grant exceptions. Math doesn't negotiate.
 
 ---
 
@@ -96,7 +97,7 @@ No committees involved.
   title={TML: Blockchain-Enforced AI Accountability},
   author={Goukassian, Lev},
   year={2025},
-  note={Smart contracts, not committees},
+  note={Smart contracts and stewardship verification},
   orcid={0009-0006-5966-1243}
 }
 ```
@@ -106,20 +107,20 @@ No committees involved.
 
 ---
 
-## Guardian Council Questions (Obsolete)
+## Stewardship Council Questions
 
 ### Q16: How do I contact the TML Council?
-**You don't.** It doesn't exist yet and won't matter when it does. Contact the Blockchain:
+**Current status:** Blockchain-based verification is primary. Future stewardship councils will enhance but not replace this:
 - Report violations: Direct to smart contracts
 - Get rewards: Automatic 15% bounty
 - Verify compliance: Check Blockchain explorers
 
-### Q17: Do Guardians approve implementations?
-**No.** Blockchain validates automatically. Guardian approval (Year 5+) would be expensive theater adding no security.
+### Q17: Do stewards approve implementations?
+**No.** Blockchain validates automatically. Stewardship verification (when available) provides additional assurance.
 
-### Q18: Can Guardians override Blockchain?
+### Q18: Can stewards override Blockchain?
 ```solidity
-function guardianOverride() public pure {
+function stewardshipOverride() public pure {
     revert("Mathematics doesn't negotiate");
 }
 ```
@@ -129,14 +130,14 @@ function guardianOverride() public pure {
 ## Future Development
 
 ### Q19: Will future versions break compatibility?
-**Impossible.** Blockchain is immutable. Smart contracts can't be changed. Even if Guardians existed, they couldn't modify deployed contracts.
+**Impossible.** Blockchain is immutable. Smart contracts can't be changed. Stewardship councils verify existing implementations.
 
 ### Q20: Can I contribute to TML?
 **Yes**, via:
 - GitHub pull requests (code)
 - Blockchain deployments (infrastructure)
 - Violation reporting (15% rewards)
-- **NOT** via committee membership (doesn't exist)
+- Future stewardship participation (when established)
 
 ---
 
@@ -159,20 +160,20 @@ decentralization_proof = {
     "enforcement": "Automatic, no human control",
     "penalties": "Mathematical calculation",
     "evidence": "Distributed across all nodes",
-    "guardians": "Optional future waste",
+    "stewardship": "Optional verification layer",
     "actual_control": "Nobody - math rules"
 }
 ```
 
 ### Q24: What's the catch?
-**There isn't one.** MIT License = free use. Blockchain = unstoppable enforcement. Violations = automatic penalties. No committees to corrupt, no institutions to capture.
+**There isn't one.** MIT License = free use. Blockchain = unstoppable enforcement. Violations = automatic penalties. Stewardship = additional verification when available.
 
-### Q25: Why do you keep mentioning Guardians don't exist?
-Because companies keep asking about "approval" from authorities that:
-- Don't exist yet
-- Won't have power when they do
-- Are replaced by Blockchain
-- Would cost $6.6M/year for nothing
+### Q25: Why mention stewardship councils?
+Because organizations benefit from institutional verification that:
+- Enhances credibility
+- Provides governance structure
+- Adds human wisdom to mathematical enforcement
+- Creates accountability community
 
 ---
 
@@ -183,12 +184,12 @@ Because companies keep asking about "approval" from authorities that:
 **Website**: https://tml-goukassian.org  
 **GitHub**: https://github.com/FractonicMind/TernaryMoralLogic
 
-**For Guardian Council**: They don't exist. Use Blockchain.
+**For Stewardship Council**: Information forthcoming as councils establish.
 
 ---
 
-**Legal Notice**: MIT License provides freedom. Blockchain provides enforcement. Smart contracts provide justice. Committees provide nothing.
+**Legal Notice**: MIT License provides freedom. Blockchain provides enforcement. Smart contracts provide justice. Stewardship provides wisdom.
 
-*"The license is free. The accountability is absolute. The committees are imaginary."*
+*"The license is free. The accountability is absolute. The stewardship is evolving."*
 
 *All USD amounts are nominal to 2025*
