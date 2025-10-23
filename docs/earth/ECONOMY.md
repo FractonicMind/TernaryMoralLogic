@@ -138,7 +138,7 @@ def calculate_tokens(activity):
 | 100 | Sacred Zero council voting |
 | 500 | Priority emergency support |
 | 1000 | Regional coordinator eligibility |
-| 5000 | TML assembly seat |
+| 5000 | Assembly seat |
 | 10000 | Permanent advisory position |
 
 ## Oracle Node Economics
