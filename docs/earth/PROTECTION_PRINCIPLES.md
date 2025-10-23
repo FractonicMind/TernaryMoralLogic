@@ -1,3 +1,4 @@
+
 # Earth Protection: Core Principles
 
 ## Foundational Philosophy
@@ -128,7 +129,7 @@ graph TD
     D & E & F --> G{Consensus?}
     G -->|No| H[Maintain Sacred Zero]
     G -->|Yes| I[Document Everything]
-    I --> J[Guardian Attestation]
+    I --> J[Stewardship Attestation]
     J --> K[Immutable Memory]
     K --> L[Forever Accountable]
 ```
@@ -268,7 +269,7 @@ This framework exists because:
 - The dead cannot sue their killers
 - The extinct cannot return
 
-Sacred Zero gives Earth a voice that cannot be silenced, a memory that cannot be erased, and guardians that cannot be bought.
+Sacred Zero gives Earth a voice that cannot be silenced, a memory that cannot be erased, and stewards that cannot be bought.
 
 ---
 
