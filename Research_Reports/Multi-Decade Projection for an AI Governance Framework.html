@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TML Durability Analysis</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Chosen Palette: Brilliant Blues (#003F5C, #366E99, #6B9DCC, #A1CCE4, #D6EFFF) -->
+    <!-- Narrative Plan & Structure: The infographic follows a 'Claim vs. Correction' narrative, structured as a single-page scroll. A brief intro lists the Eight Pillars. The main body uses a responsive grid (md:grid-cols-2) of Material Design cards. Each card addresses one of the 5 specific corrections from the source, presenting the 'Claim' (misconception) and the 'Correction' (reality). This is paired with a visualization (Chart.js or HTML/Tailwind diagram) and explanatory text to make the technical solutions (like EKR or dynamic hashing) easy to understand. This structure directly mirrors the source's 'rebuttal' format, making it the most logical way to tell the data's story. -->
+    <!-- Visualization Choices: 
+        1. Data: The Eight Pillars. Goal: Inform. Viz: HTML/Tailwind grid of cards. Justification: Organizes foundational concepts clearly. Method: HTML/Tailwind (NO SVG).
+        2. Data: Claim: 'Always Memory' vs. GDPR. Correction: EKR. Goal: Organize (Process). Viz: HTML/Tailwind flowchart diagram. Justification: Clearly visualizes the EKR process. Method: HTML/Tailwind (NO SVG/Mermaid).
+        3. Data: Claim: Blockchain vs. Energy. Correction: Modular Anchoring. Goal: Compare. Viz: Bar Chart. Justification: Quantifies the energy difference, fulfilling the Chart.js requirement. Method: Chart.js/Canvas (NO SVG).
+        4. Data: Claim: 'Hybrid Shield' undefined. Correction: Dual-Layer. Goal: Organize (Structure). Viz: 2-Column HTML/Tailwind diagram. Justification: Visually represents the 'dual-layer' concept. Method: HTML/Tailwind (NO SVG/Mermaid).
+        5. Data: Claim: 'Human Rights' static. Correction: Dynamic Hashing. Goal: Organize (Process). Viz: HTML/Tailwind flowchart diagram. Justification: Shows the dynamic process, proving it's not static. Method: HTML/Tailwind (NO SVG/Mermaid).
+        6. Data: Claim: 'Always Memory' vs. Personal Data. Correction: Hashed Proofs. Goal: Organize (Process/Transformation). Viz: HTML/Tailwind flowchart. Justification: Clearly shows what is and is not stored. Method: HTML/Tailwind (NO SVG/Mermaid).
+    -->
+    <!-- CONFIRMATION: NO Mermaid JS NOR SVG used. -->
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8FAFC; /* bg-slate-50 */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        .pillar-card {
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            padding: 1rem;
+            text-align: center;
+            font-weight: 600;
+            color: #366E99;
+            border: 1px solid #D6EFFF;
+        }
+        .claim-card {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .claim-header {
+            background-color: #FEF2F2; /* bg-red-50 */
+            padding: 1.5rem;
+            border-bottom: 1px solid #FEE2E2; /* bg-red-100 */
+        }
+        .claim-header h3 {
+            color: #DC2626; /* text-red-600 */
+            font-weight: 600;
+            font-size: 1.125rem;
+            line-height: 1.75rem;
+        }
+        .correction-body {
+            padding: 1.5rem;
+            flex-grow: 1;
+        }
+        .correction-body h4 {
+            color: #059669; /* text-green-600 */
+            font-weight: 600;
+            font-size: 1.25rem;
+            line-height: 1.75rem;
+            margin-bottom: 0.75rem;
+        }
+        .correction-body p {
+            color: #374151; /* text-gray-700 */
+            margin-top: 1rem;
+            line-height: 1.625;
+        }
+        .diagram {
+            margin-top: 1.5rem;
+            background-color: #F9FAFB; /* bg-gray-50 */
+            border-radius: 0.5rem;
+            padding: 1rem;
+            border: 1px solid #E5E7EB; /* border-gray-200 */
+        }
+        .diagram-box {
+            background-color: white;
+            border: 1px solid #A1CCE4;
+            border-radius: 0.375rem;
+            padding: 0.75rem;
+            text-align: center;
+            font-size: 0.875rem;
+            line-height: 1.25rem;
+            font-weight: 500;
+            color: #003F5C;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+        }
+        .diagram-box-red {
+            border-color: #FCA5A5; /* border-red-300 */
+            background-color: #FEF2F2; /* bg-red-50 */
+            color: #B91C1C; /* text-red-700 */
+        }
+        .diagram-arrow {
+            font-size: 1.5rem;
+            line-height: 2rem;
+            color: #9CA3AF; /* text-gray-400 */
+            text-align: center;
+            margin: 0.5rem 0;
+        }
+    </style>
+</head>
+<body class="text-slate-800">
+
+    <div class="container mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+
+        <header class="text-center mb-16">
+            <h1 class="text-4xl sm:text-5xl font-bold text-[#003F5C] mb-4">
+                Ternary Moral Logic (TML)
+            </h1>
+            <p class="text-xl sm:text-2xl font-medium text-[#366E99] mb-6">
+                An Analysis of Framework Durability
+            </p>
+            <p class="max-w-4xl mx-auto text-lg text-slate-700">
+                The long-term durability of an AI governance framework is not just theoretical; it is defined by its architectural resilience to legal, ethical, and technical challenges. This analysis examines the TML framework by correcting common claims against its core pillars.
+            </p>
+        </header>
+
+        <section id="pillars" class="mb-16">
+            <h2 class="text-3xl font-bold text-[#003F5C] text-center mb-8">
+                The Eight Pillars of TML
+            </h2>
+            <p class="text-lg text-slate-700 max-w-3xl mx-auto text-center mb-10">
+                The framework is built upon eight foundational principles designed to ensure accountability, transparency, and alignment with human values.
+            </p>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-5xl mx-auto">
+                <div class="pillar-card">Sacred Zero / Sacred Pause</div>
+                <div class="pillar-card">Always Memory</div>
+                <div class="pillar-card">Goukassian Promise</div>
+                <div class="pillar-card">Moral Trace Logs</div>
+                <div class="pillar-card">Human Rights</div>
+                <div class="pillar-card">Earth Protection</div>
+                <div class="pillar-card">Hybrid Shield</div>
+                <div class="pillar-card">Public Blockchains</div>
+            </div>
+        </section>
+
+        <section id="corrections">
+            <h2 class="text-3xl font-bold text-[#003F5C] text-center mb-8">
+                Clarifying Core Mechanics
+            </h2>
+            <p class="text-lg text-slate-700 max-w-3xl mx-auto text-center mb-12">
+                A durable framework must withstand scrutiny. The following sections address common claims by clarifying the specific technical implementations of TML's pillars, demonstrating their robustness.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <div class="claim-card">
+                    <div class="claim-header">
+                        <h3>Claim: “Always Memory” conflicts with GDPR’s Right to Erasure.</h3>
+                    </div>
+                    <div class="correction-body">
+                        <h4>Correction: TML integrates Ethical Key Revocation (EKR).</h4>
+                        <p>
+                            TML resolves the supposed paradox by design. EKR allows data to be rendered cryptographically unrecoverable, satisfying GDPR Article 17, without violating audit integrity. The evidence of the event remains verifiable via zero-knowledge proofs and hash continuity, but the link to personal identifiers is permanently broken by destroying the encryption key.
+                        </p>
+                        <div class="diagram">
+                            <div class="space-y-4">
+                                <div class="diagram-box">1. Personal Data Encrypted with Key (K)</div>
+                                <div class="diagram-arrow">&darr;</div>
+                                <div class="diagram-box">2. Encrypted Data (D) + Log Hash (H) Stored</div>
+                                <div class="diagram-arrow">&darr;</div>
+                                <div class="diagram-box diagram-box-red">3. GDPR Request: Destroy Key (K)</div>
+                                <div class="diagram-arrow">&darr;</div>
+                                <div class="diagram-box">4. Result: (H) is verifiable, (D) is unrecoverable.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="claim-card">
+                    <div class="claim-header">
+                        <h3>Claim: Public Blockchains cause energy conflict with Earth Protection.</h3>
+                    </div>
+                    <div class="correction-body">
+                        <h4>Correction: Anchoring is modular and technology-neutral.</h4>
+                        <p>
+                            TML does not require direct, high-energy Proof-of-Work mining. The framework uses OpenTimestamps (OTS) and Merkle batching, which have a negligible energy impact. Public chains are optional verification layers, not operational dependencies. TML can use L2 chains or Certificate Transparency (CT) to achieve immutability without ecological conflict.
+                        </p>
+                        <div class="mt-6">
+                            <div class="chart-container">
+                                <canvas id="energyChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="claim-card">
+                    <div class="claim-header">
+                        <h3>Claim: The “Hybrid Shield” is undefined and fragile.</h3>
+                    </div>
+                    <div class="correction-body">
+                        <h4>Correction: The Shield is a formal dual-layer protection model.</h4>
+                        <p>
+                            The Hybrid Shield provides redundancy with no single point of failure. It is formally documented and consists of two independent, auditable layers that ensure the integrity and immutability of moral logs.
+                        </p>
+                        <div class="diagram">
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="diagram-box h-full">
+                                    <strong class="text-[#003F5C]">1. Mathematical Shield</strong>
+                                    <p class="text-sm mt-2">Cryptographic anchoring of logs across multiple public ledgers for provable immutability.</p>
+                                </div>
+                                <div class="diagram-box h-full">
+                                    <strong class="text-[#003F5C]">2. Institutional Shield</strong>
+                                    <p class="text-sm mt-2">Mirrored custody of logs across independent institutions (NGOs, universities) with rotating verification keys.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="claim-card">
+                    <div class="claim-header">
+                        <h3>Claim: Human Rights codification is static and politicized.</h3>
+                    </div>
+                    <div class="correction-body">
+                        <h4>Correction: TML uses a dynamic document-trigger mechanism.</h4>
+                        <p>
+                            TML does not hard-code treaties, which would embed interpretation. Instead, it references and hashes the latest canonical versions from official sources (e.g., UN, ICRC). This hash records the exact version and timestamp, preserving provenance and legal fidelity without politicized overrides.
+                        </p>
+                        <div class="diagram">
+                            <div class="space-y-4">
+                                <div class="diagram-box">1. Source: un.org/charter (Version 1.0)</div>
+                                <div class="diagram-arrow">&darr;</div>
+                                <div class="diagram-box">2. Log (T1): HASH(v1.0) + Timestamp</div>
+                                <div class="diagram-arrow">&darr;</div>
+                                <div class="diagram-box">3. Source: un.org/charter (Version 1.1)</div>
+                                <div class="diagram-arrow">&darr;</div>
+                                <div class="diagram-box">4. Log (T2): HASH(v1.1) + Timestamp</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="claim-card md:col-span-2">
+                    <div class="claim-header">
+                        <h3>Claim: “Always Memory” implies perpetual personal data retention.</h3>
+                    </div>
+                    <div class="correction-body">
+                        <h4>Correction: TML stores hashed, pseudonymized event proofs, not raw data.</h4>
+                        <p>
+                            This is a critical distinction. What persists is the *evidence of decision integrity*, not the personal content itself. This is the same principle used in forensics, where a file's hash is verifiable in court without revealing the file's substance. The permanence of Always Memory is evidentiary, not personal.
+                        </p>
+                        <div class="diagram">
+                            <div class="grid grid-cols-3 gap-4 items-center">
+                                <div class="diagram-box diagram-box-red">
+                                    <strong>Raw Personal Data</strong>
+                                    <p class="text-sm mt-2">("User said 'X'")</p>
+                                    <p class="text-sm font-bold mt-2 text-red-700">NOT STORED</p>
+                                </div>
+                                <div class="diagram-arrow">
+                                    &rarr;
+                                </div>
+                                <div class="diagram-box">
+                                    <strong>Hashed Event Proof</strong>
+                                    <p class="text-sm mt-2">(Hash: 0xabc...)</p>
+                                    <p class="text-sm font-bold mt-2 text-green-700">STORED</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <footer class="text-center mt-16 pt-8 border-t border-slate-200">
+            <p class="text-sm text-slate-500">This infographic provides a summary of corrections to claims against the Ternary Moral Logic framework. All visualizations are illustrative.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const ctx = document.getElementById('energyChart').getContext('2d');
+            
+            const chartLabels = [['Direct PoW', 'Mining'], 'TML (OTS/L2)'];
+            
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: chartLabels,
+                    datasets: [{
+                        label: 'Relative Energy Impact (Illustrative)',
+                        data: [100, 0.5], 
+                        backgroundColor: [
+                            '#FCA5A5', // bg-red-300
+                            '#A1CCE4'  // Palette Blue
+                        ],
+                        borderColor: [
+                            '#EF4444', // border-red-500
+                            '#6B9DCC'  // Palette Blue
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                title: function(tooltipItems) {
+                                    const item = tooltipItems[0];
+                                    let label = item.chart.data.labels[item.dataIndex];
+                                    if (Array.isArray(label)) {
+                                      return label.join(' ');
+                                    } else {
+                                      return label;
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Relative Energy Impact'
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
