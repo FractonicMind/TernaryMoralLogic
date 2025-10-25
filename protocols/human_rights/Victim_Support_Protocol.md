@@ -376,7 +376,7 @@ severe_harm:
 ```yaml
 child_victims:
   immediate_protections:
-    guardian_ad_litem: "Appointed immediately"
+    custodian_ad_litem: "Appointed immediately"
     specialized_advocate: "Child trauma expert"
     family_support: "Unless family is threat"
     
@@ -589,8 +589,9 @@ rollout_phases:
 
 ---
 
-#### *"No victim stands alone in the shadow of algorithmic harm. The Memorial Fund remembers, the protocol protects, and justice prevails."*
+#### *"No victim stands alone in the shadow of algorithmic harm. The Memorial Fund remembers, the protocol protects, and justice prevails."* **-Lev Goukassian**
 
 ---
 
 **Remember**: Behind every case number is a human being whose life was disrupted by an algorithm. This protocol ensures their humanity is centered, their dignity restored, and their future secured.
+
