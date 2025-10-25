@@ -125,32 +125,49 @@ TML ensures no organization can hide violations through cryptographic immutabili
 - International recognition enhances cross-border legal acceptance
 - Enhanced insurance discounts (50-60% vs 20-40% Blockchain-only)
 
-### Recommended Stewardship Council Structure
+### Stewardship Council Composition and Distribution
 
-**If/When Institutions Participate:**
+#### This is where the second armor layer activates: the Stewardship Council.
 
-**Academic Institutions (4 seats recommended):**
-- Leading universities with AI ethics programs
-- Research institutes focused on algorithmic fairness
-- International academic collaborations
-- Geographic diversity across continents
+Six independent institutions hold synchronized copies of every TML log:
 
-**Technical Standards Bodies (3 seats recommended):**
-- Organizations with Blockchain and cryptography expertise
-- Standards development organizations (ISO, IEEE)
-- Open source foundation representatives
+1. **Technical Custodian (Recommended: Electronic Frontier Foundation)**
+   * Maintains the open-source repository  
+   * Manages blockchain infrastructure  
+   * Provides technical community support  
+   * Ensures code integrity and updates  
 
-**Civil Society Organizations (2 seats recommended):**
-- Human rights advocacy groups
-- Digital rights organizations
-- Environmental protection groups
+2. **Human Rights Enforcement Partner (Recommended: Amnesty International)**
+   * Monitors enforcement of 26+ human rights documents  
+   * Reviews complex Human Rights Sacred Zero cases  
+   * Coordinates with international human rights mechanisms  
+   * Supports victims in seeking remedy and justice  
 
-**International Bodies (2 seats recommended):**
-- UN specialized agencies
-- Regional governance organizations
-- Cross-border treaty bodies
+3. **Earth Protection Enforcement Partner (Recommended: Indigenous Environmental Network)**
+   * Monitors enforcement of 20+ environmental treaties  
+   * Reviews Earth Protection Sacred Zero cases  
+   * Represents Indigenous sovereignty in environmental decisions  
+   * Coordinates ecosystem restoration from Memorial Fund  
 
-**Total: 11 institutions (aspirational)**
+4. **AI Ethics Research Partner (Recommended: MIT Media Lab or Stanford HAI)**
+   * Conducts research on TML effectiveness  
+   * Validates ethical framework evolution  
+   * Publishes findings on algorithmic accountability  
+   * Guides implementation standards development  
+
+5. **Memorial Fund Administrator (Recommended: Memorial Sloan Kettering Cancer Center)**
+   * Administers the cancer research portion of Memorial Fund  
+   * Honors Goukassian's personal commitment to medical research  
+   * Ensures victim compensation reaches intended recipients  
+   * Provides transparency reporting on fund allocation  
+
+6. **Community Representative (Elected Position)**
+   * Represents implementers and user community interests  
+   * Elected by TML stakeholder community  
+   * Ensures framework serves real-world needs  
+   * Provides accountability for Council decisions
+
+**Total: 6 institutions (operational structure)**
 
 ### Stewardship Council Powers (When Active)
 
@@ -700,5 +717,3 @@ Institutional oversight strengthens governance over time, but protection begins 
 ---
 
 #### *"The sacred pause between question and answer—this is where wisdom begins, for humans and machines alike."* **— Lev Goukassian**
-
-
