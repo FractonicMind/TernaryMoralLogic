@@ -3,7 +3,7 @@
 
 **Creator:** Lev Goukassian (ORCID: 0009-0006-5966-1243)  
 **Contact:** leogouk@gmail.com  
-**Architecture:** Blockchain, Guardian-Optional  
+**Architecture:** Blockchain, Stewardship Council-Optional  
 **Protection Scope:** Human Rights (26+ docs) + Earth Protection (20+ docs)
 
 ---
@@ -12,9 +12,9 @@
 
 This specification defines how TML produces **Blockchain-anchored Always Memory logs** with court-grade integrity, protecting humans, Earth, and future generations.
 
-**What TML demands:** Immutable Blockchain evidence for all morally significant decisions  
-**What TML enables:** Immediate deployment without institutional coordination  
-**What TML protects:** Human dignity, planetary health, intergenerational justice  
+**System Requirements:** Immutable Blockchain evidence for all morally significant decisions  
+**Deployment Model:** Immediate implementation without institutional coordination  
+**Protection Framework:** Human dignity, planetary health, intergenerational justice  
 
 ---
 
@@ -55,7 +55,7 @@ Adversaries may attempt to:
 - **OpenTimestamps**: RFC 3161 compliant proofs
 - **Certificate Transparency**: Append-only log model
 
-**Guardian Enhancement Layer (OPTIONAL)**
+**Stewardship Council Enhancement Layer (OPTIONAL)**
 - Additional institutional mirrors (when desired)
 - Cross-border attestation (for multinationals)
 - Academic research collaboration
@@ -125,7 +125,7 @@ Adversaries may attempt to:
     "license": "MIT-Attribution-Required"
   },
   
-  "guardian_attestation": null  // Optional enhancement
+  "stewardship_attestation": null  // Optional enhancement
 }
 ```
 
@@ -152,16 +152,16 @@ def anchor_to_blockchains(log_batch):
     # OpenTimestamps for legal compliance
     ots_proof = opentimestamps.stamp(merkle_root)
     
-    # Guardian attestation (OPTIONAL - if network joined)
-    guardian_sigs = []
-    if guardian_network_enabled:
-        guardian_sigs = guardian_network.attest(merkle_root)
+    # Stewardship Council attestation (OPTIONAL - if network joined)
+    stewardship_sigs = []
+    if stewardship_council_enabled:
+        stewardship_sigs = stewardship_council.attest(merkle_root)
     
     return {
         'merkle_root': merkle_root,
         'blockchain_anchors': anchors,
         'ots_proof': ots_proof,
-        'guardian_attestations': guardian_sigs  # May be empty
+        'stewardship_attestations': stewardship_sigs  # May be empty
     }
 ```
 
@@ -185,10 +185,10 @@ def verify_log_integrity(log_entry):
     # OpenTimestamps verification (INDEPENDENT)
     ots_valid = opentimestamps.verify(log_entry.ots_proof)
     
-    # Guardian verification (OPTIONAL ENHANCEMENT)
-    guardian_valid = True  # Default to true if not using Guardians
-    if log_entry.guardian_attestation:
-        guardian_valid = verify_guardian_sigs(log_entry.guardian_attestation)
+    # Stewardship Council verification (OPTIONAL ENHANCEMENT)
+    stewardship_valid = True  # Default to true if not using Council
+    if log_entry.stewardship_attestation:
+        stewardship_valid = verify_stewardship_sigs(log_entry.stewardship_attestation)
     
     return True, "Log integrity verified via Blockchain"
 ```
@@ -297,13 +297,13 @@ def check_environmental_harm(decision):
 ## 9. Deployment Without Coordination
 
 ```bash
-# Deploy TML in 10 minutes - no institutional approval needed
+# Deploy TML - no institutional approval needed
 docker run tml/always-memory \
-    --Blockchain-anchoring=mandatory \
+    --blockchain-anchoring=mandatory \
     --chains="bitcoin,polygon,ethereum" \
     --human-rights-framework=true \
     --earth-protection=true \
-    --guardian-network=false  # Optional, add later if desired
+    --stewardship-council=false  # Optional, add later if desired
 
 # System fully operational immediately
 # Complete protection for humans and Earth
@@ -330,13 +330,13 @@ docker run tml/always-memory \
 
 ---
 
-## 11. Guardian Network (Optional Enhancement)
+## 11. Stewardship Council (Optional Enhancement)
 
-### When to Consider Guardians (Years Later)
+### When to Consider Council Participation (Years Later)
 
 ```python
-def evaluate_guardian_benefit():
-    """Evaluate if Guardian enhancement would help"""
+def evaluate_stewardship_benefit():
+    """Evaluate if Stewardship Council enhancement would help"""
     
     current_state = {
         'blockchain_protection': 'FULLY_ACTIVE',
@@ -354,7 +354,7 @@ def evaluate_guardian_benefit():
         'research_collaboration': 'Could be valuable'
     }
     
-    return "Guardians remain optional enhancement"
+    return "Stewardship Council remains optional enhancement"
 ```
 
 ---
@@ -403,7 +403,7 @@ Before deployment:
 - [ ] OpenTimestamps integration tested
 - [ ] Sacred Zero triggers calibrated
 - [ ] GDPR compliance verified
-- [ ] Guardian Network set to optional
+- [ ] Stewardship Council set to optional
 
 ---
 
@@ -413,14 +413,14 @@ Before deployment:
 - **Missing logs** = Strict liability + criminal negligence
 - **Human Rights violations** = 2x penalties + prosecution
 - **Environmental crimes** = 3x penalties + restoration orders
-- **Attempting Guardian requirement** = Invalid deployment
+- **Attempting Council requirement** = Invalid deployment
 
 ---
 
 ## 17. Status
 
 **Creator:** Lev Goukassian  
-**Architecture:** Blockchain (Deploy Today)  
+**Architecture:** Blockchain  
 **Protection:** Comprehensive (Humans + Earth + Future)  
 **Integrity:** Court-Grade via Mathematical Consensus  
 
@@ -433,3 +433,4 @@ Before deployment:
 **Support**: support@tml-goukassian.org
 
 *All USD amounts are nominal to 2025*
+
