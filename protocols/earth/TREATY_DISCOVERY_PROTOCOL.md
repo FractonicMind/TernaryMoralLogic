@@ -1,15 +1,16 @@
+
 # Treaty Discovery & Integration Protocol v3.0
 
 **Version**: 3.0 (Blockchain Oracle Architecture)  
 **Status**: Automated Discovery via Decentralized Oracles  
 **Human Requirement**: Zero (fully automated)  
-**Guardian Involvement**: Optional luxury after Year 5
+**Stewardship Council Involvement**: Optional luxury after Year 5
 
 ---
 
 ## Executive Summary
 
-Treaties protecting Earth are discovered and integrated **automatically via Blockchain oracles**. No committees. No institutions. No 72-hour review periods. Just mathematical consensus and immediate enforcement.
+Treaties protecting Earth are discovered and integrated **automatically via Blockchain oracles**. No committees. No institutions. No review periods. Just mathematical consensus and immediate enforcement.
 
 > "Earth's laws are written in many languages, in many lands. Our oracles learn them all instantly, so Sacred Zero speaks every tongue that defends the planet—without asking permission from committees."
 
@@ -312,12 +313,12 @@ contract MissedTreatyProtocol {
 
 ---
 
-## The Guardian Option
+## The Stewardship Council Option
 
-### What Guardians Could Add
+### What Council Members Could Add
 
 ```yaml
-optional_guardian_enhancement:
+optional_stewardship_enhancement:
   year_5_plus:
     - "Cultural context for treaties" (oracles already translate)
     - "Political interpretation" (math doesn't need politics)  
@@ -326,9 +327,9 @@ optional_guardian_enhancement:
     
   reality_check:
     - 99% of treaties discovered by oracles first
-    - Guardians would just confirm what oracles found
-    - Adds 72 hours delay for no benefit
-    - Costs $600K/year per institution
+    - Council members would just confirm what oracles found
+    - Adds delay for no benefit
+    - Costs institutional resources
     
   ```
 
@@ -353,20 +354,20 @@ ORACLE_METRICS = {
 
 ## Implementation Code
 
-### Deploy Treaty Discovery Today
+### Deploy Treaty Discovery
 
 ```bash
-# Step 1: Deploy oracle contract (2 minutes)
+# Step 1: Deploy oracle contract
 docker run -d tml-oracle-discovery:latest
 
-# Step 2: Configure source monitoring (3 minutes)
+# Step 2: Configure source monitoring
 tml-oracle config --sources all --refresh 15min
 
-# Step 3: Start protection (instant)
+# Step 3: Start protection
 tml-oracle start --autodiscover --autointegrate
 
-# Total deployment: 5 minutes
-# Human involvement: 5 minutes once, then never again
+# Total deployment time
+# Human involvement: Initial configuration, then none
 ```
 
 ---
@@ -383,19 +384,21 @@ tml-oracle start --autodiscover --autointegrate
 
 ---
 
-**Discovery Philosophy**: Earth's laws need no permission to be enforced. Oracles find them, smart contracts integrate them, Blockchain enforces them—all.
+**Discovery Philosophy**: Earth's laws need no permission to be enforced. Oracles find them, smart contracts integrate them, Blockchain enforces them—automatically.
 
 ---
 
 **Protocol Version**: 3.0 (Blockchain)  
 **Effectiveness**: Immediate upon deployment  
-**Review Schedule**: Never (it's automated)  
+**Review Schedule**: Continuous (automated)  
 **Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)  
 **Repository**: https://github.com/FractonicMind/TernaryMoralLogic
 
 *All USD amounts are nominal to 2025*
 
 ---
-#### **Earth doesn’t lobby; she logs—her laws discovered, signed, and sealed while committees are still arguing over the font.**
+
+#### **Earth doesn't lobby; she logs—her laws discovered, signed, and sealed while committees are still arguing over the font.* **-Lev Goukassian**
 
 ---
+
