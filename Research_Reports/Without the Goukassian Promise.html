@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ternary Moral Logic (TML) Infographic</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;5m00;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Chosen Palette: Brilliant Blues (#0B4F6C, #01BAEF, #FBFBFF, #145C9E, #75ADC0) -->
+    <!-- Application Structure Plan: The infographic follows a top-down narrative, scrolling from problem to solution.
+        1.  Hero: A strong hook stating the core problem (Binary AI) and solution (TML).
+        2.  Problem Section: A visual comparison of Binary vs. Ternary logic outcomes using a Chart.js bar chart.
+        3.  Core Concept Section: "Big Number" style explanation of the 1, 0, -1 states using styled HTML.
+        4.  Three Pillars Section: A 3-column layout explaining Logic, Records, and Governance.
+        5.  How it Works Section: A non-SVG, non-Mermaid flowchart made with HTML/Tailwind.
+        6.  Governance Deep Dive: A diagram of the Hybrid Shield.
+        7.  Thesis Section: The two core claims presented as "big ideas."
+        This structure guides the user logically from the 'why' (problem) to the 'what' (solution) and the 'how' (pillars/flow), which is ideal for a complex, conceptual framework. -->
+    <!-- Visualization & Content Choices:
+        * Report Info: Binary vs. Ternary outcomes in ambiguous situations. -> Goal: Compare. -> Viz/Method: A horizontal stacked bar chart. -> Justification: Visually demonstrates the failure of binary logic (forcing a 50/50 split) vs. TML's ability to "hesitate" (100% in a new category). -> Library: Chart.js (Canvas).
+        * Report Info: The three states: 1, 0, -1. -> Goal: Inform. -> Viz/Method: Three "Big Number" cards (styled HTML/Tailwind). -> Justification: Highlights the core concept simply and powerfully. -> Library/Method: HTML/CSS.
+        * Report Info: The Three Pillars (Logic, Records, Promise). -> Goal: Organize. -> Viz/Method: A 3-column card layout with icons (Unicode characters) and text. -> Justification: Breaks down the framework's foundation into digestible parts. -> Library/Method: HTML/CSS (Unicode: 💡, 🔒, 🏛️).
+        * Report Info: TML Decision Process. -> Goal: Organize. -> Viz/Method: A vertical flowchart built with HTML/Tailwind (flexbox, borders, and connecting lines). -> Justification: Clearly shows the step-by-step process without using forbidden SVG/Mermaid. -> Library/Method: HTML/CSS.
+        * Report Info: Hybrid Shield (Mathematical + Institutional). -> Goal: Organize. -> Viz/Method: A 2-part nested diagram (styled HTML/Tailwind divs). -> Justification: Visually explains the two-layer governance model. -> Library/Method: HTML/CSS.
+        * Report Info: Core Claims. -> Goal: Inform. -> Viz/Method: Two large blockquote cards. -> Justification: Gives final, powerful emphasis to the framework's thesis. -> Library/Method: HTML/CSS.
+        -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FBFBFF;
+            color: #145C9E;
+        }
+        .text-deep-blue { color: #0B4F6C; }
+        .text-accent { color: #01BAEF; }
+        .bg-accent { background-color: #01BAEF; }
+        .border-accent { border-color: #01BAEF; }
+        .bg-light-blue { background-color: #75ADC0; }
+        .card {
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+            border: 1px solid #E5E7EB;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 250px;
+            max-height: 300px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 300px;
+            }
+        }
+        .flow-line {
+            width: 2px;
+            height: 3rem;
+            background-color: #01BAEF;
+        }
+        .flow-node {
+            width: 90%;
+            max-width: 400px;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="text-center py-16 px-4">
+        <h1 class="text-4xl md:text-5xl font-bold text-deep-blue leading-tight">The Flaw in the Code</h1>
+        <p class="mt-4 text-2xl md:text-3xl font-light text-deep-blue">Why Today's AI Needs a "Third Way"</p>
+        <p class="mt-6 max-w-3xl mx-auto text-lg text-gray-700">
+            An infographic on Ternary Moral Logic (TML), the legal-technical framework for building auditable, trustworthy AI that can navigate moral ambiguity.
+        </p>
+    </header>
+
+    <main class="container mx-auto px-4 py-8 space-y-20 md:space-y-24">
+
+        <section id="problem">
+            <h2 class="text-3xl font-bold text-center text-deep-blue">The Binary Trap</h2>
+            <p class="mt-4 max-w-3xl mx-auto text-center text-lg text-gray-700">
+                This section introduces the core problem TML solves. Current AI systems are confined to a binary world: 1 or 0, yes or no. When faced with a complex, ambiguous moral choice, they are forced to make a decision—often with unintended consequences. TML provides a third option: hesitation.
+            </p>
+            <div class="card p-6 md:p-8 mt-12">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h3 class="text-2xl font-semibold text-deep-blue">Ambiguous Scenario Outcome</h3>
+                        <p class="mt-2 text-gray-600">
+                            The chart to the right visualizes the critical difference. In a binary system, ambiguity is forcibly split, resulting in a 50/50 chance of a "Proceed" or "Deny" outcome. This is a statistical coin flip for a moral dilemma.
+                        </p>
+                        <p class="mt-4 text-gray-600">
+                            TML, by contrast, registers 100% of the ambiguity as a "Hesitate" command, safely pausing the decision and escalating it for human review.
+                        </p>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="binaryVsTernaryChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="solution">
+            <h2 class="text-3xl font-bold text-center text-deep-blue">The TML Solution: The "Sacred Zero"</h2>
+            <p class="mt-4 max-w-3xl mx-auto text-center text-lg text-gray-700">
+                TML's solution is a simple but profound shift. This section presents the three logical states at the heart of the framework. It introduces a third state of logic, which is not just a technical feature but a fundamental principle that creates space for wisdom in an age of artificial speed.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+                <div class="card p-8 text-center">
+                    <h3 class="text-6xl font-bold text-green-500">+1</h3>
+                    <h4 class="mt-2 text-2xl font-semibold text-deep-blue">PROCEED</h4>
+                    <p class="mt-2 text-gray-600">Action is safe, aligned, and verifiable.</p>
+                </div>
+                <div class="card p-8 text-center border-4 border-accent">
+                    <h3 class="text-6xl font-bold text-accent">0</h3>
+                    <h4 class="mt-2 text-2xl font-semibold text-deep-blue">HESITATE</h4>
+                    <p class="mt-2 text-gray-600">Ethical ambiguity detected. Escalate to human oversight.</p>
+                </div>
+                <div class="card p-8 text-center">
+                    <h3 class="text-6xl font-bold text-red-500">-1</h3>
+                    <h4 class="mt-2 text-2xl font-semibold text-deep-blue">DENY</h4>
+                    <p class="mt-2 text-gray-600">Action is unsafe, prohibited, or non-compliant.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="pillars">
+            <h2 class="text-3xl font-bold text-center text-deep-blue">The Three Pillars of TML</h2>
+            <p class="mt-4 max-w-3xl mx-auto text-center text-lg text-gray-700">
+                TML is not just one idea, but a complete architecture. This section breaks down the framework into its three interconnected principles that together form a complete legal-technical structure for trust.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+                <div class="card p-6">
+                    <div class="text-4xl mb-3">💡</div>
+                    <h3 class="text-2xl font-semibold text-deep-blue">1. Ternary Logic</h3>
+                    <p class="mt-2 text-gray-600">The core principle of a "Sacred Zero." It grants AI the mandatory ability to pause when faced with an undefined or ethically complex scenario, rather than forcing a potentially harmful binary choice.</p>
+                </div>
+                <div class="card p-6">
+                    <div class="text-4xl mb-3">🔒</div>
+                    <h3 class="text-2xl font-semibold text-deep-blue">2. Immutable Records</h3>
+                    <p class="mt-2 text-gray-600">A privacy-first audit trail. Only cryptographic proofs (hashes) of decisions are stored on-chain. Personal data remains encrypted and off-chain, with crypto-shredding to enforce the right to erasure.</p>
+                </div>
+                <div class="card p-6">
+                    <div class="text-4xl mb-3">🏛️</div>
+                    <h3 class="text-2xl font-semibold text-deep-blue">3. The Goukassian Promise</h3>
+                    <p class="mt-2 text-gray-600">The enforcement layer. It binds the logic to the record through "Auditability-by-Design" and defines the "Hybrid Shield" governance model to manage human intervention when the AI hesitates.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="how-it-works">
+            <h2 class="text-3xl font-bold text-center text-deep-blue">How TML Works: The Decision Flow</h2>
+            <p class="mt-4 max-w-3xl mx-auto text-center text-lg text-gray-700">
+                This simplified flowchart, built with HTML and Tailwind, shows how TML processes a decision. It illustrates how every action is recorded for auditability and how all three possible outcomes are handled by the system.
+            </p>
+            <div class="mt-12 flex flex-col items-center space-y-0">
+                <div class="flow-node card p-4 text-center">
+                    <h3 class="text-xl font-semibold text-deep-blue">1. AI Receives Prompt</h3>
+                    <p class="text-gray-600">A request for a consequential action is made.</p>
+                </div>
+                <div class="flow-line"></div>
+                <div class="flow-node card p-4 text-center border-2 border-accent">
+                    <h3 class="text-xl font-semibold text-deep-blue">2. Ternary Evaluation</h3>
+                    <p class="text-gray-600">The AI assesses the prompt, resulting in a state of +1, 0, or -1.</p>
+                </div>
+                <div class="flow-line"></div>
+                <div class="flow-node card p-4 text-center">
+                    <h3 class="text-xl font-semibold text-deep-blue">3. Cryptographic Proof Generated</h3>
+                    <p class="text-gray-600">A hash (mathematical fingerprint) of the decision and context is created.</p>
+                </div>
+                <div class="flow-line"></div>
+                <div class="flow-node card p-4 text-center">
+                    <h3 class="text-xl font-semibold text-deep-blue">4. Record & Execute</h3>
+                    <p class="text-gray-600">The proof is stored on the immutable ledger and the action is taken:</p>
+                    <ul class="mt-3 text-left space-y-2 text-sm">
+                        <li class="flex items-start"><span class="text-green-500 font-bold w-12">[+1]:</span> Action Proceeds.</li>
+                        <li class="flex items-start"><span class="text-red-500 font-bold w-12">[-1]:</span> Action is Denied.</li>
+                        <li class="flex items-start"><span class="text-accent font-bold w-12">[ 0 ]:</span> Action is Paused & Escalated.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="governance">
+            <h2 class="text-3xl font-bold text-center text-deep-blue">Governance: The Hybrid Shield</h2>
+            <p class="mt-4 max-w-3xl mx-auto text-center text-lg text-gray-700">
+                When an AI triggers a "Sacred Zero," a robust governance model must take over. This section visualizes the Hybrid Shield, a two-layer system designed for this purpose, providing checks and balances.
+            </p>
+            <div class="card p-6 md:p-8 mt-12 max-w-3xl mx-auto">
+                <p class="text-center text-gray-700 mb-4">The shield is composed of two layers that work together:</p>
+                <div class="border-2 border-deep-blue rounded-xl p-4 md:p-6 text-center">
+                    <h3 class="text-xl font-semibold text-deep-blue">INSTITUTIONAL LAYER</h3>
+                    <p class="text-gray-600">A rotational, jurisdictionally diverse network of "Guardians" (ethics boards, legal experts) who review hesitated decisions.</p>
+                    
+                    <div class="mt-4 border-2 border-accent rounded-xl p-4 md:p-6 bg-blue-50">
+                        <h3 class="text-xl font-semibold text-accent">MATHEMATICAL LAYER</h3>
+                        <p class="text-gray-600">The "Ground Truth." The immutable, cryptographic proof of the decision. This ensures the Institutional Layer is auditing a real, unaltered event.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="thesis">
+            <h2 class="text-3xl font-bold text-center text-deep-blue">The Core Thesis of TML</h2>
+            <p class="mt-4 max-w-3xl mx-auto text-center text-lg text-gray-700">
+                The entire framework is based on two unshakeable claims. These statements conclude the infographic by reinforcing the fundamental argument for why this new model of logic is a necessity.
+            </p>
+            <div class="mt-12 space-y-8 max-w-3xl mx-auto">
+                <div class="card p-8 md:p-10">
+                    <blockquote class="text-2xl md:text-3xl font-semibold text-deep-blue leading-snug">
+                        "Without a third way, there’s no trustworthy AI."
+                    </blockquote>
+                    <p class="mt-4 text-lg text-gray-700">This claim, drawn from the TML report, argues that trust requires a system to know when it doesn't know. A binary-only system is structurally incapable of this, making it inherently untrustworthy in complex situations.</p>
+                </div>
+                <div class="card p-8 md:p-10">
+                    <blockquote class="text-2xl md:text-3xl font-semibold text-deep-blue leading-snug">
+                        "Without the Goukassian Promise, there’s no true third way."
+                    </blockquote>
+                    <p class="mt-4 text-lg text-gray-700">This second claim insists that a "third way" is meaningless if it can't be enforced or audited. Fusing hesitation with cryptographic proof (the Promise) is what makes it a real, verifiable, and trustworthy act.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="mt-20 md:mt-24 py-12 bg-gray-100 border-t">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-gray-600">
+                Ternary Moral Logic (TML) is a legal-technical framework, not software.
+            </This>
+            <p class="mt-2 text-sm text-gray-500">
+                Implementation requires compliance with all mandatory requirements and disclaimers.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const ctx = document.getElementById('binaryVsTernaryChart').getContext('2d');
+            const binaryVsTernaryChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Binary AI', 'Ternary Moral Logic'],
+                    datasets: [
+                        {
+                            label: 'Forced "Proceed"',
+                            data: [50, 0],
+                            backgroundColor: '#F87171',
+                            stack: 'Binary',
+                        },
+                        {
+                            label: 'Forced "Deny"',
+                            data: [50, 0],
+                            backgroundColor: '#FBBF24',
+                            stack: 'Binary',
+                        },
+                        {
+                            label: 'Allowed "Hesitate"',
+                            data: [0, 100],
+                            backgroundColor: '#01BAEF',
+                            stack: 'TML',
+                        }
+                    ]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            stacked: true,
+                            max: 100,
+                            ticks: {
+                                callback: function(value) {
+                                    return value + "%"
+                                }
+                            }
+                        },
+                        y: {
+                            stacked: true
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        },
+                        tooltip: {
+                            callbacks: {
+                                title: function(tooltipItems) {
+                                    const item = tooltipItems[0];
+                                    let label = item.chart.data.labels[item.dataIndex];
+                                    if (Array.isArray(label)) {
+                                      return label.join(' ');
+                                    } else {
+                                      return label;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
+
