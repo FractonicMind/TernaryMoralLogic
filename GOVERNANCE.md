@@ -19,8 +19,8 @@ This document establishes the enforcement governance for the TML framework, cent
 - **Whistleblower Rewards:** 15% of recovered penalties to exposers
 - **Automatic Guilt:** Missing logs create irrebuttable presumption
 
-**Governance Enhancement:**
-- **Stewardship Council:** Institutional oversight for enhanced credibility
+**Optional Governance Enhancement:**
+- **Stewardship Council:** Institutional oversight for enhanced credibility 
 - **Democratic Governance:** Multi-institution consensus for policy evolution (long-term vision)
 
 ---
@@ -107,7 +107,7 @@ TML ensures no organization can hide violations through cryptographic immutabili
 
 ---
 
-## Stewardship Council Governance
+## Stewardship Council Governance (Optional Enhancement)
 
 ### Evolution from Blockchain to Institutional Oversight
 
@@ -125,46 +125,32 @@ TML ensures no organization can hide violations through cryptographic immutabili
 - International recognition enhances cross-border legal acceptance
 - Enhanced insurance discounts (50-60% vs 20-40% Blockchain-only)
 
-**Composition and Distribution:**
-#### This is where the second armor layer activates: the Stewardship Council.
+### Recommended Stewardship Council Structure
 
-Six independent institutions hold synchronized copies of every TML log:
+**If/When Institutions Participate:**
 
-1. **Technical Custodian (Recommended: Electronic Frontier Foundation)**
-   * Maintains the open-source repository  
-   * Manages blockchain infrastructure  
-   * Provides technical community support  
-   * Ensures code integrity and updates  
+**Academic Institutions (4 seats recommended):**
+- Leading universities with AI ethics programs
+- Research institutes focused on algorithmic fairness
+- International academic collaborations
+- Geographic diversity across continents
 
-2. **Human Rights Enforcement Partner (Recommended: Amnesty International)**
-   * Monitors enforcement of 26+ human rights documents  
-   * Reviews complex Human Rights Sacred Zero cases  
-   * Coordinates with international human rights mechanisms  
-   * Supports victims in seeking remedy and justice  
+**Technical Standards Bodies (3 seats recommended):**
+- Organizations with Blockchain and cryptography expertise
+- Standards development organizations (ISO, IEEE)
+- Open source foundation representatives
 
-3. **Earth Protection Enforcement Partner (Recommended: Indigenous Environmental Network)**
-   * Monitors enforcement of 20+ environmental treaties  
-   * Reviews Earth Protection Sacred Zero cases  
-   * Represents Indigenous sovereignty in environmental decisions  
-   * Coordinates ecosystem restoration from Memorial Fund  
+**Civil Society Organizations (2 seats recommended):**
+- Human rights advocacy groups
+- Digital rights organizations
+- Environmental protection groups
 
-4. **AI Ethics Research Partner (Recommended: MIT Media Lab or Stanford HAI)**
-   * Conducts research on TML effectiveness  
-   * Validates ethical framework evolution  
-   * Publishes findings on algorithmic accountability  
-   * Guides implementation standards development  
+**International Bodies (2 seats recommended):**
+- UN specialized agencies
+- Regional governance organizations
+- Cross-border treaty bodies
 
-5. **Memorial Fund Administrator (Recommended: Memorial Sloan Kettering Cancer Center)**
-   * Administers the cancer research portion of Memorial Fund  
-   * Honors Goukassian's personal commitment to medical research  
-   * Ensures victim compensation reaches intended recipients  
-   * Provides transparency reporting on fund allocation  
-
-6. **Community Representative (Elected Position)**
-   * Represents implementers and user community interests  
-   * Elected by TML stakeholder community  
-   * Ensures framework serves real-world needs  
-   * Provides accountability for Council decisions
+**Total: 11 institutions (aspirational)**
 
 ### Stewardship Council Powers (When Active)
 
@@ -569,6 +555,14 @@ Six independent institutions hold synchronized copies of every TML log:
 - Victim support operational (Memorial Fund)
 - No grace period
 
+**Stewardship Council Timeline:**
+- Year 1: Blockchain-only (complete protection)
+- Year 2: First Council partnerships (1-2 institutions)
+- Year 3: Regional network (3-5 institutions)
+- Year 5: Full network (9-11 institutions, aspirational)
+
+**Key Principle:** Protection is complete from Day 1. Stewardship Council enhances but never delays accountability.
+
 ---
 
 ## Technical Architecture Details
@@ -684,9 +678,9 @@ Through cryptographic immutability and multi-chain redundancy, we transform AI a
 
 Institutional oversight strengthens governance over time, but protection begins immediately through Blockchain anchoring. Companies deploy with complete protection, then evolve governance as institutions join the network.
 
----
+**The age of unaccountable AI ends now.**
 
-*"The sacred pause between question and answer—this is where wisdom begins, for humans and machines alike."* — Lev Goukassian
+---
 
 **Created by Lev Goukassian (ORCID: 0009-0006-5966-1243)**  
 **Protected by Multi-Chain Blockchain Anchoring**  
@@ -702,3 +696,9 @@ Institutional oversight strengthens governance over time, but protection begins 
 **Support**: support@tml-goukassian.org
 
 *All USD amounts are nominal to 2025*
+
+---
+
+#### *"The sacred pause between question and answer—this is where wisdom begins, for humans and machines alike."* **— Lev Goukassian**
+
+
