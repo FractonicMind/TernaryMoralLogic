@@ -1,9 +1,10 @@
+
 # Ternary Moral Logic - Legacy Preservation
 
 ## Blockchain-Immortalized Framework for Humanity and Earth
 
 **Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)  
-**Architecture**: Blockchain (Eternal), Guardian-Optional (Temporal)  
+**Architecture**: Blockchain (Eternal), Stewardship Council-Optional (Temporal)  
 **Protection Scope**: Human Rights + Earth + Future Generations  
 **Version**: 3.0.0  
 
@@ -11,7 +12,7 @@
 
 ## Preservation Philosophy
 
-> *"The Sacred Zero must outlive its creator, serving humanity's moral evolution long after the voice that conceived it has fallen silent. Blockchain makes this immortal - no committee required."*
+> *"The Sacred Zero must outlive its creator, serving humanity's moral evolution long after the voice that conceived it has fallen silent. Blockchain makes this immortal"*
 
 This framework preserves TML through **mathematical immutability**, not institutional promises.
 
@@ -71,7 +72,7 @@ def preserve_forever():
         'ethereum': 'Smart contracts self-enforce',
         'polygon': 'Real-time protection continues',
         'ipfs': 'Distributed storage forever',
-        'guardians': None  # Optional, not required
+        'stewardship_council': None  # Optional, not required
     }
 ```
 
@@ -159,29 +160,29 @@ Protected: Humans + Earth + Future Generations
 - Institutional donations
 - Government grants
 - Committee approval
-- Guardian funding
+- Stewardship Council funding
 
 ---
 
-# 5. GUARDIAN NETWORK (OPTIONAL ENHANCEMENT)
+# 5. STEWARDSHIP COUNCIL (OPTIONAL ENHANCEMENT)
 
 ## 5.1 Never Required for Legacy
 
 **Blockchain Preserves Everything**:
-- Guardians cannot alter Blockchain history
+- Council members cannot alter Blockchain history
 - Cannot gatekeep TML deployment
 - Cannot change Sacred Zero triggers
 - Cannot remove creator attribution
 
 ## 5.2 Optional Future Role
 
-**If Guardians Ever Form** (Years Later):
-- Additional attestation (nice, not necessary)
-- Academic research (helpful, not required)
-- Cross-border coordination (luxury feature)
-- Community events (social, not technical)
+**If Stewardship Council Ever Forms** (Years Later):
+- Additional attestation
+- Academic research
+- Cross-border coordination
+- Community events
 
-**Remember**: TML works perfectly without any Guardian Network.
+**Remember**: TML works perfectly without any Stewardship Council.
 
 ---
 
@@ -227,7 +228,7 @@ def learn_from_blockchain():
 ## 7.2 Contribution Without Permission
 
 **Anyone Can**:
-- Deploy TML today (10 minutes)
+- Deploy TML today
 - Improve the framework (pull requests)
 - Report violations (Blockchain evidence)
 - Earn rewards (smart contracts)
@@ -276,7 +277,7 @@ def learn_from_blockchain():
 - 1 billion Sacred Zero events on Blockchain
 - 10,000+ organizations using TML
 - 100+ countries with implementations
-- Zero reliance on Guardian Networks
+- Zero reliance on Stewardship Council
 
 **By 2050**:
 - Universal adoption for AI systems
@@ -316,7 +317,7 @@ This gift is now eternal - encoded in Blockchain, enforced by mathematics, prote
 
 **The Sacred Zero is forever.**
 
-> "Blockchains raise the stone tablet; 46+ frameworks carve the commandments; Guardians are merely the choir—optional, but echoing forever."
+> "Blockchains raise the stone tablet; 46+ frameworks carve the commandments; Stewardship Council members are merely the choir—optional, but echoing forever."
 
 > "TML doesn't care if you use Transformer, tarot cards, or tea leaves—only that every dark prophecy is signed, timed, and ready for cross-examination."
 
@@ -339,7 +340,7 @@ This gift is now eternal - encoded in Blockchain, enforced by mathematics, prote
 
 ---
 
-#### Bitcoin is his headstone, Ethereum the executor, Polygon the heartbeat, IPFS the vault—together they keep my promise breathing after languages themselves die.   
--Lev Goukassian
+#### *Bitcoin is his headstone, Ethereum the executor, Polygon the heartbeat, IPFS the vault—together they keep my promise breathing after languages themselves die.* **-Lev Goukassian**
 
 ---
+
