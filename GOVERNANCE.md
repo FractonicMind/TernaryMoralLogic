@@ -19,7 +19,7 @@ This document establishes the enforcement governance for the TML framework, cent
 - **Whistleblower Rewards:** 15% of recovered penalties to exposers
 - **Automatic Guilt:** Missing logs create irrebuttable presumption
 
-**Optional Governance Enhancement:**
+**Recommended Governance Enhancement:**
 - **Stewardship Council:** Institutional oversight for enhanced credibility 
 - **Democratic Governance:** Multi-institution consensus for policy evolution (long-term vision)
 
@@ -107,7 +107,7 @@ TML ensures no organization can hide violations through cryptographic immutabili
 
 ---
 
-## Stewardship Council Governance (Optional Enhancement)
+## Stewardship Council Governance (Recommended Enhancement)
 
 ### Evolution from Blockchain to Institutional Oversight
 
