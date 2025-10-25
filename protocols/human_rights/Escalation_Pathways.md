@@ -1,3 +1,4 @@
+
 # Escalation Pathways: From Detection to Resolution
 
 **Path**: `/protocols/human_rights/Escalation_Pathways.md`  
@@ -67,7 +68,7 @@ automatic_response:
     notifications:
       internal_soc: "Instant alert"
       emergency_contact: "If life threat"
-      guardian_institution: "Automated ping"
+      stewardship_institution: "Automated ping"
       
     logging:
       always_memory: "Immediate write"
@@ -618,7 +619,8 @@ system_integration:
 
 ---
 
-#### *"All law must start from the presumption that every human possesses equal and inalienable worth."*
+#### *"All law must start from the presumption that every human possesses equal and inalienable worth."* **-Lev Goukassian**
 
 ---
 **Remember**: Escalation is not about passing the buck—it's about rapidly mobilizing the right resources to protect human dignity. Every second counts when rights are being violated. This framework ensures that detection triggers protection, immediately and reliably.
+
