@@ -1,3 +1,4 @@
+
 # Remedy Restoration: Making Rights Violations Right
 
 **Path**: `/protocols/human_rights/Remedy_Restoration.md`  
@@ -452,7 +453,7 @@ child_remedies:
   special_measures:
     testimony: "Child-friendly procedures"
     timing: "Child's pace"
-    representation: "Guardian ad litem"
+    representation: "Custodian ad litem"
 ```
 
 ### Indigenous Peoples
@@ -611,7 +612,8 @@ remedy_enforcement:
 
 ---
 
-#### *Independent monitors must have keys to every place where humans are locked away.*
+#### *Independent monitors must have keys to every place where humans are locked away.* **-Lev Goukassian**
 
 ---
 **Remember**: Remedy is not charity—it's justice. Every violation creates a debt that must be paid in full, with interest. The interest is the systemic change that ensures it never happens again.
+
