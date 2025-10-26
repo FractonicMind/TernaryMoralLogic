@@ -33,7 +33,7 @@ This roadmap identifies critical gaps in the TML implementation and provides a p
 
 **Technical Implementation**
 1. **Production-Ready SDKs** - Only Python stubs exist
-2. **Guardian Network Infrastructure** - No actual deployment
+2. **Stewardship Council Infrastructure** - No actual deployment
 3. **Blockchain Anchoring** - Not implemented
 4. **TEE Integration** - Missing hardware security
 5. **Real-time Monitoring** - No dashboard or alerts
@@ -75,16 +75,16 @@ deliverables:
     content: ["API reference", "Integration guide", "Examples"]
 ```
 
-### Guardian Network MVP
-**Gap**: No actual Guardian nodes running  
+### Stewardship Council MVP
+**Gap**: No actual Council nodes running  
 **Impact**: Cannot verify logs  
 **Solution**: Deploy testnet
 
 ```yaml
 testnet_deployment:
   nodes:
-    full_guardians: 5
-    lightweight_guardians: 10
+    full_members: 5
+    lightweight_members: 10
     
   infrastructure:
     cloud_providers: ["AWS", "Azure", "GCP"]
@@ -188,7 +188,7 @@ certification_levels:
     practical: "Conduct audit"
     renewal: "Annual"
     
-  guardian:
+  custodian:
     exam: "Network operations"
     practical: "Node management"
     renewal: "Quarterly"
@@ -268,7 +268,7 @@ chaos_tests:
     - "Latency injection"
     - "Packet loss"
     
-  guardian:
+  stewardship:
     - "Node failures"
     - "Byzantine behavior"
     - "Clock skew"
@@ -370,7 +370,7 @@ risks:
 ## Next Steps
 
 1. **Week 1**: Begin SDK development (Java first)
-2. **Week 2**: Deploy first Guardian nodes
+2. **Week 2**: Deploy first Council nodes
 3. **Week 3**: Start dashboard development
 4. **Week 4**: Create training materials
 5. **Week 5**: Initial integration testing
@@ -397,4 +397,4 @@ risks:
 
 ---
 
-*"The architecture is complete. Now we build the bridge from vision to reality."*
+#### *"The architecture is complete. Now we build the bridge from vision to reality."*
