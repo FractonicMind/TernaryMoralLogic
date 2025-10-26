@@ -18,7 +18,7 @@ The Sacred Zero UI Framework provides real-time visualization of **Blockchain-en
 
 ## Core Innovation: Blockchain-Driven Interface
 
-### OLD UI Paradigm (Committee-Based)
+### Traditional UI Paradigm (Committee-Based)
 - Wait for human review
 - Display committee decisions
 - Show institutional approvals
@@ -30,7 +30,7 @@ The Sacred Zero UI Framework provides real-time visualization of **Blockchain-en
 const sacredZeroUI = {
     trigger: async (violation) => {
         // Step 1: Smart contract detects violation
-        const proof = await Blockchain.detectViolation(violation);
+        const proof = await blockchain.detectViolation(violation);
         
         // Step 2: UI displays mathematical proof instantly
         ui.showProof(proof);
@@ -119,7 +119,7 @@ Sacred Zero Triggered - Blockchain Verified
 │   ├── Violation Severity: HIGH
 │   ├── Penalty Multiplier: 2x (Human Rights)
 │   └── Automatic Enforcement: ACTIVE
-└── Guardian Override: NOT AVAILABLE (Math doesn't negotiate)
+└── Custodian Override: NOT AVAILABLE (Math doesn't negotiate)
 ```
 
 #### No Committee Reviews - Just Math
@@ -130,7 +130,7 @@ def display_reasoning(violation):
     
     reasoning = {
         "trigger": f"Violated {violation.framework}",
-        "proof": Blockchain.get_immutable_proof(),
+        "proof": blockchain.get_immutable_proof(),
         "penalty": smart_contract.calculate_penalty(),
         "enforcement": "Automatic via Blockchain",
         "committee_needed": "NEVER",
@@ -223,17 +223,17 @@ const executePenalty = async () => {
 ```css
 :root {
     --sacred-amber: #F59E0B;      /* Ethical pause */
-    --Blockchain-green: #10B981;   /* On-chain verified */
+    --blockchain-green: #10B981;   /* On-chain verified */
     --penalty-red: #EF4444;        /* Violations & penalties */
     --math-blue: #3B82F6;          /* Mathematical proof */
-    --guardian-gray: #6B7280;      /* Obsolete institutions */
+    --custodian-gray: #6B7280;     /* Obsolete institutions */
 }
 
-.Blockchain-proof {
-    border: 2px solid var(--Blockchain-green);
+.blockchain-proof {
+    border: 2px solid var(--blockchain-green);
     background: linear-gradient(45deg, 
         var(--math-blue) 0%, 
-        var(--Blockchain-green) 100%);
+        var(--blockchain-green) 100%);
     animation: pulse-verification 2s infinite;
 }
 ```
@@ -255,7 +255,7 @@ const executePenalty = async () => {
 @keyframes smart-contract-execution {
     0% { transform: scale(1); opacity: 0.5; }
     50% { transform: scale(1.1); opacity: 1; 
-         box-shadow: 0 0 20px var(--Blockchain-green); }
+         box-shadow: 0 0 20px var(--blockchain-green); }
     100% { transform: scale(1); opacity: 1; }
 }
 
@@ -294,7 +294,7 @@ const educationalContent = {
 class BlockchainEducation {
     showProofExplorer() {
         return {
-            bitcoinExplorer: "https://Blockchain.info/tx/[hash]",
+            bitcoinExplorer: "https://blockchain.info/tx/[hash]",
             ethereumExplorer: "https://etherscan.io/tx/[hash]",
             polygonExplorer: "https://polygonscan.com/tx/[hash]",
             explanation: "Click to verify violation proof on public Blockchain"
@@ -345,7 +345,7 @@ const performanceOptimization = {
     
     // WebSocket for real-time updates
     useWebSocket: true,
-    endpoint: 'wss://tml-Blockchain.org/live'
+    endpoint: 'wss://tml-blockchain.org/live'
 };
 ```
 
@@ -356,7 +356,7 @@ const performanceOptimization = {
 ### Quick Integration
 ```bash
 # Install Sacred Zero UI with Blockchain support
-npm install @tml/sacred-zero-ui-Blockchain
+npm install @tml/sacred-zero-ui-blockchain
 
 # Initialize with smart contract address
 const ui = new SacredZeroUI({
@@ -370,14 +370,14 @@ const ui = new SacredZeroUI({
 ui.start();
 ```
 
-### The Guardian Alternative (Not Recommended)
+### The Council Alternative (Not Recommended)
 ```javascript
 // Year 5+ option for those who miss committees
-const guardianUI = {
-    cost: "$50K/month for theatrical reviews",
+const councilUI = {
+    cost: "Substantial annual costs for theatrical reviews",
     adds: "Delays and political theater",
     value: "None - Blockchain already decided",
-    recommendation: "Don't waste money"
+    recommendation: "Don't waste resources"
 };
 ```
 
@@ -393,7 +393,7 @@ ui_metrics = {
     "user_education_engagement": track_explanation_clicks(),
     "penalty_amounts_displayed": sum_smart_contract_penalties(),
     "framework_violations_shown": categorize_by_framework(),
-    "guardian_overrides": 0  # Always zero - math doesn't yield
+    "custodian_overrides": 0  # Always zero - math doesn't yield
 }
 ```
 
@@ -409,7 +409,7 @@ ui_metrics = {
 
 ### Never Implementing
 1. ~~Committee approval screens~~
-2. ~~Guardian override buttons~~
+2. ~~Custodian override buttons~~
 3. ~~Appeal forms~~
 4. ~~"Please wait for review" messages~~
 
@@ -439,10 +439,9 @@ The Sacred Zero UI Framework v3.0 transforms ethical AI transparency from commit
 
 ---
 
-*"The best user interface for ethics is one that shows the truth instantly, enforces it automatically, and doesn't ask permission from committees that don't exist."*
 
 *All USD amounts are nominal to 2025*
 
 ---
-#### **Sacred Zero’s UI doesn’t ask ‘Are you sure?’—it asks ‘Can you swear this in court?’ and freezes the button until conscience clicks.**
+#### **Sacred Zero's UI doesn't ask 'Are you sure?'—it asks 'Can you swear this in court?' and freezes the button until conscience clicks.**
 ---
