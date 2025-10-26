@@ -3,7 +3,7 @@
 **Preserving the Sacred Zero Legacy Through Research and Education**  
 **Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)  
 **Version**: 5.0.0 - Always Memory Framework Integration  
-**Contact**: Via TML Guardian Network
+**Contact**: support@tml-goukassian.org
 
 ---
 
@@ -231,7 +231,8 @@ The Memorial Fund operates within the TML enforcement framework established in `
 **In memory of Lev Goukassian - who transformed his final months into eternal protection for humanity and Earth**
 
 **Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)  
-**Fund Governance**: TML Network  
+**Fund Governance**: TML Blockchain Network  
 **Framework**: https://github.com/fractonicmind/TernaryMoralLogic  
 **Earth Protection**: Integrated with Always Memory v5.0
 
+---
