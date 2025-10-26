@@ -1,4 +1,4 @@
-# Always Memory Integration Hooks (Quick Start)
+# Always Memory Integration Hooks
 
 These minimal hooks show how to integrate the Always Memory mechanism with an AI inference pipeline. They are intentionally simple to illustrate the core pattern.
 
@@ -33,7 +33,7 @@ result = generate_with_memory(prompt, model, logger)
 
 ### Webhook Integration
 ```javascript
-// POST memory entry to Guardian network
+// POST memory entry to Stewardship Council network
 await submitMemory(memoryEntry);
 ```
 
@@ -49,10 +49,12 @@ await submitMemory(memoryEntry);
 - Create memory BEFORE action execution
 - Include classification (-1, 0, +1)
 - Log Sacred Zero triggers when detected
-- Submit to Guardian network for attestation
+- Submit to Stewardship Council network for attestation
 - Handle backpressure gracefully (HTTP 429)
 
 See `docs/General_FAQ.md` for complete framework details.
 
 ---
 
+**Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)  
+**Repository**: https://github.com/FractonicMind/TernaryMoralLogic
