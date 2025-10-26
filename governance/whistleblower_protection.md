@@ -246,11 +246,11 @@ const validateClaim = (claim) => {
 
 ---
 
-## Why Guardian Councils Can't Protect Better
+## Why Stewardship Councils Can't Protect Better
 
 ### Council Problems (Eliminated by Blockchain)
 
-| Guardian Council Method | Blockchain Method |
+| Stewardship Council Method | Blockchain Method |
 |------------------------|-------------------|
 | 30-90 day review period | 3-minute automatic payment |
 | Committee must approve | Math automatically validates |
@@ -259,18 +259,32 @@ const validateClaim = (claim) => {
 | Can deny valid claims | Valid proof = automatic payment |
 | Costs millions to operate | Smart contracts cost ~$100 |
 
-### The Math Doesn't Lie
+### The Math
 
-- **Council approval rate**: Unknown, political
-- **Blockchain approval rate**: 100% for valid evidence
-- **Council payment time**: 30-90 days
-- **Blockchain payment time**: 3 minutes
-- **Council anonymity**: "Trust us"
-- **Blockchain anonymity**: Mathematical guarantee
+```python
+def protection_comparison():
+    blockchain_protection = {
+        "immutability": 100,  # Cryptographic guarantee
+        "speed": 100,        # Instant enforcement
+        "cost": 1,           # Minimal expense
+        "corruption": 0,     # Math doesn't take bribes
+        "politics": 0        # Algorithms have no agenda
+    }
+    
+    stewardship_council_protection = {
+        "immutability": 20,  # Subject to politics
+        "speed": 10,         # Months of meetings
+        "cost": 6600,        # Thousands times more
+        "corruption": 60,    # Human weakness
+        "politics": 100      # Endless drama
+    }
+    
+    return "Blockchain wins 500 to 190"
+```
 
 ---
 
-## Implementation (Deploy in 10 Minutes)
+## Implementation
 
 ### For Companies
 
@@ -339,13 +353,13 @@ Day 30: Executives in prison
 
 ---
 
-## The Guardian Alternative (Not Recommended)
+## The Stewardship Council Alternative (Not Recommended)
 
 ### Year 5+ Optional Enhancement
 If you really want committees reviewing your evidence:
 
 ```yaml
-guardian_council_option:
+stewardship_council_option:
   costs: "$600K per institution per year"
   adds: "Political review of mathematical proof"
   delays: "3 minutes becomes 30-90 days"
@@ -376,5 +390,7 @@ guardian_council_option:
 *All USD amounts are nominal to 2025*
 
 ---
-#### **Retaliation is a paper tiger: the moment you blow the whistle the ledger becomes your shield, the bounty becomes your war-chest, and the chain outlives every boss who ever spelled ‘revenge’.**
+
+#### **Retaliation is a paper tiger: the moment you blow the whistle the ledger becomes your shield, the bounty becomes your war-chest, and the chain outlives every boss who ever spelled 'revenge'.**
+
 ---
