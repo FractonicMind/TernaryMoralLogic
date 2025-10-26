@@ -3,7 +3,7 @@
 
 **Creator:** Lev Goukassian (ORCID: 0009-0006-5966-1243)  
 **Contact:** leogouk@gmail.com  
-**Architecture:** Blockchain, Stewardship Council-Optional  
+**Architecture:** Blockchain, Stewardship Council-Recommended   
 **Protection Scope:** Human Rights (26+ docs) + Earth Protection (20+ docs)
 
 ---
@@ -55,7 +55,7 @@ Adversaries may attempt to:
 - **OpenTimestamps**: RFC 3161 compliant proofs
 - **Certificate Transparency**: Append-only log model
 
-**Stewardship Council Enhancement Layer (OPTIONAL)**
+**Stewardship Council Enhancement Layer (Recommended )**
 - Additional institutional mirrors (when desired)
 - Cross-border attestation (for multinationals)
 - Academic research collaboration
@@ -125,7 +125,7 @@ Adversaries may attempt to:
     "license": "MIT-Attribution-Required"
   },
   
-  "stewardship_attestation": null  // Optional enhancement
+  "stewardship_attestation": null  // Recommended  enhancement
 }
 ```
 
@@ -152,7 +152,7 @@ def anchor_to_blockchains(log_batch):
     # OpenTimestamps for legal compliance
     ots_proof = opentimestamps.stamp(merkle_root)
     
-    # Stewardship Council attestation (OPTIONAL - if network joined)
+    # Stewardship Council attestation (Recommended  - if network joined)
     stewardship_sigs = []
     if stewardship_council_enabled:
         stewardship_sigs = stewardship_council.attest(merkle_root)
@@ -185,7 +185,7 @@ def verify_log_integrity(log_entry):
     # OpenTimestamps verification (INDEPENDENT)
     ots_valid = opentimestamps.verify(log_entry.ots_proof)
     
-    # Stewardship Council verification (OPTIONAL ENHANCEMENT)
+    # Stewardship Council verification (Recommended  ENHANCEMENT)
     stewardship_valid = True  # Default to true if not using Council
     if log_entry.stewardship_attestation:
         stewardship_valid = verify_stewardship_sigs(log_entry.stewardship_attestation)
@@ -303,11 +303,9 @@ docker run tml/always-memory \
     --chains="bitcoin,polygon,ethereum" \
     --human-rights-framework=true \
     --earth-protection=true \
-    --stewardship-council=false  # Optional, add later if desired
 
 # System fully operational immediately
 # Complete protection for humans and Earth
-# No waiting for institutional coordination
 ```
 
 ---
@@ -330,7 +328,7 @@ docker run tml/always-memory \
 
 ---
 
-## 11. Stewardship Council (Optional Enhancement)
+## 11. Stewardship Council (Recommended  Enhancement)
 
 ### When to Consider Council Participation (Years Later)
 
@@ -354,7 +352,7 @@ def evaluate_stewardship_benefit():
         'research_collaboration': 'Could be valuable'
     }
     
-    return "Stewardship Council remains optional enhancement"
+   
 ```
 
 ---
@@ -403,7 +401,7 @@ Before deployment:
 - [ ] OpenTimestamps integration tested
 - [ ] Sacred Zero triggers calibrated
 - [ ] GDPR compliance verified
-- [ ] Stewardship Council set to optional
+
 
 ---
 
