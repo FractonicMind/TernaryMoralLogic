@@ -1,4 +1,3 @@
-
 # Earth Protection: Core Principles
 
 ## Foundational Philosophy
