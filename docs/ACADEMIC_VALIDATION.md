@@ -22,6 +22,7 @@ TML establishes Blockchain-enforced accountability for AI systems through immuta
 1. **Performance**: Does Blockchain anchoring maintain <40μs overhead?
 2. **Immutability**: Can companies tamper with logs?
 3. **Enforcement**: Do penalties execute automatically?
+4. **Governance**: Are institutions necessary for validation?
 
 ### Hypotheses
 
@@ -200,13 +201,15 @@ SYSTEM_IMPACT = {
 
 ---
 
-## Stewardship Council
+## Stewardship Council Alternative (Recommended Enhancement)
+
+### Recommended Institutional Governance
 
 If organizations choose institutional oversight:
 
 ```python
 def stewardship_council_addition():
-    """institutional layer"""
+    """Recommended institutional layer"""
     
     stewardship_additions = {
         "validation": "Institutional review processes",
@@ -215,7 +218,7 @@ def stewardship_council_addition():
         "policy": "Democratic evolution"
     }
     
-    return "enhancement to blockchain foundation"
+    return "Recommended enhancement to blockchain foundation"
 ```
 
 ### Cost-Benefit Analysis
@@ -240,12 +243,12 @@ def stewardship_council_addition():
 - Whistleblower rewards flowing
 - Memorial Fund receiving funds
 
-**Stewardship Requirements:**
-- Council formation
-- Institution recruitment
-- Governance structures
-- Voting protocols
-- Coordination processes
+**Recommended Stewardship Requirements:**
+- Council formation (recommended)
+- Institution recruitment (recommended)
+- Governance structures (recommended)
+- Voting protocols (recommended)
+- Coordination processes (recommended)
 
 **Result**: System operational with blockchain foundation
 
