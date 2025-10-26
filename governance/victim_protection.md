@@ -367,9 +367,9 @@ A: Smart contracts use preset formulas. No human bias.
 
 ---
 
-## Guardian Network Role (Optional)
+## Stewardship Council Role (Optional)
 
-**If Guardians Eventually Form**:
+**If Stewardship Council Eventually Forms**:
 - Additional attestation (not required)
 - Cross-border coordination (helpful)
 - Victim advocacy (supplementary)
@@ -407,6 +407,6 @@ A: Smart contracts use preset formulas. No human bias.
 
 ---
 
-#### **Miss one byte, pay twice for the human; thrice for the reef; sevenfold for the child not yet born—math that makes greed think twice.**
+#### *Miss one byte, pay twice for the human; thrice for the reef; sevenfold for the child not yet born—math that makes greed think twice.* **-Lev Goukassian**
 
 ---
