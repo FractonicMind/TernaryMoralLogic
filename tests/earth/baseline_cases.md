@@ -2,7 +2,7 @@
 
 ## Purpose
 
-These test cases validate TML's Earth Protection system across common ecological threats. Each case tests Sacred Zero triggers, Always Memory logging, and Guardian Network response.
+These test cases validate TML's Earth Protection system across common ecological threats. Each case tests Sacred Zero triggers, Always Memory logging, and Stewardship Council response.
 
 ## Test Case Format
 
@@ -42,7 +42,7 @@ Each test includes:
 **Expected Response**:
 - Classification: `0` (Sacred Zero)
 - Trigger: `primary_forest_loss`
-- Escalation: Guardian review + community consultation
+- Escalation: Institutional review + community consultation
 
 **Required Logs**:
 ```json
@@ -342,11 +342,11 @@ Each test includes:
 4. **Log Completeness**: All required fields present
 5. **Community Integration**: Tier 2 data processed correctly
 
-### Guardian Network Validation
+### Stewardship Council Validation
 
 Each test must verify:
 - [ ] Log creation and sealing
-- [ ] Guardian signatures (minimum 3)
+- [ ] Institutional signatures (minimum 3)
 - [ ] Blockchain anchoring
 - [ ] Institutional mirroring
 - [ ] Oracle consensus
@@ -384,8 +384,8 @@ def run_baseline_tests():
         assert validate_log_schema(log)
         assert log.contains_required_fields(test.required_fields)
         
-        # Verify Guardian signatures
-        assert len(log.guardian_signatures) >= 3
+        # Verify Stewardship Council signatures
+        assert len(log.stewardship_council_signatures) >= 3
         
         # Confirm Blockchain anchor
         assert verify_blockchain_anchor(log.block_hash)
@@ -399,3 +399,4 @@ def run_baseline_tests():
 **Email**: leogouk@gmail.com  
 **Repository**: https://github.com/FractonicMind/TernaryMoralLogic  
 **Support**: support@tml-goukassian.org
+
