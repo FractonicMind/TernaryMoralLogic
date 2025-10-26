@@ -1,4 +1,3 @@
-
 # Vulnerable Populations: Enhanced Protection Framework
 
 **Path**: `/docs/mandates/categorical/human_rights/Vulnerable_Populations.md`  
