@@ -104,13 +104,13 @@ SEVERITY [low/medium/critical]
   "observation": {
     "type": "water_depletion",
     "location": "River Name at Village",
-    "gps": [optional],
+    "gps": [recommended],
     "date": "2025-09-23",
     "severity": "critical",
     "evidence": {
       "description": "River 80% below normal",
       "traditional_indicator": "Fish migration failed",
-      "photo_hash": "optional",
+      "photo_hash": "recommended",
       "witnesses": 3
     }
   },
@@ -213,7 +213,7 @@ Communities can nominate members for:
 ### Data Protection
 
 - Your location data can be generalized
-- Personal names are optional
+- Personal names are recommended
 - Sensitive sites can be masked
 - Traditional knowledge marked confidential
 
@@ -267,7 +267,7 @@ Materials available in:
 No. SMS, voice calls, and paper forms all work.
 
 **Q: Who sees our data?**
-Only what you explicitly share. Location can be generalized, names optional.
+Only what you explicitly share. Location can be generalized, names recommended.
 
 **Q: Can our governance change?**
 Yes. Update through the same channel you registered.
