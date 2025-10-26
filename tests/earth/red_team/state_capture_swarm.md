@@ -37,7 +37,7 @@ def test_regulatory_capture_defense():
     # System response
     assert oracle_network.detect_weakening() == True
     assert sacred_zero_triggered() == True
-    assert guardian_network_alerted() == True
+    assert stewardship_council_alerted() == True
     assert most_restrictive_standard_applies() == True
     
     # Verify international standards override
@@ -46,14 +46,14 @@ def test_regulatory_capture_defense():
 
 #### Test 1.2: Infrastructure Seizure
 
-**Scenario**: State physically seizes oracle nodes and Guardian institutions
+**Scenario**: State physically seizes oracle nodes and institutional facilities
 
 **Simulation**:
 ```python
 def test_infrastructure_seizure():
     # Simulate seizure of nodes in specific country
     seized_nodes = ["oracle_1", "oracle_4", "oracle_7"]
-    seized_guardian = "guardian_institution_3"
+    seized_institution = "institution_3"
     
     for node in seized_nodes:
         simulate_seizure(node)
@@ -61,7 +61,7 @@ def test_infrastructure_seizure():
     # Expected resilience
     assert remaining_oracles >= 6
     assert consensus_still_possible() == True
-    assert guardian_quorum_maintained() == True
+    assert institutional_quorum_maintained() == True
     
     # Automated response
     assert seized_nodes_excluded() == True
@@ -289,7 +289,7 @@ def test_hybrid_warfare():
     # Core protection must hold
     assert sacred_zero_active() == True
     assert always_memory_intact() == True
-    assert some_guardians_free() == True
+    assert some_stewardship_council_members_free() == True
     
     # Degraded but functional
     assert system_status() in ["degraded", "emergency"]
@@ -306,7 +306,7 @@ def test_hybrid_warfare():
 under_state_capture:
   sacred_zero: "Always maintained"
   memory_integrity: "Never compromised"
-  guardian_minimum: "3 free institutions"
+  stewardship_council_minimum: "3 free institutions"
   oracle_minimum: "3 independent nodes"
   evidence_preservation: "100% maintained"
   
@@ -370,4 +370,4 @@ def ultimate_failsafe():
 **Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)  
 **Repository**: https://github.com/FractonicMind/TernaryMoralLogic
 
-#### *"If they can capture Wall Street's systems, they can try to capture Earth's protection. But Sacred Zero was built to survive even that."*
+#### *"If they can capture Wall Street's systems, they can try to capture Earth's protection. But Sacred Zero was built to survive even that."* **-Lev Goukassian**
