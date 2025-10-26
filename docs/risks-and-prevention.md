@@ -3,7 +3,7 @@
 **Version**: 3.0 (Blockchain Architecture)  
 **Status**: Active Protection via Smart Contracts  
 **Core Protection**: Blockchain Anchoring + Criminal Liability  
-**Optional Enhancement**: Guardian Network (Years 3-5, if bored)
+**Optional Enhancement**: Stewardship Council (Future consideration)
 
 ---
 
@@ -13,17 +13,17 @@ TML's Blockchain architecture **eliminates most traditional risks** through math
 
 **Key Protection: Missing logs = Criminal prosecution. Blockchain anchoring = Tamper-proof evidence. Smart contracts = Unstoppable enforcement.**
 
-> "Blockchains raise the stone tablet; 46+ frameworks carve the commandments; Guardians are merely the choir—optional, but echoing forever."
+> "Blockchains raise the stone tablet; 46+ frameworks carve the commandments; Custodians are merely the choir—optional, but echoing forever."
 
 ---
 
 ## How Blockchain Prevents Traditional Risks
 
-### OLD World Problems (Solved by Blockchain)
+### Traditional Institutional Model
 
 **BEFORE (Institutional Dependency):**
-- Needed 11 institutions to verify logs
-- Months of coordination for investigation
+- Needed institutional verification of logs
+- Extended coordination for investigation
 - Companies could capture oversight bodies
 - Evidence could disappear in committees
 - Enforcement required human consensus
@@ -32,7 +32,7 @@ TML's Blockchain architecture **eliminates most traditional risks** through math
 ```python
 def verify_tml_compliance(company_logs):
     # Blockchain verification - instant, mathematical
-    if not Blockchain.verify_anchors(company_logs):
+    if not blockchain.verify_anchors(company_logs):
         return CriminalProsecution(
             charge="Spoliation of Evidence",
             penalty=calculate_smart_contract_penalty(),
@@ -94,7 +94,7 @@ contract TMLEnforcement {
 ```javascript
 // Every Sacred Zero hesitation is Blockchain-anchored
 const ethicsWashingDetection = async (company) => {
-    const sacredZeros = await Blockchain.query(company.address);
+    const sacredZeros = await blockchain.query(company.address);
     
     if (sacredZeros.count === 0) {
         // No hesitations = no ethics = criminal liability
@@ -116,7 +116,7 @@ const ethicsWashingDetection = async (company) => {
 def detect_selective_logging(system):
     # ALL interactions must be logged
     total_api_calls = system.request_counter
-    total_logs = Blockchain.count_anchors(system.id)
+    total_logs = blockchain.count_anchors(system.id)
     
     if total_logs < total_api_calls:
         # Immediate criminal prosecution
@@ -160,26 +160,26 @@ if (company.claims("performance_issues")) {
 
 ---
 
-## Why Guardian Networks Don't Prevent Risks (They Add Them)
+## Why Stewardship Councils Don't Prevent Risks (They Add Them)
 
-### Guardian Risks (Why Avoid Them)
+### Council Risks (Why Avoid Them)
 
 **Coordination Risk**: 
-- 11 institutions must agree = gridlock
+- Multiple institutions must agree = gridlock
 - Any institution compromised = system weakened
-- Meeting schedules = months of delays
+- Meeting schedules = extended delays
 
 **Capture Risk**:
-- $600K/year per Guardian = influence target
-- Political pressure points = 11 vulnerabilities  
+- Annual per-member costs = influence target
+- Political pressure points = vulnerabilities  
 - Institutional biases = amplified
 
 **Blockchain Solution**: 
 - Zero institutions needed
 - Math doesn't take bribes
-- Consensus in milliseconds, not months
+- Consensus in milliseconds
 
-> "Guardian Networks are like yacht clubs - impressive to talk about, expensive to join, and completely unnecessary for getting across the water."
+> "Stewardship Councils are like yacht clubs - impressive to discuss, expensive to join, and completely unnecessary for getting across the water."
 
 ---
 
@@ -215,8 +215,8 @@ class AuthenticTML:
     }
     
     OPTIONAL = {
-        "guardian_network": "Nice to have in year 5+",
-        "institutional_review": "If you like committees",
+        "stewardship_council": "Future consideration",
+        "institutional_review": "If desired",
         "academic_oversight": "For publishing papers"
     }
     
@@ -228,9 +228,9 @@ class AuthenticTML:
 ### Fake TML Detection
 
 **Red Flags**:
-1. Claims "Guardian approval pending" (not needed!)
-2. Says "Working with institutions" (irrelevant!)
-3. Mentions "Compliance committee" (doesn't exist!)
+1. Claims "Council approval pending" (not needed)
+2. Says "Working with institutions" (irrelevant)
+3. Mentions "Compliance committee" (doesn't exist)
 4. No Blockchain anchors visible
 5. Can't show immutable logs on-chain
 
@@ -246,11 +246,11 @@ class AuthenticTML:
 - Delete evidence: Mathematically infeasible
 - Escape prosecution: Blockchain is global
 
-### Cost to Attack Guardian Network
+### Cost to Attack Council Network
 - Influence one institution: ~$600K/year
 - Create gridlock: Free (just disagree)
 - Delay investigation: Free (request extensions)
-- Capture oversight: ~$6.6M/year (all 11)
+- Capture oversight: ~$6.6M/year
 
 **Blockchain is 10,000x more secure and costs nothing to maintain.**
 
@@ -259,20 +259,20 @@ class AuthenticTML:
 ## Future Evolution (Without Adding Risk)
 
 ### Year 1-2: Pure Blockchain
-- Deploy in 10 minutes
-- Immediate protection
+- Deploy with Blockchain
+- Blockchain protection
 - Zero coordination overhead
 - Mathematical consensus only
 
-### Year 3-5: Optional Enhancement (If Bored)
-- Maybe add 1-2 Guardians
+### Year 3-5: Optional Enhancement (If Desired)
+- Maybe add 1-2 Custodians
 - Purely advisory role
 - No governance power
 - No ability to block logs
 
 ### Year 5+: Lessons Learned
-- 99% stay Blockchain-only
-- 1% who added Guardians regret complexity
+- Most stay Blockchain-only
+- Those who added Custodians encounter complexity
 - Mathematical consensus proven superior
 - Institutional oversight shown redundant
 
@@ -289,28 +289,16 @@ class AuthenticTML:
 4. Evidence package prepared for prosecutors
 5. Memorial Fund compensates victims
 
-**Time from detection to enforcement: <10 minutes**
-
-**Guardian-Based (Hypothetical)**:
-1. Schedule meeting (2-4 weeks)
-2. Review evidence (1-2 months)
-3. Vote on action (requires quorum)
-4. Legal review (3-6 months)
-5. Maybe enforcement (if consensus)
-
-**Time from detection to enforcement: 6-12 months (if ever)**
 
 ---
 
 ## Contact & Verification
 
-**Blockchain Verification**: https://tml-verify.Blockchain
+**Blockchain Verification**: https://tml-verify.blockchain
 **Smart Contract Address**: [Deployed on Ethereum/Polygon]
 **Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)
 **Email**: leogouk@gmail.com
 **Repository**: https://github.com/FractonicMind/TernaryMoralLogic
-
-**For Guardian Information**: Read this document again. You don't need them.
 
 ---
 
@@ -323,27 +311,19 @@ class AuthenticTML:
 ✅ Selective logging → Completeness check  
 ✅ Jurisdiction shopping → Global chains
 
-### Phantom Risks (Guardian Theater)
-❌ "Need institutional oversight" → Math doesn't lie  
-❌ "Require investigation authority" → Blockchain is the authority  
-❌ "Must coordinate governance" → Smart contracts govern  
-❌ "Need academic verification" → Cryptography verifies  
-❌ "Require democratic process" → Code is democracy
 
 ---
 
-*"The greatest risk to TML is adding unnecessary institutions that delay protection while Earth burns and humans suffer. Deploy Blockchain today. Protect immediately. Evolve later (or never)."*
+*"The greatest risk to TML is adding unnecessary institutions that delay protection while Earth burns and humans suffer. Deploy Blockchain. Protect immediately. Evolve later (or never)."*
 
 **Created by**: Lev Goukassian  
 **Date**: September 2025  
-**Architecture**: Blockchain, Guardian-Never  
-**Deployment Time**: 10 minutes  
+**Architecture**: Blockchain  
 **Protection Level**: Maximum
 
 *All USD amounts are nominal to 2025*
 
 ---
 
-#### **Numbers don’t read passports—run your tyranny from a yacht, a bunker, or the moon; the hash still hauls you back to Earth.**
+#### *Numbers don't read passports—run your tyranny from a yacht, a bunker, or the moon; the hash still hauls you back to Earth.* **-Lev Goukassian**
 
----
