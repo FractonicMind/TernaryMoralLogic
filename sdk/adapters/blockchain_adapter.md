@@ -1,16 +1,16 @@
-# TML Blockchain Adapter - Deploy Today Without Guardians
+# TML Blockchain Adapter - Deployment Without Institutional Coordination
 
 **Path**: `/sdk/adapters/blockchain_adapter.md`  
 **Version**: 2.0.0  
 **Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)  
 **Last Updated**: 2025-09-27
 
-## 🚀 The Breakthrough: Immediate TML Protection
+## Architecture Overview
 
-**Old Model**: Wait for 11 Guardian institutions → Never deploy  
-**New Model**: Deploy with Blockchain today → Add Guardians later
+**Deployment Model**: Immediate Blockchain implementation with optional institutional coordination  
+**Current Model**: Deploy with Blockchain → Add Stewardship Council participation later
 
-This adapter enables your existing TML SDKs to operate in Blockchain mode, providing immediate Sacred Zero protection without requiring Guardian Network coordination.
+This adapter enables existing TML SDKs to operate in Blockchain mode, providing immediate Sacred Zero protection without requiring institutional coordination.
 
 ## Architecture Overview
 
@@ -25,45 +25,36 @@ This adapter enables your existing TML SDKs to operate in Blockchain mode, provi
 │   Bitcoin   │  OpenTimestamps│  L2 Networks │
 │  (Finality) │   (Proof)      │  (Speed)     │
 └─────────────┴───────────────┴───────────────┘
-     ↓ Future Evolution ↓
+     ↓ Optional Future Enhancement ↓
 ┌─────────────────────────────────────────────┐
-│    Guardian Network (When Available)        │
+│    Stewardship Council (When Available)     │
 └─────────────────────────────────────────────┘
 ```
 
-## Quick Start: 3 Steps to Protection
+## Implementation Steps
 
 ### Step 1: Configure for Blockchain Mode
 
 **Java**
 ```java
-// Instead of Guardian-required configuration:
-// TMLConfig config = new TMLConfig.Builder()
-//     .withGuardianUrl("https://guardian.tml-network.org") // BLOCKED!
-//     .build();
-
-// Use Blockchain configuration:
+// Blockchain configuration with optional institutional coordination:
 TMLConfig config = new TMLConfig.Builder()
     .withBlockchainMode(true)
     .withNetwork(BlockchainNetwork.BITCOIN)
     .withOTSCalendar("https://alice.btc.calendar.opentimestamps.org")
-    .withGuardianOptional(true)  // Guardian becomes fallback
+    .withStewardshipCouncilOptional(true)  // Council becomes optional enhancement
     .withPenaltyContract("0x1234...")  // Smart contract for violations
     .build();
 ```
 
 **Go**
 ```go
-// Instead of Guardian-required:
-// config := tml.DefaultConfig()
-// config.GuardianURL = "https://guardian.tml-network.org" // BLOCKED!
-
-// Use Blockchain:
+// Blockchain configuration:
 config := &tml.Config{
     BlockchainMode:    true,
     BlockchainNetwork: "bitcoin",
     OTSCalendar:      "https://alice.btc.calendar.opentimestamps.org",
-    GuardianOptional:  true,
+    StewardshipCouncilOptional:  true,
     PenaltyContract:   "0x1234...",
     
     // Sacred Zero settings unchanged
@@ -74,15 +65,12 @@ config := &tml.Config{
 
 **C++**
 ```cpp
-// Instead of Guardian-required:
-// config->guardian_url = "https://guardian.tml-network.org"; // BLOCKED!
-
-// Use Blockchain:
+// Blockchain configuration:
 auto config = std::make_shared<TML::Config>();
 config->blockchain_mode = true;
 config->blockchain_network = "bitcoin";
 config->ots_calendar = "https://alice.btc.calendar.opentimestamps.org";
-config->guardian_optional = true;
+config->stewardship_council_optional = true;
 config->penalty_contract = "0x1234...";
 ```
 
@@ -97,7 +85,7 @@ public class TMLApplication {
         // Create Blockchain-enabled client
         TMLClient client = BlockchainAdapter.createClient(config);
         
-        // No Guardian connection required!
+        // No institutional coordination required
         client.initialize();  // Ready immediately
         
         // Sacred Zero works instantly
@@ -118,7 +106,7 @@ func main() {
     // Create Blockchain-enabled client
     client := Blockchain.NewTMLClient(config)
     
-    // No Guardian connection required!
+    // No institutional coordination required
     client.Initialize()  // Ready immediately
     
     // Always Memory writes to Blockchain
@@ -136,7 +124,7 @@ int main() {
     auto client = BlockchainAdapter::CreateClient(config);
     
     // Deploy protection immediately
-    client->Initialize();  // No Guardian wait
+    client->Initialize();
     
     // Environmental monitoring with Blockchain proof
     auto impact = client->CalculateEnvironmentalImpact(resources);
@@ -144,13 +132,13 @@ int main() {
 }
 ```
 
-### Step 3: Deploy Today
+### Step 3: Deployment
 
 ```bash
-# No Guardian setup required!
+# No institutional setup required
 docker-compose up -d
 
-# Your TML protection is now active with:
+# TML protection is now active with:
 # ✅ Sacred Zero discrimination prevention
 # ✅ Immutable audit logs on Blockchain  
 # ✅ Environmental impact tracking
@@ -187,7 +175,7 @@ public class BlockchainAdapter {
         
         @Override
         public void connect() {
-            // No Guardian connection required
+            // No institutional coordination required
             this.connected = true;
             this.blockchainLogger = new BlockchainLogger(config);
         }
@@ -212,12 +200,12 @@ public class BlockchainAdapter {
             entry.setBlockchainProof(timestamp);
             localStorage.save(entry);
             
-            // Try Guardian as backup if available
-            if (guardianAvailable()) {
+            // Try Stewardship Council as backup if available
+            if (stewardshipCouncilAvailable()) {
                 try {
-                    sendToGuardian(entry);
+                    sendToStewardshipCouncil(entry);
                 } catch (Exception e) {
-                    // Guardian is optional, continue
+                    // Stewardship Council is optional, continue
                 }
             }
             
@@ -259,7 +247,7 @@ type BlockchainTMLClient struct {
 }
 
 func (c *BlockchainTMLClient) Connect() error {
-    // Override - no Guardian required
+    // Override - no institutional coordination required
     c.connected = true
     return nil
 }
@@ -284,9 +272,9 @@ func (c *BlockchainTMLClient) Log(level tml.LogLevel, message string, metadata t
     entry.BlockchainProof = timestamp
     c.localStorage.Save(entry)
     
-    // Guardian is now optional backup
-    if c.guardianAvailable {
-        go c.sendToGuardianAsync(entry)  // Non-blocking
+    // Stewardship Council is now optional backup
+    if c.stewardshipCouncilAvailable {
+        go c.sendToStewardshipCouncilAsync(entry)  // Non-blocking
     }
     
     return entry.ID
@@ -384,14 +372,14 @@ contract TMLPenaltySystem {
 }
 ```
 
-## Migration Path: Gradual Guardian Adoption
+## Migration Path: Gradual Institutional Adoption
 
 ```mermaid
 graph LR
-    A[Day 1: Blockchain Only] -->|Months 1-3| B[Add First Guardian]
-    B -->|Months 4-6| C[3-5 Guardians]
-    C -->|Year 2| D[7-9 Guardians]
-    D -->|Year 3+| E[Full 11 Guardians]
+    A[Day 1: Blockchain Only] -->|Months 1-3| B[Add First Institution]
+    B -->|Months 4-6| C[3-5 Institutions]
+    C -->|Year 2| D[7-9 Institutions]
+    D -->|Year 3+| E[Full Council]
     
     A -.->|Protection Active| P[People Protected]
     B -.->|Protection Active| P
@@ -403,33 +391,32 @@ graph LR
 ### Configuration Evolution
 
 ```yaml
-# Phase 1: Blockchain Only (TODAY)
+# Phase 1: Blockchain Only
 tml:
   Blockchain:
     enabled: true
     primary: bitcoin
     ots: true
-  guardians:
+  stewardship_council:
     enabled: false
 
-# Phase 2: Hybrid (MONTHS)
+# Phase 2: Hybrid
 tml:
   Blockchain:
     enabled: true
     primary: bitcoin
-  guardians:
+  stewardship_council:
     enabled: true
     count: 3
     mode: optional
 
-# Phase 3: Full Guardian (YEARS)
+# Phase 3: Full Participation
 tml:
   Blockchain:
     enabled: true
     fallback: true
-  guardians:
+  stewardship_council:
     enabled: true
-    count: 11
     mode: primary
 ```
 
@@ -437,10 +424,10 @@ tml:
 
 | Deployment Model | Setup Time | Monthly Cost | Protection Level |
 |-----------------|------------|--------------|------------------|
-| Guardian Network (11 nodes) | 6-12 months | $50,000+ | Perfect (if ever achieved) |
-| Blockchain | **10 minutes** | **$100** | **Good (deployable today)** |
-| Hybrid (3 Guardians) | 1-3 months | $15,000 | Better |
-| Full Evolution | 2-3 years | $50,000+ | Perfect |
+| Institutional Network | 6-12 months | $50,000+ | Comprehensive (if achieved) |
+| Blockchain | Configuration time | $100 | Operational (immediate) |
+| Hybrid (3 institutions) | 1-3 months | $15,000 | Enhanced |
+| Full Evolution | 2-3 years | $50,000+ | Comprehensive |
 
 ## Performance Metrics
 
@@ -452,7 +439,7 @@ Blockchain Performance:
   Bitcoin Confirmation: 10-60 minutes (but non-blocking)
   Penalty Execution: 12 seconds (Ethereum)
   
-Advantages Over Guardian-Only:
+Advantages:
   - No network coordination latency
   - No single point of failure
   - Public verifiability
@@ -471,9 +458,9 @@ public class ResilientTMLClient {
             blockchainAnchor(entry);
         } catch (BlockchainException e) {
             try {
-                // Fallback: Guardian if available
-                guardianSubmit(entry);
-            } catch (GuardianException ge) {
+                // Fallback: Stewardship Council if available
+                stewardshipCouncilSubmit(entry);
+            } catch (StewardshipCouncilException sce) {
                 // Last resort: Local storage with retry
                 localQueue.add(entry);
                 scheduleRetry(entry);
@@ -491,9 +478,9 @@ public class ResilientTMLClient {
 ## Testing Your Implementation
 
 ```bash
-# 1. Test without any Guardian
+# 1. Test without any institutional coordination
 export TML_BLOCKCHAIN_MODE=true
-export TML_GUARDIAN_OPTIONAL=true
+export TML_STEWARDSHIP_COUNCIL_OPTIONAL=true
 npm test
 
 # 2. Verify Blockchain anchoring
@@ -511,24 +498,24 @@ cast call $PENALTY_CONTRACT "penalties(address)" $YOUR_ADDRESS
 
 ### Pattern 1: Immediate Protection
 ```java
-// Deploy TML in production TODAY
+// Deploy TML in production
 TMLClient client = BlockchainAdapter.createClient(
     TMLConfig.blockchainDefaults()
 );
-// Protection active immediately, no waiting
+// Protection active immediately
 ```
 
-### Pattern 2: Gradual Guardian Addition
+### Pattern 2: Gradual Institutional Addition
 ```go
 config := &tml.Config{
     BlockchainMode: true,
-    Guardians: []string{
+    StewardshipCouncil: []string{
         // Start empty
     },
 }
 
-// Later, add Guardians without breaking protection
-config.Guardians = append(config.Guardians, "https://guardian1.tml.org")
+// Later, add institutions without breaking protection
+config.StewardshipCouncil = append(config.StewardshipCouncil, "https://institution1.tml.org")
 ```
 
 ### Pattern 3: Compliance Evidence
@@ -541,24 +528,24 @@ auto verified = VerifyOnBitcoin(proof);
 
 ## FAQ
 
-**Q: Is Blockchain-only less secure than Guardians?**  
-A: No, just different. Blockchain provides cryptographic immutability and public verifiability. Guardians add governance and institutional oversight. Both are valuable.
+**Q: Is Blockchain-only less secure than institutional participation?**  
+A: No, different security models. Blockchain provides cryptographic immutability and public verifiability. Institutional participation adds governance and oversight. Both are valuable.
 
 **Q: What if Bitcoin fees are high?**  
 A: OpenTimestamps batches operations, costing ~$0.01 per thousands of logs. L2 solutions cost even less.
 
-**Q: Can we switch from Blockchain to Guardians later?**  
-A: Yes! The architecture supports seamless evolution. Start with Blockchain, add Guardians gradually.
+**Q: Can we switch from Blockchain to institutional participation later?**  
+A: Yes! The architecture supports seamless evolution. Start with Blockchain, add institutions gradually.
 
-**Q: Do penalties work without Guardians?**  
+**Q: Do penalties work without institutional participation?**  
 A: Yes, smart contracts enforce penalties automatically. No human intervention needed.
 
 ## Next Steps
 
 1. **Choose your Blockchain**: Bitcoin (maximum security) or L2 (lower cost)
-2. **Deploy the adapter**: 10 minutes with our Docker image
+2. **Deploy the adapter**: Configuration time with our Docker image
 3. **Start protecting**: Sacred Zero active immediately
-4. **Add Guardians later**: When institutions are ready
+4. **Add institutions later**: When ready
 
 ## Support
 
@@ -568,25 +555,19 @@ A: Yes, smart contracts enforce penalties automatically. No human intervention n
 
 ---
 
-## The Revolution
+## Implementation Philosophy
 
 ```python
-# Old World: Perfect but Paralyzed
-if all_guardians_ready():  # Never true
-    protect_people()       # Never happens
-    
-# New World: Good and Growing  
-protect_people_now()       # TODAY!
+# Operational Model
+protect_people_now()       # Immediate
 improve_over_time()        # Gradual
-achieve_perfection()       # Eventually
+achieve_full_framework()   # Eventually
 ```
-
-**We're not compromising the vision.**  
-**We're making it real.**
 
 ---
 
-*"Perfect protection tomorrow helps no one.*  
-*Good protection today saves lives."*
+**Creator**: Lev Goukassian  
+**ORCID**: 0009-0006-5966-1243  
+**Email**: leogouk@gmail.com  
+**Repository**: https://github.com/FractonicMind/TernaryMoralLogic
 
-**Deploy TML Today. Evolve Tomorrow. Protect Always.**
