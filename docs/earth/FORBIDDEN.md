@@ -448,4 +448,4 @@ ultimate_forbidden:
 **Repository**: https://github.com/FractonicMind/TernaryMoralLogic
 
 ---
-#### *"These are the lines that shall not be crossed. Not for profit, not for progress, not for power. The Earth's veto is absolute."*
+#### *"These are the lines that shall not be crossed. Not for profit, not for progress, not for power. The Earth's veto is absolute."* **-Lev Goukassian**
