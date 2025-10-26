@@ -1,4 +1,3 @@
-
 # PROTECTION PRINCIPLES v3.0
 
 ## Blockchain-Enforced Protection (No Committees Required)
@@ -489,7 +488,6 @@ def governance_comparison():
 *All USD amounts are nominal to 2025*
 
 ---
-
 #### *Stewardship councils are verification layers for the prudent—math already provides the protection.*
 
 ----
