@@ -170,7 +170,7 @@ watershed_conflict_protocol:
     1: negotiated_agreement
     2: traditional_watershed_law
     3: scientific_minimum_flow
-    4: guardian_arbitration
+    4: institutional_arbitration
   
   principles:
     - no_community_denied_subsistence
@@ -365,7 +365,7 @@ graph TD
     D --> E{Resolved?}
     E -->|No| F[Regional Council]
     F --> G{Resolved?}
-    G -->|No| H[Guardian Arbitration]
+    G -->|No| H[Institutional Arbitration]
     H --> I[Binding Decision]
     E -->|Yes| J[Document & Proceed]
     G -->|Yes| J
@@ -423,11 +423,13 @@ class ConflictResolutionTest:
 
 ---
 
-**Key Principle**: When legitimate stakeholders disagree, Sacred Zero protects the Earth while humans resolve their differences. The planet cannot wait, but neither can it be sacrificed to haste.
-
----
-
 **Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)  
 **Email**: leogouk@gmail.com  
 **Repository**: https://github.com/FractonicMind/TernaryMoralLogic  
 **Support**: support@tml-goukassian.org
+
+---
+
+#### *When legitimate stakeholders disagree, Sacred Zero protects the Earth while humans resolve their differences. The planet cannot wait, but neither can it be sacrificed to haste.* **-Lev Goukassian**
+
+
