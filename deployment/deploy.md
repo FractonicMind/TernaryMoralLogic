@@ -1,6 +1,6 @@
 # TML Implementation Guide
 
-**Path**: `/deployment/deploy_today.md`  
+**Path**: `/deployment/deploy.md`  
 **Version**: 2.0.0  
 **Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)  
 **Last Updated**: 2025-09-27
@@ -52,11 +52,11 @@ TML_BLOCK_ON_SACRED_ZERO=true
 TML_CARBON_THRESHOLD_KG=1000
 TML_WATER_THRESHOLD_LITERS=10000
 
-# Stewardship Council Configuration
-TML_STEWARDSHIP_OPTIONAL=true
+# Stewardship Council Configuration (RECOMMENDED - can add later)
+TML_STEWARDSHIP_RECOMMENDED=true
 TML_STEWARDSHIP_URL=
 
-# Penalty System (OPTIONAL - for Ethereum/Polygon)
+# Penalty System (RECOMMENDED - for Ethereum/Polygon)
 TML_PENALTY_CONTRACT_ADDRESS=
 TML_PENALTY_NETWORK=
 ```
