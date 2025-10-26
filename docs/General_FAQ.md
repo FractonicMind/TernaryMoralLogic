@@ -516,7 +516,7 @@ TML expands stakeholder definition beyond human-centric models:
 
 **2. Non-Human Entities**: Species, habitats, and ecosystems recognized as possessing intrinsic value. These are represented through scientific proxies (IUCN Red List species, ecosystem integrity indices) or registered community data (local ecological monitoring).
 
-**3. Future Generations**: Represented by designated guardians, ensuring long-term ecological impacts are considered in present decisions.
+**3. Future Generations**: Represented by designated custodians, ensuring long-term ecological impacts are considered in present decisions.
 
 By formally embedding all three categories into Sacred Zero triggers and Always Memory logs, TML ensures risks to ecosystems or species—whether or not immediate human harm is visible—constitute legitimate grounds for hesitation, documentation, and accountability.
 
