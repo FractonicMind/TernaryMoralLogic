@@ -78,7 +78,7 @@ def handle_progressive_failure():
             else:
                 status = "failed"
                 maintain_sacred_zero_indefinitely()
-                alert_all_guardians()
+                alert_all_stewardship_council_members()
 ```
 
 ---
@@ -226,7 +226,7 @@ def disaster_recovery():
     if surviving_nodes >= 3:
         bootstrap_from_survivors()
     else:
-        bootstrap_from_guardian_backup()
+        bootstrap_from_stewardship_council_backup()
     
     # Phase 3: Restoration (1-6 hours)
     while len(active_oracles) < minimum_operational:
@@ -350,5 +350,5 @@ class OracleFailoverTest:
 
 ---
 
-#### *Greenwashing dies where immutable logs begin.*
+#### *Greenwashing dies where immutable logs begin.* **-Lev Goukassian**
 
