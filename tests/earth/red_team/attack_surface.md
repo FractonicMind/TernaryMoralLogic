@@ -2,7 +2,7 @@
 
 ## Executive Summary
 
-Most attacks against TML are **economically impossible** due to Blockchain architecture. Attacking multi-chain consensus costs ~$50B. Smart contracts prevent data poisoning automatically. Guardian institutions (if they existed) would be the weakest link, not the defense.
+Most attacks against TML are **economically impossible** due to Blockchain architecture. Attacking multi-chain consensus costs significant resources. Smart contracts prevent data poisoning automatically. Institutional participation (if implemented) would be an enhancement, not a requirement.
 
 ---
 
@@ -15,9 +15,9 @@ attack_costs = {
     "rewrite_blockchain": "$50,000,000,000",  # Multiple chains
     "corrupt_smart_contract": "Impossible",    # Immutable code
     "fake_evidence": "$100M penalty if caught", # Guaranteed catch
-    "bribe_guardians": "$6.6M/year",          # If they existed
+    "institutional_influence": "$6.6M/year",   # If they existed
     
-    "reality": "Blockchain makes attacks economically suicidal"
+    "reality": "Blockchain makes attacks economically prohibitive"
 }
 ```
 
@@ -28,7 +28,7 @@ attack_costs = {
 ### 1. Data Poisoning - Blockchain Prevents
 
 #### Attack 1.1: Fake Community Data
-**Old Fear**: Malicious actors inject false ecological data  
+**Threat**: Malicious actors inject false ecological data  
 **Blockchain Reality**: 
 
 ```solidity
@@ -56,10 +56,10 @@ contract CommunityValidation {
 ```
 
 **Cost to Attack**: Risk $1M stake + criminal prosecution  
-**Guardian Alternative**: Committees reviewing reports for months
+**Institutional Alternative**: Committee review processes
 
 #### Attack 1.2: Treaty Modification
-**Old Fear**: Corrupting environmental thresholds  
+**Threat**: Corrupting environmental thresholds  
 **Blockchain Reality**: Treaties are immutable on-chain
 
 ```python
@@ -67,8 +67,8 @@ def modify_treaty(changes):
     # NOT POSSIBLE - Treaties are Blockchain constants
     return "Error: Immutable on Blockchain"
     
-    # Guardian alternative: 11 institutions voting
-    # Problem: Any institution can be corrupted for $600K
+    # Institutional alternative: voting processes
+    # Challenge: Any process can be influenced
 ```
 
 ---
@@ -100,7 +100,7 @@ contract OracleDefense {
 
 **Attack Cost**: $14M minimum in slashed stakes  
 **Profit Potential**: Usually <$1M  
-**Result**: Nobody attempts it
+**Result**: Economically irrational
 
 ---
 
@@ -128,7 +128,7 @@ const sacredZeroDefense = {
 ### 4. Privacy Attacks - Cryptographically Impossible
 
 #### Attack 4.1: De-anonymization
-**Old Method**: Analyze patterns to identify communities  
+**Method**: Analyze patterns to identify communities  
 **Blockchain Method**: Zero-knowledge proofs
 
 ```solidity
@@ -155,7 +155,7 @@ contract PrivacyProtection {
 ### 5. Economic Attacks - Backfire on Attacker
 
 #### Attack 5.1: Token Manipulation
-**Guardian System**: Complex voting tokens  
+**Institutional System**: Complex voting tokens  
 **Blockchain System**: No tokens needed
 
 ```python
@@ -166,11 +166,11 @@ blockchain_system = {
     "attack_surface": 0
 }
 
-guardian_system = {
+institutional_system = {
     "tokens": "Complex governance tokens",
-    "voting": "11 institutions",
+    "voting": "Committee processes",
     "manipulation_possible": True,
-    "attack_surface": "Infinite political games"
+    "attack_surface": "Political influence"
 }
 ```
 
@@ -188,25 +188,25 @@ const jurisdictionDefense = {
     enforcement: "Automatic worldwide",
     hiding_possibility: "Zero",
     
-    vs_guardians: {
-        location: "11 specific institutions",
-        enforcement: "Only where they have power",
-        hiding_possibility: "Easy - avoid those countries"
+    vs_institutional: {
+        location: "Specific institutions",
+        enforcement: "Only where they have authority",
+        hiding_possibility: "Easier - avoid those countries"
     }
 };
 ```
 
 ---
 
-## The Ultimate Attack: Corrupting Guardians (If They Existed)
+## The Ultimate Attack: Institutional Influence (If They Existed)
 
-### Why Guardians Are the Weakness, Not Defense
+### Why Institutions Are Enhancement, Not Requirement
 
 ```python
-def guardian_vulnerability_analysis():
-    guardian_attacks = {
-        "bribe_one_institution": "$600K/year",
-        "influence_via_funding": "Easy",
+def institutional_vulnerability_analysis():
+    institutional_attacks = {
+        "influence_one_institution": "$600K/year",
+        "funding_influence": "Easy",
         "political_pressure": "Constant",
         "insider_threat": "High probability",
         "ransomware": "Single point of failure",
@@ -215,7 +215,7 @@ def guardian_vulnerability_analysis():
     }
     
     blockchain_defense = {
-        "bribe_blockchain": "$50,000,000,000",
+        "influence_blockchain": "$50,000,000,000",
         "influence_nodes": "Must control 51% globally",
         "political_pressure": "Math doesn't care",
         "insider_threat": "No insiders in math",
@@ -224,17 +224,17 @@ def guardian_vulnerability_analysis():
         "result": "Economically impossible to compromise"
     }
     
-    return "Guardians are the attack surface, not the defense"
+    return "Institutions are enhancement, not requirement"
 ```
 
 ---
 
 ## Real Security Metrics
 
-### Blockchain vs Guardian Security
+### Blockchain vs Institutional Security
 
-| Attack Type | Blockchain Cost | Guardian Cost | Winner |
-|-------------|----------------|---------------|---------|
+| Attack Type | Blockchain Cost | Institutional Cost | Winner |
+|-------------|----------------|-------------------|---------|
 | Data Tampering | $50B | $600K | Blockchain |
 | Oracle Corruption | $14M self-loss | Meeting influence | Blockchain |
 | DoS Attack | Self-funded | Overwhelm staff | Blockchain |
@@ -245,14 +245,14 @@ def guardian_vulnerability_analysis():
 
 ## Compound Attack Scenarios
 
-### Worst Case: Total Guardian Capture
+### Worst Case: Total Institutional Capture
 ```python
-# If all 11 Guardians were corrupted
-guardian_capture = {
+# If all institutions were captured
+institutional_capture = {
     "cost": "$6.6M/year",
-    "result": "Complete system compromise",
+    "result": "Enhancement compromised",
     "detection": "Maybe never",
-    "recovery": "Politically impossible"
+    "core_protection": "Blockchain continues"
 }
 
 # Equivalent Blockchain attack
@@ -286,11 +286,9 @@ contract MathematicalSecurity {
 }
 ```
 
-**Red Team Conclusion**: "Just use Blockchain. Guardians add attack surface, not security."
+**Red Team Conclusion**: "Use Blockchain. Institutions add value but not requirement."
 
 ---
-
-## Contact
 
 **Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)  
 **Email**: leogouk@gmail.com  
@@ -299,4 +297,5 @@ contract MathematicalSecurity {
 
 ---
 
-*"The best red team report for Guardian-based security is three words: Use Blockchain instead."*
+#### *"Security through mathematics, enhanced by institutions."*
+
