@@ -4,7 +4,7 @@
 
 TML's Earth Protection operates through **Blockchain automation**, not committees. Sacred Zero triggers for ecosystem threats are enforced by smart contracts, with penalties 3x higher than human harm. Implementation proceeds through validated mechanisms.
 
-**No Stewardship Council required. No committee approval needed. Mathematical enforcement of 20+ environmental treaties.**
+**Mathematical enforcement of 20+ environmental treaties.**
 
 ## Core Architecture
 
