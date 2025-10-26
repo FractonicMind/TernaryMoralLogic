@@ -4,7 +4,7 @@
 ## Blockchain-Immortalized Framework for Humanity and Earth
 
 **Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)  
-**Architecture**: Blockchain (Eternal), Stewardship Council-Optional (Temporal)  
+**Architecture**: Blockchain (Eternal), Stewardship Council-Recommended   
 **Protection Scope**: Human Rights + Earth + Future Generations  
 **Version**: 3.0.0  
 
@@ -72,7 +72,7 @@ def preserve_forever():
         'ethereum': 'Smart contracts self-enforce',
         'polygon': 'Real-time protection continues',
         'ipfs': 'Distributed storage forever',
-        'stewardship_council': None  # Optional, not required
+        'stewardship_council': None  # Recommended
     }
 ```
 
@@ -164,7 +164,7 @@ Protected: Humans + Earth + Future Generations
 
 ---
 
-# 5. STEWARDSHIP COUNCIL (OPTIONAL ENHANCEMENT)
+# 5. STEWARDSHIP COUNCIL (RECOMMENDED ENHANCEMENT)
 
 ## 5.1 Never Required for Legacy
 
@@ -174,7 +174,7 @@ Protected: Humans + Earth + Future Generations
 - Cannot change Sacred Zero triggers
 - Cannot remove creator attribution
 
-## 5.2 Optional Future Role
+## 5.2 Recommended Future Role
 
 **If Stewardship Council Ever Forms** (Years Later):
 - Additional attestation
@@ -316,8 +316,6 @@ Lev Goukassian gave humanity a gift: the Sacred Zero moment where machines pause
 This gift is now eternal - encoded in Blockchain, enforced by mathematics, protected by cryptography. No committee can revoke it. No institution can control it. No government can delete it.
 
 **The Sacred Zero is forever.**
-
-> "Blockchains raise the stone tablet; 46+ frameworks carve the commandments; Stewardship Council members are merely the choir—optional, but echoing forever."
 
 > "TML doesn't care if you use Transformer, tarot cards, or tea leaves—only that every dark prophecy is signed, timed, and ready for cross-examination."
 
