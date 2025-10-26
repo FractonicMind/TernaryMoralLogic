@@ -3,7 +3,7 @@
 **Version**: 3.0 (Blockchain Architecture)  
 **Status**: Active Protection via Smart Contracts  
 **Core Protection**: Blockchain Anchoring + Criminal Liability  
-**Optional Enhancement**: Stewardship Council (Future consideration)
+**Recommended Enhancement**: Stewardship Council (Future consideration)
 
 ---
 
@@ -160,28 +160,6 @@ if (company.claims("performance_issues")) {
 
 ---
 
-## Why Stewardship Councils Don't Prevent Risks (They Add Them)
-
-### Council Risks (Why Avoid Them)
-
-**Coordination Risk**: 
-- Multiple institutions must agree = gridlock
-- Any institution compromised = system weakened
-- Meeting schedules = extended delays
-
-**Capture Risk**:
-- Annual per-member costs = influence target
-- Political pressure points = vulnerabilities  
-- Institutional biases = amplified
-
-**Blockchain Solution**: 
-- Zero institutions needed
-- Math doesn't take bribes
-- Consensus in milliseconds
-
-> "Stewardship Councils are like yacht clubs - impressive to discuss, expensive to join, and completely unnecessary for getting across the water."
-
----
 
 ## Real Protection: Criminal Liability Matrix
 
@@ -214,7 +192,7 @@ class AuthenticTML:
         "memorial_fund": "30-40% penalties to victims"
     }
     
-    OPTIONAL = {
+    RECOMMENDED = {
         "stewardship_council": "Future consideration",
         "institutional_review": "If desired",
         "academic_oversight": "For publishing papers"
@@ -253,28 +231,6 @@ class AuthenticTML:
 - Capture oversight: ~$6.6M/year
 
 **Blockchain is 10,000x more secure and costs nothing to maintain.**
-
----
-
-## Future Evolution (Without Adding Risk)
-
-### Year 1-2: Pure Blockchain
-- Deploy with Blockchain
-- Blockchain protection
-- Zero coordination overhead
-- Mathematical consensus only
-
-### Year 3-5: Optional Enhancement (If Desired)
-- Maybe add 1-2 Custodians
-- Purely advisory role
-- No governance power
-- No ability to block logs
-
-### Year 5+: Lessons Learned
-- Most stay Blockchain-only
-- Those who added Custodians encounter complexity
-- Mathematical consensus proven superior
-- Institutional oversight shown redundant
 
 ---
 
