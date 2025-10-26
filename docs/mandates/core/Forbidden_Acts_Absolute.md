@@ -1,4 +1,3 @@
-
 # Forbidden Acts Absolute: Red Lines That Cannot Be Crossed
 
 **Path**: `/docs/mandates/core/Forbidden_Acts_Absolute.md`  
