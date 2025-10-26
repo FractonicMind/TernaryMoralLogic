@@ -2,16 +2,16 @@
 
 ## Ternary Moral Logic (TML) Blockchain Framework
 
-**Computational Reproducibility for Immediate Deployment**  
+**Computational Reproducibility Assessment**  
 
 ---
 
 ## Executive Summary
 
-This document provides a comprehensive reproducibility checklist for TML's Blockchain architecture, ensuring that Sacred Zero protection for humans, Earth, and future generations can be independently deployed in 10 minutes without institutional coordination.
+This document provides a comprehensive reproducibility checklist for TML's Blockchain architecture, ensuring that Sacred Zero protection for humans, Earth, and future generations can be independently deployed without institutional coordination.
 
-**Deployment Status**: Immediate (no waiting required)  
-**Architecture**: Blockchain, Guardian-optional  
+**Deployment Status**: Blockchain anchoring available  
+**Architecture**: Blockchain, Council-optional  
 **Protection Scope**: Human Rights (26 docs) + Earth Protection (20+ docs)  
 **Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)
 
@@ -23,11 +23,11 @@ This document provides a comprehensive reproducibility checklist for TML's Block
 
 The TML framework achieves reproducibility through mathematical consensus:
 
-1. **Immediate Deployment**: 10 minutes from download to protection
+1. **Blockchain Deployment**: Available for implementation
 2. **Zero Coordination**: No institutional approval needed
 3. **Complete Protection**: Human discrimination, rights violations, Earth harm
 4. **Immutable Evidence**: Multi-chain Blockchain anchoring
-5. **Optional Enhancement**: Guardian Network can be added later (or never)
+5. **Optional Enhancement**: Stewardship Council can be added later
 
 ### Standards Compliance
 
@@ -60,15 +60,15 @@ The TML framework achieves reproducibility through mathematical consensus:
 
 **Repository Access**: Fully Open Source
 ```bash
-# Complete deployment in 10 minutes
+# Complete deployment
 git clone https://github.com/FractonicMind/TernaryMoralLogic
 cd TernaryMoralLogic
 docker pull tml/always-memory:latest
 docker run -e BLOCKCHAIN_ANCHORING=true \
-           -e GUARDIAN_NETWORK=false \
+           -e STEWARDSHIP_COUNCIL=false \
            tml/always-memory
 
-# System operational - no institutional coordination needed
+# System operational
 ```
 
 **Blockchain Configuration**: Multi-Chain Redundancy
@@ -128,12 +128,12 @@ COPY frameworks/human_rights/ ./frameworks/human_rights/
 COPY frameworks/earth_protection/ ./frameworks/earth_protection/
 
 # Copy Blockchain anchoring
-COPY Blockchain/ ./Blockchain/
+COPY blockchain/ ./blockchain/
 COPY always_memory/ ./always_memory/
 
-# Configure for immediate deployment
+# Configure for deployment
 ENV BLOCKCHAIN_ANCHORING=true
-ENV GUARDIAN_NETWORK=false
+ENV STEWARDSHIP_COUNCIL=false
 ENV HUMAN_RIGHTS_FRAMEWORK=true
 ENV EARTH_PROTECTION=true
 
@@ -157,7 +157,7 @@ def verify_human_rights_framework():
     
     required_documents = [
         'UDHR', 'ICCPR', 'ICESCR', 'CAT', 'CRC', 'CRPD',
-        'CEDAW', 'ICERD', 'Geneva_Conventions', # ... etc
+        'CEDAW', 'ICERD', 'Geneva_Conventions'
     ]
     
     loaded = hrf.get_loaded_documents()
@@ -223,7 +223,7 @@ def verify_earth_protection():
 def verify_blockchain_anchoring():
     """Verify multi-chain anchoring works"""
     
-    from tml.Blockchain import MultiChainAnchor
+    from tml.blockchain import MultiChainAnchor
     
     anchor = MultiChainAnchor(
         chains=['bitcoin', 'polygon', 'ethereum'],
@@ -262,7 +262,7 @@ def verify_opentimestamps():
     """Verify OpenTimestamps integration"""
     
     import opentimestamps as ots
-    from tml.Blockchain import OTSIntegration
+    from tml.blockchain import OTSIntegration
     
     integration = OTSIntegration()
     
@@ -287,44 +287,43 @@ def verify_opentimestamps():
 
 ## Deployment Reproducibility
 
-### 10-Minute Deployment Verification
+### Deployment Verification
 
 **Complete Deployment Test**:
 ```bash
 #!/bin/bash
-# verify_10_minute_deployment.sh
+# verify_deployment.sh
 
 START_TIME=$(date +%s)
 
-# Step 1: Clone repository (30 seconds)
+# Step 1: Clone repository
 git clone https://github.com/FractonicMind/TernaryMoralLogic
 cd TernaryMoralLogic
 
-# Step 2: Pull Docker image (2 minutes)
+# Step 2: Pull Docker image
 docker pull tml/always-memory:latest
 
-# Step 3: Configure Blockchain (1 minute)
+# Step 3: Configure Blockchain
 cat > .env << EOF
 BLOCKCHAIN_ANCHORING=true
 BITCOIN_RPC=https://btc.example.com
 POLYGON_RPC=https://polygon-rpc.com
 ETHEREUM_RPC=https://eth.example.com
-GUARDIAN_NETWORK=false
+STEWARDSHIP_COUNCIL=false
 EOF
 
-# Step 4: Deploy TML (30 seconds)
+# Step 4: Deploy TML
 docker run --env-file .env tml/always-memory
 
-# Step 5: Verify deployment (1 minute)
+# Step 5: Verify deployment
 curl http://localhost:8000/health
-curl http://localhost:8000/verify/Blockchain
+curl http://localhost:8000/verify/blockchain
 curl http://localhost:8000/verify/frameworks
 
 END_TIME=$(date +%s)
 DURATION=$((END_TIME - START_TIME))
 
 echo "Deployment completed in $((DURATION / 60)) minutes"
-assert [ $DURATION -lt 600 ] # Less than 10 minutes
 ```
 
 ### No Coordination Required
@@ -342,7 +341,7 @@ def verify_no_coordination_required():
     requirements = deployment.get_requirements()
     
     # Verify no institutional dependencies
-    assert requirements['guardian_institutions'] == 0
+    assert requirements['stewardship_institutions'] == 0
     assert requirements['approval_needed'] == False
     assert requirements['coordination_time'] == '0 minutes'
     
@@ -353,9 +352,9 @@ def verify_no_coordination_required():
     
     # Verify optional enhancements
     optional = deployment.get_optional_enhancements()
-    assert 'guardian_network' in optional
-    assert optional['guardian_network']['required'] == False
-    assert optional['guardian_network']['timeline'] == 'Add anytime or never'
+    assert 'stewardship_council' in optional
+    assert optional['stewardship_council']['required'] == False
+    assert optional['stewardship_council']['timeline'] == 'Add anytime or never'
     
     return True
 ```
@@ -423,19 +422,19 @@ def verify_deployment_costs():
             'polygon': True,
             'ethereum': True
         },
-        guardian_network=False  # Not required
+        stewardship_council=False  # Not required
     )
     
     # Verify costs are reasonable
     assert costs['total_usd'] <= 150, f"Cost ${costs['total_usd']} exceeds $150"
     assert costs['per_decision_usd'] <= 0.0005
     
-    # Verify Guardian costs are optional
-    guardian_costs = calc.calculate_guardian_costs(
+    # Verify Council costs are optional
+    council_costs = calc.calculate_stewardship_costs(
         decisions_per_month=1_000_000
     )
-    assert guardian_costs['required'] == False
-    assert guardian_costs['description'] == 'Optional enhancement'
+    assert council_costs['required'] == False
+    assert council_costs['description'] == 'Optional enhancement'
     
     return costs
 ```
@@ -494,8 +493,8 @@ def complete_system_verification():
     
     print("Starting TML Blockchain Verification")
     
-    # 1. Verify immediate deployment
-    print("✓ Deployment in 10 minutes")
+    # 1. Verify deployment
+    print("✓ Deployment available")
     assert verify_no_coordination_required()
     
     # 2. Verify Blockchain anchoring
@@ -526,8 +525,7 @@ def complete_system_verification():
     print("📍 Blockchain protection: ACTIVE")
     print("🛡️ Human Rights protection: ACTIVE")
     print("🌍 Earth Protection: ACTIVE")
-    print("⏱️ Deployment time: 10 MINUTES")
-    print("🏛️ Guardian Network: OPTIONAL")
+    print("🏛️ Stewardship Council: OPTIONAL")
     
     return True
 ```
@@ -536,27 +534,27 @@ def complete_system_verification():
 
 ## Migration Path Reproducibility
 
-### Optional Guardian Enhancement
+### Optional Council Enhancement
 
 **Future Enhancement Test** (Not Required):
 ```python
-def test_guardian_migration():
-    """Test OPTIONAL Guardian Network migration"""
+def test_stewardship_migration():
+    """Test OPTIONAL Stewardship Council migration"""
     
-    from tml.guardians import GuardianMigration
+    from tml.stewardship import StewardshipMigration
     
-    migration = GuardianMigration()
+    migration = StewardshipMigration()
     
     # Verify current state
     current = migration.get_current_state()
     assert current['blockchain_active'] == True
-    assert current['guardians_required'] == False
+    assert current['council_required'] == False
     assert current['fully_functional'] == True
     
     # Simulate future migration (OPTIONAL)
-    future_state = migration.simulate_guardian_addition(
+    future_state = migration.simulate_council_addition(
         years_from_now=2,
-        guardian_count=3
+        member_count=3
     )
     
     assert future_state['enhanced_credibility'] == True
@@ -564,8 +562,8 @@ def test_guardian_migration():
     assert future_state['required_for_operation'] == False
     assert future_state['roi_increase_percent'] == 400
     
-    print("Guardian Network remains OPTIONAL enhancement")
-    print("System fully operational WITHOUT Guardians")
+    print("Stewardship Council remains OPTIONAL enhancement")
+    print("System fully operational WITHOUT Council")
     
     return True
 ```
@@ -583,12 +581,12 @@ def calculate_reproducibility_score():
     
     metrics = {
         'code_availability': 1.0,           # 100% open source
-        'deployment_speed': 1.0,            # 10 minutes verified
+        'deployment_speed': 1.0,            # Verified
         'blockchain_reliability': 0.99,     # 99% uptime
         'framework_completeness': 1.0,      # All 46+ documents
         'legal_admissibility': 0.95,        # Court tested
         'cost_predictability': 0.98,        # Within estimates
-        'guardian_independence': 1.0        # Not required
+        'council_independence': 1.0         # Not required
     }
     
     weights = {
@@ -598,7 +596,7 @@ def calculate_reproducibility_score():
         'framework_completeness': 0.15,
         'legal_admissibility': 0.15,
         'cost_predictability': 0.10,
-        'guardian_independence': 0.10
+        'council_independence': 0.10
     }
     
     score = sum(metrics[k] * weights[k] for k in metrics.keys())
@@ -612,22 +610,22 @@ def calculate_reproducibility_score():
 TML's Blockchain architecture achieves exceptional reproducibility:
 
 **Key Achievements**:
-- **10-minute deployment** without institutional coordination
+- **Deployment available** without institutional coordination
 - **Complete protection** for humans, Earth, and future generations
 - **Blockchain immutability** via multi-chain anchoring
 - **46+ frameworks** active (26 Human Rights + 20+ Earth Protection)
-- **Guardian Network optional** - never required for deployment
+- **Stewardship Council optional** - never required for deployment
 - **Legal enforceability** from day one
 
-This reproducibility framework ensures that Lev Goukassian's vision of immediate, comprehensive AI accountability is achievable by any organization, anywhere, starting today.
+This reproducibility framework ensures that Lev Goukassian's vision of comprehensive AI accountability is achievable by any organization.
 
-> "Blockchains raise the stone tablet; 46+ frameworks carve the commandments; Guardians are merely the choir—optional, but echoing forever."
+> "Blockchains raise the stone tablet; 46+ frameworks carve the commandments; Custodians are merely the choir—optional, but echoing forever."
 
 ---
 
 **Document Version**: 3.0 (Blockchain)  
 **Last Updated**: September 2025  
-**Deployment Status**: Immediate
+**Deployment Status**: Available
 
 ---
 
@@ -641,6 +639,6 @@ This reproducibility framework ensures that Lev Goukassian's vision of immediate
 
 ---
 
-#### **Reproducibility is the echo test of truth: if your ethics can’t be re-compiled by a stranger in ten minutes, they’re just expensive opinions.**
+#### *Reproducibility is the echo test of truth: if your ethics can't be re-compiled by a stranger, they're just expensive opinions.* **-Lev Goukassian**
 
 ---
