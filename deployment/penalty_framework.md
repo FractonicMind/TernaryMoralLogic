@@ -453,5 +453,3 @@ A: 60% to victims, 30% to equality organizations, 10% to TML development.
 **Email**: leogouk@gmail.com  
 **Repository**: https://github.com/FractonicMind/TernaryMoralLogic  
 **Support**: support@tml-goukassian.org
-
-*All USD amounts are nominal to 2025*
