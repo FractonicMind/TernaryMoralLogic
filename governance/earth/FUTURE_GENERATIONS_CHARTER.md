@@ -10,10 +10,10 @@ Every AI decision affecting resources, climate, or ecosystems must consider impa
 
 ## Representation Structure
 
-### Guardian Positions
+### Custodian Positions
 
 ```yaml
-future_generations_guardians: 3
+future_generations_custodians: 3
 allocation:
   youth_representative: 1  # Age 16-25
   indigenous_keeper: 1      # Traditional seventh-generation thinking
@@ -86,7 +86,7 @@ cumulative_tracking:
 
 ### 3. Veto Powers
 
-Future Generations Guardians can invoke special veto for:
+Future Generations Custodians can invoke special veto for:
 
 - Actions creating >100-year cleanup obligations
 - Irreversible genetic modifications
@@ -97,7 +97,7 @@ Future Generations Guardians can invoke special veto for:
 - Human-rights irreversibility (e.g., cultural extinction)
 - Earth-protection planetary-boundary breach
 
-Veto requires only 2 of 3 Future Guardians (no external voting body).
+Veto requires only 2 of 3 Future Custodians (no external voting body).
 
 ## Decision Framework
 
@@ -166,7 +166,7 @@ def calculate_irreversibility(action):
 
 ### Standing to Sue
 
-Future Generations Guardians can initiate legal action for:
+Future Generations Custodians can initiate legal action for:
 - Treaty violations affecting >50 year timeline
 - Corporate actions creating long-term liability
 - Government policies mortgaging future
@@ -212,7 +212,7 @@ Future Generations Guardians can initiate legal action for:
 
 ### Query Rights
 
-Future generations (via Guardians) can query:
+Future generations (via Custodians) can query:
 - All decisions affecting >50 year resources
 - Cumulative impacts by corporation/government
 - Restoration obligations accumulated
@@ -231,7 +231,7 @@ youth_council:
   term: 3_years
 
   responsibilities:
-    - Shadow Future Guardians
+    - Shadow Future Custodians
     - Review decisions affecting their lifetime
     - Document impacts they'll inherit
     - Propose new protections
@@ -240,7 +240,7 @@ youth_council:
     observer: year_1
     advisor: year_2
     voting_member: year_3
-    eligible_for_guardian: after_completion
+    eligible_for_custodian: after_completion
 ```
 
 ### Education Mandate
@@ -258,7 +258,7 @@ youth_council:
 ```yaml
 annual_funding: $2M*
 allocation:
-  guardian_stipends: 30%  # $600K
+  custodian_stipends: 30%  # $600K
   youth_program: 25%      # $500K
   research/modeling: 20%  # $400K
   legal_support: 15%      # $300K
@@ -296,7 +296,7 @@ Published each Earth Day including:
 
 If action risks human extinction or civilizational collapse:
 
-1. Any single Future Guardian can pause (24 hours)
+1. Any single Future Custodian can pause (24 hours)
 2. Two can extend pause (7 days)
 3. Full review by all Blockchains required
 4. Public disclosure mandatory
@@ -306,7 +306,7 @@ If action risks human extinction or civilizational collapse:
 
 ### Annual Documentation
 
-Each year, Future Guardians write public letter:
+Each year, Future Custodians write public letter:
 - What we protected for you
 - What we failed to prevent
 - What you must repair
@@ -330,7 +330,7 @@ Stored permanently in Always Memory, delivered in 50 years.
 
 ---
 
-> *“We do not inherit the Earth from our ancestors; we borrow it from our children.”*  
+> *"We do not inherit the Earth from our ancestors; we borrow it from our children."*  
 > Every algorithm trained today will make decisions affecting humans not yet born. They deserve representation now, while prevention is still possible.
 
 ---
@@ -347,4 +347,4 @@ Stored permanently in Always Memory, delivered in 50 years.
 
 #### *"The future will judge us not by what we saved for ourselves, but by what we preserved for them—human dignity and a living planet."*  **- Lev Goukassian**
 
-```
+---
