@@ -1,4 +1,3 @@
-
 # CRC Child Protection: Sacred Zero for Every Child
 
 **Path**: `/docs/mandates/core/CRC_Child_Protection.md`  
@@ -152,7 +151,7 @@ alternative_care:
       - foster_placement
       - kafalah
       - adoption
-      - institutional (last_resort)
+      - institutional   
     continuity: "Ethnic, religious, cultural, linguistic"
     algorithmic_placement: "sacred_zero"
   
