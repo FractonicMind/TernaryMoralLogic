@@ -1,4 +1,3 @@
-
 # Earth Protection Framework
 
 ## Blockchain-Enforced Planetary Defense
@@ -41,11 +40,11 @@ def enforce_earth_protection():
         Blockchain.compensate_ecosystem()
 ```
 
-### 🏛️ Stewardship Council
+### 🏛️ Stewardship Council (RECOMMENDED  ENHANCEMENT)
 - **Not required** for deployment
 - **Not required** for enforcement  
 - **Not required** for penalties
-- Useful for complex scenarios
+- May be useful for complex scenarios
 - Adds institutional attestation when available
 
 ## Key Documents
@@ -131,6 +130,13 @@ def submit_observation():
 - IPFS storage: $50/month
 - **Total: $200/month**
 - Stewardship Council: $0
+
+### With Recommended Stewardship (Enhancement)
+- Everything above: $200/month
+- Stewardship coordination: Variable cost
+- Committee meetings: Time investment
+- **Total: $200/month + coordination costs**
+- Benefit: Additional verification layer
 
 **Recommendation**: Implement Blockchain core, add stewardship when beneficial.
 
@@ -252,13 +258,13 @@ Earth Protection is **mandatory**, not optional. Contributions should:
 
 **Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)  
 **Version**: 3.0 (Blockchain)  
-**Architecture**: Smart Contracts with Optional Enhancement  
+**Architecture**: Smart Contracts with Recommended Enhancement  
 **Repository**: https://github.com/FractonicMind/TernaryMoralLogic
 
 *All USD amounts are nominal to 2025*
 
 ---
 
-#### *"Miss one byte, pay twice for the human; thrice for the reef; sevenfold for the child not yet born—math that makes greed think twice."* **-Lev Goukassian**
+#### *"Miss one byte, pay twice for the human; thrice for the reef; sevenfold for the child not yet born—math that makes greed think twice."***-Lev Goukassian**
 
 ---
