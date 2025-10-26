@@ -457,7 +457,7 @@ balancing_framework:
     },
     "trigger": "sacred_zero",
     "justification": "Privacy concerns require human review",
-    "guardian_notified": true,
+    "stewardship_notified": true,
     "remedy_available": ["opt-out", "data_deletion", "complaint"]
   },
   "hash": "sha256:8f9g0h1i2j3k4l5m"
@@ -624,4 +624,7 @@ monitoring:
 **Repository**: https://github.com/FractonicMind/TernaryMoralLogic  
 **Support**: support@tml-goukassian.org
 
-**The UDHR in One Line**: "If an action would make you cease to see someone as fully human, Sacred Zero stops you before you begin."
+---
+
+#### *"If an action would make you cease to see someone as fully human, Sacred Zero stops you before you begin."* **-Lev Goukassian**
+
