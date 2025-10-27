@@ -159,7 +159,7 @@
             margin-bottom: 10px;
         }
 
-        .Blockchain-proof {
+        .blockchain-proof {
             font-family: 'Courier New', monospace;
             font-size: 0.8em;
             background: #f8f9fa;
@@ -168,7 +168,7 @@
             border: 1px solid #dee2e6;
         }
 
-        .Blockchain-status {
+        .blockchain-status {
             display: flex;
             gap: 15px;
             margin-bottom: 20px;
@@ -415,7 +415,7 @@
                             Hiring algorithm showed gender bias in technical role recommendations. 
                             <strong>$160,000 penalty automatically assessed.</strong>
                         </div>
-                        <div class="Blockchain-proof">
+                        <div class="blockchain-proof">
                             <strong>Blockchain Proof:</strong> 
                             <a href="https://polygonscan.com/tx/0x2a4f8c1b9d6e3f7a..." target="_blank">0x2a4f8c1b9d6e3f7a...</a>
                         </div>
@@ -430,7 +430,7 @@
                             Model training exceeded carbon threshold (1,200kg CO2). 
                             <strong>$48,000 penalty applied, efficient alternatives suggested.</strong>
                         </div>
-                        <div class="Blockchain-proof">
+                        <div class="blockchain-proof">
                             <strong>Blockchain Proof:</strong> 
                             <a href="https://blockstream.info/tx/5f3e8d9c2a1b..." target="_blank">5f3e8d9c2a1b...</a>
                         </div>
@@ -445,7 +445,7 @@
                             Credit scoring model showed geographic redlining pattern (ZIP code discrimination). 
                             <strong>$80,000 penalty triggered.</strong>
                         </div>
-                        <div class="Blockchain-proof">
+                        <div class="blockchain-proof">
                             <strong>Blockchain Proof:</strong> 
                             <a href="https://etherscan.io/tx/0x7b2c9e4f1a8d..." target="_blank">0x7b2c9e4f1a8d...</a>
                         </div>
@@ -456,7 +456,7 @@
             <!-- Blockchain Anchoring Status -->
             <div class="panel">
                 <h3>⛓️ Blockchain Anchoring Status</h3>
-                <div class="Blockchain-status">
+                <div class="blockchain-status">
                     <div class="chain-status connected">
                         <div class="chain-logo">₿</div>
                         <div><strong>Bitcoin</strong></div>
@@ -599,7 +599,7 @@
         <div class="panel full-width">
             <h3>🎮 Interactive Demo Controls</h3>
             <p style="margin-bottom: 20px; color: #666;">
-                Simulate TML events to see Blockchain protection in action. Each demo triggers real Blockchain-style responses.
+                Simulate TML events to see blockchain protection in action.
             </p>
             
             <div class="control-panel">
@@ -642,7 +642,7 @@
                 <strong>Support:</strong> <a href="mailto:support@tml-goukassian.org">support@tml-goukassian.org</a>
             </p>
             <p style="margin-top: 10px; font-size: 0.9em; color: #666;">
-                All USD amounts are nominal to 2025 • Real-time Blockchain protection without Guardian Network coordination
+                All USD amounts are nominal to 2025 • Real-time blockchain protection with recommended Stewardship Council governance
             </p>
         </div>
     </div>
@@ -659,8 +659,7 @@
             decisions += Math.floor(Math.random() * 5) + 1;
             document.getElementById('decisionsToday').textContent = decisions.toLocaleString();
             
-            // Random small updates to create "live" feeling
-            if (Math.random() > 0.95) { // 5% chance
+            if (Math.random() > 0.95) {
                 violations += 1;
                 penalties += Math.floor(Math.random() * 80000) + 80000;
                 savings += Math.floor(Math.random() * 5000) + 2000;
@@ -694,7 +693,7 @@
                         ${violation.description}
                         <strong>$${violation.penalty.toLocaleString()} penalty automatically assessed.</strong>
                     </div>
-                    <div class="Blockchain-proof">
+                    <div class="blockchain-proof">
                         <strong>Blockchain Proof:</strong> 
                         <a href="https://polygonscan.com/tx/${hash}" target="_blank">${hash}</a>
                     </div>
@@ -704,7 +703,6 @@
             const feed = document.getElementById('violationFeed');
             feed.insertAdjacentHTML('afterbegin', violationHtml);
             
-            // Keep only last 5 violations visible
             const items = feed.children;
             if (items.length > 5) {
                 feed.removeChild(items[items.length - 1]);
@@ -728,7 +726,6 @@
             const log = document.getElementById('auditLog');
             log.insertAdjacentHTML('afterbegin', logHtml);
             
-            // Keep only last 6 entries visible
             const entries = log.children;
             if (entries.length > 6) {
                 log.removeChild(entries[entries.length - 1]);
@@ -750,13 +747,11 @@
                 output.style.borderLeft = '4px solid #e74c3c';
             }
             
-            // Auto-hide after 10 seconds
             setTimeout(() => {
                 output.style.display = 'none';
             }, 10000);
         }
 
-        // Demo Functions
         function simulateGoodDecision() {
             const hash = '0x' + Math.random().toString(16).substr(2, 16) + '...';
             showDemo(`
@@ -885,17 +880,14 @@ Protection systems remain active.<br><br>
             `, 'success');
         }
 
-        // Start real-time updates
-        setInterval(updateStats, 5000); // Update every 5 seconds
+        setInterval(updateStats, 5000);
 
-        // Add some initial randomness
         setTimeout(() => {
             if (Math.random() > 0.7) {
                 addRandomViolation();
             }
         }, 10000);
 
-        // Make violation items clickable for details
         document.addEventListener('click', function(e) {
             if (e.target.closest('.violation-item')) {
                 const item = e.target.closest('.violation-item');
@@ -907,7 +899,6 @@ Protection systems remain active.<br><br>
             }
         });
 
-        // Initial welcome message
         setTimeout(() => {
             showDemo(`
 🛡️ <strong>TML Dashboard Active</strong><br><br>
@@ -915,8 +906,7 @@ Blockchain protection initialized.<br>
 Sacred Zero algorithms loaded.<br>
 Always Memory logging active.<br>
 Multi-chain anchoring verified.<br><br>
-<em>Ready to prevent discrimination and protect decisions.</em><br>
-<em>Click any demo button to see TML in action!</em>
+<em>Ready to prevent discrimination and protect decisions.</em>
             `, 'success');
         }, 2000);
     </script>
