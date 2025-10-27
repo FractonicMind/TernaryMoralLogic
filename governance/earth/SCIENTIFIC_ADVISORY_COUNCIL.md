@@ -2,15 +2,15 @@
 
 ## Blockchain-Automated Earth Protection
 
-**Architecture**: Oracles + Smart Contracts (Mandatory), Human Council (Optional Luxury)  
-**Deployment**: Immediate via Blockchain, no committee needed  
+**Architecture**: Oracles + Smart Contracts (Primary), Human Council (Recommended Enhancement)  
+**Deployment**: Immediate via blockchain  
 **Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)
 
 ---
 
-## Core Reality: Automation First
+## Core Implementation: Automated Scientific Enforcement
 
-### How Science Gets Enforced (Without Committees)
+### Scientific Threshold Enforcement
 
 ```python
 def enforce_earth_protection():
@@ -26,10 +26,6 @@ def enforce_earth_protection():
         smart_contract.trigger_penalty(3x_multiplier)
         smart_contract.compensate_affected()
         smart_contract.fund_restoration()
-    
-    # No human approval needed
-    # No committee votes
-    # No delays
 ```
 
 ### Treaty Updates (Automatic via Oracles)
@@ -40,78 +36,52 @@ blockchain_oracles:
     source: "Official IPCC API"
     frequency: "Daily sync"
     validation: "Cryptographic signature"
-    human_needed: false
     
   paris_agreement:
     source: "UNFCCC Database"
     frequency: "Real-time"
     validation: "Government signatures"
-    human_needed: false
     
   biodiversity:
     source: "CBD Secretariat"
     frequency: "Monthly"
     validation: "UN certification"
-    human_needed: false
 ```
-
-**Result**: Treaties update automatically. Thresholds adjust mathematically. Penalties execute instantly.
 
 ---
 
-## Optional Human Advisory (Years Later, If Ever)
+## Recommended Enhancement: Scientific Advisory Council
 
-### Who Might Want This (5% of Companies)
+### Purpose and Scope
 
-**After 3-5 years, SOME organizations MIGHT consider adding human advisors for:**
-- Novel threats not in treaties yet
+After establishing core blockchain-based protection, organizations may choose to add human scientific expertise for:
+- Novel threats not yet codified in treaties
 - Regional expertise for complex ecosystems
 - Indigenous knowledge integration
 - Academic collaboration opportunities
 
-**Cost**: Additional $3M/year  
-**Benefit**: Marginal improvement in edge cases  
-**Required**: NEVER
-
-### If You Really Want Human Advisors
+### Recommended Structure
 
 ```yaml
-optional_advisory_structure:
-  size: "5-15 experts (not required)"
-  role: "Recommendations only (not binding)"
-  authority: "Cannot override Blockchain"
-  value: "Nice to have, never necessary"
+advisory_structure:
+  size: "5-15 experts"
+  role: "Recommendations and guidance"
+  authority: "Advisory (not binding on smart contracts)"
+  value: "Enhanced decision-making for edge cases"
   
-  remember:
-    - Blockchain thresholds work without them
-    - Smart contracts execute without approval
-    - Oracles update without committees
-    - Protection active from Day 1
+  composition:
+    - Climate scientists (2-3)
+    - Marine biologists (1-2)
+    - Indigenous knowledge holders (2-3)
+    - Conservation biologists (2-3)
+    - Environmental economists (1-2)
 ```
 
----
+### Implementation Timeline
 
-## How Blockchain Replaces Committees
-
-### Old Model (Committee-Based)
-```
-15 scientists meet quarterly
-→ Debate thresholds for months
-→ Vote on adjustments
-→ Wait for implementation
-→ Hope for compliance
-→ Years pass, Earth suffers
-```
-
-### New Model (Blockchain-Automated)
-```
-Oracles fetch official data (seconds)
-→ Smart contracts update thresholds (automatic)
-→ Violations trigger penalties (instant)
-→ Compensation paid (same day)
-→ Protection active (always)
-→ Earth protected NOW
-```
+Organizations typically consider adding this enhancement:
+- **Year 1-2**: Blockchain-only operation
+- **Year 3+**: Consider adding advisory council based on needs and resources
 
 ---
 
@@ -132,15 +102,10 @@ contract ScientificThresholds {
             thresholds[metric] = newValue;
             emit ThresholdUpdated(metric, newValue);
         }
-        
-        // No human approval needed
-        // No committee vote required
-        // Science enforced automatically
     }
     
     function checkViolation(bytes32 metric, uint256 actual) public {
         if (actual > thresholds[metric]) {
-            // Automatic enforcement
             triggerSacredZero();
             executePenalty(3x_multiplier);
             compensateEarth();
@@ -165,11 +130,7 @@ class ScientificOracle:
         for metric, url in self.sources.items():
             data = fetch_with_signature(url)
             if verify_cryptographic_proof(data):
-                Blockchain.update_threshold(metric, data.value)
-        
-        # No human intervention
-        # Continuous updates
-        # Always current
+                blockchain.update_threshold(metric, data.value)
 ```
 
 ---
@@ -180,121 +141,83 @@ class ScientificOracle:
 
 ```yaml
 community_observations:
-  method: "Direct Blockchain submission"
+  method: "Direct blockchain submission"
   validation: "Community consensus (3+ observers)"
   weighting: "Equal to Western science"
   payment: "Automatic via smart contract"
-  
-  no_committee_needed:
-    - Communities submit directly
-    - Blockchain validates consensus
-    - Smart contracts pay observers
-    - Evidence permanently recorded
 ```
 
 ---
 
-## Cost Comparison
+## Cost Structure
 
-### Blockchain-Only (What You Need)
+### Core Implementation
 - Oracle subscriptions: $100/month
 - Smart contract gas: $50/month
 - Total: **$150/month**
-- Human advisors: $0
 
-### With Optional Advisory Council
-- Everything above: $150/month
-- 15 human advisors: $250,000/month
-- Meetings and travel: $25,000/month
-- Total: **$275,150/month**
-- Benefit: Minimal
-
-**Recommendation**: Stick with Blockchain. Save $3.3M/year.
+### With Advisory Council (Recommended Enhancement)
+- Core implementation: $150/month
+- 10 advisors (part-time): $50,000/year
+- Meetings and coordination: $10,000/year
+- Total: **~$60,000/year** when enhanced
 
 ---
 
 ## Performance Metrics
 
-### Blockchain-Automated Metrics
+### Automated System Metrics
 - Treaty update latency: <1 minute
-- Threshold adjustment: Instant
+- Threshold adjustment: Automatic
 - Violation detection: Real-time
 - Penalty execution: Automatic
-- Human committees needed: Zero
 
-### Optional Human Council Metrics
-- Meeting frequency: Quarterly (slow)
-- Decision time: Weeks (delayed)
-- Implementation: Months (maybe)
-- Added protection: ~5% improvement
-- Cost-benefit ratio: Poor
+### Advisory Council Metrics (If Implemented)
+- Meeting frequency: Quarterly
+- Novel threat response: 2-4 weeks
+- Research collaboration: Ongoing
+- Knowledge integration: Continuous
 
 ---
 
-## Migration Path
+## Implementation Approach
 
-### Year 1-2: Blockchain Only
+### Phase 1: Core Blockchain (Immediate)
 ```bash
 # Deploy today
 docker run tml/always-memory \
   --scientific-oracles=enabled \
-  --human-council=false
-  
-# Fully operational immediately
+  --advisory-council=false
 ```
 
-### Year 3+ (If Bored and Rich)
-Consider adding human advisors if:
-- You have $3M/year to waste
-- You like committee meetings
-- Your lawyers insist
-- You miss bureaucracy
-
-Most companies: Never add human council.
-
----
-
-## The Truth
-
-**What Actually Protects Earth:**
-- Blockchain oracles pulling real science
-- Smart contracts enforcing thresholds
-- Automatic penalties for violations
-- Immediate compensation for harm
-
-**What Doesn't:**
-- Committee meetings
-- Voting on thresholds
-- Consensus building
-- Human deliberation
+### Phase 2: Advisory Enhancement (Recommended After Year 2)
+Consider adding advisory council when:
+- Organization has mature TML implementation
+- Resources available for expert compensation
+- Novel environmental challenges emerge
+- Academic collaboration desired
 
 ---
 
 ## Emergency Response
 
-### Blockchain Speed
+### Automated Response
 - New threat detected: Instant oracle update
 - Threshold breached: Immediate Sacred Zero
 - Penalty calculated: Smart contract formula
 - Compensation paid: Same block
 
-### Human Council Speed
-- Schedule emergency meeting: 3 days
-- Achieve quorum: 1 week
-- Debate response: 2 weeks
-- Maybe implement: Eventually
-
-**Which protects Earth better?**
-
----
-
-> "The oracles fetch truth, the chain enforces it, the council drinks coffee—Earth doesn't wait for committees."
+### Advisory Council Enhancement
+When implemented, advisory council provides:
+- Expert review of novel situations
+- Regional context for edge cases
+- Indigenous knowledge integration
+- Research collaboration
 
 ---
 
-**Document Version**: 2.0 (Blockchain-Automated)  
-**Implementation**: Immediate  
-**Human Council**: Optional luxury for the 5% who miss meetings
+**Document Version**: 2.0  
+**Implementation**: Immediate (core), Phased (enhancement)
 
 **Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)  
 **Repository**: https://github.com/FractonicMind/TernaryMoralLogic  
