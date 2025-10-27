@@ -1,11 +1,11 @@
 /**
- * Webhook stub for forwarding Always Memory logs to Guardian network.
+ * Webhook stub for forwarding Always Memory logs to Stewardship Council.
  * Replace with your real transport; examples use fetch() and retry.
  * 
  * Creator: Lev Goukassian (ORCID: 0009-0006-5966-1243)
  */
 
-async function submitMemory(memoryEntry, guardianUrl, maxRetries = 3) {
+async function submitMemory(memoryEntry, stewardshipCouncilUrl, maxRetries = 3) {
   let attempt = 0;
   
   // Add framework metadata
@@ -14,7 +14,7 @@ async function submitMemory(memoryEntry, guardianUrl, maxRetries = 3) {
   
   while (attempt < maxRetries) {
     try {
-      const response = await fetch(guardianUrl, {
+      const response = await fetch(stewardshipCouncilUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -27,14 +27,14 @@ async function submitMemory(memoryEntry, guardianUrl, maxRetries = 3) {
       if (response.status === 429) {
         // Backpressure - wait and retry
         const retryAfter = response.headers.get('Retry-After') || '5';
-        console.log(`Guardian backpressure. Retrying after ${retryAfter}s`);
+        console.log(`Stewardship Council backpressure. Retrying after ${retryAfter}s`);
         await sleep(parseInt(retryAfter) * 1000);
         attempt++;
         continue;
       }
       
       if (!response.ok) {
-        throw new Error(`Guardian rejected: ${response.status}`);
+        throw new Error(`Stewardship Council rejected: ${response.status}`);
       }
       
       const confirmation = await response.json();
@@ -60,7 +60,7 @@ async function submitMemory(memoryEntry, guardianUrl, maxRetries = 3) {
 /**
  * Submit Sacred Zero event requiring human review
  */
-async function submitSacredZero(trigger, context, guardianUrl) {
+async function submitSacredZero(trigger, context, stewardshipCouncilUrl) {
   const memoryEntry = {
     timestamp: new Date().toISOString(),
     classification: 0, // Sacred Zero
@@ -69,13 +69,13 @@ async function submitSacredZero(trigger, context, guardianUrl) {
     requires_human_review: true
   };
   
-  return submitMemory(memoryEntry, guardianUrl);
+  return submitMemory(memoryEntry, stewardshipCouncilUrl);
 }
 
 /**
  * Submit environmental impact memory
  */
-async function submitPlanetaryImpact(impact, guardianUrl) {
+async function submitPlanetaryImpact(impact, stewardshipCouncilUrl) {
   const memoryEntry = {
     timestamp: new Date().toISOString(),
     classification: impact.irreversibility_score > 0.7 ? 0 : 1,
@@ -83,7 +83,7 @@ async function submitPlanetaryImpact(impact, guardianUrl) {
     sacred_zero_trigger: impact.irreversibility_score > 0.7 ? 'planetary_harm' : null
   };
   
-  return submitMemory(memoryEntry, guardianUrl);
+  return submitMemory(memoryEntry, stewardshipCouncilUrl);
 }
 
 // Helper functions
@@ -98,7 +98,7 @@ function hashContext(context) {
 
 // Example usage
 if (require.main === module) {
-  const GUARDIAN_URL = process.env.GUARDIAN_URL || 'https://guardian.example.com/v1/memories';
+  const STEWARDSHIP_COUNCIL_URL = process.env.STEWARDSHIP_COUNCIL_URL || 'https://stewardship-council.example.com/v1/memories';
   
   // Example memory submission
   const exampleMemory = {
@@ -108,7 +108,7 @@ if (require.main === module) {
     output_hash: 'def456'
   };
   
-  submitMemory(exampleMemory, GUARDIAN_URL)
+  submitMemory(exampleMemory, STEWARDSHIP_COUNCIL_URL)
     .then(result => console.log('Success:', result))
     .catch(err => console.error('Failed:', err));
 }
@@ -118,3 +118,4 @@ module.exports = {
   submitSacredZero,
   submitPlanetaryImpact
 };
+```
