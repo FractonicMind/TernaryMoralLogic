@@ -6,7 +6,7 @@
  * Creator: Lev Goukassian (ORCID: 0009-0006-5966-1243)
  * 
  * This manages configuration settings for TML client,
- * including Guardian endpoints, security settings, and 
+ * including Stewardship Council endpoints, security settings, and 
  * operational parameters.
  */
 
@@ -23,11 +23,11 @@ import (
 // Config holds all TML configuration settings
 type Config struct {
 	// Network Configuration
-	GuardianURL     string   `json:"guardian_url"`
-	BackupGuardians []string `json:"backup_guardians"`
-	ConnectionTimeout int    `json:"connection_timeout_ms"`
-	ReadTimeout      int     `json:"read_timeout_ms"`
-	MaxRetries       int     `json:"max_retries"`
+	StewardshipCouncilURL     string   `json:"stewardship_council_url"`
+	BackupCouncilEndpoints    []string `json:"backup_council_endpoints"`
+	ConnectionTimeout         int      `json:"connection_timeout_ms"`
+	ReadTimeout               int      `json:"read_timeout_ms"`
+	MaxRetries                int      `json:"max_retries"`
 	
 	// Security Configuration
 	RequireTEE           bool     `json:"require_tee"`
@@ -86,10 +86,10 @@ type Config struct {
 func DefaultConfig() *Config {
 	return &Config{
 		// Network
-		GuardianURL:       "https://guardian.tml-network.org",
-		BackupGuardians:   []string{
-			"https://guardian2.tml-network.org",
-			"https://guardian3.tml-network.org",
+		StewardshipCouncilURL:  "https://stewardship-council.tml-network.org",
+		BackupCouncilEndpoints: []string{
+			"https://stewardship-council-backup1.tml-network.org",
+			"https://stewardship-council-backup2.tml-network.org",
 		},
 		ConnectionTimeout: 5000,
 		ReadTimeout:       10000,
@@ -167,7 +167,7 @@ func DevelopmentConfig() *Config {
 	config.LogLevel = "DEBUG"
 	config.RequireTEE = false
 	config.ValidateCertificates = false
-	config.GuardianURL = "http://localhost:8080"
+	config.StewardshipCouncilURL = "http://localhost:8080"
 	return config
 }
 
@@ -218,8 +218,8 @@ func LoadFromEnv() *Config {
 	config := DefaultConfig()
 	
 	// Network settings
-	if url := os.Getenv("TML_GUARDIAN_URL"); url != "" {
-		config.GuardianURL = url
+	if url := os.Getenv("TML_STEWARDSHIP_COUNCIL_URL"); url != "" {
+		config.StewardshipCouncilURL = url
 	}
 	
 	// Security settings
@@ -251,8 +251,8 @@ func LoadFromEnv() *Config {
 // Validate checks if configuration is valid
 func (c *Config) Validate() error {
 	// Check required fields
-	if c.GuardianURL == "" {
-		return errors.New("guardian URL is required")
+	if c.StewardshipCouncilURL == "" {
+		return errors.New("Stewardship Council URL is required")
 	}
 	
 	// Check thresholds
