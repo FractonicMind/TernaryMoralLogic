@@ -392,3 +392,6 @@ transparency_metrics:
 
 **Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)  
 **Repository**: https://github.com/FractonicMind/TernaryMoralLogic
+```
+
+---
