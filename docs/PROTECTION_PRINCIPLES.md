@@ -1,6 +1,6 @@
 # PROTECTION PRINCIPLES v3.0
 
-## Blockchain-Enforced Protection (No Committees Required)
+## Blockchain-Enforced Protection
 
 **Version**: 3.0 (Mathematical Protection)  
 **Status**: Automatically Enforced via Smart Contracts  
