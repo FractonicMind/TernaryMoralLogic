@@ -36,7 +36,7 @@ func BasicInitExample() {
 	// Create TML client
 	client := tml.NewClient(config)
 	
-	// Connect to Guardian Network
+	// Connect to Stewardship Council (if configured)
 	if err := client.Connect(); err != nil {
 		log.Printf("Failed to connect: %v", err)
 		return
@@ -45,7 +45,7 @@ func BasicInitExample() {
 	
 	// Verify connection
 	status := client.GetStatus()
-	fmt.Printf("Connected to Guardian: %s\n", status.GuardianURL)
+	fmt.Printf("Connected to Stewardship Council: %s\n", status.StewardshipCouncilURL)
 	fmt.Printf("TEE Available: %v\n", status.TEEEnabled)
 	fmt.Printf("Environment: %s\n", config.Environment)
 }
@@ -184,7 +184,7 @@ func AlwaysMemoryExample() {
 		Restrictions: []string{"no_commercial_use", "attribution_required"},
 	})
 	
-	// Flush logs to Guardian
+	// Flush logs to Stewardship Council (if configured)
 	if err := logger.Flush(); err != nil {
 		log.Printf("Failed to flush logs: %v", err)
 	}
