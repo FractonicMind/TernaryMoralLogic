@@ -109,22 +109,22 @@ paths:
               schema:
                 $ref: '#/components/schemas/EarthImpactResponse'
 
-  /guardians/submit:
+  /stewardship_council/submit:
     post:
-      summary: Submit to Guardian network
-      description: Submit memory batch to Guardian network for attestation
-      operationId: submitToGuardians
+      summary: Submit to Stewardship Council
+      description: Submit memory batch to Stewardship Council for attestation
+      operationId: submitToStewardshipCouncil
       tags:
-        - Guardians
+        - Stewardship Council
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/GuardianSubmission'
+              $ref: '#/components/schemas/StewardshipCouncilSubmission'
       responses:
         '200':
-          description: Submission accepted by Guardians
+          description: Submission accepted by Stewardship Council
 
 components:
   schemas:
@@ -165,7 +165,7 @@ components:
         timestamp:
           type: string
           format: date-time
-        guardian_confirmations:
+        stewardship_council_confirmations:
           type: array
           items:
             type: string
@@ -286,7 +286,7 @@ components:
         community_affected:
           type: string
 
-    GuardianSubmission:
+    StewardshipCouncilSubmission:
       type: object
       required:
         - batch_id
@@ -326,4 +326,4 @@ components:
 
 security:
   - ApiKeyAuth: []
-  
+```
