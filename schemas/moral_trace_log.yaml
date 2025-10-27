@@ -4,7 +4,7 @@
 description: |
   Schema for Moral Trace Log entries in the Always Memory architecture.
   Every AI action creates an immutable log before execution.
-  Logs are cryptographically sealed and distributed to Guardian network.
+  Logs are cryptographically sealed and distributed to the Stewardship Council.
 
 type: object
 required: 
@@ -96,22 +96,22 @@ properties:
         type: string
         description: Base64 encoded signature
         
-  guardian_confirmations:
+  stewardship_confirmations:
     type: array
-    description: Guardian network attestations
+    description: Stewardship Council attestations
     items:
       type: object
       required: [id, type, signature]
       properties:
         id:
           type: string
-          description: Guardian identifier
+          description: Stewardship Council member identifier
         type:
           type: string
           enum: ["full", "lightweight"]
         signature:
           type: string
-          description: Guardian's signature
+          description: Council member's signature
           
   goukassian_promise:
     type: object
@@ -155,16 +155,14 @@ examples:
       algorithm: "ECDSA-P384"
       key_id: "eph_2a3b4c5d"
       value: "MEUCIQDf..."
-    guardian_confirmations:
-      - id: "guardian_01"
+    stewardship_confirmations:
+      - id: "stewardship_member_01"
         type: "full"
         signature: "0xf2e4..."
-      - id: "guardian_02"
+      - id: "stewardship_member_02"
         type: "lightweight"
         signature: "0x8a9b..."
     goukassian_promise:
       lantern: true
       signature: "0009-0006-5966-1243"
       license: "MIT-Attribution-Required"
-
-      
