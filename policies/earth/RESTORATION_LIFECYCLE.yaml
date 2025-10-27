@@ -1,3 +1,4 @@
+```yaml
 # RESTORATION_LIFECYCLE.yaml
 # End-to-end process for ecological restoration funded by TML
 # Version: 2.0.0
@@ -65,7 +66,7 @@ lifecycle:
       - Success metrics definition
       
     approval_required:
-      guardian_network: "8/11 majority"
+      stewardship_council: "Recommended when established"
       community_consent: "FPIC required"
       scientific_validation: "Council approval"
   
@@ -208,14 +209,14 @@ lifecycle:
     reporting:
       frequency: "Annual"
       recipients:
-        - Guardian Network
+        - Stewardship Council (if established)
         - Affected communities
         - Scientific Advisory Council
         - Public disclosure
         
   phase_5_completion:
     timeline: "At success metrics achievement"
-    responsible_party: "Guardian Network"
+    responsible_party: "Stewardship Council or Scientific Advisory Council"
     
     success_criteria:
       ecological:
@@ -233,7 +234,7 @@ lifecycle:
     certification:
       scientific_validation: "Independent assessment"
       community_approval: "Formal consent"
-      guardian_attestation: "8/11 majority"
+      stewardship_council_attestation: "Recommended when established"
       
     post_completion:
       long_term_monitoring: "Continues 20+ years"
@@ -404,3 +405,6 @@ signature:
 # Note: All dollar amounts are nominal to 2025 USD
 
 # Final Statement: Restoration is not just repair; it's reparation to Earth and reconciliation with the future.
+```
+
+---
