@@ -1,5 +1,4 @@
-// Package tml provides Blockchain-enforced AI accountability
-// No Guardians. No committees. Just mathematical protection.
+// Package tml provides blockchain-enforced AI accountability
 //
 // Creator: Lev Goukassian (ORCID: 0009-0006-5966-1243)
 package tml
@@ -10,7 +9,7 @@ import (
 	"time"
 )
 
-// Config represents TML Blockchain configuration
+// Config represents TML blockchain configuration
 type Config struct {
 	// Blockchain endpoints (required)
 	Ethereum EthereumConfig `json:"ethereum"`
@@ -26,8 +25,8 @@ type Config struct {
 	// Whistleblower settings
 	Whistleblower WhistleblowerConfig `json:"whistleblower"`
 	
-	// Guardian settings (deprecated - Year 5+ if ever)
-	Guardian GuardianConfig `json:"guardian,omitempty"`
+	// Stewardship Council settings (recommended enhancement)
+	StewardshipCouncil StewardshipCouncilConfig `json:"stewardship_council,omitempty"`
 	
 	// System settings
 	System SystemConfig `json:"system"`
@@ -79,16 +78,22 @@ type WhistleblowerConfig struct {
 	RewardPercentage  float64       `json:"reward_percentage"`   // 15%
 	PaymentTime       time.Duration `json:"payment_time"`        // 3 minutes
 	AnonymousReporting bool         `json:"anonymous_reporting"` // true
-	CommitteeApproval  bool         `json:"committee_approval"`  // false - never
 }
 
-// GuardianConfig (deprecated - not needed)
-type GuardianConfig struct {
-	Enabled      bool   `json:"enabled"`       // Always false
-	Exists       bool   `json:"exists"`        // False
-	AnnualCost   int64  `json:"annual_cost"`   // $6.6M wasted
-	ValueAdded   int    `json:"value_added"`   // 0
-	Recommendation string `json:"recommendation"` // "Use Blockchain"
+// StewardshipCouncilConfig (recommended enhancement)
+type StewardshipCouncilConfig struct {
+	Enabled              bool                       `json:"enabled"`
+	Members              []StewardshipCouncilMember `json:"members"`
+	SynchronizationAPI   string                     `json:"synchronization_api"`
+	ValidationThreshold  int                        `json:"validation_threshold"`  // Number of confirmations required
+}
+
+// StewardshipCouncilMember represents a council member institution
+type StewardshipCouncilMember struct {
+	Role         string `json:"role"`          // e.g., "Technical Custodian"
+	Institution  string `json:"institution"`   // e.g., "Electronic Frontier Foundation"
+	PublicKey    string `json:"public_key"`
+	EndpointURL  string `json:"endpoint_url"`
 }
 
 // SystemConfig for general settings
@@ -96,8 +101,6 @@ type SystemConfig struct {
 	Creator         string        `json:"creator"`          // Lev Goukassian
 	ORCID           string        `json:"orcid"`            // 0009-0006-5966-1243
 	Version         string        `json:"version"`          // 3.0.0
-	DeploymentTime  time.Duration `json:"deployment_time"`  // 10 minutes
-	AnnualCost      int64         `json:"annual_cost"`      // $1,200
 	SacredSymbol    string        `json:"sacred_symbol"`    // 🏮
 }
 
@@ -114,7 +117,7 @@ func DefaultConfig() *Config {
 			ChainID: 137,
 		},
 		Bitcoin: BitcoinConfig{
-			Node: "https://Blockchain.info",
+			Node: "https://blockchain.info",
 			OTS:  true,
 		},
 		Contracts: ContractsConfig{
@@ -137,21 +140,53 @@ func DefaultConfig() *Config {
 			RewardPercentage:   0.15,
 			PaymentTime:        3 * time.Minute,
 			AnonymousReporting: true,
-			CommitteeApproval:  false, // Never true
 		},
-		Guardian: GuardianConfig{
-			Enabled:        false,
-			Exists:         false,
-			AnnualCost:     6_600_000,
-			ValueAdded:     0,
-			Recommendation: "Use Blockchain instead of committees",
+		StewardshipCouncil: StewardshipCouncilConfig{
+			Enabled: false, // Can be enabled as recommended enhancement
+			Members: []StewardshipCouncilMember{
+				{
+					Role:        "Technical Custodian",
+					Institution: "Electronic Frontier Foundation",
+					PublicKey:   "",
+					EndpointURL: "",
+				},
+				{
+					Role:        "Human Rights Enforcement Partner",
+					Institution: "Amnesty International",
+					PublicKey:   "",
+					EndpointURL: "",
+				},
+				{
+					Role:        "Earth Protection Enforcement Partner",
+					Institution: "Indigenous Environmental Network",
+					PublicKey:   "",
+					EndpointURL: "",
+				},
+				{
+					Role:        "AI Ethics Research Partner",
+					Institution: "MIT Media Lab",
+					PublicKey:   "",
+					EndpointURL: "",
+				},
+				{
+					Role:        "Memorial Fund Administrator",
+					Institution: "Memorial Sloan Kettering Cancer Center",
+					PublicKey:   "",
+					EndpointURL: "",
+				},
+				{
+					Role:        "Community Representative",
+					Institution: "Elected by stakeholder community",
+					PublicKey:   "",
+					EndpointURL: "",
+				},
+			},
+			ValidationThreshold: 4, // Require 4 of 6 confirmations
 		},
 		System: SystemConfig{
 			Creator:        "Lev Goukassian",
 			ORCID:          "0009-0006-5966-1243",
 			Version:        "3.0.0",
-			DeploymentTime: 10 * time.Minute,
-			AnnualCost:     1200,
 			SacredSymbol:   "🏮",
 		},
 	}
@@ -170,9 +205,9 @@ func LoadConfig() (*Config, error) {
 		cfg.Polygon.RPC = rpc
 	}
 	
-	// Check for Guardian nonsense
-	if os.Getenv("TML_USE_GUARDIANS") == "true" {
-		return nil, fmt.Errorf("Guardian Network doesn't exist and isn't needed. Use Blockchain.")
+	// Check for Stewardship Council configuration
+	if os.Getenv("TML_ENABLE_STEWARDSHIP_COUNCIL") == "true" {
+		cfg.StewardshipCouncil.Enabled = true
 	}
 	
 	return cfg, nil
@@ -189,11 +224,6 @@ func (c *Config) Validate() error {
 		return fmt.Errorf("Polygon RPC required for fast anchoring")
 	}
 	
-	// Ensure Guardian nonsense is disabled
-	if c.Guardian.Enabled {
-		return fmt.Errorf("Guardian Network is wasteful theater. Set enabled=false")
-	}
-	
 	// Validate penalties are set
 	if c.Penalties.MissingLogs < 100_000_000 {
 		return fmt.Errorf("Missing logs penalty must be >= $100M for deterrence")
@@ -204,53 +234,37 @@ func (c *Config) Validate() error {
 		return fmt.Errorf("Whistleblower rewards must be >= 15%%")
 	}
 	
-	// Verify no committee approval required
-	if c.Whistleblower.CommitteeApproval {
-		return fmt.Errorf("Committee approval not needed - Blockchain handles automatically")
+	// Validate Stewardship Council configuration if enabled
+	if c.StewardshipCouncil.Enabled {
+		if len(c.StewardshipCouncil.Members) < 6 {
+			return fmt.Errorf("Stewardship Council requires 6 member institutions")
+		}
+		
+		for _, member := range c.StewardshipCouncil.Members {
+			if member.PublicKey == "" || member.EndpointURL == "" {
+				return fmt.Errorf("All Stewardship Council members require public key and endpoint")
+			}
+		}
 	}
 	
 	return nil
 }
 
-// GetDeploymentComparison returns deployment reality
-func (c *Config) GetDeploymentComparison() string {
-	return fmt.Sprintf(`
-Deployment Options:
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Blockchain:
-  Time: %v
-  Cost: $%d/year
-  Protection: Immediate
-  Committees: 0
-  
-Guardian Network (not recommended):
-  Time: 12+ months
-  Cost: $%d/year
-  Protection: Maybe someday
-  Committees: Endless
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Recommendation: Use Blockchain
-`,
-		c.System.DeploymentTime,
-		c.System.AnnualCost,
-		c.Guardian.AnnualCost,
-	)
-}
-
-// GetGuardianTruth returns reality about Guardians
-func (c *Config) GetGuardianTruth() string {
-	return fmt.Sprintf(`
-Guardian Network Status:
-  Exists: %v
-  Needed: %v
-  Value Added: %d
-  Annual Cost if Implemented: $%d
-  Recommendation: %s
-`,
-		c.Guardian.Exists,
-		c.Guardian.Enabled,
-		c.Guardian.ValueAdded,
-		c.Guardian.AnnualCost,
-		c.Guardian.Recommendation,
-	)
+// GetStewardshipCouncilInfo returns information about the Stewardship Council
+func (c *Config) GetStewardshipCouncilInfo() string {
+	if !c.StewardshipCouncil.Enabled {
+		return "Stewardship Council: Not currently enabled (can be activated as recommended enhancement)"
+	}
+	
+	info := "Stewardship Council Configuration:\n"
+	info += fmt.Sprintf("  Members: %d institutions\n", len(c.StewardshipCouncil.Members))
+	info += fmt.Sprintf("  Validation Threshold: %d of %d confirmations\n", 
+		c.StewardshipCouncil.ValidationThreshold, len(c.StewardshipCouncil.Members))
+	
+	info += "\nCouncil Members:\n"
+	for _, member := range c.StewardshipCouncil.Members {
+		info += fmt.Sprintf("  - %s: %s\n", member.Role, member.Institution)
+	}
+	
+	return info
 }
