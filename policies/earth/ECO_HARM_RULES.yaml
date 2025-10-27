@@ -1,6 +1,3 @@
-**Creating `/policies/earth/ECO_HARM_RULES.yaml`:**
-
-```yaml
 # ECO_HARM_RULES.yaml
 # Version: 2.0.0
 # Last Updated: 2025-09-23T10:00:00Z
@@ -10,7 +7,7 @@ metadata:
   schema_version: "2.0"
   enforcement: "mandatory"
   update_frequency: "24_hours"
-  signature: "guardian_network_multisig"
+  signature: "stewardship_council_multisig"
 
 # Tier 1: Global Treaties & Agreements (Mandatory)
 global_treaties:
@@ -315,7 +312,7 @@ update_protocol:
     hash_verification: true
   
   propagation:
-    guardian_notification: "immediate"
+    stewardship_council_notification: "immediate"
     network_sync: "6_hours"
     grace_period: "7_days"
 
@@ -346,18 +343,18 @@ version_control:
   changelog:
     - date: "2025-09-23"
       changes: "Added community triggers, updated IPCC AR6"
-      approved_by: "guardian_council"
+      approved_by: "stewardship_council"
 
 # Digital Signature
 signature:
   algorithm: "ed25519"
-  public_key: "guardian_network_2025"
+  public_key: "stewardship_council_2025"
   signature: "base64:MEUCIQDi8K9b3..."
   timestamp: "2025-09-23T10:00:00Z"
 
 ---
 # Creator: Lev Goukassian (ORCID: 0009-0006-5966-1243)
 # Repository: https://github.com/FractonicMind/TernaryMoralLogic
-```
 
-**File created.** Next: `/tests/earth/baseline_cases.md`?
+
+---
