@@ -117,7 +117,7 @@ manual_review:
         - Scientific Advisory Council
         - Affected communities
         - Domain experts
-        - Guardian representatives
+        - Stewardship Council representatives (if established)
         
     decision_authority:
       standard: "Scientific Advisory Council"
@@ -312,7 +312,7 @@ transparency:
     where:
       - Public dashboard
       - Always Memory logs
-      - Guardian reports
+      - Stewardship Council reports (if established)
       - Community bulletins
 
 # Appeal Process
@@ -329,7 +329,7 @@ appeals:
     
   authority:
     first_level: "Ombudsperson"
-    second_level: "Guardian Network"
+    second_level: "Stewardship Council (if established)"
     final: "Full stakeholder assembly"
 
 # Performance Metrics
@@ -360,3 +360,6 @@ signature:
   repository: "github.com/FractonicMind/TernaryMoralLogic"
   
 # Core Principle: When data conflicts, Earth's protection wins. When experts disagree, caution prevails.
+```
+
+---
