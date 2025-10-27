@@ -1,3 +1,4 @@
+```yaml
 # SENSITIVE_DATA_HANDLING.yaml
 # Policies for protecting sensitive ecological and community data
 # Version: 2.0.0
@@ -13,7 +14,7 @@ metadata:
 classification_tiers:
   public:
     description: "Aggregated, non-sensitive ecological data"
-    encryption: "optional"
+    encryption: "recommended"
     access: "unrestricted"
     retention: "permanent"
     
@@ -194,7 +195,7 @@ access_control:
       protected: "read_only"
       public: "full_access"
       
-    guardian_network:
+    stewardship_council:
       sacred: "no_access"
       confidential: "aggregated_only"
       protected: "read_only"
@@ -329,10 +330,10 @@ versioning:
 
 # Authority
 governance:
-  policy_owner: "Guardian_Network"
+  policy_owner: "Stewardship_Council (when established)"
   enforcement: "Ombudsperson"
   disputes: "Community_priority"
-  amendments: "Guardian_consensus"
+  amendments: "Stewardship_council_consensus"
 
 ---
 # Signature
@@ -344,3 +345,4 @@ signature:
 # *All dollar amounts are nominal to 2025 USD   
 
 # Final Note: Data about Earth's protectors must be protected as fiercely as Earth itself.
+```
