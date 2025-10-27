@@ -512,7 +512,7 @@ vulnerable_population_adjustments:
       - language_proficiency_assessment
       
     special_safeguards:
-      - guardian_notification_systems
+      - custodian_notification_systems
       - simplified_explanation_requirements
       - extended_decision_review_periods
       - enhanced_appeal_processes
@@ -664,3 +664,6 @@ contact:
   author: "leogouk@gmail.com"
   framework_support: "support@tml-goukassian.org" 
   repository: "https://github.com/fractonicmind/TernaryMoralLogic"
+```
+
+---
