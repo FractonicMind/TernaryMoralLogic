@@ -1,36 +1,21 @@
-# Community Participation Framework v3.0
-
-## Direct Blockchain Access (No Seats Required)
+## Direct Blockchain Access
 
 **Version**: 3.0 (Blockchain-Direct Architecture)  
 **Status**: Communities Report Directly to Smart Contracts  
-**Guardian Seats**: Irrelevant luxury for Year 5+ theatrics  
+**Stewardship Council Seats**: Recommended for Year 5+ governance  
 **Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)
 
 ---
 
 ## Executive Summary
 
-Communities don't need "seats" in committees—they need **direct Blockchain access** to report violations and receive automatic rewards. Our smart contracts accept evidence from anyone, anywhere, instantly. No voting. No representation politics. Just mathematical justice.
-
-> "Why beg for a seat at a table that doesn't exist when you can report directly to the Blockchain and get paid immediately?"
+Communities access blockchain directly to report violations and receive automatic rewards. Smart contracts accept evidence from anyone, anywhere, instantly. No voting. No representation politics. Mathematical justice.
 
 ---
 
-## The NEW Reality: Direct Community Power
+## The Current Reality: Direct Community Power
 
-### OLD Model (Guardian Seats) - Obsolete
-```yaml
-old_guardian_model:
-  complexity: "11 institutions arguing"
-  community_seats: "3 of 11 (27%)"
-  effectiveness: "Months of politics"
-  cost: "$600K per seat annually"
-  actual_power: "Can be outvoted 8-3"
-  result: "Communities marginalized in committees"
-```
-
-### NEW Model (Blockchain Direct) - Active Now
+### Blockchain Direct Model - Active Now
 ```python
 blockchain_community_power = {
     "access": "Direct to smart contracts",
@@ -46,7 +31,7 @@ blockchain_community_power = {
 
 ---
 
-## How Communities Protect Earth (Without Committees)
+## How Communities Protect Earth
 
 ### Direct Violation Reporting
 
@@ -69,7 +54,6 @@ contract CommunityProtection {
         // Pay community instantly
         payable(msg.sender).transfer(communityReward);
         
-        // No Guardian approval required
         emit ViolationReported(msg.sender, violationType, communityReward);
     }
 }
@@ -79,7 +63,7 @@ contract CommunityProtection {
 
 ```python
 def integrate_traditional_knowledge():
-    # Direct Blockchain submission
+    # Direct blockchain submission
     knowledge_submission = {
         "method": "Blockchain oracle",
         "verification": "Community cryptographic signature",
@@ -89,20 +73,17 @@ def integrate_traditional_knowledge():
         "payment": "Automatic via smart contract"
     }
     
-    # No seats needed - knowledge speaks directly
-    return Blockchain.submit(knowledge_submission)
+    return blockchain.submit(knowledge_submission)
 ```
 
 ---
 
-## Community Rewards (Automatic, Not Voted)
+## Community Rewards (Automatic)
 
 ### Whistleblower Rewards - 15% Guaranteed
 
 ```javascript
 const communityRewards = {
-    // Direct payments, no committee discretion
-    
     environmental_violation: (penalty) => {
         const reward = penalty * 0.15;
         return {
@@ -112,7 +93,7 @@ const communityRewards = {
         };
     },
     
-    payment_method: "Direct Blockchain transfer",
+    payment_method: "Direct blockchain transfer",
     approval_needed: "NONE",
     timeline: "Instant upon verification"
 };
@@ -126,67 +107,20 @@ contract StewardshipPayments {
     
     mapping(address => uint) public monthlyStipend;
     
-    function registerEcosystemGuardian(
+    function registerEcosystemCustodian(
         bytes32 location,
         uint256 protectedArea
     ) public {
         // Automatic monthly payments
         monthlyStipend[msg.sender] = protectedArea * 100; // $100/hectare
-        
-        // No Guardian committee approval needed
-        // Math determines payment, not politics
     }
     
     function claimMonthlyPayment() public {
         uint payment = monthlyStipend[msg.sender];
         payable(msg.sender).transfer(payment);
-        
-        // No voting, no delays, no politics
     }
 }
 ```
-
----
-
-## Why Guardian Seats Are Worthless
-
-### The Math of Powerlessness
-
-```python
-def guardian_seat_reality():
-    # Even with seats, communities lose
-    
-    total_guardians = 11
-    community_seats = 3
-    
-    # Any important decision
-    if institutional_interests != community_interests:
-        vote_result = {
-            "institutions": 8,
-            "communities": 3,
-            "outcome": "Communities lose"
-        }
-    
-    # Blockchain alternative
-    blockchain_result = {
-        "institutions": 0,  # No voting
-        "communities": "Direct action",
-        "outcome": "Evidence wins"
-    }
-    
-    return "Why want seats when Blockchain gives power?"
-```
-
-### Cost-Benefit Analysis
-
-| Aspect | Guardian Seat | Blockchain Access |
-|--------|--------------|-------------------|
-| **Cost** | $600K/year | Free |
-| **Power** | 3 of 11 votes | Direct enforcement |
-| **Speed** | Months of meetings | 3 minutes |
-| **Rewards** | Committee discretion | 15% guaranteed |
-| **Politics** | Endless | None |
-| **Effectiveness** | Theatrical | Mathematical |
 
 ---
 
@@ -199,15 +133,15 @@ community_oracles = {
     "Amazon_communities": {
         "reports": "Deforestation detected",
         "evidence": "GPS + photos + testimony",
-        "Blockchain": "Immediate submission",
+        "blockchain": "Immediate submission",
         "reward": "$15M from $100M penalty",
-        "guardian_approval": "NOT REQUIRED"
+        "stewardship_council_approval": "NOT REQUIRED"
     },
     
     "Pacific_islands": {
         "reports": "Sea level rise acceleration",
         "evidence": "Traditional markers + data",
-        "Blockchain": "Oracle verification",
+        "blockchain": "Oracle verification",
         "compensation": "Automatic climate fund",
         "committee_vote": "IRRELEVANT"
     },
@@ -215,70 +149,61 @@ community_oracles = {
     "Arctic_peoples": {
         "reports": "Permafrost methane release",
         "evidence": "Traditional observation",
-        "Blockchain": "Smart contract trigger",
+        "blockchain": "Smart contract trigger",
         "result": "Immediate Sacred Zero",
         "seats_needed": 0
     }
 }
 ```
 
-### Youth Participation (Direct, Not Observer)
+### Youth Participation (Direct)
 
 ```javascript
-// Youth don't need "observer" status in committees
 const youthParticipation = {
     age_16_25: {
-        access: "Full Blockchain reporting rights",
+        access: "Full blockchain reporting rights",
         rewards: "Same 15% as adults",
         verification: "Zero-knowledge age proof",
-        mentorship: "Learn Blockchain, not bureaucracy",
-        future: "Direct power, not inherited seats"
+        mentorship: "Learn blockchain, not bureaucracy",
+        future: "Direct power"
     }
 };
 ```
 
 ---
 
-## The Optional Guardian Theater (Year 5+)
+## The Recommended Stewardship Council (Year 5+)
 
-### If Companies Really Want Committee Drama
+### If Companies Choose Committee Enhancement
 
 ```yaml
-guardian_seats_year_5:
-  cost: "$6.6M annually for all 11"
-  community_participation: "Token 3 seats"
-  actual_power_added: "Zero"
-  blockchain_already_provides: "Everything needed"
+stewardship_council_year_5:
+  composition: "6 institutions"
+  community_participation: "Community Representative seat"
+  actual_power_added: "Enhanced governance validation"
+  blockchain_already_provides: "Core protection"
   
-  why_bother:
-    - "Some executives like committee theater"
-    - "Creates jobs for meeting planners"
-    - "Generates reports no one reads"
-    - "Makes companies feel important"
-  
-  community_benefit: "None - Blockchain pays better"
+  community_benefit: "Blockchain pays directly, Council adds governance"
 ```
 
-### What Communities Should Do Instead
+### What Communities Should Do
 
 ```python
 def community_strategy():
-    # Skip the Guardian nonsense
-    
     actions = {
-        "step_1": "Learn Blockchain reporting",
+        "step_1": "Learn blockchain reporting",
         "step_2": "Document violations directly",
         "step_3": "Submit to smart contracts",
         "step_4": "Receive automatic rewards",
-        "step_5": "Ignore Guardian invitations"
+        "step_5": "Participate in Stewardship Council if desired"
     }
     
-    return "Direct power beats borrowed seats"
+    return "Direct power with recommended governance oversight"
 ```
 
 ---
 
-## Implementation (No Committees Needed)
+## Implementation
 
 ### For Communities - Today
 
@@ -287,30 +212,17 @@ def community_strategy():
 # Total cost: $0
 # Committees needed: 0
 
-# Step 1: Get Blockchain wallet
+# Step 1: Get blockchain wallet
 curl https://tml-community.org/wallet-setup
 
-# Step 2: Register as guardian
-tml-Blockchain register --community "name" --area "coords"
+# Step 2: Register as custodian
+tml-blockchain register --community "name" --area "coords"
 
 # Step 3: Start reporting
-tml-Blockchain report --violation "deforestation" --evidence "ipfs://..."
+tml-blockchain report --violation "deforestation" --evidence "ipfs://..."
 
 # Step 4: Get paid (3 minutes later)
 # $15,000 received from $100,000 penalty
-```
-
-### For Guardian Networks - Year 5+
-
-```bash
-# Step 1: Form committees (6 months)
-# Step 2: Argue about seats (3 months)
-# Step 3: Select representatives (3 months)
-# Step 4: Hold meetings (forever)
-# Step 5: Realize Blockchain already solved everything
-# Step 6: Dissolve committees
-
-# Total value added: -$6.6M/year
 ```
 
 ---
@@ -320,13 +232,11 @@ tml-Blockchain report --violation "deforestation" --evidence "ipfs://..."
 ### Language Support
 
 ```javascript
-// Blockchain speaks all languages
 const languageSupport = {
     interface: "Auto-translated",
     evidence: "Any language accepted",
     smart_contracts: "Multi-language comments",
-    cost: "$0",
-    versus_guardian: "$100K/year for translators"
+    cost: "$0"
 };
 ```
 
@@ -334,42 +244,32 @@ const languageSupport = {
 
 ```python
 cultural_accommodation = {
-    "Blockchain": {
+    "blockchain": {
         "24/7/365": "Always available",
         "religious_observance": "Report anytime",
         "traditional_knowledge": "Cryptographically preserved",
         "sovereignty": "Self-determination via code"
-    },
-    
-    "guardian_alternative": {
-        "meeting_schedules": "Western business hours",
-        "cultural_respect": "Token gestures",
-        "real_power": "Still outvoted 8-3"
     }
 }
 ```
 
 ---
 
-## Summary: Direct Power vs Borrowed Seats
+## Summary: Direct Power with Recommended Governance
 
 ### What Communities Get from Blockchain
-✅ Direct violation reporting  
-✅ 15% automatic rewards  
-✅ Instant payment (3 minutes)  
-✅ No politics or voting  
-✅ Equal mathematical power  
-✅ Zero cost to participate
+- Direct violation reporting
+- 15% automatic rewards
+- Instant payment (3 minutes)
+- No politics or voting
+- Equal mathematical power
+- Zero cost to participate
 
-### What Communities Get from Guardian Seats
-❌ 3 of 11 votes (always lose)  
-❌ Months of meetings  
-❌ Political games  
-❌ Travel requirements  
-❌ Token representation  
-❌ Still marginalized
-
-**The Choice**: Report directly to Blockchain and get paid immediately, or waste years begging for seats at tables that shouldn't exist.
+### What Stewardship Council Adds (Recommended)
+- Enhanced governance validation
+- Cross-jurisdictional trust
+- Research collaboration
+- Community representation via elected seat
 
 ---
 
@@ -383,6 +283,9 @@ cultural_accommodation = {
 
 ---
 
-*"Communities protected Earth for 10,000 years without committees. Now Blockchain gives them the power to continue—with automatic payments instead of political theater."*
+*"Communities protected Earth for 10,000 years without committees. Now blockchain gives them the power to continue—with automatic payments and recommended governance oversight."*
 
 *All USD amounts are nominal to 2025*
+```
+
+---
