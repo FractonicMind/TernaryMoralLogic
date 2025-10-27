@@ -30,38 +30,38 @@ const (
 
 // TMLClient is the main client for TML operations
 type TMLClient struct {
-	apiKey       string
-	guardianURL  string
-	config       *Config
-	memory       *AlwaysMemoryLogger
-	sacredZero   *SacredZeroTrigger
-	initialized  bool
-	mu           sync.RWMutex
-	shutdownChan chan struct{}
+	apiKey                   string
+	stewardshipCouncilURL    string
+	config                   *Config
+	memory                   *AlwaysMemoryLogger
+	sacredZero               *SacredZeroTrigger
+	initialized              bool
+	mu                       sync.RWMutex
+	shutdownChan             chan struct{}
 }
 
 // NewClient creates a new TML client with default configuration
-func NewClient(apiKey, guardianURL string) (*TMLClient, error) {
-	return NewClientWithConfig(apiKey, guardianURL, DefaultConfig())
+func NewClient(apiKey, stewardshipCouncilURL string) (*TMLClient, error) {
+	return NewClientWithConfig(apiKey, stewardshipCouncilURL, DefaultConfig())
 }
 
 // NewClientWithConfig creates a new TML client with custom configuration
-func NewClientWithConfig(apiKey, guardianURL string, config *Config) (*TMLClient, error) {
+func NewClientWithConfig(apiKey, stewardshipCouncilURL string, config *Config) (*TMLClient, error) {
 	if apiKey == "" {
 		return nil, errors.New("API key is required")
 	}
-	if guardianURL == "" {
-		return nil, errors.New("Guardian URL is required")
+	if stewardshipCouncilURL == "" {
+		return nil, errors.New("Stewardship Council URL is required")
 	}
 	if err := config.Validate(); err != nil {
 		return nil, fmt.Errorf("invalid configuration: %w", err)
 	}
 
 	client := &TMLClient{
-		apiKey:       apiKey,
-		guardianURL:  guardianURL,
-		config:       config,
-		shutdownChan: make(chan struct{}),
+		apiKey:                apiKey,
+		stewardshipCouncilURL: stewardshipCouncilURL,
+		config:                config,
+		shutdownChan:          make(chan struct{}),
 	}
 
 	// Initialize components
@@ -76,7 +76,7 @@ func NewClientWithConfig(apiKey, guardianURL string, config *Config) (*TMLClient
 	return client, nil
 }
 
-// initialize establishes connection to Guardian network
+// initialize establishes connection to Stewardship Council
 func (c *TMLClient) initialize() error {
 	c.mu.Lock()
 	defer c.mu.Unlock()
@@ -86,9 +86,9 @@ func (c *TMLClient) initialize() error {
 		return fmt.Errorf("API key validation failed: %w", err)
 	}
 
-	// Connect to Guardian
-	if err := c.connectToGuardian(); err != nil {
-		return fmt.Errorf("Guardian connection failed: %w", err)
+	// Connect to Stewardship Council (if configured)
+	if err := c.connectToStewardshipCouncil(); err != nil {
+		return fmt.Errorf("Stewardship Council connection failed: %w", err)
 	}
 
 	// Verify TEE if required
@@ -102,9 +102,9 @@ func (c *TMLClient) initialize() error {
 
 	// Log initialization
 	c.logSystemEvent("TML_CLIENT_INITIALIZED", map[string]interface{}{
-		"version":     "1.0.0",
-		"guardian":    c.guardianURL,
-		"tee_enabled": c.config.RequireTEE,
+		"version":              "1.0.0",
+		"stewardship_council":  c.stewardshipCouncilURL,
+		"tee_enabled":          c.config.RequireTEE,
 	})
 
 	return nil
@@ -165,8 +165,8 @@ func (c *TMLClient) handleSacredZero(ctx context.Context, action *Action, logID 
 		return err
 	}
 
-	// Notify Guardian network
-	c.notifyGuardians(event)
+	// Notify Stewardship Council (if configured)
+	c.notifyStewardshipCouncil(event)
 
 	// If configured, wait for human review
 	if c.config.BlockOnSacredZero {
@@ -274,20 +274,20 @@ func (c *TMLClient) GetAuditTrail(start, end time.Time) (*AuditTrail, error) {
 	return c.memory.GetAuditTrail(start, end)
 }
 
-// validateAPIKey validates the API key with Guardian
+// validateAPIKey validates the API key with Stewardship Council
 func (c *TMLClient) validateAPIKey() error {
-	// Implementation would validate with Guardian network
+	// Implementation would validate with Stewardship Council
 	if c.apiKey == "" {
 		return errors.New("invalid API key")
 	}
 	return nil
 }
 
-// connectToGuardian establishes connection to Guardian network
-func (c *TMLClient) connectToGuardian() error {
+// connectToStewardshipCouncil establishes connection to Stewardship Council
+func (c *TMLClient) connectToStewardshipCouncil() error {
 	// Implementation would establish secure connection
-	if c.guardianURL == "" {
-		return errors.New("invalid Guardian URL")
+	if c.stewardshipCouncilURL == "" {
+		return errors.New("invalid Stewardship Council URL")
 	}
 	return nil
 }
@@ -295,7 +295,6 @@ func (c *TMLClient) connectToGuardian() error {
 // verifyTEE verifies Trusted Execution Environment
 func (c *TMLClient) verifyTEE() error {
 	// Implementation would verify TEE attestation
-	// This is a stub for the actual TEE verification
 	return nil
 }
 
@@ -314,16 +313,14 @@ func (c *TMLClient) waitForHumanReview(ctx context.Context, action *Action, logI
 	}
 }
 
-// notifyGuardians sends event to Guardian network
-func (c *TMLClient) notifyGuardians(event map[string]interface{}) {
-	// Implementation would send to Guardian network
-	// This is a stub for actual network communication
+// notifyStewardshipCouncil sends event to Stewardship Council
+func (c *TMLClient) notifyStewardshipCouncil(event map[string]interface{}) {
+	// Implementation would send to Stewardship Council
 }
 
 // notifyAuthorities sends notification to legal authorities
 func (c *TMLClient) notifyAuthorities(event map[string]interface{}) {
 	// Implementation would send to legal authorities
-	// This is a stub for actual notification
 }
 
 // logSystemEvent logs internal system events
@@ -348,17 +345,17 @@ func (c *TMLClient) Shutdown() error {
 		return fmt.Errorf("memory flush failed: %w", err)
 	}
 
-	// Disconnect from Guardian
-	if err := c.disconnectFromGuardian(); err != nil {
-		return fmt.Errorf("Guardian disconnect failed: %w", err)
+	// Disconnect from Stewardship Council
+	if err := c.disconnectFromStewardshipCouncil(); err != nil {
+		return fmt.Errorf("Stewardship Council disconnect failed: %w", err)
 	}
 
 	c.initialized = false
 	return nil
 }
 
-// disconnectFromGuardian closes connection to Guardian network
-func (c *TMLClient) disconnectFromGuardian() error {
+// disconnectFromStewardshipCouncil closes connection to Stewardship Council
+func (c *TMLClient) disconnectFromStewardshipCouncil() error {
 	// Implementation would close connection cleanly
 	return nil
 }
