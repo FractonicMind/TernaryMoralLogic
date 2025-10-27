@@ -11,29 +11,27 @@
 
 ## Executive Summary
 
-**The TML Synchronization Protocol delivers immutable accountability through cryptographic anchoring to public Blockchains.** Every moral decision generates tamper-proof evidence that survives corporate bankruptcy, government regime change, and technological evolution.
+The TML Synchronization Protocol delivers immutable accountability through cryptographic anchoring to public blockchains. Every moral decision generates tamper-proof evidence that survives corporate bankruptcy, government regime change, and technological evolution.
 
 **Legal Enforceability**: Failure to produce an anchored log constitutes spoliation of evidence, triggering strict liability under Federal Rules of Evidence 37(e) and international evidence standards.
 
-**Technical Innovation**: Multi-chain Merkle tree batching achieves military-grade security at consumer-grade costs, enabling immediate deployment without institutional coordination.
+**Technical Innovation**: Multi-chain Merkle tree batching achieves military-grade security at consumer-grade costs.
 
-**Business Impact**: Companies deploy protection in 10 minutes and generate court-admissible evidence from day one. No committees, no approvals, no delays.
-
-*"The lock is strongest when it clicks in three places — math, law, and time."*
+**Business Impact**: Companies can implement protection through blockchain anchoring, with evidence generation starting immediately. Implementation does not require institutional coordination.
 
 ---
 
 ## Current Architecture - Blockchain Foundation
 
-### **Primary Design Principles**
+### Primary Design Principles
 
 **1. Immediate Protection**: Sacred Zero decisions execute in ≤2ms, full log completion in ≤500ms
 **2. Legal Admissibility**: Every anchor meets Federal Rules of Evidence for digital authentication  
-**3. Cost Efficiency**: Half a tenth of a cent per log through Merkle tree batching
+**3. Cost Efficiency**: Approximately $0.0005 per log through Merkle tree batching
 **4. Resilience**: Multi-chain redundancy survives network failures and state attacks
-**5. Evolution Ready**: Architecture supports Guardian Network integration without breaking changes
+**5. Evolution Ready**: Architecture supports Stewardship Council integration without breaking changes
 
-### **Synchronization Flow**
+### Synchronization Flow
 
 ```
 Decision Made → Sacred Zero Evaluation → Always Memory Log → Merkle Batching → Multi-Chain Anchor
@@ -45,12 +43,12 @@ Decision Made → Sacred Zero Evaluation → Always Memory Log → Merkle Batchi
 
 **Performance Guarantees**:
 - **Sacred Zero Latency**: ≤2ms (99th percentile)
-- **Full Log Completion**: ≤500ms (including Blockchain anchor)
+- **Full Log Completion**: ≤500ms (including blockchain anchor)
 - **Throughput**: 10,000+ decisions per second per node
-- **Cost**: $0.0005 per log (half a tenth of a cent)
+- **Cost**: $0.0005 per log
 - **Durability**: 99.99% successful anchoring across all chains
 
-### **Multi-Chain Architecture**
+### Multi-Chain Architecture
 
 **Anchoring Redundancy Rule**: At least 2 independent chains must confirm every Merkle root before considering it immutably anchored.
 
@@ -82,9 +80,9 @@ blockchain_networks:
     degraded_mode: "Local signatures + queue for anchoring"
 ```
 
-### **Merkle Tree Batching for Scalability**
+### Merkle Tree Batching for Scalability
 
-**Innovation**: Instead of one Blockchain transaction per log, TML batches thousands of logs into a single Merkle tree and anchors only the root hash.
+Innovation in batching allows thousands of logs to be combined into a single Merkle tree, with only the root hash anchored to blockchain.
 
 ```
 Individual Logs (10,000):
@@ -108,12 +106,12 @@ Individual Logs (10,000):
 
 **Verification Process**:
 1. **Individual Proof**: Provide Merkle path from specific log to root
-2. **Batch Proof**: Show root hash exists on Blockchain  
+2. **Batch Proof**: Show root hash exists on blockchain  
 3. **Timestamp Proof**: Blockchain provides immutable time reference
 4. **Combined Evidence**: Mathematical certainty of log authenticity
 
 **Scalability Benefits**:
-- **Cost**: O(1) Blockchain cost regardless of batch size
+- **Cost**: O(1) blockchain cost regardless of batch size
 - **Storage**: O(log n) proof size for verification
 - **Speed**: Constant anchoring time regardless of volume
 - **Security**: Breaking one log requires breaking entire batch
@@ -122,9 +120,9 @@ Individual Logs (10,000):
 
 ## Enhanced Standards Integration
 
-### **OpenTimestamps (OTS) Integration**
+### OpenTimestamps (OTS) Integration
 
-**Standardized Proof Format**: TML proofs can be exported/imported in OpenTimestamps format for universal recognition by legal systems and audit tools.
+TML proofs can be exported and imported in OpenTimestamps format for universal recognition by legal systems and audit tools.
 
 ```bash
 # Export TML proof as OTS
@@ -146,9 +144,9 @@ ots verify evidence.ots
 - **Phase 2**: Direct OTS API integration for timestamp services
 - **Phase 3**: Native OTS calendar server for enterprise deployments
 
-### **Certificate Transparency (CT) Model Adoption**
+### Certificate Transparency (CT) Model Adoption
 
-**Public Audit Logs**: Following CT's proven architecture, TML makes all anonymized decision logs publicly auditable while protecting individual privacy.
+Following CT's proven architecture, TML makes all anonymized decision logs publicly auditable while protecting individual privacy.
 
 ```yaml
 audit_log_structure:
@@ -177,9 +175,9 @@ audit_log_structure:
 - **Selective disclosure**: Companies choose what business logic to reveal
 - **Zero-knowledge proofs**: Prove compliance without revealing sensitive details
 
-### **Layer-2 Optimization for Cost and Speed**
+### Layer-2 Optimization for Cost and Speed
 
-**Fast Track Anchoring**: Critical decisions (penalties > $1,000) get instant Layer-2 anchoring with eventual Layer-1 settlement.
+Critical decisions can receive instant Layer-2 anchoring with eventual Layer-1 settlement.
 
 ```yaml
 layer_2_strategy:
@@ -206,7 +204,7 @@ layer_2_strategy:
 
 ## Security Guarantees - Math, Law, and Time
 
-### **Cryptographic Foundations**
+### Cryptographic Foundations
 
 **Current Standards**:
 - **SHA-256**: Individual log hashing (NIST-approved, NSA-designed)
@@ -233,7 +231,7 @@ quantum_resistance_roadmap:
   verification_tools: "Support both legacy and quantum-resistant formats"
 ```
 
-### **Attack Resistance Analysis**
+### Attack Resistance Analysis
 
 **51% Attack Resilience**: Compromising TML evidence requires simultaneous control of Bitcoin AND Ethereum networks - estimated cost $50+ billion, duration months, with global detection.
 
@@ -246,13 +244,13 @@ quantum_resistance_roadmap:
 **Corporate Sabotage Prevention**:
 - **Immutable anchoring**: Companies cannot delete evidence after creation
 - **Automatic execution**: No human override for Sacred Zero penalties  
-- **Third-party verification**: Public Blockchain provides independent witness
+- **Third-party verification**: Public blockchain provides independent witness
 - **Legal consequences**: Evidence tampering constitutes federal crime
 
-### **Evidence Standards Compliance**
+### Evidence Standards Compliance
 
 **Federal Rules of Evidence (FRE) Compliance**:
-- **Rule 901**: Authentication through cryptographic signatures and Blockchain provenance
+- **Rule 901**: Authentication through cryptographic signatures and blockchain provenance
 - **Rule 902**: Self-authenticating documents via digital signatures and trusted timestamps  
 - **Rule 1001**: Original vs. copy distinction preserved through hash verification
 - **Rule 37(e)**: Sanctions for spoliation avoided through immutable storage
@@ -267,7 +265,7 @@ quantum_resistance_roadmap:
 
 ## Performance Specifications - Production-Ready
 
-### **Latency Guarantees**
+### Latency Guarantees
 
 ```yaml
 decision_pipeline:
@@ -284,7 +282,7 @@ degraded_mode_performance:
   user_impact: "Zero (transparent failover)"
 ```
 
-### **Throughput Specifications**
+### Throughput Specifications
 
 ```yaml
 capacity_limits:
@@ -300,15 +298,15 @@ scaling_characteristics:
   storage_growth: "~100KB per 10,000 decisions"
 ```
 
-### **Economic Model - Cost Efficiency**
+### Economic Model - Cost Efficiency
 
 ```yaml
 operational_costs_2025_usd:
   per_decision:
-    sacred_zero_evaluation: "$0.00001 (1/100th cent)"
-    always_memory_logging: "$0.00001 (1/100th cent)"
-    blockchain_anchoring: "$0.0005 (half a tenth cent)"
-    total_cost_per_log: "$0.00052 (just over half a tenth cent)"
+    sacred_zero_evaluation: "$0.00001"
+    always_memory_logging: "$0.00001"
+    blockchain_anchoring: "$0.0005"
+    total_cost_per_log: "$0.00052"
     
   monthly_estimates:
     small_deployment_1k_daily: "$15.60/month"
@@ -326,9 +324,9 @@ operational_costs_2025_usd:
 
 ## Evolution Path - Standards to Institutions
 
-### **Phase 1: Blockchain Anchoring (Current - Mandatory)**
+### Phase 1: Blockchain Anchoring (Current - Mandatory)
 
-**Status**: Production ready, deployment in 10 minutes
+**Status**: Production ready
 **Requirements**: Docker + internet connection
 **Guarantees**: Immutable evidence, legal admissibility, automatic penalties
 
@@ -341,7 +339,7 @@ phase_1_capabilities:
   compliance_reporting: "Regulatory-ready evidence"
 ```
 
-### **Phase 2: Standards Integration (6-12 months - Adoption Scaling)**
+### Phase 2: Standards Integration (6-12 months - Adoption Scaling)
 
 **Focus**: OpenTimestamps and Certificate Transparency integration for universal compatibility
 **Goal**: Make TML proofs interoperable with all existing audit and legal systems
@@ -357,40 +355,81 @@ phase_2_enhancements:
 
 **Business Impact**: Insurance industry standardizes TML compliance discounts, regulatory agencies accept TML reports automatically.
 
-### **Phase 3: Long-Term Institutional Reinforcement (2-5 years - Trust Enhancement)**
+### Phase 3: Long-Term Institutional Reinforcement (2-5 years - Trust Enhancement)
 
-**Purpose**: Add institutional oversight for enhanced governance and cross-border trust
-**Approach**: Optional Guardian Network mirrors for insurance confidence and regulatory acceptance
+**Purpose**: Add institutional oversight for enhanced governance and cross-border trust through the Stewardship Council
+
+**Composition and Distribution**
+
+#### Stewardship Council
+
+Six independent institutions hold synchronized copies of every TML log:
+
+1. **Technical Custodian (Recommended: Electronic Frontier Foundation)**
+   * Maintains the open-source repository
+   * Manages blockchain infrastructure
+   * Provides technical community support
+   * Ensures code integrity and updates
+
+2. **Human Rights Enforcement Partner (Recommended: Amnesty International)**
+   * Monitors enforcement of 26+ human rights documents
+   * Reviews complex Human Rights Sacred Zero cases
+   * Coordinates with international human rights mechanisms
+   * Supports victims in seeking remedy and justice
+
+3. **Earth Protection Enforcement Partner (Recommended: Indigenous Environmental Network)**
+   * Monitors enforcement of 20+ environmental treaties
+   * Reviews Earth Protection Sacred Zero cases
+   * Represents Indigenous sovereignty in environmental decisions
+   * Coordinates ecosystem restoration from Memorial Fund
+
+4. **AI Ethics Research Partner (Recommended: MIT Media Lab or Stanford HAI)**
+   * Conducts research on TML effectiveness
+   * Validates ethical framework evolution
+   * Publishes findings on algorithmic accountability
+   * Guides implementation standards development
+
+5. **Memorial Fund Administrator (Recommended: Memorial Sloan Kettering Cancer Center)**
+   * Administers the cancer research portion of Memorial Fund
+   * Honors Goukassian's personal commitment to medical research
+   * Ensures victim compensation reaches intended recipients
+   * Provides transparency reporting on fund allocation
+
+6. **Community Representative (Elected Position)**
+   * Represents implementers and user community interests
+   * Elected by TML stakeholder community
+   * Ensures framework serves real-world needs
+   * Provides accountability for Council decisions
 
 ```yaml
-guardian_network_benefits:
+stewardship_council_benefits:
   institutional_validation: "Academic and regulatory endorsement"
   cross_border_trust: "International treaty-level recognition"
   insurance_optimization: "Maximum discount tiers"
   research_collaboration: "Shared bias detection improvements"
   geopolitical_resilience: "Multi-jurisdictional protection"
 
-guardian_integration:
-  blockchain_primary: "Core protection remains Blockchain-anchored"
-  guardian_mirror: "Institutional nodes provide governance layer"
+stewardship_council_integration:
+  blockchain_primary: "Core protection remains blockchain-anchored"
+  stewardship_mirror: "Institutional nodes provide governance layer"
   hybrid_verification: "Both systems validate independently"
   backward_compatibility: "Phase 1&2 proofs remain valid"
 ```
 
-**Key Principle**: Guardian Network enhances but never replaces Blockchain anchoring. Companies already protected by Phase 1 continue operating with additional governance benefits.
+**Key Principle**: Stewardship Council enhances but never replaces blockchain anchoring. Companies already protected by Phase 1 continue operating with additional governance benefits.
 
 ---
 
 ## Implementation Guidelines
 
-### **Deployment Architecture**
+### Deployment Architecture
 
 ```yaml
 production_deployment:
   minimum_setup:
     containers: ["tml-core", "tml-dashboard"]
     storage: "50GB persistent volume"
-    network: "Outbound HTTPS (Blockchain APIs)"
+    network: "Outbound HTTPS (blockchain APIs)"
     monitoring: "Health checks + metrics endpoint"
     
   recommended_setup:
@@ -406,7 +445,7 @@ production_deployment:
     compliance: "SOC2 + ISO27001 certified infrastructure"
 ```
 
-### **Integration Patterns**
+### Integration Patterns
 
 **API Gateway Integration** (Recommended):
 ```javascript
@@ -419,7 +458,7 @@ app.use('/api/*', async (req, res, next) => {
   });
   
   if (tml_result.sacred_zero_triggered) {
-    // Automatic penalty + Blockchain evidence
+    // Automatic penalty + blockchain evidence
     return res.status(403).json({
       error: 'Sacred Zero violation detected',
       penalty: tml_result.penalty_amount,
@@ -451,7 +490,7 @@ async def process_decision(message):
     return {'status': 'approved', 'evidence': evaluation.blockchain_proof}
 ```
 
-### **Monitoring and Observability**
+### Monitoring and Observability
 
 ```yaml
 key_metrics:
@@ -478,7 +517,7 @@ key_metrics:
 
 ## Legal Framework Integration
 
-### **Evidence Chain of Custody**
+### Evidence Chain of Custody
 
 ```yaml
 legal_evidence_pipeline:
@@ -509,11 +548,11 @@ legal_evidence_pipeline:
   anchoring:
     step: "Blockchain immutable storage"
     evidence: "Transaction hash + block number"
-    verification: "Independent Blockchain explorer confirmation"
+    verification: "Independent blockchain explorer confirmation"
     permanence: "Cannot be altered or deleted"
 ```
 
-### **Spoliation of Evidence Prevention**
+### Spoliation of Evidence Prevention
 
 **Legal Standard**: Federal Rules of Evidence 37(e) sanctions for failure to preserve electronically stored information when litigation is reasonably anticipated.
 
@@ -533,7 +572,7 @@ legal_evidence_pipeline:
 
 ## Future-Proofing Strategy
 
-### **Technology Evolution Readiness**
+### Technology Evolution Readiness
 
 ```yaml
 adaptation_mechanisms:
@@ -545,7 +584,7 @@ adaptation_mechanisms:
   blockchain_neutrality:
     design: "Chain-agnostic architecture"
     expansion: "New networks added without code changes"
-    resilience: "Survives individual Blockchain failures"
+    resilience: "Survives individual blockchain failures"
     
   regulatory_compliance:
     framework: "Configurable rules engine"
@@ -558,9 +597,9 @@ adaptation_mechanisms:
     algorithmic: "Sacred Zero improvements deployable"
 ```
 
-### **Institutional Readiness**
+### Institutional Readiness
 
-**Guardian Network Integration Path**:
+**Stewardship Council Integration Path**:
 1. **Technical infrastructure**: Blockchain anchoring proves reliability
 2. **Legal acceptance**: Court admissibility establishes evidence standards  
 3. **Insurance adoption**: Risk reduction demonstrates value
@@ -590,7 +629,7 @@ adaptation_mechanisms:
 
 ## Conclusion: The Triple Lock
 
-**TML's synchronization protocol achieves immutable accountability through the convergence of mathematics, law, and time:**
+TML's synchronization protocol achieves immutable accountability through the convergence of mathematics, law, and time:
 
 **Mathematics**: Cryptographic proofs that cannot be forged or denied
 **Law**: Evidence standards that courts accept and enforce  
@@ -598,10 +637,7 @@ adaptation_mechanisms:
 
 **The result**: Every AI decision creates permanent, tamper-proof evidence that survives corporate bankruptcy, government regime change, and technological evolution.
 
-**For companies**: Deploy protection today without waiting for perfect governance
+**For companies**: Implement protection through blockchain anchoring
 **For society**: Build accountability infrastructure that prevents algorithmic discrimination  
 **For the future**: Create evidence that will hold AI systems accountable for generations
 
-*"In code we trust, in Blockchain we verify, in law we enforce."*
-
-🛡️
