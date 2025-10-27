@@ -1,21 +1,15 @@
+```markdown
 # TML Blockchain Governance
 
 **Path**: `/governance/blockchain_governance.md`  
 **Version**: 2.0.0  
 **Architecture**: Mathematical Consensus, No Permission Required
-**Quote**: *"Blockchains raise the stone tablet; 46+ frameworks carve the commandments; Guardians are merely the choir—optional, but echoing forever."*
 
 ---
 
 ## Executive Summary
 
-TML governance operates through **mathematical consensus on immutable Blockchains**, not institutional committees. This enables:
-- **Immediate deployment** without coordination
-- **Automatic enforcement** via smart contracts
-- **Tamper-proof evidence** via cryptographic proofs
-- **Optional Guardian enhancement** for those who want it later
-
-**No voting. No committees. No permission. Just mathematical truth.**
+TML governance operates through **mathematical consensus on immutable blockchains**, not institutional committees. This enables immediate deployment without coordination, automatic enforcement via smart contracts, tamper-proof evidence via cryptographic proofs, and recommended Stewardship Council enhancement for those who want it later.
 
 ---
 
@@ -28,10 +22,9 @@ TML governance operates through **mathematical consensus on immutable Blockchain
 - **Immutable logs** replace meeting minutes
 
 ### Deployment Freedom
-- **Deploy in 10 minutes** via Docker
-- **No institutional coordination** required
-- **No approval process** needed
-- **Full accountability** from Day 1
+- Implementation via Docker without institutional coordination
+- No approval process needed
+- Full accountability from implementation
 
 ### Comprehensive Protection Scope
 All governance covers:
@@ -78,7 +71,7 @@ Ethereum:
 ### Threshold Definition Sources
 **46+ Authoritative Documents**:
 ```yaml
-Human Rights (26 documents):
+Human Rights (26+ documents):
   - Universal Declaration of Human Rights
   - International Covenants (ICCPR, ICESCR)
   - Convention Against Torture
@@ -114,7 +107,7 @@ Earth Protection (20+ documents):
 
 ### Blockchain-Based Investigation
 **Evidence Access**:
-- Anyone can verify logs via Blockchain explorers
+- Anyone can verify logs via blockchain explorers
 - Cryptographic proofs publicly available
 - No permission needed to investigate
 - Whistleblowers can act anonymously
@@ -128,7 +121,7 @@ Earth Protection (20+ documents):
 ### Legal Enforcement
 **Automatic Liability**:
 ```python
-if not Blockchain.has_valid_log(action_id):
+if not blockchain.has_valid_log(action_id):
     liability = "STRICT_LIABILITY"
     penalties = "MAXIMUM"
     criminal_charges = "NEGLIGENCE"
@@ -136,7 +129,7 @@ if not Blockchain.has_valid_log(action_id):
 ```
 
 **No Committee Needed**:
-- Courts read Blockchain directly
+- Courts read blockchain directly
 - Evidence speaks for itself
 - Missing logs = guilt presumption
 - Smart contracts execute penalties
@@ -167,28 +160,65 @@ contract TMLEnforcement {
 
 ---
 
-## Optional Guardian Network Evolution
+## Recommended Stewardship Council Evolution
 
 ### Current State (Blockchain-Only)
-- **Full functionality** today
-- **Complete legal enforcement**
-- **$110/month cost**
-- **300-800% ROI**
+- Full functionality today
+- Complete legal enforcement
+- Operating cost approximately $110/month
 
-### Future Enhancement (Add Guardians)
+### Future Enhancement (Add Stewardship Council)
 **Year 2-3**: Early adopters
-- 1-3 Guardian institutions join
+- 1-3 institutional members join
 - Enhanced credibility
 - Cross-border recognition
-- 500-1,200% ROI
 
 **Year 5+**: Mature network
-- 9-11 Guardian institutions
+- 6 institutional members (recommended composition)
 - Insurance maximization
 - International treaties
-- 800-1,500% ROI
 
-### Guardian Role (When Added)
+### Stewardship Council Composition (When Added)
+
+Six independent institutions hold synchronized copies of every TML log:
+
+1. **Technical Custodian (Recommended: Electronic Frontier Foundation)**
+   * Maintains the open-source repository
+   * Manages blockchain infrastructure
+   * Provides technical community support
+   * Ensures code integrity and updates
+
+2. **Human Rights Enforcement Partner (Recommended: Amnesty International)**
+   * Monitors enforcement of 26+ human rights documents
+   * Reviews complex Human Rights Sacred Zero cases
+   * Coordinates with international human rights mechanisms
+   * Supports victims in seeking remedy and justice
+
+3. **Earth Protection Enforcement Partner (Recommended: Indigenous Environmental Network)**
+   * Monitors enforcement of 20+ environmental treaties
+   * Reviews Earth Protection Sacred Zero cases
+   * Represents Indigenous sovereignty in environmental decisions
+   * Coordinates ecosystem restoration from Memorial Fund
+
+4. **AI Ethics Research Partner (Recommended: MIT Media Lab or Stanford HAI)**
+   * Conducts research on TML effectiveness
+   * Validates ethical framework evolution
+   * Publishes findings on algorithmic accountability
+   * Guides implementation standards development
+
+5. **Memorial Fund Administrator (Recommended: Memorial Sloan Kettering Cancer Center)**
+   * Administers the cancer research portion of Memorial Fund
+   * Honors Goukassian's personal commitment to medical research
+   * Ensures victim compensation reaches intended recipients
+   * Provides transparency reporting on fund allocation
+
+6. **Community Representative (Elected Position)**
+   * Represents implementers and user community interests
+   * Elected by TML stakeholder community
+   * Ensures framework serves real-world needs
+   * Provides accountability for Council decisions
+
+### Stewardship Council Role (When Added)
 **Enhancement Only**:
 - Additional log redundancy
 - Cross-jurisdictional attestation
@@ -211,63 +241,63 @@ contract TMLEnforcement {
 docker pull tml/always-memory:latest
 docker run -e BLOCKCHAIN_GOVERNANCE=true \
            -e MANDATORY_CHAINS="bitcoin,polygon,ethereum" \
-           -e GUARDIAN_NETWORK=false \
+           -e STEWARDSHIP_COUNCIL=recommended \
            tml/always-memory
 
 # Fully operational immediately
 ```
 
 ### Month 1-12: Optimize and Scale
-- Monitor Blockchain costs
+- Monitor blockchain costs
 - Optimize batching strategies
 - Build internal expertise
 - Document ROI metrics
 
 ### Year 2+: Consider Enhancement
-- Evaluate Guardian candidates
+- Evaluate Stewardship Council candidates
 - Build relationships gradually
 - Migrate when beneficial
-- Never lose Blockchain foundation
+- Never lose blockchain foundation
 
 ---
 
 ## Governance Comparison
 
 ### Old Model (Institutional)
-❌ 11 institutions must agree  
-❌ Months/years to coordinate  
-❌ Voting delays decisions  
-❌ Political influence possible  
-❌ Single point of failure  
+- Multiple institutions must agree
+- Extended coordination time
+- Voting delays decisions
+- Political influence possible
+- Single point of failure
 
 ### New Model (Blockchain)
-✅ Mathematical consensus instant  
-✅ Deploy in 10 minutes  
-✅ No voting needed  
-✅ Tamper-proof by design  
-✅ Multiple redundant chains  
+- Mathematical consensus instant
+- Implementation without coordination
+- No voting needed
+- Tamper-proof by design
+- Multiple redundant chains
 
 ---
 
 ## Key Governance Metrics
 
 ### Deployment Metrics
-- Time to deployment: **<10 minutes**
-- Institutional coordination required: **Zero**
-- Approval processes: **None**
-- Full accountability active: **Immediate**
+- Time to deployment: Immediate upon setup
+- Institutional coordination required: Zero
+- Approval processes: None
+- Full accountability active: Immediate
 
 ### Protection Metrics
-- Human rights violations logged: **100%**
-- Environmental harm captured: **100%**
-- Missing log liability: **Automatic**
-- Evidence tampering: **Impossible**
+- Human rights violations logged: 100%
+- Environmental harm captured: 100%
+- Missing log liability: Automatic
+- Evidence tampering: Impossible
 
 ### Evolution Metrics
-- Guardian institutions (Year 1): **0 (not needed)**
-- Guardian institutions (Year 5): **0-11 (optional)**
-- Blockchain anchoring: **Always mandatory**
-- Mathematical governance: **Forever primary**
+- Stewardship Council institutions (Year 1): 0 (not needed)
+- Stewardship Council institutions (Year 5): 0-6 (recommended)
+- Blockchain anchoring: Always mandatory
+- Mathematical governance: Forever primary
 
 ---
 
@@ -291,7 +321,7 @@ docker run -e BLOCKCHAIN_GOVERNANCE=true \
 ## Community Participation
 
 ### Open Verification
-- **Public Blockchain explorers** for transparency
+- **Public blockchain explorers** for transparency
 - **Open-source verification tools**
 - **Community monitoring encouraged**
 - **Anonymous whistleblowing supported**
@@ -328,8 +358,8 @@ docker run -e BLOCKCHAIN_GOVERNANCE=true \
 - Cross-chain interoperability
 - Cost optimizations ongoing
 
-### Optional Enhancements
-- Guardian Network (when beneficial)
+### Recommended Enhancements
+- Stewardship Council (when beneficial)
 - Specialized domain chains
 - Advanced oracle networks
 - AI-assisted verification
@@ -344,19 +374,7 @@ docker run -e BLOCKCHAIN_GOVERNANCE=true \
 
 ## Conclusion
 
-TML governance through Blockchain provides:
-- **Immediate deployment** without institutional coordination
-- **Automatic enforcement** without committees
-- **Immutable evidence** without custodians
-- **Complete protection** for humans, Earth, and future generations
-
-The Guardian Network remains available as an optional enhancement for those seeking additional validation, but it is never required for:
-- Deployment
-- Enforcement  
-- Investigation
-- Protection
-
-**The stone tablet is raised. The commandments are carved. The choir is optional.**
+TML governance through blockchain provides immediate deployment without institutional coordination, automatic enforcement without committees, immutable evidence without custodians, and complete protection for humans, Earth, and future generations.
 
 ---
 
@@ -367,8 +385,6 @@ The Guardian Network remains available as an optional enhancement for those seek
 **Support**: support@tml-goukassian.org
 
 *All USD amounts are nominal to 2025*
-
----
-#### **Ten minutes to bolt humanity and Earth to irrefutable math; optional Guardians can polish the bolt, but they can’t loosen it.**
+```
 
 ---
