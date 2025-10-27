@@ -1,6 +1,6 @@
 # Installation Guide
 
-## Ternary Moral Logic (TML) - Blockchain Framework
+## Ternary Moral Logic (TML)
 
 ---
 
@@ -26,8 +26,8 @@ HUMAN_RIGHTS_FRAMEWORK=true  # 26 documents
 EARTH_PROTECTION=true         # 20+ treaties
 FUTURE_GENERATIONS=true       # 7-generation impact
 
-# OPTIONAL - Stewardship Council (leave false)
-STEWARDSHIP_COUNCIL=false     # Not required for operation
+# RECOMMENDED - Stewardship Council (can be enabled later)
+STEWARDSHIP_COUNCIL=false
 EOF
 ```
 
@@ -43,19 +43,17 @@ docker run -d \
 curl http://localhost:8080/health
 ```
 
-**TML is now protecting humans and Earth.** 
-
 ---
 
 ## System Requirements
 
-### Minimum (Works Fine)
+### Minimum Requirements
 - **Docker**: 20.10+
 - **Memory**: 2GB RAM
-- **Storage**: 10GB (for Blockchain proofs)
-- **Network**: Internet for Blockchain anchoring
+- **Storage**: 10GB (for blockchain proofs)
+- **Network**: Internet for blockchain anchoring
 
-### Recommended (Better Performance)
+### Recommended Configuration
 - **Docker**: Latest version
 - **Memory**: 8GB RAM
 - **Storage**: 100GB SSD
@@ -67,7 +65,7 @@ curl http://localhost:8080/health
 
 ### Blockchain Anchoring (MANDATORY)
 ```yaml
-Blockchain:
+blockchain:
   bitcoin:
     enabled: true
     confirmation_blocks: 6
@@ -152,7 +150,7 @@ docker run tml/always-memory deploy-contracts \
 
 ### Check Blockchain Anchoring
 ```bash
-curl http://localhost:8080/verify/Blockchain
+curl http://localhost:8080/verify/blockchain
 # Should return: {"bitcoin": "active", "polygon": "active", "ethereum": "active"}
 ```
 
@@ -264,7 +262,7 @@ result = client.log_decision({
     'stakeholders': ['patients', 'hospitals']
 })
 
-# Verify Blockchain proof
+# Verify blockchain proof
 proof = client.verify_on_blockchain(result['log_id'])
 assert proof['bitcoin_tx'] is not None
 assert proof['polygon_tx'] is not None
@@ -272,12 +270,35 @@ assert proof['polygon_tx'] is not None
 
 ---
 
+## Stewardship Council (Recommended Enhancement)
+
+The Stewardship Council provides additional oversight and validation. This enhancement can be enabled at any time and is not required for core TML functionality.
+
+### Six-Institution Structure
+
+1. **Technical Custodian** (Recommended: Electronic Frontier Foundation)
+2. **Human Rights Enforcement Partner** (Recommended: Amnesty International)
+3. **Earth Protection Enforcement Partner** (Recommended: Indigenous Environmental Network)
+4. **AI Ethics Research Partner** (Recommended: MIT Media Lab or Stanford HAI)
+5. **Memorial Fund Administrator** (Recommended: Memorial Sloan Kettering Cancer Center)
+6. **Community Representative** (Elected Position)
+
+### Configuration
+```bash
+# Enable Stewardship Council (optional)
+STEWARDSHIP_COUNCIL=true
+STEWARDSHIP_COUNCIL_MEMBERS=6
+STEWARDSHIP_VALIDATION_THRESHOLD=4
+```
+
+---
+
 ## Troubleshooting
 
-### Issue: "Cannot connect to Blockchain"
+### Issue: "Cannot connect to blockchain"
 ```bash
 # Solution: Check RPC endpoints
-docker logs tml-production | grep Blockchain
+docker logs tml-production | grep blockchain
 
 # Use public endpoints if needed
 POLYGON_RPC=https://polygon-rpc.com
@@ -303,10 +324,11 @@ ETHEREUM_RPC=https://cloudflare-eth.com
 ## Support
 
 **Blockchain Deployment**: support@tml-goukassian.org  
-**Emergency**: emergency@tml-goukassian.org  
-**Stewardship Council Questions**: Optional after Year 5
+**Emergency**: emergency@tml-goukassian.org
 
 ---
+
+## Key Innovation
 
 #### *"Miss one byte, pay twice for the human; thrice for the reef; sevenfold for the child not yet born—math that makes greed think twice."* **-Lev Goukassian**
 
@@ -314,11 +336,8 @@ ETHEREUM_RPC=https://cloudflare-eth.com
 
 **Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)  
 **Email**: leogouk@gmail.com  
-**Repository**: https://github.com/FractonicMind/TernaryMoralLogic  
-**Architecture**: Blockchain-Based
+**Repository**: https://github.com/FractonicMind/TernaryMoralLogic
 
 ---
 
 *All USD amounts are nominal to 2025*
-
----
