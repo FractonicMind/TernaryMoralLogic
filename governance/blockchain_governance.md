@@ -4,7 +4,7 @@
 **Path**: `/governance/blockchain_governance.md`  
 **Version**: 2.0.0  
 **Architecture**: Mathematical Consensus, No Permission Required
-
+```
 ---
 
 ## Executive Summary
