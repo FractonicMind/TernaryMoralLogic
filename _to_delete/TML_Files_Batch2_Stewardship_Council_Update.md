@@ -81,7 +81,7 @@ Ethereum:
 ### Threshold Definition Sources
 **46+ Authoritative Documents**:
 ```yaml
-Human Rights (26 documents):
+Human Rights (26+ documents):
   - Universal Declaration of Human Rights
   - International Covenants (ICCPR, ICESCR)
   - Convention Against Torture
