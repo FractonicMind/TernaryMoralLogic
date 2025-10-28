@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NIST AI RMF & TML Integration</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; 
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px; 
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px; 
+            max-height: 400px; 
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .flow-box {
+            @apply p-4 rounded-lg text-center w-full;
+        }
+        .flow-arrow {
+            @apply text-3xl font-bold transform rotate-90 md:rotate-0;
+        }
+    </style>
+</head>
+<body class="text-slate-800">
+
+    <!-- Chosen Palette: Brilliant blues -->
+    <!-- Narrative Plan: The infographic follows a logical top-down narrative. 
+        1. Introduction: A high-level "hook" establishing the core thesis: NIST provides the "what" (guidelines), and TML provides the "how" (verifiable architecture). This sets the stage for the entire page.
+        2. Core Functions (The "How"): This section is the main body, structured as a 2x2 grid. Each grid cell is a "card" dedicated to one of the 4 NIST functions (Govern, Map, Measure, Manage). This allows users to easily digest each function's implementation.
+        3. Visualization Detail (The "Proof"): One cell ("Measure") contains a Chart.js bar chart to visualize the abstract EUS, making it concrete. The other three cells use HTML/CSS flow diagrams to visually represent the process mapping from the source material.
+        4. Summary (The "Why"): The final section is a clear, side-by-side comparison (HTML/CSS table) summarizing the "before" (Culture) vs. "after" (Architecture), reinforcing the core value proposition.
+    -->
+    <!-- Visualization Choices: 
+        1. Data: Core Thesis (NIST + TML). Goal: Inform. Viz: Large Text / HTML Cards. Justification: Clearly states the main message and thesis upfront. Method: HTML/Tailwind. (NO SVG/Mermaid).
+        2. Data: Govern Function Mapping. Goal: Organize/Process. Viz: HTML Flow Diagram. Justification: Visually shows the step-by-step logic from Objective -> Mechanism -> Result, as described in the source. Method: HTML/CSS/Tailwind (styled divs and unicode arrows). (NO SVG/Mermaid).
+        3. Data: Map Function Mapping. Goal: Organize/Process. Viz: HTML Flow Diagram. Justification: Same as "Govern," provides a clear visual for the conceptual flow. Method: HTML/CSS/Tailwind. (NO SVG/Mermaid).
+        4. Data: Measure Function (EUS). Goal: Compare/Inform. Viz: Bar Chart. Justification: This is the most quantitative part. A bar chart effectively visualizes the "Ethical Uncertainty Score" for different scenarios against a threshold, making an abstract concept tangible. Method: Chart.js/Canvas. (NO SVG).
+        5. Data: Manage Function Mapping. Goal: Organize/Process. Viz: HTML Flow Diagram. Justification: Same as "Govern," completes the 4-function visualization. Method: HTML/CSS/Tailwind. (NO SVG/Mermaid).
+        6. Data: Culture vs. Architecture. Goal: Compare. Viz: HTML Side-by-Side Cards/List. Justification: A direct comparison is the best way to summarize the final conclusion of the source material. Method: HTML/CSS/Tailwind. (NO SVG/Mermaid).
+    -->
+    <!-- CONFIRMATION: NO Mermaid JS. NO SVG. -->
+
+    <header class="bg-white shadow-md">
+        <div class="max-w-6xl mx-auto p-6 md:p-10 text-center">
+            <h1 class="text-3xl md:text-5xl font-bold" style="color: #003865;">From Guidelines to Architecture</h1>
+            <p class="text-lg md:text-xl mt-4" style="color: #0072CE;">How Ternary Moral Logic (TML) Implements the NIST AI Risk Management Framework</p>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto p-4 md:p-8 mt-8">
+
+        <section id="intro" class="mb-12">
+            <h2 class="text-2xl font-bold text-center mb-4" style="color: #003865;">The Challenge: Making Trust Measurable</h2>
+            <p class="text-base md:text-lg text-slate-700 text-center max-w-4xl mx-auto leading-relaxed">
+                The NIST AI Risk Management Framework (RMF) provides a crucial foundation for trustworthy AI, asking organizations to build a "risk culture" based on accountability and transparency. However, these are often voluntary guidelines. Ternary Moral Logic (TML) provides the technical implementation layer, transforming this "culture" into a verifiable, auditable <strong style="color: #0072CE;">accountability architecture</strong>.
+            </p>
+        </section>
+
+        <section id="core-functions" class="mb-12">
+            <h2 class="text-2xl font-bold text-center mb-8" style="color: #003865;">Mapping NIST Functions to TML Architecture</h2>
+            <p class="text-base text-slate-700 text-center max-w-4xl mx-auto leading-relaxed mb-8">
+                The infographic below details how TML's core mechanisms provide the verifiable implementation for each of NIST's four functions. Each card shows the direct link from NIST's objective to TML's mechanism and the final, auditable result.
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+                <div class="bg-white rounded-lg shadow-xl p-6 border-t-4" style="border-color: #00AEEF;">
+                    <h3 class="text-2xl font-bold mb-4" style="color: #003865;">1. GOVERN</h3>
+                    <p class="text-slate-700 mb-6">
+                        NIST calls for establishing clear accountability and oversight. TML embeds this directly into the AI's decision pipeline, creating mandatory documentation for every high-risk decision and enforcing human-in-the-loop control.
+                    </p>
+                    <div class="space-y-4 md:space-y-0 md:flex md:items-center md:space-x-4">
+                        <div class="flow-box bg-slate-100 border border-slate-200">
+                            <strong class="text-sm" style="color: #003865;">NIST Objective</strong>
+                            <p class="font-semibold">Accountability</p>
+                        </div>
+                        <div class="flow-arrow" style="color: #00AEEF;">&rarr;</div>
+                        <div class="flow-box" style="background-color: #E0F5FF; border-color: #B3E5FC;">
+                            <strong class="text-sm" style="color: #003865;">TML Mechanism</strong>
+                            <p class="font-semibold">Sacred Pause & CQE</p>
+                        </div>
+                        <div class="flow-arrow" style="color: #00AEEF;">&rarr;</div>
+                        <div class="flow-box" style="background-color: #B3E5FC; border-color: #00AEEF;">
+                            <strong class="text-sm" style="color: #003865;">Result</strong>
+                            <p class="font-semibold">Demonstrable Control</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-xl p-6 border-t-4" style="border-color: #00AEEF;">
+                    <h3 class="text-2xl font-bold mb-4" style="color: #003865;">2. MAP</h3>
+                    <p class="text-slate-700 mb-6">
+                        NIST requires identifying the AI's context and potential risks. TML automates this by using Ethical Uncertainty Score (EUS) thresholds to continuously scan for dataset anomalies, moral ambiguity, or context misuse, turning a static checklist into a live process.
+                    </p>
+                    <div class="space-y-4 md:space-y-0 md:flex md:items-center md:space-x-4">
+                        <div class="flow-box bg-slate-100 border border-slate-200">
+                            <strong class="text-sm" style="color: #003865;">NIST Objective</strong>
+                            <p class="font-semibold">Identify Context & Risk</p>
+                        </div>
+                        <div class="flow-arrow" style="color: #00AEEF;">&rarr;</div>
+                        <div class="flow-box" style="background-color: #E0F5FF; border-color: #B3E5FC;">
+                            <strong class="text-sm" style="color: #003865;">TML Mechanism</strong>
+                            <p class="font-semibold">EUS Thresholds</p>
+                        </div>
+                        <div class="flow-arrow" style="color: #00AEEF;">&rarr;</div>
+                        <div class="flow-box" style="background-color: #B3E5FC; border-color: #00AEEF;">
+                            <strong class="text-sm" style="color: #003865;">Result</strong>
+                            <p class="font-semibold">Detect Moral Complexity</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-xl p-6 border-t-4" style="border-color: #0072CE;">
+                    <h3 class="text-2xl font-bold mb-4" style="color: #003865;">3. MEASURE</h3>
+                    <p class="text-slate-700 mb-6">
+                        NIST emphasizes evaluating risk and bias. TML converts this qualitative goal into a quantitative metric with the <strong class="font-semibold">Ethical Uncertainty Score (EUS)</strong>. This score acts as a measurable, auditable indicator of ethical risk, triggering alerts when human oversight is required.
+                    </p>
+                    <div class="chart-container">
+                        <canvas id="eusChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-xl p-6 border-t-4" style="border-color: #0072CE;">
+                    <h3 class="text-2xl font-bold mb-4" style="color: #003865;">4. MANAGE</h3>
+                    <p class="text-slate-700 mb-6">
+                        NIST's goal is to mitigate risks and monitor systems. TML provides continuous verification via the <strong class="font-semibold">Hybrid Shield</strong> and <strong class="font-semibold">Immutable Moral Trace Logs</strong>. This ensures all logs are authentic, tamper-proof, and always available for audit.
+                    </p>
+                    <div class="space-y-4 md:space-y-0 md:flex md:items-center md:space-x-4">
+                        <div class="flow-box bg-slate-100 border border-slate-200">
+                            <strong class="text-sm" style="color: #003865;">NIST Objective</strong>
+                            <p class="font-semibold">Mitigate & Monitor</p>
+                        </div>
+                        <div class="flow-arrow" style="color: #0072CE;">&rarr;</div>
+                        <div class="flow-box" style="background-color: #DDEEFE; border-color: #AACCFE;">
+                            <strong class="text-sm" style="color: #003865;">TML Mechanism</strong>
+                            <p class="font-semibold">Anchored Logs</p>
+                        </div>
+                        <div class="flow-arrow" style="color: #0072CE;">&rarr;</div>
+                        <div class="flow-box" style="background-color: #AACCFE; border-color: #0072CE;">
+                            <strong class="text-sm" style="color: #003865;">Result</strong>
+                            <p class="font-semibold">Continuous Verification</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="comparison" class="mb-12">
+            <h2 class="text-2xl font-bold text-center mb-8" style="color: #003865;">The Result: From Culture to Architecture</h2>
+             <p class="text-base text-slate-700 text-center max-w-4xl mx-auto leading-relaxed mb-8">
+                This final comparison illustrates the fundamental shift TML provides. It moves AI governance from a reactive, trust-based "culture" to a proactive, evidence-based "architecture" where compliance is a measurable and verifiable output.
+            </p>
+            <div class="max-w-4xl mx-auto overflow-hidden rounded-lg shadow-xl border border-slate-200">
+                <div class="grid grid-cols-1 md:grid-cols-2">
+                    <div class="p-6 md:p-8 bg-slate-50">
+                        <h3 class="text-xl font-bold text-slate-600 mb-4">NIST ALONE (Risk Culture)</h3>
+                        <ul class="list-disc list-inside space-y-2 text-slate-600">
+                            <li>Accountability is <strong class="font-semibold">Voluntary</strong></li>
+                            <li>Ethics are <strong class="font-semibold">Qualitative Guidelines</strong></li>
+                            <li>Oversight is <strong class="font-semibold">Post-Incident (Reactive)</strong></li>
+                            <li>Proof is based on <strong class="font-semibold">Trust Claims</strong></li>
+                        </ul>
+                    </div>
+                    <div class="p-6 md:p-8" style="background-color: #E0F5FF;">
+                        <h3 class="text-xl font-bold mb-4" style="color: #003865;">NIST + TML (Risk Architecture)</h3>
+                        <ul class="list-disc list-inside space-y-2" style="color: #003865;">
+                            <li>Accountability is <strong class="font-semibold">Verifiable</strong></li>
+                            <li>Ethics are <strong class="font-semibold">Measurable Metrics (EUS)</strong></li>
+                            <li>Oversight is <strong class="font-semibold">Real-Time (Proactive)</strong></li>
+                            <li>Proof is in <strong class="font-semibold">Immutable Logs</strong></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="mt-12 py-10" style="background-color: #003865;">
+        <div class="max-w-6xl mx-auto text-center px-4">
+            <p class="text-2xl md:text-3xl font-bold text-white leading-tight">Where NIST asks institutions to be <span style="color: #00AEEF;">trustworthy</span>, TML provides the mechanism to make trust <span style="color: #00AEEF;">measurable</span>.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const ctx = document.getElementById('eusChart').getContext('2d');
+            
+            const chartData = {
+                labels: [
+                    ['Low-Risk', 'Decision'], 
+                    ['Ambiguous Data', '(Policy Mismatch)'], 
+                    ['High-Risk Moral', 'Context (Goukassian)']
+                ],
+                datasets: [
+                    {
+                        label: 'Ethical Uncertainty Score (EUS)',
+                        data: [15, 68, 92],
+                        backgroundColor: [
+                            '#00AEEF', 
+                            '#0072CE', 
+                            '#003865'  
+                        ],
+                        borderColor: [
+                            '#00AEEF', 
+                            '#0072CE', 
+                            '#003865'  
+                        ],
+                        borderWidth: 1
+                    },
+                    {
+                        type: 'line',
+                        label: 'Intervention Threshold',
+                        data: [75, 75, 75],
+                        borderColor: '#FF0000',
+                        borderWidth: 2,
+                        fill: false,
+                        pointRadius: 0,
+                        borderDash: [5, 5]
+                    }
+                ]
+            };
+
+            const chartOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        title: {
+                            display: true,
+                            text: 'Uncertainty Score (0-100)'
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            autoSkip: false
+                        }
+                    }
+                },
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                if (Array.isArray(label)) {
+                                  return label.join(' ');
+                                } else {
+                                  return label;
+                                }
+                            }
+                        }
+                    },
+                    legend: {
+                        position: 'bottom',
+                    }
+                }
+            };
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: chartData,
+                options: chartOptions
+            });
+        });
+    </script>
+
+</body>
+</html>
