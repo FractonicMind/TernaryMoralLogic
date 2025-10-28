@@ -353,23 +353,6 @@ Day 30: Executives in prison
 
 ---
 
-## The Stewardship Council Alternative (Not Recommended)
-
-### Year 5+ Optional Enhancement
-If you really want committees reviewing your evidence:
-
-```yaml
-stewardship_council_option:
-  costs: "$600K per institution per year"
-  adds: "Political review of mathematical proof"
-  delays: "3 minutes becomes 30-90 days"
-  benefit: "Makes lawyers feel important"
-  
-  reality: "Nobody will choose this"
-```
-
----
-
 ## Contact & Verification
 
 **Blockchain Contract**: 0xTML...WHISTLEBLOW  
