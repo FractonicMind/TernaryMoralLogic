@@ -683,7 +683,7 @@ No successor may remove these foundations or alter creator attribution.
 
 **The Voluntary Succession guarantees that:**
 
-* Human and Earth Protection documents (46 total: 26 Human + 20 Earth) remain permanently enforced.   
+* Human and Earth Protection documents (46+ total: 26+ Human and 20+ Earth) remain permanently enforced.   
 * Public blockchain anchoring and open-source licensing are irrevocable.   
 * Memorial Fund distributions to victims, whistleblowers, environmental recovery, and cancer research are permanent.   
 * Governance changes must be transparent, cryptographically signed, and publicly visible.   
