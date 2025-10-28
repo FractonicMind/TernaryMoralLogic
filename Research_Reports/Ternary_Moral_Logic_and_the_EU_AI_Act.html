@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infographic: TML and the EU AI Act</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Chosen Palette: brilliant blues -->
+    <!-- Narrative Plan: The infographic follows a top-down narrative: 1. The Hook (Title), 2. The Core Problem (The EU AI Act's "Compliance Gap"), 3. The Central Conflict (Post-Hoc vs. Proactive models), 4. The Proposed Solution (Intro to TML & its process flow), 5. The Solution's Components (The 8 Pillars), 6. The Proof of Solution (A Radar Chart mapping TML's enforcement against the Act's gaps), 7. The Conclusion (Key Benefits). This linear story guides the user from problem to solution. -->
+    <!-- Visualization Choices: Data: EU Act Articles 9-15 Gaps -> Goal: Inform -> Viz: 5-card grid with Unicode icons (HTML/CSS) -> Justification: Breaks down the 5 key problem areas simply. (NO SVG). Data: TML Process -> Goal: Organize -> Viz: HTML/CSS flexbox diagram -> Justification: Shows the process flow without SVG/Mermaid. (NO SVG). Data: 8 Pillars of TML -> Goal: Organize/Inform -> Viz: 8-card grid with Unicode icons (HTML/CSS) -> Justification: Presents the 8 core concepts as digestible chunks. (NO SVG). Data: TML vs EU Act Coverage -> Goal: Compare -> Viz: Radar Chart (Chart.js) -> Justification: Visually demonstrates how TML's coverage (high scores) fills the gaps left by post-hoc audits (low scores) across the 5 key articles. (Chart.js/Canvas, NO SVG). -->
+    <!-- CONFIRMATION: NO MERMAID JS. NO SVG. -->
+
+    <style>
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 400px;
+            max-height: 500px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 500px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+
+    <div class="max-w-6xl mx-auto p-4 sm:p-8">
+
+        <header class="text-center my-12">
+            <h1 class="text-4xl md:text-6xl font-bold text-[#0048E5] mb-4">Ternary Moral Logic & the EU AI Act</h1>
+            <h2 class="text-2xl md:text-3xl font-light text-gray-700">Bridging the Gap Between Law and Logic</h2>
+        </header>
+
+        <section id="problem" class="my-16">
+            <h3 class="text-3xl font-bold text-gray-900 text-center mb-4">The Compliance Gap</h3>
+            <p class="text-xl text-gray-600 text-center max-w-4xl mx-auto mb-12">The EU AI Act establishes critical mandates for high-risk AI, but its reliance on documentation and post-hoc audits creates a significant gap between legal intent and technical enforcement.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                <div class="bg-white rounded-lg shadow-lg p-6 text-center transition-transform hover:scale-105">
+                    <span class="text-5xl">⚖️</span>
+                    <h4 class="text-xl font-semibold text-[#0048E5] mt-4">Art. 9: Risk Management</h4>
+                    <p class="text-gray-600 mt-2">Relies on documented processes, not real-time risk prevention.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-6 text-center transition-transform hover:scale-105">
+                    <span class="text-5xl">🗃️</span>
+                    <h4 class="text-xl font-semibold text-[#0048E5] mt-4">Art. 10: Data Governance</h4>
+                    <p class="text-gray-600 mt-2">Audits data quality at design-time, not in operation.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-6 text-center transition-transform hover:scale-105">
+                    <span class="text-5xl">📰</span>
+                    <h4 class="text-xl font-semibold text-[#0048E5] mt-4">Art. 13: Transparency</h4>
+                    <p class="text-gray-600 mt-2">Provides post-hoc explanations, not verifiable proof.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-6 text-center transition-transform hover:scale-105">
+                    <span class="text-5xl">👁️</span>
+                    <h4 class="text-xl font-semibold text-[#0048E5] mt-4">Art. 14: Human Oversight</h4>
+                    <p class="text-gray-600 mt-2">Relies on reactive "stop buttons," not proactive value alignment.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-6 text-center transition-transform hover:scale-105">
+                    <span class="text-5xl">⚙️</span>
+                    <h4 class="text-xl font-semibold text-[#0048E5] mt-4">Art. 15: Robustness</h4>
+                    <p class="text-gray-600 mt-2">Tested in a sandbox, not guaranteed in the real world.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="conflict" class="my-16">
+            <h3 class="text-3xl font-bold text-gray-900 text-center mb-12">Two Models of Compliance</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white rounded-lg shadow-lg p-8 border-t-8 border-red-500">
+                    <h4 class="text-3xl font-bold text-red-600 mb-6">1. Post-Hoc Audit</h4>
+                    <p class="text-lg text-gray-700 mb-6">The conventional model, based on checking compliance *after* an action has occurred (or during a periodic review).</p>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <span class="text-2xl mr-3">❌</span>
+                            <span class="text-gray-800"><strong>Reactive:</strong> Catches errors only after they happen.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-2xl mr-3">❌</span>
+                            <span class="text-gray-800"><strong>Documentation-Based:</strong> Relies on paperwork, which may not reflect reality.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-2xl mr-3">❌</span>
+                            <span class="text-gray-800"><strong>Opaque:</strong> Audit trails may be incomplete or unverifiable.</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-8 border-t-8 border-[#007BFF]">
+                    <h4 class="text-3xl font-bold text-[#007BFF] mb-6">2. Proactive Enforcement</h4>
+                    <p class="text-lg text-gray-700 mb-6">The TML model, based on verifying compliance *before* any action is executed by the AI.</p>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <span class="text-2xl mr-3">✅</span>
+                            <span class="text-gray-800"><strong>Proactive:</strong> Prevents violations from ever occurring.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-2xl mr-3">✅</span>
+                            <span class="text-gray-800"><strong>Architectural:</strong> Built into the AI's core logic.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-2xl mr-3">✅</span>
+                            <span class="text-gray-800"><strong>Verifiable:</strong> Creates an immutable, real-time log of all decisions.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="solution" class="my-16">
+            <h3 class="text-3xl font-bold text-gray-900 text-center mb-4">The Solution: Ternary Moral Logic</h3>
+            <p class="text-xl text-gray-600 text-center max-w-4xl mx-auto mb-12">TML is a technical architecture that introduces a third computational state: "Moral Constraint." Every AI decision is first passed through a "Hybrid Shield" that validates it against this third state *before* execution.</p>
+            <div class="bg-white p-8 rounded-lg shadow-lg max-w-4xl mx-auto">
+                <div class="flex flex-col md:flex-row items-center justify-around space-y-6 md:space-y-0">
+                    <div class="text-center">
+                        <div class="p-6 bg-gray-100 rounded-lg shadow-inner">
+                            <h5 class="text-xl font-semibold text-gray-800">AI Decision Request</h5>
+                            <p class="text-gray-600">(e.g., "Deny loan")</p>
+                        </div>
+                    </div>
+                    <div class="text-6xl font-thin text-[#007BFF]">→</div>
+                    <div class="text-center">
+                        <div class="p-8 bg-[#007BFF] text-white rounded-lg shadow-xl">
+                            <h5 class="text-xl font-semibold">TML Hybrid Shield</h5>
+                            <p class="opacity-90">(Validate vs. 8 Pillars)</p>
+                        </div>
+                    </div>
+                    <div class="text-6xl font-thin text-gray-400">→</div>
+                    <div class="flex flex-col space-y-4">
+                        <div class="p-4 bg-green-100 text-green-800 rounded-lg shadow-inner">
+                            <h5 class="text-lg font-semibold">Action Approved</h5>
+                        </div>
+                        <div class="p-4 bg-red-100 text-red-800 rounded-lg shadow-inner">
+                            <h5 class="text-lg font-semibold">Action Rejected</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="pillars" class="my-16">
+            <h3 class="text-3xl font-bold text-gray-900 text-center mb-4">The 8 Pillars of TML</h3>
+            <p class="text-xl text-gray-600 text-center max-w-4xl mx-auto mb-12">This enforcement is governed by eight core principles that are built into the AI's architecture.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <span class="text-5xl">🛡️</span>
+                    <h4 class="text-xl font-semibold text-[#0048E5] mt-4 mb-2">1. Sacred Zero</h4>
+                    <p class="text-gray-600">Non-negotiable rules (e.g., do no harm) that cannot be overridden.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <span class="text-5xl">💾</span>
+                    <h4 class="text-xl font-semibold text-[#0048E5] mt-4 mb-2">2. Always Memory</h4>
+                    <p class="text-gray-600">Perpetual, high-fidelity logging of all data and decisions for perfect provenance.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <span class="text-5xl">🤝</span>
+                    <h4 class="text-xl font-semibold text-[#0048E5] mt-4 mb-2">3. Goukassian Promise</h4>
+                    <p class="text-gray-600">The AI must do *only* what it claims to do, preventing function creep.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <span class="text-5xl">📜</span>
+                    <h4 class="text-xl font-semibold text-[#0048E5] mt-4 mb-2">4. Moral Trace Logs</h4>
+                    <p class="text-gray-600">Logs not just the "what" but the "why," tracing decisions to specific moral rules.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <span class="text-5xl">👤</span>
+                    <h4 class="text-xl font-semibold text-[#0048E5] mt-4 mb-2">5. Human Rights</h4>
+                    <p class="text-gray-600">Binds the AI to a machine-readable version of fundamental rights (e.g., non-discrimination).</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <span class="text-5xl">🌿</span>
+                    <h4 class="text-xl font-semibold text-[#0048E5] mt-4 mb-2">6. Earth Protection</h4>
+                    <p class="text-gray-600">An environmental constraint layer to measure and limit the AI's energy footprint.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <span class="text-5xl">⚔️</span>
+                    <h4 class="text-xl font-semibold text-[#0048E5] mt-4 mb-2">7. Hybrid Shield</h4>
+                    <p class="text-gray-600">The active runtime engine that validates all actions against the other pillars.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <span class="text-5xl">🔗</span>
+                    <h4 class="text-xl font-semibold text-[#0048E5] mt-4 mb-2">8. Public Blockchains</h4>
+                    <p class="text-gray-600">Used to store Moral Trace Logs, making the audit trail immutable and verifiable.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="mapping" class="my-16">
+            <h3 class="text-3xl font-bold text-gray-900 text-center mb-4">Closing the Compliance Gap</h3>
+            <p class="text-xl text-gray-600 text-center max-w-4xl mx-auto mb-12">This chart visualizes the difference in verifiable assurance. The EU Act's post-hoc model (red) provides a low, reactive level of assurance. TML's proactive model (blue) provides a high, architecturally-enforced level of assurance across all key articles.</p>
+            <div class="bg-white rounded-lg shadow-lg p-4 md:p-8">
+                <div class="chart-container">
+                    <canvas id="complianceRadarChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="benefits" class="my-16">
+            <h3 class="text-3xl font-bold text-gray-900 text-center mb-12">Key Benefits of the TML Architecture</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-lg shadow-lg p-8 text-center">
+                    <span class="text-6xl">🔍</span>
+                    <h4 class="text-3xl font-bold text-[#0048E5] my-4">Total Verifiability</h4>
+                    <p class="text-lg text-gray-700">Immutable, blockchain-based logs provide a 100% verifiable audit trail for regulators.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-8 text-center">
+                    <span class="text-6xl">⏱️</span>
+                    <h4 class="text-3xl font-bold text-[#0048E5] my-4">Real-Time Oversight</h4>
+                    <p class="text-lg text-gray-700">Human values are enforced *before* an action is taken, not after harm is done.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-8 text-center">
+                    <span class="text-6xl">🔒</span>
+                    <h4 class="text-3xl font-bold text-[#0048E5] my-4">By-Design Compliance</h4>
+                    <p class="text-lg text-gray-700">Moves compliance from a legal checklist to an automated, technical reality.</p>
+                </div>
+            </div>
+        </section>
+
+        <footer class="text-center mt-20 py-8 border-t border-gray-200">
+            <p class="text-gray-600">This infographic provides a conceptual overview of Ternary Moral Logic as a compliance enabler for the EU AI Act.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const ctx = document.getElementById('complianceRadarChart').getContext('2d');
+            
+            const chartLabels = [
+                ['Art. 9', '(Risk Mgmt)'], 
+                ['Art. 10', '(Data Gov)'], 
+                ['Art. 13', '(Transparency)'], 
+                ['Art. 14', '(Human Oversight)'], 
+                ['Art. 15', '(Robustness)']
+            ];
+            
+            const chartData = {
+                labels: chartLabels,
+                datasets: [
+                    {
+                        label: 'EU Act (Post-hoc Audit)',
+                        data: [2, 3, 2, 3, 2],
+                        backgroundColor: 'rgba(239, 68, 68, 0.2)',
+                        borderColor: 'rgba(239, 68, 68, 1)',
+                        pointBackgroundColor: 'rgba(239, 68, 68, 1)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgba(239, 68, 68, 1)'
+                    },
+                    {
+                        label: 'TML (Proactive Enforcement)',
+                        data: [5, 5, 4, 5, 4],
+                        backgroundColor: 'rgba(0, 123, 255, 0.2)',
+                        borderColor: 'rgba(0, 123, 255, 1)',
+                        pointBackgroundColor: 'rgba(0, 123, 255, 1)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgba(0, 123, 255, 1)'
+                    }
+                ]
+            };
+            
+            const chartOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    r: {
+                        angleLines: {
+                            color: 'rgba(0, 0, 0, 0.1)'
+                        },
+                        grid: {
+                            color: 'rgba(0, 0, 0, 0.1)'
+                        },
+                        pointLabels: {
+                            font: {
+                                size: 13,
+                                weight: 'bold'
+                            },
+                            color: '#333'
+                        },
+                        ticks: {
+                            beginAtZero: true,
+                            max: 5,
+                            stepSize: 1,
+                            backdropColor: 'rgba(255, 255, 255, 0.75)',
+                            padding: 8
+                        },
+                        suggestedMin: 0,
+                        suggestedMax: 5
+                    }
+                },
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: {
+                            font: {
+                                size: 14
+                            }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                if (Array.isArray(label)) {
+                                  return label.join(' ');
+                                } else {
+                                  return label;
+                                }
+                            },
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                label += `Score ${context.parsed.r}`;
+                                return label;
+                            }
+                        }
+                    }
+                }
+            };
+
+            new Chart(ctx, {
+                type: 'radar',
+                data: chartData,
+                options: chartOptions
+            });
+        });
+    </script>
+</body>
+</html>
