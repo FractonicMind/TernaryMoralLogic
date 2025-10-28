@@ -11,6 +11,8 @@
 
 ### **Abstract**
 
+**[Interactive Webpage and Audio Overview](https://fractonicmind.github.io/TernaryMoralLogic/Research_Reports/UNESCO_%C3%97_TML_Alignment_Report.html)**
+
 The 2021 UNESCO *Recommendation on the Ethics of Artificial Intelligence* establishes a global normative framework to ensure that artificial intelligence serves humanity with respect for fundamental rights, human dignity, and environmental stewardship. Its core aims—accountability, transparency, explainability, human oversight, inclusivity, and sustainability—represent a global consensus on the aspirational goals for AI governance. However, transforming these principles from policy documents into verifiable, machine-level logic remains a critical challenge. Aspirational ethics lack enforcement mechanisms at the point of computation, creating a gap between principle and practice. This report details how the Ternary Moral Logic (TML) framework provides the necessary architectural substrate to bridge this gap.
 
 TML is an AI safety and governance architecture designed to enforce ethical boundaries directly within computational systems. Its core architectural contributions are fourfold: the **Sacred Pause (State 0\)**, a mechanism that halts automated processes in the face of profound uncertainty; the **Ethical Uncertainty Score (EUS)**, a metric that quantifies a system’s confidence in the ethical permissibility of an action; the **Clarifying Question Engine (CQE)**, which formulates precise queries to human overseers during a pause; and **Immutable Moral Trace Logs**, which create a cryptographically secured, auditable record of every significant decision, especially those requiring human intervention.
