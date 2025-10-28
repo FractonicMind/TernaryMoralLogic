@@ -7,6 +7,7 @@ The analysis reveals a highly coherent and durable architecture, engineered for 
 Furthermore, pillars that were previously assessed as potentially brittle have been revealed to possess robust, forward-thinking designs that anticipate and resolve key challenges in AI governance. The **Always Memory** pillar, rather than conflicting with privacy regulations like GDPR, explicitly integrates compliance through advanced cryptographic techniques such as Ethical Key Revocation (EKR). This allows personal data to be rendered unrecoverable to satisfy the "right to erasure" while preserving the integrity of the evidentiary audit trail through zero-knowledge proofs. Similarly, the **Public Blockchains** pillar avoids the scalability and energy-consumption pitfalls of legacy blockchains by employing a modular, technology-neutral architecture that prioritizes efficient methods like OpenTimestamps (OTS) and Merkle batching, resolving any conflict with the **Earth Protection** pillar.  
 The framework's governance and security structures, embodied in the **Hybrid Shield** and **Human Rights** pillars, are also shown to be robust. The Hybrid Shield is formally defined as a dual-layer protection model, combining cryptographic anchoring with mirrored custody across independent institutions to eliminate single points of failure. The Human Rights pillar avoids the dangers of static interpretation and politicization by using a dynamic "document-trigger mechanism" that hashes and references the latest canonical versions of treaties from official sources like the UN and ICRC.1  
 Ultimately, TML's most profound contribution is its philosophical shift from Explainable AI (XAI) to Accountable AI (AAI). By prioritizing the creation of a verifiable external record of an AI's moral decision-making process, TML lays the groundwork for a new legal paradigm where the burden of proof in cases of AI-caused harm could be reversed. The long-term viability of the TML framework is secured by its ability to integrate its durable ethical core with flexible, privacy-preserving, and sustainable implementation solutions. Strategic adoption should therefore focus on implementing the framework as a whole, recognizing its integrated design as a blueprint for the future of trustworthy and accountable AI.  
+
 ---
 
 ## **I. Ternary Moral Logic: An Architectural Overview of Executable Ethics**
@@ -91,7 +92,9 @@ The Goukassian Promise, with its core vow to "Pause when truth is uncertain. Ref
 The **Lantern**'s efficacy depends entirely on social and market pressure. The public forfeiture of an "ethical badge" may be a powerful deterrent for consumer-facing companies in a competitive market, but its impact on a state-sponsored actor, a defense contractor, or a market monopoly is far less certain.9 These entities may be willing to absorb the reputational damage or use their influence to discredit the standard itself.  
 The **Signature** provides a clear chain of provenance, making it difficult to deny the origin of the code.9 However, it does not physically prevent a powerful entity from forking the code, removing the safeguards, and launching a rebranded version. While this action would be traceable, a sufficiently powerful actor might simply weather the reputational storm.  
 The **License** provides a legal backstop, but its enforceability across international jurisdictions is a notoriously complex and slow-moving challenge.2 The pillar's overall durability is therefore contingent on the long-term cultural and market acceptance of its symbolic artifacts, making it less robust than the purely functional pillars that provide direct technical utility.  
+
 ---
+
 
 ## **III. Durability Analysis of the Implementation Pillars: Code, Law, and Infrastructure**
 
@@ -129,6 +132,7 @@ The two layers of the shield are:
 2. **Institutional Shield:** This layer provides a human governance backstop through mirrored custody of logs across a network of independent institutions, such as universities, NGOs, and courts. This network of "Guardians" operates with rotating verification keys, and its governance model includes defined rules for participation, key rotation, and "slashing" conditions (penalties for non-compliance).
 
 Together, these two redundant and independently auditable layers ensure that the integrity of TML's memory is protected from both technical attacks and institutional capture. This well-defined, multi-layered defense makes the Hybrid Shield a highly durable component of the TML architecture.  
+
 ---
 
 ## **IV. Synthesis: Interdependencies and Future Trajectory of the TML Framework**
