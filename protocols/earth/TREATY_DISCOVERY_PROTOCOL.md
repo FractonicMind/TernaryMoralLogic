@@ -4,7 +4,7 @@
 **Version**: 3.0 (Blockchain Oracle Architecture)  
 **Status**: Automated Discovery via Decentralized Oracles  
 **Human Requirement**: Zero (fully automated)  
-**Stewardship Council Involvement**: Optional luxury after Year 5
+**Stewardship Council Involvement**: Recommended luxury after Year 5
 
 ---
 
@@ -318,7 +318,7 @@ contract MissedTreatyProtocol {
 ### What Council Members Could Add
 
 ```yaml
-optional_stewardship_enhancement:
+recommended_stewardship_enhancement:
   year_5_plus:
     - "Cultural context for treaties" (oracles already translate)
     - "Political interpretation" (math doesn't need politics)  
