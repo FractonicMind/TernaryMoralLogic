@@ -9,6 +9,8 @@
 
 ### **Abstract**
 
+**[Interactive Webpage and Audio Overview](https://fractonicmind.github.io/TernaryMoralLogic/Research_Reports/Ternary_Moral_Logic_and_the_EU_AI_Act.html)**
+
 The European Union's Artificial Intelligence Act (AI Act) represents a landmark regulatory effort to establish a global standard for trustworthy AI, mandating robust risk management, data governance, transparency, and human oversight for high-risk systems. However, the Act primarily relies on procedural compliance and *post-hoc* auditing, creating a significant gap between legal intent and technical enforcement. This paper introduces Ternary Moral Logic (TML) as a novel governance architecture that provides a verifiable, *proactive*, and machine-enforced backbone for the Act's requirements. TML’s three-state logic (Permissible, Impermissible, Indeterminate) enforces a mandatory "Sacred Pause" (State 0\) when an AI system confronts ethical or operational uncertainty that exceeds a quantifiable threshold. We analyze how this architecture directly operationalizes the mandates of EU AI Act Articles 9 through 15\. TML’s Sacred Pause provides the enforceable "effective oversight" required by Article 14, while its cryptographically secured, Immutable Moral Trace Logs fulfill the record-keeping and transparency mandates of Articles 12 and 10 with a degree of integrity conventional logging cannot match. We argue that TML shifts the paradigm from asserting compliance via documentation to proving it with an immutable, real-time audit trail, offering a technical prototype for the future of enforceable AI governance.
 
 ### **I. Introduction**
