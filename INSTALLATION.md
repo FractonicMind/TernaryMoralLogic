@@ -285,7 +285,7 @@ The Stewardship Council provides additional oversight and validation. This enhan
 
 ### Configuration
 ```bash
-# Enable Stewardship Council (optional)
+# Enable Stewardship Council (recommended)
 STEWARDSHIP_COUNCIL=true
 STEWARDSHIP_COUNCIL_MEMBERS=6
 STEWARDSHIP_VALIDATION_THRESHOLD=4
