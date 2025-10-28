@@ -1,0 +1,355 @@
+<!-- Chosen Palette: Brilliant Blues & Professional Greys -->
+<!-- Application Structure Plan: A single-page narrative infographic. Structure: 1) Intro/Problem (UNESCO Gap), 2) TML Solution (Flowchart), 3) Core Components (Grid), 4) Principle Mapping (Cards), 5) 8 Pillars (Grid), 6) Data Foundation (Donut Chart + Stats), 7) Conclusion. This linear story is best for explaining a new, complex framework from its concept to its components and impact. -->
+<!-- Visualization & Content Choices: [TML Logic -> Organize -> HTML/Tailwind Flowchart -> Shows process -> HTML/Tailwind - NO SVG]. [UNESCO Principles -> Organize -> Styled HTML Cards -> Groups related info -> HTML/Tailwind]. [8 Pillars -> Organize -> HTML Grid -> Lists all components -> HTML/Tailwind]. [Treaty Foundation -> Compare/Inform -> Donut Chart + Stat Blocks -> Shows 46+ treaty composition (26 vs 20) and big numbers -> Chart.js (Donut), HTML (Stats) - NO SVG]. -->
+<!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operationalizing UNESCO AI Ethics with TML</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'brand-dark': '#1E293B',
+                        'brand-medium': '#475569',
+                        'brand-light': '#F8FAFC',
+                        'brand-primary': '#2563EB',
+                        'brand-primary-light': '#DBEAFE',
+                        'brand-accent-green': '#16A34A',
+                        'brand-accent-red': '#DC2626',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 350px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-brand-light text-brand-dark font-sans">
+
+    <header class="bg-white shadow-md">
+        <div class="max-w-6xl mx-auto py-8 px-4 text-center">
+            <h1 class="text-3xl md:text-4xl font-bold text-brand-primary">From Principle to Practice</h1>
+            <p class="text-xl md:text-2xl font-semibold text-brand-dark mt-2">Operationalizing UNESCO AI Ethics with Ternary Moral Logic (TML)</p>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto p-4 md:p-8 space-y-20">
+
+        <section id="challenge">
+            <h2 class="text-3xl font-bold text-brand-dark text-center mb-4">The Global Challenge: The Principle-to-Practice Gap</h2>
+            <p class="text-lg text-brand-medium max-w-4xl mx-auto text-center mb-8">
+                In November 2021, 194 UNESCO Member States adopted the first global standard for AI ethics. This landmark *Recommendation* establishes core values like human rights, fairness, and transparency. However, a significant gap remains: how do we translate these high-level principles into verifiable, auditable, and enforceable code?
+            </p>
+            <div class="bg-white rounded-lg shadow-xl p-8 max-w-sm mx-auto">
+                <div class="text-7xl font-bold text-brand-primary text-center">194</div>
+                <div class="text-xl font-semibold text-brand-dark text-center mt-2">Member States Adopted the UNESCO Recommendation</div>
+            </div>
+        </section>
+
+        <section id="solution-flow">
+            <h2 class="text-3xl font-bold text-brand-dark text-center mb-4">The Solution: Ternary Moral Logic (TML)</h2>
+            <p class="text-lg text-brand-medium max-w-4xl mx-auto text-center mb-12">
+                Ternary Moral Logic (TML) is an architectural framework designed to bridge this gap. It moves beyond simple binary logic (Proceed/Refuse) by introducing a third state: the **Sacred Pause**. This mandatory hesitation in the face of ethical uncertainty creates a verifiable space for deliberation and human oversight.
+            </p>
+
+            <div class="w-full max-w-5xl mx-auto">
+                <div class="flex flex-col items-center space-y-4">
+                    
+                    <div class="bg-white rounded-lg shadow-md p-4 w-64 text-center font-semibold">
+                        AI Receives Query
+                    </div>
+                    
+                    <div class="text-3xl text-brand-primary">▼</div>
+                    
+                    <div class="bg-white rounded-lg shadow-md p-4 w-72 text-center font-semibold border-2 border-brand-primary">
+                        Ethical Uncertainty Score (EUS) Calculates Risk
+                    </div>
+
+                    <div class="w-full flex flex-col md:flex-row justify-between items-stretch pt-4">
+                        <div class="flex-1 flex flex-col items-center p-2 mx-2">
+                            <div class="text-center font-bold text-brand-accent-red mb-2">High-Risk (Harm)</div>
+                            <div class="text-3xl text-brand-accent-red">▼</div>
+                            <div class="bg-red-50 border-2 border-brand-accent-red rounded-lg shadow-md p-4 w-full text-center">
+                                <span class="font-bold text-brand-accent-red">STATE -1</span><br>
+                                Moral Resistance (Refuse)
+                            </div>
+                        </div>
+                        
+                        <div class="flex-1 flex flex-col items-center p-2 mx-2 border-t-4 border-b-4 md:border-t-0 md:border-b-0 md:border-l-4 md:border-r-4 border-brand-primary border-dotted mt-4 md:mt-0">
+                            <div class="text-center font-bold text-brand-primary mb-2">High-Risk (Uncertainty)</div>
+                            <div class="text-3xl text-brand-primary">▼</div>
+                            <div class="bg-blue-50 border-2 border-brand-primary rounded-lg shadow-md p-4 w-full text-center">
+                                <span class="font-bold text-brand-primary">STATE 0</span><br>
+                                Sacred Pause (Hesitate)
+                            </div>
+                            <div class="text-3xl text-brand-primary">▼</div>
+                             <div class="bg-blue-50 border-2 border-brand-primary rounded-lg shadow-md p-4 w-full text-center">
+                                Human-in-the-Loop &amp; CQE Review
+                            </div>
+                        </div>
+                        
+                        <div class="flex-1 flex flex-col items-center p-2 mx-2 mt-4 md:mt-0">
+                            <div class="text-center font-bold text-brand-accent-green mb-2">Low-Risk</div>
+                            <div class="text-3xl text-brand-accent-green">▼</div>
+                            <div class="bg-green-50 border-2 border-brand-accent-green rounded-lg shadow-md p-4 w-full text-center">
+                                <span class="font-bold text-brand-accent-green">STATE +1</span><br>
+                                Moral Affirmation (Proceed)
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-3xl text-brand-primary pt-4">▼</div>
+                    
+                    <div class="bg-gray-800 text-white rounded-lg shadow-xl p-6 w-full md:w-3/4 text-center font-semibold">
+                        All Paths Generate an Immutable Moral Trace Log
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="components">
+            <h2 class="text-3xl font-bold text-brand-dark text-center mb-4">TML's Core Architectural Components</h2>
+            <p class="text-lg text-brand-medium max-w-4xl mx-auto text-center mb-12">
+                Four key components work together to create an auditable and deliberative system.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white rounded-lg shadow-md p-6 text-center">
+                    <div class="text-5xl mb-4">⏸️</div>
+                    <h3 class="text-xl font-bold text-brand-primary mb-2">Sacred Pause</h3>
+                    <p class="text-brand-medium">A mandatory, hard-coded hesitation when the AI detects ethical ambiguity, forcing deliberation or human oversight.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6 text-center">
+                    <div class="text-5xl mb-4">📊</div>
+                    <h3 class="text-xl font-bold text-brand-primary mb-2">Ethical Uncertainty Score (EUS)</h3>
+                    <p class="text-brand-medium">A real-time metric that quantifies the moral complexity and potential risk, triggering the Sacred Pause when a threshold is breached.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6 text-center">
+                    <div class="text-5xl mb-4">❓</div>
+                    <h3 class="text-xl font-bold text-brand-primary mb-2">Clarifying Question Engine (CQE)</h3>
+                    <p class="text-brand-medium">During a pause, the AI can ask targeted, Socratic questions to the user to resolve ambiguity and gather critical context.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6 text-center">
+                    <div class="text-5xl mb-4">📜</div>
+                    <h3 class="text-xl font-bold text-brand-primary mb-2">Immutable Moral Trace Logs</h3>
+                    <p class="text-brand-medium">A permanent, human-readable, and auditable record of every decision, hesitation, and human intervention, ensuring accountability.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="mapping">
+            <h2 class="text-3xl font-bold text-brand-dark text-center mb-4">Mapping UNESCO Principles to TML Practice</h2>
+            <p class="text-lg text-brand-medium max-w-4xl mx-auto text-center mb-12">
+                TML provides a direct, technical implementation for the UNESCO Recommendation's core principles. This is how the "ought" is translated into auditable "is".
+            </p>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="p-4 bg-brand-primary-light">
+                        <h3 class="text-xl font-bold text-brand-primary">UNESCO Principle: Transparency & Explainability</h3>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-brand-medium"><strong class="text-brand-dark">TML Operationalization:</strong> The <strong class="text-brand-dark">Immutable Moral Trace Logs</strong> create a "Glass Box," providing a permanent, human-readable record of the AI's entire reasoning process. The <strong class="text-brand-dark">CQE</strong> makes uncertainty transparent in real-time by asking questions.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="p-4 bg-brand-primary-light">
+                        <h3 class="text-xl font-bold text-brand-primary">UNESCO Principle: Accountability & Human Oversight</h3>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-brand-medium"><strong class="text-brand-dark">TML Operationalization:</strong> The <strong class="text-brand-dark">Sacred Pause</strong> is the core mechanism for mandatory human-in-the-loop review. The <strong class="text-brand-dark">Moral Trace Logs</strong> create an unbroken, auditable chain of responsibility, documenting every AI and human action.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="p-4 bg-brand-primary-light">
+                        <h3 class="text-xl font-bold text-brand-primary">UNESCO Principle: Fairness & Non-Discrimination</h3>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-brand-medium"><strong class="text-brand-dark">TML Operationalization:</strong> The <strong class="text-brand-dark">Ethical Uncertainty Score (EUS)</strong> is calibrated to detect conditions indicative of bias (e.g., high-stakes decisions involving protected data), triggering a <strong class="text-brand-dark">Sacred Pause</strong> for mandatory human review to prevent automated discrimination.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="p-4 bg-brand-primary-light">
+                        <h3 class="text-xl font-bold text-brand-primary">UNESCO Principle: Environment & Ecosystem Flourishing</h3>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-brand-medium"><strong class="text-brand-dark">TML Operationalization:</strong> The dedicated <strong class="text-brand-dark">Earth Protection Pillar</strong> hard-codes constraints from 20+ international environmental treaties. Any query that risks violating these treaties automatically triggers a <strong class="text-brand-dark">Sacred Pause</strong>, ensuring stewardship by design.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="pillars">
+            <h2 class="text-3xl font-bold text-brand-dark text-center mb-4">The Eight Pillars: A Holistic Governance Ecosystem</h2>
+            <p class="text-lg text-brand-medium max-w-4xl mx-auto text-center mb-12">
+                TML is a comprehensive system of 8 interlocking pillars that create a resilient, self-reinforcing ethical infrastructure.
+            </p>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+                <div class="bg-white rounded-lg shadow-md p-4 text-center">
+                    <div class="text-4xl mb-2">⏸️</div>
+                    <h3 class="font-bold text-brand-dark">1. Sacred Pause</h3>
+                </div>
+                 <div class="bg-white rounded-lg shadow-md p-4 text-center">
+                    <div class="text-4xl mb-2">📜</div>
+                    <h3 class="font-bold text-brand-dark">2. Moral Trace Logs</h3>
+                </div>
+                 <div class="bg-white rounded-lg shadow-md p-4 text-center">
+                    <div class="text-4xl mb-2">🧑‍⚖️</div>
+                    <h3 class="font-bold text-brand-dark">3. Human Rights Pillar</h3>
+                </div>
+                 <div class="bg-white rounded-lg shadow-md p-4 text-center">
+                    <div class="text-4xl mb-2">🌍</div>
+                    <h3 class="font-bold text-brand-dark">4. Earth Protection Pillar</h3>
+                </div>
+                 <div class="bg-white rounded-lg shadow-md p-4 text-center">
+                    <div class="text-4xl mb-2">🔗</div>
+                    <h3 class="font-bold text-brand-dark">5. Public Blockchains</h3>
+                </div>
+                 <div class="bg-white rounded-lg shadow-md p-4 text-center">
+                    <div class="text-4xl mb-2">🛡️</div>
+                    <h3 class="font-bold text-brand-dark">6. Hybrid Shield</h3>
+                </div>
+                 <div class="bg-white rounded-lg shadow-md p-4 text-center">
+                    <div class="text-4xl mb-2">🧠</div>
+                    <h3 class="font-bold text-brand-dark">7. Always Memory</h3>
+                </div>
+                 <div class="bg-white rounded-lg shadow-md p-4 text-center">
+                    <div class="text-4xl mb-2">🤝</div>
+                    <h3 class="font-bold text-brand-dark">8. Goukassian Promise</h3>
+                </div>
+            </div>
+        </section>
+
+        <section id="foundation">
+            <h2 class="text-3xl font-bold text-brand-dark text-center mb-4">A Foundation of Verifiable Law</h2>
+            <p class="text-lg text-brand-medium max-w-4xl mx-auto text-center mb-12">
+                The TML framework is not based on vague guidelines. Its ethical "constitution" is hard-coded with the principles of over 46 foundational international treaties and conventions, establishing a non-negotiable legal and moral bedrock.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                
+                <div class="chart-container">
+                    <canvas id="treatyChart"></canvas>
+                </div>
+
+                <div class="space-y-6">
+                    <div class="bg-white rounded-lg shadow-xl p-6">
+                        <div class="text-6xl font-bold text-brand-primary text-center">26+</div>
+                        <div class="text-xl font-semibold text-brand-dark text-center mt-2">Core Human Rights Instruments</div>
+                        <p class="text-brand-medium text-center text-sm mt-2">e.g., Universal Declaration of Human Rights, Geneva Conventions</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-xl p-6">
+                        <div class="text-6xl font-bold text-brand-accent-green text-center">20+</div>
+                        <div class="text-xl font-semibold text-brand-dark text-center mt-2">Core Earth Protection Treaties</div>
+                        <p class="text-brand-medium text-center text-sm mt-2">e.g., Paris Agreement, Convention on Biological Diversity</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="conclusion" class="bg-brand-primary text-white rounded-lg shadow-xl p-8 md:p-12 text-center">
+            <h2 class="text-3xl font-bold mb-4">A New Standard for Trustworthy AI</h2>
+            <p class="text-lg text-blue-100 max-w-4xl mx-auto">
+                The UNESCO Recommendation defines *what* we must achieve. Ternary Moral Logic provides a robust, mature, and verifiable architecture for *how* to achieve it. By embedding deliberation, accountability, and legal principles into its core, TML transforms AI ethics from a matter of policy into a domain of operational fact.
+            </p>
+        </section>
+
+    </main>
+
+    <footer class="text-center p-8 mt-16 border-t border-gray-200">
+        <p class="text-sm text-brand-medium">Infographic based on the report: "From Principle to Practice: Operationalizing the UNESCO Recommendation on the Ethics of AI through Ternary Moral Logic."</p>
+    </footer>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const ctx = document.getElementById('treatyChart').getContext('2d');
+            
+            const wrappedLabels = [
+                ['Human Rights', 'Instruments'],
+                ['Earth Protection', 'Instruments']
+            ];
+
+            const treatyData = {
+                labels: wrappedLabels,
+                datasets: [{
+                    label: 'Foundational Treaties',
+                    data: [26, 20],
+                    backgroundColor: [
+                        '#2563EB',
+                        '#16A34A',
+                    ],
+                    borderColor: '#F8FAFC',
+                    borderWidth: 4,
+                    hoverOffset: 4
+                }]
+            };
+
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: treatyData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                font: {
+                                    size: 14,
+                                    family: 'Inter, sans-serif'
+                                },
+                                padding: 20,
+                                usePointStyle: true,
+                                formatter: (value, context) => {
+                                    const label = context.chart.data.labels[context.labelIndex];
+                                    return Array.isArray(label) ? label.join(' ') : label;
+                                }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                title: function(tooltipItems) {
+                                    const item = tooltipItems[0];
+                                    let label = item.chart.data.labels[item.dataIndex];
+                                    if (Array.isArray(label)) {
+                                      return label.join(' ');
+                                    } else {
+                                      return label;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
