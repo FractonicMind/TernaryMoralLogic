@@ -117,8 +117,11 @@ Ternary Moral Logic introduces a revolutionary third state to artificial intelli
 8. **Hybrid Shield**: Dual-layer defense combining hash-chain integrity with multi-chain anchoring, ensuring that no decision can be silently erased or altered. 
 9. **Public Blcokchains**: Immediate anchoring of every decision to Bitcoin, Ethereum, Polygon, and OpenTimestamps, delivering tamper-proof, court-admissible evidence across jurisdictions. 
 
-**Core Principle**   
+#### **Core Principles**   
 **No log = no action.** If the system cannot produce required log, operation must halt. This is **non-negotiable.** Missing log creates automatic liability.
+
+**No Spy. No Weapon.** Every implementation inherits the covenant of the License, the binding pledge that Ternary Moral Logic shall never serve as a tool of surveillance or harm. These prohibitions are absolute, extending beyond ethics into enforceable legal duty.
+
 
 #### 🧭 Integrity Self-Tests
 
