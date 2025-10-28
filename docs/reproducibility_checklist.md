@@ -25,7 +25,7 @@ The TML framework achieves reproducibility through:
 1. **Blockchain Anchoring**: Multi-chain immutability
 2. **Framework Integration**: 46+ human rights and environmental documents
 3. **Automated Enforcement**: Smart contract-based penalties
-4. **Optional Enhancement**: Stewardship Council can be added
+4. **Recommended Enhancement**: Stewardship Council can be added
 5. **Legal Admissibility**: Court-tested evidence standards
 
 ### Standards Compliance
@@ -524,7 +524,7 @@ def complete_system_verification():
 
 ## Stewardship Council Enhancement
 
-### Optional Enhancement Test
+### Recommended Enhancement Test
 
 **Enhancement Configuration**:
 ```python
