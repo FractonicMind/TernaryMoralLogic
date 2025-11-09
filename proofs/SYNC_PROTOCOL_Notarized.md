@@ -1,14 +1,5 @@
 # TML Synchronization Protocol - Immutable Accountability Architecture
 
-**Path**: `/core/SYNC_PROTOCOL.md`  
-**Version**: 3.0.0  
-**Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)  
-**Last Updated**: 2025-09-27
-
-*Note: All financial values are nominal to 2025 USD*
-
----
-
 ## Executive Summary
 
 The TML Synchronization Protocol delivers immutable accountability through cryptographic anchoring to public blockchains. Every moral decision generates tamper-proof evidence that survives corporate bankruptcy, government regime change, and technological evolution.
