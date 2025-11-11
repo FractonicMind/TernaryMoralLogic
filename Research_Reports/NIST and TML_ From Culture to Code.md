@@ -1,5 +1,10 @@
 # **NIST and TML: From Culture to Code. A Technical-Policy Whitepaper on the Integration of Ternary Moral Logic with the NIST AI Risk Management Framework**
 
+**Author:** Lev Goukassian  
+**Affiliation:** Independent Researcher  
+**Contact:** leogouk@gmail.com  
+**Keywords:** AI Governance, NIST, Accountability, Sacred Pause, Ternary Moral Logic, AI Ethics, Auditable AI, Immutable Logs, Public Blockchains
+
 ## **Executive Summary: The Accountability Architecture**
 
 **Thesis Statement:** The National Institute of Standards and Technology (NIST) AI Risk Management Framework (AI RMF) provides an essential, consensus-driven guide for *what* constitutes trustworthy AI management.1 However, its explicitly voluntary nature creates a persistent "enforcement gap," relying on an organization's "risk culture" 4 rather than verifiable proof.5 This whitepaper demonstrates how Ternary Moral Logic (TML) provides the "how"—a concrete computational architecture that transforms NIST's four functions (Govern, Map, Measure, Manage) into a verifiable, auditable, and enforceable system.  
