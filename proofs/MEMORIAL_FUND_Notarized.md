@@ -303,9 +303,9 @@ Commission Expires: __________________________
 chain_of_custody:
   document: MEMORIAL_FUND_Notarized.md
   created_by: Lev Goukassian (ORCID 0009-0006-5966-1243)
-  signed_at: 2025-11-12T14:00-08:00
-  notarized_at: 2025-11-12T15:00-08:00
-  file_hash: 33f99d5bab2c1f129dc9da3be789b7dbc2442c64431f5851d607be362c2e1901
+  signed_at: 2025-12-12T14:00-08:00
+  notarized_at: 2025-12-12T15:00-08:00
+  file_hash: 
   anchor_targets:
     - Bitcoin (OpenTimestamps)
     - Ethereum AnchorLog
