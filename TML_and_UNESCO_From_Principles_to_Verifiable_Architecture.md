@@ -2,13 +2,17 @@
 
 **Dispatches from the Fontenoy Building, Paris**
 
----
+—
+
+**AUTHOR'S NOTE:** This story is fictional, but the implementation gap is painfully real. The UNESCO AI Ethics Recommendation is real, important, and ratified by 194 countries. Aspirational principles are necessary but insufficient. Ternary Moral Logic is real and might be the missing operational layer. If you're implementing AI ethics and haven't considered how you'll VERIFY compliance with international human rights law, you're building on quicksand.
+
+—
 
 I work for UNESCO. Yes, that UNESCO. The United Nations Educational, Scientific and Cultural Organization. We're the people who declare World Heritage Sites, promote literacy, and occasionally draft global ethical frameworks that 194 countries unanimously adopt.
 
 That last part is rarer than you'd think.
 
-In 2021, we did something remarkable: we got every single UNESCO Member State—all 194 of them—to agree on a *Recommendation on the Ethics of Artificial Intelligence*. 
+In 2021, we did something remarkable: we got every single UNESCO Member State—all 194 of them—to agree on a *Recommendation on the Ethics of Artificial Intelligence*.
 
 Do you know how hard it is to get 194 countries to agree on ANYTHING? We couldn't get them to agree on what counts as "cultural heritage" for fifteen years, but somehow we got unanimous consensus on AI ethics.
 
@@ -26,7 +30,7 @@ Let me be very clear: the UNESCO AI Ethics Recommendation is GOOD.
 
 It's grounded in four core values:
 1. Human rights and human dignity
-2. Environment and ecosystem flourishing  
+2. Environment and ecosystem flourishing
 3. Diversity and inclusiveness
 4. Peaceful, just, and interconnected societies
 
@@ -86,10 +90,10 @@ I've learned to fear tables in technical documents, but this one was different. 
 
 It showed a direct mapping between UNESCO's four core values and TML's architectural pillars:
 
-**UNESCO Value 1: Respect for Human Rights**  
+**UNESCO Value 1: Respect for Human Rights**
 → **TML Pillar: Human Rights** (26+ foundational instruments, machine-readable, computationally enforced)
 
-**UNESCO Value 2: Environment and Ecosystem Flourishing**  
+**UNESCO Value 2: Environment and Ecosystem Flourishing**
 → **TML Pillar: Earth Protection** (20+ environmental treaties, machine-readable, computationally enforced)
 
 Do you see what he did?
@@ -381,10 +385,11 @@ We went with the first one. But we're all thinking the second.
 
 ---
 
-**AUTHOR'S NOTE:** This story is fictional, but the implementation gap is painfully real. The UNESCO AI Ethics Recommendation is real, important, and ratified by 194 countries. Aspirational principles are necessary but insufficient. Ternary Moral Logic is real and might be the missing operational layer. If you're implementing AI ethics and haven't considered how you'll VERIFY compliance with international human rights law, you're building on quicksand.
+
 
 **WORD COUNT:** 2,847 words of multilateral existential crisis
 
 **FINAL THOUGHT:** Somewhere in Paris, right now, someone is drafting ethical principles for AI. And somewhere else, someone is building the system that will enforce them. This story is for both of them. May they find each other before the principles become meaningless platitudes.
 
 **P.S.:** Getting 194 countries to agree on anything is genuinely miraculous. Getting them to agree on something that actually works? That's what we're attempting now.
+
