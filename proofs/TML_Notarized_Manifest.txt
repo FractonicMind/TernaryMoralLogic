@@ -26,3 +26,13 @@ File: Goukassian_Promise_notarized.pdf
 SHA-256: 7970fbdd38618b264dc69d1c6094f54db833f2863e2b410e5f1a096b385e6b72
 Notarized at: 2025-10-21T18:00Z
 Description: Foundational personal vow anchoring the moral intent of TML. Complements the Goukassian Covenant.
+
+File: MEMORIAL_FUND_Notarized.pdf
+SHA-256: 05e7585252e0becf22177958a0047987bd130781559bfb2c0914b8b21150b152
+Notarized at: 2025-11-13T15:00-08:00
+Description: Scanned and notarized version of the TML Memorial Fund. Anchors the fund’s legal existence and continuity.
+
+File: SYNC_PROTOCOL_Notarized.pdf
+SHA-256: 5b90019966efc17feb99f264777ec0ed17da3825e88593bb0b5898433b8c044a
+Notarized at: 2025-11-13T15:00-08:00
+Description: Scanned and notarized synchronization protocol for TML’s cross-repository integrity.
