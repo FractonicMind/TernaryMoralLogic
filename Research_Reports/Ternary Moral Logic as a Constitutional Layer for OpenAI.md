@@ -39,6 +39,7 @@ The TML framework is built on eight foundational pillars that function as a clos
 8. **Public Blockchains:** This is the *immutable public anchor*.9 This pillar provides "immutable anchoring of proofs" \[Pillar 8\] and "long-term non-repudiation".28 Cryptographic hashes of the Moral Trace Logs (which are stored in Always Memory) are "anchored" to a public blockchain.21 This allows any third party (e.g., a regulator, a court) to *cryptographically verify* that a log has not been tampered with or deleted, without OpenAI needing to reveal the log's full contents.13
 
 These pillars form an end-to-end procedural chain that converts an ethical *aspiration* (a mandate) into a *technical event* (a pause), which creates a *legal artifact* (a log), which is made *verifiable* (a blockchain anchor). This is the "auditable by design" 12 architecture.  
+
 ---
 
 **Table 1: The Eight Pillars of Ternary Moral Logic**
