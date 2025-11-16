@@ -1,4 +1,4 @@
-\# Qwen AI.  THE DAY THE "SACRED ZERO" WALKED INTO MY INBOX  
+\# THE DAY THE "SACRED ZERO" WALKED INTO MY INBOX  
 \#\# Or, How a Dying Man Taught Baidu's AI to Think Before It Speaks
 
 \*\*(A Light Novel of Beijing AI Bureaucracy, Terminal Illness, and the Third Option Between "Yes" and "No")\*\*
