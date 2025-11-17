@@ -271,7 +271,7 @@ Integrating Ternary Moral Logic would provide the following key strategic benefi
 * **Enhanced Regulator and Public Trust:** TML *cryptographically proves* adherence to principles. This is the *only* structural solution to the trust deficit created by the "mutable constitution" 2 controversy. It turns "compliance" from *theater* 4 into *verifiable fact*.  
 * **Strategic Long-Term Governance Resilience:** TML with its Hybrid Shield 7 (external guardians) makes DeepMind's governance *resilient* against *both* internal political pressure 2 and *external* attack, ensuring long-term mission alignment.
 
-## **9\. Comparative Examples**
+## **8\. Comparative Examples**
 
 The following three examples provide a clear, practical A/B comparison of how TML's triadic logic provides superior outcomes in everyday scenarios where current binary systems fail.  
 **Table 3: Comparative Examples of TML Integration Outcomes**
