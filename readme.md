@@ -12,9 +12,10 @@
 > **IMPORTANT NOTICE**: Ternary Moral Logic (TML) is a **legal-technical framework**, not software, hardware, or consulting services.   
 > Implementation requires compliance with all mandatory requirements outlined in [MANDATORY.md](docs/MANDATORY.md) and [COMPLIANCE_DISCLAIMER.md](docs/COMPLIANCE_DISCLAIMER.md).
 
-### Official Citation
-Goukassian, L. (2025). *Ternary Moral Logic — Notarized Constitutional Core, October 2025* [Data set]. Zenodo. [https://doi.org/10.5281/zenodo.17352897](https://doi.org/10.5281/zenodo.17352897)
-
+### Official Citations
+- Goukassian, L. (2025). *Ternary Moral Logic — Notarized Constitutional Core, October 2025* [Data set]. Zenodo. [https://doi.org/10.5281/zenodo.17352897](https://doi.org/10.5281/zenodo.17352897)
+- Goukassian, L. (2025). *Ternary Moral Logic — Notarized Constitutional Core, November 2025* [Data set]. Zenodo. [https://doi.org/10.5281/zenodo.17352897](https://doi.org/10.5281/zenodo.17613006)
+  
 ---
 
 ### Introduction
