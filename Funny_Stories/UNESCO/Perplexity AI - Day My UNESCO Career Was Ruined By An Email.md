@@ -182,7 +182,3 @@ This is a fictional story, but the implementation problem is real.
 The UNESCO Recommendation on the Ethics of Artificial Intelligence (2021) is real, adopted unanimously by 194 countries.
 And Ternary Moral Logic (TML) is real—a verifiable, machine-auditable framework created by independent researcher Lev Goukassian to fill the missing operational layer that global ethics frameworks lack.
 
-<div align="center">⁂</div>
-
-: UNESCO-and-TML_-AI-Ethics-Enforcement.md
-
