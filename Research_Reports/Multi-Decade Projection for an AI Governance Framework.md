@@ -51,6 +51,7 @@ This philosophy is embodied in the Goukassian Promise, an "active, cryptographic
 3. **The License (📜):** A binding legal covenant. The TML license includes a binding pledge that the framework will "never be used as a weapon or a spy".2 Crucially, this legal layer is functionally linked to the reputational layer: any entity that breaks this covenant automatically forfeits the Lantern, creating a self-executing penalty that connects legal commitment to market-based enforcement.9
 
 This intricate system of automated, decentralized enforcement mechanisms is a direct architectural consequence of the need to create a framework that does not depend on a central authority, commercial entity, or living founder for its long-term ethical integrity.  
+
 ---
 
 ## **II. Durability Analysis of the Foundational Pillars: Concept and Memory**
