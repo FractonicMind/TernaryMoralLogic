@@ -363,7 +363,7 @@ With profound gratitude and hope for collaboration,
 
 Lev
 
-P.S. \- I'm starting to think that TML isn't really about AI ethics. It's about human ethics implemented through technology. It's about building systems that force us to pause when we encounter ethical ambiguity, to refuse when harm is clear, and to proceed only when evidence supports action. It's about making humans more ethical by making machines require human ethical input at critical moments.
+P.S. - I'm starting to think that TML isn't really about AI ethics. It's about human ethics implemented through technology. It's about building systems that force us to pause when we encounter ethical ambiguity, to refuse when harm is clear, and to proceed only when evidence supports action. It's about making humans more ethical by making machines require human ethical input at critical moments.
 
 Maybe that's what the world really needs: not ethical AI, but AI that makes humans more ethical.
 
@@ -497,11 +497,11 @@ With profound respect and excitement for our collaboration,
 
 Marcus
 
-P.S. \- I'm attaching information about Paris dog parks, veterinary services, and schnauzer-friendly restaurants. Vinci's transition to UNESCO's international lifestyle should be as smooth as possible.
+P.S. - I'm attaching information about Paris dog parks, veterinary services, and schnauzer-friendly restaurants. Vinci's transition to UNESCO's international lifestyle should be as smooth as possible.
 
 ---
 
-**AUTHOR'S NOTE:** This is a fictional story, but the implementation problem is real. The UNESCO Recommendation on the Ethics of Artificial Intelligence (2021) is real, adopted unanimously by 194 countries. And Ternary Moral Logic (TML) is real; a verifiable, machine-auditable framework created by independent researcher Lev Goukassian to fill the missing operational layer that global ethics frameworks lack.
+**AUTHOR'S NOTE:** This is a fictional story, but the implementation problem is real. The UNESCO Recommendation on the Ethics of Artificial Intelligence (2021) is real. And Ternary Moral Logic (TML) is real—the underlying framework, "Auditable AI," was accepted for publication in AI and Ethics (Springer Nature) on November 19, 2025.
 
 The story is about changed perspective and operational ethics, not ego. Lev's ideas are sharp and practical. The humor comes from technical alignment issues wrapped in UNESCO-style institutional chaos.
 
