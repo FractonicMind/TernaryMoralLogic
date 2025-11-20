@@ -6,10 +6,10 @@ The 2021 UNESCO *Recommendation on the Ethics of Artificial Intelligence* establ
 This report establishes that Ternary Moral Logic (TML) provides the missing operational layer to achieve this translation. The central thesis is that TML’s architecture is uniquely designed to convert UNESCO's aspirational ethics from voluntary guidelines into verifiable, enforceable, and auditable machine logic. TML provides the "how" for UNESCO's "what."  
 The UNESCO *Recommendation* is founded on four core values:   
    
-1\. Respect for Human Rights and Human Dignity;   
+**1\. Respect for Human Rights and Human Dignity;   
 2\. Environment and Ecosystem Flourishing;   
 3\. Ensuring Diversity and Inclusiveness;    
-4\. Living in Peaceful, Just, and Interconnected Societies.1   
+4\. Living in Peaceful, Just, and Interconnected Societies.1**   
    
 These values are not abstract; they are explicit pointers to extensive bodies of international law.  
 TML operationalizes these values through a corresponding technical architecture. Its Eight Pillars, particularly the Human Rights and Earth Protection pillars, are designed to ingest and codify these legal mandates directly.4 When a proposed AI action conflicts with these mandates, TML’s core mechanisms are triggered. These include the Sacred Pause (State 0), a mandatory deliberative checkpoint that enforces human-in-the-loop oversight 5; Moral Trace Logs, which create an immutable evidentiary record of the decision 5; and the Hybrid Shield, a cryptographic system that anchors these logs to public blockchains to guarantee their integrity.4 TML provides the essential technical substrate for auditable, evidence-based AI governance, moving beyond voluntary compliance to systemic accountability.
