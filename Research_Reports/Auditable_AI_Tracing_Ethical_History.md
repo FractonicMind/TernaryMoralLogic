@@ -1,5 +1,7 @@
 # **Auditable AI: Tracing the Ethical History of a Model**
 
+## Accepted for publication in AI and Ethics (Springer Nature), November 19, 2025.
+
 **Author:** Lev Goukassian  
 **Affiliation:** Independent Researcher  
 **Contact:** leogouk@gmail.com  
