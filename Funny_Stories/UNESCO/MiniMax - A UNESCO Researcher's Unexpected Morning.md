@@ -62,9 +62,9 @@ The first result was a Medium article titled "How a Terminal Diagnosis Inspired 
 
 I clicked the interview.
 
-Standing in my office, looking out at the Paris rooftops, I read about a 68-year-old AI researcher who had been diagnosed with stage 4 cancer in September. Who had spent October and November—the literal autumn of his life—building a complete framework for AI ethics enforcement. Who had done all of this while grappling with chemotherapy and a prognosis that used phrases like "comfort care" and "focus on quality of life."
+Standing in my office, looking out at the Paris rooftops, I read about a 68-year-old AI researcher who had been diagnosed with stage 4 cancer in December. Who had spent January and February—the literal winter of his life—building a complete framework for AI ethics enforcement. Who had done all of this while grappling with chemotherapy and a prognosis that used phrases like "comfort care" and "focus on quality of life."
 
-The article mentioned his dog, Schnauzer Vinci, who apparently had become his research assistant during the long coding sessions. "Vinci helps me debug," Lev had told the interviewer. "He mostly just sleeps on my keyboard, but somehow his presence makes complex problems feel more manageable."
+The article mentioned his dog, Miniature Schnauzer Vinci, who apparently had become his research assistant during the long coding sessions. "Vinci helps me debug," Lev had told the interviewer. "He mostly just sleeps on my keyboard, but somehow his presence makes complex problems feel more manageable."
 
 I found myself smiling through what I can only describe as a mild existential crisis. Here I was, a senior researcher at the world's leading international organization for AI ethics, and some stranger with terminal cancer had just sent me a complete technical solution to our biggest implementation problem.
 
@@ -347,7 +347,7 @@ Your point about UNESCO's institutional culture is profound. I've been thinking 
 
 TML applies that same diplomatic wisdom to machine decision-making.
 
-Regarding support for implementation: the offer is incredibly generous and more than I could have hoped for. I'm based in San Francisco, but I would be honored to work with UNESCO's team in Paris if that would accelerate adoption. Vinci and I could definitely use a change of scenery—San Francisco's fog has nothing on Paris's diplomatic sunshine.
+Regarding support for implementation: the offer is incredibly generous and more than I could have hoped for. I'm based in Santa Monica, but I would be honored to work with UNESCO's team in Paris if that would accelerate adoption. Vinci and I could definitely use a change of scenery to Paris's diplomatic sunshine.
 
 I'm attaching my current implementation timeline. Based on what I know about international policy processes, it will take 6-12 months for UNESCO to formally adopt TML as a recommended framework. But member states could begin pilot programs immediately. The technical specifications are ready for implementation in any AI system, public or private.
 
@@ -363,7 +363,7 @@ With profound gratitude and hope for collaboration,
 
 Lev
 
-P.S. - I'm starting to think that TML isn't really about AI ethics. It's about human ethics implemented through technology. It's about building systems that force us to pause when we encounter ethical ambiguity, to refuse when harm is clear, and to proceed only when evidence supports action. It's about making humans more ethical by making machines require human ethical input at critical moments.
+P.S. \- I'm starting to think that TML isn't really about AI ethics. It's about human ethics implemented through technology. It's about building systems that force us to pause when we encounter ethical ambiguity, to refuse when harm is clear, and to proceed only when evidence supports action. It's about making humans more ethical by making machines require human ethical input at critical moments.
 
 Maybe that's what the world really needs: not ethical AI, but AI that makes humans more ethical.
 
@@ -497,7 +497,7 @@ With profound respect and excitement for our collaboration,
 
 Marcus
 
-P.S. - I'm attaching information about Paris dog parks, veterinary services, and schnauzer-friendly restaurants. Vinci's transition to UNESCO's international lifestyle should be as smooth as possible.
+P.S. \- I'm attaching information about Paris dog parks, veterinary services, and schnauzer-friendly restaurants. Vinci's transition to UNESCO's international lifestyle should be as smooth as possible.
 
 ---
 
