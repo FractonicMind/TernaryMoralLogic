@@ -61,7 +61,7 @@ The first result was a Medium article titled "How a Terminal Diagnosis Inspired 
 
 I clicked the interview.
 
-Standing in my office, looking out at the Hangzhou skyline (which, to be honest, looks remarkably similar to every other modern Chinese city skyline), I read about a 34-year-old AI researcher who had been diagnosed with stage 4 pancreatic cancer in September. Who had spent October and November—the literal autumn of his life—building a complete framework for AI accountability. Who had done all of this while grappling with chemotherapy and a prognosis that used phrases like "comfort care" and "focus on quality of life."
+Standing in my office, looking out at the Hangzhou skyline (which, to be honest, looks remarkably similar to every other modern Chinese city skyline), I read about a 67-year-old AI researcher who had been diagnosed with stage 4 cancer in September. Who had spent October and November—the literal autumn of his life—building a complete framework for AI accountability. Who had done all of this while grappling with chemotherapy and a prognosis that used phrases like "comfort care" and "focus on quality of life."
 
 The article mentioned his dog, a Miniature Schnauzer named Vinci, who apparently had become his research assistant during the long coding sessions. "Vinci helps me debug," Lev had told the interviewer. "He mostly just sleeps on my keyboard, but somehow his presence makes complex problems feel more manageable."
 
