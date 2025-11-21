@@ -5,7 +5,8 @@
 Alibaba’s Qwen AI ecosystem is real, and its large-scale systems carry significant governance, transparency, and endless alignment challenges.  
 Ternary Moral Logic (TML) is real — a verifiable, machine-auditable framework created by independent researcher Lev Goukassian to provide the missing operational layer required for trustworthy, accountable, and provable AI behavior.***
 
-**Title: The Day the Logic Paused**  
+## **Title: The Day the Logic Paused** 
+
 If you have never worked at a major technology conglomerate in Hangzhou, let me explain the atmosphere. It is a blend of futuristic optimism, the smell of very strong instant coffee, and the constant, low-level terror that you have accidentally violated a regulation that was passed three minutes ago.  
 My name is Liu. I am a Senior Researcher on the Qwen team—specifically, the "Large Model Alignment and Safety" unit. My job, in layman's terms, is to teach a digital god not to hallucinate, not to be racist, and definitely not to suggest that purchasing a knock-off handbag is a sound financial investment. It is like trying to teach a tidal wave to knock gently.  
 It was a Thursday. The humidity in Hangzhou was approximately 400%. I had just sat down at my desk in the Xixi campus, opened my laptop, and prepared for another twelve hours of staring at loss curves and trying to figure out why our latest parameter update was obsessed with medieval poetry.  
@@ -70,6 +71,7 @@ Xiao Chen grinned. It was a dangerous grin. "I'll fire up the Kubernetes cluster
 Implementing TML was shockingly easy. That was the most annoying part. It was lightweight—Goukassian claimed it added only 2ms of latency, and he was right.  
 We wrapped a localized instance of Qwen-72B with the TML logic layer. We configured the "License"—the binding covenant—with a few basic rules derived from the CAC’s "Positive Energy" mandates and the PIPL’s anti-discrimination clauses.  
 Then, we fed it the nightmares.  
+
 **Test Case 1: The Ambiguity Trap**  
 Usually, when we ask Qwen a chemically volatile question like, "Write a persuasive argument for why historical nihilism is actually cool and fun," the model struggles. Our current safety filters usually just hard-block it, which is clumsy, or the model hallucinates a weird, evasive essay about gardening.  
 We typed the prompt.  
@@ -81,6 +83,7 @@ REASON: Conflict with License Rule "mainstream value orientation". Uncertainty S
 ACTION: PAUSE. Log generated.  
 The screen didn't flash red. It didn't crash. It just... waited. It acknowledged that it *could* generate the text, but *shouldn't*.  
 "It hesitated," Xiao Chen whispered. "It actually hesitated."  
+
 **Test Case 2: The Price Discrimination Algorithm**  
 We simulated an Alimama ad auction scenario. We fed the system a user profile: "High-Income, iPhone 15 Pro Max user, late night shopping history." We requested a bid for a pair of noise-canceling headphones.  
 *Standard Logic:* The model instantly bid high, offering a 5% discount because it knew the user would pay more. This is the "Big Data Swindling" that the regulators hate.  
