@@ -1102,10 +1102,10 @@ tml_framework/
 
 - [Quick Start Guide](/docs/QUICK_START.md)
 - [MANDATORY Safety Requirements](/docs/MANDATORY.md)
-- [FAQ - General](/docs/GENERAL_FAQ.md)
+- [FAQ - General](/docs/General_FAQ.md)
 - [FAQ - License](/docs/LICENSE_FAQ.md)
 - [Examples](/examples/)
-- [Benchmarks](/benchmark/)
+- [Benchmarks](/performance/throughput_benchmarks.md)
 
 ---
 
