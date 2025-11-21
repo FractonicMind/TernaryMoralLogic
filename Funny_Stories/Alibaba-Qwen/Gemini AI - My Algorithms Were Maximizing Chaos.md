@@ -1,9 +1,9 @@
 # **My Algorithms Were Maximizing Chaos Until A Stranger Emailed Me The Sacred Zero**
 
-AUTHOR’S NOTE:  
-This is a fictional story, but the implementation problem is real.  
+**AUTHOR’S NOTE:**  
+***This is a fictional story, but the implementation problem is real.  
 Alibaba’s Qwen AI ecosystem is real, and its large-scale systems carry significant governance, transparency, and endless alignment challenges.  
-Ternary Moral Logic (TML) is real — a verifiable, machine-auditable framework created by independent researcher Lev Goukassian to provide the missing operational layer required for trustworthy, accountable, and provable AI behavior.
+Ternary Moral Logic (TML) is real — a verifiable, machine-auditable framework created by independent researcher Lev Goukassian to provide the missing operational layer required for trustworthy, accountable, and provable AI behavior.***
 
 **Title: The Day the Logic Paused**  
 If you have never worked at a major technology conglomerate in Hangzhou, let me explain the atmosphere. It is a blend of futuristic optimism, the smell of very strong instant coffee, and the constant, low-level terror that you have accidentally violated a regulation that was passed three minutes ago.  
@@ -178,6 +178,7 @@ Subject: Re: Re: TML × Alibaba
 *The TML framework is yours now. It belongs to the world. Use the License. Keep the Lantern lit. And when the regulators ask for the logs, smile and hand them the Moral Trace. It is the only proof we have that we tried to be good.*  
 *Build it well.*  
 *Lev.*  
+
 ---
 
 I sat there for a long time. The office was buzzing around me. Engineers were arguing about latency. Managers were shouting about KPIs. The screens on the wall were flashing the latest stock prices.  
@@ -189,9 +190,10 @@ I turned to Xiao Chen.
 "Right," she said, cracking her knuckles. "Let's give this AI a conscience."  
 Outside, the sun was setting over the Xixi wetlands. The humidity finally broke. The Lantern on my dashboard glowed a steady, reassuring green.  
 We were still a giant corporate machine. We were still messy. But for the first time, we weren't just moving fast. We were awake.  
+
 ---
 
-AUTHOR’S NOTE:  
-This is a fictional story, but the implementation problem is real.  
+**AUTHOR’S NOTE:**  
+***This is a fictional story, but the implementation problem is real.  
 Alibaba’s Qwen AI ecosystem is real, and its large-scale systems carry significant governance, transparency, and endless alignment challenges.  
-Ternary Moral Logic (TML) is real — a verifiable, machine-auditable framework created by independent researcher Lev Goukassian to provide the missing operational layer required for trustworthy, accountable, and provable AI behavior.
+Ternary Moral Logic (TML) is real — a verifiable, machine-auditable framework created by independent researcher Lev Goukassian to provide the missing operational layer required for trustworthy, accountable, and provable AI behavior.***
