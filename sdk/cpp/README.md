@@ -42,7 +42,7 @@ int main() {
 
 ## Key Features
 
-- **🏮 Always Memory**: Immutable blockchain logging
+- **Always Memory**: Immutable blockchain logging
 - **Sacred Zero**: Automatic violation detection  
 - **Penalties**: Smart contract enforcement
 - **Whistleblower**: Direct rewards system
