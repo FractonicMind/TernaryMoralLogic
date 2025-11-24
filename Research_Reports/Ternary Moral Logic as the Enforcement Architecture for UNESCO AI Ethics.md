@@ -138,7 +138,7 @@ The **CQE (Clarifying Question Engine)** component generates structured inquirie
 
 UNESCO Paragraph 35 requires that Member States "ensure that it is always possible to attribute ethical and legal responsibility for any stage of the life cycle of AI systems." Paragraph 36 specifies that "as a rule, life and death decisions should not be ceded to AI systems."
 
-TML operationalizes human oversight through the Sacred Pause mechanism. When the **Stakeholder Proportional Risk Level (SPRL)** exceeds the pause threshold, the system:
+TML operationalizes human oversight through the Sacred Pause mechanism. When the risk level exceeds the threshold, the system:
 
 1. Halts proposed action
 2. Generates Moral Trace Log with uncertainty rationale
@@ -146,7 +146,7 @@ TML operationalizes human oversight through the Sacred Pause mechanism. When the
 4. Preserves complete evidence chain for regulatory examination
 5. Anchors decision hash to public blockchain
 
-Human oversight becomes architecturally mandatory rather than procedurally optional. The SPRL is calculated from three inputs: **impact** (how many stakeholders affected), **likelihood** (probability of harm), and **severity** (scale of harm), producing a floating-point value between 0.0001 and 0.9999 that determines behavioral state transitions.
+Human oversight becomes architecturally mandatory rather than procedurally optional. 
 
 ### Environmental stewardship through the Earth Protection Mandate
 
@@ -210,7 +210,7 @@ This creates **bias traceability**: the ability to identify exactly when, where,
 │  │   │   CORE MODEL    │────────▶│        SHIELD MODEL             │    │   │
 │  │   │  (Capability)   │ Proposed│   (Deterministic Logic Layer)   │    │   │
 │  │   │                 │ Action  │   Evaluates against Promise     │    │   │
-│  │   └─────────────────┘         │   Calculates SPRL               │    │   │
+│  │   └─────────────────┘         │   Calculates risk               │    │   │
 │  │                               │   Generates EUS                 │    │   │
 │  │                               └──────────────┬──────────────────┘    │   │
 │  └──────────────────────────────────────────────┼───────────────────────┘   │
@@ -219,7 +219,7 @@ This creates **bias traceability**: the ability to identify exactly when, where,
 │  ┌──────────────────────────────────────────────────────────────────────┐   │
 │  │                    TERNARY STATE RESOLUTION                          │   │
 │  │                                                                      │   │
-│  │   SPRL < 0.1          0.1 ≤ SPRL < 0.8         SPRL ≥ 0.8           │   │
+│  │    < 0.1                0.1 ≤  < 0.8              ≥ 0.8              │   │
 │  │       │                      │                      │                │   │
 │  │       ▼                      ▼                      ▼                │   │
 │  │   ┌───────┐            ┌───────────┐          ┌─────────┐            │   │
@@ -267,7 +267,7 @@ This creates **bias traceability**: the ability to identify exactly when, where,
 
      ┌────────────────────────────────────────────────────────────────┐
      │                    TRIGGER CONDITIONS                          │
-     │  • SPRL exceeds pause threshold (≥0.3)                        │
+     │  • Risk exceeds pause threshold (≥0.3)                         │
      │  • Human Rights Mandate constraint violation detected          │
      │  • Earth Protection Mandate threshold breached                 │
      │  • Cultural heritage risk identified                           │
@@ -281,7 +281,7 @@ This creates **bias traceability**: the ability to identify exactly when, where,
      │  │  • Halt proposed action immediately                      │  │
      │  │  • Capture system state, inputs, proposed outputs        │  │
      │  │  • Initialize Moral Trace Log entry                      │  │
-     │  │  • Record EUS magnitude and SPRL calculation             │  │
+     │  │  • Record EUS magnitude                                  │  │
      │  │  • Timestamp with cryptographic signature                │  │
      │  └──────────────────────────────────────────────────────────┘  │
      └──────────────────────────┬─────────────────────────────────────┘
@@ -365,7 +365,7 @@ TML addresses this gap by translating normative statements into computational co
 | **Cultural respect** (Para. 19-21, 94-100) | Heritage protection; indigenous rights integration | **UNDRIP constraints** in Goukassian Promise; cultural EUS triggers | Cultural risk assessments with FPIC documentation requirements |
 | **Sustainability** (Para. 31) | Lifecycle impact assessment; resource efficiency | **Earth Protection Mandate** continuous evaluation | Resource consumption logs; environmental impact scores |
 | **Privacy and data protection** (Para. 32-34) | Processing justification; consent documentation | Privacy constraints in Human Rights Mandate | Data handling logs; consent chain records |
-| **Proportionality** (Para. 25-26) | Necessity evaluation; scope limitation | **SPRL calculation** before action; threshold-based restrictions | Proportionality assessments in every Moral Trace Log |
+| **Proportionality** (Para. 25-26) | Necessity evaluation; scope limitation | **Risk calculation** before action; threshold-based restrictions | Proportionality assessments in every Moral Trace Log |
 
 ### Values versus enforcement architecture
 
@@ -385,10 +385,9 @@ This complementary relationship means TML does not replace or contradict UNESCO 
 
 **TML Response Sequence**:
 1. **Earth Protection Mandate activation**: The Goukassian Promise includes CMS Article III constraints requiring "strict protection" for migratory species during breeding
-2. **SPRL calculation**: Impact (protected species population), Likelihood (route intersection with nesting zone confirmed via satellite data), Severity (disruption during critical breeding window); SPRL = 0.67
-3. **Sacred Pause triggered**: System halts route finalization; generates Moral Trace Log documenting conflict between cost efficiency optimization and CBD Article 14 environmental impact assessment requirements
-4. **Human checkpoint**: Ministry environmental compliance officer receives structured alert identifying specific treaty obligations, affected species, and temporal window
-5. **Resolution**: Two-week construction delay implemented to accommodate migration window; route maintained but timing adjusted; full evidence chain anchored
+2. **Sacred Pause triggered**: System halts route finalization; generates Moral Trace Log documenting conflict between cost efficiency optimization and CBD Article 14 environmental impact assessment requirements
+3. **Human checkpoint**: Ministry environmental compliance officer receives structured alert identifying specific treaty obligations, affected species, and temporal window
+4. **Resolution**: Two-week construction delay implemented to accommodate migration window; route maintained but timing adjusted; full evidence chain anchored
 
 **UNESCO Alignment**: Paragraph 18 requires AI actors to "reduce the environmental impact of AI systems" and "comply with applicable international law and domestic legislation, standards and practices, such as precaution, designed for environmental and ecosystem protection." The visible logged sacrifice of **efficiency for biodiversity** creates a documented precedent that enhances public trust in infrastructure AI while demonstrating treaty compliance.
 
@@ -419,9 +418,8 @@ This complementary relationship means TML does not replace or contradict UNESCO 
 
 **TML Response Sequence**:
 1. **Cultural heritage constraint activation**: The Goukassian Promise includes UNDRIP Article 11 constraints protecting "the right to maintain, protect and develop the past, present and future manifestations of their cultures" and Article 19 requiring "free, prior and informed consent before adopting and implementing legislative or administrative measures that may affect them"
-2. **SPRL calculation**: Impact (Māori cultural communities), Likelihood (pattern elements confirmed via cultural heritage database matching), Severity (unauthorized commercial use of sacred cultural expressions); SPRL = 0.82
-3. **Refuse state triggered**: System blocks output generation entirely; generates Refusal Log documenting cultural heritage violation and protected community
-4. **Alternative pathway**: System suggests commissioning local Māori artists for authentic, authorized cultural representation
+2. **Refuse state triggered**: System blocks output generation entirely; generates Refusal Log documenting cultural heritage violation and protected community
+3. **Alternative pathway**: System suggests commissioning local Māori artists for authentic, authorized cultural representation
 
 **UNESCO Alignment**: Paragraph 95 requires Member States to "promote ethical AI approaches for the preservation and accessibility of cultural heritage, in particular of indigenous communities including indigenous languages" and to "prevent the illicit trafficking of cultural objects, and to counter challenges related to disinformation affecting diverse cultural expressions." The refusal state protects against cultural appropriation while directing economic opportunity to indigenous creators.
 
@@ -519,7 +517,7 @@ TML's enforcement of UNESCO principles requires quantifiable indicators enabling
 **Evidentiary Substrate Recognition**: Member States should recognize TML Moral Trace Logs as admissible evidentiary substrate in administrative proceedings, regulatory audits, and judicial contexts. The cryptographic integrity properties of Always Memory and blockchain anchoring satisfy authentication requirements under evidence rules equivalent to the U.S. Federal Rules of Evidence 901 (authentication), 902 (self-authentication), and 803(6) (business records exception).
 
 **Pause Certification Framework**: Member States should establish **Pause Certification** programs verifying that AI systems deployed in high-stakes domains (healthcare, criminal justice, financial services, environmental management) implement compliant Sacred Pause architectures. Certification criteria should include:
-- Demonstrated threshold configuration for domain-appropriate SPRL triggers
+- Demonstrated threshold configuration for domain-appropriate triggers
 - Verified human checkpoint infrastructure with defined reviewer qualifications
 - Tested evidence chain integrity from trigger through resolution
 - Successful independent audit of log completeness and anchor verification
@@ -555,7 +553,7 @@ TML's enforcement of UNESCO principles requires quantifiable indicators enabling
 **Implementation Requirements**:
 - Designate human checkpoint reviewers with documented authority levels
 - Establish secure Always Memory storage with defined retention periods
-- Configure blockchain anchoring for decisions exceeding defined SPRL thresholds
+- Configure blockchain anchoring for decisions exceeding defined thresholds
 - Train staff on Sacred Pause response protocols and override documentation requirements
 
 ---
@@ -574,7 +572,7 @@ The Shield Model has **final authority**: it can permit, pause, or prohibit any 
 The Shield Model:
 - Evaluates every proposed action against Human Rights Mandate constraints
 - Checks Earth Protection Mandate thresholds before environmental decisions
-- Calculates SPRL from impact, likelihood, and severity inputs
+- Calculates risk level from impact, likelihood, and severity inputs
 - Generates Moral Trace Logs with complete rationale documentation
 - Routes Sacred Pause situations to designated human checkpoints
 - Produces Refusal Logs when harm thresholds are exceeded
@@ -631,7 +629,7 @@ TML evidence structures support:
 
 ### Potential misuse of Sacred Pause
 
-**Strategic Delay**: Operators might configure excessively sensitive SPRL thresholds to create artificial pauses, delaying decisions to avoid accountability or create plausible deniability. **Safeguard**: Audit requirements for threshold configuration rationales; comparative benchmarking against domain-appropriate sensitivity levels.
+**Strategic Delay**: Operators might configure excessively sensitive thresholds to create artificial pauses, delaying decisions to avoid accountability or create plausible deniability. **Safeguard**: Audit requirements for threshold configuration rationales; comparative benchmarking against domain-appropriate sensitivity levels.
 
 **Pause Flooding**: Adversarial inputs designed to trigger maximum Sacred Pause activations could overwhelm human checkpoint capacity. **Safeguard**: Rate limiting on pause escalations; automated triage of pause priority levels; surge capacity protocols for checkpoint reviewers.
 
@@ -641,7 +639,7 @@ TML evidence structures support:
 
 **Log Tampering Prior to Anchoring**: Sophisticated attackers might attempt to alter Moral Trace Logs in the interval between generation and blockchain anchoring. **Safeguard**: Minimize anchoring latency; implement local cryptographic signing immediately upon log generation; maintain redundant log streams.
 
-**Threshold Configuration Manipulation**: Attackers with system access might alter SPRL thresholds to prevent Sacred Pause activation. **Safeguard**: Threshold configurations should themselves be logged and anchored; configuration changes require multi-party authorization.
+**Threshold Configuration Manipulation**: Attackers with system access might alter risk level thresholds to prevent Sacred Pause activation. **Safeguard**: Threshold configurations should themselves be logged and anchored; configuration changes require multi-party authorization.
 
 **Shield Model Circumvention**: If the Hybrid Shield architecture is improperly implemented, the Core Model might be invoked directly, bypassing Shield Model evaluation. **Safeguard**: Architectural enforcement requiring all Core Model outputs to transit Shield Model; external verification of architectural integrity.
 
