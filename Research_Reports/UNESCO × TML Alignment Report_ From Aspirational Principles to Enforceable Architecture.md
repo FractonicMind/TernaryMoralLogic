@@ -1,5 +1,8 @@
 # UNESCO × TML Alignment Report: From Aspirational Principles to Enforceable Architecture
 
+---
+#### Permanent Digital Object Identifier: https://doi.org/10.5281/zenodo.17704748
+---
 ## 1. Executive Summary
 
 ### 1.1. UNESCO's Aspirational Framework for Ethical AI
@@ -650,3 +653,6 @@ The development of AI is a defining challenge of our time, with profound implica
 ### 12.3. The Path Forward: From Ethical Aspiration to Global Enforcement
 
 The path forward requires a concerted and collaborative effort from all stakeholders. For **UNESCO Member States**, the task is to create the legal and policy frameworks necessary to support the adoption of TML, treating its logs as court-ready evidence and integrating its principles into public procurement. For the **UNESCO AI Ethics Observatory**, the task is to develop the global standards and test suites needed to validate and monitor TML-enabled systems. For **public institutions and private operators**, the task is to embrace the principles of TML, to invest in its implementation, and to use it as a tool for building more trustworthy and responsible AI. The journey from ethical aspiration to global enforcement will not be easy, but it is a journey that we must undertake. The future of AI, and the future of our world, depends on it. By working together, we can build an AI ecosystem that is not only intelligent and powerful, but also wise, just, and humane.
+
+---
+#### Permanent Digital Object Identifier: https://doi.org/10.5281/zenodo.17704748
