@@ -207,7 +207,7 @@ This creates **bias traceability**: the ability to identify exactly when, where,
 │  ┌──────────────────────────────────────────────────────────────────────┐   │
 │  │                       HYBRID SHIELD                                  │   │
 │  │   ┌─────────────────┐         ┌─────────────────────────────────┐    │   │
-│  │   │   CORE MODEL    │────────▶│        SHIELD MODEL             │    │   │
+│  │   │   CORE MODEL    │  ─────▶ │        SHIELD MODEL             │    │   │
 │  │   │  (Capability)   │ Proposed│   (Deterministic Logic Layer)   │    │   │
 │  │   │                 │ Action  │   Evaluates against Promise     │    │   │
 │  │   └─────────────────┘         │   Calculates risk               │    │   │
@@ -224,7 +224,7 @@ This creates **bias traceability**: the ability to identify exactly when, where,
 │  │       ▼                      ▼                      ▼                │   │
 │  │   ┌───────┐            ┌───────────┐          ┌─────────┐            │   │
 │  │   │  +1   │            │     0     │          │   −1    │            │   │
-│  │   │PROCEED│            │SACRED PAUSE│          │ REFUSE  │            │   │
+│  │   │PROCEED│            │SACRED PAUSE│         │ REFUSE  │            │   │
 │  │   └───┬───┘            └─────┬─────┘          └────┬────┘            │   │
 │  │       │                      │                     │                 │   │
 │  └───────┼──────────────────────┼─────────────────────┼─────────────────┘   │
@@ -245,14 +245,14 @@ This creates **bias traceability**: the ability to identify exactly when, where,
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │                         EVIDENCE INFRASTRUCTURE                             │
 │  ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────────────┐  │
-│  │  ALWAYS MEMORY  │───▶│  CRYPTOGRAPHIC  │───▶│   PUBLIC BLOCKCHAIN     │  │
+│  │  ALWAYS MEMORY  │───▶│  CRYPTOGRAPHIC │───▶│   PUBLIC BLOCKCHAIN     │  │
 │  │  (Local Chain)  │    │  HASH ANCHORING │    │   ANCHORING             │  │
 │  │                 │    │  (SHA256)       │    │   (Multi-chain)         │  │
 │  └─────────────────┘    └─────────────────┘    └─────────────────────────┘  │
 │                                                         │                   │
 │                                                         ▼                   │
 │                              ┌───────────────────────────────────────────┐  │
-│                              │  EXTERNAL VERIFICATION / AUDIT ACCESS    │  │
+│                              │  EXTERNAL VERIFICATION / AUDIT ACCESS     │  │
 │                              │  Regulators │ Courts │ Public │ Operators │  │
 │                              └───────────────────────────────────────────┘  │
 └─────────────────────────────────────────────────────────────────────────────┘
