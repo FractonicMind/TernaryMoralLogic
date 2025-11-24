@@ -127,7 +127,6 @@ The following table provides a direct conceptual mapping from the UNESCO *Recomm
 
 | UNESCO Principle (The "What") | Required Capability (The "Need") | TML Mechanism (The "How") |
 | :---- | :---- | :---- |
-| **Human Dignity & Human Rights** 4 | Guarantees against fabrication; hard-coded protections; verifiable anti-discrimination. | **Goukassian Promise** 8 (anti-misuse covenant); **Human Rights Mandate** 17 (hard-codes 26+ instruments like UDHR 18). |
 | **Transparency & Explainability** (Art. 39-41) | A human-readable and traceable rationale for any AI decision, especially those impacting human rights.17 | **Causal Query Engine (CQE)** (The audit interface) interrogating **Moral Trace Logs** (The immutable record of rationale).5 |
 | **Responsibility & Accountability** (Art. 42-43) | An auditable, non-repudiable record assigning responsibility for a decision to a specific human or process.13 | **Moral Trace Logs** that explicitly record the State 0 escalation and the "human-in-the-loop" **Operator Identity** and their final confirmation. |
 | **Human Oversight & Determination** (Art. 36-38) | A mechanism to *enforce* human intervention and prevent AI from displacing ultimate human determination.1 | **Sacred Pause (State 0\)**.15 A mandatory system halt that *compels* escalation to a human operator for review and determination. |
