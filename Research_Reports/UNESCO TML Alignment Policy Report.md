@@ -93,6 +93,7 @@ TML addresses the "Black Box" of algorithmic bias through radical transparency. 
 TML Operationalization: The Goukassian Promise & The License  
 The TML framework includes a self-enforcing "ethical constitution" known as the Goukassian Promise. This consists of three artifacts: the Lantern, the Signature, and the License.18  
 **Mechanism:** The **License (📜)** is a binding covenant embedded in the code that prohibits the use of the system for lethal autonomous weaponry or non-consensual surveillance. If the system is deployed in a manner that violates this License, the **Hybrid Shield** architecture (discussed in Section 5\) revokes the system’s cryptographic authentication. The system effectively "breaks the promise and loses the Lantern," alerting all networked observers that the system is no longer operating within ethical parameters.18 This aligns with the UNESCO goal of preventing the weaponization of AI.  
+
 ---
 
 ## **3\. Comparative Analysis: UNESCO Principles vs. TML Mechanisms**
