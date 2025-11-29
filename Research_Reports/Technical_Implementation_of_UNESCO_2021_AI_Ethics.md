@@ -1,4 +1,4 @@
-# From Soft Law to Hard Code: Operationalizing International Governance via Ternary Logic Architecture
+# Technical Architecture for Operationalizing the 2021 UNESCO Recommendation on AI Ethics: Ternary Logic Specifications
 
 ### Technical Report | DOI: 10.5281/zenodo.17764849
 
