@@ -330,3 +330,6 @@ The development and implementation of a framework like Ternary Logic cannot be l
 #### 7.3.3 Final Reflection: The Future of Governance in the Algorithmic Age
 
 As we stand at the threshold of the algorithmic age, we face a fundamental choice. We can allow powerful, opaque, and unaccountable systems to shape our lives, or we can take up the challenge of building a new generation of technologies that are aligned with our deepest values. The Ternary Logic framework represents one path toward this latter vision—a world where technology is not a force of chaos and disruption but a partner in the pursuit of justice and stability. It is a vision that acknowledges the profound complexity of the world we live in and the inherent uncertainty of the decisions we must make. It is a vision that honors the wisdom of hesitation and the power of deliberation. The journey from "Soft Law" to "Hard Code" will be long and arduous, but it is a journey we must undertake if we are to build a future where the rule of law extends into the digital realm and where the promise of technology is realized for the benefit of all.
+
+---
+### Available at https://doi.org/10.5281/zenodo.17764849
