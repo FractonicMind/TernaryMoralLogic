@@ -659,3 +659,5 @@ The path forward requires a concerted and collaborative effort from all stakehol
 
 ---
 #### Permanent Digital Object Identifier: https://doi.org/10.5281/zenodo.17704748
+
+#### Interactive Digital Companion: This report is accompanied by a dynamic web-based visualization featuring navigable diagrams and the TML operational pipeline. Access the interactive framework here: https://fractonicmind.github.io/TernaryMoralLogic/Research_Reports/UNESCO_Aspirational_Framework_for_Ethical_AI.html
