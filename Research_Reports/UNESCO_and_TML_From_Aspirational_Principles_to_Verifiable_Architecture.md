@@ -50,14 +50,14 @@ TML is a comprehensive ethical framework for AI accountability.4 Its core innova
 The power of this model resides in the introduction of the middle state: the State 0 or Sacred Pause. This state is not a system failure or an error. It is a *mandatory deliberative checkpoint*—a "formalized pause that transforms ambiguity into verifiable prudence".6 This "intelligent hesitation" 16 is a designed-in moment of reflection, analogous to a human doctor’s considered silence when faced with a life-or-death question, a silence that holds "both truth and care".15  
 This logic is implemented through TML's Eight Pillars:
 
-1. Sacred Zero & Sacred Pause  
-2. Always Memory  
-3. Moral Trace Logs  
-4. Human Rights  
-5. Earth Protection  
-6. Public Blockchains  
-7. Hybrid Shield  
-8. Goukassian Promise 4
+1. **Sacred Zero. Sacred Pause Technology**: Automatic activation when moral complexity exceeds thresholds.
+2. **Always Memory**: Creates an immutable, cryptographically sealed memory before execution.
+3. **The Goukassian Promise**: Composed of three interconnected elements: The Lantern, The Signature, and The License.
+4. **Moral Trace Logs**: Complete, immutable documentation of ethical reasoning.
+5. **Human Rights Mandate**: Real-time detection mechanisms for identifying human rights violations.
+6. **Earth Protection Mandate**: Every AI decision affecting Earth creates immutable memories of its environmental impact.
+7. **Hybrid Shield**: Dual-layer defense combining hash-chain integrity with multi-chain anchoring, ensuring that no decision can be silently erased or altered.
+8. **Public Blcokchains**: Immediate anchoring of every decision to Bitcoin, Ethereum, Polygon, and OpenTimestamps, delivering tamper-proof, court-admissible evidence across jurisdictions.
 
 This report focuses on the pillars that directly operationalize the UNESCO *Recommendation*, demonstrating how they provide the technical architecture for compliance.
 
