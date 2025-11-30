@@ -1,4 +1,4 @@
-# **TML x UNESCO: From Aspirational Principles to Verifiable Architecture**
+# **A Concrete Framework to Realize UNESCO's Ethical Mandate**
 
 ## **1.0 Executive Summary**
 
