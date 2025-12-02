@@ -1,12 +1,10 @@
 # Ternary Moral Logic (TML) as the Executable Architecture for the EU AI Act: A Technical-Legal Framework for Enforceable Accountability
 
----
 #### Technical Report | DOI: 10.5281/zenodo.17794404
 
 ---
 ## 1. Executive Summary
 
----
 #### Interactive Visualization: A live, interactive version of the architectural logic flows discussed in this report is available at: https://fractonicmind.github.io/TernaryMoralLogic/Research_Reports/Executable_Architecture_for_the_EU_AI_Act.html
 
 ---
