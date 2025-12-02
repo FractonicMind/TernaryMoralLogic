@@ -1,7 +1,15 @@
 # Ternary Moral Logic (TML) as the Executable Architecture for the EU AI Act: A Technical-Legal Framework for Enforceable Accountability
 
+---
+#### Technical Report | DOI: 10.5281/zenodo.17794404
+
+---
 ## 1. Executive Summary
 
+---
+#### Interactive Visualization: A live, interactive version of the architectural logic flows discussed in this report is available at: https://fractonicmind.github.io/TernaryMoralLogic/Research_Reports/Executable_Architecture_for_the_EU_AI_Act.html
+
+---
 ### 1.1 The EU AI Act's Risk-Based Framework and Enforcement Gaps
 
 The European Union's Artificial Intelligence Act (Regulation (EU) 2024/1689) establishes a landmark, risk-based legal framework designed to govern the development and deployment of AI systems within the single market . This framework categorizes AI systems into four distinct risk levels: unacceptable, high, limited, and minimal risk . Systems deemed to pose an unacceptable risk, such as those used for social scoring or subliminal manipulation, are outright prohibited . High-risk systems, which are prevalent in critical sectors like healthcare, transportation, and law enforcement, are subject to a stringent set of mandatory requirements, including rigorous conformity assessments to verify their accuracy, robustness, and cybersecurity . Limited-risk systems, such as chatbots, are primarily subject to transparency obligations, while minimal-risk systems, like spam filters, face no additional legal burdens under the Act . This tiered approach aims to balance the promotion of innovation with the protection of fundamental rights and public safety. However, despite its comprehensive scope, the Act's reliance on procedural compliance and post-hoc auditing creates significant enforcement gaps that undermine its effectiveness in practice. These gaps manifest as a disconnect between the legal intent of the regulation and the technical reality of AI systems, leading to a state of "compliance theater" where claims of adherence are difficult, if not impossible, to verify in a meaningful way .
@@ -516,3 +524,7 @@ AI deployers are the organizations that use high-risk AI systems in their operat
 #### 7.3.1 Utilizing TML for Human Oversight (Article 14)
 
 Deployers should use TML to implement effective human oversight. The **Sacred Pause** mechanism provides a clear and unambiguous signal to human overseers that their intervention is required. The **Clarifying Question Engine (CQE)** can provide the overseer with the context and
+
+---
+#### Available at https://doi.org/10.5281/zenodo.17794404
+---
