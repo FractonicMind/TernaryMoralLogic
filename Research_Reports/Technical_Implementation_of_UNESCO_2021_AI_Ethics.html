@@ -1,0 +1,1532 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>From Soft Law to Hard Code: Operationalizing International Governance via Ternary Logic Architecture</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'serif': ['Playfair Display', 'serif'],
+                        'sans': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'sage': {
+                            50: '#f6f7f6',
+                            100: '#e3e7e3',
+                            200: '#c7d0c7',
+                            300: '#a3b2a3',
+                            400: '#7d927d',
+                            500: '#5f7a5f',
+                            600: '#4a614a',
+                            700: '#3d4f3d',
+                            800: '#334133',
+                            900: '#2b362b',
+                        },
+                        'stone': {
+                            50: '#fafaf9',
+                            100: '#f5f5f4',
+                            200: '#e7e5e4',
+                            300: '#d6d3d1',
+                            400: '#a8a29e',
+                            500: '#78716c',
+                            600: '#57534e',
+                            700: '#44403c',
+                            800: '#292524',
+                            900: '#1c1917',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js"></script>
+    <style>
+        body {
+            overflow-x: hidden;
+        }
+        .mermaid-container {
+            display: flex;
+            justify-content: center;
+            min-height: 300px;
+            max-height: 800px;
+            background: #ffffff;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mermaid-container .mermaid {
+            width: 100%;
+            max-width: 100%;
+            height: 100%;
+            cursor: grab;
+            transition: transform 0.3s ease;
+            transform-origin: center center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            touch-action: none; /* 防止触摸设备上的默认行为 */
+            -webkit-user-select: none; /* 防止文本选择 */
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .mermaid-container .mermaid svg {
+            max-width: 100%;
+            height: 100%;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .mermaid-container .mermaid:active {
+            cursor: grabbing;
+        }
+
+        .mermaid-container.zoomed .mermaid {
+            height: 100%;
+            width: 100%;
+            cursor: grab;
+        }
+
+        .mermaid-controls {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            display: flex;
+            gap: 10px;
+            z-index: 20;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 8px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .mermaid-control-btn {
+            background: #ffffff;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            padding: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #374151;
+            font-size: 14px;
+            min-width: 36px;
+            height: 36px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mermaid-control-btn:hover {
+            background: #f8fafc;
+            border-color: #3b82f6;
+            color: #3b82f6;
+            transform: translateY(-1px);
+        }
+
+        .mermaid-control-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Enhanced node styling with better contrast */
+        .mermaid .node rect,
+        .mermaid .node circle,
+        .mermaid .node ellipse,
+        .mermaid .node polygon {
+            stroke-width: 2px !important;
+            stroke: #374151 !important;
+        }
+        
+        .mermaid .node rect {
+            fill: #ffffff !important;
+            filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.12)) !important;
+        }
+        
+        .mermaid .node circle {
+            fill: #f6f7f6 !important;
+            stroke: #4a614a !important;
+            stroke-width: 3px !important;
+        }
+        
+        /* Specific styling for different node colors with proper contrast */
+        .mermaid .node[style*="fill:#ffffff"] text,
+        .mermaid .node[style*="fill: #ffffff"] text {
+            fill: #1c1917 !important;
+            font-weight: 600 !important;
+        }
+        
+        .mermaid .node[style*="fill:#f6f7f6"] text,
+        .mermaid .node[style*="fill: #f6f7f6"] text,
+        .mermaid .node[style*="fill:#e3e7e3"] text,
+        .mermaid .node[style*="fill: #e3e7e3"] text {
+            fill: #2b362b !important;
+            font-weight: 600 !important;
+        }
+        
+        .mermaid .node[style*="fill:#c7d0c7"] text,
+        .mermaid .node[style*="fill: #c7d0c7"] text {
+            fill: #2b362b !important;
+            font-weight: 600 !important;
+        }
+        
+        .mermaid .node[style*="fill:#a3b2a3"] text,
+        .mermaid .node[style*="fill: #a3b2a3"] text {
+            fill: #ffffff !important;
+            font-weight: 600 !important;
+        }
+        
+        .mermaid .node[style*="fill:#3d4f3d"] text,
+        .mermaid .node[style*="fill: #3d4f3d"] text,
+        .mermaid .node[style*="fill:#334133"] text,
+        .mermaid .node[style*="fill: #334133"] text {
+            fill: #ffffff !important;
+            font-weight: 600 !important;
+        }
+        
+        /* Edge styling for better visibility */
+        .mermaid .edgePath path {
+            stroke: #5f7a5f !important;
+            stroke-width: 2px !important;
+            filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1)) !important;
+        }
+        
+        .mermaid .edgeLabel {
+            background-color: rgba(255, 255, 255, 0.95) !important;
+            border-radius: 4px !important;
+            padding: 2px 6px !important;
+            border: 1px solid #d6d3d1 !important;
+        }
+        
+        .mermaid .edgeLabel text {
+            fill: #44403c !important;
+            font-weight: 500 !important;
+            font-size: 12px !important;
+        }
+        
+        /* Timeline specific styling with better contrast */
+        .mermaid .section {
+            fill: #f5f5f4 !important;
+            stroke: #a8a29e !important;
+            stroke-width: 1px !important;
+        }
+        
+        .mermaid .section text {
+            fill: #44403c !important;
+            font-weight: 600 !important;
+        }
+        
+        .mermaid .task {
+            fill: #ffffff !important;
+            stroke: #78716c !important;
+            stroke-width: 1px !important;
+        }
+        
+        .mermaid .task text {
+            fill: #292524 !important;
+            font-weight: 500 !important;
+        }
+        
+        .mermaid .cScale0, .mermaid .cScale1, .mermaid .cScale2 {
+            stroke: #5f7a5f !important;
+            stroke-width: 2px !important;
+        }
+        
+        /* Entity relationship diagram styling */
+        .mermaid .er.entity {
+            fill: #f6f7f6 !important;
+            stroke: #4a614a !important;
+            stroke-width: 2px !important;
+        }
+        
+        .mermaid .er.entity text {
+            fill: #2b362b !important;
+            font-weight: 600 !important;
+        }
+        
+        .mermaid .er.relationship {
+            stroke: #5f7a5f !important;
+            stroke-width: 2px !important;
+        }
+        
+        .mermaid .er.relationship text {
+            fill: #44403c !important;
+            font-weight: 500 !important;
+        }
+        
+        /* Ensure proper text contrast for all mermaid elements */
+        .mermaid text {
+            font-family: 'Inter', sans-serif !important;
+            font-weight: 500 !important;
+        }
+        
+        /* Hover effects for better interactivity */
+        .mermaid .node:hover rect,
+        .mermaid .node:hover circle,
+        .mermaid .node:hover ellipse,
+        .mermaid .node:hover polygon {
+            stroke-width: 3px !important;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15)) !important;
+        }
+        
+        .mermaid-container .mermaid svg {
+            max-width: 100% !important;
+            height: auto !important;
+        }
+        
+        @media (max-width: 1024px) {
+            .mermaid-control-btn:not(.reset-zoom) {
+                display: none;
+            }
+            .mermaid-controls {
+                top: auto;
+                bottom: 15px;
+                right: 15px;
+            }
+        }
+    </style>
+  <base target="_blank">
+</head>
+
+  <body class="bg-stone-50 text-stone-900 font-sans leading-relaxed overflow-x-hidden">
+
+    <!-- Fixed TOC - Responsive -->
+    <nav id="toc" class="fixed left-0 top-0 h-screen w-80 bg-white shadow-2xl border-r border-stone-200 z-50 overflow-y-auto transform -translate-x-full lg:translate-x-0 transition-transform duration-300">
+      <div class="p-6 border-b border-stone-200">
+        <h3 class="font-serif font-bold text-lg text-sage-700">Table of Contents</h3>
+        <button id="toc-toggle" class="lg:hidden absolute top-4 right-4 text-stone-600 hover:text-sage-600">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <ul class="p-6 space-y-3 text-sm">
+        <li>
+          <a href="#abstract" class="text-stone-600 hover:text-sage-600 transition-colors block py-1">1. Abstract</a>
+        </li>
+        <li>
+          <a href="#introduction" class="text-stone-600 hover:text-sage-600 transition-colors block py-1">2. Introduction: The Enforceability Crisis</a>
+        </li>
+        <li>
+          <a href="#theoretical-framework" class="text-stone-600 hover:text-sage-600 transition-colors block py-1">3. Theoretical Framework</a>
+        </li>
+        <li>
+          <a href="#evidence-mechanism" class="text-stone-600 hover:text-sage-600 transition-colors block py-1">4. Evidence Mechanism</a>
+        </li>
+        <li>
+          <a href="#case-studies" class="text-stone-600 hover:text-sage-600 transition-colors block py-1">5. Operational Alignment: Three Case Studies</a>
+        </li>
+        <li>
+          <a href="#comparative-analysis" class="text-stone-600 hover:text-sage-600 transition-colors block py-1">6. Comparative Analysis</a>
+        </li>
+        <li>
+          <a href="#conclusion" class="text-stone-600 hover:text-sage-600 transition-colors block py-1">7. Conclusion</a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Main Content - Responsive -->
+    <main class="lg:ml-80 min-h-screen">
+
+      <!-- Hero Section - Bento Grid -->
+      <section class="relative bg-gradient-to-br from-sage-50 to-stone-100 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-16">
+          <!-- Bento Grid -->
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-6 h-auto md:h-96">
+
+            <!-- Title Block -->
+            <div class="md:col-span-8 bg-white/70 backdrop-blur-sm rounded-2xl p-8 shadow-lg flex flex-col justify-center">
+              <h1 class="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-sage-800 mb-4 leading-tight">
+                <em class="italic">From Soft Law to Hard Code</em>
+              </h1>
+              <p class="text-base sm:text-lg md:text-xl text-stone-600 font-medium mb-6">
+                Operationalizing International Governance via Ternary Logic Architecture
+              </p>
+              <div class="flex items-center text-sm text-stone-500">
+                <i class="fas fa-university mr-2"></i>
+                <span>Academic Research • Governance Innovation • Algorithmic Law</span>
+              </div>
+            </div>
+
+            <!-- Visual Element -->
+            <div class="md:col-span-4 bg-sage-100 rounded-2xl p-6 shadow-lg flex items-center justify-center">
+              <img src="https://kimi-web-img.moonshot.cn/img/lh3.googleusercontent.com/cd0f2b7c8e3d2637b90c6f37683aa43cadc325cd" alt="Abstract visualization of ternary logic states" class="w-full h-32 object-cover rounded-lg" size="small" aspect="wide" color="green" style="clipart" query="ternary logic abstract visualization" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"/>
+            </div>
+
+            <!-- Key Insight -->
+            <div class="md:col-span-5 bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg">
+              <h3 class="font-serif text-lg font-semibold text-sage-700 mb-3">The Implementation Gap</h3>
+              <p class="text-sm text-stone-600 leading-relaxed">
+                Current international AI frameworks like the UNESCO Recommendation represent &#34;Soft Law&#34;—aspirational norms lacking technical enforcement mechanisms.
+              </p>
+            </div>
+
+            <!-- Innovation Highlight -->
+            <div class="md:col-span-7 bg-gradient-to-r from-sage-200 to-sage-300 rounded-2xl p-6 shadow-lg">
+              <h3 class="font-serif text-lg font-semibold text-sage-800 mb-3">Ternary Logic as Solution</h3>
+              <p class="text-sm text-sage-700 leading-relaxed">
+                By introducing a third logical state (State 0), TL converts normative principles into unavoidable computational mandates, creating &#34;Automated Due Process.&#34;
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- Abstract Section -->
+      <section id="abstract" class="py-16 bg-white">
+        <div class="max-w-4xl mx-auto px-6">
+          <div class="prose prose-lg max-w-none">
+            <h2 class="font-serif text-3xl font-bold text-sage-800 mb-8">1. Abstract</h2>
+
+            <div class="bg-sage-50 border-l-4 border-sage-400 p-6 mb-8 rounded-r-lg">
+              <h3 class="font-serif text-xl font-semibold text-sage-700 mb-4">1.1 The Implementation Gap in International AI Governance</h3>
+              <p class="text-stone-700 leading-relaxed">
+                The proliferation of artificial intelligence (AI) in critical sectors has outpaced the development of effective governance mechanisms, creating a significant &#34;Implementation Gap&#34; between high-level ethical principles and their practical enforcement. International frameworks, exemplified by the <a href="https://www.ohchr.org/sites/default/files/2022-03/UNESCO.pdf" class="text-sage-600 hover:text-sage-800 underline" target="_blank">2021 UNESCO Recommendation on the Ethics of AI</a>, establish vital normative values such as accountability, transparency, and human oversight. However, these instruments function as &#34;Soft Law,&#34; relying on voluntary compliance and lacking the technical architecture necessary for mandatory, verifiable adherence.
+              </p>
+            </div>
+
+            <div class="bg-stone-50 p-6 rounded-lg mb-8">
+              <h3 class="font-serif text-xl font-semibold text-stone-800 mb-4">1.2 Ternary Logic as a &#34;Civic System&#34; for Hard Code</h3>
+              <p class="text-stone-700 leading-relaxed">
+                This paper argues that Ternary Logic (TL) provides the necessary &#34;Algorithmic Statute&#34; to close the Implementation Gap. By introducing a third logical state, the &#34;Epistemic Hold&#34; (State 0), TL creates a system of &#34;Automated Due Process.&#34; This state functions as a mandatory hesitation mechanism, triggered when an AI system encounters incomplete data, contradictory inputs, or legal ambiguity, effectively forcing a pause in execution analogous to a legal injunction.
+              </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="bg-white border border-stone-200 p-6 rounded-lg">
+                <h4 class="font-serif text-lg font-semibold text-stone-800 mb-3">Keywords</h4>
+                <p class="text-sm text-stone-600">Algorithmic Governance, AI Ethics, Ternary Logic, International Law, Soft Law, Hard Code, Automated Due Process, Decision Logs, UNESCO AI Recommendation, EU AI Act</p>
+              </div>
+              <div class="bg-white border border-stone-200 p-6 rounded-lg">
+                <h4 class="font-serif text-lg font-semibold text-stone-800 mb-3">JEL Classification</h4>
+                <p class="text-sm text-stone-600">K20 (Regulation and Business Law), K33 (International Law), K42 (Illegal Behavior and the Enforcement of Law), L50 (Regulation and Industrial Policy)</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Introduction Section -->
+      <section id="introduction" class="py-16 bg-stone-50">
+        <div class="max-w-4xl mx-auto px-6">
+          <h2 class="font-serif text-3xl font-bold text-sage-800 mb-8">2. Introduction: The Enforceability Crisis</h2>
+
+          <div class="prose prose-lg max-w-none">
+            <h3 class="font-serif text-2xl font-semibold text-stone-800 mb-6">The Normative Value and Voluntary Nature of the UNESCO Recommendation</h3>
+
+            <p class="text-stone-700 leading-relaxed mb-6">
+              The 2021 UNESCO Recommendation on the Ethics of Artificial Intelligence stands as a landmark achievement in global norm-setting, providing a comprehensive framework of values and principles to guide the development and deployment of AI systems worldwide <a href="https://www.ohchr.org/sites/default/files/2022-03/UNESCO.pdf" class="text-sage-600 hover:text-sage-800 underline" target="_blank">[116]</a>. Adopted by all 193 UNESCO Member States, it represents a historic consensus on the need to anchor AI in human rights, dignity, and environmental sustainability.
+            </p>
+
+            <div class="bg-white p-6 rounded-lg shadow-sm border border-stone-200 mb-8">
+              <h4 class="font-serif text-lg font-semibold text-stone-800 mb-4">Key Articles Analysis</h4>
+              <div class="space-y-4">
+                <div class="border-l-4 border-sage-400 pl-4">
+                  <h5 class="font-semibold text-stone-800">Article 23 (Accountability)</h5>
+                  <p class="text-sm text-stone-600 mt-1">Stipulates that AI actors must assume ethical and legal responsibility, calling for oversight, impact assessment, and audit mechanisms.</p>
+                </div>
+                <div class="border-l-4 border-sage-400 pl-4">
+                  <h5 class="font-semibold text-stone-800">Article 27 (Transparency)</h5>
+                  <p class="text-sm text-stone-600 mt-1">Demands transparent and understandable decision-making processes, calling for liability frameworks.</p>
+                </div>
+                <div class="border-l-4 border-sage-400 pl-4">
+                  <h5 class="font-semibold text-stone-800">Article 37 (Human Oversight)</h5>
+                  <p class="text-sm text-stone-600 mt-1">Mandates meaningful human control, especially for irreversible or life-and-death consequences.</p>
+                </div>
+              </div>
+            </div>
+
+            <h3 class="font-serif text-2xl font-semibold text-stone-800 mb-6">The &#34;Valley of Death&#34;: From High-Level Principles to Binary Execution</h3>
+
+            <p class="text-stone-700 leading-relaxed mb-6">
+              The chasm between the aspirational norms of international Soft Law and the operational reality of AI systems can be conceptualized as a &#34;Valley of Death.&#34; This metaphor describes the perilous journey from high-level, abstract principles—such as &#34;human dignity,&#34; &#34;fairness,&#34; and &#34;environmental protection&#34;—to the low-level, concrete execution of machine code.
+            </p>
+
+            <div class="bg-sage-50 border border-sage-200 p-6 rounded-lg mb-8">
+              <h4 class="font-serif text-lg font-semibold text-sage-800 mb-4">The Inadequacy of Binary Logic</h4>
+              <p class="text-stone-700 leading-relaxed">
+                Classical propositional logic operates on the principle of bivalence, where every proposition is either true or false. This system breaks down when confronted with the &#34;grey areas&#34; that characterize much of human life, law, and morality. As <a href="https://medium.com/ternarymorallogic/beyond-binary-how-ternary-moral-logic-is-teaching-ai-to-think-feel-and-hesitate-73de201e084e" class="text-sage-600 hover:text-sage-800 underline" target="_blank">Lev Goukassian observes</a>, this cultural preference for certainty over hesitation is reflected in how machines are built.
+              </p>
+            </div>
+
+            <h3 class="font-serif text-2xl font-semibold text-stone-800 mb-6">Thesis: The Need for an Algorithmic Statute</h3>
+
+            <p class="text-stone-700 leading-relaxed">
+              What is required is an &#34;Algorithmic Statute&#34;: a foundational layer of technical and legal rules embedded directly into AI system architecture. Ternary Logic provides the architectural foundation for this new form of governance, functioning as <strong>Administrative Law for Algorithms</strong>. The goal is to transform aspirational norms into <strong>unavoidable computational mandates</strong>.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Theoretical Framework Section -->
+      <section id="theoretical-framework" class="py-16 bg-white">
+        <div class="max-w-4xl mx-auto px-6">
+          <h2 class="font-serif text-3xl font-bold text-sage-800 mb-8">3. Theoretical Framework: The Epistemic Hold as Automated Due Process</h2>
+
+          <div class="prose prose-lg max-w-none">
+            <p class="text-stone-700 leading-relaxed mb-8">
+              The prevailing binary logic architecture of computational systems is fundamentally ill-suited for implementing complex legal and ethical norms. This inadequacy creates a critical &#34;Valley of Death&#34; between high-level principles and their practical application.
+            </p>
+
+            <!-- Ternary Logic State Diagram -->
+            <div class="bg-stone-50 p-8 rounded-lg mb-8">
+              <h4 class="font-serif text-xl font-semibold text-stone-800 mb-6 text-center">Ternary Logic State Architecture</h4>
+              <div class="mermaid-container">
+                <div class="mermaid-controls">
+                  <button class="mermaid-control-btn zoom-in" title="放大">
+                    <i class="fas fa-search-plus"></i>
+                  </button>
+                  <button class="mermaid-control-btn zoom-out" title="缩小">
+                    <i class="fas fa-search-minus"></i>
+                  </button>
+                  <button class="mermaid-control-btn reset-zoom" title="重置">
+                    <i class="fas fa-expand-arrows-alt"></i>
+                  </button>
+                  <button class="mermaid-control-btn fullscreen" title="全屏查看">
+                    <i class="fas fa-expand"></i>
+                  </button>
+                </div>
+                <div class="mermaid">
+                  graph TD
+                  A[&#34;Decision Point&#34;] --&gt; B{&#34;Evaluate Inputs&#34;}
+                  B --&gt;|&#34;Complete Data
+                  <br/>Clear Legal Status&#34;| C[&#34;+1
+                  <br/>Proceed&#34;]
+                  B --&gt;|&#34;Incomplete Data
+                  <br/>Legal Ambiguity
+                  <br/>Contradictory Inputs&#34;| D[&#34;0
+                  <br/>Epistemic Hold&#34;]
+                  B --&gt;|&#34;Clear Violation
+                  <br/>Known Prohibition&#34;| E[&#34;-1
+                  <br/>Refusal&#34;]
+
+                  D --&gt; F[&#34;Automated Due Process&#34;]
+                  F --&gt; G[&#34;Request Additional Data&#34;]
+                  F --&gt; H[&#34;Flag for Human Review&#34;]
+                  F --&gt; I[&#34;Consult Higher Rule Set&#34;]
+
+                  style C fill:#e3f2fd,stroke:#1565c0,stroke-width:3px,color:#0d47a1
+                  style D fill:#fff3e0,stroke:#ef6c00,stroke-width:3px,color:#e65100
+                  style E fill:#ffebee,stroke:#c62828,stroke-width:3px,color:#b71c1c
+                  style A fill:#f5f5f4,stroke:#44403c,stroke-width:2px,color:#292524
+                  style B fill:#f5f5f4,stroke:#44403c,stroke-width:2px,color:#292524
+                  style F fill:#f6f7f6,stroke:#4a614a,stroke-width:2px,color:#2b362b
+                  style G fill:#f6f7f6,stroke:#4a614a,stroke-width:2px,color:#2b362b
+                  style H fill:#f6f7f6,stroke:#4a614a,stroke-width:2px,color:#2b362b
+                  style I fill:#f6f7f6,stroke:#4a614a,stroke-width:2px,color:#2b362b
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-white border border-stone-200 p-6 rounded-lg mb-8">
+              <h4 class="font-serif text-lg font-semibold text-stone-800 mb-4">The Failure of Binary Logic in Regulatory Contexts</h4>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <h5 class="font-semibold text-stone-700 mb-2">Forces Premature Judgment</h5>
+                  <p class="text-sm text-stone-600">Binary systems must select one of two paths: proceed (1) or do not proceed (0), even when uncertainty is an intrinsic feature of the problem space.</p>
+                </div>
+                <div>
+                  <h5 class="font-semibold text-stone-700 mb-2">Cannot Represent Ambiguity</h5>
+                  <p class="text-sm text-stone-600">Legal concepts like &#34;reasonable,&#34; &#34;fair,&#34; or &#34;discriminatory&#34; resist binary classification as their meaning depends on context and evolving values.</p>
+                </div>
+              </div>
+            </div>
+
+            <h3 class="font-serif text-2xl font-semibold text-stone-800 mb-6">Introducing State 0: The Epistemic Hold</h3>
+
+            <p class="text-stone-700 leading-relaxed mb-6">
+              The Epistemic Hold is not merely a &#34;pause&#34; but a distinct computational posture that signifies a system&#39;s inability to proceed due to epistemic uncertainty. It is a state of <strong>mandatory hesitation</strong>, triggered when inputs are insufficient, contradictory, or legally ambiguous.
+            </p>
+
+            <div class="bg-sage-50 border border-sage-200 p-6 rounded-lg mb-8">
+              <h4 class="font-serif text-lg font-semibold text-sage-800 mb-4">Primary Triggers for Epistemic Hold</h4>
+              <div class="space-y-3">
+                <div class="flex items-start">
+                  <div class="bg-sage-200 rounded-full p-1 mr-3 mt-1">
+                    <i class="fas fa-database text-sage-700 text-xs"></i>
+                  </div>
+                  <div>
+                    <h5 class="font-semibold text-stone-800">Incomplete Data</h5>
+                    <p class="text-sm text-stone-600">Required data points for decision-making are missing or null</p>
+                  </div>
+                </div>
+                <div class="flex items-start">
+                  <div class="bg-sage-200 rounded-full p-1 mr-3 mt-1">
+                    <i class="fas fa-exclamation-triangle text-sage-700 text-xs"></i>
+                  </div>
+                  <div>
+                    <h5 class="font-semibold text-stone-800">Contradictory Inputs</h5>
+                    <p class="text-sm text-stone-600">Mutually exclusive information from different data sources</p>
+                  </div>
+                </div>
+                <div class="flex items-start">
+                  <div class="bg-sage-200 rounded-full p-1 mr-3 mt-1">
+                    <i class="fas fa-balance-scale text-sage-700 text-xs"></i>
+                  </div>
+                  <div>
+                    <h5 class="font-semibold text-stone-800">Legal Ambiguity</h5>
+                    <p class="text-sm text-stone-600">Proposed action falls into legal &#34;grey areas&#34; with unclear status</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <h3 class="font-serif text-2xl font-semibold text-stone-800 mb-6">The Epistemic Hold as a Legal Analogue</h3>
+
+            <p class="text-stone-700 leading-relaxed mb-6">
+              The Epistemic Hold functions as a computational analogue to legal mechanisms designed to ensure fairness and due process. It is most closely analogous to a <strong>legal injunction</strong> or <strong>stay of execution</strong>, preserving the status quo until underlying uncertainty can be resolved.
+            </p>
+
+            <div class="bg-white border-l-4 border-sage-400 p-6 rounded-r-lg">
+              <h4 class="font-serif text-lg font-semibold text-sage-800 mb-3">The Goukassian Principle: Reverse Burden of Proof</h4>
+              <p class="text-stone-700 leading-relaxed">
+                When a system enters State 0, the burden of proof shifts to the entity seeking action. They must provide evidence to resolve uncertainty and lift the hold. This reverses the default assumption from &#34;proceed unless proven harmful&#34; to <strong>&#34;do not proceed unless proven safe and compliant.&#34;</strong>
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Evidence Mechanism Section -->
+      <section id="evidence-mechanism" class="py-16 bg-stone-50">
+        <div class="max-w-4xl mx-auto px-6">
+          <h2 class="font-serif text-3xl font-bold text-sage-800 mb-8">4. The Evidence Mechanism: Decision Logs as Digital Affidavits</h2>
+
+          <div class="prose prose-lg max-w-none">
+            <p class="text-stone-700 leading-relaxed mb-8">
+              A system of governance is only as good as its ability to provide evidence of compliance. The Ternary Logic architecture addresses this need through &#34;Decision Logs&#34;—comprehensive, cryptographically secured records that function as &#34;digital affidavits.&#34;
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+              <div class="bg-white p-6 rounded-lg shadow-sm border border-stone-200">
+                <div class="bg-sage-100 rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                  <i class="fas fa-bullseye text-sage-700"></i>
+                </div>
+                <h4 class="font-serif text-lg font-semibold text-stone-800 mb-2">Intent</h4>
+                <p class="text-sm text-stone-600">Records the intended purpose of action, ensuring consistency with design and legal framework</p>
+              </div>
+              <div class="bg-white p-6 rounded-lg shadow-sm border border-stone-200">
+                <div class="bg-sage-100 rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                  <i class="fas fa-link text-sage-700"></i>
+                </div>
+                <h4 class="font-serif text-lg font-semibold text-stone-800 mb-2">Provenance</h4>
+                <p class="text-sm text-stone-600">Complete chain of custody for all data, recording sources and transformations</p>
+              </div>
+              <div class="bg-white p-6 rounded-lg shadow-sm border border-stone-200">
+                <div class="bg-sage-100 rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                  <i class="fas fa-brain text-sage-700"></i>
+                </div>
+                <h4 class="font-serif text-lg font-semibold text-stone-800 mb-2">Rationale</h4>
+                <p class="text-sm text-stone-600">Transparent record of reasoning process, rules applied, and intermediate calculations</p>
+              </div>
+            </div>
+
+            <div class="bg-white border border-stone-200 p-6 rounded-lg mb-8">
+              <h4 class="font-serif text-xl font-semibold text-stone-800 mb-4 text-center">The Hybrid Shield: Verifiable Opacity</h4>
+              <div class="mermaid-container">
+                <div class="mermaid-controls">
+                  <button class="mermaid-control-btn zoom-in" title="放大">
+                    <i class="fas fa-search-plus"></i>
+                  </button>
+                  <button class="mermaid-control-btn zoom-out" title="缩小">
+                    <i class="fas fa-search-minus"></i>
+                  </button>
+                  <button class="mermaid-control-btn reset-zoom" title="重置">
+                    <i class="fas fa-expand-arrows-alt"></i>
+                  </button>
+                  <button class="mermaid-control-btn fullscreen" title="全屏查看">
+                    <i class="fas fa-expand"></i>
+                  </button>
+                </div>
+                <div class="mermaid">
+                  graph LR
+                  A[&#34;Sensitive Data
+                  <br/>Proprietary Algorithms&#34;] --&gt; B[&#34;Off-Chain Storage
+                  <br/>Secure Private Database&#34;]
+                  C[&#34;Decision Log Hash&#34;] --&gt; D[&#34;On-Chain Anchoring
+                  <br/>Public Immutable Ledger&#34;]
+                  B --&gt; E[&#34;Merkle-batching&#34;]
+                  E --&gt; D
+                  F[&#34;Regulator/Verifier&#34;] --&gt; G[&#34;Cryptographic Proof&#34;]
+                  D --&gt; G
+                  G --&gt; H[&#34;Compliance Verification
+                  <br/>Without Revealing Secrets&#34;]
+
+                  style A fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#b71c1c
+                  style B fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#1b5e20
+                  style C fill:#fff3e0,stroke:#ef6c00,stroke-width:2px,color:#e65100
+                  style D fill:#e3f2fd,stroke:#1565c0,stroke-width:2px,color:#0d47a1
+                  style E fill:#f5f5f4,stroke:#44403c,stroke-width:2px,color:#292524
+                  style F fill:#f6f7f6,stroke:#4a614a,stroke-width:2px,color:#2b362b
+                  style G fill:#f5f5f4,stroke:#44403c,stroke-width:2px,color:#292524
+                  style H fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#1b5e20
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-sage-50 border border-sage-200 p-6 rounded-lg">
+              <h4 class="font-serif text-lg font-semibold text-sage-800 mb-4">Immutable Ledger as Chain of Custody</h4>
+              <p class="text-stone-700 leading-relaxed mb-4">
+                The &#34;Anchor&#34;—a public, immutable ledger—provides a permanent, tamper-proof record of system actions. This creates a &#34;chain of custody&#34; for digital evidence that is as reliable as physical evidence chains.
+              </p>
+              <div class="bg-white p-4 rounded border-l-4 border-sage-400">
+                <p class="text-sm text-stone-600">
+                  <strong>GDPR Compatibility:</strong> The immutable ledger stores only cryptographic hashes, not personal data. Personal data is stored off-chain where it can be deleted in response to valid erasure requests, maintaining both evidence integrity and individual rights.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Case Studies Section -->
+      <section id="case-studies" class="py-16 bg-white">
+        <div class="max-w-4xl mx-auto px-6">
+          <h2 class="font-serif text-3xl font-bold text-sage-800 mb-8">5. Operational Alignment: Three Case Studies</h2>
+
+          <p class="text-stone-700 leading-relaxed mb-8">
+            The theoretical framework of Ternary Logic is designed to be operationalized in real-world systems to address concrete governance challenges. The following case studies demonstrate how TL&#39;s mandates can be triggered to computationally enforce international legal norms.
+          </p>
+
+          <!-- Case Studies Summary Table -->
+          <div class="overflow-x-auto mb-12">
+            <table class="w-full border-collapse bg-white border border-stone-200 rounded-lg overflow-hidden shadow-sm">
+              <thead class="bg-sage-50">
+                <tr>
+                  <th class="border border-stone-200 p-4 text-left font-serif font-semibold text-sage-800">Feature</th>
+                  <th class="border border-stone-200 p-4 text-left font-serif font-semibold text-sage-800">Case A: Environment</th>
+                  <th class="border border-stone-200 p-4 text-left font-serif font-semibold text-sage-800">Case B: Finance</th>
+                  <th class="border border-stone-200 p-4 text-left font-serif font-semibold text-sage-800">Case C: Culture</th>
+                </tr>
+              </thead>
+              <tbody class="text-sm">
+                <tr>
+                  <td class="border border-stone-200 p-4 font-semibold text-stone-800">Operational Mandate</td>
+                  <td class="border border-stone-200 p-4 text-stone-700">Sustainable Capital Allocation Mandate</td>
+                  <td class="border border-stone-200 p-4 text-stone-700">Economic Rights &amp; Transparency Mandate</td>
+                  <td class="border border-stone-200 p-4 text-stone-700">Protection of Cultural Heritage</td>
+                </tr>
+                <tr class="bg-stone-50">
+                  <td class="border border-stone-200 p-4 font-semibold text-stone-800">Triggering Event</td>
+                  <td class="border border-stone-200 p-4 text-stone-700">Incomplete environmental impact data</td>
+                  <td class="border border-stone-200 p-4 text-stone-700">Statistical anomaly suggesting redlining</td>
+                  <td class="border border-stone-200 p-4 text-stone-700">Request to generate Indigenous cultural content</td>
+                </tr>
+                <tr>
+                  <td class="border border-stone-200 p-4 font-semibold text-stone-800">TL State Activated</td>
+                  <td class="border border-stone-200 p-4"><span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs font-semibold">State 0 (Epistemic Hold)</span></td>
+                  <td class="border border-stone-200 p-4"><span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs font-semibold">State 0 (Epistemic Hold)</span></td>
+                  <td class="border border-stone-200 p-4"><span class="bg-red-100 text-red-800 px-2 py-1 rounded text-xs font-semibold">State -1 (Refusal)</span></td>
+                </tr>
+                <tr class="bg-stone-50">
+                  <td class="border border-stone-200 p-4 font-semibold text-stone-800">Legal Framework</td>
+                  <td class="border border-stone-200 p-4 text-stone-700">Convention on Biological Diversity (CBD)</td>
+                  <td class="border border-stone-200 p-4 text-stone-700">Convention on the Elimination of Racial Discrimination (CERD)</td>
+                  <td class="border border-stone-200 p-4 text-stone-700">UN Declaration on the Rights of Indigenous Peoples (UNDRIP)</td>
+                </tr>
+                <tr>
+                  <td class="border border-stone-200 p-4 font-semibold text-stone-800">System Action</td>
+                  <td class="border border-stone-200 p-4 text-stone-700">Halts funding, flags for review, requests data</td>
+                  <td class="border border-stone-200 p-4 text-stone-700">Halts loan processing, escalates for human adjudication</td>
+                  <td class="border border-stone-200 p-4 text-stone-700">Refuses request, logs attempt, cites UNDRIP</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Individual Case Studies -->
+          <div class="space-y-12">
+            <!-- Case A -->
+            <div class="bg-white border border-stone-200 p-8 rounded-lg shadow-sm">
+              <div class="flex items-start mb-6">
+                <div class="bg-green-100 rounded-full p-3 mr-4">
+                  <i class="fas fa-leaf text-green-700 text-xl"></i>
+                </div>
+                <div>
+                  <h3 class="font-serif text-2xl font-semibold text-stone-800 mb-2">Case A: The Sustainable Capital Allocation Mandate</h3>
+                  <p class="text-stone-600">Environmental Protection • Convention on Biological Diversity</p>
+                </div>
+              </div>
+
+              <div class="prose prose-lg max-w-none">
+                <p class="text-stone-700 leading-relaxed mb-6">
+                  A large-scale hydroelectric dam project is evaluated by an AI-driven investment platform programmed to comply with the Convention on Biological Diversity (CBD). The system detects critical ambiguity: the environmental impact assessment lacks specific data on the dam&#39;s impact on endangered fish species migration patterns.
+                </p>
+
+                <div class="bg-sage-50 border-l-4 border-sage-400 p-6 rounded-r-lg mb-6">
+                  <h4 class="font-serif text-lg font-semibold text-sage-800 mb-3">System Response</h4>
+                  <ul class="text-stone-700 space-y-2">
+                    <li><strong>State Activated:</strong> State 0 (Epistemic Hold)</li>
+                    <li><strong>Action:</strong> Halts funding decision, generates detailed Decision Log</li>
+                    <li><strong>Documentation:</strong> Missing data identified, CBD clause referenced</li>
+                    <li><strong>Outcome:</strong> Enforces precautionary principle in capital allocation</li>
+                  </ul>
+                </div>
+
+                <blockquote class="border-l-4 border-stone-300 pl-6 italic text-stone-600">
+                  &#34;The system cannot definitively say the project violates CBD, but it also cannot confidently approve funding without crucial ecological information.&#34;
+                </blockquote>
+              </div>
+            </div>
+
+            <!-- Case B -->
+            <div class="bg-white border border-stone-200 p-8 rounded-lg shadow-sm">
+              <div class="flex items-start mb-6">
+                <div class="bg-blue-100 rounded-full p-3 mr-4">
+                  <i class="fas fa-university text-blue-700 text-xl"></i>
+                </div>
+                <div>
+                  <h3 class="font-serif text-2xl font-semibold text-stone-800 mb-2">Case B: The Economic Rights &amp; Transparency Mandate</h3>
+                  <p class="text-stone-600">Financial Fairness • Convention on the Elimination of Racial Discrimination</p>
+                </div>
+              </div>
+
+              <div class="prose prose-lg max-w-none">
+                <p class="text-stone-700 leading-relaxed mb-6">
+                  A bank&#39;s AI mortgage processing system detects a significant and unexplained disparity in loan approval rates between applicants from different racial backgrounds, even when controlling for standard financial metrics.
+                </p>
+
+                <div class="bg-blue-50 border-l-4 border-blue-400 p-6 rounded-r-lg mb-6">
+                  <h4 class="font-serif text-lg font-semibold text-blue-800 mb-3">System Response</h4>
+                  <ul class="text-stone-700 space-y-2">
+                    <li><strong>State Activated:</strong> State 0 (Epistemic Hold)</li>
+                    <li><strong>Action:</strong> Halts loan processing, generates detailed Decision Log</li>
+                    <li><strong>Documentation:</strong> Statistical patterns captured, CERD provisions referenced</li>
+                    <li><strong>Outcome:</strong> Prevents potential discriminatory lending, enforces right to fair review</li>
+                  </ul>
+                </div>
+
+                <blockquote class="border-l-4 border-stone-300 pl-6 italic text-stone-600">
+                  &#34;The system cannot determine if disparity is due to legitimate factors or evidence of CERD violation, requiring human-led investigation.&#34;
+                </blockquote>
+              </div>
+            </div>
+
+            <!-- Case C -->
+            <div class="bg-white border border-stone-200 p-8 rounded-lg shadow-sm">
+              <div class="flex items-start mb-6">
+                <div class="bg-purple-100 rounded-full p-3 mr-4">
+                  <i class="fas fa-mask text-purple-700 text-xl"></i>
+                </div>
+                <div>
+                  <h3 class="font-serif text-2xl font-semibold text-stone-800 mb-2">Case C: Cultural Sovereignty and Generative AI</h3>
+                  <p class="text-stone-600">Cultural Protection • UN Declaration on the Rights of Indigenous Peoples</p>
+                </div>
+              </div>
+
+              <div class="prose prose-lg max-w-none">
+                <p class="text-stone-700 leading-relaxed mb-6">
+                  A generative AI model receives a request to create artwork in the style of Indigenous Australian dot painting, using sacred motifs. The system, trained on UNDRIP principles, recognizes this as a potential violation of Indigenous cultural and intellectual property rights.
+                </p>
+
+                <div class="bg-purple-50 border-l-4 border-purple-400 p-6 rounded-r-lg mb-6">
+                  <h4 class="font-serif text-lg font-semibold text-purple-800 mb-3">System Response</h4>
+                  <ul class="text-stone-700 space-y-2">
+                    <li><strong>State Activated:</strong> State -1 (Refusal)</li>
+                    <li><strong>Action:</strong> Refuses content generation, creates detailed Decision Log</li>
+                    <li><strong>Documentation:</strong> User prompt recorded, UNDRIP provisions cited</li>
+                    <li><strong>Outcome:</strong> Protects Indigenous intellectual property from unauthorized use</li>
+                  </ul>
+                </div>
+
+                <blockquote class="border-l-4 border-stone-300 pl-6 italic text-stone-600">
+                  &#34;Unlike cases of ambiguity, this represents clear violation, enabling immediate refusal with legal justification.&#34;
+                </blockquote>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Comparative Analysis Section -->
+      <section id="comparative-analysis" class="py-16 bg-stone-50">
+        <div class="max-w-4xl mx-auto px-6">
+          <h2 class="font-serif text-3xl font-bold text-sage-800 mb-8">6. Comparative Analysis: Hard Code vs. Existing Regulatory Frameworks</h2>
+
+          <p class="text-stone-700 leading-relaxed mb-8">
+            The Ternary Logic framework represents a paradigmatic shift from conventional regulatory models. This section contrasts TL&#39;s &#34;Hard Code&#34; approach with established frameworks: the EU AI Act&#39;s risk-based model, Basel III&#39;s capital-based approach, and the ACUS&#39;s algorithmic assistance model.
+          </p>
+
+          <!-- Comparative Framework Table -->
+          <div class="overflow-x-auto mb-12">
+            <table class="w-full border-collapse bg-white border border-stone-200 rounded-lg overflow-hidden shadow-sm">
+              <thead class="bg-sage-50">
+                <tr>
+                  <th class="border border-stone-200 p-4 text-left font-serif font-semibold text-sage-800">Feature</th>
+                  <th class="border border-stone-200 p-4 text-left font-serif font-semibold text-sage-800">Ternary Logic (TL)</th>
+                  <th class="border border-stone-200 p-4 text-left font-serif font-semibold text-sage-800">EU AI Act</th>
+                  <th class="border border-stone-200 p-4 text-left font-serif font-semibold text-sage-800">Basel III</th>
+                  <th class="border border-stone-200 p-4 text-left font-serif font-semibold text-sage-800">ACUS Recommendation</th>
+                </tr>
+              </thead>
+              <tbody class="text-sm">
+                <tr>
+                  <td class="border border-stone-200 p-4 font-semibold text-stone-800">Regulatory Philosophy</td>
+                  <td class="border border-stone-200 p-4 text-stone-700"><strong>Hard Code / Algorithmic Law:</strong> Compliance is intrinsic, automated property of architecture</td>
+                  <td class="border border-stone-200 p-4 text-stone-700"><strong>Risk-Based Management:</strong> Categorizes risk, applies proportional human-led obligations</td>
+                  <td class="border border-stone-200 p-4 text-stone-700"><strong>Capital-Based Mitigation:</strong> Uses financial buffers to absorb losses, ensure resilience</td>
+                  <td class="border border-stone-200 p-4 text-stone-700"><strong>Algorithmic Assistance:</strong> AI supports human-led regulatory enforcement</td>
+                </tr>
+                <tr class="bg-stone-50">
+                  <td class="border border-stone-200 p-4 font-semibold text-stone-800">Primary Mechanism</td>
+                  <td class="border border-stone-200 p-4 text-stone-700"><strong>Epistemic Hold (State 0):</strong> Mandatory computational pause triggered by uncertainty</td>
+                  <td class="border border-stone-200 p-4 text-stone-700"><strong>Ex Ante Conformity Assessment:</strong> Pre-market checks, post-market monitoring</td>
+                  <td class="border border-stone-200 p-4 text-stone-700"><strong>Capital &amp; Liquidity Ratios:</strong> Financial requirements based on risk-weighted assets</td>
+                  <td class="border border-stone-200 p-4 text-stone-700"><strong>Human Oversight &amp; Notice:</strong> Ensures human discretion and transparency</td>
+                </tr>
+                <tr>
+                  <td class="border border-stone-200 p-4 font-semibold text-stone-800">Temporal Focus</td>
+                  <td class="border border-stone-200 p-4 text-stone-700"><strong>Continuous &amp; Real-Time:</strong> Compliance enforced with every computational cycle</td>
+                  <td class="border border-stone-200 p-4 text-stone-700"><strong>Ex Ante &amp; Periodic:</strong> Pre-deployment approval and periodic review</td>
+                  <td class="border border-stone-200 p-4 text-stone-700"><strong>Ex Post &amp; Continuous:</strong> Ongoing monitoring of financial health</td>
+                  <td class="border border-stone-200 p-4 text-stone-700"><strong>Ex Post &amp; Human-Led:</strong> AI flags issues for human investigators</td>
+                </tr>
+                <tr class="bg-stone-50">
+                  <td class="border border-stone-200 p-4 font-semibold text-stone-800">Unit of Analysis</td>
+                  <td class="border border-stone-200 p-4 text-stone-700"><strong>Individual Algorithmic Decision</strong></td>
+                  <td class="border border-stone-200 p-4 text-stone-700"><strong>AI System as Product</strong></td>
+                  <td class="border border-stone-200 p-4 text-stone-700"><strong>Financial Institution</strong></td>
+                  <td class="border border-stone-200 p-4 text-stone-700"><strong>Regulatory Enforcement Action</strong></td>
+                </tr>
+                <tr>
+                  <td class="border border-stone-200 p-4 font-semibold text-stone-800">Approach to Uncertainty</td>
+                  <td class="border border-stone-200 p-4 text-stone-700"><strong>Mandatory Hesitation:</strong> System pauses until uncertainty resolved</td>
+                  <td class="border border-stone-200 p-4 text-stone-700"><strong>Risk Management:</strong> Requires documented risk assessment strategies</td>
+                  <td class="border border-stone-200 p-4 text-stone-700"><strong>Financial Buffer:</strong> Capital held to absorb potential losses</td>
+                  <td class="border border-stone-200 p-4 text-stone-700"><strong>Human Judgment:</strong> Uncertainty resolved through investigation</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Detailed Analysis -->
+          <div class="space-y-12">
+            <!-- EU AI Act Comparison -->
+            <div class="bg-white border border-stone-200 p-8 rounded-lg shadow-sm">
+              <h3 class="font-serif text-2xl font-semibold text-stone-800 mb-6">Contrasting with the EU AI Act&#39;s Risk-Based Approach</h3>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
+                <div>
+                  <h4 class="font-serif text-lg font-semibold text-stone-800 mb-4">EU AI Act Model</h4>
+                  <ul class="space-y-2 text-stone-700">
+                    <li class="flex items-start">
+                      <i class="fas fa-layer-group text-sage-600 mr-2 mt-1"></i>
+                      <span class="text-sm">Tiered risk classification (unacceptable, high, limited, minimal)</span>
+                    </li>
+                    <li class="flex items-start">
+                      <i class="fas fa-clipboard-check text-sage-600 mr-2 mt-1"></i>
+                      <span class="text-sm">Ex ante conformity assessments and post-market monitoring</span>
+                    </li>
+                    <li class="flex items-start">
+                      <i class="fas fa-user-tie text-sage-600 mr-2 mt-1"></i>
+                      <span class="text-sm">Human oversight requirements (HITL, HOTL, human-in-command)</span>
+                    </li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 class="font-serif text-lg font-semibold text-stone-800 mb-4">Ternary Logic Model</h4>
+                  <ul class="space-y-2 text-stone-700">
+                    <li class="flex items-start">
+                      <i class="fas fa-code-branch text-sage-600 mr-2 mt-1"></i>
+                      <span class="text-sm">Universal, non-negotiable rules encoded in logical architecture</span>
+                    </li>
+                    <li class="flex items-start">
+                      <i class="fas fa-sync-alt text-sage-600 mr-2 mt-1"></i>
+                      <span class="text-sm">Continuous, real-time, automated compliance enforcement</span>
+                    </li>
+                    <li class="flex items-start">
+                      <i class="fas fa-robot text-sage-600 mr-2 mt-1"></i>
+                      <span class="text-sm">Automated Due Process with human intervention for exceptions</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="bg-stone-50 p-6 rounded-lg">
+                <p class="text-stone-700 leading-relaxed">
+                  <strong>Key Distinction:</strong> The EU AI Act asks, &#34;What is the risk level, and what procedures must we follow to manage it?&#34; The TL framework asks, &#34;Does this action violate a hard-coded norm? If there is any ambiguity, the system must halt.&#34;
+                </p>
+              </div>
+            </div>
+
+            <!-- Basel III Comparison -->
+            <div class="bg-white border border-stone-200 p-8 rounded-lg shadow-sm">
+              <h3 class="font-serif text-2xl font-semibold text-stone-800 mb-6">Contrasting with Basel III&#39;s Capital-Based Approach</h3>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
+                <div>
+                  <h4 class="font-serif text-lg font-semibold text-stone-800 mb-4">Basel III Framework</h4>
+                  <ul class="space-y-2 text-stone-700">
+                    <li class="flex items-start">
+                      <i class="fas fa-piggy-bank text-sage-600 mr-2 mt-1"></i>
+                      <span class="text-sm">Capital adequacy ratios and risk-weighted assets</span>
+                    </li>
+                    <li class="flex items-start">
+                      <i class="fas fa-shield-alt text-sage-600 mr-2 mt-1"></i>
+                      <span class="text-sm">Financial buffers for loss absorption</span>
+                    </li>
+                    <li class="flex items-start">
+                      <i class="fas fa-chart-line text-sage-600 mr-2 mt-1"></i>
+                      <span class="text-sm">Institutional failure prevention focus</span>
+                    </li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 class="font-serif text-lg font-semibold text-stone-800 mb-4">Ternary Logic Framework</h4>
+                  <ul class="space-y-2 text-stone-700">
+                    <li class="flex items-start">
+                      <i class="fas fa-gavel text-sage-600 mr-2 mt-1"></i>
+                      <span class="text-sm">Legal and ethical conduct enforcement</span>
+                    </li>
+                    <li class="flex items-start">
+                      <i class="fas fa-stop-circle text-sage-600 mr-2 mt-1"></i>
+                      <span class="text-sm">Prevention of harmful actions before occurrence</span>
+                    </li>
+                    <li class="flex items-start">
+                      <i class="fas fa-microscope text-sage-600 mr-2 mt-1"></i>
+                      <span class="text-sm">Individual algorithmic decision integrity focus</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-400">
+                <p class="text-stone-700 leading-relaxed">
+                  <strong>Fundamental Difference:</strong> Basel III is reactive—ensuring banks can survive risks they take. TL is proactive—preventing certain risks from being taken in the first place. A bank could be Basel III compliant while its AI system systematically discriminates; TL prevents this.
+                </p>
+              </div>
+            </div>
+
+            <!-- ACUS Comparison -->
+            <div class="bg-white border border-stone-200 p-8 rounded-lg shadow-sm">
+              <h3 class="font-serif text-2xl font-semibold text-stone-800 mb-6">The ACUS Recommendation: Algorithmic Assistance vs. Algorithmic Law</h3>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
+                <div>
+                  <h4 class="font-serif text-lg font-semibold text-stone-800 mb-4">ACUS Model (Algorithmic Assistance)</h4>
+                  <ul class="space-y-2 text-stone-700">
+                    <li class="flex items-start">
+                      <i class="fas fa-hands-helping text-sage-600 mr-2 mt-1"></i>
+                      <span class="text-sm">AI tools support human decision-making</span>
+                    </li>
+                    <li class="flex items-start">
+                      <i class="fas fa-graduation-cap text-sage-600 mr-2 mt-1"></i>
+                      <span class="text-sm">Human training and oversight requirements</span>
+                    </li>
+                    <li class="flex items-start">
+                      <i class="fas fa-eye text-sage-600 mr-2 mt-1"></i>
+                      <span class="text-sm">Transparency and notice requirements</span>
+                    </li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 class="font-serif text-lg font-semibold text-stone-800 mb-4">TL Framework (Algorithmic Law)</h4>
+                  <ul class="space-y-2 text-stone-700">
+                    <li class="flex items-start">
+                      <i class="fas fa-balance-scale text-sage-600 mr-2 mt-1"></i>
+                      <span class="text-sm">Legal rules encoded in computational architecture</span>
+                    </li>
+                    <li class="flex items-start">
+                      <i class="fas fa-cogs text-sage-600 mr-2 mt-1"></i>
+                      <span class="text-sm">Automated Due Process as intrinsic system feature</span>
+                    </li>
+                    <li class="flex items-start">
+                      <i class="fas fa-file-contract text-sage-600 mr-2 mt-1"></i>
+                      <span class="text-sm">Immutable Decision Logs as digital affidavits</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="bg-purple-50 p-6 rounded-lg">
+                <p class="text-stone-700 leading-relaxed">
+                  <strong>Paradigm Shift:</strong> The ACUS model represents the current paradigm where algorithms are tools for enforcing human-made law. The TL framework suggests a future where algorithms become a medium through which law is expressed—moving from <em>algorithmic assistance</em> to <em>algorithmic enforcement</em>.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Conclusion Section -->
+      <section id="conclusion" class="py-16 bg-white">
+        <div class="max-w-4xl mx-auto px-6">
+          <h2 class="font-serif text-3xl font-bold text-sage-800 mb-8">7. Conclusion: From &#34;Code is Law&#34; to &#34;Code as Justice&#34;</h2>
+
+          <div class="prose prose-lg max-w-none">
+            <div class="bg-gradient-to-r from-sage-50 to-stone-50 p-8 rounded-lg mb-8">
+              <p class="text-stone-700 leading-relaxed text-lg">
+                The proliferation of artificial intelligence in critical sectors has exposed a profound &#34;Implementation Gap&#34; between high-level ethical principles and their practical enforcement. Ternary Logic provides a necessary architectural solution, functioning as an &#34;Algorithmic Statute&#34; that operationalizes &#34;Soft Law&#34; into &#34;Hard Code.&#34;
+              </p>
+            </div>
+
+            <h3 class="font-serif text-2xl font-semibold text-stone-800 mb-6">Summary of the Argument</h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+              <div class="bg-white border border-stone-200 p-6 rounded-lg">
+                <div class="bg-red-100 rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                  <i class="fas fa-exclamation-triangle text-red-700"></i>
+                </div>
+                <h4 class="font-serif text-lg font-semibold text-stone-800 mb-2">The Problem</h4>
+                <p class="text-sm text-stone-600">Soft Law instruments like the UNESCO Recommendation lack technical enforcement mechanisms, creating an Implementation Gap.</p>
+              </div>
+              <div class="bg-white border border-stone-200 p-6 rounded-lg">
+                <div class="bg-blue-100 rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                  <i class="fas fa-cogs text-blue-700"></i>
+                </div>
+                <h4 class="font-serif text-lg font-semibold text-stone-800 mb-2">The Solution</h4>
+                <p class="text-sm text-stone-600">Ternary Logic with Epistemic Hold, Decision Logs, and Immutable Ledger transforms norms into computational mandates.</p>
+              </div>
+              <div class="bg-white border border-stone-200 p-6 rounded-lg">
+                <div class="bg-green-100 rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                  <i class="fas fa-check-circle text-green-700"></i>
+                </div>
+                <h4 class="font-serif text-lg font-semibold text-stone-800 mb-2">The Impact</h4>
+                <p class="text-sm text-stone-600">From &#34;Code is Law&#34; to &#34;Code as Justice&#34;—technology architected to serve fundamental legal and ethical principles.</p>
+              </div>
+            </div>
+
+            <h3 class="font-serif text-2xl font-semibold text-stone-800 mb-6">Addressing Counterarguments and Limitations</h3>
+
+            <div class="space-y-6 mb-8">
+              <div class="bg-white border border-stone-200 p-6 rounded-lg">
+                <h4 class="font-serif text-lg font-semibold text-stone-800 mb-3">Algorithmic Bias Concerns</h4>
+                <p class="text-stone-700 text-sm leading-relaxed">
+                  Critics argue that embedding biased algorithms into &#34;Hard Code&#34; could ossify inequalities. However, TL&#39;s Epistemic Hold is triggered by uncertainty and conflicting signals, including statistical anomalies indicative of bias. Decision Logs create transparent, auditable records for bias detection and correction.
+                </p>
+              </div>
+
+              <div class="bg-white border border-stone-200 p-6 rounded-lg">
+                <h4 class="font-serif text-lg font-semibold text-stone-800 mb-3">Innovation vs. Regulation</h4>
+                <p class="text-stone-700 text-sm leading-relaxed">
+                  Concerns about stifling innovation through over-regulation are valid. TL&#39;s design allows for adaptive governance through its triadic governance model. The Epistemic Hold is a deliberative pause, not permanent stop, enabling thoughtful rather than paralyzed systems.
+                </p>
+              </div>
+
+              <div class="bg-white border border-stone-200 p-6 rounded-lg">
+                <h4 class="font-serif text-lg font-semibold text-stone-800 mb-3">Evolving Norms Challenge</h4>
+                <p class="text-stone-700 text-sm leading-relaxed">
+                  The dynamic nature of legal and ethical norms presents a profound challenge. TL addresses this through governance structures that allow system mandates to evolve, requiring ongoing collaboration between legal, ethical, and technical communities.
+                </p>
+              </div>
+            </div>
+
+            <div class="bg-sage-50 border border-sage-200 p-8 rounded-lg mb-8">
+              <h3 class="font-serif text-2xl font-semibold text-sage-800 mb-6">The Path Forward: Architectural Prudence</h3>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <h4 class="font-serif text-lg font-semibold text-sage-700 mb-3">TL as Foundational Layer</h4>
+                  <p class="text-stone-700 text-sm leading-relaxed">
+                    TL should be understood as a new form of &#34;Administrative Law for Algorithms&#34;—a foundational layer integrated with existing frameworks like the EU AI Act and Basel III, providing the technical backbone for &#34;smart regulation.&#34;
+                  </p>
+                </div>
+                <div>
+                  <h4 class="font-serif text-lg font-semibold text-sage-700 mb-3">Interdisciplinary Imperative</h4>
+                  <p class="text-stone-700 text-sm leading-relaxed">
+                    Development requires deep collaboration between law, ethics, economics, and computer science. This interdisciplinary approach ensures technically sound and normatively just algorithmic governance.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-gradient-to-r from-stone-800 to-sage-800 text-white p-8 rounded-lg">
+              <h3 class="font-serif text-2xl font-semibold mb-4">Final Reflection: The Future of Governance</h3>
+              <p class="leading-relaxed mb-4">
+                As we stand at the threshold of the algorithmic age, we face a fundamental choice: allow powerful, opaque systems to shape our lives, or build technologies aligned with our deepest values.
+              </p>
+              <p class="leading-relaxed mb-4">
+                The Ternary Logic framework represents a path toward a world where technology is not a force of chaos but a partner in the pursuit of justice and stability. It honors the wisdom of hesitation and the power of deliberation.
+              </p>
+              <p class="leading-relaxed font-semibold">
+                The journey from &#34;Soft Law&#34; to &#34;Hard Code&#34; will be long, but it is one we must undertake to ensure the rule of law extends into the digital realm and technology&#39;s promise is realized for all.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="bg-stone-800 text-stone-300 py-12">
+        <div class="max-w-4xl mx-auto px-6">
+          <div class="text-center">
+            <p class="text-sm mb-4">
+              This academic research explores the intersection of algorithmic governance, international law, and computational architecture.
+            </p>
+            <div class="flex justify-center space-x-6 text-sm">
+              <a href="https://www.ohchr.org/sites/default/files/2022-03/UNESCO.pdf" class="hover:text-sage-300 transition-colors" target="_blank">
+                <i class="fas fa-external-link-alt mr-1"></i>
+                UNESCO AI Ethics Recommendation
+              </a>
+              <a href="https://github.com/FractonicMind/TernaryMoralLogic" class="hover:text-sage-300 transition-colors" target="_blank">
+                <i class="fas fa-code mr-1"></i>
+                Ternary Logic Framework
+              </a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </main>
+
+    <!-- Mobile TOC Toggle -->
+    <button id="mobile-toc-toggle" class="lg:hidden fixed top-4 left-4 bg-sage-600 text-white p-3 rounded-full shadow-lg z-40">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <script>
+        // Initialize Mermaid
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'base',
+            themeVariables: {
+                primaryColor: '#f6f7f6',
+                primaryTextColor: '#292524',
+                primaryBorderColor: '#4a614a',
+                lineColor: '#5f7a5f',
+                secondaryColor: '#e3e7e3',
+                tertiaryColor: '#a3b2a3',
+                background: '#ffffff',
+                mainBkg: '#f6f7f6',
+                secondBkg: '#e3e7e3',
+                tertiaryBkg: '#a3b2a3',
+                // Enhanced contrast settings
+                nodeBorder: '#374151',
+                clusterBkg: '#f6f7f6',
+                clusterBorder: '#4a614a',
+                defaultLinkColor: '#5f7a5f',
+                titleColor: '#292524',
+                edgeLabelBackground: '#ffffff',
+                nodeTextColor: '#292524'
+            },
+            flowchart: {
+                useMaxWidth: false,
+                htmlLabels: true,
+                curve: 'basis',
+                padding: 20
+            },
+            sequence: {
+                useMaxWidth: false,
+                wrap: true
+            },
+            gantt: {
+                useMaxWidth: false
+            }
+        });
+
+        // Initialize Mermaid Controls for zoom and pan
+        function initializeMermaidControls() {
+            const containers = document.querySelectorAll('.mermaid-container');
+
+            containers.forEach(container => {
+            const mermaidElement = container.querySelector('.mermaid');
+            let scale = 1;
+            let isDragging = false;
+            let startX, startY, translateX = 0, translateY = 0;
+
+            // 触摸相关状态
+            let isTouch = false;
+            let touchStartTime = 0;
+            let initialDistance = 0;
+            let initialScale = 1;
+            let isPinching = false;
+
+            // Zoom controls
+            const zoomInBtn = container.querySelector('.zoom-in');
+            const zoomOutBtn = container.querySelector('.zoom-out');
+            const resetBtn = container.querySelector('.reset-zoom');
+            const fullscreenBtn = container.querySelector('.fullscreen');
+
+            function updateTransform() {
+                mermaidElement.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+
+                if (scale > 1) {
+                container.classList.add('zoomed');
+                } else {
+                container.classList.remove('zoomed');
+                }
+
+                mermaidElement.style.cursor = isDragging ? 'grabbing' : 'grab';
+            }
+
+            if (zoomInBtn) {
+                zoomInBtn.addEventListener('click', () => {
+                scale = Math.min(scale * 1.25, 4);
+                updateTransform();
+                });
+            }
+
+            if (zoomOutBtn) {
+                zoomOutBtn.addEventListener('click', () => {
+                scale = Math.max(scale / 1.25, 0.3);
+                if (scale <= 1) {
+                    translateX = 0;
+                    translateY = 0;
+                }
+                updateTransform();
+                });
+            }
+
+            if (resetBtn) {
+                resetBtn.addEventListener('click', () => {
+                scale = 1;
+                translateX = 0;
+                translateY = 0;
+                updateTransform();
+                });
+            }
+
+            if (fullscreenBtn) {
+                fullscreenBtn.addEventListener('click', () => {
+                if (container.requestFullscreen) {
+                    container.requestFullscreen();
+                } else if (container.webkitRequestFullscreen) {
+                    container.webkitRequestFullscreen();
+                } else if (container.msRequestFullscreen) {
+                    container.msRequestFullscreen();
+                }
+                });
+            }
+
+            // Mouse Events
+            mermaidElement.addEventListener('mousedown', (e) => {
+                if (isTouch) return; // 如果是触摸设备，忽略鼠标事件
+
+                isDragging = true;
+                startX = e.clientX - translateX;
+                startY = e.clientY - translateY;
+                mermaidElement.style.cursor = 'grabbing';
+                updateTransform();
+                e.preventDefault();
+            });
+
+            document.addEventListener('mousemove', (e) => {
+                if (isDragging && !isTouch) {
+                translateX = e.clientX - startX;
+                translateY = e.clientY - startY;
+                updateTransform();
+                }
+            });
+
+            document.addEventListener('mouseup', () => {
+                if (isDragging && !isTouch) {
+                isDragging = false;
+                mermaidElement.style.cursor = 'grab';
+                updateTransform();
+                }
+            });
+
+            document.addEventListener('mouseleave', () => {
+                if (isDragging && !isTouch) {
+                isDragging = false;
+                mermaidElement.style.cursor = 'grab';
+                updateTransform();
+                }
+            });
+
+            // 获取两点之间的距离
+            function getTouchDistance(touch1, touch2) {
+                return Math.hypot(
+                touch2.clientX - touch1.clientX,
+                touch2.clientY - touch1.clientY
+                );
+            }
+
+            // Touch Events - 触摸事件处理
+            mermaidElement.addEventListener('touchstart', (e) => {
+                isTouch = true;
+                touchStartTime = Date.now();
+
+                if (e.touches.length === 1) {
+                // 单指拖动
+                isPinching = false;
+                isDragging = true;
+
+                const touch = e.touches[0];
+                startX = touch.clientX - translateX;
+                startY = touch.clientY - translateY;
+
+                } else if (e.touches.length === 2) {
+                // 双指缩放
+                isPinching = true;
+                isDragging = false;
+
+                const touch1 = e.touches[0];
+                const touch2 = e.touches[1];
+                initialDistance = getTouchDistance(touch1, touch2);
+                initialScale = scale;
+                }
+
+                e.preventDefault();
+            }, { passive: false });
+
+            mermaidElement.addEventListener('touchmove', (e) => {
+                if (e.touches.length === 1 && isDragging && !isPinching) {
+                // 单指拖动
+                const touch = e.touches[0];
+                translateX = touch.clientX - startX;
+                translateY = touch.clientY - startY;
+                updateTransform();
+
+                } else if (e.touches.length === 2 && isPinching) {
+                // 双指缩放
+                const touch1 = e.touches[0];
+                const touch2 = e.touches[1];
+                const currentDistance = getTouchDistance(touch1, touch2);
+
+                if (initialDistance > 0) {
+                    const newScale = Math.min(Math.max(
+                    initialScale * (currentDistance / initialDistance),
+                    0.3
+                    ), 4);
+                    scale = newScale;
+                    updateTransform();
+                }
+                }
+
+                e.preventDefault();
+            }, { passive: false });
+
+            mermaidElement.addEventListener('touchend', (e) => {
+                // 重置状态
+                if (e.touches.length === 0) {
+                isDragging = false;
+                isPinching = false;
+                initialDistance = 0;
+
+                // 延迟重置isTouch，避免鼠标事件立即触发
+                setTimeout(() => {
+                    isTouch = false;
+                }, 100);
+                } else if (e.touches.length === 1 && isPinching) {
+                // 从双指变为单指，切换为拖动模式
+                isPinching = false;
+                isDragging = true;
+
+                const touch = e.touches[0];
+                startX = touch.clientX - translateX;
+                startY = touch.clientY - translateY;
+                }
+
+                updateTransform();
+            });
+
+            mermaidElement.addEventListener('touchcancel', (e) => {
+                isDragging = false;
+                isPinching = false;
+                initialDistance = 0;
+
+                setTimeout(() => {
+                isTouch = false;
+                }, 100);
+
+                updateTransform();
+            });
+
+            // Enhanced wheel zoom with better center point handling
+            container.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                const rect = container.getBoundingClientRect();
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+
+                const delta = e.deltaY > 0 ? 0.9 : 1.1;
+                const newScale = Math.min(Math.max(scale * delta, 0.3), 4);
+
+                // Adjust translation to zoom towards center
+                if (newScale !== scale) {
+                const scaleDiff = newScale / scale;
+                translateX = translateX * scaleDiff;
+                translateY = translateY * scaleDiff;
+                scale = newScale;
+
+                if (scale <= 1) {
+                    translateX = 0;
+                    translateY = 0;
+                }
+
+                updateTransform();
+                }
+            });
+
+            // Initialize display
+            updateTransform();
+            });
+        }
+
+        // Initialize Mermaid Controls
+        initializeMermaidControls();
+
+
+        // TOC Toggle
+        const toc = document.getElementById('toc');
+        const tocToggle = document.getElementById('toc-toggle');
+        const mobileTocToggle = document.getElementById('mobile-toc-toggle');
+        
+        function toggleToc() {
+            toc.classList.toggle('-translate-x-full');
+        }
+        
+        mobileTocToggle.addEventListener('click', toggleToc);
+        tocToggle.addEventListener('click', toggleToc);
+        
+        // Close TOC when clicking on links
+        document.querySelectorAll('#toc a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth < 1024) {
+                    toggleToc();
+                }
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Highlight active section in TOC
+        const sections = document.querySelectorAll('section[id]');
+        const tocLinks = document.querySelectorAll('#toc a');
+
+        function highlightActiveSection() {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.scrollY >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            tocLinks.forEach(link => {
+                link.classList.remove('text-sage-600', 'font-semibold');
+                link.classList.add('text-stone-600');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.remove('text-stone-600');
+                    link.classList.add('text-sage-600', 'font-semibold');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', highlightActiveSection);
+        highlightActiveSection(); // Initial call
+    </script>
+  
+
+</body></html>
