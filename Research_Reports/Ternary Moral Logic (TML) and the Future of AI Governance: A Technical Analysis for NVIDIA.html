@@ -1,0 +1,1564 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Ternary Moral Logic and the Future of AI Governance: A Technical Analysis for NVIDIA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js"></script>
+    <style>
+        :root {
+            --primary: #1e293b;
+            --secondary: #475569;
+            --accent: #3b82f6;
+            --muted: #f8fafc;
+            --border: #e2e8f0;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.65;
+            color: var(--primary);
+        }
+        
+        .serif {
+            font-family: 'Crimson Text', serif;
+        }
+        
+        .toc-fixed {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 300px;
+            height: 100vh;
+            background: white;
+            border-right: 1px solid var(--border);
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 2rem 1.5rem;
+        }
+        
+        .main-content {
+            margin-left: 300px;
+            min-height: 100vh;
+        }
+        
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            align-items: center;
+            min-height: 60vh;
+        }
+        
+        .bento-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            border-radius: 1rem;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            word-wrap: break-word;
+        }
+        
+        .bento-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 50%;
+            background: linear-gradient(45deg, transparent 30%, rgba(59, 130, 246, 0.1) 100%);
+            border-radius: 0 1rem 0 1rem;
+        }
+        
+        .citation-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+        
+        .citation-link:hover {
+            background: rgba(59, 130, 246, 0.1);
+            padding: 0.1rem 0.3rem;
+            border-radius: 0.25rem;
+        }
+        
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, var(--border) 50%, transparent 100%);
+            margin: 4rem 0;
+        }
+        
+        .quote-highlight {
+            border-left: 4px solid var(--accent);
+            background: var(--muted);
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
+            font-style: italic;
+            position: relative;
+        }
+        
+        .quote-highlight::before {
+            content: '"';
+            font-size: 4rem;
+            color: var(--accent);
+            position: absolute;
+            top: -1rem;
+            left: 1rem;
+            opacity: 0.3;
+        }
+        
+        .toc-link {
+            display: block;
+            padding: 0.5rem 0;
+            color: var(--secondary);
+            text-decoration: none;
+            transition: all 0.2s ease;
+            font-size: 0.875rem;
+            border-left: 2px solid transparent;
+            padding-left: 1rem;
+        }
+        
+        .toc-link:hover,
+        .toc-link.active {
+            color: var(--accent);
+            border-left-color: var(--accent);
+            background: rgba(59, 130, 246, 0.05);
+        }
+        
+        .toc-link.sub {
+            padding-left: 2rem;
+            font-size: 0.8rem;
+        }
+        
+        /* Mermaid diagram styling */
+        .mermaid-container {
+            display: flex;
+            justify-content: center;
+            min-height: 300px;
+            max-height: 800px;
+            background: #ffffff;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mermaid-container .mermaid {
+            width: 100%;
+            max-width: 100%;
+            height: 100%;
+            cursor: grab;
+            transition: transform 0.3s ease;
+            transform-origin: center center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            touch-action: none; /* 防止触摸设备上的默认行为 */
+            -webkit-user-select: none; /* 防止文本选择 */
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .mermaid-container .mermaid svg {
+            max-width: 100%;
+            height: 100%;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .mermaid-container .mermaid:active {
+            cursor: grabbing;
+        }
+
+        .mermaid-container.zoomed .mermaid {
+            height: 100%;
+            width: 100%;
+            cursor: grab;
+        }
+
+        .mermaid-controls {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            display: flex;
+            gap: 10px;
+            z-index: 20;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 8px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .mermaid-control-btn {
+            background: #ffffff;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            padding: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #374151;
+            font-size: 14px;
+            min-width: 36px;
+            height: 36px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mermaid-control-btn:hover {
+            background: #f8fafc;
+            border-color: #3b82f6;
+            color: #3b82f6;
+            transform: translateY(-1px);
+        }
+
+        .mermaid-control-btn:active {
+            transform: scale(0.95);
+        }
+
+        @media (max-width: 1024px) {
+            .toc-fixed {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+            
+            .toc-fixed.open {
+                transform: translateX(0);
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+            
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .mermaid-control-btn:not(.reset-zoom) {
+                display: none;
+            }
+            .mermaid-controls {
+                top: auto;
+                bottom: 15px;
+                right: 15px;
+            }
+        }
+
+        /* Adjustments for small screens (max-width: 767px) */
+        @media (max-width: 767px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                min-height: auto;
+            }
+            .bento-card {
+                padding: 1.5rem;
+            }
+            .hero-grid h1 {
+                font-size: 2.5rem;
+                line-height: 1.2;
+            }
+            .hero-grid .p-8 {
+                padding: 1.5rem;
+            }
+            .mermaid-container {
+                padding: 15px;
+            }
+            .quote-highlight {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Further adjustments for very small screens (max-width: 390px) */
+        @media (max-width: 390px) {
+            .px-8 {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            .hero-grid h1 {
+                font-size: 2.25rem;
+            }
+            .hero-grid .p-8 {
+                padding: 1rem;
+            }
+            .bento-card {
+                padding: 1rem;
+            }
+        }
+    </style>
+  <base target="_blank">
+</head>
+
+  <body class="bg-gray-50">
+    <!-- Fixed Table of Contents -->
+    <nav class="toc-fixed">
+      <div class="mb-6">
+        <h3 class="text-lg font-bold text-gray-900 mb-4">Table of Contents</h3>
+        <div class="space-y-1">
+          <a href="#executive-summary" class="toc-link">Executive Summary</a>
+          <a href="#tml-runtime-governance" class="toc-link">TML Runtime Governance</a>
+          <a href="#neMo-guardrails" class="toc-link sub">NeMo Guardrails Integration</a>
+          <a href="#platform-integration" class="toc-link sub">Platform Integration</a>
+          <a href="#eight-pillars" class="toc-link sub">Eight TML Pillars</a>
+          <a href="#triadic-processor" class="toc-link">Triadic Processor</a>
+          <a href="#hardware-hesitation" class="toc-link sub">Hardware-Level Hesitation</a>
+          <a href="#feasibility" class="toc-link sub">Technical Feasibility</a>
+          <a href="#performance-considerations" class="toc-link">Performance &amp; Privacy</a>
+          <a href="#latency-analysis" class="toc-link sub">Latency Analysis</a>
+          <a href="#privacy-protection" class="toc-link sub">Privacy Protection</a>
+          <a href="#architecture-blueprint" class="toc-link">Architecture Blueprint</a>
+          <a href="#system-overview" class="toc-link sub">System Overview</a>
+          <a href="#core-components" class="toc-link sub">Core Components</a>
+          <a href="#comparative-analysis" class="toc-link">Comparative Analysis</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <!-- Hero Section with Bento Grid -->
+      <section class="px-8 py-12 bg-gradient-to-br from-slate-50 to-blue-50">
+        <div class="max-w-7xl mx-auto">
+          <div class="hero-grid">
+            <div class="space-y-6">
+              <div class="inline-flex items-center space-x-2 bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-medium">
+                <i class="fas fa-microchip"></i>
+                <span>Technical Analysis</span>
+              </div>
+              <h1 class="text-5xl font-bold serif text-gray-900 leading-tight">
+                <em>Ternary Moral Logic</em>
+                <span class="block text-4xl mt-2 text-gray-700">and the Future of AI Governance</span>
+              </h1>
+              <p class="text-xl text-gray-600 leading-relaxed">
+                A comprehensive analysis of integrating TML into NVIDIA&#39;s ecosystem and the viability of triadic processor architecture
+              </p>
+              <div class="flex items-center space-x-6 text-sm text-gray-500">
+                <span><i class="fas fa-calendar mr-2"></i>June 2025</span>
+                <span><i class="fas fa-clock mr-2"></i>25 min read</span>
+              </div>
+            </div>
+
+            <div class="bento-card">
+              <img src="https://kimi-web-img.moonshot.cn/img/images.presentationgo.com/69cdb60fd56ef79a589095c2f4d0dbd4a4ea4187.jpg" alt="Futuristic AI processor with glowing circuits" class="w-full h-64 object-cover rounded-lg mb-4" size="medium" aspect="wide" color="blue" style="photo" query="futuristic AI processor glowing circuits" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"/>
+              <h3 class="font-bold text-lg mb-2">Strategic Imperative</h3>
+              <p class="text-gray-600 text-sm">NVIDIA&#39;s unique position to lead the AI governance revolution through TML integration</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Executive Summary -->
+      <section id="executive-summary" class="px-8 py-16 bg-white">
+        <div class="max-w-4xl mx-auto">
+          <h2 class="text-3xl font-bold serif text-gray-900 mb-8">Executive Summary</h2>
+
+          <div class="prose prose-lg max-w-none">
+            <p class="text-xl text-gray-700 leading-relaxed mb-6">
+              This report provides a deep technical analysis of how Ternary Moral Logic (TML) can be integrated into NVIDIA&#39;s AI hardware and software ecosystem and evaluates the viability of a future triadic processor architecture. TML offers a paradigm for embedding ethical governance directly into AI systems through its eight foundational pillars, including the &#34;Sacred Pause,&#34; &#34;Moral Trace Logs,&#34; and &#34;Hybrid Shield.&#34;
+            </p>
+
+            <div class="grid md:grid-cols-2 gap-8 my-12">
+              <div class="bg-blue-50 p-6 rounded-lg">
+                <h3 class="text-lg font-bold text-blue-900 mb-4">
+                  <i class="fas fa-check-circle mr-2"></i>Core Conclusions
+                </h3>
+                <ul class="space-y-2 text-blue-800">
+                  <li>• Immediate viability through NeMo Guardrails expansion</li>
+                  <li>• Software-first approach provides robust pathway to responsible AI</li>
+                  <li>• Triadic processor offers transformative long-term potential</li>
+                  <li>• Strategic advantage in regulated AI markets</li>
+                </ul>
+              </div>
+
+              <div class="bg-amber-50 p-6 rounded-lg">
+                <h3 class="text-lg font-bold text-amber-900 mb-4">
+                  <i class="fas fa-exclamation-triangle mr-2"></i>Risk of Non-Adoption
+                </h3>
+                <ul class="space-y-2 text-amber-800">
+                  <li>• Strategic obsolescence in maturing AI industry</li>
+                  <li>• Competitive disadvantage in regulated markets</li>
+                  <li>• Vulnerability to AI failures and misuse</li>
+                  <li>• Regulatory compliance challenges</li>
+                </ul>
+              </div>
+            </div>
+
+            <p class="text-lg text-gray-700 leading-relaxed">
+              The analysis concludes that NVIDIA can and should adopt TML, first as a software-based runtime governance architecture and, in the longer term, as a guiding principle for future hardware design. While technically challenging due to manufacturing and design constraints, a triadic processor offers a path to a more secure and tamper-proof ethical control layer.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- TML Runtime Governance Section -->
+      <section id="tml-runtime-governance" class="px-8 py-16 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+          <h2 class="text-3xl font-bold serif text-gray-900 mb-8">TML as a Runtime Governance Architecture</h2>
+
+          <p class="text-lg text-gray-700 mb-8">
+            The integration of Ternary Moral Logic (TML) into NVIDIA&#39;s existing AI ecosystem represents a paradigm shift from static, pre-deployment model alignment to a dynamic, runtime governance framework. This approach decouples governance logic from the model&#39;s internal cognition, treating it as a provisioned service that inspects and validates the model&#39;s observable inputs and outputs against declarative policies <a href="https://arxiv.org/html/2508.18765v1" class="citation-link">[33]</a>.
+          </p>
+
+          <!-- NeMo Guardrails Integration -->
+          <div id="neMo-guardrails" class="mb-12">
+            <h3 class="text-2xl font-bold text-gray-900 mb-6">Integration Pathway via NeMo Guardrails</h3>
+
+            <div class="quote-highlight">
+              NVIDIA&#39;s NeMo Guardrails provides the most immediate and logical pathway for integrating TML as a runtime governance architecture. As an open-source toolkit designed to add programmable guardrails to LLM applications, it already embodies the core concept of an external enforcement layer <a href="https://github.com/NVIDIA-NeMo/Guardrails" class="citation-link">[137]</a>.
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6 mb-8">
+              <div class="bg-white p-6 rounded-lg shadow-sm">
+                <h4 class="font-bold text-gray-900 mb-3">
+                  <i class="fas fa-shield-alt text-green-600 mr-2"></i>Input Rails
+                </h4>
+                <p class="text-gray-600 text-sm">Proactive blocking of prompts containing known attack patterns, jailbreaking attempts, or prompt injection <a href="https://bharathreddyd.medium.com/llm-vulnerability-part-1-the-tale-of-prompt-injection-and-how-nvidia-nemo-guardrails-can-help-2d2e9dd70ae3" class="citation-link">[139]</a>.</p>
+              </div>
+
+              <div class="bg-white p-6 rounded-lg shadow-sm">
+                <h4 class="font-bold text-gray-900 mb-3">
+                  <i class="fas fa-filter text-blue-600 mr-2"></i>Output Rails
+                </h4>
+                <p class="text-gray-600 text-sm">Reactive validation checking for policy violations, harmful content, sensitive information disclosure, or topic deviation <a href="https://towardsdatascience.com/nemo-guardrails-the-ultimate-open-source-llm-security-toolkit-0a34648713ef/" class="citation-link">[140]</a>.</p>
+              </div>
+
+              <div class="bg-white p-6 rounded-lg shadow-sm">
+                <h4 class="font-bold text-gray-900 mb-3">
+                  <i class="fas fa-route text-purple-600 mr-2"></i>Dialog Rails
+                </h4>
+                <p class="text-gray-600 text-sm">Guiding conversational flow and maintaining context-aware governance through configurable policy logic <a href="https://github.com/NVIDIA-NeMo/Guardrails" class="citation-link">[137]</a>.</p>
+              </div>
+            </div>
+
+            <img src="https://kimi-web-img.moonshot.cn/img/docs.nvidia.com/30c3846a7675ec2a9cfed921a411198fcbd6b2b8.png" alt="NVIDIA NeMo Guardrails AI safety framework diagram" class="w-full rounded-lg shadow-lg mb-6" size="large" aspect="wide" query="NVIDIA NeMo Guardrails architecture" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"/>
+          </div>
+
+          <!-- Platform Integration Matrix -->
+          <div id="platform-integration" class="mb-12">
+            <h3 class="text-2xl font-bold text-gray-900 mb-6">Integration with Core NVIDIA Platforms</h3>
+
+            <div class="overflow-x-auto">
+              <table class="w-full bg-white rounded-lg shadow-sm">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th class="px-6 py-4 text-left font-semibold text-gray-900">Platform</th>
+                    <th class="px-6 py-4 text-left font-semibold text-gray-900">Integration Strategy</th>
+                    <th class="px-6 py-4 text-left font-semibold text-gray-900">TML Pillars Addressed</th>
+                    <th class="px-6 py-4 text-left font-semibold text-gray-900">Technical Considerations</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200">
+                  <tr>
+                    <td class="px-6 py-4 font-medium text-gray-900">CUDA</td>
+                    <td class="px-6 py-4 text-gray-600">JIT Compilation Hooks</td>
+                    <td class="px-6 py-4 text-gray-600">Sacred Pause, Goukassian Promise, Moral Trace Logs</td>
+                    <td class="px-6 py-4 text-gray-600">Injecting TML policy checks (PTX/LTO-IR modules) into the kernel at runtime via nvJitLink <a href="https://docs.nvidia.com/cuda/archive/12.0.1/pdf/nvJitLink_User_Guide.pdf" class="citation-link">[180]</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 font-medium text-gray-900">TensorRT</td>
+                    <td class="px-6 py-4 text-gray-600">Pre-flight Governance Checks</td>
+                    <td class="px-6 py-4 text-gray-600">Hybrid Shield, Human Rights Pillar</td>
+                    <td class="px-6 py-4 text-gray-600">Challenging to interrupt mid-inference. Ethical checks must occur before engine execution or between partitioned model segments.</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 font-medium text-gray-900">NeMo</td>
+                    <td class="px-6 py-4 text-gray-600">Guardrails &amp; Conditional Logic</td>
+                    <td class="px-6 py-4 text-gray-600">Sacred Pause, Hybrid Shield, Moral Trace Logs</td>
+                    <td class="px-6 py-4 text-gray-600">Most direct path. Use Colang to define ethical flows and pauses. Integrate with NIM microservices for safety models <a href="https://developer.nvidia.com/blog/how-to-safeguard-ai-agents-for-customer-service-with-nvidia-nemo-guardrails/" class="citation-link">[107]</a>.</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 font-medium text-gray-900">Omniverse</td>
+                    <td class="px-6 py-4 text-gray-600">Domain-Specific Governance</td>
+                    <td class="px-6 py-4 text-gray-600">Earth Protection Pillar, Anchors</td>
+                    <td class="px-6 py-4 text-gray-600">Govern digital twin creation and modification. Use blockchain anchors for asset provenance and collaborative integrity <a href="https://learn.kondux.io/kondux-vfx-pipelines-nvidia-omniverse-gdn/" class="citation-link">[88]</a>.</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 font-medium text-gray-900">Clara</td>
+                    <td class="px-6 py-4 text-gray-600">Domain-Specific Governance</td>
+                    <td class="px-6 py-4 text-gray-600">Human Rights Pillar, Sacred Pause</td>
+                    <td class="px-6 py-4 text-gray-600">Enforce patient privacy, medical ethics, and diagnostic safety. &#34;Sacred Pause&#34; for low-confidence diagnoses.</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 font-medium text-gray-900">DRIVE</td>
+                    <td class="px-6 py-4 text-gray-600">Domain-Specific Governance</td>
+                    <td class="px-6 py-4 text-gray-600">Human Rights Pillar, Sacred Pause</td>
+                    <td class="px-6 py-4 text-gray-600">Critical for safety. &#34;Sacred Pause&#34; for ambiguous driving scenarios (e.g., unclassified obstacles), triggering safe-stop maneuvers.</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 font-medium text-gray-900">Isaac (Robotics)</td>
+                    <td class="px-6 py-4 text-gray-600">Domain-Specific Governance</td>
+                    <td class="px-6 py-4 text-gray-600">Human Rights Pillar, Earth Protection Pillar</td>
+                    <td class="px-6 py-4 text-gray-600">Ensure learned behaviors in simulation are safe before deployment. Log robot actions and sensor data using MCAP format <a href="https://foxglove.dev/blog/nvidia-announces-mcap-as-the-default-logging-format-for-isaac-ros-3-0" class="citation-link">[50]</a>.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Eight TML Pillars -->
+          <div id="eight-pillars" class="mb-12">
+            <h3 class="text-2xl font-bold text-gray-900 mb-6">Implementing the Eight TML Pillars in Software</h3>
+
+            <div class="overflow-x-auto">
+              <table class="w-full bg-white rounded-lg shadow-sm">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th class="px-6 py-4 text-left font-semibold text-gray-900">TML Pillar</th>
+                    <th class="px-6 py-4 text-left font-semibold text-gray-900">Software Implementation Strategy</th>
+                    <th class="px-6 py-4 text-left font-semibold text-gray-900">Key Technologies &amp; Concepts</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200">
+                  <tr>
+                    <td class="px-6 py-4 font-medium text-gray-900">Sacred Pause</td>
+                    <td class="px-6 py-4 text-gray-600">Conditional Execution Layer</td>
+                    <td class="px-6 py-4 text-gray-600">NeMo Guardrails (Colang flows), JIT-compiled CUDA kernels with policy checks.</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 font-medium text-gray-900">Always Memory</td>
+                    <td class="px-6 py-4 text-gray-600">Persistent, Tamper-Proof Storage</td>
+                    <td class="px-6 py-4 text-gray-600">High-performance DB (e.g., Kafka), IPFS for distributed storage, Merkle trees for integrity.</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 font-medium text-gray-900">Moral Trace Logs</td>
+                    <td class="px-6 py-4 text-gray-600">Structured, Forensic-Grade Audit Trail</td>
+                    <td class="px-6 py-4 text-gray-600">MCAP format (from Isaac ROS), detailed logging of all governance actions and model I/O <a href="https://foxglove.dev/blog/nvidia-announces-mcap-as-the-default-logging-format-for-isaac-ros-3-0" class="citation-link">[50]</a>.</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 font-medium text-gray-900">Hybrid Shield</td>
+                    <td class="px-6 py-4 text-gray-600">Multi-Layered Security &amp; Ethics Framework</td>
+                    <td class="px-6 py-4 text-gray-600">NeMo Guardrails (input/output/dialog rails), NVRx for fault tolerance, AccuKnox for runtime security <a href="https://github.com/NVIDIA/nvidia-resiliency-ext" class="citation-link">[32]</a>
+                      <a href="https://accuknox.com/solutions/securing-ai-factories" class="citation-link">[34]</a>.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 font-medium text-gray-900">Human Rights Pillar</td>
+                    <td class="px-6 py-4 text-gray-600">Policy-Driven Constraints</td>
+                    <td class="px-6 py-4 text-gray-600">Declarative policy files (e.g., JSON), policy engine evaluating actions against human rights rules.</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 font-medium text-gray-900">Earth Protection Pillar</td>
+                    <td class="px-6 py-4 text-gray-600">Policy-Driven Constraints</td>
+                    <td class="px-6 py-4 text-gray-600">Declarative policy files, integration with carbon footprint data (e.g., NVIDIA PCF) for energy-aware scheduling <a href="https://interactdc.com/posts/understanding-gpus-energy-and-environmental-impact-part-i/" class="citation-link">[40]</a>.</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 font-medium text-gray-900">Anchors</td>
+                    <td class="px-6 py-4 text-gray-600">Asynchronous Commitment to Public Blockchain</td>
+                    <td class="px-6 py-4 text-gray-600">Oracles (e.g., Chainlink), IPFS for off-chain data storage, Merkle tree batching of log hashes <a href="https://learnblockchain.cn/article/1434" class="citation-link">[56]</a>
+                      <a href="https://edge.app/blog/crypto-basics/what-is-chainlinklink/" class="citation-link">[58]</a>.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 font-medium text-gray-900">Goukassian Promise</td>
+                    <td class="px-6 py-4 text-gray-600">Formal Verification &amp; Model Signing</td>
+                    <td class="px-6 py-4 text-gray-600">OpenSSF Model Signing, sigstore PKI, runtime attestation of model signatures <a href="https://openssf.org/blog/2025/04/04/launch-of-model-signing-v1-0-openssf-ai-ml-working-group-secures-the-machine-learning-supply-chain/" class="citation-link">[101]</a>.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- Triadic Processor Section -->
+      <section id="triadic-processor" class="px-8 py-16 bg-white">
+        <div class="max-w-6xl mx-auto">
+          <h2 class="text-3xl font-bold serif text-gray-900 mb-8">The Triadic Processor: A Forward-Looking Hardware Analysis</h2>
+
+          <p class="text-lg text-gray-700 mb-8">
+            The concept of a triadic processor, inspired by the principles of Ternary Moral Logic (TML), represents a bold and speculative leap beyond the current binary paradigm of computing. Such a processor would be built around a three-state logic system, with the third state representing a &#34;hesitation&#34; or &#34;undecided&#34; condition. This hardware-level hesitation state would provide a physical embodiment of the &#34;Sacred Pause&#34; pillar of TML.
+          </p>
+
+          <div id="hardware-hesitation" class="mb-12">
+            <h3 class="text-2xl font-bold text-gray-900 mb-6">The Case for a Hardware-Level Hesitation State</h3>
+
+            <div class="grid md:grid-cols-2 gap-8 mb-8">
+              <div class="bg-red-50 p-6 rounded-lg">
+                <h4 class="font-bold text-red-900 mb-4">
+                  <i class="fas fa-exclamation-circle mr-2"></i>Limitations of Software-Only Governance
+                </h4>
+                <ul class="space-y-2 text-red-800 text-sm">
+                  <li>• Vulnerable to bugs and exploits</li>
+                  <li>• Potential for bypass or circumvention</li>
+                  <li>• Limited by binary processor architecture</li>
+                  <li>• Cannot provide fundamental tamper-proof protection</li>
+                </ul>
+              </div>
+
+              <div class="bg-green-50 p-6 rounded-lg">
+                <h4 class="font-bold text-green-900 mb-4">
+                  <i class="fas fa-shield-check mr-2"></i>Hardware-Level Advantages
+                </h4>
+                <ul class="space-y-2 text-green-800 text-sm">
+                  <li>• Fundamental, tamper-proof protection</li>
+                  <li>• Physical &#34;Sacred Pause&#34; instruction</li>
+                  <li>• Inherently resistant to unethical behavior</li>
+                  <li>• Higher assurance in critical situations</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="quote-highlight">
+              The &#34;Sacred Pause&#34; is a cornerstone of TML, representing a moment of ethical reflection before an AI commits to an action. In a triadic processor, the &#34;Sacred Pause&#34; would be a physical instruction, a fundamental part of the processor&#39;s architecture. This instruction would cause the processor to enter a &#34;hesitation&#34; state, during which it would be unable to execute any further instructions until a certain condition is met.
+            </div>
+          </div>
+
+          <!-- Technical Feasibility -->
+          <div id="feasibility" class="mb-12">
+            <h3 class="text-2xl font-bold text-gray-900 mb-6">Electrical and Logical Feasibility</h3>
+
+            <div class="grid md:grid-cols-2 gap-8 mb-8">
+              <div>
+                <h4 class="text-lg font-bold text-gray-900 mb-4">Tri-State Logic: Beyond Binary</h4>
+                <p class="text-gray-700 mb-4">
+                  Tri-state logic, or ternary logic, is the foundation of a triadic processor. Instead of the two states of binary logic (0 and 1), ternary logic uses three states, which can be represented as 0, 1, and 2, or more commonly as <strong>-1, 0, and +1</strong> (balanced ternary).
+                </p>
+                <p class="text-gray-700">
+                  The primary advantage is information density; a ternary system can represent more information with fewer components. For a given number of logic levels n, a ternary system can represent 3^n states, compared to 2^n for a binary system <a href="https://www.science.org/doi/10.1126/sciadv.adt1909" class="citation-link">[147]</a>.
+                </p>
+              </div>
+
+              <div>
+                <h4 class="text-lg font-bold text-gray-900 mb-4">Novel Transistor Technologies</h4>
+                <div class="space-y-4">
+                  <div class="bg-blue-50 p-4 rounded-lg">
+                    <h5 class="font-semibold text-blue-900">Carbon Nanotube FETs (CNFETs)</h5>
+                    <p class="text-blue-800 text-sm">High-performance ternary logic gates demonstrated with low-dimensional materials <a href="https://www.science.org/doi/10.1126/sciadv.adt1909" class="citation-link">[147]</a>.</p>
+                  </div>
+                  <div class="bg-purple-50 p-4 rounded-lg">
+                    <h5 class="font-semibold text-purple-900">Ferroelectric FETs (FeFETs)</h5>
+                    <p class="text-purple-800 text-sm">Stable third state through ferroelectric material polarization.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <img src="https://fixedplaceholder" alt="Carbon nanotube transistor with three-state logic gates" class="w-full rounded-lg shadow-lg mb-6" size="large" aspect="wide" style="photo" query="carbon nanotube transistor ternary logic" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"/>
+          </div>
+
+          <!-- Architectural Implementation Options -->
+          <div class="mb-12">
+            <h3 class="text-2xl font-bold text-gray-900 mb-6">Architectural Implementation Options</h3>
+
+            <div class="overflow-x-auto">
+              <table class="w-full bg-white rounded-lg shadow-sm">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th class="px-6 py-4 text-left font-semibold text-gray-900">Implementation Option</th>
+                    <th class="px-6 py-4 text-left font-semibold text-gray-900">Description</th>
+                    <th class="px-6 py-4 text-left font-semibold text-gray-900">Pros</th>
+                    <th class="px-6 py-4 text-left font-semibold text-gray-900">Cons</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200">
+                  <tr>
+                    <td class="px-6 py-4 font-medium text-gray-900">Dedicated Governance Coprocessor</td>
+                    <td class="px-6 py-4 text-gray-600">A separate chip or unit attached to a traditional binary CPU/GPU, handling all ethical and safety tasks.</td>
+                    <td class="px-6 py-4 text-gray-600">
+                      • Leverages existing binary technology
+                      <br/>
+                      • Allows independent upgrade of governance logic
+                      <br/>
+                      • Isolates governance from main computation
+                    </td>
+                    <td class="px-6 py-4 text-gray-600">
+                      • Increased system complexity and cost
+                      <br/>
+                      • Potential latency from inter-chip communication
+                      <br/>
+                      • May become a performance bottleneck
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 font-medium text-gray-900">Triadic Execution Unit within GPU</td>
+                    <td class="px-6 py-4 text-gray-600">A specialized execution unit inside a traditional GPU designed for ternary logic operations.</td>
+                    <td class="px-6 py-4 text-gray-600">
+                      • More gradual transition from binary
+                      <br/>
+                      • Can accelerate specific tasks suited for ternary logic
+                      <br/>
+                      • Efficient use of existing GPU infrastructure
+                    </td>
+                    <td class="px-6 py-4 text-gray-600">
+                      • Complex integration with binary GPU architecture
+                      <br/>
+                      • Requires new instruction sets and compilers
+                      <br/>
+                      • Limited to specific, non-general-purpose tasks
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 font-medium text-gray-900">Future Full Ternary Core</td>
+                    <td class="px-6 py-4 text-gray-600">An entire processor (CPU/GPU) built from the ground up on a ternary logic system.</td>
+                    <td class="px-6 py-4 text-gray-600">
+                      • Highest potential performance and efficiency
+                      <br/>
+                      • Most robust and tamper-proof &#34;Sacred Pause&#34;
+                      <br/>
+                      • Enables novel computational paradigms
+                    </td>
+                    <td class="px-6 py-4 text-gray-600">
+                      • Requires a complete redesign of the processor and software stack
+                      <br/>
+                      • Immense R&amp;D and manufacturing investment
+                      <br/>
+                      • Very long development timeline
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Engineering Challenges -->
+          <div class="mb-12">
+            <h3 class="text-2xl font-bold text-gray-900 mb-6">Engineering Challenges and Constraints</h3>
+
+            <div class="grid md:grid-cols-2 gap-6">
+              <div class="bg-orange-50 p-6 rounded-lg">
+                <h4 class="font-bold text-orange-900 mb-3">
+                  <i class="fas fa-industry mr-2"></i>Manufacturing Realities
+                </h4>
+                <p class="text-orange-800 text-sm">
+                  Introduction of new materials like carbon nanotubes requires complete overhaul of established manufacturing pipeline <a href="https://www.franksworld.com/2025/09/24/ternary-computing-breakthrough-explained/" class="citation-link">[145]</a>. Fabrication facilities optimized for silicon face monumental adaptation challenges.
+                </p>
+              </div>
+
+              <div class="bg-red-50 p-6 rounded-lg">
+                <h4 class="font-bold text-red-900 mb-3">
+                  <i class="fas fa-thermometer-half mr-2"></i>Thermal &amp; Power Constraints
+                </h4>
+                <p class="text-red-800 text-sm">
+                  Third intermediate voltage state may increase static power consumption and heat generation. Ternary logic gates must be highly optimized for energy efficiency to be viable alternatives.
+                </p>
+              </div>
+
+              <div class="bg-yellow-50 p-6 rounded-lg">
+                <h4 class="font-bold text-yellow-900 mb-3">
+                  <i class="fas fa-wave-square mr-2"></i>Signal Integrity
+                </h4>
+                <p class="text-yellow-800 text-sm">
+                  Reduced noise margins make systems more susceptible to crosstalk and electrical noise <a href="https://www.franksworld.com/2025/09/24/ternary-computing-breakthrough-explained/" class="citation-link">[145]</a>. Smaller voltage differences between three states require sophisticated error-correction techniques.
+                </p>
+              </div>
+
+              <div class="bg-blue-50 p-6 rounded-lg">
+                <h4 class="font-bold text-blue-900 mb-3">
+                  <i class="fas fa-file-contract mr-2"></i>Patent &amp; IP Implications
+                </h4>
+                <p class="text-blue-800 text-sm">
+                  Complex landscape of patents for novel transistor designs, circuit layouts, and manufacturing processes requires thorough IP analysis and strategic patent portfolio development.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- Performance &amp; Privacy Section -->
+      <section id="performance-considerations" class="px-8 py-16 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+          <h2 class="text-3xl font-bold serif text-gray-900 mb-8">Performance, Privacy, and Storage Considerations</h2>
+
+          <p class="text-lg text-gray-700 mb-8">
+            The integration of a comprehensive governance framework like Ternary Moral Logic (TML) into high-performance AI systems necessitates careful analysis of its impact on performance, privacy, and storage. While the ethical and safety benefits are clear, implementation must not unduly compromise the speed, efficiency, and scalability that are hallmarks of modern AI acceleration platforms.
+          </p>
+
+          <!-- Latency Analysis -->
+          <div id="latency-analysis" class="mb-12">
+            <h3 class="text-2xl font-bold text-gray-900 mb-6">Latency Analysis and the &lt;2ms Dual-Lane Target</h3>
+
+            <div class="bg-white p-6 rounded-lg shadow-sm mb-8">
+              <h4 class="text-lg font-bold text-gray-900 mb-4">Performance Projections</h4>
+              <div class="overflow-x-auto">
+                <table class="w-full">
+                  <thead class="bg-gray-50">
+                    <tr>
+                      <th class="px-4 py-3 text-left font-semibold text-gray-900">Component</th>
+                      <th class="px-4 py-3 text-left font-semibold text-gray-900">Projected Latency</th>
+                      <th class="px-4 py-3 text-left font-semibold text-gray-900">Notes</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-gray-200">
+                    <tr>
+                      <td class="px-4 py-3 text-gray-900">Hybrid Shield (Input/Output Rails)</td>
+                      <td class="px-4 py-3 text-gray-600">&lt; 1ms</td>
+                      <td class="px-4 py-3 text-gray-600">Achieved through GPU acceleration and parallel execution of guardrails <a href="https://developer.nvidia.com/nemo-guardrails" class="citation-link">[106]</a>.</td>
+                    </tr>
+                    <tr>
+                      <td class="px-4 py-3 text-gray-900">Sacred Pause Controller</td>
+                      <td class="px-4 py-3 text-gray-600">&lt; 0.5ms</td>
+                      <td class="px-4 py-3 text-gray-600">Requires highly optimized policy evaluation engine, potentially running on dedicated GPU.</td>
+                    </tr>
+                    <tr>
+                      <td class="px-4 py-3 text-gray-900">Inference Pipeline Overhead</td>
+                      <td class="px-4 py-3 text-gray-600">&lt; 0.5ms</td>
+                      <td class="px-4 py-3 text-gray-600">Minimal overhead from TML integration, assuming streaming architecture is used.</td>
+                    </tr>
+                    <tr class="bg-green-50">
+                      <td class="px-4 py-3 font-bold text-green-900">Total Dual-Lane Latency</td>
+                      <td class="px-4 py-3 font-bold text-green-900">&lt; 2ms</td>
+                      <td class="px-4 py-3 font-bold text-green-900">Meets target latency for real-time applications.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="quote-highlight">
+              To achieve the &lt;2ms dual-lane latency target, a multi-pronged approach is required. First, the TML governance logic must be highly optimized and, where possible, executed in parallel with the main inference task. The use of GPU acceleration for the guardrail models, as is possible with NeMo Guardrails, is essential for achieving this <a href="https://developer.nvidia.com/nemo-guardrails" class="citation-link">[106]</a>.
+            </div>
+          </div>
+
+          <!-- Privacy Protection -->
+          <div id="privacy-protection" class="mb-12">
+            <h3 class="text-2xl font-bold text-gray-900 mb-6">Privacy and Data Protection</h3>
+
+            <div class="grid md:grid-cols-2 gap-8">
+              <div class="bg-white p-6 rounded-lg shadow-sm">
+                <h4 class="text-lg font-bold text-gray-900 mb-4">
+                  <i class="fas fa-user-shield text-blue-600 mr-2"></i>GDPR-Safe Pseudonymization
+                </h4>
+                <p class="text-gray-700 mb-4">
+                  To ensure compliance with data protection regulations like GDPR, TML implementation must incorporate robust pseudonymization mechanisms. Pseudonymization replaces identifying information with artificial identifiers, making data no longer attributable to specific individuals without additional information.
+                </p>
+                <div class="bg-blue-50 p-4 rounded-lg">
+                  <p class="text-blue-800 text-sm">
+                    <strong>Implementation:</strong> Personally identifiable information (PII) in user input or AI output is replaced with pseudonyms (random identifiers or one-way hashes). Mapping between pseudonyms and original PII stored separately in secure, access-controlled database.
+                  </p>
+                </div>
+              </div>
+
+              <div class="bg-white p-6 rounded-lg shadow-sm">
+                <h4 class="text-lg font-bold text-gray-900 mb-4">
+                  <i class="fas fa-key text-green-600 mr-2"></i>Encrypted Key Repository (EKR)
+                </h4>
+                <p class="text-gray-700 mb-4">
+                  In addition to protecting user privacy, TML-governed systems must protect intellectual property and trade secrets of organizations developing and deploying AI models, including proprietary model architectures and training datasets.
+                </p>
+                <div class="bg-green-50 p-4 rounded-lg">
+                  <p class="text-green-800 text-sm">
+                    <strong>Implementation:</strong> Secure, centralized system for managing cryptographic keys. Sensitive data within logs encrypted before storage, with encryption keys managed by EKR enforcing strict access control policies.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Storage Solutions -->
+          <div class="mb-12">
+            <h3 class="text-2xl font-bold text-gray-900 mb-6">Storage and Anchoring Solutions</h3>
+
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+              <h4 class="text-lg font-bold text-gray-900 mb-4">Merkle Tree Batching for Efficient Storage</h4>
+              <p class="text-gray-700 mb-4">
+                The sheer volume of data generated by &#34;Moral Trace Logs&#34; makes it impractical to anchor every single log entry to a public blockchain individually. This would be prohibitively expensive and introduce unacceptable latency.
+              </p>
+
+              <div class="grid md:grid-cols-3 gap-4 mb-6">
+                <div class="bg-blue-50 p-4 rounded-lg text-center">
+                  <i class="fas fa-layer-group text-blue-600 text-2xl mb-2"></i>
+                  <h5 class="font-semibold text-blue-900">Batch Collection</h5>
+                  <p class="text-blue-800 text-sm">Large number of log entries collected into batch</p>
+                </div>
+                <div class="bg-purple-50 p-4 rounded-lg text-center">
+                  <i class="fas fa-sitemap text-purple-600 text-2xl mb-2"></i>
+                  <h5 class="font-semibold text-purple-900">Merkle Tree</h5>
+                  <p class="text-purple-800 text-sm">Constructed from hashes of log entries</p>
+                </div>
+                <div class="bg-green-50 p-4 rounded-lg text-center">
+                  <i class="fas fa-anchor text-green-600 text-2xl mb-2"></i>
+                  <h5 class="font-semibold text-green-900">Blockchain Anchor</h5>
+                  <p class="text-green-800 text-sm">Root hash anchored in single transaction</p>
+                </div>
+              </div>
+
+              <p class="text-gray-700">
+                This approach significantly reduces blockchain transactions while providing efficient integrity verification. Any change to a single log entry would result in a different Merkle root, making tampering easily detectable.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- Architecture Blueprint Section -->
+      <section id="architecture-blueprint" class="px-8 py-16 bg-white">
+        <div class="max-w-6xl mx-auto">
+          <h2 class="text-3xl font-bold serif text-gray-900 mb-8">Proposed Architecture Blueprint for TML Integration</h2>
+
+          <!-- System Overview -->
+          <div id="system-overview" class="mb-12">
+            <h3 class="text-2xl font-bold text-gray-900 mb-6">High-Level System Overview</h3>
+
+            <p class="text-lg text-gray-700 mb-8">
+              The proposed TML architecture consists of several key components working together to provide a comprehensive governance layer. The system is divided into three main layers: the Application Layer, the Governance Layer, and the Infrastructure Layer.
+            </p>
+
+            <div class="bg-gray-50 p-6 rounded-lg mb-8">
+              <div class="mermaid-container">
+                <div class="mermaid-controls">
+                  <button class="mermaid-control-btn zoom-in" title="放大">
+                    <i class="fas fa-search-plus"></i>
+                  </button>
+                  <button class="mermaid-control-btn zoom-out" title="缩小">
+                    <i class="fas fa-search-minus"></i>
+                  </button>
+                  <button class="mermaid-control-btn reset-zoom" title="重置">
+                    <i class="fas fa-expand-arrows-alt"></i>
+                  </button>
+                  <button class="mermaid-control-btn fullscreen" title="全屏查看">
+                    <i class="fas fa-expand"></i>
+                  </button>
+                </div>
+                <div class="mermaid" id="system-architecture-diagram">
+                  graph TB
+                  A[&#34;Application Layer
+                  <br/>AI Models &amp; Applications&#34;] --&gt; B[&#34;Governance Layer
+                  <br/>TML Enforcement&#34;]
+                  B --&gt; C[&#34;Infrastructure Layer
+                  <br/>Hardware &amp; Storage&#34;]
+
+                  B --&gt; B1[&#34;Sacred Pause Controller&#34;]
+                  B --&gt; B2[&#34;Hybrid Shield&#34;]
+                  B --&gt; B3[&#34;Policy Engines&#34;]
+                  B --&gt; B4[&#34;Logging &amp; Anchoring&#34;]
+
+                  C --&gt; C1[&#34;NVIDIA GPUs&#34;]
+                  C --&gt; C2[&#34;High-Performance Storage&#34;]
+                  C --&gt; C3[&#34;Blockchain Networks&#34;]
+
+                  style A fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#0d47a1
+                  style B fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px,color:#4a148c
+                  style C fill:#e8f5e8,stroke:#388e3c,stroke-width:2px,color:#1b5e20
+                  style B1 fill:#fff3e0,stroke:#f57c00,stroke-width:2px,color:#e65100
+                  style B2 fill:#fff3e0,stroke:#f57c00,stroke-width:2px,color:#e65100
+                  style B3 fill:#fff3e0,stroke:#f57c00,stroke-width:2px,color:#e65100
+                  style B4 fill:#fff3e0,stroke:#f57c00,stroke-width:2px,color:#e65100
+                  style C1 fill:#fce4ec,stroke:#c2185b,stroke-width:2px,color:#880e4f
+                  style C2 fill:#fce4ec,stroke:#c2185b,stroke-width:2px,color:#880e4f
+                  style C3 fill:#fce4ec,stroke:#c2185b,stroke-width:2px,color:#880e4f
+                </div>
+              </div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+              <div class="bg-blue-50 p-6 rounded-lg">
+                <h4 class="font-bold text-blue-900 mb-3">
+                  <i class="fas fa-cube text-blue-600 mr-2"></i>Application Layer
+                </h4>
+                <p class="text-blue-800 text-sm">
+                  Where AI models and applications reside, such as LLMs running on NeMo, autonomous vehicle software on DRIVE, or robotics applications on Isaac. TML governance is applied externally without modifying core applications.
+                </p>
+              </div>
+
+              <div class="bg-purple-50 p-6 rounded-lg">
+                <h4 class="font-bold text-purple-900 mb-3">
+                  <i class="fas fa-cogs text-purple-600 mr-2"></i>Governance Layer
+                </h4>
+                <p class="text-purple-800 text-sm">
+                  Core of TML system consisting of microservices and libraries responsible for enforcing TML pillars: Sacred Pause Controller, Hybrid Shield, policy engines, and logging/anchoring services.
+                </p>
+              </div>
+
+              <div class="bg-green-50 p-6 rounded-lg">
+                <h4 class="font-bold text-green-900 mb-3">
+                  <i class="fas fa-server text-green-600 mr-2"></i>Infrastructure Layer
+                </h4>
+                <p class="text-green-800 text-sm">
+                  Underlying hardware and software infrastructure including NVIDIA GPUs for accelerating governance logic, high-performance storage for Moral Trace Logs, and blockchain networks for Anchors.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Core Components -->
+          <div id="core-components" class="mb-12">
+            <h3 class="text-2xl font-bold text-gray-900 mb-6">Core Component Design</h3>
+
+            <div class="grid lg:grid-cols-2 gap-8 mb-8">
+              <div class="bg-white p-6 rounded-lg shadow-sm border-l-4 border-blue-500">
+                <h4 class="text-lg font-bold text-gray-900 mb-4">
+                  <i class="fas fa-pause-circle text-blue-600 mr-2"></i>Sacred Pause Controller
+                </h4>
+                <p class="text-gray-700 mb-4">
+                  Central decision-making component responsible for evaluating ethical uncertainty of AI&#39;s proposed actions and triggering &#34;Sacred Pause&#34; when necessary. Implemented as high-performance, low-latency microservice.
+                </p>
+                <div class="bg-blue-50 p-4 rounded-lg">
+                  <p class="text-blue-800 text-sm">
+                    <strong>Function:</strong> Takes proposed action, context, and ethical policies as input; outputs ternary decision: <strong>ALLOW</strong>, <strong>PAUSE</strong>, or <strong>BLOCK</strong>.
+                  </p>
+                </div>
+              </div>
+
+              <div class="bg-white p-6 rounded-lg shadow-sm border-l-4 border-green-500">
+                <h4 class="text-lg font-bold text-gray-900 mb-4">
+                  <i class="fas fa-database text-green-600 mr-2"></i>Always Memory Backbone
+                </h4>
+                <p class="text-gray-700 mb-4">
+                  Persistent storage system for TML architecture responsible for storing all data needed to support TML pillars: Moral Trace Logs, policy configurations, and model signatures.
+                </p>
+                <div class="bg-green-50 p-4 rounded-lg">
+                  <p class="text-green-800 text-sm">
+                    <strong>Implementation:</strong> Distributed, fault-tolerant database system combining Apache Kafka for real-time ingestion and time-series database like InfluxDB for long-term storage.
+                  </p>
+                </div>
+              </div>
+
+              <div class="bg-white p-6 rounded-lg shadow-sm border-l-4 border-purple-500">
+                <h4 class="text-lg font-bold text-gray-900 mb-4">
+                  <i class="fas fa-clipboard-list text-purple-600 mr-2"></i>Moral Trace Log Layer
+                </h4>
+                <p class="text-gray-700 mb-4">
+                  Responsible for generating and managing &#34;Moral Trace Logs.&#34; Implemented as set of libraries integrated into NVIDIA ecosystem applications with simple API for logging events.
+                </p>
+                <div class="bg-purple-50 p-4 rounded-lg">
+                  <p class="text-purple-800 text-sm">
+                    <strong>Features:</strong> Standardized schema formatting, timestamp metadata, cryptographic hashing for integrity, and digital signatures.
+                  </p>
+                </div>
+              </div>
+
+              <div class="bg-white p-6 rounded-lg shadow-sm border-l-4 border-orange-500">
+                <h4 class="text-lg font-bold text-gray-900 mb-4">
+                  <i class="fas fa-shield-alt text-orange-600 mr-2"></i>Hybrid Shield Implementation
+                </h4>
+                <p class="text-gray-700 mb-4">
+                  Multi-layered security and ethics framework with NeMo Guardrails as central orchestration engine. Configures series of input, output, and dialog rails enforcing safety and ethical policies.
+                </p>
+                <div class="bg-orange-50 p-4 rounded-lg">
+                  <p class="text-orange-800 text-sm">
+                    <strong>Capabilities:</strong> Highly modular design, GPU acceleration, parallel processing for minimal latency impact, complete audit trail logging.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-sm border-l-4 border-red-500">
+              <h4 class="text-lg font-bold text-gray-900 mb-4">
+                <i class="fas fa-anchor text-red-600 mr-2"></i>Anchoring Pipeline
+              </h4>
+              <p class="text-gray-700 mb-4">
+                Responsible for committing &#34;Moral Trace Logs&#34; to public blockchain. Implemented as asynchronous worker processes running in background, independent of main inference pipeline.
+              </p>
+              <div class="bg-red-50 p-4 rounded-lg">
+                <p class="text-red-800 text-sm">
+                  <strong>Process:</strong> Periodically retrieves un-anchored logs, constructs Merkle tree from hashes, submits root to blockchain via smart contract, stores raw data on IPFS, updates database with transaction ID.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Phased Rollout Plan -->
+          <div class="mb-12">
+            <h3 class="text-2xl font-bold text-gray-900 mb-6">Phased Rollout and Implementation Plan</h3>
+
+            <div class="space-y-6">
+              <div class="bg-blue-50 p-6 rounded-lg">
+                <div class="flex items-center mb-4">
+                  <div class="bg-blue-600 text-white rounded-full w-10 h-10 flex items-center justify-center font-bold mr-4">1</div>
+                  <h4 class="text-lg font-bold text-blue-900">Software-Based Governance (0-12 months)</h4>
+                </div>
+                <p class="text-blue-800 mb-3">
+                  Focus on implementing TML pillars as software layer using NeMo Guardrails and existing NVIDIA tools. Goal: create functional, robust governance system deployable on current-generation hardware.
+                </p>
+                <div class="bg-white p-3 rounded">
+                  <p class="text-blue-700 text-sm">
+                    <strong>Deliverables:</strong> Sacred Pause Controller, Hybrid Shield implementation, Moral Trace Log Layer
+                  </p>
+                </div>
+              </div>
+
+              <div class="bg-purple-50 p-6 rounded-lg">
+                <div class="flex items-center mb-4">
+                  <div class="bg-purple-600 text-white rounded-full w-10 h-10 flex items-center justify-center font-bold mr-4">2</div>
+                  <h4 class="text-lg font-bold text-purple-900">Hardware Acceleration (12-24 months)</h4>
+                </div>
+                <p class="text-purple-800 mb-3">
+                  Focus on accelerating TML governance logic using NVIDIA GPUs. Optimize guardrail models for GPU execution and develop more efficient Sacred Pause Controller.
+                </p>
+                <div class="bg-white p-3 rounded">
+                  <p class="text-purple-700 text-sm">
+                    <strong>Goal:</strong> Achieve &lt;2ms dual-lane latency target through GPU optimization and parallel processing
+                  </p>
+                </div>
+              </div>
+
+              <div class="bg-green-50 p-6 rounded-lg">
+                <div class="flex items-center mb-4">
+                  <div class="bg-green-600 text-white rounded-full w-10 h-10 flex items-center justify-center font-bold mr-4">3</div>
+                  <h4 class="text-lg font-bold text-green-900">Triadic Processor Development (24+ months)</h4>
+                </div>
+                <p class="text-green-800 mb-3">
+                  Focus on long-term goal of developing triadic processor. Significant R&amp;D effort to overcome engineering challenges.
+                </p>
+                <div class="bg-white p-3 rounded">
+                  <p class="text-green-700 text-sm">
+                    <strong>Vision:</strong> Hardware-level &#34;Sacred Pause&#34; providing robust, tamper-proof ethical governance
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- Comparative Analysis Section -->
+      <section id="comparative-analysis" class="px-8 py-16 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+          <h2 class="text-3xl font-bold serif text-gray-900 mb-8">Comparative Analysis: NVIDIA vs. Other AI Hardware Vendors</h2>
+
+          <p class="text-lg text-gray-700 mb-8">
+            NVIDIA is not the only company investing in AI hardware and software. A number of other vendors, including AMD, Intel, and Cerebras, are also developing their own AI platforms. This section provides a comparative analysis of how these vendors are approaching the challenges of AI governance and safety.
+          </p>
+
+          <div class="grid lg:grid-cols-3 gap-8 mb-12">
+            <!-- AMD Analysis -->
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+              <div class="flex items-center mb-4">
+                <img src="https://fixedplaceholder" alt="AMD company logo" class="w-12 h-12 object-contain mr-4" size="small" aspect="square" color="red" style="transparent" query="AMD company logo" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"/>
+                <h3 class="text-xl font-bold text-gray-900">AMD</h3>
+              </div>
+              <h4 class="font-semibold text-gray-900 mb-3">AI Governance Approach</h4>
+              <p class="text-gray-700 text-sm mb-4">
+                AMD has been actively working on AI governance and trust through open-source software initiatives. Key contributor to OpenSSF (Open Source Security Foundation) developing tools for securing software supply chain, including Model Signing project <a href="https://openssf.org/blog/2025/04/04/launch-of-model-signing-v1-0-openssf-ai-ml-working-group-secures-the-machine-learning-supply-chain/" class="citation-link">[101]</a>.
+              </p>
+              <div class="bg-blue-50 p-3 rounded">
+                <p class="text-blue-800 text-xs font-semibold">Focus Area: Software-based security and open standards</p>
+              </div>
+            </div>
+
+            <!-- Intel Analysis -->
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+              <div class="flex items-center mb-4">
+                <img src="https://kimi-web-img.moonshot.cn/img/toppng.com/5f10728b5e555a7af75807d07cb5b73461e42fa5.png" alt="Intel company logo" class="w-12 h-12 object-contain mr-4" size="small" aspect="square" color="blue" style="transparent" query="Intel company logo" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"/>
+                <h3 class="text-xl font-bold text-gray-900">Intel</h3>
+              </div>
+              <h4 class="font-semibold text-gray-900 mb-3">Responsible AI Initiatives</h4>
+              <p class="text-gray-700 text-sm mb-4">
+                Intel focuses on developing tools and frameworks helping developers build fair, transparent, and explainable AI systems. Leader in confidential computing using hardware-based Trusted Execution Environments (TEEs) to protect data and code in use.
+              </p>
+              <div class="bg-green-50 p-3 rounded">
+                <p class="text-green-800 text-xs font-semibold">Focus Area: Confidential computing and explainable AI</p>
+              </div>
+            </div>
+
+            <!-- Cerebras Analysis -->
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+              <div class="flex items-center mb-4">
+                <img src="https://kimi-web-img.moonshot.cn/img/aimodelab.com/3c1cf7a04175a9e78253c85afc620b9aa828f15c.webp" alt="Cerebras company logo" class="w-12 h-12 object-contain mr-4" size="small" aspect="square" query="Cerebras logo" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"/>
+                <h3 class="text-xl font-bold text-gray-900">Cerebras</h3>
+              </div>
+              <h4 class="font-semibold text-gray-900 mb-3">Wafer-Scale Engine Paradigm</h4>
+              <p class="text-gray-700 text-sm mb-4">
+                Cerebras takes radically different approach with Wafer-Scale Engine (WSE) - single massive chip designed to accelerate training of large neural networks. Unique architecture features massive number of cores and high-bandwidth interconnect.
+              </p>
+              <div class="bg-orange-50 p-3 rounded">
+                <p class="text-orange-800 text-xs font-semibold">Focus Area: Performance and scalability (governance TBD)</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Competitive Advantage -->
+          <div class="bg-gradient-to-r from-blue-600 to-purple-600 p-8 rounded-lg text-white">
+            <h3 class="text-2xl font-bold mb-6">NVIDIA&#39;s Competitive Advantage in Adopting TML</h3>
+            <div class="grid md:grid-cols-2 gap-6">
+              <div>
+                <h4 class="font-bold mb-3">
+                  <i class="fas fa-trophy mr-2"></i>Strategic Differentiation
+                </h4>
+                <p class="text-sm mb-4">
+                  NVIDIA&#39;s adoption of TML provides significant competitive advantage by embedding comprehensive, verifiable ethical governance framework into platform, offering trust and safety levels unavailable from other vendors.
+                </p>
+                <ul class="text-sm space-y-1">
+                  <li>• Key differentiator in regulated industries</li>
+                  <li>• Enterprise customers increasingly demand responsible AI</li>
+                  <li>• Hardware-based moat with triadic processor</li>
+                </ul>
+              </div>
+              <div>
+                <h4 class="font-bold mb-3">
+                  <i class="fas fa-rocket mr-2"></i>Market Leadership
+                </h4>
+                <p class="text-sm mb-4">
+                  Combining AI performance leadership with pioneering approach to AI ethics creates truly unique and compelling value proposition for customers.
+                </p>
+                <ul class="text-sm space-y-1">
+                  <li>• Future-proof against AI regulations</li>
+                  <li>• Deeper trust with developers and end-users</li>
+                  <li>• New markets where safety is non-negotiable</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="px-8 py-8 bg-gray-900 text-gray-300">
+        <div class="max-w-6xl mx-auto text-center">
+          <p class="text-sm">
+            This technical analysis examines the integration of Ternary Moral Logic into NVIDIA&#39;s AI ecosystem and evaluates the viability of triadic processor architecture. The conclusions represent forward-looking architectural concepts based on current research and industry trends.
+          </p>
+          <div class="mt-4 text-xs text-gray-500">
+            <p>Analysis based on publicly available research and technical documentation</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+        // Initialize Mermaid
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'base',
+            themeVariables: {
+                primaryColor: '#f8fafc',
+                primaryTextColor: '#1e293b',
+                primaryBorderColor: '#475569',
+                lineColor: '#64748b',
+                secondaryColor: '#e2e8f0',
+                secondaryTextColor: '#1e293b',
+                secondaryBorderColor: '#94a3b8',
+                tertiaryColor: '#f1f5f9',
+                tertiaryTextColor: '#1e293b',
+                tertiaryBorderColor: '#cbd5e1',
+                background: '#ffffff',
+                mainBkg: '#ffffff',
+                secondBkg: '#f8fafc',
+                tertiaryBkg: '#f1f5f9',
+                fontFamily: 'Inter, sans-serif',
+                fontSize: '14px'
+            },
+            flowchart: {
+                useMaxWidth: false,
+                htmlLabels: true,
+                curve: 'basis',
+                padding: 20
+            },
+            fontFamily: 'Inter, sans-serif'
+        });
+
+        // Initialize Mermaid Controls for zoom and pan
+        function initializeMermaidControls() {
+            const containers = document.querySelectorAll('.mermaid-container');
+
+            containers.forEach(container => {
+            const mermaidElement = container.querySelector('.mermaid');
+            let scale = 1;
+            let isDragging = false;
+            let startX, startY, translateX = 0, translateY = 0;
+
+            // 触摸相关状态
+            let isTouch = false;
+            let touchStartTime = 0;
+            let initialDistance = 0;
+            let initialScale = 1;
+            let isPinching = false;
+
+            // Zoom controls
+            const zoomInBtn = container.querySelector('.zoom-in');
+            const zoomOutBtn = container.querySelector('.zoom-out');
+            const resetBtn = container.querySelector('.reset-zoom');
+            const fullscreenBtn = container.querySelector('.fullscreen');
+
+            function updateTransform() {
+                mermaidElement.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+
+                if (scale > 1) {
+                container.classList.add('zoomed');
+                } else {
+                container.classList.remove('zoomed');
+                }
+
+                mermaidElement.style.cursor = isDragging ? 'grabbing' : 'grab';
+            }
+
+            if (zoomInBtn) {
+                zoomInBtn.addEventListener('click', () => {
+                scale = Math.min(scale * 1.25, 4);
+                updateTransform();
+                });
+            }
+
+            if (zoomOutBtn) {
+                zoomOutBtn.addEventListener('click', () => {
+                scale = Math.max(scale / 1.25, 0.3);
+                if (scale <= 1) {
+                    translateX = 0;
+                    translateY = 0;
+                }
+                updateTransform();
+                });
+            }
+
+            if (resetBtn) {
+                resetBtn.addEventListener('click', () => {
+                scale = 1;
+                translateX = 0;
+                translateY = 0;
+                updateTransform();
+                });
+            }
+
+            if (fullscreenBtn) {
+                fullscreenBtn.addEventListener('click', () => {
+                if (container.requestFullscreen) {
+                    container.requestFullscreen();
+                } else if (container.webkitRequestFullscreen) {
+                    container.webkitRequestFullscreen();
+                } else if (container.msRequestFullscreen) {
+                    container.msRequestFullscreen();
+                }
+                });
+            }
+
+            // Mouse Events
+            mermaidElement.addEventListener('mousedown', (e) => {
+                if (isTouch) return; // 如果是触摸设备，忽略鼠标事件
+
+                isDragging = true;
+                startX = e.clientX - translateX;
+                startY = e.clientY - translateY;
+                mermaidElement.style.cursor = 'grabbing';
+                updateTransform();
+                e.preventDefault();
+            });
+
+            document.addEventListener('mousemove', (e) => {
+                if (isDragging && !isTouch) {
+                translateX = e.clientX - startX;
+                translateY = e.clientY - startY;
+                updateTransform();
+                }
+            });
+
+            document.addEventListener('mouseup', () => {
+                if (isDragging && !isTouch) {
+                isDragging = false;
+                mermaidElement.style.cursor = 'grab';
+                updateTransform();
+                }
+            });
+
+            document.addEventListener('mouseleave', () => {
+                if (isDragging && !isTouch) {
+                isDragging = false;
+                mermaidElement.style.cursor = 'grab';
+                updateTransform();
+                }
+            });
+
+            // 获取两点之间的距离
+            function getTouchDistance(touch1, touch2) {
+                return Math.hypot(
+                touch2.clientX - touch1.clientX,
+                touch2.clientY - touch1.clientY
+                );
+            }
+
+            // Touch Events - 触摸事件处理
+            mermaidElement.addEventListener('touchstart', (e) => {
+                isTouch = true;
+                touchStartTime = Date.now();
+
+                if (e.touches.length === 1) {
+                // 单指拖动
+                isPinching = false;
+                isDragging = true;
+
+                const touch = e.touches[0];
+                startX = touch.clientX - translateX;
+                startY = touch.clientY - translateY;
+
+                } else if (e.touches.length === 2) {
+                // 双指缩放
+                isPinching = true;
+                isDragging = false;
+
+                const touch1 = e.touches[0];
+                const touch2 = e.touches[1];
+                initialDistance = getTouchDistance(touch1, touch2);
+                initialScale = scale;
+                }
+
+                e.preventDefault();
+            }, { passive: false });
+
+            mermaidElement.addEventListener('touchmove', (e) => {
+                if (e.touches.length === 1 && isDragging && !isPinching) {
+                // 单指拖动
+                const touch = e.touches[0];
+                translateX = touch.clientX - startX;
+                translateY = touch.clientY - startY;
+                updateTransform();
+
+                } else if (e.touches.length === 2 && isPinching) {
+                // 双指缩放
+                const touch1 = e.touches[0];
+                const touch2 = e.touches[1];
+                const currentDistance = getTouchDistance(touch1, touch2);
+
+                if (initialDistance > 0) {
+                    const newScale = Math.min(Math.max(
+                    initialScale * (currentDistance / initialDistance),
+                    0.3
+                    ), 4);
+                    scale = newScale;
+                    updateTransform();
+                }
+                }
+
+                e.preventDefault();
+            }, { passive: false });
+
+            mermaidElement.addEventListener('touchend', (e) => {
+                // 重置状态
+                if (e.touches.length === 0) {
+                isDragging = false;
+                isPinching = false;
+                initialDistance = 0;
+
+                // 延迟重置isTouch，避免鼠标事件立即触发
+                setTimeout(() => {
+                    isTouch = false;
+                }, 100);
+                } else if (e.touches.length === 1 && isPinching) {
+                // 从双指变为单指，切换为拖动模式
+                isPinching = false;
+                isDragging = true;
+
+                const touch = e.touches[0];
+                startX = touch.clientX - translateX;
+                startY = touch.clientY - translateY;
+                }
+
+                updateTransform();
+            });
+
+            mermaidElement.addEventListener('touchcancel', (e) => {
+                isDragging = false;
+                isPinching = false;
+                initialDistance = 0;
+
+                setTimeout(() => {
+                isTouch = false;
+                }, 100);
+
+                updateTransform();
+            });
+
+            // Enhanced wheel zoom with better center point handling
+            container.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                const rect = container.getBoundingClientRect();
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+
+                const delta = e.deltaY > 0 ? 0.9 : 1.1;
+                const newScale = Math.min(Math.max(scale * delta, 0.3), 4);
+
+                // Adjust translation to zoom towards center
+                if (newScale !== scale) {
+                const scaleDiff = newScale / scale;
+                translateX = translateX * scaleDiff;
+                translateY = translateY * scaleDiff;
+                scale = newScale;
+
+                if (scale <= 1) {
+                    translateX = 0;
+                    translateY = 0;
+                }
+
+                updateTransform();
+                }
+            });
+
+            // Initialize display
+            updateTransform();
+            });
+        }
+
+        // Initialize interactivity after mermaid renders
+        document.addEventListener('DOMContentLoaded', function() {
+            // Wait for mermaid to render
+            setTimeout(() => {
+                initializeMermaidControls();
+            }, 1000);
+        });
+
+        // Smooth scrolling for TOC links
+        document.querySelectorAll('.toc-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+                
+                // Update active state
+                document.querySelectorAll('.toc-link').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Update active TOC link on scroll
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section[id]');
+            const tocLinks = document.querySelectorAll('.toc-link');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            tocLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Mobile TOC toggle (if needed)
+        function toggleTOC() {
+            const toc = document.querySelector('.toc-fixed');
+            toc.classList.toggle('open');
+        }
+
+        // Close TOC when clicking outside on mobile
+        document.addEventListener('click', function(e) {
+            const toc = document.querySelector('.toc-fixed');
+            if (window.innerWidth <= 1024 && !toc.contains(e.target)) {
+                toc.classList.remove('open');
+            }
+        });
+    </script>
+  
+
+</body></html>
