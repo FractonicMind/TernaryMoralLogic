@@ -321,12 +321,11 @@ This work was created through collaboration between **Lev Goukassian** (ORCID: 0
 
 ---
 
-**For questions or permissions inquiries:** ORCID: 0009-0006-5966-1243
 
 **Learn more about Ternary Moral Logic:**
-
 * GitHub: FractonicMind/TernaryMoralLogic  
-* Documentation: https://github.com/FractonicMind/TernaryMoralLogic/blob/main/Research\_Reports/Authorship\_Ethics\_and\_Auditable\_AI.md
+* Documentation: https://github.com/FractonicMind/TernaryMoralLogic/blob/main/Research_Reports/Authorship_Ethics_and_Auditable_AI.md
+* ORCID: https://orcid.org/0009-0006-5966-1243
 
 ---
 
