@@ -5,7 +5,7 @@
 The integration of artificial intelligence into critical infrastructure—ranging from financial clearinghouses to autonomous defense systems—has precipitated a crisis of accountability. As algorithmic decision-making accelerates beyond human cognitive reaction times, traditional governance models predicated on post-hoc auditing and binary compliance checklists have proven insufficient. This manuscript presents an exhaustive evaluation of **Ternary Moral Logic (TML)**, a governance framework developed by researcher Lev Goukassian, which proposes a radical restructuring of AI decision architectures through a triadic logic system (+1, 0, \-1) and a mandatory "Sacred Pause."  
 Central to this evaluation is the **Goukassian Promise**, a tripartite covenant comprising the Lantern, the Signature, and the License. Specifically, we scrutinize the controversial inclusion of the author’s **ORCID identifier (0009-0006-5966-1243)** as a persistent, immutable anchor within the system’s **Moral Trace Logs**. Through a synthesis of constitutional law, cryptographic provenance standards, and the theory of *droit d'auteur*, this report argues that the embedding of authorship in TML is not a vanity metric but a functional **Cryptographic Root of Trust**. This root is essential for maintaining the integrity of the "Human-in-the-Loop" requirement mandated by emerging regulations like the EU AI Act. Furthermore, the report provides a detailed technical analysis of TML’s operational mechanisms—including **Dual-Lane Latency**, **Ephemeral Key Rotation (EKR)**, and **Merkle-Batched Storage**—demonstrating how they resolve the tension between the speed of automated execution and the necessity of immutable ethical evidence. The analysis concludes that the persistence of the authorial signature is a necessary safeguard against the dilution of responsibility in complex, multi-agent supply chains.
 
-## ---
+---
 
 **Introduction: The Crisis of Anonymized Autonomy**
 
@@ -15,7 +15,7 @@ Into this paradigm, **Ternary Moral Logic (TML)** introduces a disruptive govern
 The inclusion of a persistent, immutable authorial signature in open-source critical infrastructure challenges the norms of software neutrality. It raises profound questions: Is the embedding of a specific human identity into a global trust system an act of ego, or is it a necessary mechanism for preventing the "commoditization of ethics"? Critics argue that such personalization introduces "Bus Factor" risks and reputational vulnerabilities.4 However, proponents suggest that in the context of ethical AI, where decisions can have life-or-death consequences, the anonymization of the ethical architect leads to a dangerous "view from nowhere," where systems claim objectivity while obscuring their subjective design choices.8  
 This report aims to provide a definitive legal-technical evaluation of TML. We will analyze the **Goukassian Vow** as a logical instruction set, dissect the **Eight Pillars** of the TML architecture, and evaluate the technical viability of its auditing mechanisms. Ultimately, we seek to answer whether the persistence of Lev Goukassian’s name and ORCID is a vulnerability to be patched or a feature to be standardized.
 
-## ---
+---
 
 **Background: The Philosophical and Legal Architectures of Trust**
 
@@ -45,7 +45,7 @@ In constitutional law, the legitimacy of a system often rests on its fidelity to
 
 **ORCID (Open Researcher and Contributor ID)** was developed to solve the problem of name ambiguity in scholarly communication. It provides a persistent digital identifier that distinguishes researchers.15 TML’s innovation is to move ORCID from the *metadata* of a PDF paper to the *runtime environment* of a machine. This transforms the identifier from a passive record of "who wrote this" to an active security token of "who authorizes this logic." This aligns with recent pushes in **Software Supply Chain Security** (e.g., SLSA, SBOMs) to cryptographically sign every artifact in the development lifecycle.17
 
-## ---
+---
 
 **Analysis: The Goukassian Vow and Ternary Logic**
 
@@ -77,7 +77,7 @@ Binary logic (0, 1\) is the language of circuits. Ternary logic (-1, 0, \+1), al
 
 The introduction of the **Sacred Zero** is the system’s most radical innovation. It operationalizes "humility" in AI. By giving the machine a valid state for "hesitation," TML creates a computational space for audit, reflection, and human intervention.19
 
-## ---
+---
 
 **The Eight Pillars of Ternary Moral Logic**
 
@@ -135,7 +135,7 @@ Definition: The ultimate root of trust.
 Mechanism: To prevent internal tampering by the system operator, the root hashes of the Moral Trace Log Merkle trees are periodically anchored to a public, censorship-resistant blockchain (e.g., Ethereum).25  
 Function: This ensures that "history" cannot be rewritten. Even if the operator wipes their servers, the cryptographic proofs on the public chain remain, proving that something happened at that timestamp.
 
-## ---
+---
 
 **Technical Mechanisms: Enabling Auditable AI**
 
@@ -173,7 +173,7 @@ A major conflict exists between **Immutable Logs** (Blockchain) and **Privacy Ri
 * **The "Cryptographic Shredder":** If a user demands their data be deleted (GDPR request), the system does not delete the log (which would break the hash chain and integrity). Instead, it **deletes the key** used to encrypt that specific entry.  
 * **The Result:** The *ciphertext* remains in the immutable chain, preserving the structural integrity of the history. However, the data is mathematically unrecoverable (effectively deleted). The *act of deleting the key* is itself logged as a new event, creating a perfect audit trail of compliance.31
 
-## ---
+---
 
 **Analysis: The Persistence of Authorship**
 
@@ -202,7 +202,7 @@ The primary technical risk of "Personal Attribution" is the **Bus Factor** (or i
 * **Voluntary Succession Declaration:** TML anticipates this. The framework includes legal and technical provisions for the transfer of the "Signing Key" to a successor entity (e.g., a Foundation or Trust). This "Memorial Fund" concept ensures that the *governance* persists even if the *author* does not.33  
 * **Open Source Resilience:** Because the code is open, anyone can maintain it. But the *Signature* ensures that only the "Canonical" version serves as the reference standard. This prevents fragmentation of the ethical standard, which is crucial for regulatory compliance.
 
-## ---
+---
 
 **Discussion: TML as a Governance Prototype**
 
@@ -221,7 +221,7 @@ Current models (NIST RMF) are **Post-Hoc**. They analyze the crash after it happ
 * **Proactive (TML):** "The car is unsure about the road conditions (State 0). It engages the brakes and alerts the driver *before* the crash."  
 * **The Difference:** TML treats ethics as a **runtime constraint**, not a documentation requirement. This shifts the industry from "Compliance" (doing what you're told) to "Integrity" (doing what is right, architecturally).1
 
-## ---
+---
 
 **Conclusion**
 
