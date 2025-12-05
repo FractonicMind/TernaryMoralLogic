@@ -1,7 +1,7 @@
 ### On the Paradox of Speed:
 #### *"The fastest safe decision is often the one not made immediately. In the space between 0 and 1, we find the wisdom that binary logic forgot."*
 ### On Accountability:
-#### *"No log, no action" is not a bureaucratic checkbox—it is the mathematical proof that something happened. Memory is the difference between autonomy and anarchy."*
+#### *"No log, no action" is not a bureaucratic checkbox, it is the mathematical proof that something happened. Memory is the difference between autonomy and anarchy."*
 ### On Architectural Philosophy:
 #### *"We don't build guardrails around the AI. We build a moat with three drawbridges: one for clarity, one for caution, and one that stays closed."*
 ### On the Sacred Pause:
