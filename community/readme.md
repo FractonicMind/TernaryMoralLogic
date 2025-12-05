@@ -8,4 +8,4 @@
 #### *"Hesitation is not a bug in moral reasoning; it is the feature that keeps 'convenient' from becoming 'catastrophic.' The Sacred Pause is the machine's first act of humility."*
 ### On Governance vs. Capability:
 #### *"The AI can knows what it can do. The Gateway decides what it may do. And the log remembers what it did. Separate these, or you separate responsibility from power."*
-## **-Lev Goukassian**
+### *-Lev Goukassian*
