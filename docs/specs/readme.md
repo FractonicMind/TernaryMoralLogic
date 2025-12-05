@@ -1,4 +1,4 @@
-# **README.md — TML Specification Suite**
+## **TML Specification Suite**
 
 ### **Ternary Moral Logic (TML) – Implementation Specifications**
 
