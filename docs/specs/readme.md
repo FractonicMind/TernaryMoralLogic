@@ -3,7 +3,7 @@
 ### **Ternary Moral Logic (TML) – Implementation Specifications**
 
 ---
-#### "The AI can knows what it can do. The Gateway decides what it may do. And the log remembers what it did. Separate these, or you separate responsibility from power." *-lev Goukassian*
+#### "The AI can knows what it can do. The Gateway decides what it may do. And the log remembers what it did. Separate these, or you separate responsibility from power." *-Lev Goukassian*
 
 ---
 This directory contains the **six core specifications** required to implement Ternary Moral Logic (TML) in any AI system, regardless of model type, domain, or deployment environment.
