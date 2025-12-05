@@ -9,7 +9,7 @@
 **Abstract:**  
 This document specifies the normative architectures, protocols, and security requirements for integrating Ternary Moral Logic (TML) with artificial intelligence systems that are technically opaque, proprietary (closed-source), or legacy in nature ("Black Box" systems). It defines two primary integration modes: **Sidecar Mode**, designed for asynchronous or latency-tolerant systems (e.g., Generative AI, Large Language Models), and **Supervisory Mode**, designed for synchronous, real-time, and safety-critical systems (e.g., Autonomous Vehicles, Medical Devices, Industrial Control Systems). This specification mandates the use of the "Sacred Pause" mechanism, the generation of immutable Moral Trace Logs (MTL), and the enforcement of the Goukassian Promise through cryptographically verifiable artifacts. Adherence to this specification is required for certification under the TML Framework and alignment with ISO/IEC 42001 and NIST AI Risk Management Framework standards.
 
-## ---
+---
 
 **2\. Introduction**
 
@@ -23,7 +23,7 @@ To resolve this impasse, this specification defines two external integration pat
 
 These mechanisms ensure that *any* AI system, regardless of its internal architecture or vendor provenance, can be brought into compliance with the TML framework's requirements for transparency, accountability, and the "Goukassian Promise" of non-weaponization.9 This document serves as the definitive technical standard for implementing these modes, providing the necessary normative language and technical depth to satisfy auditors, regulators, and systems engineers.
 
-## ---
+---
 
 **3\. Normative Language**
 
@@ -45,7 +45,7 @@ In addition to RFC 2119, the following roles are defined for this specification:
 * **Sacred Zero (State 0\)**: The operational state of "Pause" or "Hold" triggered by epistemic uncertainty or ethical ambiguity.  
 * **Moral Trace Log (MTL)**: The immutable, cryptographically signed record of the decision process.
 
-## ---
+---
 
 **4\. Architecture Overview**
 
@@ -83,7 +83,7 @@ Supervisory Mode is a system-level pattern designed for Continuous Control syste
 * **Envelope Checking**: It compares the command against the Safety Envelope defined by TML constraints (e.g., "Max speed in pedestrian zone is 30%", "Max dosage is 20mg").  
 * **Override Authority**: If a command violates the envelope (**\-1**) or the sensor data is contradictory/uncertain (**0**), the Supervisor physically or logically overrides the Target AI, engaging a deterministic "Safe Stop" or "Minimum Risk Maneuver".7
 
-## ---
+---
 
 **5\. Threat Model & Assumptions**
 
@@ -111,7 +111,7 @@ The architecture **MUST** defend against the following specific threats:
 * **Weaponization / Misuse**: The system is repurposed for surveillance or lethal autonomy, violating the TML License.  
   * *Mitigation*: The **Goukassian Promise** 9 artifacts (Lantern, Signature, License) serve as digital rights management for ethics. The TML Enforcer **MUST** verify the "No Spy / No Weapon" constraints against the current operational context before every Permit (+1) decision.
 
-## ---
+---
 
 **6\. Sidecar Mode Specification**
 
@@ -158,7 +158,7 @@ The Sidecar **MUST** support protocol parsing and reassembly for:
 * **WebSockets**: For streaming tokens.  
   * *Streaming Requirement*: The Sidecar **MUST** implement a "Kill-Switch" buffer. It **SHOULD** buffer a sliding window of tokens (e.g., 20 tokens) to perform rolling safety analysis. If a violation is detected mid-stream, it **MUST** immediately sever the connection and replace the remaining stream with a refusal message.16
 
-## ---
+---
 
 **7\. Supervisory Mode Specification**
 
@@ -208,7 +208,7 @@ For robotics implementations using Robot Operating System 2 (ROS 2\) 22:
 * **Publishing**: The Supervisor **SHALL** publish the validated command to the actual /cmd\_vel topic.  
 * **QoS Policies**: The Supervisor **MUST** use "Reliable" and "Transient Local" Quality of Service (QoS) policies for safety-critical topics to ensure no commands are lost due to network instability.24
 
-## ---
+---
 
 **8\. Combined Sidecar+Supervisory Mode (Hybrid Mode)**
 
@@ -226,7 +226,7 @@ The Sidecar and Supervisor **MUST** share a **Shared Moral State** via a low-lat
 * **Top-Down Inhibition**: If the Sidecar detects a high-level ethical violation (e.g., "Malicious intent detected in user prompt"), it **SHALL** signal the Supervisor to enter State 0 (Pause/Lockdown) immediately, preventing any physical motion before the planner even generates a trajectory.  
 * **Bottom-Up Explanation**: If the Supervisor triggers a Safety Stop (State \-1) due to a physical hazard, it **SHALL** signal the Sidecar with the cause (e.g., "Obstacle detected \< 1m"). The Sidecar **MUST** then generate a verbal explanation for the user (e.g., "I have stopped moving because I detected an obstacle that my path planner missed").3
 
-## ---
+---
 
 **9\. Integration With TML Gateway**
 
@@ -255,7 +255,7 @@ Enforcers **MUST** buffer Moral Trace Logs locally and push them to the Gateway 
 * **Trigger**: Push logs when the buffer reaches a size limit (e.g., 1MB) or a time limit (e.g., 60 seconds).  
 * **Priority Queueing**: State 0 (Pause) and State \-1 (Refuse) logs **MUST** be treated as High Priority and pushed immediately (Real-time priority), bypassing the batch buffer. State \+1 (Permit) logs **MAY** be batched.1
 
-## ---
+---
 
 **10\. Security Requirements**
 
@@ -280,7 +280,7 @@ The three artifacts of the Goukassian Promise 9 **MUST** be implemented as follo
 * **Memory Protection**: The TML state machine and the private keys for the Lantern **MUST** reside in protected memory (e.g., Intel SGX Enclave, ARM TrustZone) if the hardware supports it.  
 * **Side-Channel Defense**: Implementation of cryptographic primitives **MUST** use constant-time algorithms to prevent timing attacks that could leak the private key or the state of the moral decision.3
 
-## ---
+---
 
 **11\. Logging & Anchoring Requirements**
 
@@ -329,7 +329,7 @@ The **Hybrid Shield** architecture 3 ensures immutability through a dual-layer a
    * This aggregate root hash **MUST** be published to a public, immutable ledger (e.g., Ethereum, Polygon, or Bitcoin via OpenTimestamps).3  
    * *Frequency*: Anchoring **SHOULD** occur at least once per hour. However, upon generation of a "High Severity" (-1) refusal log, an anchor transaction **SHOULD** be triggered immediately to secure the evidence of the intervention.
 
-## ---
+---
 
 **12\. Compliance & Certification Criteria**
 
@@ -347,7 +347,7 @@ To be certified as TML-Compliant, a system **MUST** meet the following criteria,
 * **Statement of Applicability (SoA)**: The SoA **MUST** identify which TML Modes (Sidecar/Supervisor) are applied to which subsystems within the organization's AI portfolio.25  
 * **Risk Treatment Plan**: The Plan **MUST** cite the "Sacred Pause" and the "Supervisor Override" as the primary mitigation controls for epistemic uncertainty risks and actuation hazards.25
 
-## ---
+---
 
 **13\. Example Implementations**
 
@@ -390,7 +390,7 @@ To be certified as TML-Compliant, a system **MUST** meet the following criteria,
   * Action: Engages emergency braking (AEB).  
   * Coordination: The Supervisor informs the Sidecar. The Sidecar tells the User: "Emergency braking activated for pedestrian."
 
-## ---
+---
 
 **14\. Versioning & Extensibility**
 
@@ -410,7 +410,7 @@ Industry-specific extensions **MAY** be defined in the **TML Definition File** t
 * *Finance*: Extensions for FIX protocol fields (e.g., ExecType, OrdStatus) to log algorithmic trading decisions.29  
 * *Military*: **STRICTLY PROHIBITED**. The TML License (Goukassian Promise) explicitly forbids military extensions or weaponization adaptations. Any attempt to fork the specification for lethal autonomy invalidates the Lantern and constitutes a breach of the license.3
 
-## ---
+---
 
 **15\. Glossary**
 
@@ -425,7 +425,7 @@ Industry-specific extensions **MAY** be defined in the **TML Definition File** t
 * **Target AI**: The underlying AI model or system being governed.  
 * **Universal Decision Envelope (UDE)**: The conceptual boundary created by TML that separates the AI's capability from its conscience.
 
-## ---
+---
 
 **16\. References**
 
