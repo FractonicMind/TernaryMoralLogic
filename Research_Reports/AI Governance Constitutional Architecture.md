@@ -13,7 +13,11 @@ This monograph establishes that TML provides the necessary operational layer to 
 
 The genesis of TML is rooted in the personal narrative of its creator, Lev Goukassian. The framework was reportedly developed during a two-month period while Goukassian was managing a stage-4 terminal cancer diagnosis.,1 This context informs the philosophical core of the system: the experience of "terminal lucidity" inspired the concept of the Sacred Zero. Goukassian observed the contrast between the "measured compassion" of medical professionals (who pause to consider complex variables) and the "unthinking acceleration" of algorithmic systems, concluding that intelligence without the capacity to pause is merely compulsion. 
 
-The narrative of Lev Goukassian’s terminal illness adds a layer of "moral urgency" that is unique in computer science.1 The "Goukassian Promise" serves as a form of digital legacy.
+The narrative of Lev Goukassian’s terminal illness adds a layer of "moral urgency" that is unique in computer science.1 The "Goukassian Vow" serves as a form of digital legacy:
+
+**Pause when truth is uncertain.  
+Refuse when harm is clear.  
+Proceed where truth is.**
 
 - Implication: This narrative framing makes TML "sticky" (memetic). It frames the adoption of the framework not just as a technical choice, but as an ethical duty to honor a "final gift to the world".1 This emotional resonance is a powerful, if unconventional, adoption driver.
 
