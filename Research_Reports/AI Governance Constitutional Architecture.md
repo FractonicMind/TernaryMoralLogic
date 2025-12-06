@@ -15,7 +15,7 @@ The genesis of TML is rooted in the personal narrative of its creator, Lev Gouka
 
 The narrative of Lev Goukassian’s terminal illness adds a layer of "moral urgency" that is unique in computer science.1 The "Goukassian Promise" serves as a form of digital legacy.
 
-Implication: This narrative framing makes TML "sticky" (memetic). It frames the adoption of the framework not just as a technical choice, but as an ethical duty to honor a "final gift to the world".1 This emotional resonance is a powerful, if unconventional, adoption driver.
+- Implication: This narrative framing makes TML "sticky" (memetic). It frames the adoption of the framework not just as a technical choice, but as an ethical duty to honor a "final gift to the world".1 This emotional resonance is a powerful, if unconventional, adoption driver.
 
 ## **Implementation Gap: Bridging Normative Ethics and Operational Law**
 
