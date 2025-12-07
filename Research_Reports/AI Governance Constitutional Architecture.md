@@ -1,9 +1,9 @@
 # **Ternary Moral Logic: A Governance-Native Constitutional Architecture for Auditable Artificial Intelligence**
 
-**Author:** Lev Goukassian (ORCID: 0009–0006–5966–1243)
-**DOI:** [10.5281/zenodo.17849131](https://doi.org/10.5281/zenodo.17849131)
-**Date:** December 7, 2025
-**Supplementary Material:** Interactive Runtime Console (AI_Governance_Constitutional_Architecture_Console.html) available in this repository.
+**Author:** Lev Goukassian (ORCID: 0009–0006–5966–1243)   
+**DOI:** [10.5281/zenodo.17849131](https://doi.org/10.5281/zenodo.17849131)   
+**Date:** December 7, 2025   
+**Supplementary Material:** Interactive Runtime Console (AI_Governance_Constitutional_Architecture_Console.html) available in this repository.   
 
 ---
 
@@ -1046,7 +1046,7 @@ The Goukassian Vow is the direct, non-negotiable directive that translates abstr
 The architectural enforcement mechanism for the Vow is the **No Log \= No Action** principle. Every decision state (+1, 0, or \-1) must be substantiated by a cryptographically anchored Moral Trace Log, proving that the conditions of the Vow were met before the system was permitted to operate.
 
 --- 
-**DOI:** [10.5281/zenodo.17849131](https://doi.org/10.5281/zenodo.17849131)
+**DOI:** [10.5281/zenodo.17849131](https://doi.org/10.5281/zenodo.17849131)   
 **Interactive Visualization:** A runtime simulator demonstrating the Dual-Lane Latency architecture and Real-Time Log generation is included with this monograph as AI_Governance_Constitutional_Architecture_Console.html
 
 ---
