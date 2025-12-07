@@ -1,5 +1,12 @@
 # **Ternary Moral Logic: A Governance-Native Constitutional Architecture for Auditable Artificial Intelligence**
 
+**Author:** Lev Goukassian (ORCID: 0009–0006–5966–1243)
+**DOI:** [10.5281/zenodo.17849131](https://doi.org/10.5281/zenodo.17849131)
+**Date:** December 7, 2025
+**Supplementary Material:** Interactive Runtime Console (AI_Governance_Constitutional_Architecture_Console.html) available in this repository.
+
+---
+
 ## **Executive Summary**
 
 The proliferation of autonomous and opaque Artificial Intelligence (AI) systems into safety-critical, fundamental rights-impacting domains presents a profound challenge to established legal and governance institutions. Current global frameworks—such as the EU AI Act, the NIST AI Risk Management Framework (AI RMF), and the UNESCO Recommendation on the Ethics of AI—articulate essential normative principles (e.g., accountability, transparency, non-discrimination) but suffer from a critical *implementation gap*.1 These documents lack a mandatory, runtime, evidentiary architecture capable of translating high-level values into hard, verifiable technical compliance.1 Consequently, when high-risk AI systems cause harm, traditional legal remedies are thwarted by opacity, non-deterministic outputs, and the structural absence of a legally admissible record detailing the algorithmic decision process. This vulnerability to "plausible deniability" fundamentally undermines trust and accountability in the age of autonomy.2  
@@ -684,7 +691,7 @@ In a post-incident review (e.g., an international tribunal), the anchored MTL se
 
 The Moral Trace Log (MTL) is the primary evidentiary artifact of the TML architecture. Its format is standardized for cryptographic integrity, forensic readability, and compliance with judicial standards for digital records. The following section provides simulated raw log data and the necessary interpretation for verification and accountability reconstruction.
 
-### **Raw Moral Trace Logs (2,000+ words total)**
+### **Raw Moral Trace Logs**
 
 #### **Simulated Log Excerpt 3: Healthcare System \- Human Override of Sacred Zero**
 
@@ -810,7 +817,7 @@ TML logs are not merely records; they are authenticated, cryptographically secur
 
 TML represents a profound architectural convergence across governance, ethics, systems engineering, institutional economics, and legal philosophy. Its mandatory, technical structure fundamentally re-shapes theoretical debates on AI autonomy and accountability.
 
-### **1\. Governance Theory: Polycentricity and Digital Constitutionalism (3,000+ words target shared)**
+### **1\. Governance Theory: Polycentricity and Digital Constitutionalism**
 
 The complexity, speed, and decentralization of AI deployment strain traditional models of centralized, top-down governance. TML introduces principles of polycentric governance and digital constitutionalism to address this strain.
 
@@ -906,7 +913,7 @@ For modern jurisprudence, the most challenging aspect of AI liability is establi
 
 The analysis demonstrates that Ternary Moral Logic provides the operational bedrock required for effective, auditable, and accountable AI governance. The following strategic recommendations are explicit, actionable, and technically grounded, aiming to transition the global regulatory ecosystem from aspirational principle to enforceable architecture.
 
-### **Recommendations for Regulators (EU Commission, FDA, NIST, etc.) (2,000+ words target shared)**
+### **Recommendations for Regulators (EU Commission, FDA, NIST, etc.)**
 
 #### **1\. Mandate TML Compliance Tiering for High-Risk AI Systems**
 
@@ -1028,13 +1035,6 @@ The risks of failing to adopt a governance-native architecture like TML are imme
 
 TML provides the necessary constitutional shield to manage the immense power of future AI, ensuring that transparency and accountability are not optional policies, but architectural facts.
 
-## **Required Quote (Mandatory)**
-
-The philosophical heart and operational instruction set of Ternary Moral Logic is defined by the Goukassian Vow:  
-Pause when truth is uncertain.  
-Refuse when harm is clear.  
-Proceed where truth is. 6
-
 #### **How the Vow Becomes System-Level Behavior**
 
 The Goukassian Vow is the direct, non-negotiable directive that translates abstract ethical principles into the three functional states of the TML core, thereby becoming system-level behavior enforced by the constitutional architecture:
@@ -1045,6 +1045,11 @@ The Goukassian Vow is the direct, non-negotiable directive that translates abstr
 
 The architectural enforcement mechanism for the Vow is the **No Log \= No Action** principle. Every decision state (+1, 0, or \-1) must be substantiated by a cryptographically anchored Moral Trace Log, proving that the conditions of the Vow were met before the system was permitted to operate.
 
+--- 
+**DOI:** [10.5281/zenodo.17849131](https://doi.org/10.5281/zenodo.17849131)
+**Interactive Visualization:** A runtime simulator demonstrating the Dual-Lane Latency architecture and Real-Time Log generation is included with this monograph as AI_Governance_Constitutional_Architecture_Console.html
+
+---
 ## **Citations**
 
 3 TML GitHub. Ternary Moral Logic: A Mandatory Framework for Auditable AI.  
