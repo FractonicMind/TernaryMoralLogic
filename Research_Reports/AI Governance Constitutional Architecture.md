@@ -3,7 +3,7 @@
 **Author:** Lev Goukassian (ORCID: 0009–0006–5966–1243)   
 **DOI:** [10.5281/zenodo.17849131](https://doi.org/10.5281/zenodo.17849131)   
 **Date:** December 7, 2025   
-**Supplementary Material:** Interactive Runtime Console (AI_Governance_Constitutional_Architecture_Console.html) available in this repository.   
+**Supplementary Material:** [Interactive Runtime Console](AI_Governance_Constitutional_Architecture_Console.html) available in this repository.   
 
 ---
 
