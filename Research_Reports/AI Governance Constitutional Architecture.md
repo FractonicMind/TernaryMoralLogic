@@ -3,7 +3,7 @@
 **Author:** Lev Goukassian (ORCID: 0009–0006–5966–1243)   
 **DOI:** [10.5281/zenodo.17849131](https://doi.org/10.5281/zenodo.17849131)   
 **Date:** December 7, 2025   
-**Supplementary Material:** [Interactive Runtime Console](AI_Governance_Constitutional_Architecture_Console.html) available in this repository.   
+**Supplementary Material:** [Interactive Runtime Console](https://fractonicmind.github.io/TernaryMoralLogic/Research_Reports/AI_Governance_Constitutional_Architecture_Console.html) available in this repository.   
 
 ---
 
@@ -1047,7 +1047,7 @@ The architectural enforcement mechanism for the Vow is the **No Log \= No Action
 
 --- 
 **DOI:** [10.5281/zenodo.17849131](https://doi.org/10.5281/zenodo.17849131)   
-**Interactive Visualization:** A runtime simulator demonstrating the Dual-Lane Latency architecture and Real-Time Log generation is included with this monograph as AI_Governance_Constitutional_Architecture_Console.html
+**[Interactive Visualization](https://fractonicmind.github.io/TernaryMoralLogic/Research_Reports/AI_Governance_Constitutional_Architecture_Console.html):** A runtime simulator demonstrating the Dual-Lane Latency architecture and Real-Time Log generation is included with this monograph as 
 
 ---
 ## **Citations**
