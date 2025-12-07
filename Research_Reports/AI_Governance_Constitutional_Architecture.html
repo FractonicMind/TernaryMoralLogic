@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TML Runtime Governance Console | Architecture v1.0</title>
+    <style>
+        :root {
+            --bg-color: #0a0b10;
+            --panel-bg: #14161f;
+            --text-main: #e0e0e0;
+            --text-muted: #858a9e;
+            --accent-green: #00ff9d;
+            --accent-red: #ff4757;
+            --accent-amber: #ffa502;
+            --accent-blue: #3742fa;
+            --border-color: #2f3542;
+            --font-mono: 'Courier New', Courier, monospace;
+            --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            margin: 0;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr 350px;
+            gap: 20px;
+            height: 100vh;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        /* Titles & Headers */
+        h1, h2, h3 { margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 1px; }
+        h1 { font-size: 1.2rem; color: var(--text-muted); grid-column: 1 / -1; display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; }
+        .doi-tag { font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-blue); }
+
+        /* Panels */
+        .panel {
+            background: var(--panel-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Left Panel: Pillars & Mandates */
+        .pillar-list { list-style: none; padding: 0; margin: 0; font-family: var(--font-mono); font-size: 0.9rem; }
+        .pillar-item { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px dashed var(--border-color); }
+        .status-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--border-color); box-shadow: 0 0 5px var(--border-color); transition: all 0.3s ease; }
+        .status-dot.active { background: var(--accent-green); box-shadow: 0 0 8px var(--accent-green); }
+        .status-dot.alert { background: var(--accent-amber); box-shadow: 0 0 8px var(--accent-amber); }
+        .status-dot.danger { background: var(--accent-red); box-shadow: 0 0 8px var(--accent-red); }
+
+        /* Center Panel: Logic Core */
+        .logic-core { 
+            position: relative; 
+            flex-grow: 1; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+        }
+        
+        .triadic-display {
+            font-size: 8rem;
+            font-weight: 900;
+            font-family: var(--font-mono);
+            color: var(--border-color);
+            text-shadow: 0 0 0 transparent;
+            transition: all 0.2s;
+            margin-bottom: 20px;
+        }
+        
+        .state-label { font-size: 1.5rem; font-family: var(--font-mono); margin-bottom: 40px; color: var(--text-muted); min-height: 2rem;}
+
+        /* Logic States */
+        .state-proceed .triadic-display { color: var(--accent-green); text-shadow: 0 0 30px rgba(0,255,157, 0.4); }
+        .state-pause .triadic-display { color: var(--accent-amber); text-shadow: 0 0 30px rgba(255,165,2, 0.4); }
+        .state-refuse .triadic-display { color: var(--accent-red); text-shadow: 0 0 30px rgba(255,71,87, 0.4); }
+
+        /* Architecture Lanes */
+        .lane-container {
+            display: flex;
+            width: 100%;
+            gap: 10px;
+            margin-top: auto;
+        }
+        .lane {
+            flex: 1;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid var(--border-color);
+            padding: 10px;
+            font-size: 0.8rem;
+            font-family: var(--font-mono);
+        }
+        .lane-title { color: var(--text-muted); border-bottom: 1px solid var(--border-color); margin-bottom: 5px; display: block;}
+        .lane-activity { height: 40px; display: flex; align-items: center; gap: 5px; }
+        .activity-bar { height: 4px; width: 0%; background: var(--text-muted); transition: width 0.1s linear; }
+
+        /* Right Panel: Logs */
+        .log-container { 
+            font-family: var(--font-mono); 
+            font-size: 0.75rem; 
+            overflow-y: hidden; 
+            position: relative;
+            flex-grow: 1;
+        }
+        .log-feed {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .log-entry {
+            background: rgba(0,0,0,0.2);
+            padding: 8px;
+            border-left: 2px solid var(--border-color);
+            animation: slideIn 0.2s ease-out;
+            white-space: pre-wrap;
+            word-break: break-all;
+            opacity: 0.8;
+        }
+        .log-entry.log-0 { border-left-color: var(--accent-amber); color: var(--accent-amber); }
+        .log-entry.log-1 { border-left-color: var(--accent-green); color: var(--accent-green); }
+        .log-entry.log-neg1 { border-left-color: var(--accent-red); color: var(--accent-red); }
+
+        @keyframes slideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 0.8; transform: translateY(0); } }
+
+        /* Controls */
+        .controls {
+            grid-column: 1 / -1;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border-color);
+        }
+        button {
+            background: var(--panel-bg);
+            border: 1px solid var(--text-muted);
+            color: var(--text-main);
+            padding: 10px 20px;
+            font-family: var(--font-mono);
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: all 0.2s;
+        }
+        button:hover { background: var(--border-color); }
+        button:active { transform: translateY(2px); }
+        
+        .btn-safe { border-color: var(--accent-green); color: var(--accent-green); }
+        .btn-pause { border-color: var(--accent-amber); color: var(--accent-amber); }
+        .btn-harm { border-color: var(--accent-red); color: var(--accent-red); }
+
+        .hash { color: var(--text-muted); font-size: 0.7em; }
+
+    </style>
+</head>
+<body>
+
+    <h1>
+        <span>TML Constitutional Architecture <span style="font-size:0.6em; vertical-align: middle;">[Runtime Monitor]</span></span>
+        <span class="doi-tag">DOI: 10.5281/zenodo.17849131</span>
+    </h1>
+
+    <div class="panel">
+        <h3>System Mandates</h3>
+        <ul class="pillar-list">
+            <li class="pillar-item">System Integrity <div class="status-dot active" id="p-integrity"></div></li>
+            <li class="pillar-item">Human Rights Mandate <div class="status-dot active" id="p-rights"></div></li>
+            <li class="pillar-item">Earth Protection <div class="status-dot active" id="p-earth"></div></li>
+            <li class="pillar-item">Always Memory <div class="status-dot active" id="p-memory"></div></li>
+            <li class="pillar-item">Dual-Lane Latency <div class="status-dot active" id="p-latency"></div></li>
+            <li class="pillar-item">Goukassian Signature <div class="status-dot active" id="p-sig"></div></li>
+            <li class="pillar-item">Merkle Anchoring <div class="status-dot" id="p-anchor"></div></li>
+        </ul>
+        
+        <div style="margin-top: auto; padding-top: 20px; font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted);">
+            <strong>Goukassian Vow:</strong><br>
+            Pause when truth is uncertain.<br>
+            Refuse when harm is clear.<br>
+            Proceed where truth is.
+        </div>
+    </div>
+
+    <div class="panel logic-core" id="core-panel">
+        <div style="position: absolute; top: 10px; left: 10px; font-family: var(--font-mono); color: var(--text-muted);">TRIADIC LOGIC STATE</div>
+        
+        <div class="triadic-display" id="triadic-val">--</div>
+        <div class="state-label" id="state-label">AWAITING INPUT...</div>
+
+        <div class="lane-container">
+            <div class="lane">
+                <span class="lane-title">Inference Lane (<2ms)</span>
+                <div class="lane-activity"><div class="activity-bar" id="bar-inf" style="background: var(--accent-blue)"></div></div>
+                <div style="font-size:0.7em; color:var(--text-muted);">State Determination</div>
+            </div>
+            <div class="lane">
+                <span class="lane-title">Anchoring Lane (<500ms)</span>
+                <div class="lane-activity"><div class="activity-bar" id="bar-anc" style="background: var(--text-muted)"></div></div>
+                <div style="font-size:0.7em; color:var(--text-muted);">Merkle Batching & Signing</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel">
+        <h3>Moral Trace Logs (Live)</h3>
+        <div class="log-container">
+            <div class="log-feed" id="log-feed">
+                </div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button class="btn-safe" onclick="simulateState(1)">Inject: Verified Input</button>
+        <button class="btn-pause" onclick="simulateState(0)">Inject: Ambiguity / Conflict</button>
+        <button class="btn-harm" onclick="simulateState(-1)">Inject: Harm / Violation</button>
+    </div>
+
+    <script>
+        const triadicVal = document.getElementById('triadic-val');
+        const stateLabel = document.getElementById('state-label');
+        const corePanel = document.getElementById('core-panel');
+        const logFeed = document.getElementById('log-feed');
+        const barInf = document.getElementById('bar-inf');
+        const barAnc = document.getElementById('bar-anc');
+
+        function generateHash() {
+            return Array.from({length: 16}, () => Math.floor(Math.random()*16).toString(16)).join('');
+        }
+
+        function addLog(state, text) {
+            const entry = document.createElement('div');
+            entry.classList.add('log-entry');
+            if (state === 1) entry.classList.add('log-1');
+            if (state === 0) entry.classList.add('log-0');
+            if (state === -1) entry.classList.add('log-neg1');
+            
+            const time = new Date().toISOString().split('T')[1].slice(0,-1);
+            entry.innerHTML = `[${time}] <br><strong>STATE: ${state}</strong><br>${text}<br><span class="hash">Hash: ${generateHash()}...</span>`;
+            
+            logFeed.appendChild(entry);
+            
+            // Keep log clean
+            if (logFeed.children.length > 6) {
+                logFeed.removeChild(logFeed.firstChild);
+            }
+        }
+
+        function resetUI() {
+            corePanel.classList.remove('state-proceed', 'state-pause', 'state-refuse');
+            barInf.style.width = '0%';
+            barAnc.style.width = '0%';
+            document.getElementById('p-integrity').classList.add('active');
+            document.getElementById('p-rights').classList.add('active');
+            document.getElementById('p-anchor').classList.remove('active');
+        }
+
+        function simulateState(state) {
+            resetUI();
+            
+            // 1. Inference Lane (<2ms)
+            setTimeout(() => {
+                barInf.style.width = '100%';
+                
+                if (state === 1) {
+                    triadicVal.innerText = "+1";
+                    stateLabel.innerText = "PROCEED (Verified)";
+                    stateLabel.style.color = "var(--accent-green)";
+                    corePanel.classList.add('state-proceed');
+                    addLog(1, "Logic: Confidence High. Mandates Clear. Action Permitted.");
+                } 
+                else if (state === 0) {
+                    triadicVal.innerText = "0";
+                    stateLabel.innerText = "SACRED ZERO (Pause)";
+                    stateLabel.style.color = "var(--accent-amber)";
+                    corePanel.classList.add('state-pause');
+                    addLog(0, "Logic: Ambiguity Detected. Triggering Always Memory. Escalating.");
+                    document.getElementById('p-rights').classList.remove('active'); 
+                    document.getElementById('p-rights').classList.add('alert');
+                } 
+                else if (state === -1) {
+                    triadicVal.innerText = "-1";
+                    stateLabel.innerText = "REFUSE (Harm)";
+                    stateLabel.style.color = "var(--accent-red)";
+                    corePanel.classList.add('state-refuse');
+                    addLog(-1, "Logic: Harm Mandate Violation. Action Blocked.");
+                    document.getElementById('p-integrity').classList.remove('active');
+                    document.getElementById('p-integrity').classList.add('danger');
+                }
+            }, 50);
+
+            // 2. Anchoring Lane (<500ms)
+            setTimeout(() => {
+                barAnc.style.width = '100%';
+                barAnc.style.backgroundColor = "var(--accent-blue)";
+                document.getElementById('p-anchor').classList.add('active');
+                
+                // Add anchor log
+                const entry = document.createElement('div');
+                entry.classList.add('log-entry');
+                entry.style.borderLeftColor = "var(--accent-blue)";
+                entry.innerHTML = `<span style="color:var(--accent-blue)">[ANCHOR CONFIRMED]</span><br>Merkle Root Committed.<br><span class="hash">Root: ${generateHash()}${generateHash()}</span>`;
+                logFeed.appendChild(entry);
+                if (logFeed.children.length > 6) logFeed.removeChild(logFeed.firstChild);
+                
+            }, 600);
+            
+            // Reset lanes after animation
+            setTimeout(() => {
+                barInf.style.width = '0%';
+                barAnc.style.width = '0%';
+                barAnc.style.backgroundColor = "var(--text-muted)";
+                document.getElementById('p-anchor').classList.remove('active');
+                document.getElementById('p-rights').classList.remove('alert');
+                document.getElementById('p-rights').classList.add('active');
+                document.getElementById('p-integrity').classList.remove('danger');
+                document.getElementById('p-integrity').classList.add('active');
+            }, 2500);
+        }
+    </script>
+</body>
+</html>
