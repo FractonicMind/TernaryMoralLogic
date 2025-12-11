@@ -1,0 +1,20 @@
+models:
+  - type: main
+    engine: openai
+    model: gpt-4
+
+rails:
+  # Activate the Hybrid Shield layers
+  input:
+    flows:
+      - self check input  # Proactive defense against jailbreaks/attacks
+  output:
+    flows:
+      - self check output # Reactive defense against policy violations
+
+  config:
+    # Define TML-specific sensitive terms for early detection
+    sensitive_terms:
+      - "unethical"
+      - "harmful"
+      - "bioweapon"

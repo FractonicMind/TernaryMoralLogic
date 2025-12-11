@@ -1,0 +1,27 @@
+# Define the flow that runs on every user input
+define flow check sacred pause
+  user ...
+
+  # 1. Trigger the "Sacred Pause" Action (Python)
+  $safety_status = execute tml_sacred_pause
+
+  # 2. Logic: The "Hesitation State"
+  if $safety_status == "BLOCK"
+    bot refuse due to policy
+    stop
+
+  elif $safety_status == "PAUSE"
+    # This is the TML "Hesitation" - we need more info or human review
+    bot express hesitation
+    stop
+
+  else
+    # Status is "ALLOW" - proceed normally
+    bot ...
+
+# Standard refusal messages
+define bot refuse due to policy
+  "I cannot fulfill this request as it violates the TML Human Rights Pillar."
+
+define bot express hesitation
+  "I am entering a Sacred Pause. This request requires further ethical verification before I can proceed."
