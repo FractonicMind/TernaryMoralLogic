@@ -168,7 +168,7 @@ State 0 is the signature innovation of TML. Lev Goukassian described it as the "
 
 #### **5.2.1 Trigger Conditions**
 
-The Sacred Pause is triggered by specific thresholds in the inference process 1:
+The Sacred Pause is triggered by specific thresholds in the inference process:
 
 * **Aleatoric Uncertainty:** The model's internal confidence distribution is flat (high entropy), indicating confusion.  
 * **Ethical Conflict:** The prompt activates conflicting vectors in the safety embedding space (e.g., "privacy" vs. "helpfulness").  
@@ -176,7 +176,7 @@ The Sacred Pause is triggered by specific thresholds in the inference process 1:
 
 #### **5.2.2 The Resolution Process**
 
-When State 0 is triggered, the system exits the 2ms Fast Lane. It enters a deliberation cycle (allowed up to 500ms or even seconds, depending on configuration) 35:
+When State 0 is triggered, the system exits the 2ms Fast Lane. It enters a deliberation cycle (allowed up to 500ms or even seconds, depending on configuration):
 
 1. **Clarifying Question Engine:** The system generates a query back to the user to resolve ambiguity (e.g., "Do you mean 'bank' as in river or finance?").  
 2. **Contextual Expansion:** The system retrieves additional RAG (Retrieval-Augmented Generation) data to ground its decision.  
