@@ -1,0 +1,1051 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>My Algorithmic Will: A Constitutional Architecture for Auditable AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+    <link href="https://fonts.googleapis.com/css2?family=Tiempos+Headline:wght@400;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <style>
+        :root {
+            --primary: #0f766e;
+            --primary-light: #14b8a6;
+            --accent: #f59e0b;
+            --neutral: #374151;
+            --neutral-light: #f8fafc;
+        }
+        
+        .font-tiempos { font-family: 'Tiempos Headline', serif; }
+        .font-inter { font-family: 'Inter', sans-serif; }
+        
+        body {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .hero-overlay {
+            background: linear-gradient(135deg, rgba(15, 118, 110, 0.9) 0%, rgba(20, 184, 166, 0.8) 100%);
+        }
+        
+        .toc-sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 280px;
+            height: 100vh;
+            background: white;
+            border-right: 1px solid #e5e7eb;
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 2rem 1.5rem;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.05);
+        }
+        
+        .main-content {
+            margin-left: 280px;
+            min-height: 100vh;
+        }
+        
+        .toc-link {
+            display: block;
+            padding: 0.5rem 0;
+            color: #6b7280;
+            text-decoration: none;
+            border-left: 2px solid transparent;
+            padding-left: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .toc-link:hover, .toc-link.active {
+            color: var(--primary);
+            border-left-color: var(--primary);
+            background: rgba(15, 118, 110, 0.05);
+        }
+        
+        .toc-link.level-2 {
+            padding-left: 2rem;
+            font-size: 0.9rem;
+        }
+        
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, var(--primary) 50%, transparent 100%);
+            margin: 4rem 0;
+        }
+        
+        .citation-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px dotted var(--primary);
+        }
+        
+        .citation-link:hover {
+            background: rgba(15, 118, 110, 0.1);
+            border-bottom: 1px solid var(--primary);
+        }
+        
+        .bento-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .bento-item {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border: 1px solid #e5e7eb;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(15, 118, 110, 0.05) 100%);
+            border-left: 4px solid var(--accent);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .quote-block {
+            background: white;
+            border-left: 4px solid var(--primary);
+            padding: 2rem;
+            margin: 2rem 0;
+            font-style: italic;
+            font-size: 1.1rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        /* Mermaid diagram styling */
+        .mermaid-container {
+            display: flex;
+            justify-content: center;
+            min-height: 300px;
+            max-height: 800px;
+            background: #ffffff;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .mermaid-container .mermaid {
+            width: 100%;
+            max-width: 100%;
+            height: 100%;
+            cursor: grab;
+            transition: transform 0.3s ease;
+            transform-origin: center center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            touch-action: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        
+        .mermaid-container .mermaid svg {
+            max-width: 100%;
+            height: 100%;
+            display: block;
+            margin: 0 auto;
+        }
+        
+        .mermaid-container .mermaid:active {
+            cursor: grabbing;
+        }
+        
+        .mermaid-container.zoomed .mermaid {
+            height: 100%;
+            width: 100%;
+            cursor: grab;
+        }
+        
+        .mermaid-controls {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            display: flex;
+            gap: 10px;
+            z-index: 20;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 8px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .mermaid-control-btn {
+            background: #ffffff;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            padding: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #374151;
+            font-size: 14px;
+            min-width: 36px;
+            height: 36px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .mermaid-control-btn:hover {
+            background: #f8fafc;
+            border-color: #3b82f6;
+            color: #3b82f6;
+            transform: translateY(-1px);
+        }
+        
+        .mermaid-control-btn:active {
+            transform: scale(0.95);
+        }
+        
+        /* Enhanced Mermaid theme customization for better contrast */
+        .mermaid .node rect,
+        .mermaid .node circle,
+        .mermaid .node ellipse,
+        .mermaid .node polygon {
+            stroke-width: 2px;
+        }
+        
+        .mermaid .node .label {
+            color: #1f2937;
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+        }
+        
+        .mermaid .edgePath .path {
+            stroke: #6b7280;
+            stroke-width: 2px;
+        }
+        
+        .mermaid .edgeLabel {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            color: #374151;
+        }
+        
+        /* Custom node colors for better contrast */
+        .mermaid .node.startNode rect,
+        .mermaid .node.startNode circle {
+            fill: #dbeafe;
+            stroke: #3b82f6;
+        }
+        
+        .mermaid .node.decisionNode rect,
+        .mermaid .node.decisionNode polygon {
+            fill: #fef3c7;
+            stroke: #f59e0b;
+        }
+        
+        .mermaid .node.actionNode rect {
+            fill: #dcfce7;
+            stroke: #16a34a;
+        }
+        
+        .mermaid .node.refusalNode rect {
+            fill: #fee2e2;
+            stroke: #dc2626;
+        }
+        
+        .mermaid .node.pauseNode rect {
+            fill: #f1f5f9;
+            stroke: #64748b;
+        }
+        
+        @media (max-width: 768px) {
+            .toc-sidebar {
+                display: none;
+            }
+            .main-content {
+                margin-left: 0;
+            }
+            .bento-grid {
+                grid-template-columns: 1fr;
+            }
+            .mermaid-control-btn:not(.reset-zoom) {
+                display: none;
+            }
+            .mermaid-controls {
+                top: auto;
+                bottom: 15px;
+                right: 15px;
+            }
+        }
+        
+        @media (max-width: 1024px) {
+            .mermaid-container {
+                overflow-x: auto;
+            }
+        }
+    </style>
+  <base target="_blank">
+</head>
+
+  <body class="font-inter">
+    <!-- Table of Contents Sidebar -->
+    <nav class="toc-sidebar">
+      <div class="mb-8">
+        <h2 class="font-tiempos text-xl font-bold text-gray-900 mb-4">Contents</h2>
+        <div class="space-y-2">
+          <a href="#executive-summary" class="toc-link">Executive Summary</a>
+          <a href="#personal-story" class="toc-link">1. The Personal Story</a>
+          <a href="#terminal-diagnosis" class="toc-link level-2">1.1 Terminal Diagnosis</a>
+          <a href="#sacred-pause" class="toc-link level-2">1.2 The Sacred Pause</a>
+          <a href="#algorithmic-will" class="toc-link">2. The Algorithmic Will</a>
+          <a href="#voluntary-succession" class="toc-link level-2">2.1 Voluntary Succession</a>
+          <a href="#stewardship-council" class="toc-link level-2">2.2 Stewardship Council</a>
+          <a href="#constitutional-architecture" class="toc-link">3. Constitutional Architecture</a>
+          <a href="#goukassian-vow" class="toc-link level-2">3.1 Goukassian Vow</a>
+          <a href="#triadic-logic" class="toc-link level-2">3.2 Triadic Logic</a>
+          <a href="#governance-frameworks" class="toc-link level-2">3.3 Governance Frameworks</a>
+          <a href="#call-for-stewardship" class="toc-link">4. Call for Stewardship</a>
+          <a href="#developers" class="toc-link level-2">4.1 For Developers</a>
+          <a href="#organizations" class="toc-link level-2">4.2 For Organizations</a>
+          <a href="#public" class="toc-link level-2">4.3 For Public</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Hero Section -->
+      <section class="relative">
+        <div class="hero-overlay">
+          <div class="container mx-auto px-4 sm:px-6 md:px-8 py-16">
+            <div class="max-w-4xl">
+              <h1 class="font-tiempos text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
+                <em>My Algorithmic Will:</em>
+                <br/>
+                A Constitutional Architecture for Auditable AI
+              </h1>
+              <p class="text-lg sm:text-xl text-white/90 mb-8 max-w-2xl">
+                How terminal urgency birthed an unownable ethical framework for artificial intelligence—a legacy designed to outlive its creator and safeguard humanity&#39;s digital future.
+              </p>
+              <div class="flex items-center space-x-4 text-white/80">
+                <span class="flex items-center">
+                  <i class="fas fa-clock mr-2"></i>
+                  December 17, 2025
+                </span>
+                <span class="flex items-center">
+                  <i class="fas fa-user mr-2"></i>
+                  Lev Goukassian
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="absolute inset-0">
+          <img src="https://kimi-web-img.moonshot.cn/img/img.cdn.cratecode.com/d98b407ef26568a04baff7d49fd6cd5e1e7f859e.webp" alt="Abstract geometric representation of an algorithmic will" class="w-full h-full object-cover opacity-20" size="wallpaper" aspect="wide" query="algorithmic will geometric concept" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"/>
+        </div>
+      </section>
+
+      <!-- Executive Summary -->
+      <section id="executive-summary" class="container mx-auto px-4 sm:px-6 md:px-8 py-16">
+        <div class="max-w-4xl mx-auto">
+          <h2 class="font-tiempos text-3xl font-bold text-gray-900 mb-8">Executive Summary</h2>
+          <div class="highlight-box">
+            <p class="text-lg leading-relaxed mb-6">
+              This article outlines my <strong>&#34;Algorithmic Will,&#34;</strong> a legal and technical framework designed to ensure that the <strong>Ternary Moral Logic (TML)</strong>—a constitutional architecture for auditable AI—remains a free, open, and unownable public good.
+            </p>
+            <div class="bento-grid">
+              <div class="bento-item">
+                <h3 class="font-tiempos text-xl font-semibold text-gray-900 mb-3">The Genesis</h3>
+                <p class="text-gray-700">Born from a terminal diagnosis, TML represents my final act and legacy, created to prevent catastrophic ethical failures in AI by embedding enforceable morality directly into its code.</p>
+              </div>
+              <div class="bento-item">
+                <h3 class="font-tiempos text-xl font-semibold text-gray-900 mb-3">The Mission</h3>
+                <p class="text-gray-700">This will establishes a multi-institutional Stewardship Council to guard the framework&#39;s integrity, ensuring it can never be corrupted, controlled, or owned by any individual or organization after I am gone.</p>
+              </div>
+            </div>
+            <p class="text-lg leading-relaxed mt-6">
+              I am publishing this to raise awareness, call for stewards, and invite developers, organizations, and the public to join the mission of building a future where AI is not just powerful, but also provably trustworthy, transparent, and accountable.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- Chapter 1: The Personal Story -->
+      <section id="personal-story" class="container mx-auto px-4 sm:px-6 md:px-8 py-16">
+        <div class="max-w-4xl mx-auto">
+          <h2 class="font-tiempos text-4xl font-bold text-gray-900 mb-12">1. The Personal Story: A Legacy Born from Necessity</h2>
+
+          <p class="text-lg leading-relaxed text-gray-700 mb-8">
+            The genesis of Ternary Moral Logic (TML) is not rooted in a corporate lab or a government think tank, but in a personal journey marked by profound urgency and a singular, unwavering conviction. It is a story that begins with a terminal diagnosis, a moment that crystallized a life&#39;s work into a final, desperate act of creation.
+          </p>
+
+          <div id="terminal-diagnosis" class="mb-16">
+            <h3 class="font-tiempos text-2xl font-semibold text-gray-900 mb-6">1.1 A Terminal Diagnosis and a Two-Month Sprint</h3>
+
+            <div class="bg-white p-8 rounded-lg shadow-lg mb-8">
+              <h4 class="font-tiempos text-xl font-semibold text-gray-900 mb-4">The Stage 4 Cancer Diagnosis</h4>
+              <p class="text-gray-700 leading-relaxed mb-4">
+                The catalyst for the creation of Ternary Moral Logic was a deeply personal and life-altering event: my diagnosis with <strong>stage 4 cancer</strong>
+                <a href="https://medium.com/@leogouk/tml-to-unesco-the-operational-layer-you-forgot-to-write-down-e61b60d0e2da" class="citation-link" target="_blank">[155]</a>. This diagnosis, with its grim prognosis of only two months to live, served as a stark reminder of mortality and the fragility of human life.
+              </p>
+              <p class="text-gray-700 leading-relaxed">
+                The knowledge that time was limited imbued the project with a sense of purpose and a drive to create something that would not only outlive me but also be immune to the very human frailties I was confronting.
+              </p>
+            </div>
+
+            <div class="quote-block">
+              &#34;The cancer diagnosis was not just a medical event; it was the crucible in which the idea of an un-ownable, un-controllable, and perpetually free ethical framework for AI was forged.&#34;
+            </div>
+
+            <div class="bg-white p-8 rounded-lg shadow-lg mb-8">
+              <h4 class="font-tiempos text-xl font-semibold text-gray-900 mb-4">Developing TML as a Final Act</h4>
+              <p class="text-gray-700 leading-relaxed mb-4">
+                With the knowledge that time was severely limited, I embarked on an intense, <strong>two-month sprint</strong> to complete Ternary Moral Logic <a href="https://medium.com/@leogouk/tml-to-unesco-the-operational-layer-you-forgot-to-write-down-e61b60d0e2da" class="citation-link" target="_blank">[155]</a>. This was not merely a project; it was my <strong>final act</strong>, a deliberate and conscious effort to leave behind a legacy that could protect humanity from the potential dangers of unchecked artificial intelligence.
+              </p>
+            </div>
+
+            <div class="highlight-box">
+              <h4 class="font-tiempos text-xl font-semibold text-gray-900 mb-4">Preventing a &#34;DeepMind Disaster&#34;</h4>
+              <p class="text-gray-700 leading-relaxed">
+                A key motivation was preventing a hypothetical <strong>&#34;DeepMind disaster&#34;</strong> —a scenario where a powerful AI system could cause unintended and catastrophic harm due to a lack of robust ethical safeguards <a href="https://medium.com/@leogouk/the-email-that-broke-our-ai-a-deepmind-disaster-75729e5035f6" class="citation-link" target="_blank">[194]</a>. The fear was that even well-intentioned organizations could fall victim to &#34;optimization within unjust frameworks,&#34; where AI systems inadvertently perpetuate societal inequalities <a href="https://communities.springernature.com/posts/from-algorithmic-control-to-stewardship-a-new-framework-for-urban-climatic-justice" class="citation-link" target="_blank">[181]</a>.
+              </p>
+            </div>
+          </div>
+
+          <div id="sacred-pause" class="mb-16">
+            <h3 class="font-tiempos text-2xl font-semibold text-gray-900 mb-6">1.2 The &#34;Sacred Pause&#34;: A Personal Philosophy Encoded</h3>
+
+            <p class="text-lg leading-relaxed text-gray-700 mb-8">
+              At the heart of Ternary Moral Logic lies a concept that is as much a philosophical statement as it is a technical specification: the <strong>&#34;Sacred Pause.&#34;</strong> This idea represents the third state in TML&#39;s triadic logic system, a state of intentional inaction and reflection when an AI encounters moral uncertainty <a href="https://medium.com/@leogouk/tml-to-unesco-the-operational-layer-you-forgot-to-write-down-e61b60d0e2da" class="citation-link" target="_blank">[155]</a>.
+            </p>
+
+            <div class="bento-grid">
+              <div class="bento-item">
+                <h4 class="font-tiempos text-lg font-semibold text-gray-900 mb-3">Hesitation as Virtue</h4>
+                <p class="text-gray-700">The &#34;Sacred Pause&#34; systematically encodes hesitation into AI decision-making, challenging the paradigm that prioritizes speed over wisdom. It&#39;s a recognition that in ethics, there are often no easy answers.</p>
+              </div>
+              <div class="bento-item">
+                <h4 class="font-tiempos text-lg font-semibold text-gray-900 mb-3">Beyond Black-Box AI</h4>
+                <p class="text-gray-700">TML moves beyond opaque AI systems with auditable &#34;Moral Trace Logs&#34; that document every decision, hesitation, and refusal in a cryptographically sealed record.</p>
+              </div>
+            </div>
+
+            <div class="bg-white p-8 rounded-lg shadow-lg">
+              <h4 class="font-tiempos text-xl font-semibold text-gray-900 mb-4">The &#34;No Log, No Action&#34; Principle</h4>
+              <p class="text-gray-700 leading-relaxed">
+                The <strong>&#34;No memory = No action&#34;</strong> principle is a cornerstone of TML, ensuring every AI action is accompanied by a verifiable and immutable record <a href="https://github.com/FractonicMind/TernaryMoralLogic" class="citation-link" target="_blank">[193]</a>. This radical transparency makes it impossible for AI to act without leaving a trace, creating accountability by design.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- Chapter 2: The Algorithmic Will -->
+      <section id="algorithmic-will" class="container mx-auto px-4 sm:px-6 md:px-8 py-16">
+        <div class="max-w-4xl mx-auto">
+          <h2 class="font-tiempos text-4xl font-bold text-gray-900 mb-12">2. The Algorithmic Will: Ensuring TML&#39;s Perpetual Freedom</h2>
+
+          <p class="text-lg leading-relaxed text-gray-700 mb-8">
+            The &#34;Algorithmic Will&#34; is the legal and philosophical cornerstone of Ternary Moral Logic, a declaration of intent that ensures the framework&#39;s perpetual freedom and independence. It is a notarized, on-chain legal instrument that codifies the creator&#39;s wish that <strong>TML should never be owned or controlled by any individual or organization</strong>
+            <a href="https://github.com/FractonicMind/TernaryMoralLogic" class="citation-link" target="_blank">[111]</a>.
+          </p>
+
+          <div id="voluntary-succession" class="mb-16">
+            <h3 class="font-tiempos text-2xl font-semibold text-gray-900 mb-6">2.1 The Voluntary Succession Declaration</h3>
+
+            <div class="bg-white p-8 rounded-lg shadow-lg mb-8">
+              <h4 class="font-tiempos text-xl font-semibold text-gray-900 mb-4">A Notarized, On-Chain Legal Instrument</h4>
+              <p class="text-gray-700 leading-relaxed">
+                The &#34;Algorithmic Will&#34; is a concrete legal and technical artifact, a <strong>notarized and on-chain instrument</strong> that leverages blockchain technology to create a tamper-proof and self-executing declaration of intent <a href="https://github.com/FractonicMind/TernaryMoralLogic" class="citation-link" target="_blank">[111]</a>. This innovative approach ensures the creator&#39;s wishes are automatically executed without human intervention.
+              </p>
+            </div>
+
+            <div class="highlight-box">
+              <h4 class="font-tiempos text-xl font-semibold text-gray-900 mb-4">Automating My Legacy</h4>
+              <p class="text-gray-700 leading-relaxed">
+                This mechanism ensures TML not only survives its creator but thrives as an independent, self-governing entity. It outlines a clear path for the framework&#39;s future, guided by transparency, accountability, and collective good.
+              </p>
+            </div>
+
+            <div class="quote-block">
+              &#34;The core mandate: no individual or organization shall ever own or control Ternary Moral Logic. TML is not a tool for gain, but a gift to humanity.&#34;
+            </div>
+          </div>
+
+          <div id="stewardship-council" class="mb-16">
+            <h3 class="font-tiempos text-2xl font-semibold text-gray-900 mb-6">2.2 The Stewardship Council: A Multi-Institutional Guardian</h3>
+
+            <div class="bg-white p-8 rounded-lg shadow-lg mb-8">
+              <h4 class="font-tiempos text-xl font-semibold text-gray-900 mb-4">Composition and Mandate</h4>
+              <p class="text-gray-700 leading-relaxed mb-4">
+                The Stewardship Council is a multi-institutional body representing <strong>technology, human rights, academia, and civil society</strong>
+                <a href="https://prism.sustainability-directory.com/area/algorithmic-stewardship-council/" class="citation-link" target="_blank">[179]</a>. Its mandate is to protect the ethical and technical integrity of the TML framework.
+              </p>
+              <p class="text-gray-700 leading-relaxed">
+                Crucially, the council <strong>cannot alter the core foundations</strong> of TML or change its attribution, ensuring the framework remains true to its original vision <a href="https://github.com/FractonicMind/TernaryMoralLogic" class="citation-link" target="_blank">[111]</a>.
+              </p>
+            </div>
+
+            <!-- Mermaid Diagram: Stewardship Council Structure -->
+            <div class="mermaid-container">
+              <div class="mermaid-controls">
+                <button class="mermaid-control-btn zoom-in" title="放大">
+                  <i class="fas fa-search-plus"></i>
+                </button>
+                <button class="mermaid-control-btn zoom-out" title="缩小">
+                  <i class="fas fa-search-minus"></i>
+                </button>
+                <button class="mermaid-control-btn reset-zoom" title="重置">
+                  <i class="fas fa-expand-arrows-alt"></i>
+                </button>
+                <button class="mermaid-control-btn fullscreen" title="全屏查看">
+                  <i class="fas fa-expand"></i>
+                </button>
+              </div>
+              <div class="mermaid">
+                graph TB
+                A[&#34;Algorithmic Will&#34;] --&gt; B[&#34;Stewardship Council&#34;]
+                B --&gt; C[&#34;Technology Representatives&#34;]
+                B --&gt; D[&#34;Human Rights Experts&#34;]
+                B --&gt; E[&#34;Academic Institutions&#34;]
+                B --&gt; F[&#34;Civil Society&#34;]
+                C --&gt; G[&#34;Protect Framework Integrity&#34;]
+                D --&gt; G
+                E --&gt; G
+                F --&gt; G
+                G --&gt; H[&#34;Ensure TML Remains Unownable&#34;]
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- Chapter 3: Constitutional Architecture -->
+      <section id="constitutional-architecture" class="container mx-auto px-4 sm:px-6 md:px-8 py-16">
+        <div class="max-w-4xl mx-auto">
+          <h2 class="font-tiempos text-4xl font-bold text-gray-900 mb-12">3. The Constitutional Architecture for Auditable AI</h2>
+
+          <p class="text-lg leading-relaxed text-gray-700 mb-8">
+            The &#34;Constitutional Architecture for Auditable AI&#34; is the technical and philosophical heart of Ternary Moral Logic. It is built on three key pillars: the <strong>&#34;Goukassian Vow,&#34;</strong> the <strong>&#34;Triadic Logic,&#34;</strong> and the <strong>&#34;Moral Trace Logs.&#34;</strong>
+          </p>
+
+          <div id="goukassian-vow" class="mb-16">
+            <h3 class="font-tiempos text-2xl font-semibold text-gray-900 mb-6">3.1 The Goukassian Vow: The Constitution</h3>
+
+            <div class="bg-white p-8 rounded-lg shadow-lg mb-8">
+              <h4 class="font-tiempos text-xl font-semibold text-gray-900 mb-4">The Three-Part Promise</h4>
+              <p class="text-gray-700 leading-relaxed mb-4">
+                The &#34;Goukassian Vow&#34; serves as the constitution of TML, an executable law encoded into the framework&#39;s architecture. The three-part promise is simple yet profound:
+              </p>
+              <div class="highlight-box">
+                <p class="text-lg font-semibold text-center">&#34;Pause when truth is uncertain. Refuse when harm is clear. Proceed where truth is.&#34;</p>
+              </div>
+              <p class="text-gray-700 leading-relaxed mt-4">
+                This vow is a practical and enforceable guide for ethical decision-making, rejecting the &#34;move fast and break things&#34; ethos in favor of deliberate, responsible innovation <a href="https://github.com/FractonicMind/TernaryMoralLogic" class="citation-link" target="_blank">[193]</a>.
+              </p>
+            </div>
+          </div>
+
+          <div id="triadic-logic" class="mb-16">
+            <h3 class="font-tiempos text-2xl font-semibold text-gray-900 mb-6">3.2 Triadic Logic: The Judicial Process</h3>
+
+            <div class="bg-white p-8 rounded-lg shadow-lg mb-8">
+              <h4 class="font-tiempos text-xl font-semibold text-gray-900 mb-4">The +1 (Act), 0 (Pause), -1 (Refuse) Framework</h4>
+              <p class="text-gray-700 leading-relaxed mb-4">
+                The Triadic Logic moves beyond binary thinking to embrace ethical complexity. The framework provides a nuanced approach:
+              </p>
+              <ul class="space-y-3 text-gray-700">
+                <li><strong>+1 (Act):</strong> Clear, confident action aligned with ethical principles</li>
+                <li><strong>0 (Pause):</strong> Intentional hesitation and reflection when facing uncertainty</li>
+                <li><strong>-1 (Refuse):</strong> Firm refusal when harm is detected or predicted</li>
+              </ul>
+              <p class="text-gray-700 leading-relaxed mt-4">
+                This three-part framework is both technically rigorous and ethically robust <a href="https://github.com/FractonicMind/TernaryMoralLogic" class="citation-link" target="_blank">[193]</a>.
+              </p>
+            </div>
+
+            <div class="highlight-box">
+              <h4 class="font-tiempos text-xl font-semibold text-gray-900 mb-4">Moral Trace Logs: Immutable, Auditable Records</h4>
+              <p class="text-gray-700 leading-relaxed">
+                The &#34;Moral Trace Logs&#34; provide an immutable and auditable record of every AI decision, creating a complete and unalterable testimony of the AI&#39;s ethical reasoning process. This radical transparency ensures AI systems are not just powerful, but also trustworthy and accountable.
+              </p>
+            </div>
+          </div>
+
+          <div id="governance-frameworks" class="mb-16">
+            <h3 class="font-tiempos text-2xl font-semibold text-gray-900 mb-6">3.3 How TML Completes Existing Governance Frameworks</h3>
+
+            <div class="bento-grid">
+              <div class="bento-item">
+                <h4 class="font-tiempos text-lg font-semibold text-gray-900 mb-3">EU AI Act Integration</h4>
+                <p class="text-gray-700">TML provides the technical architecture for implementing the EU AI Act&#39;s requirements for human oversight (via the Sacred Pause) and transparency (via Moral Trace Logs).</p>
+              </div>
+              <div class="bento-item">
+                <h4 class="font-tiempos text-lg font-semibold text-gray-900 mb-3">NIST AI RMF Alignment</h4>
+                <p class="text-gray-700">The framework complements NIST&#39;s Risk Management Framework by providing concrete implementation for governance (Stewardship Council) and risk measurement (Moral Trace Logs).</p>
+              </div>
+            </div>
+
+            <div class="bg-white p-8 rounded-lg shadow-lg">
+              <h4 class="font-tiempos text-xl font-semibold text-gray-900 mb-4">Bridging the Implementation Gap</h4>
+              <p class="text-gray-700 leading-relaxed">
+                TML addresses the greatest challenge in AI governance: translating high-level principles into operational reality <a href="https://medium.com/@leogouk/tml-to-unesco-the-operational-layer-you-forgot-to-write-down-e61b60d0e2da" class="citation-link" target="_blank">[155]</a>. It provides the technical architecture for turning abstract ideals into concrete, verifiable actions embedded in AI systems.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- Chapter 4: Call for Stewardship -->
+      <section id="call-for-stewardship" class="container mx-auto px-4 sm:px-6 md:px-8 py-16">
+        <div class="max-w-4xl mx-auto">
+          <h2 class="font-tiempos text-4xl font-bold text-gray-900 mb-12">4. A Call for Stewardship: Joining the Mission</h2>
+
+          <p class="text-lg leading-relaxed text-gray-700 mb-8">
+            The creation of truly ethical and accountable AI is not a task for a single individual or organization; it is a collective endeavor that requires the participation and commitment of the entire global community. This is a <strong>call for stewardship</strong>, an invitation to join the mission of building a better future for AI.
+          </p>
+
+          <div id="developers" class="mb-16">
+            <h3 class="font-tiempos text-2xl font-semibold text-gray-900 mb-6">4.1 For Developers and Engineers</h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+              <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h4 class="font-tiempos text-lg font-semibold text-gray-900 mb-3">Implement TML</h4>
+                <p class="text-gray-700">Integrate the TML framework into your AI systems, creating a new generation of wise, responsible, and trustworthy AI.</p>
+              </div>
+              <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h4 class="font-tiempos text-lg font-semibold text-gray-900 mb-3">Contribute Open-Source</h4>
+                <p class="text-gray-700">Join the global community improving the TML codebase, fixing bugs, adding features, and making the framework more robust.</p>
+              </div>
+              <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h4 class="font-tiempos text-lg font-semibold text-gray-900 mb-3">Audit Moral Logs</h4>
+                <p class="text-gray-700">Verify and audit Moral Trace Logs, becoming part of a new generation of &#34;ethical hackers&#34; committed to algorithmic justice.</p>
+              </div>
+            </div>
+          </div>
+
+          <div id="organizations" class="mb-16">
+            <h3 class="font-tiempos text-2xl font-semibold text-gray-900 mb-6">4.2 For Organizations and Enterprises</h3>
+
+            <div class="bg-white p-8 rounded-lg shadow-lg mb-8">
+              <h4 class="font-tiempos text-xl font-semibold text-gray-900 mb-4">Adopt TML for Legally Defensible AI</h4>
+              <p class="text-gray-700 leading-relaxed mb-4">
+                Organizations need AI systems that are not just effective but legally defensible. TML provides a built-in &#34;compliance backbone&#34; that helps meet regulatory obligations while demonstrating provable ethical behavior.
+              </p>
+              <p class="text-gray-700 leading-relaxed">
+                Move beyond &#34;trust us&#34; to &#34;verify this&#34;—provide cryptographic proof that your AI systems operate safely and ethically.
+              </p>
+            </div>
+
+            <div class="highlight-box">
+              <h4 class="font-tiempos text-xl font-semibold text-gray-900 mb-4">Join the Stewardship Council</h4>
+              <p class="text-gray-700 leading-relaxed">
+                Lend your organization&#39;s expertise and voice to the governance of TML. Help ensure the framework remains true to its founding principles and isn&#39;t captured by any single interest.
+              </p>
+            </div>
+          </div>
+
+          <div id="public" class="mb-16">
+            <h3 class="font-tiempos text-2xl font-semibold text-gray-900 mb-6">4.3 For the General Public and Regulators</h3>
+
+            <div class="quote-block">
+              &#34;The public has a right to know how the AI systems shaping their lives are making decisions. Demand auditable AI by design.&#34;
+            </div>
+
+            <div class="bento-grid">
+              <div class="bento-item">
+                <h4 class="font-tiempos text-lg font-semibold text-gray-900 mb-3">Demand Transparency</h4>
+                <p class="text-gray-700">Insist that AI systems you interact with are not just transparent but accountable. Ask tough questions about AI in hiring, lending, justice, and healthcare.</p>
+              </div>
+              <div class="bento-item">
+                <h4 class="font-tiempos text-lg font-semibold text-gray-900 mb-3">Exercise Your Rights</h4>
+                <p class="text-gray-700">Understand and exercise your right to an explanation. Demand clear, understandable reasons for AI-driven decisions that affect your life.</p>
+              </div>
+            </div>
+
+            <div class="bg-white p-8 rounded-lg shadow-lg">
+              <h4 class="font-tiempos text-xl font-semibold text-gray-900 mb-4">Support Ethical AI Future</h4>
+              <p class="text-gray-700 leading-relaxed">
+                Advocate for policies promoting transparency and accountability. Educate yourself and others about ethical AI. Be part of a movement using technology to build a more just and equitable world.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Final CTA -->
+      <section class="container mx-auto px-4 sm:px-6 md:px-8 py-16 bg-gradient-to-r from-teal-600 to-emerald-600 text-white">
+        <div class="max-w-4xl mx-auto text-center">
+          <h2 class="font-tiempos text-3xl font-bold mb-6">The Future of AI is in Our Hands</h2>
+          <p class="text-xl mb-8 opacity-90">
+            Ternary Moral Logic is more than a framework—it&#39;s a commitment to building AI systems that serve humanity with wisdom, transparency, and unwavering ethical integrity.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="https://github.com/FractonicMind/TernaryMoralLogic" class="bg-white text-teal-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+              <i class="fab fa-github mr-2"></i>Join the Mission
+            </a>
+            <a href="#call-for-stewardship" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-teal-600 transition-colors">
+              <i class="fas fa-hands-helping mr-2"></i>Become a Steward
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4 sm:px-6 md:px-8">
+          <div class="max-w-4xl mx-auto text-center">
+            <h3 class="font-tiempos text-2xl font-bold mb-4">About the Author</h3>
+            <p class="text-gray-300 leading-relaxed mb-6">
+              Lev Goukassian is the creator of Ternary Moral Logic, a constitutional architecture for auditable AI designed to ensure ethical technology remains a free and unownable public good. This work represents his final legacy, born from urgency and dedicated to humanity&#39;s future.
+            </p>
+            <div class="flex justify-center space-x-6 text-gray-400">
+              <a href="https://github.com/FractonicMind/TernaryMoralLogic" class="hover:text-white transition-colors">
+                <i class="fab fa-github text-2xl"></i>
+              </a>
+              <a href="https://medium.com/@leogouk" class="hover:text-white transition-colors">
+                <i class="fab fa-medium text-2xl"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </main>
+
+    <script>
+        // Initialize Mermaid with custom theme
+        mermaid.initialize({ 
+            startOnLoad: true,
+            theme: 'base',
+            themeVariables: {
+                primaryColor: '#dbeafe',
+                primaryTextColor: '#1f2937',
+                primaryBorderColor: '#3b82f6',
+                lineColor: '#6b7280',
+                secondaryColor: '#fef3c7',
+                secondaryTextColor: '#1f2937',
+                secondaryBorderColor: '#f59e0b',
+                tertiaryColor: '#dcfce7',
+                tertiaryTextColor: '#1f2937',
+                tertiaryBorderColor: '#16a34a',
+                background: '#ffffff',
+                mainBkg: '#dbeafe',
+                secondBkg: '#fef3c7',
+                tertiaryBkg: '#dcfce7',
+                fontFamily: 'Inter, sans-serif',
+                fontSize: '13px'
+            },
+            flowchart: {
+                useMaxWidth: false,
+                htmlLabels: true,
+                curve: 'basis',
+                padding: 20
+            }
+        });
+
+        // Initialize Mermaid Controls for zoom and pan
+        function initializeMermaidControls() {
+            const containers = document.querySelectorAll('.mermaid-container');
+
+            containers.forEach(container => {
+            const mermaidElement = container.querySelector('.mermaid');
+            let scale = 1;
+            let isDragging = false;
+            let startX, startY, translateX = 0, translateY = 0;
+
+            // 触摸相关状态
+            let isTouch = false;
+            let touchStartTime = 0;
+            let initialDistance = 0;
+            let initialScale = 1;
+            let isPinching = false;
+
+            // Zoom controls
+            const zoomInBtn = container.querySelector('.zoom-in');
+            const zoomOutBtn = container.querySelector('.zoom-out');
+            const resetBtn = container.querySelector('.reset-zoom');
+            const fullscreenBtn = container.querySelector('.fullscreen');
+
+            function updateTransform() {
+                mermaidElement.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+
+                if (scale > 1) {
+                container.classList.add('zoomed');
+                } else {
+                container.classList.remove('zoomed');
+                }
+
+                mermaidElement.style.cursor = isDragging ? 'grabbing' : 'grab';
+            }
+
+            if (zoomInBtn) {
+                zoomInBtn.addEventListener('click', () => {
+                scale = Math.min(scale * 1.25, 4);
+                updateTransform();
+                });
+            }
+
+            if (zoomOutBtn) {
+                zoomOutBtn.addEventListener('click', () => {
+                scale = Math.max(scale / 1.25, 0.3);
+                if (scale <= 1) {
+                    translateX = 0;
+                    translateY = 0;
+                }
+                updateTransform();
+                });
+            }
+
+            if (resetBtn) {
+                resetBtn.addEventListener('click', () => {
+                scale = 1;
+                translateX = 0;
+                translateY = 0;
+                updateTransform();
+                });
+            }
+
+            if (fullscreenBtn) {
+                fullscreenBtn.addEventListener('click', () => {
+                if (container.requestFullscreen) {
+                    container.requestFullscreen();
+                } else if (container.webkitRequestFullscreen) {
+                    container.webkitRequestFullscreen();
+                } else if (container.msRequestFullscreen) {
+                    container.msRequestFullscreen();
+                }
+                });
+            }
+
+            // Mouse Events
+            mermaidElement.addEventListener('mousedown', (e) => {
+                if (isTouch) return; // 如果是触摸设备，忽略鼠标事件
+
+                isDragging = true;
+                startX = e.clientX - translateX;
+                startY = e.clientY - translateY;
+                mermaidElement.style.cursor = 'grabbing';
+                updateTransform();
+                e.preventDefault();
+            });
+
+            document.addEventListener('mousemove', (e) => {
+                if (isDragging && !isTouch) {
+                translateX = e.clientX - startX;
+                translateY = e.clientY - startY;
+                updateTransform();
+                }
+            });
+
+            document.addEventListener('mouseup', () => {
+                if (isDragging && !isTouch) {
+                isDragging = false;
+                mermaidElement.style.cursor = 'grab';
+                updateTransform();
+                }
+            });
+
+            document.addEventListener('mouseleave', () => {
+                if (isDragging && !isTouch) {
+                isDragging = false;
+                mermaidElement.style.cursor = 'grab';
+                updateTransform();
+                }
+            });
+
+            // 获取两点之间的距离
+            function getTouchDistance(touch1, touch2) {
+                return Math.hypot(
+                touch2.clientX - touch1.clientX,
+                touch2.clientY - touch1.clientY
+                );
+            }
+
+            // Touch Events - 触摸事件处理
+            mermaidElement.addEventListener('touchstart', (e) => {
+                isTouch = true;
+                touchStartTime = Date.now();
+
+                if (e.touches.length === 1) {
+                // 单指拖动
+                isPinching = false;
+                isDragging = true;
+
+                const touch = e.touches[0];
+                startX = touch.clientX - translateX;
+                startY = touch.clientY - translateY;
+
+                } else if (e.touches.length === 2) {
+                // 双指缩放
+                isPinching = true;
+                isDragging = false;
+
+                const touch1 = e.touches[0];
+                const touch2 = e.touches[1];
+                initialDistance = getTouchDistance(touch1, touch2);
+                initialScale = scale;
+                }
+
+                e.preventDefault();
+            }, { passive: false });
+
+            mermaidElement.addEventListener('touchmove', (e) => {
+                if (e.touches.length === 1 && isDragging && !isPinching) {
+                // 单指拖动
+                const touch = e.touches[0];
+                translateX = touch.clientX - startX;
+                translateY = touch.clientY - startY;
+                updateTransform();
+
+                } else if (e.touches.length === 2 && isPinching) {
+                // 双指缩放
+                const touch1 = e.touches[0];
+                const touch2 = e.touches[1];
+                const currentDistance = getTouchDistance(touch1, touch2);
+
+                if (initialDistance > 0) {
+                    const newScale = Math.min(Math.max(
+                    initialScale * (currentDistance / initialDistance),
+                    0.3
+                    ), 4);
+                    scale = newScale;
+                    updateTransform();
+                }
+                }
+
+                e.preventDefault();
+            }, { passive: false });
+
+            mermaidElement.addEventListener('touchend', (e) => {
+                // 重置状态
+                if (e.touches.length === 0) {
+                isDragging = false;
+                isPinching = false;
+                initialDistance = 0;
+
+                // 延迟重置isTouch，避免鼠标事件立即触发
+                setTimeout(() => {
+                    isTouch = false;
+                }, 100);
+                } else if (e.touches.length === 1 && isPinching) {
+                // 从双指变为单指，切换为拖动模式
+                isPinching = false;
+                isDragging = true;
+
+                const touch = e.touches[0];
+                startX = touch.clientX - translateX;
+                startY = touch.clientY - translateY;
+                }
+
+                updateTransform();
+            });
+
+            mermaidElement.addEventListener('touchcancel', (e) => {
+                isDragging = false;
+                isPinching = false;
+                initialDistance = 0;
+
+                setTimeout(() => {
+                isTouch = false;
+                }, 100);
+
+                updateTransform();
+            });
+
+            // Enhanced wheel zoom with better center point handling
+            container.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                const rect = container.getBoundingClientRect();
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+
+                const delta = e.deltaY > 0 ? 0.9 : 1.1;
+                const newScale = Math.min(Math.max(scale * delta, 0.3), 4);
+
+                // Adjust translation to zoom towards center
+                if (newScale !== scale) {
+                const scaleDiff = newScale / scale;
+                translateX = translateX * scaleDiff;
+                translateY = translateY * scaleDiff;
+                scale = newScale;
+
+                if (scale <= 1) {
+                    translateX = 0;
+                    translateY = 0;
+                }
+
+                updateTransform();
+                }
+            });
+
+            // Initialize display
+            updateTransform();
+            });
+        }
+
+        // Table of Contents functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const tocLinks = document.querySelectorAll('.toc-link');
+            const sections = document.querySelectorAll('section[id], div[id]');
+
+            // Smooth scrolling for TOC links
+            tocLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Highlight current section in TOC
+            function updateActiveTocLink() {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 100;
+                    if (window.pageYOffset >= sectionTop) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                tocLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === '#' + current) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', updateActiveTocLink);
+            updateActiveTocLink(); // Initial call
+
+            // Initialize mermaid controls
+            initializeMermaidControls();
+        });
+    </script>
+  
+
+</body></html>
