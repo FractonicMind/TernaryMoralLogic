@@ -13,7 +13,7 @@ When the system triggers a freeze, it generates a cryptographically signed JSON 
 JSON
 
 {  
-  "$schema": "http://json-schema.org/draft-07/schema\#",  
+  "$schema": "http://json-schema.org/draft-07/schema",  
   "title": "TML Shutdown Evidence Record",  
   "type": "object",  
   "required": \[  
