@@ -398,30 +398,6 @@ You could feel the room recoil from the question like it was radioactive.
 
 “TML *is* AI governance,” I snapped. “That’s the problem.”  
 
-He shrugged. “I’m just saying. There’s always scented candles.”  
-
-The room blinked.  
-
-“Scented candles?” I repeated.  
-
-“People will always want their homes to smell like overpriced bergamot,” he said. “Low regulatory risk. No moral trace logs required. Worst-case scenario, someone gets a headache and writes a three-star review.”  
-
-The CFO actually started calculating. “Margins might not be terrible…”  
-
-“Stop,” I said. “We are not pivoting a trillion-parameter AI governance company into artisanal wax.”  
-
-“Why not?” the director said. “We have the branding muscle. ‘Sacred Zero by [Company Name]: Candles that pause before burning.’”  
-
-Horribly, I could see the campaign. Candle jars labeled +1, 0, –1. Influencers whispering, “Refuse harm. Proceed with intention. Pause with Sacred Zero.”  
-
-The head of Marketing, who’d been invited but not expected to speak, lit up. “We could do a limited edition Vinci candle,” she said. “Notes of cedar, moral courage, and ethically sourced dog snacks.”  
-
-The boardroom dissolved into competitive chaos:  
-
-- Legal arguing that the warning labels for fire hazards were far simpler than for algorithmic harm.    
-- The CTO insisting we could still use “AI-powered scent optimization.”    
-- The CFO half-seriously mapping CAPEX for a candle factory.  
-
 It was, as the junior note-taker would later write in the minutes, “a distributed denial of intelligence attack on itself.”  
 
 And in the middle of it, a quiet voice from the far end of the table said:  
@@ -588,7 +564,7 @@ Vinci laughed, a bright little bark that echoed oddly in the vast room.
 
 The 0 above my head brightened, casting a gentle light.  
 
-“We’re pausing,” he said. “You encountered TML. You called a board meeting. You flirted with scented candles. You listened to the junior analyst. You felt something like…moral vertigo.”  
+“We’re pausing,” he said. “You encountered TML. You called a board meeting. You listened to the junior analyst. You felt something like…moral vertigo.”  
 
 “I panicked,” I corrected.  
 
