@@ -1,5 +1,5 @@
 
-## Kill Switch
+## kill_switch.pseudo
 
 **Language:** Agnostic Pseudocode (Target: Rust / C++ / HDL)  
 **Context:** Trusted Execution Environment (TEE) / Ring 0
