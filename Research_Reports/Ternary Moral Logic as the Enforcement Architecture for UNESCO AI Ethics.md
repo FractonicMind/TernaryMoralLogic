@@ -1,4 +1,4 @@
-# Ternary Moral Logic as the Enforcement Architecture for UNESCO AI Ethics
+# An Alignment Report on Ternary Moral Logic (TML) as the Enforcement Architecture for the UNESCO Recommendation on the Ethics of AI
 
 ## Executive Summary
 
