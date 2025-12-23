@@ -3297,7 +3297,7 @@ upon which the constitutional AI revolution can be built.
 9. Secure $1M seed funding (grants + corporate sponsorships)  
 10. First Gold Certification awarded (reference implementation)  
 11. Establish international chapters (EU, UK, Asia)  
-12. **Lev's Memorial Event** (December 22, 2025 - one year since his diagnosis)
+12. **Lev's Memorial Event**   
 
 ### Comprehensive List of References
 
