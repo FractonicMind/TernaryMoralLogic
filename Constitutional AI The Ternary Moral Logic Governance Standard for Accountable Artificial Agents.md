@@ -3,7 +3,7 @@
 ## Technical Specification, Legal Framework, and Implementation Guide
 
 
-### **Author: Lev Goukassian    
+### Author: Lev Goukassian    
 ### Date: December 2025    
 ### Status: Final Monograph    
 ### Classification: Deep Research / Technical Standard   
