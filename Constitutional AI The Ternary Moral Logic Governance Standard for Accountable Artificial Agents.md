@@ -4473,4 +4473,3 @@ Like the Unicode Consortium standardizing text [261], or the IETF standardizing
  [261] Unicode Consortium. "The Unicode Standard." unicode.org/standard/.  
  [262] IETF. "Internet Standards Process - RFC 2026." ietf.org/rfc/rfc2026.
 
-F
