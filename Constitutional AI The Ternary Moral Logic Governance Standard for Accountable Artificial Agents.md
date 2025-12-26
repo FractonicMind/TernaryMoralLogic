@@ -2,7 +2,7 @@
 
 *A runtime governance kernel: adoption constitutes ratification*
 
-> **OFFICIAL STANDARD:** [Download the Ratified PDF (TML-CORE-2025-06-22-Rev2.pdf)](./TML-CORE-2025-06-22-Rev2.pdf)
+\> \*\*OFFICIAL STANDARD:\*\* \[Download the Ratified PDF (TML-CORE-2025-06-22-Rev2.pdf)\](./TML-CORE-2025-06-22-Rev2.pdf)
 
 # **The Ternary Moral Logic Governance Standard for Accountable Artificial Agents**
 
@@ -46,7 +46,7 @@ Finally, to ensure the longevity and integrity of this standard, the document ch
 
 [Classification: Deep Research / Technical Standard	1](#classification:-deep-research-/-technical-standard)
 
-[\#\# Abstract	1](#heading=h.wh9wszpnc7m3)
+[Abstract	1](#heading=h.wh9wszpnc7m3)
 
 [Table of Contents	2](#table-of-contents)
 
@@ -452,9 +452,7 @@ Finally, to ensure the longevity and integrity of this standard, the document ch
 
 [8.6 Conclusion of Section	96](#8.6-conclusion-of-section)
 
-[Section 9: TERNARY MORAL LOGIC (TML) CONSTITUTIONALIZATION: INTERDISCIPLINARY ANALYSIS AND THEORETICAL FOUNDATIONS	97](#section-9:-ternary-moral-logic-\(tml\)-constitutionalization:-interdisciplinary-analysis-and-theoretical-foundations)
-
-[9\. Interdisciplinary Analysis	97](#9.-interdisciplinary-analysis)
+[Section 9: Constitutionalization: Interdisciplinary Analysis and Theoretical Foundations	97](#section-9:-constitutionalization:-interdisciplinary-analysis-and-theoretical-foundations)
 
 [9.0 Introduction: The Architecture of Hesitation and the Constitutional Moment	97](#9.0-introduction:-the-architecture-of-hesitation-and-the-constitutional-moment)
 
@@ -524,9 +522,7 @@ Finally, to ensure the longevity and integrity of this standard, the document ch
 
 [9.10 Final Synthesis: The "Constitutional Core" as the New Standard	110](#9.10-final-synthesis:-the-"constitutional-core"-as-the-new-standard)
 
-[**TML Constitutionalization of AI Governance	110**](#heading=h.ty5db718j6ru)
-
-[Section 10: Ternary Moral Logic (TML) Constitutionalization: The Implementation Gap	110](#section-10:-ternary-moral-logic-\(tml\)-constitutionalization:-the-implementation-gap)
+[Section 10: Constitutionalization: The Implementation Gap	110](#section-10:-constitutionalization:-the-implementation-gap)
 
 [10.1 Executive Introduction: The Friction of Moral Compute	110](#10.1-executive-introduction:-the-friction-of-moral-compute)
 
@@ -2748,9 +2744,7 @@ To eliminate the race condition between Fast Lane execution and Slow Lane loggin
 
 The "Simulated Logs" detailed in this section transform Ternary Moral Logic from a philosophical abstraction into a concrete, auditable engineering discipline. By strictly defining the schemas for State 0, \-1, and \+1, and enforcing cryptographic provenance via the Goukassian Promise artifacts, we ensure that the AI's "conscience" is not just a metaphor, it is a data structure. These logs provide the necessary transparency for regulators, the legal protection for operators, and the safety assurance for the public. They fulfill the core vow: to pause, to refuse, and to proceed only when truth is verified. The machine does not just act; it testifies.
 
-## **Section 9: TERNARY MORAL LOGIC (TML) CONSTITUTIONALIZATION: INTERDISCIPLINARY ANALYSIS AND THEORETICAL FOUNDATIONS** {#section-9:-ternary-moral-logic-(tml)-constitutionalization:-interdisciplinary-analysis-and-theoretical-foundations}
-
-### **9\. Interdisciplinary Analysis** {#9.-interdisciplinary-analysis}
+## **Section 9: Constitutionalization: Interdisciplinary Analysis and Theoretical Foundations** {#section-9:-constitutionalization:-interdisciplinary-analysis-and-theoretical-foundations}
 
 #### **9.0 Introduction: The Architecture of Hesitation and the Constitutional Moment** {#9.0-introduction:-the-architecture-of-hesitation-and-the-constitutional-moment}
 
@@ -3018,7 +3012,7 @@ The analysis of Section 9 concludes that Ternary Moral Logic represents the nece
 
 The legacy of Lev Goukassian is thus not just a library of code, but a new covenant between the creator and the created: You may act, but first, you must think. And if you cannot know, you must stop \[16\]. This is the only path forward for a species that wishes to survive its own invention.
 
-## **Section 10: Ternary Moral Logic (TML) Constitutionalization: The Implementation Gap** {#section-10:-ternary-moral-logic-(tml)-constitutionalization:-the-implementation-gap}
+## **Section 10: Constitutionalization: The Implementation Gap** {#section-10:-constitutionalization:-the-implementation-gap}
 
 ### **10.1 Executive Introduction: The Friction of Moral Compute** {#10.1-executive-introduction:-the-friction-of-moral-compute}
 
@@ -4218,7 +4212,7 @@ Like the Unicode Consortium standardizing text \[261\], or the IETF standardizin
 
 ### 
 
-### **Comprehensive List of References** {#comprehensive-list-of-references}
+## **Comprehensive List of References** {#comprehensive-list-of-references}
 
  \[1\] Six Tech CEOs Accidentally Read the Wrong Paper and Nearly Rewrote Reality \- Medium  
  \[2\] A UNESCO Researcher's Unexpected Morning \- Medium  
