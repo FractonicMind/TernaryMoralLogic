@@ -3238,8 +3238,6 @@ Traditional adversarial attacks optimize for misclassification (e.g., making a p
 
 If the TML governing logic is defined as:
 
-Unable to render expression.
-
 $$
 \text{State} = \begin{cases} 
 +1 & \text{if } P(\text{safe}) > \delta \\ 
