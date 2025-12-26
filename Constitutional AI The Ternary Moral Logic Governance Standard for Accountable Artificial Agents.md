@@ -3377,7 +3377,7 @@ To protect privacy and ensure forward secrecy, TML mandates "Ephemeral Key Rotat
 
 **Implementation Snippet (Rust, `no_std`, SGX-compatible)**    
 
-```rust
+rust
 
     use blake3::{Hasher, traits::Digest};
 
@@ -3432,8 +3432,8 @@ To protect privacy and ensure forward secrecy, TML mandates "Ephemeral Key Rotat
         }
 
     }
-'''
-    ```
+
+    
 
 **Operational Procedures**
 
