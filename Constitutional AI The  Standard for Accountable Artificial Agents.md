@@ -2,6 +2,8 @@
 
 *A runtime governance kernel: adoption constitutes ratification*
 
+**OFFICIAL STANDARD:** [Download the Ratified PDF (TML-CORE-2025-06-22-Rev2.pdf)](./TML-CORE-2025-06-22-Rev2.pdf)
+
 # **The Ternary Moral Logic Governance Standard for Accountable Artificial Agents**
 
 ## **Technical Specification, Legal Framework, and Implementation Guide** {#technical-specification,-legal-framework,-and-implementation-guide}
