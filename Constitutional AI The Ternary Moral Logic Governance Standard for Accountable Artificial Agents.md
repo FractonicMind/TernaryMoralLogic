@@ -6,15 +6,15 @@
 
 # **The Ternary Moral Logic Governance Standard for Accountable Artificial Agents**
 
-## **Technical Specification, Legal Framework, and Implementation Guide** {#technical-specification,-legal-framework,-and-implementation-guide}
+## **Technical Specification, Legal Framework, and Implementation Guide** 
 
-### **Author: Lev Goukassian `(ORCID: 0009-0006-5966-1243)`** {#author:-lev-goukassian-(orcid:-0009-0006-5966-1243)}
+### **Author: Lev Goukassian `(ORCID: 0009-0006-5966-1243)`** 
 
-### **Date: December 2025** {#date:-december-2025}
+### **Date: December 2025** 
 
-### **Status: Final Monograph** {#status:-final-monograph}
+### **Status: Final Monograph** 
 
-### **Classification: Deep Research / Technical Standard** {#classification:-deep-research-/-technical-standard}
+### **Classification: Deep Research / Technical Standard** 
 
 ### **Document ID: TML-CORE-2025-06-22-Rev2**
 
@@ -34,21 +34,21 @@ Finally, to ensure the longevity and integrity of this standard, the document ch
 
 ## **Table of Contents** {#table-of-contents}
 
-**[Constitutional AI: The Ternary Moral Logic Governance Standard for Accountable Artificial Agents	1](#constitutional-ai)**
+**Constitutional AI: The Ternary Moral Logic Governance Standard for Accountable Artificial Agents**
 
-[Technical Specification, Legal Framework, and Implementation Guide	1](#technical-specification,-legal-framework,-and-implementation-guide)
+Technical Specification, Legal Framework, and Implementation Guide
 
-[Author: Lev Goukassian	1](#author:-lev-goukassian-(orcid:-0009-0006-5966-1243))
+Author: Lev Goukassian ORCID:0009-0006-5966-1243
 
-[Date: December 2025	1](#date:-december-2025)
+Date: December 2025
 
-[Status: Final Monograph	1](#status:-final-monograph)
+Status: Final Monograph
 
-[Classification: Deep Research / Technical Standard	1](#classification:-deep-research-/-technical-standard)
+Classification: Deep Research / Technical Standard
 
-[Abstract	1](#heading=h.wh9wszpnc7m3)
+Abstract
 
-[Table of Contents	2](#table-of-contents)
+Table of Contents
 
 [Section 1: Executive Summary	11](#section-1:-executive-summary)
 
