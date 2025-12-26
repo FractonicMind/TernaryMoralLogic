@@ -32,7 +32,7 @@ Critically, this standard addresses the operational vulnerabilities inherent in 
 
 Finally, to ensure the longevity and integrity of this standard, the document charters the **Goukassian Foundation** as the institutional custodian of the TML Constitution. Modeled after the IETF and Unicode Consortium, the Foundation provides the certification framework, open-source licensing models, and governance structures necessary to maintain TML as a global public good. This monograph serves as a **runtime governance kernel**; its adoption constitutes ratification, establishing a unified compliance baseline for the next generation of accountable artificial agents.
 
-## **Table of Contents** {#table-of-contents}
+## **Table of Contents**
 
 **Constitutional AI: The Ternary Moral Logic Governance Standard for Accountable Artificial Agents**
 
