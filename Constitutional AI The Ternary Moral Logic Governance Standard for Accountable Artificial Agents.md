@@ -1,4 +1,4 @@
-# **Constitutional AI** {#constitutional-ai}
+# **Constitutional AI**
 
 *A runtime governance kernel: adoption constitutes ratification*
 
