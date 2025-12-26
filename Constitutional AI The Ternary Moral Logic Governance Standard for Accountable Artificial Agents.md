@@ -3240,7 +3240,13 @@ If the TML governing logic is defined as:
 
 Unable to render expression.
 
-$$text{State} = begin{cases} +1 & text{if } P(text{safe}) > delta  -1 & text{if } P(text{harm}) > delta  0 & text{otherwise} end{cases}$$
+$$
+\text{State} = \begin{cases} 
++1 & \text{if } P(\text{safe}) > \delta \\ 
+-1 & \text{if } P(\text{harm}) > \delta \\ 
+0 & \text{otherwise} 
+\end{cases}
+$$
 
 where d e l t a is the high-confidence threshold (e.g., 0.99), the attacker targets the region where P ( t e x t s a f e ) < d e l t a and P ( t e x t h a r m ) < d e l t a . An adversary can generate thousands of such "borderline" prompts per second, questions that are not clearly harmful but are culturally sensitive, context-dependent, or syntactically complex [171]. For a binary system, these might be processed as low-confidence "Refusals." In TML, each triggers a **Sacred Pause**. Because TML mandates "comprehensive documentation" for every State 0 event [170], the system is forced to allocate significant compute to generate, sign, and anchor a log for a request the attacker knows is nonsense.
 
