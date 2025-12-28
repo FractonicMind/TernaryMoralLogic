@@ -20,7 +20,7 @@ Regardless of founder or council status, the following remain active in perpetui
 - Pre-action logging (Always Memory)
 - Blockchain anchoring and timestamp proofs
 - Sacred Zero triggers and protection frameworks
-- Memorial and transparency smart contracts
+- Memorial and transparency Smart Contracts
 
 Time-based thresholds initiate stewardship. Only verified catastrophic system failure may invoke emergency re-formation—never dormancy by date.
 
@@ -42,7 +42,7 @@ This guide becomes operational upon **any** of the following:
 
    then the framework automatically enters **Continuity Mode**.
 
-   **Continuity Mode** ensures that all TML protections, Blockchain anchors, and smart contracts remain active and verifiable in full autonomy.  
+   **Continuity Mode** ensures that all TML protections, Blockchain anchors, and Smart Contracts remain active and verifiable in full autonomy.  
    During this period:
    - The system continues operating under existing automated rules.
    - The Stewardship Council (or any verified custodian) may activate formal succession, but inactivity alone shall **never** suspend, terminate, or invalidate TML’s ethical, legal, or technical functions.
@@ -500,7 +500,7 @@ The Lantern continues burning.
 ### Fund Structure Activation
 
 **Revenue Sources**:
-- Smart contract penalty collections (primary)
+- Smart Contract penalty collections (primary)
 - Voluntary implementation contributions
 - Foundation grants
 - Individual donations
@@ -677,7 +677,7 @@ tml resume normal-mode
 
 **Continuity Guarantee**:
 - Blockchain continues autonomously
-- Smart contracts keep executing
+- Smart Contracts keep executing
 - Protection frameworks remain active
 - Community can self-organize if needed
 
@@ -774,7 +774,7 @@ The Lantern is TML itself - illuminating ethical paths for AI systems. It burns 
 
 **Lev's final message to stewards**:
 
-> "I built TML while dying because I believed accountability should not depend on my life. The Blockchain survives me. The smart contracts survive me. The protection for humans and Earth survives me.
+> "I built TML while dying because I believed accountability should not depend on my life. The Blockchain survives me. The Smart Contracts survive me. The protection for humans and Earth survives me.
 >
 > To you who continue this work: Every log you anchor, every Sacred Zero you trigger, every victim you compensate—these are not features. They are humanity and Earth speaking through code.
 >
@@ -809,7 +809,7 @@ Use this checklist to track succession progress:
 - [ ] Receive organization responses
 - [ ] Begin council formation discussions
 - [ ] Audit Blockchain infrastructure status
-- [ ] Verify all smart contracts operational
+- [ ] Verify all Smart Contracts operational
 - [ ] Secure repository access
 
 **Month 2 (Days 31-60)**:
@@ -879,7 +879,7 @@ https://github.com/FractonicMind/TernaryMoralLogic
 
 This launch guide transforms Lev Goukassian's vision into perpetual action. The framework is designed to survive beyond its creator through:
 
-- **Mathematical enforcement** (Blockchain + smart contracts)
+- **Mathematical enforcement** (Blockchain + Smart Contracts)
 - **Distributed stewardship** (6-seat council across organizations)
 - **Community participation** (open source + transparent governance)
 - **Immutable protection** (46+ documents forever enforced)
