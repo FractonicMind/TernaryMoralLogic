@@ -8,7 +8,7 @@ Unlike traditional governance models where "Code is Law," TML introduces a parad
 
 * **Security Note:** This dossier discloses the logical architecture and enforcement mechanisms for transparency and auditing purposes. Operational security parameters, including cryptographic seeds and Stewardship Council key management, remain strictly compartmentalized off-chain.
 
-The attached technical specifications are organized into three distinct layers:
+This repository contains technical specifications are organized into three distinct layers:
 
 * **01_TML_System_Architecture_and_Ecosystem.pdf**
 * **The Vision:** Defines the high-level ecosystem, including the **"Lantern Signal"** (proof of hesitation), the **"Hybrid Shield"** (cross-chain redundancy), and the **"Goukassian Promise"**.
