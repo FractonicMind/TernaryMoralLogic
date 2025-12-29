@@ -1,6 +1,6 @@
-**Subject:** Technical Dossier: Smart Contracts as a Constitution of Code and Governance Layer in Ternary Moral Logic (TML)
+# Technical Dossier: Smart Contracts as a Constitution of Code and Governance Layer in Ternary Moral Logic (TML)
 
-**Executive Summary**
+### **Executive Summary**
 
 This dossier presents the comprehensive technical architecture for implementing **Ternary Moral Logic (TML)** as a deterministic enforcement layer on EVM-compatible blockchain platforms. These specifications serve as the **technical implementation framework** for the forthcoming **TML Constitutionalization Monograph**, translating its ethical mandates into executable code.
 
