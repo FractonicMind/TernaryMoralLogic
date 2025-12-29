@@ -1,0 +1,1472 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Technical Architecture &amp; Governance of TML Smart Contracts</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js"></script>
+    <style>
+        :root {
+            --primary: #1e293b;
+            --secondary: #64748b;
+            --accent: #0f172a;
+            --surface: #f8fafc;
+            --text: #0f172a;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
+            line-height: 1.7;
+        }
+        
+        .serif {
+            font-family: 'Crimson Text', serif;
+        }
+        
+        .toc-fixed {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 320px;
+            height: 100vh;
+            background: white;
+            border-right: 1px solid var(--border);
+            overflow-y: auto;
+            z-index: 1000;
+            padding: 2rem 1.5rem;
+        }
+        
+        .main-content {
+            margin-left: 320px;
+            min-height: 100vh;
+        }
+        
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto auto;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .hero-title {
+            grid-column: 1 / -1;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-visual {
+            grid-column: 2;
+            grid-row: 2;
+            position: relative;
+        }
+        
+        .hero-summary {
+            grid-column: 1;
+            grid-row: 2;
+        }
+        
+        .citation {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s;
+        }
+        
+        .citation:hover {
+            border-bottom-color: var(--accent);
+        }
+        
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--border), transparent);
+            margin: 4rem 0;
+        }
+        
+        .code-block {
+            background: #1e293b;
+            color: #e2e8f0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            overflow-x: auto;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.875rem;
+            line-height: 1.5;
+        }
+        
+        .state-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .state-active { background: #dcfce7; color: #166534; }
+        .state-review { background: #fef3c7; color: #92400e; }
+        .state-flagged { background: #fee2e2; color: #991b1b; }
+        .state-frozen { background: #1e293b; color: #f8fafc; }
+        
+        .toc-link {
+            display: block;
+            padding: 0.5rem 0;
+            color: var(--text-muted);
+            text-decoration: none;
+            border-left: 2px solid transparent;
+            padding-left: 1rem;
+            transition: all 0.2s;
+        }
+        
+        .toc-link:hover, .toc-link.active {
+            color: var(--accent);
+            border-left-color: var(--accent);
+            background: #f8fafc;
+            margin-left: -1.5rem;
+            padding-left: 2.5rem;
+        }
+        
+        .toc-link.level-2 { padding-left: 2rem; font-size: 0.9rem; }
+        .toc-link.level-2:hover, .toc-link.level-2.active { padding-left: 3.5rem; }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-gradient::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 70% 30%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+        }
+        
+        .mermaid-container {
+            display: flex;
+            justify-content: center;
+            min-height: 300px;
+            max-height: 800px;
+            background: #ffffff;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mermaid-container .mermaid {
+            width: 100%;
+            max-width: 100%;
+            height: 100%;
+            cursor: grab;
+            transition: transform 0.3s ease;
+            transform-origin: center center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            touch-action: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .mermaid-container .mermaid svg {
+            max-width: 100%;
+            height: 100%;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .mermaid-container .mermaid:active {
+            cursor: grabbing;
+        }
+
+        .mermaid-container.zoomed .mermaid {
+            height: 100%;
+            width: 100%;
+            cursor: grab;
+        }
+
+        .mermaid-controls {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            display: flex;
+            gap: 10px;
+            z-index: 20;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 8px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .mermaid-control-btn {
+            background: #ffffff;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            padding: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #374151;
+            font-size: 14px;
+            min-width: 36px;
+            height: 36px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mermaid-control-btn:hover {
+            background: #f8fafc;
+            border-color: #3b82f6;
+            color: #3b82f6;
+            transform: translateY(-1px);
+        }
+
+        .mermaid-control-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Mermaid theme customization for better contrast */
+        .mermaid-container .mermaid .node rect,
+        .mermaid-container .mermaid .node circle,
+        .mermaid-container .mermaid .node ellipse,
+        .mermaid-container .mermaid .node polygon {
+            stroke-width: 2px;
+        }
+        
+        .mermaid-container .mermaid .edgePath .path {
+            stroke-width: 2px;
+        }
+        
+        .mermaid-container .mermaid .edgeLabel {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 3px;
+            padding: 2px 4px;
+        }
+        
+        .mermaid-container .mermaid text {
+            font-family: 'Inter', sans-serif !important;
+            font-weight: 500;
+        }
+        
+        .mermaid-container .mermaid .nodeLabel {
+            color: #0f172a !important;
+            font-weight: 600;
+        }
+        
+        /* Enhanced contrast for different node types */
+        .mermaid-container .mermaid .node[style*="fill:#0f172a"] text,
+        .mermaid-container .mermaid .node[style*="fill:rgb(15, 23, 42)"] text {
+            fill: #f8fafc !important;
+            font-weight: 700;
+        }
+        
+        .mermaid-container .mermaid .node[style*="fill:#dcfce7"] text,
+        .mermaid-container .mermaid .node[style*="fill:rgb(220, 252, 231)"] text {
+            fill: #166534 !important;
+            font-weight: 600;
+        }
+        
+        .mermaid-container .mermaid .node[style*="fill:#fef3c7"] text,
+        .mermaid-container .mermaid .node[style*="fill:rgb(254, 243, 199)"] text {
+            fill: #92400e !important;
+            font-weight: 600;
+        }
+        
+        .mermaid-container .mermaid .node[style*="fill:#fee2e2"] text,
+        .mermaid-container .mermaid .node[style*="fill:rgb(254, 226, 226)"] text {
+            fill: #991b1b !important;
+            font-weight: 600;
+        }
+        
+        .mermaid-container .mermaid .node[style*="fill:#f1f5f9"] text,
+        .mermaid-container .mermaid .node[style*="fill:rgb(241, 245, 249)"] text {
+            fill: #334155 !important;
+            font-weight: 600;
+        }
+        
+        /* Default node text styling */
+        .mermaid-container .mermaid .node:not([style*="fill"]) text {
+            fill: #0f172a !important;
+            font-weight: 600;
+        }
+        
+        /* Ensure good contrast for all edge labels */
+        .mermaid-container .mermaid .edgeLabel {
+            color: #0f172a !important;
+            font-weight: 500;
+            background-color: rgba(248, 250, 252, 0.95) !important;
+            border: 1px solid #e2e8f0;
+            border-radius: 4px;
+            padding: 3px 6px;
+        }
+        
+@media (max-width: 1024px) {
+  .toc-fixed {
+    display: none;
+  }
+  .main-content {
+    margin-left: 0;
+  }
+  .hero-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+  }
+  .hero-visual {
+    grid-column: 1;
+    grid-row: 2;
+  }
+  .hero-summary {
+    grid-column: 1;
+    grid-row: 3;
+  }
+  .mermaid-control-btn:not(.reset-zoom) {
+    display: none;
+  }
+  .mermaid-controls {
+    top: auto;
+    bottom: 15px;
+    right: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .hero-title h1 {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+  .hero-title p {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+  .hero-summary {
+    padding: 0.75rem;
+  }
+  .hero-visual {
+    padding: 1.5rem;
+  }
+  .hero-visual img {
+    height: auto;
+    max-width: 100%;
+  }
+  .hero-title {
+    word-wrap: break-word;
+  }
+}
+    </style>
+  <base target="_blank">
+</head>
+
+  <body class="bg-gray-50">
+    <!-- Fixed Table of Contents -->
+    <nav class="toc-fixed">
+      <div class="mb-8">
+        <h3 class="text-lg font-bold text-slate-900 mb-4">Contents</h3>
+      </div>
+
+      <div class="space-y-1">
+        <a href="#introduction" class="toc-link">1. Enforcement Primitive</a>
+        <a href="#state-transition" class="toc-link level-2">1.1 State-Transition Engine</a>
+        <a href="#tri-state" class="toc-link level-2">1.2 Tri-State Mapping</a>
+        <a href="#sequence-diagrams" class="toc-link level-2">1.3 Sequence Diagrams</a>
+
+        <a href="#human-protocol" class="toc-link">2. Human Protocol Interface</a>
+        <a href="#council-role" class="toc-link level-2">2.1 Multi-Sig Authority</a>
+        <a href="#workflow" class="toc-link level-2">2.2 Workflow &amp; Verdicts</a>
+
+        <a href="#fsm-logic" class="toc-link">3. FSM Logic &amp; Triggers</a>
+        <a href="#state-definitions" class="toc-link level-2">3.1 State Definitions</a>
+        <a href="#integrity-freeze" class="toc-link level-2">3.2 Integrity Freeze Triggers</a>
+
+        <a href="#data-architecture" class="toc-link">4. Data Architecture</a>
+        <a href="#always-memory" class="toc-link level-2">4.1 Always Memory</a>
+        <a href="#verification" class="toc-link level-2">4.2 Verification Process</a>
+
+        <a href="#licensing" class="toc-link">5. Licensing &amp; Compliance</a>
+        <a href="#genesis" class="toc-link level-2">5.1 Genesis Requirement</a>
+
+        <a href="#adversarial" class="toc-link">6. Adversarial Analysis</a>
+        <a href="#no-god-mode" class="toc-link level-2">6.1 No God Mode Proof</a>
+
+        <a href="#conclusion" class="toc-link">7. Conclusion</a>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <!-- Hero Section -->
+      <section class="hero-gradient text-white relative overflow-hidden">
+        <div class="container mx-auto px-8 py-16">
+          <div class="hero-grid max-w-6xl mx-auto">
+            <!-- Title -->
+            <div class="hero-title text-center mb-12">
+              <h1 class="serif text-5xl lg:text-6xl font-bold leading-tight mb-6">
+                <em>Technical Architecture &amp; Governance</em>
+                <br/>
+                <span class="text-3xl lg:text-4xl font-normal">of TML Smart Contracts</span>
+              </h1>
+              <p class="text-xl text-slate-300 max-w-3xl mx-auto">
+                A Deterministic Enforcement Layer for Ternary Moral Logic on EVM-compatible Platforms
+              </p>
+            </div>
+
+            <!-- Visual Element -->
+            <div class="hero-visual relative">
+              <div class="absolute inset-0 bg-gradient-to-br from-slate-700/20 to-slate-900/20 rounded-2xl"></div>
+              <img src="https://kimi-web-img.moonshot.cn/img/static.lingvisions.com/0be9dc4f8891d4fa03c6ce27e9be5e1489f8f038.png" alt="Abstract visualization of code representing constitutional governance" class="relative z-10 w-full h-64 object-cover rounded-2xl shadow-2xl" size="medium" aspect="wide" query="abstract constitutional code" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"/>
+            </div>
+
+            <!-- Executive Summary -->
+            <div class="hero-summary bg-white/10 backdrop-blur-sm rounded-xl p-8 border border-white/20">
+              <h3 class="text-2xl font-bold mb-4">Executive Summary</h3>
+              <p class="text-slate-200 leading-relaxed">
+                The Ternary Moral Logic (TML) smart contract architecture operationalizes ethical commitments through a deterministic tri-state enforcement layer. Built on a Finite State Machine with states for active operation, review holds, and integrity freezes, the system introduces a &#34;Sacred Zero&#34; state for ethical uncertainty escalation to a human Stewardship Council. Protected by irreversible kill switches and hybrid on-chain/off-chain data architecture, TML ensures <strong>Ethics Precedes Execution</strong> in decentralized systems.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Introduction Section -->
+      <section id="introduction" class="bg-white py-16">
+        <div class="container mx-auto px-8 max-w-4xl">
+          <h2 class="serif text-4xl font-bold mb-8 text-slate-900">1. The Enforcement Primitive</h2>
+
+          <div class="prose prose-lg max-w-none">
+            <p class="text-xl text-slate-700 mb-8 leading-relaxed">
+              The foundational layer of the Ternary Moral Logic (TML) framework is the Enforcement Primitive, a smart contract architecture designed to function as a deterministic State-Transition Engine. This engine operationalizes ethical commitments by embedding them directly into the execution logic of a smart contract, which acts as a gatekeeper for all subsequent actions on an EVM-compatible platform.
+            </p>
+
+            <div id="state-transition" class="mb-12">
+              <h3 class="serif text-2xl font-semibold mb-6 text-slate-900">1.1 Smart Contract as State-Transition Engine</h3>
+
+              <p class="mb-6">
+                The TML smart contract is fundamentally a transaction-based state machine, a concept central to the Ethereum Virtual Machine (EVM) itself
+                <a href="https://www.alchemy.com/docs/how-ethereum-transactions-work" class="citation">[65]</a>
+                <a href="https://jpmorais.medium.com/learn-ethereum-in-2024-7-a-transaction-based-state-machine-15b32a2beee6" class="citation">[66]</a>.
+                Ethereum&#39;s global state transitions to a new state with each processed block of transactions
+                <a href="https://inevitableeth.com/ethereum/state-machine" class="citation">[67]</a>.
+              </p>
+
+              <div class="bg-slate-50 rounded-lg p-6 mb-8">
+                <h4 class="font-semibold mb-4">Core TML Logic Implementation</h4>
+                <p class="mb-4">
+                  The core evaluation logic processes incoming transactions against ethical rules derived from human rights documents and environmental protocols. This implementation uses Past-Time Linear Temporal Logic (PLTL) for formal verification
+                  <a href="https://arxiv.org/html/2408.14621v1" class="citation">[78]</a>.
+                </p>
+              </div>
+
+              <div class="code-block mb-8">
+                <pre>// SPDX-License-Identifier: TML-Constitutional-Code
+pragma solidity ^0.8.19;
+
+/// @title ITMLEnforcer
+/// @notice The interface for the Ternary Moral Logic enforcement primitive.
+interface ITMLEnforcer {
+    /// @notice Represents the tri-state output of the TML evaluation.
+    enum TMLVerdict {
+        REFUSE, // -1
+        REVIEW_HOLD, // 0
+        PROCEED // +1
+    }
+
+    /// @notice Represents the finite states of the governed contract.
+    enum ContractState {
+        STATE_ACTIVE,
+        STATE_REVIEW_HOLD,
+        STATE_FLAGGED,
+        STATE_INTEGRITY_FROZEN
+    }
+
+    /// @notice Evaluates a transaction against the TML logic.
+    /// @dev This is the core function that must be called before any state-changing operation.
+    /// @param data The calldata of the transaction to be evaluated.
+    /// @return verdict The TMLVerdict enum value.
+    function evaluateTransaction(bytes calldata data) external returns (TMLVerdict verdict);
+}</pre>
+              </div>
+            </div>
+
+            <div id="tri-state" class="mb-12">
+              <h3 class="serif text-2xl font-semibold mb-6 text-slate-900">1.2 Tri-State Enforcement Mapping</h3>
+
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+                  <div class="state-badge state-active mb-3">+1 PROCEED</div>
+                  <h4 class="font-semibold mb-2">Transaction Execution</h4>
+                  <p class="text-sm text-slate-600">Ethically compliant transaction authorized for immediate execution. Contract remains in STATE_ACTIVE.</p>
+                </div>
+
+                <div class="bg-red-50 border border-red-200 rounded-lg p-6">
+                  <div class="state-badge state-flagged mb-3">-1 REFUSE</div>
+                  <h4 class="font-semibold mb-2">Transaction Reversion</h4>
+                  <p class="text-sm text-slate-600">Definitive rejection for ethical violations. Transaction reverts, gas spent as deterrent.</p>
+                </div>
+
+                <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
+                  <div class="state-badge state-review mb-3">0 SACRED ZERO</div>
+                  <h4 class="font-semibold mb-2">Review Hold</h4>
+                  <p class="text-sm text-slate-600">Ethical ambiguity triggers STATE_REVIEW_HOLD for human council intervention.</p>
+                </div>
+              </div>
+            </div>
+
+            <div id="sequence-diagrams" class="mb-12">
+              <h3 class="serif text-2xl font-semibold mb-6 text-slate-900">1.3 Sequence Diagrams</h3>
+
+              <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div class="bg-white border border-slate-200 rounded-lg p-6">
+                  <h4 class="font-semibold mb-4 text-green-700">Happy Path: +1 (Proceed)</h4>
+                  <div class="mermaid-container">
+                    <div class="mermaid-controls">
+                      <button class="mermaid-control-btn zoom-in" title="放大">
+                        <i class="fas fa-search-plus"></i>
+                      </button>
+                      <button class="mermaid-control-btn zoom-out" title="缩小">
+                        <i class="fas fa-search-minus"></i>
+                      </button>
+                      <button class="mermaid-control-btn reset-zoom" title="重置">
+                        <i class="fas fa-expand-arrows-alt"></i>
+                      </button>
+                      <button class="mermaid-control-btn fullscreen" title="全屏查看">
+                        <i class="fas fa-expand"></i>
+                      </button>
+                    </div>
+                    <div class="mermaid">
+                      sequenceDiagram
+                      participant User
+                      participant TMLContract
+                      participant TMLEngine
+
+                      User-&gt;&gt;TMLContract: Function Call
+                      TMLContract-&gt;&gt;TMLEngine: evaluateTransaction()
+                      TMLEngine--&gt;&gt;TMLContract: PROCEED
+                      TMLContract-&gt;&gt;TMLContract: Execute Transaction
+                      TMLContract--&gt;&gt;User: Success
+                    </div>
+                  </div>
+                </div>
+
+                <div class="bg-white border border-slate-200 rounded-lg p-6">
+                  <h4 class="font-semibold mb-4 text-red-700">Rejection Path: -1 (Refuse)</h4>
+                  <div class="mermaid-container">
+                    <div class="mermaid-controls">
+                      <button class="mermaid-control-btn zoom-in" title="放大">
+                        <i class="fas fa-search-plus"></i>
+                      </button>
+                      <button class="mermaid-control-btn zoom-out" title="缩小">
+                        <i class="fas fa-search-minus"></i>
+                      </button>
+                      <button class="mermaid-control-btn reset-zoom" title="重置">
+                        <i class="fas fa-expand-arrows-alt"></i>
+                      </button>
+                      <button class="mermaid-control-btn fullscreen" title="全屏查看">
+                        <i class="fas fa-expand"></i>
+                      </button>
+                    </div>
+                    <div class="mermaid">
+                      sequenceDiagram
+                      participant User
+                      participant TMLContract
+                      participant TMLEngine
+
+                      User-&gt;&gt;TMLContract: Function Call
+                      TMLContract-&gt;&gt;TMLEngine: evaluateTransaction()
+                      TMLEngine--&gt;&gt;TMLContract: REFUSE
+                      TMLContract-&gt;&gt;TMLContract: revert()
+                      TMLContract--&gt;&gt;User: Transaction Reverted
+                    </div>
+                  </div>
+                </div>
+
+                <div class="bg-white border border-slate-200 rounded-lg p-6">
+                  <h4 class="font-semibold mb-4 text-yellow-700">Escalation Path: 0 (Sacred Zero)</h4>
+                  <div class="mermaid-container">
+                    <div class="mermaid-controls">
+                      <button class="mermaid-control-btn zoom-in" title="放大">
+                        <i class="fas fa-search-plus"></i>
+                      </button>
+                      <button class="mermaid-control-btn zoom-out" title="缩小">
+                        <i class="fas fa-search-minus"></i>
+                      </button>
+                      <button class="mermaid-control-btn reset-zoom" title="重置">
+                        <i class="fas fa-expand-arrows-alt"></i>
+                      </button>
+                      <button class="mermaid-control-btn fullscreen" title="全屏查看">
+                        <i class="fas fa-expand"></i>
+                      </button>
+                    </div>
+                    <div class="mermaid">
+                      sequenceDiagram
+                      participant User
+                      participant TMLContract
+                      participant TMLEngine
+                      participant Council
+
+                      User-&gt;&gt;TMLContract: Function Call
+                      TMLContract-&gt;&gt;TMLEngine: evaluateTransaction()
+                      TMLEngine--&gt;&gt;TMLContract: REVIEW_HOLD
+                      TMLContract-&gt;&gt;TMLContract: STATE_REVIEW_HOLD
+                      TMLContract-&gt;&gt;Council: Summon for Review
+                      Council--&gt;&gt;TMLContract: Submit Verdict
+                      TMLContract-&gt;&gt;TMLContract: Execute Resolution
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- Human Protocol Interface -->
+      <section id="human-protocol" class="py-16 bg-slate-50">
+        <div class="container mx-auto px-8 max-w-4xl">
+          <h2 class="serif text-4xl font-bold mb-8 text-slate-900">2. The Human Protocol Interface: The Stewardship Council</h2>
+
+          <div class="prose prose-lg max-w-none">
+            <p class="text-xl text-slate-700 mb-8 leading-relaxed">
+              The TML framework introduces a critical layer of human oversight through the Stewardship Council, implemented as a multi-signature authority designed to intervene in specific scenarios of ethical ambiguity. The Council&#39;s power is strictly bounded, preventing it from overriding core ethical axioms.
+            </p>
+
+            <div id="council-role" class="mb-12">
+              <h3 class="serif text-2xl font-semibold mb-6 text-slate-900">2.1 Council as Multi-Sig Authority</h3>
+
+              <p class="mb-6">
+                The Council&#39;s power is distributed through a multi-signature smart contract implementation, leveraging the &#34;m-of-n&#34; wallet model that ensures no single individual holds absolute power
+                <a href="https://shivanisb10.medium.com/multisig-contracts-in-ethereum-ffd8a1a9a025" class="citation">[114]</a>
+                <a href="https://www.paxos.com/blog/simple-multisig-how-it-works-and-why-its-awesome" class="citation">[115]</a>.
+              </p>
+
+              <div class="bg-white rounded-lg p-6 mb-8 border border-slate-200">
+                <h4 class="font-semibold mb-4">Role Definition and Responsibilities</h4>
+                <ul class="space-y-2 text-slate-700">
+                  <li><strong>Reviewing Escalated Cases:</strong> Analyze transactions in STATE_REVIEW_HOLD</li>
+                  <li><strong>Deliberation and Voting:</strong> Cast votes through multi-sig contract</li>
+                  <li><strong>Executing Verdicts:</strong> Submit consensus decisions with m-of-n threshold</li>
+                  <li><strong>Maintaining Integrity:</strong> Manage council membership through multi-sig votes</li>
+                </ul>
+              </div>
+            </div>
+
+            <div id="workflow" class="mb-12">
+              <h3 class="serif text-2xl font-semibold mb-6 text-slate-900">2.2 Workflow and Verdict Commits</h3>
+
+              <div class="bg-white rounded-lg p-6 mb-8">
+                <h4 class="font-semibold mb-4">Prohibition on Overriding -1 (Refuse) Verdicts</h4>
+                <p class="mb-4">
+                  A cornerstone of the TML architecture is the strict prohibition on the Stewardship Council overriding a -1 (Refuse) verdict. This rule is enforced at the smart contract level, ensuring that core ethical axioms remain immutable.
+                </p>
+                <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4">
+                  <p class="text-sm text-yellow-800">
+                    <strong>Critical Principle:</strong> The Council&#39;s role is to resolve ambiguity (0), not to grant exceptions to rules (-1). This prevents &#34;God Mode&#34; scenarios where human authority could circumvent fundamental ethical principles.
+                  </p>
+                </div>
+              </div>
+
+              <div class="code-block">
+                <pre>// Verdict Commit Structure
+struct VerdictCommit {
+    bytes32 logId;           // Original TML evaluation ID
+    TMLVerdict finalVerdict; // Council&#39;s decision (+1 or -1)
+    uint256 timestamp;       // Decision timestamp
+    bytes[] signatures;      // m-of-n council signatures
+    bytes32 merkleProof;     // Cryptographic proof linking to Always Memory
+}</pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- FSM Logic -->
+      <section id="fsm-logic" class="py-16 bg-white">
+        <div class="container mx-auto px-8 max-w-4xl">
+          <h2 class="serif text-4xl font-bold mb-8 text-slate-900">3. Finite State Machine Logic &amp; Triggers</h2>
+
+          <div class="prose prose-lg max-w-none">
+            <p class="text-xl text-slate-700 mb-8 leading-relaxed">
+              The lifecycle of a TML-governed smart contract is formally defined by a Finite State Machine (FSM), ensuring predictable and secure behavior through constrained states and governed transitions. This model is critical for operationalizing the TML framework.
+            </p>
+
+            <div id="state-definitions" class="mb-12">
+              <h3 class="serif text-2xl font-semibold mb-6 text-slate-900">3.1 State Definitions and Transitions</h3>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+                  <div class="state-badge state-active mb-3">STATE_ACTIVE</div>
+                  <h4 class="font-semibold mb-2">Standard Operation</h4>
+                  <p class="text-sm text-slate-600 mb-3">Default operational state where TML tri-state logic is actively enforced.</p>
+                  <ul class="text-xs text-slate-600 space-y-1">
+                    <li>• Processes +1 and -1 verdicts</li>
+                    <li>• Triggers STATE_REVIEW_HOLD on 0</li>
+                    <li>• Majority of contract lifecycle</li>
+                  </ul>
+                </div>
+
+                <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
+                  <div class="state-badge state-review mb-3">STATE_REVIEW_HOLD</div>
+                  <h4 class="font-semibold mb-2">Sacred Zero State</h4>
+                  <p class="text-sm text-slate-600 mb-3">Ethical ambiguity pause requiring human council intervention.</p>
+                  <ul class="text-xs text-slate-600 space-y-1">
+                    <li>• Time-bounded (72 hours)</li>
+                    <li>• Council consensus required</li>
+                    <li>• Auto-fail if unresolved</li>
+                  </ul>
+                </div>
+
+                <div class="bg-red-50 border border-red-200 rounded-lg p-6">
+                  <div class="state-badge state-flagged mb-3">STATE_FLAGGED</div>
+                  <h4 class="font-semibold mb-2">Probationary State</h4>
+                  <p class="text-sm text-slate-600 mb-3">Heightened scrutiny triggered by pattern of -1 refusals.</p>
+                  <ul class="text-xs text-slate-600 space-y-1">
+                    <li>• Increased gas costs</li>
+                    <li>• Mandatory council review</li>
+                    <li>• Risk management tool</li>
+                  </ul>
+                </div>
+
+                <div class="bg-slate-800 text-white rounded-lg p-6">
+                  <div class="state-badge state-frozen mb-3">STATE_INTEGRITY_FROZEN</div>
+                  <h4 class="font-semibold mb-2 text-white">Irreversible Kill Switch</h4>
+                  <p class="text-sm text-slate-300 mb-3">Terminal state triggered by catastrophic security threats.</p>
+                  <ul class="text-xs text-slate-300 space-y-1">
+                    <li>• No outgoing transitions</li>
+                    <li>• Absolute security guarantee</li>
+                    <li>• Protects system integrity</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="mermaid-container mb-8">
+                <div class="mermaid-controls">
+                  <button class="mermaid-control-btn zoom-in" title="放大">
+                    <i class="fas fa-search-plus"></i>
+                  </button>
+                  <button class="mermaid-control-btn zoom-out" title="缩小">
+                    <i class="fas fa-search-minus"></i>
+                  </button>
+                  <button class="mermaid-control-btn reset-zoom" title="重置">
+                    <i class="fas fa-expand-arrows-alt"></i>
+                  </button>
+                  <button class="mermaid-control-btn fullscreen" title="全屏查看">
+                    <i class="fas fa-expand"></i>
+                  </button>
+                </div>
+                <div class="mermaid">
+                  stateDiagram-v2
+                  [*] --&gt; STATE_ACTIVE
+                  STATE_ACTIVE --&gt; STATE_ACTIVE : +1 Proceed
+                  STATE_ACTIVE --&gt; STATE_ACTIVE : -1 Refuse
+                  STATE_ACTIVE --&gt; STATE_REVIEW_HOLD : 0 Sacred Zero
+                  STATE_REVIEW_HOLD --&gt; STATE_ACTIVE : Council +1
+                  STATE_REVIEW_HOLD --&gt; STATE_FLAGGED : Council -1
+                  STATE_REVIEW_HOLD --&gt; STATE_ACTIVE : Timeout
+                  STATE_FLAGGED --&gt; STATE_ACTIVE : Resolution
+                  STATE_ACTIVE --&gt; STATE_INTEGRITY_FROZEN : Security Breach
+                  STATE_REVIEW_HOLD --&gt; STATE_INTEGRITY_FROZEN : Emergency
+                  STATE_FLAGGED --&gt; STATE_INTEGRITY_FROZEN : Critical Threat
+                  STATE_INTEGRITY_FROZEN --&gt; [*]
+                </div>
+              </div>
+            </div>
+
+            <div id="integrity-freeze" class="mb-12">
+              <h3 class="serif text-2xl font-semibold mb-6 text-slate-900">3.2 Integrity Freeze Triggers</h3>
+
+              <div class="bg-slate-50 rounded-lg p-6 mb-8">
+                <h4 class="font-semibold mb-4">Critical Security Triggers</h4>
+                <div class="space-y-4">
+                  <div class="flex items-start space-x-3">
+                    <i class="fas fa-exclamation-triangle text-red-500 mt-1"></i>
+                    <div>
+                      <strong>Oracle Fraud Detection:</strong> Multiple oracle discrepancies or out-of-range data indicating compromised external data sources.
+                    </div>
+                  </div>
+                  <div class="flex items-start space-x-3">
+                    <i class="fas fa-shield-alt text-red-500 mt-1"></i>
+                    <div>
+                      <strong>Tampered Log Hashes:</strong> Invalid Merkle proofs or missing log entries compromising Always Memory integrity.
+                    </div>
+                  </div>
+                  <div class="flex items-start space-x-3">
+                    <i class="fas fa-lock text-red-500 mt-1"></i>
+                    <div>
+                      <strong>Unauthorized Admin Access:</strong> Pattern of failed authentication attempts targeting critical administrative functions.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-red-50 border-l-4 border-red-400 p-6">
+                <p class="text-red-800 font-medium mb-2">⚠️ Irreversible Operation</p>
+                <p class="text-red-700 text-sm">
+                  Once triggered, STATE_INTEGRITY_FROZEN cannot be reversed. This design choice ensures absolute protection against &#34;God Mode&#34; scenarios where privileged users could override security measures.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- Data Architecture -->
+      <section id="data-architecture" class="py-16 bg-slate-50">
+        <div class="container mx-auto px-8 max-w-4xl">
+          <h2 class="serif text-4xl font-bold mb-8 text-slate-900">4. Data Architecture: The &#34;Always Memory&#34; Implementation</h2>
+
+          <div class="prose prose-lg max-w-none">
+            <p class="text-xl text-slate-700 mb-8 leading-relaxed">
+              The &#34;Always Memory&#34; architecture reconciles blockchain immutability with practical data management through a hybrid model. On-chain components store cryptographic commitments while off-chain systems maintain full encrypted logs with proof-of-custody.
+            </p>
+
+            <div id="always-memory" class="mb-12">
+              <h3 class="serif text-2xl font-semibold mb-6 text-slate-900">4.1 On-Chain Storage Strategy</h3>
+
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div class="bg-white rounded-lg p-6 border border-slate-200">
+                  <i class="fas fa-tree text-green-600 text-2xl mb-4"></i>
+                  <h4 class="font-semibold mb-2">Merkle Roots</h4>
+                  <p class="text-sm text-slate-600">Cryptographic fingerprints of off-chain log data, enabling efficient verification without storing full data on-chain.</p>
+                </div>
+
+                <div class="bg-white rounded-lg p-6 border border-slate-200">
+                  <i class="fas fa-fingerprint text-blue-600 text-2xl mb-4"></i>
+                  <h4 class="font-semibold mb-2">Keccak-256 Hashes</h4>
+                  <p class="text-sm text-slate-600">Native EVM hash function for decision trees, ensuring immutable reference to TML axioms and rulesets.</p>
+                </div>
+
+                <div class="bg-white rounded-lg p-6 border border-slate-200">
+                  <i class="fas fa-clock text-purple-600 text-2xl mb-4"></i>
+                  <h4 class="font-semibold mb-2">Timestamped Events</h4>
+                  <p class="text-sm text-slate-600">Chronological logs of significant state transitions and TML evaluations for auditability.</p>
+                </div>
+              </div>
+
+              <div class="code-block mb-8">
+                <pre>// Always Memory Root Management
+bytes32 public alwaysMemoryRoot;
+
+function updateAlwaysMemoryRoot(bytes32 newRoot) 
+    external 
+    onlyInState(STATE_ACTIVE) 
+    onlyCouncilConsensus 
+{
+    alwaysMemoryRoot = newRoot;
+    emit AlwaysMemoryUpdated(newRoot, block.timestamp);
+}
+
+function verifyMerkleProof(
+    bytes32 leaf,
+    bytes32[] memory proof,
+    uint256 index
+) public view returns (bool) {
+    return MerkleProof.verify(proof, alwaysMemoryRoot, leaf);
+}</pre>
+              </div>
+            </div>
+
+            <div id="verification" class="mb-12">
+              <h3 class="serif text-2xl font-semibold mb-6 text-slate-900">4.2 Verification and State Changes</h3>
+
+              <div class="bg-white rounded-lg p-6 mb-8 border border-slate-200">
+                <h4 class="font-semibold mb-4">Merkle Proof Verification Process</h4>
+                <ol class="space-y-3 text-slate-700">
+                  <li><strong>1. Proof Submission:</strong> User submits Merkle proof with leaf data and sibling hashes</li>
+                  <li><strong>2. Root Recomputation:</strong> Contract recomputes Merkle root using provided proof path</li>
+                  <li><strong>3. Root Comparison:</strong> Computed root compared against stored alwaysMemoryRoot</li>
+                  <li><strong>4. State Transition:</strong> Valid proof enables sensitive state changes like review hold resolution</li>
+                </ol>
+              </div>
+
+              <div class="bg-blue-50 border-l-4 border-blue-400 p-6">
+                <p class="text-blue-800 font-medium mb-2">🔒 Security Guarantee</p>
+                <p class="text-blue-700 text-sm">
+                  Any sensitive state change requires valid Merkle proof verification, ensuring contract actions are always substantiated by authentic, untampered historical data.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- Licensing &amp; Compliance -->
+      <section id="licensing" class="py-16 bg-white">
+        <div class="container mx-auto px-8 max-w-4xl">
+          <h2 class="serif text-4xl font-bold mb-8 text-slate-900">5. Licensing &amp; Compliance Attestation</h2>
+
+          <div class="prose prose-lg max-w-none">
+            <p class="text-xl text-slate-700 mb-8 leading-relaxed">
+              The TML architecture embeds ethical principles directly through mandatory compliance attestation. The &#34;Genesis&#34; requirement ensures every contract is initialized with commitment to verifiable ethical documents, creating a constitutional foundation for operation.
+            </p>
+
+            <div id="genesis" class="mb-12">
+              <h3 class="serif text-2xl font-semibold mb-6 text-slate-900">5.1 The Genesis Requirement</h3>
+
+              <div class="bg-slate-50 rounded-lg p-6 mb-8">
+                <h4 class="font-semibold mb-4">Mandated Corpora</h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <h5 class="font-medium mb-2 text-green-700">Human Rights Documents (40+)</h5>
+                    <ul class="text-sm text-slate-600 space-y-1">
+                      <li>• Universal Declaration of Human Rights</li>
+                      <li>• International Covenant on Civil and Political Rights</li>
+                      <li>• Convention on the Rights of the Child</li>
+                      <li>• Geneva Conventions</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h5 class="font-medium mb-2 text-blue-700">Earth Protection Protocols (26+)</h5>
+                    <ul class="text-sm text-slate-600 space-y-1">
+                      <li>• Paris Agreement on Climate Change</li>
+                      <li>• Convention on Biological Diversity</li>
+                      <li>• Basel Convention on Hazardous Waste</li>
+                      <li>• Stockholm Convention on POPs</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="code-block mb-8">
+                <pre>// Constitution Hash Verification
+bytes32 public constant CONSTITUTION_HASH = 
+    0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef;
+
+constructor(bytes32 _constitutionHash) {
+    require(
+        _constitutionHash == CONSTITUTION_HASH, 
+        &#34;TML: Invalid Constitution Hash&#34;
+    );
+    // Deployment continues only with valid hash
+}</pre>
+              </div>
+
+              <div class="bg-red-50 border border-red-200 rounded-lg p-6">
+                <h4 class="font-semibold mb-3 text-red-800">Non-Compliance Failure Mode</h4>
+                <p class="text-red-700 text-sm mb-3">
+                  If the Constitution Hash check fails during deployment, the constructor reverts and the contract is never created. This absolute enforcement ensures:
+                </p>
+                <ul class="text-red-700 text-sm space-y-1">
+                  <li>• No TML contract exists without valid ethical foundation</li>
+                  <li>• Immutable axioms prevent retroactive alterations</li>
+                  <li>• System integrity preserved through cryptographic verification</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- Adversarial Analysis -->
+      <section id="adversarial" class="py-16 bg-slate-50">
+        <div class="container mx-auto px-8 max-w-4xl">
+          <h2 class="serif text-4xl font-bold mb-8 text-slate-900">6. Adversarial Analysis &amp; &#34;No God Mode&#34; Proof</h2>
+
+          <div class="prose prose-lg max-w-none">
+            <p class="text-xl text-slate-700 mb-8 leading-relaxed">
+              The TML architecture&#39;s &#34;No God Mode&#34; principle ensures no entity can arbitrarily alter fundamental ethical rules or override deterministic enforcement. This section provides mathematical proof of the irreversible STATE_INTEGRITY_FROZEN and analysis of administrative surface security.
+            </p>
+
+            <div id="no-god-mode" class="mb-12">
+              <h3 class="serif text-2xl font-semibold mb-6 text-slate-900">6.1 Mathematical Proof of No Unfreeze Function</h3>
+
+              <div class="bg-white rounded-lg p-6 mb-8 border border-slate-200">
+                <h4 class="font-semibold mb-4">Formal State Machine Analysis</h4>
+                <p class="mb-4">
+                  Let S = {ACTIVE, REVIEW_HOLD, FLAGGED, INTEGRITY_FROZEN} be the set of all states.
+                  Let T be the set of all defined transitions (s_from, s_to) where s_from and s_to are in S.
+                </p>
+                <div class="bg-slate-50 p-4 rounded border-l-4 border-blue-400">
+                  <p class="text-sm font-mono text-slate-700">
+                    The &#34;No God Mode&#34; property: ∀t ∈ T, if t.s_from == INTEGRITY_FROZEN,
+                    then no such t exists where t.s_to != INTEGRITY_FROZEN
+                  </p>
+                </div>
+                <p class="mt-4">
+                  This formal verification is implemented through:
+                </p>
+                <ul class="text-sm text-slate-700 space-y-1 mt-2">
+                  <li>• Modifier guards on all state-changing functions</li>
+                  <li>• Absence of any code path allowing unfreeze operations</li>
+                  <li>• Symbolic execution verification using CTL formulae</li>
+                </ul>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+                  <h4 class="font-semibold mb-3 text-green-700">Circuit Breaker (Legitimate)</h4>
+                  <ul class="text-sm text-slate-600 space-y-1">
+                    <li>• Triggered by objective, verifiable conditions</li>
+                    <li>• Automatic response to security threats</li>
+                    <li>• Protects system and users</li>
+                    <li>• Irreversible by design</li>
+                  </ul>
+                </div>
+
+                <div class="bg-red-50 border border-red-200 rounded-lg p-6">
+                  <h4 class="font-semibold mb-3 text-red-700">Rug Pull (Malicious)</h4>
+                  <ul class="text-sm text-slate-600 space-y-1">
+                    <li>• Triggered by admin discretion</li>
+                    <li>• Benefits admin at user expense</li>
+                    <li>• Reversible by privileged users</li>
+                    <li>• Exploits centralized control</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="bg-blue-50 border-l-4 border-blue-400 p-6">
+                <h4 class="font-semibold mb-3 text-blue-800">Formal Verification Benefits</h4>
+                <p class="text-blue-700 text-sm mb-3">
+                  Using symbolic execution tools like nuXmv with CTL properties provides mathematical guarantees beyond traditional testing:
+                </p>
+                <ul class="text-blue-700 text-sm space-y-1">
+                  <li>• Exhaustive state space exploration</li>
+                  <li>• Automated vulnerability detection</li>
+                  <li>• Mathematical proof of security properties</li>
+                  <li>• Counter-example generation for failed properties</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- Conclusion -->
+      <section id="conclusion" class="py-16 bg-slate-900 text-white">
+        <div class="container mx-auto px-8 max-w-4xl">
+          <h2 class="serif text-4xl font-bold mb-8">7. Conclusion: The Constitutional Code</h2>
+
+          <div class="prose prose-lg max-w-none text-slate-300">
+            <p class="text-xl text-white mb-8 leading-relaxed">
+              The TML architecture represents a paradigm shift from &#34;Code is Law&#34; to &#34;Logic is Constitution&#34; — a fundamental transformation where ethical principles govern code execution rather than raw instructions determining outcomes.
+            </p>
+
+            <div class="bg-slate-800 rounded-lg p-8 mb-8">
+              <h3 class="serif text-2xl font-semibold mb-6 text-white">Ethics Precedes Execution</h3>
+              <p class="mb-6 text-slate-300">
+                Every action in the TML framework must pass ethical evaluation before execution. The tri-state logic creates nuanced responses to complex scenarios, while the &#34;Sacred Zero&#34; state acknowledges algorithmic limitations and provides structured pathways for human judgment.
+              </p>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <h4 class="font-semibold mb-3 text-white">Key Architectural Principles</h4>
+                  <ul class="text-sm text-slate-400 space-y-2">
+                    <li>• Deterministic Enforcement</li>
+                    <li>• Tri-State Logic &amp; Human Oversight</li>
+                    <li>• Finite State Machine Governance</li>
+                    <li>• &#34;No God Mode&#34; Security</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 class="font-semibold mb-3 text-white">Implementation Guarantees</h4>
+                  <ul class="text-sm text-slate-400 space-y-2">
+                    <li>• &#34;Always Memory&#34; Data Architecture</li>
+                    <li>• Compliance Attestation</li>
+                    <li>• Irreversible Integrity Protection</li>
+                    <li>• Mathematical Security Proofs</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-gradient-to-r from-blue-900 to-indigo-900 rounded-lg p-8">
+              <h3 class="serif text-2xl font-semibold mb-4 text-white">Implications for Decentralized Governance</h3>
+              <p class="text-slate-200 mb-4">
+                The shift from &#34;Code is Law&#34; to &#34;Logic is Constitution&#34; enables more flexible, ethical decentralized governance. TML provides concrete mechanisms for operationalizing ethical principles in systems that remain secure, efficient, and aligned with human values.
+              </p>
+              <p class="text-slate-300 text-sm">
+                This architecture offers valuable insights for ethical AI development, demonstrating how complex ethical principles can be encoded into deterministic, verifiable systems — paving the way for trustworthy AI applications across domains from DeFi to autonomous systems.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="bg-slate-800 text-slate-300 py-8">
+        <div class="container mx-auto px-8 max-w-4xl">
+          <div class="text-center">
+            <p class="text-sm">
+              Technical Architecture &amp; Governance of TML Smart Contracts
+            </p>
+            <p class="text-xs mt-2 text-slate-500">
+              A deterministic enforcement layer for ethical governance on EVM-compatible platforms
+            </p>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+        // Initialize Mermaid with enhanced configuration
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'base',
+            themeVariables: {
+                primaryColor: '#0f172a',
+                primaryTextColor: '#f8fafc',
+                primaryBorderColor: '#334155',
+                lineColor: '#64748b',
+                secondaryColor: '#e2e8f0',
+                tertiaryColor: '#f1f5f9',
+                background: '#ffffff',
+                mainBkg: '#f8fafc',
+                secondaryBkg: '#f1f5f9',
+                tertiaryBkg: '#e2e8f0',
+                // Enhanced contrast colors
+                cScale0: '#10b981',  // Green
+                cScale1: '#f59e0b',  // Yellow  
+                cScale2: '#ef4444',  // Red
+                cScale3: '#0f172a',  // Dark blue
+                cScale4: '#3b82f6',  // Blue
+                cScale5: '#8b5cf6',  // Purple
+                // Text colors for better contrast
+                cScaleLabel0: '#ffffff',
+                cScaleLabel1: '#ffffff', 
+                cScaleLabel2: '#ffffff',
+                cScaleLabel3: '#ffffff',
+                cScaleLabel4: '#ffffff',
+                cScaleLabel5: '#ffffff'
+            },
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true,
+                curve: 'basis',
+                padding: 20
+            },
+            sequence: {
+                useMaxWidth: true,
+                wrap: true
+            },
+            state: {
+                useMaxWidth: true
+            }
+        });
+
+        // Initialize Mermaid Controls for zoom and pan
+        function initializeMermaidControls() {
+            const containers = document.querySelectorAll('.mermaid-container');
+
+            containers.forEach(container => {
+            const mermaidElement = container.querySelector('.mermaid');
+            let scale = 1;
+            let isDragging = false;
+            let startX, startY, translateX = 0, translateY = 0;
+
+            // 触摸相关状态
+            let isTouch = false;
+            let touchStartTime = 0;
+            let initialDistance = 0;
+            let initialScale = 1;
+            let isPinching = false;
+
+            // Zoom controls
+            const zoomInBtn = container.querySelector('.zoom-in');
+            const zoomOutBtn = container.querySelector('.zoom-out');
+            const resetBtn = container.querySelector('.reset-zoom');
+            const fullscreenBtn = container.querySelector('.fullscreen');
+
+            function updateTransform() {
+                mermaidElement.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+
+                if (scale > 1) {
+                container.classList.add('zoomed');
+                } else {
+                container.classList.remove('zoomed');
+                }
+
+                mermaidElement.style.cursor = isDragging ? 'grabbing' : 'grab';
+            }
+
+            if (zoomInBtn) {
+                zoomInBtn.addEventListener('click', () => {
+                scale = Math.min(scale * 1.25, 4);
+                updateTransform();
+                });
+            }
+
+            if (zoomOutBtn) {
+                zoomOutBtn.addEventListener('click', () => {
+                scale = Math.max(scale / 1.25, 0.3);
+                if (scale <= 1) {
+                    translateX = 0;
+                    translateY = 0;
+                }
+                updateTransform();
+                });
+            }
+
+            if (resetBtn) {
+                resetBtn.addEventListener('click', () => {
+                scale = 1;
+                translateX = 0;
+                translateY = 0;
+                updateTransform();
+                });
+            }
+
+            if (fullscreenBtn) {
+                fullscreenBtn.addEventListener('click', () => {
+                if (container.requestFullscreen) {
+                    container.requestFullscreen();
+                } else if (container.webkitRequestFullscreen) {
+                    container.webkitRequestFullscreen();
+                } else if (container.msRequestFullscreen) {
+                    container.msRequestFullscreen();
+                }
+                });
+            }
+
+            // Mouse Events
+            mermaidElement.addEventListener('mousedown', (e) => {
+                if (isTouch) return; // 如果是触摸设备，忽略鼠标事件
+
+                isDragging = true;
+                startX = e.clientX - translateX;
+                startY = e.clientY - translateY;
+                mermaidElement.style.cursor = 'grabbing';
+                updateTransform();
+                e.preventDefault();
+            });
+
+            document.addEventListener('mousemove', (e) => {
+                if (isDragging && !isTouch) {
+                translateX = e.clientX - startX;
+                translateY = e.clientY - startY;
+                updateTransform();
+                }
+            });
+
+            document.addEventListener('mouseup', () => {
+                if (isDragging && !isTouch) {
+                isDragging = false;
+                mermaidElement.style.cursor = 'grab';
+                updateTransform();
+                }
+            });
+
+            document.addEventListener('mouseleave', () => {
+                if (isDragging && !isTouch) {
+                isDragging = false;
+                mermaidElement.style.cursor = 'grab';
+                updateTransform();
+                }
+            });
+
+            // 获取两点之间的距离
+            function getTouchDistance(touch1, touch2) {
+                return Math.hypot(
+                touch2.clientX - touch1.clientX,
+                touch2.clientY - touch1.clientY
+                );
+            }
+
+            // Touch Events - 触摸事件处理
+            mermaidElement.addEventListener('touchstart', (e) => {
+                isTouch = true;
+                touchStartTime = Date.now();
+
+                if (e.touches.length === 1) {
+                // 单指拖动
+                isPinching = false;
+                isDragging = true;
+
+                const touch = e.touches[0];
+                startX = touch.clientX - translateX;
+                startY = touch.clientY - translateY;
+
+                } else if (e.touches.length === 2) {
+                // 双指缩放
+                isPinching = true;
+                isDragging = false;
+
+                const touch1 = e.touches[0];
+                const touch2 = e.touches[1];
+                initialDistance = getTouchDistance(touch1, touch2);
+                initialScale = scale;
+                }
+
+                e.preventDefault();
+            }, { passive: false });
+
+            mermaidElement.addEventListener('touchmove', (e) => {
+                if (e.touches.length === 1 && isDragging && !isPinching) {
+                // 单指拖动
+                const touch = e.touches[0];
+                translateX = touch.clientX - startX;
+                translateY = touch.clientY - startY;
+                updateTransform();
+
+                } else if (e.touches.length === 2 && isPinching) {
+                // 双指缩放
+                const touch1 = e.touches[0];
+                const touch2 = e.touches[1];
+                const currentDistance = getTouchDistance(touch1, touch2);
+
+                if (initialDistance > 0) {
+                    const newScale = Math.min(Math.max(
+                    initialScale * (currentDistance / initialDistance),
+                    0.3
+                    ), 4);
+                    scale = newScale;
+                    updateTransform();
+                }
+                }
+
+                e.preventDefault();
+            }, { passive: false });
+
+            mermaidElement.addEventListener('touchend', (e) => {
+                // 重置状态
+                if (e.touches.length === 0) {
+                isDragging = false;
+                isPinching = false;
+                initialDistance = 0;
+
+                // 延迟重置isTouch，避免鼠标事件立即触发
+                setTimeout(() => {
+                    isTouch = false;
+                }, 100);
+                } else if (e.touches.length === 1 && isPinching) {
+                // 从双指变为单指，切换为拖动模式
+                isPinching = false;
+                isDragging = true;
+
+                const touch = e.touches[0];
+                startX = touch.clientX - translateX;
+                startY = touch.clientY - translateY;
+                }
+
+                updateTransform();
+            });
+
+            mermaidElement.addEventListener('touchcancel', (e) => {
+                isDragging = false;
+                isPinching = false;
+                initialDistance = 0;
+
+                setTimeout(() => {
+                isTouch = false;
+                }, 100);
+
+                updateTransform();
+            });
+
+            // Enhanced wheel zoom with better center point handling
+            container.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                const rect = container.getBoundingClientRect();
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+
+                const delta = e.deltaY > 0 ? 0.9 : 1.1;
+                const newScale = Math.min(Math.max(scale * delta, 0.3), 4);
+
+                // Adjust translation to zoom towards center
+                if (newScale !== scale) {
+                const scaleDiff = newScale / scale;
+                translateX = translateX * scaleDiff;
+                translateY = translateY * scaleDiff;
+                scale = newScale;
+
+                if (scale <= 1) {
+                    translateX = 0;
+                    translateY = 0;
+                }
+
+                updateTransform();
+                }
+            });
+
+            // Initialize display
+            updateTransform();
+            });
+        }
+
+        // Initialize the controls
+        initializeMermaidControls();
+
+        // Table of Contents functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const tocLinks = document.querySelectorAll('.toc-link');
+            const sections = document.querySelectorAll('section[id], div[id]');
+            
+            // Smooth scrolling for TOC links
+            tocLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+            
+            // Update active TOC link on scroll
+            function updateActiveTocLink() {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 100;
+                    if (window.pageYOffset >= sectionTop) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                tocLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === '#' + current) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+            
+            window.addEventListener('scroll', updateActiveTocLink);
+            updateActiveTocLink(); // Initial call
+        });
+
+        // Add loading animation for images
+        document.querySelectorAll('img').forEach(img => {
+            img.addEventListener('load', function() {
+                this.style.opacity = '1';
+                this.style.transition = 'opacity 0.3s ease';
+            });
+            img.style.opacity = '0';
+        });
+    </script>
+  
+
+</body></html>
