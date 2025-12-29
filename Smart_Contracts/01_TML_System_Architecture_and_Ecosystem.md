@@ -348,8 +348,8 @@ This is not merely software; it is a digital constitution. In a world increasing
 
 #### **Works cited**
 
-1\. FractonicMind/TernaryMoralLogic: Implementing Ethical Responsibility in AI Systems \- GitHub, https://github.com/FractonicMind/TernaryMoralLogic 
-2\. The Day We Accidentally Became Disciples of a Dead Man's Digital Testament | by Lev Goukassian | Dec, 2025 | Medium, https://medium.com/@leogouk/the-day-we-accidentally-became-disciples-of-a-dead-mans-digital-testament-b83d96d46671 
+1\. FractonicMind/TernaryMoralLogic: Implementing Ethical Responsibility in AI Systems \- GitHub, https://github.com/FractonicMind/TernaryMoralLogic   
+2\. The Day We Accidentally Became Disciples of a Dead Man's Digital Testament | by Lev Goukassian | Dec, 2025 | Medium, https://medium.com/@leogouk/the-day-we-accidentally-became-disciples-of-a-dead-mans-digital-testament-b83d96d46671   
 3\. The Goukassian Promise. A self-enforcing covenant between… \- Medium, https://medium.com/@leogouk/the-goukassian-promise-7abde4bd81ec 
 4\. The Unbreakable Vow: How Ternary Logic's "Hybrid Shield" Protects from Corruption | by Lev Goukassian | Nov, 2025 | Medium, https://medium.com/@leogouk/the-unbreakable-vow-how-ternary-logics-hybrid-shield-protects-from-corruption-1e6338d4744c 
 5\. The Great Ternary Logic Incident: A Tale of Five Greeks and One Very Confused Document. | by Lev Goukassian | Dec, 2025 | Medium, https://medium.com/@leogouk/the-great-ternary-logic-incident-a-tale-of-five-greeks-and-one-very-confused-document-e621b95f06dd 
