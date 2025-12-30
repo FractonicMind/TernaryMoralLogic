@@ -1,0 +1,937 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>TML Smart Contracts: Automating Ethics and Accountability on the Blockchain</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'sage': '#9CAF88',
+                        'stone': '#D9C7A7',
+                        'charcoal': '#2D2D2D',
+                        'cream': '#F7F5F0',
+                        'navy': '#1A365D'
+                    },
+                    fontFamily: {
+                        'serif': ['Playfair Display', 'serif'],
+                        'sans': ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .prose-custom h1 { @apply text-4xl font-serif font-bold text-charcoal mb-6; }
+        .prose-custom h2 { @apply text-3xl font-serif font-semibold text-charcoal mb-4; }
+        .prose-custom h3 { @apply text-2xl font-serif font-semibold text-charcoal mb-3; }
+        .prose-custom h4 { @apply text-xl font-serif font-semibold text-charcoal mb-2; }
+        .prose-custom p { @apply text-lg leading-relaxed text-gray-700 mb-4; }
+        .prose-custom ul { @apply list-disc list-inside space-y-2 text-gray-700 mb-4; }
+        .prose-custom ol { @apply list-decimal list-inside space-y-2 text-gray-700 mb-4; }
+        .prose-custom blockquote { @apply border-l-4 border-sage pl-6 italic text-gray-600 my-6; }
+        
+        .citation-link {
+            @apply inline-block bg-sage/10 hover:bg-sage/20 text-sage px-2 py-1 rounded text-sm font-medium transition-colors;
+        }
+        
+        .floating-toc {
+            @apply fixed left-6 top-1/2 transform -translate-y-1/2 bg-white/95 backdrop-blur-sm shadow-xl rounded-lg p-6 z-40 border border-stone/20;
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+        
+        .hero-overlay {
+            background: linear-gradient(135deg, rgba(156, 175, 136, 0.1) 0%, rgba(217, 199, 167, 0.2) 100%);
+        }
+        
+        .bento-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            align-items: start;
+        }
+        
+        .contract-card {
+            @apply bg-white rounded-lg p-6 shadow-md border border-stone/20 hover:shadow-lg transition-shadow;
+        }
+        
+        /* Mermaid Container Styling */
+        .mermaid-container {
+            display: flex;
+            justify-content: center;
+            min-height: 300px;
+            max-height: 800px;
+            background: #ffffff;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mermaid-container .mermaid {
+            width: 100%;
+            max-width: 100%;
+            height: 100%;
+            cursor: grab;
+            transition: transform 0.3s ease;
+            transform-origin: center center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            touch-action: none; /* 防止触摸设备上的默认行为 */
+            -webkit-user-select: none; /* 防止文本选择 */
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .mermaid-container .mermaid svg {
+            max-width: 100%;
+            height: 100%;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .mermaid-container .mermaid:active {
+            cursor: grabbing;
+        }
+
+        .mermaid-container.zoomed .mermaid {
+            height: 100%;
+            width: 100%;
+            cursor: grab;
+        }
+
+        .mermaid-controls {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            display: flex;
+            gap: 10px;
+            z-index: 20;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 8px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .mermaid-control-btn {
+            background: #ffffff;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            padding: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #374151;
+            font-size: 14px;
+            min-width: 36px;
+            height: 36px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mermaid-control-btn:hover {
+            background: #f8fafc;
+            border-color: #3b82f6;
+            color: #3b82f6;
+            transform: translateY(-1px);
+        }
+
+        .mermaid-control-btn:active {
+            transform: scale(0.95);
+        }
+        
+        /* Prevent horizontal overflow on body */
+        body {
+            overflow-x: hidden;
+        }
+        
+        /* Responsive adjustments for Mermaid controls */
+        @media (max-width: 1024px) {
+            .mermaid-control-btn:not(.reset-zoom) {
+                display: none;
+            }
+            .mermaid-controls {
+                top: auto;
+                bottom: 15px;
+                right: 15px;
+            }
+        }
+    </style>
+  <base target="_blank">
+</head>
+
+  <body class="bg-cream font-sans">
+    <!-- Fixed Table of Contents -->
+    <nav class="floating-toc w-64 hidden lg:block">
+      <h3 class="font-serif font-semibold text-lg text-charcoal mb-4 border-b border-stone/30 pb-2">Contents</h3>
+      <ul class="space-y-2 text-sm">
+        <li>
+          <a href="#introduction" class="block py-1 text-gray-600 hover:text-sage transition-colors">Introduction</a>
+        </li>
+        <li>
+          <a href="#novel-application" class="block py-1 text-gray-600 hover:text-sage transition-colors pl-3">A Novel Application</a>
+        </li>
+        <li>
+          <a href="#tml-vision" class="block py-1 text-gray-600 hover:text-sage transition-colors pl-3">TML Vision</a>
+        </li>
+        <li>
+          <a href="#ethereum-core" class="block py-1 text-gray-600 hover:text-sage transition-colors">Ethereum as Core</a>
+        </li>
+        <li>
+          <a href="#automated-enforcement" class="block py-1 text-gray-600 hover:text-sage transition-colors pl-3">Automated Enforcement</a>
+        </li>
+        <li>
+          <a href="#key-contracts" class="block py-1 text-gray-600 hover:text-sage transition-colors">Key Contracts</a>
+        </li>
+        <li>
+          <a href="#penalty-contract" class="block py-1 text-gray-600 hover:text-sage transition-colors pl-3">Penalty Enforcement</a>
+        </li>
+        <li>
+          <a href="#memorial-fund" class="block py-1 text-gray-600 hover:text-sage transition-colors pl-3">Memorial Fund</a>
+        </li>
+        <li>
+          <a href="#architecture" class="block py-1 text-gray-600 hover:text-sage transition-colors">Architecture</a>
+        </li>
+        <li>
+          <a href="#hybrid-shield" class="block py-1 text-gray-600 hover:text-sage transition-colors pl-3">Hybrid Shield</a>
+        </li>
+        <li>
+          <a href="#broader-impact" class="block py-1 text-gray-600 hover:text-sage transition-colors">Broader Impact</a>
+        </li>
+        <li>
+          <a href="#conclusion" class="block py-1 text-gray-600 hover:text-sage transition-colors">Conclusion</a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="lg:ml-80">
+      <!-- Hero Section with Bento Grid -->
+      <section class="hero-overlay min-h-screen flex items-center py-20">
+        <div class="container mx-auto px-4 md:px-8">
+          <div class="bento-grid max-w-6xl mx-auto">
+            <!-- Main Title Block -->
+            <div class="col-span-2 bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-stone/20">
+              <h1 class="font-serif text-3xl md:text-4xl lg:text-6xl font-bold text-charcoal leading-tight mb-6">
+                <em class="text-sage">TML Smart Contracts:</em>
+                <br/>
+                Automating Ethics and Accountability on the Blockchain
+              </h1>
+              <p class="text-lg md:text-xl text-gray-600 leading-relaxed">
+                A novel application of blockchain technology creating self-enforcing ethical frameworks for artificial intelligence and complex digital systems.
+              </p>
+            </div>
+
+            <!-- Visual Element -->
+            <div class="bg-white/60 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-stone/20 flex items-center justify-center">
+              <img src="https://kimi-web-img.moonshot.cn/img/static.vecteezy.com/3effedf14a99e40ba88993753ddf2ba17335e074.jpg" alt="Abstract blockchain network with interconnected nodes" class="w-full h-48 object-cover rounded-lg opacity-80" size="medium" aspect="wide" query="abstract blockchain network" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"/>
+            </div>
+
+            <!-- Key Insight -->
+            <div class="bg-navy/90 text-white rounded-2xl p-6 shadow-lg">
+              <h3 class="font-serif text-xl font-semibold mb-3">
+                <i class="fas fa-lightbulb text-stone mr-2"></i>
+                Key Innovation
+              </h3>
+              <p class="text-sm leading-relaxed">
+                Transforming ethical principles from abstract guidelines into deterministic, self-executing code that operates without human discretion or bias.
+              </p>
+            </div>
+          </div>
+
+          <!-- Key Highlights -->
+          <div class="grid md:grid-cols-3 gap-6 mt-12 max-w-4xl mx-auto">
+            <div class="bg-white/70 backdrop-blur-sm rounded-xl p-4 md:p-6 shadow-md border border-stone/20">
+              <i class="fas fa-shield-alt text-2xl text-sage mb-3"></i>
+              <h4 class="font-serif font-semibold text-charcoal mb-2">Immutable Governance</h4>
+              <p class="text-sm text-gray-600">Rules encoded on blockchain, resistant to tampering or censorship</p>
+            </div>
+            <div class="bg-white/70 backdrop-blur-sm rounded-xl p-6 shadow-md border border-stone/20">
+              <i class="fas fa-cogs text-2xl text-sage mb-3"></i>
+              <h4 class="font-serif font-semibold text-charcoal mb-2">Automated Enforcement</h4>
+              <p class="text-sm text-gray-600">Smart contracts execute penalties without human intervention</p>
+            </div>
+            <div class="bg-white/70 backdrop-blur-sm rounded-xl p-6 shadow-md border border-stone/20">
+              <i class="fas fa-eye text-2xl text-sage mb-3"></i>
+              <h4 class="font-serif font-semibold text-charcoal mb-2">Full Transparency</h4>
+              <p class="text-sm text-gray-600">Every action recorded on public, auditable ledgers</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Main Article Content -->
+      <article class="container mx-auto px-8 py-16 max-w-4xl prose-custom">
+
+        <!-- Introduction -->
+        <section id="introduction" class="mb-20">
+          <h2>Introduction: A New Paradigm for Governance</h2>
+
+          <div id="novel-application" class="mb-12">
+            <h3>A Novel Application of Blockchain Technology</h3>
+            <p>
+              TML Smart Contracts represent a groundbreaking application of blockchain technology, designed to create a self-enforcing ethical framework for artificial intelligence and other complex digital systems. By leveraging the immutability and transparency of public blockchains like Ethereum, these smart contracts automate the enforcement of ethical rules, eliminating the need for human discretion and the potential for bias or corruption.
+            </p>
+
+            <div class="bg-sage/5 rounded-lg p-6 my-8 border-l-4 border-sage">
+              <h4 class="font-serif font-semibold text-charcoal mb-3">
+                <i class="fas fa-star text-sage mr-2"></i>
+                Core Innovation
+              </h4>
+              <p class="text-gray-700">
+                This system transforms ethics from a goal into a foundational, enforceable component of technology itself, bridging the gap between ethical principles and their practical implementation.
+              </p>
+            </div>
+
+            <p>
+              Key components include automated penalty execution for violations, a perpetual Memorial Fund for victims and causes, and a reward system for whistleblowers, all governed by code rather than committees. This approach addresses the phenomenon known as <strong>&#34;compliance theater,&#34;</strong> where organizations make declarations of ethical commitment without having the underlying infrastructure to back them up.
+            </p>
+          </div>
+
+          <div id="tml-vision">
+            <h3>The Challenge of Ethical Enforcement</h3>
+            <p>
+              In an era increasingly defined by the pervasive influence of artificial intelligence, the challenge of embedding and enforcing ethical principles has become paramount. Existing governance frameworks, such as the <a href="https://oecd.ai/en/ai-principles" class="citation-link">OECD Principles for AI</a> and the <a href="https://en.unesco.org/artificial-intelligence/recommendation-ethics" class="citation-link">UNESCO Recommendations</a>, provide high-level guidance on what AI systems <em>should</em> do—be fair, transparent, and accountable—but they often fall short on the critical question of <em>how</em> to operationalize these ideals at a technical level <a href="https://medium.com/@leogouk/auditable-ai-by-design-how-tml-turns-governance-into-operational-fact-37fd73e7b77e" class="citation-link">[328]</a>.
+            </p>
+
+            <blockquote>
+              &#34;The core issue lies in the difficulty of translating human-centric ethical concepts into deterministic, machine-readable rules that can be consistently applied and audited.&#34;
+            </blockquote>
+
+            <p>
+              The <strong>&#34;black box&#34; nature of many AI models</strong> remains a significant barrier to genuine accountability. Post-hoc explanations and interpretability tools, while valuable for research, often lack the legal and forensic rigor required for regulatory hearings or court proceedings, leaving a critical void in the chain of responsibility.
+            </p>
+          </div>
+        </section>
+
+        <!-- Ethereum as Core Platform -->
+        <section id="ethereum-core" class="mb-20">
+          <h2>Ethereum: The &#34;Enforcer&#34; Platform</h2>
+
+          <div class="grid md:grid-cols-2 gap-8 mb-12">
+            <div>
+              <p>
+                The Ternary Moral Logic (TML) framework strategically utilizes the Ethereum blockchain as a primary platform for its smart contract-based enforcement mechanisms. Unlike the Bitcoin blockchain, which was primarily designed for peer-to-peer financial transactions, Ethereum was built with a more general-purpose architecture, featuring a <strong>Turing-complete programming language (Solidity)</strong> and the <strong>Ethereum Virtual Machine (EVM)</strong>
+                <a href="https://blog.thirdweb.com/what-is-a-smart-contract-in-crypto/" class="citation-link">[353]</a>.
+              </p>
+
+              <p>
+                The EVM is a powerful, sandboxed virtual environment that executes smart contract code in a deterministic and secure manner across a global network of nodes. This capability makes it an ideal <strong>&#34;enforcer&#34; platform</strong> for TML, as it allows for the creation of complex, conditional logic that can automate governance and penalty structures <a href="https://consensys.io/blog/programmable-blockchains-in-context-ethereum-smart-contracts-and-the-world-computer" class="citation-link">[349]</a>.
+              </p>
+            </div>
+
+            <div class="contract-card">
+              <h4 class="font-serif font-semibold text-charcoal mb-4">
+                <i class="fab fa-ethereum text-sage mr-2"></i>
+                Ethereum Advantages
+              </h4>
+              <ul class="space-y-2 text-sm">
+                <li><strong>Turing-complete:</strong> Supports complex logic</li>
+                <li><strong>Established ecosystem:</strong> Mature developer tools</li>
+                <li><strong>Battle-tested security:</strong> Proven reliability</li>
+                <li><strong>Smart contract capabilities:</strong> Automated enforcement</li>
+              </ul>
+            </div>
+          </div>
+
+          <div id="automated-enforcement">
+            <h3>The Principle of Automated Enforcement</h3>
+            <p>
+              The principle of automated enforcement represents a fundamental shift from traditional, human-centric governance models to a system where rules are executed deterministically by code. This principle is realized through smart contracts that act as autonomous agents of the TML system <a href="https://medium.com/@leogouk/auditable-ai-by-design-how-tml-turns-governance-into-operational-fact-37fd73e7b77e" class="citation-link">[328]</a>.
+            </p>
+
+            <div class="mermaid-container">
+              <div class="mermaid-controls">
+                <button class="mermaid-control-btn zoom-in" title="放大">
+                  <i class="fas fa-search-plus"></i>
+                </button>
+                <button class="mermaid-control-btn zoom-out" title="缩小">
+                  <i class="fas fa-search-minus"></i>
+                </button>
+                <button class="mermaid-control-btn reset-zoom" title="重置">
+                  <i class="fas fa-expand-arrows-alt"></i>
+                </button>
+                <button class="mermaid-control-btn fullscreen" title="全屏查看">
+                  <i class="fas fa-expand"></i>
+                </button>
+              </div>
+              <div class="mermaid">
+                graph TD
+                A[&#34;Ethical Violation Detected&#34;] --&gt; B[&#34;Cryptographic Verification&#34;]
+                B --&gt; C{&#34;Verified?&#34;}
+                C --&gt;|&#34;Yes&#34;| D[&#34;Smart Contract Triggered&#34;]
+                C --&gt;|&#34;No&#34;| E[&#34;No Action Taken&#34;]
+                D --&gt; F[&#34;Automatic Penalty Execution&#34;]
+                F --&gt; G[&#34;Immutable Record Created&#34;]
+                G --&gt; H[&#34;Transparency Achieved&#34;]
+
+                style A fill:#f7f5f0,stroke:#9CAF88,stroke-width:2px,color:#2D2D2D
+                style B fill:#f7f5f0,stroke:#9CAF88,stroke-width:2px,color:#2D2D2D
+                style C fill:#f7f5f0,stroke:#9CAF88,stroke-width:2px,color:#2D2D2D
+                style D fill:#9CAF88,stroke:#2D2D2D,stroke-width:2px,color:#ffffff
+                style E fill:#D9C7A7,stroke:#2D2D2D,stroke-width:2px,color:#2D2D2D
+                style F fill:#9CAF88,stroke:#2D2D2D,stroke-width:2px,color:#ffffff
+                style G fill:#9CAF88,stroke:#2D2D2D,stroke-width:2px,color:#ffffff
+                style H fill:#f7f5f0,stroke:#9CAF88,stroke-width:2px,color:#2D2D2D
+              </div>
+            </div>
+
+            <p>
+              Instead of relying on committees to review violations and authorize actions, TML encodes governance rules directly into smart contracts. These contracts listen for specific triggers, such as verified ethical breaches, and execute pre-defined responses automatically. For example, a smart contract could automatically deduct penalties from staked funds the moment a violation is cryptographically proven <a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/TML-VOLUNTARY-SUCCESSION.md" class="citation-link">[341]</a>.
+            </p>
+          </div>
+        </section>
+
+        <!-- Key Contracts -->
+        <section id="key-contracts" class="mb-20">
+          <h2>Key TML Smart Contracts and Their Functions</h2>
+
+          <div class="grid md:grid-cols-2 gap-6 mb-12">
+            <div class="contract-card">
+              <h4 class="font-serif font-semibold text-charcoal mb-3">
+                <i class="fas fa-gavel text-sage mr-2"></i>
+                Penalty Enforcement Contract
+              </h4>
+              <p class="text-sm text-gray-600 mb-3">Automatically executes penalties for violations of TML rules with no human discretion.</p>
+              <div class="text-xs text-gray-500">
+                <strong>Enforcement:</strong> Financial fines, license revocation, asset freezing
+              </div>
+            </div>
+
+            <div class="contract-card">
+              <h4 class="font-serif font-semibold text-charcoal mb-3">
+                <i class="fas fa-heart text-sage mr-2"></i>
+                Memorial Fund Distribution Contract
+              </h4>
+              <p class="text-sm text-gray-600 mb-3">Manages and distributes funds perpetually, governed by code rather than committees.</p>
+              <div class="text-xs text-gray-500">
+                <strong>Features:</strong> Perpetual operation, automated disbursement
+              </div>
+            </div>
+
+            <div class="contract-card">
+              <h4 class="font-serif font-semibold text-charcoal mb-3">
+                <i class="fas fa-bullhorn text-sage mr-2"></i>
+                Whistleblower Reward Contract
+              </h4>
+              <p class="text-sm text-gray-600 mb-3">Incentivizes and rewards reporting of ethical violations while protecting anonymity.</p>
+              <div class="text-xs text-gray-500">
+                <strong>Benefits:</strong> Automatic compensation, anonymity protection
+              </div>
+            </div>
+
+            <div class="contract-card">
+              <h4 class="font-serif font-semibold text-charcoal mb-3">
+                <i class="fas fa-key text-sage mr-2"></i>
+                Ownership &amp; Admin Verification Contract
+              </h4>
+              <p class="text-sm text-gray-600 mb-3">Manages access control and administrative rights with secure verification.</p>
+              <div class="text-xs text-gray-500">
+                <strong>Function:</strong> Cryptographic identity verification
+              </div>
+            </div>
+          </div>
+
+          <div id="penalty-contract" class="mb-12">
+            <h3>The Penalty Enforcement Contract</h3>
+            <p>
+              The Penalty Enforcement Contract automates the entire process of penalty imposition, from violation detection to fund transfer. The contract listens for cryptographically signed and verified entries in Moral Trace Logs confirming rule violations <a href="https://github.com/FractonicMind/TernaryMoralLogic" class="citation-link">[327]</a>
+              <a href="https://medium.com/@leogouk/auditable-ai-by-design-how-tml-turns-governance-into-operational-fact-37fd73e7b77e" class="citation-link">[328]</a>.
+            </p>
+
+            <blockquote>
+              &#34;The code is the law, and it is applied with mechanical precision, ensuring that all participants are subject to the same rules regardless of status or influence.&#34;
+            </blockquote>
+
+            <p>
+              This automation eliminates human discretion and associated delays, creating a truly fair and predictable governance environment. The certainty of automatic enforcement provides a powerful deterrent against unethical behavior.
+            </p>
+          </div>
+
+          <div id="memorial-fund">
+            <h3>The Memorial Fund Distribution Contract</h3>
+            <p>
+              The Memorial Fund Distribution Contract governs the perpetual operation and ethical stewardship of the Memorial Fund. This sophisticated smart contract manages the fund&#39;s assets and their allocation in a continuous, automated manner, supporting victims of ethical violations and worthy causes indefinitely <a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/TML-SUCCESSION-CHARTER.md" class="citation-link">[370]</a>.
+            </p>
+
+            <div class="bg-stone/10 rounded-lg p-6 my-8">
+              <h4 class="font-serif font-semibold text-charcoal mb-3">Fund Distribution Categories</h4>
+              <ul class="space-y-2 text-gray-700">
+                <li><strong>Direct Victim Support:</strong> Compensation for individuals harmed by ethical violations</li>
+                <li><strong>Environmental Recovery:</strong> Funding for ecological restoration projects</li>
+                <li><strong>Medical Research:</strong> Support for cancer research and treatment initiatives</li>
+                <li><strong>Whistleblower Protection:</strong> Legal and financial support for reporters</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Architecture -->
+        <section id="architecture" class="mb-20">
+          <h2>The TML Architecture: Trust and Transparency</h2>
+
+          <div id="hybrid-shield" class="mb-12">
+            <h3>The Hybrid Shield: Multi-Chain Immutability</h3>
+            <p>
+              The TML framework&#39;s &#34;Hybrid Shield&#34; involves anchoring cryptographic hashes of its Moral Trace Logs and governance decisions across multiple public blockchains. This multi-layered approach ensures unprecedented resilience and permanence <a href="https://github.com/FractonicMind/TernaryMoralLogic" class="citation-link">[327]</a>.
+            </p>
+
+            <div class="grid md:grid-cols-3 gap-4 my-8">
+              <div class="bg-white rounded-lg p-4 shadow-md border border-stone/20 text-center">
+                <i class="fab fa-bitcoin text-3xl text-orange-500 mb-2"></i>
+                <h4 class="font-serif font-semibold text-charcoal">Bitcoin</h4>
+                <p class="text-sm text-gray-600">Proven permanence and security</p>
+              </div>
+              <div class="bg-white rounded-lg p-4 shadow-md border border-stone/20 text-center">
+                <i class="fab fa-ethereum text-3xl text-blue-500 mb-2"></i>
+                <h4 class="font-serif font-semibold text-charcoal">Ethereum</h4>
+                <p class="text-sm text-gray-600">Smart contract capabilities</p>
+              </div>
+              <div class="bg-white rounded-lg p-4 shadow-md border border-stone/20 text-center">
+                <i class="fas fa-layer-group text-3xl text-purple-500 mb-2"></i>
+                <h4 class="font-serif font-semibold text-charcoal">Polygon</h4>
+                <p class="text-sm text-gray-600">Speed and efficiency</p>
+              </div>
+            </div>
+
+            <p>
+              By leveraging Bitcoin&#39;s proof-of-work consensus, Ethereum&#39;s smart contract capabilities, and Polygon&#39;s efficiency, TML creates a tamper-evident system that guarantees integrity against any potential future attacks or attempts at censorship.
+            </p>
+          </div>
+
+          <div class="bg-navy/5 rounded-lg p-8 border-l-4 border-navy">
+            <h4 class="font-serif font-semibold text-charcoal mb-4">
+              <i class="fas fa-shield-alt text-navy mr-2"></i>
+              Architectural Benefits
+            </h4>
+            <div class="grid md:grid-cols-2 gap-6">
+              <div>
+                <h5 class="font-semibold text-charcoal mb-2">Decentralization</h5>
+                <p class="text-sm text-gray-600">No single point of failure or institutional control</p>
+              </div>
+              <div>
+                <h5 class="font-semibold text-charcoal mb-2">Transparency</h5>
+                <p class="text-sm text-gray-600">All governance changes publicly visible on blockchain</p>
+              </div>
+              <div>
+                <h5 class="font-semibold text-charcoal mb-2">Immutability</h5>
+                <p class="text-sm text-gray-600">Records anchored to multiple blockchains for permanence</p>
+              </div>
+              <div>
+                <h5 class="font-semibold text-charcoal mb-2">Community Governance</h5>
+                <p class="text-sm text-gray-600">Multi-institutional stewardship with succession planning</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Broader Impact -->
+        <section id="broader-impact" class="mb-20">
+          <h2>The Broader Impact of TML Smart Contracts</h2>
+
+          <div class="grid md:grid-cols-2 gap-8 mb-12">
+            <div>
+              <img src="https://fixedplaceholder" alt="Future AI ethics governance" class="w-full h-48 object-cover rounded-lg mb-4" size="medium" aspect="wide" query="AI ethics governance future" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"/>
+              <h3 class="font-serif text-xl font-semibold text-charcoal mb-3">Redefining Governance</h3>
+              <p class="text-gray-700">
+                TML challenges traditional reliance on human-led committees by demonstrating that self-enforcing ethical systems are possible. This new model of governance—more efficient, transparent, and resistant to corruption—could transform industries from finance to healthcare.
+              </p>
+            </div>
+
+            <div>
+              <img src="https://fixedplaceholder" alt="AI ethics standards document" class="w-full h-48 object-cover rounded-lg mb-4" size="medium" aspect="wide" style="photo" query="AI ethics standards" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"/>
+              <h3 class="font-serif text-xl font-semibold text-charcoal mb-3">New Standard for Ethical AI</h3>
+              <p class="text-gray-700">
+                By requiring AI systems to log ethical deliberations and face automatic penalties for violations, TML creates strong incentives for developers to build ethics into systems from the ground up.
+              </p>
+            </div>
+          </div>
+
+          <div class="bg-sage/10 rounded-lg p-8">
+            <h3 class="font-serif text-xl font-semibold text-charcoal mb-4">
+              <i class="fas fa-road text-sage mr-2"></i>
+              The Future of Decentralized Enforcement
+            </h3>
+            <p class="text-gray-700 mb-4">
+              TML represents a significant step forward in decentralized enforcement mechanisms. By creating a self-governing, self-funding, and self-enforcing system, it provides a powerful new model for addressing social and environmental problems.
+            </p>
+            <p class="text-gray-700">
+              The framework&#39;s use of smart contracts to automate fund distribution to victims and causes could revolutionize social support systems, creating more efficient and effective mechanisms for justice and restitution.
+            </p>
+          </div>
+        </section>
+
+        <!-- Conclusion -->
+        <section id="conclusion" class="mb-20">
+          <h2>Conclusion: A Foundation for a More Ethical Future</h2>
+
+          <div class="bg-gradient-to-r from-sage/10 to-stone/10 rounded-2xl p-12 mb-8">
+            <blockquote class="text-xl italic text-charcoal border-none pl-0">
+              &#34;The Ternary Moral Logic framework, with its innovative use of smart contracts, represents a bold and ambitious attempt to solve one of the most pressing challenges of our time: how to ensure that our increasingly powerful technologies are used in a way that is ethical, accountable, and aligned with human values.&#34;
+            </blockquote>
+          </div>
+
+          <p>
+            By leveraging the unique properties of blockchain technology, TML provides a concrete, implementable solution to the &#34;implementation gap&#34; that has long plagued the field of AI ethics. The framework&#39;s smart contracts are not just lines of code; they are the building blocks of a new kind of governance—one that is decentralized, transparent, and self-enforcing.
+          </p>
+
+          <p>
+            The potential impact of TML is profound. By creating a system where ethical behavior is not just encouraged but is a fundamental requirement for participation, TML has the potential to transform the way we develop and deploy AI. The framework&#39;s emphasis on immutability, transparency, and community stewardship provides a powerful new model for building trust in our digital systems.
+          </p>
+
+          <div class="bg-navy/90 text-white rounded-xl p-8 mt-12">
+            <h3 class="font-serif text-2xl font-semibold mb-4">
+              <i class="fas fa-rocket text-stone mr-3"></i>
+              Looking Forward
+            </h3>
+            <p class="text-lg leading-relaxed">
+              While the TML framework is still in its early stages of development, it offers a compelling vision for a more ethical future—one where technology serves humanity&#39;s best interests. As we continue to grapple with the challenges of the digital age, the principles and practices of TML will undoubtedly play an increasingly important role in shaping a more just, equitable, and sustainable world.
+            </p>
+          </div>
+        </section>
+
+      </article>
+    </main>
+
+    <script>
+        // Initialize Mermaid with custom configuration
+        mermaid.initialize({ 
+            startOnLoad: true, 
+            theme: 'base',
+            themeVariables: {
+                primaryColor: '#f7f5f0',
+                primaryTextColor: '#2D2D2D',
+                primaryBorderColor: '#9CAF88',
+                lineColor: '#2D2D2D',
+                secondaryColor: '#D9C7A7',
+                tertiaryColor: '#ffffff',
+                background: '#ffffff',
+                mainBkg: '#f7f5f0',
+                secondBkg: '#D9C7A7',
+                tertiaryBkg: '#ffffff'
+            },
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true
+            }
+        });
+        
+        // Initialize Mermaid Controls for zoom and pan
+        function initializeMermaidControls() {
+            const containers = document.querySelectorAll('.mermaid-container');
+
+            containers.forEach(container => {
+            const mermaidElement = container.querySelector('.mermaid');
+            let scale = 1;
+            let isDragging = false;
+            let startX, startY, translateX = 0, translateY = 0;
+
+            // 触摸相关状态
+            let isTouch = false;
+            let touchStartTime = 0;
+            let initialDistance = 0;
+            let initialScale = 1;
+            let isPinching = false;
+
+            // Zoom controls
+            const zoomInBtn = container.querySelector('.zoom-in');
+            const zoomOutBtn = container.querySelector('.zoom-out');
+            const resetBtn = container.querySelector('.reset-zoom');
+            const fullscreenBtn = container.querySelector('.fullscreen');
+
+            function updateTransform() {
+                mermaidElement.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+
+                if (scale > 1) {
+                container.classList.add('zoomed');
+                } else {
+                container.classList.remove('zoomed');
+                }
+
+                mermaidElement.style.cursor = isDragging ? 'grabbing' : 'grab';
+            }
+
+            if (zoomInBtn) {
+                zoomInBtn.addEventListener('click', () => {
+                scale = Math.min(scale * 1.25, 4);
+                updateTransform();
+                });
+            }
+
+            if (zoomOutBtn) {
+                zoomOutBtn.addEventListener('click', () => {
+                scale = Math.max(scale / 1.25, 0.3);
+                if (scale <= 1) {
+                    translateX = 0;
+                    translateY = 0;
+                }
+                updateTransform();
+                });
+            }
+
+            if (resetBtn) {
+                resetBtn.addEventListener('click', () => {
+                scale = 1;
+                translateX = 0;
+                translateY = 0;
+                updateTransform();
+                });
+            }
+
+            if (fullscreenBtn) {
+                fullscreenBtn.addEventListener('click', () => {
+                if (container.requestFullscreen) {
+                    container.requestFullscreen();
+                } else if (container.webkitRequestFullscreen) {
+                    container.webkitRequestFullscreen();
+                } else if (container.msRequestFullscreen) {
+                    container.msRequestFullscreen();
+                }
+                });
+            }
+
+            // Mouse Events
+            mermaidElement.addEventListener('mousedown', (e) => {
+                if (isTouch) return; // 如果是触摸设备，忽略鼠标事件
+
+                isDragging = true;
+                startX = e.clientX - translateX;
+                startY = e.clientY - translateY;
+                mermaidElement.style.cursor = 'grabbing';
+                updateTransform();
+                e.preventDefault();
+            });
+
+            document.addEventListener('mousemove', (e) => {
+                if (isDragging && !isTouch) {
+                translateX = e.clientX - startX;
+                translateY = e.clientY - startY;
+                updateTransform();
+                }
+            });
+
+            document.addEventListener('mouseup', () => {
+                if (isDragging && !isTouch) {
+                isDragging = false;
+                mermaidElement.style.cursor = 'grab';
+                updateTransform();
+                }
+            });
+
+            document.addEventListener('mouseleave', () => {
+                if (isDragging && !isTouch) {
+                isDragging = false;
+                mermaidElement.style.cursor = 'grab';
+                updateTransform();
+                }
+            });
+
+            // 获取两点之间的距离
+            function getTouchDistance(touch1, touch2) {
+                return Math.hypot(
+                touch2.clientX - touch1.clientX,
+                touch2.clientY - touch1.clientY
+                );
+            }
+
+            // Touch Events - 触摸事件处理
+            mermaidElement.addEventListener('touchstart', (e) => {
+                isTouch = true;
+                touchStartTime = Date.now();
+
+                if (e.touches.length === 1) {
+                // 单指拖动
+                isPinching = false;
+                isDragging = true;
+
+                const touch = e.touches[0];
+                startX = touch.clientX - translateX;
+                startY = touch.clientY - translateY;
+
+                } else if (e.touches.length === 2) {
+                // 双指缩放
+                isPinching = true;
+                isDragging = false;
+
+                const touch1 = e.touches[0];
+                const touch2 = e.touches[1];
+                initialDistance = getTouchDistance(touch1, touch2);
+                initialScale = scale;
+                }
+
+                e.preventDefault();
+            }, { passive: false });
+
+            mermaidElement.addEventListener('touchmove', (e) => {
+                if (e.touches.length === 1 && isDragging && !isPinching) {
+                // 单指拖动
+                const touch = e.touches[0];
+                translateX = touch.clientX - startX;
+                translateY = touch.clientY - startY;
+                updateTransform();
+
+                } else if (e.touches.length === 2 && isPinching) {
+                // 双指缩放
+                const touch1 = e.touches[0];
+                const touch2 = e.touches[1];
+                const currentDistance = getTouchDistance(touch1, touch2);
+
+                if (initialDistance > 0) {
+                    const newScale = Math.min(Math.max(
+                    initialScale * (currentDistance / initialDistance),
+                    0.3
+                    ), 4);
+                    scale = newScale;
+                    updateTransform();
+                }
+                }
+
+                e.preventDefault();
+            }, { passive: false });
+
+            mermaidElement.addEventListener('touchend', (e) => {
+                // 重置状态
+                if (e.touches.length === 0) {
+                isDragging = false;
+                isPinching = false;
+                initialDistance = 0;
+
+                // 延迟重置isTouch，避免鼠标事件立即触发
+                setTimeout(() => {
+                    isTouch = false;
+                }, 100);
+                } else if (e.touches.length === 1 && isPinching) {
+                // 从双指变为单指，切换为拖动模式
+                isPinching = false;
+                isDragging = true;
+
+                const touch = e.touches[0];
+                startX = touch.clientX - translateX;
+                startY = touch.clientY - translateY;
+                }
+
+                updateTransform();
+            });
+
+            mermaidElement.addEventListener('touchcancel', (e) => {
+                isDragging = false;
+                isPinching = false;
+                initialDistance = 0;
+
+                setTimeout(() => {
+                isTouch = false;
+                }, 100);
+
+                updateTransform();
+            });
+
+            // Enhanced wheel zoom with better center point handling
+            container.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                const rect = container.getBoundingClientRect();
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+
+                const delta = e.deltaY > 0 ? 0.9 : 1.1;
+                const newScale = Math.min(Math.max(scale * delta, 0.3), 4);
+
+                // Adjust translation to zoom towards center
+                if (newScale !== scale) {
+                const scaleDiff = newScale / scale;
+                translateX = translateX * scaleDiff;
+                translateY = translateY * scaleDiff;
+                scale = newScale;
+
+                if (scale <= 1) {
+                    translateX = 0;
+                    translateY = 0;
+                }
+
+                updateTransform();
+                }
+            });
+
+            // Initialize display
+            updateTransform();
+            });
+        }
+        
+        // Initialize mermaid controls when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+            
+            // Initialize mermaid controls
+            initializeMermaidControls();
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Highlight active section in TOC
+        const observerOptions = {
+            root: null,
+            rootMargin: '-20% 0px -70% 0px',
+            threshold: 0
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Remove active class from all TOC links
+                    document.querySelectorAll('.floating-toc a').forEach(link => {
+                        link.classList.remove('text-sage', 'font-medium');
+                        link.classList.add('text-gray-600');
+                    });
+                    
+                    // Add active class to current section
+                    const activeLink = document.querySelector(`.floating-toc a[href="#${entry.target.id}"]`);
+                    if (activeLink) {
+                        activeLink.classList.remove('text-gray-600');
+                        activeLink.classList.add('text-sage', 'font-medium');
+                    }
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all sections
+        document.querySelectorAll('section[id], div[id]').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+  
+
+</body></html>
