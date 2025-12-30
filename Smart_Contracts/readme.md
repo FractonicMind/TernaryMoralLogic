@@ -8,22 +8,16 @@ Unlike traditional governance models where "Code is Law," TML introduces a parad
 
 * **Security Note:** This dossier discloses the logical architecture and enforcement mechanisms for transparency and auditing purposes. Operational security parameters, including cryptographic seeds and Stewardship Council key management, remain strictly compartmentalized off-chain.
 
-This repository contains technical specifications are organized into three distinct layers:
+This repository contains technical specifications organized into four distinct layers:
 
-* **01_TML_System_Architecture_and_Ecosystem.pdf**
-* **The Vision:** Defines the high-level ecosystem, including the **"Lantern Signal"** (proof of hesitation), the **"Hybrid Shield"** (cross-chain redundancy), and the **"Goukassian Promise"**.
-* **Key Innovation:** Introduces the "Triangle of Trust," balancing the Technical Council, Stewardship Custodians, and the Smart Contract Treasury.
+- 01_TML_System_Architecture_and_Ecosystem.pdf The Vision: Defines the high-level ecosystem, including the "Lantern Signal" (proof of hesitation), the "Hybrid Shield" (cross-chain redundancy), and the "Goukassian Promise". Key Innovation: Introduces the "Triangle of Trust," balancing the Technical Council, Stewardship Custodians, and the Smart Contract Treasury.
 
+- 02_TML_Technical_Specification_and_FSM.pdf The Engineering: Provides the rigorous Finite State Machine (FSM) definitions and Solidity interfaces (ITMLEnforcer). Key Mechanics: Details the exact transition logic for the "Sacred Zero" (Epistemic Hold) and the "Always Memory" pointer architecture.
 
-* **02_TML_Technical_Specification_and_FSM.pdf**
-* **The Engineering:** Provides the rigorous **Finite State Machine (FSM)** definitions and Solidity interfaces (`ITMLEnforcer`).
-* **Key Mechanics:** Details the exact transition logic for the **"Sacred Zero"** (Epistemic Hold) and the "Always Memory" pointer architecture.
+- 03_TML_Security_Audit_and_Adversarial_Analysis.pdf The Defense: Offers a deep-dive security analysis, including gas cost optimization and specific test vectors. Key Proof: Mathematical verification of the "No God Mode" principle, demonstrating that no administrative function exists to override a constitutional freeze (STATE_INTEGRITY_FROZEN).
 
-
-* **03_TML_Security_Audit_and_Adversarial_Analysis.pdf**
-* **The Defense:** Offers a deep-dive security analysis, including gas cost optimization and specific test vectors.
-* **Key Proof:** Mathematical verification of the **"No God Mode"** principle, demonstrating that no administrative function exists to override a constitutional freeze (`STATE_INTEGRITY_FROZEN`).
-
+- 04_TML_Governance_Whitepaper.pdf
+The Policy: Operationalizes the framework through automated economic incentives, solving the problem of "Compliance Theater". Key Mechanics: details the specialized smart contracts for Penalty Enforcement (automatic execution of fines), Whistleblower Rewards (incentivized reporting), and the Memorial Fund (perpetual stewardship) 
 
 
 Together, these documents demonstrate that TML is not just a theoretical framework, but a deployable, abuse-resistant software architecture where ethics precedes execution.
