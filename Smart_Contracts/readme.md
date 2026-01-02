@@ -1,25 +1,112 @@
-# Technical Dossier: Smart Contracts as a Constitution of Code and Governance Layer in Ternary Moral Logic (TML)
+# TML Smart Contracts: Constitutional Code for Sovereign AI
 
-### **Executive Summary**
+## Overview
 
-This dossier presents the comprehensive technical architecture for implementing **Ternary Moral Logic (TML)** as a deterministic enforcement layer on EVM-compatible blockchain platforms. These specifications serve as the **technical implementation framework** for the forthcoming **TML Constitutionalization Monograph**, translating its ethical mandates into executable code.
+This directory contains the definitive technical specifications for the **Ternary Moral Logic (TML)** enforcement layer. Unlike traditional governance frameworks that rely on "soft law" (policy), these documents detail the implementation of "Hard Code"—a deterministic, immutable state machine deployed on EVM-compatible blockchains.
 
-Unlike traditional governance models where "Code is Law," TML introduces a paradigm where **"Logic is Constitution."** This architecture ensures that ethical axioms (+1 Proceed, -1 Refuse, 0 Sacred Zero) are not merely advisory guidelines but immutable constraints embedded directly into the execution bytecode.
+The architecture replaces the binary boolean (`true`/`false`) with a strict **Tri-State Logic** (`+1`, `0`, `-1`), ensuring that ethical ambiguity triggers a mathematical **Epistemic Hold** (The Sacred Zero) rather than an algorithmic error or reckless execution.
 
-* **Security Note:** This dossier discloses the logical architecture and enforcement mechanisms for transparency and auditing purposes. Operational security parameters, including cryptographic seeds and Stewardship Council key management, remain strictly compartmentalized off-chain.
+---
 
-This repository contains technical specifications organized into four distinct layers:
+## Documentation Index
 
-- 01_TML_System_Architecture_and_Ecosystem.pdf The Vision: Defines the high-level ecosystem, including the "Lantern Signal" (proof of hesitation), the "Hybrid Shield" (cross-chain redundancy), and the "Goukassian Promise". Key Innovation: Introduces the "Triangle of Trust," balancing the Technical Council, Stewardship Custodians, and the Smart Contract Treasury.
+### [01_TML_System_Architecture_and_Ecosystem.md](https://www.google.com/search?q=./01_TML_System_Architecture_and_Ecosystem.md)
 
-- 02_TML_Technical_Specification_and_FSM.pdf The Engineering: Provides the rigorous Finite State Machine (FSM) definitions and Solidity interfaces (ITMLEnforcer). Key Mechanics: Details the exact transition logic for the "Sacred Zero" (Epistemic Hold) and the "Always Memory" pointer architecture.
+**The Blueprint.**
+This document outlines the high-level philosophy converted into engineering constraints. It details:
 
-- 03_TML_Security_Audit_and_Adversarial_Analysis.pdf The Defense: Offers a deep-dive security analysis, including gas cost optimization and specific test vectors. Key Proof: Mathematical verification of the "No God Mode" principle, demonstrating that no administrative function exists to override a constitutional freeze (STATE_INTEGRITY_FROZEN).
-
-- 04_TML_Governance_Whitepaper.pdf
-The Policy: Operationalizes the framework through automated economic incentives, solving the problem of "Compliance Theater". Key Mechanics: details the specialized smart contracts for Penalty Enforcement (automatic execution of fines), Whistleblower Rewards (incentivized reporting), and the Memorial Fund (perpetual stewardship) 
-
-
-Together, these documents demonstrate that TML is not just a theoretical framework, but a deployable, abuse-resistant software architecture where ethics precedes execution.
+* 
+**The "No Log = No Action" primitive:** Binding execution to cryptographic proof.
 
 
+* 
+**The Hybrid Shield:** A dual-layer defense system using multi-chain anchoring (Ethereum + Bitcoin).
+
+
+* 
+**The Goukassian Promise:** The licensing covenant (No Spy / No Weapon) enforced via Soulbound Tokens (SBTs).
+
+
+
+### [02_TML_Technical_Specification_and_FSM.md](https://www.google.com/search?q=./02_TML_Technical_Specification_and_FSM.md)
+
+**The Code Logic.**
+The rigorous engineering specification for the TML State Machine. It includes:
+
+* 
+**Finite State Machine (FSM):** Transitions between `STATE_ACTIVE`, `STATE_REVIEW_HOLD`, and `STATE_INTEGRITY_FROZEN`.
+
+
+* 
+**Solidity Interfaces:** Definitions for `ITMLEnforcer` and the `int8` Tri-State return values.
+
+
+* 
+**Gas Analysis:** Cost estimates for ethical verification vs. standard execution.
+
+
+
+### [03_TML_Security_Audit_and_Adversarial_Analysis.md](https://www.google.com/search?q=./03_TML_Security_Audit_and_Adversarial_Analysis.md)
+
+**The Defense.**
+A "No God Mode" proof and adversarial stress test. It demonstrates:
+
+* 
+**Irreversibility:** Mathematical proof that `STATE_INTEGRITY_FROZEN` has no exit transitions, preventing admin "rug pulls".
+
+
+* 
+**Always Memory:** The hybrid on-chain/off-chain storage architecture for auditability.
+
+
+* 
+**Attack Vectors:** Mitigation strategies for Oracle Fraud and Sybil Pausing.
+
+
+
+### [04_TML_Governance_Whitepaper.md](https://www.google.com/search?q=./04_TML_Governance_Whitepaper.md)
+
+**The Human Interface.**
+Details the "Human in the Loop" protocols for resolving the Sacred Zero. It covers:
+
+* 
+**The Stewardship Council:** A multi-sig software role constrained to resolving ambiguity, not overriding refusals.
+
+
+* 
+**Automated Penalties:** Smart contracts for immediate fine execution and license revocation.
+
+
+* 
+**The Memorial Fund:** Perpetual, code-governed distribution of funds to victims and research.
+
+
+
+---
+
+## Core Primitives
+
+| Component | Function | State Representation |
+| --- | --- | --- |
+| **Enforcement Primitive** | Deterministic gatekeeper for all actions. | <br>`evaluateTransaction() -> int8` 
+
+ |
+| **Sacred Zero** | Mandated pause for ethical ambiguity. | <br>`STATE_REVIEW_HOLD` 
+
+ |
+| **Always Memory** | Immutable, Merkle-batched audit logs. | <br>`bytes32 merkleRootV1` 
+
+ |
+| **No God Mode** | Prevention of administrative override. | <br>`STATE_INTEGRITY_FROZEN` 
+
+ |
+
+## License
+
+**TML-Constitutional-Code License**
+*Code is Law, but Logic is Constitution.*
+
+---
+
+**Next Step**
+Would you like me to generate the **Technical Abstract** for the MIT Computational Law Report submission now?
