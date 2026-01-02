@@ -10,7 +10,7 @@ The architecture replaces the binary boolean (`true`/`false`) with a strict **Tr
 
 ## Documentation Index
 
-### [01_TML_System_Architecture_and_Ecosystem.md](/01_TML_System_Architecture_and_Ecosystem.md)
+### [01_TML_System_Architecture_and_Ecosystem.md](/Smart_Contracts/01_TML_System_Architecture_and_Ecosystem.md)
 
 **The Blueprint.**
 This document outlines the high-level philosophy converted into engineering constraints. It details:
@@ -25,57 +25,48 @@ This document outlines the high-level philosophy converted into engineering cons
 
 
 
-### [02_TML_Technical_Specification_and_FSM.md](https://www.google.com/search?q=./02_TML_Technical_Specification_and_FSM.md)
+### [02_TML_Technical_Specification_and_FSM.md](/Smart_Contracts/02_TML_Technical_Specification_and_FSM.md)
 
 **The Code Logic.**
 The rigorous engineering specification for the TML State Machine. It includes:
 
-* 
-**Finite State Machine (FSM):** Transitions between `STATE_ACTIVE`, `STATE_REVIEW_HOLD`, and `STATE_INTEGRITY_FROZEN`.
+* **Finite State Machine (FSM):** Transitions between `STATE_ACTIVE`, `STATE_REVIEW_HOLD`, and `STATE_INTEGRITY_FROZEN`.
 
 
-* 
-**Solidity Interfaces:** Definitions for `ITMLEnforcer` and the `int8` Tri-State return values.
+* **Solidity Interfaces:** Definitions for `ITMLEnforcer` and the `int8` Tri-State return values.
 
 
-* 
-**Gas Analysis:** Cost estimates for ethical verification vs. standard execution.
+* **Gas Analysis:** Cost estimates for ethical verification vs. standard execution.
 
 
 
-### [03_TML_Security_Audit_and_Adversarial_Analysis.md](https://www.google.com/search?q=./03_TML_Security_Audit_and_Adversarial_Analysis.md)
+### [03_TML_Security_Audit_and_Adversarial_Analysis.md](/Smart_Contracts/03_TML_Security_Audit_and_Adversarial_Analysis.md)
 
 **The Defense.**
 A "No God Mode" proof and adversarial stress test. It demonstrates:
 
-* 
-**Irreversibility:** Mathematical proof that `STATE_INTEGRITY_FROZEN` has no exit transitions, preventing admin "rug pulls".
+* **Irreversibility:** Mathematical proof that `STATE_INTEGRITY_FROZEN` has no exit transitions, preventing admin "rug pulls".
 
 
-* 
-**Always Memory:** The hybrid on-chain/off-chain storage architecture for auditability.
+* **Always Memory:** The hybrid on-chain/off-chain storage architecture for auditability.
 
 
-* 
-**Attack Vectors:** Mitigation strategies for Oracle Fraud and Sybil Pausing.
+* **Attack Vectors:** Mitigation strategies for Oracle Fraud and Sybil Pausing.
 
 
 
-### [04_TML_Governance_Whitepaper.md](https://www.google.com/search?q=./04_TML_Governance_Whitepaper.md)
+### [04_TML_Governance_Whitepaper.md](/Smart_Contracts/04_TML_Governance_Whitepaper.md)
 
 **The Human Interface.**
 Details the "Human in the Loop" protocols for resolving the Sacred Zero. It covers:
 
-* 
-**The Stewardship Council:** A multi-sig software role constrained to resolving ambiguity, not overriding refusals.
+* **The Stewardship Council:** A multi-sig software role constrained to resolving ambiguity, not overriding refusals.
 
 
-* 
-**Automated Penalties:** Smart contracts for immediate fine execution and license revocation.
+* **Automated Penalties:** Smart contracts for immediate fine execution and license revocation.
 
 
-* 
-**The Memorial Fund:** Perpetual, code-governed distribution of funds to victims and research.
+* **The Memorial Fund:** Perpetual, code-governed distribution of funds to victims and research.
 
 
 
@@ -103,7 +94,3 @@ Details the "Human in the Loop" protocols for resolving the Sacred Zero. It cove
 **TML-Constitutional-Code License**
 *Code is Law, but Logic is Constitution.*
 
----
-
-**Next Step**
-Would you like me to generate the **Technical Abstract** for the MIT Computational Law Report submission now?
