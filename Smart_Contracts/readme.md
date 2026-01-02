@@ -78,16 +78,16 @@ Details the "Human in the Loop" protocols for resolving the Sacred Zero. It cove
 | --- | --- | --- |
 | **Enforcement Primitive** | Deterministic gatekeeper for all actions. | <br>`evaluateTransaction() -> int8` 
 
- |
-| **Sacred Zero** | Mandated pause for ethical ambiguity. | <br>`STATE_REVIEW_HOLD` 
 
- |
-| **Always Memory** | Immutable, Merkle-batched audit logs. | <br>`bytes32 merkleRootV1` 
+| **Sacred Zero** | Mandated pause for ethical ambiguity. | <br>`STATE_REVIEW_HOLD`  | 
 
- |
-| **No God Mode** | Prevention of administrative override. | <br>`STATE_INTEGRITY_FROZEN` 
 
- |
+| **Always Memory** | Immutable, Merkle-batched audit logs. | <br>`bytes32 merkleRootV1`  | 
+
+
+| **No God Mode** | Prevention of administrative override. | <br>`STATE_INTEGRITY_FROZEN`  | 
+
+
 
 ## License
 
