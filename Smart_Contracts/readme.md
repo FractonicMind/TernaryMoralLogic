@@ -86,5 +86,5 @@ Details the "Human in the Loop" protocols for resolving the Sacred Zero. It cove
 ## License
 
 **TML-Constitutional-Code License**   
-* **Code is Law, but Logic is Constitution.** *
+***Code is Law, but Logic is Constitution.***
 
