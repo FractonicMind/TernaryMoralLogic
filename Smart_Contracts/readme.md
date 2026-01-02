@@ -10,21 +10,18 @@ The architecture replaces the binary boolean (`true`/`false`) with a strict **Tr
 
 ## Documentation Index
 
-### [01_TML_System_Architecture_and_Ecosystem.md](https://www.google.com/search?q=./01_TML_System_Architecture_and_Ecosystem.md)
+### [01_TML_System_Architecture_and_Ecosystem.md](/01_TML_System_Architecture_and_Ecosystem.md)
 
 **The Blueprint.**
 This document outlines the high-level philosophy converted into engineering constraints. It details:
 
-* 
-**The "No Log = No Action" primitive:** Binding execution to cryptographic proof.
+* **The "No Log = No Action" primitive:** Binding execution to cryptographic proof.
 
 
-* 
-**The Hybrid Shield:** A dual-layer defense system using multi-chain anchoring (Ethereum + Bitcoin).
+* **The Hybrid Shield:** A dual-layer defense system using multi-chain anchoring (Ethereum + Bitcoin).
 
 
-* 
-**The Goukassian Promise:** The licensing covenant (No Spy / No Weapon) enforced via Soulbound Tokens (SBTs).
+* **The Goukassian Promise:** The licensing covenant (No Spy / No Weapon) enforced via Soulbound Tokens (SBTs).
 
 
 
