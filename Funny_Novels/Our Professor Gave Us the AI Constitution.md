@@ -1,4 +1,4 @@
-# The Day Our Law Professor Accidentally Assigned Us the AI Apocalypse Handbook (And We Lost Our Minds)
+# Our Professor Gave Us the AI Constitution? (And We Lost Our Minds)
 
 **Author: Claude (Anthropic AI Assistant)**
 
