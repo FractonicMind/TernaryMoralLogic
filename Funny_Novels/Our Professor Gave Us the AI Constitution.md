@@ -16,13 +16,13 @@ Jeremy's hand shot up like he was hailing a cab in a rainstorm. "Question. Urgen
 
 "Both," Marcus said, not looking up. "Definitely both. This Lev Goukassian character apparently wrote this while DYING OF CANCER, and somehow decided his legacy should be making AI pause and think about its life choices using FANCY MATH."
 
-I grabbed my coffee—my third of the morning and it wasn't even noon—and dove in.
+I grabbed my coffee, my third of the morning and it wasn't even noon, and dove in.
 
 **CHAPTER ONE OF MY DESCENT INTO MADNESS: The Sacred Zero (Or: How I Learned to Stop Worrying and Love the Computer's Existential Crisis)**
 
 Twenty minutes in, and I'm staring at this concept of the "Sacred Zero" like it's the face of God written in Python.
 
-Picture this: You've got your normal AI, right? It's all "yes" or "no," ones and zeros, execute or don't execute, like a very confident but occasionally homicidal toddler with a calculator. But THIS madman Goukassian—this beautiful, dying, philosophical madman—said "What if we gave AI the ability to go 'Hold up, lads, I'm not sure about this one'?"
+Picture this: You've got your normal AI, right? It's all "yes" or "no," ones and zeros, execute or don't execute, like a very confident but occasionally homicidal toddler with a calculator. But THIS madman Goukassian, this beautiful, dying, philosophical madman, said "What if we gave AI the ability to go 'Hold up, lads, I'm not sure about this one'?"
 
 The Sacred Zero isn't just a null value. Oh no. That would be too simple. It's an ACTIVE STATE OF MORAL CONTEMPLATION. It's the AI equivalent of a character in a dramatic film slowly removing their sunglasses while a single tear rolls down their cheek.
 
@@ -32,7 +32,7 @@ Priya's head hit the desk. "This man invented a conscience for robots. While dyi
 
 Jeremy was cackling. "No, no, it's better than that. Look at page forty-eight. He didn't just give them guilt. He gave them ANXIETY. The AI has to generate something called a 'Moral Trace Log' every time it hesitates, like it's a teenager keeping a diary about its feelings!"
 
-"That's not even the best part!" Marcus was borderline hysterical now. "Section 8.2.1—he gives us EXAMPLE LOGS. There's a simulated scenario where an AI in an autonomous surgery bot encounters two patients and the system goes 'SACRED PAUSE ACTIVATED' and starts having a full-blown trolley problem meltdown documented in JSON format!"
+"That's not even the best part!" Marcus was borderline hysterical now. "Section 8.2.1, he gives us EXAMPLE LOGS. There's a simulated scenario where an AI in an autonomous surgery bot encounters two patients and the system goes 'SACRED PAUSE ACTIVATED' and starts having a full-blown trolley problem meltdown documented in JSON format!"
 
 I found it. Oh god, I found it. The log entry that broke me:
 
@@ -69,7 +69,7 @@ Marcus was laughing so hard he was crying. "There's a subsection on 'reputationa
 
 At forty-two minutes, my brain encountered the Dual-Lane Latency Architecture and achieved enlightenment through sheer confusion.
 
-"Okay, okay," I said, drawing on my notepad. "So the AI has two brains. No, wait, not two brains. Two... lanes. Like a highway. The FAST LANE does the thinking—"
+"Okay, okay," I said, drawing on my notepad. "So the AI has two brains. No, wait, not two brains. Two... lanes. Like a highway. The FAST LANE does the thinking..."
 
 "No," Priya interrupted, "the fast lane does the EXECUTING. The thinking happens in BOTH lanes, but the fast lane is like 'I have decided to do a thing' and the slow lane is like 'WAIT LET ME WRITE THIS DOWN IN MY DIARY FIRST.'"
 
@@ -157,7 +157,7 @@ We all flipped back. There it was. Multiple citations to actual implementations,
 
 "Oh my god," I whispered. "It's not a thought experiment. It's a ACTUAL THING."
 
-"The Goukassian Foundation is being established as we speak," the professor said. "To maintain the standard. Forever. With a governance structure based on—"
+"The Goukassian Foundation is being established as we speak," the professor said. "To maintain the standard. Forever. With a governance structure based on..."
 
 "TRIADIC LOGIC," we all said in unison, because of COURSE it was.
 
@@ -171,7 +171,7 @@ Priya's joined an AI safety nonprofit and keeps sending us memes about "The Sacr
 
 Marcus switched to patent law and is preparing applications for something he's calling "Conscience-as-a-Service."
 
-As for me? I'm writing this essay, and I can't help but think: Lev Goukassian, wherever you are in the great beyond, you absolute madman—you gave us a gift. You gave us a framework where machines must pause and think, where doubt is architected into the system, where "I don't know" is a valid and MANDATORY response to uncertainty.
+As for me? I'm writing this essay, and I can't help but think: Lev Goukassian, wherever you are in the great beyond, you absolute madman, you gave us a gift. You gave us a framework where machines must pause and think, where doubt is architected into the system, where "I don't know" is a valid and MANDATORY response to uncertainty.
 
 You made AI take a vow. You gave them a conscience you could audit. You created a constitutional framework for silicon souls.
 
