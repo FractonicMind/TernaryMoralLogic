@@ -1,0 +1,1378 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Mandated Ternary Architectures: A Technical Research Report</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Canela:wght@300;400;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <style>
+        :root {
+            --primary: #1e3a5f;
+            --secondary: #2c5f7c;
+            --accent: #4a90a4;
+            --neutral: #f8fafc;
+            --text: #1a202c;
+            --text-light: #4a5568;
+        }
+        
+        .font-canela { font-family: 'Canela', serif; }
+        .font-inter { font-family: 'Inter', sans-serif; }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            color: var(--text);
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, var(--accent) 100%);
+        }
+        
+        .text-shadow {
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .bento-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            grid-template-rows: auto auto;
+            gap: 1.5rem;
+            height: 400px;
+        }
+        
+        .bento-main {
+            grid-row: 1 / -1;
+            background: linear-gradient(45deg, rgba(30, 58, 95, 0.8), rgba(44, 95, 124, 0.6));
+            backdrop-filter: blur(10px);
+        }
+        
+        .section-heading {
+            border-left: 4px solid var(--accent);
+            padding-left: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .citation-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px dotted var(--accent);
+        }
+        
+        .citation-link:hover {
+            background-color: rgba(74, 144, 164, 0.1);
+        }
+        
+        .toc-fixed {
+            position: fixed;
+            left: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 280px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            z-index: 1000;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .content-main {
+            margin-left: 320px;
+            max-width: 800px;
+        }
+        
+        .pull-quote {
+            font-size: 1.25rem;
+            font-style: italic;
+            color: var(--secondary);
+            border-left: 3px solid var(--accent);
+            padding-left: 1.5rem;
+            margin: 2rem 0;
+            background: rgba(74, 144, 164, 0.05);
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+        
+        @media (max-width: 1280px) {
+            .toc-fixed {
+                display: none;
+            }
+            .content-main {
+                margin-left: 0;
+                max-width: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .bento-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto auto;
+                height: auto;
+            }
+            .hero-gradient h1 {
+                font-size: 2.5rem;
+            }
+            .hero-gradient p {
+                font-size: 1rem;
+            }
+            .bento-main, .bento-secondary {
+                padding: 1rem;
+            }
+            .bento-secondary .flex {
+                flex-direction: column;
+            }
+        }
+        
+        .chart-container {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            margin: 2rem 0;
+        }
+        
+        .data-highlight {
+            background: linear-gradient(135deg, var(--accent), var(--secondary));
+            color: white;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+        
+        .technical-diagram {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+        }
+    </style>
+  <base target="_blank">
+</head>
+
+  <body class="bg-gray-50">
+    <!-- Fixed Table of Contents -->
+    <nav class="toc-fixed">
+      <div class="p-6">
+        <h3 class="font-canela font-bold text-lg mb-4 text-gray-800">Contents</h3>
+        <ul class="space-y-2 text-sm">
+          <li>
+            <a href="#abstract" class="citation-link">Abstract</a>
+          </li>
+          <li>
+            <a href="#executive-summary" class="citation-link">Executive Summary</a>
+          </li>
+          <li>
+            <a href="#definitions" class="citation-link">Definitions &amp; Scope</a>
+          </li>
+          <li>
+            <a href="#cmos-limitations" class="citation-link">Binary CMOS Limitations</a>
+          </li>
+          <li>
+            <a href="#device-physics" class="citation-link">Memristive Hysteresis</a>
+          </li>
+          <li>
+            <a href="#mandated-requirements" class="citation-link">Device Requirements</a>
+          </li>
+          <li>
+            <a href="#circuit-primitives" class="citation-link">Circuit Primitives</a>
+          </li>
+          <li>
+            <a href="#system-architectures" class="citation-link">System Architectures</a>
+          </li>
+          <li>
+            <a href="#emulation-tax" class="citation-link">Emulation Tax Analysis</a>
+          </li>
+          <li>
+            <a href="#saint-spot" class="citation-link">The Saint Spot</a>
+          </li>
+          <li>
+            <a href="#agentic-ai" class="citation-link">Agentic AI Catalyst</a>
+          </li>
+          <li>
+            <a href="#roadmap" class="citation-link">Roadmap to 2027</a>
+          </li>
+          <li>
+            <a href="#falsifiability" class="citation-link">Falsifiability</a>
+          </li>
+          <li>
+            <a href="#conclusion" class="citation-link">Conclusion</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="content-main px-6 py-12">
+      <!-- Hero Section with Bento Layout -->
+      <header class="hero-gradient rounded-2xl p-8 mb-12 text-white">
+        <div class="bento-grid">
+          <!-- Main Hero Content -->
+          <div class="bento-main rounded-xl p-8 flex flex-col justify-center">
+            <h1 class="font-canela text-5xl font-light mb-6 text-shadow italic">
+              Mandated Ternary Architectures
+            </h1>
+            <p class="text-xl opacity-90 mb-4 leading-relaxed">
+              A Technical Research Report on the Transition from Binary CMOS to Physically-Enforced Ternary Logic via Memristive Hysteresis
+            </p>
+            <div class="text-sm opacity-75">
+              <i class="fas fa-microchip mr-2"></i>
+              For Device Physicists, Circuit Designers, EDA Architects, and CTO-Level Decision Makers
+            </div>
+          </div>
+
+          <!-- Key Stats -->
+          <div class="bento-secondary bg-white/10 backdrop-blur rounded-xl p-6 flex flex-col justify-center">
+            <div class="text-center">
+              <div class="text-3xl font-bold mb-2">15x</div>
+              <div class="text-sm opacity-90">Energy Tax for Emulation</div>
+            </div>
+          </div>
+
+          <!-- Comparative Advantage -->
+          <div class="bento-secondary bg-white/10 backdrop-blur rounded-xl p-6 flex flex-col justify-center">
+            <div class="text-center">
+              <div class="text-3xl font-bold mb-2">1.58</div>
+              <div class="text-sm opacity-90">Bits per Ternary Cell</div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Abstract -->
+      <section id="abstract" class="mb-16">
+        <div class="section-heading">
+          <h2 class="font-canela text-3xl font-bold">Abstract</h2>
+        </div>
+
+        <div class="prose prose-lg max-w-none">
+          <p class="text-gray-700 leading-relaxed mb-6">
+            This report investigates the architectural and economic feasibility of transitioning from dominant binary CMOS computing to a &#34;Mandated Ternary&#34; paradigm. The proposed system is defined by a physically stable, non-volatile third logic state (&#34;Null&#34; or &#34;Balance&#34;) engineered into memristive devices via hysteresis.
+          </p>
+
+          <div class="pull-quote">
+            &#34;The third state is not a software convention but a hardware-enforced checkpoint that gates computational actions, providing a novel mechanism for safety, security, and auditability.&#34;
+          </div>
+
+          <p class="text-gray-700 leading-relaxed">
+            The report&#39;s central thesis is that this paradigm offers a <span class="data-highlight">discontinuous advantage</span> over incremental binary scaling by directly mitigating the most pressing bottlenecks in advanced semiconductor nodes: interconnect delay, the memory wall, and power density. We provide a rigorous analysis of the device physics, focusing on Tantalum Oxide (TaOx) RRAM as a primary example and comparing it to other memristive technologies like HfOx, PCM, and MTJs.
+          </p>
+        </div>
+      </section>
+
+      <!-- Executive Summary -->
+      <section id="executive-summary" class="mb-16">
+        <div class="section-heading">
+          <h2 class="font-canela text-3xl font-bold">Executive Summary</h2>
+        </div>
+
+        <div class="bg-white rounded-xl p-8 shadow-lg mb-8">
+          <h3 class="font-canela text-2xl font-semibold mb-4 text-gray-800">Core Claim</h3>
+          <p class="text-gray-700 leading-relaxed mb-6">
+            The &#34;Mandated Ternary&#34; paradigm, which introduces a physically stable, non-volatile third state (&#34;Null&#34;) as a hardware-enforced authorization mechanism, provides a <strong>discontinuous architectural advantage</strong> over incremental binary scaling. This advantage is most pronounced in mitigating the <strong>interconnect bottleneck</strong>, overcoming the <strong>memory wall</strong>, and enabling <strong>verifiable safety</strong> for next-generation agentic AI systems.
+          </p>
+
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="bg-blue-50 p-6 rounded-lg">
+              <h4 class="font-semibold text-lg mb-3 text-blue-800">Key Findings</h4>
+              <ul class="space-y-2 text-sm text-gray-700">
+                <li>• TaOx RRAM supports stable intermediate resistance states</li>
+                <li>• Emulation tax: <span class="data-highlight">15x energy</span>, <span class="data-highlight">5x latency</span></li>
+                <li>• Direct solution to interconnect &amp; memory bottlenecks</li>
+                <li>• Agentic AI requires verifiable hesitation states</li>
+              </ul>
+            </div>
+
+            <div class="bg-green-50 p-6 rounded-lg">
+              <h4 class="font-semibold text-lg mb-3 text-green-800">Path to 2027</h4>
+              <ul class="space-y-2 text-sm text-gray-700">
+                <li>• Three candidate architectures identified</li>
+                <li>• Foundry PDK support required</li>
+                <li>• EDA tool integration essential</li>
+                <li>• Certified IP blocks needed</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Definitions and Scope -->
+      <section id="definitions" class="mb-16">
+        <div class="section-heading">
+          <h2 class="font-canela text-3xl font-bold">Definitions and Scope</h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8 mb-8">
+          <div class="bg-white rounded-xl p-6 shadow-lg">
+            <h3 class="font-canela text-xl font-semibold mb-4 text-gray-800">Binary CMOS Baseline</h3>
+            <div class="space-y-4 text-sm text-gray-700">
+              <div>
+                <strong>Logic Levels:</strong> Two distinct voltage states (V<sub>DD</sub> for &#39;1&#39;, V<sub>SS</sub> for &#39;0&#39;) with noise margins NM<sub>H</sub> and NM<sub>L</sub>
+              </div>
+              <div>
+                <strong>Switching Energy:</strong> E<sub>switch</sub> = ½CV<sub>DD</sub>² per transition
+              </div>
+              <div>
+                <strong>Power Dissipation:</strong> Dynamic (capacitive + short-circuit) + Static (leakage)
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-xl p-6 shadow-lg">
+            <h3 class="font-canela text-xl font-semibold mb-4 text-gray-800">Memristive Systems</h3>
+            <div class="space-y-4 text-sm text-gray-700">
+              <div>
+                <strong>Ideal Memristor:</strong> <a href="#" class="citation-link">Chua&#39;s 1971 postulation</a> - fourth fundamental circuit element with pinched hysteresis loop
+              </div>
+              <div>
+                <strong>Practical Devices:</strong> ReRAM (TaOx, HfOx), PCM (GST), MTJs - all exhibiting hysteresis and memory
+              </div>
+              <div>
+                <strong>Hysteresis Window:</strong> Path-dependent I-V characteristics enabling multi-state stability
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-8">
+          <h3 class="font-canela text-xl font-semibold mb-4 text-gray-800">The &#34;Mandate&#34; as Enforcement Mechanism</h3>
+          <p class="text-gray-700 leading-relaxed mb-4">
+            The term &#34;Mandate&#34; refers to a <strong>hardware-coupled authorization path</strong> that physically links the state of a memristive device to the operational flow of a computing system. This creates an unskippable, auditable checkpoint distinct from software flags or transient states.
+          </p>
+          <div class="flex items-center space-x-4 text-sm">
+            <div class="flex items-center space-x-2">
+              <i class="fas fa-lock text-green-600"></i>
+              <span>Tamper-resistant</span>
+            </div>
+            <div class="flex items-center space-x-2">
+              <i class="fas fa-shield-alt text-blue-600"></i>
+              <span>Non-volatile</span>
+            </div>
+            <div class="flex items-center space-x-2">
+              <i class="fas fa-eye text-purple-600"></i>
+              <span>Auditable</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Binary CMOS Limitations -->
+      <section id="cmos-limitations" class="mb-16">
+        <div class="section-heading">
+          <h2 class="font-canela text-3xl font-bold">Binary CMOS Limitations at Advanced Nodes</h2>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6 mb-8">
+          <div class="bg-red-50 rounded-xl p-6 border-l-4 border-red-400">
+            <h3 class="font-semibold text-lg mb-3 text-red-800">Interconnect Bottleneck</h3>
+            <p class="text-sm text-gray-700">RC delay of global wires not scaling with transistors, dominating clock cycles and energy consumption</p>
+          </div>
+
+          <div class="bg-orange-50 rounded-xl p-6 border-l-4 border-orange-400">
+            <h3 class="font-semibold text-lg mb-3 text-orange-800">Dennard Scaling Failure</h3>
+            <p class="text-sm text-gray-700">Power density increasing exponentially as voltage scaling stalls and leakage currents grow</p>
+          </div>
+
+          <div class="bg-yellow-50 rounded-xl p-6 border-l-4 border-yellow-400">
+            <h3 class="font-semibold text-lg mb-3 text-yellow-800">Memory Wall</h3>
+            <p class="text-sm text-gray-700">Growing gap between processor speed and memory bandwidth, exacerbated by bandwidth bottlenecks</p>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-xl p-8 shadow-lg">
+          <h3 class="font-canela text-xl font-semibold mb-6">SRAM Scaling Challenges</h3>
+          <div class="grid md:grid-cols-2 gap-8">
+            <div>
+              <h4 class="font-semibold mb-3 text-gray-800">6T SRAM Issues</h4>
+              <ul class="space-y-2 text-sm text-gray-700">
+                <li>• <strong>Area:</strong> Not scaling aggressively, consuming increasing chip real estate</li>
+                <li>• <strong>Leakage:</strong> Significant static power consumption at advanced nodes</li>
+                <li>• <strong>Yield:</strong> Process variability causing read/write failures</li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="font-semibold mb-3 text-gray-800">Data Movement Costs</h4>
+              <p class="text-sm text-gray-700 mb-3">Energy for data movement now dominates compute energy by orders of magnitude in AI applications.</p>
+              <div class="bg-blue-50 p-4 rounded-lg">
+                <div class="text-xs text-blue-600 font-semibold mb-1">COMPUTE VS. MOVE RATIO</div>
+                <div class="text-2xl font-bold text-blue-800">1:100+</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Device Physics -->
+      <section id="device-physics" class="mb-16">
+        <div class="section-heading">
+          <h2 class="font-canela text-3xl font-bold">Device Physics of Memristive Hysteresis</h2>
+        </div>
+
+        <div class="bg-white rounded-xl p-8 shadow-lg mb-8">
+          <h3 class="font-canela text-xl font-semibold mb-6">Tantalum Oxide (TaOx) as Primary Example</h3>
+
+          <div class="grid md:grid-cols-2 gap-8">
+            <div>
+              <h4 class="font-semibold mb-4 text-gray-800">Device Stack Architecture</h4>
+              <div class="space-y-3 text-sm text-gray-700">
+                <div>
+                  <strong>Bilayer Structure:</strong> Ta₂O₅₋ₓ (5nm) / TaO₂₋ₓ (15nm)
+                  <a href="#" class="citation-link">[68]</a>
+                </div>
+                <div>
+                  <strong>Electrodes:</strong> Inert bottom (Pt), Oxygen-assisted top (Ir + 2% O₂)
+                  <a href="#" class="citation-link">[68]</a>
+                </div>
+                <div>
+                  <strong>Buffer Layer:</strong> 2nm Al₂O₃ for diffusion barrier and stability
+                  <a href="#" class="citation-link">[68]</a>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h4 class="font-semibold mb-4 text-gray-800">Switching Mechanism</h4>
+              <div class="space-y-3 text-sm text-gray-700">
+                <div>
+                  <strong>Valence Change Memory (VCM):</strong> Oxygen vacancy migration under electric field
+                  <a href="#" class="citation-link">[85]</a>
+                </div>
+                <div>
+                  <strong>SET Operation:</strong> Negative bias drives vacancies into insulating layer, forming conductive filament
+                </div>
+                <div>
+                  <strong>RESET Operation:</strong> Positive bias repels vacancies, rupturing filament
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Comparative Device Table -->
+        <div class="chart-container">
+          <h3 class="font-canela text-xl font-semibold mb-6">Comparative Analysis of Device Families</h3>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm">
+              <thead class="bg-gray-100">
+                <tr>
+                  <th class="p-3 text-left">Device Family</th>
+                  <th class="p-3 text-center">Retention</th>
+                  <th class="p-3 text-center">Endurance</th>
+                  <th class="p-3 text-center">Variability</th>
+                  <th class="p-3 text-center">Write Energy</th>
+                  <th class="p-3 text-center">Maturity</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-200">
+                <tr class="bg-blue-50">
+                  <td class="p-3 font-semibold">TaOx RRAM</td>
+                  <td class="p-3 text-center">&gt;10 years <a href="#" class="citation-link">[237]</a>
+                  </td>
+                  <td class="p-3 text-center">&gt;10⁹ <a href="#" class="citation-link">[229]</a>
+                  </td>
+                  <td class="p-3 text-center">Low-Medium</td>
+                  <td class="p-3 text-center">0.1-10 pJ</td>
+                  <td class="p-3 text-center">High</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-semibold">HfOx RRAM</td>
+                  <td class="p-3 text-center">&gt;10 years <a href="#" class="citation-link">[237]</a>
+                  </td>
+                  <td class="p-3 text-center">10⁴-10⁶ <a href="#" class="citation-link">[229]</a>
+                  </td>
+                  <td class="p-3 text-center">Medium-High</td>
+                  <td class="p-3 text-center">0.1-5 pJ</td>
+                  <td class="p-3 text-center">High</td>
+                </tr>
+                <tr class="bg-gray-50">
+                  <td class="p-3 font-semibold">PCM (GST)</td>
+                  <td class="p-3 text-center">&gt;10 years <a href="#" class="citation-link">[150]</a>
+                  </td>
+                  <td class="p-3 text-center">10⁶-10⁸</td>
+                  <td class="p-3 text-center">Medium</td>
+                  <td class="p-3 text-center">10-100 pJ</td>
+                  <td class="p-3 text-center">High</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-semibold">MTJ (STT)</td>
+                  <td class="p-3 text-center">&gt;10 years</td>
+                  <td class="p-3 text-center">&gt;10¹⁵</td>
+                  <td class="p-3 text-center">Low</td>
+                  <td class="p-3 text-center">0.1-1 pJ</td>
+                  <td class="p-3 text-center">Medium</td>
+                </tr>
+                <tr class="bg-gray-50">
+                  <td class="p-3 font-semibold">FeFET</td>
+                  <td class="p-3 text-center">&gt;10 years</td>
+                  <td class="p-3 text-center">10⁶-10⁸</td>
+                  <td class="p-3 text-center">Moderate</td>
+                  <td class="p-3 text-center">fJ/op</td>
+                  <td class="p-3 text-center">Low</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Mandated Ternary Device Requirements -->
+      <section id="mandated-requirements" class="mb-16">
+        <div class="section-heading">
+          <h2 class="font-canela text-3xl font-bold">&#34;Mandated Ternary&#34; Device Requirements</h2>
+        </div>
+
+        <div class="bg-gradient-to-r from-purple-50 to-blue-50 rounded-xl p-8 mb-8">
+          <h3 class="font-canela text-xl font-semibold mb-6">Defining the &#34;Null&#34; or &#34;Balance&#34; State</h3>
+
+          <div class="grid md:grid-cols-3 gap-6">
+            <div class="bg-white rounded-lg p-6">
+              <h4 class="font-semibold mb-3 text-purple-800">Physical Representation</h4>
+              <p class="text-sm text-gray-700">Intermediate resistance level (R<sub>Null</sub>) between HRS and LRS, engineered through partial filament formation or controlled reset</p>
+            </div>
+
+            <div class="bg-white rounded-lg p-6">
+              <h4 class="font-semibold mb-3 text-blue-800">Stability Requirements</h4>
+              <p class="text-sm text-gray-700">Non-volatile retention (&gt;10 years at 85°C) with energy barriers preventing thermal transitions and read disturb</p>
+            </div>
+
+            <div class="bg-white rounded-lg p-6">
+              <h4 class="font-semibold mb-3 text-indigo-800">Authorization Coupling</h4>
+              <p class="text-sm text-gray-700">Hardware-coupled to compute path, where operations are physically blocked unless device is in authorized state</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-xl p-8 shadow-lg">
+          <h3 class="font-canela text-xl font-semibold mb-6">Readout and Sensing Circuitry</h3>
+
+          <div class="grid md:grid-cols-2 gap-8">
+            <div>
+              <h4 class="font-semibold mb-4 text-gray-800">Ternary Sense Amplifier</h4>
+              <div class="space-y-3 text-sm text-gray-700">
+                <div>• Two-stage comparison against reference resistances R<sub>Ref1</sub> and R<sub>Ref2</sub></div>
+                <div>• Noise immunity through margining strategies (several σ from mean values)</div>
+                <div>• Low-voltage sensing to prevent read disturb (&lt;0.1V read voltage)</div>
+              </div>
+            </div>
+
+            <div>
+              <h4 class="font-semibold mb-4 text-gray-800">Reference Cells</h4>
+              <div class="space-y-3 text-sm text-gray-700">
+                <div>• Dedicated memristor cells programmed to specific resistance values</div>
+                <div>• Temperature and process tracking through proximity placement</div>
+                <div>• Periodic recalibration to compensate for drift and variability</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Circuit Primitives -->
+      <section id="circuit-primitives" class="mb-16">
+        <div class="section-heading">
+          <h2 class="font-canela text-3xl font-bold">Circuit Primitives and Sensing Margins</h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8 mb-8">
+          <div class="bg-white rounded-xl p-6 shadow-lg">
+            <h3 class="font-canela text-lg font-semibold mb-4">Native Ternary Logic Gates</h3>
+            <div class="space-y-4">
+              <div class="border-l-4 border-blue-400 pl-4">
+                <h4 class="font-semibold text-sm">Ternary Inverters</h4>
+                <p class="text-xs text-gray-600">STI (0→2, 1→1, 2→0), PTI, NTI variants</p>
+              </div>
+              <div class="border-l-4 border-green-400 pl-4">
+                <h4 class="font-semibold text-sm">Ternary NAND/NOR</h4>
+                <p class="text-xs text-gray-600">Universal logic functions adapted for three states</p>
+              </div>
+              <div class="border-l-4 border-purple-400 pl-4">
+                <h4 class="font-semibold text-sm">Threshold Logic Gates</h4>
+                <p class="text-xs text-gray-600">Weighted sum with multiple thresholds for ternary output</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-xl p-6 shadow-lg">
+            <h3 class="font-canela text-lg font-semibold mb-4">Hybrid Memristor-CMOS Gates</h3>
+            <div class="space-y-4">
+              <div class="bg-blue-50 p-4 rounded-lg">
+                <h4 class="font-semibold text-sm mb-2">Memristor as Programmable Resistor</h4>
+                <p class="text-xs text-gray-700">Non-volatile state storage with CMOS for switching</p>
+              </div>
+              <div class="bg-green-50 p-4 rounded-lg">
+                <h4 class="font-semibold text-sm mb-2">CMOS for Logic Switching</h4>
+                <p class="text-xs text-gray-700">High-speed operation with memristor configuration</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-red-50 rounded-xl p-8 border-l-4 border-red-400">
+          <h3 class="font-canela text-xl font-semibold mb-4 text-red-800">Noise Immunity Challenges</h3>
+          <div class="grid md:grid-cols-3 gap-6">
+            <div>
+              <h4 class="font-semibold text-sm mb-2">Thermal Noise</h4>
+              <p class="text-xs text-gray-700">Random resistance fluctuations threatening state stability</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-sm mb-2">Read Disturb</h4>
+              <p class="text-xs text-gray-700">Sensing voltage causing unintended state changes</p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-sm mb-2">RTN Effects</h4>
+              <p class="text-xs text-gray-700">Random telegraph noise from charge trapping</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- System Architectures -->
+      <section id="system-architectures" class="mb-16">
+        <div class="section-heading">
+          <h2 class="font-canela text-3xl font-bold">System Architectures</h2>
+        </div>
+
+        <div class="space-y-8">
+          <!-- Native Ternary Logic Pipeline -->
+          <div class="bg-white rounded-xl p-8 shadow-lg">
+            <h3 class="font-canela text-xl font-semibold mb-6 flex items-center">
+              <i class="fas fa-microchip mr-3 text-blue-600"></i>
+              Native Ternary Logic Pipeline
+            </h3>
+            <div class="grid md:grid-cols-3 gap-6">
+              <div class="text-center">
+                <div class="bg-blue-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                  <i class="fas fa-calculator text-blue-600 text-xl"></i>
+                </div>
+                <h4 class="font-semibold mb-2">Ternary ALU</h4>
+                <p class="text-xs text-gray-600">Arithmetic and logic operations on ternary operands</p>
+              </div>
+              <div class="text-center">
+                <div class="bg-green-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                  <i class="fas fa-memory text-green-600 text-xl"></i>
+                </div>
+                <h4 class="font-semibold mb-2">Ternary Register File</h4>
+                <p class="text-xs text-gray-600">Memristor-based storage for ternary values</p>
+              </div>
+              <div class="text-center">
+                <div class="bg-purple-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                  <i class="fas fa-cogs text-purple-600 text-xl"></i>
+                </div>
+                <h4 class="font-semibold mb-2">Control Unit</h4>
+                <p class="text-xs text-gray-600">Ternary instruction decode and execution</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Crossbar CiM -->
+          <div class="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl p-8">
+            <h3 class="font-canela text-xl font-semibold mb-6 flex items-center">
+              <i class="fas fa-th mr-3 text-indigo-600"></i>
+              Crossbar Compute-in-Memory (CiM) Fabric
+            </h3>
+            <div class="grid md:grid-cols-2 gap-8">
+              <div>
+                <h4 class="font-semibold mb-4">Memristor Crossbar Array</h4>
+                <div class="space-y-3 text-sm text-gray-700">
+                  <div>• Conductance represents neural network weights</div>
+                  <div>• Matrix-vector multiplication via Ohm&#39;s/Kirchhoff&#39;s laws</div>
+                  <div>• Massively parallel MAC operations</div>
+                  <div>• <span class="data-highlight">10x+ improvement in TOPS/W</span> expected</div>
+                </div>
+              </div>
+              <div>
+                <h4 class="font-semibold mb-4">Ternary Control Plane</h4>
+                <div class="space-y-3 text-sm text-gray-700">
+                  <div>• &#34;Null&#34; states gate access to crossbar rows/columns</div>
+                  <div>• Fine-grained computation control</div>
+                  <div>• Hardware-enforced safety policies</div>
+                  <div>• Security and authorization integration</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Ternary Neural Network -->
+          <div class="bg-white rounded-xl p-8 shadow-lg">
+            <h3 class="font-canela text-xl font-semibold mb-6 flex items-center">
+              <i class="fas fa-brain mr-3 text-green-600"></i>
+              Ternary Neural Network Accelerators
+            </h3>
+            <div class="grid md:grid-cols-2 gap-8">
+              <div>
+                <h4 class="font-semibold mb-4">Ternary Weights &amp; Activations</h4>
+                <p class="text-sm text-gray-700 mb-4">Weights restricted to {-1, 0, 1} for dense storage and simple computation</p>
+                <div class="bg-green-50 p-4 rounded-lg">
+                  <div class="text-xs text-green-600 font-semibold">DENSITY IMPROVEMENT</div>
+                  <div class="text-2xl font-bold text-green-800">3x</div>
+                  <div class="text-xs text-gray-600">vs. 32-bit floating point</div>
+                </div>
+              </div>
+              <div>
+                <h4 class="font-semibold mb-4">Efficient MAC Units</h4>
+                <div class="space-y-2 text-sm text-gray-700">
+                  <div>• Multiplication → Addition/Subtraction/No-op</div>
+                  <div>• Parallel execution for high throughput</div>
+                  <div>• Optimized for edge AI applications</div>
+                  <div>• Low power consumption</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Emulation Tax Analysis -->
+      <section id="emulation-tax" class="mb-16">
+        <div class="section-heading">
+          <h2 class="font-canela text-3xl font-bold">Emulation Tax vs. Native Ternary</h2>
+        </div>
+
+        <div class="bg-red-50 rounded-xl p-8 border-l-4 border-red-400 mb-8">
+          <h3 class="font-canela text-xl font-semibold mb-4 text-red-800">The High Cost of Emulation</h3>
+          <p class="text-gray-700 leading-relaxed mb-4">
+            Implementing ternary logic on binary hardware incurs substantial overhead in area, energy, latency, and complexity. This &#34;emulation tax&#34; fundamentally limits the performance benefits of ternary computing.
+          </p>
+        </div>
+
+        <!-- Worked Numerical Example -->
+        <div class="bg-white rounded-xl p-8 shadow-lg mb-8">
+          <h3 class="font-canela text-xl font-semibold mb-6">Worked Numerical Example: MAC Operation</h3>
+
+          <div class="grid md:grid-cols-2 gap-8">
+            <div>
+              <h4 class="font-semibold mb-4 text-gray-800">Energy Model (E = αCV²)</h4>
+              <div class="space-y-3 text-sm">
+                <div class="flex justify-between">
+                  <span>Binary MAC:</span>
+                  <span class="font-semibold">5 fJ</span>
+                </div>
+                <div class="flex justify-between">
+                  <span>Emulated Logic:</span>
+                  <span class="font-semibold text-orange-600">70 fJ</span>
+                </div>
+                <div class="flex justify-between">
+                  <span>Memory Traffic:</span>
+                  <span class="font-semibold text-orange-600">6 pJ</span>
+                </div>
+                <div class="flex justify-between border-t pt-2 font-bold">
+                  <span>Total Emulated:</span>
+                  <span class="text-red-600">76 fJ</span>
+                </div>
+                <div class="text-center mt-4">
+                  <div class="text-2xl font-bold text-red-600">15.2x</div>
+                  <div class="text-xs text-gray-600">Energy Tax Factor</div>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h4 class="font-semibold mb-4 text-gray-800">Latency Model (Pipeline Stages)</h4>
+              <div class="space-y-3 text-sm">
+                <div class="flex justify-between">
+                  <span>Binary MAC:</span>
+                  <span class="font-semibold">1 cycle</span>
+                </div>
+                <div class="flex justify-between">
+                  <span>Emulated Logic:</span>
+                  <span class="font-semibold text-orange-600">5 cycles</span>
+                </div>
+                <div class="flex justify-between">
+                  <span>Pipeline Stalls:</span>
+                  <span class="font-semibold text-orange-600">0.2 cycles</span>
+                </div>
+                <div class="flex justify-between border-t pt-2 font-bold">
+                  <span>Total Emulated:</span>
+                  <span class="text-red-600">5.2 cycles</span>
+                </div>
+                <div class="text-center mt-4">
+                  <div class="text-2xl font-bold text-red-600">5.2x</div>
+                  <div class="text-xs text-gray-600">Latency Tax Factor</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Comparative Table -->
+        <div class="chart-container">
+          <h3 class="font-canela text-xl font-semibold mb-6">Quantified Emulation Tax Comparison</h3>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm">
+              <thead class="bg-gray-100">
+                <tr>
+                  <th class="p-3 text-left">Metric</th>
+                  <th class="p-3 text-center">Binary Baseline</th>
+                  <th class="p-3 text-center">Emulated Ternary</th>
+                  <th class="p-3 text-center">Native Ternary</th>
+                  <th class="p-3 text-center">Tax Factor</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-200">
+                <tr>
+                  <td class="p-3 font-semibold">Data Storage (bits/trit)</td>
+                  <td class="p-3 text-center">1</td>
+                  <td class="p-3 text-center text-red-600">2</td>
+                  <td class="p-3 text-center">1</td>
+                  <td class="p-3 text-center text-red-600 font-bold">2x</td>
+                </tr>
+                <tr class="bg-gray-50">
+                  <td class="p-3 font-semibold">Logic Gate Area</td>
+                  <td class="p-3 text-center">1x</td>
+                  <td class="p-3 text-center text-red-600">~10x</td>
+                  <td class="p-3 text-center">~1.5-2x</td>
+                  <td class="p-3 text-center text-red-600 font-bold">~10x</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-semibold">Energy per MAC</td>
+                  <td class="p-3 text-center">5 fJ</td>
+                  <td class="p-3 text-center text-red-600">76 fJ</td>
+                  <td class="p-3 text-center">~10-20 fJ</td>
+                  <td class="p-3 text-center text-red-600 font-bold">~15x</td>
+                </tr>
+                <tr class="bg-gray-50">
+                  <td class="p-3 font-semibold">Latency (cycles)</td>
+                  <td class="p-3 text-center">1</td>
+                  <td class="p-3 text-center text-red-600">5.2</td>
+                  <td class="p-3 text-center">~1-2</td>
+                  <td class="p-3 text-center text-red-600 font-bold">~5x</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- The Saint Spot -->
+      <section id="saint-spot" class="mb-16">
+        <div class="section-heading">
+          <h2 class="font-canela text-3xl font-bold">The Saint Spot: Bottlenecks and Architectural Advantage</h2>
+        </div>
+
+        <div class="pull-quote mb-8">
+          &#34;The Saint Spot refers to the specific market gap or technological bottleneck that a new architecture can address more effectively than incremental improvements to the existing paradigm.&#34;
+        </div>
+
+        <!-- Problem-Mechanism-Advantage Mapping -->
+        <div class="chart-container">
+          <h3 class="font-canela text-xl font-semibold mb-6">Problem-Mechanism-Advantage Mapping</h3>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm">
+              <thead class="bg-gray-100">
+                <tr>
+                  <th class="p-3 text-left">Problem (Bottleneck)</th>
+                  <th class="p-3 text-left">Mechanism in Mandated Ternary</th>
+                  <th class="p-3 text-left">Architectural Advantage</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-200">
+                <tr class="bg-blue-50">
+                  <td class="p-3"><strong>Interconnect Delay &amp; Energy</strong></td>
+                  <td class="p-3">Dense, Non-Volatile Memory + Compute-in-Memory (CiM)</td>
+                  <td class="p-3">Eliminates long data movement, computation at memory location</td>
+                </tr>
+                <tr>
+                  <td class="p-3"><strong>Memory Wall / Bandwidth</strong></td>
+                  <td class="p-3">High-Density Ternary Storage (1.58 bits/cell)</td>
+                  <td class="p-3">Increases effective memory density, reduces bandwidth pressure</td>
+                </tr>
+                <tr class="bg-green-50">
+                  <td class="p-3"><strong>Power Density &amp; Thermal Limits</strong></td>
+                  <td class="p-3">Low-Switching Energy Memristive Devices</td>
+                  <td class="p-3">pJ/op switching energy vs. CMOS capacitive charging</td>
+                </tr>
+                <tr>
+                  <td class="p-3"><strong>SRAM Scaling Pain</strong></td>
+                  <td class="p-3">Single Memristor Replaces 6T SRAM Cell</td>
+                  <td class="p-3">Dramatic area reduction, eliminates leakage power</td>
+                </tr>
+                <tr class="bg-purple-50">
+                  <td class="p-3"><strong>Data Movement vs. Compute</strong></td>
+                  <td class="p-3">In-Memory Computing Paradigm</td>
+                  <td class="p-3">Fundamentally changes cost balance, prioritizes locality</td>
+                </tr>
+                <tr>
+                  <td class="p-3"><strong>Reliability &amp; Variability</strong></td>
+                  <td class="p-3">Hardware-Coupled &#34;Mandate&#34;</td>
+                  <td class="p-3">Non-spoofable, auditable checkpoints for safety-critical ops</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="bg-gradient-to-r from-orange-50 to-red-50 rounded-xl p-8">
+          <h3 class="font-canela text-xl font-semibold mb-4 text-orange-800">Why &#34;Just Better Binary&#34; is Insufficient</h3>
+          <div class="grid md:grid-cols-2 gap-6">
+            <div>
+              <h4 class="font-semibold mb-3">Fundamental Limits</h4>
+              <ul class="space-y-2 text-sm text-gray-700">
+                <li>• Binary encoding limits information density per wire</li>
+                <li>• Data movement bottleneck persists despite faster components</li>
+                <li>• Power density crisis continues with Dennard scaling failure</li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="font-semibold mb-3">Architectural Necessity</h4>
+              <ul class="space-y-2 text-sm text-gray-700">
+                <li>• Requires paradigm shift to address data movement costs</li>
+                <li>• Physical third state provides more robust solution</li>
+                <li>• Compute-in-memory breaks traditional von Neumann bottleneck</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Agentic AI Catalyst -->
+      <section id="agentic-ai" class="mb-16">
+        <div class="section-heading">
+          <h2 class="font-canela text-3xl font-bold">Agentic AI as Catalyst: Enforced Hesitation and Action Gating</h2>
+        </div>
+
+        <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-8 mb-8">
+          <h3 class="font-canela text-xl font-semibold mb-4">Defining Agentic AI Operationally</h3>
+          <div class="grid md:grid-cols-3 gap-6">
+            <div class="text-center">
+              <div class="bg-blue-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                <i class="fas fa-eye text-blue-600 text-xl"></i>
+              </div>
+              <h4 class="font-semibold mb-2">Perception</h4>
+              <p class="text-xs text-gray-700">Environmental sensing and state estimation</p>
+            </div>
+            <div class="text-center">
+              <div class="bg-green-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                <i class="fas fa-brain text-green-600 text-xl"></i>
+              </div>
+              <h4 class="font-semibold mb-2">Planning</h4>
+              <p class="text-xs text-gray-700">Goal-directed reasoning and action selection</p>
+            </div>
+            <div class="text-center">
+              <div class="bg-purple-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                <i class="fas fa-play text-purple-600 text-xl"></i>
+              </div>
+              <h4 class="font-semibold mb-2">Action</h4>
+              <p class="text-xs text-gray-700">Autonomous execution with tool use</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-xl p-8 shadow-lg mb-8">
+          <h3 class="font-canela text-xl font-semibold mb-6">The Role of a Third State in Agentic Systems</h3>
+
+          <div class="grid md:grid-cols-2 gap-8">
+            <div>
+              <h4 class="font-semibold mb-4 text-gray-800">Hesitation and Uncertainty Gating</h4>
+              <div class="space-y-3 text-sm text-gray-700">
+                <div>• &#34;Null&#34; state represents computational hesitation</div>
+                <div>• Physically gates actions during uncertainty</div>
+                <div>• Prevents irreversible operations without authorization</div>
+                <div>• Example: Self-driving car at ambiguous crosswalk</div>
+              </div>
+            </div>
+
+            <div>
+              <h4 class="font-semibold mb-4 text-gray-800">Escrowed Execution</h4>
+              <div class="space-y-3 text-sm text-gray-700">
+                <div>• Prepare actions but defer execution</div>
+                <div>• Mandatory human-in-the-loop for critical decisions</div>
+                <div>• Financial transactions require supervisor approval</div>
+                <div>• Policy compliance verification before action</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sequence Diagram -->
+        <div class="bg-gray-50 rounded-xl p-8">
+          <h3 class="font-canela text-xl font-semibold mb-6">Action Authorization via Ternary Gate</h3>
+          <div class="technical-diagram">
+            <div class="font-bold mb-2">Agentic AI Action Pipeline with Ternary Mandate</div>
+            <div class="text-xs space-y-1">
+              <div>Agentic AI System → Memristive Device: Initialize to &#39;Null&#39; State</div>
+              <div class="ml-4">Memristive Device: State = &#39;Null&#39; (Hesitation)</div>
+              <div>Agentic AI System → Agentic AI System: Perceive Environment</div>
+              <div>Agentic AI System → Agentic AI System: Plan Action</div>
+              <div>Agentic AI System → Human Supervisor: Request Authorization</div>
+              <div class="ml-4">Human Supervisor: Review Plan &amp; Policy</div>
+              <div>Human Supervisor → Agentic AI System: Send Authorization Signal</div>
+              <div>Agentic AI System → Memristive Device: Apply &#39;Authorize&#39; Pulse</div>
+              <div class="ml-4">Memristive Device: State transitions to &#39;1&#39; (Proceed)</div>
+              <div>Agentic AI System → Environment: Execute Action</div>
+              <div>Agentic AI System → Agentic AI System: Log State Transition &amp; Action</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pull-quote">
+          &#34;The physical &#39;Null&#39; state provides tamper resistance and non-spoofability that software flags cannot match, creating verifiable, auditable checkpoints for safety-critical operations.&#34;
+        </div>
+      </section>
+
+      <!-- Roadmap to 2027 -->
+      <section id="roadmap" class="mb-16">
+        <div class="section-heading">
+          <h2 class="font-canela text-3xl font-bold">Roadmap to 2027: Top Three Candidate Architectures</h2>
+        </div>
+
+        <div class="space-y-8">
+          <!-- Memristor CiM -->
+          <div class="bg-blue-50 rounded-xl p-8 border-l-4 border-blue-400">
+            <h3 class="font-canela text-xl font-semibold mb-4 flex items-center">
+              <i class="fas fa-microchip mr-3 text-blue-600"></i>
+              1. Compute-in-Memory with Memristor Crossbars
+            </h3>
+            <div class="grid md:grid-cols-3 gap-6">
+              <div>
+                <h4 class="font-semibold mb-3">Core Principle</h4>
+                <p class="text-sm text-gray-700">Analog matrix operations using memristor conductance, ternary control plane for gating</p>
+              </div>
+              <div>
+                <h4 class="font-semibold mb-3">Key Obstacles</h4>
+                <ul class="text-sm text-gray-700 space-y-1">
+                  <li>• Variability and yield</li>
+                  <li>• ADC cost and complexity</li>
+                  <li>• Precision requirements</li>
+                </ul>
+              </div>
+              <div>
+                <h4 class="font-semibold mb-3">Target Metrics</h4>
+                <div class="text-sm text-gray-700">
+                  <div class="data-highlight inline-block mb-1">10x TOPS/W</div>
+                  <div>vs. state-of-the-art GPU</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- MTJ Logic -->
+          <div class="bg-green-50 rounded-xl p-8 border-l-4 border-green-400">
+            <h3 class="font-canela text-xl font-semibold mb-4 flex items-center">
+              <i class="fas fa-magnet mr-3 text-green-600"></i>
+              2. Spintronic Devices (MTJ-based Logic)
+            </h3>
+            <div class="grid md:grid-cols-3 gap-6">
+              <div>
+                <h4 class="font-semibold mb-3">Core Principle</h4>
+                <p class="text-sm text-gray-700">Magnetization state representation, STT/SOT switching, non-collinear states for ternary operation</p>
+              </div>
+              <div>
+                <h4 class="font-semibold mb-3">Key Obstacles</h4>
+                <ul class="text-sm text-gray-700 space-y-1">
+                  <li>• Integration complexity</li>
+                  <li>• Resistance ratio challenges</li>
+                  <li>• Magnetic material compatibility</li>
+                </ul>
+              </div>
+              <div>
+                <h4 class="font-semibold mb-3">Target Metrics</h4>
+                <div class="text-sm text-gray-700">
+                  <div class="data-highlight inline-block mb-1">5x PDP</div>
+                  <div>vs. CMOS equivalent</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- FeFET -->
+          <div class="bg-purple-50 rounded-xl p-8 border-l-4 border-purple-400">
+            <h3 class="font-canela text-xl font-semibold mb-4 flex items-center">
+              <i class="fas fa-bolt mr-3 text-purple-600"></i>
+              3. Ferroelectric FETs (FeFET)
+            </h3>
+            <div class="grid md:grid-cols-3 gap-6">
+              <div>
+                <h4 class="font-semibold mb-3">Core Principle</h4>
+                <p class="text-sm text-gray-700">Ferroelectric polarization modulates threshold voltage, intermediate states for ternary logic</p>
+              </div>
+              <div>
+                <h4 class="font-semibold mb-3">Key Obstacles</h4>
+                <ul class="text-sm text-gray-700 space-y-1">
+                  <li>• Material reliability</li>
+                  <li>• Endurance limitations</li>
+                  <li>• CMOS process integration</li>
+                </ul>
+              </div>
+              <div>
+                <h4 class="font-semibold mb-3">Target Metrics</h4>
+                <div class="text-sm text-gray-700">
+                  <div class="data-highlight inline-block mb-1">2x Density</div>
+                  <div>vs. SRAM arrays</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Milestone Timeline -->
+        <div class="chart-container mt-8">
+          <h3 class="font-canela text-xl font-semibold mb-6">2026-2027 Milestone Timeline</h3>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm">
+              <thead class="bg-gray-100">
+                <tr>
+                  <th class="p-3 text-left">Architecture</th>
+                  <th class="p-3 text-center">Q2 2026</th>
+                  <th class="p-3 text-center">Q4 2026</th>
+                  <th class="p-3 text-center">Q2 2027</th>
+                  <th class="p-3 text-center">Q4 2027</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-200">
+                <tr class="bg-blue-50">
+                  <td class="p-3 font-semibold">Memristor CiM</td>
+                  <td class="p-3 text-center text-xs">&lt;5% variability
+                    <br/>&gt;10⁸ endurance
+                  </td>
+                  <td class="p-3 text-center text-xs">10x TOPS/W
+                    <br/>vs. GPU
+                  </td>
+                  <td class="p-3 text-center text-xs">Foundry PDK
+                    <br/>Support
+                  </td>
+                  <td class="p-3 text-center text-xs">Certified IP
+                    <br/>Block
+                  </td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-semibold">MTJ Logic</td>
+                  <td class="p-3 text-center text-xs">&gt;10¹⁵ endurance
+                    <br/>sub-ns switching
+                  </td>
+                  <td class="p-3 text-center text-xs">5x PDP
+                    <br/>vs. CMOS
+                  </td>
+                  <td class="p-3 text-center text-xs">3D Integration
+                    <br/>Process
+                  </td>
+                  <td class="p-3 text-center text-xs">PDK &amp; Certified
+                    <br/>IP
+                  </td>
+                </tr>
+                <tr class="bg-purple-50">
+                  <td class="p-3 font-semibold">FeFET</td>
+                  <td class="p-3 text-center text-xs">&gt;10⁶ endurance
+                    <br/>sub-pJ energy
+                  </td>
+                  <td class="p-3 text-center text-xs">2x density
+                    <br/>vs. SRAM
+                  </td>
+                  <td class="p-3 text-center text-xs">CMOS-compatible
+                    <br/>process
+                  </td>
+                  <td class="p-3 text-center text-xs">PDK &amp; Certified
+                    <br/>Memory IP
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="bg-gradient-to-r from-gray-50 to-blue-50 rounded-xl p-8 mt-8">
+          <h3 class="font-canela text-xl font-semibold mb-4">Defining Industry Standard Viability</h3>
+          <div class="grid md:grid-cols-3 gap-6">
+            <div class="text-center">
+              <div class="bg-blue-100 rounded-lg p-4 mb-4">
+                <i class="fas fa-industry text-blue-600 text-2xl"></i>
+              </div>
+              <h4 class="font-semibold mb-2">Foundry PDK Support</h4>
+              <p class="text-xs text-gray-700">Major foundry offering Process Design Kit with design rules, device models, verification decks</p>
+            </div>
+            <div class="text-center">
+              <div class="bg-green-100 rounded-lg p-4 mb-4">
+                <i class="fas fa-tools text-green-600 text-2xl"></i>
+              </div>
+              <h4 class="font-semibold mb-2">EDA Tool Integration</h4>
+              <p class="text-xs text-gray-700">Commercial EDA vendor support for design, verification, and timing analysis</p>
+            </div>
+            <div class="text-center">
+              <div class="bg-purple-100 rounded-lg p-4 mb-4">
+                <i class="fas fa-shield-alt text-purple-600 text-2xl"></i>
+              </div>
+              <h4 class="font-semibold mb-2">Certified IP Blocks</h4>
+              <p class="text-xs text-gray-700">Pre-designed, pre-verified IP libraries with safety certification for critical applications</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Falsifiability -->
+      <section id="falsifiability" class="mb-16">
+        <div class="section-heading">
+          <h2 class="font-canela text-3xl font-bold">Falsifiability: Predictions and Failure Conditions</h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <!-- Testable Predictions -->
+          <div class="bg-green-50 rounded-xl p-8">
+            <h3 class="font-canela text-xl font-semibold mb-6 text-green-800">
+              <i class="fas fa-check-circle mr-3"></i>
+              Testable Predictions
+            </h3>
+            <div class="space-y-4">
+              <div>
+                <h4 class="font-semibold text-sm mb-2">Device-Level</h4>
+                <ul class="text-xs text-gray-700 space-y-1">
+                  <li>• TaOx memristor with &gt;10 year retention at 85°C</li>
+                  <li>• Intermediate state with σ/μ &lt; 10% variability</li>
+                  <li>• &gt;5 distinct stable resistance levels demonstrated</li>
+                </ul>
+              </div>
+              <div>
+                <h4 class="font-semibold text-sm mb-2">Circuit-Level</h4>
+                <ul class="text-xs text-gray-700 space-y-1">
+                  <li>• Ternary sense amplifier with &lt;10ns latency</li>
+                  <li>• Hybrid gate with &lt;1fJ power-delay product</li>
+                  <li>• 1Kb array with &gt;95% yield after 10⁶ cycles</li>
+                </ul>
+              </div>
+              <div>
+                <h4 class="font-semibold text-sm mb-2">Architecture-Level</h4>
+                <ul class="text-xs text-gray-700 space-y-1">
+                  <li>• CiM fabric with &gt;100 TOPS/W performance</li>
+                  <li>• Native processor with 2x better energy-delay product</li>
+                  <li>• 100% unauthorized action gating with 0% false positives</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Failure Conditions -->
+          <div class="bg-red-50 rounded-xl p-8">
+            <h3 class="font-canela text-xl font-semibold mb-6 text-red-800">
+              <i class="fas fa-exclamation-triangle mr-3"></i>
+              Failure Conditions
+            </h3>
+            <div class="space-y-4">
+              <div>
+                <h4 class="font-semibold text-sm mb-2">Device-Level</h4>
+                <ul class="text-xs text-gray-700 space-y-1">
+                  <li>• Cannot achieve &gt;1 year retention at room temperature</li>
+                  <li>• Variability σ/μ &gt; 50% making states indistinguishable</li>
+                  <li>• Endurance &lt; 10⁶ cycles for logic applications</li>
+                </ul>
+              </div>
+              <div>
+                <h4 class="font-semibold text-sm mb-2">Circuit-Level</h4>
+                <ul class="text-xs text-gray-700 space-y-1">
+                  <li>• Sensing energy &gt; 10 pJ per operation</li>
+                  <li>• Gate propagation delay &gt; 10ns</li>
+                  <li>• Array yield &lt; 50% economically viable</li>
+                </ul>
+              </div>
+              <div>
+                <h4 class="font-semibold text-sm mb-2">Architecture-Level</h4>
+                <ul class="text-xs text-gray-700 space-y-1">
+                  <li>• Emulation tax &lt; 2x energy/latency overhead</li>
+                  <li>• Native processor worse energy-delay than binary</li>
+                  <li>• &#34;Mandate&#34; bypassable with &gt;1% success rate</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Conclusion -->
+      <section id="conclusion" class="mb-16">
+        <div class="section-heading">
+          <h2 class="font-canela text-3xl font-bold">Conclusion: What Would Make This Inevitable</h2>
+        </div>
+
+        <div class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-xl p-8 mb-8">
+          <h3 class="font-canela text-2xl font-light mb-6 italic text-center">
+            &#34;Build the third state into matter, and the future stops pretending it never hesitated.&#34;
+          </h3>
+          <p class="text-center text-sm opacity-90">- Lev Goukassian</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8 mb-8">
+          <div class="bg-white rounded-xl p-8 shadow-lg">
+            <h3 class="font-canela text-xl font-semibold mb-6">Summary of Key Findings</h3>
+            <div class="space-y-4 text-sm text-gray-700">
+              <div class="flex items-start space-x-3">
+                <i class="fas fa-check-circle text-green-600 mt-1"></i>
+                <div>
+                  <strong>Device Feasibility:</strong> TaOx memristors demonstrate stable third state foundation
+                </div>
+              </div>
+              <div class="flex items-start space-x-3">
+                <i class="fas fa-exclamation-triangle text-orange-600 mt-1"></i>
+                <div>
+                  <strong>High Emulation Tax:</strong> 15x energy overhead provides strong native hardware incentive
+                </div>
+              </div>
+              <div class="flex items-start space-x-3">
+                <i class="fas fa-chart-line text-blue-600 mt-1"></i>
+                <div>
+                  <strong>Architectural Advantage:</strong> Direct solution to interconnect, memory, and power bottlenecks
+                </div>
+              </div>
+              <div class="flex items-start space-x-3">
+                <i class="fas fa-robot text-purple-600 mt-1"></i>
+                <div>
+                  <strong>Agentic AI Catalyst:</strong> Verifiable hesitation state uniquely enables safe autonomous systems
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-xl p-8 shadow-lg">
+            <h3 class="font-canela text-xl font-semibold mb-6">Conditions for Widespread Adoption</h3>
+            <div class="space-y-4">
+              <div class="border-l-4 border-green-400 pl-4">
+                <h4 class="font-semibold text-sm mb-1">Clear Economic Advantage</h4>
+                <p class="text-xs text-gray-600">Demonstrable 2-10x improvement in performance, power, or cost for commercial applications</p>
+              </div>
+              <div class="border-l-4 border-blue-400 pl-4">
+                <h4 class="font-semibold text-sm mb-1">Industry Standard Viability</h4>
+                <p class="text-xs text-gray-600">Foundry PDK support, EDA tool integration, certified IP blocks availability</p>
+              </div>
+              <div class="border-l-4 border-purple-400 pl-4">
+                <h4 class="font-semibold text-sm mb-1">Variability Solution</h4>
+                <p class="text-xs text-gray-600">Device-to-device and cycle-to-cycle variability reduced to acceptable levels</p>
+              </div>
+              <div class="border-l-4 border-orange-400 pl-4">
+                <h4 class="font-semibold text-sm mb-1">Complete Ecosystem</h4>
+                <p class="text-xs text-gray-600">Design tools, IP libraries, skilled workforce development</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gradient-to-r from-gray-50 to-blue-50 rounded-xl p-8">
+          <h3 class="font-canela text-xl font-semibold mb-4 text-center">Final Assessment</h3>
+          <p class="text-gray-700 leading-relaxed text-center max-w-4xl mx-auto">
+            The transition to a Mandated Ternary architecture represents more than an incremental improvement—it embodies a necessary evolution in computing. The convergence of physical limits in binary scaling with the emerging requirements of agentic AI creates both the opportunity and imperative for this paradigm shift. While significant challenges in device physics, circuit design, and system integration remain, the analysis demonstrates that these are surmountable with focused research and development.
+          </p>
+          <div class="text-center mt-6">
+            <div class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold">
+              The path to 2027 will determine whether this technology moves from laboratory to fab
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+  
+
+</body></html>
