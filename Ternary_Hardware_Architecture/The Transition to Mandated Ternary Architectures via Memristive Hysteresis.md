@@ -640,15 +640,15 @@ The transition to Mandated Ternary is supported by the specific roadmaps of lead
 #### 12.4.2. Foundry PDK Support and EDA Flows  
 The most critical requirement is **foundry PDK support.** This means that a major semiconductor foundry (e.g., TSMC, Samsung, GlobalFoundries) must offer a Process Design Kit (PDK) for the technology... [continue with existing text]
 
-#### 12.4.1. Foundry PDK Support and EDA Flows
+#### 12.4.3. Foundry PDK Support and EDA Flows
 
 The most critical requirement is **foundry PDK support.** This means that a major semiconductor foundry (e.g., TSMC, Samsung, GlobalFoundries) must offer a Process Design Kit (PDK) for the technology. The PDK includes all the necessary design rules, device models, and verification decks that are required to design and manufacture a chip using the technology. Without PDK support, it is impossible for designers to create commercial products. In addition, the technology must be supported by the major EDA tool vendors (e.g., Cadence, Synopsys, Siemens EDA), so that designers can use their existing design flows to create and verify their chips.
 
-#### 12.4.2. IP Blocks and Benchmarking Suites
+#### 12.4.4. IP Blocks and Benchmarking Suites
 
 To make it easier for designers to adopt the new technology, it is essential to provide a library of **pre-designed and pre-verified IP blocks.** These IP blocks can include basic logic gates, memory arrays, and more complex functional units, such as processors or accelerators. The availability of these IP blocks can significantly reduce the time and cost of developing a new chip. In addition, it is important to develop a set of **standardized benchmarking suites** that can be used to evaluate the performance, power, and area of the new technology. This will allow for a fair and accurate comparison of the new technology with existing technologies.
 
-#### 12.4.3. Safety Certification Regimes
+#### 12.4.5. Safety Certification Regimes
 
 For applications in safety-critical domains, such as automotive or aerospace, it is essential to have a **safety certification regime** in place. This involves developing a set of standards and procedures for testing and certifying that the technology is safe to use. This can be a long and expensive process, but it is a necessary step for the adoption of the technology in these markets. The development of a safety certification plan should be a key part of the roadmap for any new technology.
 
