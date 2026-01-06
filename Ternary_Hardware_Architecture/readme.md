@@ -2,7 +2,7 @@
 
 ### **Hardware-Intrinsic Hysteresis for Agentic AI Governance**
 
-**Architect:** Lev Goukassian (FractonicMind)
+**Architect:** Lev Goukassian (FractonicMind)   
 **Status:** Research & Engineering Proposal
 
 ---
