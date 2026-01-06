@@ -32,4 +32,4 @@ The primary report included in this repository (*"The Transition to Mandated Ter
 
 ---
 
-** *"The stone age didn't end because we ran out of stones. The binary age won't end because we run out of zeros and ones, but because the cost of emulating safety becomes higher than the cost of building it."* ** **-Lev Goukassian**
+***"The stone age didn't end because we ran out of stones. The binary age won't end because we run out of zeros and ones, but because the cost of emulating safety becomes higher than the cost of building it."*** **-Lev Goukassian**
