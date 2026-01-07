@@ -46,10 +46,10 @@ Each entry is cryptographically sealed, timestamped, and chained to its predeces
 
 ## Core Philosophy: [The Goukassian Vow](/main/Goukassian_Vow.md)
 
-`Pause when truth is uncertain.
-Refuse when harm is clear.
-Proceed where truth is.`
-
+`Pause when truth is uncertain.   
+Refuse when harm is clear.   
+Proceed where truth is.
+`
 TML is bound by the [Goukassian Promise](/main/Goukassian_Promise.md), a tripartite covenant consisting of:
 
     [The Lantern 🏮](/main/Goukassian_Promise.md): Visual proof of ethical oversight and hesitation
