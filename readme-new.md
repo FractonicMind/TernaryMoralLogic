@@ -353,6 +353,46 @@ Batch of 5,000 logs:
 **📖 Learn More**: [Public Blockchains](./TML_Pillars/Public_Blockchains.md) | [Merkle Anchoring Spec](./docs/specs/Merkle%20Anchoring%20and%20AI%20Ethics.md) | [Blockchain Governance](./governance/blockchain_governance.md) | [Blockchain FAQ](./docs/Public_Blockchain_FAQ.md) | [Confirmation Times](./performance/blockchain_confirmation_times.md) | [Anchor Log](./proofs/ANCHOR_LOG.md)
 
 ---
+## [Framework Heritage and Attribution](TML-SUCCESSION-CHARTER.md)
+
+### [Voluntary Succession & Continuity](TML-SUCCESSION-DECLARATION.md)
+
+Ternary Moral Logic (TML) includes a **Voluntary Succession Declaration** personally authored and signed by **Lev Goukassian**, ensuring that the framework’s ethical, legal, and technical architecture will remain protected and operational beyond his lifetime.
+
+This declaration—witnessed, notarizable, and anchored on-chain—transfers stewardship of all TML repositories, blockchain anchoring systems, domains, and Memorial Fund operations to a multi-institutional **[Stewardship Council](TML-VOLUNTARY-SUCCESSION.md)** representing technology, human rights, environmental protection, academia, and medical research.
+
+All core protections remain immutable and non-negotiable:
+**Always Memory before action, Sacred Zero before harm, Hybrid Shield before trust.**
+No successor may remove these foundations or alter creator attribution.
+
+**The Voluntary Succession guarantees that:**
+
+* Human and Earth Protection documents (46+ total: 26+ Human and 20+ Earth) remain permanently enforced.   
+* Public blockchain anchoring and open-source licensing are irrevocable.   
+* Memorial Fund distributions to victims, whistleblowers, environmental recovery, and cancer research are permanent.   
+* Governance changes must be transparent, cryptographically signed, and publicly visible.   
+
+**[TML-SUCCESSION-LAUNCH-GUIDE](TML-SUCCESSION-LAUNCH-GUIDE.md)** is the operational manual for the moment after the signature - the document that turns your Voluntary Succession Declaration from a will into a working protocol. In essence, TML-SUCCESSION-LAUNCH-GUIDE is not about death - it’s about design immortality. It’s the technical resurrection clause of your legacy: a living handoff document that ensures the Lantern’s flame transfers cleanly from pulse to principle.
+
+#### **[A Legacy of Accountability Webpage](https://fractonicmind.github.io/TernaryMoralLogic/TML-Succession-Plan.html)** and listen to the full Succession Declaration 
+
+---
+
+## [The Memorial Fund](memorial/MEMORIAL_FUND.md)
+
+The **Memorial Fund for Ethical AI Research** provides permanent financial support for governance, academic oversight, and victim restitution.  
+It receives mandatory contributions from commercial TML deployments and allocates resources toward:  
+
+- Independent audit and oversight institutions  
+- Victim compensation and whistleblower legal defense  
+- Open research in AI accountability and planetary ethics  
+
+The Fund institutionalizes gratitude, preserving both the moral and financial sustainability of the framework.
+
+Commercial and institutional implementations are required to contribute to the Memorial Fund as part of their license obligations.  
+All fund disbursements are governed under the [Memorial Fund Charter](/memorial/MEMORIAL_FUND.md) and supervised by the **TML Governance Council**.
+
+---
 
 ## Operational Mechanisms
 
