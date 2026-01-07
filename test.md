@@ -1,5 +1,16 @@
 # Ternary Moral Logic (TML): Constitutional AI Governance
 
+[![License](https://img.shields.io/badge/License-MIT_with_Attribution-green.svg)](LICENSE)
+[![Conformance Testing](https://img.shields.io/badge/Conformance-Level_3_Certified-brightgreen.svg)](docs/CONFORMANCE_TESTING.md)
+[![Memorial Fund](https://img.shields.io/badge/Memorial-Lev_Goukassian-purple.svg)](memorial/MEMORIAL_FUND.md)
+[![ZENODO](https://img.shields.io/badge/ZENODO-Notarized%20Constitutional%20Core%20October%202025-red?style=flat-square)](https://zenodo.org/records/17352897)
+[![ZENODO](https://img.shields.io/badge/ZENODO-Notarized%20Constitutional%20Core%20November%202025-red?style=flat-square)](https://zenodo.org/records/17613006)
+
+> **IMPORTANT NOTICE**: Ternary Moral Logic (TML) is a **legal-technical framework**, not software, hardware, or consulting services.   
+> Implementation requires compliance with all mandatory requirements outlined in [MANDATORY.md](docs/MANDATORY.md) and [COMPLIANCE_DISCLAIMER.md](docs/COMPLIANCE_DISCLAIMER.md).
+
+---
+
 ## Overview
 
 **Ternary Moral Logic (TML)** is a constitutional framework for artificial intelligence that enforces ethical decision-making through deterministic architectural constraints rather than probabilistic alignment. Developed by Lev Goukassian, TML introduces a mandatory **"Sacred Zero"** (State 0) between binary permit (+1) and refuse (-1) states, ensuring AI systems pause, reflect, and justify decisions when truth is uncertain.
