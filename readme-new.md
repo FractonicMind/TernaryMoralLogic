@@ -44,16 +44,16 @@ Every decision generates a triadic record:
 **+1** to proceed, **0** for Sacred Zero’s hesitation, **−1** to refuse harm.
 Each entry is cryptographically sealed, timestamped, and chained to its predecessors, a lineage of accountability no developer, corporation, or government can sever.
 
-## Core Philosophy: [Goukassian Promise](/main/Goukassian_Vow.md)
+## Core Philosophy: [The Goukassian Vow](/main/Goukassian_Vow.md)
 
 `Pause when truth is uncertain.
 Refuse when harm is clear.
 Proceed where truth is.`
 
-TML is bound by the [Goukassian Promise](/main/Goukassian_Vow.md), a tripartite covenant consisting of:
+TML is bound by the [Goukassian Promise](/main/Goukassian_Promise.md), a tripartite covenant consisting of:
 
-    [The Lantern 🏮](/docs/LICENSE_FAQ.md): Visual proof of ethical oversight and hesitation
-    [The Signature ✍️](/docs/LICENSE_FAQ.md): Cryptographic attribution to original architect (ORCID: 0009-0006-5966-1243)
+    [The Lantern 🏮](/main/Goukassian_Promise.md): Visual proof of ethical oversight and hesitation
+    [The Signature ✍️](/main/Goukassian_Promise.md): Cryptographic attribution to original architect (ORCID: 0009-0006-5966-1243)
     [The License 📜](/docs/LICENSE_FAQ.md): Binding prohibitions against weaponization and surveillance
 
 
