@@ -74,7 +74,7 @@ TML architecture rests on eight interdependent pillars that operationalize ethic
 **Technical Mechanism**:
 - Cryptographic pre-commitment: Log hash serves as decryption key for actuator authorization
 - If logging subsystem fails, action execution is architecturally blocked (Fail-Secure design)
-- No bypass available—system defaults to [State 0](#state-0-the-sacred-zero)
+- No bypass available—system defaults to State 0
 
 **Implementation**:
 ```
