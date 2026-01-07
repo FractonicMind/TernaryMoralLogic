@@ -146,7 +146,11 @@ Organizations implementing TML bear **full legal and ethical responsibility** fo
 
 ## The Eight Pillars of Constitutional AI
 
-TML architecture rests on eight interdependent pillars that operationalize ethical governance:
+The operational efficacy of Ternary Moral Logic (TML) does not derive from a single algorithm, a fine-tuned model weights file, or a standalone policy document. Rather, it is established through an interdependent architecture of eight constitutional pillars. These pillars function as a unified governance stack, transforming abstract ethical principles into hard-coded, immutable operational constraints. Unlike voluntary frameworks that rely on post-hoc compliance or "best effort" alignment---often criticized as "ethics washing"---the TML architecture enforces a "governance-first" execution model.
+
+In this model, the validity of an AI action is contingent upon its adherence to these eight structural requirements. If any pillar is compromised, the system does not merely degrade in performance; it ceases to operate, adhering to the foundational axiom: **Pause when truth is uncertain. Refuse when harm is clear. Proceed where truth is.**
+
+This section provides an exhaustive technical and legal analysis of each pillar. For every component, we examine its fundamental purpose, its technical mechanisms (including deep dives into latency architectures and cryptographic schemas), its legal effect under current regulatory regimes (such as the EU AI Act and Federal Rules of Evidence), its operational consequences for system throughput, and the specific failure cases it is designed to prevent.
 
 ### **Pillar 1: [The Sacred Zero (The Epistemic Hold)](./TML_Pillars/Sacred_Zero-Sacred_Pause_Technology.md)**
 
