@@ -44,20 +44,20 @@ Every decision generates a triadic record:
 **+1** to proceed, **0** for Sacred Zero’s hesitation, **−1** to refuse harm.
 Each entry is cryptographically sealed, timestamped, and chained to its predecessors, a lineage of accountability no developer, corporation, or government can sever.
 
-At the center stands the **[The Goukassian Vow](https://www.google.com/search?q=Goukassian_Vow.md)**:
+## Core Philosophy: The Goukassian Vow
 
-> **Pause when truth is uncertain.**
-> **Refuse when harm is clear.**
-> **Proceed where truth is.**
+`Pause when truth is uncertain.
+Refuse when harm is clear.
+Proceed where truth is.`
 
-This vow is not decorative text; it is executable law encoded into architecture. The resulting artifacts are **Moral Trace Logs**, not telemetry, but verifiable testimony.
+TML is bound by the [Goukassian Promise[(/main/Goukassian_Vow.md), a tripartite covenant consisting of:
 
-Each log is wrapped within the **Hybrid Shield**:
+    [The Lantern 🏮](/docs/LICENSE_FAQ.md): Visual proof of ethical oversight and hesitation
+    [The Signature ✍️](/docs/LICENSE_FAQ.md): Cryptographic attribution to original architect (ORCID: 0009-0006-5966-1243)
+    [The License 📜](/docs/LICENSE_FAQ.md): Binding prohibitions against weaponization and surveillance
 
-* The **Mathematical Shield** anchors hashes to multiple public ledgers, creating cryptographic immutability.
-* The **Public Blockchain Shield** ensures that any tampering, even by a single bit, exposes itself across networks of record.
 
-> "No memory = No action. The framework remembers, so justice can see."
+#### "No Log = No Action. The framework remembers, so justice can see."
 
 ---
 
