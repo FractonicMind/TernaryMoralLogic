@@ -47,7 +47,7 @@ Each entry is cryptographically sealed, timestamped, and chained to its predeces
 ## Core Philosophy: [The Goukassian Vow](/Goukassian_Vow.md)
 
 ```
-*Pause when truth is uncertain.*
+Pause when truth is uncertain.
 Refuse when harm is clear.
 Proceed where truth is.
 
@@ -56,7 +56,7 @@ TML is bound by the [Goukassian Promise](/TML_Pillars/Goukassian_Promise.md), a 
 
 [The Lantern 🏮](/TML_Pillars/Goukassian_Promise.md): Visual proof of ethical oversight and hesitation   
 [The Signature ✍️](/TML_Pillars/Goukassian_Promise.md): Cryptographic attribution to original architect (ORCID: 0009-0006-5966-1243)   
- [The License 📜](/docs/LICENSE_FAQ.md): Binding prohibitions against weaponization and surveillance   
+[The License 📜](/docs/LICENSE_FAQ.md): Binding prohibitions against weaponization and surveillance   
 
 
 #### "No Log = No Action. The framework remembers, so justice can see."
