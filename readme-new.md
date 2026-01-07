@@ -44,7 +44,7 @@ Every decision generates a triadic record:
 **+1** to proceed, **0** for Sacred Zero’s hesitation, **−1** to refuse harm.
 Each entry is cryptographically sealed, timestamped, and chained to its predecessors, a lineage of accountability no developer, corporation, or government can sever.
 
-## Core Philosophy: [The Goukassian Vow](/main/Goukassian_Vow.md)
+## Core Philosophy: [The Goukassian Vow](/Goukassian_Vow.md)
 
 ```
 Pause when truth is uncertain.   
