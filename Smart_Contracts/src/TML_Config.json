@@ -1,0 +1,17 @@
+{
+  "address": "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        { "indexed": true, "name": "decisionId", "type": "bytes32" },
+        { "indexed": false, "name": "timestamp", "type": "uint256" },
+        { "indexed": false, "name": "reason", "type": "string" },
+        { "indexed": true, "name": "agent", "type": "address" }
+      ],
+      "name": "LanternSignal",
+      "type": "event"
+    }
+    // ... rest of the ABI ...
+  ]
+}
