@@ -49,7 +49,6 @@ For this analysis, the most relevant components are its core operational mechani
 2. **Sacred Pause (State 0):** When the EUS of a given action exceeds a predefined threshold, TML automatically triggers a "Sacred Pause." This is not merely a "stop" button; it is a mandatory, architectural halt. The system is forbidden from proceeding autonomously and must escalate to a human.  
 3. **Clarifying Question Engine (CQE):** During a Sacred Pause, the TML framework generates a human-readable prompt. This CQE prompt explains *why* the system paused (e.g., "Proposed loan denial has high correlation with a protected demographic, risking a biased outcome. Please review.")  
 4. **Immutable Moral Trace Logs:** The entire event—from the inputs and the EUS calculation to the CQE prompt and the final human decision—is recorded in a log. This log is cryptographically hashed and anchored to public blockchains via TML's **Hybrid Shield** \[5\]. This makes the record permanent, tamper-proof, and verifiable by any third party, fulfilling the "Always Memory" pillar.  
-5. 
 
 ### **III. Analysis: Mapping TML to EU AI Act Mandates**
 
