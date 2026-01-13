@@ -1,0 +1,1589 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Polygon as the Scalable Operational Layer for Ternary Moral Logic</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'serif': ['Playfair Display', 'serif'],
+                        'sans': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'sage': {
+                            50: '#f6f7f6',
+                            100: '#e3e7e3',
+                            200: '#c7d0c7',
+                            300: '#a4b3a4',
+                            400: '#7d907d',
+                            500: '#5f735f',
+                            600: '#4a5c4a',
+                            700: '#3d4b3d',
+                            800: '#333e33',
+                            900: '#2c342c',
+                        },
+                        'warm': {
+                            50: '#fefcf9',
+                            100: '#fcf6ed',
+                            200: '#f7e8d1',
+                            300: '#f0d7b0',
+                            400: '#e7c18a',
+                            500: '#dead6b',
+                            600: '#c68445',
+                            700: '#a56938',
+                            800: '#875436',
+                            900: '#6f4530',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            overflow-x: hidden;
+        }
+        
+        .toc-fixed {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 280px;
+            height: 100vh;
+            background: linear-gradient(135deg, #f6f7f6 0%, #e3e7e3 100%);
+            border-right: 1px solid #c7d0c7;
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 2rem 1.5rem;
+        }
+        
+        .main-content {
+            margin-left: 280px;
+            min-height: 100vh;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #2c342c 0%, #4a5c4a 50%, #5f735f 100%);
+        }
+        
+        .citation-link {
+            color: #c68445;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px dotted #c68445;
+        }
+        
+        .citation-link:hover {
+            color: #a56938;
+            border-bottom: 1px solid #a56938;
+        }
+        
+        .bento-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            grid-template-rows: auto auto;
+            gap: 2rem;
+            height: 60vh;
+        }
+        
+        .bento-hero {
+            grid-row: 1 / -1;
+            position: relative;
+            overflow: hidden;
+            border-radius: 1rem;
+        }
+        
+        .bento-side {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .bento-card {
+            flex: 1;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            background: white;
+            border: 1px solid #e3e7e3;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Mermaid diagram styling */
+        .mermaid-container {
+            display: flex;
+            justify-content: center;
+            min-height: 300px;
+            max-height: 800px;
+            background: #ffffff;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mermaid-container .mermaid {
+            width: 100%;
+            max-width: 100%;
+            height: 100%;
+            cursor: grab;
+            transition: transform 0.3s ease;
+            transform-origin: center center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            touch-action: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .mermaid-container .mermaid svg {
+            max-width: 100%;
+            height: 100%;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .mermaid-container .mermaid:active {
+            cursor: grabbing;
+        }
+
+        .mermaid-container.zoomed .mermaid {
+            height: 100%;
+            width: 100%;
+            cursor: grab;
+        }
+
+        .mermaid-controls {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            display: flex;
+            gap: 10px;
+            z-index: 20;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 8px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .mermaid-control-btn {
+            background: #ffffff;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            padding: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #374151;
+            font-size: 14px;
+            min-width: 36px;
+            height: 36px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mermaid-control-btn:hover {
+            background: #f8fafc;
+            border-color: #3b82f6;
+            color: #3b82f6;
+            transform: translateY(-1px);
+        }
+
+        .mermaid-control-btn:active {
+            transform: scale(0.95);
+        }
+        
+        .comparison-table {
+            overflow-x: auto;
+            border-radius: 1rem;
+            border: 1px solid #e3e7e3;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .comparison-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .comparison-table th {
+            background: #f6f7f6;
+            padding: 1rem;
+            font-weight: 600;
+            text-align: left;
+            border-bottom: 2px solid #c7d0c7;
+        }
+        
+        .comparison-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #e3e7e3;
+        }
+        
+        .comparison-table tr:hover {
+            background: #f6f7f6;
+        }
+        
+@media (max-width: 1024px) {
+    .toc-fixed {
+        display: none;
+    }
+    .main-content {
+        margin-left: 0;
+    }
+    .bento-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+        height: auto;
+    }
+    .bento-hero {
+        grid-row: 1;
+    }
+    
+    /* Mermaid controls for mobile */
+    .mermaid-control-btn:not(.reset-zoom) {
+        display: none;
+    }
+    .mermaid-controls {
+        top: auto;
+        bottom: 15px;
+        right: 15px;
+    }
+}
+
+/* Responsive images */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Prevent horizontal overflow on small screens */
+@media (max-width: 768px) {
+    .px-8 {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    .hero-gradient .text-4xl {
+        font-size: 1.5rem;
+        line-height: 2rem;
+    }
+    .hero-gradient .text-xl {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+}
+    </style>
+  <base target="_blank">
+</head>
+
+  <body class="font-sans bg-white text-gray-900 leading-relaxed">
+    <!-- Fixed Table of Contents -->
+    <nav class="toc-fixed">
+      <div class="mb-6">
+        <h3 class="font-serif font-bold text-lg text-sage-800 mb-4">Contents</h3>
+      </div>
+      <ul class="space-y-2 text-sm">
+        <li>
+          <a href="#introduction" class="block py-1 px-2 rounded hover:bg-sage-200 transition-colors">Introduction</a>
+        </li>
+        <li>
+          <a href="#polygon-core" class="block py-1 px-2 rounded hover:bg-sage-200 transition-colors">1. Polygon&#39;s Core Function</a>
+        </li>
+        <li>
+          <a href="#privacy-paradox" class="block py-1 px-2 rounded hover:bg-sage-200 transition-colors">2. The Privacy Paradox</a>
+        </li>
+        <li>
+          <a href="#tml-stack" class="block py-1 px-2 rounded hover:bg-sage-200 transition-colors">3. Polygon&#39;s Position in TML Stack</a>
+        </li>
+        <li>
+          <a href="#smart-contracts" class="block py-1 px-2 rounded hover:bg-sage-200 transition-colors">4. Smart Contract Execution</a>
+        </li>
+        <li>
+          <a href="#performance" class="block py-1 px-2 rounded hover:bg-sage-200 transition-colors">5. Performance &amp; Economics</a>
+        </li>
+        <li>
+          <a href="#trust-model" class="block py-1 px-2 rounded hover:bg-sage-200 transition-colors">6. Trust Model</a>
+        </li>
+        <li>
+          <a href="#governance" class="block py-1 px-2 rounded hover:bg-sage-200 transition-colors">7. Governance &amp; Capture Risk</a>
+        </li>
+        <li>
+          <a href="#limitations" class="block py-1 px-2 rounded hover:bg-sage-200 transition-colors">8. Limitations</a>
+        </li>
+        <li>
+          <a href="#conclusion" class="block py-1 px-2 rounded hover:bg-sage-200 transition-colors">9. Conclusion</a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <!-- Hero Section with Bento Layout -->
+      <section class="hero-gradient text-white">
+        <div class="max-w-7xl mx-auto px-8 py-16">
+          <div class="bento-grid">
+            <!-- Main Hero Content -->
+            <div class="bento-hero flex flex-col justify-center p-8">
+              <div class="relative">
+                <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+                  <span class="italic">Polygon as the Scalable</span>
+                  <br/>
+                  <span class="text-warm-300">Operational Layer</span>
+                  <br/>
+                  <span class="italic">for Ternary Moral Logic</span>
+                </h1>
+                <p class="text-xl lg:text-2xl font-light mb-8 max-w-2xl opacity-90">
+                  A rigorous technical analysis of zkEVM and AggLayer as the high-throughput, privacy-preserving foundation for ethical AI governance
+                </p>
+                <div class="flex items-center space-x-6 text-sm opacity-75">
+                  <span><i class="fas fa-shield-alt mr-2"></i>Cryptographic Certainty</span>
+                  <span><i class="fas fa-bolt mr-2"></i>Sub-second Finality</span>
+                  <span><i class="fas fa-lock mr-2"></i>Zero-Knowledge Privacy</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Side Cards -->
+            <div class="bento-side">
+              <div class="bento-card">
+                <div class="flex items-center mb-3">
+                  <i class="fas fa-layer-group text-warm-600 text-xl mr-3"></i>
+                  <h3 class="font-serif font-semibold text-lg">Three-Layer Architecture</h3>
+                </div>
+                <p class="text-gray-700 text-sm">Bitcoin as Witness, Ethereum as Court, Polygon as Circulatory System</p>
+              </div>
+              <div class="bento-card">
+                <div class="flex items-center mb-3">
+                  <i class="fas fa-zap text-warm-600 text-xl mr-3"></i>
+                  <h3 class="font-serif font-semibold text-lg">ZK-Operational Excellence</h3>
+                </div>
+                <p class="text-gray-700 text-sm">Validity proofs provide mathematical certainty for moral enforcement at scale</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Introduction -->
+      <section id="introduction" class="py-16 bg-white">
+        <div class="max-w-4xl mx-auto px-8">
+          <p class="text-xl leading-relaxed text-gray-700 mb-8">
+            Polygon, through its zkEVM and AggLayer, serves as the high-throughput, privacy-preserving operational layer for Ternary Moral Logic (TML). It functions as a ZK-Rollup that inherits Ethereum&#39;s security while enabling orders-of-magnitude higher throughput, making it the &#34;Fast Lane&#34; for processing millions of daily moral decisions.
+          </p>
+
+          <div class="bg-sage-50 border-l-4 border-sage-500 p-6 mb-8">
+            <p class="text-lg italic text-sage-800">
+              &#34;By using zero-knowledge proofs, it provides cryptographic certainty for ethical enforcement, allowing AI agents to prove compliance without revealing sensitive data. Positioned as the &#39;Circulatory System&#39; in a layered stack subordinate to Ethereum (&#39;The Court&#39;) and Bitcoin (&#39;The Witness&#39;), Polygon makes a universal, scalable, and economically viable ethical framework for AI operable.&#34;
+            </p>
+          </div>
+
+          <img src="https://kimi-web-img.moonshot.cn/img/www.mdpi.com/6834693c4db843ff16ea8981abd636306e877f81.png" alt="Abstract visualization of a multi-layer blockchain architecture" class="w-full h-64 object-cover rounded-lg shadow-lg mb-8" size="medium" aspect="wide" query="blockchain layers abstract" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"/>
+
+          <p class="text-lg leading-relaxed text-gray-700">
+            This analysis examines Polygon&#39;s role through nine critical dimensions, from its core ZK-Rollup architecture to its position in the broader TML stack, providing a comprehensive understanding of how it enables scalable ethical AI governance while maintaining subordination to foundational constitutional and evidentiary layers.
+          </p>
+        </div>
+      </section>
+
+      <!-- Section 1: Polygon's Core Function -->
+      <section id="polygon-core" class="py-16 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-8">
+          <h2 class="font-serif text-4xl font-bold text-sage-800 mb-8">1. Polygon&#39;s Core Function in TML: The ZK-Operational Layer</h2>
+
+          <div class="grid md:grid-cols-2 gap-8 mb-12">
+            <div>
+              <h3 class="font-serif text-2xl font-semibold text-sage-700 mb-4">ZK-Rollup Architecture</h3>
+              <p class="text-gray-700 mb-4">
+                Polygon zkEVM functions as a <a href="https://dev.to/chucks1093/blockchain-layers-l1-l2-and-the-role-of-rollups-kne" class="citation-link">ZK-Rollup that inherits Ethereum&#39;s security</a> while enabling orders-of-magnitude higher throughput. This architecture is critical for TML&#39;s requirement to process millions of daily moral decisions from countless AI agents.
+              </p>
+              <p class="text-gray-700">
+                The core innovation lies in compressing thousands of TML decisions into a single validity proof, providing <strong>cryptographic certainty</strong> rather than purely economic certainty through incentives.
+              </p>
+            </div>
+            <div>
+              <img src="https://kimi-web-img.moonshot.cn/imagegen/20260112/02176815614858528a04e35a69bbadd2802274f74f3d7f07e8621_0.jpeg" alt="Diagram of ZK-Rollup architecture with off-chain transaction processing" class="w-full h-48 object-cover rounded-lg shadow-lg" size="medium" aspect="wide" style="linedrawing" query="ZK-Rollup architecture" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"/>
+            </div>
+          </div>
+
+          <div class="bg-white p-8 rounded-lg shadow-lg mb-8">
+            <h3 class="font-serif text-2xl font-semibold text-sage-700 mb-6">Preventing &#34;Ethics-by-Budget&#34;</h3>
+            <div class="grid md:grid-cols-3 gap-6">
+              <div class="text-center">
+                <div class="text-3xl font-bold text-warm-600 mb-2">$0.002</div>
+                <div class="text-sm text-gray-600">Average cost per transaction</div>
+              </div>
+              <div class="text-center">
+                <div class="text-3xl font-bold text-warm-600 mb-2">30-50x</div>
+                <div class="text-sm text-gray-600">Expected cost reduction</div>
+              </div>
+              <div class="text-center">
+                <div class="text-3xl font-bold text-warm-600 mb-2">1000x</div>
+                <div class="text-sm text-gray-600">Throughput improvement vs L1</div>
+              </div>
+            </div>
+            <p class="text-gray-700 mt-6">
+              <a href="https://polygon.technology/blog/upgrade-every-evm-chain-to-zk-introducing-the-type-1-prover" class="citation-link">Polygon&#39;s Type 1 prover</a> achieves these efficiencies while maintaining Ethereum security guarantees, making comprehensive ethical logging economically feasible at scale.
+            </p>
+          </div>
+
+          <div class="bg-sage-100 p-6 rounded-lg">
+            <h4 class="font-semibold text-sage-800 mb-3">Technical Advantages for TML</h4>
+            <ul class="space-y-2 text-gray-700">
+              <li><i class="fas fa-check text-warm-600 mr-2"></i><strong>Inherited Security:</strong> Direct derivation from Ethereum L1 consensus</li>
+              <li><i class="fas fa-check text-warm-600 mr-2"></i><strong>High Throughput:</strong> Processing capacity for millions of daily decisions</li>
+              <li><i class="fas fa-check text-warm-600 mr-2"></i><strong>Low Latency:</strong> Sub-second confirmation for real-time ethical checks</li>
+              <li><i class="fas fa-check text-warm-600 mr-2"></i><strong>Economic Viability:</strong> Prevention of moral load shedding through low costs</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 2: Privacy Paradox -->
+      <section id="privacy-paradox" class="py-16 bg-white">
+        <div class="max-w-6xl mx-auto px-8">
+          <h2 class="font-serif text-4xl font-bold text-sage-800 mb-8">2. The Privacy Paradox: Zero-Knowledge Ethics</h2>
+
+          <div class="mb-8">
+            <img src="https://kimi-web-img.moonshot.cn/img/miro.medium.com/fa5b818a85a47c27d6ec5595f3fa5d271f711b4e.jpeg" alt="Abstract representation of zero-knowledge proof concept" class="w-full h-64 object-cover rounded-lg shadow-lg mb-6" size="medium" aspect="wide" query="zero knowledge proof abstract illustration" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"/>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-8 mb-12">
+            <div>
+              <h3 class="font-serif text-2xl font-semibold text-sage-700 mb-4">Proof of Conscience Without Leakage</h3>
+              <p class="text-gray-700 mb-4">
+                Zero-Knowledge proofs resolve the fundamental tension between transparency and privacy in AI ethics. An AI can prove compliance with TML rules without revealing sensitive data, proprietary algorithms, or user prompts.
+              </p>
+              <p class="text-gray-700">
+                This capability is essential for enterprise adoption, where data privacy and intellectual property protection are paramount concerns.
+              </p>
+            </div>
+            <div class="bg-warm-50 p-6 rounded-lg">
+              <h4 class="font-semibold text-warm-800 mb-4">ZK Protocol Flow</h4>
+              <div class="space-y-3 text-sm">
+                <div class="flex items-start">
+                  <span class="bg-warm-200 text-warm-800 px-2 py-1 rounded text-xs mr-3 mt-0.5">1</span>
+                  <div>
+                    <div class="font-medium">Rule Encoding</div>
+                    <div class="text-gray-600">TML logic encoded into public circuit C</div>
+                  </div>
+                </div>
+                <div class="flex items-start">
+                  <span class="bg-warm-200 text-warm-800 px-2 py-1 rounded text-xs mr-3 mt-0.5">2</span>
+                  <div>
+                    <div class="font-medium">Private Input</div>
+                    <div class="text-gray-600">AI processes sensitive data privately</div>
+                  </div>
+                </div>
+                <div class="flex items-start">
+                  <span class="bg-warm-200 text-warm-800 px-2 py-1 rounded text-xs mr-3 mt-0.5">3</span>
+                  <div>
+                    <div class="font-medium">Proof Generation</div>
+                    <div class="text-gray-600">ZK prover generates validity proof π</div>
+                  </div>
+                </div>
+                <div class="flex items-start">
+                  <span class="bg-warm-200 text-warm-800 px-2 py-1 rounded text-xs mr-3 mt-0.5">4</span>
+                  <div>
+                    <div class="font-medium">Public Verification</div>
+                    <div class="text-gray-600">Verifier contract confirms compliance</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-sage-50 p-8 rounded-lg">
+            <h3 class="font-serif text-2xl font-semibold text-sage-700 mb-6">Hybrid Shield Model</h3>
+            <p class="text-gray-700 mb-4">
+              <a href="https://www.linkedin.com/posts/lev-goukassian-5667b2282_tml-technical-dossier-the-constitution-of-activity-7411536837615398913-Nhvi" class="citation-link">TML&#39;s Hybrid Shield</a> uses ZK proofs to enable cross-chain redundancy without revealing log contents. The hash of each Moral Trace Log is anchored to multiple blockchains, creating a tamper-evident record that is both private and resilient.
+            </p>
+            <div class="grid md:grid-cols-3 gap-4 mt-6">
+              <div class="text-center p-4 bg-white rounded">
+                <i class="fas fa-link text-warm-600 text-2xl mb-2"></i>
+                <div class="font-semibold text-sage-800">Multi-Chain Anchoring</div>
+                <div class="text-sm text-gray-600">Bitcoin, Ethereum, Polygon</div>
+              </div>
+              <div class="text-center p-4 bg-white rounded">
+                <i class="fas fa-eye-slash text-warm-600 text-2xl mb-2"></i>
+                <div class="font-semibold text-sage-800">Privacy Preservation</div>
+                <div class="text-sm text-gray-600">Content remains confidential</div>
+              </div>
+              <div class="text-center p-4 bg-white rounded">
+                <i class="fas fa-shield-alt text-warm-600 text-2xl mb-2"></i>
+                <div class="font-semibold text-sage-800">Tamper Evidence</div>
+                <div class="text-sm text-gray-600">Immutable integrity checks</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 3: TML Stack Position -->
+      <section id="tml-stack" class="py-16 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-8">
+          <h2 class="font-serif text-4xl font-bold text-sage-800 mb-8">3. Polygon&#39;s Position in the TML Stack: The AggLayer</h2>
+
+          <div class="mb-8">
+            <div class="mermaid-container">
+              <div class="mermaid-controls">
+                <button class="mermaid-control-btn zoom-in" title="放大">
+                  <i class="fas fa-search-plus"></i>
+                </button>
+                <button class="mermaid-control-btn zoom-out" title="缩小">
+                  <i class="fas fa-search-minus"></i>
+                </button>
+                <button class="mermaid-control-btn reset-zoom" title="重置">
+                  <i class="fas fa-expand-arrows-alt"></i>
+                </button>
+                <button class="mermaid-control-btn fullscreen" title="全屏查看">
+                  <i class="fas fa-expand"></i>
+                </button>
+              </div>
+              <div class="mermaid">
+                graph TD
+                A[&#34;Bitcoin: The Witness
+                <br/>Immutable Time &amp; Evidence&#34;] --&gt; B[&#34;Ethereum: The Court
+                <br/>Constitutional Settlement &amp; Enforcement&#34;]
+                B --&gt; C[&#34;Polygon AggLayer: The Circulatory System
+                <br/>Unified High-Throughput Execution&#34;]
+
+                C --&gt; D[&#34;Chain A: AI Agent Network&#34;]
+                C --&gt; E[&#34;Chain B: DeFi Protocol&#34;]
+                C --&gt; F[&#34;Chain C: Enterprise System&#34;]
+
+                D --&gt; G[&#34;Moral Trace Logs&#34;]
+                E --&gt; G
+                F --&gt; G
+
+                G --&gt; H[&#34;Validity Proofs&#34;]
+                H --&gt; I[&#34;Ethereum Settlement&#34;]
+                I --&gt; J[&#34;Bitcoin Anchoring&#34;]
+
+                style A fill:#fefcf9,stroke:#6f4530,stroke-width:3px,color:#1f2937
+                style B fill:#f6f7f6,stroke:#4a5c4a,stroke-width:3px,color:#1f2937
+                style C fill:#f0d7b0,stroke:#5f735f,stroke-width:3px,color:#1f2937
+                style D fill:#ffffff,stroke:#a4b3a4,stroke-width:2px,color:#1f2937
+                style E fill:#ffffff,stroke:#a4b3a4,stroke-width:2px,color:#1f2937
+                style F fill:#ffffff,stroke:#a4b3a4,stroke-width:2px,color:#1f2937
+                style G fill:#fcf6ed,stroke:#c68445,stroke-width:2px,color:#1f2937
+                style H fill:#fcf6ed,stroke:#c68445,stroke-width:2px,color:#1f2937
+                style I fill:#f6f7f6,stroke:#4a5c4a,stroke-width:2px,color:#1f2937
+                style J fill:#fefcf9,stroke:#6f4530,stroke-width:2px,color:#1f2937
+              </div>
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-3 gap-8 mb-12">
+            <div class="bg-warm-50 p-6 rounded-lg">
+              <div class="flex items-center mb-4">
+                <i class="fas fa-clock text-warm-600 text-2xl mr-3"></i>
+                <h3 class="font-serif font-semibold text-lg">Bitcoin: The Witness</h3>
+              </div>
+              <p class="text-gray-700 text-sm mb-4">
+                <a href="https://www.mdpi.com/2076-3417/15/23/12722" class="citation-link">Immutable temporal and evidentiary anchor</a> providing indelible records for long-term forensic analysis.
+              </p>
+              <ul class="text-xs text-gray-600 space-y-1">
+                <li>• Highest security and decentralization</li>
+                <li>• Append-only ledger for commitments</li>
+                <li>• Global trust anchor</li>
+              </ul>
+            </div>
+
+            <div class="bg-sage-100 p-6 rounded-lg">
+              <div class="flex items-center mb-4">
+                <i class="fas fa-gavel text-sage-600 text-2xl mr-3"></i>
+                <h3 class="font-serif font-semibold text-lg">Ethereum: The Court</h3>
+              </div>
+              <p class="text-gray-700 text-sm mb-4">
+                <a href="https://entethalliance.org/wp-content/uploads/2025/03/EEA_Enterprise_Ethereum_Chain_Specification_V1_2800229.pdf" class="citation-link">Constitutional settlement and enforcement layer</a> where TML smart contracts define moral logic.
+              </p>
+              <ul class="text-xs text-gray-600 space-y-1">
+                <li>• Mature smart contract ecosystem</li>
+                <li>• Decentralized governance</li>
+                <li>• Final arbiter of disputes</li>
+              </ul>
+            </div>
+
+            <div class="bg-warm-100 p-6 rounded-lg">
+              <div class="flex items-center mb-4">
+                <i class="fas fa-project-diagram text-warm-600 text-2xl mr-3"></i>
+                <h3 class="font-serif font-semibold text-lg">Polygon: Circulatory System</h3>
+              </div>
+              <p class="text-gray-700 text-sm mb-4">
+                <a href="https://messari.io/report/polygon-ecosystem-overview" class="citation-link">Unified high-throughput execution environment</a> enabling coherent moral state across chains.
+              </p>
+              <ul class="text-xs text-gray-600 space-y-1">
+                <li>• Atomic interoperability</li>
+                <li>• Consistency without sovereignty</li>
+                <li>• Sub-second finality</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="bg-white p-8 rounded-lg shadow-lg">
+            <h3 class="font-serif text-2xl font-semibold text-sage-700 mb-6">AggLayer&#39;s Core Innovations</h3>
+            <div class="grid md:grid-cols-2 gap-8">
+              <div>
+                <h4 class="font-semibold text-sage-800 mb-3">Unified Bridge</h4>
+                <p class="text-gray-700 mb-4">
+                  The AggLayer&#39;s unified bridge acts as a central hub for cross-chain communication, enabling seamless state propagation between different chains while maintaining security guarantees.
+                </p>
+                <h4 class="font-semibold text-sage-800 mb-3">Pessimistic Proofs</h4>
+                <p class="text-gray-700">
+                  <a href="https://medium.com/@ankitacode11/agglayer-v0-2-pessimistic-proofs-power-a-multistack-web3-future-31969e5298cb" class="citation-link">Novel proof mechanism</a> ensures no chain can withdraw more assets than deposited, providing strong cryptographic guarantees for cross-chain transactions.
+                </p>
+              </div>
+              <div>
+                <img src="https://kimi-web-img.moonshot.cn/img/plus.unsplash.com/05ad11cb27cf30c4ebc659093a52e3fac45ab943" alt="Abstract visualization of interconnected blockchain network" class="w-full h-48 object-cover rounded-lg" size="medium" aspect="wide" query="blockchain interconnected network abstract" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"/>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 4: Smart Contract Execution -->
+      <section id="smart-contracts" class="py-16 bg-white">
+        <div class="max-w-6xl mx-auto px-8">
+          <h2 class="font-serif text-4xl font-bold text-sage-800 mb-8">4. Smart Contract Execution: The Batcher and the Relay</h2>
+
+          <div class="grid md:grid-cols-2 gap-8 mb-12">
+            <div class="bg-sage-50 p-8 rounded-lg">
+              <h3 class="font-serif text-2xl font-semibold text-sage-700 mb-6">The Batcher: Aggregating Moral Trace Logs</h3>
+              <p class="text-gray-700 mb-4">
+                The Batcher smart contract aggregates large volumes of Moral Trace Logs into Merkle trees, enabling efficient and secure storage on Ethereum mainnet.
+              </p>
+              <div class="space-y-3">
+                <div class="flex items-start">
+                  <i class="fas fa-tree text-warm-600 mr-3 mt-1"></i>
+                  <div>
+                    <div class="font-medium">Merkle Tree Construction</div>
+                    <div class="text-sm text-gray-600">Hierarchical hashing of thousands of logs</div>
+                  </div>
+                </div>
+                <div class="flex items-start">
+                  <i class="fas fa-anchor text-warm-600 mr-3 mt-1"></i>
+                  <div>
+                    <div class="font-medium">Root Anchoring</div>
+                    <div class="text-sm text-gray-600">Single root hash stored on Ethereum L1</div>
+                  </div>
+                </div>
+                <div class="flex items-start">
+                  <i class="fas fa-check-double text-warm-600 mr-3 mt-1"></i>
+                  <div>
+                    <div class="font-medium">Tamper Proofing</div>
+                    <div class="text-sm text-gray-600">Immutable record of all batched logs</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-warm-50 p-8 rounded-lg">
+              <h3 class="font-serif text-2xl font-semibold text-warm-700 mb-6">Enforcement Relays: Handling Sacred Pauses</h3>
+              <p class="text-gray-700 mb-4">
+                <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5655090" class="citation-link">Enforcement Relays manage high-frequency State 0 signals</a>, enabling immediate halting of AI systems while awaiting L1 settlement.
+              </p>
+              <div class="space-y-3">
+                <div class="flex items-start">
+                  <i class="fas fa-pause-circle text-sage-600 mr-3 mt-1"></i>
+                  <div>
+                    <div class="font-medium">State 0 Signal Handling</div>
+                    <div class="text-sm text-gray-600">Immediate execution of Sacred Pause</div>
+                  </div>
+                </div>
+                <div class="flex items-start">
+                  <i class="fas fa-exclamation-triangle text-sage-600 mr-3 mt-1"></i>
+                  <div>
+                    <div class="font-medium">Exit Window Problem</div>
+                    <div class="text-sm text-gray-600">Risk of sequencer censorship or delays</div>
+                  </div>
+                </div>
+                <div class="flex items-start">
+                  <i class="fas fa-life-ring text-sage-600 mr-3 mt-1"></i>
+                  <div>
+                    <div class="font-medium">Forced Inclusion</div>
+                    <div class="text-sm text-gray-600">Ethereum L1 safety backstop</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-gray-50 p-8 rounded-lg">
+            <h3 class="font-serif text-2xl font-semibold text-sage-700 mb-6">Safety Mechanisms and Backup Systems</h3>
+            <div class="grid md:grid-cols-2 gap-8">
+              <div>
+                <h4 class="font-semibold text-sage-800 mb-3">Timelock Protection</h4>
+                <p class="text-gray-700 mb-4">
+                  A 10-day timelock delay on contract upgrades provides an escape hatch for the community to respond to malicious changes.
+                </p>
+                <h4 class="font-semibold text-sage-800 mb-3">Security Council</h4>
+                <p class="text-gray-700">
+                  Multi-signature committee can implement emergency upgrades to address critical vulnerabilities while remaining accountable to the community.
+                </p>
+              </div>
+              <div>
+                <img src="https://kimi-web-img.moonshot.cn/img/www.mdpi.com/ffc994743d0918b23cfbd5fa72cf15e6a5ad4299.png" alt="Smart contract security mechanisms" class="w-full h-48 object-cover rounded-lg" size="medium" aspect="wide" query="smart contract security" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"/>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 5: Performance Analysis -->
+      <section id="performance" class="py-16 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-8">
+          <h2 class="font-serif text-4xl font-bold text-sage-800 mb-8">5. Performance, Latency, and Economic Viability</h2>
+
+          <div class="grid md:grid-cols-3 gap-6 mb-12">
+            <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+              <div class="text-3xl font-bold text-warm-600 mb-2">
+                &lt; 10ms</div>
+                  <div class="font-semibold text-sage-800 mb-2">Proof Validation</div>
+                  <div class="text-sm text-gray-600">
+                    <a href="https://arxiv.org/html/2509.06133v1" class="citation-link">Sub-10ms validation times</a> enable real-time ethical enforcement
+                  </div>
+              </div>
+              <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                <div class="text-3xl font-bold text-warm-600 mb-2">$0.02</div>
+                <div class="font-semibold text-sage-800 mb-2">Per Hash Anchor</div>
+                <div class="text-sm text-gray-600">
+                  Dramatic cost reduction makes mass moral logging economically viable
+                </div>
+              </div>
+              <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                <div class="text-3xl font-bold text-warm-600 mb-2">273+</div>
+                <div class="font-semibold text-sage-800 mb-2">UOPS Sustained</div>
+                <div class="text-sm text-gray-600">
+                  <a href="https://www.starknet.io/blog/starknet-2025-year-in-review/" class="citation-link">ZK-Rollup throughput benchmarks</a> show capacity for millions of daily decisions
+                </div>
+              </div>
+            </div>
+
+            <div class="comparison-table mb-12">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Metric</th>
+                    <th>Polygon zkEVM</th>
+                    <th>Starknet</th>
+                    <th>Optimism</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="font-semibold">Latency</td>
+                    <td>Sub-10ms (proof validation)</td>
+                    <td>500ms (transaction latency)</td>
+                    <td>250ms (block time with Flashblocks)</td>
+                  </tr>
+                  <tr>
+                    <td class="font-semibold">Throughput</td>
+                    <td>Not specified in sources</td>
+                    <td>2,630 UOPS (peak), 273 UOPS (sustained)</td>
+                    <td>130 TPS (average)</td>
+                  </tr>
+                  <tr>
+                    <td class="font-semibold">Cost</td>
+                    <td>$0.02 per hash anchor</td>
+                    <td>
+                      &lt;$0.001 (average gas fee)</td>
+                        <td>$0.17 (average transaction cost)</td>
+                  </tr>
+                  <tr>
+                    <td class="font-semibold">Security Model</td>
+                    <td>ZK-Rollup (Validity Proofs)</td>
+                    <td>ZK-Rollup (STARK Proofs)</td>
+                    <td>Optimistic Rollup (Fraud Proofs)</td>
+                  </tr>
+                  <tr>
+                    <td class="font-semibold">Finality</td>
+                    <td>Fast on L2, L1 finality on proof submission</td>
+                    <td>Fast on L2, L1 finality on proof submission</td>
+                    <td>Delayed (7-day challenge period)</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="bg-sage-100 p-8 rounded-lg">
+              <h3 class="font-serif text-2xl font-semibold text-sage-700 mb-6">Economic Viability as Moral Requirement</h3>
+              <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                  <h4 class="font-semibold text-sage-800 mb-3">Preventing Moral Load Shedding</h4>
+                  <p class="text-gray-700 mb-4">
+                    When ethical enforcement costs are negligible, there is no economic incentive to bypass safety measures. This removes the &#34;ethics-by-budget&#34; problem where safety checks are disabled to save money.
+                  </p>
+                  <h4 class="font-semibold text-sage-800 mb-3">Scalable Ethics as Prerequisite</h4>
+                  <p class="text-gray-700">
+                    Universal ethics requires a system that can handle millions of decisions daily without fragmentation. Polygon&#39;s scalability enables consistent enforcement across diverse AI applications.
+                  </p>
+                </div>
+                <div>
+                  <img src="https://kimi-web-img.moonshot.cn/img/media.licdn.com/0cbeee55a56f8f9d9fe1277388e15e6f03f50ff6" alt="Balance scale representing cost versus ethics" class="w-full h-48 object-cover rounded-lg" size="medium" aspect="wide" query="balance scale cost ethics" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"/>
+                </div>
+              </div>
+            </div>
+          </div>
+      </section>
+
+      <!-- Section 6: Trust Model -->
+      <section id="trust-model" class="py-16 bg-white">
+        <div class="max-w-6xl mx-auto px-8">
+          <h2 class="font-serif text-4xl font-bold text-sage-800 mb-8">6. Trust Model: Validity Proofs vs. Optimistic Assumptions</h2>
+
+          <div class="comparison-table mb-12">
+            <table>
+              <thead>
+                <tr>
+                  <th>Feature</th>
+                  <th>ZK-Rollups (Polygon zkEVM)</th>
+                  <th>Optimistic Rollups (Arbitrum, Optimism)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="font-semibold">Trust Model</td>
+                  <td><strong>Validity Proofs (Cryptographic)</strong> - Every batch accompanied by zero-knowledge proof mathematically proving correctness</td>
+                  <td><strong>Fraud Proofs (Game-Theoretic)</strong> - Transactions assumed valid by default with 7-day challenge period</td>
+                </tr>
+                <tr>
+                  <td class="font-semibold">Finality</td>
+                  <td><strong>Fast Finality</strong> - Once validity proof verified on L1, transactions are final and irreversible</td>
+                  <td><strong>Delayed Finality</strong> - Transactions only final after challenge period expires without successful fraud proof</td>
+                </tr>
+                <tr>
+                  <td class="font-semibold">Security</td>
+                  <td><strong>Mathematical Guarantees</strong> - Based on cryptography. Secure as long as underlying primitives are sound</td>
+                  <td><strong>Economic Guarantees</strong> - Relies on assumption that at least one honest party monitors and challenges fraud</td>
+                </tr>
+                <tr>
+                  <td class="font-semibold">Cost</td>
+                  <td><strong>Higher Proving Costs</strong> - Generating zero-knowledge proofs computationally intensive but amortized over many transactions</td>
+                  <td><strong>Lower Operational Costs</strong> - No proofs required upfront, making transaction processing cheaper for sequencer</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-8 mb-12">
+            <div class="bg-sage-50 p-8 rounded-lg">
+              <h3 class="font-serif text-2xl font-semibold text-sage-700 mb-6">ZK-Rollups: Mathematical Finality</h3>
+              <p class="text-gray-700 mb-4">
+                ZK-Rollups operate on &#34;prove first, trust later&#34; principle. Every transaction batch is processed by a prover generating a cryptographic proof that mathematically guarantees correctness.
+              </p>
+              <div class="space-y-3">
+                <div class="flex items-start">
+                  <i class="fas fa-shield-alt text-warm-600 mr-3 mt-1"></i>
+                  <div>
+                    <div class="font-medium">Immediate Finality</div>
+                    <div class="text-sm text-gray-600">No challenge period required</div>
+                  </div>
+                </div>
+                <div class="flex items-start">
+                  <i class="fas fa-calculator text-warm-600 mr-3 mt-1"></i>
+                  <div>
+                    <div class="font-medium">Mathematical Certainty</div>
+                    <div class="text-sm text-gray-600">Cryptographic guarantees of correctness</div>
+                  </div>
+                </div>
+                <div class="flex items-start">
+                  <i class="fas fa-tachometer-alt text-warm-600 mr-3 mt-1"></i>
+                  <div>
+                    <div class="font-medium">Fast Withdrawals</div>
+                    <div class="text-sm text-gray-600">No delayed finality periods</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-warm-50 p-8 rounded-lg">
+              <h3 class="font-serif text-2xl font-semibold text-warm-700 mb-6">Optimistic Rollups: Game Theory</h3>
+              <p class="text-gray-700 mb-4">
+                Optimistic systems assume transactions are valid by default, relying on economic incentives for users to monitor and challenge fraudulent activity during a 7-day window.
+              </p>
+              <div class="space-y-3">
+                <div class="flex items-start">
+                  <i class="fas fa-clock text-sage-600 mr-3 mt-1"></i>
+                  <div>
+                    <div class="font-medium">Delayed Finality</div>
+                    <div class="text-sm text-gray-600">7-day challenge period required</div>
+                  </div>
+                </div>
+                <div class="flex items-start">
+                  <i class="fas fa-coins text-sage-600 mr-3 mt-1"></i>
+                  <div>
+                    <div class="font-medium">Economic Incentives</div>
+                    <div class="text-sm text-gray-600">Security relies on honest parties being rewarded</div>
+                  </div>
+                </div>
+                <div class="flex items-start">
+                  <i class="fas fa-exclamation-triangle text-sage-600 mr-3 mt-1"></i>
+                  <div>
+                    <div class="font-medium">Vulnerability Period</div>
+                    <div class="text-sm text-gray-600">Potential for harm before fraud is detected</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-sage-100 p-8 rounded-lg">
+            <h3 class="font-serif text-2xl font-semibold text-sage-700 mb-6">Why TML Requires &#34;Math Over Game Theory&#34;</h3>
+            <p class="text-gray-700 mb-4">
+              For high-stakes moral enforcement, particularly the &#34;Sacred Pause&#34; mechanism, TML cannot afford to rely on probabilistic assumptions or economic games. The decision to halt an AI system requires immediate, mathematically verifiable certainty.
+            </p>
+            <div class="grid md:grid-cols-2 gap-6">
+              <div>
+                <h4 class="font-semibold text-sage-800 mb-3">Irreversibility Requirements</h4>
+                <p class="text-gray-700 text-sm">
+                  High-stakes moral enforcement cannot depend on the hope that someone will be watching and will be paid to act. It requires immediate, irreversible finality.
+                </p>
+              </div>
+              <div>
+                <h4 class="font-semibold text-sage-800 mb-3">Cryptographic Certainty</h4>
+                <p class="text-gray-700 text-sm">
+                  Validity proofs provide mathematical guarantees that are not subject to market fluctuations or user vigilance, ensuring consistent and reliable moral enforcement.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 7: Governance and Capture Risk -->
+      <section id="governance" class="py-16 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-8">
+          <h2 class="font-serif text-4xl font-bold text-sage-800 mb-8">7. Governance and Capture Risk</h2>
+
+          <div class="grid md:grid-cols-2 gap-8 mb-12">
+            <div class="bg-white p-8 rounded-lg shadow-lg">
+              <h3 class="font-serif text-2xl font-semibold text-sage-700 mb-6">Centralization Risks</h3>
+              <div class="space-y-4">
+                <div class="border-l-4 border-warm-500 pl-4">
+                  <h4 class="font-semibold text-warm-700 mb-2">Sequencer Centralization</h4>
+                  <p class="text-gray-700 text-sm">
+                    Current implementation has Polygon Labs operating the Sequencer and Aggregator, creating potential single points of failure and censorship risk.
+                  </p>
+                </div>
+                <div class="border-l-4 border-warm-500 pl-4">
+                  <h4 class="font-semibold text-warm-700 mb-2">Governance Influence</h4>
+                  <p class="text-gray-700 text-sm">
+                    Upgradeable contracts controlled by Polygon Labs create risk of protocol changes that may not align with community interests.
+                  </p>
+                </div>
+                <div class="border-l-4 border-warm-500 pl-4">
+                  <h4 class="font-semibold text-warm-700 mb-2">Capture Vectors</h4>
+                  <p class="text-gray-700 text-sm">
+                    Malicious actors could target centralized operators to gain control of network operations and state manipulation.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-white p-8 rounded-lg shadow-lg">
+              <h3 class="font-serif text-2xl font-semibold text-sage-700 mb-6">Mitigation Strategies</h3>
+              <div class="space-y-4">
+                <div class="border-l-4 border-sage-500 pl-4">
+                  <h4 class="font-semibold text-sage-700 mb-2">10-Day Timelock Delay</h4>
+                  <p class="text-gray-700 text-sm">
+                    All contract upgrades require 10-day advance notice, providing community review period and escape hatch.
+                  </p>
+                </div>
+                <div class="border-l-4 border-sage-500 pl-4">
+                  <h4 class="font-semibold text-sage-700 mb-2">Security Council</h4>
+                  <p class="text-gray-700 text-sm">
+                    Multi-signature committee from Ethereum community handles emergency upgrades while remaining accountable.
+                  </p>
+                </div>
+                <div class="border-l-4 border-sage-500 pl-4">
+                  <h4 class="font-semibold text-sage-700 mb-2">Ethereum Finality</h4>
+                  <p class="text-gray-700 text-sm">
+                    ZK-Rollup architecture ensures ultimate truth resides on Ethereum, preventing moral history rewriting.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-sage-100 p-8 rounded-lg">
+            <h3 class="font-serif text-2xl font-semibold text-sage-700 mb-6">Why Polygon Cannot Rewrite Moral History</h3>
+            <p class="text-gray-700 mb-6">
+              The layered TML architecture ensures that even if the Polygon Sequencer were compromised, the moral history of AI decisions remains immutable and verifiable through higher-order layers.
+            </p>
+            <div class="grid md:grid-cols-3 gap-6">
+              <div class="text-center p-4 bg-white rounded">
+                <i class="fas fa-shield-alt text-warm-600 text-2xl mb-2"></i>
+                <div class="font-semibold text-sage-800">Validity Proof Verification</div>
+                <div class="text-sm text-gray-600">Ethereum L1 rejects invalid proofs</div>
+              </div>
+              <div class="text-center p-4 bg-white rounded">
+                <i class="fas fa-link text-warm-600 text-2xl mb-2"></i>
+                <div class="font-semibold text-sage-800">Decentralized Finality</div>
+                <div class="text-sm text-gray-600">Truth determined by Ethereum network</div>
+              </div>
+              <div class="text-center p-4 bg-white rounded">
+                <i class="fas fa-history text-warm-600 text-2xl mb-2"></i>
+                <div class="font-semibold text-sage-800">Immutable Records</div>
+                <div class="text-sm text-gray-600">Moral history preserved on Bitcoin</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 8: Limitations -->
+      <section id="limitations" class="py-16 bg-white">
+        <div class="max-w-6xl mx-auto px-8">
+          <h2 class="font-serif text-4xl font-bold text-sage-800 mb-8">8. Limitations and Deliberate Constraints</h2>
+
+          <div class="grid md:grid-cols-2 gap-8 mb-12">
+            <div>
+              <img src="https://kimi-web-img.moonshot.cn/img/www.frontiersin.org/419378950d6985ac19a9aece87eec0f282fadff9.jpg" alt="Abstract representation of blockchain technology boundaries" class="w-full h-48 object-cover rounded-lg shadow-lg mb-6" size="medium" aspect="wide" query="boundaries blockchain" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"/>
+            </div>
+            <div>
+              <h3 class="font-serif text-2xl font-semibold text-sage-700 mb-4">Explicit Boundaries</h3>
+              <p class="text-gray-700 mb-4">
+                While Polygon excels as an operational layer, the TML framework imposes deliberate constraints to maintain system integrity and legitimacy.
+              </p>
+              <div class="space-y-3">
+                <div class="flex items-start">
+                  <i class="fas fa-ban text-warm-600 mr-3 mt-1"></i>
+                  <div>
+                    <div class="font-medium">No Constitutional Authority</div>
+                    <div class="text-sm text-gray-600">Cannot define or change TML rules</div>
+                  </div>
+                </div>
+                <div class="flex items-start">
+                  <i class="fas fa-ban text-warm-600 mr-3 mt-1"></i>
+                  <div>
+                    <div class="font-medium">No Evidentiary Sovereignty</div>
+                    <div class="text-sm text-gray-600">Cannot serve as long-term moral record</div>
+                  </div>
+                </div>
+                <div class="flex items-start">
+                  <i class="fas fa-ban text-warm-600 mr-3 mt-1"></i>
+                  <div>
+                    <div class="font-medium">No Rule Modification</div>
+                    <div class="text-sm text-gray-600">Subordinate to Ethereum governance</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-warm-50 p-8 rounded-lg mb-8">
+            <h3 class="font-serif text-2xl font-semibold text-warm-700 mb-6">Performance Must Never Outrank Legitimacy</h3>
+            <p class="text-gray-700 mb-4">
+              A core principle of TML architecture: operational efficiency must never compromise constitutional legitimacy. While Polygon provides high throughput and low latency, these advantages cannot override the fundamental requirements for security and integrity.
+            </p>
+            <div class="grid md:grid-cols-2 gap-6">
+              <div>
+                <h4 class="font-semibold text-warm-800 mb-3">Priority Hierarchy</h4>
+                <ol class="list-decimal list-inside space-y-1 text-sm text-gray-700">
+                  <li>Constitutional legitimacy (Ethereum)</li>
+                  <li>Evidentiary integrity (Bitcoin)</li>
+                  <li>Operational efficiency (Polygon)</li>
+                </ol>
+              </div>
+              <div>
+                <h4 class="font-semibold text-warm-800 mb-3">Design Trade-offs</h4>
+                <ul class="space-y-1 text-sm text-gray-700">
+                  <li>• Temporary performance reduction acceptable for security</li>
+                  <li>• Disputes resolved in favor of caution and legitimacy</li>
+                  <li>• Operational layer remains subordinate to governance layers</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-sage-100 p-8 rounded-lg">
+            <h3 class="font-serif text-2xl font-semibold text-sage-700 mb-6">The Necessity of Layered Accountability</h3>
+            <p class="text-gray-700 mb-6">
+              TML&#39;s three-layer architecture distributes trust across independent systems, ensuring resilience to failure and attack. No single platform or entity is trusted with all system functions.
+            </p>
+            <div class="grid md:grid-cols-3 gap-6">
+              <div class="text-center p-4 bg-white rounded">
+                <i class="fas fa-layer-group text-sage-600 text-2xl mb-2"></i>
+                <div class="font-semibold text-sage-800">Separation of Powers</div>
+                <div class="text-sm text-gray-600">Each layer has distinct, non-overlapping responsibilities</div>
+              </div>
+              <div class="text-center p-4 bg-white rounded">
+                <i class="fas fa-shield-alt text-sage-600 text-2xl mb-2"></i>
+                <div class="font-semibold text-sage-800">Resilience to Failure</div>
+                <div class="text-sm text-gray-600">System continues functioning if one layer compromised</div>
+              </div>
+              <div class="text-center p-4 bg-white rounded">
+                <i class="fas fa-balance-scale text-sage-600 text-2xl mb-2"></i>
+                <div class="font-semibold text-sage-800">Trust Distribution</div>
+                <div class="text-sm text-gray-600">No single point of failure or capture</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 9: Conclusion -->
+      <section id="conclusion" class="py-16 bg-sage-900 text-white">
+        <div class="max-w-6xl mx-auto px-8">
+          <h2 class="font-serif text-4xl font-bold mb-8 text-center">9. Conclusion: Polygon as the Proving Engine of TML</h2>
+
+          <div class="text-center mb-12">
+            <img src="https://fixedplaceholder" alt="Abstract visualization of ethical artificial intelligence framework" class="w-full h-64 object-cover rounded-lg shadow-lg mb-8" size="medium" aspect="wide" query="ethical artificial intelligence concept" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"/>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-12 mb-12">
+            <div>
+              <h3 class="font-serif text-2xl font-semibold text-warm-300 mb-6">The Proving Engine for Ethical Systems</h3>
+              <p class="text-gray-300 mb-4">
+                Polygon zkEVM serves as the specialized computational backbone that transforms abstract moral principles into concrete, verifiable proofs. It provides the mathematical certainty required for high-stakes ethical enforcement at unprecedented scale.
+              </p>
+              <p class="text-gray-300">
+                By compressing millions of moral decisions into succinct validity proofs, it enables a &#34;Fast Lane&#34; for TML where ethical checks can be performed in near real-time without sacrificing cryptographic certainty.
+              </p>
+            </div>
+            <div>
+              <h3 class="font-serif text-2xl font-semibold text-warm-300 mb-6">The Circulatory System Without Sovereignty</h3>
+              <p class="text-gray-300 mb-4">
+                The AggLayer functions as the connective tissue that maintains a coherent moral state across a network of AI agents without granting any single entity sovereign control. It enables coordination and execution while remaining subordinate to higher-order governance layers.
+              </p>
+              <p class="text-gray-300">
+                This architecture ensures that moral enforcement scales horizontally across diverse applications while preserving the constitutional legitimacy established by Ethereum and the evidentiary integrity anchored to Bitcoin.
+              </p>
+            </div>
+          </div>
+
+          <div class="bg-sage-800 p-8 rounded-lg mb-12">
+            <h3 class="font-serif text-2xl font-semibold text-center mb-8">The Division of Labor in TML</h3>
+            <div class="grid md:grid-cols-3 gap-8 text-center">
+              <div>
+                <div class="text-3xl mb-4"><i class="fas fa-gavel text-warm-400"></i></div>
+                <h4 class="font-semibold text-warm-300 mb-2">Ethereum Decides</h4>
+                <p class="text-gray-300 text-sm">The &#34;Court&#34; that defines constitutional rules and serves as ultimate arbiter of disputes</p>
+              </div>
+              <div>
+                <div class="text-3xl mb-4"><i class="fas fa-clock text-warm-400"></i></div>
+                <h4 class="font-semibold text-warm-300 mb-2">Bitcoin Remembers</h4>
+                <p class="text-gray-300 text-sm">The &#34;Witness&#34; that preserves immutable history and provides evidentiary integrity</p>
+              </div>
+              <div>
+                <div class="text-3xl mb-4"><i class="fas fa-zap text-warm-400"></i></div>
+                <h4 class="font-semibold text-warm-300 mb-2">Polygon Enables</h4>
+                <p class="text-gray-300 text-sm">The &#34;Circulatory System&#34; that provides privacy, speed, and economic viability at scale</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="text-center">
+            <div class="bg-warm-800 p-8 rounded-lg inline-block">
+              <p class="text-xl font-light italic text-center">
+                &#34;Polygon ensures ethical AI governance is private, fast, and economically viable enough to function—
+                <br/>
+                powerful precisely because it is not sovereign.&#34;
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer with References -->
+      <footer class="bg-gray-900 text-gray-400 py-12">
+        <div class="max-w-6xl mx-auto px-8">
+          <h3 class="font-serif text-xl font-semibold text-white mb-6">References</h3>
+          <div class="grid md:grid-cols-2 gap-6 text-sm">
+            <div>
+              <p class="mb-2">[71] <a href="https://arxiv.org/html/2509.06133v1" class="citation-link">arXiv:2509.06133v1</a> - VehiclePassport system performance data</p>
+              <p class="mb-2">[168] <a href="https://medium.com/@ankitacode11/agglayer-v0-2-pessimistic-proofs-power-a-multistack-web3-future-31969e5298cb" class="citation-link">Medium: AggLayer v0.2 Pessimistic Proofs</a>
+              </p>
+              <p class="mb-2">[193] <a href="https://polygon.technology/blog/upgrade-every-evm-chain-to-zk-introducing-the-type-1-prover" class="citation-link">Polygon: Type 1 Prover</a> - Cost reduction projections</p>
+              <p class="mb-2">[308] <a href="https://papers.ssrn.com/sol3/Delivery.cfm/5649910.pdf?abstractid=5649910&amp;mirid=1" class="citation-link">SSRN: TML Technical Dossier</a> - Immutable Moral Trace Logs</p>
+              <p class="mb-2">[317] <a href="https://www.linkedin.com/posts/lev-goukassian-5667b2282_tml-technical-dossier-the-constitution-of-activity-7411536837615398913-Nhvi" class="citation-link">LinkedIn: TML Constitution</a> - Hybrid Shield model</p>
+              <p class="mb-2">[320] <a href="https://dev.to/chucks1093/blockchain-layers-l1-l2-and-the-role-of-rollups-kne" class="citation-link">Dev.to: Blockchain Layers and Rollups</a>
+              </p>
+              <p class="mb-2">[322] <a href="https://jamesbachini.com/aggregated-blockchains-and-polygons-agglayer/" class="citation-link">James Bachini: Aggregated Blockchains</a>
+              </p>
+              <p class="mb-2">[326] <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5655090" class="citation-link">SSRN: Sacred Pause Mechanism</a>
+              </p>
+            </div>
+            <div>
+              <p class="mb-2">[355] <a href="https://blog.csdn.net/shangsongwww/article/details/134478875" class="citation-link">CSDN: Polygon zkEVM Analysis</a>
+              </p>
+              <p class="mb-2">[357] <a href="https://docs.polygon.technology/cdk/architecture/cdk-zkevm/" class="citation-link">Polygon Docs: CDK zkEVM</a>
+              </p>
+              <p class="mb-2">[375] <a href="https://learnblockchain.cn/article/8765" class="citation-link">LearnBlockchain: AggLayer</a> - Sub-second finality goals</p>
+              <p class="mb-2">[380] <a href="https://www.starknet.io/blog/starknet-2025-year-in-review/" class="citation-link">Starknet: 2025 Year in Review</a> - Performance metrics</p>
+              <p class="mb-2">[388] <a href="https://23stud.io/blog/smart-contract-platform-economics-cost-comparison-2025" class="citation-link">23Studio: Platform Economics</a>
+              </p>
+              <p class="mb-2">[414] <a href="https://coinlaw.io/optimism-statistics/" class="citation-link">CoinLaw: Optimism Statistics</a>
+              </p>
+              <p class="mb-2">[417] <a href="https://www.bitget.com/amp/news/detail/12560605138772" class="citation-link">Bitget: Optimism Analysis</a>
+              </p>
+              <p class="mb-2">[423] <a href="https://coinmarketcap.com/academy/article/arbitrum-vs-optimism-the-ultimate-comparison" class="citation-link">CoinMarketCap: Arbitrum vs Optimism</a>
+              </p>
+              <p class="mb-2">[472] <a href="https://messari.io/compare/ethereum-vs-polygon-matic" class="citation-link">Messari: Ethereum vs Polygon</a>
+              </p>
+              <p class="mb-2">[485] <a href="https://entethalliance.org/wp-content/uploads/2025/03/EEA_Enterprise_Ethereum_Chain_Specification_V1_2800229.pdf" class="citation-link">EEA: Enterprise Ethereum Spec</a>
+              </p>
+              <p class="mb-2">[487] <a href="https://www.mdpi.com/2076-3417/15/23/12722" class="citation-link">MDPI: Bitcoin as Digital Notary</a>
+              </p>
+              <p class="mb-2">[490] <a href="https://messari.io/report/polygon-ecosystem-overview" class="citation-link">Messari: Polygon Ecosystem</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+        // Initialize Mermaid
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'default',
+            themeVariables: {
+                primaryColor: '#f6f7f6',
+                primaryTextColor: '#1f2937',
+                primaryBorderColor: '#5f735f',
+                lineColor: '#4a5c4a',
+                sectionBkgColor: '#f6f7f6',
+                altSectionBkgColor: '#fefefe',
+                gridColor: '#c7d0c7',
+                secondaryColor: '#f0d7b0',
+                tertiaryColor: '#fefcf9',
+                background: '#ffffff',
+                mainBkg: '#ffffff',
+                secondBkg: '#f6f7f6',
+                tertiaryBkg: '#fefcf9',
+                // Enhanced contrast settings
+                nodeBorder: '#5f735f',
+                clusterBkg: '#f6f7f6',
+                clusterBorder: '#4a5c4a',
+                defaultLinkColor: '#4a5c4a',
+                titleColor: '#1f2937',
+                edgeLabelBackground: '#ffffff',
+                // Text contrast
+                nodeTextColor: '#1f2937',
+                textColor: '#1f2937',
+                labelTextColor: '#1f2937',
+                loopTextColor: '#1f2937',
+                noteTextColor: '#1f2937',
+                activationTextColor: '#1f2937'
+            },
+            flowchart: {
+                useMaxWidth: false,
+                htmlLabels: true,
+                curve: 'basis',
+                padding: 20
+            },
+            sequence: {
+                useMaxWidth: false,
+                wrap: true
+            },
+            gantt: {
+                useMaxWidth: false
+            },
+            // Ensure proper sizing
+            maxTextSize: 90000,
+            maxEdges: 200
+        });
+
+        // Initialize Mermaid Controls for zoom and pan
+        function initializeMermaidControls() {
+            const containers = document.querySelectorAll('.mermaid-container');
+
+            containers.forEach(container => {
+            const mermaidElement = container.querySelector('.mermaid');
+            let scale = 1;
+            let isDragging = false;
+            let startX, startY, translateX = 0, translateY = 0;
+
+            // 触摸相关状态
+            let isTouch = false;
+            let touchStartTime = 0;
+            let initialDistance = 0;
+            let initialScale = 1;
+            let isPinching = false;
+
+            // Zoom controls
+            const zoomInBtn = container.querySelector('.zoom-in');
+            const zoomOutBtn = container.querySelector('.zoom-out');
+            const resetBtn = container.querySelector('.reset-zoom');
+            const fullscreenBtn = container.querySelector('.fullscreen');
+
+            function updateTransform() {
+                mermaidElement.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+
+                if (scale > 1) {
+                container.classList.add('zoomed');
+                } else {
+                container.classList.remove('zoomed');
+                }
+
+                mermaidElement.style.cursor = isDragging ? 'grabbing' : 'grab';
+            }
+
+            if (zoomInBtn) {
+                zoomInBtn.addEventListener('click', () => {
+                scale = Math.min(scale * 1.25, 4);
+                updateTransform();
+                });
+            }
+
+            if (zoomOutBtn) {
+                zoomOutBtn.addEventListener('click', () => {
+                scale = Math.max(scale / 1.25, 0.3);
+                if (scale <= 1) {
+                    translateX = 0;
+                    translateY = 0;
+                }
+                updateTransform();
+                });
+            }
+
+            if (resetBtn) {
+                resetBtn.addEventListener('click', () => {
+                scale = 1;
+                translateX = 0;
+                translateY = 0;
+                updateTransform();
+                });
+            }
+
+            if (fullscreenBtn) {
+                fullscreenBtn.addEventListener('click', () => {
+                if (container.requestFullscreen) {
+                    container.requestFullscreen();
+                } else if (container.webkitRequestFullscreen) {
+                    container.webkitRequestFullscreen();
+                } else if (container.msRequestFullscreen) {
+                    container.msRequestFullscreen();
+                }
+                });
+            }
+
+            // Mouse Events
+            mermaidElement.addEventListener('mousedown', (e) => {
+                if (isTouch) return; // 如果是触摸设备，忽略鼠标事件
+
+                isDragging = true;
+                startX = e.clientX - translateX;
+                startY = e.clientY - translateY;
+                mermaidElement.style.cursor = 'grabbing';
+                updateTransform();
+                e.preventDefault();
+            });
+
+            document.addEventListener('mousemove', (e) => {
+                if (isDragging && !isTouch) {
+                translateX = e.clientX - startX;
+                translateY = e.clientY - startY;
+                updateTransform();
+                }
+            });
+
+            document.addEventListener('mouseup', () => {
+                if (isDragging && !isTouch) {
+                isDragging = false;
+                mermaidElement.style.cursor = 'grab';
+                updateTransform();
+                }
+            });
+
+            document.addEventListener('mouseleave', () => {
+                if (isDragging && !isTouch) {
+                isDragging = false;
+                mermaidElement.style.cursor = 'grab';
+                updateTransform();
+                }
+            });
+
+            // 获取两点之间的距离
+            function getTouchDistance(touch1, touch2) {
+                return Math.hypot(
+                touch2.clientX - touch1.clientX,
+                touch2.clientY - touch1.clientY
+                );
+            }
+
+            // Touch Events - 触摸事件处理
+            mermaidElement.addEventListener('touchstart', (e) => {
+                isTouch = true;
+                touchStartTime = Date.now();
+
+                if (e.touches.length === 1) {
+                // 单指拖动
+                isPinching = false;
+                isDragging = true;
+
+                const touch = e.touches[0];
+                startX = touch.clientX - translateX;
+                startY = touch.clientY - translateY;
+
+                } else if (e.touches.length === 2) {
+                // 双指缩放
+                isPinching = true;
+                isDragging = false;
+
+                const touch1 = e.touches[0];
+                const touch2 = e.touches[1];
+                initialDistance = getTouchDistance(touch1, touch2);
+                initialScale = scale;
+                }
+
+                e.preventDefault();
+            }, { passive: false });
+
+            mermaidElement.addEventListener('touchmove', (e) => {
+                if (e.touches.length === 1 && isDragging && !isPinching) {
+                // 单指拖动
+                const touch = e.touches[0];
+                translateX = touch.clientX - startX;
+                translateY = touch.clientY - startY;
+                updateTransform();
+
+                } else if (e.touches.length === 2 && isPinching) {
+                // 双指缩放
+                const touch1 = e.touches[0];
+                const touch2 = e.touches[1];
+                const currentDistance = getTouchDistance(touch1, touch2);
+
+                if (initialDistance > 0) {
+                    const newScale = Math.min(Math.max(
+                    initialScale * (currentDistance / initialDistance),
+                    0.3
+                    ), 4);
+                    scale = newScale;
+                    updateTransform();
+                }
+                }
+
+                e.preventDefault();
+            }, { passive: false });
+
+            mermaidElement.addEventListener('touchend', (e) => {
+                // 重置状态
+                if (e.touches.length === 0) {
+                isDragging = false;
+                isPinching = false;
+                initialDistance = 0;
+
+                // 延迟重置isTouch，避免鼠标事件立即触发
+                setTimeout(() => {
+                    isTouch = false;
+                }, 100);
+                } else if (e.touches.length === 1 && isPinching) {
+                // 从双指变为单指，切换为拖动模式
+                isPinching = false;
+                isDragging = true;
+
+                const touch = e.touches[0];
+                startX = touch.clientX - translateX;
+                startY = touch.clientY - translateY;
+                }
+
+                updateTransform();
+            });
+
+            mermaidElement.addEventListener('touchcancel', (e) => {
+                isDragging = false;
+                isPinching = false;
+                initialDistance = 0;
+
+                setTimeout(() => {
+                isTouch = false;
+                }, 100);
+
+                updateTransform();
+            });
+
+            // Enhanced wheel zoom with better center point handling
+            container.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                const rect = container.getBoundingClientRect();
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+
+                const delta = e.deltaY > 0 ? 0.9 : 1.1;
+                const newScale = Math.min(Math.max(scale * delta, 0.3), 4);
+
+                // Adjust translation to zoom towards center
+                if (newScale !== scale) {
+                const scaleDiff = newScale / scale;
+                translateX = translateX * scaleDiff;
+                translateY = translateY * scaleDiff;
+                scale = newScale;
+
+                if (scale <= 1) {
+                    translateX = 0;
+                    translateY = 0;
+                }
+
+                updateTransform();
+                }
+            });
+
+            // Initialize display
+            updateTransform();
+            });
+        }
+
+        // Initialize Mermaid controls after render
+        setTimeout(() => {
+            initializeMermaidControls();
+        }, 1000);
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Highlight active section in TOC
+        const observerOptions = {
+            root: null,
+            rootMargin: '-20% 0px -70% 0px',
+            threshold: 0
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const id = entry.target.getAttribute('id');
+                const tocLink = document.querySelector(`a[href="#${id}"]`);
+                if (tocLink) {
+                    if (entry.isIntersecting) {
+                        document.querySelectorAll('.toc-fixed a').forEach(link => {
+                            link.classList.remove('bg-sage-300', 'text-sage-800');
+                        });
+                        tocLink.classList.add('bg-sage-300', 'text-sage-800');
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section[id]').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+  
+
+</body></html>
