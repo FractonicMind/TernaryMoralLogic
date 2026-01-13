@@ -1,0 +1,1640 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>OpenTimestamps as the Immutable Witness Layer for Ternary Moral Logic</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'serif': ['Playfair Display', 'serif'],
+                        'sans': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'primary': '#1a1a1a',
+                        'secondary': '#666666',
+                        'accent': '#2563eb',
+                        'muted': '#f8fafc',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .hero-overlay {
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.9) 0%, rgba(102, 102, 102, 0.7) 100%);
+        }
+        .toc-fixed {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            width: 280px;
+            max-height: calc(100vh - 4rem);
+            overflow-y: auto;
+            z-index: 50;
+        }
+        .content-offset {
+            margin-left: 320px;
+        }
+        @media (max-width: 1280px) {
+            .toc-fixed {
+                display: none;
+            }
+            .content-offset {
+                margin-left: 0;
+            }
+        }
+        .citation-link {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid #2563eb;
+        }
+        .citation-link:hover {
+            background-color: #eff6ff;
+            padding: 0 2px;
+        }
+        .grid-bento {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .hero-title {
+            font-style: italic;
+            font-weight: 400;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+        
+        /* Mermaid Chart Styles */
+        .mermaid-container {
+            display: flex;
+            justify-content: center;
+            min-height: 300px;
+            max-height: 800px;
+            background: #ffffff;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mermaid-container .mermaid {
+            width: 100%;
+            max-width: 100%;
+            height: 100%;
+            cursor: grab;
+            transition: transform 0.3s ease;
+            transform-origin: center center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            touch-action: none; /* 防止触摸设备上的默认行为 */
+            -webkit-user-select: none; /* 防止文本选择 */
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .mermaid-container .mermaid svg {
+            max-width: 100%;
+            height: 100%;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .mermaid-container .mermaid:active {
+            cursor: grabbing;
+        }
+
+        .mermaid-container.zoomed .mermaid {
+            height: 100%;
+            width: 100%;
+            cursor: grab;
+        }
+
+        .mermaid-controls {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            display: flex;
+            gap: 10px;
+            z-index: 20;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 8px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .mermaid-control-btn {
+            background: #ffffff;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            padding: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #374151;
+            font-size: 14px;
+            min-width: 36px;
+            height: 36px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mermaid-control-btn:hover {
+            background: #f8fafc;
+            border-color: #3b82f6;
+            color: #3b82f6;
+            transform: translateY(-1px);
+        }
+
+        .mermaid-control-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Enhanced Mermaid theme customization for better contrast and unified styling */
+        .mermaid .node rect,
+        .mermaid .node circle,
+        .mermaid .node polygon,
+        .mermaid .node ellipse {
+            stroke-width: 2px;
+        }
+
+        .mermaid .node .label {
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .mermaid .edgeLabel {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .mermaid .edge-thickness-normal {
+            stroke-width: 2px;
+        }
+
+        .mermaid .edge-pattern-solid {
+            stroke-dasharray: 0;
+        }
+
+        /* Default node colors with high contrast text */
+        .mermaid .node rect[fill="#1a1a1a"] {
+            fill: #1a1a1a;
+            stroke: #2563eb;
+        }
+        .mermaid .node rect[fill="#2563eb"] {
+            fill: #2563eb;
+            stroke: #1a1a1a;
+        }
+        .mermaid .node rect[fill="#f8fafc"] {
+            fill: #f8fafc;
+            stroke: #1a1a1a;
+        }
+        .mermaid .node rect[fill="#666666"] {
+            fill: #666666;
+            stroke: #1a1a1a;
+        }
+
+        /* Ensure text contrast for different node colors */
+        .mermaid .node[style*="fill:#1a1a1a"] .label,
+        .mermaid .node[style*="fill:#2563eb"] .label {
+            fill: #ffffff !important;
+            color: #ffffff !important;
+        }
+
+        .mermaid .node[style*="fill:#f8fafc"] .label,
+        .mermaid .node[style*="fill:#666666"] .label {
+            fill: #1a1a1a !important;
+            color: #1a1a1a !important;
+        }
+
+        /* Timeline specific styling for better contrast */
+        .mermaid .section0 {
+            fill: #f8fafc;
+            stroke: #1a1a1a;
+        }
+
+        .mermaid .section1 {
+            fill: #e2e8f0;
+            stroke: #1a1a1a;
+        }
+
+        .mermaid .section2 {
+            fill: #cbd5e1;
+            stroke: #1a1a1a;
+        }
+
+        .mermaid .section3 {
+            fill: #94a3b8;
+            stroke: #1a1a1a;
+        }
+
+        /* Flowchart specific node styling */
+        .mermaid .flowchart-link {
+            stroke: #1a1a1a;
+            stroke-width: 2px;
+        }
+
+        /* General text styling for better readability */
+        .mermaid text {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+  <base target="_blank">
+</head>
+
+  <body class="bg-white font-sans text-primary leading-relaxed overflow-x-hidden">
+    <!-- Fixed Table of Contents -->
+    <nav class="toc-fixed bg-white shadow-lg rounded-lg p-6 border border-gray-200">
+      <h3 class="font-serif font-bold text-lg mb-4 text-primary">Contents</h3>
+      <ul class="space-y-2 text-sm">
+        <li>
+          <a href="#section-1" class="text-secondary hover:text-accent transition-colors">What OTS Is and Is Not</a>
+        </li>
+        <li>
+          <a href="#section-2" class="text-secondary hover:text-accent transition-colors">The .ots Artifact</a>
+        </li>
+        <li>
+          <a href="#section-3" class="text-secondary hover:text-accent transition-colors">Cryptographic Mechanics</a>
+        </li>
+        <li>
+          <a href="#section-4" class="text-secondary hover:text-accent transition-colors">Bitcoin Relationship</a>
+        </li>
+        <li>
+          <a href="#section-5" class="text-secondary hover:text-accent transition-colors">OTS vs Smart Contracts</a>
+        </li>
+        <li>
+          <a href="#section-6" class="text-secondary hover:text-accent transition-colors">TML Architecture</a>
+        </li>
+        <li>
+          <a href="#section-7" class="text-secondary hover:text-accent transition-colors">Legal Standing</a>
+        </li>
+        <li>
+          <a href="#section-8" class="text-secondary hover:text-accent transition-colors">Adversarial Analysis</a>
+        </li>
+        <li>
+          <a href="#section-9" class="text-secondary hover:text-accent transition-colors">Conclusion</a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="content-offset">
+      <!-- Hero Section -->
+      <section class="relative min-h-screen flex items-center">
+        <div class="hero-overlay absolute inset-0"></div>
+        <img src="https://kimi-web-img.moonshot.cn/img/media.springernature.com/22dc7faac48b2476122389bb4d86c4fa06541bf3.png" alt="Abstract layered clock structure with blockchain elements" class="absolute inset-0 w-full h-full object-cover" size="wallpaper" aspect="wide" color="bw" style="photo" query="abstract blockchain clock" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"/>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-8 py-16">
+          <!-- Bento Grid Layout -->
+          <div class="grid-bento">
+            <!-- Title Card -->
+            <div class="bg-white/90 backdrop-blur-sm rounded-xl p-8 col-span-2">
+              <h1 class="hero-title font-serif text-4xl md:text-5xl lg:text-6xl text-primary mb-6">
+                OpenTimestamps as the Immutable Witness Layer for Ternary Moral Logic
+              </h1>
+              <div class="w-24 h-1 bg-accent mb-6"></div>
+              <p class="text-xl text-secondary leading-relaxed">
+                A decentralized, cryptographically secure protocol for proving data existed at specific points in time,
+                serving as neutral infrastructure for truth-in-time within the TML ecosystem.
+              </p>
+            </div>
+
+            <!-- Key Highlights Grid -->
+            <div class="bg-white/90 backdrop-blur-sm rounded-xl p-6">
+              <h3 class="font-serif text-xl font-bold mb-4 text-primary">Core Properties</h3>
+              <ul class="space-y-3 text-secondary">
+                <li class="flex items-start">
+                  <i class="fas fa-clock text-accent mr-3 mt-1"></i>
+                  <span><strong>Temporal Provenance:</strong> Proof-of-existence, not execution</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-shield-alt text-accent mr-3 mt-1"></i>
+                  <span><strong>Self-Sovereign:</strong> Evidence held by subjects, not third parties</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-link text-accent mr-3 mt-1"></i>
+                  <span><strong>Bitcoin Anchored:</strong> Thermodynamic finality</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="bg-white/90 backdrop-blur-sm rounded-xl p-6">
+              <h3 class="font-serif text-xl font-bold mb-4 text-primary">Separation of Concerns</h3>
+              <div class="space-y-3 text-secondary">
+                <div class="flex items-center">
+                  <span class="bg-accent text-white px-2 py-1 rounded text-xs mr-3">OTS</span>
+                  <span>Proves existence, anchors time</span>
+                </div>
+                <div class="flex items-center">
+                  <span class="bg-secondary text-white px-2 py-1 rounded text-xs mr-3">Smart Contracts</span>
+                  <span>Execute logic, change state</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Key Insight -->
+            <div class="bg-accent/10 rounded-xl p-6 border border-accent/20">
+              <blockquote class="text-lg italic text-primary mb-3">
+                &#34;Time, once proven, cannot be argued with.&#34;
+              </blockquote>
+              <cite class="text-secondary text-sm">— Lev Goukassian</cite>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 1: What OpenTimestamps Is and Is Not -->
+      <section id="section-1" class="max-w-7xl mx-auto px-8 py-20">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+          <div class="lg:col-span-2">
+            <h2 class="font-serif text-4xl font-bold mb-8 text-primary">What OpenTimestamps Is — and Is Not</h2>
+
+            <p class="text-lg text-secondary mb-8 leading-relaxed">
+              OpenTimestamps (OTS) is an open-source protocol that provides a standard format for blockchain-based timestamping,
+              creating a decentralized and trust-minimized method for proving the existence of digital data at a specific point in time
+              <a href="https://opentimestamps.org/" class="citation-link">[1]</a>.
+            </p>
+
+            <div class="space-y-8">
+              <div class="border-l-4 border-accent pl-6">
+                <h3 class="font-serif text-xl font-bold mb-4 text-primary">A Hash Anchoring Protocol, Not a Blockchain</h3>
+                <p class="text-secondary mb-4">
+                  OTS is fundamentally a <strong>hash anchoring protocol</strong>, not a blockchain itself.
+                  Its primary function is to take a cryptographic hash of a piece of data and embed it into a blockchain,
+                  which then serves as a decentralized and immutable ledger <a href="https://petertodd.org/2016/opentimestamps-announcement" class="citation-link">[2]</a>.
+                </p>
+                <p class="text-secondary">
+                  The protocol is blockchain-agnostic, though <strong>Bitcoin is the most commonly used due to its high level of security and decentralization</strong>.
+                  This makes OTS a lightweight and efficient protocol that can be easily integrated without building new blockchain networks.
+                </p>
+              </div>
+
+              <div class="border-l-4 border-accent pl-6">
+                <h3 class="font-serif text-xl font-bold mb-4 text-primary">A Proof-of-Existence Mechanism</h3>
+                <p class="text-secondary">
+                  The core purpose is to serve as a <strong>proof-of-existence mechanism</strong>, providing cryptographic evidence
+                  that a piece of data existed at a specific point in time. It is not a settlement system and does not facilitate
+                  the transfer of value or execution of complex logic.
+                </p>
+              </div>
+
+              <div class="border-l-4 border-accent pl-6">
+                <h3 class="font-serif text-xl font-bold mb-4 text-primary">Decoupled from Financial Transactions</h3>
+                <p class="text-secondary">
+                  OTS <strong>decouples timestamping from financial transactions</strong>, providing dedicated and neutral infrastructure
+                  for proving data existence. This separation makes it more focused, efficient, and trustworthy than general-purpose blockchain platforms.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-muted rounded-xl p-6">
+            <h3 class="font-serif text-xl font-bold mb-6 text-primary">Explicit Limitations</h3>
+            <div class="space-y-4">
+              <div class="flex items-start">
+                <i class="fas fa-times-circle text-red-500 mr-3 mt-1"></i>
+                <div>
+                  <strong class="text-primary">No Execution</strong>
+                  <p class="text-secondary text-sm">Passive protocol - does not execute logic</p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <i class="fas fa-times-circle text-red-500 mr-3 mt-1"></i>
+                <div>
+                  <strong class="text-primary">No Governance</strong>
+                  <p class="text-secondary text-sm">No central authority or voting mechanisms</p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <i class="fas fa-times-circle text-red-500 mr-3 mt-1"></i>
+                <div>
+                  <strong class="text-primary">No Identity Verification</strong>
+                  <p class="text-secondary text-sm">Anonymous and pseudonymous by design</p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <i class="fas fa-times-circle text-red-500 mr-3 mt-1"></i>
+                <div>
+                  <strong class="text-primary">No Moral Reasoning</strong>
+                  <p class="text-secondary text-sm">Neutral protocol - makes no judgments</p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <i class="fas fa-times-circle text-red-500 mr-3 mt-1"></i>
+                <div>
+                  <strong class="text-primary">No Enforcement</strong>
+                  <p class="text-secondary text-sm">Cannot compel or prevent actions</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 2: The .ots Artifact -->
+      <section id="section-2" class="max-w-7xl mx-auto px-8 py-20 bg-muted">
+        <h2 class="font-serif text-4xl font-bold mb-12 text-primary text-center">The .ots Artifact — Self-Sovereign Evidence</h2>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+          <div>
+            <p class="text-lg text-secondary mb-8 leading-relaxed">
+              The <code class="bg-white px-2 py-1 rounded text-sm">.ots</code> file is the core artifact of the OpenTimestamps protocol,
+              serving as a portable, self-contained, and cryptographically verifiable proof of a piece of data&#39;s existence at a specific point in time.
+            </p>
+
+            <div class="space-y-6">
+              <div class="bg-white rounded-lg p-6 shadow-sm">
+                <h3 class="font-serif text-lg font-bold mb-3 text-primary">
+                  <i class="fas fa-file-contract text-accent mr-2"></i>
+                  Portable, Bearer-Based Receipt
+                </h3>
+                <p class="text-secondary">
+                  The <code class="bg-muted px-2 py-1 rounded text-sm">.ots</code> file is a portable, bearer-based cryptographic receipt
+                  that can be easily transferred and verified by anyone with appropriate software. It is not tied to specific users or accounts.
+                </p>
+              </div>
+
+              <div class="bg-white rounded-lg p-6 shadow-sm">
+                <h3 class="font-serif text-lg font-bold mb-3 text-primary">
+                  <i class="fas fa-database text-accent mr-2"></i>
+                  Local Storage by AI or Human
+                </h3>
+                <p class="text-secondary">
+                  Evidence can be stored locally by AI agents or human actors, ensuring users maintain full control over their evidence
+                  without dependency on third-party storage providers.
+                </p>
+              </div>
+
+              <div class="bg-white rounded-lg p-6 shadow-sm">
+                <h3 class="font-serif text-lg font-bold mb-3 text-primary">
+                  <i class="fas fa-wifi-slash text-accent mr-2"></i>
+                  No Servers or Permissions Required
+                </h3>
+                <p class="text-secondary">
+                  Verification requires no live servers and no institutional permission. The process is performed locally using
+                  the <code class="bg-muted px-2 py-1 rounded text-sm">.ots</code> file and public blockchain data.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-xl p-8 shadow-lg">
+            <img src="https://kimi-web-img.moonshot.cn/img/images.ctfassets.net/94603ab0719a9e6421a78fa670fd68f06455e87d.png" alt="Abstract representation of self-sovereign digital identity" class="w-full h-64 object-cover rounded-lg mb-6" size="medium" aspect="wide" style="photo" query="self-sovereign digital identity" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"/>
+
+            <h3 class="font-serif text-xl font-bold mb-4 text-primary">Self-Sovereign Evidence</h3>
+            <p class="text-secondary mb-4">
+              The combination of portable cryptographic receipts and local storage enables <strong>self-sovereign evidence</strong> —
+              evidence under the full control of the individual or entity it pertains to.
+            </p>
+            <ul class="space-y-2 text-secondary">
+              <li><i class="fas fa-check text-green-500 mr-2"></i>Independent of third-party services</li>
+              <li><i class="fas fa-check text-green-500 mr-2"></i>Resistant to censorship and tampering</li>
+              <li><i class="fas fa-check text-green-500 mr-2"></i>Clear chain of custody</li>
+              <li><i class="fas fa-check text-green-500 mr-2"></i>Preserved beyond organizational survival</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 3: Cryptographic Mechanics -->
+      <section id="section-3" class="max-w-7xl mx-auto px-8 py-20">
+        <h2 class="font-serif text-4xl font-bold mb-12 text-primary text-center">Cryptographic Mechanics — The Aggregation Tree</h2>
+
+        <div class="mb-12">
+          <div class="mermaid-container">
+            <div class="mermaid-controls">
+              <button class="mermaid-control-btn zoom-in" title="放大">
+                <i class="fas fa-search-plus"></i>
+              </button>
+              <button class="mermaid-control-btn zoom-out" title="缩小">
+                <i class="fas fa-search-minus"></i>
+              </button>
+              <button class="mermaid-control-btn reset-zoom" title="重置">
+                <i class="fas fa-expand-arrows-alt"></i>
+              </button>
+              <button class="mermaid-control-btn fullscreen" title="全屏查看">
+                <i class="fas fa-expand"></i>
+              </button>
+            </div>
+            <div class="mermaid">
+              flowchart TD
+              A[&#34;Document Hash SHA-256&#34;] --&gt; B[&#34;Merkle Tree Aggregation&#34;]
+              C[&#34;Document Hash 2&#34;] --&gt; B
+              D[&#34;Document Hash 3&#34;] --&gt; B
+              B --&gt; E[&#34;Merkle Root&#34;]
+              E --&gt; F[&#34;Bitcoin Transaction OP_RETURN&#34;]
+              F --&gt; G[&#34;Blockchain Confirmation&#34;]
+              G --&gt; H[&#34;.ots File with Proof Path&#34;]
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div>
+            <h3 class="font-serif text-2xl font-bold mb-6 text-primary">Technical Process</h3>
+
+            <div class="space-y-6">
+              <div class="flex items-start">
+                <div class="bg-accent text-white rounded-full w-8 h-8 flex items-center justify-center mr-4 mt-1 text-sm font-bold">1</div>
+                <div>
+                  <h4 class="font-semibold text-primary mb-2">Client-Side Hashing (SHA-256)</h4>
+                  <p class="text-secondary">
+                    The process begins with creating a SHA-256 hash of the document on the client-side.
+                    This ensures the original data never leaves the user&#39;s device, maintaining privacy and security.
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex items-start">
+                <div class="bg-accent text-white rounded-full w-8 h-8 flex items-center justify-center mr-4 mt-1 text-sm font-bold">2</div>
+                <div>
+                  <h4 class="font-semibold text-primary mb-2">Merkle Tree Aggregation</h4>
+                  <p class="text-secondary">
+                    Individual document hashes are aggregated into a Merkle tree, a binary tree structure
+                    where each node is the hash of its two child nodes. This enables efficient batch processing.
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex items-start">
+                <div class="bg-accent text-white rounded-full w-8 h-8 flex items-center justify-center mr-4 mt-1 text-sm font-bold">3</div>
+                <div>
+                  <h4 class="font-semibold text-primary mb-2">Bitcoin Blockchain Anchoring</h4>
+                  <p class="text-secondary">
+                    The Merkle tree root is anchored to the Bitcoin blockchain via a transaction containing
+                    the root hash in its OP_RETURN output, providing immutable timestamping.
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex items-start">
+                <div class="bg-accent text-white rounded-full w-8 h-8 flex items-center justify-center mr-4 mt-1 text-sm font-bold">4</div>
+                <div>
+                  <h4 class="font-semibold text-primary mb-2">Merkle Proof Generation</h4>
+                  <p class="text-secondary">
+                    A Merkle proof path is generated and stored in the <code class="bg-muted px-2 py-1 rounded text-sm">.ots</code> file,
+                    enabling independent verification of the timestamp without blockchain scanning.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="font-serif text-2xl font-bold mb-6 text-primary">Efficiency &amp; Scalability</h3>
+
+            <div class="bg-gray-50 rounded-xl p-6 mb-6">
+              <h4 class="font-semibold text-primary mb-3">Single Transaction, Millions of Artifacts</h4>
+              <p class="text-secondary mb-4">
+                The aggregation tree structure allows <strong>millions of independent artifacts</strong> to be
+                timestamped using a single Bitcoin transaction. This is achieved through Merkle tree batching,
+                where numerous document hashes are combined into a single root hash for anchoring.
+              </p>
+              <div class="bg-white rounded-lg p-4">
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-sm font-medium text-secondary">Cost Efficiency</span>
+                  <span class="text-sm font-bold text-accent">Approaching Zero</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2">
+                  <div class="bg-accent h-2 rounded-full" style="width: 95%"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-white rounded-xl p-6 shadow-sm">
+              <h4 class="font-semibold text-primary mb-3">Forensic-Grade Logging</h4>
+              <p class="text-secondary">
+                The economic viability of OTS makes <strong>forensic-grade logging</strong> practical for
+                enterprise applications. Organizations can create tamper-proof audit trails at scale without
+                prohibitive costs, enabling comprehensive compliance and accountability systems.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 4: Bitcoin Relationship -->
+      <section id="section-4" class="max-w-7xl mx-auto px-8 py-20 bg-gradient-to-br from-gray-50 to-white">
+        <h2 class="font-serif text-4xl font-bold mb-12 text-primary text-center">Bitcoin Relationship — The Global Clock</h2>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+          <div class="space-y-8">
+            <div class="bg-white rounded-xl p-8 shadow-lg">
+              <h3 class="font-serif text-xl font-bold mb-4 text-primary">
+                <i class="fas fa-globe text-accent mr-3"></i>
+                Globally Replicated Clock
+              </h3>
+              <p class="text-secondary mb-4">
+                Bitcoin serves as a <strong>globally replicated, adversarially secured clock</strong>.
+                Its blockchain is distributed across thousands of nodes worldwide, making it highly resistant
+                to censorship and tampering.
+              </p>
+              <p class="text-secondary">
+                The security is guaranteed by proof-of-work, requiring miners to expend significant
+                computational energy, creating thermodynamic finality.
+              </p>
+            </div>
+
+            <div class="bg-white rounded-xl p-8 shadow-lg">
+              <h3 class="font-serif text-xl font-bold mb-4 text-primary">
+                <i class="fas fa-plus-circle text-accent mr-3"></i>
+                Append-Only Ordering
+              </h3>
+              <p class="text-secondary">
+                Bitcoin&#39;s blockchain is an <strong>append-only ledger</strong> that preserves the order of events
+                immutably. Once transactions are confirmed, they cannot be altered or deleted, ensuring reliable
+                timestamp ordering.
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <img src="https://kimi-web-img.moonshot.cn/img/static.vecteezy.com/af3ed464dbeb0e8782feaa5894173c932bdf7c19.jpg" alt="Abstract Bitcoin blockchain network with interconnected nodes" class="w-full h-64 object-cover rounded-xl mb-8 shadow-lg" size="medium" aspect="wide" query="abstract bitcoin blockchain network" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"/>
+
+            <div class="bg-accent/10 rounded-xl p-6 border border-accent/20">
+              <h3 class="font-serif text-xl font-bold mb-4 text-primary">Verification Model</h3>
+              <ul class="space-y-3 text-secondary">
+                <li class="flex items-center">
+                  <i class="fas fa-file-alt text-accent mr-3"></i>
+                  <span>Only requires <code class="bg-white px-2 py-1 rounded text-sm">.ots</code> file</span>
+                </li>
+                <li class="flex items-center">
+                  <i class="fas fa-link text-accent mr-3"></i>
+                  <span>Plus Bitcoin block headers</span>
+                </li>
+                <li class="flex items-center">
+                  <i class="fas fa-shield-alt text-accent mr-3"></i>
+                  <span>No reliance on OTS servers after anchoring</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-xl p-8 shadow-lg">
+          <h3 class="font-serif text-2xl font-bold mb-6 text-primary text-center">Adversarial Resilience</h3>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="text-center">
+              <div class="bg-accent text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                <i class="fas fa-code-branch text-xl"></i>
+              </div>
+              <h4 class="font-semibold text-primary mb-2">Fork Scenarios</h4>
+              <p class="text-secondary text-sm">
+                Follows the &#34;most work&#34; chain with greatest cumulative proof-of-work,
+                ensuring timestamps anchor to the most secure blockchain version.
+              </p>
+            </div>
+
+            <div class="text-center">
+              <div class="bg-accent text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                <i class="fas fa-redo text-xl"></i>
+              </div>
+              <h4 class="font-semibold text-primary mb-2">Reorg Protection</h4>
+              <p class="text-secondary text-sm">
+                Requires sufficient confirmations before considering timestamps final,
+                making reorganizations extremely unlikely to affect timestamp validity.
+              </p>
+            </div>
+
+            <div class="text-center">
+              <div class="bg-accent text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                <i class="fas fa-gavel text-xl"></i>
+              </div>
+              <h4 class="font-semibold text-primary mb-2">Evidentiary Validity</h4>
+              <p class="text-secondary text-sm">
+                The &#34;most work&#34; chain preserves evidentiary validity by anchoring timestamps
+                to the blockchain version validated by the network majority.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 5: OTS vs Smart Contracts -->
+      <section id="section-5" class="max-w-7xl mx-auto px-8 py-20">
+        <h2 class="font-serif text-4xl font-bold mb-12 text-primary text-center">OTS vs Smart Contracts — Separation of Concerns</h2>
+
+        <p class="text-lg text-secondary mb-12 text-center max-w-4xl mx-auto">
+          The fundamental distinction lies in the principle of <strong>&#34;separation of concerns.&#34;</strong>
+          OpenTimestamps is a minimalist protocol focused solely on proving data existence, while smart contract platforms
+          are general-purpose systems designed for complex logic execution and state management.
+        </p>
+
+        <div class="overflow-x-auto mb-12">
+          <table class="w-full bg-white rounded-xl shadow-lg overflow-hidden">
+            <thead class="bg-primary text-white">
+              <tr>
+                <th class="px-6 py-4 text-left font-serif text-lg">Feature</th>
+                <th class="px-6 py-4 text-left font-serif text-lg">Smart Contracts</th>
+                <th class="px-6 py-4 text-left font-serif text-lg">OpenTimestamps (OTS)</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200">
+              <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4 font-semibold text-primary">Primary Function</td>
+                <td class="px-6 py-4 text-secondary">Execute logic, enforce consequences, and change state</td>
+                <td class="px-6 py-4 text-secondary">Prove existence, anchor time, and provide verifiable record</td>
+              </tr>
+              <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4 font-semibold text-primary">Execution Environment</td>
+                <td class="px-6 py-4 text-secondary">Turing-complete virtual machine (e.g., EVM)</td>
+                <td class="px-6 py-4 text-secondary">No execution environment; passive protocol</td>
+              </tr>
+              <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4 font-semibold text-primary">State Management</td>
+                <td class="px-6 py-4 text-secondary">Mutable state; contracts can read and write data</td>
+                <td class="px-6 py-4 text-secondary">Immutable state; only creates proofs of data existence</td>
+              </tr>
+              <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4 font-semibold text-primary">Trust Model</td>
+                <td class="px-6 py-4 text-secondary">Trust in contract code correctness and VM security</td>
+                <td class="px-6 py-4 text-secondary">Trust-minimized; relies on blockchain security</td>
+              </tr>
+              <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4 font-semibold text-primary">Complexity</td>
+                <td class="px-6 py-4 text-secondary">High; prone to bugs and vulnerabilities</td>
+                <td class="px-6 py-4 text-secondary">Low; simple, focused, and easy to audit</td>
+              </tr>
+              <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4 font-semibold text-primary">Use Case</td>
+                <td class="px-6 py-4 text-secondary">DeFi, NFTs, DAOs, automated agreements</td>
+                <td class="px-6 py-4 text-secondary">Document integrity, digital provenance, legal evidence</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="bg-red-50 border-l-4 border-red-400 p-6 rounded-r-xl mb-12">
+          <div class="flex items-start">
+            <i class="fas fa-exclamation-triangle text-red-400 mr-4 mt-1"></i>
+            <div>
+              <h3 class="font-serif text-xl font-bold mb-2 text-red-800">Why Combining Logic with Timestamping Weakens Both</h3>
+              <p class="text-red-700">
+                The complexity of smart contract platforms introduces vulnerabilities that can compromise timestamp integrity.
+                A bug in a smart contract could allow fake timestamps or deletion of existing ones.
+                Separation of concerns ensures each system remains secure, reliable, and focused on its core purpose.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-accent/10 rounded-xl p-8 border border-accent/20">
+          <h3 class="font-serif text-2xl font-bold mb-6 text-primary text-center">TML&#39;s Exclusive Use of OTS</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="text-center">
+              <div class="bg-accent text-white rounded-lg p-4 mb-3">
+                <i class="fas fa-scroll text-2xl"></i>
+              </div>
+              <h4 class="font-semibold text-primary mb-2">Constitutions</h4>
+              <p class="text-secondary text-sm">Immutable foundational rules and principles</p>
+            </div>
+            <div class="text-center">
+              <div class="bg-accent text-white rounded-lg p-4 mb-3">
+                <i class="fas fa-certificate text-2xl"></i>
+              </div>
+              <h4 class="font-semibold text-primary mb-2">Licenses</h4>
+              <p class="text-secondary text-sm">Verifiable terms and conditions</p>
+            </div>
+            <div class="text-center">
+              <div class="bg-accent text-white rounded-lg p-4 mb-3">
+                <i class="fas fa-flag text-2xl"></i>
+              </div>
+              <h4 class="font-semibold text-primary mb-2">Foundational Declarations</h4>
+              <p class="text-secondary text-sm">Core values and mission statements</p>
+            </div>
+            <div class="text-center">
+              <div class="bg-accent text-white rounded-lg p-4 mb-3">
+                <i class="fas fa-book text-2xl"></i>
+              </div>
+              <h4 class="font-semibold text-primary mb-2">Critical Immutable Logs</h4>
+              <p class="text-secondary text-sm">Tamper-proof audit trails</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 6: OTS in TML Architecture -->
+      <section id="section-6" class="max-w-7xl mx-auto px-8 py-20 bg-gray-50">
+        <h2 class="font-serif text-4xl font-bold mb-12 text-primary text-center">OTS in TML Architecture — Anchoring Intent</h2>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+          <div>
+            <h3 class="font-serif text-2xl font-bold mb-6 text-primary">Precise Role in TML</h3>
+            <p class="text-lg text-secondary mb-6 leading-relaxed">
+              OpenTimestamps provides a critical function in the Ternary Moral Logic (TML) architecture by
+              <strong>anchoring intent in a verifiable and immutable manner</strong>. The protocol creates
+              cryptographic links between foundational texts and specific moments in time, ensuring protection from
+              tampering and censorship.
+            </p>
+
+            <div class="space-y-4">
+              <div class="bg-white rounded-lg p-6 shadow-sm">
+                <h4 class="font-semibold text-primary mb-2">
+                  <i class="fas fa-anchor text-accent mr-2"></i>
+                  Anchoring Foundational Texts
+                </h4>
+                <p class="text-secondary text-sm">
+                  Constitutions, vows, and core principles are timestamped to create immutable records
+                  of organizational governance and values.
+                </p>
+              </div>
+
+              <div class="bg-white rounded-lg p-6 shadow-sm">
+                <h4 class="font-semibold text-primary mb-2">
+                  <i class="fas fa-user-edit text-accent mr-2"></i>
+                  Proving Authorship and Intent
+                </h4>
+                <p class="text-secondary text-sm">
+                  Cryptographic links prove that specific authors created content with particular intent
+                  before deployment or publication.
+                </p>
+              </div>
+
+              <div class="bg-white rounded-lg p-6 shadow-sm">
+                <h4 class="font-semibold text-primary mb-2">
+                  <i class="fas fa-history text-accent mr-2"></i>
+                  Immutable Provenance
+                </h4>
+                <p class="text-secondary text-sm">
+                  History preservation independent of governance survival ensures continuity beyond
+                  founders, organizations, or jurisdictions.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <img src="https://kimi-web-img.moonshot.cn/img/blog.defake.app/ce11c8763614cae7d86b22dae77bba39c31aa506.png" alt="Abstract concept of immutable digital provenance" class="w-full h-64 object-cover rounded-xl mb-8 shadow-lg" size="medium" aspect="wide" query="digital provenance abstract" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"/>
+
+            <div class="bg-white rounded-xl p-6 shadow-lg">
+              <h3 class="font-serif text-xl font-bold mb-4 text-primary">Architectural Benefits</h3>
+              <ul class="space-y-3 text-secondary">
+                <li class="flex items-start">
+                  <i class="fas fa-lightbulb text-accent mr-3 mt-1"></i>
+                  <div>
+                    <strong>Prior Art Support:</strong> Verifiable creation timestamps support claims of
+                    original invention and intellectual property rights.
+                  </div>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-shield-alt text-accent mr-3 mt-1"></i>
+                  <div>
+                    <strong>Retroactive Protection:</strong> Prevents malicious reinterpretation of original
+                    intent or meaning after the fact.
+                  </div>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-infinity text-accent mr-3 mt-1"></i>
+                  <div>
+                    <strong>Continuity Beyond Borders:</strong> Enables persistence across organizational
+                    boundaries and jurisdictional changes.
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-xl p-8 shadow-lg">
+          <h3 class="font-serif text-2xl font-bold mb-6 text-primary text-center">TML Architecture Integration</h3>
+          <p class="text-secondary text-center mb-8 max-w-4xl mx-auto">
+            OpenTimestamps serves as the foundational &#34;truth-in-time&#34; layer for the TML ecosystem, enabling
+            self-sovereign evidence for AI agent constitutions, licenses, and critical logs, thereby anchoring
+            intent and providing durable records that survive beyond any single organization or jurisdiction.
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="text-center">
+              <div class="bg-primary text-white rounded-lg p-6 mb-4">
+                <i class="fas fa-robot text-3xl mb-2"></i>
+                <h4 class="font-serif text-lg font-bold">AI Agent Constitutions</h4>
+              </div>
+              <p class="text-secondary text-sm">
+                Immutable behavioral guidelines and ethical frameworks for autonomous agents
+              </p>
+            </div>
+
+            <div class="text-center">
+              <div class="bg-primary text-white rounded-lg p-6 mb-4">
+                <i class="fas fa-id-card text-3xl mb-2"></i>
+                <h4 class="font-serif text-lg font-bold">Digital Licenses</h4>
+              </div>
+              <p class="text-secondary text-sm">
+                Verifiable permissions and usage rights for digital assets and services
+              </p>
+            </div>
+
+            <div class="text-center">
+              <div class="bg-primary text-white rounded-lg p-6 mb-4">
+                <i class="fas fa-clipboard-list text-3xl mb-2"></i>
+                <h4 class="font-serif text-lg font-bold">Critical Logs</h4>
+              </div>
+              <p class="text-secondary text-sm">
+                Tamper-proof audit trails for important system events and decisions
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 7: Legal and Evidentiary Standing -->
+      <section id="section-7" class="max-w-7xl mx-auto px-8 py-20">
+        <h2 class="font-serif text-4xl font-bold mb-12 text-primary text-center">Legal and Evidentiary Standing</h2>
+
+        <p class="text-lg text-secondary mb-12 text-center max-w-4xl mx-auto">
+          OpenTimestamps proofs represent a new paradigm in digital evidence — self-authenticating cryptographic artifacts
+          that minimize trust requirements while maximizing verifiability, independent of traditional notarization systems.
+        </p>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+          <div class="bg-white rounded-xl p-8 shadow-lg text-center">
+            <div class="bg-accent text-white rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6">
+              <i class="fas fa-stamp text-2xl"></i>
+            </div>
+            <h3 class="font-serif text-xl font-bold mb-4 text-primary">Self-Authenticating Evidence</h3>
+            <p class="text-secondary">
+              OTS proofs can be admitted as evidence without witness testimony to their authenticity.
+              Cryptographic principles ensure tamper detection and verification without trusted third parties.
+            </p>
+          </div>
+
+          <div class="bg-white rounded-xl p-8 shadow-lg text-center">
+            <div class="bg-accent text-white rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6">
+              <i class="fas fa-link text-2xl"></i>
+            </div>
+            <h3 class="font-serif text-xl font-bold mb-4 text-primary">Chain-of-Custody Artifacts</h3>
+            <p class="text-secondary">
+              Provides verifiable, immutable records of evidence existence and handling history.
+              Decentralized nature prevents third-party tampering or censorship of custody chains.
+            </p>
+          </div>
+
+          <div class="bg-white rounded-xl p-8 shadow-lg text-center">
+            <div class="bg-accent text-white rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6">
+              <i class="fas fa-user-slash text-2xl"></i>
+            </div>
+            <h3 class="font-serif text-xl font-bold mb-4 text-primary">Independent of Notarization</h3>
+            <p class="text-secondary">
+              Eliminates reliance on human notaries or centralized authorities. Proof verification
+              requires only cryptographic validation against public blockchain data.
+            </p>
+          </div>
+        </div>
+
+        <div class="overflow-x-auto mb-12">
+          <table class="w-full bg-white rounded-xl shadow-lg overflow-hidden">
+            <thead class="bg-primary text-white">
+              <tr>
+                <th class="px-6 py-4 text-left font-serif">Feature</th>
+                <th class="px-6 py-4 text-left font-serif">OpenTimestamps</th>
+                <th class="px-6 py-4 text-left font-serif">Traditional Notaries</th>
+                <th class="px-6 py-4 text-left font-serif">Centralized Services</th>
+                <th class="px-6 py-4 text-left font-serif">Corporate Platforms</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200">
+              <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4 font-semibold text-primary">Trust Model</td>
+                <td class="px-6 py-4 text-secondary">Trust-minimized; decentralized blockchain</td>
+                <td class="px-6 py-4 text-secondary">Trusted third party (human notary)</td>
+                <td class="px-6 py-4 text-secondary">Trusted third party (service provider)</td>
+                <td class="px-6 py-4 text-secondary">Trusted third party (corporation)</td>
+              </tr>
+              <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4 font-semibold text-primary">Censorship Resistance</td>
+                <td class="px-6 py-4 text-secondary">High; no single point of failure</td>
+                <td class="px-6 py-4 text-secondary">Low; subject to local laws</td>
+                <td class="px-6 py-4 text-secondary">Low; provider can censor</td>
+                <td class="px-6 py-4 text-secondary">Low; corporation can censor</td>
+              </tr>
+              <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4 font-semibold text-primary">Cost</td>
+                <td class="px-6 py-4 text-secondary">Low; marginal cost approaches zero</td>
+                <td class="px-6 py-4 text-secondary">High; fee per notarization</td>
+                <td class="px-6 py-4 text-secondary">Medium to high; subscription fees</td>
+                <td class="px-6 py-4 text-secondary">High; enterprise licensing</td>
+              </tr>
+              <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4 font-semibold text-primary">Privacy</td>
+                <td class="px-6 py-4 text-secondary">High; only hashes submitted</td>
+                <td class="px-6 py-4 text-secondary">Low; original documents presented</td>
+                <td class="px-6 py-4 text-secondary">Medium; depends on privacy policy</td>
+                <td class="px-6 py-4 text-secondary">Medium; depends on platform policy</td>
+              </tr>
+              <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4 font-semibold text-primary">Verifiability</td>
+                <td class="px-6 py-4 text-secondary">Independent; anyone with <code class="bg-muted px-1 rounded text-xs">.ots</code> file</td>
+                <td class="px-6 py-4 text-secondary">Requires contacting notary or registry</td>
+                <td class="px-6 py-4 text-secondary">Requires service infrastructure</td>
+                <td class="px-6 py-4 text-secondary">Requires platform infrastructure</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="bg-green-50 border-l-4 border-green-400 p-6 rounded-r-xl">
+          <div class="flex items-start">
+            <i class="fas fa-check-circle text-green-400 mr-4 mt-1"></i>
+            <div>
+              <h3 class="font-serif text-xl font-bold mb-2 text-green-800">Minimizing Trust While Maximizing Verifiability</h3>
+              <p class="text-green-700">
+                OpenTimestamps achieves an optimal balance by eliminating single points of failure through
+                decentralized blockchain anchoring while enabling independent verification by anyone.
+                This trust-minimized design maximizes transparency and auditability without sacrificing security or reliability.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 8: Adversarial Analysis -->
+      <section id="section-8" class="max-w-7xl mx-auto px-8 py-20 bg-muted">
+        <h2 class="font-serif text-4xl font-bold mb-12 text-primary text-center">Adversarial Analysis</h2>
+
+        <p class="text-lg text-secondary mb-12 text-center max-w-4xl mx-auto">
+          The OpenTimestamps protocol is designed with adversarial resilience as a core principle.
+          Its decentralized architecture and cryptographic foundations provide robust protection against
+          various attack vectors while maintaining simplicity and reliability.
+        </p>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+          <div class="space-y-6">
+            <div class="bg-white rounded-xl p-6 shadow-lg">
+              <h3 class="font-serif text-xl font-bold mb-4 text-primary">
+                <i class="fas fa-shield-alt text-red-500 mr-3"></i>
+                Threat Mitigation
+              </h3>
+              <div class="space-y-4">
+                <div class="border-l-4 border-red-400 pl-4">
+                  <h4 class="font-semibold text-primary mb-1">Fake Calendar Attacks</h4>
+                  <p class="text-secondary text-sm">
+                    Users can verify calendar server authenticity before submission and use multiple servers
+                    to mitigate single server compromise risks.
+                  </p>
+                </div>
+                <div class="border-l-4 border-orange-400 pl-4">
+                  <h4 class="font-semibold text-primary mb-1">Backdating Impossibility</h4>
+                  <p class="text-secondary text-sm">
+                    Bitcoin blockchain immutability prevents backdating attempts, ensuring timestamps
+                    can only prove existence after anchoring time.
+                  </p>
+                </div>
+                <div class="border-l-4 border-yellow-400 pl-4">
+                  <h4 class="font-semibold text-primary mb-1">.ots File Loss</h4>
+                  <p class="text-secondary text-sm">
+                    Users can create multiple copies, store in diverse locations, and upgrade timestamps
+                    to maintain accessibility and security.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-white rounded-xl p-6 shadow-lg">
+              <h3 class="font-serif text-xl font-bold mb-4 text-primary">
+                <i class="fas fa-server text-blue-500 mr-3"></i>
+                Infrastructure Resilience
+              </h3>
+              <div class="space-y-4">
+                <div class="border-l-4 border-blue-400 pl-4">
+                  <h4 class="font-semibold text-primary mb-1">Server Disappearance</h4>
+                  <p class="text-secondary text-sm">
+                    Protocol supports multiple servers and private server deployment, ensuring
+                    service availability independent of any single provider.
+                  </p>
+                </div>
+                <div class="border-l-4 border-purple-400 pl-4">
+                  <h4 class="font-semibold text-primary mb-1">Bitcoin Network Failures</h4>
+                  <p class="text-secondary text-sm">
+                    Multi-blockchain support and timestamp upgrading provide resilience against
+                    potential Bitcoin network disruptions or failures.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <img src="https://kimi-web-img.moonshot.cn/img/static.vecteezy.com/8eb979e3df8045e5df3f9ae616b58876e9347f91.jpg" alt="Abstract cybersecurity shield protection" class="w-full h-64 object-cover rounded-xl mb-8 shadow-lg" size="medium" aspect="wide" color="blue" style="photo" query="abstract cybersecurity shield" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"/>
+
+            <div class="bg-white rounded-xl p-6 shadow-lg">
+              <h3 class="font-serif text-xl font-bold mb-4 text-primary">Inherent Security Properties</h3>
+              <div class="space-y-4">
+                <div class="flex items-start">
+                  <i class="fas fa-ban text-red-500 mr-3 mt-1"></i>
+                  <div>
+                    <strong class="text-primary">No Control Plane to Corrupt</strong>
+                    <p class="text-secondary text-sm">
+                      Decentralized design eliminates central points of failure or corruption.
+                    </p>
+                  </div>
+                </div>
+                <div class="flex items-start">
+                  <i class="fas fa-hand-paper text-orange-500 mr-3 mt-1"></i>
+                  <div>
+                    <strong class="text-primary">No Authority to Coerce</strong>
+                    <p class="text-secondary text-sm">
+                      Permissionless protocol prevents coercion by design.
+                    </p>
+                  </div>
+                </div>
+                <div class="flex items-start">
+                  <i class="fas fa-check-circle text-green-500 mr-3 mt-1"></i>
+                  <div>
+                    <strong class="text-primary">Cannot Lie — Only Fail to Exist</strong>
+                    <p class="text-secondary text-sm">
+                      Protocol neutrality ensures timestamps can only be valid or non-existent.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-xl p-8 shadow-lg">
+          <h3 class="font-serif text-2xl font-bold mb-6 text-primary text-center">Security by Design</h3>
+          <p class="text-secondary text-center mb-8 max-w-4xl mx-auto">
+            The protocol&#39;s adversarial resilience stems from its minimalist, decentralized architecture.
+            By focusing exclusively on timestamping and leveraging established blockchain security,
+            OpenTimestamps achieves robust protection without complex mitigation mechanisms.
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="bg-green-50 rounded-lg p-6 border border-green-200">
+              <h4 class="font-semibold text-primary mb-3">
+                <i class="fas fa-shield-alt text-green-500 mr-2"></i>
+                Attack Surface Minimization
+              </h4>
+              <ul class="space-y-2 text-secondary text-sm">
+                <li>• No execution environment to exploit</li>
+                <li>• No complex logic vulnerable to bugs</li>
+                <li>• No central authority to compromise</li>
+                <li>• No user identity information to leak</li>
+              </ul>
+            </div>
+
+            <div class="bg-blue-50 rounded-lg p-6 border border-blue-200">
+              <h4 class="font-semibold text-primary mb-3">
+                <i class="fas fa-lock text-blue-500 mr-2"></i>
+                Cryptographic Guarantees
+              </h4>
+              <ul class="space-y-2 text-secondary text-sm">
+                <li>• SHA-256 collision resistance</li>
+                <li>• Bitcoin blockchain immutability</li>
+                <li>• Merkle tree integrity proofs</li>
+                <li>• Independent verification capability</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 9: Conclusion -->
+      <section id="section-9" class="max-w-7xl mx-auto px-8 py-20">
+        <div class="text-center mb-16">
+          <h2 class="font-serif text-5xl font-bold mb-8 text-primary hero-title">The Witness Who Does Not Judge</h2>
+          <div class="w-32 h-1 bg-accent mx-auto mb-8"></div>
+          <p class="text-xl text-secondary max-w-4xl mx-auto leading-relaxed">
+            OpenTimestamps stands as a minimal, neutral witness in an increasingly complex digital landscape.
+            It provides a protocol that survives institutions and binds truth to time, not to power.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+          <div class="bg-white rounded-xl p-8 shadow-lg text-center">
+            <div class="bg-primary text-white rounded-lg p-6 mb-6">
+              <i class="fas fa-eye text-3xl mb-3"></i>
+              <h3 class="font-serif text-xl font-bold">Minimal Witness</h3>
+            </div>
+            <p class="text-secondary">
+              Simple, efficient, and secure protocol focused solely on providing verifiable proof of data existence
+              at specific points in time, without moral reasoning or judgment.
+            </p>
+          </div>
+
+          <div class="bg-white rounded-xl p-8 shadow-lg text-center">
+            <div class="bg-primary text-white rounded-lg p-6 mb-6">
+              <i class="fas fa-building text-3xl mb-3"></i>
+              <h3 class="font-serif text-xl font-bold">Survives Institutions</h3>
+            </div>
+            <p class="text-secondary">
+              Decentralized, trust-minimized architecture ensures protocol resilience beyond organizational
+              lifecycles, political changes, and jurisdictional boundaries.
+            </p>
+          </div>
+
+          <div class="bg-white rounded-xl p-8 shadow-lg text-center">
+            <div class="bg-primary text-white rounded-lg p-6 mb-6">
+              <i class="fas fa-clock text-3xl mb-3"></i>
+              <h3 class="font-serif text-xl font-bold">Truth to Time</h3>
+            </div>
+            <p class="text-secondary">
+              Binds truth to immutable time rather than transient power structures, providing
+              reliable foundation for transparent and accountable systems.
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-accent/10 rounded-xl p-12 border border-accent/20">
+          <blockquote class="text-center">
+            <p class="text-2xl font-serif italic text-primary mb-6 leading-relaxed">
+              &#34;Enforcement can be challenged.
+              <br/>
+              Governance can be captured.
+              <br/>
+              Memory can be rewritten.
+              <br/>
+              <span class="text-accent font-bold">Time, once proven, cannot be argued with.</span>&#34;
+            </p>
+            <footer class="text-secondary">
+              — Lev Goukassian
+            </footer>
+          </blockquote>
+        </div>
+
+        <div class="mt-16 text-center">
+          <p class="text-secondary max-w-3xl mx-auto">
+            In a world where digital integrity is increasingly critical, OpenTimestamps provides the neutral,
+            immutable foundation upon which transparent and accountable systems can be built. It is not governance,
+            not enforcement, and not morality — it is simply the unalterable witness to what was, when it was.
+          </p>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="bg-primary text-white py-12">
+        <div class="max-w-7xl mx-auto px-8 text-center">
+          <div class="mb-8">
+            <h3 class="font-serif text-xl font-bold mb-4">References</h3>
+            <div class="space-y-2 text-sm">
+              <p>
+                <a href="https://opentimestamps.org/" class="text-blue-300 hover:text-blue-200 transition-colors">[1] OpenTimestamps Official Project</a>
+              </p>
+              <p>
+                <a href="https://petertodd.org/2016/opentimestamps-announcement" class="text-blue-300 hover:text-blue-200 transition-colors">[2] Peter Todd - OpenTimestamps Announcement</a>
+              </p>
+            </div>
+          </div>
+          <div class="border-t border-gray-600 pt-8">
+            <p class="text-gray-400 text-sm">
+              This analysis treats OpenTimestamps strictly as infrastructure for truth-in-time, not governance, enforcement, or morality.
+            </p>
+          </div>
+        </div>
+      </footer>
+    </main>
+
+    <script>
+        // Initialize Mermaid with enhanced configuration
+        mermaid.initialize({ 
+            startOnLoad: true, 
+            theme: 'base',
+            themeVariables: {
+                primaryColor: '#f8fafc',
+                primaryTextColor: '#1a1a1a',
+                primaryBorderColor: '#2563eb',
+                lineColor: '#666666',
+                background: '#ffffff',
+                secondaryColor: '#e2e8f0',
+                tertiaryColor: '#cbd5e1',
+                primaryTextColor: '#1a1a1a',
+                secondaryTextColor: '#1a1a1a',
+                tertiaryTextColor: '#1a1a1a',
+                // Enhanced contrast for different node types
+                cScale0: '#1a1a1a',
+                cScale1: '#2563eb', 
+                cScale2: '#f8fafc',
+                cScale3: '#666666',
+                cScale4: '#e2e8f0',
+                cScale5: '#cbd5e1',
+                // Text colors for different backgrounds
+                darkTextColor: '#ffffff',
+                lightTextColor: '#1a1a1a'
+            },
+            flowchart: {
+                htmlLabels: true,
+                curve: 'basis',
+                padding: 20,
+                nodeSpacing: 50,
+                rankSpacing: 80,
+                diagramPadding: 20
+            },
+            timeline: {
+                padding: 20,
+                useMaxWidth: true
+            },
+            fontFamily: 'Inter, sans-serif',
+            fontSize: '14px',
+            // Ensure proper scaling
+            gantt: {
+                useMaxWidth: true
+            }
+        });
+
+        // Initialize Mermaid Controls for zoom and pan
+        function initializeMermaidControls() {
+            const containers = document.querySelectorAll('.mermaid-container');
+
+            containers.forEach(container => {
+            const mermaidElement = container.querySelector('.mermaid');
+            let scale = 1;
+            let isDragging = false;
+            let startX, startY, translateX = 0, translateY = 0;
+
+            // 触摸相关状态
+            let isTouch = false;
+            let touchStartTime = 0;
+            let initialDistance = 0;
+            let initialScale = 1;
+            let isPinching = false;
+
+            // Zoom controls
+            const zoomInBtn = container.querySelector('.zoom-in');
+            const zoomOutBtn = container.querySelector('.zoom-out');
+            const resetBtn = container.querySelector('.reset-zoom');
+            const fullscreenBtn = container.querySelector('.fullscreen');
+
+            function updateTransform() {
+                mermaidElement.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+
+                if (scale > 1) {
+                container.classList.add('zoomed');
+                } else {
+                container.classList.remove('zoomed');
+                }
+
+                mermaidElement.style.cursor = isDragging ? 'grabbing' : 'grab';
+            }
+
+            if (zoomInBtn) {
+                zoomInBtn.addEventListener('click', () => {
+                scale = Math.min(scale * 1.25, 4);
+                updateTransform();
+                });
+            }
+
+            if (zoomOutBtn) {
+                zoomOutBtn.addEventListener('click', () => {
+                scale = Math.max(scale / 1.25, 0.3);
+                if (scale <= 1) {
+                    translateX = 0;
+                    translateY = 0;
+                }
+                updateTransform();
+                });
+            }
+
+            if (resetBtn) {
+                resetBtn.addEventListener('click', () => {
+                scale = 1;
+                translateX = 0;
+                translateY = 0;
+                updateTransform();
+                });
+            }
+
+            if (fullscreenBtn) {
+                fullscreenBtn.addEventListener('click', () => {
+                if (container.requestFullscreen) {
+                    container.requestFullscreen();
+                } else if (container.webkitRequestFullscreen) {
+                    container.webkitRequestFullscreen();
+                } else if (container.msRequestFullscreen) {
+                    container.msRequestFullscreen();
+                }
+                });
+            }
+
+            // Mouse Events
+            mermaidElement.addEventListener('mousedown', (e) => {
+                if (isTouch) return; // 如果是触摸设备，忽略鼠标事件
+
+                isDragging = true;
+                startX = e.clientX - translateX;
+                startY = e.clientY - translateY;
+                mermaidElement.style.cursor = 'grabbing';
+                updateTransform();
+                e.preventDefault();
+            });
+
+            document.addEventListener('mousemove', (e) => {
+                if (isDragging && !isTouch) {
+                translateX = e.clientX - startX;
+                translateY = e.clientY - startY;
+                updateTransform();
+                }
+            });
+
+            document.addEventListener('mouseup', () => {
+                if (isDragging && !isTouch) {
+                isDragging = false;
+                mermaidElement.style.cursor = 'grab';
+                updateTransform();
+                }
+            });
+
+            document.addEventListener('mouseleave', () => {
+                if (isDragging && !isTouch) {
+                isDragging = false;
+                mermaidElement.style.cursor = 'grab';
+                updateTransform();
+                }
+            });
+
+            // 获取两点之间的距离
+            function getTouchDistance(touch1, touch2) {
+                return Math.hypot(
+                touch2.clientX - touch1.clientX,
+                touch2.clientY - touch1.clientY
+                );
+            }
+
+            // Touch Events - 触摸事件处理
+            mermaidElement.addEventListener('touchstart', (e) => {
+                isTouch = true;
+                touchStartTime = Date.now();
+
+                if (e.touches.length === 1) {
+                // 单指拖动
+                isPinching = false;
+                isDragging = true;
+
+                const touch = e.touches[0];
+                startX = touch.clientX - translateX;
+                startY = touch.clientY - translateY;
+
+                } else if (e.touches.length === 2) {
+                // 双指缩放
+                isPinching = true;
+                isDragging = false;
+
+                const touch1 = e.touches[0];
+                const touch2 = e.touches[1];
+                initialDistance = getTouchDistance(touch1, touch2);
+                initialScale = scale;
+                }
+
+                e.preventDefault();
+            }, { passive: false });
+
+            mermaidElement.addEventListener('touchmove', (e) => {
+                if (e.touches.length === 1 && isDragging && !isPinching) {
+                // 单指拖动
+                const touch = e.touches[0];
+                translateX = touch.clientX - startX;
+                translateY = touch.clientY - startY;
+                updateTransform();
+
+                } else if (e.touches.length === 2 && isPinching) {
+                // 双指缩放
+                const touch1 = e.touches[0];
+                const touch2 = e.touches[1];
+                const currentDistance = getTouchDistance(touch1, touch2);
+
+                if (initialDistance > 0) {
+                    const newScale = Math.min(Math.max(
+                    initialScale * (currentDistance / initialDistance),
+                    0.3
+                    ), 4);
+                    scale = newScale;
+                    updateTransform();
+                }
+                }
+
+                e.preventDefault();
+            }, { passive: false });
+
+            mermaidElement.addEventListener('touchend', (e) => {
+                // 重置状态
+                if (e.touches.length === 0) {
+                isDragging = false;
+                isPinching = false;
+                initialDistance = 0;
+
+                // 延迟重置isTouch，避免鼠标事件立即触发
+                setTimeout(() => {
+                    isTouch = false;
+                }, 100);
+                } else if (e.touches.length === 1 && isPinching) {
+                // 从双指变为单指，切换为拖动模式
+                isPinching = false;
+                isDragging = true;
+
+                const touch = e.touches[0];
+                startX = touch.clientX - translateX;
+                startY = touch.clientY - translateY;
+                }
+
+                updateTransform();
+            });
+
+            mermaidElement.addEventListener('touchcancel', (e) => {
+                isDragging = false;
+                isPinching = false;
+                initialDistance = 0;
+
+                setTimeout(() => {
+                isTouch = false;
+                }, 100);
+
+                updateTransform();
+            });
+
+            // Enhanced wheel zoom with better center point handling
+            container.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                const rect = container.getBoundingClientRect();
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+
+                const delta = e.deltaY > 0 ? 0.9 : 1.1;
+                const newScale = Math.min(Math.max(scale * delta, 0.3), 4);
+
+                // Adjust translation to zoom towards center
+                if (newScale !== scale) {
+                const scaleDiff = newScale / scale;
+                translateX = translateX * scaleDiff;
+                translateY = translateY * scaleDiff;
+                scale = newScale;
+
+                if (scale <= 1) {
+                    translateX = 0;
+                    translateY = 0;
+                }
+
+                updateTransform();
+                }
+            });
+
+            // Initialize display
+            updateTransform();
+            });
+        }
+
+        // Initialize the mermaid controls after page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeMermaidControls();
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Highlight active section in TOC
+        const observerOptions = {
+            root: null,
+            rootMargin: '-20% 0px -70% 0px',
+            threshold: 0
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Remove active class from all TOC links
+                    document.querySelectorAll('.toc-fixed a').forEach(link => {
+                        link.classList.remove('text-accent', 'font-semibold');
+                        link.classList.add('text-secondary');
+                    });
+                    
+                    // Add active class to current section
+                    const activeLink = document.querySelector(`.toc-fixed a[href="#${entry.target.id}"]`);
+                    if (activeLink) {
+                        activeLink.classList.remove('text-secondary');
+                        activeLink.classList.add('text-accent', 'font-semibold');
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section[id]').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+  
+
+</body></html>
