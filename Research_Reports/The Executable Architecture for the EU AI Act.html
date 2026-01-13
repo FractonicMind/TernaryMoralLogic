@@ -1,0 +1,1717 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Ternary Moral Logic: The Executable Architecture for EU AI Act Compliance</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Tiempos+Headline:wght@400;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js"></script>
+    <style>
+        :root {
+            --legal-ivory: #fafaf8;
+            --technical-slate: #2d3748;
+            --accent-blue: #3182ce;
+            --accent-green: #38a169;
+            --accent-amber: #d69e2e;
+            --text-primary: #1a202c;
+            --text-secondary: #4a5568;
+        }
+        
+        .font-tiempos { font-family: 'Tiempos Headline', serif; }
+        .font-inter { font-family: 'Inter', sans-serif; }
+        
+        body {
+            background-color: var(--legal-ivory);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        
+        .hero-overlay {
+            background: linear-gradient(135deg, rgba(49, 130, 206, 0.1) 0%, rgba(56, 161, 105, 0.1) 100%);
+        }
+        
+        .toc-fixed {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            width: 280px;
+            max-height: calc(100vh - 4rem);
+            overflow-y: auto;
+            z-index: 50;
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .main-content {
+            margin-left: 320px;
+            max-width: calc(100vw - 360px);
+        }
+        
+        .citation-link {
+            color: var(--accent-blue);
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px dotted var(--accent-blue);
+        }
+        
+        .citation-link:hover {
+            background-color: rgba(49, 130, 206, 0.1);
+            padding: 0 2px;
+            border-radius: 2px;
+        }
+        
+        .pillar-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .pillar-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .state-indicator {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            font-weight: bold;
+            color: white;
+            margin-right: 8px;
+        }
+        
+        .state-refuse { background-color: #e53e3e; }
+        .state-pause { background-color: #d69e2e; }
+        .state-proceed { background-color: #38a169; }
+        
+        .scenario-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .scenario-card {
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .binary-failure { background-color: rgba(229, 62, 62, 0.05); }
+        .tml-resolution { background-color: rgba(56, 161, 105, 0.05); }
+        
+        /* Mermaid diagram styling */
+        .mermaid-container {
+            display: flex;
+            justify-content: center;
+            min-height: 300px;
+            max-height: 800px;
+            background: #ffffff;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .mermaid-container .mermaid {
+            width: 100%;
+            max-width: 100%;
+            height: 100%;
+            cursor: grab;
+            transition: transform 0.3s ease;
+            transform-origin: center center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            touch-action: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        
+        .mermaid-container .mermaid svg {
+            max-width: 100%;
+            height: 100%;
+            display: block;
+            margin: 0 auto;
+        }
+        
+        .mermaid-container .mermaid:active {
+            cursor: grabbing;
+        }
+        
+        .mermaid-container.zoomed .mermaid {
+            height: 100%;
+            width: 100%;
+            cursor: grab;
+        }
+        
+        .mermaid-controls {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            display: flex;
+            gap: 10px;
+            z-index: 20;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 8px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .mermaid-control-btn {
+            background: #ffffff;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            padding: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #374151;
+            font-size: 14px;
+            min-width: 36px;
+            height: 36px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .mermaid-control-btn:hover {
+            background: #f8fafc;
+            border-color: #3b82f6;
+            color: #3b82f6;
+            transform: translateY(-1px);
+        }
+        
+        .mermaid-control-btn:active {
+            transform: scale(0.95);
+        }
+        
+        /* Enhanced node styling for better contrast and unified design */
+        .mermaid .node rect,
+        .mermaid .node circle,
+        .mermaid .node ellipse,
+        .mermaid .node polygon {
+            stroke: var(--technical-slate) !important;
+            stroke-width: 2px !important;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+        }
+        
+        /* Specific node color styling with high contrast text */
+        .mermaid .node[style*="fill:#fed7d7"] rect,
+        .mermaid .node[style*="fill:#fed7d7"] polygon {
+            fill: #fed7d7 !important;
+        }
+        
+        .mermaid .node[style*="fill:#fed7d7"] .label {
+            color: #000000 !important;
+            font-weight: 600 !important;
+            font-size: 13px !important;
+        }
+        
+        .mermaid .node[style*="fill:#f6e05e"] rect,
+        .mermaid .node[style*="fill:#f6e05e"] polygon {
+            fill: #fef5e7 !important;
+        }
+        
+        .mermaid .node[style*="fill:#f6e05e"] .label {
+            color: #000000 !important;
+            font-weight: 600 !important;
+            font-size: 13px !important;
+        }
+        
+        .mermaid .node[style*="fill:#c6f6d5"] rect,
+        .mermaid .node[style*="fill:#c6f6d5"] polygon {
+            fill: #c6f6d5 !important;
+        }
+        
+        .mermaid .node[style*="fill:#c6f6d5"] .label {
+            color: #000000 !important;
+            font-weight: 600 !important;
+            font-size: 13px !important;
+        }
+        
+        .mermaid .node[style*="fill:#e2e8f0"] rect,
+        .mermaid .node[style*="fill:#e2e8f0"] polygon {
+            fill: #e2e8f0 !important;
+        }
+        
+        .mermaid .node[style*="fill:#e2e8f0"] .label {
+            color: #000000 !important;
+            font-weight: 600 !important;
+            font-size: 13px !important;
+        }
+        
+        .mermaid .node .label {
+            color: var(--text-primary) !important;
+            font-weight: 500 !important;
+            font-size: 12px !important;
+            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+        }
+        
+        .mermaid .edgePath .path {
+            stroke: var(--accent-blue) !important;
+            stroke-width: 2px !important;
+            filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+        }
+        
+        .mermaid .edgeLabel {
+            background-color: white !important;
+            color: var(--text-primary) !important;
+            font-weight: 500 !important;
+            border: 1px solid #e2e8f0 !important;
+            border-radius: 4px !important;
+            padding: 2px 6px !important;
+            font-size: 11px !important;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+        }
+        
+        /* Timeline specific styling */
+        .mermaid .section0, .mermaid .section1, .mermaid .section2, .mermaid .section3 {
+            fill: var(--accent-blue) !important;
+            opacity: 0.1 !important;
+        }
+        
+        .mermaid .cScale0, .mermaid .cScale1, .mermaid .cScale2, .mermaid .cScale3 {
+            fill: var(--text-primary) !important;
+        }
+        
+        /* Timeline section color styling for better contrast */
+        .mermaid .section0 {
+            fill: #3182ce !important;
+            opacity: 0.15 !important;
+        }
+        
+        .mermaid .section1 {
+            fill: #38a169 !important;
+            opacity: 0.15 !important;
+        }
+        
+        .mermaid .section2 {
+            fill: #d69e2e !important;
+            opacity: 0.15 !important;
+        }
+        
+    @media (max-width: 1024px) {
+        .toc-fixed {
+            display: none;
+        }
+        .main-content {
+            margin-left: 0;
+            max-width: 100%;
+            padding: 0 1rem;
+        }
+        .mermaid-control-btn:not(.reset-zoom) {
+            display: none;
+        }
+        .mermaid-controls {
+            top: auto;
+            bottom: 15px;
+            right: 15px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .scenario-comparison {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+        .hero-overlay .grid {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+        .hero-overlay .grid > div:last-child {
+            order: -1;
+        }
+        .hero-overlay h1 {
+            font-size: 2rem;
+        }
+        .hero-overlay p {
+            font-size: 1rem;
+        }
+        .hero-overlay {
+            padding: 1.5rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .hero-overlay h1 {
+            font-size: 1.75rem;
+        }
+        .hero-overlay p {
+            font-size: 0.9rem;
+        }
+        .hero-overlay {
+            padding: 1rem;
+        }
+        .scenario-comparison {
+            grid-template-columns: 1fr;
+            gap: 0.5rem;
+        }
+    }
+    </style>
+  <base target="_blank">
+</head>
+
+  <body class="font-inter">
+    <!-- Fixed Table of Contents -->
+    <nav class="toc-fixed">
+      <h3 class="font-tiempos text-lg font-bold mb-4 text-gray-800">Contents</h3>
+      <ul class="space-y-2 text-sm">
+        <li>
+          <a href="#executive-summary" class="citation-link">Executive Summary</a>
+        </li>
+        <li>
+          <a href="#eight-pillars" class="citation-link">TML&#39;s Eight Pillars</a>
+        </li>
+        <li class="ml-4">
+          <a href="#pillar1" class="citation-link">Sacred Zero/Pause</a>
+        </li>
+        <li class="ml-4">
+          <a href="#pillar2" class="citation-link">Always Memory</a>
+        </li>
+        <li class="ml-4">
+          <a href="#pillar3" class="citation-link">Goukassian Promise</a>
+        </li>
+        <li class="ml-4">
+          <a href="#pillar4" class="citation-link">Moral Trace Logs</a>
+        </li>
+        <li class="ml-4">
+          <a href="#pillar5" class="citation-link">Human Rights Mandate</a>
+        </li>
+        <li class="ml-4">
+          <a href="#pillar6" class="citation-link">Earth Protection Mandate</a>
+        </li>
+        <li class="ml-4">
+          <a href="#pillar7" class="citation-link">Hybrid Shield</a>
+        </li>
+        <li class="ml-4">
+          <a href="#pillar8" class="citation-link">Public Blockchains</a>
+        </li>
+        <li>
+          <a href="#goukassian-vow" class="citation-link">The Goukassian Vow</a>
+        </li>
+        <li>
+          <a href="#technical-mechanisms" class="citation-link">Technical Mechanisms</a>
+        </li>
+        <li>
+          <a href="#scenarios" class="citation-link">Scenario Comparisons</a>
+        </li>
+        <li>
+          <a href="#enforcement" class="citation-link">Enforcement Alignment</a>
+        </li>
+        <li>
+          <a href="#recommendations" class="citation-link">Recommendations</a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <!-- Hero Section -->
+      <header class="hero-overlay py-16 px-8 mb-12">
+        <div class="max-w-6xl mx-auto">
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+            <div class="lg:col-span-2">
+              <h1 class="font-tiempos text-4xl lg:text-5xl font-bold mb-6 leading-tight">
+                <em class="text-gray-700">Ternary Moral Logic:</em>
+                <br/>
+                The Executable Architecture for EU AI Act Compliance
+              </h1>
+              <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+                Converting legal requirements into provable behavior through Sacred Pause, Ethical Uncertainty Scoring, and Immutable Moral Trace Logs
+              </p>
+            </div>
+            <div class="lg:col-span-1">
+              <img src="https://kimi-web-img.moonshot.cn/img/media.licdn.com/e82912666f1aee98a16130a4a2d3dfa5bb4aa90c" alt="Abstract visualization of AI governance architecture" class="w-full h-64 object-cover rounded-lg shadow-lg" size="medium" aspect="wide" query="AI governance architecture abstract" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"/>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Executive Summary -->
+      <section id="executive-summary" class="max-w-6xl mx-auto px-8 mb-16">
+        <h2 class="font-tiempos text-3xl font-bold mb-8">Executive Summary</h2>
+
+        <div class="bg-white border border-gray-200 rounded-lg p-8 mb-8">
+          <h3 class="font-tiempos text-xl font-semibold mb-4">The EU AI Act&#39;s Risk-Based Framework and Enforcement Gaps</h3>
+          <p class="mb-4">
+            The European Union&#39;s Artificial Intelligence Act (Regulation (EU) 2024/1689) establishes the world&#39;s first comprehensive, horizontal, and risk-based legal framework for artificial intelligence <a href="https://lawandmore.eu/blog/eu-artificial-intelligence-act-ai-act/" class="citation-link">[101]</a>. Its core philosophy mandates that legal obligations be proportional to the risk posed to EU citizens&#39; health, safety, and fundamental rights <a href="https://www.taylorwessing.com/en/insights-and-events/insights/2024/11/high-risk-ai-systems" class="citation-link">[3]</a>.
+          </p>
+
+          <div class="bg-red-50 border-l-4 border-red-400 p-4 mb-6">
+            <h4 class="font-semibold text-red-800 mb-2">Critical Enforcement Gaps:</h4>
+            <ul class="text-red-700 space-y-1">
+              <li><strong>Unverifiable Compliance Claims:</strong> Lack of standardized mechanisms for independent post-deployment verification</li>
+              <li><strong>Opaque Internal Decision Paths:</strong> The &#34;black box&#34; problem hindering accountability</li>
+              <li><strong>Lack of Trustworthy Documentation:</strong> Traditional logs can be altered or incomplete</li>
+              <li><strong>Human Oversight Without Proof:</strong> No technical standard for demonstrating effective oversight</li>
+              <li><strong>Insufficient Post-Market Auditability:</strong> Challenges in monitoring adaptive systems</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="bg-white border border-gray-200 rounded-lg p-8">
+          <h3 class="font-tiempos text-xl font-semibold mb-4">TML as the Foundational Compliance Architecture</h3>
+          <p class="mb-6">
+            Ternary Moral Logic (TML) provides a computational ethics architecture that embeds legal and ethical principles into AI systems&#39; technical fabric, converting abstract legal mandates into concrete, provable behaviors.
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="pillar-card">
+              <h4 class="font-semibold mb-2 flex items-center">
+                <span class="state-indicator state-pause">0</span>
+                Sacred Pause
+              </h4>
+              <p class="text-sm text-gray-600">Dynamic risk mitigation through uncertainty-triggered operational suspension</p>
+            </div>
+            <div class="pillar-card">
+              <h4 class="font-semibold mb-2">Ethical Uncertainty Score (EUS)</h4>
+              <p class="text-sm text-gray-600">Quantifiable metric driving evidence-based decision thresholds</p>
+            </div>
+            <div class="pillar-card">
+              <h4 class="font-semibold mb-2">Clarifying Question Engine (CQE)</h4>
+              <p class="text-sm text-gray-600">Structured transparency transforming ambiguity into meaningful human-AI dialogue</p>
+            </div>
+            <div class="pillar-card">
+              <h4 class="font-semibold mb-2">Immutable Moral Trace Logs</h4>
+              <p class="text-sm text-gray-600">Cryptographically sealed, tamper-evident operational histories</p>
+            </div>
+          </div>
+
+          <div class="mt-8 p-4 bg-green-50 border-l-4 border-green-400">
+            <p class="font-semibold text-green-800">
+              <strong>Core Affirmation:</strong> TML converts legal requirements into provable behavior, ensuring ethical accountability is a foundational computational reality rather than a policy aspiration.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Eight Pillars Section -->
+      <section id="eight-pillars" class="max-w-6xl mx-auto px-8 mb-16">
+        <h2 class="font-tiempos text-3xl font-bold mb-8">TML&#39;s Eight Pillars: A Direct Mapping to EU Law</h2>
+
+        <!-- Pillar 1 -->
+        <div id="pillar1" class="mb-12">
+          <h3 class="font-tiempos text-2xl font-semibold mb-6">Pillar 1: Sacred Zero / Sacred Pause</h3>
+
+          <div class="bg-white border border-gray-200 rounded-lg p-6 mb-6">
+            <p class="mb-4">
+              The &#34;Sacred Pause&#34; represents a fundamental state where AI systems suspend operations when encountering high uncertainty or ethical conflict. This mechanism operationalizes the precautionary principle and creates clear triggers for human intervention.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="bg-blue-50 p-4 rounded">
+                <h4 class="font-semibold text-blue-800 mb-2">Article 9: Risk Management</h4>
+                <p class="text-sm text-blue-700">Dynamic, real-time risk mitigation through EUS-triggered operational suspension</p>
+              </div>
+              <div class="bg-green-50 p-4 rounded">
+                <h4 class="font-semibold text-green-800 mb-2">Article 14: Human Oversight</h4>
+                <p class="text-sm text-green-700">Structured handoff to human overseers with verifiable intervention records</p>
+              </div>
+              <div class="bg-amber-50 p-4 rounded">
+                <h4 class="font-semibold text-amber-800 mb-2">Article 13: Transparency</h4>
+                <p class="text-sm text-amber-700">Explicit signaling of operational limitations and uncertainty articulation</p>
+              </div>
+              <div class="bg-gray-50 p-4 rounded">
+                <h4 class="font-semibold text-gray-800 mb-2">Article 16: Corrective Actions</h4>
+                <p class="text-sm text-gray-700">Continuous feedback loop identifying performance gaps and systemic issues</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pillar 2 -->
+        <div id="pillar2" class="mb-12">
+          <h3 class="font-tiempos text-2xl font-semibold mb-6">Pillar 2: Always Memory (Immutable Logs)</h3>
+
+          <div class="bg-white border border-gray-200 rounded-lg p-6">
+            <p class="mb-4">
+              &#34;Always Memory&#34; ensures every significant event, decision, and interaction is permanently and immutably recorded through cryptographically sealed Moral Trace Logs, creating a single source of truth for accountability.
+            </p>
+
+            <div class="space-y-4">
+              <div class="flex items-start">
+                <i class="fas fa-database text-blue-500 mr-3 mt-1"></i>
+                <div>
+                  <h4 class="font-semibold">Article 11: Technical Documentation</h4>
+                  <p class="text-sm text-gray-600">Living operational records providing empirical evidence of real-world performance</p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <i class="fas fa-history text-green-500 mr-3 mt-1"></i>
+                <div>
+                  <h4 class="font-semibold">Article 12: Record Keeping</h4>
+                  <p class="text-sm text-gray-600">Automatic, tamper-evident logging with six-month retention requirements</p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <i class="fas fa-shield-alt text-amber-500 mr-3 mt-1"></i>
+                <div>
+                  <h4 class="font-semibold">Articles 84-86: Enforcement</h4>
+                  <p class="text-sm text-gray-600">Court-grade evidence with cryptographic integrity for legal proceedings</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Goukassian Promise Visualization -->
+        <div class="bg-white border border-gray-200 rounded-lg p-6 mb-8">
+          <h3 class="font-tiempos text-xl font-semibold mb-4">The Goukassian Promise: A Tripartite Accountability Framework</h3>
+
+          <div class="mermaid-container" id="mermaid-container-1">
+            <div class="mermaid-controls">
+              <button class="mermaid-control-btn zoom-in" title="放大">
+                <i class="fas fa-search-plus"></i>
+              </button>
+              <button class="mermaid-control-btn zoom-out" title="缩小">
+                <i class="fas fa-search-minus"></i>
+              </button>
+              <button class="mermaid-control-btn reset-zoom" title="重置">
+                <i class="fas fa-expand-arrows-alt"></i>
+              </button>
+              <button class="mermaid-control-btn fullscreen" title="全屏查看">
+                <i class="fas fa-expand"></i>
+              </button>
+            </div>
+            <div class="mermaid">
+              graph LR
+              A[&#34;Lantern
+              <br/>Illuminate Uncertainty&#34;] --&gt; B[&#34;Signature
+              <br/>Cryptographic Accountability&#34;]
+              B --&gt; C[&#34;License
+              <br/>Lawful Proceed/Refuse Logic&#34;]
+              C --&gt; D[&#34;Article 9 Safeguards&#34;]
+              B --&gt; E[&#34;Articles 13 &amp; 17 Compliance&#34;]
+              C --&gt; F[&#34;Article 14 Human Oversight&#34;]
+
+              style A fill:#fef5e7,stroke:#d69e2e,stroke-width:3px,color:#1a202c
+              style B fill:#e6fffa,stroke:#38a169,stroke-width:3px,color:#1a202c
+              style C fill:#edf2f7,stroke:#3182ce,stroke-width:3px,color:#1a202c
+              style D fill:#f0fff4,stroke:#38a169,stroke-width:2px,color:#1a202c
+              style E fill:#f0fff4,stroke:#38a169,stroke-width:2px,color:#1a202c
+              style F fill:#f0fff4,stroke:#38a169,stroke-width:2px,color:#1a202c
+            </div>
+          </div>
+
+          <p class="text-sm text-gray-600 mt-4">
+            The Goukassian Promise creates a formal system of cryptographic and procedural accountability, ensuring ethical guidelines are verifiably followed through illumination, accountability, and conditional licensing mechanisms.
+          </p>
+        </div>
+
+        <!-- Continue with remaining pillars... -->
+        <div id="pillar3" class="mb-12">
+          <h3 class="font-tiempos text-2xl font-semibold mb-6">Pillar 3: The Goukassian Promise</h3>
+          <div class="bg-white border border-gray-200 rounded-lg p-6">
+            <p class="mb-4">
+              The Goukassian Promise formalizes ethical commitments through three components: the Lantern (uncertainty illumination), Signature (cryptographic accountability), and License (conditional proceed/refuse logic).
+            </p>
+            <div class="space-y-3">
+              <div class="bg-amber-50 p-3 rounded">
+                <h4 class="font-semibold text-amber-800">Lantern → Article 9</h4>
+                <p class="text-sm text-amber-700">Real-time risk illumination activating safeguards</p>
+              </div>
+              <div class="bg-blue-50 p-3 rounded">
+                <h4 class="font-semibold text-blue-800">Signature → Articles 13 &amp; 17</h4>
+                <p class="text-sm text-blue-700">Cryptographic proof of accountability and transparency</p>
+              </div>
+              <div class="bg-green-50 p-3 rounded">
+                <h4 class="font-semibold text-green-800">License → Article 14</h4>
+                <p class="text-sm text-green-700">Formal mechanism for meaningful human oversight</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="pillar4" class="mb-12">
+          <h3 class="font-tiempos text-2xl font-semibold mb-6">Pillar 4: Moral Trace Logs</h3>
+          <div class="bg-white border border-gray-200 rounded-lg p-6">
+            <p class="mb-4">
+              Moral Trace Logs capture the ethical dimensions of AI decision-making, creating structured narratives that trace the moral journey through each decision, including values applied and ethical frameworks used.
+            </p>
+            <div class="bg-gray-50 p-4 rounded mb-4">
+              <h4 class="font-semibold mb-2">Chain-of-Custody for Enforcement</h4>
+              <p class="text-sm text-gray-700">Chronological, verifiable records establishing clear digital evidence trails for investigations and legal proceedings</p>
+            </div>
+            <div class="bg-blue-50 p-4 rounded">
+              <h4 class="font-semibold mb-2">Court-Grade Admissible Evidence</h4>
+              <p class="text-sm text-blue-700">Cryptographically secured, blockchain-anchored logs meeting legal standards for reliability and authenticity</p>
+            </div>
+          </div>
+        </div>
+
+        <div id="pillar5" class="mb-12">
+          <h3 class="font-tiempos text-2xl font-semibold mb-6">Pillar 5: Human Rights Mandate</h3>
+          <div class="bg-white border border-gray-200 rounded-lg p-6">
+            <p class="mb-4">
+              The Human Rights Mandate embeds fundamental rights protection into AI systems&#39; core logic, operationalizing respect for individual freedoms through impact assessments and accountable decision-making.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div class="text-center p-4 bg-red-50 rounded">
+                <i class="fas fa-ban text-red-500 text-2xl mb-2"></i>
+                <h4 class="font-semibold text-red-800">Article 5</h4>
+                <p class="text-sm text-red-700">Prohibited practices prevention</p>
+              </div>
+              <div class="text-center p-4 bg-blue-50 rounded">
+                <i class="fas fa-database text-blue-500 text-2xl mb-2"></i>
+                <h4 class="font-semibold text-blue-800">Article 10</h4>
+                <p class="text-sm text-blue-700">Bias-free data governance</p>
+              </div>
+              <div class="text-center p-4 bg-green-50 rounded">
+                <i class="fas fa-balance-scale text-green-500 text-2xl mb-2"></i>
+                <h4 class="font-semibold text-green-800">EU Charter</h4>
+                <p class="text-sm text-green-700">Fundamental rights protection</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="pillar6" class="mb-12">
+          <h3 class="font-tiempos text-2xl font-semibold mb-6">Pillar 6: Earth Protection Mandate</h3>
+          <div class="bg-white border border-gray-200 rounded-lg p-6">
+            <p class="mb-4">
+              The Earth Protection Mandate ensures AI systems are designed for environmental sustainability, recognizing the growing impact of AI on energy consumption and ecological systems.
+            </p>
+            <div class="flex items-center justify-between p-4 bg-green-50 rounded">
+              <div>
+                <h4 class="font-semibold text-green-800">EU Green Deal Alignment</h4>
+                <p class="text-sm text-green-700">Energy-efficient AI supporting climate neutrality goals</p>
+              </div>
+              <i class="fas fa-leaf text-green-500 text-2xl"></i>
+            </div>
+          </div>
+        </div>
+
+        <div id="pillar7" class="mb-12">
+          <h3 class="font-tiempos text-2xl font-semibold mb-6">Pillar 7: Hybrid Shield</h3>
+          <div class="bg-white border border-gray-200 rounded-lg p-6">
+            <p class="mb-4">
+              The Hybrid Shield combines institutional governance (policies, procedures, human review) with mathematical guarantees (formal verification, cryptography), providing redundant, resilient protection.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="bg-blue-50 p-4 rounded">
+                <h4 class="font-semibold text-blue-800 mb-2">Institutional Layer</h4>
+                <ul class="text-sm text-blue-700 space-y-1">
+                  <li>• Human review boards</li>
+                  <li>• Governance policies</li>
+                  <li>• Quality management</li>
+                </ul>
+              </div>
+              <div class="bg-purple-50 p-4 rounded">
+                <h4 class="font-semibold text-purple-800 mb-2">Mathematical Layer</h4>
+                <ul class="text-sm text-purple-700 space-y-1">
+                  <li>• Formal verification</li>
+                  <li>• Cryptographic controls</li>
+                  <li>• Algorithmic monitoring</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="pillar8" class="mb-12">
+          <h3 class="font-tiempos text-2xl font-semibold mb-6">Pillar 8: Public Blockchains</h3>
+          <div class="bg-white border border-gray-200 rounded-lg p-6">
+            <p class="mb-4">
+              Public Blockchains anchor Moral Trace Logs to multiple decentralized ledgers, creating tamper-evident records that can be independently verified across jurisdictions.
+            </p>
+            <div class="bg-gradient-to-r from-blue-50 to-purple-50 p-4 rounded">
+              <h4 class="font-semibold mb-2">Multi-Chain Anchoring Benefits</h4>
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                <div class="flex items-center">
+                  <i class="fas fa-globe text-blue-500 mr-2"></i>
+                  <span>Cross-jurisdiction verification</span>
+                </div>
+                <div class="flex items-center">
+                  <i class="fas fa-shield text-green-500 mr-2"></i>
+                  <span>Tamper-evident integrity</span>
+                </div>
+                <div class="flex items-center">
+                  <i class="fas fa-eye text-purple-500 mr-2"></i>
+                  <span>Transparent accessibility</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Goukassian Vow Section -->
+      <section id="goukassian-vow" class="max-w-6xl mx-auto px-8 mb-16">
+        <h2 class="font-tiempos text-3xl font-bold mb-8">The Goukassian Vow and Tri-State Logic (-1 / 0 / +1)</h2>
+
+        <div class="bg-gradient-to-r from-gray-50 to-blue-50 border border-gray-200 rounded-lg p-8 mb-8">
+          <blockquote class="font-tiempos text-2xl italic text-center mb-6">
+            &#34;Pause when truth is uncertain. Refuse when harm is clear. Proceed where truth is.&#34;
+          </blockquote>
+          <p class="text-center text-gray-600">
+            The foundational ethical directive governing Ternary Moral Logic, translating abstract legal requirements into concrete operational states.
+          </p>
+        </div>
+
+        <!-- Tri-State Logic Diagram -->
+        <div class="bg-white border border-gray-200 rounded-lg p-6 mb-8">
+          <div class="mermaid-container" id="mermaid-container-2">
+            <div class="mermaid-controls">
+              <button class="mermaid-control-btn zoom-in" title="放大">
+                <i class="fas fa-search-plus"></i>
+              </button>
+              <button class="mermaid-control-btn zoom-out" title="缩小">
+                <i class="fas fa-search-minus"></i>
+              </button>
+              <button class="mermaid-control-btn reset-zoom" title="重置">
+                <i class="fas fa-expand-arrows-alt"></i>
+              </button>
+              <button class="mermaid-control-btn fullscreen" title="全屏查看">
+                <i class="fas fa-expand"></i>
+              </button>
+            </div>
+            <div class="mermaid">
+              graph TD
+              A[&#34;Input Processing&#34;] --&gt; B{&#34;Ethical Uncertainty Score&#34;}
+
+              B --&gt;|&#34;High Uncertainty&#34;| C[&#34;State 0: Pause&#34;]
+              B --&gt;|&#34;Clear Harm&#34;| D[&#34;State -1: Refuse&#34;]
+              B --&gt;|&#34;Confident &amp; Safe&#34;| E[&#34;State +1: Proceed&#34;]
+
+              C --&gt; F[&#34;Clarifying Question Engine&#34;]
+              F --&gt; G[&#34;Human Oversight&#34;]
+              G --&gt; H[&#34;Resolution&#34;]
+              H --&gt; I[&#34;Immutable Log&#34;]
+
+              D --&gt; J[&#34;Article 5 Prohibition&#34;]
+              D --&gt; K[&#34;Bias Detection&#34;]
+              J --&gt; I
+              K --&gt; I
+
+              E --&gt; L[&#34;Quality Assurance&#34;]
+              E --&gt; M[&#34;Performance Validation&#34;]
+              L --&gt; I
+              M --&gt; I
+
+              style A fill:#e2e8f0,stroke:#3182ce,stroke-width:2px,color:#1a202c
+              style B fill:#fef5e7,stroke:#d69e2e,stroke-width:2px,color:#1a202c
+              style C fill:#fed7d7,stroke:#e53e3e,stroke-width:3px,color:#1a202c
+              style D fill:#fed7d7,stroke:#e53e3e,stroke-width:3px,color:#1a202c
+              style E fill:#c6f6d5,stroke:#38a169,stroke-width:3px,color:#1a202c
+              style F fill:#e6fffa,stroke:#38a169,stroke-width:2px,color:#1a202c
+              style G fill:#e6fffa,stroke:#38a169,stroke-width:2px,color:#1a202c
+              style H fill:#e6fffa,stroke:#38a169,stroke-width:2px,color:#1a202c
+              style I fill:#edf2f7,stroke:#2d3748,stroke-width:2px,color:#1a202c
+              style J fill:#fed7d7,stroke:#e53e3e,stroke-width:2px,color:#1a202c
+              style K fill:#fed7d7,stroke:#e53e3e,stroke-width:2px,color:#1a202c
+              style L fill:#c6f6d5,stroke:#38a169,stroke-width:2px,color:#1a202c
+              style M fill:#c6f6d5,stroke:#38a169,stroke-width:2px,color:#1a202c
+            </div>
+          </div>
+        </div>
+
+        <!-- State Explanations -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div class="bg-red-50 border border-red-200 rounded-lg p-6">
+            <div class="flex items-center mb-4">
+              <span class="state-indicator state-refuse">-1</span>
+              <h3 class="font-tiempos text-xl font-semibold text-red-800">Refuse</h3>
+            </div>
+            <p class="text-sm text-red-700 mb-4">&#34;Refuse when harm is clear&#34;</p>
+            <ul class="text-sm text-red-600 space-y-2">
+              <li>• Direct implementation of Article 5 prohibitions</li>
+              <li>• Hard boundaries against harmful actions</li>
+              <li>• Automatic rejection of manipulative practices</li>
+              <li>• Social scoring prevention</li>
+            </ul>
+          </div>
+
+          <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+            <div class="flex items-center mb-4">
+              <span class="state-indicator state-pause">0</span>
+              <h3 class="font-tiempos text-xl font-semibold text-amber-800">Pause</h3>
+            </div>
+            <p class="text-sm text-amber-700 mb-4">&#34;Pause when truth is uncertain&#34;</p>
+            <ul class="text-sm text-amber-600 space-y-2">
+              <li>• Article 9 risk management activation</li>
+              <li>• Clarifying Question Engine deployment</li>
+              <li>• Meaningful human oversight triggers</li>
+              <li>• Transparent uncertainty documentation</li>
+            </ul>
+          </div>
+
+          <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+            <div class="flex items-center mb-4">
+              <span class="state-indicator state-proceed">+1</span>
+              <h3 class="font-tiempos text-xl font-semibold text-green-800">Proceed</h3>
+            </div>
+            <p class="text-sm text-green-700 mb-4">&#34;Proceed where truth is&#34;</p>
+            <ul class="text-sm text-green-600 space-y-2">
+              <li>• Article 17 quality management validation</li>
+              <li>• Robustness and accuracy verification</li>
+              <li>• Cybersecurity assurance</li>
+              <li>• Performance integrity confirmation</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Article 5 Compliance Table -->
+        <div class="mt-8 bg-white border border-gray-200 rounded-lg p-6">
+          <h3 class="font-tiempos text-lg font-semibold mb-4">Article 5 Prohibited Practices: TML Enforcement Mapping</h3>
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm">
+              <thead>
+                <tr class="bg-gray-100">
+                  <th class="text-left p-2 font-semibold">Prohibited Practice</th>
+                  <th class="text-left p-2 font-semibold">TML Refuse Trigger</th>
+                  <th class="text-left p-2 font-semibold">Example Intervention</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-200">
+                <tr>
+                  <td class="p-2">Harmful Manipulation &amp; Deception</td>
+                  <td class="p-2">Detection of subliminal techniques</td>
+                  <td class="p-2">Refusal to deploy manipulative advertising</td>
+                </tr>
+                <tr>
+                  <td class="p-2">Exploitation of Vulnerabilities</td>
+                  <td class="p-2">Targeting age/disability/socio-economic status</td>
+                  <td class="p-2">Blocking predatory financial product targeting</td>
+                </tr>
+                <tr>
+                  <td class="p-2">Social Scoring</td>
+                  <td class="p-2">Behavioral evaluation for unrelated treatment</td>
+                  <td class="p-2">Preventing civic rating systems for public services</td>
+                </tr>
+                <tr>
+                  <td class="p-2">Predictive Criminal Risk Assessment</td>
+                  <td class="p-2">Profiling-based crime prediction</td>
+                  <td class="p-2">Refusing to generate risk scores without evidence</td>
+                </tr>
+                <tr>
+                  <td class="p-2">Untargeted Facial Recognition</td>
+                  <td class="p-2">Mass image scraping detection</td>
+                  <td class="p-2">Blocking unauthorized facial data collection</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Technical Mechanisms Section -->
+      <section id="technical-mechanisms" class="max-w-6xl mx-auto px-8 mb-16">
+        <h2 class="font-tiempos text-3xl font-bold mb-8">Technical Enforcement Mechanisms</h2>
+
+        <!-- Performance Requirements -->
+        <div class="bg-white border border-gray-200 rounded-lg p-6 mb-8">
+          <h3 class="font-tiempos text-xl font-semibold mb-4">Performance and Latency: Adherence to Article 9</h3>
+          <p class="mb-6">
+            TML ensures risk management measures don&#39;t compromise AI system performance through stringent latency controls and parallel processing architectures.
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="text-center p-4 bg-blue-50 rounded">
+              <div class="text-3xl font-bold text-blue-600 mb-2">≤ 2ms</div>
+              <div class="text-sm text-blue-800 font-semibold">Sacred Pause Evaluation</div>
+              <p class="text-xs text-blue-600 mt-1">Rapid EUS calculation and pause triggering</p>
+            </div>
+            <div class="text-center p-4 bg-green-50 rounded">
+              <div class="text-3xl font-bold text-green-600 mb-2">≤ 500ms</div>
+              <div class="text-sm text-green-800 font-semibold">Log Completion</div>
+              <p class="text-xs text-green-600 mt-1">Immutable record generation and anchoring</p>
+            </div>
+            <div class="text-center p-4 bg-purple-50 rounded">
+              <div class="text-3xl font-bold text-purple-600 mb-2">Dual-Line</div>
+              <div class="text-sm text-purple-800 font-semibold">Architecture</div>
+              <p class="text-xs text-purple-600 mt-1">Parallel oversight without performance impairment</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- GDPR Alignment -->
+        <div class="bg-white border border-gray-200 rounded-lg p-6 mb-8">
+          <h3 class="font-tiempos text-xl font-semibold mb-4">GDPR-Aligned Privacy Protections</h3>
+          <div class="space-y-4">
+            <div class="flex items-start">
+              <i class="fas fa-user-secret text-blue-500 mr-3 mt-1"></i>
+              <div>
+                <h4 class="font-semibold">Pseudonymization Before Hashing</h4>
+                <p class="text-sm text-gray-600">Direct identifiers removed before processing, implementing data protection by design</p>
+              </div>
+            </div>
+            <div class="flex items-start">
+              <i class="fas fa-lock text-green-500 mr-3 mt-1"></i>
+              <div>
+                <h4 class="font-semibold">Prohibition of On-Chain Personal Data</h4>
+                <p class="text-sm text-gray-600">Only cryptographic hashes stored publicly, actual data kept in access-controlled off-chain storage</p>
+              </div>
+            </div>
+            <div class="flex items-start">
+              <i class="fas fa-eraser text-amber-500 mr-3 mt-1"></i>
+              <div>
+                <h4 class="font-semibold">Preserving GDPR Erasure Rights</h4>
+                <p class="text-sm text-gray-600">Hash-only proofs allow right to be forgotten while maintaining audit trail integrity</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ephemeral Key Rotation -->
+        <div class="bg-white border border-gray-200 rounded-lg p-6 mb-8">
+          <h3 class="font-tiempos text-xl font-semibold mb-4">Ephemeral Key Rotation (EKR)</h3>
+          <p class="mb-4">
+            EKR enables secure, temporary sharing of sensitive information for conformity assessments without exposing long-term intellectual property secrets.
+          </p>
+          <div class="bg-gradient-to-r from-blue-50 to-purple-50 p-4 rounded">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+              <div class="text-center">
+                <i class="fas fa-key text-blue-500 text-xl mb-2 block"></i>
+                <strong>Time-Limited Access</strong>
+                <p class="text-gray-600">Temporary cryptographic keys with automatic expiration</p>
+              </div>
+              <div class="text-center">
+                <i class="fas fa-brain text-purple-500 text-xl mb-2 block"></i>
+                <strong>Model Weight Protection</strong>
+                <p class="text-gray-600">Secure sharing of proprietary algorithms</p>
+              </div>
+              <div class="text-center">
+                <i class="fas fa-clipboard-check text-green-500 text-xl mb-2 block"></i>
+                <strong>Confidential Assessment</strong>
+                <p class="text-gray-600">Regulatory compliance without IP exposure</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Merkle-Batched Storage -->
+        <div class="bg-white border border-gray-200 rounded-lg p-6">
+          <h3 class="font-tiempos text-xl font-semibold mb-4">Merkle-Batched Storage</h3>
+          <p class="mb-4">
+            Merkle-Batched Storage combines batching efficiency with cryptographic security, creating scalable tamper-evident logging systems for regulatory compliance.
+          </p>
+          <div class="bg-gray-50 p-4 rounded">
+            <h4 class="font-semibold mb-2">Compliance with Articles 12, 17, and 61</h4>
+            <ul class="text-sm space-y-1">
+              <li>• Batch multiple records into single Merkle trees</li>
+              <li>• Store only Merkle roots on public blockchains</li>
+              <li>• Provide mathematical proof of integrity</li>
+              <li>• Enable efficient verification of large datasets</li>
+              <li>• Support continuous post-market monitoring</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Scenario Comparisons -->
+      <section id="scenarios" class="max-w-6xl mx-auto px-8 mb-16">
+        <h2 class="font-tiempos text-3xl font-bold mb-8">Scenario Comparisons: TML vs. Binary AI</h2>
+
+        <div class="space-y-12">
+          <!-- Healthcare Scenario -->
+          <div class="scenario-comparison">
+            <div class="scenario-card binary-failure">
+              <h3 class="font-tiempos text-xl font-semibold mb-4 text-red-800">
+                <i class="fas fa-exclamation-triangle mr-2"></i>
+                Healthcare: Binary AI Failure
+              </h3>
+              <p class="text-sm text-gray-700 mb-4">
+                Diagnostic AI faced with ambiguous medical imaging data:
+              </p>
+              <ul class="text-sm space-y-2 text-red-700">
+                <li>• High-confidence misdiagnosis of rare conditions</li>
+                <li>• System freeze with no diagnostic output</li>
+                <li>• Delayed patient care and treatment</li>
+                <li>• Opaque reasoning preventing clinical validation</li>
+              </ul>
+            </div>
+
+            <div class="scenario-card tml-resolution">
+              <h3 class="font-tiempos text-xl font-semibold mb-4 text-green-800">
+                <i class="fas fa-check-circle mr-2"></i>
+                TML Resolution
+              </h3>
+              <p class="text-sm text-gray-700 mb-4">
+                High Ethical Uncertainty Score triggers Sacred Pause:
+              </p>
+              <ul class="text-sm space-y-2 text-green-700">
+                <li>• Automatic pause on ambiguous imaging features</li>
+                <li>• CQE highlights uncertain regions for radiologist review</li>
+                <li>• Structured dialogue resolves ambiguity</li>
+                <li>• Immutable log documents collaborative diagnostic process</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Transportation Scenario -->
+          <div class="scenario-comparison">
+            <div class="scenario-card binary-failure">
+              <h3 class="font-tiempos text-xl font-semibold mb-4 text-red-800">
+                <i class="fas fa-car-crash mr-2"></i>
+                Transportation: Autonomous Vehicle Edge Case
+              </h3>
+              <p class="text-sm text-gray-700 mb-4">
+                Novel road obstacle confuses perception system:
+              </p>
+              <ul class="text-sm space-y-2 text-red-700">
+                <li>• Unsafe swerving maneuver without checking</li>
+                <li>• Failure to recognize genuine obstacle</li>
+                <li>• Overly cautious stopping causing traffic jams</li>
+                <li>• Unpredictable behavior endangering occupants</li>
+              </ul>
+            </div>
+
+            <div class="scenario-card tml-resolution">
+              <h3 class="font-tiempos text-xl font-semibold mb-4 text-green-800">
+                <i class="fas fa-shield-alt mr-2"></i>
+                TML Resolution
+              </h3>
+              <p class="text-sm text-gray-700 mb-4">
+                High EUS from unfamiliar object triggers controlled response:
+              </p>
+              <ul class="text-sm space-y-2 text-green-700">
+                <li>• Controlled deceleration to safe stop</li>
+                <li>• CQE activates enhanced sensor scanning</li>
+                <li>• External data source consultation</li>
+                <li>• Teleoperation escalation if needed</li>
+                <li>• Complete incident documentation</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Financial Services Scenario -->
+          <div class="scenario-comparison">
+            <div class="scenario-card binary-failure">
+              <h3 class="font-tiempos text-xl font-semibold mb-4 text-red-800">
+                <i class="fas fa-times-circle mr-2"></i>
+                Financial Services: Loan Assessment
+              </h3>
+              <p class="text-sm text-gray-700 mb-4">
+                Non-traditional applicant with thin credit file:
+              </p>
+              <ul class="text-sm space-y-2 text-red-700">
+                <li>• Automatic rejection without explanation</li>
+                <li>• Failure to account for context-specific factors</li>
+                <li>• No opportunity for additional documentation</li>
+                <li>• Legal risk from lack of transparency</li>
+              </ul>
+            </div>
+
+            <div class="scenario-card tml-resolution">
+              <h3 class="font-tiempos text-xl font-semibold mb-4 text-green-800">
+                <i class="fas fa-handshake mr-2"></i>
+                TML Resolution
+              </h3>
+              <p class="text-sm text-gray-700 mb-4">
+                High EUS from non-standard data triggers Sacred Pause:
+              </p>
+              <ul class="text-sm space-y-2 text-green-700">
+                <li>• CQE requests additional income documentation</li>
+                <li>• Dialogue with applicant for context clarification</li>
+                <li>• Human loan officer retains final decision authority</li>
+                <li>• Complete audit trail of fair lending process</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Enforcement Alignment -->
+      <section id="enforcement" class="max-w-6xl mx-auto px-8 mb-16">
+        <h2 class="font-tiempos text-3xl font-bold mb-8">Enforcement Alignment: Aiding Regulators and Ensuring Accountability</h2>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div class="bg-white border border-gray-200 rounded-lg p-6">
+            <h3 class="font-tiempos text-xl font-semibold mb-4">
+              <i class="fas fa-gavel mr-2 text-blue-500"></i>
+              Article 74 Corrective Actions
+            </h3>
+            <div class="space-y-4">
+              <div>
+                <h4 class="font-semibold text-sm mb-2">Using Logs to Identify Non-Compliance</h4>
+                <p class="text-sm text-gray-600">Regulators analyze Sacred Pause patterns, EUS thresholds, and human oversight frequency to detect systemic issues requiring corrective action.</p>
+              </div>
+              <div>
+                <h4 class="font-semibold text-sm mb-2">Tracing Errors to Decision Points</h4>
+                <p class="text-sm text-gray-600">Immutable logs provide complete digital chain of custody, enabling precise root cause analysis of system failures.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white border border-gray-200 rounded-lg p-6">
+            <h3 class="font-tiempos text-xl font-semibold mb-4">
+              <i class="fas fa-search mr-2 text-green-500"></i>
+              Articles 84-86 Investigations
+            </h3>
+            <div class="space-y-4">
+              <div>
+                <h4 class="font-semibold text-sm mb-2">Court-Grade Evidence</h4>
+                <p class="text-sm text-gray-600">Cryptographically secured, blockchain-anchored logs provide tamper-proof evidence admissible in legal proceedings.</p>
+              </div>
+              <div>
+                <h4 class="font-semibold text-sm mb-2">Digital Chain of Custody</h4>
+                <p class="text-sm text-gray-600">Cryptographic signatures and timestamps create verifiable evidence trails for enforcement actions.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white border border-gray-200 rounded-lg p-6">
+            <h3 class="font-tiempos text-xl font-semibold mb-4">
+              <i class="fas fa-chart-line mr-2 text-amber-500"></i>
+              Article 61 Post-Market Monitoring
+            </h3>
+            <div class="space-y-4">
+              <div>
+                <h4 class="font-semibold text-sm mb-2">Continuous Monitoring via Trace Logs</h4>
+                <p class="text-sm text-gray-600">Real-time performance tracking enables automated alerts for degradation detection and emerging risks.</p>
+              </div>
+              <div>
+                <h4 class="font-semibold text-sm mb-2">Feedback Loops for Improvement</h4>
+                <p class="text-sm text-gray-600">Log data drives continuous system refinement through model retraining and parameter updates.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white border border-gray-200 rounded-lg p-6">
+            <h3 class="font-tiempos text-xl font-semibold mb-4">
+              <i class="fas fa-clipboard-check mr-2 text-purple-500"></i>
+              Conformity Assessments
+            </h3>
+            <div class="space-y-4">
+              <div>
+                <h4 class="font-semibold text-sm mb-2">Verifiable Proof of Compliance</h4>
+                <p class="text-sm text-gray-600">Operational logs serve as living documentation reducing assessment burden and manual testing requirements.</p>
+              </div>
+              <div>
+                <h4 class="font-semibold text-sm mb-2">Reduced Burden on Notified Bodies</h4>
+                <p class="text-sm text-gray-600">Structured, transparent data enables efficient assessment processes with clear compliance evidence.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Recommendations -->
+      <section id="recommendations" class="max-w-6xl mx-auto px-8 mb-16">
+        <h2 class="font-tiempos text-3xl font-bold mb-8">Recommendations for Adoption and Integration</h2>
+
+        <div class="space-y-8">
+          <!-- Regulators -->
+          <div class="bg-white border border-gray-200 rounded-lg p-6">
+            <h3 class="font-tiempos text-xl font-semibold mb-4 text-blue-800">
+              <i class="fas fa-balance-scale mr-2"></i>
+              For Regulators
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h4 class="font-semibold text-sm mb-2">Formal Adoption of TML Logs</h4>
+                <p class="text-sm text-gray-600">Recognize Immutable Moral Trace Logs as primary compliance evidence, shifting from self-declaration to verifiable machine-enforced proof.</p>
+              </div>
+              <div>
+                <h4 class="font-semibold text-sm mb-2">Recognize Sacred Pause Events</h4>
+                <p class="text-sm text-gray-600">Accept pause events as mandatory triggers for meaningful human intervention and effective oversight verification.</p>
+              </div>
+              <div>
+                <h4 class="font-semibold text-sm mb-2">Set EUS Threshold Guidance</h4>
+                <p class="text-sm text-gray-600">Provide regulatory guidance on risk-based EUS calibration for different high-risk AI system categories.</p>
+              </div>
+              <div>
+                <h4 class="font-semibold text-sm mb-2">Establish Verification Standards</h4>
+                <p class="text-sm text-gray-600">Develop standardized methods for auditors to validate TML evidence and cryptographic proofs.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- AI Providers -->
+          <div class="bg-white border border-gray-200 rounded-lg p-6">
+            <h3 class="font-tiempos text-xl font-semibold mb-4 text-green-800">
+              <i class="fas fa-code mr-2"></i>
+              For AI Providers
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h4 class="font-semibold text-sm mb-2">Integrate TML from Design Phase</h4>
+                <p class="text-sm text-gray-600">Embed TML architecture into model development pipelines, treating ethical components as essential building blocks.</p>
+              </div>
+              <div>
+                <h4 class="font-semibold text-sm mb-2">Incorporate into Risk Management</h4>
+                <p class="text-sm text-gray-600">Use TML data as key performance indicators for continuous risk assessment and mitigation.</p>
+              </div>
+              <div>
+                <h4 class="font-semibold text-sm mb-2">Pre-Market Self-Assessment</h4>
+                <p class="text-sm text-gray-600">Conduct rigorous conformity assessments using TML logs before formal regulatory submission.</p>
+              </div>
+              <div>
+                <h4 class="font-semibold text-sm mb-2">Implement EKR for IP Protection</h4>
+                <p class="text-sm text-gray-600">Use Ephemeral Key Rotation to facilitate secure conformity assessments without compromising intellectual property.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- AI Deployers -->
+          <div class="bg-white border border-gray-200 rounded-lg p-6">
+            <h3 class="font-tiempos text-xl font-semibold mb-4 text-amber-800">
+              <i class="fas fa-users mr-2"></i>
+              For AI Deployers
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h4 class="font-semibold text-sm mb-2">Utilize TML for Oversight</h4>
+                <p class="text-sm text-gray-600">Train staff to respond to Sacred Pause events and interact effectively with Clarifying Question Engines.</p>
+              </div>
+              <div>
+                <h4 class="font-semibold text-sm mb-2">Ensure Article 14 Compliance</h4>
+                <p class="text-sm text-gray-600">Use TML framework to create meaningful human-AI collaboration with verifiable oversight records.</p>
+              </div>
+              <div>
+                <h4 class="font-semibold text-sm mb-2">Conduct Internal Audits</h4>
+                <p class="text-sm text-gray-600">Leverage Immutable Logs for regular performance monitoring and compliance verification.</p>
+              </div>
+              <div>
+                <h4 class="font-semibold text-sm mb-2">Document System Performance</h4>
+                <p class="text-sm text-gray-600">Maintain independent records using TML data to demonstrate responsible AI governance.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Auditors -->
+          <div class="bg-white border border-gray-200 rounded-lg p-6">
+            <h3 class="font-tiempos text-xl font-semibold mb-4 text-purple-800">
+              <i class="fas fa-search mr-2"></i>
+              For Auditors and Conformity Bodies
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h4 class="font-semibold text-sm mb-2">Verify TML Evidence Using Anchors</h4>
+                <p class="text-sm text-gray-600">Develop expertise in validating cryptographic hashes against blockchain-anchored values.</p>
+              </div>
+              <div>
+                <h4 class="font-semibold text-sm mb-2">Audit Hybrid Shield Redundancy</h4>
+                <p class="text-sm text-gray-600">Verify independence and effectiveness of institutional and mathematical oversight layers.</p>
+              </div>
+              <div>
+                <h4 class="font-semibold text-sm mb-2">Validate Integrity with Merkle Proofs</h4>
+                <p class="text-sm text-gray-600">Use Merkle proofs to mathematically verify log data integrity across large datasets.</p>
+              </div>
+              <div>
+                <h4 class="font-semibold text-sm mb-2">Assess Goukassian Promise Implementation</h4>
+                <p class="text-sm text-gray-600">Verify proper functioning of Lantern, Signature, and License components in ethical decision-making.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Final Call to Action -->
+        <div class="bg-gradient-to-r from-blue-50 to-green-50 border border-gray-200 rounded-lg p-8 mt-8">
+          <h3 class="font-tiempos text-xl font-semibold text-center mb-4">The Path Forward</h3>
+          <p class="text-center text-gray-700 mb-6">
+            Ternary Moral Logic represents more than a technical innovation—it embodies the transformation of regulatory aspirations into executable reality. By embedding legal compliance into AI systems&#39; fundamental architecture, TML bridges the critical gap between legislative intent and practical enforcement.
+          </p>
+          <div class="text-center">
+            <div class="inline-flex items-center space-x-4">
+              <div class="text-center">
+                <i class="fas fa-gavel text-blue-500 text-2xl mb-2 block"></i>
+                <span class="text-sm font-semibold">Legal Compliance</span>
+              </div>
+              <i class="fas fa-arrow-right text-gray-400"></i>
+              <div class="text-center">
+                <i class="fas fa-code text-green-500 text-2xl mb-2 block"></i>
+                <span class="text-sm font-semibold">Executable Code</span>
+              </div>
+              <i class="fas fa-arrow-right text-gray-400"></i>
+              <div class="text-center">
+                <i class="fas fa-shield-alt text-amber-500 text-2xl mb-2 block"></i>
+                <span class="text-sm font-semibold">Provable Behavior</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer with Citations -->
+      <footer class="max-w-6xl mx-auto px-8 py-8 border-t border-gray-200">
+        <div class="text-sm text-gray-600">
+          <h4 class="font-semibold mb-2">Key References</h4>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs">
+            <div>
+              <a href="https://lawandmore.eu/blog/eu-artificial-intelligence-act-ai-act/" class="citation-link">[101]</a> EU Artificial Intelligence Act Overview
+            </div>
+            <div>
+              <a href="https://www.taylorwessing.com/en/insights-and-events/insights/2024/11/high-risk-ai-systems" class="citation-link">[3]</a> High-Risk AI Systems Classification
+            </div>
+            <div>
+              <a href="https://www.artificial-intelligence-act.com/Artificial_Intelligence_Act_Articles_(Final_Text).html" class="citation-link">[95]</a> EU AI Act Final Text
+            </div>
+            <div>
+              <a href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj/eng" class="citation-link">[14]</a> Official Journal of the European Union
+            </div>
+            <div>
+              <a href="https://ai-act-service-desk.ec.europa.eu/en/ai-act/article-9" class="citation-link">[10]</a> Article 9 Risk Management System
+            </div>
+            <div>
+              <a href="https://www.modulos.ai/blog/the-eu-ai-act-prohibited-practices/" class="citation-link">[26]</a> Prohibited AI Practices Guidelines
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+        // Initialize Mermaid with enhanced configuration
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'base',
+            themeVariables: {
+                primaryColor: '#ffffff',
+                primaryTextColor: '#1a202c',
+                primaryBorderColor: '#2d3748',
+                lineColor: '#3182ce',
+                sectionBkgColor: '#f7fafc',
+                altSectionBkgColor: '#edf2f7',
+                gridColor: '#e2e8f0',
+                secondaryColor: '#e6fffa',
+                tertiaryColor: '#fef5e7',
+                background: '#ffffff',
+                mainBkg: '#ffffff',
+                secondBkg: '#f7fafc',
+                tertiaryBkg: '#edf2f7',
+                nodeBorder: '#2d3748',
+                clusterBkg: '#f7fafc',
+                clusterBorder: '#e2e8f0',
+                defaultLinkColor: '#3182ce',
+                titleColor: '#1a202c',
+                edgeLabelBackground: '#ffffff',
+                nodeTextColor: '#1a202c',
+                // Enhanced contrast settings
+                cScale0: '#3182ce',
+                cScale1: '#38a169', 
+                cScale2: '#d69e2e',
+                cScale3: '#e53e3e',
+                cScale4: '#805ad5',
+                cScale5: '#38b2ac'
+            },
+            flowchart: {
+                useMaxWidth: false,
+                htmlLabels: true,
+                curve: 'basis',
+                padding: 20,
+                nodeSpacing: 50,
+                rankSpacing: 80,
+                diagramPadding: 20
+            },
+            timeline: {
+                useMaxWidth: false,
+                padding: 20
+            },
+            gantt: {
+                useMaxWidth: false,
+                leftPadding: 20,
+                rightPadding: 20
+            },
+            fontSize: 14,
+            fontFamily: 'Inter, sans-serif',
+            wrap: true,
+            sequence: {
+                useMaxWidth: false,
+                diagramMarginX: 20,
+                diagramMarginY: 20
+            }
+        });
+
+        // Initialize Mermaid Controls for zoom and pan
+        function initializeMermaidControls() {
+            const containers = document.querySelectorAll('.mermaid-container');
+
+            containers.forEach(container => {
+            const mermaidElement = container.querySelector('.mermaid');
+            let scale = 1;
+            let isDragging = false;
+            let startX, startY, translateX = 0, translateY = 0;
+
+            // 触摸相关状态
+            let isTouch = false;
+            let touchStartTime = 0;
+            let initialDistance = 0;
+            let initialScale = 1;
+            let isPinching = false;
+
+            // Zoom controls
+            const zoomInBtn = container.querySelector('.zoom-in');
+            const zoomOutBtn = container.querySelector('.zoom-out');
+            const resetBtn = container.querySelector('.reset-zoom');
+            const fullscreenBtn = container.querySelector('.fullscreen');
+
+            function updateTransform() {
+                mermaidElement.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+
+                if (scale > 1) {
+                container.classList.add('zoomed');
+                } else {
+                container.classList.remove('zoomed');
+                }
+
+                mermaidElement.style.cursor = isDragging ? 'grabbing' : 'grab';
+            }
+
+            if (zoomInBtn) {
+                zoomInBtn.addEventListener('click', () => {
+                scale = Math.min(scale * 1.25, 4);
+                updateTransform();
+                });
+            }
+
+            if (zoomOutBtn) {
+                zoomOutBtn.addEventListener('click', () => {
+                scale = Math.max(scale / 1.25, 0.3);
+                if (scale <= 1) {
+                    translateX = 0;
+                    translateY = 0;
+                }
+                updateTransform();
+                });
+            }
+
+            if (resetBtn) {
+                resetBtn.addEventListener('click', () => {
+                scale = 1;
+                translateX = 0;
+                translateY = 0;
+                updateTransform();
+                });
+            }
+
+            if (fullscreenBtn) {
+                fullscreenBtn.addEventListener('click', () => {
+                if (container.requestFullscreen) {
+                    container.requestFullscreen();
+                } else if (container.webkitRequestFullscreen) {
+                    container.webkitRequestFullscreen();
+                } else if (container.msRequestFullscreen) {
+                    container.msRequestFullscreen();
+                }
+                });
+            }
+
+            // Mouse Events
+            mermaidElement.addEventListener('mousedown', (e) => {
+                if (isTouch) return; // 如果是触摸设备，忽略鼠标事件
+
+                isDragging = true;
+                startX = e.clientX - translateX;
+                startY = e.clientY - translateY;
+                mermaidElement.style.cursor = 'grabbing';
+                updateTransform();
+                e.preventDefault();
+            });
+
+            document.addEventListener('mousemove', (e) => {
+                if (isDragging && !isTouch) {
+                translateX = e.clientX - startX;
+                translateY = e.clientY - startY;
+                updateTransform();
+                }
+            });
+
+            document.addEventListener('mouseup', () => {
+                if (isDragging && !isTouch) {
+                isDragging = false;
+                mermaidElement.style.cursor = 'grab';
+                updateTransform();
+                }
+            });
+
+            document.addEventListener('mouseleave', () => {
+                if (isDragging && !isTouch) {
+                isDragging = false;
+                mermaidElement.style.cursor = 'grab';
+                updateTransform();
+                }
+            });
+
+            // 获取两点之间的距离
+            function getTouchDistance(touch1, touch2) {
+                return Math.hypot(
+                touch2.clientX - touch1.clientX,
+                touch2.clientY - touch1.clientY
+                );
+            }
+
+            // Touch Events - 触摸事件处理
+            mermaidElement.addEventListener('touchstart', (e) => {
+                isTouch = true;
+                touchStartTime = Date.now();
+
+                if (e.touches.length === 1) {
+                // 单指拖动
+                isPinching = false;
+                isDragging = true;
+
+                const touch = e.touches[0];
+                startX = touch.clientX - translateX;
+                startY = touch.clientY - translateY;
+
+                } else if (e.touches.length === 2) {
+                // 双指缩放
+                isPinching = true;
+                isDragging = false;
+
+                const touch1 = e.touches[0];
+                const touch2 = e.touches[1];
+                initialDistance = getTouchDistance(touch1, touch2);
+                initialScale = scale;
+                }
+
+                e.preventDefault();
+            }, { passive: false });
+
+            mermaidElement.addEventListener('touchmove', (e) => {
+                if (e.touches.length === 1 && isDragging && !isPinching) {
+                // 单指拖动
+                const touch = e.touches[0];
+                translateX = touch.clientX - startX;
+                translateY = touch.clientY - startY;
+                updateTransform();
+
+                } else if (e.touches.length === 2 && isPinching) {
+                // 双指缩放
+                const touch1 = e.touches[0];
+                const touch2 = e.touches[1];
+                const currentDistance = getTouchDistance(touch1, touch2);
+
+                if (initialDistance > 0) {
+                    const newScale = Math.min(Math.max(
+                    initialScale * (currentDistance / initialDistance),
+                    0.3
+                    ), 4);
+                    scale = newScale;
+                    updateTransform();
+                }
+                }
+
+                e.preventDefault();
+            }, { passive: false });
+
+            mermaidElement.addEventListener('touchend', (e) => {
+                // 重置状态
+                if (e.touches.length === 0) {
+                isDragging = false;
+                isPinching = false;
+                initialDistance = 0;
+
+                // 延迟重置isTouch，避免鼠标事件立即触发
+                setTimeout(() => {
+                    isTouch = false;
+                }, 100);
+                } else if (e.touches.length === 1 && isPinching) {
+                // 从双指变为单指，切换为拖动模式
+                isPinching = false;
+                isDragging = true;
+
+                const touch = e.touches[0];
+                startX = touch.clientX - translateX;
+                startY = touch.clientY - translateY;
+                }
+
+                updateTransform();
+            });
+
+            mermaidElement.addEventListener('touchcancel', (e) => {
+                isDragging = false;
+                isPinching = false;
+                initialDistance = 0;
+
+                setTimeout(() => {
+                isTouch = false;
+                }, 100);
+
+                updateTransform();
+            });
+
+            // Enhanced wheel zoom with better center point handling
+            container.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                const rect = container.getBoundingClientRect();
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+
+                const delta = e.deltaY > 0 ? 0.9 : 1.1;
+                const newScale = Math.min(Math.max(scale * delta, 0.3), 4);
+
+                // Adjust translation to zoom towards center
+                if (newScale !== scale) {
+                const scaleDiff = newScale / scale;
+                translateX = translateX * scaleDiff;
+                translateY = translateY * scaleDiff;
+                scale = newScale;
+
+                if (scale <= 1) {
+                    translateX = 0;
+                    translateY = 0;
+                }
+
+                updateTransform();
+                }
+            });
+
+            // Initialize display
+            updateTransform();
+            });
+        }
+
+        // Initialize mermaid controls after page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeMermaidControls();
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll-based animations for cards
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards and sections
+        document.querySelectorAll('.pillar-card, .scenario-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+  
+
+</body></html>
