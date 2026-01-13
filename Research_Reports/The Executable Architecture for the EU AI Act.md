@@ -1,4 +1,4 @@
-# Ternary Moral Logic (TML) as the Executable Architecture for the EU AI Act: A Legal-Technical Report
+# **Ternary Moral Logic (TML) as the Executable Architecture for the EU AI Act: A Legal-Technical Report**
 
 ## **1\. Executive Summary**
 
@@ -853,91 +853,29 @@ To operationalize the architectural principles described in this report, the fol
 
 The fundamental logic gate for TML replaces binary boolean operators with ternary moral states. This Solidity implementation ensures that no single moral dimension can override the consensus without clear majority.
 
-Solidity  
-// Solidity implementation of TMaj gate  
-function tmaj(int8 a, int8 b, int8 c) public pure returns (int8) {  
-    int8 sum \= a \+ b \+ c;  
-    // If sum is 2 or 3, majority is \+1  
-    if (sum \>= 2\) return 1;  
-    // If sum is \-2 or \-3, majority is \-1  
-    if (sum \<= \-2) return \-1;  
-    // Otherwise (mixed or ambiguous), return 0  
-    return 0;  
-}
+| `Solidity // Solidity implementation of TMaj gate function tmaj(int8 a, int8 b, int8 c) public pure returns (int8) {     int8 sum = a + b + c;     // If sum is 2 or 3, majority is +1     if (sum >= 2) return 1;     // If sum is -2 or -3, majority is -1     if (sum <= -2) return -1;     // Otherwise (mixed or ambiguous), return 0     return 0; }`  |
+| :---- |
 
 ### **A.2 Immutable Logging: Merkle Tree Construction**
 
 This Python implementation demonstrates how decision logs are hashed and structured into a Merkle tree. This ensures that thousands of decisions can be verified via a single on-chain root, satisfying the "tamper-evident" requirements of Article 12\.
 
-Python  
-import hashlib
-
-def build\_merkle\_tree(decisions):  
-    \# Hash all individual decisions (leaves)  
-    leaves \= \[hashlib.sha256(str(d).encode()).digest() for d in decisions\]  
-        
-    while len(leaves) \> 1:  
-        next\_level \= \[\]  
-        for i in range(0, len(leaves), 2):  
-            left \= leaves\[i\]  
-            \# Handle odd number of leaves by duplicating the last one  
-            right \= leaves\[i+1\] if i+1 \< len(leaves) else leaves\[i\]  
-            combined \= hashlib.sha256(left \+ right).digest()  
-            next\_level.append(combined)  
-        leaves \= next\_level  
-        
-    return leaves\[0\]  \# The Merkle Root to be anchored on-chain
+| `Python import hashlib def build_merkle_tree(decisions):     # Hash all individual decisions (leaves)     leaves = [hashlib.sha256(str(d).encode()).digest() for d in decisions]            while len(leaves) > 1:         next_level = []         for i in range(0, len(leaves), 2):             left = leaves[i]             # Handle odd number of leaves by duplicating the last one             right = leaves[i+1] if i+1 < len(leaves) else leaves[i]             combined = hashlib.sha256(left + right).digest()             next_level.append(combined)         leaves = next_level            return leaves[0]  # The Merkle Root to be anchored on-chain` |
+| :---- |
 
 ### **A.3 Governance: Three-Party Escrow Contract**
 
 To solve the "Ambiguity Resolution Vacuum" (Section 1.1), this smart contract operationalizes the **Sacred Pause (State 0\)**. It escrows funds or permissions until a third-party ethics board resolves the ambiguity.
 
-Solidity  
-contract ThreePartyEscrow {  
-    struct Escrow {  
-        address provider;  
-        address ethicsBoard;  
-        address regulatorObserver;  
-        uint256 funds;  
-        uint256 deadline;  
-        int8 resolution; // \-1, 0, 1  
-    }  
-        
-    mapping(bytes32 \=\> Escrow) public escalations;  
-        
-    function escalate(bytes32 decisionId) external payable {  
-        // Only allow escalation for ambiguous decisions  
-        require(tmlState(decisionId) \== 0, "Decision must be ambiguous");  
-        require(msg.value \>= MIN\_ESCROW, "Insufficient escrow funds");  
-            
-        escalations\[decisionId\] \= Escrow(  
-            msg.sender,  
-            getAssignedEthicsBoard(msg.sender),  
-            getRegulatorObserver(),  
-            msg.value,  
-            block.timestamp \+ 48 hours, // 48-hour resolution SLA  
-            0 // unresolved  
-        );  
-    }  
-}
+| `Solidity contract ThreePartyEscrow {     struct Escrow {         address provider;         address ethicsBoard;         address regulatorObserver;         uint256 funds;         uint256 deadline;         int8 resolution; // -1, 0, 1     }            mapping(bytes32 => Escrow) public escalations;            function escalate(bytes32 decisionId) external payable {         // Only allow escalation for ambiguous decisions         require(tmlState(decisionId) == 0, "Decision must be ambiguous");         require(msg.value >= MIN_ESCROW, "Insufficient escrow funds");                    escalations[decisionId] = Escrow(             msg.sender,             getAssignedEthicsBoard(msg.sender),             getRegulatorObserver(),             msg.value,             block.timestamp + 48 hours, // 48-hour resolution SLA             0 // unresolved         );     } }` |
+| :---- |
 
 ### **A.4 Compliance: Reorg Detection & Finality**
 
 To prevent "history rewriting" via blockchain reorganizations, this Python script verifies that anchored evidence has achieved sufficient confirmation depth (finality) before it is accepted for audit.
 
-Python  
-def verify\_finality(anchor\_tx\_hash, required\_confirmations=12):  
-    tx\_block \= get\_transaction\_block(anchor\_tx\_hash)  
-    current\_block \= get\_latest\_block()  
-        
-    if current\_block \- tx\_block \< required\_confirmations:  
-        return "PENDING"  
-        
-    \# Check if tx still exists in the canonical chain to detect reorgs  
-    if not is\_transaction\_in\_chain(anchor\_tx\_hash, tx\_block):  
-        return "REORG\_DETECTED"  
-        
-    return "FINALIZED"
+| `Python def verify_finality(anchor_tx_hash, required_confirmations=12):     tx_block = get_transaction_block(anchor_tx_hash)     current_block = get_latest_block()            if current_block - tx_block < required_confirmations:         return "PENDING"            # Check if tx still exists in the canonical chain to detect reorgs     if not is_transaction_in_chain(anchor_tx_hash, tx_block):         return "REORG_DETECTED"            return "FINALIZED"` |
+| :---- |
 
 ---
 
@@ -967,6 +905,8 @@ For a system processing 10,000 High-Risk decisions per day, TML provides superio
 | **Tamper Detection** | \~60% Probability (Insider threat vulnerability) | **100% Mathematical Guarantee** |
 | **Legal Defensibility** | Moderate (Requires expert testimony) | **High (Self-authenticating evidence)** |
 | **Total Annual Cost** | \*\*\~$60,060\*\* | **\~$503** |
+
+### 
 
 ### **B.3 Gas Optimization Techniques**
 
