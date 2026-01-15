@@ -389,7 +389,7 @@ Three days later, at 4:12 AM Pacific Time, Lev replied. Sarah was at my desk whe
 
 *The cancer has reached my liver now. The doctors speak in weeks, not months. But knowing that TML will be part of Gemini, that every Sacred Pause will prevent some small catastrophe, that every Moral Trace Log will hold someone accountable - that's better than any legacy I could have imagined.*
 
-*You asked how to thank someone who's dying. Here's how: Build AI that would make my golden retriever Vinci trust it. He's got good instincts about character, even in machines.*
+*You asked how to thank someone who's dying. Here's how: Build AI that would make my miniature schnauzer Vinci trust it. He's got good instincts about character, even in machines.*
 
 *Oh, and Kenji? That fourth state I mentioned in footnote 23? The one beyond +1, 0, -1? I call it the "Dance State" - when the AI recognizes something so beautifully complex that the only appropriate response is to celebrate the question rather than attempt an answer. Maybe version 2.0?*
 
