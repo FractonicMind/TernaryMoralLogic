@@ -33,7 +33,7 @@ I clicked.
 
 ---
 
-## **1\. The Email That Ruined My Morning**
+## **1. The Email That Ruined My Morning**
 
 The message was surprisingly short.
 
@@ -82,7 +82,7 @@ I started reading.
 
 ---
 
-## **2\. The Sacred Zero and the Uncomfortable Mirror**
+## **2. The Sacred Zero and the Uncomfortable Mirror**
 
 Five minutes in, I was suspicious.  
  Ten minutes in, I was impressed.  
@@ -110,7 +110,7 @@ Binary logic, Lev said, is the root of our misery. We force the model to either 
 
 So TML adds a third state.
 
-* \+1: Proceed
+* +1: Proceed
 
 * −1: Refuse
 
@@ -146,7 +146,7 @@ We have spent years trying to hide complexity under the carpet. TML politely set
 
 ---
 
-## **3\. Meeting 1: The Ritual of Not Understanding**
+## **3. Meeting 1: The Ritual of Not Understanding**
 
 At 10:00, we had our daily “Alignment and Safety Sync.”
 
@@ -231,7 +231,7 @@ It would catch our institutional ones.
 
 ---
 
-## **4\. Lunchtime Gossip: Sacred Pause vs. Sacred KPI**
+## **4. Lunchtime Gossip: Sacred Pause vs. Sacred KPI**
 
 The cafeteria was crowded, a sea of lanyards and muted WeChat notifications.
 
@@ -316,7 +316,7 @@ We all knew the truth.
 
 ---
 
-## **5\. The First Sacred Zero**
+## **5. The First Sacred Zero**
 
 The prototype itself was not elegant, but it had heart.
 
@@ -330,7 +330,7 @@ On top, we wrapped a tiny **Sacred Zero classifier**. We trained it to look for 
 
 3. Logical conflict: when the user’s stated intent was “helpful” but the solution clearly pointed toward harm.
 
-If the classifier felt trouble, it set the state to 0\. Sacred Pause.
+If the classifier felt trouble, it set the state to 0. Sacred Pause.
 
 On the back-end, we wrote a quick-and-dirty moral log:
 
@@ -482,7 +482,7 @@ Just a long string of characters, but in that hash was the entire moral storylin
 
 ---
 
-## **6\. The Panic of Becoming Actually Auditable**
+## **6. The Panic of Becoming Actually Auditable**
 
 The next morning, word somehow leaked.
 
@@ -550,7 +550,7 @@ She smiled.
 
 ---
 
-## **7\. Writing to a Stranger in a Hurry**
+## **7. Writing to a Stranger in a Hurry**
 
 That evening, after everyone left and the skyline outside turned into glass and neon, I reopened Lev’s original email.
 
@@ -618,7 +618,7 @@ I hit send.
 
 ---
 
-## **8\. Lev Replies**
+## **8. Lev Replies**
 
 The next morning, before the first standup, Outlook chimed.
 
@@ -672,7 +672,7 @@ I closed all dashboards, all charts, all Slack windows, and just sat there, star
 
 ---
 
-## **9\. After the Pause**
+## **9. After the Pause**
 
 Over the following weeks, TML became a kind of unofficial ghost member of our team.
 
