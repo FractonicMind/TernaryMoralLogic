@@ -3,6 +3,7 @@
 **Author:** Lev Goukassian (ORCID: 0009–0006–5966–1243)  
 **Date:** December 7, 2025  
 **Supplementary Material:** [Interactive Runtime Console](https://fractonicmind.github.io/TernaryMoralLogic/Research_Reports/Integrating%20TML%20into%20NVIDIA's%20ecosystem.html) available in this repository  
+
 ---
 
 ## 1\. Executive Summary
