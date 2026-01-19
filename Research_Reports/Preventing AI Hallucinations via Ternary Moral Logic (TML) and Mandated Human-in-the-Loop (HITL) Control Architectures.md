@@ -394,7 +394,7 @@ This figure illustrates the dual-lane latency architecture of the TML system. Th
 
 ## 11. Ephemeral Key Rotation (EKR) and Trade-Secret Protection
 
-11.1. Temporary Decryption Rights Architecture
+### 11.1. Temporary Decryption Rights Architecture
 
 The TML architecture implements Ephemeral Key Rotation (EKR) as a fundamental security control mechanism that provides time-bounded access to encrypted system components while maintaining cryptographic integrity. EKR operates on a principal-agent model where decryption rights are granted through temporary session keys that automatically expire after predefined intervals, eliminating the risk of persistent key compromise.
 
@@ -406,53 +406,53 @@ Auditor access within the TML framework operates through cryptographically enfor
 
 The access control system implements attribute-based encryption (ABE) that binds decryption capabilities to specific auditor credentials and investigation contexts. Auditor keys contain embedded attributes that restrict access to relevant log segments, preventing unauthorized data aggregation. The architecture maintains a complete access ledger that records all auditor key generations, usage patterns, and expiration events, creating an immutable audit trail of oversight activities.
 
-11.3. Automatic Key Expiration and Revocation
+### 11.3. Automatic Key Expiration and Revocation
 
 The EKR system enforces automatic key expiration through cryptographic time locks that render keys inoperable after their designated lifetime expires. This mechanism operates independently of system availability, ensuring that keys cannot be extended through system manipulation or administrator override. The expiration process triggers automatic re-encryption of any temporarily exposed data, returning it to its protected state.
 
 Key revocation operates through certificate transparency logs that publish key identifiers and expiration timestamps to a distributed ledger. This approach prevents key reuse and enables immediate revocation detection across all system components. The revocation mechanism includes emergency key destruction protocols that can instantly invalidate all active keys in response to security incidents, forcing immediate re-authentication and re-authorization of all system access.
 
-11.4. Separation of Proof Integrity from Data Visibility
+### 11.4. Separation of Proof Integrity from Data Visibility
 
 The TML architecture maintains cryptographic separation between proof integrity verification and underlying data visibility through zero-knowledge proof constructions. This design enables verification of system behavior without revealing sensitive operational data, protecting both user privacy and organizational trade secrets.
 
 The separation mechanism employs zk-SNARK circuits that prove correct execution of TML state transitions without revealing the specific inputs, outputs, or internal reasoning that generated those transitions. These proofs demonstrate that State-0 triggers activated appropriately, HITL interventions occurred when required, and rejection conditions resolved correctly, all while maintaining data confidentiality. The architecture supports selective disclosure through committed values that allow authorized parties to verify specific aspects of system behavior without gaining access to the complete operational dataset.
 
-11.5. ISO 27001 and SOC 2 Compliance Framework
+### 11.5. ISO 27001 and SOC 2 Compliance Framework
 
 The EKR system design explicitly addresses ISO 27001 requirements for access control, cryptographic key management, and information security incident management. The architecture implements ISO 27001 Annex A controls through automated key lifecycle management, cryptographic inventory tracking, and continuous key usage monitoring. Access control matrices document the relationship between key types, authorized personnel, and permitted operations, providing comprehensive coverage of ISO 27001 access control requirements.
 
 SOC 2 compliance operates through the EKR system's continuous monitoring capabilities that generate real-time alerts for key lifecycle events, unauthorized access attempts, and cryptographic anomalies. The system produces automated compliance reports that demonstrate adherence to SOC 2 security, availability, and confidentiality criteria. Cryptographic evidence of key management practices provides auditors with verifiable proof of security control effectiveness, supporting both Type I and Type II SOC 2 examinations.
 
-12. Post-Audit and Forensic Investigation Architecture
+## ### 12. Post-Audit and Forensic Investigation Architecture
 
-12.1. Forensic Replay of Execution Paths
+### 12.1. Forensic Replay of Execution Paths
 
 The TML architecture maintains complete execution path records that enable deterministic replay of all system decisions, providing forensic investigators with the ability to reconstruct exact system behavior at any point in time. The forensic replay mechanism captures the complete state vector of each decision, including input parameters, confidence scores, trigger conditions, and state transition logic.
 
 Execution path reconstruction operates through timestamped event chains that link each system input to its corresponding state resolution. The replay architecture maintains cryptographic hashes of all intermediate computational states, enabling verification that replayed execution matches original behavior exactly. This capability supports root cause analysis by allowing investigators to modify individual parameters and observe resulting behavioral changes, isolating the specific conditions that led to system failures or unexpected outcomes.
 
-12.2. Chain-of-Custody Guarantees
+### 12.2. Chain-of-Custody Guarantees
 
 The forensic architecture implements cryptographic chain-of-custody through sequential hashing that links each evidence artifact to its predecessor, creating an immutable sequence that detects any tampering or modification. Each custody transfer generates a new hash that incorporates the previous custody record, investigator credentials, and timestamp, maintaining continuous custody verification.
 
 The chain-of-custody system operates through smart contracts that enforce custody transfer protocols and maintain permanent records of all evidence handling activities. These contracts require cryptographic signatures from both transferring and receiving parties, creating non-repudiable custody records. The architecture supports multi-party custody scenarios through threshold signature schemes that require consensus among authorized investigators for custody transfers, preventing unilateral evidence manipulation.
 
-12.3. Liability Assignment Support
+### 12.3. Liability Assignment Support
 
 The TML forensic architecture provides deterministic liability assignment through automated responsibility tracing that links each system decision to its governing authority. The architecture maintains complete records of all decision-making inputs, including model parameters, external mandates, and human interventions, enabling precise liability attribution for any system outcome.
 
 Liability assignment operates through cryptographic attribution tokens that bind specific decisions to their authorizing entities. These tokens contain signed assertions from responsible parties acknowledging their authority over particular decision domains. The forensic system can trace any system output back through its complete decision chain, identifying all parties who contributed to the final outcome and their specific roles in the decision process.
 
-12.4. Digital Evidence Standards Compatibility
+### 12.4. Digital Evidence Standards Compatibility
 
 The forensic architecture implements comprehensive digital evidence standards including RFC 3227 guidelines for digital evidence collection and ISO/IEC 27037 standards for electronic evidence handling. Evidence collection operates through automated forensic agents that preserve original data states while creating working copies for analysis, maintaining evidence integrity throughout investigation processes.
 
 The architecture supports legal admissibility requirements through cryptographic evidence sealing that creates tamper-evident containers for all forensic artifacts. Each evidence container includes complete metadata describing collection methods, timestamps, and integrity verification information. The system generates automated chain-of-custody reports that satisfy legal requirements for evidence presentation, supporting both civil and criminal proceedings involving AI system behavior.
 
-13. HITL-Driven Job Fields
+## ### 13. HITL-Driven Job Fields
 
-13.1. State-0 Resolution Operators
+### 13.1. State-0 Resolution Operators
 
 State-0 Resolution Operators represent specialized technical roles that require deep understanding of both domain-specific requirements and TML architectural constraints. These operators must demonstrate competency in interpreting uncertainty conditions, evaluating epistemic boundaries, and making deterministic resolution decisions within bounded response timeframes.
 
@@ -460,7 +460,7 @@ The role requires interdisciplinary expertise spanning technical system understa
 
 Automation proves insufficient for this role due to the inherent requirement for human judgment in navigating ambiguous operational contexts. While automated systems can identify uncertainty conditions and trigger State-0 pauses, human operators provide the contextual understanding and adaptive reasoning necessary to resolve complex indeterminate situations that exceed formal rule coverage.
 
-13.2. Trigger Configuration Engineers
+### 13.2. Trigger Configuration Engineers
 
 Trigger Configuration Engineers specialize in translating legal, ethical, and operational requirements into deterministic triggering conditions that govern TML state transitions. These engineers must possess expertise in formal logic, regulatory interpretation, and computational ethics to create machine-readable rule sets that capture complex human values and legal requirements.
 
@@ -468,7 +468,7 @@ The role demands proficiency in formal verification methods to ensure trigger co
 
 Human expertise remains essential for this function due to the interpretive complexity involved in translating human legal and ethical frameworks into computational rule systems. While automated tools can assist in rule validation and testing, human engineers provide the nuanced understanding necessary to capture subtle distinctions and contextual dependencies that govern real-world application of legal and ethical principles.
 
-13.3. Response-Time Auditors
+### 13.3. Response-Time Auditors
 
 Response-Time Auditors monitor system performance against established temporal constraints, ensuring that HITL interventions occur within specified timeframes and that timeout conditions resolve appropriately. These auditors require expertise in performance analysis, system monitoring, and temporal constraint verification.
 
@@ -476,7 +476,7 @@ The role involves continuous analysis of system latency patterns, identification
 
 Human oversight proves necessary for this role due to the complex interactions between system components that can affect response timing. While automated monitoring can detect simple threshold violations, human auditors provide the analytical capability necessary to identify subtle performance degradation patterns and diagnose root causes of timing failures.
 
-13.4. Constraint and Shutdown Operators
+### 13.4. Constraint and Shutdown Operators
 
 Constraint and Shutdown Operators manage emergency response procedures that activate when system behavior exceeds safe operational parameters. These operators require expertise in safety-critical system management, emergency response protocols, and fail-safe operational procedures.
 
@@ -484,9 +484,9 @@ The role demands rapid decision-making capability under pressure, with operators
 
 Human judgment remains irreplaceable for this function due to the contextual complexity and time pressure inherent in emergency response situations. While automated systems can detect many unsafe conditions and implement predetermined responses, human operators provide the adaptive reasoning necessary to handle novel emergency scenarios that exceed predefined response protocols.
 
-14. Comparative Analysis: Frozen Model vs Plastic Model
+## 14. Comparative Analysis: Frozen Model vs Plastic Model
 
-14.1. Weight-Updating RLHF Systems: Fundamental Limitations
+### 14.1. Weight-Updating RLHF Systems: Fundamental Limitations
 
 Reinforcement Learning from Human Feedback (RLHF) systems exhibit inherent limitations that compromise their suitability for safety-critical applications requiring deterministic behavior and comprehensive auditability. The plasticity inherent in weight-updating architectures creates fundamental challenges in maintaining consistent system behavior, reproducible outcomes, and verifiable decision traces over time.
 
@@ -496,7 +496,7 @@ Audit drift represents a critical failure mode where the relationship between au
 
 Non-reproducibility compounds these challenges by preventing exact reconstruction of historical system behavior. The combination of stochastic training processes, non-deterministic optimization algorithms, and continuously evolving weight configurations means that reproducing precise system outputs from specific points in time becomes impossible. This irreproducibility eliminates the ability to conduct thorough forensic analysis or verify historical decision correctness.
 
-14.2. TML Execution Gating with Frozen Models: Auditability Advantages
+### 14.2. TML Execution Gating with Frozen Models: Auditability Advantages
 
 The TML architecture's use of frozen models with immutable weights provides fundamental advantages in maintaining system auditability, behavioral consistency, and deterministic operation. By fixing model parameters and shifting control logic to execution-time governance mechanisms, TML creates systems whose behavior remains constant and verifiable throughout operational deployment.
 
@@ -506,7 +506,7 @@ Transparent control logic operates through explicitly defined rule sets that gov
 
 Reproducible and auditable system behavior emerges from the combination of immutable model weights and deterministic control logic. The TML architecture enables exact reconstruction of historical system states and decisions, supporting thorough forensic analysis and enabling verification of past system behavior. This reproducibility proves essential for liability assignment, regulatory compliance, and continuous system improvement efforts.
 
-14.3. Control Logic vs Weight Mutation: Structural Benefits
+### 14.3. Control Logic vs Weight Mutation: Structural Benefits
 
 The TML architecture's shift from weight-based control to execution-time logic provides structural benefits that enhance system safety, reliability, and accountability. By maintaining immutable underlying models and implementing control through explicit governance mechanisms, TML creates systems that remain predictable and verifiable while adapting to changing operational requirements.
 
@@ -514,7 +514,7 @@ Execution-time control enables rapid modification of system behavior through rul
 
 Weight immutability eliminates the behavioral drift and non-reproducibility challenges inherent in plastic models while maintaining the ability to adapt system behavior through explicit control mechanisms. This approach preserves the benefits of learned model capabilities while providing the predictability and verifiability required for safety-critical applications. The separation between learned capabilities and behavioral constraints enables independent optimization of each component while maintaining overall system integrity.
 
-15. Architecture Figures
+## 15. Architecture Figures
 
 Figure 1: TML State-0 Decision Logic Flowchart
 
@@ -548,9 +548,9 @@ Data Flows: Input stream → parallel processing (inference + anchoring) → ind
 
 Control Transitions: Asynchronous operation with synchronized checkpointing, independent failure handling, guaranteed evidence generation for all decisions.
 
-16. Deployment Implications
+## 16. Deployment Implications
 
-16.1. High-Risk Domain Applications
+### 16.1. High-Risk Domain Applications
 
 The TML architecture demonstrates particular suitability for deployment in domains where hallucination-induced errors carry catastrophic consequences including loss of life, financial collapse, or geopolitical instability. Healthcare applications represent primary deployment targets where diagnostic errors, treatment recommendations, or drug interaction analysis require absolute reliability and complete auditability. The architecture's deterministic rejection capabilities prevent potentially fatal hallucinations while maintaining comprehensive decision records supporting medical liability requirements.
 
@@ -558,7 +558,7 @@ Legal applications benefit from TML's ability to prevent fabricated citations, i
 
 Defense and national security applications require the absolute reliability guarantees that TML provides through its deterministic operation and comprehensive audit trails. The architecture's ability to prevent hallucinated intelligence, fabricated threat assessments, or incorrect operational recommendations proves essential in contexts where erroneous outputs could trigger armed conflict or intelligence failures. The non-bypassable nature of State 0 triggers ensures that uncertainty conditions receive appropriate human oversight regardless of operational pressure.
 
-16.2. Certification and Compliance Impact
+### 16.2. Certification and Compliance Impact
 
 The TML architecture fundamentally alters certification requirements for AI systems by providing verifiable safety guarantees that exceed current probabilistic mitigation approaches. Certification bodies can evaluate TML systems through formal verification of control logic, deterministic testing of trigger conditions, and comprehensive audit trail analysis rather than relying on statistical performance metrics that may not capture rare failure modes.
 
@@ -566,7 +566,7 @@ Regulatory compliance benefits from TML's ability to demonstrate explicit adhere
 
 Insurance and liability frameworks evolve to recognize the reduced risk profile of TML systems through lower premium structures, reduced coverage requirements, and simplified claims processes. The architecture's comprehensive decision traceability enables precise liability assignment while its deterministic rejection capabilities demonstrate proactive risk mitigation. Insurance providers can quantify risk reduction through analysis of State 0 activation patterns, HITL resolution effectiveness, and complete audit trail availability.
 
-16.3. Structural Prevention Paradigm Shift
+### 16.3. Structural Prevention Paradigm Shift
 
 The TML architecture represents a fundamental shift from probabilistic hallucination mitigation to structural prevention through execution-time control mechanisms. This paradigm change eliminates the reactive nature of current approaches that attempt to filter or correct hallucinations after generation, replacing it with proactive prevention that blocks hallucination formation at its source.
 
