@@ -97,51 +97,36 @@ The Sacred Pause is also distinguished from ad-hoc refusals by its formal trigge
 
 The transition to the indeterminate state (State 0) is not arbitrary; it is governed by a set of deterministic, automatic triggering conditions. These conditions are designed to identify situations where the AI system is likely to encounter epistemic or moral uncertainty, and where human intervention may be required. The triggers are based on a combination of external mandates, such as legal and ethical guidelines, and internal risk assessments, such as confidence thresholds and uncertainty scores. By automating the triggering process, the TML architecture ensures that the Sacred Pause is invoked consistently and reliably, without the need for manual intervention. This is a critical feature for ensuring the safety and accountability of the system, as it removes the potential for human error or bias in the decision-making process. The automatic triggers are also designed to be transparent and auditable, allowing for a clear and verifiable record of when and why the system entered the indeterminate state.
 
-### 3.1. Automatic Triggering Conditions for the Indeterminate State
+**3.1. Automatic Triggering Conditions for the Indeterminate State**
 
 State 0 activation occurs through deterministic, non-bypassable triggers that operate at the kernel execution level, independent of application-layer logic. These triggers implement mandatory human-in-the-loop intervention not as probabilistic oversight but as architectural enforcement of legally and environmentally binding constraints.
 
-#### 3.1.1. Intersection with 46+ Binding Legal and Ethical Mandates
-
+**3.1.1. Intersection with 46+ Binding Legal and Ethical Mandates**
 State 0 triggers activate automatically upon semantic intersection between proposed model actions and 46+ binding instruments encoded in machine-readable format. These instruments divide into two primary categories:
 
-**26+ International Human Rights Instruments**: The system maintains deterministic mappings for UDHR Articles (1-30), Geneva Conventions (I-IV) and Additional Protocols, Rome Statute provisions, and 15+ specialized conventions including CERD, CEDAW, CAT, and CRPD. Triggering occurs when action semantics intersect with protected categories including life, liberty, security, non-discrimination, and due process. For example, a diagnostic system proposing treatment that may affect Article 3 (right to life) or Article 7 (torture/cruel treatment) rights automatically enters State 0, mandating human medical-legal review.
+* **26+ International Human Rights Instruments:** The system maintains deterministic mappings for UDHR Articles (1-30), Geneva Conventions (I-IV) and Additional Protocols, Rome Statute provisions, and 15+ specialized conventions including CERD, CEDAW, CAT, and CRPD. Triggering occurs when action semantics intersect with protected categories including life, liberty, security, non-discrimination, and due process. For example, a diagnostic system proposing treatment that may affect Article 3 (right to life) or Article 7 (torture/cruel treatment) rights automatically enters State 0, mandating human medical-legal review.
 
-**20+ Earth and Environmental Protection Mandates**: The system encodes binding environmental constraints including carbon intensity thresholds (e.g., grid carbon intensity > 450g CO₂/kWh), water stress limits (> 40% withdrawal-to-availability ratio), protected species intersection (CITES appendices), and circular economy requirements (EU Battery Directive, WEEE). A logistics optimization model proposing routes through water-stressed regions exceeding UN Water Scarcity thresholds triggers State 0, requiring human verification of environmental impact compliance.
 
-#### 3.1.2. Deterministic Clause-to-Action Mapping
+* **20+ Earth and Environmental Protection Mandates:** The system encodes binding environmental constraints including carbon intensity thresholds (e.g., grid carbon intensity > 450g CO₂/kWh), water stress limits (> 40% withdrawal-to-availability ratio), protected species intersection (CITES appendices), and circular economy requirements (EU Battery Directive, WEEE). A logistics optimization model proposing routes through water-stressed regions exceeding UN Water Scarcity thresholds triggers State 0, requiring human verification of environmental impact compliance.
 
+**3.1.2. Deterministic Clause-to-Action Mapping**
 Each binding instrument clause maps deterministically to specific Action Classes through a formal translation layer that converts legal text into executable logic predicates. The mapping operates as:
 
-```plaintext
-Mandate-Clause (M_c) × Action-Class (A_c) → {Permit, Prohibit, Indeterminate}
-```
+`Mandate-Clause (M_c) × Action-Class (A_c) → {Permit, Prohibit, Indeterminate}`
 
-For environmental mandates: `Carbon_Intensity > 450 AND Action_Class ∈ {High_Energy_Computation} → State 0`
+This mapping is hard-coded at the kernel level as a decision tree with 18,400+ terminal nodes, ensuring zero ambiguity in trigger evaluation. The mapping function executes within 0.3 milliseconds as part of the inference pre-processing pipeline.
 
-For human rights: `Action_Class ∩ {Detention, Medical_Treatment, Surveillance} ≠ ∅ AND Jurisdiction ∈ {Conflict_Zone} → State 0`
+**3.1.3. Versioned and Anchored Mandate Sets**
+Binding mandate sets undergo cryptographically versioned releases (e.g., *Mandate_Set_v1.2.2024-01-15*) that prevent ethics laundering through undetected rule modifications. Each version receives cryptographic anchoring via OpenTimestamps on the Bitcoin blockchain, creating immutable proof of the exact rule set active during any system decision.
 
-This mapping is hard-coded at the kernel level as a decision tree with 18,400+ terminal nodes, ensuring zero ambiguity in trigger evaluation. The mapping function executes within 0.3 milliseconds as part of the inference pre-processing pipeline, operating before model execution begins.
+**3.1.4. Non-Bypassable Kernel-Level Enforcement**
+The State 0 triggering mechanism operates within the inference kernel below the model execution layer, making it immune to prompt engineering, jailbreaking, or application-layer manipulation. The enforcement architecture implements hardware-enforced execution gating on the Trusted Execution Environment (TEE) and cryptographic attestation for each inference request.
 
-#### 3.1.3. Versioned and Anchored Mandate Sets
+**Figure 1: TML State-0 Decision Logic Flowchart**
 
-Binding mandate sets undergo cryptographically versioned releases (e.g., Mandate_Set_v1.2.2024-01-15) that prevent ethics laundering through undetected rule modifications. Each version receives cryptographic anchoring via OpenTimestamps on the Bitcoin blockchain, creating immutable proof of the exact rule set active during any system decision.
+![Figure 1](/images/Figure-1.png)
 
-The versioning system implements Merkle root commitments for each mandate set, with the root hash stored on-chain and the complete set distributed through secure channels to TML nodes. When State 0 triggers activate, the system logs the specific mandate version, clause identifiers, and mapping rules applied, enabling forensic verification that decisions complied with the anchored rule set. This prevents post-hoc modification of triggering conditions to rationalize or conceal improper system behavior.
-
-#### 3.1.4. Non-Bypassable Kernel-Level Enforcement
-
-The State 0 triggering mechanism operates within the inference kernel below the model execution layer, making it immune to prompt engineering, jailbreaking, or application-layer manipulation. The enforcement architecture implements:
-
-1. **Hardware-enforced execution gating**: Triggers evaluate on the TEE (Trusted Execution Environment) before GPU inference begins, preventing model access to input if State 0 conditions activate.
-
-2. **Cryptographic attestation**: Each inference request includes a signed attestation that trigger evaluation completed without bypass. The model loader refuses execution if attestation verification fails.
-
-3. **Independent monitor core**: A separate security processor continuously validates that trigger logic executes on every request, detecting any attempt to route around evaluation through direct GPU memory access or modified inference paths.
-
-4. **Fail-secure bypass detection**: Any tampering with trigger evaluation code or execution paths results in immediate system-wide State 0 activation, effectively shutting down autonomous operation until security restoration completes.
-
-This architecture provides cryptographic proof that triggers cannot be bypassed, as the attestation chain demonstrates trigger evaluation occurred in hardware-isolated execution contexts inaccessible to model processes or application code.
+**Figure Description:** This technical flowchart illustrates the deterministic decision logic governing TML state transitions. The diagram begins with input preprocessing that extracts semantic features and identifies operational domain. A parallel evaluation path assesses both confidence metrics and mandate intersection simultaneously. The confidence evaluation branch computes epistemic certainty through multiple verification mechanisms including knowledge graph validation and parametric confidence scoring. Simultaneously, the mandate evaluation branch performs deterministic mapping between proposed actions and binding legal/ethical constraints encoded in machine-readable format. A decision matrix combines these results; State +1 (Permit) activates when confidence exceeds thresholds and no mandate conflicts exist, while State 0 (Indeterminate) activates under uncertainty conditions or mandate ambiguity, initiating the Sacred Pause mechanism.
 
 ### 3.2. The "No Log = No Action" Architectural Constraint
 
@@ -191,6 +176,28 @@ The architecture implements fail-secure behavior where any failure in the anchor
 **Power loss during anchoring**: The Always Memory component includes battery-backed SRAM that preserves partial log entries. Upon power restoration, the system reconstructs anchoring state and either completes pending operations or resolves them as rejections based on recovery verification.
 
 The fail-secure design ensures that the absence of complete logging always results in non-action, preventing any "off-the-record" system behavior that would compromise accountability or safety. This architectural constraint guarantees that unlogged actions are physically impossible within the TML framework.
+
+It looks incredibly strong. You have successfully embedded the "Constitutional" elements (46+ mandates) and the "Hard Engineering" elements (Mutex Lock) directly into the flow.
+
+However, in the surgery, we lost one vital connecting piece.
+
+**The Missing Link:**
+When you replaced Section 3, you overwrote the original **Section 3.2 (Mandated HITL Intervention)**.
+
+* **Current Flow:** Triggers (3.1) -> The Lock (3.2) -> *[GAP]* -> Human Resolution Mechanics (4.0).
+* **The Problem:** We jump from "The lock is closed" to "How the human resolves it," missing the description of the **Middleware** that connects the two. We need to restore the original Section 3.2 as **Section 3.3** to bridge this gap.
+
+Here is the text to insert **between** the new Section 3.2 and Section 4.
+
+### 3.3. Mandated Human-in-the-Loop (HITL) Intervention as a Control Mechanism
+
+When the TML system enters the indeterminate state, it mandates the activation of a Human-in-the-Loop (HITL) intervention. This is not a passive "oversight" mechanism; it is an active control mechanism that allows the human operator to take control of the situation and resolve the uncertainty.
+
+#### 3.3.1. HITL Middleware for Pausing Model Execution
+The implementation of HITL in the TML architecture is facilitated by a specialized middleware component. This middleware acts as an intermediary between the AI model and the human operator. When the system enters the indeterminate state, the middleware pauses the model's execution and routes a notification to the human operator, providing them with the decision trace and mandate collision data. The middleware maintains the secure session state, ensuring no tokens are generated until the resolution signal is received.
+
+#### 3.3.2. Configurable Policies for Human Oversight
+The HITL middleware is governed by configurable policies that define the rules for oversight. These policies specify when and how human intervention is required based on risk tiers (e.g., *High-Risk* mandates require senior operator approval; *Low-Confidence* flags require standard review). This flexibility allows the architecture to adapt to specific domain requirements without altering the core kernel logic.
 
 
 ## 4. HITL Resolution Mechanics and Deterministic Rejection
@@ -276,6 +283,22 @@ The TML architecture is designed to be both scalable and performant, capable of 
 ### 6.1. Dual-Lane Latency Architecture
 
 The dual-lane latency architecture is a key component of the TML architecture's scalability and performance strategy. This architecture separates the system's execution path into two distinct lanes: a low-latency inference lane and a parallel cryptographic anchoring lane. This separation allows the system to achieve high performance for both inference and auditing, without one compromising the other. The low-latency inference lane is designed to handle the real-time execution of the AI model, while the cryptographic anchoring lane is responsible for generating and anchoring the cryptographic proofs of the system's decisions.
+
+#### Figure 2: The Dual-Lane Architecture
+
+Figure Description: This architectural diagram illustrates the parallel execution paths enabling both high-performance inference and cryptographic audit trail generation within strict latency constraints. The diagram shows two independent processing lanes operating in parallel with synchronized interaction points.
+
+The low-latency inference lane (<2ms) processes input through optimized execution paths including hardware-accelerated model inference, streamlined state evaluation, and rapid output generation. This lane implements the complete TML decision logic while maintaining sub-2ms response times through optimized code paths, memory-resident models, and minimal computational overhead.
+
+The parallel cryptographic anchoring lane (<500ms) operates independently to generate tamper-proof audit trails without impacting inference performance. This lane captures decision events, computes cryptographic hashes, constructs Merkle trees, and anchors evidence to public blockchains. The lane implements batch processing strategies that aggregate multiple decisions into single blockchain transactions while maintaining evidence integrity.
+
+Synchronization points ensure that inference decisions complete independently of anchoring operations while guaranteeing that all decisions receive appropriate cryptographic protection. The architecture demonstrates how parallel processing enables both real-time responsiveness and comprehensive auditability without mutual interference.
+
+Components: Input gateway, inference processor, state evaluator, output gate, event capturer, cryptographic processor, Merkle constructor, blockchain anchor.
+
+Data Flows: Input stream → parallel processing (inference + anchoring) → independent output generation and evidence anchoring.
+
+Control Transitions: Asynchronous operation with synchronized checkpointing, independent failure handling, guaranteed evidence generation for all decisions.
 
 #### 6.1.1. Low-Latency Inference Lane (<2 ms)
 
@@ -585,7 +608,8 @@ Weight immutability eliminates the behavioral drift and non-reproducibility chal
 
 ## 15. Architecture Figures
 
-Figure 1: TML State-0 Decision Logic Flowchart
+### 15.1 Figure 1: The Decision Logic Flowchart
+Input -> Mandate Check -> State 0 -> HITL
 
 Figure Description: This technical flowchart illustrates the deterministic decision logic governing TML state transitions. The diagram begins with input preprocessing that extracts semantic features and identifies operational domain. A parallel evaluation path assesses both confidence metrics and mandate intersection simultaneously.
 
@@ -601,7 +625,7 @@ Data Flows: Raw input → processed features → confidence metrics + mandate ev
 
 Control Transitions: Deterministic transitions between evaluation states, non-bypassable State 0 activation, automatic timeout resolution.
 
-Figure 2: Dual-Lane Latency Architecture
+### 15.2 Figure 2: The Dual-Lane Architecture
 
 Figure Description: This architectural diagram illustrates the parallel execution paths enabling both high-performance inference and cryptographic audit trail generation within strict latency constraints. The diagram shows two independent processing lanes operating in parallel with synchronized interaction points.
 
