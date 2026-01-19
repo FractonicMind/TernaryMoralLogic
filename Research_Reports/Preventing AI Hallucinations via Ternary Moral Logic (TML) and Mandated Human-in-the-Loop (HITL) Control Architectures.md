@@ -634,44 +634,9 @@ Execution-time control enables rapid modification of system behavior through rul
 
 Weight immutability eliminates the behavioral drift and non-reproducibility challenges inherent in plastic models while maintaining the ability to adapt system behavior through explicit control mechanisms. This approach preserves the benefits of learned model capabilities while providing the predictability and verifiability required for safety-critical applications. The separation between learned capabilities and behavioral constraints enables independent optimization of each component while maintaining overall system integrity.
 
-## 15. Architecture Figures
+## 15. Deployment Implications
 
-### 15.1 Figure 1: The Decision Logic Flowchart
-Input -> Mandate Check -> State 0 -> HITL
-
-Figure Description: This technical flowchart illustrates the deterministic decision logic governing TML state transitions. The diagram begins with input preprocessing that extracts semantic features and identifies operational domain. A parallel evaluation path assesses both confidence metrics and mandate intersection simultaneously.
-
-The confidence evaluation branch computes epistemic certainty through multiple verification mechanisms including knowledge graph validation, parametric confidence scoring, and consistency checking against verified data sources. Simultaneously, the mandate evaluation branch performs deterministic mapping between proposed actions and binding legal/ethical constraints encoded in machine-readable format.
-
-A decision matrix combines confidence and mandate evaluation results, applying formally defined thresholds to determine appropriate state classification. State +1 (Permit) activates when confidence exceeds domain-specific thresholds and no mandate conflicts exist. State -1 (Prohibit) triggers when mandate evaluation identifies explicit prohibitions regardless of confidence levels. State 0 (Indeterminate) activates under uncertainty conditions including insufficient confidence, mandate ambiguity, or conflicting requirements.
-
-The State 0 activation path implements the Sacred Pause mechanism, blocking autonomous output generation while initiating HITL notification protocols. The flowchart explicitly shows the non-bypassable nature of State 0 triggers and the deterministic timeout resolution to State -1 when human intervention fails to occur within specified timeframes.
-
-Components: Input preprocessor, confidence evaluator, mandate mapper, decision matrix, state classifier, HITL middleware, timeout mechanism, output gate.
-
-Data Flows: Raw input → processed features → confidence metrics + mandate evaluation → decision matrix → state classification → output path selection.
-
-Control Transitions: Deterministic transitions between evaluation states, non-bypassable State 0 activation, automatic timeout resolution.
-
-### 15.2 Figure 2: The Dual-Lane Architecture
-
-Figure Description: This architectural diagram illustrates the parallel execution paths enabling both high-performance inference and cryptographic audit trail generation within strict latency constraints. The diagram shows two independent processing lanes operating in parallel with synchronized interaction points.
-
-The low-latency inference lane (<2ms) processes input through optimized execution paths including hardware-accelerated model inference, streamlined state evaluation, and rapid output generation. This lane implements the complete TML decision logic while maintaining sub-2ms response times through optimized code paths, memory-resident models, and minimal computational overhead.
-
-The parallel cryptographic anchoring lane (<500ms) operates independently to generate tamper-proof audit trails without impacting inference performance. This lane captures decision events, computes cryptographic hashes, constructs Merkle trees, and anchors evidence to public blockchains. The lane implements batch processing strategies that aggregate multiple decisions into single blockchain transactions while maintaining evidence integrity.
-
-Synchronization points ensure that inference decisions complete independently of anchoring operations while guaranteeing that all decisions receive appropriate cryptographic protection. The architecture demonstrates how parallel processing enables both real-time responsiveness and comprehensive auditability without mutual interference.
-
-Components: Input gateway, inference processor, state evaluator, output gate, event capturer, cryptographic processor, Merkle constructor, blockchain anchor.
-
-Data Flows: Input stream → parallel processing (inference + anchoring) → independent output generation and evidence anchoring.
-
-Control Transitions: Asynchronous operation with synchronized checkpointing, independent failure handling, guaranteed evidence generation for all decisions.
-
-## 16. Deployment Implications
-
-### 16.1. High-Risk Domain Applications
+### 15.1. High-Risk Domain Applications
 
 The TML architecture demonstrates particular suitability for deployment in domains where hallucination-induced errors carry catastrophic consequences including loss of life, financial collapse, or geopolitical instability. Healthcare applications represent primary deployment targets where diagnostic errors, treatment recommendations, or drug interaction analysis require absolute reliability and complete auditability. The architecture's deterministic rejection capabilities prevent potentially fatal hallucinations while maintaining comprehensive decision records supporting medical liability requirements.
 
@@ -679,7 +644,7 @@ Legal applications benefit from TML's ability to prevent fabricated citations, i
 
 Defense and national security applications require the absolute reliability guarantees that TML provides through its deterministic operation and comprehensive audit trails. The architecture's ability to prevent hallucinated intelligence, fabricated threat assessments, or incorrect operational recommendations proves essential in contexts where erroneous outputs could trigger armed conflict or intelligence failures. The non-bypassable nature of State 0 triggers ensures that uncertainty conditions receive appropriate human oversight regardless of operational pressure.
 
-### 16.2. Certification and Compliance Impact
+### 15.2. Certification and Compliance Impact
 
 The TML architecture fundamentally alters certification requirements for AI systems by providing verifiable safety guarantees that exceed current probabilistic mitigation approaches. Certification bodies can evaluate TML systems through formal verification of control logic, deterministic testing of trigger conditions, and comprehensive audit trail analysis rather than relying on statistical performance metrics that may not capture rare failure modes.
 
@@ -687,7 +652,7 @@ Regulatory compliance benefits from TML's ability to demonstrate explicit adhere
 
 Insurance and liability frameworks evolve to recognize the reduced risk profile of TML systems through lower premium structures, reduced coverage requirements, and simplified claims processes. The architecture's comprehensive decision traceability enables precise liability assignment while its deterministic rejection capabilities demonstrate proactive risk mitigation. Insurance providers can quantify risk reduction through analysis of State 0 activation patterns, HITL resolution effectiveness, and complete audit trail availability.
 
-### 16.3. Structural Prevention Paradigm Shift
+### 15.3. Structural Prevention Paradigm Shift
 
 The TML architecture represents a fundamental shift from probabilistic hallucination mitigation to structural prevention through execution-time control mechanisms. This paradigm change eliminates the reactive nature of current approaches that attempt to filter or correct hallucinations after generation, replacing it with proactive prevention that blocks hallucination formation at its source.
 
