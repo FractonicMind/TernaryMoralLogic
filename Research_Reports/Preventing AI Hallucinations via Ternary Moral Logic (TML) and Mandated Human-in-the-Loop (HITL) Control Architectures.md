@@ -110,7 +110,7 @@ State 0 triggers activate automatically upon semantic intersection between propo
 * **20+ Earth and Environmental Protection Mandates:** The system encodes binding environmental constraints including carbon intensity thresholds (e.g., grid carbon intensity > 450g CO₂/kWh), water stress limits (> 40% withdrawal-to-availability ratio), protected species intersection (CITES appendices), and circular economy requirements (EU Battery Directive, WEEE). A logistics optimization model proposing routes through water-stressed regions exceeding UN Water Scarcity thresholds triggers State 0, requiring human verification of environmental impact compliance.
 
 **3.1.2. Deterministic Clause-to-Action Mapping**
-Each binding instrument clause maps deterministically to specific Action Classes through a formal translation layer that converts legal text into executable logic predicates. The mapping operates as:
+Each binding instrument clause maps deterministically to specific Action Classes through a formal translation layer that converts legal text into executable logic predicates. The mapping operates as:   
 
 `Mandate-Clause (M_c) × Action-Class (A_c) → {Permit, Prohibit, Indeterminate}`
 
@@ -136,10 +136,10 @@ The "**No Log = No Action**" protocol operates not as policy but as a hardware-e
 
 The mutex lock exists as a 256-bit cryptographic token stored in secure memory within the Always Memory component. The Execution Module holds a hardware register that must contain this token before the output gate opens. The Anchoring Lane generates this token only after:
 
-1. Computing SHA3-512 hash of the complete decision trace
-2. Generating zero-knowledge proof of correct state transition
-3. Storing proof and hash in the Moral Trace Log
-4. Returning signed Log_Receipt to Execution Module
+1. Computing SHA3-512 hash of the complete decision trace   
+2. Generating zero-knowledge proof of correct state transition   
+3. Storing proof and hash in the Moral Trace Log   
+4. Returning signed Log_Receipt to Execution Module   
 
 Without this token, the output gate remains physically disabled, preventing any token generation or transmission.
 
@@ -265,10 +265,6 @@ To further enhance the security and immutability of the Moral Trace Log, the TML
 The TML architecture uses public timestamping to ensure the verifiability of the Moral Trace Log. This means that each log entry is timestamped with a cryptographic proof of its existence at a specific point in time. This proof is created by anchoring the log entry to a public blockchain, which provides a verifiable and immutable record of the entry's timestamp. The use of public timestamping is a critical feature for ensuring the integrity of the log, as it provides a way to prove that the log has not been tampered with or altered retroactively. The public nature of the timestamping also ensures that the log is transparent and accessible to all stakeholders, which is a key requirement for building trust in the system. The use of public timestamping is a key component of the TML architecture's commitment to accountability and transparency.
 Here is the completely rewritten **Section 6**, incorporating the rigorous mathematical formulations, Algorithm 1, and the correct image placeholder for Figure 2.
 
-### **Copy and Paste this block to replace your current Section 6:**
-
----
-
 ## 6. Architecture for Scalability and Performance
 
 The TML architecture is designed to be both scalable and performant, capable of handling high-throughput workloads while maintaining low latency for safety-critical applications. This is achieved through a **Dual-Lane Latency Architecture** that decouples inference from governance using an asynchronous mutex pattern, formally defined below.
@@ -325,7 +321,7 @@ Output: Validated Response (y) or Rejection (∅)
 
 ```
 
-This algorithm ensures that the output y is mathematically unreachable unless the Log_Receipt is valid. The total latency Ttotal​ experienced by the user is defined as:
+This algorithm ensures that the output y is mathematically unreachable unless the Log_Receipt is valid. The total latency Ttotal​ experienced by the user is defined as:   
 Ttotal​=max(Tinf​,Tanc​)+δsync​
 
 Where δsync​ represents the mutex context-switching overhead, optimized to <50μs.
@@ -344,13 +340,13 @@ To strictly verify integrity without imposing linear latency penalties, TML util
 
 #### 6.2.1. Log Chunking and Cascaded Merkle Tree Structures
 
-The log integrity is maintained using a cascaded Merkle Tree structure. For a batch of logs L={l1​,l2​,...,ln​}, the Root Hash R is computed as:
+The log integrity is maintained using a cascaded Merkle Tree structure. For a batch of logs L={l1​,l2​,...,ln​}, the Root Hash R is computed as:   
 R=H(H(l1​)∣∣H(l2​)∣∣...∣∣H(ln​))
 
 Where H is a collision-resistant hash function (SHA-256). This structure allows the system to prove the existence of any single log entry li​ with a proof size of O(log2​n) hashes, ensuring efficient auditing even as log volume scales into the petabytes.
 #### 6.2.2. Proof-Only On-Chain Anchoring
 
-Rather than writing sensitive raw data to the blockchain, TML utilizes a Zero-Knowledge Proof-of-Logging. The system anchors only the Root Hash R and a zk-SNARK proof π that attests to the correct valid state transitions, defined as:
+Rather than writing sensitive raw data to the blockchain, TML utilizes a Zero-Knowledge Proof-of-Logging. The system anchors only the Root Hash R and a zk-SNARK proof π that attests to the correct valid state transitions, defined as:   
 Anchortx​={R,π,Timestamp}
 
 This ensures that user privacy is preserved—no plain text is ever exposed on-chain—while mathematically guaranteeing that the log history has not been altered since the timestamp.
