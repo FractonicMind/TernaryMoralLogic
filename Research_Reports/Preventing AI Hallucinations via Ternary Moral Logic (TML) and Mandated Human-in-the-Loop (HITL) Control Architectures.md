@@ -424,7 +424,7 @@ The EKR system design explicitly addresses ISO 27001 requirements for access con
 
 SOC 2 compliance operates through the EKR system's continuous monitoring capabilities that generate real-time alerts for key lifecycle events, unauthorized access attempts, and cryptographic anomalies. The system produces automated compliance reports that demonstrate adherence to SOC 2 security, availability, and confidentiality criteria. Cryptographic evidence of key management practices provides auditors with verifiable proof of security control effectiveness, supporting both Type I and Type II SOC 2 examinations.
 
-## ### 12. Post-Audit and Forensic Investigation Architecture
+## 12. Post-Audit and Forensic Investigation Architecture
 
 ### 12.1. Forensic Replay of Execution Paths
 
