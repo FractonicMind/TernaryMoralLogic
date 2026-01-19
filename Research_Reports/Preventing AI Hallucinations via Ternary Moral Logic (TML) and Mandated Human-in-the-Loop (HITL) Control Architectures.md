@@ -263,6 +263,11 @@ To further enhance the security and immutability of the Moral Trace Log, the TML
 #### 5.2.3. Public Timestamping and Verifiability
 
 The TML architecture uses public timestamping to ensure the verifiability of the Moral Trace Log. This means that each log entry is timestamped with a cryptographic proof of its existence at a specific point in time. This proof is created by anchoring the log entry to a public blockchain, which provides a verifiable and immutable record of the entry's timestamp. The use of public timestamping is a critical feature for ensuring the integrity of the log, as it provides a way to prove that the log has not been tampered with or altered retroactively. The public nature of the timestamping also ensures that the log is transparent and accessible to all stakeholders, which is a key requirement for building trust in the system. The use of public timestamping is a key component of the TML architecture's commitment to accountability and transparency.
+Here is the completely rewritten **Section 6**, incorporating the rigorous mathematical formulations, Algorithm 1, and the correct image placeholder for Figure 2.
+
+### **Copy and Paste this block to replace your current Section 6:**
+
+---
 
 ## 6. Architecture for Scalability and Performance
 
@@ -270,7 +275,7 @@ The TML architecture is designed to be both scalable and performant, capable of 
 
 ### 6.1. Dual-Lane Latency Architecture
 
-The architecture separates the execution path into two distinct processing lanes: a **Low-Latency Inference Lane ()** and a **Parallel Cryptographic Anchoring Lane ()**. The system enforces safety through a blocking synchronization primitive that prevents output release until a cryptographic receipt is verified.
+The architecture separates the execution path into two distinct processing lanes: a **Low-Latency Inference Lane (Linf​)** and a **Parallel Cryptographic Anchoring Lane (Lanc​)**. The system enforces safety through a blocking synchronization primitive that prevents output release until a cryptographic receipt is verified.
 
 #### Figure 2: The Dual-Lane Architecture
 
@@ -320,13 +325,14 @@ Output: Validated Response (y) or Rejection (∅)
 
 ```
 
-This algorithm ensures that the output  is mathematically unreachable unless the `Log_Receipt` is valid. The total latency  experienced by the user is defined as:
+This algorithm ensures that the output y is mathematically unreachable unless the Log_Receipt is valid. The total latency Ttotal​ experienced by the user is defined as:
+Ttotal​=max(Tinf​,Tanc​)+δsync​
 
-Where  represents the mutex context-switching overhead, optimized to .
+Where δsync​ represents the mutex context-switching overhead, optimized to <50μs.
 
 #### 6.1.2. Low-Latency Inference Lane (<2 ms)
 
-The low-latency inference lane handles real-time execution. To meet the  constraint for mandate checking, the system utilizes **approximate nearest neighbor (ANN)** search for mandate collisions. The complexity of checking a proposed action  against the mandate set  is reduced from  to  using Hierarchical Navigable Small World (HNSW) graphs.
+The low-latency inference lane handles real-time execution. To meet the <2ms constraint for mandate checking, the system utilizes **approximate nearest neighbor (ANN)** search for mandate collisions. The complexity of checking a proposed action a against the mandate set M is reduced from O(∣M∣) to O(log∣M∣) using Hierarchical Navigable Small World (HNSW) graphs.
 
 #### 6.1.3. Parallel Cryptographic Anchoring Lane (<500 ms)
 
@@ -334,27 +340,25 @@ The anchoring lane handles the generation of immutable evidence. It operates asy
 
 ### 6.2. Merkle-Batched Anchoring for Integrity at Scale
 
-To strictly strictly verify integrity without imposing linear latency penalties, TML utilizes **Merkle-Batched Anchoring**. This allows the system to scale to  requests per second while performing only  blockchain writes per batch interval.
+To strictly verify integrity without imposing linear latency penalties, TML utilizes Merkle-Batched Anchoring. This allows the system to scale to N requests per second while performing only O(1) blockchain writes per batch interval.
 
 #### 6.2.1. Log Chunking and Cascaded Merkle Tree Structures
 
-The log integrity is maintained using a cascaded Merkle Tree structure. For a batch of logs , the Root Hash  is computed as:
+The log integrity is maintained using a cascaded Merkle Tree structure. For a batch of logs L={l1​,l2​,...,ln​}, the Root Hash R is computed as:
+R=H(H(l1​)∣∣H(l2​)∣∣...∣∣H(ln​))
 
-Where  is a collision-resistant hash function (SHA-256). This structure allows the system to prove the existence of any single log entry  with a proof size of  hashes, ensuring efficient auditing even as log volume scales into the petabytes.
-
+Where H is a collision-resistant hash function (SHA-256). This structure allows the system to prove the existence of any single log entry li​ with a proof size of O(log2​n) hashes, ensuring efficient auditing even as log volume scales into the petabytes.
 #### 6.2.2. Proof-Only On-Chain Anchoring
 
-Rather than writing sensitive raw data to the blockchain, TML utilizes a **Zero-Knowledge Proof-of-Logging**. The system anchors only the Root Hash  and a zk-SNARK proof  that attests to the correct valid state transitions, defined as:
+Rather than writing sensitive raw data to the blockchain, TML utilizes a Zero-Knowledge Proof-of-Logging. The system anchors only the Root Hash R and a zk-SNARK proof π that attests to the correct valid state transitions, defined as:
+Anchortx​={R,π,Timestamp}
 
 This ensures that user privacy is preserved—no plain text is ever exposed on-chain—while mathematically guaranteeing that the log history has not been altered since the timestamp.
 
 #### 6.2.3. Secure Log Off-Loading Strategies
 
-To ensure long-term availability, the raw data corresponding to the Merkle leaves is off-loaded to immutable object storage (e.g., IPFS or Write-Once-Read-Many AWS S3 buckets). The availability constraint is defined such that if the storage acknowledges a write failure, the `Log_Receipt` is never generated, forcing the system into a fail-secure state (Algorithm 1, Line 29).
+To ensure long-term availability, the raw data corresponding to the Merkle leaves is off-loaded to immutable object storage (e.g., IPFS or Write-Once-Read-Many AWS S3 buckets). The availability constraint is defined such that if the storage acknowledges a write failure, the Log_Receipt is never generated, forcing the system into a fail-secure state (Algorithm 1, Line 29).
 
-## 7. Privacy, Security, and Standards Compliance
-
-The TML architecture is designed to be both privacy-preserving and standards-compliant, ensuring that it can be deployed in a wide range of environments without compromising the privacy of its users or violating any relevant regulations. This is achieved through a combination of privacy-enhancing technologies, secure access control mechanisms, and a commitment to adhering to industry best practices and standards.
 
 ### 7.1. Privacy-Preserving Design
 
