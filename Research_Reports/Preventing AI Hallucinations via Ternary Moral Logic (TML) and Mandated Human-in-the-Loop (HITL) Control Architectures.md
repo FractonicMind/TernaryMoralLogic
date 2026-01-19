@@ -450,7 +450,7 @@ The forensic architecture implements comprehensive digital evidence standards in
 
 The architecture supports legal admissibility requirements through cryptographic evidence sealing that creates tamper-evident containers for all forensic artifacts. Each evidence container includes complete metadata describing collection methods, timestamps, and integrity verification information. The system generates automated chain-of-custody reports that satisfy legal requirements for evidence presentation, supporting both civil and criminal proceedings involving AI system behavior.
 
-## ### 13. HITL-Driven Job Fields
+## 13. HITL-Driven Job Fields
 
 ### 13.1. State-0 Resolution Operators
 
