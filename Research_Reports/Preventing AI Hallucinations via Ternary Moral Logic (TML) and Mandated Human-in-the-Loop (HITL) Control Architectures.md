@@ -177,18 +177,6 @@ The architecture implements fail-secure behavior where any failure in the anchor
 
 The fail-secure design ensures that the absence of complete logging always results in non-action, preventing any "off-the-record" system behavior that would compromise accountability or safety. This architectural constraint guarantees that unlogged actions are physically impossible within the TML framework.
 
-It looks incredibly strong. You have successfully embedded the "Constitutional" elements (46+ mandates) and the "Hard Engineering" elements (Mutex Lock) directly into the flow.
-
-However, in the surgery, we lost one vital connecting piece.
-
-**The Missing Link:**
-When you replaced Section 3, you overwrote the original **Section 3.2 (Mandated HITL Intervention)**.
-
-* **Current Flow:** Triggers (3.1) -> The Lock (3.2) -> *[GAP]* -> Human Resolution Mechanics (4.0).
-* **The Problem:** We jump from "The lock is closed" to "How the human resolves it," missing the description of the **Middleware** that connects the two. We need to restore the original Section 3.2 as **Section 3.3** to bridge this gap.
-
-Here is the text to insert **between** the new Section 3.2 and Section 4.
-
 ### 3.3. Mandated Human-in-the-Loop (HITL) Intervention as a Control Mechanism
 
 When the TML system enters the indeterminate state, it mandates the activation of a Human-in-the-Loop (HITL) intervention. This is not a passive "oversight" mechanism; it is an active control mechanism that allows the human operator to take control of the situation and resolve the uncertainty.
@@ -278,55 +266,91 @@ The TML architecture uses public timestamping to ensure the verifiability of the
 
 ## 6. Architecture for Scalability and Performance
 
-The TML architecture is designed to be both scalable and performant, capable of handling high-throughput workloads while maintaining low latency for safety-critical applications. This is achieved through a combination of architectural patterns, including a dual-lane latency architecture and a Merkle-batched anchoring system. These patterns are designed to ensure that the TML architecture can meet the demanding requirements of modern AI systems, without sacrificing safety or reliability.
+The TML architecture is designed to be both scalable and performant, capable of handling high-throughput workloads while maintaining low latency for safety-critical applications. This is achieved through a **Dual-Lane Latency Architecture** that decouples inference from governance using an asynchronous mutex pattern, formally defined below.
 
 ### 6.1. Dual-Lane Latency Architecture
 
-The dual-lane latency architecture is a key component of the TML architecture's scalability and performance strategy. This architecture separates the system's execution path into two distinct lanes: a low-latency inference lane and a parallel cryptographic anchoring lane. This separation allows the system to achieve high performance for both inference and auditing, without one compromising the other. The low-latency inference lane is designed to handle the real-time execution of the AI model, while the cryptographic anchoring lane is responsible for generating and anchoring the cryptographic proofs of the system's decisions.
+The architecture separates the execution path into two distinct processing lanes: a **Low-Latency Inference Lane ()** and a **Parallel Cryptographic Anchoring Lane ()**. The system enforces safety through a blocking synchronization primitive that prevents output release until a cryptographic receipt is verified.
 
 #### Figure 2: The Dual-Lane Architecture
 
-Figure Description: This architectural diagram illustrates the parallel execution paths enabling both high-performance inference and cryptographic audit trail generation within strict latency constraints. The diagram shows two independent processing lanes operating in parallel with synchronized interaction points.
+![Figure-2](/images/Figure-2.png)
 
-The low-latency inference lane (<2ms) processes input through optimized execution paths including hardware-accelerated model inference, streamlined state evaluation, and rapid output generation. This lane implements the complete TML decision logic while maintaining sub-2ms response times through optimized code paths, memory-resident models, and minimal computational overhead.
+**Figure Description:** This architectural diagram illustrates the parallel execution paths enabling both high-performance inference and cryptographic audit trail generation. The diagram shows two independent processing lanes operating in parallel with synchronized interaction points. The **Inference Lane** (<2ms) processes input through hardware-accelerated paths, while the **Anchoring Lane** (<500ms) generates tamper-proof audit trails via Merkle trees. Synchronization points ensure that inference decisions complete independently of anchoring operations while guaranteeing that all decisions receive appropriate cryptographic protection before release.
 
-The parallel cryptographic anchoring lane (<500ms) operates independently to generate tamper-proof audit trails without impacting inference performance. This lane captures decision events, computes cryptographic hashes, constructs Merkle trees, and anchors evidence to public blockchains. The lane implements batch processing strategies that aggregate multiple decisions into single blockchain transactions while maintaining evidence integrity.
+#### 6.1.1. Formal Definition of Synchronization Logic
 
-Synchronization points ensure that inference decisions complete independently of anchoring operations while guaranteeing that all decisions receive appropriate cryptographic protection. The architecture demonstrates how parallel processing enables both real-time responsiveness and comprehensive auditability without mutual interference.
+The interaction between the two lanes is governed by the **TML Mutex Protocol**. Unlike standard asynchronous logging (which is "fire and forget"), TML implements a "fire and hold" logic defined in **Algorithm 1**.
 
-Components: Input gateway, inference processor, state evaluator, output gate, event capturer, cryptographic processor, Merkle constructor, blockchain anchor.
+```plaintext
+Algorithm 1: TML Dual-Lane Mutex Synchronization
+Input: User Query (x), Model Weights (θ), Mandate Set (M)
+Output: Validated Response (y) or Rejection (∅)
 
-Data Flows: Input stream → parallel processing (inference + anchoring) → independent output generation and evidence anchoring.
+1:  // Lane 1: Inference (Time: t_inf < 2ms)
+2:  vector v_sem ← Encoder(x)
+3:  y_raw ← Model(x, θ)
+4:  State ← Evaluate_Triggers(v_sem, y_raw, M)
+5:
+6:  if State == 0 then
+7:      Trigger HITL_Intervention(x, y_raw)
+8:      return ∅
+9:  end if
+10:
+11: // Generate Decision Trace Hash
+12: h_trace ← SHA3_512(x || y_raw || State || Timestamp)
+13: Signal_Lane2(h_trace)
+14:
+15: // Lane 1 enters Blocking Wait State
+16: Mutex_Lock.Acquire()
+17:
+18: // Lane 2: Anchoring (Time: t_anc < 500ms)
+19: Proof ← Generate_Zk_Proof(State)
+20: Root_Hash ← Merkle_Tree.Insert(h_trace)
+21: Log_Receipt ← Sign(Root_Hash || Proof, Private_Key_Ephemeral)
+22:
+23: // Synchronization Point
+24: if Verify_Signature(Log_Receipt) == True then
+25:     Mutex_Lock.Release()
+26:     return y_raw
+27: else
+28:     Log_Error("Anchoring Integrity Failure")
+29:     return ∅  // Fail-Secure Silence
+30: end if
 
-Control Transitions: Asynchronous operation with synchronized checkpointing, independent failure handling, guaranteed evidence generation for all decisions.
+```
 
-#### 6.1.1. Low-Latency Inference Lane (<2 ms)
+This algorithm ensures that the output  is mathematically unreachable unless the `Log_Receipt` is valid. The total latency  experienced by the user is defined as:
 
-The low-latency inference lane is designed to handle the real-time execution of the AI model, with a target latency of less than 2 milliseconds. This is achieved through a combination of hardware acceleration, optimized software, and a streamlined execution path. The low-latency inference lane is responsible for processing the user's input, running the AI model, and generating the output. It is also responsible for evaluating the model's proposed action against the system's safety and ethical constraints, and for triggering the Sacred Pause if necessary. The low-latency inference lane is a critical component of the TML architecture, as it ensures that the system can respond to user requests in a timely manner, without sacrificing safety or reliability.
+Where  represents the mutex context-switching overhead, optimized to .
 
-#### 6.1.2. Parallel Cryptographic Anchoring Lane (<500 ms)
+#### 6.1.2. Low-Latency Inference Lane (<2 ms)
 
-The parallel cryptographic anchoring lane is responsible for generating and anchoring the cryptographic proofs of the system's decisions, with a target latency of less than 500 milliseconds. This is achieved through a combination of parallel processing, optimized cryptographic algorithms, and a high-performance blockchain network. The cryptographic anchoring lane is responsible for creating the "Moral Trace Log," generating the cryptographic hash of the log, and anchoring the hash to a public blockchain. The parallel nature of the cryptographic anchoring lane ensures that it does not interfere with the low-latency inference lane, allowing the system to achieve high performance for both inference and auditing.
+The low-latency inference lane handles real-time execution. To meet the  constraint for mandate checking, the system utilizes **approximate nearest neighbor (ANN)** search for mandate collisions. The complexity of checking a proposed action  against the mandate set  is reduced from  to  using Hierarchical Navigable Small World (HNSW) graphs.
 
-#### 6.1.3. Impact on High-Throughput and Safety-Critical Systems
+#### 6.1.3. Parallel Cryptographic Anchoring Lane (<500 ms)
 
-The dual-lane latency architecture has a significant impact on the performance of high-throughput and safety-critical systems. By separating the inference and auditing paths, the TML architecture can handle a large number of requests without compromising on safety or reliability. The low-latency inference lane ensures that the system can respond to user requests in a timely manner, while the parallel cryptographic anchoring lane ensures that all decisions are logged and auditable. This makes the TML architecture an ideal solution for a wide range of applications, from high-throughput customer service chatbots to safety-critical medical diagnostic systems.
+The anchoring lane handles the generation of immutable evidence. It operates asynchronously to the model inference but synchronously to the output gate. By offloading the heavy cryptographic operations (SHA3-512 hashing and ECDSA signing) to a dedicated security processor, the system prevents "stop-the-world" garbage collection pauses from affecting the safety logic.
 
 ### 6.2. Merkle-Batched Anchoring for Integrity at Scale
 
-To ensure the integrity of the Moral Trace Log at scale, the TML architecture uses a technique known as Merkle-batched anchoring. This technique involves grouping multiple log entries into a single batch, creating a Merkle tree of the batch, and then anchoring the root of the Merkle tree to a public blockchain. This approach is much more efficient than anchoring each log entry individually, as it reduces the number of transactions that need to be sent to the blockchain. The use of Merkle-batched anchoring is a critical component of the TML architecture's scalability and performance strategy, as it allows the system to handle a large number of requests without compromising on the integrity of the audit trail.
+To strictly strictly verify integrity without imposing linear latency penalties, TML utilizes **Merkle-Batched Anchoring**. This allows the system to scale to  requests per second while performing only  blockchain writes per batch interval.
 
 #### 6.2.1. Log Chunking and Cascaded Merkle Tree Structures
 
-The TML architecture uses a technique known as log chunking to group multiple log entries into a single batch. This is done by dividing the log into a series of chunks, each of which contains a fixed number of log entries. A Merkle tree is then created for each chunk, and the root of each Merkle tree is then added to a higher-level Merkle tree. This creates a cascaded Merkle tree structure that allows for the efficient and secure anchoring of a large number of log entries. The use of log chunking and cascaded Merkle tree structures is a critical component of the TML architecture's scalability and performance strategy, as it allows the system to handle a large number of requests without compromising on the integrity of the audit trail.
+The log integrity is maintained using a cascaded Merkle Tree structure. For a batch of logs , the Root Hash  is computed as:
+
+Where  is a collision-resistant hash function (SHA-256). This structure allows the system to prove the existence of any single log entry  with a proof size of  hashes, ensuring efficient auditing even as log volume scales into the petabytes.
 
 #### 6.2.2. Proof-Only On-Chain Anchoring
 
-The TML architecture uses a technique known as proof-only on-chain anchoring to ensure the integrity of the Moral Trace Log. This means that only the cryptographic proof of the log's integrity is stored on the blockchain, not the log itself. This is a critical security feature that protects the privacy of the system's users, as it ensures that their personal information is not exposed on a public blockchain. The use of proof-only on-chain anchoring is a key component of the TML architecture's privacy-preserving design, as it allows the system to provide a verifiable and auditable record of its decisions without compromising the privacy of its users.
+Rather than writing sensitive raw data to the blockchain, TML utilizes a **Zero-Knowledge Proof-of-Logging**. The system anchors only the Root Hash  and a zk-SNARK proof  that attests to the correct valid state transitions, defined as:
+
+This ensures that user privacy is preserved—no plain text is ever exposed on-chain—while mathematically guaranteeing that the log history has not been altered since the timestamp.
 
 #### 6.2.3. Secure Log Off-Loading Strategies
 
-To ensure the long-term availability and integrity of the Moral Trace Log, the TML architecture uses a variety of secure log off-loading strategies. These strategies involve storing the log in a variety of different locations, including a secure cloud storage service, a dedicated log server, and a hardware security module. This creates a redundant and highly resilient system that is resistant to data loss and tampering. The use of secure log off-loading strategies is a critical component of the TML architecture's commitment to long-term data integrity, as it ensures that the log will be available for auditing and accountability purposes for many years to come.
+To ensure long-term availability, the raw data corresponding to the Merkle leaves is off-loaded to immutable object storage (e.g., IPFS or Write-Once-Read-Many AWS S3 buckets). The availability constraint is defined such that if the storage acknowledges a write failure, the `Log_Receipt` is never generated, forcing the system into a fail-secure state (Algorithm 1, Line 29).
 
 ## 7. Privacy, Security, and Standards Compliance
 
