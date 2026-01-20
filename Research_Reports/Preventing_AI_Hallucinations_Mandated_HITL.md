@@ -4,9 +4,11 @@
 
 Large Language Models (LLMs) suffer from a structural control failure: the "forced output" paradigm, where binary execution logic compels models to generate probabilistic completions even under conditions of high epistemic uncertainty. This paper proposes **Ternary Moral Logic (TML)**, a governance framework that introduces a third logical state—*State 0 (Indeterminate)*—into the inference decision matrix. State 0 is triggered strictly by epistemic ambiguity or semantic collisions with binding **International Human Rights** and **Earth Protection** mandates. Unlike standard refusals, State 0 initiates a mandatory "Sacred Pause" that routes execution to a Human-in-the-Loop (HITL) resolution layer. This workflow is enforced by a **"No Log \= No Action"** protocol, where the inference engine is cryptographically locked until a decision log is successfully anchored. We detail the engineering specifications for a **Dual-Lane Latency** architecture that separates sub-2ms inference from sub-500ms audit logging, and demonstrate why safety-critical systems must utilize **Frozen** models to ensure reproducible, auditable behavior.
 
-Keywords
+### Keywords
 
 AI Hallucinations, Ternary Moral Logic, Human Rights Mandates, No Log \= No Action, Human-in-the-Loop (HITL), Auditable AI, Earth Protection.
+
+[Interactive Web Report](https://fractonicmind.github.io/TernaryMoralLogic/Research_Reports/Preventing_AI_Hallucinations_Mandated_HITL.html)
 
 ---
 
