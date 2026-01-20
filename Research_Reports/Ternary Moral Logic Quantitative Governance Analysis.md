@@ -1,6 +1,6 @@
 # Ternary Moral Logic (TML) Quantitative Governance Analysis
 
-Based on the technical specifications and comparative studies in the search results, here is a quantified evaluation of TML across your five metrics, scored on a 0-100 scale against currently deployed frameworks.
+Based on the technical specifications and comparative studies in the search results, here is a quantified evaluation of TML across five metrics, scored on a 0-100 scale against currently deployed frameworks.
 
 ---
 
