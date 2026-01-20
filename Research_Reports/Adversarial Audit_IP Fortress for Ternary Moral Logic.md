@@ -2,7 +2,7 @@
 
 ## Executive Summary
 
-**[Interactive Web Report](https://fractonicmind.github.io/TernaryMoralLogic/Research_Reports/Adversarial Audit_IP Fortress for Ternary Moral Logic.html)**
+**[Interactive Web Report](https://fractonicmind.github.io/TernaryMoralLogic/Research_Reports/Adversarial%20Audit_IP%20Fortress%20for%20Ternary%20Moral%20Logic.html)**   
 
 This report provides a comprehensive, adversarial audit of the Ternary Moral Logic (TML) governance framework, with the explicit goal of identifying vulnerabilities and constructing an impenetrable intellectual property (IP) fortress to protect it from co-option, dilution, and neutralization by large technology incumbents. The analysis, conducted from the perspectives of a constitutional law scholar, competition lawyer, systems security architect, AI governance regulator, and hostile corporate strategist, concludes that while TML faces significant threats, its unique architectural properties provide a strong foundation for a robust defense.
 
