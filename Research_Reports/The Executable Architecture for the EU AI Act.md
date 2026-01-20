@@ -2,6 +2,8 @@
 
 ## **1\. Executive Summary**
 
+**[Interactive Web report](https://fractonicmind.github.io/TernaryMoralLogic/Research_Reports/The%20Executable%20Architecture%20for%20the%20EU%20AI%20Act.html)**
+
 ### **1.1 The EU AI Act's Risk-Based Framework and Enforcement Gaps**
 
 The EU Artificial Intelligence Act (Regulation 2024/1689) establishes the world's first comprehensive legal framework for AI governance, implementing a risk-based pyramid that categorizes systems from minimal to prohibited risk. While this structure represents a landmark achievement in digital regulation, it contains fundamental enforcement gaps that threaten its efficacy before full implementation begins in August 2025\.
