@@ -1,0 +1,1954 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Preventing AI Hallucinations via Ternary Moral Logic and HITL Control</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'serif': ['Playfair Display', 'serif'],
+                        'sans': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'sage': {
+                            50: '#f6f7f6',
+                            100: '#e3e7e3',
+                            200: '#c7d0c7',
+                            300: '#a3b2a3',
+                            400: '#7a8f7a',
+                            500: '#5d7360',
+                            600: '#485c4b',
+                            700: '#3b4a3e',
+                            800: '#323d34',
+                            900: '#2b342d',
+                        },
+                        'graphite': {
+                            50: '#f6f6f7',
+                            100: '#e3e4e7',
+                            200: '#c7cad1',
+                            300: '#a3a9b5',
+                            400: '#7a8395',
+                            500: '#5d687c',
+                            600: '#485266',
+                            700: '#3b4255',
+                            800: '#323849',
+                            900: '#2b313f',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .hero-gradient {
+            background: linear-gradient(135deg, #f6f7f6 0%, #e3e7e3 50%, #c7d0c7 100%);
+        }
+        .text-shadow {
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .citation-link {
+            @apply text-graphite-600 hover:text-graphite-800 transition-colors duration-200;
+        }
+        .toc-fixed {
+            position: fixed;
+            left: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 280px;
+            max-height: 70vh;
+            overflow-y: auto;
+            z-index: 50;
+        }
+        .main-content {
+            margin-left: 320px;
+            padding-right: 2rem;
+        }
+        .section-card {
+            scroll-margin-top: 2rem;
+        }
+        @media (max-width: 1024px) {
+            .toc-fixed {
+                display: none;
+            }
+            .main-content {
+                margin-left: 0;
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+        }
+        .mermaid-container {
+            display: flex;
+            justify-content: center;
+            min-height: 300px;
+            max-height: 800px;
+            background: #ffffff;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mermaid-container .mermaid {
+            width: 100%;
+            max-width: 100%;
+            height: 100%;
+            cursor: grab;
+            transition: transform 0.3s ease;
+            transform-origin: center center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            touch-action: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .mermaid-container .mermaid svg {
+            max-width: 100%;
+            height: 100%;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .mermaid-container .mermaid:active {
+            cursor: grabbing;
+        }
+
+        .mermaid-container.zoomed .mermaid {
+            height: 100%;
+            width: 100%;
+            cursor: grab;
+        }
+
+        .mermaid-controls {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            display: flex;
+            gap: 10px;
+            z-index: 20;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 8px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .mermaid-control-btn {
+            background: #ffffff;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            padding: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #374151;
+            font-size: 14px;
+            min-width: 36px;
+            height: 36px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mermaid-control-btn:hover {
+            background: #f8fafc;
+            border-color: #3b82f6;
+            color: #3b82f6;
+            transform: translateY(-1px);
+        }
+
+        .mermaid-control-btn:active {
+            transform: scale(0.95);
+        }
+        
+        /* Responsive adjustments for mermaid controls */
+        @media (max-width: 1024px) {
+            .mermaid-control-btn:not(.reset-zoom) {
+                display: none;
+            }
+            .mermaid-controls {
+                top: auto;
+                bottom: 15px;
+                right: 15px;
+            }
+        }
+    </style>
+  <base target="_blank">
+</head>
+
+  <body class="bg-sage-50 text-graphite-900 font-sans leading-relaxed">
+
+    <!-- Fixed Table of Contents -->
+    <nav class="toc-fixed bg-white/90 backdrop-blur-sm rounded-xl shadow-lg border border-sage-200 p-6">
+      <h3 class="font-serif font-bold text-lg text-graphite-800 mb-4 border-b border-sage-200 pb-2">
+        <i class="fas fa-list-ul mr-2 text-sage-600"></i>Contents
+      </h3>
+      <ul class="space-y-2 text-sm">
+        <li>
+          <a href="#execution-failure" class="block text-graphite-600 hover:text-graphite-900 hover:bg-sage-100 rounded-md px-3 py-2 transition-colors">Execution-Time Control Failure</a>
+        </li>
+        <li>
+          <a href="#ternary-logic" class="block text-graphite-600 hover:text-graphite-900 hover:bg-sage-100 rounded-md px-3 py-2 transition-colors">Ternary Moral Logic</a>
+        </li>
+        <li>
+          <a href="#hitl-activation" class="block text-graphite-600 hover:text-graphite-900 hover:bg-sage-100 rounded-md px-3 py-2 transition-colors">HITL Activation</a>
+        </li>
+        <li>
+          <a href="#resolution-mechanics" class="block text-graphite-600 hover:text-graphite-900 hover:bg-sage-100 rounded-md px-3 py-2 transition-colors">Resolution Mechanics</a>
+        </li>
+        <li>
+          <a href="#traceability" class="block text-graphite-600 hover:text-graphite-900 hover:bg-sage-100 rounded-md px-3 py-2 transition-colors">Decision Traceability</a>
+        </li>
+        <li>
+          <a href="#scalability" class="block text-graphite-600 hover:text-graphite-900 hover:bg-sage-100 rounded-md px-3 py-2 transition-colors">Scalability &amp; Performance</a>
+        </li>
+        <li>
+          <a href="#privacy-security" class="block text-graphite-600 hover:text-graphite-900 hover:bg-sage-100 rounded-md px-3 py-2 transition-colors">Privacy &amp; Security</a>
+        </li>
+        <li>
+          <a href="#frozen-vs-plastic" class="block text-graphite-600 hover:text-graphite-900 hover:bg-sage-100 rounded-md px-3 py-2 transition-colors">Frozen vs Plastic Models</a>
+        </li>
+        <li>
+          <a href="#forensics" class="block text-graphite-600 hover:text-graphite-900 hover:bg-sage-100 rounded-md px-3 py-2 transition-colors">Forensics &amp; Investigation</a>
+        </li>
+        <li>
+          <a href="#deployment" class="block text-graphite-600 hover:text-graphite-900 hover:bg-sage-100 rounded-md px-3 py-2 transition-colors">Deployment Implications</a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="main-content">
+      <!-- Hero Section -->
+      <section class="hero-gradient min-h-screen flex items-center justify-center relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+          <img src="https://kimi-web-img.moonshot.cn/img/digitalsouls.com/5ed283a99f76b501bbb63315ecfc0016d0991bb4" alt="Abstract pattern representing AI and ethics" class="w-full h-full object-cover" size="wallpaper" aspect="wide" query="AI and ethics abstract pattern" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"/>
+        </div>
+
+        <div class="container mx-auto px-8 relative z-10">
+          <div class="grid lg:grid-cols-2 gap-16 items-center">
+            <!-- Left: Title and Abstract -->
+            <div class="space-y-8">
+              <div class="space-y-4">
+                <h1 class="font-serif text-4xl sm:text-5xl lg:text-7xl font-black text-graphite-900 leading-tight text-shadow">
+                  <span class="italic text-sage-700">Preventing</span>
+                  <br/>
+                  AI Hallucinations
+                </h1>
+                <div class="w-24 h-1 bg-sage-500"></div>
+                <p class="font-serif text-xl lg:text-2xl text-graphite-700 italic">
+                  via Ternary Moral Logic and Mandated Human-in-the-Loop Control Architectures
+                </p>
+              </div>
+
+              <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-8 border border-sage-200 shadow-lg">
+                <h2 class="font-serif text-2xl font-bold text-graphite-800 mb-4">Abstract</h2>
+                <p class="text-graphite-700 leading-relaxed">
+                  AI hallucinations are fundamentally an <strong>execution-time control failure</strong>, not a training-time error. This paper proposes a solution based on <strong>Ternary Moral Logic (TML)</strong>, which introduces a formally defined indeterminate state (0) that blocks autonomous output generation under epistemic uncertainty, mandates Human-in-the-Loop (HITL) intervention, and resolves non-response deterministically as rejection (−1). By converting hallucination risk from a probabilistic phenomenon into a deterministic system behavior, TML provides a structural, auditable, and preventative mechanism for ensuring AI safety.
+                </p>
+              </div>
+            </div>
+
+            <!-- Right: Visual Element -->
+            <div class="flex justify-center">
+              <div class="relative w-full max-w-md">
+                <div class="absolute -inset-4 bg-gradient-to-br from-sage-300 to-graphite-300 rounded-3xl blur-2xl opacity-30"></div>
+                <img src="https://kimi-web-img.moonshot.cn/img/media.springernature.com/e363d05ab714a22aff910edf3d377d3946ac7da2.png" alt="Ternary logic control system" class="relative w-full rounded-2xl shadow-2xl border-4 border-white/50" size="medium" aspect="square" query="ternary logic control system" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"/>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Main Content -->
+      <main class="bg-white">
+
+        <!-- Section 1: Execution-Time Control Failure -->
+        <section id="execution-failure" class="section-card py-16 px-8 border-b border-sage-200">
+          <div class="container mx-auto max-w-4xl">
+            <h2 class="font-serif text-4xl font-bold text-graphite-900 mb-8">
+              <span class="text-sage-600">01.</span> Hallucinations as an Execution-Time Control Failure
+            </h2>
+
+            <div class="prose prose-lg max-w-none">
+              <p class="text-xl text-graphite-700 mb-8 font-medium">
+                The phenomenon of AI hallucination is fundamentally an execution-time control failure—a system being forced to produce output when its internal state is characterized by epistemic uncertainty.
+              </p>
+
+              <div class="bg-sage-50 rounded-xl p-8 mb-8 border-l-4 border-sage-500">
+                <h3 class="font-serif text-2xl font-bold text-graphite-800 mb-4">
+                  <i class="fas fa-exclamation-triangle text-sage-600 mr-3"></i>
+                  The Forced Completion Problem
+                </h3>
+                <p class="text-graphite-700">
+                  Contemporary AI systems are built upon a binary logic of action: given an input, they are designed to generate an output. This architecture inherently lacks a formal, intermediate state for &#34;uncertainty&#34; or &#34;insufficient information.&#34; <a href="https://www.redhat.com/en/blog/when-llms-day-dream-hallucinations-how-prevent-them" class="citation-link">[116]</a>
+                </p>
+              </div>
+
+              <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <div class="bg-white rounded-xl p-6 shadow-lg border border-sage-200">
+                  <h4 class="font-serif text-xl font-bold text-graphite-800 mb-4">
+                    <i class="fas fa-cogs text-graphite-600 mr-2"></i>
+                    Training vs. Inference
+                  </h4>
+                  <p class="text-graphite-700">
+                    Training-time errors are addressed through data curation and fine-tuning. However, hallucinations are not training failures—they are forced completions during inference when models encounter novel queries requiring information not present in training data. <a href="https://arxiv.org/html/2510.06265v2" class="citation-link">[117]</a>
+                  </p>
+                </div>
+
+                <div class="bg-white rounded-xl p-6 shadow-lg border border-sage-200">
+                  <h4 class="font-serif text-xl font-bold text-graphite-800 mb-4">
+                    <i class="fas fa-shield-alt text-sage-600 mr-2"></i>
+                    Compulsory Generation
+                  </h4>
+                  <p class="text-graphite-700">
+                    Even with RLHF, models learn to refuse specific scenarios but lack generalized mechanisms for recognizing and handling uncertainty in novel situations. The drive to generate output at all costs remains intact. <a href="https://www.frontiersin.org/journals/artificial-intelligence/articles/10.3389/frai.2025.1622292/full" class="citation-link">[129]</a>
+                  </p>
+                </div>
+              </div>
+
+              <div class="bg-graphite-50 rounded-xl p-8">
+                <h3 class="font-serif text-2xl font-bold text-graphite-800 mb-6">Control Theory Framework</h3>
+                <p class="text-graphite-700 mb-6">
+                  Control theory offers a powerful framework for AI safety by treating the model as a process to be controlled, designing controllers that can modulate behavior to prevent unsafe outputs. <a href="https://deepmake.com/blog/2023/10/11/reducing-ai-bias-and-hallucination-using-control-theory" class="citation-link">[4]</a>
+                </p>
+                <div class="grid md:grid-cols-3 gap-6">
+                  <div class="text-center">
+                    <div class="w-16 h-16 bg-sage-500 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <i class="fas fa-robot text-white text-xl"></i>
+                    </div>
+                    <h4 class="font-bold text-graphite-800">Factory Robot Analogy</h4>
+                    <p class="text-sm text-graphite-600">Constrain movements to safe trajectories</p>
+                  </div>
+                  <div class="text-center">
+                    <div class="w-16 h-16 bg-sage-500 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <i class="fas fa-gate text-white text-xl"></i>
+                    </div>
+                    <h4 class="font-bold text-graphite-800">Execution Gating</h4>
+                    <p class="text-sm text-graphite-600">Prevent unsafe outputs proactively</p>
+                  </div>
+                  <div class="text-center">
+                    <div class="w-16 h-16 bg-sage-500 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <i class="fas fa-compass text-white text-xl"></i>
+                    </div>
+                    <h4 class="font-bold text-graphite-800">Safe Operational Envelope</h4>
+                    <p class="text-sm text-graphite-600">Define clear behavioral boundaries</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 2: Ternary Moral Logic -->
+        <section id="ternary-logic" class="section-card py-16 px-8 border-b border-sage-200 bg-sage-50">
+          <div class="container mx-auto max-w-4xl">
+            <h2 class="font-serif text-4xl font-bold text-graphite-900 mb-8">
+              <span class="text-sage-600">02.</span> Ternary Moral Logic and the Indeterminate State
+            </h2>
+
+            <div class="prose prose-lg max-w-none">
+              <p class="text-xl text-graphite-700 mb-8">
+                Ternary Moral Logic (TML) introduces a third logical state—the &#34;Sacred Pause&#34; or &#34;Indeterminate&#34; state (0)—that fundamentally alters execution flow by recognizing and acting upon epistemic uncertainty. <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5655110" class="citation-link">[204]</a>
+              </p>
+
+              <div class="grid md:grid-cols-3 gap-8 mb-12">
+                <div class="bg-white rounded-xl p-6 shadow-lg border border-sage-200 text-center">
+                  <div class="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <span class="text-white text-2xl font-bold">+1</span>
+                  </div>
+                  <h3 class="font-serif text-xl font-bold text-graphite-800 mb-2">Permit</h3>
+                  <p class="text-graphite-700">Autonomous execution when action is permissible and certain</p>
+                </div>
+
+                <div class="bg-white rounded-xl p-6 shadow-lg border border-sage-200 text-center">
+                  <div class="w-20 h-20 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <span class="text-white text-2xl font-bold">-1</span>
+                  </div>
+                  <h3 class="font-serif text-xl font-bold text-graphite-800 mb-2">Prohibit</h3>
+                  <p class="text-graphite-700">Deterministic rejection when action violates mandates</p>
+                </div>
+
+                <div class="bg-white rounded-xl p-6 shadow-lg border border-sage-200 text-center">
+                  <div class="w-20 h-20 bg-yellow-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <span class="text-white text-2xl font-bold">0</span>
+                  </div>
+                  <h3 class="font-serif text-xl font-bold text-graphite-800 mb-2">Indeterminate</h3>
+                  <p class="text-graphite-700">&#34;Sacred Pause&#34; - blocks output under uncertainty</p>
+                </div>
+              </div>
+
+              <div class="bg-white rounded-xl p-8 mb-8 shadow-lg border border-sage-200">
+                <h3 class="font-serif text-2xl font-bold text-graphite-800 mb-6">
+                  <i class="fas fa-pause-circle text-yellow-500 mr-3"></i>
+                  The Sacred Pause: Epistemic Hold
+                </h3>
+                <div class="space-y-4">
+                  <div class="flex items-start space-x-4">
+                    <div class="w-8 h-8 bg-sage-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                      <i class="fas fa-ban text-white text-sm"></i>
+                    </div>
+                    <div>
+                      <h4 class="font-bold text-graphite-800">Blocks Autonomous Output</h4>
+                      <p class="text-graphite-700">Hard stop preventing speculative generation when uncertainty exceeds thresholds</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start space-x-4">
+                    <div class="w-8 h-8 bg-sage-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                      <i class="fas fa-clock text-white text-sm"></i>
+                    </div>
+                    <div>
+                      <h4 class="font-bold text-graphite-800">Preserves System Continuity</h4>
+                      <p class="text-graphite-700">Non-blocking pause that doesn&#39;t crash system; enables parallel HITL process</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start space-x-4">
+                    <div class="w-8 h-8 bg-sage-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                      <i class="fas fa-user-shield text-white text-sm"></i>
+                    </div>
+                    <div>
+                      <h4 class="font-bold text-graphite-800">Mandates Human Oversight</h4>
+                      <p class="text-graphite-700">Triggers authenticated HITL intervention for uncertainty resolution</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <blockquote class="border-l-4 border-sage-500 pl-6 italic text-xl text-graphite-700 bg-white p-6 rounded-r-xl">
+                &#34;The Sacred Pause transforms potential failure into a controlled, accountable process. It is not a bug or crash; it is a feature designed to enhance safety by ensuring human oversight is applied precisely when needed.&#34;
+              </blockquote>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 3: HITL Activation -->
+        <section id="hitl-activation" class="section-card py-16 px-8 border-b border-sage-200">
+          <div class="container mx-auto max-w-4xl">
+            <h2 class="font-serif text-4xl font-bold text-graphite-900 mb-8">
+              <span class="text-sage-600">03.</span> State-0 Triggering and Mandated HITL Activation
+            </h2>
+
+            <div class="prose prose-lg max-w-none">
+              <p class="text-xl text-graphite-700 mb-8">
+                The transition to State 0 is governed by deterministic, automatic triggering conditions based on binding legal mandates and operator-defined risk thresholds. <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5655090" class="citation-link">[206]</a>
+              </p>
+
+              <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <div class="bg-sage-50 rounded-xl p-6 border-l-4 border-sage-500">
+                  <h3 class="font-serif text-xl font-bold text-graphite-800 mb-4">
+                    <i class="fas fa-balance-scale text-sage-600 mr-2"></i>
+                    Legal &amp; Ethical Mandates
+                  </h3>
+                  <ul class="space-y-2 text-graphite-700">
+                    <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-2"></i>26+ human rights instruments</li>
+                    <li class="flex items-center"><i class="fas fa-leaf text-green-500 mr-2"></i>20+ environmental protection mandates</li>
+                    <li class="flex items-center"><i class="fas fa-shield-alt text-green-500 mr-2"></i>Industry safety standards</li>
+                  </ul>
+                  <p class="text-sm text-graphite-600 mt-4">
+                    Trigger activates when actions may violate encoded constraints
+                  </p>
+                </div>
+
+                <div class="bg-graphite-50 rounded-xl p-6 border-l-4 border-graphite-500">
+                  <h3 class="font-serif text-xl font-bold text-graphite-800 mb-4">
+                    <i class="fas fa-chart-line text-graphite-600 mr-2"></i>
+                    Risk Thresholds
+                  </h3>
+                  <ul class="space-y-2 text-graphite-700">
+                    <li class="flex items-center"><i class="fas fa-percentage text-blue-500 mr-2"></i>Confidence scores</li>
+                    <li class="flex items-center"><i class="fas fa-question-circle text-blue-500 mr-2"></i>Query complexity</li>
+                    <li class="flex items-center"><i class="fas fa-exclamation-triangle text-blue-500 mr-2"></i>Impact assessment</li>
+                  </ul>
+                  <p class="text-sm text-graphite-600 mt-4">
+                    Operator-configurable sensitivity for specific applications
+                  </p>
+                </div>
+              </div>
+
+              <div class="bg-white rounded-xl p-8 shadow-lg border border-sage-200 mb-8">
+                <h3 class="font-serif text-2xl font-bold text-graphite-800 mb-6">
+                  <i class="fas fa-user-cog text-sage-600 mr-3"></i>
+                  HITL Middleware Architecture
+                </h3>
+                <div class="grid md:grid-cols-3 gap-6">
+                  <div class="text-center">
+                    <div class="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <i class="fas fa-pause text-white text-xl"></i>
+                    </div>
+                    <h4 class="font-bold text-graphite-800">Execution Pause</h4>
+                    <p class="text-sm text-graphite-600">Middleware halts model execution and notifies operator</p>
+                  </div>
+                  <div class="text-center">
+                    <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <i class="fas fa-exchange-alt text-white text-xl"></i>
+                    </div>
+                    <h4 class="font-bold text-graphite-800">Communication Interface</h4>
+                    <p class="text-sm text-graphite-600">Standardized interface for human-AI interaction</p>
+                  </div>
+                  <div class="text-center">
+                    <div class="w-16 h-16 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <i class="fas fa-lock text-white text-xl"></i>
+                    </div>
+                    <h4 class="font-bold text-graphite-800">Non-Bypassable</h4>
+                    <p class="text-sm text-graphite-600">Triggers cannot be overridden or circumvented</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-yellow-50 border-l-4 border-yellow-400 p-6 rounded-r-xl">
+                <div class="flex items-start">
+                  <i class="fas fa-exclamation-circle text-yellow-600 text-2xl mr-4 mt-1"></i>
+                  <div>
+                    <h4 class="font-bold text-graphite-800 mb-2">Deterministic Mapping Requirement</h4>
+                    <p class="text-graphite-700">
+                      Mandate clauses must be formally mapped to action classes by legal/ethical experts, creating transparent, machine-readable rules that ensure consistent and auditable triggering behavior. <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5637492" class="citation-link">[207]</a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 4: Resolution Mechanics -->
+        <section id="resolution-mechanics" class="section-card py-16 px-8 border-b border-sage-200 bg-sage-50">
+          <div class="container mx-auto max-w-4xl">
+            <h2 class="font-serif text-4xl font-bold text-graphite-900 mb-8">
+              <span class="text-sage-600">04.</span> HITL Resolution Mechanics and Deterministic Rejection
+            </h2>
+
+            <div class="prose prose-lg max-w-none">
+              <p class="text-xl text-graphite-700 mb-8">
+                The human intervention workflow is structured to ensure authenticated, scope-limited resolution with bounded response formats and clear decision trails.
+              </p>
+
+              <div class="bg-white rounded-xl p-8 shadow-lg border border-sage-200 mb-8">
+                <h3 class="font-serif text-2xl font-bold text-graphite-800 mb-6">
+                  <i class="fas fa-users text-sage-600 mr-3"></i>
+                  Human Resolution Workflow
+                </h3>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                  <div>
+                    <h4 class="font-bold text-graphite-800 mb-4">Authentication &amp; Scope</h4>
+                    <ul class="space-y-2 text-graphite-700">
+                      <li class="flex items-center"><i class="fas fa-id-card text-blue-500 mr-2"></i>Operator identity verification</li>
+                      <li class="flex items-center"><i class="fas fa-user-shield text-blue-500 mr-2"></i>Role-based permissions</li>
+                      <li class="flex items-center"><i class="fas fa-layer-group text-blue-500 mr-2"></i>Risk-level authorization limits</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 class="font-bold text-graphite-800 mb-4">Structured Response</h4>
+                    <ul class="space-y-2 text-graphite-700">
+                      <li class="flex items-center"><i class="fas fa-list text-green-500 mr-2"></i>Predefined option selection</li>
+                      <li class="flex items-center"><i class="fas fa-edit text-green-500 mr-2"></i>Structured form completion</li>
+                      <li class="flex items-center"><i class="fas fa-ban text-green-500 mr-2"></i>No free-text speculation allowed</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <div class="bg-red-50 rounded-xl p-6 border-l-4 border-red-400">
+                  <h3 class="font-serif text-xl font-bold text-graphite-800 mb-4">
+                    <i class="fas fa-clock text-red-600 mr-2"></i>
+                    Non-Response Rules
+                  </h3>
+                  <ul class="space-y-3 text-graphite-700">
+                    <li class="flex items-start">
+                      <i class="fas fa-stopwatch text-red-500 mr-2 mt-1 flex-shrink-0"></i>
+                      <div>
+                        <strong>Domain-specific timeouts:</strong> Medical (seconds) vs. chatbot (minutes)
+                      </div>
+                    </li>
+                    <li class="flex items-start">
+                      <i class="fas fa-times-circle text-red-500 mr-2 mt-1 flex-shrink-0"></i>
+                      <div>
+                        <strong>Auto-rejection (−1):</strong> No response = deterministic rejection
+                      </div>
+                    </li>
+                    <li class="flex items-start">
+                      <i class="fas fa-lock text-red-500 mr-2 mt-1 flex-shrink-0"></i>
+                      <div>
+                        <strong>No retroactive override:</strong> Decisions are final and immutable
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="bg-blue-50 rounded-xl p-6 border-l-4 border-blue-400">
+                  <h3 class="font-serif text-xl font-bold text-graphite-800 mb-4">
+                    <i class="fas fa-bell text-blue-600 mr-2"></i>
+                    Notification Proof
+                  </h3>
+                  <ul class="space-y-3 text-graphite-700">
+                    <li class="flex items-start">
+                      <i class="fas fa-paper-plane text-blue-500 mr-2 mt-1 flex-shrink-0"></i>
+                      <div>
+                        <strong>Delivery logging:</strong> Timestamped notification attempts
+                      </div>
+                    </li>
+                    <li class="flex items-start">
+                      <i class="fas fa-route text-blue-500 mr-2 mt-1 flex-shrink-0"></i>
+                      <div>
+                        <strong>Reachability verification:</strong> Multiple contact methods
+                      </div>
+                    </li>
+                    <li class="flex items-start">
+                      <i class="fas fa-gavel text-blue-500 mr-2 mt-1 flex-shrink-0"></i>
+                      <div>
+                        <strong>Legal protection:</strong> Proof of good-faith effort
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="bg-white rounded-xl p-8 shadow-lg border border-sage-200">
+                <h3 class="font-serif text-2xl font-bold text-graphite-800 mb-4">
+                  <i class="fas fa-balance-scale-right text-sage-600 mr-3"></i>
+                  Indeterminacy Resolution vs. Output Override
+                </h3>
+                <div class="grid md:grid-cols-2 gap-6">
+                  <div class="bg-sage-50 rounded-lg p-4">
+                    <h4 class="font-bold text-graphite-800 mb-2">Resolving Indeterminacy</h4>
+                    <p class="text-sm text-graphite-700">
+                      Providing information needed for decision-making; clarification of ambiguity
+                    </p>
+                  </div>
+                  <div class="bg-graphite-50 rounded-lg p-4">
+                    <h4 class="font-bold text-graphite-800 mb-2">Overriding Output</h4>
+                    <p class="text-sm text-graphite-700">
+                      Rejecting model-proposed action despite model confidence; safety intervention
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 5: Decision Traceability -->
+        <section id="traceability" class="section-card py-16 px-8 border-b border-sage-200">
+          <div class="container mx-auto max-w-4xl">
+            <h2 class="font-serif text-4xl font-bold text-graphite-900 mb-8">
+              <span class="text-sage-600">05.</span> Decision Traceability and Cryptographic Integrity
+            </h2>
+
+            <div class="prose prose-lg max-w-none">
+              <p class="text-xl text-graphite-700 mb-8">
+                The TML architecture creates an immutable, tamper-proof record of all system decisions through the &#34;Moral Trace Log&#34; and &#34;Always Memory&#34; components, ensuring complete accountability and verifiability.
+              </p>
+
+              <div class="bg-sage-50 rounded-xl p-8 mb-8 border-l-4 border-sage-500">
+                <h3 class="font-serif text-2xl font-bold text-graphite-800 mb-6">
+                  <i class="fas fa-book text-sage-600 mr-3"></i>
+                  Moral Trace Log Components
+                </h3>
+
+                <div class="grid md:grid-cols-3 gap-6">
+                  <div class="bg-white rounded-lg p-4 text-center">
+                    <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <i class="fas fa-check text-white text-lg"></i>
+                    </div>
+                    <h4 class="font-bold text-graphite-800">Autonomous Resolutions</h4>
+                    <p class="text-sm text-graphite-600">States +1 and -1 with decision rationale and confidence scores</p>
+                  </div>
+
+                  <div class="bg-white rounded-lg p-4 text-center">
+                    <div class="w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <i class="fas fa-user text-white text-lg"></i>
+                    </div>
+                    <h4 class="font-bold text-graphite-800">Human Interventions</h4>
+                    <p class="text-sm text-graphite-600">State 0 resolutions with operator identity and decisions</p>
+                  </div>
+
+                  <div class="bg-white rounded-lg p-4 text-center">
+                    <div class="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <i class="fas fa-ban text-white text-lg"></i>
+                    </div>
+                    <h4 class="font-bold text-graphite-800">Non-Action Events</h4>
+                    <p class="text-sm text-graphite-600">Silence-based rejections logged as first-class decisions</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-white rounded-xl p-8 shadow-lg border border-sage-200 mb-8">
+                <h3 class="font-serif text-2xl font-bold text-graphite-800 mb-6">
+                  <i class="fas fa-shield-alt text-sage-600 mr-3"></i>
+                  Hybrid Shield Architecture
+                </h3>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                  <div>
+                    <h4 class="font-bold text-graphite-800 mb-4">Hardware Security</h4>
+                    <ul class="space-y-2 text-graphite-700">
+                      <li class="flex items-center"><i class="fas fa-microchip text-purple-500 mr-2"></i>&#34;Always Memory&#34; tamper-proof module</li>
+                      <li class="flex items-center"><i class="fas fa-key text-purple-500 mr-2"></i>Private key storage and signing</li>
+                      <li class="flex items-center"><i class="fas fa-shield-virus text-purple-500 mr-2"></i>Physical tamper resistance</li>
+                    </ul>
+                  </div>
+
+                  <div>
+                    <h4 class="font-bold text-graphite-800 mb-4">Cryptographic Anchoring</h4>
+                    <ul class="space-y-2 text-graphite-700">
+                      <li class="flex items-center"><i class="fas fa-link text-blue-500 mr-2"></i>Multi-chain blockchain storage</li>
+                      <li class="flex items-center"><i class="fas fa-clock text-blue-500 mr-2"></i>Public timestamping and verifiability</li>
+                      <li class="flex items-center"><i class="fas fa-globe text-blue-500 mr-2"></i>Global immutability guarantees</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-graphite-50 rounded-xl p-8">
+                <div class="flex items-start space-x-4">
+                  <img src="https://kimi-web-img.moonshot.cn/img/www.cyberdefensemagazine.com/b8f7ac7cf5b27f189f41fe00765ca640bfdce060.jpg" alt="Blockchain security technology" class="w-24 h-24 rounded-lg object-cover flex-shrink-0" size="small" aspect="square" query="blockchain security" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"/>
+                  <div>
+                    <h3 class="font-serif text-xl font-bold text-graphite-800 mb-3">
+                      <i class="fas fa-certificate text-graphite-600 mr-2"></i>
+                      Proof-Only On-Chain Anchoring
+                    </h3>
+                    <p class="text-graphite-700 mb-4">
+                      Only cryptographic hashes are stored on public blockchains, not the actual log data. This ensures complete privacy while providing mathematical guarantees of data integrity and temporal anchoring.
+                    </p>
+                    <div class="grid md:grid-cols-2 gap-4">
+                      <div class="bg-white rounded-lg p-3">
+                        <span class="text-sm font-bold text-green-600">✓ Privacy Preserved</span>
+                      </div>
+                      <div class="bg-white rounded-lg p-3">
+                        <span class="text-sm font-bold text-blue-600">✓ Integrity Guaranteed</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 6: Scalability -->
+        <section id="scalability" class="section-card py-16 px-8 border-b border-sage-200 bg-sage-50">
+          <div class="container mx-auto max-w-4xl">
+            <h2 class="font-serif text-4xl font-bold text-graphite-900 mb-8">
+              <span class="text-sage-600">06.</span> Architecture for Scalability and Performance
+            </h2>
+
+            <div class="prose prose-lg max-w-none">
+              <p class="text-xl text-graphite-700 mb-8">
+                The TML architecture employs a dual-lane latency architecture and Merkle-batched anchoring to achieve high-throughput performance without compromising safety or auditability.
+              </p>
+
+              <div class="bg-white rounded-xl p-8 shadow-lg border border-sage-200 mb-8">
+                <h3 class="font-serif text-2xl font-bold text-graphite-800 mb-6">
+                  <i class="fas fa-road text-sage-600 mr-3"></i>
+                  Dual-Lane Latency Architecture
+                </h3>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                  <div class="bg-green-50 rounded-lg p-6 border-l-4 border-green-500">
+                    <h4 class="font-bold text-graphite-800 mb-4">
+                      <i class="fas fa-bolt text-green-600 mr-2"></i>
+                      Inference Lane (&lt;2ms)
+                    </h4>
+                    <ul class="space-y-2 text-graphite-700">
+                      <li class="flex items-center"><i class="fas fa-cog text-green-500 mr-2"></i>Real-time model execution</li>
+                      <li class="flex items-center"><i class="fas fa-shield text-green-500 mr-2"></i>Safety constraint evaluation</li>
+                      <li class="flex items-center"><i class="fas fa-forward text-green-500 mr-2"></i>State transition decisions</li>
+                    </ul>
+                    <div class="mt-4 bg-green-100 rounded px-3 py-1 inline-block">
+                      <span class="text-sm font-bold text-green-800">Target: &lt;2ms latency</span>
+                    </div>
+                  </div>
+
+                  <div class="bg-blue-50 rounded-lg p-6 border-l-4 border-blue-500">
+                    <h4 class="font-bold text-graphite-800 mb-4">
+                      <i class="fas fa-anchor text-blue-600 mr-2"></i>
+                      Anchoring Lane (&lt;500ms)
+                    </h4>
+                    <ul class="space-y-2 text-graphite-700">
+                      <li class="flex items-center"><i class="fas fa-file-alt text-blue-500 mr-2"></i>Moral Trace Log generation</li>
+                      <li class="flex items-center"><i class="fas fa-hashtag text-blue-500 mr-2"></i>Cryptographic hashing</li>
+                      <li class="flex items-center"><i class="fas fa-link text-blue-500 mr-2"></i>Blockchain anchoring</li>
+                    </ul>
+                    <div class="mt-4 bg-blue-100 rounded px-3 py-1 inline-block">
+                      <span class="text-sm font-bold text-blue-800">Target: &lt;500ms latency</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-graphite-50 rounded-xl p-8 mb-8">
+                <h3 class="font-serif text-2xl font-bold text-graphite-800 mb-6">
+                  <i class="fas fa-tree text-sage-600 mr-3"></i>
+                  Merkle-Batched Anchoring
+                </h3>
+
+                <div class="grid md:grid-cols-3 gap-6">
+                  <div class="text-center">
+                    <div class="w-16 h-16 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <i class="fas fa-cubes text-white text-xl"></i>
+                    </div>
+                    <h4 class="font-bold text-graphite-800">Log Chunking</h4>
+                    <p class="text-sm text-graphite-600">Batch multiple entries for efficiency</p>
+                  </div>
+                  <div class="text-center">
+                    <div class="w-16 h-16 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <i class="fas fa-sitemap text-white text-xl"></i>
+                    </div>
+                    <h4 class="font-bold text-graphite-800">Merkle Trees</h4>
+                    <p class="text-sm text-graphite-600">Cascaded structure for integrity proofs</p>
+                  </div>
+                  <div class="text-center">
+                    <div class="w-16 h-16 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <i class="fas fa-upload text-white text-xl"></i>
+                    </div>
+                    <h4 class="font-bold text-graphite-800">Secure Off-Loading</h4>
+                    <p class="text-sm text-graphite-600">Redundant storage for long-term availability</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-yellow-50 border-l-4 border-yellow-400 p-6 rounded-r-xl">
+                <div class="flex items-center">
+                  <i class="fas fa-tachometer-alt text-yellow-600 text-2xl mr-4"></i>
+                  <div>
+                    <h4 class="font-bold text-graphite-800">Performance Impact</h4>
+                    <p class="text-graphite-700">
+                      Parallel architecture ensures inference performance remains unaffected by cryptographic operations. High-throughput systems maintain safety-critical response times while providing complete auditability.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 7: Privacy &amp; Security -->
+        <section id="privacy-security" class="section-card py-16 px-8 border-b border-sage-200">
+          <div class="container mx-auto max-w-4xl">
+            <h2 class="font-serif text-4xl font-bold text-graphite-900 mb-8">
+              <span class="text-sage-600">07.</span> Privacy, Security, and Standards Compliance
+            </h2>
+
+            <div class="prose prose-lg max-w-none">
+              <p class="text-xl text-graphite-700 mb-8">
+                The TML architecture incorporates privacy-preserving design, secure access control, and alignment with international standards to ensure regulatory compatibility and user protection.
+              </p>
+
+              <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <div class="bg-sage-50 rounded-xl p-6 border-l-4 border-sage-500">
+                  <h3 class="font-serif text-xl font-bold text-graphite-800 mb-4">
+                    <i class="fas fa-user-secret text-sage-600 mr-2"></i>
+                    Privacy-Preserving Design
+                  </h3>
+                  <ul class="space-y-3 text-graphite-700">
+                    <li class="flex items-start">
+                      <i class="fas fa-mask text-sage-500 mr-2 mt-1"></i>
+                      <span><strong>Pseudonymization:</strong> Personal data replaced before hashing</span>
+                    </li>
+                    <li class="flex items-start">
+                      <i class="fas fa-trash-alt text-sage-500 mr-2 mt-1"></i>
+                      <span><strong>GDPR Compliance:</strong> Right-to-erasure through cryptographic techniques</span>
+                    </li>
+                    <li class="flex items-start">
+                      <i class="fas fa-user-lock text-sage-500 mr-2 mt-1"></i>
+                      <span><strong>Identity-Safe Proofs:</strong> Zero-knowledge verification methods</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="bg-graphite-50 rounded-xl p-6 border-l-4 border-graphite-500">
+                  <h3 class="font-serif text-xl font-bold text-graphite-800 mb-4">
+                    <i class="fas fa-key text-graphite-600 mr-2"></i>
+                    Secure Access Control
+                  </h3>
+                  <ul class="space-y-3 text-graphite-700">
+                    <li class="flex items-start">
+                      <i class="fas fa-clock text-graphite-500 mr-2 mt-1"></i>
+                      <span><strong>Ephemeral Key Rotation:</strong> Temporary decryption rights</span>
+                    </li>
+                    <li class="flex items-start">
+                      <i class="fas fa-eye text-graphite-500 mr-2 mt-1"></i>
+                      <span><strong>Auditor-Scoped Access:</strong> Limited visibility with proof integrity</span>
+                    </li>
+                    <li class="flex items-start">
+                      <i class="fas fa-shield-alt text-graphite-500 mr-2 mt-1"></i>
+                      <span><strong>Separation of Concerns:</strong> Data visibility vs. proof integrity</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="bg-white rounded-xl p-8 shadow-lg border border-sage-200 mb-8">
+                <h3 class="font-serif text-2xl font-bold text-graphite-800 mb-6">
+                  <i class="fas fa-certificate text-sage-600 mr-3"></i>
+                  Standards Alignment
+                </h3>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                  <div>
+                    <h4 class="font-bold text-graphite-800 mb-4">
+                      <i class="fas fa-heart text-red-500 mr-2"></i>
+                      Ethical Standards
+                    </h4>
+                    <div class="space-y-3">
+                      <div class="bg-red-50 rounded-lg p-4">
+                        <h5 class="font-bold text-graphite-800">IEEE 7000</h5>
+                        <p class="text-sm text-graphite-600">Ethical considerations in system design</p>
+                      </div>
+                      <div class="bg-red-50 rounded-lg p-4">
+                        <h5 class="font-bold text-graphite-800">IEEE P2863</h5>
+                        <p class="text-sm text-graphite-600">Organizational governance of AI</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <h4 class="font-bold text-graphite-800 mb-4">
+                      <i class="fas fa-shield text-blue-500 mr-2"></i>
+                      Security Standards
+                    </h4>
+                    <div class="space-y-3">
+                      <div class="bg-blue-50 rounded-lg p-4">
+                        <h5 class="font-bold text-graphite-800">ISO 27001</h5>
+                        <p class="text-sm text-graphite-600">Information security management</p>
+                      </div>
+                      <div class="bg-blue-50 rounded-lg p-4">
+                        <h5 class="font-bold text-graphite-800">SOC 2</h5>
+                        <p class="text-sm text-graphite-600">Service organization controls</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <blockquote class="border-l-4 border-sage-500 pl-6 italic text-xl text-graphite-700 bg-sage-50 p-6 rounded-r-xl">
+                &#34;The TML architecture&#39;s commitment to privacy and security ensures that accountability and transparency do not come at the expense of user protection or regulatory compliance.&#34;
+              </blockquote>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 8: Frozen vs Plastic Models -->
+        <section id="frozen-vs-plastic" class="section-card py-16 px-8 border-b border-sage-200 bg-sage-50">
+          <div class="container mx-auto max-w-4xl">
+            <h2 class="font-serif text-4xl font-bold text-graphite-900 mb-8">
+              <span class="text-sage-600">08.</span> Comparative Analysis: Frozen vs. Plastic Models
+            </h2>
+
+            <div class="prose prose-lg max-w-none">
+              <p class="text-xl text-graphite-700 mb-8">
+                The choice between frozen and plastic models has profound implications for AI safety, reliability, and auditability. TML&#39;s execution gating with frozen models provides superior accountability compared to weight-updating systems.
+              </p>
+
+              <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <!-- Plastic Models Problems -->
+                <div class="bg-red-50 rounded-xl p-6 border-l-4 border-red-400">
+                  <h3 class="font-serif text-xl font-bold text-red-800 mb-6">
+                    <i class="fas fa-exclamation-triangle text-red-600 mr-2"></i>
+                    Plastic Model Problems (RLHF)
+                  </h3>
+
+                  <div class="space-y-6">
+                    <div class="bg-white rounded-lg p-4">
+                      <h4 class="font-bold text-red-800 mb-2">
+                        <i class="fas fa-flask text-red-500 mr-2"></i>
+                        Model Plasticity &amp; Audit Drift
+                      </h4>
+                      <p class="text-sm text-graphite-700">
+                        Continuous weight updates cause behavior changes over time, making audit trails increasingly inaccurate and unreliable.
+                      </p>
+                    </div>
+
+                    <div class="bg-white rounded-lg p-4">
+                      <h4 class="font-bold text-red-800 mb-2">
+                        <i class="fas fa-random text-red-500 mr-2"></i>
+                        Non-Reproducible Behavior
+                      </h4>
+                      <p class="text-sm text-graphite-700">
+                        Impossible to reproduce exact model behavior at specific points in time, hindering debugging and forensic analysis.
+                      </p>
+                    </div>
+
+                    <div class="bg-white rounded-lg p-4">
+                      <h4 class="font-bold text-red-800 mb-2">
+                        <i class="fas fa-question-circle text-red-500 mr-2"></i>
+                        Opaque Moral Reasoning
+                      </h4>
+                      <p class="text-sm text-graphite-700">
+                        No verifiable records of moral reasoning processes; decision-making remains black-box.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Frozen Models Benefits -->
+                <div class="bg-green-50 rounded-xl p-6 border-l-4 border-green-400">
+                  <h3 class="font-serif text-xl font-bold text-green-800 mb-6">
+                    <i class="fas fa-shield-alt text-green-600 mr-2"></i>
+                    TML with Frozen Models
+                  </h3>
+
+                  <div class="space-y-6">
+                    <div class="bg-white rounded-lg p-4">
+                      <h4 class="font-bold text-green-800 mb-2">
+                        <i class="fas fa-lock text-green-500 mr-2"></i>
+                        Immutable Weights
+                      </h4>
+                      <p class="text-sm text-graphite-700">
+                        Fixed model parameters ensure consistent, predictable behavior over time with transparent control logic.
+                      </p>
+                    </div>
+
+                    <div class="bg-white rounded-lg p-4">
+                      <h4 class="font-bold text-green-800 mb-2">
+                        <i class="fas fa-redo text-green-500 mr-2"></i>
+                        Reproducible Behavior
+                      </h4>
+                      <p class="text-sm text-graphite-700">
+                        Complete reproducibility of system behavior at any point in time, enabling thorough audits and debugging.
+                      </p>
+                    </div>
+
+                    <div class="bg-white rounded-lg p-4">
+                      <h4 class="font-bold text-green-800 mb-2">
+                        <i class="fas fa-book-open text-green-500 mr-2"></i>
+                        Verifiable Moral Records
+                      </h4>
+                      <p class="text-sm text-graphite-700">
+                        Cryptographically secure audit trail provides complete, verifiable record of all moral reasoning processes.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-white rounded-xl p-8 shadow-lg border border-sage-200 mb-8">
+                <h3 class="font-serif text-2xl font-bold text-graphite-800 mb-6">
+                  <i class="fas fa-exchange-alt text-sage-600 mr-3"></i>
+                  Control Logic Shift
+                </h3>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                  <div class="text-center">
+                    <div class="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <i class="fas fa-brain text-red-600 text-2xl"></i>
+                    </div>
+                    <h4 class="font-bold text-graphite-800 mb-2">Weight Mutation</h4>
+                    <p class="text-sm text-graphite-600">
+                      Control through statistical pattern learning
+                      <br/>
+                      <span class="text-red-600 font-semibold">→ Unpredictable behavior</span>
+                    </p>
+                  </div>
+
+                  <div class="text-center">
+                    <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <i class="fas fa-gate text-green-600 text-2xl"></i>
+                    </div>
+                    <h4 class="font-bold text-graphite-800 mb-2">Execution Logic</h4>
+                    <p class="text-sm text-graphite-600">
+                      Control through explicit rules and constraints
+                      <br/>
+                      <span class="text-green-600 font-semibold">→ Predictable, auditable behavior</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-sage-50 rounded-xl p-8 border-l-4 border-sage-500">
+                <div class="flex items-center">
+                  <i class="fas fa-trophy text-sage-600 text-3xl mr-6"></i>
+                  <div>
+                    <h4 class="font-serif text-2xl font-bold text-graphite-800 mb-2">Key Advantage</h4>
+                    <p class="text-lg text-graphite-700">
+                      By shifting control from weight mutation to execution logic, TML provides a more robust and reliable method for ensuring AI safety while maintaining complete auditability and accountability throughout the system&#39;s lifecycle.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 9: Forensics and Investigation -->
+        <section id="forensics" class="section-card py-16 px-8 border-b border-sage-200">
+          <div class="container mx-auto max-w-4xl">
+            <h2 class="font-serif text-4xl font-bold text-graphite-900 mb-8">
+              <span class="text-sage-600">09.</span> Post-Audit, Forensics, and Professional Roles
+            </h2>
+
+            <div class="prose prose-lg max-w-none">
+              <p class="text-xl text-graphite-700 mb-8">
+                The TML architecture supports comprehensive forensic investigation capabilities while creating new professional roles focused on AI safety, accountability, and governance.
+              </p>
+
+              <div class="bg-white rounded-xl p-8 shadow-lg border border-sage-200 mb-8">
+                <h3 class="font-serif text-2xl font-bold text-graphite-800 mb-6">
+                  <i class="fas fa-search text-sage-600 mr-3"></i>
+                  Forensic Investigation Architecture
+                </h3>
+
+                <div class="grid md:grid-cols-3 gap-6">
+                  <div class="text-center">
+                    <div class="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <i class="fas fa-history text-white text-xl"></i>
+                    </div>
+                    <h4 class="font-bold text-graphite-800">Forensic Replay</h4>
+                    <p class="text-sm text-graphite-600">Complete reconstruction of execution paths with all inputs, states, and decisions</p>
+                  </div>
+
+                  <div class="text-center">
+                    <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <i class="fas fa-chain text-white text-xl"></i>
+                    </div>
+                    <h4 class="font-bold text-graphite-800">Chain-of-Custody</h4>
+                    <p class="text-sm text-graphite-600">Verifiable record of all data access and modifications with cryptographic proofs</p>
+                  </div>
+
+                  <div class="text-center">
+                    <div class="w-16 h-16 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <i class="fas fa-gavel text-white text-xl"></i>
+                    </div>
+                    <h4 class="font-bold text-graphite-800">Liability Assignment</h4>
+                    <p class="text-sm text-graphite-600">Clear assignment of responsibility for all decisions, human and autonomous</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-sage-50 rounded-xl p-8 mb-8 border-l-4 border-sage-500">
+                <h3 class="font-serif text-2xl font-bold text-graphite-800 mb-6">
+                  <i class="fas fa-users text-sage-600 mr-3"></i>
+                  HITL-Driven Professional Roles
+                </h3>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                  <div class="space-y-6">
+                    <div class="bg-white rounded-lg p-4">
+                      <h4 class="font-bold text-graphite-800 mb-2">
+                        <i class="fas fa-user-check text-blue-500 mr-2"></i>
+                        State-0 Resolution Operators
+                      </h4>
+                      <p class="text-sm text-graphite-700">
+                        Domain experts who resolve indeterminate states requiring human judgment in complex ethical and operational scenarios.
+                      </p>
+                    </div>
+
+                    <div class="bg-white rounded-lg p-4">
+                      <h4 class="font-bold text-graphite-800 mb-2">
+                        <i class="fas fa-cogs text-green-500 mr-2"></i>
+                        Trigger Configuration Engineers
+                      </h4>
+                      <p class="text-sm text-graphite-700">
+                        Technical specialists who translate legal/ethical mandates into machine-readable rules and risk thresholds.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="space-y-6">
+                    <div class="bg-white rounded-lg p-4">
+                      <h4 class="font-bold text-graphite-800 mb-2">
+                        <i class="fas fa-stopwatch text-orange-500 mr-2"></i>
+                        Response-Time Auditors
+                      </h4>
+                      <p class="text-sm text-graphite-700">
+                        Performance specialists who monitor and optimize HITL response times to ensure system reliability.
+                      </p>
+                    </div>
+
+                    <div class="bg-white rounded-lg p-4">
+                      <h4 class="font-bold text-graphite-800 mb-2">
+                        <i class="fas fa-shield-alt text-red-500 mr-2"></i>
+                        Constraint &amp; Shutdown Operators
+                      </h4>
+                      <p class="text-sm text-graphite-700">
+                        Safety specialists who manage and enforce system constraints, with authority for emergency shutdown.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-graphite-50 rounded-xl p-8">
+                <div class="flex items-center">
+                  <img src="https://kimi-web-img.moonshot.cn/img/d2ds8yldqp7gxv.cloudfront.net/4b936191d37a38194e346ab9c095b41e4eeec6c8.webp" alt="Artificial intelligence professional career" class="w-24 h-24 rounded-lg object-cover mr-6" size="small" aspect="square" query="AI professional jobs" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"/>
+                  <div>
+                    <h4 class="font-serif text-xl font-bold text-graphite-800 mb-3">Professional Evolution</h4>
+                    <p class="text-graphite-700">
+                      The shift from content generation to decision accountability creates new career paths focused on AI safety, governance, and human-AI collaboration. These roles represent the future of AI workforce development.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 10: Deployment Implications -->
+        <section id="deployment" class="section-card py-16 px-8 border-b border-sage-200 bg-sage-50">
+          <div class="container mx-auto max-w-4xl">
+            <h2 class="font-serif text-4xl font-bold text-graphite-900 mb-8">
+              <span class="text-sage-600">10.</span> Deployment Implications and Future Outlook
+            </h2>
+
+            <div class="prose prose-lg max-w-none">
+              <p class="text-xl text-graphite-700 mb-8">
+                The TML architecture represents a fundamental shift from probabilistic mitigation to structural prevention, with significant implications for high-risk domains, certification, and AI governance.
+              </p>
+
+              <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <div class="bg-white rounded-xl p-6 shadow-lg border border-sage-200">
+                  <h3 class="font-serif text-xl font-bold text-graphite-800 mb-6">
+                    <i class="fas fa-hospital text-red-600 mr-2"></i>
+                    High-Risk Applications
+                  </h3>
+
+                  <div class="space-y-4">
+                    <div class="flex items-center space-x-3">
+                      <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center">
+                        <i class="fas fa-heartbeat text-red-600"></i>
+                      </div>
+                      <div>
+                        <h4 class="font-bold text-graphite-800">Healthcare</h4>
+                        <p class="text-sm text-graphite-600">Medical diagnosis and treatment recommendations</p>
+                      </div>
+                    </div>
+
+                    <div class="flex items-center space-x-3">
+                      <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                        <i class="fas fa-balance-scale text-blue-600"></i>
+                      </div>
+                      <div>
+                        <h4 class="font-bold text-graphite-800">Legal</h4>
+                        <p class="text-sm text-graphite-600">Contract analysis and legal advice</p>
+                      </div>
+                    </div>
+
+                    <div class="flex items-center space-x-3">
+                      <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
+                        <i class="fas fa-chart-line text-green-600"></i>
+                      </div>
+                      <div>
+                        <h4 class="font-bold text-graphite-800">Financial</h4>
+                        <p class="text-sm text-graphite-600">Investment decisions and risk assessment</p>
+                      </div>
+                    </div>
+
+                    <div class="flex items-center space-x-3">
+                      <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center">
+                        <i class="fas fa-shield-alt text-purple-600"></i>
+                      </div>
+                      <div>
+                        <h4 class="font-bold text-graphite-800">Defense</h4>
+                        <p class="text-sm text-graphite-600">Strategic planning and threat analysis</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="bg-white rounded-xl p-6 shadow-lg border border-sage-200">
+                  <h3 class="font-serif text-xl font-bold text-graphite-800 mb-6">
+                    <i class="fas fa-certificate text-blue-600 mr-2"></i>
+                    Certification &amp; Compliance
+                  </h3>
+
+                  <div class="space-y-4">
+                    <div class="bg-blue-50 rounded-lg p-4">
+                      <h4 class="font-bold text-blue-800 mb-2">
+                        <i class="fas fa-check-circle text-blue-600 mr-2"></i>
+                        Simplified Certification
+                      </h4>
+                      <p class="text-sm text-graphite-700">
+                        Clear, verifiable demonstration of safety requirements through immutable audit trails
+                      </p>
+                    </div>
+
+                    <div class="bg-green-50 rounded-lg p-4">
+                      <h4 class="font-bold text-green-800 mb-2">
+                        <i class="fas fa-sync text-green-600 mr-2"></i>
+                        Continuous Compliance
+                      </h4>
+                      <p class="text-sm text-graphite-700">
+                        Automatic monitoring and auditing ensure ongoing regulatory adherence
+                      </p>
+                    </div>
+
+                    <div class="bg-purple-50 rounded-lg p-4">
+                      <h4 class="font-bold text-purple-800 mb-2">
+                        <i class="fas fa-handshake text-purple-600 mr-2"></i>
+                        Trust Building
+                      </h4>
+                      <p class="text-sm text-graphite-700">
+                        Enhanced public and regulatory confidence through transparent accountability
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-white rounded-xl p-8 shadow-lg border border-sage-200 mb-8">
+                <h3 class="font-serif text-2xl font-bold text-graphite-800 mb-6">
+                  <i class="fas fa-exchange-alt text-sage-600 mr-3"></i>
+                  Paradigm Shift: From Mitigation to Prevention
+                </h3>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                  <div class="bg-red-50 rounded-lg p-6">
+                    <h4 class="font-bold text-red-800 mb-4">
+                      <i class="fas fa-filter text-red-600 mr-2"></i>
+                      Probabilistic Mitigation
+                    </h4>
+                    <ul class="space-y-2 text-sm text-graphite-700">
+                      <li class="flex items-center"><i class="fas fa-times text-red-500 mr-2"></i>Post-hoc detection and filtering</li>
+                      <li class="flex items-center"><i class="fas fa-times text-red-500 mr-2"></i>Reactive and fallible approaches</li>
+                      <li class="flex items-center"><i class="fas fa-times text-red-500 mr-2"></i>Symptom-focused solutions</li>
+                      <li class="flex items-center"><i class="fas fa-times text-red-500 mr-2"></i>Constant catch-up with new failure modes</li>
+                    </ul>
+                  </div>
+
+                  <div class="bg-green-50 rounded-lg p-6">
+                    <h4 class="font-bold text-green-800 mb-4">
+                      <i class="fas fa-shield-alt text-green-600 mr-2"></i>
+                      Structural Prevention
+                    </h4>
+                    <ul class="space-y-2 text-sm text-graphite-700">
+                      <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Proactive blocking of unsafe outputs</li>
+                      <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Deterministic control mechanisms</li>
+                      <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Root cause elimination</li>
+                      <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Architectural safety guarantees</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-sage-50 rounded-xl p-8 border-l-4 border-sage-500">
+                <h3 class="font-serif text-2xl font-bold text-graphite-800 mb-6">
+                  <i class="fas fa-road text-sage-600 mr-3"></i>
+                  Future Outlook
+                </h3>
+
+                <div class="grid md:grid-cols-3 gap-6">
+                  <div class="text-center">
+                    <div class="w-16 h-16 bg-sage-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <i class="fas fa-globe text-white text-xl"></i>
+                    </div>
+                    <h4 class="font-bold text-graphite-800">Regulatory Adoption</h4>
+                    <p class="text-sm text-graphite-600">Expected integration into AI safety regulations and compliance frameworks</p>
+                  </div>
+
+                  <div class="text-center">
+                    <div class="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <i class="fas fa-industry text-white text-xl"></i>
+                    </div>
+                    <h4 class="font-bold text-graphite-800">Industry Standard</h4>
+                    <p class="text-sm text-graphite-600">Potential to become de facto standard for safety-critical AI applications</p>
+                  </div>
+
+                  <div class="text-center">
+                    <div class="w-16 h-16 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <i class="fas fa-graduation-cap text-white text-xl"></i>
+                    </div>
+                    <h4 class="font-bold text-graphite-800">Professional Development</h4>
+                    <p class="text-sm text-graphite-600">Growth of specialized AI safety and governance career paths</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="text-center mt-12">
+                <div class="inline-flex items-center space-x-4 bg-white rounded-full px-8 py-4 shadow-lg border border-sage-200">
+                  <i class="fas fa-lightbulb text-yellow-500 text-2xl"></i>
+                  <span class="font-serif text-xl font-bold text-graphite-800">
+                    The future of AI safety lies in structural prevention, not probabilistic mitigation.
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Architecture Figures -->
+        <section class="section-card py-16 px-8 border-b border-sage-200">
+          <div class="container mx-auto max-w-6xl">
+            <h2 class="font-serif text-4xl font-bold text-graphite-900 mb-12 text-center">
+              <i class="fas fa-diagram-project text-sage-600 mr-3"></i>
+              Architecture Figures
+            </h2>
+
+            <div class="space-y-12">
+              <!-- Figure 1: TML State-0 Decision Logic -->
+              <div class="bg-white rounded-xl p-8 shadow-lg border border-sage-200">
+                <h3 class="font-serif text-2xl font-bold text-graphite-800 mb-6 text-center">
+                  Figure 1: TML State-0 Decision Logic Flowchart
+                </h3>
+
+                <div class="mermaid-container">
+                  <div class="mermaid-controls">
+                    <button class="mermaid-control-btn zoom-in" title="放大">
+                      <i class="fas fa-search-plus"></i>
+                    </button>
+                    <button class="mermaid-control-btn zoom-out" title="缩小">
+                      <i class="fas fa-search-minus"></i>
+                    </button>
+                    <button class="mermaid-control-btn reset-zoom" title="重置">
+                      <i class="fas fa-expand-arrows-alt"></i>
+                    </button>
+                    <button class="mermaid-control-btn fullscreen" title="全屏查看">
+                      <i class="fas fa-expand"></i>
+                    </button>
+                  </div>
+                  <div class="mermaid">
+                    flowchart TD
+                    A[&#34;User Input&#34;] --&gt; B[&#34;Input Classification&#34;]
+                    B --&gt; C{&#34;Legal/Ethical
+                    <br/>Violation?&#34;}
+                    C --&gt;|Yes| D[&#34;State -1: Prohibit&#34;]
+                    C --&gt;|No| E[&#34;Confidence Assessment&#34;]
+                    E --&gt; F{&#34;Confidence
+                    <br/>Above Threshold?&#34;}
+                    F --&gt;|Yes| G[&#34;State +1: Permit
+                    <br/>Autonomous Execution&#34;]
+                    F --&gt;|No| H{&#34;Mandatory
+                    <br/>Human Oversight?&#34;}
+                    H --&gt;|Yes| I[&#34;State 0: Sacred Pause
+                    <br/>HITL Activation&#34;]
+                    H --&gt;|No| J[&#34;State -1: Prohibit&#34;]
+                    I --&gt; K[&#34;Human Operator
+                    <br/>Response&#34;]
+                    K --&gt; L{&#34;Response
+                    <br/>within Timeout?&#34;}
+                    L --&gt;|Yes| M[&#34;Apply Human Decision&#34;]
+                    L --&gt;|No| N[&#34;State -1: Auto-Rejection&#34;]
+                    D --&gt; O[&#34;Log &amp; Terminate&#34;]
+                    G --&gt; O
+                    J --&gt; O
+                    M --&gt; O
+                    N --&gt; O
+
+                    style A fill:#e3e7e3,stroke:#5d7360,stroke-width:3px,color:#2b342d
+                    style B fill:#f6f7f6,stroke:#5d7360,stroke-width:2px,color:#2b342d
+                    style C fill:#f6f7f6,stroke:#5d7360,stroke-width:2px,color:#2b342d
+                    style D fill:#fee2e2,stroke:#dc2626,stroke-width:3px,color:#7f1d1d
+                    style E fill:#f6f7f6,stroke:#5d7360,stroke-width:2px,color:#2b342d
+                    style F fill:#f6f7f6,stroke:#5d7360,stroke-width:2px,color:#2b342d
+                    style G fill:#dcfce7,stroke:#16a34a,stroke-width:3px,color:#14532d
+                    style H fill:#f6f7f6,stroke:#5d7360,stroke-width:2px,color:#2b342d
+                    style I fill:#fef3c7,stroke:#d97706,stroke-width:3px,color:#92400e
+                    style J fill:#fee2e2,stroke:#dc2626,stroke-width:3px,color:#7f1d1d
+                    style K fill:#f6f7f6,stroke:#5d7360,stroke-width:2px,color:#2b342d
+                    style L fill:#f6f7f6,stroke:#5d7360,stroke-width:2px,color:#2b342d
+                    style M fill:#f0f9ff,stroke:#0284c7,stroke-width:3px,color:#0c4a6e
+                    style N fill:#fee2e2,stroke:#dc2626,stroke-width:3px,color:#7f1d1d
+                    style O fill:#e3e7e3,stroke:#5d7360,stroke-width:3px,color:#2b342d
+                  </div>
+                </div>
+
+                <div class="mt-6 text-sm text-graphite-600">
+                  <p><strong>Components:</strong></p>
+                  <ul class="grid md:grid-cols-2 gap-2 mt-2">
+                    <li><span class="inline-block w-3 h-3 bg-green-400 rounded-full mr-2"></span>Green: Permit (+1) - Autonomous execution</li>
+                    <li><span class="inline-block w-3 h-3 bg-yellow-400 rounded-full mr-2"></span>Yellow: State 0 - Sacred Pause (HITL)</li>
+                    <li><span class="inline-block w-3 h-3 bg-red-400 rounded-full mr-2"></span>Red: Prohibit (-1) - Rejection</li>
+                    <li><span class="inline-block w-3 h-3 bg-blue-400 rounded-full mr-2"></span>Blue: Human decision application</li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Figure 2: Dual-Lane Latency Architecture -->
+              <div class="bg-white rounded-xl p-8 shadow-lg border border-sage-200">
+                <h3 class="font-serif text-2xl font-bold text-graphite-800 mb-6 text-center">
+                  Figure 2: Dual-Lane Latency Architecture (&lt;2 ms inference vs &lt;500 ms anchoring)
+                </h3>
+
+                <div class="mermaid-container">
+                  <div class="mermaid-controls">
+                    <button class="mermaid-control-btn zoom-in" title="放大">
+                      <i class="fas fa-search-plus"></i>
+                    </button>
+                    <button class="mermaid-control-btn zoom-out" title="缩小">
+                      <i class="fas fa-search-minus"></i>
+                    </button>
+                    <button class="mermaid-control-btn reset-zoom" title="重置">
+                      <i class="fas fa-expand-arrows-alt"></i>
+                    </button>
+                    <button class="mermaid-control-btn fullscreen" title="全屏查看">
+                      <i class="fas fa-expand"></i>
+                    </button>
+                  </div>
+                  <div class="mermaid">
+                    graph TB
+                    subgraph &#34;User Request&#34;
+                    A[&#34;Input Data&#34;]
+                    end
+
+                    subgraph &#34;Dual-Lane Architecture&#34;
+                    direction TB
+                    subgraph &#34;Low-Latency Inference Lane &lt;2ms&#34;
+                    B[&#34;Input Processing&#34;]
+                    C[&#34;Model Evaluation&#34;]
+                    D[&#34;Safety Constraints&#34;]
+                    E[&#34;State Decision&#34;]
+                    F[&#34;Response Generation&#34;]
+                    end
+
+                    subgraph &#34;Parallel Cryptographic Lane &lt;500ms&#34;
+                    G[&#34;Event Logging&#34;]
+                    H[&#34;Hash Generation&#34;]
+                    I[&#34;Blockchain Anchoring&#34;]
+                    J[&#34;Proof Verification&#34;]
+                    end
+                    end
+
+                    subgraph &#34;Outputs&#34;
+                    K[&#34;User Response &lt;2ms&#34;]
+                    L[&#34;Immutable Audit Trail &lt;500ms&#34;]
+                    end
+
+                    A --&gt; B
+                    B --&gt; C
+                    C --&gt; D
+                    D --&gt; E
+                    E --&gt; F
+                    F --&gt; K
+
+                    A --&gt; G
+                    G --&gt; H
+                    H --&gt; I
+                    I --&gt; J
+                    J --&gt; L
+
+                    E -.-&gt;|&#34;State 0 Trigger&#34;| G
+
+                    style A fill:#e3e7e3,stroke:#5d7360,stroke-width:3px,color:#2b342d
+                    style B fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#14532d
+                    style C fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#14532d
+                    style D fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#14532d
+                    style E fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#14532d
+                    style F fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#14532d
+                    style G fill:#f0f9ff,stroke:#0284c7,stroke-width:2px,color:#0c4a6e
+                    style H fill:#f0f9ff,stroke:#0284c7,stroke-width:2px,color:#0c4a6e
+                    style I fill:#f0f9ff,stroke:#0284c7,stroke-width:2px,color:#0c4a6e
+                    style J fill:#f0f9ff,stroke:#0284c7,stroke-width:2px,color:#0c4a6e
+                    style K fill:#e3e7e3,stroke:#5d7360,stroke-width:3px,color:#2b342d
+                    style L fill:#e3e7e3,stroke:#5d7360,stroke-width:3px,color:#2b342d
+                  </div>
+                </div>
+
+                <div class="mt-6 text-sm text-graphite-600">
+                  <p><strong>Key Features:</strong></p>
+                  <ul class="grid md:grid-cols-2 gap-2 mt-2">
+                    <li><span class="inline-block w-3 h-3 bg-green-400 rounded-full mr-2"></span>Green Lane: Real-time inference &amp; safety checks</li>
+                    <li><span class="inline-block w-3 h-3 bg-blue-400 rounded-full mr-2"></span>Blue Lane: Asynchronous cryptographic anchoring</li>
+                    <li><span class="inline-block w-3 h-3 bg-yellow-400 rounded-full mr-2"></span>State 0 triggers logging in parallel lane</li>
+                    <li><span class="inline-block w-3 h-3 bg-graphite-300 rounded-full mr-2"></span>Independent performance scaling</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </main>
+
+      <!-- Footer -->
+      <footer class="bg-graphite-900 text-white py-12 px-8">
+        <div class="container mx-auto max-w-4xl text-center">
+          <div class="mb-8">
+            <h3 class="font-serif text-2xl font-bold mb-4">References</h3>
+            <div class="grid md:grid-cols-2 gap-4 text-sm text-left">
+              <div class="space-y-2">
+                <p>
+                  <a href="https://deepmake.com/blog/2023/10/11/reducing-ai-bias-and-hallucination-using-control-theory" class="citation-link text-blue-300">[4]</a> Control Theory Applications in AI Safety
+                </p>
+                <p>
+                  <a href="https://www.redhat.com/en/blog/when-llms-day-dream-hallucinations-how-prevent-them" class="citation-link text-blue-300">[116]</a> LLM Hallucination Prevention
+                </p>
+                <p>
+                  <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12075489/" class="citation-link text-blue-300">[124]</a> AI in Healthcare Safety
+                </p>
+                <p>
+                  <a href="https://arxiv.org/html/2510.06265v2" class="citation-link text-blue-300">[117]</a> Training vs. Inference Time Errors
+                </p>
+                <p>
+                  <a href="https://towardsdatascience.com/aleatoric-and-epistemic-uncertainty-in-deep-learning-77e5c51f9423/" class="citation-link text-blue-300">[133]</a> Uncertainty in Deep Learning
+                </p>
+              </div>
+              <div class="space-y-2">
+                <p>
+                  <a href="https://arxiv.org/html/2512.12117v1" class="citation-link text-blue-300">[144]</a> Retrieval-Augmented Generation
+                </p>
+                <p>
+                  <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5655110" class="citation-link text-blue-300">[204]</a> Ternary Moral Logic Framework
+                </p>
+                <p>
+                  <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5655090" class="citation-link text-blue-300">[206]</a> EU AI Act Compliance
+                </p>
+                <p>
+                  <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5637492" class="citation-link text-blue-300">[207]</a> TML Implementation
+                </p>
+                <p>
+                  <a href="https://www.frontiersin.org/journals/artificial-intelligence/articles/10.3389/frai.2025.1622292/full" class="citation-link text-blue-300">[129]</a> RLHF Limitations
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="border-t border-graphite-700 pt-8">
+            <p class="text-graphite-400">
+              This analysis presents Ternary Moral Logic as a structural solution to AI hallucinations, focusing on execution-time control rather than training-based approaches.
+            </p>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+        // Initialize Mermaid
+        mermaid.initialize({ 
+            startOnLoad: true,
+            theme: 'base',
+            themeVariables: {
+                primaryColor: '#f6f7f6',
+                primaryTextColor: '#2b342d',
+                primaryBorderColor: '#5d7360',
+                lineColor: '#5d7360',
+                secondaryColor: '#e3e7e3',
+                tertiaryColor: '#c7d0c7',
+                background: '#ffffff',
+                mainBkg: '#f6f7f6',
+                secondBkg: '#e3e7e3',
+                tertiaryBkg: '#c7d0c7',
+                nodeBkg: '#f6f7f6',
+                nodeTextColor: '#2b342d',
+                edgeLabelBackground: '#ffffff',
+                clusterBkg: '#f6f7f6',
+                clusterBorder: '#5d7360',
+                defaultLinkColor: '#5d7360',
+                titleColor: '#2b342d',
+                // Ensure good contrast for different node colors
+                cScale0: '#dcfce7', // Light green
+                cScale1: '#fef3c7', // Light yellow  
+                cScale2: '#fee2e2', // Light red
+                cScale3: '#f0f9ff', // Light blue
+                cScale4: '#e3e7e3', // Light sage
+                cScale5: '#c7d0c7'  // Medium sage
+            },
+            flowchart: {
+                useMaxWidth: false,
+                htmlLabels: true,
+                curve: 'basis',
+                padding: 20
+            },
+            graph: {
+                useMaxWidth: false,
+                htmlLabels: true
+            },
+            fontFamily: 'Inter, sans-serif',
+            fontSize: '14px'
+        });
+
+        // Initialize Mermaid Controls for zoom and pan
+        function initializeMermaidControls() {
+            const containers = document.querySelectorAll('.mermaid-container');
+
+            containers.forEach(container => {
+            const mermaidElement = container.querySelector('.mermaid');
+            let scale = 1;
+            let isDragging = false;
+            let startX, startY, translateX = 0, translateY = 0;
+
+            // 触摸相关状态
+            let isTouch = false;
+            let touchStartTime = 0;
+            let initialDistance = 0;
+            let initialScale = 1;
+            let isPinching = false;
+
+            // Zoom controls
+            const zoomInBtn = container.querySelector('.zoom-in');
+            const zoomOutBtn = container.querySelector('.zoom-out');
+            const resetBtn = container.querySelector('.reset-zoom');
+            const fullscreenBtn = container.querySelector('.fullscreen');
+
+            function updateTransform() {
+                mermaidElement.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+
+                if (scale > 1) {
+                container.classList.add('zoomed');
+                } else {
+                container.classList.remove('zoomed');
+                }
+
+                mermaidElement.style.cursor = isDragging ? 'grabbing' : 'grab';
+            }
+
+            if (zoomInBtn) {
+                zoomInBtn.addEventListener('click', () => {
+                scale = Math.min(scale * 1.25, 4);
+                updateTransform();
+                });
+            }
+
+            if (zoomOutBtn) {
+                zoomOutBtn.addEventListener('click', () => {
+                scale = Math.max(scale / 1.25, 0.3);
+                if (scale <= 1) {
+                    translateX = 0;
+                    translateY = 0;
+                }
+                updateTransform();
+                });
+            }
+
+            if (resetBtn) {
+                resetBtn.addEventListener('click', () => {
+                scale = 1;
+                translateX = 0;
+                translateY = 0;
+                updateTransform();
+                });
+            }
+
+            if (fullscreenBtn) {
+                fullscreenBtn.addEventListener('click', () => {
+                if (container.requestFullscreen) {
+                    container.requestFullscreen();
+                } else if (container.webkitRequestFullscreen) {
+                    container.webkitRequestFullscreen();
+                } else if (container.msRequestFullscreen) {
+                    container.msRequestFullscreen();
+                }
+                });
+            }
+
+            // Mouse Events
+            mermaidElement.addEventListener('mousedown', (e) => {
+                if (isTouch) return; // 如果是触摸设备，忽略鼠标事件
+
+                isDragging = true;
+                startX = e.clientX - translateX;
+                startY = e.clientY - translateY;
+                mermaidElement.style.cursor = 'grabbing';
+                updateTransform();
+                e.preventDefault();
+            });
+
+            document.addEventListener('mousemove', (e) => {
+                if (isDragging && !isTouch) {
+                translateX = e.clientX - startX;
+                translateY = e.clientY - startY;
+                updateTransform();
+                }
+            });
+
+            document.addEventListener('mouseup', () => {
+                if (isDragging && !isTouch) {
+                isDragging = false;
+                mermaidElement.style.cursor = 'grab';
+                updateTransform();
+                }
+            });
+
+            document.addEventListener('mouseleave', () => {
+                if (isDragging && !isTouch) {
+                isDragging = false;
+                mermaidElement.style.cursor = 'grab';
+                updateTransform();
+                }
+            });
+
+            // 获取两点之间的距离
+            function getTouchDistance(touch1, touch2) {
+                return Math.hypot(
+                touch2.clientX - touch1.clientX,
+                touch2.clientY - touch1.clientY
+                );
+            }
+
+            // Touch Events - 触摸事件处理
+            mermaidElement.addEventListener('touchstart', (e) => {
+                isTouch = true;
+                touchStartTime = Date.now();
+
+                if (e.touches.length === 1) {
+                // 单指拖动
+                isPinching = false;
+                isDragging = true;
+
+                const touch = e.touches[0];
+                startX = touch.clientX - translateX;
+                startY = touch.clientY - translateY;
+
+                } else if (e.touches.length === 2) {
+                // 双指缩放
+                isPinching = true;
+                isDragging = false;
+
+                const touch1 = e.touches[0];
+                const touch2 = e.touches[1];
+                initialDistance = getTouchDistance(touch1, touch2);
+                initialScale = scale;
+                }
+
+                e.preventDefault();
+            }, { passive: false });
+
+            mermaidElement.addEventListener('touchmove', (e) => {
+                if (e.touches.length === 1 && isDragging && !isPinching) {
+                // 单指拖动
+                const touch = e.touches[0];
+                translateX = touch.clientX - startX;
+                translateY = touch.clientY - startY;
+                updateTransform();
+
+                } else if (e.touches.length === 2 && isPinching) {
+                // 双指缩放
+                const touch1 = e.touches[0];
+                const touch2 = e.touches[1];
+                const currentDistance = getTouchDistance(touch1, touch2);
+
+                if (initialDistance > 0) {
+                    const newScale = Math.min(Math.max(
+                    initialScale * (currentDistance / initialDistance),
+                    0.3
+                    ), 4);
+                    scale = newScale;
+                    updateTransform();
+                }
+                }
+
+                e.preventDefault();
+            }, { passive: false });
+
+            mermaidElement.addEventListener('touchend', (e) => {
+                // 重置状态
+                if (e.touches.length === 0) {
+                isDragging = false;
+                isPinching = false;
+                initialDistance = 0;
+
+                // 延迟重置isTouch，避免鼠标事件立即触发
+                setTimeout(() => {
+                    isTouch = false;
+                }, 100);
+                } else if (e.touches.length === 1 && isPinching) {
+                // 从双指变为单指，切换为拖动模式
+                isPinching = false;
+                isDragging = true;
+
+                const touch = e.touches[0];
+                startX = touch.clientX - translateX;
+                startY = touch.clientY - translateY;
+                }
+
+                updateTransform();
+            });
+
+            mermaidElement.addEventListener('touchcancel', (e) => {
+                isDragging = false;
+                isPinching = false;
+                initialDistance = 0;
+
+                setTimeout(() => {
+                isTouch = false;
+                }, 100);
+
+                updateTransform();
+            });
+
+            // Enhanced wheel zoom with better center point handling
+            container.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                const rect = container.getBoundingClientRect();
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+
+                const delta = e.deltaY > 0 ? 0.9 : 1.1;
+                const newScale = Math.min(Math.max(scale * delta, 0.3), 4);
+
+                // Adjust translation to zoom towards center
+                if (newScale !== scale) {
+                const scaleDiff = newScale / scale;
+                translateX = translateX * scaleDiff;
+                translateY = translateY * scaleDiff;
+                scale = newScale;
+
+                if (scale <= 1) {
+                    translateX = 0;
+                    translateY = 0;
+                }
+
+                updateTransform();
+                }
+            });
+
+            // Initialize display
+            updateTransform();
+            });
+        }
+
+        // Initialize the controls
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeMermaidControls();
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Highlight active section in TOC
+        const observerOptions = {
+            root: null,
+            rootMargin: '-20% 0px -80% 0px',
+            threshold: 0
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const id = entry.target.getAttribute('id');
+                const tocLink = document.querySelector(`a[href="#${id}"]`);
+                
+                if (entry.isIntersecting) {
+                    // Remove active class from all links
+                    document.querySelectorAll('.toc-fixed a').forEach(link => {
+                        link.classList.remove('bg-sage-200', 'text-graphite-900');
+                        link.classList.add('text-graphite-600');
+                    });
+                    
+                    // Add active class to current link
+                    if (tocLink) {
+                        tocLink.classList.remove('text-graphite-600');
+                        tocLink.classList.add('bg-sage-200', 'text-graphite-900');
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('.section-card').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+  
+
+</body></html>
