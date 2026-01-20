@@ -2,7 +2,7 @@
 
 ## **1\. Executive Summary**
 
-**[Interactive Web report](https://fractonicmind.github.io/TernaryMoralLogic/Research_Reports/The%20Executable%20Architecture%20for%20the%20EU%20AI%20Act.html)**
+**[Interactive Web Report](https://fractonicmind.github.io/TernaryMoralLogic/Research_Reports/The%20Executable%20Architecture%20for%20the%20EU%20AI%20Act.html)**
 
 ### **1.1 The EU AI Act's Risk-Based Framework and Enforcement Gaps**
 
