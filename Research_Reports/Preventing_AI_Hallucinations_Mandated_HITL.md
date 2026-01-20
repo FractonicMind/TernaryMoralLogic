@@ -135,7 +135,7 @@ The State 0 triggering mechanism operates within the inference kernel below the 
 
 **Figure 1: TML State-0 Decision Logic Flowchart**
 
-**![][image1]**
+**![Figure 1][/images/Figure-1.png]**
 
 **Figure Description:** This technical flowchart illustrates the deterministic decision logic governing TML state transitions. The diagram begins with input preprocessing that extracts semantic features and identifies operational domain. A parallel evaluation path assesses both confidence metrics and mandate intersection simultaneously. The confidence evaluation branch computes epistemic certainty through multiple verification mechanisms including knowledge graph validation and parametric confidence scoring. Simultaneously, the mandate evaluation branch performs deterministic mapping between proposed actions and binding legal/ethical constraints encoded in machine-readable format. A decision matrix combines these results; State \+1 (Permit) activates when confidence exceeds thresholds and no mandate conflicts exist, while State 0 (Indeterminate) activates under uncertainty conditions or mandate ambiguity, initiating the Sacred Pause mechanism.
 
@@ -302,7 +302,7 @@ The architecture separates the execution path into two distinct processing lanes
 
 #### **Figure 2: The Dual-Lane Architecture**
 
-![][image2]
+**![Figure-2][/images/Figure-2.png]**
 
 **Figure Description:** This architectural diagram illustrates the parallel execution paths enabling both high-performance inference and cryptographic audit trail generation. The diagram shows two independent processing lanes operating in parallel with synchronized interaction points. The **Inference Lane** (\<2ms) processes input through hardware-accelerated paths, while the **Anchoring Lane** (\<500ms) generates tamper-proof audit trails via Merkle trees. Synchronization points ensure that inference decisions complete independently of anchoring operations while guaranteeing that all decisions receive appropriate cryptographic protection before release.
 
