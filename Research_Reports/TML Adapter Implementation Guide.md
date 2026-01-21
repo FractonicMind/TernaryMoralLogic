@@ -4,10 +4,10 @@
 
 **Document Name:** TML Adapter Reference Implementations   
 **Subtitle:** Technical Specification for the Integration of Artificial  Intelligence Systems with the Ternary Moral Logic Framework  
-**Document Series:** Technical Implementation Standard (TIS) / Best Current Practice (BCP)   
-**Version:** 1.0.0-draft   
-**Date:** October 2025. 
-**Status:** Standards Track. 
+**Document Series:** Technical Implementation Standard (TIS) / Best Current Practice (BCP)    
+**Version:** 1.0.0-draft    
+**Date:** October 2025.  
+**Status:** Standards Track.   
 **Intended Audience:** Systems Architects, AI Compliance Officers, DevOps Engineers, and Security Auditors.   
 
 **Abstract**  
