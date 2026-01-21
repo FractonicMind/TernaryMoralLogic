@@ -2,7 +2,14 @@
 
 ## **1\. Title Page**
 
-**Document Name:** TML Adapter Reference Implementations **Subtitle:** Technical Specification for the Integration of Artificial Intelligence Systems with the Ternary Moral Logic Framework **Document Series:** Technical Implementation Standard (TIS) / Best Current Practice (BCP) **Version:** 1.0.0-draft **Date:** October 2025 **Status:** Standards Track **Intended Audience:** Systems Architects, AI Compliance Officers, DevOps Engineers, and Security Auditors.  
+**Document Name:** TML Adapter Reference Implementations   
+**Subtitle:** Technical Specification for the Integration of Artificial  Intelligence Systems with the Ternary Moral Logic Framework  
+**Document Series:** Technical Implementation Standard (TIS) / Best Current Practice (BCP)   
+**Version:** 1.0.0-draft   
+**Date:** October 2025. 
+**Status:** Standards Track. 
+**Intended Audience:** Systems Architects, AI Compliance Officers, DevOps Engineers, and Security Auditors.   
+
 **Abstract**  
 This document provides the normative technical specification for the design, implementation, and deployment of **Ternary Moral Logic (TML) Adapters**. As artificial intelligence systems transition from experimental sandboxes to critical infrastructure, the requirement for deterministic, auditable governance becomes paramount. TML introduces a "moral infrastructure" that moves beyond binary access control lists (Allow/Deny) into a triadic state system: **\+1 (Permit)**, **\-1 (Refuse)**, and **0 (Sacred Zero/Pause)**.  
 The **TML Adapter** is the mandatory software or hardware component that interfaces a proprietary AI model—whether a Large Language Model (LLM), autonomous vehicle planner, or financial trading algorithm—with the TML Governance Gateway. This document defines the **Universal Decision Event (UDE)** schema based on CloudEvents v1.0 , specifies architectural patterns for synchronous and asynchronous integration, and mandates cryptographic logging procedures compliant with **RFC 6962** (Merkle Tree Auditing).  
