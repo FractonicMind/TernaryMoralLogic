@@ -1,0 +1,1147 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>The Goukassian Promise in Ternary Moral Logic: A Legal-Technical Analysis</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#1e293b',
+                        'secondary': '#475569',
+                        'accent': '#3b82f6',
+                        'muted': '#64748b',
+                        'surface': '#f8fafc',
+                        'border': '#e2e8f0'
+                    },
+                    fontFamily: {
+                        'serif': ['Crimson Text', 'serif'],
+                        'sans': ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <style>
+        .citation-link {
+            color: #3b82f6;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+        .citation-link:hover {
+            color: #1d4ed8;
+            text-decoration: underline;
+        }
+        .hero-overlay {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.9) 0%, rgba(59, 130, 246, 0.7) 100%);
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            align-items: start;
+        }
+        .highlight-box {
+            background: linear-gradient(to right, rgba(59, 130, 246, 0.1), transparent);
+            border-left: 4px solid #3b82f6;
+        }
+        
+        /* Mermaid diagram styling */
+        .mermaid-container {
+            display: flex;
+            justify-content: center;
+            min-height: 300px;
+            max-height: 800px;
+            background: #ffffff;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mermaid-container .mermaid {
+            width: 100%;
+            max-width: 100%;
+            height: 100%;
+            cursor: grab;
+            transition: transform 0.3s ease;
+            transform-origin: center center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            touch-action: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .mermaid-container .mermaid svg {
+            max-width: 100%;
+            height: 100%;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .mermaid-container .mermaid:active {
+            cursor: grabbing;
+        }
+
+        .mermaid-container.zoomed .mermaid {
+            height: 100%;
+            width: 100%;
+            cursor: grab;
+        }
+
+        .mermaid-controls {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            display: flex;
+            gap: 10px;
+            z-index: 20;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 8px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .mermaid-control-btn {
+            background: #ffffff;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            padding: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #374151;
+            font-size: 14px;
+            min-width: 36px;
+            height: 36px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mermaid-control-btn:hover {
+            background: #f8fafc;
+            border-color: #3b82f6;
+            color: #3b82f6;
+            transform: translateY(-1px);
+        }
+
+        .mermaid-control-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Mermaid theme customization for better contrast */
+        .mermaid .node rect,
+        .mermaid .node circle,
+        .mermaid .node ellipse,
+        .mermaid .node polygon {
+            stroke-width: 3px !important;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+        }
+        
+        .mermaid .node .label {
+            color: #1e293b !important;
+            font-weight: 600 !important;
+            font-size: 14px !important;
+            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+        }
+        
+        .mermaid .edgePath .path {
+            stroke: #64748b !important;
+            stroke-width: 3px !important;
+            filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+        }
+        
+        .mermaid .edgeLabel {
+            background-color: rgba(255, 255, 255, 0.95) !important;
+            color: #374151 !important;
+            font-weight: 600 !important;
+            padding: 8px 12px !important;
+            border-radius: 6px !important;
+            border: 1px solid #e2e8f0 !important;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+            font-size: 12px !important;
+        }
+        
+        /* Enhanced node styling for better contrast */
+        .mermaid .node[style*="fill:#1e293b"] .label {
+            color: #ffffff !important;
+            font-weight: 700 !important;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        
+        .mermaid .node[style*="fill:#f8fafc"] .label {
+            color: #1e293b !important;
+            font-weight: 600 !important;
+        }
+        
+        .mermaid .node[style*="fill:#3b82f6"] .label {
+            color: #ffffff !important;
+            font-weight: 700 !important;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Ensure high contrast for all node types */
+        .mermaid .node[style*="fill:#dc2626"] .label,
+        .mermaid .node[style*="fill:#059669"] .label,
+        .mermaid .node[style*="fill:#d97706"] .label {
+            color: #ffffff !important;
+            font-weight: 700 !important;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        
+        .toc-link {
+            color: #64748b;
+            text-decoration: none;
+            font-weight: 400;
+            transition: all 0.2s ease;
+            display: block;
+            padding: 0.5rem 0;
+            border-left: 2px solid transparent;
+            padding-left: 1rem;
+        }
+        .toc-link:hover,
+        .toc-link.active {
+            color: #3b82f6;
+            border-left-color: #3b82f6;
+            background: rgba(59, 130, 246, 0.05);
+        }
+        .toc-link.level-2 {
+            margin-left: 1rem;
+            font-size: 0.875rem;
+        }
+        .toc-link.level-3 {
+            margin-left: 2rem;
+            font-size: 0.8rem;
+        }
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, #e2e8f0, transparent);
+            margin: 3rem 0;
+        }
+        .pull-quote {
+            font-style: italic;
+            font-size: 1.25rem;
+            line-height: 1.6;
+            color: #1e293b;
+            border-left: 4px solid #3b82f6;
+            padding-left: 1.5rem;
+            margin: 2rem 0;
+            background: linear-gradient(to right, rgba(59, 130, 246, 0.05), transparent);
+            padding: 1.5rem;
+        }
+        .case-study-box {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+    </style>
+  <base target="_blank">
+</head>
+
+  <body class="font-sans text-primary bg-white">
+
+    <!-- Toggle button for mobile -->
+    <button id="toc-toggle" class="fixed top-4 left-4 z-50 p-2 bg-white rounded shadow md:hidden">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Fixed Table of Contents -->
+    <nav id="toc-nav" class="fixed left-0 top-0 h-full w-80 bg-white border-r border-border overflow-y-auto z-40 p-6 md:block hidden">
+      <div class="mb-8">
+        <h3 class="font-serif font-semibold text-lg text-primary mb-4">Table of Contents</h3>
+        <div class="space-y-1">
+          <a href="#executive-summary" class="toc-link">Executive Summary</a>
+          <a href="#goukassian-promise" class="toc-link">The Goukassian Promise</a>
+          <a href="#precedents" class="toc-link">Historical Precedents</a>
+          <a href="#comparative-analysis" class="toc-link">Comparative Analysis</a>
+          <a href="#ethical-implications" class="toc-link">Ethical Implications</a>
+          <a href="#alternatives" class="toc-link">Alternatives &amp; Modifications</a>
+          <a href="#conclusion" class="toc-link">Conclusion</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="ml-0 md:ml-80 min-h-screen">
+
+      <!-- Hero Section with Bento Grid -->
+      <header class="relative bg-gradient-to-br from-slate-900 via-slate-800 to-blue-900 text-white py-16">
+        <div class="max-w-6xl mx-auto px-4 md:px-8">
+          <div class="bento-grid mb-8">
+            <div>
+              <h1 class="font-serif text-4xl md:text-5xl font-semibold leading-tight mb-6">
+                <em>The Goukassian Promise</em> in Ternary Moral Logic
+              </h1>
+              <p class="text-xl text-blue-100 font-light leading-relaxed">
+                A Legal-Technical Analysis of Embedded Authorship in Foundational Frameworks
+              </p>
+            </div>
+            <div class="flex items-center justify-center">
+              <div class="relative">
+                <img src="https://kimi-web-img.moonshot.cn/img/cf-images.us-east-1.prod.boltdns.net/17f239d9e9e5e6741876076c6c8ff7c7e850db64.jpg" alt="Ternary logic ethical decision framework diagram" class="w-full h-48 md:h-64 object-cover rounded-lg shadow-2xl" size="medium" aspect="wide" query="ethical decision making framework" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"/>
+                <div class="absolute inset-0 hero-overlay rounded-lg"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Key Highlights Grid -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+            <div class="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20">
+              <i class="fas fa-fingerprint text-2xl text-blue-300 mb-3"></i>
+              <h3 class="font-semibold mb-2">Fingerprint of Authorship</h3>
+              <p class="text-sm text-blue-100">Embedded ORCID creates verifiable provenance chain</p>
+            </div>
+            <div class="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20">
+              <i class="fas fa-shield-alt text-2xl text-blue-300 mb-3"></i>
+              <h3 class="font-semibold mb-2">Ethical Laundering Defense</h3>
+              <p class="text-sm text-blue-100">Prevents misappropriation of moral frameworks</p>
+            </div>
+            <div class="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20">
+              <i class="fas fa-balance-scale text-2xl text-blue-300 mb-3"></i>
+              <h3 class="font-semibold mb-2">Governance Integrity</h3>
+              <p class="text-sm text-blue-100">Ensures transparent ethical lineage</p>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Executive Summary -->
+      <section id="executive-summary" class="py-16 bg-surface">
+        <div class="max-w-4xl mx-auto px-4 md:px-8">
+          <h2 class="font-serif text-3xl font-semibold text-primary mb-8">Executive Summary</h2>
+
+          <div class="highlight-box rounded-lg p-8 mb-8">
+            <h3 class="font-serif text-xl font-semibold mb-4 text-primary">A Reasoned Judgment on Embedded Attribution</h3>
+            <p class="text-lg leading-relaxed text-secondary">
+              Based on a comprehensive analysis of historical precedents and technical requirements, <strong>the name and ORCID identifier of Lev Goukassian should remain permanently embedded in the architecture and audit trails of Ternary Moral Logic (TML)</strong>. This embedding is not an act of ego but a necessary defensive mechanism for ensuring the framework&#39;s provenance, integrity, and long-term governance.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            <div>
+              <h4 class="font-semibold text-lg mb-4 text-primary">The Central Question</h4>
+              <p class="text-secondary leading-relaxed">
+                Does embedding the Goukassian Promise serve a critical function in preserving framework integrity, and how does it compare to established accountability methods in cryptographic, constitutional, and scientific frameworks?
+              </p>
+            </div>
+            <div>
+              <h4 class="font-semibold text-lg mb-4 text-primary">Core Finding</h4>
+              <p class="text-secondary leading-relaxed">
+                The embedding functions as a <strong>defensive mechanism for provenance and integrity</strong>, creating an unbreakable, cryptographically verifiable link to counter &#34;ethical laundering.&#34;
+              </p>
+            </div>
+          </div>
+
+          <div class="pull-quote">
+            &#34;In a digital landscape where foundational principles can be easily forked, diluted, or misappropriated, the persistent and verifiable link between the Goukassian Promise and its originator serves as a critical &#39;fingerprint of authorship.&#39;&#34;
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- The Goukassian Promise -->
+      <section id="goukassian-promise" class="py-16">
+        <div class="max-w-4xl mx-auto px-4 md:px-8">
+          <h2 class="font-serif text-3xl font-semibold text-primary mb-8">The Goukassian Promise in Ternary Moral Logic</h2>
+
+          <div class="mb-12">
+            <h3 class="font-serif text-xl font-semibold mb-6 text-primary">Defining the Goukassian Vow</h3>
+            <p class="text-secondary leading-relaxed mb-6">
+              The Goukassian Promise constitutes the foundational ethical and operational principle of the Ternary Moral Logic (TML) framework. This vow is designed to be a machine-enforceable directive that governs AI decision-making processes through three clear, sequential tenets.
+            </p>
+
+            <div class="case-study-box">
+              <h4 class="font-semibold text-lg mb-4 text-primary">The Three Tenets</h4>
+              <div class="space-y-4">
+                <div class="flex items-start space-x-3">
+                  <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span class="text-blue-600 font-semibold text-sm">0</span>
+                  </div>
+                  <div>
+                    <p class="font-medium text-primary">Pause when truth is uncertain</p>
+                    <p class="text-sm text-secondary">Active, mandatory operational checkpoint (State 0) that escalates to human review</p>
+                  </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                  <div class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span class="text-red-600 font-semibold text-sm">-1</span>
+                  </div>
+                  <div>
+                    <p class="font-medium text-primary">Refuse when harm is clear</p>
+                    <p class="text-sm text-secondary">Clear prohibition against harmful actions (State -1)</p>
+                  </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                  <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span class="text-green-600 font-semibold text-sm">+1</span>
+                  </div>
+                  <div>
+                    <p class="font-medium text-primary">Proceed where truth is</p>
+                    <p class="text-sm text-secondary">Authorized action only with high confidence (State +1)</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-12">
+            <h3 class="font-serif text-xl font-semibold mb-6 text-primary">The Role of ORCID in TML&#39;s Architecture</h3>
+            <p class="text-secondary leading-relaxed mb-6">
+              The embedding of Lev Goukassian&#39;s ORCID identifier serves as a critical mechanism for establishing and preserving provenance. The ORCID acts as a persistent, globally unique, and verifiable link between the framework&#39;s foundational ethical principles and its originator.
+              <a href="https://medium.com/@leogouk/the-goukassian-promise-7abde4bd81ec" class="citation-link" target="_blank">[127]</a>
+            </p>
+
+            <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6">
+              <h4 class="font-semibold text-lg mb-3 text-primary">The &#34;Fingerprint of Authorship&#34;</h4>
+              <p class="text-secondary leading-relaxed">
+                The embedded ORCID functions as a <strong>&#34;fingerprint of authorship&#34;</strong> designed to prevent <strong>&#34;ethical laundering,&#34;</strong> where a framework&#39;s core tenets could be co-opted, diluted, or removed while still claiming the legitimacy of the original.
+                <a href="https://medium.com/@leogouk/the-goukassian-promise-7abde4bd81ec" class="citation-link" target="_blank">[127]</a>
+              </p>
+            </div>
+          </div>
+
+          <!-- Mermaid Diagram: TML Architecture -->
+          <div class="mermaid-container">
+            <div class="mermaid-controls">
+              <button class="mermaid-control-btn zoom-in" title="放大">
+                <i class="fas fa-search-plus"></i>
+              </button>
+              <button class="mermaid-control-btn zoom-out" title="缩小">
+                <i class="fas fa-search-minus"></i>
+              </button>
+              <button class="mermaid-control-btn reset-zoom" title="重置">
+                <i class="fas fa-expand-arrows-alt"></i>
+              </button>
+              <button class="mermaid-control-btn fullscreen" title="全屏查看">
+                <i class="fas fa-expand"></i>
+              </button>
+            </div>
+            <div class="mermaid" id="tml-diagram">
+              graph TD
+              A[&#34;Goukassian Promise&#34;] --&gt; B[&#34;ORCID: 0009-0006-5966-1243&#34;]
+              B --&gt; C[&#34;Ethical Framework Core&#34;]
+              C --&gt; D{&#34;Decision Point&#34;}
+              D --&gt;|Uncertain| E[&#34;State 0: Sacred Pause&#34;]
+              D --&gt;|Harm Clear| F[&#34;State -1: Refuse&#34;]
+              D --&gt;|Truth Verified| G[&#34;State +1: Proceed&#34;]
+              E --&gt; H[&#34;Human Review Required&#34;]
+              F --&gt; I[&#34;Action Blocked&#34;]
+              G --&gt; J[&#34;Moral Trace Log&#34;]
+              J --&gt; K[&#34;Audit Trail with ORCID&#34;]
+
+              style A fill:#f8fafc,stroke:#3b82f6,stroke-width:3px,color:#1e293b
+              style B fill:#e3f2fd,stroke:#1e40af,stroke-width:3px,color:#1e293b
+              style K fill:#dcfce7,stroke:#16a34a,stroke-width:3px,color:#1e293b
+              style D fill:#fef3c7,stroke:#d97706,stroke-width:3px,color:#1e293b
+              style E fill:#fef2f2,stroke:#dc2626,stroke-width:3px,color:#1e293b
+              style F fill:#fef2f2,stroke:#dc2626,stroke-width:3px,color:#1e293b
+              style G fill:#f0fdf4,stroke:#16a34a,stroke-width:3px,color:#1e293b
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- Historical Precedents -->
+      <section id="precedents" class="py-16 bg-surface">
+        <div class="max-w-4xl mx-auto px-4 md:px-8">
+          <h2 class="font-serif text-3xl font-semibold text-primary mb-8">Historical &amp; Contemporary Precedents</h2>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+            <div class="case-study-box">
+              <div class="flex items-center mb-4">
+                <i class="fas fa-lock text-2xl text-blue-600 mr-3"></i>
+                <h3 class="font-semibold text-lg">Cryptography</h3>
+              </div>
+              <h4 class="font-medium mb-2">PGP &amp; Phil Zimmermann</h4>
+              <p class="text-sm text-secondary">
+                Indirect attribution through Web of Trust model. Creator&#39;s identity became inseparable from the framework through narrative and legal challenges.
+                <a href="https://www.cryptologie.net/posts/a-history-of-end-to-end-encryption-and-the-death-of-pgp/" class="citation-link" target="_blank">[185]</a>
+              </p>
+            </div>
+
+            <div class="case-study-box">
+              <div class="flex items-center mb-4">
+                <i class="fas fa-scroll text-2xl text-blue-600 mr-3"></i>
+                <h3 class="font-semibold text-lg">Constitutional Law</h3>
+              </div>
+              <h4 class="font-medium mb-2">U.S. Constitution</h4>
+              <p class="text-sm text-secondary">
+                Institutional memory through external records and historical documentation. &#34;We the People&#34; emphasizes collective authority over individual attribution.
+                <a href="https://www.dar.org/signers-us-constitution" class="citation-link" target="_blank">[95]</a>
+              </p>
+            </div>
+
+            <div class="case-study-box">
+              <div class="flex items-center mb-4">
+                <i class="fas fa-flask text-2xl text-blue-600 mr-3"></i>
+                <h3 class="font-semibold text-lg">Scientific Publishing</h3>
+              </div>
+              <h4 class="font-medium mb-2">Peer-Reviewed Journals</h4>
+              <p class="text-sm text-secondary">
+                Direct attribution through authorship and ORCID systems. Clear traceability and accountability standards for research integrity.
+              </p>
+            </div>
+          </div>
+
+          <div class="pull-quote">
+            &#34;The comparison reveals a spectrum of attribution practices, from the deeply embedded and legally recognized to the indirect and community-driven, providing crucial context for evaluating TML&#39;s approach.&#34;
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- Comparative Analysis -->
+      <section id="comparative-analysis" class="py-16">
+        <div class="max-w-4xl mx-auto px-4 md:px-8">
+          <h2 class="font-serif text-3xl font-semibold text-primary mb-8">Comparative Analysis of Digital Provenance Mechanisms</h2>
+
+          <div class="mb-12">
+            <h3 class="font-serif text-xl font-semibold mb-6 text-primary">ORCID vs. Blockchain Systems</h3>
+            <p class="text-secondary leading-relaxed mb-6">
+              The comparison between TML&#39;s embedded ORCID and blockchain provenance mechanisms reveals fundamentally different philosophies. While Ethereum and similar systems prioritize decentralization and pseudonymity, TML&#39;s approach emphasizes clear, unambiguous attribution.
+              <a href="https://medium.com/@leogouk/the-goukassian-promise-7abde4bd81ec" class="citation-link" target="_blank">[127]</a>
+            </p>
+
+            <div class="bg-slate-50 border border-slate-200 rounded-lg p-6">
+              <h4 class="font-semibold mb-3 text-primary">Case Study: Ethereum &amp; Vitalik Buterin</h4>
+              <p class="text-secondary text-sm mb-3">
+                Vitalik Buterin is universally recognized as Ethereum&#39;s visionary founder, yet his name is not embedded in the protocol itself. Attribution exists through historical association and community discourse, not structural embedding.
+              </p>
+              <p class="text-secondary text-sm">
+                This contrasts sharply with TML&#39;s approach, where the Goukassian Promise and ORCID serve as a permanent, non-negotiable ethical anchor.
+              </p>
+            </div>
+          </div>
+
+          <div class="mb-12">
+            <h3 class="font-serif text-xl font-semibold mb-6 text-primary">Digital Signatures &amp; Trusted Timestamps</h3>
+            <p class="text-secondary leading-relaxed mb-6">
+              Digital signatures provide non-repudiable proof of authorship for specific documents, while trusted timestamps verify chronological sequence. TML&#39;s ORCID embedding represents a hybrid approach—a persistent, self-attesting signature of authorship.
+              <a href="https://www.sos.ca.gov/administration/regulations/current-regulations/technology/digital-signatures/frequently-asked-questions" class="citation-link" target="_blank">[155]</a>
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                <h4 class="font-semibold mb-2 text-primary">Traditional Digital Signature</h4>
+                <ul class="text-sm text-secondary space-y-1">
+                  <li>• Applied to specific documents</li>
+                  <li>• Answers &#34;who&#34; question</li>
+                  <li>• Transactional attribution</li>
+                </ul>
+              </div>
+              <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+                <h4 class="font-semibold mb-2 text-primary">TML&#39;s Embedded ORCID</h4>
+                <ul class="text-sm text-secondary space-y-1">
+                  <li>• Persistent framework property</li>
+                  <li>• Continuous self-attestation</li>
+                  <li>• Architectural integration</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mermaid Diagram: Provenance Comparison -->
+          <div class="mermaid-container">
+            <div class="mermaid-controls">
+              <button class="mermaid-control-btn zoom-in" title="放大">
+                <i class="fas fa-search-plus"></i>
+              </button>
+              <button class="mermaid-control-btn zoom-out" title="缩小">
+                <i class="fas fa-search-minus"></i>
+              </button>
+              <button class="mermaid-control-btn reset-zoom" title="重置">
+                <i class="fas fa-expand-arrows-alt"></i>
+              </button>
+              <button class="mermaid-control-btn fullscreen" title="全屏查看">
+                <i class="fas fa-expand"></i>
+              </button>
+            </div>
+            <div class="mermaid" id="provenance-diagram">
+              graph LR
+              subgraph &#34;PGP Model&#34;
+              A1[&#34;Phil Zimmermann
+              <br/>Identity&#34;] --&gt; B1[&#34;Web of Trust&#34;]
+              B1 --&gt; C1[&#34;Community
+              <br/>Signatures&#34;]
+              end
+
+              subgraph &#34;Constitutional Model&#34;
+              A2[&#34;Framers&#34;] --&gt; B2[&#34;We the People&#34;]
+              B2 --&gt; C2[&#34;Institutional
+              <br/>Memory&#34;]
+              end
+
+              subgraph &#34;TML Model&#34;
+              A3[&#34;Lev Goukassian
+              <br/>ORCID&#34;] --&gt; B3[&#34;Embedded
+              <br/>Architecture&#34;]
+              B3 --&gt; C3[&#34;Direct
+              <br/>Attribution&#34;]
+              end
+
+              style A1 fill:#f8fafc,stroke:#64748b,stroke-width:3px,color:#1e293b
+              style A2 fill:#f8fafc,stroke:#64748b,stroke-width:3px,color:#1e293b
+              style A3 fill:#e3f2fd,stroke:#1e40af,stroke-width:3px,color:#1e293b
+              style B3 fill:#3b82f6,stroke:#1e40af,stroke-width:3px,color:#ffffff
+              style C3 fill:#dcfce7,stroke:#16a34a,stroke-width:3px,color:#1e293b
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- Ethical Implications -->
+      <section id="ethical-implications" class="py-16 bg-surface">
+        <div class="max-w-4xl mx-auto px-4 md:px-8">
+          <h2 class="font-serif text-3xl font-semibold text-primary mb-8">Ethical &amp; Governance Implications</h2>
+
+          <div class="mb-12">
+            <h3 class="font-serif text-xl font-semibold mb-6 text-primary">The Ethical Basis for Author Traceability</h3>
+            <p class="text-secondary leading-relaxed mb-6">
+              Author traceability in trust systems provides a clear line of accountability, ensuring that moral principles encoded into a framework can be traced back to a specific individual. This transparency serves as a civic duty in building public trust for technologies with significant societal impact.
+              <a href="https://sgsystemsglobal.com/guides/audit-trail-software/" class="citation-link" target="_blank">[174]</a>
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+              <div>
+                <h4 class="font-semibold mb-3 text-primary">Accountability in Moral Logic</h4>
+                <p class="text-secondary text-sm leading-relaxed">
+                  Unlike traditional software, flaws in moral logic frameworks can have profound real-world consequences. Embedded identity creates a non-repudiable link between system ethics and creator responsibility.
+                </p>
+              </div>
+              <div>
+                <h4 class="font-semibold mb-3 text-primary">Preventing Ethical Drift</h4>
+                <p class="text-secondary text-sm leading-relaxed">
+                  The embedded ORCID acts as an immutable reference point, defending against &#34;ethical drift&#34; where framework principles could be subtly altered or diluted over time.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-12">
+            <h3 class="font-serif text-xl font-semibold mb-6 text-primary">Motivation Analysis: Ego, Necessity, or Civic Duty?</h3>
+
+            <div class="space-y-6">
+              <div class="bg-white border border-slate-200 rounded-lg p-6">
+                <h4 class="font-semibold text-lg mb-3 text-primary flex items-center">
+                  <i class="fas fa-exclamation-triangle text-orange-500 mr-2"></i>
+                  The Case for Necessity
+                </h4>
+                <p class="text-secondary leading-relaxed">
+                  The embedding serves as a necessary security measure for preserving foundational integrity. Without persistent provenance, TML could be forked and modified while maintaining the appearance of legitimacy—a form of &#34;ethical laundering&#34; that undermines the framework&#39;s purpose.
+                  <a href="https://medium.com/@leogouk/the-goukassian-promise-7abde4bd81ec" class="citation-link" target="_blank">[127]</a>
+                </p>
+              </div>
+
+              <div class="bg-white border border-slate-200 rounded-lg p-6">
+                <h4 class="font-semibold text-lg mb-3 text-primary flex items-center">
+                  <i class="fas fa-handshake text-blue-500 mr-2"></i>
+                  The Case for Civic Duty
+                </h4>
+                <p class="text-secondary leading-relaxed">
+                  By permanently attaching his identity to the framework, Goukassian makes a powerful statement of accountability. This radical transparency provides a clear foundation for trust, essential for widespread adoption of technologies with significant societal impact.
+                </p>
+              </div>
+
+              <div class="bg-white border border-slate-200 rounded-lg p-6">
+                <h4 class="font-semibold text-lg mb-3 text-primary flex items-center">
+                  <i class="fas fa-user text-purple-500 mr-2"></i>
+                  Balancing Personal Legacy
+                </h4>
+                <p class="text-secondary leading-relaxed">
+                  While the desire for legacy may be a human motivator, the embedded ORCID should be viewed as a historical and technical anchor rather than a claim of perpetual ownership. The creator&#39;s legacy is intertwined with the framework&#39;s systemic governance.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="pull-quote">
+            &#34;The choice between anonymity and attribution reflects different priorities and values. TML&#39;s choice to prioritize attribution is a reflection of its focus on creating a trustworthy and accountable system, where the ethical lineage of every decision is transparent and verifiable.&#34;
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- Alternatives and Modifications -->
+      <section id="alternatives" class="py-16">
+        <div class="max-w-4xl mx-auto px-4 md:px-8">
+          <h2 class="font-serif text-3xl font-semibold text-primary mb-8">Alternatives &amp; Modifications</h2>
+
+          <div class="mb-12">
+            <h3 class="font-serif text-xl font-semibold mb-6 text-primary">Potential Alternatives to Personal Identifiers</h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="case-study-box">
+                <h4 class="font-semibold mb-3 text-primary">DAO Governance Model</h4>
+                <p class="text-secondary text-sm mb-3">
+                  A Decentralized Autonomous Organization could govern the framework through community token holders, addressing centralized authority concerns.
+                </p>
+                <div class="text-xs text-muted">
+                  <strong>Pros:</strong> True decentralization, community-driven
+                  <br/>
+                  <strong>Cons:</strong> Voter apathy risk, plutocracy potential
+                </div>
+              </div>
+
+              <div class="case-study-box">
+                <h4 class="font-semibold mb-3 text-primary">Legal Entity Stewardship</h4>
+                <p class="text-secondary text-sm mb-3">
+                  A non-profit foundation or public benefit corporation could serve as steward, providing legal recognition without individual dependence.
+                </p>
+                <div class="text-xs text-muted">
+                  <strong>Pros:</strong> Legal accountability, institutional stability
+                  <br/>
+                  <strong>Cons:</strong> Bureaucratic overhead, reduced agility
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-12">
+            <h3 class="font-serif text-xl font-semibold mb-6 text-primary">Proposed Modifications</h3>
+
+            <div class="space-y-4">
+              <div class="bg-blue-50 border-l-4 border-blue-600 p-4">
+                <h4 class="font-semibold mb-2 text-primary">Formal Succession Plan</h4>
+                <p class="text-secondary text-sm">
+                  Documented governance plan clarifying that the embedded identifier is a historical anchor, not perpetual authority claim, with clear community oversight processes.
+                </p>
+              </div>
+
+              <div class="bg-green-50 border-l-4 border-green-600 p-4">
+                <h4 class="font-semibold mb-2 text-primary">Sunset Clause Mechanism</h4>
+                <p class="text-secondary text-sm">
+                  Outline conditions for transitioning from personal to institutional governance, providing predictable framework evolution while preserving foundational provenance.
+                </p>
+              </div>
+
+              <div class="bg-purple-50 border-l-4 border-purple-600 p-4">
+                <h4 class="font-semibold mb-2 text-primary">Multi-Signature Model</h4>
+                <p class="text-secondary text-sm">
+                  Require governing body endorsement for framework changes, distributing responsibility among diverse stakeholders including academics, industry experts, and civil society.
+                </p>
+              </div>
+
+              <div class="bg-orange-50 border-l-4 border-orange-600 p-4">
+                <h4 class="font-semibold mb-2 text-primary">Versioning System</h4>
+                <p class="text-secondary text-sm">
+                  Differentiate between founder&#39;s &#34;canonical&#34; version and community-driven forks, allowing innovation while preserving original framework integrity and brand.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- Conclusion -->
+      <section id="conclusion" class="py-16 bg-surface">
+        <div class="max-w-4xl mx-auto px-4 md:px-8">
+          <h2 class="font-serif text-3xl font-semibold text-primary mb-8">Conclusion</h2>
+
+          <div class="highlight-box rounded-lg p-8 mb-8">
+            <h3 class="font-serif text-xl font-semibold mb-4 text-primary">Synthesizing the Precedents</h3>
+            <p class="text-secondary leading-relaxed">
+              The analysis reveals that TML&#39;s direct, persistent embedding of a personal identifier represents a unique but defensible approach. Unlike the indirect attribution of PGP&#39;s Web of Trust or the externalized institutional memory of the U.S. Constitution, TML&#39;s model creates an inseparable link between creator and creation—a logical evolution for governing moral logic frameworks in the digital age.
+            </p>
+          </div>
+
+          <div class="mb-8">
+            <h3 class="font-serif text-xl font-semibold mb-4 text-primary">The Primacy of Provenance</h3>
+            <p class="text-secondary leading-relaxed mb-4">
+              The central argument for preserving the embedded anchor is the primacy of provenance and governance integrity in a system like TML. A moral logic framework is not a neutral tool; it is imbued with specific ethical principles whose trustworthiness depends on the integrity of their origins.
+            </p>
+            <p class="text-secondary leading-relaxed">
+              The embedded ORCID provides a clear and verifiable link to the framework&#39;s creator, ensuring that its ethical lineage is always transparent and accountable—critical features for systems designed to guide powerful AI.
+            </p>
+          </div>
+
+          <div class="bg-primary text-white rounded-lg p-8 mb-8">
+            <h3 class="font-serif text-xl font-semibold mb-4">Final Judgment</h3>
+            <p class="leading-relaxed mb-4">
+              <strong>The name and ORCID identifier of Lev Goukassian should remain permanently embedded in the architecture and audit trails of Ternary Moral Logic (TML).</strong>
+            </p>
+            <p class="leading-relaxed text-blue-100">
+              This embedding is a necessary and justifiable mechanism for ensuring the framework&#39;s provenance, integrity, and long-term governance. It serves as a powerful defense against the misappropriation and dilution of foundational principles while providing a clear point of accountability.
+            </p>
+          </div>
+
+          <div class="text-center">
+            <img src="https://kimi-web-img.moonshot.cn/img/pub.mdpi-res.com/908051caac172785e2b269551f115d3655557f58.png" alt="Blockchain governance framework for ethical AI systems" class="w-full max-w-2xl mx-auto rounded-lg shadow-lg" size="medium" aspect="wide" query="blockchain governance ethical AI" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"/>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="bg-primary text-white py-12">
+        <div class="max-w-4xl mx-auto px-4 md:px-8">
+          <div class="text-center">
+            <p class="text-blue-200 mb-4">
+              This analysis draws from comprehensive research in cryptography, constitutional law, scientific attribution, and digital governance frameworks.
+            </p>
+            <p class="text-blue-300 text-sm">
+              All citations are linked to their original sources for verification and further reading.
+            </p>
+          </div>
+        </div>
+      </footer>
+    </main>
+
+    <script>
+        // Toggle TOC on mobile
+        document.getElementById('toc-toggle').addEventListener('click', function() {
+            const tocNav = document.getElementById('toc-nav');
+            tocNav.classList.toggle('hidden');
+        });
+
+        // Initialize Mermaid with enhanced theme
+        mermaid.initialize({ 
+            startOnLoad: true,
+            theme: 'base',
+            themeVariables: {
+                primaryColor: '#f8fafc',
+                primaryTextColor: '#1e293b',
+                primaryBorderColor: '#3b82f6',
+                lineColor: '#64748b',
+                secondaryColor: '#e2e8f0',
+                tertiaryColor: '#f1f5f9',
+                background: '#ffffff',
+                mainBkg: '#f8fafc',
+                secondBkg: '#e2e8f0',
+                tertiaryBkg: '#f1f5f9',
+                // Enhanced contrast colors
+                primaryTextColor: '#1e293b',
+                secondaryTextColor: '#374151',
+                tertiaryTextColor: '#4b5563',
+                // Node colors with good contrast
+                nodeBkg: '#f8fafc',
+                nodeBorder: '#3b82f6',
+                clusterBkg: '#f1f5f9',
+                clusterBorder: '#64748b',
+                defaultLinkColor: '#64748b',
+                titleColor: '#1e293b',
+                edgeLabelBackground: '#ffffff',
+                nodeTextColor: '#1e293b'
+            },
+            flowchart: {
+                useMaxWidth: false,
+                htmlLabels: true,
+                curve: 'basis',
+                padding: 20,
+                nodeSpacing: 50,
+                rankSpacing: 80,
+                diagramPadding: 20
+            },
+            fontFamily: 'Inter, sans-serif',
+            fontSize: 14,
+            // Ensure proper sizing
+            gantt: {
+                useMaxWidth: false
+            },
+            sequence: {
+                useMaxWidth: false
+            }
+        });
+
+        // Initialize Mermaid Controls for zoom and pan
+        function initializeMermaidControls() {
+            const containers = document.querySelectorAll('.mermaid-container');
+
+            containers.forEach(container => {
+            const mermaidElement = container.querySelector('.mermaid');
+            let scale = 1;
+            let isDragging = false;
+            let startX, startY, translateX = 0, translateY = 0;
+
+            // 触摸相关状态
+            let isTouch = false;
+            let touchStartTime = 0;
+            let initialDistance = 0;
+            let initialScale = 1;
+            let isPinching = false;
+
+            // Zoom controls
+            const zoomInBtn = container.querySelector('.zoom-in');
+            const zoomOutBtn = container.querySelector('.zoom-out');
+            const resetBtn = container.querySelector('.reset-zoom');
+            const fullscreenBtn = container.querySelector('.fullscreen');
+
+            function updateTransform() {
+                mermaidElement.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+
+                if (scale > 1) {
+                container.classList.add('zoomed');
+                } else {
+                container.classList.remove('zoomed');
+                }
+
+                mermaidElement.style.cursor = isDragging ? 'grabbing' : 'grab';
+            }
+
+            if (zoomInBtn) {
+                zoomInBtn.addEventListener('click', () => {
+                scale = Math.min(scale * 1.25, 4);
+                updateTransform();
+                });
+            }
+
+            if (zoomOutBtn) {
+                zoomOutBtn.addEventListener('click', () => {
+                scale = Math.max(scale / 1.25, 0.3);
+                if (scale <= 1) {
+                    translateX = 0;
+                    translateY = 0;
+                }
+                updateTransform();
+                });
+            }
+
+            if (resetBtn) {
+                resetBtn.addEventListener('click', () => {
+                scale = 1;
+                translateX = 0;
+                translateY = 0;
+                updateTransform();
+                });
+            }
+
+            if (fullscreenBtn) {
+                fullscreenBtn.addEventListener('click', () => {
+                if (container.requestFullscreen) {
+                    container.requestFullscreen();
+                } else if (container.webkitRequestFullscreen) {
+                    container.webkitRequestFullscreen();
+                } else if (container.msRequestFullscreen) {
+                    container.msRequestFullscreen();
+                }
+                });
+            }
+
+            // Mouse Events
+            mermaidElement.addEventListener('mousedown', (e) => {
+                if (isTouch) return; // 如果是触摸设备，忽略鼠标事件
+
+                isDragging = true;
+                startX = e.clientX - translateX;
+                startY = e.clientY - translateY;
+                mermaidElement.style.cursor = 'grabbing';
+                updateTransform();
+                e.preventDefault();
+            });
+
+            document.addEventListener('mousemove', (e) => {
+                if (isDragging && !isTouch) {
+                translateX = e.clientX - startX;
+                translateY = e.clientY - startY;
+                updateTransform();
+                }
+            });
+
+            document.addEventListener('mouseup', () => {
+                if (isDragging && !isTouch) {
+                isDragging = false;
+                mermaidElement.style.cursor = 'grab';
+                updateTransform();
+                }
+            });
+
+            document.addEventListener('mouseleave', () => {
+                if (isDragging && !isTouch) {
+                isDragging = false;
+                mermaidElement.style.cursor = 'grab';
+                updateTransform();
+                }
+            });
+
+            // 获取两点之间的距离
+            function getTouchDistance(touch1, touch2) {
+                return Math.hypot(
+                touch2.clientX - touch1.clientX,
+                touch2.clientY - touch1.clientY
+                );
+            }
+
+            // Touch Events - 触摸事件处理
+            mermaidElement.addEventListener('touchstart', (e) => {
+                isTouch = true;
+                touchStartTime = Date.now();
+
+                if (e.touches.length === 1) {
+                // 单指拖动
+                isPinching = false;
+                isDragging = true;
+
+                const touch = e.touches[0];
+                startX = touch.clientX - translateX;
+                startY = touch.clientY - translateY;
+
+                } else if (e.touches.length === 2) {
+                // 双指缩放
+                isPinching = true;
+                isDragging = false;
+
+                const touch1 = e.touches[0];
+                const touch2 = e.touches[1];
+                initialDistance = getTouchDistance(touch1, touch2);
+                initialScale = scale;
+                }
+
+                e.preventDefault();
+            }, { passive: false });
+
+            mermaidElement.addEventListener('touchmove', (e) => {
+                if (e.touches.length === 1 && isDragging && !isPinching) {
+                // 单指拖动
+                const touch = e.touches[0];
+                translateX = touch.clientX - startX;
+                translateY = touch.clientY - startY;
+                updateTransform();
+
+                } else if (e.touches.length === 2 && isPinching) {
+                // 双指缩放
+                const touch1 = e.touches[0];
+                const touch2 = e.touches[1];
+                const currentDistance = getTouchDistance(touch1, touch2);
+
+                if (initialDistance > 0) {
+                    const newScale = Math.min(Math.max(
+                    initialScale * (currentDistance / initialDistance),
+                    0.3
+                    ), 4);
+                    scale = newScale;
+                    updateTransform();
+                }
+                }
+
+                e.preventDefault();
+            }, { passive: false });
+
+            mermaidElement.addEventListener('touchend', (e) => {
+                // 重置状态
+                if (e.touches.length === 0) {
+                isDragging = false;
+                isPinching = false;
+                initialDistance = 0;
+
+                // 延迟重置isTouch，避免鼠标事件立即触发
+                setTimeout(() => {
+                    isTouch = false;
+                }, 100);
+                } else if (e.touches.length === 1 && isPinching) {
+                // 从双指变为单指，切换为拖动模式
+                isPinching = false;
+                isDragging = true;
+
+                const touch = e.touches[0];
+                startX = touch.clientX - translateX;
+                startY = touch.clientY - translateY;
+                }
+
+                updateTransform();
+            });
+
+            mermaidElement.addEventListener('touchcancel', (e) => {
+                isDragging = false;
+                isPinching = false;
+                initialDistance = 0;
+
+                setTimeout(() => {
+                isTouch = false;
+                }, 100);
+
+                updateTransform();
+            });
+
+            // Enhanced wheel zoom with better center point handling
+            container.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                const rect = container.getBoundingClientRect();
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+
+                const delta = e.deltaY > 0 ? 0.9 : 1.1;
+                const newScale = Math.min(Math.max(scale * delta, 0.3), 4);
+
+                // Adjust translation to zoom towards center
+                if (newScale !== scale) {
+                const scaleDiff = newScale / scale;
+                translateX = translateX * scaleDiff;
+                translateY = translateY * scaleDiff;
+                scale = newScale;
+
+                if (scale <= 1) {
+                    translateX = 0;
+                    translateY = 0;
+                }
+
+                updateTransform();
+                }
+            });
+
+            // Initialize display
+            updateTransform();
+            });
+        }
+
+        // Initialize the mermaid controls
+        initializeMermaidControls();
+
+        // Smooth scrolling for TOC links
+        document.querySelectorAll('.toc-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Active link highlighting
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section[id]');
+            const tocLinks = document.querySelectorAll('.toc-link');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            tocLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+  
+
+</body></html>
