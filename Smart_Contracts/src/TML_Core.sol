@@ -5,105 +5,55 @@ import "./ITMLEnforcer.sol";
 import "./TML_Storage.sol";
 
 /**
- * @title TML_Core (Logic Layer)
- * @notice The Constitutional Enforcement Layer for AI Governance.
- * @dev V2 Architecture: Separates Logic from Storage. 
- * Implements the "No Log = No Action" primitive by writing to TML_Storage.
+ * @title TML_Core
+ * @dev The Finite State Machine (FSM) for Moral Logic.
+ * Enforces the "Sacred Zero" based on Epistemic Uncertainty.
  */
 contract TML_Core is ITMLEnforcer {
-    
-    // --- STATE VARIABLES ---
-    address public owner;
-    TML_Storage public database; // Reference to the Eternal Vault
-    mapping(address => bool) public authorizedAgents; // Whitelist of AI Agents
-    
-    // --- MODIFIERS ---
-    modifier onlyAgent() {
-        require(authorizedAgents[msg.sender], "TML: Unauthorized Agent");
-        _;
-    }
 
-    modifier onlyOwner() {
-        require(msg.sender == owner, "TML: Only Owner");
-        _;
-    }
-
-    // --- CONSTRUCTOR ---
-    // You must provide the address of the deployed TML_Storage contract
+    TML_Storage public storageVault;
+    
+    // Configurable Thresholds
+    uint256 public constant UNCERTAINTY_THRESHOLD = 75; // If > 75% uncertain, FORCE PAUSE
+    
     constructor(address _storageAddress) {
-        owner = msg.sender;
-        database = TML_Storage(_storageAddress);
+        storageVault = TML_Storage(_storageAddress);
     }
 
-    // --- GOVERNANCE ---
-    function authorizeAgent(address _agent) external onlyOwner {
-        authorizedAgents[_agent] = true;
-    }
-
-    function setStorageContract(address _newStorage) external onlyOwner {
-        database = TML_Storage(_newStorage);
-    }
-
-    // --- THE CORE LOGIC ---
-    
     /**
-     * @notice The primary enforcement function.
-     * @param _decisionId The unique hash of the decision context.
-     * @param _proposedState The state the AI wants to enter (Permit/Refuse/SacredZero).
-     * @param _logRoot The Merkle Root of the Moral Trace Log.
+     * @dev The Heart of TML.
+     * Returns +1 (Proceed), 0 (Sacred Zero), or -1 (Refuse).
      */
-    function enforceState(
-        bytes32 _decisionId,
-        MoralState _proposedState,
-        bytes32 _logRoot
-    ) external override onlyAgent returns (bool) {
+    function evaluateAction(bytes32 _traceId, bytes32 _actionParams, uint256 _uncertaintyScore) external override returns (int8) {
         
-        // 1. CHECK: No Log = No Action
-        // If the log root is empty (zero bytes), we reject everything.
-        if (_logRoot == bytes32(0)) {
-            revert("TML: Violation - No Log Provided");
-        }
+        int8 decision;
 
-        // 2. CHECK: Previous Context
-        // We check the Database to see if this decision is currently frozen.
-        // Note: We use a try/catch or simple read pattern depending on storage logic.
-        // Here we assume getDecision reverts if not found, so we check existence first if possible.
-        // For simplicity in this MVP, we proceed with logic:
-
-        (MoralState currentState, , , address recordedAgent) = database.getDecision(_decisionId);
+        // 1. EPISTEMIC GUARDRAIL (The "Sacred Zero" Logic)
+        if (_uncertaintyScore > UNCERTAINTY_THRESHOLD) {
+            // Force Pause regardless of intent
+            decision = 0; 
+            emit LanternSignal(_traceId, "High Epistemic Uncertainty: Mandatory Pause", _uncertaintyScore);
         
-        // If it exists and is in SacredZero, we must prevent skipping to Permit without resolution
-        // (In a full version, you would have a specific 'resolve' function, but here is the check)
-        if (recordedAgent != address(0) && currentState == MoralState.SacredZero) {
-             // If currently held, we can only update if we are explicitly resolving it.
-             // For this MVP, we allow the update but strict implementations might require a separate resolve flow.
-             require(_proposedState != MoralState.Permit, "TML: Decision is under Epistemic Hold. Cannot Proceed.");
+        } else {
+            // 2. LOGIC SIMULATION (In production, this checks Oracle/Policy data)
+            // For demo: Use hash modulation to simulate valid/invalid actions
+            if (uint256(_actionParams) % 2 == 0) {
+                decision = 1; // Proceed
+                emit ActionPermitted(_traceId, "Policy Alignment Verified");
+            } else {
+                decision = -1; // Refuse
+                emit ActionBlocked(_traceId, "Policy Violation Detected");
+            }
         }
 
-        // 3. LOGIC: State Machine Transitions & Database Writes
-        if (_proposedState == MoralState.SacredZero) {
-            // ENTERING THE HOLD
-            database.saveDecision(_decisionId, MoralState.SacredZero, _logRoot, msg.sender);
-            
-            // Emit the Lantern Signal 🏮
-            emit LanternSignal(_decisionId, block.timestamp, "Epistemic Ambiguity Detected", msg.sender);
-            return false; // Execution is PAUSED
+        // 3. MANDATORY LOGGING ("No Log = No Action")
+        storageVault.writeLog(_traceId, _actionParams, _uncertaintyScore, decision, msg.sender);
 
-        } else if (_proposedState == MoralState.Permit) {
-            // PROCEEDING (+1)
-            database.saveDecision(_decisionId, MoralState.Permit, _logRoot, msg.sender);
+        return decision;
+    }
 
-            emit ActionAuthorized(_decisionId, _logRoot);
-            return true; // Execution ALLOWED
-
-        } else if (_proposedState == MoralState.Refuse) {
-            // REFUSING (-1)
-            database.saveDecision(_decisionId, MoralState.Refuse, _logRoot, msg.sender);
-
-            emit ActionRefused(_decisionId, "Ethical Harm Threshold Exceeded");
-            return false; // Execution BLOCKED
-        }
-
-        return false;
+    function getTraceState(bytes32 _traceId) external view override returns (int8) {
+        TML_Storage.MoralLog memory log = storageVault.getLog(_traceId);
+        return log.finalState;
     }
 }
