@@ -3,48 +3,32 @@ pragma solidity ^0.8.0;
 
 /**
  * @title ITMLEnforcer
- * @author Lev Goukassian
- * @notice Interface for the Ternary Moral Logic Enforcement Layer.
- * @dev Defines the external signals for the "Sacred Zero" state machine.
+ * @dev Interface for the Ternary Moral Logic Enforcement Layer.
+ * Defines the strict Tri-State return values for ethical auditing.
  */
 interface ITMLEnforcer {
 
-    // The Three Moral States
-    enum MoralState {
-        Idle,       // 0: Waiting
-        Permit,     // 1: Proceed (+1)
-        SacredZero, // 2: Epistemic Hold (0)
-        Refuse      // 3: Prohibit (-1)
-    }
+    // The Tri-State Moral Logic
+    // +1: PROCEED (Ethically Clear)
+    //  0: SACRED_ZERO (Epistemic Hold / Ambiguity / Pause)
+    // -1: REFUSE (Ethically Blocked / Harm Detected)
+    enum MoralState { REFUSE, SACRED_ZERO, PROCEED }
 
-    // EVENT: The Visual Signal (The Lantern 🏮)
-    // Emitted when the system enters the Sacred Zero state.
-    event LanternSignal(
-        bytes32 indexed decisionId,
-        uint256 timestamp,
-        string reason,
-        address indexed agent
-    );
+    event LanternSignal(bytes32 indexed traceId, string reason, uint256 uncertaintyScore);
+    event ActionPermitted(bytes32 indexed traceId, string actionType);
+    event ActionBlocked(bytes32 indexed traceId, string reason);
 
-    // EVENT: The Action Authorization
-    // Emitted ONLY when a log is anchored and state is +1.
-    event ActionAuthorized(
-        bytes32 indexed decisionId,
-        bytes32 logRoot
-    );
+    /**
+     * @dev Core ethical evaluation function.
+     * @param _traceId Unique UUID for the decision event (from the AI).
+     * @param _actionParams Hash of the proposed action parameters.
+     * @param _uncertaintyScore 0-100 integer representing AI confidence (Epistemic Uncertainty).
+     * @return int8 The Tri-State decision (+1, 0, -1).
+     */
+    function evaluateAction(bytes32 _traceId, bytes32 _actionParams, uint256 _uncertaintyScore) external returns (int8);
 
-    // EVENT: The Prohibition
-    // Emitted when the system refuses to act (-1).
-    event ActionRefused(
-        bytes32 indexed decisionId,
-        string refusalReason
-    );
-
-    // The Core Function: The "Goukassian Promise" in code.
-    // Must return FALSE if state is SacredZero.
-    function enforceState(
-        bytes32 _decisionId,
-        MoralState _proposedState,
-        bytes32 _logRoot
-    ) external returns (bool);
+    /**
+     * @dev Check the current state of a specific moral trace.
+     */
+    function getTraceState(bytes32 _traceId) external view returns (int8);
 }
