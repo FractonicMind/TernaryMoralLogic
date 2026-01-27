@@ -1,87 +1,57 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "./ITMLEnforcer.sol";
-
 /**
  * @title TML_Storage
- * @notice The Eternal Database for Ternary Moral Logic.
- * @dev Separates data from logic. If TML_Core is replaced/upgraded, 
- * this contract REMAINS, preserving the Moral Trace Logs forever.
+ * @dev Immutable storage for Moral Trace Logs.
+ * Implements the "Always Memory" pattern.
  */
 contract TML_Storage {
 
-    // --- DATA STRUCTURES ---
-    struct DecisionRecord {
-        ITMLEnforcer.MoralState currentState;
-        bytes32 logRoot;
+    struct MoralLog {
         uint256 timestamp;
-        address agent; // Who made the decision?
-        bool exists;
+        bytes32 actionHash;
+        uint256 uncertaintyScore;
+        int8 finalState;   // +1, 0, -1
+        address agent;     // The AI Agent (wallet) that requested it
     }
 
-    // --- STATE VARIABLES ---
-    address public owner;
-    address public latestCoreContract; // The only contract allowed to write
+    // Maps Trace ID -> Moral Log
+    mapping(bytes32 => MoralLog) private logs;
     
-    // The Immutable History
-    mapping(bytes32 => DecisionRecord) public history;
+    address public moralKernel;
+    address public governance;
 
-    // --- EVENTS ---
-    event CoreContractUpdated(address indexed newCore);
-
-    // --- MODIFIERS ---
-    modifier onlyOwner() {
-        require(msg.sender == owner, "Storage: Only Owner");
-        _;
-    }
-
-    modifier onlyCore() {
-        require(msg.sender == latestCoreContract, "Storage: Only Core Logic can write");
+    modifier onlyKernel() {
+        require(msg.sender == moralKernel, "TML_Storage: Only Kernel");
         _;
     }
 
     constructor() {
-        owner = msg.sender;
+        governance = msg.sender;
     }
 
-    // --- CONFIGURATION ---
+    function setMoralKernel(address _kernel) external {
+        require(msg.sender == governance, "TML_Storage: Only Governance");
+        moralKernel = _kernel;
+    }
+
     /**
-     * @notice Point this storage to the valid Logic contract.
-     * @dev Allows upgrading the logic without losing data.
+     * @dev Writes the moral decision to history.
      */
-    function setCoreContract(address _newCore) external onlyOwner {
-        latestCoreContract = _newCore;
-        emit CoreContractUpdated(_newCore);
-    }
-
-    // --- WRITE FUNCTIONS (Restricted) ---
-    
-    function saveDecision(
-        bytes32 _decisionId,
-        ITMLEnforcer.MoralState _state,
-        bytes32 _logRoot,
-        address _agent
-    ) external onlyCore {
-        history[_decisionId] = DecisionRecord({
-            currentState: _state,
-            logRoot: _logRoot,
+    function writeLog(bytes32 _traceId, bytes32 _actionHash, uint256 _score, int8 _state, address _agent) external onlyKernel {
+        require(logs[_traceId].timestamp == 0, "TML_Storage: Trace ID collision");
+        
+        logs[_traceId] = MoralLog({
             timestamp: block.timestamp,
-            agent: _agent,
-            exists: true
+            actionHash: _actionHash,
+            uncertaintyScore: _score,
+            finalState: _state,
+            agent: _agent
         });
     }
 
-    // --- READ FUNCTIONS (Public) ---
-    
-    function getDecision(bytes32 _decisionId) external view returns (
-        ITMLEnforcer.MoralState, 
-        bytes32, 
-        uint256, 
-        address
-    ) {
-        require(history[_decisionId].exists, "Storage: Decision not found");
-        DecisionRecord memory r = history[_decisionId];
-        return (r.currentState, r.logRoot, r.timestamp, r.agent);
+    function getLog(bytes32 _traceId) external view returns (MoralLog memory) {
+        return logs[_traceId];
     }
 }
