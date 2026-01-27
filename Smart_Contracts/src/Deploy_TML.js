@@ -1,33 +1,29 @@
+// Deploy_TML.js
+// Script to deploy the Ternary Moral Logic Ecosystem
+
 const hre = require("hardhat");
-const fs = require("fs");
 
 async function main() {
-  console.log("🚀 Deploying TML Constitutional Infrastructure...");
+  console.log("--- Starting TML Moral Engine Deployment ---");
 
-  // 1. Get the Contract Factory
-  const TMLCore = await hre.ethers.getContractFactory("TML_Core");
+  // 1. Deploy the Moral Storage (Memory)
+  const StorageFactory = await hre.ethers.getContractFactory("TML_Storage");
+  const storage = await StorageFactory.deploy();
+  await storage.waitForDeployment();
+  console.log(`[+] TML_Storage deployed to: ${await storage.getAddress()}`);
 
-  // 2. Deploy
-  const tml = await TMLCore.deploy();
-  await tml.waitForDeployment();
+  // 2. Deploy the Moral Core (Conscience), linking to Storage
+  const CoreFactory = await hre.ethers.getContractFactory("TML_Core");
+  const core = await CoreFactory.deploy(await storage.getAddress());
+  await core.waitForDeployment();
+  console.log(`[+] TML_Core deployed to:    ${await core.getAddress()}`);
 
-  const tmlAddress = await tml.getAddress();
-  console.log(`✅ TML_Core deployed to: ${tmlAddress}`);
-
-  // 3. Authorize the Deployer as the first Agent (for testing)
-  const [deployer] = await hre.ethers.getSigners();
-  const tx = await tml.authorizeAgent(deployer.address);
+  // 3. Link them: Authorize Core to write to Storage
+  const tx = await storage.setMoralKernel(await core.getAddress());
   await tx.wait();
-  console.log(`👤 Agent Authorized: ${deployer.address}`);
+  console.log("[+] Storage linked. Core authorized to write Moral Logs.");
 
-  // 4. Save Config for the Python Bridge
-  const config = {
-    address: tmlAddress,
-    abi: JSON.parse(TMLCore.interface.formatJson())
-  };
-  
-  fs.writeFileSync("src/TML_Config.json", JSON.stringify(config, null, 2));
-  console.log("💾 Configuration saved to TML_Config.json");
+  console.log("--- Deployment Complete ---");
 }
 
 main().catch((error) => {
