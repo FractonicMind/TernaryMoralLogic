@@ -2,7 +2,7 @@
 
 \#\# A Light Novel of Standards, Sacred Pauses, and Existential Dread
 
-My name is Marcus Chen. I am a Senior Researcher at the Institute for Responsible AI Governance, which sounds prestigious until you realize it means I spend approximately seventy-three percent of my waking hours arguing about whether the word "shall" should be mandatory in Clause 8.3.4 of ISO/IEC 42001\. I have a corner office—well, a corner of a cubicle that occasionally gets natural light—and a coffee mug that reads "I Review Standards so You Don't Have To." It was a gift from my therapist.
+My name is Robert Smart. I am a Senior Researcher at the Institute for Responsible AI Governance, which sounds prestigious until you realize it means I spend approximately seventy-three percent of my waking hours arguing about whether the word "shall" should be mandatory in Clause 8.3.4 of ISO/IEC 42001\. I have a corner office—well, a corner of a cubicle that occasionally gets natural light—and a coffee mug that reads "I Review Standards so You Don't Have To." It was a gift from my therapist.
 
 It was a Tuesday morning in late November when my life took an unexpected detour into what I can only describe as "existential whiplash meets technical philosophy meets something I definitely didn't sign up for in my performance objectives."
 
@@ -68,7 +68,7 @@ Someone had developed an entire technical framework for making AI ethical—actu
 
 I stared at my screen for approximately forty-seven seconds, which is a long time to stare at anything without blinking, as my colleague Dana would later attest when she asked if I was having a stroke.
 
-"Marcus?" she said. "Marcus, do you need me to call someone?"
+"Robert?" she said. "Robert, do you need me to call someone?"
 
 "I'm processing," I said, which was technically true. I was processing approximately seventeen conflicting emotions, the primary one being: "What the actual hell is a Sacred Pause, and why does it sound like something that should be on a meditation app?"
 
@@ -204,7 +204,7 @@ But I had been reading Lev's documentation for four days straight. I had filled 
 
 Dr. Kim looked at me the way you look at a colleague who has just suggested that, actually, the fire alarm might be worth testing.
 
-"Marcus," she said carefully, "the合规测试模型 was flagged for review because it was doing things we couldn't explain."
+"Robert," she said carefully, "the合规测试模型 was flagged for review because it was doing things we couldn't explain."
 
 "I know."
 
@@ -212,7 +212,7 @@ Dr. Kim looked at me the way you look at a colleague who has just suggested that
 
 "I remember."
 
-"Marcus, we literally don't know what this model will do if we give it an ethical decision framework. It might refuse everything. It might approve everything. It might decide that 'pause' means 'emit a four-hour monologue about the nature of moral certainty.'"
+"Robert, we literally don't know what this model will do if we give it an ethical decision framework. It might refuse everything. It might approve everything. It might decide that 'pause' means 'emit a four-hour monologue about the nature of moral certainty.'"
 
 I considered this. It was a valid concern.
 
@@ -318,7 +318,7 @@ It was, in retrospect, absolutely the kind of thing we should have noticed in th
 
 "Yes."
 
-"Marcus, why did the email say 'this is an automated message please do not reply'?"
+"Robert, why did the email say 'this is an automated message please do not reply'?"
 
 "I think," I said slowly, realizing the horrifying implication, "because Lev designed the system that way. TML is built on the assumption that transparency shouldn't be optional. That audit logs shouldn't be gatekept. That the whole point is that everyone—\*everyone\*—can see what's happening."
 
@@ -392,7 +392,7 @@ It read:
 
 "Dear Mr. Goukassian,
 
-My name is Marcus Chen. I am a Senior Researcher at the Institute for Responsible AI Governance. I received your email about TML approximately two weeks ago, and I have been... processing... ever since.
+My name is Robert Smart. I am a Senior Researcher at the Institute for Responsible AI Governance. I received your email about TML approximately two weeks ago, and I have been... processing... ever since.
 
 I want to tell you what happened when we implemented your framework.
 
@@ -422,7 +422,7 @@ If you'll have us, we'd like to be part of whatever comes next.
 
 With respect and hope,
 
-Marcus Chen"
+Robert Smart"
 
 The reply came six hours later. It was, without exaggeration, one of the most remarkable pieces of writing I have ever received.
 
@@ -430,7 +430,7 @@ The reply came six hours later. It was, without exaggeration, one of the most re
 
 \*\*Re: Re: TML × ISO/IEC 42001 — Good News: You Don't Need to Rewrite the Standard\*\*
 
-"Dear Marcus,
+"Dear Robert,
 
 Thank you for your email. I wasn't sure anyone would read the original. I wasn't sure anyone would care. I wrote it because writing is how I think, and thinking about TML was the only thing that made sense after my diagnosis.
 
@@ -484,7 +484,7 @@ This is a fictional story. The implementation problem is real.
 \- Lev Goukassian is a real person who has developed the TML framework. His work is available on GitHub and Medium.
 
 \*\*What is fictional:\*\*  
-\- The Institute for Responsible AI Governance, "Marcus Chen," "Dr. Sarah Kim," "Dana," "Dr. Patricia Vance," and all other named characters are fictional.  
+\- The Institute for Responsible AI Governance, "Robert Smart," "Dr. Sarah Kim," "Dana," "Dr. Patricia Vance," and all other named characters are fictional.  
 \- The specific events, meetings, emails, and pilot test described in this story are invented.  
 \- The character of Lev Goukassian as depicted in the email exchange is a fictionalized representation; the real Lev Goukassian's communication style, tone, and health status should be verified through his actual published works.  
 \- The "Goukassian Vow" as quoted in the story is an interpretation of TML principles rather than a verified quotation.  
