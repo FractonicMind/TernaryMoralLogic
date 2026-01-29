@@ -178,7 +178,7 @@ Jeffrey tilts his head. “So if we run an insanely large model for something tr
 
 Jeffrey sighs. “Great. I spent years convincing people that wattage is an implementation detail. Now it’s an ethical Mandate.”
 
-“You’re fine,” Damian says. “You ship the chips that make the logging efficient. It’s free marketing: ‘NVIDIA: now with 30% more conscience per watt.’”
+“You’re fine,” Damian says. “You ship the chips that make the logging efficient. It’s free marketing: ‘LIDIA: now with 30% more conscience per watt.’”
 
 Irene points at the binder. “Speaking of conscience: Human Rights Mandates.”
 
