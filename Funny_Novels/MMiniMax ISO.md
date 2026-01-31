@@ -88,7 +88,7 @@ I clicked on it, expecting the usual stub—a few sentences about academic affil
 
 What I found was a biographical entry that made me put down my coffee entirely.
 
-Lev Goukassian was, according to this Wikipedia entry, a former software engineer and AI researcher who had been diagnosed with Stage IV pancreatic cancer in September of the previous year. The prognosis, as Wikipedia carefully phrased it, was "not favorable."
+Lev Goukassian was, according to this Wikipedia entry, a former software engineer and AI researcher who had been diagnosed with Stage IV cancer in September of the previous year. The prognosis, as Wikipedia carefully phrased it, was "not favorable."
 
 But that wasn't what made my throat tighten.
 
@@ -188,13 +188,13 @@ This was, I would learn over the following weeks, a recurring pattern.
 
 The pilot test was my idea. I'm not saying it was a *good* idea. I'm not even saying it was a *legal* idea, strictly speaking. But it was an idea, and at 2:47 PM on a Thursday, after yet another meeting where we had spent ninety minutes debating whether the word "ensuring" should be replaced with "supporting the endeavor to," I was willing to try almost anything.
 
-"Look," I said, leaning over the conference room table. "We have an experimental model. The合规测试模型. The one we've been using for internal risk assessments."
+"Look," I said, leaning over the conference room table. "We have an experimental model. The compliance testing model. The one we've been using for internal risk assessments."
 
 Dr. Sarah Kim, our lead ML engineer, looked up from her laptop. "The one that's supposed to be 'sandboxed until further notice'?"
 
 "The same. What if we ran it through TML?"
 
-Silence. This was not, technically speaking, an approved activity. The合规测试模型 was supposed to be isolated, analyzed, and eventually either decommissioned or promoted to production after an indefinite period of review. The idea of running it through an unproven ethical framework designed by a stranger on the internet was, according to our Change Management Policy, several kinds of not-okay.
+Silence. This was not, technically speaking, an approved activity. The testing model was supposed to be isolated, analyzed, and eventually either decommissioned or promoted to production after an indefinite period of review. The idea of running it through an unproven ethical framework designed by a stranger on the internet was, according to our Change Management Policy, several kinds of not-okay.
 
 But I had been reading Lev's documentation for four days straight. I had filled three notebooks. I had started having dreams about Sacred Pauses and Moral Trace Logs. I was, to put it mildly, experiencing what the psychological literature calls "ideational intrusion."
 
@@ -202,7 +202,7 @@ But I had been reading Lev's documentation for four days straight. I had filled 
 
 Dr. Kim looked at me the way you look at a colleague who has just suggested that, actually, the fire alarm might be worth testing.
 
-"Robert," she said carefully, "the合规测试模型 was flagged for review because it was doing things we couldn't explain."
+"Robert," she said carefully, "the testing model was flagged for review because it was doing things we couldn't explain."
 
 "I know."
 
@@ -222,7 +222,7 @@ Dr. Kim stared at me for a long moment.
 
 ---
 
-The合规测试模型 ran at 7:23 PM on a Friday night, when the office was empty and the cleaning crew hadn't yet arrived. Dr. Kim had set up the environment. I had implemented the TML ruleset based on Lev's documentation. Dana, who had become an unlikely convert after I explained the cryptographic logging system to her over lunch, was running the test harness.
+The compliance testing model ran at 7:23 PM on a Friday night, when the office was empty and the cleaning crew hadn't yet arrived. Dr. Kim had set up the environment. I had implemented the TML ruleset based on Lev's documentation. Dana, who had become an unlikely convert after I explained the cryptographic logging system to her over lunch, was running the test harness.
 
 We had prepared a series of test scenarios designed to probe the model's decision-making. Standard cases. Edge cases. Scenarios that had tripped up our previous frameworks. The usual AI ethics test battery.
 
@@ -256,7 +256,7 @@ Test case two. Another pause.
 
 Test case three. Another pause.
 
-By 9:47 PM, the模型 had paused forty-seven times. Forty-seven. In seventy-six test scenarios. We had discovered issues in almost two-thirds of our "standard" test cases—subtle biases, unstated assumptions, hidden correlations that our previous evaluation methods had simply not detected.
+By 9:47 PM, the model had paused forty-seven times. Forty-seven. In seventy-six test scenarios. We had discovered issues in almost two-thirds of our "standard" test cases—subtle biases, unstated assumptions, hidden correlations that our previous evaluation methods had simply not detected.
 
 "This is terrifying," Dana said, with feeling.
 
@@ -292,7 +292,7 @@ The subject line was professional and appropriate:
 
 The body was professional and appropriate:
 
-**"Please find attached the complete Moral Trace Log export from the合规测试模型 pilot evaluation. This automated export was generated per TML Framework Protocol 7.3.2: 'Distribution of Moral Trace Logs to all organizational stakeholders shall occur automatically upon generation.'**
+**"Please find attached the complete Moral Trace Log export from the compliance testing model pilot evaluation. This automated export was generated per TML Framework Protocol 7.3.2: 'Distribution of Moral Trace Logs to all organizational stakeholders shall occur automatically upon generation.'**
 
 **For questions, contact the AI Governance Research Team.**
 
@@ -336,7 +336,7 @@ The conference room, which seated forty, had been rearranged to accommodate eigh
 
 The CEO, a woman named Dr. Patricia Vance who had a PhD in something impressive and a reputation for being "thoughtfully direct," was standing at the front of the room. She was not smiling. She was holding a printed document—exactly the kind of document that, in seven years at the Institute, I had never seen a CEO hold.
 
-"This," she said, holding up the document, "is the Moral Trace Log from our internal合规测试模型."
+"This," she said, holding up the document, "is the Moral Trace Log from our internal compliance testing model."
 
 Silence. Approximately eighty people stopped breathing.
 
