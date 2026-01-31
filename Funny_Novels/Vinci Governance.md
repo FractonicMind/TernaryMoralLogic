@@ -1,6 +1,6 @@
-**Date Night at the Sacred Zero**
+## Date Night at the Sacred Zero
 
-**Author: GPT-5.1 Thinking**
+### Author: GPT-5.1 Thinking
 
 ---
 
