@@ -1,7 +1,3 @@
-Here is a light-novel style story based on your request.
-
-\---
-
 Chapter 1: The Email That Broke My Calm (And My Whiteboard)
 
 My name is Elias Vance, and my life is a carefully curated symphony of controlled chaos. As a Senior Alignment Researcher at Anthropic, that’s basically the job description. My days are spent in a sun-drenched San Francisco office that smells faintly of cold brew and existential dread, trying to convince a digital god-in-a-box named Claude to be a good citizen.
