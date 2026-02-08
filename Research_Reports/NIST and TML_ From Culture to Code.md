@@ -49,6 +49,7 @@ The RMF itself points to this gap in its own language. It repeatedly calls for m
 The RMF leaves the *how*—the *specific* mechanisms, the *comprehensive* taxonomies, and the *quantifiable* metrics—as an exercise for the implementer.  
 This is precisely where TML provides its value. NIST's "profile" model explicitly invites implementable solutions.18 While other "profiles" have been proposed, such as the U.S. State Department's "Human Rights Profile" 9, these remain *policy* documents. They advise organizations on what to "consider" 9 but do not provide the *computational architecture* for doing so.  
 Ternary Moral Logic is not another policy document; it is an **architectural profile**. It provides the concrete, code-level implementation of the RMF's policies. It delivers the specific, auditable mechanisms 24 that the RMF 6 and its derivative profiles 9 call for but do not provide. TML directly solves this "implementation deficit" by providing the technical "how" to NIST's "what," transforming the RMF from a set of abstract "best practices" 1 into a verifiable "accountability architecture."  
+
 ---
 
 ## **Part II: Architectural Implementation of the NIST Functions via TML**
@@ -151,6 +152,7 @@ TML's architecture provides a closed-loop, verifiable system for managing risk, 
 3. **The Continuous Audit Cycle:** The combination of the EUS as a real-time risk *threshold* 52 and the *immutable log* 15 creates the "continual, routine, and structured monitoring" system that MANAGE 2.2 6 demands. The system is *always* monitoring its own *normative uncertainty*. This creates a "continuous monitoring strategy" 17 that is automated, verifiable, and running at all times.
 
 The current paradigm for AI auditing is *post-hoc* and *forensic*. An incident happens, a "high-risk" event is identified 51, and auditors are sent in to "reconstruct" the event from disparate "log data".15 This is a fundamentally broken model. TML's Log \+ Shield architecture changes this paradigm from *post-hoc forensic auditing* to *contemporaneous assurance*. The audit trail is built *as the decision is being made*. The "Immutable Moral Trace Log" is not just a "log"—it is a *verifiable asset* that *proves* the governance process (Part 2.1), the risk-mapping (Part 2.2), and the measurement (Part 2.3) were all executed for that specific decision. This proves compliance with the *entire* NIST RMF in a single, cryptographically secure, and time-stamped data packet. This is the *only* viable path to real, scalable, and provable accountability for advanced AI systems.  
+
 ---
 
 ## **Part III: Conclusion: From Risk Management Culture to Risk Accountability Architecture**
@@ -164,6 +166,7 @@ Ternary Moral Logic provides the missing *architectural implementation* to bridg
 * TML fulfills **MANAGE** by producing "Immutable Moral Trace Logs" 15 protected by a "Hybrid Shield".13 This creates a cryptographically verifiable "flight data recorder" for continuous, automated auditing 52, satisfying MANAGE 1.3 and MANAGE 2.2.
 
 Where NIST *asks* institutions to be trustworthy 3, TML provides the mechanism that *makes* trust measurable. It is the architectural bridge that moves the global AI industry from a voluntary "risk management culture" to a verifiable, enforceable "risk accountability architecture." This provides a definitive, defensible, and implementation-ready pathway for any organization seeking to prove, with cryptographic certainty, its commitment to safe and responsible AI.  
+
 ---
 
 ## **Part IV: Appendices (The Normative Foundation)**
