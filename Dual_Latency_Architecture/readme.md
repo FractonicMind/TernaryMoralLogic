@@ -74,5 +74,5 @@ By positioning TML as **"The only architecture that pauses before it commits,"**
 
 ---
 
-> *"We built the Fast Lane for what we want to say, but we built the Slow Lane for what we must not do."*
+> *"Intelligence is not measured by the speed of the answer, but by the wisdom of the pause."*
 > — **Lev Goukassian**
