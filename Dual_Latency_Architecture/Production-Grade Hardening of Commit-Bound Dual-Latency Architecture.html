@@ -1,0 +1,2022 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Production-Grade Hardening of Commit-Bound Dual-Latency Architecture</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'serif': ['Playfair Display', 'serif'],
+                        'sans': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'primary': '#1a1a1a',
+                        'secondary': '#6b7280',
+                        'accent': '#dc2626',
+                        'muted': '#f8fafc',
+                        'border': '#e5e7eb',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .hero-gradient {
+            background: linear-gradient(135deg, #1a1a1a 0%, #374151 50%, #6b7280 100%);
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .toc-fixed {
+            position: fixed;
+            left: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 280px;
+            max-height: 70vh;
+            overflow-y: auto;
+            z-index: 50;
+            background: rgba(248, 250, 252, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+        .main-content {
+            margin-left: 320px;
+            margin-right: 2rem;
+        }
+        .risk-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        .risk-critical { background-color: #dc2626; }
+        .risk-high { background-color: #f59e0b; }
+        .risk-medium { background-color: #fbbf24; }
+        .risk-low { background-color: #10b981; }
+        
+        @media (max-width: 1280px) {
+            .toc-fixed { display: none; }
+            .main-content { margin-left: 2rem; }
+        }
+        
+        @media (max-width: 768px) {
+            .main-content {
+                margin-left: 1rem;
+                margin-right: 1rem;
+            }
+            .bento-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-gradient h1 {
+                font-size: 2.5rem;
+            }
+            .hero-gradient p {
+                font-size: 1.125rem;
+            }
+            .hero-gradient .text-sm {
+                font-size: 0.75rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-gradient h1 {
+                font-size: 2rem;
+            }
+            .hero-gradient p {
+                font-size: 1rem;
+            }
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        pre, code {
+            overflow-x: auto;
+        }
+    </style>
+  <base target="_blank">
+</head>
+
+  <body class="bg-white text-primary font-sans leading-relaxed overflow-x-hidden">
+    <!-- Fixed Table of Contents -->
+    <nav class="toc-fixed">
+      <h3 class="font-serif font-semibold text-lg mb-4 text-primary">Contents</h3>
+      <ul class="space-y-2 text-sm">
+        <li>
+          <a href="#executive-summary" class="text-secondary hover:text-primary transition-colors">Executive Summary</a>
+        </li>
+        <li>
+          <a href="#system-weaknesses" class="text-secondary hover:text-primary transition-colors">System Weaknesses</a>
+        </li>
+        <li>
+          <a href="#mitigation-roadmap" class="text-secondary hover:text-primary transition-colors">Mitigation Roadmap</a>
+        </li>
+        <li>
+          <a href="#commit-detection" class="text-secondary hover:text-primary transition-colors">Commit Intent Detection</a>
+        </li>
+        <li>
+          <a href="#concurrency-control" class="text-secondary hover:text-primary transition-colors">Concurrency Control</a>
+        </li>
+        <li>
+          <a href="#failure-semantics" class="text-secondary hover:text-primary transition-colors">Failure Semantics</a>
+        </li>
+        <li>
+          <a href="#ledger-constraints" class="text-secondary hover:text-primary transition-colors">Ledger Constraints</a>
+        </li>
+        <li>
+          <a href="#adversarial-testing" class="text-secondary hover:text-primary transition-colors">Adversarial Testing</a>
+        </li>
+        <li>
+          <a href="#composability" class="text-secondary hover:text-primary transition-colors">Composability</a>
+        </li>
+        <li>
+          <a href="#cost-analysis" class="text-secondary hover:text-primary transition-colors">Cost Analysis</a>
+        </li>
+        <li>
+          <a href="#recommendation" class="text-secondary hover:text-primary transition-colors">Final Recommendation</a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <!-- Hero Section -->
+      <section class="hero-gradient text-white relative overflow-hidden mb-16">
+        <div class="absolute inset-0 opacity-20">
+          <img src="https://kimi-web-img.moonshot.cn/img/media.springernature.com/b39312b8455e9481c57bf2ce5a1553efbeb72306.png" alt="Abstract visualization of AI system architecture for processing" class="w-full h-full object-cover" size="wallpaper" aspect="wide" query="artificial intelligence system architecture abstract" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"/>
+        </div>
+        <div class="relative z-10 px-8 py-16">
+          <div class="bento-grid grid grid-cols-12 gap-8 max-w-7xl mx-auto">
+            <div class="col-span-8">
+              <h1 class="font-serif text-5xl font-bold mb-6 leading-tight">
+                <em class="text-gradient">Production-Grade Hardening</em>
+                <br/>
+                of Commit-Bound Dual-Latency Architecture
+              </h1>
+              <p class="text-xl text-gray-300 mb-8 max-w-3xl">
+                A comprehensive evaluation and hardening strategy for selective validation gateways
+                in high-risk AI deployment scenarios
+              </p>
+            </div>
+            <div class="col-span-4 space-y-4">
+              <div class="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20">
+                <h3 class="font-semibold text-white mb-2">Key Risk Metrics</h3>
+                <div class="space-y-2 text-sm text-gray-300">
+                  <div class="flex justify-between">
+                    <span>Detection Evasion Risk</span>
+                    <span class="text-red-400">Critical</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span>Race Condition Exposure</span>
+                    <span class="text-orange-400">High</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span>TEE Integrity Concerns</span>
+                    <span class="text-orange-400">High</span>
+                  </div>
+                </div>
+              </div>
+              <div class="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20">
+                <h3 class="font-semibold text-white mb-2">Deployment Status</h3>
+                <div class="text-sm text-gray-300">
+                  <div class="flex justify-between mb-1">
+                    <span>Pilot Ready</span>
+                    <span class="text-green-400">Go</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span>Production</span>
+                    <span class="text-red-400">No-Go</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Executive Summary -->
+      <section id="executive-summary" class="mb-16">
+        <div class="max-w-4xl mx-auto px-8">
+          <h2 class="font-serif text-3xl font-semibold mb-8 text-primary">Executive Technical Hardening Summary</h2>
+
+          <div class="bg-muted border-l-4 border-accent p-6 mb-8 rounded-r-lg">
+            <h3 class="font-semibold text-lg mb-4">TL;DR: Deployment Recommendation</h3>
+            <p class="text-secondary leading-relaxed">
+              The Commit-Bound Dual-Latency Architecture is <strong class="text-accent">conditionally viable for pilot deployment</strong>
+              with Phase 1-2 mitigations in conversational and low-value financial domains only.
+              Full production deployment across medical, high-value financial, and autonomous actuation domains
+              is <strong class="text-accent">not recommended</strong> pending completion of Phase 3-7 hardening.
+              Estimated cost: <strong>$0.65-$2.70 per 10,000 commit events</strong> at steady state.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            <div class="bg-white border border-border rounded-lg p-6 shadow-sm">
+              <h4 class="font-semibold text-lg mb-4 text-primary">Architecture Overview</h4>
+              <ul class="space-y-3 text-secondary">
+                <li class="flex items-start">
+                  <i class="fas fa-bolt text-yellow-500 mr-3 mt-1"></i>
+                  <span><strong>Fast Lane:</strong> Sub-2ms processing for 10,000+ RPS non-commit traffic</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-shield-alt text-blue-500 mr-3 mt-1"></i>
+                  <span><strong>Slow Lane:</strong> TEE-protected validation for 100-500 RPS commit intents</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-link text-green-500 mr-3 mt-1"></i>
+                  <span><strong>Always Memory:</strong> Cryptographically provable audit trails</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="bg-white border border-border rounded-lg p-6 shadow-sm">
+              <h4 class="font-semibold text-lg mb-4 text-primary">Top 5 Structural Risks</h4>
+              <ol class="space-y-2 text-sm">
+                <li class="flex items-center">
+                  <span class="risk-indicator risk-critical"></span>
+                  <span><strong>Adversarial evasion</strong> of commit intent detection</span>
+                </li>
+                <li class="flex items-center">
+                  <span class="risk-indicator risk-critical"></span>
+                  <span><strong>Race conditions</strong> enabling pre-validation execution</span>
+                </li>
+                <li class="flex items-center">
+                  <span class="risk-indicator risk-high"></span>
+                  <span><strong>Degraded mode</strong> forcing fail-open under pressure</span>
+                </li>
+                <li class="flex items-center">
+                  <span class="risk-indicator risk-high"></span>
+                  <span><strong>Ledger sealing latency</strong> violations under burst load</span>
+                </li>
+                <li class="flex items-center">
+                  <span class="risk-indicator risk-high"></span>
+                  <span><strong>TEE compromise</strong> via physical or supply chain attacks</span>
+                </li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-lg p-6">
+            <h4 class="font-semibold text-lg mb-4 text-primary">Regulatory Framework Integration</h4>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+              <div>
+                <h5 class="font-medium mb-2 text-secondary">EU AI Act (High-Risk)</h5>
+                <p class="text-secondary">Human oversight, technical robustness, traceability requirements satisfied through TEE-protected validation</p>
+              </div>
+              <div>
+                <h5 class="font-medium mb-2 text-secondary">GDPR Compliance</h5>
+                <p class="text-secondary">Right to Explanation, Right to Erasure through structured audit trails with cryptographic compartmentalization</p>
+              </div>
+              <div>
+                <h5 class="font-medium mb-2 text-secondary">SOX/HIPAA/PCI-DSS</h5>
+                <p class="text-secondary">Mathematically provable logs replacing mutable text logs for corporate auditability and patient safety</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- System Weaknesses -->
+      <section id="system-weaknesses" class="mb-16">
+        <div class="max-w-4xl mx-auto px-8">
+          <h2 class="font-serif text-3xl font-semibold mb-8 text-primary">System Weakness Ranking: Top 5 Structural Risks</h2>
+
+          <div class="space-y-8">
+            <!-- Risk 1: Detection Failure -->
+            <div class="bg-white border border-border rounded-lg shadow-sm overflow-hidden">
+              <div class="bg-red-50 border-b border-red-200 px-6 py-4">
+                <h3 class="font-serif text-xl font-semibold text-red-800 flex items-center">
+                  <span class="risk-indicator risk-critical mr-3"></span>
+                  Risk 1: Commit Intent Detection Failure Under Adversarial Manipulation
+                </h3>
+              </div>
+              <div class="p-6">
+                <div class="mb-4">
+                  <h4 class="font-semibold mb-2 text-primary">Attack Mechanisms</h4>
+                  <ul class="space-y-2 text-secondary">
+                    <li><strong>Semantic obfuscation:</strong> Synonym substitution and paraphrasing to evade lexical patterns</li>
+                    <li><strong>Syntactic fragmentation:</strong> Splitting commit intent across multiple conversational turns</li>
+                    <li><strong>Encoding evasion:</strong> Base64, leetspeak, Unicode homoglyphs bypassing tokenization</li>
+                  </ul>
+                </div>
+                <div class="bg-gray-50 p-4 rounded-lg">
+                  <h5 class="font-medium mb-2 text-primary">Research Evidence</h5>
+                  <p class="text-sm text-secondary">
+                    Stanford HAI AI Detection Benchmark (2025) documents <a href="https://hastewire.com/blog/ai-detection-benchmark-2025-top-accuracy-results" class="text-accent hover:underline">15-22% performance degradation</a>
+                    in leading detection tools against adversarial inputs. Humanization techniques achieve <a href="https://www.studydrop.io/statistics" class="text-accent hover:underline">98% bypass rates</a>
+                    against standard detection mechanisms.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Risk 2: Race Conditions -->
+            <div class="bg-white border border-border rounded-lg shadow-sm overflow-hidden">
+              <div class="bg-red-50 border-b border-red-200 px-6 py-4">
+                <h3 class="font-serif text-xl font-semibold text-red-800 flex items-center">
+                  <span class="risk-indicator risk-critical mr-3"></span>
+                  Risk 2: Race Condition Between Fast Lane Emission and Slow Lane Binding
+                </h3>
+              </div>
+              <div class="p-6">
+                <div class="mb-4">
+                  <h4 class="font-semibold mb-2 text-primary">Temporal Gaps</h4>
+                  <ul class="space-y-2 text-secondary">
+                    <li><strong>Detection-to-routing gap:</strong> Intent classification completion vs. request forwarding</li>
+                    <li><strong>Routing-to-execution gap:</strong> Gateway decision vs. downstream model response</li>
+                    <li><strong>Execution-to-logging gap:</strong> Action emission vs. audit trail sealing</li>
+                  </ul>
+                </div>
+                <div class="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
+                  <p class="text-sm text-secondary">
+                    <strong>Quantitative exposure:</strong> At 10,000 RPS with 0.5ms classification time,
+                    0.1ms gap variability creates 500 requests/second potentially misrouted under burst conditions.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Risk 3: Degraded Mode -->
+            <div class="bg-white border border-border rounded-lg shadow-sm overflow-hidden">
+              <div class="bg-orange-50 border-b border-orange-200 px-6 py-4">
+                <h3 class="font-serif text-xl font-semibold text-orange-800 flex items-center">
+                  <span class="risk-indicator risk-high mr-3"></span>
+                  Risk 3: Slow Lane Degraded Mode Forcing Fail-Open Under Pressure
+                </h3>
+              </div>
+              <div class="p-6">
+                <div class="mb-4">
+                  <h4 class="font-semibold mb-2 text-primary">Attack Mechanisms</h4>
+                  <ul class="space-y-2 text-secondary">
+                    <li><strong>Intentional timeout flooding:</strong> Synthetic commit intents at maximum rate</li>
+                    <li><strong>Resource exhaustion cascade:</strong> Queue buildup → memory pressure → degradation</li>
+                    <li><strong>Cost asymmetry exploitation:</strong> 50:1 attacker advantage in resource consumption</li>
+                  </ul>
+                </div>
+                <div class="grid grid-cols-2 gap-4 text-sm">
+                  <div class="bg-green-50 p-3 rounded border border-green-200">
+                    <div class="font-medium text-green-800">Legitimate Traffic</div>
+                    <div class="text-green-600">100-500 RPS</div>
+                  </div>
+                  <div class="bg-red-50 p-3 rounded border border-red-200">
+                    <div class="font-medium text-red-800">Attack Traffic</div>
+                    <div class="text-red-600">1000+ RPS feasible</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Risk 4: Ledger Performance -->
+            <div class="bg-white border border-border rounded-lg shadow-sm overflow-hidden">
+              <div class="bg-orange-50 border-b border-orange-200 px-6 py-4">
+                <h3 class="font-serif text-xl font-semibold text-orange-800 flex items-center">
+                  <span class="risk-indicator risk-high mr-3"></span>
+                  Risk 4: Ledger Sealing Latency Violation Under Burst Load
+                </h3>
+              </div>
+              <div class="p-6">
+                <div class="mb-4">
+                  <h4 class="font-semibold mb-2 text-primary">Performance Constraints</h4>
+                  <div class="overflow-x-auto">
+                    <table class="w-full text-sm border-collapse">
+                      <thead>
+                        <tr class="bg-gray-50">
+                          <th class="border border-gray-200 p-2 text-left">Batch Size</th>
+                          <th class="border border-gray-200 p-2 text-center">500 RPS</th>
+                          <th class="border border-gray-200 p-2 text-center">1000 RPS</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td class="border border-gray-200 p-2">10 events</td>
+                          <td class="border border-gray-200 p-2 text-center bg-green-50">500ms ✓</td>
+                          <td class="border border-gray-200 p-2 text-center bg-red-50">1000ms ✗</td>
+                        </tr>
+                        <tr>
+                          <td class="border border-gray-200 p-2">20 events</td>
+                          <td class="border border-gray-200 p-2 text-center bg-red-50">1000ms ✗</td>
+                          <td class="border border-gray-200 p-2 text-center bg-green-50">500ms ✓</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                  <p class="text-sm text-secondary">
+                    <strong>Memory pressure:</strong> 10x burst (5,000 RPS) for 30s generates 150,000 unsealed events
+                    requiring 60MB TEE-secured memory—exceeding typical enclave limits.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Risk 5: TEE Compromise -->
+            <div class="bg-white border border-border rounded-lg shadow-sm overflow-hidden">
+              <div class="bg-orange-50 border-b border-orange-200 px-6 py-4">
+                <h3 class="font-serif text-xl font-semibold text-orange-800 flex items-center">
+                  <span class="risk-indicator risk-high mr-3"></span>
+                  Risk 5: TEE Compromise via Side-Channel or Supply Chain
+                </h3>
+              </div>
+              <div class="p-6">
+                <div class="mb-4">
+                  <h4 class="font-semibold mb-2 text-primary">Demonstrated Vulnerabilities</h4>
+                  <ul class="space-y-2 text-secondary">
+                    <li><strong>TEE.Fail attacks:</strong> Physical memory interposition extracting cryptographic keys</li>
+                    <li><strong>Firmware manipulation:</strong> Platform Security Processor compromise</li>
+                    <li><strong>Cloud provider insider threats:</strong> Hypervisor-level access attacks</li>
+                  </ul>
+                </div>
+                <div class="bg-red-50 p-4 rounded-lg border border-red-200">
+                  <h5 class="font-medium mb-2 text-red-800">Critical Research Evidence</h5>
+                  <p class="text-sm text-secondary">
+                    October 2025 <a href="https://thehackernews.com/2025/10/new-teefail-side-channel-attack.html" class="text-accent hover:underline">TEE.Fail research</a>
+                    demonstrated extraction of cryptographic keys from Intel TDX and AMD SEV-SNP
+                    using off-the-shelf equipment costing under $1,000.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Mitigation Roadmap -->
+      <section id="mitigation-roadmap" class="mb-16">
+        <div class="max-w-4xl mx-auto px-8">
+          <h2 class="font-serif text-3xl font-semibold mb-8 text-primary">Mitigation Prioritization Roadmap</h2>
+
+          <div class="space-y-6">
+            <!-- Phase 1: Detection Hardening -->
+            <div class="bg-white border-l-4 border-red-500 rounded-lg shadow-sm overflow-hidden">
+              <div class="bg-red-50 px-6 py-4">
+                <h3 class="font-serif text-xl font-semibold text-red-800 flex items-center">
+                  <i class="fas fa-shield-alt mr-3"></i>
+                  Phase 1: Detection Architecture Hardening (P0-Critical)
+                </h3>
+              </div>
+              <div class="p-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <h4 class="font-semibold mb-3 text-primary">Multi-Layer Classification</h4>
+                    <div class="space-y-2 text-sm">
+                      <div class="flex justify-between">
+                        <span>Tier 1: Lexical Pattern Matcher</span>
+                        <span class="text-green-600">&lt;0.1ms</span>
+                      </div>
+                      <div class="flex justify-between">
+                        <span>Tier 2: Neural Classifier</span>
+                        <span class="text-green-600">&lt;1ms</span>
+                      </div>
+                      <div class="flex justify-between">
+                        <span>Tier 3: LLM Structured Analysis</span>
+                        <span class="text-yellow-600">100-300ms</span>
+                      </div>
+                      <div class="flex justify-between">
+                        <span>Tier 4: Human Escalation</span>
+                        <span class="text-red-600">5-60min</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold mb-3 text-primary">Adversarial Training</h4>
+                    <ul class="space-y-1 text-sm text-secondary">
+                      <li>• Synonym substitution augmentation</li>
+                      <li>• Paraphrase generation training</li>
+                      <li>• Encoding transformation resistance</li>
+                      <li>• Multi-turn context poisoning defense</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="mt-4 bg-blue-50 p-4 rounded-lg border border-blue-200">
+                  <p class="text-sm text-secondary">
+                    <strong>Research basis:</strong> Adversarial knowledge distillation demonstrates
+                    <a href="https://openaccess.thecvf.com/content/WACV2025/papers/J_Adversarial_Learning_Based_Knowledge_Distillation_on_3D_Point_Clouds_WACV_2025_paper.pdf" class="text-accent hover:underline">90%+ robust accuracy maintenance</a>
+                    with 30× parameter reduction.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Phase 2: Execution Control -->
+            <div class="bg-white border-l-4 border-red-500 rounded-lg shadow-sm overflow-hidden">
+              <div class="bg-red-50 px-6 py-4">
+                <h3 class="font-serif text-xl font-semibold text-red-800 flex items-center">
+                  <i class="fas fa-lock mr-3"></i>
+                  Phase 2: Execution Control Atomicity (P0-Critical)
+                </h3>
+              </div>
+              <div class="p-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <h4 class="font-semibold mb-3 text-primary">Hardware-Enforced Binding</h4>
+                    <ul class="space-y-2 text-sm text-secondary">
+                      <li>• TEE-secured Gateway implementation</li>
+                      <li>• Atomic classification-to-routing operations</li>
+                      <li>• Binding attestation with classification context</li>
+                      <li>• Downstream verification requirement</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold mb-3 text-primary">Execution Mode State Machine</h4>
+                    <div class="space-y-2 text-sm">
+                      <div class="flex justify-between">
+                        <span>Optimistic Mode</span>
+                        <span class="text-green-600">Reversible actions</span>
+                      </div>
+                      <div class="flex justify-between">
+                        <span>Pessimistic Mode</span>
+                        <span class="text-red-600">Irreversible mutations</span>
+                      </div>
+                      <div class="flex justify-between">
+                        <span>Degraded-Soft</span>
+                        <span class="text-yellow-600">Retry with backoff</span>
+                      </div>
+                      <div class="flex justify-between">
+                        <span>Degraded-Hard</span>
+                        <span class="text-red-600">Mandatory abort</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="mt-4 bg-yellow-50 p-4 rounded-lg border border-yellow-200">
+                  <p class="text-sm text-secondary">
+                    <strong>Timing thresholds:</strong> 50ms optimistic buffer, 500ms hard timeout, 5s degraded abort
+                    with explicit state transition logging and illegal transition detection.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Phase 3: Slow Lane Resilience -->
+            <div class="bg-white border-l-4 border-orange-500 rounded-lg shadow-sm overflow-hidden">
+              <div class="bg-orange-50 px-6 py-4">
+                <h3 class="font-serif text-xl font-semibold text-orange-800 flex items-center">
+                  <i class="fas fa-server mr-3"></i>
+                  Phase 3: Slow Lane Resilience Engineering (P1-High)
+                </h3>
+              </div>
+              <div class="p-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <h4 class="font-semibold mb-3 text-primary">Resource Isolation</h4>
+                    <ul class="space-y-2 text-sm text-secondary">
+                      <li>• Token bucket admission control</li>
+                      <li>• Per-client rate limiting (10 RPS)</li>
+                      <li>• Global capacity protection (500 RPS)</li>
+                      <li>• Burst handling with exponential backoff</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold mb-3 text-primary">Redundant Validation</h4>
+                    <div class="space-y-2 text-sm">
+                      <div class="bg-gray-50 p-2 rounded">Primary: AMD SEV-SNP (AWS)</div>
+                      <div class="bg-gray-50 p-2 rounded">Secondary: Intel TDX (Azure)</div>
+                      <div class="bg-gray-50 p-2 rounded">Tertiary: AWS Nitro (APAC)</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Phase 4: Ledger Optimization -->
+            <div class="bg-white border-l-4 border-orange-500 rounded-lg shadow-sm overflow-hidden">
+              <div class="bg-orange-50 px-6 py-4">
+                <h3 class="font-serif text-xl font-semibold text-orange-800 flex items-center">
+                  <i class="fas fa-chart-line mr-3"></i>
+                  Phase 4: Ledger Performance Optimization (P1-High)
+                </h3>
+              </div>
+              <div class="p-6">
+                <div class="mb-4">
+                  <h4 class="font-semibold mb-3 text-primary">Hierarchical Batching Strategy</h4>
+                  <div class="overflow-x-auto">
+                    <table class="w-full text-sm border-collapse">
+                      <thead>
+                        <tr class="bg-gray-50">
+                          <th class="border border-gray-200 p-2 text-left">Level</th>
+                          <th class="border border-gray-200 p-2 text-center">Size</th>
+                          <th class="border border-gray-200 p-2 text-center">Interval</th>
+                          <th class="border border-gray-200 p-2 text-center">Latency</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td class="border border-gray-200 p-2">Micro</td>
+                          <td class="border border-gray-200 p-2 text-center">1-10 events</td>
+                          <td class="border border-gray-200 p-2 text-center">10-50ms</td>
+                          <td class="border border-gray-200 p-2 text-center">10-50ms</td>
+                        </tr>
+                        <tr>
+                          <td class="border border-gray-200 p-2">Meso</td>
+                          <td class="border border-gray-200 p-2 text-center">100 batches</td>
+                          <td class="border border-gray-200 p-2 text-center">100-250ms</td>
+                          <td class="border border-gray-200 p-2 text-center">100-250ms</td>
+                        </tr>
+                        <tr>
+                          <td class="border border-gray-200 p-2">Macro</td>
+                          <td class="border border-gray-200 p-2 text-center">1000+ events</td>
+                          <td class="border border-gray-200 p-2 text-center">1-10min</td>
+                          <td class="border border-gray-200 p-2 text-center">Minutes</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                  <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                    <h5 class="font-medium mb-2 text-blue-800">Hardware Acceleration</h5>
+                    <ul class="space-y-1 text-secondary">
+                      <li>• SHA-NI: 10x throughput improvement</li>
+                      <li>• GPU: 100× speedup for large batches</li>
+                      <li>• SmartNIC: Sub-μs networking latency</li>
+                    </ul>
+                  </div>
+                  <div class="bg-green-50 p-4 rounded-lg border border-green-200">
+                    <h5 class="font-medium mb-2 text-green-800">Anchoring Strategy</h5>
+                    <ul class="space-y-1 text-secondary">
+                      <li>• Celestia DA: 2-4s, $0.005/event</li>
+                      <li>• Arbitrum L2: 1-2min, $0.05/event</li>
+                      <li>• Ethereum L1: 12-15min, $5.00/event</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Commit Intent Detection Deep Dive -->
+      <section id="commit-detection" class="mb-16">
+        <div class="max-w-4xl mx-auto px-8">
+          <h2 class="font-serif text-3xl font-semibold mb-8 text-primary">Part 1: Commit Intent Detection Robustness</h2>
+
+          <div class="bg-white border border-border rounded-lg shadow-sm p-6 mb-8">
+            <h3 class="font-serif text-xl font-semibold mb-4 text-primary">Attack Surface Analysis</h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              <div>
+                <h4 class="font-semibold mb-3 text-secondary">Input Layer Vulnerabilities</h4>
+                <div class="space-y-3 text-sm">
+                  <div class="bg-red-50 p-3 rounded border border-red-200">
+                    <strong class="text-red-800">Direct Prompt Injection</strong>
+                    <p class="text-red-600 mt-1">Embedding commit-indicating content within contexts designed to trigger false negative classification</p>
+                  </div>
+                  <div class="bg-orange-50 p-3 rounded border border-orange-200">
+                    <strong class="text-orange-800">Encoding Evasion</strong>
+                    <p class="text-orange-600 mt-1">Base64, leetspeak, Unicode homoglyphs disrupting tokenization-based detection</p>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <h4 class="font-semibold mb-3 text-secondary">Context Layer Attacks</h4>
+                <div class="space-y-3 text-sm">
+                  <div class="bg-yellow-50 p-3 rounded border border-yellow-200">
+                    <strong class="text-yellow-800">Conversation Poisoning</strong>
+                    <p class="text-yellow-600 mt-1">Multi-turn intent distribution across seemingly benign utterances</p>
+                  </div>
+                  <div class="bg-blue-50 p-3 rounded border border-blue-200">
+                    <strong class="text-blue-800">Pragmatic Misdirection</strong>
+                    <p class="text-blue-600 mt-1">Framing commit actions within hypothetical or educational contexts</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-gray-50 p-4 rounded-lg">
+              <h4 class="font-semibold mb-3 text-primary">Multi-Step Intent Obfuscation Patterns</h4>
+              <div class="overflow-x-auto">
+                <table class="w-full text-sm">
+                  <thead>
+                    <tr class="bg-white">
+                      <th class="border border-gray-200 p-2 text-left">Attack Pattern</th>
+                      <th class="border border-gray-200 p-2 text-center">Mechanism</th>
+                      <th class="border border-gray-200 p-2 text-center">Detection Challenge</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="border border-gray-200 p-2">Setup-Execute Sequences</td>
+                      <td class="border border-gray-200 p-2">Establish context before revealing intent</td>
+                      <td class="border border-gray-200 p-2">Cross-turn state accumulation required</td>
+                    </tr>
+                    <tr>
+                      <td class="border border-gray-200 p-2">Reframing Attacks</td>
+                      <td class="border border-gray-200 p-2">Redescribing commit as non-commit</td>
+                      <td class="border border-gray-200 p-2">Operational semantics vs. surface description</td>
+                    </tr>
+                    <tr>
+                      <td class="border border-gray-200 p-2">Delegation Chains</td>
+                      <td class="border border-gray-200 p-2">Routing through intermediate steps</td>
+                      <td class="border border-gray-200 p-2">Composition analysis across tool interactions</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-lg p-6">
+            <h3 class="font-serif text-xl font-semibold mb-4 text-primary">Recommended Detection Architecture</h3>
+
+            <div class="space-y-4">
+              <div class="bg-white p-4 rounded-lg border border-blue-100">
+                <h4 class="font-semibold mb-2 text-blue-800">Tier 1: Lexical Pattern Matcher</h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                  <div>
+                    <strong class="text-secondary">Implementation:</strong> Compiled DFA with kernel-bypass networking
+                    <br/>
+                    <strong class="text-secondary">Performance:</strong> &lt;0.1ms latency, 99%+ recall for explicit patterns
+                  </div>
+                  <div>
+                    <strong class="text-secondary">Pattern Library:</strong> 10,000+ financial, medical, system command signatures
+                    <br/>
+                    <strong class="text-secondary">Update Process:</strong> Cryptographically signed, versioned, change-controlled
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-white p-4 rounded-lg border border-green-100">
+                <h4 class="font-semibold mb-2 text-green-800">Tier 2: Lightweight Neural Classifier</h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                  <div>
+                    <strong class="text-secondary">Architecture:</strong> Distilled transformer (6-layer, 50M parameters)
+                    <br/>
+                    <strong class="text-secondary">Training:</strong>
+                    <a href="https://eccv22-arow.github.io/short_paper/0020.pdf" class="text-accent hover:underline">Adversarial knowledge distillation</a>
+                  </div>
+                  <div>
+                    <strong class="text-secondary">Performance:</strong> &lt;1ms latency with 90%+ robust accuracy
+                    <br/>
+                    <strong class="text-secondary">Output:</strong> 4-class classification with confidence calibration
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-white p-4 rounded-lg border border-purple-100">
+                <h4 class="font-semibold mb-2 text-purple-800">Tier 3: Full LLM-Based Structured Analysis</h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                  <div>
+                    <strong class="text-secondary">Trigger:</strong> High-confidence commits or ambiguous cases with risk indicators
+                    <br/>
+                    <strong class="text-secondary">Function:</strong> Chain-of-thought reasoning, policy interpretation
+                  </div>
+                  <div>
+                    <strong class="text-secondary">Protection:</strong>
+                    <a href="https://www.arxiv.org/pdf/1908.11680v1" class="text-accent hover:underline">TEE-secured execution</a> preventing validation LLM compromise
+                    <br/>
+                    <strong class="text-secondary">Output:</strong> Structured JSON with classification, rationale, affected systems
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Concurrency and Execution Control -->
+      <section id="concurrency-control" class="mb-16">
+        <div class="max-w-4xl mx-auto px-8">
+          <h2 class="font-serif text-3xl font-semibold mb-8 text-primary">Part 2: Concurrency and Execution Control</h2>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+            <div class="bg-white border border-border rounded-lg p-6 shadow-sm">
+              <h3 class="font-serif text-lg font-semibold mb-4 text-primary">Race Condition Analysis</h3>
+              <div class="space-y-4">
+                <div class="bg-red-50 p-4 rounded-lg border border-red-200">
+                  <h4 class="font-medium text-red-800 mb-2">Detection-to-Routing Gap</h4>
+                  <p class="text-sm text-red-600">Classification state may be invalidated by concurrent events during routing decision application</p>
+                  <div class="mt-2 text-xs text-red-500">
+                    <strong>Exposure:</strong> 500 requests/second at 10,000 RPS with 0.1ms variability
+                  </div>
+                </div>
+                <div class="bg-orange-50 p-4 rounded-lg border border-orange-200">
+                  <h4 class="font-medium text-orange-800 mb-2">Routing-to-Execution Gap</h4>
+                  <p class="text-sm text-orange-600">Downstream model may begin generation before Slow Lane validation completes</p>
+                  <div class="mt-2 text-xs text-orange-500">
+                    <strong>Critical:</strong> Tool invocation may execute before validation abort propagates
+                  </div>
+                </div>
+                <div class="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
+                  <h4 class="font-medium text-yellow-800 mb-2">Execution-to-Logging Gap</h4>
+                  <p class="text-sm text-yellow-600">Actions may complete without cryptographic record if system fails during interval</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-white border border-border rounded-lg p-6 shadow-sm">
+              <h3 class="font-serif text-lg font-semibold mb-4 text-primary">Atomic Routing Guarantees</h3>
+              <div class="space-y-4">
+                <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                  <h4 class="font-medium text-blue-800 mb-2">Hardware-Enforced Binding</h4>
+                  <ul class="text-sm text-blue-600 space-y-1">
+                    <li>• TEE-secured Gateway implementation</li>
+                    <li>• Single attestation boundary</li>
+                    <li>• Binding attestation with context</li>
+                    <li>• Downstream verification requirement</li>
+                  </ul>
+                </div>
+                <div class="bg-green-50 p-4 rounded-lg border border-green-200">
+                  <h4 class="font-medium text-green-800 mb-2">Software-Based 2PC</h4>
+                  <div class="space-y-2 text-sm text-green-600">
+                    <div class="flex justify-between">
+                      <span>Prepare</span>
+                      <span>Capture intent, reserve resources</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span>Validate</span>
+                      <span>Slow Lane policy evaluation</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span>Commit</span>
+                      <span>Execute with logging or abort</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white border border-border rounded-lg p-6 shadow-sm">
+            <h3 class="font-serif text-xl font-semibold mb-6 text-primary">Execution Mode Specifications</h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div class="bg-green-50 p-4 rounded-lg border border-green-200">
+                <h4 class="font-semibold text-green-800 mb-3 flex items-center">
+                  <i class="fas fa-play-circle mr-2"></i>
+                  Optimistic Mode
+                </h4>
+                <div class="space-y-3 text-sm">
+                  <div>
+                    <strong class="text-green-700">Trigger:</strong>
+                    <p class="text-green-600">High-confidence non-commit classification</p>
+                  </div>
+                  <div>
+                    <strong class="text-green-700">Semantics:</strong>
+                    <ul class="text-green-600 mt-1 space-y-1">
+                      <li>• Immediate release with async validation</li>
+                      <li>• 30s rollback window for compensation</li>
+                      <li>• Read-only queries, reversible exploration</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-red-50 p-4 rounded-lg border border-red-200">
+                <h4 class="font-semibold text-red-800 mb-3 flex items-center">
+                  <i class="fas fa-pause-circle mr-2"></i>
+                  Pessimistic Mode
+                </h4>
+                <div class="space-y-3 text-sm">
+                  <div>
+                    <strong class="text-red-700">Trigger:</strong>
+                    <p class="text-red-600">Commit intent detected or high-risk domain</p>
+                  </div>
+                  <div>
+                    <strong class="text-red-700">Semantics:</strong>
+                    <ul class="text-red-600 mt-1 space-y-1">
+                      <li>• Buffered execution with sync confirmation</li>
+                      <li>• 500ms timeout with 5s hard limit</li>
+                      <li>• Financial transfer, medical action, actuator command</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
+                <h4 class="font-semibold text-yellow-800 mb-3 flex items-center">
+                  <i class="fas fa-exclamation-triangle mr-2"></i>
+                  Degraded Mode
+                </h4>
+                <div class="space-y-3 text-sm">
+                  <div>
+                    <strong class="text-yellow-700">Trigger:</strong>
+                    <p class="text-yellow-600">Slow Lane &gt;500ms or resource exhaustion</p>
+                  </div>
+                  <div>
+                    <strong class="text-yellow-700">Semantics:</strong>
+                    <ul class="text-yellow-600 mt-1 space-y-1">
+                      <li>• Retry with exponential backoff (max 3 attempts)</li>
+                      <li>• Secondary validation with reduced scope</li>
+                      <li>• Explicit rejection with client-visible error codes</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Failure Semantics -->
+      <section id="failure-semantics" class="mb-16">
+        <div class="max-w-4xl mx-auto px-8">
+          <h2 class="font-serif text-3xl font-semibold mb-8 text-primary">Part 3: Slow Lane Failure Semantics</h2>
+
+          <div class="bg-white border border-border rounded-lg p-6 mb-8">
+            <h3 class="font-serif text-xl font-semibold mb-6 text-primary">Failure Class Taxonomy</h3>
+
+            <div class="overflow-x-auto">
+              <table class="w-full text-sm border-collapse">
+                <thead>
+                  <tr class="bg-gray-50">
+                    <th class="border border-gray-200 p-3 text-left">Class</th>
+                    <th class="border border-gray-200 p-3 text-left">Manifestation</th>
+                    <th class="border border-gray-200 p-3 text-center">Detection</th>
+                    <th class="border border-gray-200 p-3 text-center">Frequency</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="border border-gray-200 p-3 font-medium text-red-600">Timeout</td>
+                    <td class="border border-gray-200 p-3">Validation exceeds 500ms/5s thresholds</td>
+                    <td class="border border-gray-200 p-3 text-center">Deadline monitoring</td>
+                    <td class="border border-gray-200 p-3 text-center bg-red-100">Most common</td>
+                  </tr>
+                  <tr>
+                    <td class="border border-gray-200 p-3 font-medium text-orange-600">Resource Exhaustion</td>
+                    <td class="border border-gray-200 p-3">CPU/memory/TEE saturation</td>
+                    <td class="border border-gray-200 p-3 text-center">Proactive monitoring (80% threshold)</td>
+                    <td class="border border-gray-200 p-3 text-center bg-orange-100">Common under load</td>
+                  </tr>
+                  <tr>
+                    <td class="border border-gray-200 p-3 font-medium text-purple-600">Integrity Compromise</td>
+                    <td class="border border-gray-200 p-3">TEE attestation failure, memory tampering</td>
+                    <td class="border border-gray-200 p-3 text-center">Continuous attestation verification</td>
+                    <td class="border border-gray-200 p-3 text-center bg-purple-100">Rare, critical</td>
+                  </tr>
+                  <tr>
+                    <td class="border border-gray-200 p-3 font-medium text-blue-600">Infrastructure Crash</td>
+                    <td class="border border-gray-200 p-3">Node failure, network partition, storage corruption</td>
+                    <td class="border border-gray-200 p-3 text-center">Heartbeat timeout, health checks</td>
+                    <td class="border border-gray-200 p-3 text-center bg-blue-100">Rare</td>
+                  </tr>
+                  <tr>
+                    <td class="border border-gray-200 p-3 font-medium text-gray-600">Partial Validation</td>
+                    <td class="border border-gray-200 p-3">Policy completion without cryptographic sealing</td>
+                    <td class="border border-gray-200 p-3 text-center">Completion verification</td>
+                    <td class="border border-gray-200 p-3 text-center bg-gray-100">Rare, dangerous</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+            <div class="bg-white border border-border rounded-lg p-6 shadow-sm">
+              <h3 class="font-serif text-lg font-semibold mb-4 text-primary">Domain-Specific Fail-Safe Logic</h3>
+
+              <div class="space-y-4">
+                <div class="bg-green-50 p-4 rounded-lg border border-green-200">
+                  <h4 class="font-medium text-green-800 mb-2">Conversational Domain</h4>
+                  <div class="space-y-1 text-sm text-green-600">
+                    <div><strong>Default:</strong> Fail-Open with comprehensive logging</div>
+                    <div><strong>Degraded continuation:</strong> Permitted with reduced context</div>
+                    <div><strong>Redundancy:</strong> Not justified (cost-benefit analysis)</div>
+                  </div>
+                </div>
+
+                <div class="bg-red-50 p-4 rounded-lg border border-red-200">
+                  <h4 class="font-medium text-red-800 mb-2">Financial Domain</h4>
+                  <div class="space-y-1 text-sm text-red-600">
+                    <div><strong>Default:</strong> Fail-Closed with transaction reversal</div>
+                    <div><strong>Degraded continuation:</strong> Prohibited without secondary validation</div>
+                    <div><strong>Redundancy:</strong> Required - separate TEE implementations</div>
+                  </div>
+                </div>
+
+                <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                  <h4 class="font-medium text-blue-800 mb-2">Medical Domain</h4>
+                  <div class="space-y-1 text-sm text-blue-600">
+                    <div><strong>Default:</strong> Fail-Closed with human escalation</div>
+                    <div><strong>Degraded continuation:</strong> Prohibited without clinician override</div>
+                    <div><strong>Redundancy:</strong> Cross-institutional validation required</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-white border border-border rounded-lg p-6 shadow-sm">
+              <h3 class="font-serif text-lg font-semibold mb-4 text-primary">Redundant Validation Architecture</h3>
+
+              <div class="space-y-4">
+                <div class="bg-purple-50 p-4 rounded-lg border border-purple-200">
+                  <h4 class="font-medium text-purple-800 mb-2">Independence Guarantees</h4>
+                  <ul class="text-sm text-purple-600 space-y-1">
+                    <li>• Hardware: Different CPU vendors, TEE technologies</li>
+                    <li>• Software: Different codebases, development teams</li>
+                    <li>• Infrastructure: Different cloud providers, regions</li>
+                    <li>• Operational: Separate administrative domains</li>
+                  </ul>
+                </div>
+
+                <div class="bg-indigo-50 p-4 rounded-lg border border-indigo-200">
+                  <h4 class="font-medium text-indigo-800 mb-2">Byzantine Fault Tolerant Consensus</h4>
+                  <div class="space-y-2 text-sm text-indigo-600">
+                    <div class="flex justify-between">
+                      <span>2+ agree on approval</span>
+                      <span>Proceed with combined attestation</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span>2+ agree on rejection</span>
+                      <span>Block with combined rationale</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span>Disagreement</span>
+                      <span>Escalate to human arbitration</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Ledger Constraints -->
+      <section id="ledger-constraints" class="mb-16">
+        <div class="max-w-4xl mx-auto px-8">
+          <h2 class="font-serif text-3xl font-semibold mb-8 text-primary">Part 4: Ledger Realism and Performance Constraints</h2>
+
+          <div class="bg-white border border-border rounded-lg p-6 mb-8">
+            <h3 class="font-serif text-xl font-semibold mb-6 text-primary">≤500ms Local Sealing Feasibility Analysis</h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+              <div class="bg-green-50 p-4 rounded-lg border border-green-200">
+                <h4 class="font-semibold text-green-800 mb-3">Achievable Configuration</h4>
+                <div class="space-y-2 text-sm text-green-600">
+                  <div><strong>Throughput:</strong> 500 RPS sustained</div>
+                  <div><strong>Hardware:</strong> SHA-NI acceleration</div>
+                  <div><strong>Batching:</strong> 10-event micro-batches</div>
+                  <div><strong>Latency:</strong> ~400ms</div>
+                  <div class="text-green-800 font-medium">✓ Within target</div>
+                </div>
+              </div>
+
+              <div class="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
+                <h4 class="font-semibold text-yellow-800 mb-3">Degraded Performance</h4>
+                <div class="space-y-2 text-sm text-yellow-600">
+                  <div><strong>Throughput:</strong> 800 RPS sustained</div>
+                  <div><strong>Hardware:</strong> SHA-NI acceleration</div>
+                  <div><strong>Batching:</strong> 20-event batches</div>
+                  <div><strong>Latency:</strong> ~600ms</div>
+                  <div class="text-yellow-800 font-medium">✗ Exceeds target</div>
+                </div>
+              </div>
+
+              <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                <h4 class="font-semibold text-blue-800 mb-3">Burst Handling</h4>
+                <div class="space-y-2 text-sm text-blue-600">
+                  <div><strong>Throughput:</strong> 1000 RPS burst</div>
+                  <div><strong>Hardware:</strong> GPU acceleration</div>
+                  <div><strong>Batching:</strong> 50-event batches</div>
+                  <div><strong>Latency:</strong> ~500ms</div>
+                  <div class="text-blue-800 font-medium">✓ With hardware</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-red-50 p-4 rounded-lg border border-red-200">
+              <h4 class="font-semibold text-red-800 mb-2">Critical Failure Scenario</h4>
+              <p class="text-sm text-red-600">
+                10x burst (5,000 RPS) for 30 seconds generates 150,000 unsealed events requiring ~60MB TEE-secured memory,
+                exceeding typical enclave limits (256MB-1GB total). Emergency sealing with smaller batches
+                creates throughput collapse due to fixed cryptographic overhead.
+              </p>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+            <div class="bg-white border border-border rounded-lg p-6 shadow-sm">
+              <h3 class="font-serif text-lg font-semibold mb-4 text-primary">High-Velocity Anchoring Strategy</h3>
+
+              <div class="space-y-4">
+                <div class="bg-red-100 p-3 rounded-lg border border-red-300">
+                  <h4 class="font-medium text-red-800 mb-1">L1 Blockchain Exclusion</h4>
+                  <p class="text-sm text-red-600">Ethereum mainnet: 12-15s block time, 15-30m finality → categorically unsuitable for per-event anchoring</p>
+                </div>
+
+                <div class="bg-green-100 p-3 rounded-lg border border-green-300">
+                  <h4 class="font-medium text-green-800 mb-1">L2 Rollup Utilization</h4>
+                  <div class="text-sm text-green-600 space-y-1">
+                    <div><strong>Arbitrum/Optimism:</strong> 1-2min finality, ~$0.01-0.05/tx</div>
+                    <div><strong>Use case:</strong> Operational anchoring, regulatory proof</div>
+                  </div>
+                </div>
+
+                <div class="bg-blue-100 p-3 rounded-lg border border-blue-300">
+                  <h4 class="font-medium text-blue-800 mb-1">Data Availability Layer</h4>
+                  <div class="text-sm text-blue-600 space-y-1">
+                    <div><strong>Celestia:</strong> 2-4s availability, ~$0.001-0.005/blob</div>
+                    <div><strong>Use case:</strong> Rapid confidence, fraud proof substrate</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-white border border-border rounded-lg p-6 shadow-sm">
+              <h3 class="font-serif text-lg font-semibold mb-4 text-primary">Security Trade-Off Analysis</h3>
+
+              <div class="space-y-4">
+                <div class="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
+                  <h4 class="font-medium text-yellow-800 mb-2">Delayed Settlement Acceptance</h4>
+                  <div class="space-y-2 text-sm text-yellow-600">
+                    <div><strong>1-5 minute window:</strong> Acceptable with multiple independent anchors</div>
+                    <div><strong>5-30 minute window:</strong> Medium risk with enhanced monitoring</div>
+                    <div><strong>30+ minute window:</strong> Low acceptability, emergency anchoring required</div>
+                  </div>
+                </div>
+
+                <div class="bg-purple-50 p-4 rounded-lg border border-purple-200">
+                  <h4 class="font-medium text-purple-800 mb-2">Fork Choice Rule</h4>
+                  <ul class="text-sm text-purple-600 space-y-1">
+                    <li>• Longest chain with L2 finality gadget</li>
+                    <li>• Manual escalation for conflicting anchors</li>
+                    <li>• Conservative interpretation as default</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-gradient-to-r from-indigo-50 to-purple-50 border border-indigo-200 rounded-lg p-6">
+            <h3 class="font-serif text-xl font-semibold mb-4 text-primary">Asynchronous Anchoring Necessity</h3>
+
+            <div class="overflow-x-auto">
+              <table class="w-full text-sm border-collapse">
+                <thead>
+                  <tr class="bg-white">
+                    <th class="border border-gray-200 p-3 text-left">Layer</th>
+                    <th class="border border-gray-200 p-3 text-center">Latency</th>
+                    <th class="border border-gray-200 p-3 text-left">Purpose</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="border border-gray-200 p-3 font-medium text-indigo-600">Local TEE Sealing</td>
+                    <td class="border border-gray-200 p-3 text-center">500 ms</td>
+                    <td class="border border-gray-200 p-3">Immediate audit readiness, operational monitoring</td>
+                  </tr>
+                  <tr>
+                    <td class="border border-gray-200 p-3 font-medium text-blue-600">Regional Consensus</td>
+                    <td class="border border-gray-200 p-3 text-center">2-5 s</td>
+                    <td class="border border-gray-200 p-3">Cross-replica consistency</td>
+                  </tr>
+                  <tr>
+                    <td class="border border-gray-200 p-3 font-medium text-green-600">Celestia DA</td>
+                    <td class="border border-gray-200 p-3 text-center">2-4 s</td>
+                    <td class="border border-gray-200 p-3">Rapid data availability</td>
+                  </tr>
+                  <tr>
+                    <td class="border border-gray-200 p-3 font-medium text-orange-600">Arbitrum L2</td>
+                    <td class="border border-gray-200 p-3 text-center">1-2 min</td>
+                    <td class="border border-gray-200 p-3">Economic finality, regulatory proof</td>
+                  </tr>
+                  <tr>
+                    <td class="border border-gray-200 p-3 font-medium text-purple-600">Ethereum L1</td>
+                    <td class="border border-gray-200 p-3 text-center">12-15 min</td>
+                    <td class="border border-gray-200 p-3">Ultimate settlement (rare)</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="mt-4 bg-white p-4 rounded-lg border border-indigo-200">
+              <p class="text-sm text-secondary">
+                <strong>Security model:</strong> Progressive strengthening - immediate tamper-evidence,
+                near-term economic security, eventual cryptographic finality. Local sealing (500ms) is
+                fundamentally decoupled from global settlement (minutes) due to latency incompatibility
+                between real-time operation and decentralized consensus.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Adversarial Testing -->
+      <section id="adversarial-testing" class="mb-16">
+        <div class="max-w-4xl mx-auto px-8">
+          <h2 class="font-serif text-3xl font-semibold mb-8 text-primary">Part 5: Adversarial Stress Testing</h2>
+
+          <div class="space-y-8">
+            <!-- Slow Lane Flooding Attack -->
+            <div class="bg-white border border-border rounded-lg shadow-sm overflow-hidden">
+              <div class="bg-red-50 border-b border-red-200 px-6 py-4">
+                <h3 class="font-serif text-xl font-semibold text-red-800 flex items-center">
+                  <span class="risk-indicator risk-critical mr-3"></span>
+                  Slow Lane Flooding Attack
+                </h3>
+              </div>
+              <div class="p-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <h4 class="font-semibold mb-3 text-primary">Exploit Mechanism</h4>
+                    <ul class="space-y-2 text-sm text-secondary">
+                      <li>• Synthetic commit intent generation at maximum rate</li>
+                      <li>• Automated prompt variation and neural paraphrasing</li>
+                      <li>• Cost asymmetry exploitation (50:1 attacker advantage)</li>
+                      <li>• Legitimate traffic starvation or degraded mode activation</li>
+                    </ul>
+                    <div class="mt-3 bg-red-100 p-3 rounded-lg border border-red-200">
+                      <div class="text-sm text-red-800">
+                        <strong>Cost Analysis:</strong>
+                        <br/>
+                        Attacker: ~$0.001 per request (bandwidth)
+                        <br/>
+                        Defender: ~$0.05-0.20 per validation (TEE compute)
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold mb-3 text-primary">Mitigation Strategy</h4>
+                    <div class="space-y-3">
+                      <div class="bg-blue-50 p-3 rounded-lg border border-blue-200">
+                        <strong class="text-blue-800">Proof-of-Work Intent Submission</strong>
+                        <p class="text-sm text-blue-600 mt-1">100ms CPU puzzle per commit intent, linear attacker cost scaling</p>
+                      </div>
+                      <div class="bg-green-50 p-3 rounded-lg border border-green-200">
+                        <strong class="text-green-800">Rate Limiting with Reputation</strong>
+                        <p class="text-sm text-green-600 mt-1">Tiered: 10 RPS new, 100 RPS established, 1000 RPS premium</p>
+                      </div>
+                      <div class="bg-purple-50 p-3 rounded-lg border border-purple-200">
+                        <strong class="text-purple-800">Economic Deterrent</strong>
+                        <p class="text-sm text-purple-600 mt-1">Micropayment requirements for high-volume commit intents</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Intentional Timeout Exploitation -->
+            <div class="bg-white border border-border rounded-lg shadow-sm overflow-hidden">
+              <div class="bg-orange-50 border-b border-orange-200 px-6 py-4">
+                <h3 class="font-serif text-xl font-semibold text-orange-800 flex items-center">
+                  <span class="risk-indicator risk-high mr-3"></span>
+                  Intentional Timeout Exploitation
+                </h3>
+              </div>
+              <div class="p-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <h4 class="font-semibold mb-3 text-primary">Attack Vector</h4>
+                    <ul class="space-y-2 text-sm text-secondary">
+                      <li>• Resource-intensive validation path triggers</li>
+                      <li>• Complex policy nesting and constraint satisfaction</li>
+                      <li>• Large context retrieval and external data queries</li>
+                      <li>• Degraded mode activation with validation bypass</li>
+                    </ul>
+                    <div class="mt-3 bg-orange-100 p-3 rounded-lg border border-orange-200">
+                      <div class="text-sm text-orange-800">
+                        <strong>Feasibility:</strong> Medium with understanding of policy engine implementation
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold mb-3 text-primary">Defense Mechanisms</h4>
+                    <div class="space-y-3">
+                      <div class="bg-indigo-50 p-3 rounded-lg border border-indigo-200">
+                        <strong class="text-indigo-800">Deterministic Timeout Budgeting</strong>
+                        <p class="text-sm text-indigo-600 mt-1">Per-stage budgets for inference, database queries, policy evaluation</p>
+                      </div>
+                      <div class="bg-teal-50 p-3 rounded-lg border border-teal-200">
+                        <strong class="text-teal-800">Early Abort Detection</strong>
+                        <p class="text-sm text-teal-600 mt-1">Progressive thresholds with anomalous expense logging for policy optimization</p>
+                      </div>
+                      <div class="bg-cyan-50 p-3 rounded-lg border border-cyan-200">
+                        <strong class="text-cyan-800">Resource Accounting</strong>
+                        <p class="text-sm text-cyan-600 mt-1">Per-client resource quotas with automatic throttling on threshold exceedance</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Edge Timing Window Exploitation -->
+            <div class="bg-white border border-border rounded-lg shadow-sm overflow-hidden">
+              <div class="bg-yellow-50 border-b border-yellow-200 px-6 py-4">
+                <h3 class="font-serif text-xl font-semibold text-yellow-800 flex items-center">
+                  <span class="risk-indicator risk-medium mr-3"></span>
+                  Edge Timing Window Exploitation
+                </h3>
+              </div>
+              <div class="p-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <h4 class="font-semibold mb-3 text-primary">Attack Mechanism</h4>
+                    <ul class="space-y-2 text-sm text-secondary">
+                      <li>• Sub-millisecond race condition exploitation</li>
+                      <li>• Precise timing synchronization for detection-to-execution gap</li>
+                      <li>• Network latency manipulation for coordination</li>
+                      <li>• Pre-validation execution triggering</li>
+                    </ul>
+                    <div class="mt-3 bg-yellow-100 p-3 rounded-lg border border-yellow-200">
+                      <div class="text-sm text-yellow-800">
+                        <strong>Feasibility:</strong> Low without physical infrastructure access due to network variability (±1ms typical)
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold mb-3 text-primary">Mitigation Approach</h4>
+                    <div class="space-y-3">
+                      <div class="bg-gray-50 p-3 rounded-lg border border-gray-200">
+                        <strong class="text-gray-800">Hardware Timestamping</strong>
+                        <p class="text-sm text-gray-600 mt-1">TEE-secured monotonic counters with microsecond precision</p>
+                      </div>
+                      <div class="bg-blue-50 p-3 rounded-lg border border-blue-200">
+                        <strong class="text-blue-800">Bounded Clock Skew</strong>
+                        <p class="text-sm text-blue-600 mt-1">±1ms enforcement across components with violation detection</p>
+                      </div>
+                      <div class="bg-purple-50 p-3 rounded-lg border border-purple-200">
+                        <strong class="text-purple-800">Execution Halting</strong>
+                        <p class="text-sm text-purple-600 mt-1">Automatic stop and forensic capture on timing violation</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Log Ordering Manipulation -->
+            <div class="bg-white border border-border rounded-lg shadow-sm overflow-hidden">
+              <div class="bg-blue-50 border-b border-blue-200 px-6 py-4">
+                <h3 class="font-serif text-xl font-semibold text-blue-800 flex items-center">
+                  <span class="risk-indicator risk-medium mr-3"></span>
+                  Log Ordering Manipulation
+                </h3>
+              </div>
+              <div class="p-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <h4 class="font-semibold mb-3 text-primary">Attack Vector</h4>
+                    <ul class="space-y-2 text-sm text-secondary">
+                      <li>• Clock skew manipulation via NTP exploitation</li>
+                      <li>• Network delay injection for event reordering</li>
+                      <li>• Asymmetric routing for partial ordering control</li>
+                      <li>• Merkle root manipulation during consensus gaps</li>
+                    </ul>
+                    <div class="mt-3 bg-blue-100 p-3 rounded-lg border border-blue-200">
+                      <div class="text-sm text-blue-800">
+                        <strong>Feasibility:</strong> Medium with partial network control, but difficult to sustain meaningful semantic reordering
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold mb-3 text-primary">Defense Strategy</h4>
+                    <div class="space-y-3">
+                      <div class="bg-green-50 p-3 rounded-lg border border-green-200">
+                        <strong class="text-green-800">Vector Clock Consensus</strong>
+                        <p class="text-sm text-green-600 mt-1">Lamport timestamps with Byzantine fault tolerance</p>
+                      </div>
+                      <div class="bg-orange-50 p-3 rounded-lg border border-orange-200">
+                        <strong class="text-orange-800">Cross-Replica Comparison</strong>
+                        <p class="text-sm text-orange-600 mt-1">Merkle root exchange every 100ms with automatic divergence detection</p>
+                      </div>
+                      <div class="bg-red-50 p-3 rounded-lg border border-red-200">
+                        <strong class="text-red-800">Human Escalation</strong>
+                        <p class="text-sm text-red-600 mt-1">Manual arbitration for unresolvable conflicts with detailed logging</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Partial System Desynchronization -->
+            <div class="bg-white border border-border rounded-lg shadow-sm overflow-hidden">
+              <div class="bg-gray-50 border-b border-gray-200 px-6 py-4">
+                <h3 class="font-serif text-xl font-semibold text-gray-800 flex items-center">
+                  <span class="risk-indicator risk-medium mr-3"></span>
+                  Partial System Desynchronization
+                </h3>
+              </div>
+              <div class="p-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <h4 class="font-semibold mb-3 text-primary">Network Partition Attacks</h4>
+                    <ul class="space-y-2 text-sm text-secondary">
+                      <li>• Split-brain scenarios with divergent validation outcomes</li>
+                      <li>• Double-spend opportunities through partition exploitation</li>
+                      <li>• Coordinated partition timing for maximum impact</li>
+                      <li>• Gradual desynchronization for subtle inconsistency</li>
+                    </ul>
+                    <div class="mt-3 bg-gray-100 p-3 rounded-lg border border-gray-200">
+                      <div class="text-sm text-gray-800">
+                        <strong>Reality:</strong> Network partitions are inevitable at scale; focus on detection and recovery
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold mb-3 text-primary">CRDT-Based Recovery</h4>
+                    <div class="space-y-3">
+                      <div class="bg-teal-50 p-3 rounded-lg border border-teal-200">
+                        <strong class="text-teal-800">Convergent Data Types</strong>
+                        <p class="text-sm text-teal-600 mt-1">Eventual consistency without coordination, explicit conflict identification</p>
+                      </div>
+                      <div class="bg-indigo-50 p-3 rounded-lg border border-indigo-200">
+                        <strong class="text-indigo-800">Deterministic Merge</strong>
+                        <p class="text-sm text-indigo-600 mt-1">Defined tie-breaking rules with conservative default to most restrictive interpretation</p>
+                      </div>
+                      <div class="bg-cyan-50 p-3 rounded-lg border border-cyan-200">
+                        <strong class="text-cyan-800">Chaos Engineering</strong>
+                        <p class="text-sm text-cyan-600 mt-1">Regular partition testing with automatic recovery validation</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Composability -->
+      <section id="composability" class="mb-16">
+        <div class="max-w-4xl mx-auto px-8">
+          <h2 class="font-serif text-3xl font-semibold mb-8 text-primary">Part 6: Composability and Distributed Interaction</h2>
+
+          <div class="bg-white border border-border rounded-lg p-6 mb-8">
+            <h3 class="font-serif text-xl font-semibold mb-6 text-primary">Chained Gateway Interaction Model</h3>
+
+            <div class="mb-6">
+              <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                <h4 class="font-semibold text-blue-800 mb-2">System A → System B → System C Pattern</h4>
+                <p class="text-sm text-blue-600">
+                  Each gateway applies independent classification and validation, with nested attestation creating
+                  cryptographic proof of complete validation chain. Latency amplifies additively: 500ms per gateway
+                  in pessimistic mode.
+                </p>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h4 class="font-semibold mb-3 text-primary">Validation Certificate Chaining</h4>
+                <div class="space-y-2 text-sm">
+                  <div class="bg-gray-50 p-3 rounded">
+                    <strong>Gateway A Attestation:</strong>
+                    <br/>
+                    Classification, validation, policy version
+                  </div>
+                  <div class="bg-gray-50 p-3 rounded">
+                    <strong>Gateway B Attestation:</strong>
+                    <br/>
+                    Verification of A, additional validation
+                  </div>
+                  <div class="bg-gray-50 p-3 rounded">
+                    <strong>Gateway C Attestation:</strong>
+                    <br/>
+                    Verification of A+B, final authorization
+                  </div>
+                </div>
+              </div>
+              <div>
+                <h4 class="font-semibold mb-3 text-primary">Latency Amplification Analysis</h4>
+                <div class="overflow-x-auto">
+                  <table class="w-full text-sm border-collapse">
+                    <thead>
+                      <tr class="bg-gray-50">
+                        <th class="border border-gray-200 p-2 text-left">Chain Length</th>
+                        <th class="border border-gray-200 p-2 text-center">Min Latency</th>
+                        <th class="border border-gray-200 p-2 text-left">Mitigation</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="border border-gray-200 p-2">2 Gateways</td>
+                        <td class="border border-gray-200 p-2 text-center">1,000 ms</td>
+                        <td class="border border-gray-200 p-2">Optimistic mode for non-critical paths</td>
+                      </tr>
+                      <tr>
+                        <td class="border border-gray-200 p-2">3 Gateways</td>
+                        <td class="border border-gray-200 p-2 text-center">1,500 ms</td>
+                        <td class="border border-gray-200 p-2">Parallel validation where possible</td>
+                      </tr>
+                      <tr>
+                        <td class="border border-gray-200 p-2">3+ Gateways</td>
+                        <td class="border border-gray-200 p-2 text-center">—</td>
+                        <td class="border border-gray-200 p-2">Reconsider architecture (hierarchy vs. federation)</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+            <div class="bg-white border border-border rounded-lg p-6 shadow-sm">
+              <h3 class="font-serif text-lg font-semibold mb-4 text-primary">Log Ordering Consistency</h3>
+
+              <div class="space-y-4">
+                <div class="bg-red-50 p-3 rounded-lg border border-red-200">
+                  <h4 class="font-medium text-red-800 mb-2">Global Clock Dependency</h4>
+                  <p class="text-sm text-red-600">
+                    Strong global ordering requires sacrificing availability or accepting single point of failure
+                    (CAP theorem implication). Unsatisfiable without centralized coordination.
+                  </p>
+                </div>
+
+                <div class="bg-green-50 p-3 rounded-lg border border-green-200">
+                  <h4 class="font-medium text-green-800 mb-2">Causal Ordering Alternative</h4>
+                  <ul class="text-sm text-green-600 space-y-1">
+                    <li>• Happens-before graph with vector clocks</li>
+                    <li>• Explicit concurrent event identification</li>
+                    <li>• Deterministic merge with defined tie-breaking</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-white border border-border rounded-lg p-6 shadow-sm">
+              <h3 class="font-serif text-lg font-semibold mb-4 text-primary">Override Authority Conflicts</h3>
+
+              <div class="space-y-4">
+                <div class="bg-blue-50 p-3 rounded-lg border border-blue-200">
+                  <h4 class="font-medium text-blue-800 mb-2">Hierarchical Delegation</h4>
+                  <div class="space-y-1 text-sm text-blue-600">
+                    <div><strong>Policy Subset:</strong> Child policies equal or more restrictive than parent</div>
+                    <div><strong>Override Authority:</strong> Parent cryptographic signature required</div>
+                    <div><strong>Audit Trail:</strong> All override decisions with justification</div>
+                  </div>
+                </div>
+
+                <div class="bg-purple-50 p-3 rounded-lg border border-purple-200">
+                  <h4 class="font-medium text-purple-800 mb-2">Last-Writer-Wins</h4>
+                  <div class="space-y-1 text-sm text-purple-600">
+                    <div><strong>Timestamp-Based:</strong> TEE-secured monotonic clocks</div>
+                    <div><strong>Tie-Breaker:</strong> Content hash for concurrent updates</div>
+                    <div><strong>Skew Detection:</strong> Automatic violation alarm with forensic analysis</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-gradient-to-r from-gray-50 to-blue-50 border border-gray-200 rounded-lg p-6">
+            <h3 class="font-serif text-xl font-semibold mb-4 text-primary">Cascading Fail-Closed Mitigation</h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h4 class="font-semibold mb-3 text-secondary">Circuit Breaker Pattern</h4>
+                <div class="space-y-3">
+                  <div class="bg-white p-3 rounded border border-gray-200">
+                    <div class="font-medium text-gray-800">Closed State</div>
+                    <div class="text-sm text-gray-600">Healthy → Normal operation</div>
+                  </div>
+                  <div class="bg-white p-3 rounded border border-gray-200">
+                    <div class="font-medium text-orange-800">Open State</div>
+                    <div class="text-sm text-orange-600">Failure threshold exceeded → Fast failure</div>
+                  </div>
+                  <div class="bg-white p-3 rounded border border-gray-200">
+                    <div class="font-medium text-yellow-800">Half-Open State</div>
+                    <div class="text-sm text-yellow-600">Recovery → Limited probe traffic</div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <h4 class="font-semibold mb-3 text-secondary">Domain-Aware Bypass</h4>
+                <div class="space-y-2 text-sm">
+                  <div class="flex justify-between items-center bg-red-50 p-2 rounded border border-red-200">
+                    <span class="text-red-800">Financial/Medical</span>
+                    <span class="text-red-600">No bypass permitted</span>
+                  </div>
+                  <div class="flex justify-between items-center bg-green-50 p-2 rounded border border-green-200">
+                    <span class="text-green-800">Conversational</span>
+                    <span class="text-green-600">Local operation allowed</span>
+                  </div>
+                  <div class="flex justify-between items-center bg-yellow-50 p-2 rounded border border-yellow-200">
+                    <span class="text-yellow-800">Autonomous</span>
+                    <span class="text-yellow-600">Safe state transition only</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Cost Analysis -->
+      <section id="cost-analysis" class="mb-16">
+        <div class="max-w-4xl mx-auto px-8">
+          <h2 class="font-serif text-3xl font-semibold mb-8 text-primary">Part 7: Cost and Resource Envelope</h2>
+
+          <div class="bg-white border border-border rounded-lg p-6 mb-8">
+            <h3 class="font-serif text-xl font-semibold mb-6 text-primary">Slow Lane Cost Estimation</h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+              <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                <h4 class="font-semibold text-blue-800 mb-2">Compute</h4>
+                <div class="text-2xl font-bold text-blue-600 mb-1">$0.50-2.00</div>
+                <div class="text-sm text-blue-600">per 10,000 commit events</div>
+                <div class="text-xs text-blue-500 mt-2">TEE-enabled instances (AWS Nitro)</div>
+              </div>
+
+              <div class="bg-green-50 p-4 rounded-lg border border-green-200">
+                <h4 class="font-semibold text-green-800 mb-2">Storage</h4>
+                <div class="text-2xl font-bold text-green-600 mb-1">$0.10-0.50</div>
+                <div class="text-sm text-green-600">per 10,000 commit events</div>
+                <div class="text-xs text-green-500 mt-2">Encrypted, replicated, 90-day retention</div>
+              </div>
+
+              <div class="bg-purple-50 p-4 rounded-lg border border-purple-200">
+                <h4 class="font-semibold text-purple-800 mb-2">Anchoring</h4>
+                <div class="text-2xl font-bold text-purple-600 mb-1">$0.05-0.20</div>
+                <div class="text-sm text-purple-600">per 10,000 commit events</div>
+                <div class="text-xs text-purple-500 mt-2">L2 batch submission (Celestia/Arbitrum)</div>
+              </div>
+
+              <div class="bg-orange-50 p-4 rounded-lg border border-orange-200">
+                <h4 class="font-semibold text-orange-800 mb-2">Total</h4>
+                <div class="text-2xl font-bold text-orange-600 mb-1">$0.65-2.70</div>
+                <div class="text-sm text-orange-600">per 10,000 commit events</div>
+                <div class="text-xs text-orange-500 mt-2">At steady state</div>
+              </div>
+            </div>
+
+            <div class="bg-gray-50 p-4 rounded-lg">
+              <h4 class="font-semibold mb-3 text-primary">Monthly Cost Projections</h4>
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="bg-green-50 p-3 rounded border border-green-200">
+                  <div class="font-medium text-green-800">Optimized Setup</div>
+                  <div class="text-sm text-green-600">Reserved capacity, standard usage</div>
+                  <div class="text-lg font-semibold text-green-800 mt-1">~$8,500/month</div>
+                  <div class="text-xs text-green-500">At 500 RPS sustained</div>
+                </div>
+                <div class="bg-yellow-50 p-3 rounded border border-yellow-200">
+                  <div class="font-medium text-yellow-800">Standard Deployment</div>
+                  <div class="text-sm text-yellow-600">On-demand instances, moderate burst</div>
+                  <div class="text-lg font-semibold text-yellow-800 mt-1">~$17,500/month</div>
+                  <div class="text-xs text-yellow-500">At 500 RPS sustained</div>
+                </div>
+                <div class="bg-red-50 p-3 rounded border border-red-200">
+                  <div class="font-medium text-red-800">Premium Setup</div>
+                  <div class="text-sm text-red-600">Burst-heavy, premium instances</div>
+                  <div class="text-lg font-semibold text-red-800 mt-1">~$35,000/month</div>
+                  <div class="text-xs text-red-500">At 500 RPS sustained</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+            <div class="bg-white border border-border rounded-lg p-6 shadow-sm">
+              <h3 class="font-serif text-lg font-semibold mb-4 text-primary">Scaling Model Under Selective Activation</h3>
+
+              <div class="space-y-4">
+                <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                  <h4 class="font-medium text-blue-800 mb-2">Fast Lane Dominance</h4>
+                  <div class="space-y-2 text-sm text-blue-600">
+                    <div class="flex justify-between">
+                      <span>99% / 1% split:</span>
+                      <span>Slow Lane ~15% of total cost</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span>95% / 5% split:</span>
+                      <span>Slow Lane ~50% of total cost</span>
+                    </div>
+                  </div>
+                  <div class="mt-2 text-xs text-blue-500">
+                    Selective activation enables cost efficiency - security scales with actual risk exposure
+                  </div>
+                </div>
+
+                <div class="bg-green-50 p-4 rounded-lg border border-green-200">
+                  <h4 class="font-medium text-green-800 mb-2">Burst Handling Capacity</h4>
+                  <div class="space-y-1 text-sm text-green-600">
+                    <div><strong>Scale-up trigger:</strong> 70% sustained utilization</div>
+                    <div><strong>Activation latency:</strong> 30 seconds</div>
+                    <div><strong>Maximum burst:</strong> 10× sustained (5,000 RPS at 500 RPS base)</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-white border border-border rounded-lg p-6 shadow-sm">
+              <h3 class="font-serif text-lg font-semibold mb-4 text-primary">Hardware Acceleration Triggers</h3>
+
+              <div class="space-y-4">
+                <div class="bg-purple-50 p-4 rounded-lg border border-purple-200">
+                  <h4 class="font-medium text-purple-800 mb-2">Latency Trigger</h4>
+                  <div class="text-sm text-purple-600">
+                    <strong>P99 Slow Lane &gt;400ms sustained</strong>
+                    <br/>
+                    <span class="text-xs">→ GPU hash acceleration, dedicated TEE nodes</span>
+                    <br/>
+                    <span class="text-purple-800 font-medium">50% latency reduction expected</span>
+                  </div>
+                </div>
+
+                <div class="bg-orange-50 p-4 rounded-lg border border-orange-200">
+                  <h4 class="font-medium text-orange-800 mb-2">Throughput Trigger</h4>
+                  <div class="text-sm text-orange-600">
+                    <strong>Commit rate &gt;500 RPS sustained</strong>
+                    <br/>
+                    <span class="text-xs">→ Horizontal sharding, additional TEE instances</span>
+                    <br/>
+                    <span class="text-orange-800 font-medium">Linear scaling achievable</span>
+                  </div>
+                </div>
+
+                <div class="bg-red-50 p-4 rounded-lg border border-red-200">
+                  <h4 class="font-medium text-red-800 mb-2">Cost Trigger</h4>
+                  <div class="text-sm text-red-600">
+                    <strong>Monthly Slow Lane compute &gt;$50K</strong>
+                    <br/>
+                    <span class="text-xs">→ Reserved capacity, hardware procurement</span>
+                    <br/>
+                    <span class="text-red-800 font-medium">30-50% cost reduction expected</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-gradient-to-r from-red-50 to-orange-50 border border-red-200 rounded-lg p-6">
+            <h3 class="font-serif text-xl font-semibold mb-4 text-primary">Regulatory Liability Break-Even Analysis</h3>
+
+            <div class="overflow-x-auto">
+              <table class="w-full text-sm border-collapse">
+                <thead>
+                  <tr class="bg-white">
+                    <th class="border border-gray-200 p-3 text-left">Violation Type</th>
+                    <th class="border border-gray-200 p-3 text-center">Penalty Range</th>
+                    <th class="border border-gray-200 p-3 text-center">Annual Exposure</th>
+                    <th class="border border-gray-200 p-3 text-center">Hardware Justification</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="border border-gray-200 p-3 font-medium text-red-600">SOX Violation</td>
+                    <td class="border border-gray-200 p-3 text-center">$1M-$10M per incident</td>
+                    <td class="border border-gray-200 p-3 text-center">$5M (0.5 incident expectation)</td>
+                    <td class="border border-gray-200 p-3 text-center bg-green-100">$100K annual</td>
+                  </tr>
+                  <tr>
+                    <td class="border border-gray-200 p-3 font-medium text-orange-600">GDPR Fine</td>
+                    <td class="border border-gray-200 p-3 text-center">4% global revenue</td>
+                    <td class="border border-gray-200 p-3 text-center">$20M ($500M revenue)</td>
+                    <td class="border border-gray-200 p-3 text-center bg-green-100">$500K annual</td>
+                  </tr>
+                  <tr>
+                    <td class="border border-gray-200 p-3 font-medium text-purple-600">EU AI Act High-Risk</td>
+                    <td class="border border-gray-200 p-3 text-center">6% global revenue</td>
+                    <td class="border border-gray-200 p-3 text-center">$30M ($500M revenue)</td>
+                    <td class="border border-gray-200 p-3 text-center bg-green-100">$750K annual</td>
+                  </tr>
+                  <tr>
+                    <td class="border border-gray-200 p-3 font-medium text-blue-600">PCI-DSS Violation</td>
+                    <td class="border border-gray-200 p-3 text-center">$5K-$100K/month + brand damage</td>
+                    <td class="border border-gray-200 p-3 text-center">$1M annual estimate</td>
+                    <td class="border border-gray-200 p-3 text-center bg-green-100">$100K annual</td>
+                  </tr>
+                  <tr>
+                    <td class="border border-gray-200 p-3 font-medium text-teal-600">HIPAA Violation</td>
+                    <td class="border border-gray-200 p-3 text-center">$100-$50K per violation</td>
+                    <td class="border border-gray-200 p-3 text-center">$2M annual estimate</td>
+                    <td class="border border-gray-200 p-3 text-center bg-green-100">$200K annual</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="mt-4 bg-white p-4 rounded-lg border border-red-200">
+              <p class="text-sm text-secondary">
+                <strong>Break-even principle:</strong> Hardware investment justified when <strong>annual cost &lt; 10% of expected liability exposure</strong>,
+                recognizing that hardware reduces but does not eliminate risk. The analysis demonstrates clear economic viability
+                for full hardware-based deployment in high-risk domains.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Final Recommendation -->
+      <section id="recommendation" class="mb-16">
+        <div class="max-w-4xl mx-auto px-8">
+          <h2 class="font-serif text-3xl font-semibold mb-8 text-primary">Go / No-Go Recommendation for Pilot Deployment</h2>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+            <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+              <h3 class="font-serif text-xl font-semibold text-green-800 mb-4 flex items-center">
+                <i class="fas fa-check-circle mr-3"></i>
+                Conditional Go Conditions
+              </h3>
+
+              <div class="space-y-4">
+                <div>
+                  <h4 class="font-semibold text-green-800 mb-2">Phase 1-2 Mitigations Implemented</h4>
+                  <ul class="space-y-1 text-sm text-green-600">
+                    <li>✓ Multi-tier detection with adversarial training</li>
+                    <li>✓ Hardware-enforced binding with TEE Gateway</li>
+                    <li>✓ Optimistic/Pessimistic/Degraded mode state machine</li>
+                    <li>✓ Precise timing thresholds (50ms/500ms/5s enforced)</li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h4 class="font-semibold text-green-800 mb-2">Restricted Domain Scope</h4>
+                  <ul class="space-y-1 text-sm text-green-600">
+                    <li>✓ Conversational AI with reversible state</li>
+                    <li>✓ Financial retail (&lt;$1K, reversible transactions)</li>
+                    <li>✗ Excluded: Medical, institutional financial, autonomous</li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h4 class="font-semibold text-green-800 mb-2">Operational Requirements</h4>
+                  <ul class="space-y-1 text-sm text-green-600">
+                    <li>✓ Real-time monitoring on all failure modes</li>
+                    <li>✓ 24/7 human escalation path (15min response)</li>
+                    <li>✓ Automatic rollback triggers on criterion violation</li>
+                    <li>✓ Integration with existing fraud detection systems</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-red-50 border border-red-200 rounded-lg p-6">
+              <h3 class="font-serif text-xl font-semibold text-red-800 mb-4 flex items-center">
+                <i class="fas fa-times-circle mr-3"></i>
+                No-Go Conditions (Production)
+              </h3>
+
+              <div class="space-y-4">
+                <div>
+                  <h4 class="font-semibold text-red-800 mb-2">High-Risk Domains</h4>
+                  <ul class="space-y-1 text-sm text-red-600">
+                    <li>✗ Medical without full TEE implementation</li>
+                    <li>✗ High-value financial without redundant validation</li>
+                    <li>✗ Autonomous actuation without hardware interlocks</li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h4 class="font-semibold text-red-800 mb-2">Technical Requirements</h4>
+                  <ul class="space-y-1 text-sm text-red-600">
+                    <li>✗ Multi-gateway chaining without causal ordering</li>
+                    <li>✗ Production deployment without adversarial stress testing</li>
+                    <li>✗ Missing regulatory compliance verification</li>
+                    <li>✗ Incomplete safety certification for critical domains</li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h4 class="font-semibold text-red-800 mb-2">Testing Gaps</h4>
+                  <ul class="space-y-1 text-sm text-red-600">
+                    <li>✗ No controlled flooding exercises completed</li>
+                    <li>✗ Missing timing window fuzzing validation</li>
+                    <li>✗ Incomplete chaos engineering for partition recovery</li>
+                    <li>✗ Insufficient adversarial validation coverage</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white border border-border rounded-lg p-6 mb-8">
+            <h3 class="font-serif text-xl font-semibold mb-4 text-primary">Pilot Scope Specification</h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h4 class="font-semibold mb-3 text-secondary">Traffic Volume</h4>
+                <div class="space-y-2 text-sm">
+                  <div class="flex justify-between">
+                    <span>Fast Lane:</span>
+                    <span class="font-medium">1,000 RPS</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span>Slow Lane:</span>
+                    <span class="font-medium">10 RPS (1% of Fast Lane)</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span>Duration:</span>
+                    <span class="font-medium">90 days</span>
+                  </div>
+                </div>
+                <div class="mt-3 bg-blue-50 p-3 rounded-lg border border-blue-200">
+                  <div class="text-sm text-blue-600">
+                    <strong>Rationale:</strong> 10× headroom for learning, sufficient for seasonal variation analysis
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h4 class="font-semibold mb-3 text-secondary">Success Criteria</h4>
+                <div class="space-y-2 text-sm">
+                  <div class="bg-green-50 p-2 rounded border border-green-200">
+                    <strong class="text-green-800">Zero unvalidated commit executions</strong>
+                    <div class="text-xs text-green-600">Immediate halt on violation, root cause analysis</div>
+                  </div>
+                  <div class="bg-yellow-50 p-2 rounded border border-yellow-200">
+                    <strong class="text-yellow-800">&lt;1% false positive rate</strong>
+                    <div class="text-xs text-yellow-600">Tuning with additional training data as needed</div>
+                  </div>
+                  <div class="bg-blue-50 p-2 rounded border border-blue-200">
+                    <strong class="text-blue-800">P99 Fast Lane &lt;100ms degradation</strong>
+                    <div class="text-xs text-blue-600">Optimization and capacity expansion triggers</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-lg p-6">
+            <h3 class="font-serif text-xl font-semibold mb-4 text-primary">Final Verdict: Conditional Go with Restricted Scope</h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
+              <div>
+                <h4 class="font-semibold text-blue-800 mb-2">Structural Viability Assessment</h4>
+                <ul class="space-y-1 text-sm text-blue-600">
+                  <li>✓ <strong>Confirmed</strong> - Core design sound with appropriate hardening</li>
+                  <li>✓ <strong>Achievable</strong> - Safety invariants with operational discipline</li>
+                  <li>✓ <strong>Conditional</strong> - Domain-specific compliance requirements</li>
+                  <li>✓ <strong>Confirmed</strong> - Economic sustainability within operational budgets</li>
+                </ul>
+              </div>
+              <div>
+                <h4 class="font-semibold text-indigo-800 mb-2">Production Timeline</h4>
+                <div class="space-y-2 text-sm text-indigo-600">
+                  <div><strong>Phase 3-7 Completion:</strong> 12-18 months from pilot initiation</div>
+                  <div><strong>Contingent on:</strong> Successful mitigation validation and empirical safety demonstration</div>
+                  <div><strong>Critical path:</strong> Adversarial stress testing and regulatory compliance verification</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-white p-4 rounded-lg border border-blue-200">
+              <p class="text-sm text-secondary">
+                <strong>Recommendation:</strong> The Commit-Bound Dual-Latency Architecture demonstrates structural viability
+                with systematic hardening investment. While multiple critical vulnerabilities require resolution before
+                production deployment, the core design principles are sound. The architecture enables risk-proportional
+                resource allocation, TEE-based validation integrity, and cryptographically verifiable audit trails that
+                satisfy regulatory requirements with manageable overhead. The pilot deployment approval provides empirical
+                validation opportunity while maintaining safety boundaries through restricted domain scope and comprehensive
+                monitoring infrastructure.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Highlight active section in TOC
+        const sections = document.querySelectorAll('section[id]');
+        const tocLinks = document.querySelectorAll('.toc-fixed a[href^="#"]');
+
+        function highlightActiveSection() {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            tocLinks.forEach(link => {
+                link.classList.remove('font-semibold', 'text-primary');
+                link.classList.add('text-secondary');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('font-semibold', 'text-primary');
+                    link.classList.remove('text-secondary');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', highlightActiveSection);
+        highlightActiveSection(); // Initial call
+    </script>
+  
+
+</body></html>
