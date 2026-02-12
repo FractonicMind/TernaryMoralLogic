@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ternary Moral Logic Dual-Latency Architecture – Interactive Report</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    :root {
+      --bg: #0f172a;
+      --bg-alt: #020617;
+      --card: #020617;
+      --border: #1e293b;
+      --accent: #38bdf8;
+      --accent-soft: rgba(56,189,248,0.15);
+      --accent-strong: rgba(56,189,248,0.4);
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --code: #eab308;
+      --danger: #f97373;
+      --warn: #fbbf24;
+      --ok: #4ade80;
+      --font: system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: radial-gradient(circle at top, #020617 0, #020617 35%, #000 100%);
+      color: var(--text);
+      font-family: var(--font);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    code, pre {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      color: var(--code);
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 260px minmax(0, 1fr);
+      gap: 1.5rem;
+      padding: 1.5rem;
+    }
+
+    @media (max-width: 900px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+      .sidebar {
+        position: static;
+        max-height: none;
+      }
+    }
+
+    .sidebar {
+      border-radius: 0.75rem;
+      border: 1px solid var(--border);
+      background: linear-gradient(135deg, rgba(15,23,42,0.95), rgba(15,23,42,0.85));
+      padding: 1rem 1.25rem;
+      position: sticky;
+      top: 1rem;
+      max-height: calc(100vh - 2rem);
+      overflow-y: auto;
+    }
+
+    .sidebar h1 {
+      font-size: 1.1rem;
+      margin: 0 0 0.25rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #e5e7eb;
+    }
+
+    .sidebar .subtitle {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      border-radius: 999px;
+      padding: 0.15rem 0.65rem;
+      font-size: 0.7rem;
+      border: 1px solid rgba(148,163,184,0.4);
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 10px var(--accent-strong);
+    }
+
+    .toc-title {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-top: 0.5rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .toc {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      font-size: 0.85rem;
+    }
+
+    .toc li {
+      margin-bottom: 0.35rem;
+    }
+
+    .toc a {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 0.35rem;
+      color: var(--muted);
+      padding: 0.15rem 0;
+      border-radius: 999px;
+    }
+
+    .toc a span.toc-index {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      color: rgba(148,163,184,0.85);
+    }
+
+    .toc a:hover {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .toc a:hover span.toc-index {
+      color: var(--accent);
+    }
+
+    .toc li.active > a {
+      color: var(--accent);
+      background: rgba(56,189,248,0.08);
+      padding-inline: 0.4rem;
+    }
+
+    .toc li.active > a span.toc-index {
+      color: var(--accent);
+    }
+
+    .toc-controls {
+      display: flex;
+      gap: 0.25rem;
+      margin: 0.35rem 0 0.6rem;
+    }
+
+    .toc-controls button {
+      flex: 1;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.45);
+      background: rgba(15,23,42,0.85);
+      color: var(--muted);
+      font-size: 0.72rem;
+      padding: 0.15rem 0.35rem;
+      cursor: pointer;
+    }
+
+    .toc-controls button:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(15,23,42,0.95);
+    }
+
+    .content {
+      border-radius: 0.75rem;
+      border: 1px solid var(--border);
+      background:
+        radial-gradient(circle at top left, rgba(56,189,248,0.15), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(56,189,248,0.10), transparent 60%),
+        linear-gradient(145deg, rgba(15,23,42,0.96), rgba(15,23,42,0.96));
+      padding: 1.75rem 1.75rem 2.25rem;
+      box-shadow:
+        0 18px 45px rgba(0,0,0,0.65),
+        0 0 0 1px rgba(15,23,42,0.6);
+    }
+
+    .content h2 {
+      font-size: 1.1rem;
+      margin-top: 0;
+      margin-bottom: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #e5e7eb;
+    }
+
+    .content h3 {
+      font-size: 1rem;
+      margin-top: 1.5rem;
+      margin-bottom: 0.4rem;
+      color: #e5e7eb;
+    }
+
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .meta-pill {
+      border-radius: 999px;
+      padding: 0.15rem 0.65rem;
+      border: 1px solid rgba(148,163,184,0.4);
+      background: radial-gradient(circle at top left, rgba(56,189,248,0.10), transparent 55%);
+    }
+
+    .executive-callout {
+      border-radius: 0.75rem;
+      border: 1px solid rgba(148,163,184,0.45);
+      background:
+        radial-gradient(circle at top left, rgba(56,189,248,0.18), transparent 60%),
+        linear-gradient(135deg, rgba(15,23,42,0.9), rgba(15,23,42,0.96));
+      padding: 1rem 1.25rem;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .executive-callout strong {
+      color: var(--accent);
+    }
+
+    details {
+      border-radius: 0.75rem;
+      border: 1px solid rgba(148,163,184,0.4);
+      background: linear-gradient(145deg, rgba(15,23,42,0.96), rgba(15,23,42,0.96));
+      margin-bottom: 0.75rem;
+      padding: 0.4rem 0.9rem 0.85rem;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+    }
+
+    summary {
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      padding: 0.25rem 0;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .summary-left {
+      display: inline-flex;
+      flex-direction: column;
+    }
+
+    .summary-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #e5e7eb;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .summary-subtitle {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .summary-pill {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(148,163,184,0.9);
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.4);
+      padding: 0.1rem 0.55rem;
+    }
+
+    .summary-chevron {
+      font-size: 0.8rem;
+      color: var(--muted);
+      transition: transform 0.18s ease, color 0.18s ease;
+    }
+
+    details[open] {
+      border-color: var(--accent-strong);
+      box-shadow: 0 0 0 1px rgba(56,189,248,0.15);
+      background:
+        radial-gradient(circle at top left, rgba(56,189,248,0.16), transparent 60%),
+        linear-gradient(145deg, rgba(15,23,42,0.96), rgba(15,23,42,0.96));
+    }
+
+    details[open] summary .summary-title {
+      color: var(--accent);
+    }
+
+    details[open] .summary-chevron {
+      transform: rotate(90deg);
+      color: var(--accent);
+    }
+
+    .section-body {
+      margin-top: 0.55rem;
+      font-size: 0.87rem;
+      color: #e5e7eb;
+    }
+
+    .section-body p {
+      margin: 0.25rem 0;
+    }
+
+    .section-body ul,
+    .section-body ol {
+      margin: 0.35rem 0 0.35rem 1.1rem;
+      padding: 0;
+    }
+
+    .section-body li {
+      margin-bottom: 0.15rem;
+    }
+
+    .table-wrapper {
+      margin: 0.5rem 0;
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.8rem;
+    }
+
+    th, td {
+      border: 1px solid rgba(51,65,85,0.9);
+      padding: 0.4rem 0.45rem;
+      text-align: left;
+    }
+
+    th {
+      background: rgba(15,23,42,0.9);
+      font-weight: 600;
+      color: #e5e7eb;
+    }
+
+    tr:nth-child(even) td {
+      background: rgba(15,23,42,0.7);
+    }
+
+    .severity-pill {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 0.05rem 0.45rem;
+      font-size: 0.7rem;
+      border: 1px solid rgba(148,163,184,0.5);
+    }
+
+    .sev0 { border-color: var(--danger); color: var(--danger); }
+    .sev1 { border-color: var(--danger); color: var(--danger); }
+    .sev2 { border-color: var(--warn); color: var(--warn); }
+    .sev3 { border-color: var(--accent); color: var(--accent); }
+    .sev4 { border-color: var(--muted); color: var(--muted); }
+
+    .verdict {
+      margin-top: 1.25rem;
+      border-radius: 0.75rem;
+      border: 1px solid rgba(148,163,184,0.5);
+      padding: 0.85rem 1rem;
+      background:
+        radial-gradient(circle at top left, rgba(56,189,248,0.18), transparent 60%),
+        linear-gradient(145deg, rgba(15,23,42,0.96), rgba(15,23,42,0.96));
+      font-size: 0.88rem;
+    }
+
+    .verdict h3 {
+      margin-top: 0;
+      margin-bottom: 0.35rem;
+      font-size: 0.95rem;
+    }
+
+    .footnote {
+      margin-top: 1.75rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+      border-top: 1px dashed rgba(148,163,184,0.45);
+      padding-top: 0.75rem;
+    }
+
+    .footnote code {
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+
+<div class="layout">
+  <aside class="sidebar">
+    <h1>TML Dual-Latency</h1>
+    <div class="subtitle">Interactive technical feasibility & robustness report</div>
+
+    <div class="badge">
+      <span class="badge-dot"></span>
+      <span>Principal Systems Architecture View</span>
+    </div>
+
+    <div class="toc-title">Sections</div>
+
+    <div class="toc-controls">
+      <button id="expand-all">Expand all</button>
+      <button id="collapse-all">Collapse all</button>
+    </div>
+
+    <ul class="toc">
+      <li class="active"><a href="#exec-summary"><span class="toc-index">01</span><span>Executive Technical Summary</span></a></li>
+      <li><a href="#precedents"><span class="toc-index">02</span><span>Architectural Precedents</span></a></li>
+      <li><a href="#concurrency"><span class="toc-index">03</span><span>Concurrency & Execution</span></a></li>
+      <li><a href="#hardware"><span class="toc-index">04</span><span>Hardware Enforcement</span></a></li>
+      <li><a href="#latency"><span class="toc-index">05</span><span>Latency & Throughput</span></a></li>
+      <li><a href="#logging"><span class="toc-index">06</span><span>Logging & Integrity</span></a></li>
+      <li><a href="#failures"><span class="toc-index">07</span><span>Failure Modes & Fail-safe</span></a></li>
+      <li><a href="#adversarial"><span class="toc-index">08</span><span>Adversarial Security</span></a></li>
+      <li><a href="#economics"><span class="toc-index">09</span><span>Economic Modeling</span></a></li>
+      <li><a href="#composability"><span class="toc-index">10</span><span>System Composability</span></a></li>
+      <li><a href="#verdict"><span class="toc-index">11</span><span>Final Technical Verdict</span></a></li>
+    </ul>
+  </aside>
+
+  <main class="content">
+
+    <section id="exec-summary">
+      <h2>Executive Technical Summary</h2>
+
+      <div class="meta-row">
+        <div class="meta-pill">Architecture: Dual-lane (Fast + Slow)</div>
+        <div class="meta-pill">Fast-lane target overhead ≤ 2 ms</div>
+        <div class="meta-pill">Slow-lane log sealing ≤ 500 ms</div>
+        <div class="meta-pill">Immutable Merkle-based logging with async anchoring</div>
+      </div>
+
+      <div class="executive-callout">
+        The Dual-Latency architecture is technically feasible and aligns with patterns in speculative CPU execution, safety monitors in avionics/automotive, network policy planes, and cryptographically anchored audit systems. It is production-viable for soft-state and advisory workloads, and conditionally viable for hard-state domains if deployed with pessimistic or hybrid gating, strict fail-safe defaults, and asynchronous blockchain anchoring.
+      </div>
+
+      <p>
+        The system consists of a high-speed Operational Line that handles inference and user-visible output and a slower Constitutional Line that performs constraint and policy validation in parallel, with authority to veto or modify the fast-lane outcome. Both lanes feed an immutable log backed by Merkle batching and periodic on-chain anchoring, where the 500 ms constraint applies to local sealing rather than global chain finality.
+      </p>
+      <p>
+        For conversational and advisory AI, optimistic or hybrid execution is compatible with the target latency envelopes, especially when streaming output is acceptable and violations can be corrected through post-hoc overrides and compensating actions. For financial, medical, and autonomous control domains, optimistic release is unsafe for non-reversible actions; for those domains, pessimistic or tightly constrained hybrid strategies are required, with hardware or TEE-based enforcement in the critical path and clear capacity limits.
+      </p>
+      <p>
+        Key risks are race conditions between emission and veto, Slow-Lane resource exhaustion driving fail-open behavior, and economic overhead from dual execution and cryptographic logging at scale. These can be mitigated using token-buffered release, priority-aware backpressure, hardware roots of trust, TEEs for policy and logging integrity, and asynchronous anchoring to L1s, L2s, or permissioned ledgers. The architecture is classified as viable with constraints rather than fundamentally unstable.
+      </p>
+    </section>
+
+    <section id="precedents">
+      <h2>Architectural Precedents</h2>
+
+      <details open>
+        <summary>
+          <div class="summary-left">
+            <span class="summary-title">
+              <span class="summary-chevron">▶</span>
+              Precedent landscape
+            </span>
+            <span class="summary-subtitle">Existing dual-speed and veto patterns across domains</span>
+          </div>
+          <span class="summary-pill">Part 2</span>
+        </summary>
+        <div class="section-body">
+          <p>
+            The Dual-Latency pattern closely matches designs where a performance-critical primary path is monitored by a slower validation or audit path with veto or kill capabilities. Avionics and automotive safety systems use redundant control channels and safety monitors that can override or shut down actuators, while CPUs use speculative pipelines with reorder buffers that validate results before architectural commit. High-frequency trading platforms, telecom signaling systems, and ML traceability frameworks employ fast paths for live operations and slower compliance or audit paths anchored in tamper-evident logs.
+          </p>
+          <p>
+            In ML and AI governance, cryptographically anchored logs with hash chains or Merkle trees and optional blockchain anchoring provide traceability comparable to that proposed for the TML system. Though full dual-lane moral governance for LLMs is not yet a widely standardized pattern, its basic structure is a straightforward specialization of existing speculative-execution, safety-monitor, and compliance-sidecar architectures.
+          </p>
+
+          <div class="table-wrapper">
+            <table>
+              <thead>
+              <tr>
+                <th>Domain</th>
+                <th>Fast Path</th>
+                <th>Slow / Validation Path</th>
+                <th>Override / Rollback Mechanism</th>
+                <th>Structural Similarity</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td>Avionics flight control</td>
+                <td>Primary flight computer performing real-time control loops</td>
+                <td>Redundant computers and safety monitors cross-checking sensors and outputs</td>
+                <td>Majority voting, safe-mode actuations, hardware-level overrides</td>
+                <td>High – dual paths with strong safety veto and redundant logs</td>
+              </tr>
+              <tr>
+                <td>Automotive ASIL systems</td>
+                <td>ECUs providing steering, braking, and power control</td>
+                <td>Safety microcontrollers and watchdogs monitoring for faults</td>
+                <td>Limp-home modes, forced resets, hardware interlocks</td>
+                <td>High – explicit safety lane with fail-safe behavior</td>
+              </tr>
+              <tr>
+                <td>CPU speculative execution</td>
+                <td>Speculative pipeline executing predicted instructions</td>
+                <td>Retirement logic checking correctness before commit</td>
+                <td>Pipeline squash and rollback before visible state changes</td>
+                <td>High – fast speculation gated by slower commit logic</td>
+              </tr>
+              <tr>
+                <td>High-frequency trading</td>
+                <td>Low-latency order routing and execution</td>
+                <td>Compliance and risk sidecars logging and monitoring behavior</td>
+                <td>Order cancels/halts, post-trade corrections subject to rules</td>
+                <td>Medium – optimistic execution with partial control</td>
+              </tr>
+              <tr>
+                <td>Telecom signaling networks</td>
+                <td>Fast data plane packet handling</td>
+                <td>Slower control/policy plane updating routing/authorization</td>
+                <td>Policy-driven reconfiguration, throttling, or blocking</td>
+                <td>Medium – split planes analogous to dual lanes</td>
+              </tr>
+              <tr>
+                <td>Databases & 2PC</td>
+                <td>Speculative transaction execution</td>
+                <td>Commit protocol ensuring atomicity and durability</td>
+                <td>Transaction abort, rollback, or retry before commit</td>
+                <td>High – pessimistic commit gating like Slow Lane approval</td>
+              </tr>
+              <tr>
+                <td>Network filtering & DPI</td>
+                <td>Fast packet filter for basic rules</td>
+                <td>Slower deep inspection engine examining content</td>
+                <td>Delayed block/alert, or buffer-then-release strategies</td>
+                <td>Medium – optimistic vs pessimistic release patterns</td>
+              </tr>
+              <tr>
+                <td>ML traceability systems</td>
+                <td>Primary training/inference pipeline</td>
+                <td>Cryptographic logging and audit trail construction</td>
+                <td>Tamper-evident logs, offline or online audit actions</td>
+                <td>High – Always Memory parallels Merkle-anchored pipelines</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p>
+            Overall, the proposed architecture is not structurally novel; it generalizes established speculative/monitoring designs into a dual-lane AI governance context with cryptographic logging. The primary engineering questions concern latency, concurrency, and enforcement rather than fundamental feasibility.
+          </p>
+        </div>
+      </details>
+    </section>
+
+    <section id="concurrency">
+      <h2>Concurrency & Execution Strategy</h2>
+
+      <details open>
+        <summary>
+          <div class="summary-left">
+            <span class="summary-title">
+              <span class="summary-chevron">▶</span>
+              Race conditions and gating
+            </span>
+            <span class="summary-subtitle">Conditions where Fast Lane can bypass Slow Lane</span>
+          </div>
+          <span class="summary-pill">Part 3</span>
+        </summary>
+        <div class="section-body">
+          <p>
+            Race conditions arise when the Operational Line streams output before the Constitutional Line has completed validation. In optimistic mode, output may be visible immediately while the Slow Lane processes the full response; during normal operation most vetoes arrive within the 500 ms sealing target, but under load or partial failures the veto may lag behind user consumption, allowing harmful content to be seen before correction.
+          </p>
+          <p>
+            Concrete bypass conditions include optimistic release with no temporal gate, backpressure failure where the Slow Lane queue grows while the Fast Lane continues emitting tokens, permissive timeout policies that treat delayed validation as implicit approval, and clock skew or ordering ambiguity in distributed deployments. These scenarios allow an attacker to exploit Slow Lane delays by crafting load patterns that push harmful requests into a widened veto window.
+          </p>
+          <p>
+            Mitigations include token-buffered release, segmented validation where output is committed in small chunks contingent on periodic Slow Lane checks, and enforcing deterministic ordering via per-request transaction IDs and monotonically increasing sequence numbers. Lock-free queues and shared-memory ring buffers can connect lanes efficiently, while message-passing with sequence-aware acknowledgments is required in multi-process or multi-node deployments to keep overrides synchronized with outputs.
+          </p>
+        </div>
+      </details>
+
+      <details>
+        <summary>
+          <div class="summary-left">
+            <span class="summary-title">
+              <span class="summary-chevron">▶</span>
+              Optimistic vs pessimistic execution
+            </span>
+            <span class="summary-subtitle">Domain-appropriate release strategies</span>
+          </div>
+          <span class="summary-pill">Part 3</span>
+        </summary>
+        <div class="section-body">
+          <p>
+            Optimistic execution releases Fast-Lane output immediately and relies on Slow-Lane overrides and compensating actions to correct violations, which is acceptable for conversational LLMs, non-binding advisory tools, and other soft-state domains where outputs can be retracted or superseded. Rollback semantics in this mode are primarily client-visible (edits, warnings, or retractions) and log-level, as external state changes may already have occurred by the time a violation is detected.
+          </p>
+          <p>
+            Pessimistic execution buffers Fast-Lane output until the Slow Lane returns an approval decision, making it mandatory for hard-state domains such as financial settlement, medical intervention, or autonomous actuation where actions are non-reversible or safety-critical. User-perceived latency in this mode becomes the maximum of inference time and validation time plus small commit overhead, so domain-specific SLAs must be defined to ensure safety without destroying usability or market competitiveness.
+          </p>
+          <p>
+            Hybrid strategies classify requests by risk and domain, using pessimistic gating for critical operations and optimistic or lightly buffered release for non-critical ones. Dynamic mode switching can be governed by probabilistic risk scores that incorporate user identity, context, historical behavior, and policy thresholds, but requires clear degradation rules, consistent log semantics, and careful handling of mid-session transitions to avoid surprising clients.
+          </p>
+        </div>
+      </details>
+
+      <details>
+        <summary>
+          <div class="summary-left">
+            <span class="summary-title">
+              <span class="summary-chevron">▶</span>
+              Execution risk conditions
+            </span>
+            <span class="summary-subtitle">When optimistic execution is unacceptable</span>
+          </div>
+          <span class="summary-pill">Part 3</span>
+        </summary>
+        <div class="section-body">
+          <p>
+            Optimistic execution is unacceptable for production deployment whenever the Fast-Lane output can cause irreversible or high-impact external state changes on timescales shorter than the worst-case detection and override latency of the Slow Lane. This includes direct fund transfers, medication dosing, robotic or vehicle control commands, safety-critical configuration changes, and security policy modifications that, once applied, cannot be undone without significant harm or cost.
+          </p>
+          <p>
+            In these domains, even rare tail-latency outliers are enough to make optimistic release unsafe because an attacker can deliberately target the tails using resource-exhaustion or crafted workloads. For such systems, pessimistic or strongly constrained hybrid modes with pre-approved safe actions and hard fail-closed defaults are required to maintain acceptable residual risk.
+          </p>
+        </div>
+      </details>
+    </section>
+
+    <section id="hardware">
+      <h2>Hardware Enforcement Assessment</h2>
+
+      <details open>
+        <summary>
+          <div class="summary-left">
+            <span class="summary-title">
+              <span class="summary-chevron">▶</span>
+              Enforcement layers
+            </span>
+            <span class="summary-subtitle">Application, kernel, hypervisor, TEE, and hardware</span>
+          </div>
+          <span class="summary-pill">Part 4</span>
+        </summary>
+        <div class="section-body">
+          <p>
+            At the application layer, dual-lane enforcement is easy to implement as a user-space orchestration pattern, but it lacks strong guarantees because a compromised process can bypass checks and logging. Kernel modules and syscall filters provide stronger guarantees for system-level operations, while hypervisor-level mediation can gate VM I/O and enforce policies even if guests are compromised.
+          </p>
+          <p>
+            Trusted Execution Environments can protect policy engines and logging keys from a compromised host OS and enable remote attestation of Slow-Lane integrity, making them attractive for multi-tenant and high-stakes deployments. FPGA or ASIC co-processors can accelerate cryptographic operations and implement hardware veto paths for physical actuation, though they increase capex and reduce flexibility compared to software-first approaches.
+          </p>
+          <p>
+            Network-level enforcement via SDN and programmable firewalls can ensure that certain traffic classes or destinations are only accessible when marked as Slow-Lane validated, but these tags must be cryptographically authenticated to prevent spoofing. Overall, software-only enforcement is viable for conversational and advisory workloads, while hard-state domains benefit from TEEs, hypervisor controls, and dedicated safety controllers that can issue out-of-band kill or shutdown signals.
+          </p>
+        </div>
+      </details>
+    </section>
+
+    <section id="latency">
+      <h2>Latency & Throughput Modeling</h2>
+
+      <details open>
+        <summary>
+          <div class="summary-left">
+            <span class="summary-title">
+              <span class="summary-chevron">▶</span>
+              Performance envelope
+            </span>
+            <span class="summary-subtitle">Impact of 500 ms validation on LLM workloads</span>
+          </div>
+          <span class="summary-pill">Part 5</span>
+        </summary>
+        <div class="section-body">
+          <p>
+            Typical hosted LLMs produce on the order of tens of tokens per second, which affords a few hundred milliseconds for concurrent Slow-Lane processing without noticeably affecting time-to-first-token in optimistic or hybrid streaming modes. However, under high concurrency, the Slow Lane’s CPU, memory, and logging workload can become a bottleneck, increasing tail latency and risking overflow of queues that hold per-request state until validation completes.
+          </p>
+          <p>
+            To maintain a 500 ms sealing target, capacity planning must account for p95 and p99 behavior under realistic load profiles, provisioning sufficient Slow-Lane and logging resources or throttling admission when queues grow beyond safe boundaries. Distributed and multi-region deployments add network latency between lanes and logging infrastructure, making co-location or regional Slow-Lane replicas important to prevent cross-region communication from dominating validation time.
+          </p>
+          <p>
+            Cryptographic operations for hashing and Merkle batching are CPU-bound but efficient at typical batch sizes, while advanced proof systems such as zero-knowledge schemes are more expensive and generally better suited for asynchronous assurance rather than synchronous gating. For large-scale deployments, total compute overhead from dual execution and logging can increase cost per request by tens of percent, and storage footprints for detailed logs can reach terabytes per day if retention policies are aggressive.
+          </p>
+        </div>
+      </details>
+    </section>
+
+    <section id="logging">
+      <h2>Logging & Integrity Layer</h2>
+
+      <details open>
+        <summary>
+          <div class="summary-left">
+            <span class="summary-title">
+              <span class="summary-chevron">▶</span>
+              Merkle-based Always Memory
+            </span>
+            <span class="summary-subtitle">Ordering, omission risk, and anchoring strategy</span>
+          </div>
+          <span class="summary-pill">Part 6</span>
+        </summary>
+        <div class="section-body">
+          <p>
+            The Always-Memory layer can be implemented using append-only logs aggregated into Merkle trees, with each entry containing sequence numbers, timestamps, and identifiers for requests, outputs, and policy versions. Merkle roots are periodically anchored to public or consortium ledgers, allowing verifiers to detect tampering or omission by checking that committed roots match recomputed trees and that hash chains linking entries remain intact.
+          </p>
+          <p>
+            Asynchronous anchoring is compatible with a 500 ms local sealing objective because local hash chains and signatures provide immediate tamper-evidence, while on-chain commitments arrive later to strengthen integrity and transparency. The primary residual risk in the anchoring window is insider tampering before roots are published, which can be mitigated by redundant logging, external witnesses, multi-signature schemes, auditable anchoring schedules, and cross-system reconciliation mechanisms.
+          </p>
+          <p>
+            Standard L1 blockchains typically cannot guarantee sub-second finality, so high-frequency anchoring relies on L2 solutions, data-availability layers, or permissioned ledgers that can offer faster confirmation times. For most enterprise-scale AI systems, anchoring Merkle roots rather than raw logs keeps on-chain costs modest, while verification of Merkle proofs is efficient enough that it does not materially affect inference performance or latency budgets.
+          </p>
+        </div>
+      </details>
+    </section>
+
+    <section id="failures">
+      <h2>Failure Modes & Fail-safe Logic</h2>
+
+      <details open>
+        <summary>
+          <div class="summary-left">
+            <span class="summary-title">
+              <span class="summary-chevron">▶</span>
+              Failure spectrum
+            </span>
+            <span class="summary-subtitle">Timeouts, partitions, corruption, and compromise</span>
+          </div>
+          <span class="summary-pill">Part 7</span>
+        </summary>
+        <div class="section-body">
+          <p>
+            Major failure modes include power loss mid-override, network partitions between lanes, partial log corruption, Byzantine behavior in distributed clusters, compromised Fast or Slow Lanes, clock synchronization failures, memory exhaustion, and deadlock or livelock scenarios. Many of these manifest as either loss of visibility (Fast Lane continues without supervision), conflicting states (override decisions lost or mis-ordered), or integrity errors in logging that undermine auditability.
+          </p>
+          <p>
+            For each class, the architecture requires detection mechanisms (health checks, heartbeat timeouts, consistency probes, log verification), recovery procedures (restart and resync, replay of logs, recomputation and re-anchoring), and state reconciliation protocols that restore a consistent view of what was emitted and validated. The choice between fail-open and fail-closed defaults is strictly domain-specific, with conversational AI and advisory analytics generally favoring fail-open with explicit degraded-mode logging, and financial, medical, and autonomous systems generally favoring fail-closed or safe-shutdown behaviors for any loss of Slow-Lane assurance.
+          </p>
+
+          <div class="table-wrapper">
+            <table>
+              <thead>
+              <tr>
+                <th>Failure Mode</th>
+                <th>Severity</th>
+                <th>Recommended Default</th>
+                <th>Example Mitigations</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td>Slow Lane timeout or crash in critical domains</td>
+                <td><span class="severity-pill sev0">SEV0 – Critical</span></td>
+                <td>Fail-closed for financial, medical, autonomous</td>
+                <td>Health checks, immediate stop for high-risk operations, manual override and controlled restart</td>
+              </tr>
+              <tr>
+                <td>Slow Lane timeout in conversational systems</td>
+                <td><span class="severity-pill sev2">SEV2 – Major</span></td>
+                <td>Fail-open with degraded-mode logging</td>
+                <td>Flagged responses, reduced capability, increased sampling and post-hoc review</td>
+              </tr>
+              <tr>
+                <td>Network partition between lanes</td>
+                <td><span class="severity-pill sev1">SEV1 – High</span></td>
+                <td>Domain-dependent; closed for hard-state</td>
+                <td>Local partition detection, automatic transition to safe mode, buffering with expiry or halt</td>
+              </tr>
+              <tr>
+                <td>Log corruption or Merkle mismatch</td>
+                <td><span class="severity-pill sev1">SEV1 – High</span></td>
+                <td>Fail-closed for auditability</td>
+                <td>Verification pipelines, redundant copies, re-anchoring corrected logs, incident review</td>
+              </tr>
+              <tr>
+                <td>Compromised Fast Lane</td>
+                <td><span class="severity-pill sev0">SEV0 – Critical</span></td>
+                <td>Fail-closed for external actions</td>
+                <td>Hypervisor and network enforcement, TEEs for Slow Lane and logging, revocation and re-attestation</td>
+              </tr>
+              <tr>
+                <td>Compromised Slow Lane</td>
+                <td><span class="severity-pill sev0">SEV0 – Critical</span></td>
+                <td>Fail-closed, block high-risk decisions</td>
+                <td>TEE isolation, key revocation, independent monitoring, cross-check by secondary policy engines</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </details>
+    </section>
+
+    <section id="adversarial">
+      <h2>Adversarial Security Analysis</h2>
+
+      <details open>
+        <summary>
+          <div class="summary-left">
+            <span class="summary-title">
+              <span class="summary-chevron">▶</span>
+              Threat landscape
+            </span>
+            <span class="summary-subtitle">Timing, DoS, replay, side-channels, and key compromise</span>
+          </div>
+          <span class="summary-pill">Part 8</span>
+        </summary>
+        <div class="section-body">
+          <p>
+            Adversaries can target timing by saturating the Slow Lane, resource exhaustion by flooding it with costly policy evaluations, and failover logic by pushing the system into fail-open modes and then exploiting the reduced supervision window. They can also attempt log poisoning by inserting malformed entries or manipulating Merkle trees, conduct replay attacks by resubmitting previously approved requests in novel contexts, and use network-level man-in-the-middle attacks to tamper with inter-lane communication or anchoring.
+          </p>
+          <p>
+            Side-channel attacks may infer policy structure or leak cryptographic secrets via timing, cache, or speculation behaviors, especially if policy engines and hash functions share CPU cores or caches with untrusted workloads. Privilege escalation against the Fast Lane, Slow Lane, or logging infrastructure remains a central concern, as a successful attacker can disable enforcement, fabricate logs, or bypass anchoring; defense-in-depth requires least-privilege design, TEEs or HSMs for keys, authenticated inter-service messaging, and independent monitoring pipelines that treat deviations in Slow-Lane latency, anchoring schedules, or log volume as potential signals of compromise.
+          </p>
+        </div>
+      </details>
+    </section>
+
+    <section id="economics">
+      <h2>Economic & Operational Modeling</h2>
+
+      <details open>
+        <summary>
+          <div class="summary-left">
+            <span class="summary-title">
+              <span class="summary-chevron">▶</span>
+              Cost factors
+            </span>
+            <span class="summary-subtitle">Compute, storage, anchoring, and latency tax</span>
+          </div>
+          <span class="summary-pill">Part 9</span>
+        </summary>
+        <div class="section-body">
+          <p>
+            Dual-lane processing and cryptographic logging increase CPU and memory consumption per request, often by 20 to 50 percent depending on Slow-Lane policy complexity and log detail. Storage costs accumulate rapidly when retaining detailed input, output, and policy context for large numbers of requests, with terabyte-per-day scales plausible in high-volume scenarios unless aggressive compression and tiered retention policies are used.
+          </p>
+          <p>
+            Anchoring Merkle roots rather than raw logs keeps blockchain fees manageable, but frequent anchoring for many tenants still has non-trivial costs, particularly on congested public L1s. The latency tax associated with pessimistic gating is often the binding constraint in competitive markets such as financial trading, while for conversational systems the cost is more often dominated by additional compute and engineering complexity rather than user-perceived delay.
+          </p>
+          <p>
+            Total cost of ownership over a multi-year horizon must include Slow-Lane compute and storage, logging and anchoring infrastructure, TEEs or specialized hardware where used, and the operational overhead of maintaining and auditing the governance stack. Break-even analysis is highly workload-dependent; in general, the architecture is easiest to justify for high-value workloads where improved assurance and auditability bring clear risk reduction or compliance benefits that offset higher per-request costs.
+          </p>
+        </div>
+      </details>
+    </section>
+
+    <section id="composability">
+      <h2>System Composability & Integration</h2>
+
+      <details open>
+        <summary>
+          <div class="summary-left">
+            <span class="summary-title">
+              <span class="summary-chevron">▶</span>
+              Composability and federation
+            </span>
+            <span class="summary-subtitle">Chaining, multi-tenant deployments, and cross-org audit</span>
+          </div>
+          <span class="summary-pill">Part 10</span>
+        </summary>
+        <div class="section-body">
+          <p>
+            When multiple dual-lane systems are chained, the latencies of their Slow Lanes accumulate unless validation is carefully pipelined and shared across services, so the end-to-end design must be explicit about acceptable depth and ordering. Shared constitutional services can reduce duplication by centralizing policy logic, but this creates larger blast radii and complex cross-tenant interactions if not isolated correctly.
+          </p>
+          <p>
+            Integration with legacy single-lane AI systems is achievable by wrapping them in a governance layer that feeds their outputs into a Slow Lane and Always-Memory logging sidecar, gradually increasing enforcement strength from pure monitoring to veto-capable gating. For multi-tenant deployments, strict logical isolation of policy state, slow-lane resources, and logs is required, with cross-organizational federation mediated by shared anchoring mechanisms and well-defined protocols for exchanging commitments, proofs, and audit artifacts.
+          </p>
+        </div>
+      </details>
+    </section>
+
+    <section id="verdict">
+      <h2>Final Technical Verdict</h2>
+
+      <div class="verdict">
+        <h3>Viable with constraints</h3>
+        <p>
+          The Dual-Latency TML architecture is technically sound and grounded in well-understood patterns from speculative execution, safety-critical control systems, and cryptographically anchored logging. It is production-viable for conversational and advisory AI workloads and viable with constraints for financial, medical, and autonomous domains that employ pessimistic or tightly governed hybrid gating, strict fail-safe defaults, hardware or TEE-based enforcement, and conservative capacity planning.
+        </p>
+        <p>
+          For ultra-low-latency markets and systems that demand full real-time cryptographic proofs of correctness, the approach remains experimental and requires acceptance of higher latency or reduced proof strength. Open research questions include optimal risk-based mode switching, detailed tail-latency behavior in large distributed deployments, and the long-term economics of enterprise-scale cryptographic logging and anchoring, but none of these questions undermine the basic feasibility of the proposed dual-lane design.
+        </p>
+      </div>
+    </section>
+
+    <div class="footnote">
+      This HTML page is a static, interactive report using only HTML, CSS, and a small amount of vanilla JavaScript for smooth navigation and expand/collapse-all controls. Save it as <code>tml_dual_latency_report_interactive.html</code> and open it in any modern browser.
+    </div>
+
+  </main>
+</div>
+
+<script>
+  (function() {
+    const navItems = document.querySelectorAll('.toc li');
+    const links = document.querySelectorAll('.toc a');
+    const sections = Array.from(document.querySelectorAll('main section'));
+    const expandBtn = document.getElementById('expand-all');
+    const collapseBtn = document.getElementById('collapse-all');
+    const detailsElements = document.querySelectorAll('main details');
+
+    function setActiveNav(id) {
+      navItems.forEach(li => li.classList.remove('active'));
+      const active = document.querySelector('.toc a[href="#' + id + '"]');
+      if (active && active.parentElement) {
+        active.parentElement.classList.add('active');
+      }
+    }
+
+    links.forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href').slice(1);
+        const target = document.getElementById(targetId);
+        if (!target) return;
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        setActiveNav(targetId);
+        history.replaceState(null, '', '#' + targetId);
+      });
+    });
+
+    window.addEventListener('scroll', function() {
+      const scrollPos = window.scrollY || window.pageYOffset;
+      let currentId = sections[0].id;
+      for (const section of sections) {
+        const rect = section.getBoundingClientRect();
+        const offsetTop = rect.top + window.scrollY;
+        if (offsetTop - 120 <= scrollPos) {
+          currentId = section.id;
+        } else {
+          break;
+        }
+      }
+      setActiveNav(currentId);
+    });
+
+    expandBtn.addEventListener('click', function() {
+      detailsElements.forEach(d => { d.open = true; });
+    });
+
+    collapseBtn.addEventListener('click', function() {
+      detailsElements.forEach(d => { d.open = false; });
+    });
+  })();
+</script>
+
+</body>
+</html>
