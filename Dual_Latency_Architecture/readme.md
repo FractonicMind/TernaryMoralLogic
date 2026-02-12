@@ -1,4 +1,4 @@
-# The Commit-Bound TML Gateway
+# TML Dual-Line Architecture
 ### The End of Optimistic AI: A "Slow Lane" Architecture for High-Assurance Governance
 
 **Status:** Strategic Validation Complete (February 12, 2026)
