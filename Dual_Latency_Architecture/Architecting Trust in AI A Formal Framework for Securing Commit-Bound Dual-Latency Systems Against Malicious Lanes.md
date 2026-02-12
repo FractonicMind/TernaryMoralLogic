@@ -1,6 +1,8 @@
 # Architecting Trust in AI: A Formal Framework for Securing Commit-Bound Dual-Latency Systems Against Malicious Lanes
 
-## Adversarial Intent Detection and Execution Binding
+## Adversarial Intent Detection and Execution Binding   
+
+**Live Dashboard:** [View Interactive Risk Monitor](https://fractonicmind.github.io/TernaryMoralLogic/Dual_Latency_Architecture/Architecting%20Trust%20in%20AI%20A%20Formal%20Framework%20for%20Securing%20Commit-Bound%20Dual-Latency%20Systems%20Against%20Malicious%20Lanes.html)   
 
 The foundational premise of the Commit-Bound Dual-Latency architecture is its ability to selectively activate a rigorous validation process only when an irreversible "Commit Intent" is detected [[Research Goal]]. This mechanism represents both its primary optimization and its most critical point of failure under an adversarial threat model where the Fast Lane is assumed to be compromised and actively hostile [[Conversation History]]. The evaluation of this component must therefore shift from simple reliability to robust cryptographic verification, focusing on preventing catastrophic false negatives where a malicious actor successfully disguises an irreversible action as a benign one. The core challenge lies not merely in recognizing the intent but in binding the act of detection to the act of execution in a way that eliminates exploitable timing gaps. The analysis reveals that a probabilistic scoring model is insufficient; instead, a deterministic, multi-faceted classification engine is required, coupled with a fundamental architectural shift from post-hoc validation to pre-execution authorization.
 
