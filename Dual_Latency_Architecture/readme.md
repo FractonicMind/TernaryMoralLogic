@@ -31,23 +31,23 @@ To prove this isn't just philosophy, this repository contains **4 independent en
 
 ### 1. Security & Adversarial Audit ("The Red Team Report")
 *Focus: Attack Vectors, Intent Spoofing, and Fail-Closed Logic.*
-* 📄 **Read Specification:** [Architecting Trust in AI: A Formal Framework (.md)](Architecting%20Trust%20in%20AI%20A%20Formal%20Framework%20for%20Securing%20Commit-Bound%20Dual-Latency%20Systems%20Against%20Malicious%20Lanes.md)
+* 📄 **Read Specification:** [Architecting Trust in AI: A Formal Framework (.md)](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/Dual_Latency_Architecture/Architecting%20Trust%20in%20AI%20A%20Formal%20Framework%20for%20Securing%20Commit-Bound%20Dual-Latency%20Systems%20Against%20Malicious%20Lanes.md)
 * 🔴 **Live Dashboard:** [View Interactive Risk Monitor (.html)](https://fractonicmind.github.io/TernaryMoralLogic/Dual_Latency_Architecture/Architecting%20Trust%20in%20AI%20A%20Formal%20Framework%20for%20Securing%20Commit-Bound%20Dual-Latency%20Systems%20Against%20Malicious%20Lanes.html)
 
 ### 2. Systems & Integration Audit ("The API Report")
 *Focus: Banking APIs, Deadlock Prevention, and Composability.*
-* 📄 **Read Specification:** [Production-Grade Hardening (.md)](Production-Grade%20Hardening%20of%20Commit-Bound%20Dual-Latency%20Architecture.md)
+* 📄 **Read Specification:** [Production-Grade Hardening (.md)](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/Dual_Latency_Architecture/Production-Grade%20Hardening%20of%20Commit-Bound%20Dual-Latency%20Architecture.md)
 * 🔵 **Live Spec:** [View Interactive Architecture (.html)](https://fractonicmind.github.io/TernaryMoralLogic/Dual_Latency_Architecture/Production-Grade%20Hardening%20of%20Commit-Bound%20Dual-Latency%20Architecture.html)
 
 ### 3. Infrastructure & Hardware Audit ("The CFO Report")
 *Focus: FPGA vs. GPU, TCO Analysis, and Physical Isolation.*
-* 📄 **Read Report:** [Infrastructure Realism & Economic Viability (.md)](Infrastructure-Realism-and-Economic-Viability-of-Hardware-Enforced-Dual-Latency-Gateways.md)
+* 📄 **Read Report:** [Infrastructure Realism & Economic Viability (.md)](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/Dual_Latency_Architecture/Infrastructure-Realism-and-Economic-Viability-of-Hardware-Enforced-Dual-Latency-Gateways.md)
 * 📊 **View Data:** [Interactive Hardware Charts (.html)](https://fractonicmind.github.io/TernaryMoralLogic/Dual_Latency_Architecture/Infrastructure-Realism-and-Economic-Viability-of-Hardware-Enforced-Dual-Latency-Gateways.html)
 * 🎧 **Audio:** [Listen to the Audit (.mp3)](https://fractonicmind.github.io/TernaryMoralLogic/Dual_Latency_Architecture/Infrastructure-Realism-and-Economic-Viability-of-Hardware-Enforced-Dual-Latency-Gateways.mp3)
 
 ### 4. Component & ML Audit ("The Classifier Report")
 *Focus: Intent Classification, Neural Architecture Search, and Transactional Integrity.*
-* 📄 **Read Report:** [Transactional Integrity & Intent Detection (.md)](Transactional-Integrity-and-Hardware-Aware-Intent-Classification-for-Commit-Bound-Architectures.md)
+* 📄 **Read Report:** [Transactional Integrity & Intent Detection (.md)](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/Dual_Latency_Architecture/Transactional-Integrity-and-Hardware-Aware-Intent-Classification-for-Commit-Bound-Architectures.md)
 * 🧠 **View Model Specs:** [Interactive Classifier Logic (.html)](https://fractonicmind.github.io/TernaryMoralLogic/Dual_Latency_Architecture/Transactional-Integrity-and-Hardware-Aware-Intent-Classification-for-Commit-Bound-Architectures.html)
 * 🎧 **Audio:** [Listen to the Audit (.mp3)](https://fractonicmind.github.io/TernaryMoralLogic/Dual_Latency_Architecture/Transactional-Integrity-and-Hardware-Aware-Intent-Classification-for-Commit-Bound-Architectures.mp3)
 
