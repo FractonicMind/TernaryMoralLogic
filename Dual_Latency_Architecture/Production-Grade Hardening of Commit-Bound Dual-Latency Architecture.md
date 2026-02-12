@@ -229,6 +229,7 @@ The **certificate chain trust model** (ARK → ASK → CEK → PEK → PDH) ulti
 
 **Threat Model**: Cloud administrators with **hypervisor access** can potentially: manipulate TEE launch parameters, intercept attestation requests, or schedule victim enclaves on compromised hardware. While remote attestation should detect such manipulation, **attestation freshness and verification path integrity** become critical—and are themselves subject to compromise.  
 **Defense-in-Depth Required**: TEE security is **necessary but not sufficient**. Redundant validation across **independent TEE implementations** (SEV-SNP, TDX, Nitro), **geographic distribution**, and **cross-institutional verification** provide resilience against single-TEE compromise.  
+
 ---
 
 ## 3\. Mitigation Prioritization Roadmap
@@ -1549,3 +1550,4 @@ Achieving **targeted reordering with semantic significance** requires precise ti
 * Economic optimization at scale
 
 **Target production readiness**: 12-18 months from pilot initiation, contingent on successful mitigation validation and empirical safety demonstration.
+
