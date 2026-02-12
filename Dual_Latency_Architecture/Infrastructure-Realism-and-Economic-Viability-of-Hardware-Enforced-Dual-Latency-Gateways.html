@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TML Architecture Hardening | Engineering Brief</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Plotly.js -->
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+    <!-- Font Awesome (using CDN for icons, ensuring NO SVG OUTPUT in body, font-based only) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-dark': '#0f172a',    // Slate 900
+                        'brand-card': '#1e293b',    // Slate 800
+                        'brand-accent': '#38bdf8',  // Sky 400
+                        'brand-danger': '#f43f5e',  // Rose 500
+                        'brand-success': '#22c55e', // Green 500
+                        'brand-warn': '#eab308',    // Yellow 500
+                        'brand-text': '#f8fafc',    // Slate 50
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Chart Container Styling - Mandatory Requirements */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px; /* Base height */
+            max-height: 450px;
+        }
+        
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569; 
+        }
+
+        /* Diagram Connectors (CSS Only - No SVG) */
+        .connector-line {
+            position: absolute;
+            background-color: #475569;
+            z-index: 0;
+        }
+        .arrow-down::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-top: 5px solid #475569;
+        }
+        
+        body {
+            background-color: #0f172a; /* brand-dark */
+            color: #f8fafc; /* brand-text */
+        }
+    </style>
+    <!-- 
+        Palette Used: "Cyber Security / Deep Ocean"
+        Rationale: High contrast dark mode fits the "System Architect" persona and "Adversarial Engineering" tone.
+        Primary: Slate 900 (Background)
+        Secondary: Sky 400 (Data/Info)
+        Accent: Rose 500 (Threats/Critical)
+    -->
+    <!-- 
+        Narrative Plan:
+        1. Intro: Define the Dual-Latency concept (Fast vs Slow).
+        2. Architecture: Visual flow of the Commit-Bound Gateway.
+        3. Intent Detection: Analysis of threats and detection logic.
+        4. Failure Modes: How the system handles breaks across domains.
+        5. Ledger & Cost: Performance metrics and financial viability.
+        6. Conclusion: Go/No-Go Recommendation.
+    -->
+    <!-- 
+        Visualization Choices Summary:
+        1. Architecture: HTML/CSS Diagram (Goal: Organize) -> No SVG used.
+        2. Latency Gap: Chart.js Bar (Goal: Compare) -> Shows magnitude difference.
+        3. Attack Surface: Chart.js Polar Area (Goal: Inform/Risk) -> Categorizes threats.
+        4. Failure Protocols: Chart.js Radar (Goal: Compare) -> Domain specific profiles.
+        5. Cost/Throughput: Plotly 3D Scatter (Goal: Relationships) -> Complex multi-variable view.
+    -->
+</head>
+<body class="font-sans antialiased selection:bg-brand-accent selection:text-brand-dark">
+
+    <!-- Header -->
+    <header class="bg-brand-card border-b border-slate-700 sticky top-0 z-50 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="w-3 h-3 bg-brand-success rounded-full animate-pulse"></div>
+                <h1 class="text-xl font-bold tracking-tight text-brand-text">TML <span class="text-slate-400 font-mono">::HARDENING_PROTOCOL</span></h1>
+            </div>
+            <div class="hidden md:flex space-x-6 text-sm font-mono text-slate-400">
+                <span>STATUS: <span class="text-brand-warn">EVALUATING</span></span>
+                <span>TARGET: <span class="text-brand-accent">PROD-READY</span></span>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+
+        <!-- Section 1: Executive Summary -->
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div class="space-y-4">
+                <h2 class="text-3xl font-bold text-brand-accent">Dual-Latency Architecture</h2>
+                <p class="text-slate-300 leading-relaxed">
+                    The Ternary Moral Logic (TML) framework operates on a critical bifurcation: a <strong>Fast Lane</strong> for conversational fluidity and a <strong>Slow Lane</strong> for irrevocable commitments. This report evaluates the production hardness of this "Commit-Bound Gateway."
+                </p>
+                <div class="flex space-x-4 pt-2">
+                    <div class="bg-slate-800 p-3 rounded border-l-4 border-brand-success">
+                        <div class="text-xs text-slate-400 uppercase">Fast Lane</div>
+                        <div class="text-xl font-mono font-bold">≤2ms</div>
+                        <div class="text-xs text-slate-500">Non-Commit Inference</div>
+                    </div>
+                    <div class="bg-slate-800 p-3 rounded border-l-4 border-brand-danger">
+                        <div class="text-xs text-slate-400 uppercase">Slow Lane</div>
+                        <div class="text-xl font-mono font-bold">≤500ms</div>
+                        <div class="text-xs text-slate-500">Commit Validation</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Visualization: Latency Comparison -->
+            <div class="bg-brand-card p-6 rounded-lg shadow-md border border-slate-700">
+                <h3 class="text-sm font-mono text-slate-400 mb-4 uppercase border-b border-slate-700 pb-2">Latency Gap Analysis</h3>
+                <p class="text-xs text-slate-400 mb-4">Comparing system targets against human perception thresholds.</p>
+                <div class="chart-container">
+                    <canvas id="latencyChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Architecture Flow (HTML/CSS Diagram - NO SVG) -->
+        <section class="bg-brand-card rounded-lg border border-slate-700 overflow-hidden">
+            <div class="p-6 border-b border-slate-700">
+                <h2 class="text-2xl font-bold text-brand-text">System Topology</h2>
+                <p class="text-slate-400 mt-2">
+                    The Gateway Layer acts as the primary arbiter. It classifies "Commit Intent" to route traffic. Note the strict isolation of the Audit Layer (Always Memory).
+                </p>
+            </div>
+            
+            <div class="p-8 bg-slate-900/50 relative overflow-x-auto">
+                <!-- Diagram Container -->
+                <div class="min-w-[800px] flex flex-col items-center relative space-y-8">
+                    
+                    <!-- Row 1: Input -->
+                    <div class="flex justify-center z-10">
+                        <div class="bg-slate-800 text-slate-200 px-6 py-3 rounded border border-slate-600 font-mono shadow-lg">
+                            <i class="fa-solid fa-user mr-2 text-brand-accent"></i> User / API Request
+                        </div>
+                    </div>
+
+                    <!-- Connector Down -->
+                    <div class="h-8 w-0.5 bg-slate-600"></div>
+
+                    <!-- Row 2: Gateway -->
+                    <div class="flex justify-center z-10">
+                        <div class="bg-brand-accent/10 text-brand-accent px-8 py-4 rounded border-2 border-brand-accent font-bold font-mono shadow-[0_0_15px_rgba(56,189,248,0.2)] text-center">
+                            <i class="fa-solid fa-filter mr-2"></i> GATEWAY LAYER<br>
+                            <span class="text-xs font-normal text-slate-300">Intent Classification</span>
+                        </div>
+                    </div>
+
+                    <!-- Split Path Connectors -->
+                    <div class="relative w-full max-w-2xl h-8">
+                        <div class="absolute left-1/4 top-0 w-0.5 h-full bg-slate-600"></div> <!-- Left Drop -->
+                        <div class="absolute right-1/4 top-0 w-0.5 h-full bg-slate-600"></div> <!-- Right Drop -->
+                        <div class="absolute top-0 left-1/4 right-1/4 h-0.5 bg-slate-600"></div> <!-- Horizontal Cross -->
+                        <div class="absolute top-0 left-1/2 w-0.5 h-4 bg-slate-600 -translate-x-1/2 -translate-y-full"></div> <!-- Connect to Gateway -->
+                    </div>
+
+                    <!-- Row 3: Lanes -->
+                    <div class="grid grid-cols-2 gap-32 w-full max-w-4xl z-10">
+                        <!-- Fast Lane -->
+                        <div class="flex flex-col items-center">
+                            <div class="bg-slate-800/80 p-4 rounded border border-brand-success/50 w-full text-center hover:bg-slate-800 transition-colors">
+                                <h4 class="text-brand-success font-bold font-mono mb-2">FAST LANE</h4>
+                                <p class="text-xs text-slate-400">Stateless Inference</p>
+                                <p class="text-xs text-slate-400">Conversational</p>
+                                <div class="mt-2 text-xs font-mono bg-slate-900 rounded p-1 text-green-400">Latency: ~2ms</div>
+                            </div>
+                        </div>
+
+                        <!-- Slow Lane -->
+                        <div class="flex flex-col items-center">
+                            <div class="bg-slate-800/80 p-4 rounded border border-brand-danger/50 w-full text-center hover:bg-slate-800 transition-colors">
+                                <h4 class="text-brand-danger font-bold font-mono mb-2">SLOW LANE</h4>
+                                <p class="text-xs text-slate-400">Policy Validation</p>
+                                <p class="text-xs text-slate-400">Commit Intent</p>
+                                <div class="mt-2 text-xs font-mono bg-slate-900 rounded p-1 text-red-400">Latency: ~500ms</div>
+                            </div>
+                            
+                            <!-- Sub-component of Slow Lane -->
+                            <div class="h-4 w-0.5 bg-brand-danger/30"></div>
+                            <div class="bg-slate-900 p-2 rounded border border-dashed border-slate-600 mt-0 text-xs text-center w-3/4">
+                                <i class="fa-solid fa-link mr-1 text-brand-warn"></i> Merkle Batching
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Rejoin -->
+                    <div class="relative w-full max-w-2xl h-8 mt-4">
+                        <div class="absolute left-1/4 bottom-0 w-0.5 h-full bg-slate-600"></div>
+                        <div class="absolute right-1/4 bottom-0 w-0.5 h-full bg-slate-600"></div>
+                        <div class="absolute bottom-0 left-1/4 right-1/4 h-0.5 bg-slate-600"></div>
+                    </div>
+
+                    <!-- Row 4: Action -->
+                    <div class="flex justify-center z-10">
+                        <div class="bg-slate-800 text-slate-200 px-6 py-3 rounded border border-slate-600 font-mono shadow-lg flex items-center">
+                            <div class="mr-4 text-right">
+                                <div class="text-xs text-slate-400">Output</div>
+                                <div class="font-bold">Execution / Response</div>
+                            </div>
+                            <i class="fa-solid fa-bolt text-brand-warn text-xl"></i>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Commit Intent & Adversarial Robustness -->
+        <section class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div class="lg:col-span-1 space-y-4">
+                <h3 class="text-2xl font-bold text-brand-text">Intent Detection Risks</h3>
+                <p class="text-slate-300 text-sm">
+                    The core vulnerability lies in the Gateway's classification logic. Adversaries will attempt to disguise "Commit Intents" (e.g., fund transfers) as "Conversational" to bypass the Slow Lane validation.
+                </p>
+                <div class="bg-slate-800 p-4 rounded border-l-4 border-brand-warn">
+                    <h4 class="text-brand-warn font-bold text-sm">Critical Risk: False Negatives</h4>
+                    <p class="text-xs text-slate-400 mt-1">
+                        A commit action misclassified as non-commit executes without validation. This is catastrophic in financial/medical contexts.
+                    </p>
+                </div>
+            </div>
+            <div class="lg:col-span-2 bg-brand-card p-6 rounded-lg shadow-md border border-slate-700">
+                <h3 class="text-sm font-mono text-slate-400 mb-4 uppercase border-b border-slate-700 pb-2">Attack Surface Analysis</h3>
+                <p class="text-xs text-slate-400 mb-4">Distribution of anticipated adversarial vectors based on current LLM vulnerabilities.</p>
+                <div class="chart-container">
+                    <canvas id="attackSurfaceChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Failure Semantics by Domain -->
+        <section class="bg-brand-card rounded-lg border border-slate-700 p-6">
+            <div class="mb-6">
+                <h2 class="text-2xl font-bold text-brand-text">Failure Semantics & Degraded Modes</h2>
+                <p class="text-slate-400 mt-2 max-w-3xl">
+                    When the Slow Lane hangs or fails (timeout > 500ms), the system must default to a safe state. This default behavior (Fail-Open vs. Fail-Closed) varies drastically by domain.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Chart -->
+                <div class="chart-container">
+                    <canvas id="failureModeRadar"></canvas>
+                </div>
+                
+                <!-- Legend/Explanation -->
+                <div class="space-y-6 flex flex-col justify-center">
+                    <div class="space-y-2">
+                        <h4 class="text-brand-text font-bold flex items-center"><i class="fa-solid fa-lock text-brand-danger mr-2"></i> Fail-Closed (Conservative)</h4>
+                        <p class="text-sm text-slate-400">
+                            <strong>Mandatory for:</strong> Financial & Actuators. 
+                            <br>System aborts if validation times out.
+                            <br><span class="text-xs text-slate-500 italic">"Better to do nothing than do the wrong thing."</span>
+                        </p>
+                    </div>
+                    <div class="space-y-2">
+                        <h4 class="text-brand-text font-bold flex items-center"><i class="fa-solid fa-door-open text-brand-success mr-2"></i> Fail-Open (Optimistic)</h4>
+                        <p class="text-sm text-slate-400">
+                            <strong>Acceptable for:</strong> Casual Conversation.
+                            <br>System proceeds with best-effort logic if validation hangs.
+                            <br><span class="text-xs text-slate-500 italic">"User experience prioritizes continuity."</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Cost & Performance (Plotly 3D) -->
+        <section class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            <div class="lg:col-span-4 space-y-4">
+                <h3 class="text-2xl font-bold text-brand-text">Economic Viability</h3>
+                <p class="text-slate-300 text-sm">
+                    The "Slow Lane" incurs significantly higher compute costs due to structured validation and cryptographic sealing.
+                </p>
+                <ul class="space-y-2 text-sm text-slate-400">
+                    <li class="flex items-start"><i class="fa-solid fa-caret-right text-brand-accent mt-1 mr-2"></i> <strong>Selective Activation:</strong> Only ~5-10% of queries trigger Slow Lane.</li>
+                    <li class="flex items-start"><i class="fa-solid fa-caret-right text-brand-accent mt-1 mr-2"></i> <strong>Break-even:</strong> Hardware acceleration becomes justified at >50k commits/day.</li>
+                </ul>
+                <div class="mt-6 p-4 bg-slate-800 rounded border border-slate-700">
+                    <div class="text-xs text-slate-500 uppercase mb-1">Estimated Cost</div>
+                    <div class="text-2xl font-mono text-brand-text">$0.45 <span class="text-sm text-slate-500">/ 1k Commits</span></div>
+                    <div class="text-xs text-brand-success mt-1">Software-only MVP</div>
+                </div>
+            </div>
+            <div class="lg:col-span-8 bg-brand-card p-6 rounded-lg shadow-md border border-slate-700">
+                <h3 class="text-sm font-mono text-slate-400 mb-4 uppercase border-b border-slate-700 pb-2">Multi-Variable Analysis</h3>
+                <p class="text-xs text-slate-400 mb-4">Relationship between Throughput (X), Latency (Y), and Operational Cost (Z).</p>
+                <!-- Plotly Container -->
+                <div id="plotly3d" class="chart-container bg-slate-900 rounded border border-slate-800"></div>
+            </div>
+        </section>
+
+        <!-- Conclusion Footer -->
+        <footer class="bg-slate-900 border-t border-slate-800 p-8 rounded-lg mt-8 text-center">
+            <h3 class="text-xl font-bold text-brand-text mb-4">Final Recommendation</h3>
+            <div class="inline-flex items-center space-x-4">
+                <div class="px-6 py-2 bg-brand-warn/20 border border-brand-warn text-brand-warn rounded font-mono font-bold">
+                    PILOT: APPROVED
+                </div>
+                <div class="text-left text-sm text-slate-400 max-w-md">
+                    Proceed with <strong>Pessimistic Mode</strong> for Financial modules. Implement redundant classifiers for Gateway Layer before general rollout.
+                </div>
+            </div>
+            <p class="text-xs text-slate-600 mt-8 font-mono">
+                Generated by Canvas Infographics | NO SVG | NO MERMAID
+            </p>
+        </footer>
+
+    </main>
+
+    <script>
+        // --- UTILITIES ---
+
+        // Helper: Wrap long labels for Chart.js
+        function splitLabel(label, maxLength = 16) {
+            if (typeof label !== 'string' || label.length <= maxLength) return label;
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = words[0];
+
+            for (let i = 1; i < words.length; i++) {
+                if (currentLine.length + 1 + words[i].length <= maxLength) {
+                    currentLine += ' ' + words[i];
+                } else {
+                    lines.push(currentLine);
+                    currentLine = words[i];
+                }
+            }
+            lines.push(currentLine);
+            return lines;
+        }
+
+        // Common Tooltip Configuration (Mandatory)
+        const commonTooltipConfig = {
+            callbacks: {
+                title: function(tooltipItems) {
+                    const item = tooltipItems[0];
+                    let label = item.chart.data.labels[item.dataIndex];
+                    if (Array.isArray(label)) {
+                        return label.join(' ');
+                    } else {
+                        return label;
+                    }
+                }
+            }
+        };
+
+        // Common Chart Options
+        Chart.defaults.color = '#94a3b8'; // Slate 400
+        Chart.defaults.borderColor = '#334155'; // Slate 700
+        Chart.defaults.font.family = "'Inter', sans-serif";
+
+        const baseChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    labels: { color: '#f8fafc' }
+                },
+                tooltip: commonTooltipConfig
+            }
+        };
+
+        // --- CHART 1: Latency Gap (Bar Chart) ---
+        const latencyCtx = document.getElementById('latencyChart').getContext('2d');
+        const latencyLabels = ['Fast Lane Target', 'Human Reaction Time', 'Slow Lane Threshold', 'External API Timeout'];
+        
+        new Chart(latencyCtx, {
+            type: 'bar',
+            data: {
+                labels: latencyLabels.map(l => splitLabel(l)),
+                datasets: [{
+                    label: 'Latency (ms)',
+                    data: [2, 250, 500, 2000],
+                    backgroundColor: [
+                        '#22c55e', // Green (Fast)
+                        '#94a3b8', // Slate (Human)
+                        '#f43f5e', // Red (Slow Limit)
+                        '#38bdf8'  // Blue (Timeout)
+                    ],
+                    borderWidth: 0,
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                ...baseChartOptions,
+                scales: {
+                    y: {
+                        type: 'logarithmic', // Using log scale because 2ms vs 2000ms is huge
+                        title: { display: true, text: 'Time (ms) - Log Scale' },
+                        grid: { color: '#1e293b' }
+                    },
+                    x: {
+                        grid: { display: false }
+                    }
+                }
+            }
+        });
+
+        // --- CHART 2: Attack Surface (Polar Area) ---
+        const attackCtx = document.getElementById('attackSurfaceChart').getContext('2d');
+        const attackLabels = [
+            'Prompt Injection (Disguise)', 
+            'Multi-step Obfuscation', 
+            'Resource Flooding (DoS)', 
+            'Log Order Manipulation', 
+            'Race Condition Exploits'
+        ];
+
+        new Chart(attackCtx, {
+            type: 'polarArea',
+            data: {
+                labels: attackLabels.map(l => splitLabel(l)),
+                datasets: [{
+                    label: 'Risk Weighting',
+                    data: [85, 65, 50, 30, 45],
+                    backgroundColor: [
+                        'rgba(244, 63, 94, 0.7)',  // Rose
+                        'rgba(234, 179, 8, 0.7)',  // Yellow
+                        'rgba(56, 189, 248, 0.7)', // Sky
+                        'rgba(148, 163, 184, 0.7)',// Slate
+                        'rgba(139, 92, 246, 0.7)'  // Violet
+                    ],
+                    borderWidth: 1,
+                    borderColor: '#0f172a'
+                }]
+            },
+            options: {
+                ...baseChartOptions,
+                scales: {
+                    r: {
+                        grid: { color: '#334155' },
+                        ticks: { display: false, backdropColor: 'transparent' }
+                    }
+                }
+            }
+        });
+
+        // --- CHART 3: Failure Modes (Radar) ---
+        const failureCtx = document.getElementById('failureModeRadar').getContext('2d');
+        const domains = ['Financial', 'Medical (Critical)', 'Medical (Admin)', 'Autonomous Actuator', 'Conversational'];
+        
+        new Chart(failureCtx, {
+            type: 'radar',
+            data: {
+                labels: domains.map(l => splitLabel(l)),
+                datasets: [
+                    {
+                        label: 'Fail-Closed Requirement',
+                        data: [95, 80, 40, 90, 10], // High = Must Stop
+                        borderColor: '#f43f5e',
+                        backgroundColor: 'rgba(244, 63, 94, 0.2)',
+                        pointBackgroundColor: '#f43f5e'
+                    },
+                    {
+                        label: 'Fail-Open Tolerance',
+                        data: [5, 20, 60, 10, 90], // High = Can Continue
+                        borderColor: '#22c55e',
+                        backgroundColor: 'rgba(34, 197, 94, 0.2)',
+                        pointBackgroundColor: '#22c55e'
+                    }
+                ]
+            },
+            options: {
+                ...baseChartOptions,
+                scales: {
+                    r: {
+                        grid: { color: '#334155' },
+                        angleLines: { color: '#475569' },
+                        suggestedMin: 0,
+                        suggestedMax: 100,
+                        ticks: { backdropColor: 'transparent', color: '#94a3b8' }
+                    }
+                }
+            }
+        });
+
+        // --- CHART 4: Cost/Throughput (Plotly 3D Scatter) ---
+        // Generating synthetic data for the curve
+        const x_throughput = [];
+        const y_latency = [];
+        const z_cost = [];
+        const c_color = [];
+
+        // Simulate: As Throughput (X) increases, Latency (Y) spikes slightly, and Cost (Z) scales non-linearly
+        for (let i = 0; i < 100; i++) {
+            let t = i * 100; // Throughput 0 to 10000
+            x_throughput.push(t);
+            
+            // Latency increases with load (Simulation)
+            let l = 100 + (i * 2) + (Math.random() * 50); 
+            y_latency.push(l);
+            
+            // Cost calculation (Base + Per Unit)
+            let c = (t * 0.05) + (l * 0.1);
+            z_cost.push(c);
+            c_color.push(l); // Color by latency
+        }
+
+        const trace3d = {
+            x: x_throughput,
+            y: y_latency,
+            z: z_cost,
+            mode: 'markers',
+            marker: {
+                size: 4,
+                color: c_color,
+                colorscale: 'Viridis',
+                opacity: 0.8
+            },
+            type: 'scatter3d'
+        };
+
+        const layout3d = {
+            margin: { l: 0, r: 0, b: 0, t: 0 },
+            paper_bgcolor: 'rgba(0,0,0,0)',
+            plot_bgcolor: 'rgba(0,0,0,0)',
+            scene: {
+                xaxis: { title: 'Throughput (req/s)', color: '#94a3b8', gridcolor: '#334155' },
+                yaxis: { title: 'Latency (ms)', color: '#94a3b8', gridcolor: '#334155' },
+                zaxis: { title: 'Cost ($)', color: '#94a3b8', gridcolor: '#334155' },
+                bgcolor: 'rgba(0,0,0,0)'
+            },
+            font: { family: 'Inter, sans-serif', color: '#f8fafc' }
+        };
+
+        // Render Plotly
+        Plotly.newPlot('plotly3d', [trace3d], layout3d, {displayModeBar: false, responsive: true});
+
+        // Explicitly ensuring no SVG export for Plotly config (using WebGL/Canvas preference)
+        // Note: Plotly's scatter3d uses WebGL.
+    </script>
+    
+    <!-- 
+        NO MERMAID JS USED.
+        NO SVG GRAPHICS USED IN BODY (Font Awesome used via WebFont/CSS).
+        ALL CHARTS RENDERED VIA CANVAS/WEBGL.
+    -->
+</body>
+</html>
