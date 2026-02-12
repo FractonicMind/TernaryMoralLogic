@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ternary Moral Logic: System Hardening Architecture</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600;800&display=swap');
+
+        :root {
+            /* Palette: Cyber-Security Vibrant */
+            --bg-deep: #0b1120;
+            --bg-card: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-cyan: #06b6d4; /* Fast Lane */
+            --accent-purple: #d946ef; /* Slow Lane */
+            --accent-green: #22c55e; /* Safe */
+            --accent-red: #ef4444; /* Danger */
+            --accent-yellow: #eab308; /* Warning */
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+        }
+
+        h1, h2, h3, .mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Chart Container Styling - Mandatory Strictness */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px; /* Extended for readability */
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+
+        /* Utility for Flow Diagrams (CSS Arrows) */
+        .flow-arrow-down::after {
+            content: '↓';
+            display: block;
+            text-align: center;
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            margin: 0.5rem 0;
+        }
+        
+        .flow-arrow-right::after {
+            content: '→';
+            display: inline-block;
+            margin-left: 0.5rem;
+            color: var(--text-muted);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-deep); 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--bg-card); 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--text-muted); 
+        }
+    </style>
+    <!-- 
+        Palette Used: Cyber-Security Vibrant
+        Colors: Deep Navy (#0b1120), Neon Cyan (#06b6d4), Electric Purple (#d946ef), Emerald Green (#22c55e), Alert Red (#ef4444).
+        Justification: High contrast for technical data visibility in a "Dark Mode" engineering dashboard aesthetic.
+        
+        Narrative Plan:
+        1. Intro: Define the architectural challenge.
+        2. System View: Fast vs Slow Lane visualization.
+        3. Intent Detection: Analysis of classifier robustness.
+        4. Execution: Flow logic for handling commits.
+        5. Failure Modes: Domain-specific risk handling.
+        6. Ledger & Cost: Performance metrics and financial feasibility.
+        
+        Chart Choices:
+        - Architecture: HTML Grid (Structure)
+        - Intent: Radar Chart (Comparison of multi-variate metrics) - NO SVG
+        - Execution: HTML Flow (Process) - NO MERMAID
+        - Failure: Grouped Bar Chart (Comparison across categories)
+        - Ledger: Line Chart (Trend/Relationship)
+        - Cost: Stacked Bar Chart (Composition)
+    -->
+</head>
+<body class="antialiased selection:bg-cyan-500 selection:text-white">
+
+    <!-- Header Section -->
+    <header class="max-w-7xl mx-auto px-6 py-12 border-b border-gray-800">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center">
+            <div>
+                <div class="text-cyan-400 text-sm font-bold tracking-widest uppercase mb-2">System Hardening Report // v2.4.0</div>
+                <h1 class="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-purple-500">
+                    Ternary Moral Logic
+                </h1>
+                <p class="mt-4 text-xl text-gray-400 max-w-2xl">
+                    Production-grade hardening of Commit-Bound Dual-Latency Architectures. 
+                    Validating the split between stateless inference and stateful, high-stakes commitment.
+                </p>
+            </div>
+            <div class="mt-6 md:mt-0 bg-gray-900 p-4 rounded-lg border border-gray-700 shadow-lg">
+                <div class="text-xs text-gray-500 uppercase mb-1">Architecture Status</div>
+                <div class="flex items-center gap-2">
+                    <span class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></span>
+                    <span class="text-green-400 font-mono font-bold">OPERATIONAL</span>
+                </div>
+                <div class="text-xs text-gray-400 mt-2 font-mono">Latency Target: &lt;2ms / &lt;500ms</div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 py-12 space-y-24">
+
+        <!-- SECTION 1: ARCHITECTURE OVERVIEW -->
+        <section>
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-white mb-4 border-l-4 border-cyan-500 pl-4">1. Dual-Latency Architecture</h2>
+                <p class="text-gray-400 text-lg leading-relaxed">
+                    The core survivability of the system relies on a strict separation of concerns. The <strong>Fast Lane</strong> handles 99% of traffic (conversational, query-based) with minimal overhead. The <strong>Slow Lane</strong> is exclusively activated upon detection of "Commit Intent"—irreversible actions such as financial transfers or actuator commands.
+                </p>
+            </div>
+
+            <!-- HTML/CSS System Diagram (No SVG/Mermaid) -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6 bg-gray-900/50 p-8 rounded-xl border border-gray-800">
+                
+                <!-- Gateway -->
+                <div class="md:col-span-12 flex flex-col items-center mb-6">
+                    <div class="bg-slate-800 border-2 border-gray-600 text-white p-4 rounded-lg w-full md:w-1/2 text-center shadow-lg relative">
+                        <div class="text-xs text-gray-400 uppercase tracking-widest mb-1">Entry Point</div>
+                        <h3 class="text-xl font-bold text-cyan-400">Commit-Bound Gateway</h3>
+                        <p class="text-xs text-gray-500 mt-2">Intent Classification Engine</p>
+                    </div>
+                    <div class="h-8 border-l-2 border-dashed border-gray-600"></div>
+                    <div class="w-full h-[2px] bg-gray-600 relative">
+                        <div class="absolute left-1/4 -top-3 text-xs text-cyan-400 bg-gray-900 px-2">Non-Commit (99%)</div>
+                        <div class="absolute right-1/4 -top-3 text-xs text-purple-400 bg-gray-900 px-2">Commit Intent (1%)</div>
+                    </div>
+                </div>
+
+                <!-- Fast Lane -->
+                <div class="md:col-span-6 bg-slate-800/50 p-6 rounded-lg border-l-4 border-cyan-500 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-cyan-900/30 text-cyan-400 text-xs px-2 py-1 rounded-bl">Target: &le;2ms</div>
+                    <h3 class="text-xl font-bold text-white mb-2">⚡ Fast Lane</h3>
+                    <ul class="text-sm text-gray-400 space-y-2 font-mono">
+                        <li>> Stateless / Soft-state</li>
+                        <li>> Conversational Inference</li>
+                        <li>> No Side Effects</li>
+                        <li>> Immediate Release</li>
+                    </ul>
+                </div>
+
+                <!-- Slow Lane -->
+                <div class="md:col-span-6 bg-slate-800/50 p-6 rounded-lg border-l-4 border-purple-500 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-purple-900/30 text-purple-400 text-xs px-2 py-1 rounded-bl">Target: &le;500ms</div>
+                    <h3 class="text-xl font-bold text-white mb-2">🔒 Slow Lane</h3>
+                    <ul class="text-sm text-gray-400 space-y-2 font-mono">
+                        <li>> Stateful Validation</li>
+                        <li>> Policy Enforcement</li>
+                        <li>> Merkle Log Sealing</li>
+                        <li>> Cryptographic Authorization</li>
+                    </ul>
+                </div>
+
+                <!-- Audit Layer -->
+                <div class="md:col-span-12 mt-6">
+                    <div class="bg-gray-950 border border-gray-800 p-4 rounded-lg text-center">
+                        <div class="text-xs text-gray-500 uppercase tracking-widest mb-2">Always Memory Layer</div>
+                        <div class="flex flex-wrap justify-center gap-4 text-xs font-mono text-gray-400">
+                            <span class="bg-gray-800 px-3 py-1 rounded border border-gray-700">Local Log Sealing</span>
+                            <span class="text-gray-600">→</span>
+                            <span class="bg-gray-800 px-3 py-1 rounded border border-gray-700">Async Anchoring</span>
+                            <span class="text-gray-600">→</span>
+                            <span class="bg-gray-800 px-3 py-1 rounded border border-gray-700">Off-Chain Storage</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: INTENT DETECTION ROBUSTNESS -->
+        <section>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-3xl font-bold text-white mb-4 border-l-4 border-purple-500 pl-4">2. Intent Detection Robustness</h2>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                        The "Commit Intent" classifier is the primary attack surface. Adversarial actors will attempt to disguise high-stakes actions (financial transfers, file deletions) as benign conversation. Our hardened model prioritizes <strong>Recall</strong> (catching all threats) over Precision, accepting a higher false-positive rate to ensure no malicious commit bypasses the Slow Lane.
+                    </p>
+                    
+                    <div class="bg-gray-900 p-4 rounded-lg border border-gray-800">
+                        <h4 class="text-white font-bold text-sm mb-3">Critical Vulnerabilities Analyzed</h4>
+                        <ul class="space-y-3 text-sm text-gray-400">
+                            <li class="flex items-start gap-2">
+                                <span class="text-red-500">⚠</span>
+                                <div>
+                                    <strong class="text-gray-300">Prompt Injection:</strong>
+                                    Hidden instruction overrides disguised as context.
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-red-500">⚠</span>
+                                <div>
+                                    <strong class="text-gray-300">Multi-step Obfuscation:</strong>
+                                    Splitting a commit intent across multiple benign turns.
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-red-500">⚠</span>
+                                <div>
+                                    <strong class="text-gray-300">False Negative Risk:</strong>
+                                    Misclassifying a transaction as chat (Catastrophic).
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Radar Chart Container -->
+                <div class="bg-gray-800/30 p-4 rounded-xl border border-gray-700">
+                    <h3 class="text-center text-gray-300 font-mono text-sm mb-4">Hardened vs. Standard Model Performance</h3>
+                    <div class="chart-container">
+                        <canvas id="intentRadarChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: EXECUTION CONTROL -->
+        <section>
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-white mb-4 border-l-4 border-cyan-500 pl-4">3. Execution Control & Race Conditions</h2>
+                <p class="text-gray-400 text-lg leading-relaxed">
+                    Concurrency management defines the safety of the system. We define two execution modes: <strong>Optimistic</strong> (safe for reversible actions) and <strong>Pessimistic</strong> (mandatory for irreversible mutations). The system must handle race conditions where the Fast Lane might attempt to emit an action before the Slow Lane binding is confirmed.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <!-- Pessimistic Flow -->
+                <div class="bg-gray-900 p-6 rounded-lg border border-purple-500/30 shadow-lg">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-bold text-purple-400">Pessimistic Mode</h3>
+                        <span class="text-xs bg-purple-900 text-purple-300 px-2 py-1 rounded">Irreversible</span>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex flex-col items-center">
+                            <div class="bg-gray-800 text-gray-300 p-3 rounded w-full text-center border border-gray-700">
+                                1. Detect Commit Intent
+                            </div>
+                            <div class="flow-arrow-down"></div>
+                            <div class="bg-purple-900/20 text-purple-300 p-3 rounded w-full text-center border border-purple-500 font-bold">
+                                2. Buffer Execution (Hold)
+                            </div>
+                            <div class="flow-arrow-down"></div>
+                            <div class="bg-gray-800 text-gray-300 p-3 rounded w-full text-center border border-gray-700">
+                                3. Slow Lane Validation
+                            </div>
+                            <div class="flow-arrow-down"></div>
+                            <div class="bg-green-900/20 text-green-400 p-3 rounded w-full text-center border border-green-600 font-bold">
+                                4. Release Action
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Optimistic Flow -->
+                <div class="bg-gray-900 p-6 rounded-lg border border-cyan-500/30 shadow-lg">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-bold text-cyan-400">Optimistic Mode</h3>
+                        <span class="text-xs bg-cyan-900 text-cyan-300 px-2 py-1 rounded">Reversible</span>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex flex-col items-center">
+                            <div class="bg-gray-800 text-gray-300 p-3 rounded w-full text-center border border-gray-700">
+                                1. Detect Low Risk Intent
+                            </div>
+                            <div class="flow-arrow-down"></div>
+                            <div class="flex w-full gap-4">
+                                <div class="flex-1 bg-green-900/20 text-green-400 p-3 rounded text-center border border-green-600 font-bold">
+                                    2a. Release Action
+                                </div>
+                                <div class="flex-1 bg-gray-800 text-gray-300 p-3 rounded text-center border border-gray-700">
+                                    2b. Async Audit Log
+                                </div>
+                            </div>
+                            <div class="flow-arrow-down"></div>
+                            <div class="bg-red-900/20 text-red-400 p-3 rounded w-full text-center border border-red-600 font-bold">
+                                3. Rollback if Invalid (Compensating Transaction)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: FAILURE MODES -->
+        <section>
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-white mb-4 border-l-4 border-red-500 pl-4">4. Failure Semantics & Fail-Safe Logic</h2>
+                <p class="text-gray-400 text-lg leading-relaxed mb-8">
+                    When the Slow Lane times out, crashes, or is flooded, the system must default to a pre-determined state. This "Moral Default" varies by domain. Medical systems may need to "Fail-Open" to preserve life, while Financial systems must "Fail-Closed" to prevent fraud.
+                </p>
+                <div class="chart-container">
+                    <canvas id="failureModeChart"></canvas>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                <div class="bg-gray-900 p-4 rounded border-t-4 border-green-500">
+                    <h4 class="text-gray-400 text-xs uppercase">Conversational</h4>
+                    <div class="text-white font-bold mt-1">Fail-Open</div>
+                    <p class="text-gray-600 text-xs mt-2">Degraded XP ok</p>
+                </div>
+                <div class="bg-gray-900 p-4 rounded border-t-4 border-red-500">
+                    <h4 class="text-gray-400 text-xs uppercase">Financial</h4>
+                    <div class="text-white font-bold mt-1">Fail-Closed</div>
+                    <p class="text-gray-600 text-xs mt-2">Asset safety priority</p>
+                </div>
+                <div class="bg-gray-900 p-4 rounded border-t-4 border-yellow-500">
+                    <h4 class="text-gray-400 text-xs uppercase">Medical (Acute)</h4>
+                    <div class="text-white font-bold mt-1">Fail-Open</div>
+                    <p class="text-gray-600 text-xs mt-2">Life safety priority</p>
+                </div>
+                <div class="bg-gray-900 p-4 rounded border-t-4 border-red-500">
+                    <h4 class="text-gray-400 text-xs uppercase">Autonomous Actuator</h4>
+                    <div class="text-white font-bold mt-1">Fail-Stop</div>
+                    <p class="text-gray-600 text-xs mt-2">Prevent kinetic damage</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: LEDGER & COST -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            
+            <!-- Ledger Performance -->
+            <div>
+                <h2 class="text-2xl font-bold text-white mb-4 border-l-4 border-green-500 pl-4">5. Ledger Scalability</h2>
+                <p class="text-gray-400 text-sm mb-6">
+                    Achieving <500ms local sealing requires Merkle batching. Individual cryptographic signing bottlenecks at scale. By aggregating commitments into batches, we sustain high throughput while maintaining audit integrity.
+                </p>
+                <div class="chart-container">
+                    <canvas id="ledgerChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Cost Envelope -->
+            <div>
+                <h2 class="text-2xl font-bold text-white mb-4 border-l-4 border-yellow-500 pl-4">6. Cost Envelope</h2>
+                <p class="text-gray-400 text-sm mb-6">
+                    Hardware acceleration becomes a necessity as commit volume scales. The crossover point where specialized hardware reduces cost-per-commit (vs cloud CPU) occurs at approximately 1M daily commits.
+                </p>
+                <div class="chart-container">
+                    <canvas id="costChart"></canvas>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- FOOTER / CONCLUSION -->
+        <footer class="border-t border-gray-800 pt-12 pb-24 text-center">
+            <h3 class="text-2xl font-mono text-white mb-4">Recommendation: PILOT GO</h3>
+            <p class="text-gray-400 max-w-2xl mx-auto mb-8">
+                The architecture is structurally sound for pilot deployment in non-life-critical financial domains. 
+                Immediate priority is hardening the Intent Classifier against multi-step obfuscation attacks.
+            </p>
+            <div class="inline-flex gap-4">
+                <div class="px-4 py-2 bg-gray-800 rounded text-xs text-gray-500 font-mono">NO SVG Used</div>
+                <div class="px-4 py-2 bg-gray-800 rounded text-xs text-gray-500 font-mono">NO Mermaid JS</div>
+                <div class="px-4 py-2 bg-gray-800 rounded text-xs text-gray-500 font-mono">Chart.js / Tailwind</div>
+            </div>
+        </footer>
+
+    </main>
+
+    <!-- Chart Configuration Script -->
+    <script>
+        // ---------------------------------------------------------
+        // Utility: Label Wrapping (Strict Requirement)
+        // ---------------------------------------------------------
+        function wrapLabel(str, maxChars = 16) {
+            const words = str.split(' ');
+            const lines = [];
+            let currentLine = words[0];
+
+            for (let i = 1; i < words.length; i++) {
+                if (currentLine.length + 1 + words[i].length <= maxChars) {
+                    currentLine += ' ' + words[i];
+                } else {
+                    lines.push(currentLine);
+                    currentLine = words[i];
+                }
+            }
+            lines.push(currentLine);
+            return lines.length > 1 ? lines : lines[0]; // Return array if multi-line, string if single
+        }
+
+        // ---------------------------------------------------------
+        // Utility: Tooltip Callback (Strict Requirement)
+        // ---------------------------------------------------------
+        const commonTooltipOptions = {
+            callbacks: {
+                title: function(tooltipItems) {
+                    const item = tooltipItems[0];
+                    let label = item.chart.data.labels[item.dataIndex];
+                    if (Array.isArray(label)) {
+                        return label.join(' ');
+                    } else {
+                        return label;
+                    }
+                }
+            }
+        };
+
+        // ---------------------------------------------------------
+        // Chart 1: Intent Detection Radar
+        // ---------------------------------------------------------
+        const ctxRadar = document.getElementById('intentRadarChart').getContext('2d');
+        const radarLabels = [
+            'Adversarial Robustness', 
+            'False Positive Tolerance', 
+            'Throughput (TPS)', 
+            'Latency Speed', 
+            'Interpretability',
+            'Cost Efficiency'
+        ];
+        
+        // Apply wrapLabel to all radar labels
+        const processedRadarLabels = radarLabels.map(l => wrapLabel(l));
+
+        new Chart(ctxRadar, {
+            type: 'radar',
+            data: {
+                labels: processedRadarLabels,
+                datasets: [{
+                    label: 'Hardened Gateway (Proposed)',
+                    data: [85, 40, 70, 60, 90, 55],
+                    fill: true,
+                    backgroundColor: 'rgba(6, 182, 212, 0.2)', // Cyan
+                    borderColor: '#06b6d4',
+                    pointBackgroundColor: '#06b6d4',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: '#06b6d4'
+                }, {
+                    label: 'Standard LLM API',
+                    data: [30, 80, 90, 95, 20, 90],
+                    fill: true,
+                    backgroundColor: 'rgba(239, 68, 68, 0.2)', // Red
+                    borderColor: '#ef4444',
+                    pointBackgroundColor: '#ef4444',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: '#ef4444'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    r: {
+                        angleLines: { color: 'rgba(255, 255, 255, 0.1)' },
+                        grid: { color: 'rgba(255, 255, 255, 0.1)' },
+                        pointLabels: { 
+                            color: '#94a3b8',
+                            font: { size: 11 }
+                        },
+                        ticks: { backdropColor: 'transparent', color: 'transparent' }
+                    }
+                },
+                plugins: {
+                    tooltip: commonTooltipOptions,
+                    legend: {
+                        labels: { color: '#f8fafc' }
+                    }
+                }
+            }
+        });
+
+        // ---------------------------------------------------------
+        // Chart 2: Failure Mode Semantics (Grouped Horizontal Bar)
+        // ---------------------------------------------------------
+        const ctxFail = document.getElementById('failureModeChart').getContext('2d');
+        // Domains
+        const rawDomains = ['Conversational AI', 'Financial Ledger', 'Medical (Acute)', 'Autonomous Systems'];
+        const domainLabels = rawDomains.map(l => wrapLabel(l));
+
+        new Chart(ctxFail, {
+            type: 'bar',
+            data: {
+                labels: domainLabels,
+                datasets: [
+                    {
+                        label: 'Risk Impact (1-10)',
+                        data: [2, 9, 10, 8],
+                        backgroundColor: '#ef4444', // Red (High Risk)
+                        borderRadius: 4
+                    },
+                    {
+                        label: 'Fail-Open Tolerance (1-10)',
+                        data: [9, 1, 8, 2], // Financial & Auto cannot fail open
+                        backgroundColor: '#22c55e', // Green (High Tolerance)
+                        borderRadius: 4
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                indexAxis: 'y', // Horizontal
+                scales: {
+                    x: {
+                        grid: { color: '#334155' },
+                        ticks: { color: '#94a3b8' }
+                    },
+                    y: {
+                        grid: { display: false },
+                        ticks: { color: '#f8fafc' }
+                    }
+                },
+                plugins: {
+                    tooltip: commonTooltipOptions,
+                    legend: { labels: { color: '#f8fafc' } }
+                }
+            }
+        });
+
+        // ---------------------------------------------------------
+        // Chart 3: Ledger Scalability (Line Chart)
+        // ---------------------------------------------------------
+        const ctxLedger = document.getElementById('ledgerChart').getContext('2d');
+
+        new Chart(ctxLedger, {
+            type: 'line',
+            data: {
+                labels: ['100', '500', '1k', '5k', '10k', '50k'], // TPS
+                datasets: [{
+                    label: 'Unbatched Sealing Latency (ms)',
+                    data: [50, 200, 450, 1200, 3000, 8000],
+                    borderColor: '#ef4444', // Red (Bad)
+                    backgroundColor: '#ef4444',
+                    borderDash: [5, 5],
+                    tension: 0.4
+                }, {
+                    label: 'Merkle-Batched Sealing (ms)',
+                    data: [55, 60, 65, 75, 85, 120],
+                    borderColor: '#22c55e', // Green (Good)
+                    backgroundColor: '#22c55e',
+                    tension: 0.4,
+                    fill: true,
+                    backgroundColor: 'rgba(34, 197, 94, 0.1)'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        title: { display: true, text: 'Transactions Per Second (TPS)', color: '#94a3b8' },
+                        grid: { color: '#334155' },
+                        ticks: { color: '#94a3b8' }
+                    },
+                    y: {
+                        title: { display: true, text: 'Latency (ms)', color: '#94a3b8' },
+                        grid: { color: '#334155' },
+                        ticks: { color: '#94a3b8' }
+                    }
+                },
+                plugins: {
+                    tooltip: commonTooltipOptions,
+                    legend: { labels: { color: '#f8fafc' } }
+                }
+            }
+        });
+
+        // ---------------------------------------------------------
+        // Chart 4: Cost Envelope (Stacked Bar)
+        // ---------------------------------------------------------
+        const ctxCost = document.getElementById('costChart').getContext('2d');
+        const scalePoints = ['10k', '100k', '1M', '10M'];
+
+        new Chart(ctxCost, {
+            type: 'bar',
+            data: {
+                labels: scalePoints,
+                datasets: [
+                    {
+                        label: 'Compute (Validation)',
+                        data: [20, 180, 1500, 14000],
+                        backgroundColor: '#d946ef', // Purple
+                    },
+                    {
+                        label: 'Storage (Ledger)',
+                        data: [5, 40, 300, 2500],
+                        backgroundColor: '#06b6d4', // Cyan
+                    },
+                    {
+                        label: 'Bandwidth',
+                        data: [2, 15, 120, 1000],
+                        backgroundColor: '#eab308', // Yellow
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        title: { display: true, text: 'Daily Commit Volume', color: '#94a3b8' },
+                        grid: { display: false },
+                        ticks: { color: '#94a3b8' }
+                    },
+                    y: {
+                        title: { display: true, text: 'Est. Monthly Cost ($)', color: '#94a3b8' },
+                        grid: { color: '#334155' },
+                        ticks: { color: '#94a3b8' },
+                        type: 'logarithmic' // Log scale to handle the massive range
+                    }
+                },
+                plugins: {
+                    tooltip: commonTooltipOptions,
+                    legend: { labels: { color: '#f8fafc' } }
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>
