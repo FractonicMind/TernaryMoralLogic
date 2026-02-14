@@ -10,6 +10,16 @@ In TML, the Merkle tree is not merely a logging optimization; it is the **struct
 * **Adversarial Resilience:** hardened against insider threats, retroactive reinterpretation, and log truncation via "Execution Interlocks".
 * **Scalable Verification:** Utilizes a **Ternary (Base-3)** topology to map TML's triadic states (+1, 0, -1), optimizing proof sizes for intergenerational audit.
 
+### Visual Architecture
+
+**1. Hierarchical Domain Separation**
+The TML Merkle Root aggregates independent subtrees for Human Rights, Earth Protection, and Governance, ensuring domain-specific integrity.
+![TML Merkle Hierarchy](iamges/TML_Merkle_Hierarchy_Diagram.png)
+
+**2. Lightweight Verification (SPV)**
+Regulators can verify individual events using Simple Payment Verification (SPV) without downloading the full blockchain ledger.
+![SPV Verification Flow](/images/TML_SPV_Verification_Flow.png)
+
 ---
 
 ## Documentation Index
