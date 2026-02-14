@@ -96,3 +96,14 @@ A comparative analysis of the TML architecture against existing systems highligh
 
 This comparison demonstrates that while other systems leverage Merkle trees for integrity, TML is uniquely architected for governance robustness. The hierarchical ternary structure prioritizes audit clarity and efficiency, and the focus on lightweight verification addresses scalability concerns common in permissionless blockchains. The final report must conclude with a formal disclosure of failure modes and residual risks. The guarantees provided by the TML architecture are conditional. They assume the correctness of the cryptographic algorithms, the absence of a breakthrough in quantum computing, and the proper implementation of the software. Key residual risks include the compromise of hardware security modules containing signing keys, collusion between malicious insiders and external attackers, and the degradation of physical storage media over time \[[43](https://www.arxiv.org/pdf/2512.07827), [154](https://dl.acm.org/doi/10.1145/3767322), [177](https://www.researchgate.net/publication/221294098_An_Adaptive_Fusion_Framework_for_Fault-Tolerant_Multibiometrics)\]. A thorough understanding of these dependencies and risks is essential for deploying and maintaining the system responsibly .
 
+---
+## Document Control
+| Attribute | Detail |
+| :--- | :--- |
+| **Document ID** | TML-RES-001 |
+| **Version** | 1.0.0 |
+| **Status** | **PUBLISHED** |
+| **Classification** | **Cryptographic Research** |
+| **Target** | **SSRN / IEEE** |
+| **Author** | Lev Goukassian |
+| **Date** | 2026-02-14 |
