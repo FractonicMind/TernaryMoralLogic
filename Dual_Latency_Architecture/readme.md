@@ -5,6 +5,9 @@
 **License:** Open Source / Research Preview
 
 ---
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18637240.svg)](https://doi.org/10.5281/zenodo.18637240)
+
+---
 
 ## The Core Philosophy: The Two Lines of Conscience
 The central problem of modern AI is that it tries to do everything at the same speed. It generates a poem about flowers at the same speed it executes a bank transfer. This is dangerous because wisdom requires hesitation, but chatbots require speed.
