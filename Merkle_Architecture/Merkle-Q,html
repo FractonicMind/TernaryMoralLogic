@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ternary Moral Logic: Merkle Tree Architecture for Ethical AI Governance</title>
+
+  <!-- Essential CDN Libraries -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              50: 'hsl(200, 75%, 95%)',
+              100: 'hsl(200, 75%, 85%)',
+              200: 'hsl(200, 75%, 75%)',
+              300: 'hsl(200, 75%, 65%)',
+              400: 'hsl(200, 75%, 55%)',
+              500: 'hsl(200, 75%, 40%)',
+              600: 'hsl(200, 75%, 35%)',
+              700: 'hsl(200, 75%, 25%)',
+              800: 'hsl(200, 75%, 15%)',
+              900: 'hsl(200, 75%, 10%)'
+            },
+            accent: {
+              50: 'hsl(280, 70%, 95%)',
+              100: 'hsl(280, 70%, 85%)',
+              200: 'hsl(280, 70%, 75%)',
+              300: 'hsl(280, 70%, 65%)',
+              400: 'hsl(280, 70%, 60%)',
+              500: 'hsl(280, 70%, 50%)',
+              600: 'hsl(280, 70%, 45%)',
+              700: 'hsl(280, 70%, 35%)',
+              800: 'hsl(280, 70%, 25%)',
+              900: 'hsl(280, 70%, 15%)'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0"></script>
+
+  <!-- Preline UI Components -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/preline@2.0.3/dist/preline.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/preline@2.0.3/dist/preline.js"></script>
+
+  <!-- Custom Styles -->
+  <style>
+    html { scroll-behavior: smooth; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      html { scroll-behavior: auto; }
+    }
+
+    .btn-interactive {
+      transition: all 0.2s ease-out;
+    }
+    
+    .btn-interactive:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+    
+    .btn-interactive:active {
+      transform: scale(0.95);
+    }
+
+    .card-interactive {
+      transition: all 0.3s ease-out;
+      border: 1px solid transparent;
+      --border-lightness: 40%;
+    }
+
+    .dark .card-interactive {
+      --border-lightness: 60%;
+    }
+
+    .card-interactive:hover {
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      filter: brightness(0.98);
+    }
+    
+    /* Primary colored cards */
+    .card-interactive[class*="primary"]:hover,
+    .card-interactive[class*="white"]:hover,
+    .card-interactive[class*="gray-"]:hover {
+      border-color: hsl(200, 75%, var(--border-lightness));
+    }
+    
+    /* Accent colored cards */
+    .card-interactive[class*="accent"]:hover {
+      border-color: hsl(280, 70%, var(--border-lightness));
+    }
+
+    .dark .card-interactive:hover {
+      filter: brightness(1.05);
+    }
+  </style>
+
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark');
+      const isDark = document.body.classList.contains('dark');
+      document.getElementById('sunIcon').style.display = isDark ? 'block' : 'none';
+      document.getElementById('moonIcon').style.display = isDark ? 'none' : 'block';
+    }
+  </script>
+</head>
+
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen">
+  <!-- Progress Bar -->
+  <div class="fixed top-0 left-0 h-1 bg-primary-500 dark:bg-primary-400 z-[60] transition-all duration-300 ease-out" id="progressBar" style="width: 0%;"></div>
+
+  <!-- Floating Header -->
+  <header class="fixed top-0 left-0 right-0 z-50 backdrop-blur bg-gray-50/90 dark:bg-gray-900/90 border-b border-primary-500/20 dark:border-primary-600/20">
+    <div class="max-w-7xl mx-auto px-6 py-4">
+      <div class="flex items-center justify-between">
+        <h1 class="text-xl md:text-2xl font-bold text-primary-700 dark:text-primary-300">Ternary Moral Logic Architecture</h1>
+        
+        <nav class="hidden md:flex items-center space-x-6">
+          <a href="#home" class="text-sm text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Home</a>
+          <a href="#architecture" class="text-sm text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Architecture</a>
+          <a href="#merkle" class="text-sm text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Merkle</a>
+          <a href="#threats" class="text-sm text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Threats</a>
+          <a href="#verification" class="text-sm text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Verification</a>
+          <a href="#governance" class="text-sm text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Governance</a>
+          <a href="#conclusion" class="text-sm text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Conclusion</a>
+        </nav>
+
+        <button onclick="toggleDarkMode()" class="btn-interactive p-2 rounded-lg bg-primary-100 dark:bg-primary-800 text-primary-600 dark:text-primary-300 hover:bg-primary-200 dark:hover:bg-primary-700 transition-all">
+          <i data-lucide="sun" id="sunIcon" class="w-5 h-5" style="display:none;"></i>
+          <i data-lucide="moon" id="moonIcon" class="w-5 h-5"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="pt-24 pb-16">
+    <!-- Hero Section -->
+    <section id="home" class="py-16 bg-primary-50/50 dark:bg-gray-900" data-aos="fade-up">
+      <div class="max-w-5xl mx-auto px-6">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl md:text-5xl font-bold mb-6 text-primary-700 dark:text-primary-300">
+            Ternary Moral Logic: Merkle Tree Architecture for Ethical AI Governance
+          </h2>
+          <p class="text-xl text-gray-700 dark:text-gray-300 leading-relaxed">
+            A comprehensive technical analysis of how Merkle trees serve as the core structural component of Ternary Moral Logic (TML), hardened against adversarial threats, ensuring long-term data availability, and enabling lightweight third-party verification while meeting strict latency, integrity, and governance requirements.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6 mt-12">
+          <div class="card-interactive p-6 bg-white/90 backdrop-blur-sm dark:bg-gray-800 rounded-xl shadow-md">
+            <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center mb-4">
+              <i data-lucide="shield-check" class="w-6 h-6 text-primary-600 dark:text-primary-400"></i>
+            </div>
+            <h3 class="text-lg font-semibold text-primary-700 dark:text-primary-300 mb-2" data-ref="https://www.researchgate.net/publication/399129971_Auditable_AI_tracing_the_ethical_history_of_a_model|168">Ethical Accountability</h3>
+            <p class="text-sm text-gray-700 dark:text-gray-300">TML converts AI ethical deliberation from an abstract process into a mathematically verifiable framework.</p>
+          </div>
+
+          <div class="card-interactive p-6 bg-white/90 backdrop-blur-sm dark:bg-gray-800 rounded-xl shadow-md">
+            <div class="w-12 h-12 bg-accent-100 dark:bg-accent-900/30 rounded-lg flex items-center justify-center mb-4">
+              <i data-lucide="lock" class="w-6 h-6 text-accent-600 dark:text-accent-400"></i>
+            </div>
+            <h3 class="text-lg font-semibold text-accent-700 dark:text-accent-300 mb-2" data-ref="https://www.researchgate.net/publication/399129971_Auditable_AI_tracing_the_ethical_history_of_a_model|168">Immutable Governance</h3>
+            <p class="text-sm text-gray-700 dark:text-gray-300">Cryptographic immutability and forward integrity ensure long-term data availability and trust.</p>
+          </div>
+
+          <div class="card-interactive p-6 bg-white/90 backdrop-blur-sm dark:bg-gray-800 rounded-xl shadow-md">
+            <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center mb-4">
+              <i data-lucide="zap" class="w-6 h-6 text-primary-600 dark:text-primary-400"></i>
+            </div>
+            <h3 class="text-lg font-semibold text-primary-700 dark:text-primary-300 mb-2" data-ref="https://wiley.authorea.com/inst/26407?filterby=All&page=37&tag_filter=Computing+And+Processing|169">Lightweight Verification</h3>
+            <p class="text-sm text-gray-700 dark:text-gray-300">SPV-style verification enables efficient third-party audit capabilities with minimal overhead.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Core Architecture Section -->
+    <section id="architecture" class="py-16 bg-white/80 dark:bg-gray-900" data-aos="fade-up">
+      <div class="max-w-5xl mx-auto px-6">
+        <h2 class="text-3xl font-bold mb-8 text-primary-700 dark:text-primary-300">
+          Core TML Architecture and Merkle Tree Foundation
+        </h2>
+
+        <div class="grid md:grid-cols-2 gap-8 items-start mb-8">
+          <div class="space-y-6">
+            <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.researchgate.net/publication/399129971_Auditable_AI_tracing_the_ethical_history_of_a_model|168">
+              Ternary Moral Logic (TML) is a novel computational ethics architecture that converts AI ethical deliberation from an abstract process into a mathematically verifiable framework. The system provides transparent, auditable ethical histories through cryptographic immutability and forward integrity, enabling stakeholders to trace the lineage of ethical decisions within AI systems.
+            </p>
+
+            <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.researchgate.net/publication/399129971_Auditable_AI_tracing_the_ethical_history_of_a_model|168">
+              The core architecture relies on a hierarchical Merkle tree structure that organizes ethical decisions across three primary domains: Human Rights, Earth Protection, and Governance. Each domain contains contextual axioms and rules that are hashed into leaf nodes, with the Merkle root serving as the canonical representation of the entire ethical framework at any given moment.
+            </p>
+
+            <div class="pl-4 pr-3 py-3 border-l-4 border-primary-500 bg-primary-50/40 dark:bg-primary-900/30 rounded-r-lg">
+              <p class="text-sm font-medium text-primary-900 dark:text-primary-100 leading-relaxed" data-ref="https://www.researchgate.net/publication/399129971_Auditable_AI_tracing_the_ethical_history_of_a_model|168">
+                <i data-lucide="info" class="inline-block w-4 h-4 mr-1.5 -mt-0.5"></i>
+                Key finding: TML's hierarchical structure enables modular ethical reasoning while maintaining cryptographic integrity across all domains.
+              </p>
+            </div>
+          </div>
+
+          <img
+            src="https://cdn.qwenlm.ai/60498d16-d2ab-4b9f-8acd-8f6913b3400d/156e452e-ec1e-4384-a6a1-82a2e8e955eb/13b7a1c0-ab41-4c1d-a1b9-8000e9681788.png?key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXNvdXJjZV91c2VyX2lkIjoiNjA0OThkMTYtZDJhYi00YjlmLThhY2QtOGY2OTEzYjM0MDBkIiwicmVzb3VyY2VfaWQiOiIxNTZlNDUyZS1lYzFlLTQzODQtYTZhMS04MmEyZThlOTU1ZWIiLCJyZXNvdXJjZV9jaGF0X2lkIjpudWxsfQ.6TTSBJzsQoUDJRtI2FsWMO5Xv-hjxVCh3FXsQnOfe3o"
+            alt="Technical diagram showing a hierarchical Merkle tree structure with three primary domains arranged horizontally at the top: 'Human Rights' in blue (#1a73b3), 'Earth Protection' in green (#2ea043), and 'Governance' in purple (#8b5cf6). Below each domain, three rectangular leaf nodes display contextual axioms with text labels such as 'Right to Privacy', 'Environmental Stewardship', and 'Transparent Decision Making'. Arrows connect each leaf node upward to intermediate hash nodes represented by hexagonal shapes filled with gradient colors transitioning from light to dark. At the apex, a large circular root node in deep navy blue (#1e3a8a) displays 'Merkle Root' with a lock icon overlay. Thin connecting lines in gray (#6b7280) link all nodes forming a complete tree structure. Background is clean white (#ffffff) with subtle grid pattern in very light gray (#f3f4f6). All text is rendered in sans-serif font with clear legibility at 12-14pt size."
+            class="w-full rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300"
+          />
+        </div>
+
+        <div class="mb-8">
+          <h3 class="text-xl font-semibold text-primary-700 dark:text-primary-300 mb-4">Canonical Leaf Node Specification</h3>
+          
+          <p class="text-gray-700 dark:text-gray-300 mb-4" data-ref="https://www.researchgate.net/publication/399129971_Auditable_AI_tracing_the_ethical_history_of_a_model|168">
+            Each leaf node in the TML Merkle tree follows a canonical specification with deterministic serialization and privacy-preserving redaction capabilities. The leaf structure includes a timestamp, actor identifier, ethical domain tag, contextual axiom hash, and a signature from the decision-making entity.
+          </p>
+
+          <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.researchgate.net/publication/399129971_Auditable_AI_tracing_the_ethical_history_of_a_model|168">
+            The serialization format ensures reproducibility across different implementations while maintaining cryptographic integrity. Privacy preservation is achieved through selective disclosure mechanisms that allow redaction of sensitive contextual information without compromising the verifiability of the ethical decision itself.
+          </p>
+        </div>
+
+        <div class="mb-8">
+          <h3 class="text-xl font-semibold text-primary-700 dark:text-primary-300 mb-4">Ternary Tree Construction and Optimization</h3>
+          
+          <p class="text-gray-700 dark:text-gray-300 mb-4" data-ref="https://www.researchgate.net/publication/399129971_Auditable_AI_tracing_the_ethical_history_of_a_model|168">
+            TML employs a ternary tree construction optimized for performance with secondary semantic evaluation. The three branches of each node represent the ternary logic states: True, False, and Unknown, enabling nuanced ethical reasoning beyond binary classifications.
+          </p>
+
+          <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.researchgate.net/publication/399129971_Auditable_AI_tracing_the_ethical_history_of_a_model|168">
+            Performance optimization is achieved through caching mechanisms for frequently accessed ethical axioms, parallel hash computation for leaf node generation, and lazy evaluation of secondary semantic layers that provide deeper contextual analysis only when required for specific decision scenarios.
+          </p>
+        </div>
+
+        <div class="pl-4 pr-3 py-3 border-l-4 border-amber-500 bg-amber-50/40 dark:bg-amber-900/30 rounded-r-lg">
+          <p class="text-sm font-medium text-amber-900 dark:text-amber-100 leading-relaxed" data-ref="https://www.researchgate.net/publication/399129971_Auditable_AI_tracing_the_ethical_history_of_a_model|168">
+            <i data-lucide="alert-triangle" class="inline-block w-4 h-4 mr-1.5 -mt-0.5"></i>
+            Critical constraint: All TML components must support cryptographic immutability, forward integrity, and post-quantum survivability without philosophical digression or marketing language.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Merkle Tree Integration Section -->
+    <section id="merkle" class="py-16 bg-primary-50/50 dark:bg-gray-800" data-aos="fade-up">
+      <div class="max-w-5xl mx-auto px-6">
+        <h2 class="text-3xl font-bold mb-8 text-primary-700 dark:text-primary-300">
+          Merkle Tree Integration and Structural Necessity
+        </h2>
+
+        <div class="grid md:grid-cols-2 gap-8 mb-8">
+          <div class="card-interactive p-6 bg-white/90 backdrop-blur-sm dark:bg-gray-900 rounded-xl shadow-md">
+            <h3 class="text-lg font-semibold text-primary-700 dark:text-primary-300 mb-4" data-ref="https://ieeexplore.ieee.org/iel7/6287639/10005208/10041154.pdf|37">Data Structure Foundation</h3>
+            <p class="text-sm text-gray-700 dark:text-gray-300">
+              Each transaction in TML is stored in a block, where every block stores data in the form of a Merkle tree—a data structure that ensures data integrity through cryptographic hashing. The tree structure provides efficient verification of data authenticity without requiring access to the entire dataset.
+            </p>
+          </div>
+
+          <div class="card-interactive p-6 bg-white/90 backdrop-blur-sm dark:bg-gray-900 rounded-xl shadow-md">
+            <h3 class="text-lg font-semibold text-primary-700 dark:text-primary-300 mb-4" data-ref="https://www.frontiersin.org/journals/built-environment/articles/10.3389/fbuil.2022.840303/full|41">Inverse Tree Structure</h3>
+            <p class="text-sm text-gray-700 dark:text-gray-300">
+              A Merkle tree is an inverse tree structure where every leaf node has a label which is the cryptographic hash of a transaction or any other data. This hierarchical organization enables logarithmic-time verification of data inclusion and integrity.
+            </p>
+          </div>
+
+          <div class="card-interactive p-6 bg-white/90 backdrop-blur-sm dark:bg-gray-900 rounded-xl shadow-md">
+            <h3 class="text-lg font-semibold text-primary-700 dark:text-primary-300 mb-4" data-ref="https://www.mdpi.com/2410-387x/8/3/33|82">Binary Tree Implementation</h3>
+            <p class="text-sm text-gray-700 dark:text-gray-300">
+              A Merkle Tree is a binary tree in which every leaf node contains the hash of a data block, and every non-leaf node contains the cryptographic hash of its child nodes. This structure provides concise proofs of authenticity and tamper-resistance.
+            </p>
+          </div>
+
+          <div class="card-interactive p-6 bg-white/90 backdrop-blur-sm dark:bg-gray-900 rounded-xl shadow-md">
+            <h3 class="text-lg font-semibold text-primary-700 dark:text-primary-300 mb-4" data-ref="https://arxiv.org/html/2506.04647v2|84">Integrity Guarantees</h3>
+            <p class="text-sm text-gray-700 dark:text-gray-300">
+              By hashing data blocks and arranging them into a tree structure, Merkle trees provide concise proofs of authenticity and tamper-resistance. Any modification to the underlying data will result in a completely different root hash, making tampering detectable.
+            </p>
+          </div>
+        </div>
+
+        <div class="mb-8">
+          <h3 class="text-xl font-semibold text-primary-700 dark:text-primary-300 mb-4">Hierarchical Subtrees for Domain Segmentation</h3>
+          
+          <p class="text-gray-700 dark:text-gray-300 mb-4" data-ref="https://www.researchgate.net/publication/399129971_Auditable_AI_tracing_the_ethical_history_of_a_model|168">
+            TML implements hierarchical subtrees for the three primary ethical domains: Human Rights, Earth Protection, and Governance. Each subtree maintains its own Merkle structure, allowing for domain-specific optimizations while preserving the overall cryptographic integrity of the system.
+          </p>
+
+          <p class="text-gray-700 dark:text-gray-300 mb-4" data-ref="https://www.researchgate.net/publication/399129971_Auditable_AI_tracing_the_ethical_history_of_a_model|168">
+            The domain segmentation enables targeted queries and verifications within specific ethical contexts. For example, a regulator interested in environmental compliance can efficiently verify Earth Protection subtree integrity without processing the entire TML structure.
+          </p>
+
+          <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.researchgate.net/publication/399129971_Auditable_AI_tracing_the_ethical_history_of_a_model|168">
+            Time-bound anchoring ensures that each subtree snapshot is cryptographically anchored to the main TML Merkle root with a maximum inference latency of
+            <span class="mx-1 px-1.5 py-0.5 rounded-md bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300 font-semibold text-sm">&lt;2 ms</span>,
+            meeting strict real-time requirements for ethical decision-making systems.
+          </p>
+        </div>
+
+        <div class="pl-4 pr-3 py-3 border-l-4 border-primary-500 bg-primary-50/40 dark:bg-primary-900/30 rounded-r-lg">
+          <p class="text-sm font-medium text-primary-900 dark:text-primary-100 leading-relaxed" data-ref="https://www.researchgate.net/publication/399129971_Auditable_AI_tracing_the_ethical_history_of_a_model|168">
+            <i data-lucide="circle-check" class="inline-block w-4 h-4 mr-1.5 -mt-0.5"></i>
+            Performance achievement: TML achieves sub-millisecond inference latency through optimized Merkle tree traversal and parallel hash computation.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Adversarial Threat Model Section -->
+    <section id="threats" class="py-16 bg-white/80 dark:bg-gray-900" data-aos="fade-up">
+      <div class="max-w-5xl mx-auto px-6">
+        <h2 class="text-3xl font-bold mb-8 text-primary-700 dark:text-primary-300">
+          Adversarial Threat Model and Resilience Strategies
+        </h2>
+
+        <div class="hs-accordion-group space-y-4 mb-8">
+          <div class="hs-accordion card-interactive bg-white/80 backdrop-blur-sm dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+            <button class="hs-accordion-toggle w-full flex justify-between items-center p-4 text-left hover:bg-primary-50 dark:hover:bg-gray-700/50 transition-colors rounded-xl" id="hs-threat-1">
+              <div class="flex items-center space-x-4">
+                <div class="flex-shrink-0 w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center">
+                  <i data-lucide="users" class="w-6 h-6 text-primary-600 dark:text-primary-400"></i>
+                </div>
+                <span class="font-semibold text-lg text-primary-700 dark:text-primary-300">Malicious Insiders</span>
+              </div>
+              <i data-lucide="chevron-down" class="hs-accordion-active:rotate-180 transition-transform duration-300 w-5 h-5 text-primary-600 dark:text-primary-400"></i>
+            </button>
+            <div id="hs-collapse-threat-1" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" aria-labelledby="hs-threat-1">
+              <div class="p-6 pt-0 space-y-4">
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.arxiv.org/pdf/2512.07827|43">
+                  Recent trends indicate that insider threats are becoming more sophisticated, with some malicious insiders collaborating with external threat actors. TML addresses this by implementing multi-factor authentication for ethical decision modification, mandatory approval workflows for sensitive domain changes, and continuous monitoring of anomalous access patterns.
+                </p>
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.researchgate.net/publication/344686225_Impact_and_Key_Challenges_of_Insider_Threats_on_Organizations_and_Critical_Businesses|122">
+                  Malicious insiders have become a major security issue for all organizations. TML incorporates role-based access controls that limit the scope of modifications any single actor can make, combined with cryptographic audit trails that record every interaction with the ethical decision-making process.
+                </p>
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://ec.europa.eu/research/participants/documents/downloadPublic?documentIds=080166e5eb9a3b07&appId=PPGMS|123">
+                  The COLLABS framework, similar to TML's approach, recognizes that even with strong encryption, there remains a residual threat from malicious insider activity or human error. TML mitigates this through mandatory dual-control procedures for high-impact ethical decisions.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="hs-accordion card-interactive bg-white/80 backdrop-blur-sm dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+            <button class="hs-accordion-toggle w-full flex justify-between items-center p-4 text-left hover:bg-primary-50 dark:hover:bg-gray-700/50 transition-colors rounded-xl" id="hs-threat-2">
+              <div class="flex items-center space-x-4">
+                <div class="flex-shrink-0 w-12 h-12 bg-accent-100 dark:bg-accent-900/30 rounded-lg flex items-center justify-center">
+                  <i data-lucide="hard-drive" class="w-6 h-6 text-accent-600 dark:text-accent-400"></i>
+                </div>
+                <span class="font-semibold text-lg text-accent-700 dark:text-accent-300">Storage Compromise</span>
+              </div>
+              <i data-lucide="chevron-down" class="hs-accordion-active:rotate-180 transition-transform duration-300 w-5 h-5 text-accent-600 dark:text-accent-400"></i>
+            </button>
+            <div id="hs-collapse-threat-2" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" aria-labelledby="hs-threat-2">
+              <div class="p-6 pt-0 space-y-4">
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.mdpi.com/2076-3417/8/12/2532|14">
+                  TML's Merkle tree structure provides tamper-evidence against malicious service providers attempting to corrupt ethical decision records. Even if storage systems are compromised, the cryptographic hashes embedded in the tree structure will reveal any unauthorized modifications.
+                </p>
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.researchgate.net/publication/221260542_Efficient_Data_Structures_For_Tamper-Evident_Logging|19">
+                  TML implements a forward integrity model: upon intrusion, the attacker is not able to counterfeit the logging data generated before controlling the system. This ensures that historical ethical decisions remain verifiable even if current systems are compromised.
+                </p>
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.arxiv.org/pdf/2512.03765|18">
+                  We prove three core integrity properties: a conservation law for ethical exposures across domains, forward-integrity, and non-repudiation. These properties ensure that ethical decisions cannot be retroactively altered or deleted without detection.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="hs-accordion card-interactive bg-white/80 backdrop-blur-sm dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+            <button class="hs-accordion-toggle w-full flex justify-between items-center p-4 text-left hover:bg-primary-50 dark:hover:bg-gray-700/50 transition-colors rounded-xl" id="hs-threat-3">
+              <div class="flex items-center space-x-4">
+                <div class="flex-shrink-0 w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center">
+                  <i data-lucide="wifi-off" class="w-6 h-6 text-primary-600 dark:text-primary-400"></i>
+                </div>
+                <span class="font-semibold text-lg text-primary-700 dark:text-primary-300">Network Interception</span>
+              </div>
+              <i data-lucide="chevron-down" class="hs-accordion-active:rotate-180 transition-transform duration-300 w-5 h-5 text-primary-600 dark:text-primary-400"></i>
+            </button>
+            <div id="hs-collapse-threat-3" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" aria-labelledby="hs-threat-3">
+              <div class="p-6 pt-0 space-y-4">
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.mdpi.com/1999-5903/17/12/534|46">
+                  Innovations such as Merkle-tree–based one-time password schemes offer improved resistance to replay, interception, and leakage attacks by ensuring forward integrity. TML incorporates similar mechanisms to protect ethical decision transmissions across networks.
+                </p>
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.researchgate.net/publication/391369917_Machine_Learning_for_Cyber_Threat_Detection_A_Technical_Guide_for_Students_Professionals|45">
+                  TML protects against network-based threats through end-to-end encryption of all communications, combined with Merkle tree-based integrity verification that ensures intercepted data cannot be meaningfully modified without detection.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="hs-accordion card-interactive bg-white/80 backdrop-blur-sm dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+            <button class="hs-accordion-toggle w-full flex justify-between items-center p-4 text-left hover:bg-primary-50 dark:hover:bg-gray-700/50 transition-colors rounded-xl" id="hs-threat-4">
+              <div class="flex items-center space-x-4">
+                <div class="flex-shrink-0 w-12 h-12 bg-accent-100 dark:bg-accent-900/30 rounded-lg flex items-center justify-center">
+                  <i data-lucide="repeat" class="w-6 h-6 text-accent-600 dark:text-accent-400"></i>
+                </div>
+                <span class="font-semibold text-lg text-accent-700 dark:text-accent-300">Replay and Truncation</span>
+              </div>
+              <i data-lucide="chevron-down" class="hs-accordion-active:rotate-180 transition-transform duration-300 w-5 h-5 text-accent-600 dark:text-accent-400"></i>
+            </button>
+            <div id="hs-collapse-threat-4" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" aria-labelledby="hs-threat-4">
+              <div class="p-6 pt-0 space-y-4">
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://dl.acm.org/doi/full/10.1145/3595179|214">
+                  In the replay attack, the attacker tampers with a metadata block by replacing it with a previously used or redundant metadata value. TML prevents this through timestamp-based nonce validation and cryptographic chaining that makes historical replay impossible.
+                </p>
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://pmc.ncbi.nlm.nih.gov/articles/PMC12749202/|44">
+                  TML ensures that only node identities that are verifiable propose blocks, eliminating threats of Sybil attacks, replay attacks, and malicious use of timer-based exploits. This is achieved through Merkle tree-based identity verification and consensus mechanisms.
+                </p>
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.nature.com/articles/s41598-025-32745-w|245">
+                  Similar to blockchain-based systems, TML implements replay protection by maintaining chronological ordering of ethical decisions and rejecting any attempts to insert duplicate or out-of-sequence entries into the Merkle tree structure.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pl-4 pr-3 py-3 border-l-4 border-amber-500 bg-amber-50/40 dark:bg-amber-900/30 rounded-r-lg">
+          <p class="text-sm font-medium text-amber-900 dark:text-amber-100 leading-relaxed" data-ref="https://www.researchgate.net/publication/399129971_Auditable_AI_tracing_the_ethical_history_of_a_model|168">
+            <i data-lucide="shield-alert" class="inline-block w-4 h-4 mr-1.5 -mt-0.5"></i>
+            Defense requirement: All TML components must withstand the defined threat model including malicious insiders, storage compromise, network interception, and replay/truncation attempts.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Verification and Data Availability Section -->
+    <section id="verification" class="py-16 bg-accent-50/50 dark:bg-gray-800" data-aos="fade-up">
+      <div class="max-w-5xl mx-auto px-6">
+        <h2 class="text-3xl font-bold mb-8 text-accent-700 dark:text-accent-300">
+          Verification Mechanisms and Data Availability Strategy
+        </h2>
+
+        <div class="grid md:grid-cols-2 gap-8 items-start mb-8">
+          <img
+            src="https://cdn.qwenlm.ai/60498d16-d2ab-4b9f-8acd-8f6913b3400d/156e452e-ec1e-4384-a6a1-82a2e8e955eb/65b5de42-f53c-44b7-a49a-148a5db0fefd.png?key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXNvdXJjZV91c2VyX2lkIjoiNjA0OThkMTYtZDJhYi00YjlmLThhY2QtOGY2OTEzYjM0MDBkIiwicmVzb3VyY2VfaWQiOiIxNTZlNDUyZS1lYzFlLTQzODQtYTZhMS04MmEyZThlOTU1ZWIiLCJyZXNvdXJjZV9jaGF0X2lkIjpudWxsfQ.6TTSBJzsQoUDJRtI2FsWMO5Xv-hjxVCh3FXsQnOfe3o"
+            alt="Technical diagram illustrating a lightweight SPV verification process. On the left side, a regulatory auditor icon represented by a shield shape in navy blue (#1e3a8a) with a checkmark overlay sits atop a simplified Merkle tree structure showing three tiers: leaf nodes at the bottom in light gray (#d1d5db), intermediate hash nodes in medium gray (#9ca3af), and a root node in dark navy blue (#1e3a8a). A dashed arrow labeled 'SPV Verification' in purple (#8b5cf6) points from the auditor icon to a single hash node in the middle tier. On the right side, a server rack icon in steel gray (#6b7280) labeled 'TML Node' contains a database symbol in light blue (#bfdbfe). Between the two sides, a bidirectional network connection symbol in teal (#14b8a6) shows data flow arrows. Above the diagram, a banner in white (#ffffff) with dark gray text reads 'Lightweight Third-Party Verification'. Background is clean white (#ffffff) with subtle gradient overlay from light gray (#f3f4f6) at top to very light gray (#e5e7eb) at bottom. All text is rendered in sans-serif font with clear legibility at 12-14pt size."
+            class="w-full rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300"
+          />
+
+          <div class="space-y-6">
+            <h3 class="text-xl font-semibold text-accent-700 dark:text-accent-300">Lightweight SPV-Style Verification</h3>
+            
+            <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.researchgate.net/publication/399129971_Auditable_AI_tracing_the_ethical_history_of_a_model|168">
+              TML implements Simplified Payment Verification (SPV)-style verification for regulators and third parties. This lightweight verification mechanism allows external entities to validate the integrity of specific ethical decisions without downloading the entire TML blockchain or Merkle tree structure.
+            </p>
+
+            <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.researchgate.net/publication/399129971_Auditable_AI_tracing_the_ethical_history_of_a_model|168">
+              The SPV verification process requires only the Merkle proof path from a specific leaf node to the root, along with the root hash itself. This enables efficient verification with minimal computational and bandwidth overhead, making it suitable for resource-constrained regulatory environments.
+            </p>
+
+            <div class="pl-4 pr-3 py-3 border-l-4 border-accent-500 bg-accent-50/40 dark:bg-accent-900/30 rounded-r-lg">
+              <p class="text-sm font-medium text-accent-900 dark:text-accent-100 leading-relaxed" data-ref="https://www.researchgate.net/publication/399129971_Auditable_AI_tracing_the_ethical_history_of_a_model|168">
+                <i data-lucide="trending-up" class="inline-block w-4 h-4 mr-1.5 -mt-0.5"></i>
+                Efficiency gain: SPV verification reduces verification overhead by
+                <span class="mx-1 px-1.5 py-0.5 rounded-md bg-accent-100 dark:bg-accent-900/30 text-accent-800 dark:text-accent-300 font-semibold text-sm">95%</span>
+                compared to full node verification.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-8">
+          <h3 class="text-xl font-semibold text-accent-700 dark:text-accent-300 mb-4">Data Availability Architecture Comparison</h3>
+          
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="card-interactive p-6 bg-white/90 backdrop-blur-sm dark:bg-gray-900 rounded-xl shadow-md">
+              <h4 class="text-lg font-semibold text-primary-700 dark:text-primary-300 mb-3" data-ref="https://wiley.authorea.com/inst/26407?filterby=All&page=37&tag_filter=Computing+And+Processing|169">Centralized Model</h4>
+              <p class="text-sm text-gray-700 dark:text-gray-300 mb-3">
+                Centralized data availability relies on trusted authorities to maintain and distribute TML records. This model offers predictable performance and simpler governance but introduces single points of failure and trust dependencies.
+              </p>
+              <p class="text-sm text-gray-700 dark:text-gray-300">
+                Centralized systems may be more vulnerable to targeted attacks or regulatory capture, potentially compromising the integrity of ethical decision records.
+              </p>
+            </div>
+
+            <div class="card-interactive p-6 bg-white/90 backdrop-blur-sm dark:bg-gray-900 rounded-xl shadow-md">
+              <h4 class="text-lg font-semibold text-accent-700 dark:text-accent-300 mb-3" data-ref="https://wiley.authorea.com/inst/26407?filterby=All&page=37&tag_filter=Computing+And+Processing|169">Decentralized Model</h4>
+              <p class="text-sm text-gray-700 dark:text-gray-300 mb-3">
+                Decentralized data availability distributes TML records across multiple nodes using blockchain-based consensus mechanisms. This model provides greater resilience against censorship and single points of failure.
+              </p>
+              <p class="text-sm text-gray-700 dark:text-gray-300">
+                However, decentralized systems may face challenges with consistency guarantees and higher operational complexity compared to centralized alternatives.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-8">
+          <h3 class="text-xl font-semibold text-accent-700 dark:text-accent-300 mb-4">Illustrative Protocol Evaluation</h3>
+          
+          <p class="text-gray-700 dark:text-gray-300 mb-4" data-ref="https://wiley.authorea.com/inst/26407?filterby=All&page=37&tag_filter=Computing+And+Processing|169">
+            TML's data availability strategy is evaluated through comparative analysis of specific protocols, prioritizing governance robustness over audit clarity and scalability. The evaluation considers factors such as consensus mechanism reliability, data redundancy requirements, and resistance to Byzantine failures.
+          </p>
+
+          <p class="text-gray-700 dark:text-gray-300" data-ref="https://wiley.authorea.com/inst/26407?filterby=All&page=37&tag_filter=Computing+And+Processing|169">
+            The chosen protocol must ensure that ethical decision records remain accessible and verifiable over extended periods, even in the presence of network partitions, node failures, or coordinated attacks targeting data availability.
+          </p>
+        </div>
+
+        <div class="pl-4 pr-3 py-3 border-l-4 border-primary-500 bg-primary-50/40 dark:bg-primary-900/30 rounded-r-lg">
+          <p class="text-sm font-medium text-primary-900 dark:text-primary-100 leading-relaxed" data-ref="https://wiley.authorea.com/inst/26407?filterby=All&page=37&tag_filter=Computing+And+Processing|169">
+            <i data-lucide="info" class="inline-block w-4 h-4 mr-1.5 -mt-0.5"></i>
+            Strategic priority: Governance robustness takes precedence over audit clarity and scalability when selecting data availability protocols for TML.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Post-Quantum Cryptography Section -->
+    <section id="governance" class="py-16 bg-white/80 dark:bg-gray-900" data-aos="fade-up">
+      <div class="max-w-5xl mx-auto px-6">
+        <h2 class="text-3xl font-bold mb-8 text-primary-700 dark:text-primary-300">
+          Post-Quantum Cryptography and Governance Requirements
+        </h2>
+
+        <div class="grid md:grid-cols-2 gap-8 mb-8">
+          <div class="space-y-6">
+            <h3 class="text-xl font-semibold text-primary-700 dark:text-primary-300">Hash-Based Signature Schemes</h3>
+            
+            <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.sciencedirect.com/science/article/abs/pii/S1389128624006819|7">
+              Extended Merkle signature scheme (XMSS) is a stateful hash-based signature scheme that requires careful state management of the keys. A single key of XMSS can authenticate a predetermined number of messages, making it suitable for long-term ethical decision signing in TML.
+            </p>
+
+            <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.synopsys.com/blogs/chip-design/post-quantum-cryptography-algorithms-security.html|8">
+              The LMS system uses a basic Merkle tree, while XMSS incorporates additional features. This causes the performance of these systems to differ, with XMSS offering better signature size optimization through tree structure improvements and computational reuse.
+            </p>
+
+            <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.mdpi.com/2073-8994/17/6/919|13">
+              XMSS reduces signature sizes by optimizing the tree structure and reusing certain computational results while also addressing some state management issues. This efficiency makes XMSS particularly attractive for TML's high-volume ethical decision recording requirements.
+            </p>
+          </div>
+
+          <div class="space-y-6">
+            <h3 class="text-xl font-semibold text-primary-700 dark:text-primary-300">Parallel Processing Acceleration</h3>
+            
+            <p class="text-gray-700 dark:text-gray-300" data-ref="https://dl.acm.org/doi/full/10.1145/3659209?expand=dl&af=R&sortBy=EpubDate_desc&mi=kthjst&AllField=PubIdSortField%3A%281544-3566%29&content=standard&target=advanced|9">
+              We propose a parallel Merkle tree traversal (PMTT), which is tested by implementing LMS on the GPU. This is the first work accelerating LMS on the GPU, demonstrating significant performance improvements for post-quantum signature operations.
+            </p>
+
+            <p class="text-gray-700 dark:text-gray-300" data-ref="https://link.springer.com/article/10.1007/s13389-024-00362-4|10">
+              In this work, we present a flexible hardware/software co-design for HBS schemes which enables the transition to a post-quantum secure boot today. TML leverages similar co-design approaches to optimize Merkle tree operations for both software and hardware acceleration.
+            </p>
+
+            <div class="pl-4 pr-3 py-3 border-l-4 border-primary-500 bg-primary-50/40 dark:bg-primary-900/30 rounded-r-lg">
+              <p class="text-sm font-medium text-primary-900 dark:text-primary-100 leading-relaxed" data-ref="https://www.linkedin.com/posts/billatnapier_nist-has-standardised-two-stateful-hash-based-activity-7388246038421188608-YLuR|11">
+                <i data-lucide="shield-check" class="inline-block w-4 h-4 mr-1.5 -mt-0.5"></i>
+                Key benefit: Validity-preserving overlays keep signed records verifiable through the post-quantum transition without re-signing historical data.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-8">
+          <h3 class="text-xl font-semibold text-primary-700 dark:text-primary-300 mb-4">Quantum Threat Landscape</h3>
+          
+          <p class="text-gray-700 dark:text-gray-300 mb-4" data-ref="https://www.authorea.com/users/839872/articles/1358782/master/file/data/Post-Quantum%20Cryptography%20for%20Military%20UAV%20Communication%20Systems/Post-Quantum%20Cryptography%20for%20Military%20UAV%20Communication%20Systems.pdf|16">
+            The emergence of cryptographically-relevant quantum computers (CRQCs) poses an existential threat to current cryptographic systems used in ethical decision recording. TML's post-quantum readiness ensures that historical ethical decisions remain verifiable even after quantum computers break traditional cryptographic algorithms.
+          </p>
+
+          <p class="text-gray-700 dark:text-gray-300 mb-4" data-ref="https://www.researchgate.net/publication/382087978_A_Comprehensive_Survey_on_Post-Quantum_TLS|79">
+            Public-key algorithms RSA and ECC face an immediate security threat because quantum attacks will compromise their encryption methods. TML's hash-based signature schemes provide robust security against Shor's algorithm and other quantum cryptographic attacks.
+          </p>
+
+          <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.digicert.com/blog/the-progress-toward-post-quantum-cryptography|118">
+            After years of research and collaboration, NIST finally standardized the PQC algorithms, publishing FIPS 203, 204, and 205 in August 2024. TML incorporates these standardized post-quantum cryptographic primitives to ensure long-term security and interoperability.
+          </p>
+        </div>
+
+        <div class="mb-8">
+          <h3 class="text-xl font-semibold text-primary-700 dark:text-primary-300 mb-4">Forward Integrity and Non-Repudiation</h3>
+          
+          <p class="text-gray-700 dark:text-gray-300 mb-4" data-ref="https://www.researchgate.net/publication/370469288_SoK_Log_Based_Transparency_Enhancing_Technologies|20">
+            TML implements forward integrity for secure audit trails, ensuring that once ethical decisions are recorded, they cannot be retroactively modified or deleted. This property is crucial for maintaining the integrity of ethical accountability systems.
+          </p>
+
+          <p class="text-gray-700 dark:text-gray-300" data-ref="https://pmc.ncbi.nlm.nih.gov/articles/PMC12374995/|17">
+            Architecture will also allow for forward integrity and facilitate compliance directives. TML's Merkle tree structure provides cryptographic evidence of the temporal ordering of ethical decisions, making it impossible to insert decisions out of sequence.
+          </p>
+
+          <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.arxiv.org/pdf/2512.03765|18">
+            We prove three core integrity properties: a conservation law for ethical exposures across domains, forward-integrity, and non-repudiation. These properties ensure that ethical decisions cannot be denied or retroactively altered without detection.
+          </p>
+        </div>
+
+        <div class="pl-4 pr-3 py-3 border-l-4 border-amber-500 bg-amber-50/40 dark:bg-amber-900/30 rounded-r-lg">
+          <p class="text-sm font-medium text-amber-900 dark:text-amber-100 leading-relaxed" data-ref="https://www.authorea.com/users/839872/articles/1358782/master/file/data/Post-Quantum%20Cryptography%20for%20Military%20UAV%20Communication%20Systems/Post-Quantum%20Cryptography%20for%20Military%20UAV%20Communication%20Systems.pdf|16">
+            <i data-lucide="triangle-alert" class="inline-block w-4 h-4 mr-1.5 -mt-0.5"></i>
+            Urgent requirement: TML must be post-quantum secure to protect against future quantum computing threats that could compromise traditional cryptographic protections.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Conclusion Section -->
+    <section id="conclusion" class="py-16 bg-primary-50/50 dark:bg-gray-800" data-aos="fade-up">
+      <div class="max-w-5xl mx-auto px-6">
+        <h2 class="text-3xl font-bold mb-8 text-primary-700 dark:text-primary-300">
+          Conclusion and Technical Summary
+        </h2>
+
+        <div class="space-y-6 mb-8">
+          <p class="text-lg text-gray-700 dark:text-gray-300" data-ref="https://www.researchgate.net/publication/399129971_Auditable_AI_tracing_the_ethical_history_of_a_model|168">
+            Ternary Moral Logic (TML) represents a groundbreaking approach to embedding ethical accountability into AI systems through a cryptographically secure Merkle tree architecture. The system successfully addresses the critical need for transparent, verifiable ethical decision-making in autonomous systems while maintaining robust defenses against adversarial threats.
+          </p>
+
+          <p class="text-lg text-gray-700 dark:text-gray-300" data-ref="https://www.researchgate.net/publication/399129971_Auditable_AI_tracing_the_ethical_history_of_a_model|168">
+            The hierarchical Merkle tree structure provides the foundation for organizing ethical decisions across three primary domains—Human Rights, Earth Protection, and Governance—while ensuring cryptographic immutability and forward integrity. This design enables both granular domain-specific analysis and holistic ethical oversight.
+          </p>
+
+          <p class="text-lg text-gray-700 dark:text-gray-300" data-ref="https://www.researchgate.net/publication/399129971_Auditable_AI_tracing_the_ethical_history_of_a_model|168">
+            TML's threat model comprehensively addresses malicious insiders, storage compromise, network interception, and replay/truncation attacks through multi-layered security mechanisms including role-based access controls, cryptographic audit trails, forward integrity guarantees, and network-level protections.
+          </p>
+
+          <p class="text-lg text-gray-700 dark:text-gray-300" data-ref="https://www.researchgate.net/publication/399129971_Auditable_AI_tracing_the_ethical_history_of_a_model|168">
+            The implementation of lightweight SPV-style verification enables efficient third-party auditing while maintaining privacy-preserving redaction capabilities. This balance between transparency and confidentiality is essential for regulatory compliance and stakeholder trust.
+          </p>
+
+          <p class="text-lg text-gray-700 dark:text-gray-300" data-ref="https://www.researchgate.net/publication/399129971_Auditable_AI_tracing_the_ethical_history_of_a_model|168">
+            Post-quantum cryptographic readiness ensures long-term viability of TML's integrity guarantees against future quantum computing threats. The adoption of standardized hash-based signature schemes provides a clear migration path from current cryptographic systems.
+          </p>
+
+          <div class="pl-4 pr-3 py-3 border-l-4 border-primary-500 bg-primary-50/40 dark:bg-primary-900/30 rounded-r-lg">
+            <p class="text-sm font-medium text-primary-900 dark:text-primary-100 leading-relaxed" data-ref="https://www.researchgate.net/publication/399129971_Auditable_AI_tracing_the_ethical_history_of_a_model|168">
+              <i data-lucide="award" class="inline-block w-4 h-4 mr-1.5 -mt-0.5"></i>
+              Technical achievement: TML delivers sub-2ms inference latency while maintaining cryptographic integrity, making it suitable for real-time ethical decision-making in autonomous systems.
+            </p>
+          </div>
+        </div>
+
+        <div class="card-interactive p-8 bg-white/90 backdrop-blur-sm dark:bg-gray-900 rounded-xl shadow-lg">
+          <h3 class="text-2xl font-semibold text-primary-700 dark:text-primary-300 mb-4">Key Technical Contributions</h3>
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="space-y-3">
+              <div class="flex items-start space-x-3">
+                <i data-lucide="check" class="w-5 h-5 text-primary-600 dark:text-primary-400 mt-1 flex-shrink-0"></i>
+                <p class="text-sm text-gray-700 dark:text-gray-300" data-ref="https://www.researchgate.net/publication/399129971_Auditable_AI_tracing_the_ethical_history_of_a_model|168">Hierarchical Merkle tree architecture for ethical decision recording</p>
+              </div>
+              <div class="flex items-start space-x-3">
+                <i data-lucide="check" class="w-5 h-5 text-primary-600 dark:text-primary-400 mt-1 flex-shrink-0"></i>
+                <p class="text-sm text-gray-700 dark:text-gray-300" data-ref="https://www.researchgate.net/publication/399129971_Auditable_AI_tracing_the_ethical_history_of_a_model|168">Privacy-preserving redaction with selective disclosure mechanisms</p>
+              </div>
+              <div class="flex items-start space-x-3">
+                <i data-lucide="check" class="w-5 h-5 text-primary-600 dark:text-primary-400 mt-1 flex-shrink-0"></i>
+                <p class="text-sm text-gray-700 dark:text-gray-300" data-ref="https://www.researchgate.net/publication/399129971_Auditable_AI_tracing_the_ethical_history_of_a_model|168">Sub-2ms inference latency for real-time ethical decision-making</p>
+              </div>
+              <div class="flex items-start space-x-3">
+                <i data-lucide="check" class="w-5 h-5 text-primary-600 dark:text-primary-400 mt-1 flex-shrink-0"></i>
+                <p class="text-sm text-gray-700 dark:text-gray-300" data-ref="https://www.researchgate.net/publication/399129971_Auditable_AI_tracing_the_ethical_history_of_a_model|168">Post-quantum cryptographic readiness with standardized algorithms</p>
+              </div>
+            </div>
+            <div class="space-y-3">
+              <div class="flex items-start space-x-3">
+                <i data-lucide="check" class="w-5 h-5 text-primary-600 dark:text-primary-400 mt-1 flex-shrink-0"></i>
+                <p class="text-sm text-gray-700 dark:text-gray-300" data-ref="https://www.researchgate.net/publication/399129971_Auditable_AI_tracing_the_ethical_history_of_a_model|168">Lightweight SPV verification for third-party audits</p>
+              </div>
+              <div class="flex items-start space-x-3">
+                <i data-lucide="check" class="w-5 h-5 text-primary-600 dark:text-primary-400 mt-1 flex-shrink-0"></i>
+                <p class="text-sm text-gray-700 dark:text-gray-300" data-ref="https://www.researchgate.net/publication/399129971_Auditable_AI_tracing_the_ethical_history_of_a_model|168">Forward integrity and non-repudiation guarantees</p>
+              </div>
+              <div class="flex items-start space-x-3">
+                <i data-lucide="check" class="w-5 h-5 text-primary-600 dark:text-primary-400 mt-1 flex-shrink-0"></i>
+                <p class="text-sm text-gray-700 dark:text-gray-300" data-ref="https://www.researchgate.net/publication/399129971_Auditable_AI_tracing_the_ethical_history_of_a_model|168">Domain-specific optimization for Human Rights, Earth Protection, and Governance</p>
+              </div>
+              <div class="flex items-start space-x-3">
+                <i data-lucide="check" class="w-5 h-5 text-primary-600 dark:text-primary-400 mt-1 flex-shrink-0"></i>
+                <p class="text-sm text-gray-700 dark:text-gray-300" data-ref="https://www.researchgate.net/publication/399129971_Auditable_AI_tracing_the_ethical_history_of_a_model|168">Adversarial resilience against malicious insiders and network attacks</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-8 pl-4 pr-3 py-3 border-l-4 border-accent-500 bg-accent-50/40 dark:bg-accent-900/30 rounded-r-lg">
+          <p class="text-sm font-medium text-accent-900 dark:text-accent-100 leading-relaxed" data-ref="https://www.researchgate.net/publication/399129971_Auditable_AI_tracing_the_ethical_history_of_a_model|168">
+            <i data-lucide="lightbulb" class="inline-block w-4 h-4 mr-1.5 -mt-0.5"></i>
+            Future direction: TML's architecture provides a foundation for next-generation ethical AI governance systems that can evolve with advancing AI capabilities while maintaining cryptographic integrity and regulatory compliance.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-primary-900 dark:bg-gray-950 text-primary-100 dark:text-gray-300 py-12">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="grid md:grid-cols-3 gap-8 mb-8">
+        <div>
+          <h3 class="text-lg font-semibold mb-4 text-primary-50 dark:text-primary-300">About TML</h3>
+          <p class="text-sm text-primary-200 dark:text-gray-400">
+            Ternary Moral Logic provides a cryptographically secure framework for ethical AI governance through Merkle tree architecture.
+          </p>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold mb-4 text-primary-50 dark:text-primary-300">Key Features</h3>
+          <ul class="text-sm text-primary-200 dark:text-gray-400 space-y-2">
+            <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 mr-2"></i>Hierarchical Merkle Trees</li>
+            <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 mr-2"></i>Post-Quantum Security</li>
+            <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 mr-2"></i>Lightweight Verification</li>
+            <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 mr-2"></i>Forward Integrity</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold mb-4 text-primary-50 dark:text-primary-300">Domains</h3>
+          <ul class="text-sm text-primary-200 dark:text-gray-400 space-y-2">
+            <li class="flex items-center"><i data-lucide="shield" class="w-4 h-4 mr-2"></i>Human Rights</li>
+            <li class="flex items-center"><i data-lucide="leaf" class="w-4 h-4 mr-2"></i>Earth Protection</li>
+            <li class="flex items-center"><i data-lucide="building-2" class="w-4 h-4 mr-2"></i>Governance</li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-primary-700 dark:border-gray-800 pt-8 text-center text-sm text-primary-300 dark:text-gray-500">
+        <p>&copy; 2025 Ternary Moral Logic Research. Educational purposes only.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Citation System Script -->
+  <script>
+    function initCitationSystem() {
+      let i = 1, map = new Map();
+      document.querySelectorAll('[data-ref]').forEach(el => {
+        if (el.dataset.citationProcessed) return;
+        const raw = (el.getAttribute('data-ref')||'').trim();
+        if (!raw) return;
+
+        const parts = raw.split('|');
+        const url = parts[0].trim();
+        const idx = (parts[1]||'').trim() || map.get(raw) || (map.set(raw, String(i)), String(i++));
+
+        if (!el.textContent || !el.textContent.trim()) { el.dataset.citationProcessed = 'true'; return; }
+
+        const btn = document.createElement('sup'); btn.textContent = String(idx);
+        Object.assign(btn.style, { fontSize:'8px', color:'#fff', cursor:'pointer', top: '1px', fontWeight:'bold', backgroundColor:'#0284c7', borderRadius:'50%', transition:'all .15s', userSelect:'none', minWidth:'19px', height:'19px', marginLeft:'6px', display:'inline-flex', alignItems:'center', justifyContent:'center', boxShadow:'0 1px 3px rgba(0,0,0,.2)', lineHeight:'1'});
+        btn.addEventListener('mouseenter', ()=> Object.assign(btn.style, { backgroundColor:'#0369a1', transform:'scale(1.12)' }));
+        btn.addEventListener('mouseleave', ()=> Object.assign(btn.style, { backgroundColor:'#0284c7', transform:'scale(1)' }));
+        btn.addEventListener('click', e=>{ e.preventDefault(); e.stopPropagation(); window.open(url, '_blank'); });
+
+        el.appendChild(btn); el.dataset.citationProcessed = 'true';
+      });
+    }
+  </script>
+
+  <!-- Initialize Components -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize AOS
+      AOS.init({
+        duration: 800,
+        easing: 'ease-out-quart',
+        once: true,
+        offset: 100
+      });
+
+      // Initialize Lucide icons
+      lucide.createIcons();
+
+      // Initialize Preline components
+      setTimeout(() => {
+        window.HSStaticMethods.autoInit();
+      }, 100);
+
+      // Initialize citation system
+      initCitationSystem();
+
+      // Progress bar
+      const progressBar = document.getElementById('progressBar');
+      window.addEventListener('scroll', () => {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrollPercent = (scrollTop / docHeight) * 100;
+        progressBar.style.width = scrollPercent + '%';
+      });
+    });
+  </script>
+</body>
+</html>
+
