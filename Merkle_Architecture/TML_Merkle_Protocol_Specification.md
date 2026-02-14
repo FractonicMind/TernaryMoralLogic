@@ -1361,4 +1361,18 @@ This **explicit acknowledgment** ensures that **hash commitment alone is insuffi
 
 #### 13.4.3 Recovery Procedures: Manual Reconstruction from Partial Custodian Sets
 
+Recovery procedures: manual reconstruction from partial custodian sets for key material recovery; archival data restoration from geographic redundancy; succession planning for organizational continuity beyond individual custodian lifespan.
+
+---
+## Document Control
+| Attribute | Detail |
+| :--- | :--- |
+| **Document ID** | TML-SPEC-001 |
+| **Version** | 1.0.0 |
+| **Status** | **RELEASED** |
+| **Classification** | **Technical Standard** |
+| **Author** | Lev Goukassian |
+| **Date** | 2026-02-14 |
+
+
 **Recovery procedures**: **manual reconstruction from partial custodian sets** for **key material recovery**; **archival data restoration** from **geographic redundancy**; **succession planning** for **organizational continuity beyond individual custodian lifespan**.
