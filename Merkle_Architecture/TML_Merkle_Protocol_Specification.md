@@ -1,12 +1,3 @@
----
-title: TML Merkle Protocol Specification
-id: TML-SPEC-001
-version: 1.0.0
-...
----
-
-# Structural, Adversarial, and Availability-Hardened...
-
 # Structural, Adversarial, and Availability-Hardened Merkle Architecture for Ternary Moral Logic (TML)
 
 ## 1\. Merkle as Core Structural Component of TML’s Ethical Guarantees
