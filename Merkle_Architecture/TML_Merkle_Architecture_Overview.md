@@ -235,6 +235,19 @@ TML acknowledges specific residual risks and conditions under which its guarante
 
 By embedding these architectural choices, TML transforms AI ethics from a design-time aspiration into a runtime, evidentiary substrate that is both resilient to adversarial attack and open to independent verification.5
 
+---
+## Document Control
+| Attribute | Detail |
+| :--- | :--- |
+| **Document ID** | TML-STRAT-001 |
+| **Version** | 1.0.0 |
+| **Status** | **RELEASED** |
+| **Classification** | **Strategic Framework** |
+| **Author** | Lev Goukassian |
+| **Date** | 2026-02-14 |
+
+---
+
 #### **Works cited**
 
 1. Auditable AI: tracing the ethical history of a model \- ResearchGate, accessed February 14, 2026, [https://www.researchgate.net/publication/399129971\_Auditable\_AI\_tracing\_the\_ethical\_history\_of\_a\_model](https://www.researchgate.net/publication/399129971_Auditable_AI_tracing_the_ethical_history_of_a_model)  
