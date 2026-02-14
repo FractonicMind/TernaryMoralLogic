@@ -1,5 +1,23 @@
 # The Cryptographic Imperative: Hardening Ternary Moral Logic with a Ternary Merkle Architecture
 
+**Lev Goukassian**   
+Architect of Ternary Moral Logic | FractonicMind  
+Santa Monica, California  
+ORCID: [0009-0006-5966-1243](https://orcid.org/0009-0006-5966-1243)  
+February 14, 2026
+
+**[Interactive Version:](https://fractonicmind.github.io/TernaryMoralLogic/Merkle_Architecture/TML_Cryptographic_Imperative_Research.html)** *This document is available as a live web artifact containing dynamic structural formatting.*
+
+---
+
+### **Abstract**
+
+This research establishes the cryptographic imperative for Ternary Moral Logic (TML) as a mechanism for enforceable AI governance. While traditional AI safety relies on post-hoc auditing, TML enforces a "No Log = No Action" architecture where execution is cryptographically bound to an immutable record. We analyze the information-theoretic properties of a Ternary (Base-3) Merkle tree topology, demonstrating that it aligns semantically with TML’s triadic logic (+1, 0, -1) while reducing Merkle inclusion proof size by approximately 35% compared to standard binary structures at scale ($N=10^9$). Furthermore, we introduce the **Active Axiom Set Hash**, a novel binding mechanism that cryptographically freezes the governing ethical ruleset at the precise moment of inference. This mechanism renders "retroactive reinterpretation"—the falsification of historical rule application—computationally infeasible. A comparative analysis against Bitcoin, Ethereum, and Certificate Transparency logs validates the TML architecture’s superior suitability for high-frequency, privacy-preserving, and intergenerationally durable ethical enforcement.
+
+**Keywords:** AI Governance, Ternary Merkle Trees, Cryptographic Auditability, Active Axiom Set Hash, Ternary Moral Logic.
+
+---
+
 ## Foundational Role of the Merkle Tree in Ethical Guarantees
 
 The Ternary Moral Logic (TML) framework necessitates a structural substrate capable of providing cryptographically verifiable, immutable, and context-aware evidence of AI-driven deliberations \[[168](https://www.researchgate.net/publication/399129971_Auditable_AI_tracing_the_ethical_history_of_a_model), [169](https://wiley.authorea.com/inst/26407?filterby=All&page=37&tag_filter=Computing+And+Processing)\]. The Merkle tree architecture is not merely an implementation detail but the indispensable foundation upon which TML’s core ethical guarantees are built. Its removal would catastrophically undermine the system's ability to provide legally defensible and intergenerationally durable records of moral decisions. The necessity of the Merkle tree stems from its unique capacity to bind discrete pieces of information into a single, provable commitment, enforce contextual integrity through cryptographic hashing, and create a tamper-evident historical chain resistant to truncation and retroactive alteration \[[37](https://ieeexplore.ieee.org/iel7/6287639/10005208/10041154.pdf), [107](https://www.cell.com/patterns/fulltext/S2666-3899\(20\)30243-9)\]. Without this structure, TML would lack a formal mechanism to freeze outcomes, anchor decisions to their governing ruleset, or enable efficient, lightweight verification by third parties, rendering its ethical claims unverifiable and therefore functionally void.
