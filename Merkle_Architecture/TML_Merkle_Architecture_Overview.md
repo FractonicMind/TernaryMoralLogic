@@ -15,7 +15,7 @@ February 14, 2026
 
 ## **Merkle as a Core Structural Component of TML**
 
-![TML Merkle Tree](/images/TML_Merkle_Architecture_Overview.jpg)
+![TML Merkle Tree](/images/TML_Merkle_Architecture_Overview.png)
 
 The fundamental architecture of Ternary Moral Logic (TML) establishes a paradigm shift in AI governance by moving from post-hoc auditing to real-time, architectural enforcement. At the center of this transition is the Merkle tree, which functions as the primary structural component ensuring that every autonomous action is preceded by a verifiable and immutable record.1 In TML, the Merkle tree is not an optional logging enhancement; it is the mathematical backbone that operationalizes ethical constraints. Without this structure, the system’s core logical states—Permissible (+1), Impermissible (-1), and the Sacred Zero (0)—would lack the evidentiary weight required for legal and intergenerational review.4   
 
