@@ -1,5 +1,16 @@
 # **Structural, Adversarial, and Availability-Hardened Merkle Architecture for Ternary Moral Logic (TML)**
 
+**Lev Goukassian**  
+Architect of Ternary Moral Logic  
+Santa Monica, California
+
+**ORCID: [0009-0006-5966-1243](https://orcid.org/0009-0006-5966-1243)**
+
+February 14, 2026
+
+[**Interactive Version:**](https://fractonicmind.github.io/TernaryMoralLogic/Merkle_Architecture/TML_Adversarial_Security_Hardening.html) *This document is available as a live web artifact containing Hardened Merkle Architecture formatting.*
+
+
 ## **1\. Merkle as a Core Structural Component of TML**
 
 The fundamental architecture of Ternary Moral Logic (TML) departs from the bivalent true/false paradigms of classical computational systems, introducing a mandatory third operational state: the Sacred Zero, or Epistemic Hold.1 This state represents a formal computational hesitation when an artificial intelligence encounters moral ambiguity, relational complexity, or complex ethical thresholds that exceed its confidence parameters.3 However, the philosophical and regulatory imposition of a third state remains meaningless without a verifiable, deterministic enforcement layer. The core proposition of the "Always Memory" pillar dictates an absolute operational axiom: "No Log \= No Action".4 To enforce this mandate at the computational level, Merkle tree architecture is not an optional optimization; it is the foundational cryptographic substrate that guarantees the structural integrity of the entire TML framework.5  
