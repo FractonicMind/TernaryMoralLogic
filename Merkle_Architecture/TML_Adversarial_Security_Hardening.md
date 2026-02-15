@@ -1,4 +1,4 @@
-# **Structural, Adversarial, and Availability-Hardened Merkle Architecture for Ternary Moral Logic (TML)**
+# **Structural, Adversarial, and Availability-Hardened Merkle Architecture for Ternary Moral Logic (TML)** {#structural,-adversarial,-and-availability-hardened-merkle-architecture-for-ternary-moral-logic-(tml)}
 
 **Lev Goukassian**  
 Architect of Ternary Moral Logic  
@@ -6,30 +6,113 @@ Santa Monica, California
 
 **ORCID: [0009-0006-5966-1243](https://orcid.org/0009-0006-5966-1243)**
 
-February 14, 2026
+**February 14, 2026**
+
+[**Structural, Adversarial, and Availability-Hardened Merkle Architecture for Ternary Moral Logic (TML)	0**](#structural,-adversarial,-and-availability-hardened-merkle-architecture-for-ternary-moral-logic-\(tml\))
+
+[1\. Merkle as a Core Structural Component of TML	2](#1.-merkle-as-a-core-structural-component-of-tml)
+
+[2\. Canonical Leaf Node Specification (Contextual Integrity Enforcement)	3](#2.-canonical-leaf-node-specification-\(contextual-integrity-enforcement\))
+
+[Mandatory Fields and Schema Definition	3](#mandatory-fields-and-schema-definition)
+
+[Active Axiom Set Hash Requirement	5](#active-axiom-set-hash-requirement)
+
+[Determinism Requirements	5](#determinism-requirements)
+
+[Privacy Requirements	6](#privacy-requirements)
+
+[Immutability Enforcement	6](#immutability-enforcement)
+
+[3\. Merkle Tree Construction Model (Structural and Security Analysis)	7](#3.-merkle-tree-construction-model-\(structural-and-security-analysis\))
+
+[Hashing Strategy	7](#hashing-strategy)
+
+[Branching Analysis: Binary vs. Ternary	7](#branching-analysis:-binary-vs.-ternary)
+
+[Ternary Geometry Semantic Mapping	8](#ternary-geometry-semantic-mapping)
+
+[Construction Requirements	8](#construction-requirements)
+
+[Replay Protection	9](#replay-protection)
+
+[4\. Hierarchical Integrity Model	9](#4.-hierarchical-integrity-model)
+
+[Domain Isolation and Master Root Aggregation	9](#domain-isolation-and-master-root-aggregation)
+
+[Forward Integrity Safeguards	10](#forward-integrity-safeguards)
+
+[5\. Anchoring Strategy (Time-Bound Enforcement)	10](#5.-anchoring-strategy-\(time-bound-enforcement\))
+
+[Time-Bound Enforcement	11](#time-bound-enforcement)
+
+[Time Integrity Requirements	11](#time-integrity-requirements)
+
+[Reconciliation Protocol	11](#reconciliation-protocol)
+
+[6\. Causal Integrity Enforcement (Sacred Zero Protection)	12](#6.-causal-integrity-enforcement-\(sacred-zero-protection\))
+
+[Causal Ordering Proof Requirement	12](#causal-ordering-proof-requirement)
+
+[Execution Interlock Mechanism	12](#execution-interlock-mechanism)
+
+[7\. Proof Generation and Verification	13](#7.-proof-generation-and-verification)
+
+[Light Client / SPV Specification	13](#light-client-/-spv-specification)
+
+[Key Security and Compromise Detection	14](#key-security-and-compromise-detection)
+
+[Crypto-Shredding Mechanism	14](#crypto-shredding-mechanism)
+
+[8\. Data Availability (DA) Strategy	14](#8.-data-availability-\(da\)-strategy)
+
+[Storage, Redundancy, and Distribution Model	15](#storage,-redundancy,-and-distribution-model)
+
+[9\. Log Truncation and Tamper Resistance	16](#9.-log-truncation-and-tamper-resistance)
+
+[Append-Only Storage Enforcement	16](#append-only-storage-enforcement)
+
+[Schema Governance	16](#schema-governance)
+
+[10\. Latency and Throughput Modeling	17](#10.-latency-and-throughput-modeling)
+
+[Computational Overhead and Worst-Case Load Model	17](#computational-overhead-and-worst-case-load-model)
+
+[Parallel Construction Strategy	17](#parallel-construction-strategy)
+
+[11\. Formal Integrity Guarantees	18](#11.-formal-integrity-guarantees)
+
+[Conditions of Guarantee Degradation	18](#conditions-of-guarantee-degradation)
+
+[12\. Comparative Analysis	18](#12.-comparative-analysis)
+
+[13\. Failure Mode Disclosure	20](#13.-failure-mode-disclosure)
+
+[Document Control	20](#document-control)
+
+[Works cited	21](#works-cited)
 
 [**Interactive Version:**](https://fractonicmind.github.io/TernaryMoralLogic/Merkle_Architecture/TML_Adversarial_Security_Hardening.html) *This document is available as a live web artifact containing Hardened Merkle Architecture formatting.*
 
+## **1\. Merkle as a Core Structural Component of TML** {#1.-merkle-as-a-core-structural-component-of-tml}
 
-## **1\. Merkle as a Core Structural Component of TML**
+The fundamental architecture of Ternary Moral Logic (TML) departs from the bivalent true/false paradigms of classical computational systems, introducing a mandatory third operational state: the Sacred Zero, or Epistemic Hold.1 This state represents a formal computational hesitation when an artificial intelligence encounters moral ambiguity, relational complexity, or complex ethical thresholds that exceed its confidence parameters.3 However, the philosophical and regulatory imposition of a third state remains meaningless without a verifiable, deterministic enforcement layer. The core proposition of the "Always Memory" pillar dictates an absolute operational axiom: "No Log \= No Action".4 To enforce this mandate at the computational level, Merkle tree architecture is not an optional optimization; it is the foundational cryptographic substrate that guarantees the structural integrity of the entire TML framework.5
 
-The fundamental architecture of Ternary Moral Logic (TML) departs from the bivalent true/false paradigms of classical computational systems, introducing a mandatory third operational state: the Sacred Zero, or Epistemic Hold.1 This state represents a formal computational hesitation when an artificial intelligence encounters moral ambiguity, relational complexity, or complex ethical thresholds that exceed its confidence parameters.3 However, the philosophical and regulatory imposition of a third state remains meaningless without a verifiable, deterministic enforcement layer. The core proposition of the "Always Memory" pillar dictates an absolute operational axiom: "No Log \= No Action".4 To enforce this mandate at the computational level, Merkle tree architecture is not an optional optimization; it is the foundational cryptographic substrate that guarantees the structural integrity of the entire TML framework.5  
+If Merkle structures are removed from the TML ecosystem, the entire framework's ethical guarantees collapse into mere procedural assertions. Without cryptographic hash commitments and the resulting immutability, a malicious insider with database write access could retroactively alter the logs to conceal a prohibited action (a \-1 state) or manually bypass the Epistemic Hold (the 0 state) without leaving a forensic trace.4 The Merkle architecture freezes Sacred Zero outcomes as an immutable moral state. When a system triggers a Sacred Pause, the context, the inputs, and the active ethical parameters are immediately hashed and batched into a Merkle tree, yielding a cryptographic root that serves as an unforgeable evidentiary lock.4
 
-If Merkle structures are removed from the TML ecosystem, the entire framework's ethical guarantees collapse into mere procedural assertions. Without cryptographic hash commitments and the resulting immutability, a malicious insider with database write access could retroactively alter the logs to conceal a prohibited action (a \-1 state) or manually bypass the Epistemic Hold (the 0 state) without leaving a forensic trace.4 The Merkle architecture freezes Sacred Zero outcomes as an immutable moral state. When a system triggers a Sacred Pause, the context, the inputs, and the active ethical parameters are immediately hashed and batched into a Merkle tree, yielding a cryptographic root that serves as an unforgeable evidentiary lock.4  
+A critical component of this structural integrity is the Active Axiom Set Hash. At the exact nanosecond an event is logged, the exact ruleset, policy weights, and governance constraints governing the AI are hashed and mathematically bound to the event's leaf node.10 This enforces absolute contextual integrity. If a developer attempts to silently modify the schema or alter the moral boundaries post-facto to justify a rogue decision, the Active Axiom Set Hash will immediately mismatch upon independent verification, mathematically proving the discrepancy. Retroactive reinterpretation of an AI's operational state becomes cryptographically impossible.1
 
-A critical component of this structural integrity is the Active Axiom Set Hash. At the exact nanosecond an event is logged, the exact ruleset, policy weights, and governance constraints governing the AI are hashed and mathematically bound to the event's leaf node.10 This enforces absolute contextual integrity. If a developer attempts to silently modify the schema or alter the moral boundaries post-facto to justify a rogue decision, the Active Axiom Set Hash will immediately mismatch upon independent verification, mathematically proving the discrepancy. Retroactive reinterpretation of an AI's operational state becomes cryptographically impossible.1  
+Furthermore, the architecture utilizes hierarchical Merkle subtrees to segregate and independently verify distinct ethical domains, specifically Human Rights, Earth Protection, and Governance.11 This domain-specific branching allows regulators and auditors to inspect ecological compliance without exposing highly sensitive human rights data. The logarithmic nature of Merkle proofs enables highly scalable governance; a massive data center processing millions of autonomous inferences per second can compress its entire moral operational history into a single 32-byte root.9 This proof compression is essential for continuous multi-chain anchoring and limits the bandwidth overhead for third-party verifiers.
 
-Furthermore, the architecture utilizes hierarchical Merkle subtrees to segregate and independently verify distinct ethical domains, specifically Human Rights, Earth Protection, and Governance.11 This domain-specific branching allows regulators and auditors to inspect ecological compliance without exposing highly sensitive human rights data. The logarithmic nature of Merkle proofs enables highly scalable governance; a massive data center processing millions of autonomous inferences per second can compress its entire moral operational history into a single 32-byte root.9 This proof compression is essential for continuous multi-chain anchoring and limits the bandwidth overhead for third-party verifiers.  
-
-Finally, the architecture relies heavily on hash commitments for privacy compliance, specifically enabling crypto-shredding. Personal data is encrypted off-chain, and only the deterministic hash of the ciphertext is anchored in the Merkle tree.9 When General Data Protection Regulation (GDPR) erasure requests are invoked, the specific decryption key is permanently destroyed.12 The raw data is rendered permanently unreadable, fulfilling the erasure mandate, yet the hash remains securely anchored in the Merkle leaf, preserving the continuity and validity of the broader ethical proof chain without leaking sensitive information.13  
+Finally, the architecture relies heavily on hash commitments for privacy compliance, specifically enabling crypto-shredding. Personal data is encrypted off-chain, and only the deterministic hash of the ciphertext is anchored in the Merkle tree.9 When General Data Protection Regulation (GDPR) erasure requests are invoked, the specific decryption key is permanently destroyed.12 The raw data is rendered permanently unreadable, fulfilling the erasure mandate, yet the hash remains securely anchored in the Merkle leaf, preserving the continuity and validity of the broader ethical proof chain without leaking sensitive information.13
 
 Consider a concrete adversarial scenario demonstrating this resilience: an autonomous financial agent triggers a flash crash, resulting in massive market instability. A post-mortem review is demanded by regulatory authorities. A malicious infrastructure operator attempts to retroactively re-classify the inference as a hardware fault, modifying the operational database to show a localized memory error rather than a deliberate, algorithmically generated trade. Because the original execution interlock mandated that the inference could only proceed after its Sacred Zero log was committed to a Merkle tree and anchored to a public blockchain 4, the regulator simply requests the Merkle inclusion proof. The modified database generates a new hash that fundamentally fails to align with the anchored Merkle root. The retroactive reinterpretation is definitively blocked, the tamper attempt is forensically flagged, and the original moral context of the decision is preserved for intergenerational review.
 
-## **2\. Canonical Leaf Node Specification (Contextual Integrity Enforcement)**
+## **2\. Canonical Leaf Node Specification (Contextual Integrity Enforcement)** {#2.-canonical-leaf-node-specification-(contextual-integrity-enforcement)}
 
 To prevent adversarial manipulation at the serialization layer and ensure cross-platform contextual integrity, every TML moral event must be mapped to a highly rigorous Canonical Leaf Node before hashing. The schema enforces strict immutability, determinism, and privacy guarantees, acting as the atomic unit of the entire governance structure.
 
-### **Mandatory Fields and Schema Definition**
+### **Mandatory Fields and Schema Definition** {#mandatory-fields-and-schema-definition}
 
 The canonical schema of a TML moral event dictates the inclusion of the following mandatory fields. These fields must be ordered strictly sequentially to ensure deterministic hash outputs across distributed, heterogeneous verification environments.
 
@@ -48,11 +131,11 @@ The canonical schema of a TML moral event dictates the inclusion of the followin
 | Active Axiom Set Hash | bytes32 | Hash of the exact TML rule-set, prompt parameters, and alignment weights active at the precise time of the event.10 |
 | Hash Algorithm Version ID | uint8 | Identifies the hash function used (e.g., 0x01 for SHA3-512) to enable seamless future post-quantum migrations.16 |
 
-### **Active Axiom Set Hash Requirement**
+### **Active Axiom Set Hash Requirement** {#active-axiom-set-hash-requirement}
 
 The inclusion of the Active Axiom Set Hash provides a continuous, zero-trust defense against silent modifications by internal developers or infrastructure operators. In traditional systems, an AI might make a decision based on an internal policy that is later secretly updated, making the past decision appear anomalous or unjustified under current review. TML treats the rule-set as executable code. Any update to the internal moral axioms, threshold variables, or alignment weights generates a new system-wide hash. Because this specific hash is embedded directly in the leaf node prior to the Merkle commitment, any inference decision is permanently cryptographically bound to the exact rules under which it operated. Regulators can verify whether an AI was operating under an outdated, experimental, or compromised policy by cross-referencing the Active Axiom Set Hash against a public, highly available registry. Retroactive reinterpretation by claiming a different operational policy is mathematically impossible.
 
-### **Determinism Requirements**
+### **Determinism Requirements** {#determinism-requirements}
 
 To ensure that independent verifiers generate identical hashes from the exact same event data, the architecture mandates strict serialization protocols. A network-level attacker might attempt to exploit parsing ambiguities to create two structurally different payloads that appear identical to human reviewers but yield different hashes.
 
@@ -61,7 +144,7 @@ To ensure that independent verifiers generate identical hashes from the exact sa
 * **Rejection of Non-Deterministic Values:** Floating-point numbers (such as IEEE 754 representations) are strictly prohibited in the leaf node, as different CPU architectures may round these values differently, leading to catastrophic hash divergence. All thresholds, probabilities, and Ethical Uncertainty Scores must be scaled to fixed-point integers (e.g., multiplying a probability by $10^6$ and truncating).  
 * **Locale Independence:** All strings must be strictly UTF-8 encoded without byte-order marks (BOM). Timestamps must be absolute Unix epochs in UTC. Timezone offsets are stripped prior to hashing.
 
-### **Privacy Requirements**
+### **Privacy Requirements** {#privacy-requirements}
 
 The Canonical Leaf Node is explicitly hardened against the leaking of Personally Identifiable Information (PII) during the hashing and anchoring process. Raw personal data hashing is strictly prohibited due to the vulnerability of MD5, SHA-1, and even SHA-256 to rainbow table inversions and dictionary attacks when the input space (such as names or phone numbers) is highly predictable.
 
@@ -69,15 +152,15 @@ The Canonical Leaf Node is explicitly hardened against the leaking of Personally
 * **Irreversible Pseudonymization:** All required actor identifiers (such as the user prompting the AI) must undergo irreversible pseudonymization via HMAC-SHA3 with a high-entropy, ephemeral hardware-generated salt.  
 * **Encrypted Payloads:** If detailed payload inclusion is necessary for future forensic reconstruction, the data must be symmetrically encrypted (e.g., AES-256-GCM). Only the ciphertext and the authentication tag are included in the hash preimage.13
 
-### **Immutability Enforcement**
+### **Immutability Enforcement** {#immutability-enforcement}
 
 The inclusion of the Schema Hash and Schema Version ID within the leaf guarantees that any alteration to the data structure fundamentally invalidates the cryptographic proof. An external attacker attempting to inject arbitrary data by shifting byte boundaries or exploiting buffer overflows will inherently alter the final leaf hash, instantly breaking the mathematical path to the anchored Merkle root. Any mutation, regardless of its semantic intent, results in total proof failure.
 
-## **3\. Merkle Tree Construction Model (Structural and Security Analysis)**
+## **3\. Merkle Tree Construction Model (Structural and Security Analysis)** {#3.-merkle-tree-construction-model-(structural-and-security-analysis)}
 
 The construction of the TML Merkle tree involves specific cryptographic selections and topological designs meticulously optimized for the triadic nature of the framework and the necessity for extreme high-frequency execution.
 
-### **Hashing Strategy**
+### **Hashing Strategy** {#hashing-strategy}
 
 The system relies on a dual-hash architecture to balance execution speed, zero-knowledge (ZK) compatibility, and long-term intergenerational security.
 
@@ -85,7 +168,7 @@ The system relies on a dual-hash architecture to balance execution speed, zero-k
 * **Collision Resistance Justification:** Assuming SHA-256 for internal nodes, finding a collision requires an infeasible $O(2^{128})$ operations. A malicious insider with log write access attempting to forge a second-preimage log that hashes to an identical value is bound by computational limits far exceeding current terrestrial capabilities.  
 * **Migration Path and Post-Quantum Survivability:** Long-term cryptographic degradation is a critical threat. The embedded Hash Algorithm Version ID in the canonical leaf node establishes a forward-compatible migration pathway. As quantum computing capabilities advance toward Shor's algorithm viability, the system can seamlessly transition to Post-Quantum Cryptography (PQC) hash standards, such as SPHINCS+ or XMSS, by incrementing the version identifier. Historical trees generated with SHA-256 remain valid because their roots are perpetually anchored beneath subsequent post-quantum layers, leveraging the security of the newest algorithm to protect the legacy data.
 
-### **Branching Analysis: Binary vs. Ternary**
+### **Branching Analysis: Binary vs. Ternary** {#branching-analysis:-binary-vs.-ternary}
 
 Traditional blockchain systems predominantly rely on binary Merkle trees. However, TML introduces a ternary state architecture (+1, 0, \-1).1 Mathematical modeling of the tree structure reveals significant structural and performance differences when mapping these states to a ternary Merkle tree (a complete tree where every non-leaf node has exactly $d=3$ children).17  
 In a ternary Merkle tree constructed using a hash function $H$, an internal node with value $v$ and children $v\_1, v\_2, v\_3$ takes the computed value $v \= H(v\_1 \\parallel v\_2 \\parallel v\_3)$.17
@@ -94,7 +177,7 @@ In a ternary Merkle tree constructed using a hash function $H$, an internal node
 * **Proof Size Comparison:** To computationally prove inclusion in a binary tree, a verifier requires 1 sibling hash per level. The proof size is $P\_2 \= h\_2 \\times \\text{hash\\\_size}$. In a ternary tree, 2 sibling hashes are required per level to reconstruct the parent. The proof size is $P\_3 \= 2 \\times h\_3 \\times \\text{hash\\\_size}$.19 While the total number of hashes required to construct the tree shrinks to approximately $3/2$ compared to a binary tree, offering a distinct CPU advantage during the massive batch processing required for AI inference 20, the inclusion proof delivered to the light client is marginally larger in total bytes.  
 * **CPU and Memory Overhead Modeling:** Generating a 10,000-leaf binary tree requires 9,999 hash operations. A ternary tree requires only 4,999 hash operations. In a high-throughput environment running at 10,000 inferences per second, this 50% reduction in internal node hashing directly correlates to lower L2 cache misses and reduced GPU memory bandwidth saturation.
 
-### **Ternary Geometry Semantic Mapping**
+### **Ternary Geometry Semantic Mapping** {#ternary-geometry-semantic-mapping}
 
 Despite the slight increase in network bandwidth for proof transmission, the ternary geometry allows a highly efficient semantic mapping. Subtrees can be structurally clustered by the AI's decision state.  
 *Comparative Structure:*
@@ -105,7 +188,7 @@ Despite the slight increase in network bandwidth for proof transmission, the ter
 
 This semantic clustering drastically reduces the computational overhead when regulators or independent verifiers specifically query the system. If an auditor requests forensic reconstruction of "all overridden Sacred Zero events" for a specific time window, the traversal algorithm completely ignores the massive left and right branches, isolating its path entirely to the center subtrees. This provides a formal topological justification for the ternary choice.
 
-### **Construction Requirements**
+### **Construction Requirements** {#construction-requirements}
 
 To prevent latency bottlenecks during high-frequency AI inference, the tree construction operates entirely asynchronously:
 
@@ -114,7 +197,7 @@ To prevent latency bottlenecks during high-frequency AI inference, the tree cons
 * **Deterministic Leaf Placement:** Leaves are strictly ordered and placed into the tree based on their Monotonic Sequence ID.  
 * **Odd-Leaf Handling and Balanced Enforcement:** If an anchoring interval terminates with a leaf count that is not a power of 3, the system enforces strict tree balancing by appending mathematically deterministic zero-hashes ($H(0)$) to fill the empty leaf positions.18 This ensures consistent structural depth for all proofs.
 
-### **Replay Protection**
+### **Replay Protection** {#replay-protection}
 
 An external attacker or malicious insider might attempt to replay historical favorable decisions or truncate the end of a log sequence to hide malicious activity. This is neutralized by:
 
@@ -122,11 +205,11 @@ An external attacker or malicious insider might attempt to replay historical fav
 * **Strict Monotonic Sequence Validation:** Verifiers confirm that $Seq\_{n} \= Seq\_{n-1} \+ 1$.  
 * **Replay Detection Logic:** A bloom filter maintains a rolling window of the last 10 million Event IDs. Any collision immediately halts processing and flags the input as a highly probable replay attack.
 
-## **4\. Hierarchical Integrity Model**
+## **4\. Hierarchical Integrity Model** {#4.-hierarchical-integrity-model}
 
 To optimize forensic reviews, scale efficiently, and strictly compartmentalize sensitive data based on regulatory purview, the TML Merkle implementation relies on a sophisticated Hierarchical Integrity Model. Rather than flatly hashing all diverse events into a single chaotic layer, the system maintains independent subtrees dedicated to specific ethical domains defined by the TML framework.11
 
-### **Domain Isolation and Master Root Aggregation**
+### **Domain Isolation and Master Root Aggregation** {#domain-isolation-and-master-root-aggregation}
 
 The architecture mandates the separation of logs into distinct subtrees:
 
@@ -136,7 +219,7 @@ The architecture mandates the separation of logs into distinct subtrees:
 
 These independent subtrees are periodically aggregated into a single, higher-order "Root-of-Roots," or Master Root. The Master Root computation includes a Root Versioning ID to track structural schema changes at the highest architectural level without breaking legacy verification protocols.
 
-### **Forward Integrity Safeguards**
+### **Forward Integrity Safeguards** {#forward-integrity-safeguards}
 
 A persistent threat in any logging system is a malicious infrastructure operator with full administrative access attempting a long-range attack: retroactively fork-mining an entire parallel history of the AI's operations to cover up a systemic failure that occurred weeks prior. To defeat this, the Master Root incorporates continuous forward integrity safeguards.
 
@@ -147,11 +230,11 @@ Let $R\_{n}$ be the calculated root for the current interval $n$, representing t
 $B\_{n} \= H(B\_{n-1} \\parallel R\_{n} \\parallel \\text{Timestamp})$  
 This establishes an unbreakable forward hash chain. An attacker wishing to alter a specific event at interval $n-5$ must not only break the collision resistance of the Merkle tree for that specific batch but must also sequentially recalculate and successfully re-anchor $B\_{n-4}$, $B\_{n-3}$, $B\_{n-2}$, $B\_{n-1}$, and $B\_{n}$. Because these bound roots are pushed to distributed blockchains, this creates absolute computational irreducibility. The past is mathematically sealed.
 
-## **5\. Anchoring Strategy (Time-Bound Enforcement)**
+## **5\. Anchoring Strategy (Time-Bound Enforcement)** {#5.-anchoring-strategy-(time-bound-enforcement)}
 
 The "Hybrid Shield" represents the external defensive layer of TML, designed to protect the integrity of the moral history against localized 51% attacks, nation-state censorship, or catastrophic central database corruption.4 It achieves this through a highly aggressive multi-chain blockchain anchoring protocol.1
 
-### **Time-Bound Enforcement**
+### **Time-Bound Enforcement** {#time-bound-enforcement}
 
 An infrastructure operator could theoretically attempt to suppress an immoral AI action by indefinitely delaying the anchoring of the specific Merkle root that contains the incriminating leaf. To defeat this "silent delay" attack vector, the architecture defines a strict, numerical maximum anchoring delay of **2000 milliseconds**.
 
@@ -162,11 +245,11 @@ An infrastructure operator could theoretically attempt to suppress an immoral AI
   * **Bitcoin (via OpenTimestamps):** For ultimate, nation-state-level immutability and intergenerational preservation.1  
 * **Monotonic Root Indexing:** Each anchored payload broadcast to these chains includes the strict index counter and the forward-linked hash.
 
-### **Time Integrity Requirements**
+### **Time Integrity Requirements** {#time-integrity-requirements}
 
 To prevent anti-backdating, the system enforces Trusted Timestamp integration. The eIDAS-qualified timestamp within the Root-of-Roots is cryptographically bound to the payload. During verification, this internal timestamp is strictly cross-referenced against the block header timestamp of the underlying blockchain (e.g., the Ethereum block time).14 If the internal timestamp claims the event occurred on Tuesday, but the blockchain anchor timestamp registers on Thursday, a temporal anomaly is instantly flagged.
 
-### **Reconciliation Protocol**
+### **Reconciliation Protocol** {#reconciliation-protocol}
 
 Independent light nodes and governance watchdogs operate public verification endpoints. These nodes continuously poll the Polygon network for the latest TML anchors.
 
@@ -174,18 +257,18 @@ Independent light nodes and governance watchdogs operate public verification end
 * **Mandatory Anomaly Logging:** This triggers an automated, high-priority anomaly log sent to the overarching Governance Council.  
 * **Independent Audit Pathway:** The infrastructure operator is immediately placed on probation and must initiate an independent audit pathway. They must either produce the missing Merkle root for Sequence ID $1001$ and successfully prove its contents, or face automatic cryptographic slashing of their staked assets via smart contract execution.10
 
-## **6\. Causal Integrity Enforcement (Sacred Zero Protection)**
+## **6\. Causal Integrity Enforcement (Sacred Zero Protection)** {#6.-causal-integrity-enforcement-(sacred-zero-protection)}
 
 The fundamental ethical promise of the TML standard is the "Sacred Zero"—a moment of forced hesitation and reflection when an AI encounters profound ethical ambiguity.3 A devastating, highly sophisticated attack vector involves a malicious insider or a compromised model silently bypassing this pause state, rendering an unethical decision, and then forging a plausible log post-facto.
 
-### **Causal Ordering Proof Requirement**
+### **Causal Ordering Proof Requirement** {#causal-ordering-proof-requirement}
 
 To absolutely prevent this bypass, the architecture mandates an Execution Interlock at the hardware level.4 The system must structurally demonstrate that the commitment of the log to the Merkle tree occurs *before* or *atomically with* the release of the final inference output to the downstream application or user.
 
 * **Atomic Snapshot Boundary:** The boundary is defined at the exact sub-millisecond clock cycle where the neural network's activation thresholds dictate the transition to a 0 or \+1 state.7 If a \+1 (Permit) is achieved, the tensor output is frozen and held in an isolated, secure hardware buffer.  
 * **Formal Ordering Guarantee:** The causal link is enforced by generating a deterministic hash dependency between the output packet and the logging system.
 
-### **Execution Interlock Mechanism**
+### **Execution Interlock Mechanism** {#execution-interlock-mechanism}
 
 1. The AI inference engine formulates the decision and generates the trace data.  
 2. The trace data is routed via an internal bus to the isolated Always Memory daemon.  
@@ -196,11 +279,11 @@ To absolutely prevent this bypass, the architecture mandates an Execution Interl
 
 Through this deterministic hardware dependency, the log mathematically predates the action. "No Log \= No Action" transitions from a highly aspirational administrative policy to a physical, code-level constraint that cannot be circumvented without entirely rewriting the network stack.4
 
-## **7\. Proof Generation and Verification**
+## **7\. Proof Generation and Verification** {#7.-proof-generation-and-verification}
 
 The decentralized governance power of TML relies heavily on lightweight, widely distributed verification. Regulators, civil rights organizations, or third-party auditors must be able to verify specific historical AI events without downloading the petabytes of operational data generated by a major platform's daily inference load.4
 
-### **Light Client / SPV Specification**
+### **Light Client / SPV Specification** {#light-client-/-spv-specification}
 
 The verification model utilizes a Simplified Payment Verification (SPV) approach uniquely adapted for the TML ternary architecture. A regulator investigating a specific autonomous decision requests a targeted proof bundle from the operator.  
 **Independent Third-Party Verification Workflow:**
@@ -213,7 +296,7 @@ The verification model utilizes a Simplified Payment Verification (SPV) approach
 **Verification Failure Handling:** Verification mathematically fails if the hashes mismatch, the sequence ID is anomalous, the eIDAS timestamp is outside the block window, or the blockchain anchor cannot be found. Any failure is treated as absolute proof of structural tampering or operator non-compliance.  
 Furthermore, the architecture leverages Sparse Merkle Trees (SMTs) with an astronomical $2^{256}$ leaves to generate definitive *non-inclusion proofs*.17 If an operator claims a specific prohibited payload was never processed by their systems, an SMT proof can mathematically demonstrate the absence of that exact payload hash in the historical tree, shifting the burden of proof away from ambiguous log analysis to undeniable cryptography.17
 
-### **Key Security and Compromise Detection**
+### **Key Security and Compromise Detection** {#key-security-and-compromise-detection}
 
 The cryptographic strength of the leaf hashes is deeply reliant on the security of the underlying keys used for pseudonymization and encryption.
 
@@ -222,7 +305,7 @@ The cryptographic strength of the leaf hashes is deeply reliant on the security 
 * **Key Rotation Schedule:** The system mandates a strict, automated key rotation schedule every 24 hours, or immediately following the detection of an anomalous access pattern.  
 * **Compromise Detection Protocol:** The HSMs are monitored by external threshold signature nodes. If an HSM detects unauthorized physical access or memory probing, it instantly zeroizes its internal key material and broadcasts a signed "Integrity Frozen" state to the governance blockchain, halting all dependent AI inferences globally.10
 
-### **Crypto-Shredding Mechanism**
+### **Crypto-Shredding Mechanism** {#crypto-shredding-mechanism}
 
 Public blockchains are permanently transparent, but AI logs often contain highly sensitive personal data. This creates a severe structural conflict with privacy regulations like the GDPR's "Right to Erasure." TML resolves this paradox elegantly with crypto-shredding.9
 
@@ -233,12 +316,12 @@ Public blockchains are permanently transparent, but AI logs often contain highly
 5. Once the key is destroyed, the ciphertext becomes mathematically impossible to decrypt. The underlying personal data is completely, irreversibly obliterated.  
 6. **Preservation of Hash Continuity:** Crucially, because the deterministic hash of the ciphertext remains structurally unaltered in the Merkle leaf, the integrity of the root, the batch, and the overall historical evidence chain is perfectly preserved.13 Continued proof validity post-erasure is guaranteed, ensuring the AI cannot use privacy regulations as a convenient loophole to delete evidence of its broader moral reasoning patterns.12
 
-## **8\. Data Availability (DA) Strategy**
+## **8\. Data Availability (DA) Strategy** {#8.-data-availability-(da)-strategy}
 
 A valid Merkle root mathematically proves that specific data existed at a certain precise point in time, but it does not store or transmit the data itself.5 If an external attacker compromises the operator's storage servers, or a catastrophic natural disaster causes total data loss, the regulator might possess a perfectly valid Merkle root on the Ethereum blockchain but be completely unable to read the underlying encrypted pre-hash event data necessary for forensic reconstruction.  
 **Explicit Mandate:** A Merkle root without retrievable, readable data completely fails TML governance guarantees. The system defaults to an assumption of "spoliation of evidence" if the pre-image logs cannot be produced upon regulatory request.14
 
-### **Storage, Redundancy, and Distribution Model**
+### **Storage, Redundancy, and Distribution Model** {#storage,-redundancy,-and-distribution-model}
 
 To defend against catastrophic storage compromise or systemic hardware failure, the architecture enforces a highly redundant, geographically distributed Data Availability (DA) strategy.
 
@@ -252,18 +335,18 @@ To defend against catastrophic storage compromise or systemic hardware failure, 
 * **Proof-of-Storage Attestation:** The decentralized storage networks must periodically generate zero-knowledge Proofs of Spacetime (PoSt). This mathematical attestation guarantees to the master TML smart contract that the distributed nodes are actively holding the data, mitigating the severe risk of silent storage degradation or node abandonment over time.  
 * **Disaster Recovery and Data Rehydration Workflow:** In a severe disaster recovery scenario where Tier 1 storage is wiped, the infrastructure operator initiates a rehydration workflow. The system pulls the erasure-coded fragments (e.g., Reed-Solomon chunks) from the Tier 2 decentralized network, mathematically reassembles the ciphertext, decrypts it using the surviving HSM-backed keys, and hashes it to prove perfect structural alignment with the blockchain-anchored Merkle root. Once verified, the data is pushed back to the operational Tier 1 storage.
 
-## **9\. Log Truncation and Tamper Resistance**
+## **9\. Log Truncation and Tamper Resistance** {#9.-log-truncation-and-tamper-resistance}
 
 An advanced insider attempting to rewrite operational history might not try the mathematically impossible task of forging a single leaf. Instead, they might attempt to quietly truncate the last 5,000 logs of an active batch *before* they are anchored to the blockchain, attempting to hide a catastrophic AI safety failure that occurred at the very end of a session.
 
-### **Append-Only Storage Enforcement**
+### **Append-Only Storage Enforcement** {#append-only-storage-enforcement}
 
 TML defends against truncation via strictly append-only database semantics enforced at the core kernel level of the storage servers. The storage drives are configured to physically reject any overwrite or delete commands outside of the authorized crypto-shredding key destruction workflow.
 
 * **Periodic Integrity Checks:** Background daemons continuously run verification tasks, validating the $Seq\_n \= Seq\_{n-1} \+ 1$ rule across the entire active storage cluster.  
 * **Automatic Anomaly Signaling:** A missing sequence ID or a detected truncation attempt immediately halts the AI's inference engine and fires an automated, high-priority anomaly signal to the independent TML Governance Council.10 The system enters a hard "Integrity Frozen" state that requires manual, multi-signature cryptographic override to resume.10
 
-### **Schema Governance**
+### **Schema Governance** {#schema-governance}
 
 The structural layout of the data itself represents a subtle attack vector. The Schema Hash embedded in every leaf prevents spontaneous restructuring 24, but organized schema updates are occasionally necessary as models evolve.
 
@@ -271,11 +354,11 @@ The structural layout of the data itself represents a subtle attack vector. The 
 * **Dual Control for Updates:** Updating the schema requires a multi-signature cryptographic approval (e.g., 7 of 13 keys from an independent oversight board).10 A single rogue developer cannot alter the logging structure.  
 * **Independent Anchoring:** The new schema definition is independently hashed and anchored to the blockchain. When parsing a leaf, the SPV software pulls the schema definition corresponding to the Schema Version ID, hashes it, and strictly compares it to the Schema Hash Commitment in the leaf. If they differ by even a single byte, the verification fails entirely.
 
-## **10\. Latency and Throughput Modeling**
+## **10\. Latency and Throughput Modeling** {#10.-latency-and-throughput-modeling}
 
 A critical and highly publicized objection to the TML framework is the "Alignment Tax"—the argument that mandatory cryptographic hashing, state buffering, logging, and Merkle root evaluation will cripple the speed of modern high-frequency AI models.23 The architecture formally mandates the preservation of a $\\le 2$ ms user-visible inference latency while sustaining an extreme event rate of $\\ge 10,000$ events per second.14
 
-### **Computational Overhead and Worst-Case Load Model**
+### **Computational Overhead and Worst-Case Load Model** {#computational-overhead-and-worst-case-load-model}
 
 At a throughput of 10,000 decisions/second, sequentially hashing 10,000 complex payloads on a single CPU thread would vastly exceed the 2 ms budget. This latency bottleneck is solved via a highly optimized, parallel, dual-lane hardware architecture.25
 
@@ -291,11 +374,11 @@ Because the massive Merkle tree construction is completely asynchronous, the sys
 * Total computational overhead added directly to the critical path is strictly bounded below $0.5$ ms.25  
 * Assuming the core AI inference takes $1.2$ ms, the total processing time is $1.7$ ms, safely meeting the $\\le 2$ ms visible latency cap.
 
-### **Parallel Construction Strategy**
+### **Parallel Construction Strategy** {#parallel-construction-strategy}
 
 Behind the scenes, the asynchronous Merkle construction algorithm processes massive volumes without impacting the user. By grouping events into a tree, $10,000$ leaves can be condensed into a single root via exactly $4,999$ internal SHA-256 hashing operations (for a ternary topology).17 Utilizing parallel SIMD (Single Instruction, Multiple Data) instructions on the GPU, generating the entire 10,000-leaf tree takes less than $1.5$ ms of background processing time.25 The final root is then seamlessly forwarded to the network broadcast pool for multi-chain anchoring. This rigorously demonstrates that the framework scales under worst-case load models without violating operational speed constraints.
 
-## **11\. Formal Integrity Guarantees**
+## **11\. Formal Integrity Guarantees** {#11.-formal-integrity-guarantees}
 
 The immense architectural resilience of TML relies on defining precise, formal cryptographic assumptions and understanding exactly when those assumptions degrade.
 
@@ -303,7 +386,7 @@ The immense architectural resilience of TML relies on defining precise, formal c
 * **Preimage and Second-Preimage Resistance:** An external attacker cannot reverse-engineer a Sacred Zero log simply by looking at the blockchain anchor, nor can a malicious insider find a substitute log that hashes to an existing valid leaf already in the tree.  
 * **Forward Integrity Definition:** Mathematically, an event recorded and anchored at time $T$ cannot be invalidated, altered, or obfuscated by any action taken at time $T+1$. The strictly unidirectional flow of the hash chain ensures the past is sealed.
 
-### **Conditions of Guarantee Degradation**
+### **Conditions of Guarantee Degradation** {#conditions-of-guarantee-degradation}
 
 These formal guarantees degrade under two highly specific, catastrophic conditions:
 
@@ -312,7 +395,7 @@ These formal guarantees degrade under two highly specific, catastrophic conditio
 
 To model and ensure long-term survivability, the system embeds version identifiers explicitly to allow a Post-Quantum migration. As the National Institute of Standards and Technology (NIST) finalizes PQC standards, the TML Master Root will dynamically transition to anchoring via hash-based signatures (e.g., XMSS or SPHINCS+), which are structurally immune to quantum algorithms, ensuring the integrity of the moral history intergenerationally.
 
-## **12\. Comparative Analysis**
+## **12\. Comparative Analysis** {#12.-comparative-analysis}
 
 To properly contextualize the TML Merkle architecture, its specific design tradeoffs must be rigorously compared against existing, well-known cryptographic accumulator frameworks operating in adjacent domains.
 
@@ -327,7 +410,7 @@ To properly contextualize the TML Merkle architecture, its specific design trade
 
 While Ethereum provides excellent state synchronization, its hexadecaphonic (16-branch) structure creates unnecessary computational overhead for purely append-only event logging. CT logs provide excellent append-only properties but completely lack the critical execution interlock required for real-time AI safety. The TML approach explicitly trades a slight increase in individual proof size (due to the ternary structure) 19 for a massive, systemic gain in audit clarity and profound semantic alignment with the (+1, 0, \-1) moral states.
 
-## **13\. Failure Mode Disclosure**
+## **13\. Failure Mode Disclosure** {#13.-failure-mode-disclosure}
 
 Despite extensive adversarial hardening, rigorous mathematical modeling, and highly redundant multi-chain anchoring, the TML Merkle architecture carries explicit residual risks that must be fully disclosed to regulatory and governance institutions.
 
@@ -336,9 +419,11 @@ Despite extensive adversarial hardening, rigorous mathematical modeling, and hig
 * **Data Loss Impact Assessment:** Finally, total data loss across both the primary Tier 1 centralized storage and the Tier 2 decentralized erasure-coded networks results in a critical scenario where the cryptographic proofs survive, but the context perishes. While the AI operator is still severely penalized by the spoliation assumption 14, the forensic capability to actually diagnose *why* a catastrophic AI failure occurred is permanently lost. The architectural mandate, therefore, remains relentlessly focused on aggressive replication, hardware interlocking, and intergenerational optical storage to ensure that the moral history of autonomous intelligence remains a permanent, auditable record for rigorous human oversight.
 
 ---
-## Document Control
+
+## Document Control {#document-control}
+
 | Attribute | Detail |
-| :--- | :--- |
+| :---- | :---- |
 | **Document ID** | TML-SEC-001 |
 | **Version** | 1.0.0 |
 | **Status** | **AUDIT READY** |
@@ -346,7 +431,7 @@ Despite extensive adversarial hardening, rigorous mathematical modeling, and hig
 | **Author** | Lev Goukassian |
 | **Date** | 2026-02-14 |
 
-#### **Works cited**
+#### **Works cited** {#works-cited}
 
 1. FractonicMind/TernaryMoralLogic: I've always believed that the hardest problems in AI aren't technical; they're architectural. We keep building systems that can't explain themselves, can't prove their own integrity, can't handle uncertainty without either freezing or lying. And then we act surprised when \- GitHub, accessed February 14, 2026, [https://github.com/FractonicMind/TernaryMoralLogic](https://github.com/FractonicMind/TernaryMoralLogic)  
 2. Ternary Logic (TL): Evidentiary Framework for Economic Systems \- SSRN, accessed February 14, 2026, [https://papers.ssrn.com/sol3/papers.cfm?abstract\_id=5663410](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5663410)  
@@ -375,3 +460,4 @@ Despite extensive adversarial hardening, rigorous mathematical modeling, and hig
 25. Ternary Moral Logic (TML) and the Future of AI Governance: A Technical Analysis for NVIDIA \- SSRN, accessed February 14, 2026, [https://papers.ssrn.com/sol3/Delivery.cfm/5856362.pdf?abstractid=5856362\&mirid=1](https://papers.ssrn.com/sol3/Delivery.cfm/5856362.pdf?abstractid=5856362&mirid=1)  
 26. accessed February 14, 2026, [https://papers.ssrn.com/sol3/Delivery.cfm/SSRN\_ID5655090\_code8713860.pdf?abstractid=5655090\&mirid=1\#:\~:text=We%20present%20Ternary%20Moral%20Logic,an%20AI's%20decision%2Dmaking%20process.](https://papers.ssrn.com/sol3/Delivery.cfm/SSRN_ID5655090_code8713860.pdf?abstractid=5655090&mirid=1#:~:text=We%20present%20Ternary%20Moral%20Logic,an%20AI's%20decision%2Dmaking%20process.)  
 27. Merkle Hash Grids Instead of Merkle Trees \- Thomas Schwarz SJ, accessed February 14, 2026, [https://tschwarz.mscs.mu.edu/Papers/Mascots20.pdf](https://tschwarz.mscs.mu.edu/Papers/Mascots20.pdf)
+
