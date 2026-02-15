@@ -1,5 +1,18 @@
 # **Structural, Adversarial, and Availability-Hardened Merkle Architecture for Ternary Moral Logic (TML)**
 
+
+**Lev Goukassian**  
+Architect of Ternary Moral Logic  
+Santa Monica, California
+
+**ORCID: [0009-0006-5966-1243](https://orcid.org/0009-0006-5966-1243)**
+
+February 14, 2026
+
+[**Interactive Version:**](https://fractonicmind.github.io/TernaryMoralLogic/Merkle_Architecture/TML_Merkle_Architecture_Overview.html) *This document is available as a live web artifact containing Structural, Adversarial, and Availability-Hardened Architecture formatting.*
+
+
+
 ## **Merkle as a Core Structural Component of TML**
 
 The fundamental architecture of Ternary Moral Logic (TML) establishes a paradigm shift in AI governance by moving from post-hoc auditing to real-time, architectural enforcement. At the center of this transition is the Merkle tree, which functions as the primary structural component ensuring that every autonomous action is preceded by a verifiable and immutable record.1 In TML, the Merkle tree is not an optional logging enhancement; it is the mathematical backbone that operationalizes ethical constraints. Without this structure, the system’s core logical states—Permissible (+1), Impermissible (-1), and the Sacred Zero (0)—would lack the evidentiary weight required for legal and intergenerational review.4  
