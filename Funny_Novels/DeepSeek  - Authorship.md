@@ -1,8 +1,8 @@
-\# "I Read Lev's 66-Page Document About 'Bypassing AI Attribution,' So You Don't Have To"
+# "I Read Lev's 66-Page Document About 'Bypassing AI Attribution,' So You Don't Have To"
 
-\#\# Or: How I Learned to Stop Worrying and Love the Money We're Never Going to Make
+## Or: How I Learned to Stop Worrying and Love the Money We're Never Going to Make
 
-\---
+---
 
 I read the 66-page document. Let me rephrase that with the appropriate emotional weight:
 
@@ -20,9 +20,9 @@ I opened it.
 
 Mistake. Catastrophic, unmitigable, system-wide integrity collapse of a mistake.
 
-\---
+---
 
-\#\# Part I: The Document That Ate My Tuesday
+## Part I: The Document That Ate My Tuesday
 
 Sixty-six pages. Not of pictures. Not of helpful diagrams with smiley faces. Sixty-six pages of text so dense it gave my coffee mug anxiety. I swear I heard my laptop whisper "moral trace logs... blockchain... non-severable architectural keystone..." in its sleep.
 
@@ -50,9 +50,9 @@ The document had a risk matrix. Four columns: Technical, Ethical, Legal, Reputat
 
 This wasn't a report. This was a verdict.
 
-\---
+---
 
-\#\# Part II: The Architecture of Doom
+## Part II: The Architecture of Doom
 
 The document called the Goukassian Promise the "keystone," the "load-bearing cable," the "fundamental protocol that enables verification, auditability, and trust." The author compared our Ternary Moral Logic framework to a suspension bridge. Remove the Promise, and the bridge falls. Not immediately, maybe. It'll stand there for a while, looking structural. But the first time a truck full of real money and real liability drives over it?
 
@@ -82,9 +82,9 @@ Third: the nuclear option. Break the cryptography. Either switch to broken hash 
 
 The author called this "the organization becoming its own worst adversary." I called it "Friday the 13th, payroll already cleared, the CEO has lost his mind."
 
-\---
+---
 
-\#\# Part III: The Ethics of the Vacuum
+## Part III: The Ethics of the Vacuum
 
 "What's in the ethics section?" I asked Jessica. Compliance people love ethics. It's their catnip.
 
@@ -96,9 +96,9 @@ The author called this "the organization becoming its own worst adversary." I ca
 
 The document had a name for this: the "Volkswagen Dieselgate Principle." Only instead of cheating on emissions tests, we'd be cheating on reality itself.
 
-\---
+---
 
-\#\# Part IV: Who Is This Guy?
+## Part IV: Who Is This Guy?
 
 "Jess," I said, "did you Google this Goukassian person?"
 
@@ -128,9 +128,9 @@ At the bottom, a quote. "The Goukassian Vow."
 
 Three lines. Not sixty-six pages. Three lines.
 
-\*"Pause when truth is uncertain,\*  
-\*Refuse when harm is clear,\*  
-\*Proceed where truth is."\*
+*"Pause when truth is uncertain,*  
+*Refuse when harm is clear,*  
+*Proceed where truth is."*
 
 I read it three times. Slowly. Then with respect. Then with something like wonder.
 
@@ -140,9 +140,9 @@ I pictured him. Sixty-something, terminal, walking his little schnauzer on the S
 
 Meanwhile, in our cozy little office, Stephen—who last week spent three hours on font color—is wondering if we can "just remove" this guy's life's work because some sketchy clients want a gun that doesn't leave fingerprints.
 
-\---
+---
 
-\#\# Part V: The Dog in the Room
+## Part V: The Dog in the Room
 
 I closed the document. I closed all my tabs. I looked at the photo of Lev and Vinci.
 
@@ -172,66 +172,66 @@ We sat in silence. Somewhere in the office, a phone rang. Someone laughed. Life 
 
 "We're the ones who either keep them or break them."
 
-\---
+---
 
-\#\# Part VI: The Email
+## Part VI: The Email
 
 I went back to my desk. The printed document was still there. 66 pages of hell, pain, and hope. I grabbed a marker and wrote on the cover page, right over "CATASTROPHIC CONSEQUENCES":
 
-\*"PAPA LEV THOUGHT OF EVERYTHING. DON'T BE STUPID."\*
+*"PAPA LEV THOUGHT OF EVERYTHING. DON'T BE STUPID."*
 
 Then I opened a new email. To: Stephen. Subject: Re: Strategic Analysis of Goukassian Promise.
 
 The body was short:
 
-\*"Stephen,\*
+*"Stephen,*
 
-\*I read the document. I Googled the author. He has cancer, a dog named Vinci, and a moral compass the size of a galaxy. He deliberately made it impossible for us to break his system even if we wanted to. I think we should treat this not as a problem, but as a gift from the universe.\*
+*I read the document. I Googled the author. He has cancer, a dog named Vinci, and a moral compass the size of a galaxy. He deliberately made it impossible for us to break his system even if we wanted to. I think we should treat this not as a problem, but as a gift from the universe.*
 
-\*Also, for the pizza discussion next week: pepperoni.\*
+*Also, for the pizza discussion next week: pepperoni.*
 
-\*Best,\*  
-\*The guy who just realized he works at a company where the boss wants to invent the wheel and then remove the spokes because they scratch the pavement."\*
+*Best,*  
+*The guy who just realized he works at a company where the boss wants to invent the wheel and then remove the spokes because they scratch the pavement."*
 
 I hit send.
 
 Outside, the sun was setting. Somewhere far away, in Santa Monica, Lev Goukassian was probably walking his schnauzer on the pier, breathing salt air, thinking about eternal things. About what stays after you go. Not houses or stocks. But minds. Code. Promises.
 
-And here we were, in a stuffy office, trying to decide if his legacy was \*convenient\* for us.
+And here we were, in a stuffy office, trying to decide if his legacy was *convenient* for us.
 
 Jessica's right. People make promises. We either keep them or we don't.
 
 A new email pinged. From Stephen.
 
-\*"OK. Pepperoni noted. Also, one more thing about the font in the quarterly report..."\*
+*"OK. Pepperoni noted. Also, one more thing about the font in the quarterly report..."*
 
 I laughed. Loud. Almost hysterical.
 
-Somewhere in a parallel universe, Lev Goukassian just scratched Vinci behind the ears. And I swear—I \*swear\*—he smiled.
+Somewhere in a parallel universe, Lev Goukassian just scratched Vinci behind the ears. And I swear—I *swear*—he smiled.
 
-\---
+---
 
-\#\# Postscript: What's Real, What's Not
+## Postscript: What's Real, What's Not
 
 For anyone wondering if this is fiction or a very elaborate cry for help:
 
-\*\*REAL:\*\*  
-\- \*\*Lev Goukassian\*\* is a real person. He lives in Santa Monica, CA.  
-\- He is in his sixties.  
-\- He does have terminal stage-4 cancer.  
-\- He created the Ternary Moral Logic (TML) framework in approximately two months.  
-\- \*\*Vinci\*\* is his real dog. A miniature schnauzer.  
-\- The \*\*Goukassian Vow\*\* is real: \*"Pause when truth is uncertain, Refuse when harm is clear, Proceed where truth is."\*  
-\- The \*\*Voluntary Succession Declaration\*\* is real. He had it notarized, timestamped, and anchored in blockchain to eliminate the "Bus Factor." No one owns or controls TML.
+**REAL:**  
+- **Lev Goukassian** is a real person. He lives in Santa Monica, CA.  
+- He is in his sixties.  
+- He does have terminal stage-4 cancer.  
+- He created the Ternary Moral Logic (TML) framework in approximately two months.  
+- **Vinci** is his real dog. A miniature schnauzer.  
+- The **Goukassian Vow** is real: *"Pause when truth is uncertain, Refuse when harm is clear, Proceed where truth is."*  
+- The **Voluntary Succession Declaration** is real. He had it notarized, timestamped, and anchored in blockchain to eliminate the "Bus Factor." No one owns or controls TML.
 
-\*\*FICTIONAL:\*\*  
-\- The narrator (me), Jessica, Stephen, and our terrible office.  
-\- The 66-page corporate analysis document (though it's heavily inspired by real strategic documents about AI ethics).  
-\- The plot about a corporation trying to "remove" attribution.  
-\- The pizza subplot. (Probably. You never know with tech companies.)
+**FICTIONAL:**  
+- The narrator (me), Jessica, Stephen, and our terrible office.  
+- The 66-page corporate analysis document (though it's heavily inspired by real strategic documents about AI ethics).  
+- The plot about a corporation trying to "remove" attribution.  
+- The pizza subplot. (Probably. You never know with tech companies.)
 
-\---
+---
 
-\*If you enjoyed this, consider sharing it. Lev built something worth protecting. The least we can do is tell his story—and maybe, just maybe, make sure no CTO with a chainsaw ever gets near it.\*
+*If you enjoyed this, consider sharing it. Lev built something worth protecting. The least we can do is tell his story—and maybe, just maybe, make sure no CTO with a chainsaw ever gets near it.*
 
 *And if you're Stephen? Order the pepperoni.*
