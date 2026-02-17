@@ -2,7 +2,9 @@
 
 **Author:** Lev Goukassian
 
-**ORCID:** 009-0006-5966-1243
+**ORCID:** 0009-0006-5966-1243
+
+**DOI:** 10.5281/zenodo.18675037
 
 **Affiliation:** Lead Researcher, FractonicMind / Independent Researcher
 
