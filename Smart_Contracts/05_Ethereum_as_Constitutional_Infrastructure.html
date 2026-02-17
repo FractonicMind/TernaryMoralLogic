@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ethereum: Constitutional Enforcement for TML</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569; 
+        }
+
+        /* Chart Container Strict Rules */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 650px; /* Prevent excessive stretching */
+            height: 350px;    /* Base height */
+            max-height: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Mobile adjustment */
+        @media (max-width: 640px) {
+            .chart-container {
+                height: 300px;
+            }
+        }
+
+        /* Process Flow Connector Lines via CSS (Replacing SVG) */
+        .connector-line {
+            position: absolute;
+            top: 50%;
+            left: -20px;
+            width: 20px;
+            height: 2px;
+            background-color: #475569;
+            z-index: 0;
+        }
+        .step-card {
+            position: relative;
+            z-index: 10;
+        }
+    </style>
+    <!-- 
+        Palette Used: Cyber-Industrial
+        Background: Slate-900 (#0f172a)
+        Cards: Slate-800 (#1e293b)
+        Text: Slate-50 (#f8fafc)
+        Accents: Blue-500 (#3b82f6), Rose-500 (#f43f5e), Emerald-500 (#10b981)
+        
+        Constraint Confirmation:
+        - NO SVG used.
+        - NO Mermaid JS used.
+        - Chart.js labels wrapped > 16 chars.
+        - Chart.js tooltips have title callbacks.
+    -->
+    <!-- 
+        Narrative Plan:
+        1. Intro: Define Ethereum as the non-discretionary engine.
+        2. Process: Visualizing the shift from human judgment to machine execution.
+        3. Threat Model: Radar chart showing why Eth is chosen over private chains.
+        4. Sacred Zero: The concept of the "Epistemic Hold" visualised as state blocks.
+        5. Economics: Cost analysis of on-chain evidence.
+        6. Ecosystem: Comparing L1 vs L2 vs Private.
+    -->
+</head>
+<body class="bg-slate-900 text-slate-50 font-sans antialiased selection:bg-blue-500 selection:text-white">
+
+    <!-- Header Section -->
+    <header class="w-full bg-slate-800 border-b border-slate-700 shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div>
+                <h1 class="text-2xl md:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-emerald-400">
+                    TML Enforcement
+                </h1>
+                <p class="text-xs md:text-sm text-slate-400 uppercase tracking-widest mt-1">Ethereum as Constitutional Infrastructure</p>
+            </div>
+            <div class="hidden md:block text-right">
+                <span class="text-xs text-slate-500 block">Report Status</span>
+                <span class="text-sm font-mono text-emerald-400">● IMMUTABLE</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 py-8 space-y-12">
+
+        <!-- Section 1: Introduction -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="md:col-span-2 space-y-4">
+                <h2 class="text-3xl font-bold text-white border-l-4 border-blue-500 pl-4">The Non-Discretionary Engine</h2>
+                <p class="text-slate-300 leading-relaxed text-lg">
+                    Ternary Moral Logic (TML) requires a substrate that removes human discretion after judgment. Ethereum functions not merely as a ledger, but as a <strong>deterministic state-transition engine</strong>. Once a moral decision is logged, the consequences must be inevitable.
+                </p>
+                <p class="text-slate-400 leading-relaxed">
+                    Unlike traditional legal systems where enforcement is fluid and subject to corruption, Ethereum offers an adversarially secured memory. It converts "Decision Logs" into historical facts that power cannot erase, serving as the constitutional layer for TML.
+                </p>
+            </div>
+            <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 shadow-xl flex flex-col justify-center items-center text-center">
+                <div class="text-6xl mb-4">⚖️ ➔ ⚙️</div>
+                <h3 class="text-xl font-bold text-blue-400">Code as Consequence</h3>
+                <p class="text-sm text-slate-400 mt-2">
+                    Moral Reasoning is subjective.<br>
+                    Enforcement is deterministic.
+                </p>
+            </div>
+        </section>
+
+        <!-- Section 2: The TML Flow (HTML Diagram - No Mermaid/SVG) -->
+        <section>
+            <h3 class="text-2xl font-bold text-white mb-2">From Reasoning to Rigidity</h3>
+            <p class="text-slate-400 mb-6 max-w-3xl">
+                The architecture separates the "Soft" layer of human/AI judgment from the "Hard" layer of Ethereum execution. This diagram illustrates the irreversible transition across the Oracle Bridge.
+            </p>
+            
+            <div class="bg-slate-800 p-8 rounded-xl border border-slate-700 overflow-x-auto">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-6 min-w-[600px]">
+                    
+                    <!-- Step 1 -->
+                    <div class="step-card flex-1 bg-slate-900 p-4 rounded-lg border border-slate-600 w-full md:w-auto relative group hover:border-blue-400 transition-colors">
+                        <div class="text-blue-400 text-xs font-bold tracking-wider mb-2">OFF-CHAIN</div>
+                        <div class="text-2xl mb-2">🧠</div>
+                        <h4 class="font-bold text-white">Moral Reasoning</h4>
+                        <p class="text-xs text-slate-400 mt-2">Contextual analysis. Private inputs. TML Evaluation.</p>
+                    </div>
+
+                    <!-- Connector -->
+                    <div class="hidden md:flex text-slate-500 text-2xl">➔</div>
+                    <div class="md:hidden text-slate-500 text-2xl">⬇</div>
+
+                    <!-- Step 2 -->
+                    <div class="step-card flex-1 bg-slate-900 p-4 rounded-lg border border-emerald-900 w-full md:w-auto relative group hover:border-emerald-500 transition-colors">
+                        <div class="text-emerald-500 text-xs font-bold tracking-wider mb-2">ORACLE BRIDGE</div>
+                        <div class="text-2xl mb-2">📡</div>
+                        <h4 class="font-bold text-white">Signed Attestation</h4>
+                        <p class="text-xs text-slate-400 mt-2">Cryptographic signatures. Threshold validation. Submission.</p>
+                    </div>
+
+                    <!-- Connector -->
+                    <div class="hidden md:flex text-slate-500 text-2xl">➔</div>
+                    <div class="md:hidden text-slate-500 text-2xl">⬇</div>
+
+                    <!-- Step 3 -->
+                    <div class="step-card flex-1 bg-gradient-to-br from-slate-900 to-slate-800 p-4 rounded-lg border-2 border-rose-500 w-full md:w-auto relative shadow-[0_0_15px_rgba(244,63,94,0.2)]">
+                        <div class="text-rose-500 text-xs font-bold tracking-wider mb-2">ON-CHAIN (ETH)</div>
+                        <div class="text-2xl mb-2">⛓️</div>
+                        <h4 class="font-bold text-white">Sacred Zero</h4>
+                        <p class="text-xs text-slate-400 mt-2">State freeze. Economic finality. Irreversible Consequence.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Threat Model (Radar Chart) -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            <div class="order-2 lg:order-1">
+                <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 shadow-lg">
+                    <h3 class="text-lg font-semibold text-slate-200 mb-4 text-center">System Resilience Profile</h3>
+                    <div class="chart-container">
+                        <canvas id="threatRadarChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="order-1 lg:order-2 space-y-4">
+                <h3 class="text-2xl font-bold text-white">The Trust Model & Threat Resistance</h3>
+                <p class="text-slate-300">
+                    Why use Ethereum? A private database is faster and cheaper, but it fails the <strong>"Root Access Problem."</strong> If an entity can rewrite the database, they can evade moral accountability.
+                </p>
+                <p class="text-slate-400 text-sm">
+                    This chart compares Ethereum (L1) against a standard Private Ledger. While Ethereum incurs higher costs and latency, it maximizes <strong>Integrity</strong> and <strong>Censorship Resistance</strong>—the non-negotiable requirements for a constitutional layer.
+                </p>
+                <ul class="space-y-2 mt-4">
+                    <li class="flex items-center text-slate-300">
+                        <span class="w-2 h-2 bg-blue-500 rounded-full mr-3"></span>
+                        <span><strong>Integrity:</strong> Resistance to history rewriting (Reorgs).</span>
+                    </li>
+                    <li class="flex items-center text-slate-300">
+                        <span class="w-2 h-2 bg-rose-500 rounded-full mr-3"></span>
+                        <span><strong>Censorship:</strong> Ability to force a transaction (Sacred Zero) despite opposition.</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Section 4: The Sacred Zero (State Machine Diagram) -->
+        <section>
+            <div class="bg-slate-800 rounded-xl border border-slate-700 p-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <div>
+                        <h3 class="text-2xl font-bold text-white mb-4">Operationalizing "Sacred Zero"</h3>
+                        <p class="text-slate-300 mb-4">
+                            The "Sacred Zero" is an epistemic hold—a state where the system halts or locks down to prevent further harm. On Ethereum, this is implemented as a <strong>Finite State Machine (FSM)</strong> with a "Poison Pill" transition.
+                        </p>
+                        <p class="text-slate-400 text-sm mb-6">
+                            Crucially, the logic dictates that once the <span class="text-rose-400 font-mono">TRIGGER_HOLD</span> condition is met, the path back to "Normal" is mathematically impossible without a specific consensus threshold or timeout, or in some cases, never.
+                        </p>
+                        <div class="p-4 bg-slate-900 rounded border border-slate-600 font-mono text-xs text-green-400">
+                            // Solidity Pseudo-code<br>
+                            modifier notFrozen() {<br>
+                            &nbsp;&nbsp;require(!isSacredZero, "System is in Sacred Zero state");<br>
+                            &nbsp;&nbsp;_;<br>
+                            }
+                        </div>
+                    </div>
+                    
+                    <!-- HTML CSS State Diagram -->
+                    <div class="flex flex-col justify-center items-center space-y-6 relative">
+                        <!-- State 1 -->
+                        <div class="w-48 p-4 bg-blue-900/30 border border-blue-500 rounded text-center">
+                            <div class="font-bold text-blue-400">STATE: ACTIVE</div>
+                            <div class="text-xs text-blue-200">System Functional</div>
+                        </div>
+                        
+                        <!-- Arrow Down -->
+                        <div class="h-8 w-0.5 bg-slate-500"></div>
+
+                        <!-- Diamond Decision -->
+                        <div class="w-32 h-32 rotate-45 bg-slate-700 border border-slate-500 flex items-center justify-center z-10">
+                            <div class="-rotate-45 text-center">
+                                <span class="block text-xs font-bold text-white">TML Violation?</span>
+                            </div>
+                        </div>
+
+                        <!-- Arrow Down -->
+                        <div class="h-8 w-0.5 bg-slate-500"></div>
+
+                        <!-- State 2 -->
+                        <div class="w-48 p-4 bg-rose-900/40 border-2 border-rose-500 rounded text-center shadow-[0_0_20px_rgba(244,63,94,0.3)]">
+                            <div class="font-bold text-rose-400">STATE: SACRED ZERO</div>
+                            <div class="text-xs text-rose-200">Immutable Hold</div>
+                            <div class="text-[10px] uppercase mt-1 text-rose-500 font-bold">Code is Law</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Economic Viability (Bar Chart) -->
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div class="space-y-4">
+                <h3 class="text-2xl font-bold text-white">Forensic Readiness & Cost</h3>
+                <p class="text-slate-300">
+                    To make TML economically viable, we cannot store every moral deliberation on-chain. We use Ethereum for <strong>anchoring</strong>, not storage.
+                </p>
+                <p class="text-slate-400 text-sm">
+                    By hashing batches of "Moral Trace Logs" into a Merkle Root and storing only the 32-byte hash on Ethereum, we achieve cryptographic evidence persistence at a fraction of the cost. The data availability is handled by IPFS/Arweave, but the <em>truth</em> is anchored in Ethereum.
+                </p>
+            </div>
+            <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 shadow-lg">
+                <h3 class="text-lg font-semibold text-slate-200 mb-4 text-center">Cost of Evidence Persistence (Gas)</h3>
+                <div class="chart-container">
+                    <canvas id="costBarChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Ecosystem Comparison (Grouped Bar Chart) -->
+        <section>
+            <div class="mb-6">
+                <h3 class="text-2xl font-bold text-white">Why Ethereum? A Comparative Analysis</h3>
+                <p class="text-slate-400 max-w-3xl">
+                    Comparing the three main options for a constitutional layer. While L2s offer speed, they inherit security. Private ledgers fail the "Capture Resistance" test entirely.
+                </p>
+            </div>
+            
+            <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 shadow-lg">
+                <div class="chart-container" style="max-height: 400px;">
+                    <canvas id="comparisonChart"></canvas>
+                </div>
+                <div class="grid grid-cols-3 gap-4 mt-6 text-center text-xs text-slate-500">
+                    <div>
+                        <span class="block text-emerald-400 font-bold text-lg">L1</span>
+                        <span>Maximum Auditability</span>
+                    </div>
+                    <div>
+                        <span class="block text-blue-400 font-bold text-lg">L2</span>
+                        <span>High Speed / Good Security</span>
+                    </div>
+                    <div>
+                        <span class="block text-rose-400 font-bold text-lg">Private</span>
+                        <span>High Risk of Capture</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 7: MEV & 3D Visualization (Plotly) -->
+        <section class="space-y-6">
+            <div class="text-center md:text-left">
+                <h3 class="text-2xl font-bold text-white">The Trilemma: MEV, Latency, and Security</h3>
+                <p class="text-slate-300 max-w-4xl">
+                    Miner Extractable Value (MEV) poses a threat: could a validator be bribed to censor a TML enforcement transaction? We must balance the cost of corruption against the system's latency.
+                </p>
+            </div>
+            <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 shadow-lg">
+                <div id="plotlyDiv" class="w-full h-[400px]"></div>
+                <p class="text-xs text-center text-slate-500 mt-2">
+                    *3D Plot: Relationship between MEV Risk, Latency, and Security Cost. High Security + Low Latency = High Cost.
+                </p>
+            </div>
+        </section>
+
+        <!-- Conclusion -->
+        <footer class="bg-slate-800 rounded-xl p-8 border-t-4 border-emerald-500 text-center space-y-4">
+            <h2 class="text-2xl font-bold text-white">Conclusion: The Infrastructure of Integrity</h2>
+            <p class="text-slate-300 max-w-2xl mx-auto">
+                Ethereum serves as the only viable "Constitution" for Ternary Moral Logic because it creates a memory system that power cannot erase. It transforms ethical commitments from soft promises into hard, executable code, ensuring that when the Sacred Zero is triggered, the consequences are absolute.
+            </p>
+            <div class="pt-4 text-xs text-slate-500 font-mono">
+                GENERATED INFOGRAPHIC | REF: TML-ETH-2025 | NO SVG | NO MERMAID
+            </div>
+        </footer>
+
+    </main>
+
+    <script>
+        // --- UTILITY: Label Wrapping Helper ---
+        // Splits strings > 16 chars into arrays for Chart.js
+        function processLabels(labels) {
+            return labels.map(label => {
+                if (label.length > 16) {
+                    const words = label.split(' ');
+                    const lines = [];
+                    let currentLine = words[0];
+
+                    for (let i = 1; i < words.length; i++) {
+                        if ((currentLine + " " + words[i]).length < 16) {
+                            currentLine += " " + words[i];
+                        } else {
+                            lines.push(currentLine);
+                            currentLine = words[i];
+                        }
+                    }
+                    lines.push(currentLine);
+                    return lines;
+                }
+                return label;
+            });
+        }
+
+        // --- UTILITY: Common Tooltip Config ---
+        const commonTooltipConfig = {
+            callbacks: {
+                title: function(tooltipItems) {
+                    const item = tooltipItems[0];
+                    let label = item.chart.data.labels[item.dataIndex];
+                    if (Array.isArray(label)) {
+                        return label.join(' ');
+                    } else {
+                        return label;
+                    }
+                }
+            }
+        };
+
+        // --- CHART 1: Threat Model Radar Chart ---
+        const radarCtx = document.getElementById('threatRadarChart').getContext('2d');
+        const radarLabels = processLabels(['Integrity Assurance', 'Censorship Resistance', 'System Latency', 'Operational Cost', 'Data Privacy']);
+        
+        new Chart(radarCtx, {
+            type: 'radar',
+            data: {
+                labels: radarLabels,
+                datasets: [{
+                    label: 'Ethereum L1',
+                    data: [95, 90, 40, 30, 85], // High integrity, high cost (low score), slow (low score)
+                    backgroundColor: 'rgba(59, 130, 246, 0.2)',
+                    borderColor: '#3b82f6', // Blue
+                    pointBackgroundColor: '#3b82f6',
+                    borderWidth: 2
+                }, {
+                    label: 'Private Ledger',
+                    data: [30, 20, 95, 90, 40], // Low integrity, fast, cheap
+                    backgroundColor: 'rgba(244, 63, 94, 0.2)',
+                    borderColor: '#f43f5e', // Rose
+                    pointBackgroundColor: '#f43f5e',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    r: {
+                        angleLines: { color: '#334155' },
+                        grid: { color: '#334155' },
+                        pointLabels: {
+                            color: '#94a3b8',
+                            font: { size: 11 }
+                        },
+                        ticks: { display: false, backdropColor: 'transparent' }
+                    }
+                },
+                plugins: {
+                    legend: { labels: { color: '#f8fafc' } },
+                    tooltip: commonTooltipConfig
+                }
+            }
+        });
+
+        // --- CHART 2: Cost Analysis Bar Chart ---
+        const costCtx = document.getElementById('costBarChart').getContext('2d');
+        const costLabels = processLabels(['Full Data Storage', 'Merkle Root Hashing']);
+        
+        new Chart(costCtx, {
+            type: 'bar',
+            data: {
+                labels: costLabels,
+                datasets: [{
+                    label: 'Gas Cost (Units)',
+                    data: [100000, 5000], // Huge difference
+                    backgroundColor: ['#ef4444', '#10b981'], // Red (expensive), Emerald (cheap)
+                    borderColor: '#1e293b',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        type: 'logarithmic', // Log scale to show the massive difference
+                        grid: { color: '#334155' },
+                        ticks: { color: '#94a3b8' }
+                    },
+                    x: {
+                        grid: { display: false },
+                        ticks: { color: '#94a3b8' }
+                    }
+                },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: commonTooltipConfig
+                }
+            }
+        });
+
+        // --- CHART 3: Comparative Analysis Grouped Bar ---
+        const compareCtx = document.getElementById('comparisonChart').getContext('2d');
+        const compareLabels = processLabels(['Auditability', 'Capture Resistance', 'Transaction Speed', 'Dev Ecosystem']);
+
+        new Chart(compareCtx, {
+            type: 'bar',
+            data: {
+                labels: compareLabels,
+                datasets: [
+                    {
+                        label: 'Ethereum L1',
+                        data: [10, 10, 3, 10],
+                        backgroundColor: '#10b981' // Emerald
+                    },
+                    {
+                        label: 'L2 (Rollups)',
+                        data: [9, 8, 8, 9],
+                        backgroundColor: '#3b82f6' // Blue
+                    },
+                    {
+                        label: 'Private Chain',
+                        data: [2, 1, 10, 4],
+                        backgroundColor: '#f43f5e' // Rose
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 10,
+                        grid: { color: '#334155' },
+                        ticks: { color: '#94a3b8' }
+                    },
+                    x: {
+                        grid: { display: false },
+                        ticks: { color: '#94a3b8' }
+                    }
+                },
+                plugins: {
+                    legend: { labels: { color: '#f8fafc' } },
+                    tooltip: commonTooltipConfig
+                }
+            }
+        });
+
+        // --- PLOTLY: 3D Scatter (WebGL) ---
+        // Visualizing the Trade-off space
+        const trace1 = {
+            x: [10, 8, 2, 9, 3], // Security
+            y: [2, 7, 10, 5, 9], // Speed
+            z: [9, 6, 1, 8, 2], // Cost
+            mode: 'markers',
+            marker: {
+                size: 12,
+                color: [10, 8, 2, 9, 3], // Color by Security
+                colorscale: 'Viridis',
+                opacity: 0.8
+            },
+            type: 'scatter3d',
+            text: ['Eth L1', 'Optimism', 'Private DB', 'Arbitrum', 'Sidechain'],
+            hoverinfo: 'text'
+        };
+
+        const layout = {
+            margin: { l: 0, r: 0, b: 0, t: 0 },
+            paper_bgcolor: 'rgba(0,0,0,0)',
+            plot_bgcolor: 'rgba(0,0,0,0)',
+            scene: {
+                xaxis: { title: 'Security', color: '#94a3b8', gridcolor: '#334155' },
+                yaxis: { title: 'Speed', color: '#94a3b8', gridcolor: '#334155' },
+                zaxis: { title: 'Cost', color: '#94a3b8', gridcolor: '#334155' },
+                camera: {
+                    eye: { x: 1.5, y: 1.5, z: 1.5 }
+                }
+            },
+            showlegend: false
+        };
+
+        Plotly.newPlot('plotlyDiv', [trace1], layout, {displayModeBar: false, responsive: true});
+
+    </script>
+</body>
+</html>
