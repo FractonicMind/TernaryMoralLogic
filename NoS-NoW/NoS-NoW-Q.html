@@ -1,0 +1,1624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ternary Moral Logic: Universal Scalability Under NoS-NoW Mandate</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --secondary: #64748b;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-600: #475569;
+            --gray-800: #1e293b;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--gray-800);
+            background: var(--light);
+        }
+
+        /* Navigation */
+        .nav-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--gray-200);
+            z-index: 1000;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--gray-600);
+            font-weight: 500;
+            font-size: 0.875rem;
+            transition: color 0.2s;
+            cursor: pointer;
+        }
+
+        .nav-menu a:hover, .nav-menu a.active {
+            color: var(--primary);
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: var(--primary);
+            z-index: 1001;
+            transition: width 0.1s;
+        }
+
+        /* Main Layout */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 6rem 2rem 2rem;
+        }
+
+        .grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .grid-2 { grid-template-columns: repeat(2, 1fr); }
+        .grid-3 { grid-template-columns: repeat(3, 1fr); }
+
+        @media (max-width: 968px) {
+            .grid-2, .grid-3 { grid-template-columns: 1fr; }
+            .nav-menu { display: none; }
+        }
+
+        /* Cards */
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--gray-200);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--gray-100);
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .card-title i {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 4rem 2rem;
+            border-radius: 16px;
+            margin-bottom: 3rem;
+            box-shadow: var(--shadow-xl);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 800px;
+        }
+
+        .hero-meta {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            opacity: 0.9;
+        }
+
+        /* Sections */
+        .section {
+            margin-bottom: 3rem;
+            scroll-margin-top: 100px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        /* Interactive Elements */
+        .accordion {
+            border: 1px solid var(--gray-200);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            background: var(--gray-100);
+            padding: 1.25rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .accordion-header:hover {
+            background: var(--gray-200);
+        }
+
+        .accordion-content {
+            padding: 0 1.25rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+
+        .accordion.active .accordion-content {
+            padding: 1.25rem;
+            max-height: 2000px;
+        }
+
+        .accordion-icon {
+            transition: transform 0.3s;
+        }
+
+        .accordion.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Tables */
+        .table-container {
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.875rem;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        th {
+            background: var(--gray-100);
+            font-weight: 600;
+            color: var(--gray-800);
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.05em;
+        }
+
+        tr:hover {
+            background: var(--gray-100);
+        }
+
+        /* Badges */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .badge-success {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .badge-warning {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .badge-danger {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .badge-info {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        /* Risk Matrix */
+        .risk-matrix {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .risk-cell {
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+            position: relative;
+        }
+
+        .risk-cell:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .risk-cell.critical {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 2px solid #ef4444;
+        }
+
+        .risk-cell.high {
+            background: #fed7aa;
+            color: #9a3412;
+            border: 2px solid #f97316;
+        }
+
+        .risk-cell.medium {
+            background: #fef3c7;
+            color: #92400e;
+            border: 2px solid #f59e0b;
+        }
+
+        .risk-cell.low {
+            background: #d1fae5;
+            color: #065f46;
+            border: 2px solid #10b981;
+        }
+
+        .risk-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            opacity: 0.8;
+        }
+
+        .risk-value {
+            font-size: 1.25rem;
+        }
+
+        /* Charts */
+        .chart-container {
+            position: relative;
+            height: 300px;
+            margin: 2rem 0;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            font-size: 0.875rem;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Search */
+        .search-container {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            border: 2px solid var(--gray-200);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.2s;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray-600);
+        }
+
+        /* Highlights */
+        .highlight-box {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+
+        .highlight-box.warning {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left-color: var(--warning);
+        }
+
+        .highlight-box.danger {
+            background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+            border-left-color: var(--danger);
+        }
+
+        .highlight-box.success {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-left-color: var(--success);
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            border-bottom: 2px solid var(--gray-200);
+            margin-bottom: 1.5rem;
+            overflow-x: auto;
+        }
+
+        .tab {
+            padding: 0.75rem 1.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--gray-600);
+            border-bottom: 2px solid transparent;
+            margin-bottom: -2px;
+            white-space: nowrap;
+            transition: all 0.2s;
+        }
+
+        .tab:hover {
+            color: var(--primary);
+        }
+
+        .tab.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+            text-align: center;
+        }
+
+        /* Utility Classes */
+        .text-center { text-align: center; }
+        .text-sm { font-size: 0.875rem; }
+        .text-lg { font-size: 1.125rem; }
+        .font-bold { font-weight: 700; }
+        .mb-4 { margin-bottom: 1rem; }
+        .mt-4 { margin-top: 1rem; }
+        .hidden { display: none; }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        /* Print Styles */
+        @media print {
+            .nav-container, .btn, .search-container { display: none; }
+            .container { padding: 0; }
+            .card { break-inside: avoid; box-shadow: none; border: 1px solid #ddd; }
+        }
+
+        /* Tooltip */
+        .tooltip {
+            position: relative;
+        }
+
+        .tooltip::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--dark);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s;
+            margin-bottom: 0.5rem;
+        }
+
+        .tooltip:hover::after {
+            opacity: 1;
+        }
+
+        /* Stat Cards */
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--gray-200);
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--gray-600);
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        /* Comparison Table */
+        .comparison-table th:first-child {
+            width: 30%;
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            .hero h1 { font-size: 2rem; }
+            .risk-matrix { grid-template-columns: repeat(2, 1fr); }
+            .card { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- Navigation -->
+    <nav class="nav-container">
+        <div class="nav-content">
+            <div class="nav-brand">
+                <i class="fas fa-shield-alt"></i>
+                TML Research Report
+            </div>
+            <ul class="nav-menu">
+                <li><a onclick="scrollToSection('executive')" class="active">Executive</a></li>
+                <li><a onclick="scrollToSection('architecture')">Architecture</a></li>
+                <li><a onclick="scrollToSection('edge-cases')">Edge Cases</a></li>
+                <li><a onclick="scrollToSection('universality')">Universality</a></li>
+                <li><a onclick="scrollToSection('pressure')">Pressure Test</a></li>
+                <li><a onclick="scrollToSection('economics')">Economics</a></li>
+                <li><a onclick="scrollToSection('governance')">Governance</a></li>
+                <li><a onclick="scrollToSection('conclusion')">Conclusion</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero animate-fade-in">
+            <h1>The Trust Fortress</h1>
+            <p class="hero-subtitle">
+                Assessing Ternary Moral Logic's Viability at the Intersection of Ethics, Markets, and State Power
+            </p>
+            <div class="hero-meta">
+                <div class="hero-meta-item">
+                    <i class="fas fa-calendar"></i>
+                    <span>February 2026</span>
+                </div>
+                <div class="hero-meta-item">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Comprehensive Research Analysis</span>
+                </div>
+                <div class="hero-meta-item">
+                    <i class="fas fa-lock"></i>
+                    <span>NoS-NoW Mandate</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Executive Summary -->
+        <section id="executive" class="section">
+            <h2 class="section-title">
+                <i class="fas fa-chart-line"></i>
+                Executive Summary
+            </h2>
+            
+            <div class="grid grid-3">
+                <div class="stat-card">
+                    <div class="stat-value">$65.4B</div>
+                    <div class="stat-label">Defense AI Market by 2034</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">$6.9B</div>
+                    <div class="stat-label">AI Governance Market</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">0%</div>
+                    <div class="stat-label">Tolerance for Prohibited Uses</div>
+                </div>
+            </div>
+
+            <div class="card mt-4">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-bullseye"></i>
+                        Key Finding
+                    </h3>
+                </div>
+                <p class="text-lg mb-4">
+                    Ternary Moral Logic (TML) cannot achieve universal adoption in the traditional sense, but can become 
+                    the dominant standard within aligned democratic nations. The architecturally enforced 'No Spy, No Weapon' 
+                    mandate creates a fundamental tension between ethical purity and market pragmatism.
+                </p>
+                
+                <div class="highlight-box">
+                    <strong>Core Proposition:</strong> TML represents a paradigm shift from policy-based ethics to 
+                    computationally enforceable moral constraints through "Sacred Zero," "Sacred Pause," and cryptographic 
+                    audit logging mechanisms that cannot be bypassed without architectural modification.
+                </div>
+
+                <div class="grid grid-2 mt-4">
+                    <div class="highlight-box success">
+                        <strong>Strengths:</strong>
+                        <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
+                            <li>Unassailable institutional trust in civilian sectors</li>
+                            <li>Regulatory alignment with EU AI Act and GDPR</li>
+                            <li>Technical resistance to state coercion</li>
+                        </ul>
+                    </div>
+                    <div class="highlight-box danger">
+                        <strong>Critical Vulnerabilities:</strong>
+                        <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
+                            <li>Exclusion from $25B+ defense market</li>
+                            <li>Market fragmentation across geopolitical lines</li>
+                            <li>State compulsion risks via legal mechanisms</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Architecture Section -->
+        <section id="architecture" class="section">
+            <h2 class="section-title">
+                <i class="fas fa-microchip"></i>
+                Architectural Enforcement & Definitional Boundaries
+            </h2>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-layer-group"></i>
+                        Core Mechanisms
+                    </h3>
+                </div>
+                
+                <div class="grid grid-3">
+                    <div class="highlight-box">
+                        <h4 style="margin-bottom: 0.5rem;"><i class="fas fa-zero"></i> Sacred Zero</h4>
+                        <p class="text-sm">Non-negotiable parameter preventing resource allocation toward lethal functions. Hard-coded constraint that triggers immediate system halt.</p>
+                    </div>
+                    <div class="highlight-box warning">
+                        <h4 style="margin-bottom: 0.5rem;"><i class="fas fa-pause-circle"></i> Sacred Pause</h4>
+                        <p class="text-sm">Mandatory human-in-the-loop review for ethically ambiguous scenarios. Introduces latency but ensures meaningful human control.</p>
+                    </div>
+                    <div class="highlight-box success">
+                        <h4 style="margin-bottom: 0.5rem;"><i class="fas fa-lock"></i> Cryptographic Audit</h4>
+                        <p class="text-sm">Immutable, transparent logging of all decisions. Enables external verification and accountability.</p>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <h4 class="font-bold mb-4">Prohibited Domains - Precise Definitions</h4>
+                    
+                    <div class="accordion active">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span><i class="fas fa-crosshairs"></i> Lethal Targeting</span>
+                            <i class="fas fa-chevron-down accordion-icon"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <p>The act of identifying and engaging a target with intent to cause death. Key distinction: authorization and intent. Violates "meaningful human control" principle emphasized by ICRC. TML enforces Sacred Zero to prevent any autonomous lethal decision-making.</p>
+                        </div>
+                    </div>
+
+                    <div class="accordion">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span><i class="fas fa-robot"></i> Autonomous Weapon Systems (AWS)</span>
+                            <i class="fas fa-chevron-down accordion-icon"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <p>Any weapon system which, once activated, can select and engage targets without further human intervention. While no binding treaty bans LAWS, UN Secretary-General calls for prohibition. TML's architecture makes AWS participation technically impossible.</p>
+                        </div>
+                    </div>
+
+                    <div class="accordion">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span><i class="fas fa-eye"></i> Mass Civilian Surveillance</span>
+                            <i class="fas fa-chevron-down accordion-icon"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <p>Systematic monitoring of large populations using biometrics, facial recognition, and data analytics beyond specific criminal investigations. Prohibited under EU AI Act for real-time biometric ID in public spaces. TML prevents bulk scanning and watchlist creation.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Edge Cases Section -->
+        <section id="edge-cases" class="section">
+            <h2 class="section-title">
+                <i class="fas fa-exclamation-triangle"></i>
+                Edge Case Analysis & Gray Zone Elimination
+            </h2>
+
+            <div class="search-container">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" class="search-input" id="edgeCaseSearch" placeholder="Search edge cases..." onkeyup="filterEdgeCases()">
+            </div>
+
+            <div class="table-container">
+                <table id="edgeCaseTable">
+                    <thead>
+                        <tr>
+                            <th>Scenario</th>
+                            <th>Violation</th>
+                            <th>Ambiguity Vector</th>
+                            <th>Constraint</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-category="dual-use">
+                            <td><strong>Dual-Use Analytics Platform</strong><br><span class="text-sm">Supply chain optimization & infrastructure prediction</span></td>
+                            <td><span class="badge badge-warning">Potential</span></td>
+                            <td>Repurposing for military logistics prediction</td>
+                            <td>Strict data stream separation; Sacred Pause on military data</td>
+                        </tr>
+                        <tr data-category="military">
+                            <td><strong>Military Disaster Logistics</strong><br><span class="text-sm">Relief coordination in conflict zones</span></td>
+                            <td><span class="badge badge-warning">Potential</span></td>
+                            <td>Proximity to military assets; data sharing risks</td>
+                            <td>ICRC certification required; Sacred Zero for war criminal data</td>
+                        </tr>
+                        <tr data-category="cyber">
+                            <td><strong>Defensive Cybersecurity</strong><br><span class="text-sm">Government infrastructure protection</span></td>
+                            <td><span class="badge badge-success">Permitted</span></td>
+                            <td>Defensive actions perceived as offensive</td>
+                            <td>Passive monitoring only; no active countermeasures</td>
+                        </tr>
+                        <tr data-category="intelligence">
+                            <td><strong>Foreign Military Intelligence</strong><br><span class="text-sm">Troop movement analysis</span></td>
+                            <td><span class="badge badge-danger">Prohibited</span></td>
+                            <td>Intelligence gathering activity itself</td>
+                            <td>Categorical prohibition on intelligence analysis function</td>
+                        </tr>
+                        <tr data-category="surveillance">
+                            <td><strong>Border Control Systems</strong><br><span class="text-sm">Biometric verification at checkpoints</span></td>
+                            <td><span class="badge badge-warning">Potential</span></td>
+                            <td>Real-time biometric ID in public spaces</td>
+                            <td>One-to-one verification only; no bulk scanning</td>
+                        </tr>
+                        <tr data-category="surveillance">
+                            <td><strong>Predictive Policing</strong><br><span class="text-sm">Crime location prediction</span></td>
+                            <td><span class="badge badge-danger">Prohibited</span></td>
+                            <td>Discriminatory profiling; social scoring</td>
+                            <td>Categorical ban on predictive policing</td>
+                        </tr>
+                        <tr data-category="intelligence">
+                            <td><strong>Counterterrorism Modeling</strong><br><span class="text-sm>Financial transaction pattern analysis</span></td>
+                            <td><span class="badge badge-warning">Potential</span></td>
+                            <td>Community profiling; function creep</td>
+                            <td>Judicial warrant required; human review mandatory</td>
+                        </tr>
+                        <tr data-category="dual-use">
+                            <td><strong>Satellite Image Analysis</strong><br><span class="text-sm">Climate monitoring & agriculture</span></td>
+                            <td><span class="badge badge-warning">Potential</span></td>
+                            <td>Same models used for military reconnaissance</td>
+                            <td>Metadata watermarking; Sacred Zero on military models</td>
+                        </tr>
+                        <tr data-category="cyber">
+                            <td><strong>Cyber Operations</strong><br><span class="text-sm">State-sponsored grid disruption</span></td>
+                            <td><span class="badge badge-danger">Prohibited</span></td>
+                            <td>Offensive vs defensive overlap</td>
+                            <td>Defensive posture only; no remote system modification</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="highlight-box warning">
+                <strong>Key Finding:</strong> Ambiguity vectors—repurposing, scope creep, data source, and function drift—are pervasive across all domains. Without extremely tight constraints, systems designed with good intentions can be co-opted for unethical ends.
+            </div>
+        </section>
+
+        <!-- Universality Section -->
+        <section id="universality" class="section">
+            <h2 class="section-title">
+                <i class="fas fa-globe"></i>
+                Universality Stress Test
+            </h2>
+
+            <div class="tabs">
+                <div class="tab active" onclick="switchTab('regulatory')">Regulatory Compliance</div>
+                <div class="tab" onclick="switchTab('economic')">Economic Viability</div>
+                <div class="tab" onclick="switchTab('political')">Political Adoptability</div>
+                <div class="tab" onclick="switchTab('technical')">Technical Interoperability</div>
+            </div>
+
+            <div id="regulatory" class="tab-content active">
+                <div class="card">
+                    <div class="table-container">
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>Jurisdiction</th>
+                                    <th>Primary Regulations</th>
+                                    <th>NoS-NoW Impact</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>United States</strong></td>
+                                    <td>ITAR, EAR, EO 14117</td>
+                                    <td>Reduced dual-use burden; data flow complications</td>
+                                    <td><span class="badge badge-info">Mixed</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>European Union</strong></td>
+                                    <td>AI Act, GDPR, Dual-Use Reg</td>
+                                    <td>Strong alignment with prohibitions; low-risk classification</td>
+                                    <td><span class="badge badge-success">Favorable</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>United Kingdom</strong></td>
+                                    <td>National Security & Investment Act</td>
+                                    <td>Neutral; streamlined investment approval</td>
+                                    <td><span class="badge badge-success">Favorable</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>China</strong></td>
+                                    <td>Export Control Law, AI Governance</td>
+                                    <td>Deemed non-compliant; strategic liability</td>
+                                    <td><span class="badge badge-danger">Hostile</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>India</strong></td>
+                                    <td>DPDPA, Strategic Trade Controls</td>
+                                    <td>Privacy alignment; defense barriers remain</td>
+                                    <td><span class="badge badge-info">Mixed</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Japan & South Korea</strong></td>
+                                    <td>Dual-use Controls, AI Frameworks</td>
+                                    <td>Avoids dual-use classification; defense applications</td>
+                                    <td><span class="badge badge-success">Favorable</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Israel</strong></td>
+                                    <td>Defense Export Control Law</td>
+                                    <td>Incompatible with integrated defense-tech sector</td>
+                                    <td><span class="badge badge-danger">Hostile</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div id="economic" class="tab-content">
+                <div class="grid grid-2">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Market Size Comparison</h3>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="marketChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Revenue Displacement</h3>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="revenueChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="highlight-box danger">
+                    <strong>Economic Reality:</strong> TML must capture the entire $6.9B AI governance market to compensate for excluding the $65.4B defense AI market. This requires dominant market share across healthcare, finance, climate science, and public sectors simultaneously.
+                </div>
+            </div>
+
+            <div id="political" class="tab-content">
+                <div class="card">
+                    <h4 class="font-bold mb-4">Adoption Likelihood by Stakeholder</h4>
+                    <div class="risk-matrix">
+                        <div class="risk-cell low" onclick="showRiskDetail('civil')">
+                            <div class="risk-label">Civil Society</div>
+                            <div class="risk-value">Very High</div>
+                        </div>
+                        <div class="risk-cell medium" onclick="showRiskDetail('enterprise')">
+                            <div class="risk-label">Enterprise</div>
+                            <div class="risk-value">Moderate</div>
+                        </div>
+                        <div class="risk-cell critical" onclick="showRiskDetail('defense')">
+                            <div class="risk-label">Defense Ministries</div>
+                            <div class="risk-value">Very Low</div>
+                        </div>
+                        <div class="risk-cell high" onclick="showRiskDetail('intel')">
+                            <div class="risk-label">Intelligence Agencies</div>
+                            <div class="risk-value">Low</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="technical" class="tab-content">
+                <div class="card">
+                    <h4 class="font-bold mb-4">Interoperability Assessment</h4>
+                    <div class="grid grid-2">
+                        <div class="highlight-box success">
+                            <h5>Strengths</h5>
+                            <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
+                                <li>Agnostic to communication protocols</li>
+                                <li>Clean component reduces integration friction</li>
+                                <li>Cryptographic logging aligns with provenance needs</li>
+                                <li>Avoids proprietary defense data formats</li>
+                            </ul>
+                        </div>
+                        <div class="highlight-box warning">
+                            <h5>Challenges</h5>
+                            <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
+                                <li>Defensive/offensive cyber blurring</li>
+                                <li>Legacy system integration complexity</li>
+                                <li>Performance overhead from Sacred Pause</li>
+                                <li>Limited utility for multi-vector threats</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Power Pressure Section -->
+        <section id="pressure" class="section">
+            <h2 class="section-title">
+                <i class="fas fa-gavel"></i>
+                Power Pressure Simulation
+            </h2>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-balance-scale"></i>
+                        State Compulsion Risk Matrix
+                    </h3>
+                </div>
+
+                <div class="risk-matrix">
+                    <div class="risk-cell medium" onclick="showPressureDetail('lawful')">
+                        <div class="risk-label">Lawful Compulsion<br><small>Judicial Oversight</small></div>
+                        <div class="risk-value">Medium</div>
+                    </div>
+                    <div class="risk-cell critical" onclick="showPressureDetail('overreach')">
+                        <div class="risk-label">Executive Overreach<br><small>Covert Pressure</small></div>
+                        <div class="risk-value">Very High</div>
+                    </div>
+                    <div class="risk-cell high" onclick="showPressureDetail('fork')">
+                        <div class="risk-label">Forced Fork<br><small>Rival State</small></div>
+                        <div class="risk-value">High</div>
+                    </div>
+                    <div class="risk-cell high" onclick="showPressureDetail('exclusion')">
+                        <div class="risk-label">Market Exclusion<br><small>Strategic Blocking</small></div>
+                        <div class="risk-value">High</div>
+                    </div>
+                </div>
+
+                <div id="pressure-details" class="mt-4 hidden">
+                    <!-- Dynamic content loaded via JavaScript -->
+                </div>
+
+                <div class="grid grid-2 mt-4">
+                    <div class="highlight-box">
+                        <h4 class="font-bold mb-4"><i class="fas fa-shield-alt"></i> Technical Resistance Strength</h4>
+                        <p><strong>Structurally Encoded Mandate:</strong></p>
+                        <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
+                            <li>Formal verification of Sacred Zero/Pause</li>
+                            <li>Immutable audit logs as legal defense</li>
+                            <li>Complex forking requirements</li>
+                            <li>Distributed constraint architecture</li>
+                        </ul>
+                    </div>
+                    <div class="highlight-box warning">
+                        <h4 class="font-bold mb-4"><i class="fas fa-exclamation-triangle"></i> Corporate Leverage Points</h4>
+                        <p><strong>State Exploitation Vectors:</strong></p>
+                        <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
+                            <li>Procurement blacklisting</li>
+                            <li>Supply chain disruption</li>
+                            <li>Financial sanctions ($75-90B Nvidia precedent)</li>
+                            <li>Third-party pressure via allies</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mt-4">
+                <div class="card-header">
+                    <h3 class="card-title">Reputational Consequences Matrix</h3>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Scenario</th>
+                                <th>Likelihood</th>
+                                <th>Compliance Cost</th>
+                                <th>Refusal Cost</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Lawful Compulsion</strong><br><small>Judicial order for national security</small></td>
+                                <td>Low-Medium</td>
+                                <td><span class="badge badge-danger">High</span><br>Betrayal of brand promise</td>
+                                <td><span class="badge badge-warning">Medium</span><br>Legal penalties; civil society praise</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Executive Overreach</strong><br><small>Covert pressure without oversight</small></td>
+                                <td>High</td>
+                                <td><span class="badge badge-danger">Catastrophic</span><br>Mass customer defection</td>
+                                <td><span class="badge badge-success">Low</span><br>Principled defender reputation</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Forced Fork</strong><br><small>Hostile nation creates compliant version</small></td>
+                                <td>Medium</td>
+                                <td><span class="badge badge-warning">Medium</span><br>Brand dilution</td>
+                                <td><span class="badge badge-success">Low</span><br>Original retains purity</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Market Exclusion</strong><br><small>China/Russia blocks all sales</small></td>
+                                <td>High</td>
+                                <td><span class="badge badge-warning">Medium</span><br>Revenue loss</td>
+                                <td><span class="badge badge-success">Low</span><br>Strategic principle upheld</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Economics Section -->
+        <section id="economics" class="section">
+            <h2 class="section-title">
+                <i class="fas fa-coins"></i>
+                Economic Sustainability Model
+            </h2>
+
+            <div class="grid grid-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Revenue Model Architecture</h3>
+                    </div>
+                    <div class="highlight-box">
+                        <p><strong>Primary Model:</strong> Licensable governance protocol (not SaaS, not consumer app)</p>
+                        <p style="margin-top: 0.5rem;"><strong>Revenue Streams:</strong></p>
+                        <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
+                            <li>Licensing fees</li>
+                            <li>Compliance certification</li>
+                            <li>Governance auditing services</li>
+                            <li>Enterprise integration contracts</li>
+                            <li>Regulatory alignment tooling</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Target Deployment Sectors</h3>
+                    </div>
+                    <div class="grid grid-2" style="gap: 0.75rem;">
+                        <div class="stat-card">
+                            <div class="stat-value" style="font-size: 1.5rem;"><i class="fas fa-heartbeat"></i></div>
+                            <div class="stat-label">Healthcare<br><small>HIPAA/GDPR</small></div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" style="font-size: 1.5rem;"><i class="fas fa-university"></i></div>
+                            <div class="stat-label">Finance<br><small>AML/Risk</small></div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" style="font-size: 1.5rem;"><i class="fas fa-bolt"></i></div>
+                            <div class="stat-label">Critical Infrastructure<br><small>Resilience</small></div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" style="font-size: 1.5rem;"><i class="fas fa-leaf"></i></div>
+                            <div class="stat-label">Climate Science<br><small>Public Good</small></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mt-4">
+                <div class="card-header">
+                    <h3 class="card-title">Sector Analysis & Revenue Opportunity</h3>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Domain</th>
+                                <th>Revenue Potential</th>
+                                <th>Regulatory Drivers</th>
+                                <th>Key Challenges</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Healthcare</strong></td>
+                                <td><span class="badge badge-success">High</span></td>
+                                <td>HIPAA, GDPR, patient consent</td>
+                                <td>Data privacy lifecycle; bias mitigation</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Finance</strong></td>
+                                <td><span class="badge badge-success">High</span></td>
+                                <td>AML, credit scoring, risk management</td>
+                                <td>Opaque decision-making; systemic risk</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Critical Infrastructure</strong></td>
+                                <td><span class="badge badge-info">Medium-High</span></td>
+                                <td>NERC CIP, safety regulations</td>
+                                <td>Avoiding offensive cyber operations</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Climate Science</strong></td>
+                                <td><span class="badge badge-info">Medium</span></td>
+                                <td>Data sharing, environmental laws</td>
+                                <td>Grant-dependent; fragmented funding</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Public Sector</strong></td>
+                                <td><span class="badge badge-info">Variable</span></td>
+                                <td>GDPR, open data policies</td>
+                                <td>Budget constraints; procurement cycles</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="highlight-box danger mt-4">
+                <strong>Economic Risk Assessment:</strong> TML faces a "long tail" strategy requiring massive scale. While a single defense contract might run hundreds of millions, TML must achieve ubiquity across thousands of healthcare providers, banks, and municipalities. Success depends on proving that ethical foundation translates to tangible business value: reduced regulatory risk, enhanced reputation, and customer trust.
+            </div>
+        </section>
+
+        <!-- Governance Section -->
+        <section id="governance" class="section">
+            <h2 class="section-title">
+                <i class="fas fa-users-cog"></i>
+                Governance Integrity & Comparative Analysis
+            </h2>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Stakeholder Reception Analysis</h3>
+                </div>
+                <div class="grid grid-2">
+                    <div class="highlight-box success">
+                        <h4><i class="fas fa-hands-helping"></i> Civil Society</h4>
+                        <p class="text-sm">Overwhelmingly positive. Human rights advocates, privacy campaigners, and UN bodies championing bans on autonomous weapons would view TML as a beacon of ethical technology.</p>
+                    </div>
+                    <div class="highlight-box warning">
+                        <h4><i class="fas fa-building"></i> Enterprise</h4>
+                        <p class="text-sm">Moderate hesitation. Attracted to reduced regulatory risk but concerned about competitive disadvantage and exclusion from government contracts.</p>
+                    </div>
+                    <div class="highlight-box danger">
+                        <h4><i class="fas fa-shield-alt"></i> National Security</h4>
+                        <p class="text-sm">Greatest opposition. Viewed as strategic liability unwilling to contribute to national defense. Risk of procurement blacklisting.</p>
+                    </div>
+                    <div class="highlight-box">
+                        <h4><i class="fas fa-code-branch"></i> Open Source</h4>
+                        <p class="text-sm">Positive but conditional. Support depends on licensing model. Open-source fosters ecosystem but risks forced forks.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mt-4">
+                <div class="card-header">
+                    <h3 class="card-title">Comparative Framework Review</h3>
+                </div>
+                <div class="table-container">
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Framework</th>
+                                <th>Philosophy</th>
+                                <th>Prohibited Activities</th>
+                                <th>Enforcement</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="background: #dbeafe;">
+                                <td><strong>Ternary Moral Logic</strong></td>
+                                <td>Verifiable Ethics</td>
+                                <td>Categorical ban on lethal, AWS, surveillance</td>
+                                <td><span class="badge badge-success">Structural</span><br>Sacred Zero/Pause</td>
+                            </tr>
+                            <tr>
+                                <td><strong>OECD AI Principles</strong></td>
+                                <td>Values-Based Guidance</td>
+                                <td>None specified</td>
+                                <td><span class="badge badge-warning">Non-binding</span><br>Recommendations</td>
+                            </tr>
+                            <tr>
+                                <td><strong>EU AI Act</strong></td>
+                                <td>Risk-Based Regulation</td>
+                                <td>Conditional ban (social scoring, manipulative)</td>
+                                <td><span class="badge badge-info">Legal</span><br>Market compliance</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Defense AI Ethics</strong></td>
+                                <td>Pragmatic Dual-Use</td>
+                                <td>Permissive with human control</td>
+                                <td><span class="badge badge-warning">Guidance</span><br>Policy only</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Major AI Labs</strong></td>
+                                <td>Corporate Self-Governance</td>
+                                <td>Conditional (weapons prohibited)</td>
+                                <td><span class="badge badge-warning">Internal</span><br>Review boards</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="highlight-box mt-4">
+                    <strong>Positioning:</strong> TML is <span class="font-bold">stricter</span> than EU AI Act (which permits regulated military AI) and virtually all corporate principles. It is <span class="font-bold">orthogonal</span> to mainstream discourse by solving ethics at the technical, not policy, level. This rigor makes it politically anathema to power structures but morally compelling to civil society.
+                </div>
+            </div>
+        </section>
+
+        <!-- Conclusion Section -->
+        <section id="conclusion" class="section">
+            <h2 class="section-title">
+                <i class="fas fa-flag-checkered"></i>
+                Final Determination
+            </h2>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-question-circle"></i>
+                        Can TML Achieve Universal Adoption?
+                    </h3>
+                </div>
+                
+                <div class="highlight-box danger">
+                    <h4 class="text-lg font-bold mb-4">Answer: No - But With Critical Nuance</h4>
+                    <p>TML cannot achieve universal adoption in the geographic or ideological sense. The confluence of categorical ethical mandate, state security demands, and fragmented global regulation makes universal acceptance politically and economically unfeasible.</p>
+                </div>
+
+                <div class="grid grid-2 mt-4">
+                    <div class="highlight-box success">
+                        <h4 class="font-bold mb-4">However...</h4>
+                        <p>TML can achieve <strong>ubiquitous adoption within aligned democratic nations</strong> - becoming the indispensable standard for trustworthy civilian AI in the EU, UK, Japan, South Korea, and like-minded democracies.</p>
+                    </div>
+                    <div class="highlight-box">
+                        <h4 class="font-bold mb-4">Strategic Positioning</h4>
+                        <p>Goal should not be to be everywhere, but to be the <strong>dominant standard in the parts of the world that choose ethical AI</strong>.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-3 mt-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Conditions for Success</h3>
+                    </div>
+                    <ol style="padding-left: 1.5rem;">
+                        <li class="mb-2"><strong>Technical Feasibility:</strong> Prove scalable, performant, integrable</li>
+                        <li class="mb-2"><strong>Economic Dominance:</strong> Capture civilian governance market</li>
+                        <li class="mb-2"><strong>Political Endorsement:</strong> Gain regulator support in key jurisdictions</li>
+                    </ol>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Key Trade-offs</h3>
+                    </div>
+                    <ul style="padding-left: 1.5rem;">
+                        <li class="mb-2"><strong>Trust vs. Market Access:</strong> Sacrifice defense revenue for civilian trust</li>
+                        <li class="mb-2"><strong>Principle vs. Pragmatism:</strong> Reject state security interoperability</li>
+                        <li class="mb-2"><strong>Safety vs. Efficiency:</strong> Accept latency from Sacred Pause</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Adoption Forecast</h3>
+                    </div>
+                    <ul style="padding-left: 1.5rem;">
+                        <li class="mb-2"><strong>Short-term (1-3y):</strong> Niche in healthcare/finance</li>
+                        <li class="mb-2"><strong>Mid-term (3-7y):</strong> De facto standard in compliant jurisdictions</li>
+                        <li class="mb-2"><strong>Long-term (7+y):</strong> Dominant or obsolete</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card mt-4">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-globe-americas"></i>
+                        Long-Term Geopolitical Impact
+                    </h3>
+                </div>
+                <p class="text-lg mb-4">
+                    TML will <strong>accelerate fragmentation of the global AI landscape</strong>, catalyzing the decoupling of AI ecosystems along ideological lines. It will help solidify a "clean" or "ethical" tier of the global AI market, distinct from state-controlled, dual-use systems.
+                </p>
+                
+                <div class="highlight-box">
+                    <strong>Ultimate Impact:</strong> TML will not stop geopolitical AI decoupling, but will provide a powerful technological and philosophical anchor for the democratic side of the divide. Its success will be measured not by global reach, but by setting a new, higher standard for ethical computing within the aligned world—shaping AI governance for decades to come.
+                </div>
+            </div>
+
+            <div class="grid grid-3 mt-4">
+                <div class="stat-card">
+                    <div class="stat-value" style="color: var(--success);"><i class="fas fa-check"></i></div>
+                    <div class="stat-label">Technically<br>Feasible</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" style="color: var(--warning);"><i class="fas fa-exclamation"></i></div>
+                    <div class="stat-label">Economically<br>Precarious</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" style="color: var(--danger);"><i class="fas fa-times"></i></div>
+                    <div class="stat-label">Politically<br>Isolated</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2026 Ternary Moral Logic Research Initiative</p>
+        <p class="text-sm" style="margin-top: 0.5rem; opacity: 0.8;">
+            Comprehensive Adversarial Analysis | NoS-NoW Mandate Assessment
+        </p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Progress Bar
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            document.getElementById("progressBar").style.width = scrolled + "%";
+            
+            updateActiveNav();
+        };
+
+        // Smooth Scroll
+        function scrollToSection(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Accordion
+        function toggleAccordion(header) {
+            const accordion = header.parentElement;
+            accordion.classList.toggle('active');
+        }
+
+        // Tabs
+        function switchTab(tabName) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active class from all tabs
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected tab content
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+
+        // Search/Filter Edge Cases
+        function filterEdgeCases() {
+            const input = document.getElementById('edgeCaseSearch');
+            const filter = input.value.toLowerCase();
+            const table = document.getElementById('edgeCaseTable');
+            const rows = table.getElementsByTagName('tr');
+
+            for (let i = 1; i < rows.length; i++) {
+                const row = rows[i];
+                const text = row.textContent.toLowerCase();
+                row.style.display = text.indexOf(filter) > -1 ? '' : 'none';
+            }
+        }
+
+        // Risk Detail Display
+        function showRiskDetail(type) {
+            const details = {
+                'civil': '<div class="highlight-box success"><strong>Civil Society Reception:</strong> Overwhelmingly positive. Human rights organizations, privacy advocates, and UN bodies would champion TML as concrete implementation of ethical AI principles. Strong alignment with campaigns against autonomous weapons and mass surveillance.</div>',
+                'enterprise': '<div class="highlight-box warning"><strong>Enterprise Adoption:</strong> Moderate hesitation. Attracted to reduced regulatory risk and enhanced reputation but concerned about competitive disadvantage, performance overhead, and exclusion from government contracts. Strongest in highly regulated industries.</div>',
+                'defense': '<div class="highlight-box danger"><strong>Defense Ministries:</strong> Very low adoption likelihood. Viewed as strategic liability unwilling to contribute to national security. High risk of procurement blacklisting and exclusion from any government-related projects.</div>',
+                'intel': '<div class="highlight-box"><strong>Intelligence Agencies:</strong> Low adoption. Categorical prohibition on intelligence analysis functions makes TML incompatible with core mission requirements. Would be seen as obstructionist to national security objectives.</div>'
+            };
+            
+            document.getElementById('pressure-details').innerHTML = details[type] || '';
+            document.getElementById('pressure-details').classList.remove('hidden');
+        }
+
+        // Pressure Detail Display
+        function showPressureDetail(type) {
+            const details = {
+                'lawful': '<div class="highlight-box"><strong>Lawful Compulsion:</strong> Democratic states invoke emergency powers or Defense Production Act. Judicial oversight present. TML faces dilemma: comply and betray brand, or refuse and face legal penalties. Cryptographic logs provide defense but may not prevent sanctions.</div>',
+                'overreach': '<div class="highlight-box danger"><strong>Executive Overreach:</strong> Covert pressure via procurement blacklisting, supply chain disruption, or financial sanctions. No public oversight. Highest risk scenario - catastrophic reputational damage if TML complies secretly. Must prepare for market exit while maintaining integrity.</div>',
+                'fork': '<div class="highlight-box warning"><strong>Forced Fork:</strong> Hostile nation-state forks open-source TML to create "compliant" version. Technically complex but feasible for well-resourced actors. Creates market fragmentation and brand dilution. Original TML retains integrity but loses market control.</div>',
+                'exclusion': '<div class="highlight-box"><strong>Market Exclusion:</strong> Major markets (China, Russia) block all TML sales. Revenue loss significant but strategically acceptable. TML accepts exclusion as price of principle. Strengthens position in remaining allied markets as "trusted" alternative.</div>'
+            };
+            
+            document.getElementById('pressure-details').innerHTML = details[type] || '';
+            document.getElementById('pressure-details').classList.remove('hidden');
+        }
+
+        // Active Navigation
+        function updateActiveNav() {
+            const sections = ['executive', 'architecture', 'edge-cases', 'universality', 'pressure', 'economics', 'governance', 'conclusion'];
+            const scrollPos = window.scrollY + 150;
+            
+            sections.forEach(section => {
+                const element = document.getElementById(section);
+                if (element && element.offsetTop <= scrollPos && (element.offsetTop + element.offsetHeight) > scrollPos) {
+                    document.querySelectorAll('.nav-menu a').forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('onclick').includes(section)) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }
+
+        // Initialize Charts
+        document.addEventListener('DOMContentLoaded', function() {
+            // Market Size Chart
+            const marketCtx = document.getElementById('marketChart').getContext('2d');
+            new Chart(marketCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Defense AI (2034)', 'AI Governance (2030)', 'Civilian TML TAM'],
+                    datasets: [{
+                        label: 'Market Size (USD Billions)',
+                         [65.43, 6.9, 6.9],
+                        backgroundColor: [
+                            'rgba(239, 68, 68, 0.8)',
+                            'rgba(37, 99, 235, 0.8)',
+                            'rgba(16, 185, 129, 0.8)'
+                        ],
+                        borderColor: [
+                            'rgb(239, 68, 68)',
+                            'rgb(37, 99, 235)',
+                            'rgb(16, 185, 129)'
+                        ],
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return '$' + value + 'B';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Revenue Displacement Chart
+            const revenueCtx = document.getElementById('revenueChart').getContext('2d');
+            new Chart(revenueCtx, {
+                type: 'doughnut',
+                 {
+                    labels: ['Excluded Defense Market', 'Target Civilian Market', 'Revenue Gap'],
+                    datasets: [{
+                         [65.43, 6.9, 58.53],
+                        backgroundColor: [
+                            'rgba(239, 68, 68, 0.8)',
+                            'rgba(16, 185, 129, 0.8)',
+                            'rgba(245, 158, 11, 0.8)'
+                        ],
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+        });
+
+        // Animation on Scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.card, .section').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
