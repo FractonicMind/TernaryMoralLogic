@@ -2,817 +2,320 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Interactive Demo Page</title>
+  <title>Minimal Interactive Demo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    :root {
-      --bg: #0f172a;
-      --bg-soft: #111827;
-      --bg-softer: #020617;
-      --fg: #e5e7eb;
-      --fg-soft: #9ca3af;
-      --accent: #38bdf8;
-      --accent-soft: rgba(56,189,248,0.18);
-      --border: #1f2937;
-      --danger: #f97373;
-      --shadow: 0 22px 45px rgba(15,23,42,0.7);
-    }
-    .light {
-      --bg: #f1f5f9;
-      --bg-soft: #ffffff;
-      --bg-softer: #e5e7eb;
-      --fg: #020617;
-      --fg-soft: #4b5563;
-      --accent: #2563eb;
-      --accent-soft: rgba(37,99,235,0.12);
-      --border: #d1d5db;
-      --danger: #dc2626;
-      --shadow: 0 18px 40px rgba(15,23,42,0.18);
-    }
-
-    * { box-sizing: border-box; }
-
     body {
       margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
-        "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #1e293b, var(--bg-softer));
-      color: var(--fg);
-      min-height: 100vh;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #0f172a;
+      color: #e5e7eb;
       display: flex;
       justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
       padding: 24px;
     }
-
-    .shell {
+    .container {
       width: 100%;
-      max-width: 1120px;
-      background: linear-gradient(135deg, var(--bg-soft), var(--bg-softer));
-      border-radius: 24px;
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow);
-      padding: 20px 22px 26px;
-      position: relative;
-      overflow: hidden;
+      max-width: 800px;
+      background: #020617;
+      border-radius: 16px;
+      border: 1px solid #1f2937;
+      box-shadow: 0 18px 40px rgba(15,23,42,0.7);
+      padding: 18px 18px 22px;
     }
-
-    .shell::before {
-      content: "";
-      position: absolute;
-      inset: -20%;
-      background:
-        radial-gradient(circle at 0 0, rgba(56,189,248,0.16), transparent 55%),
-        radial-gradient(circle at 100% 0, rgba(244,114,182,0.12), transparent 60%);
-      opacity: 0.75;
-      pointer-events: none;
-      z-index: -1;
-    }
-
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-      padding-bottom: 14px;
-      border-bottom: 1px solid rgba(148,163,184,0.35);
-      margin-bottom: 14px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .logo {
-      width: 32px;
-      height: 32px;
-      border-radius: 999px;
-      background:
-        conic-gradient(from 210deg,
-          #38bdf8,
-          #a855f7,
-          #f97316,
-          #22c55e,
-          #38bdf8);
-      padding: 2px;
-      position: relative;
-    }
-
-    .logo-inner {
-      width: 100%;
-      height: 100%;
-      border-radius: inherit;
-      background: radial-gradient(circle at 30% 0, #1f2937, #020617);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #e5e7eb;
-      font-size: 16px;
-      font-weight: 600;
-    }
-
     h1 {
-      margin: 0;
-      font-size: 19px;
-      letter-spacing: 0.02em;
-      display: flex;
-      align-items: center;
-      gap: 6px;
+      margin: 0 0 4px;
+      font-size: 20px;
     }
-
-    h1 span {
-      font-size: 11px;
-      font-weight: 500;
-      color: var(--fg-soft);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+    .subtitle {
+      margin: 0 0 16px;
+      font-size: 13px;
+      color: #9ca3af;
     }
-
-    .nav-tabs {
+    .row {
       display: flex;
       flex-wrap: wrap;
-      gap: 6px;
-      font-size: 12px;
+      gap: 12px;
+      margin-bottom: 16px;
     }
-
-    .nav-tabs button {
-      border-radius: 999px;
-      border: 1px solid transparent;
-      padding: 5px 11px;
-      background: transparent;
-      color: var(--fg-soft);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      transition: all 0.18s ease;
-    }
-
-    .nav-tabs button.active {
-      background: var(--accent-soft);
-      border-color: rgba(148,163,184,0.5);
-      color: var(--accent);
-    }
-
-    .nav-tabs button:hover:not(.active) {
-      background: rgba(15,23,42,0.5);
-      border-color: rgba(148,163,184,0.4);
-    }
-
-    .nav-tabs button span.badge {
-      font-size: 10px;
-      padding: 2px 6px;
-      border-radius: 999px;
-      background: rgba(148,163,184,0.15);
-    }
-
-    .header-actions {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .toggle {
-      border-radius: 999px;
-      border: 1px solid rgba(148,163,184,0.45);
-      padding: 4px 7px;
-      background: rgba(15,23,42,0.7);
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      cursor: pointer;
-      font-size: 11px;
-      color: var(--fg-soft);
-    }
-
-    .toggle span.icon {
-      border-radius: 999px;
-      width: 18px;
-      height: 18px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(15,23,42,0.9);
-      box-shadow: 0 0 0 1px rgba(148,163,184,0.4);
-      font-size: 11px;
-    }
-
-    .primary-btn {
-      border-radius: 999px;
-      border: none;
-      padding: 6px 13px;
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      background: linear-gradient(135deg, var(--accent), #a855f7);
-      color: white;
-      cursor: pointer;
-      box-shadow: 0 12px 30px rgba(37,99,235,0.45);
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-
-    .primary-btn span.dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.9);
-    }
-
-    main {
-      display: grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-      gap: 16px;
-    }
-
-    @media (max-width: 860px) {
-      main {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    .panel {
-      border-radius: 18px;
-      border: 1px solid rgba(148,163,184,0.35);
-      background: radial-gradient(circle at top left,
-        rgba(148,163,184,0.18),
-        transparent 55%),
-        linear-gradient(135deg, rgba(15,23,42,0.9), rgba(15,23,42,0.98));
-      padding: 14px 14px 16px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .panel-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 10px;
-      gap: 10px;
-    }
-
-    .panel-title {
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.09em;
-      text-transform: uppercase;
-      color: var(--fg-soft);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .chip {
-      font-size: 10px;
-      padding: 3px 7px;
-      border-radius: 999px;
-      border: 1px solid rgba(148,163,184,0.5);
-      background: rgba(15,23,42,0.8);
-      color: var(--accent);
-    }
-
-    .panel-body {
-      font-size: 13px;
-      color: var(--fg-soft);
-    }
-
-    .panel-body h2 {
-      margin: 4px 0 8px;
-      font-size: 16px;
-      color: var(--fg);
-    }
-
-    .grid-2 {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
-      margin-top: 10px;
-    }
-
-    @media (max-width: 640px) {
-      .grid-2 {
-        grid-template-columns: 1fr;
-      }
-    }
-
     .card {
-      border-radius: 14px;
-      border: 1px solid rgba(148,163,184,0.4);
-      background: radial-gradient(circle at top,
-          rgba(148,163,184,0.16),
-          rgba(15,23,42,0.96));
-      padding: 10px 10px 11px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
+      flex: 1 1 220px;
+      min-width: 0;
+      background: #020617;
+      border-radius: 12px;
+      border: 1px solid #1f2937;
+      padding: 10px 10px 12px;
     }
-
-    .card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 11px;
-      color: var(--fg-soft);
-    }
-
-    .pill {
-      padding: 2px 7px;
-      border-radius: 999px;
-      border: 1px solid rgba(148,163,184,0.5);
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.07em;
-    }
-
-    .metric {
-      font-size: 26px;
+    .card-title {
+      font-size: 13px;
       font-weight: 600;
-      color: var(--fg);
-      display: flex;
-      align-items: baseline;
-      gap: 6px;
+      margin-bottom: 6px;
     }
-
-    .metric span.small {
-      font-size: 11px;
-      color: var(--fg-soft);
+    .card-desc {
+      font-size: 12px;
+      color: #9ca3af;
+      margin-bottom: 8px;
     }
-
+    .metric {
+      font-size: 28px;
+      font-weight: 600;
+      margin: 4px 0 8px;
+    }
     .btn-row {
-      display: flex;
-      gap: 6px;
-      margin-top: 2px;
-    }
-
-    .btn {
-      flex: 1;
-      border-radius: 999px;
-      border: 1px solid rgba(148,163,184,0.6);
-      background: rgba(15,23,42,0.9);
-      color: var(--fg-soft);
-      font-size: 11px;
-      padding: 4px 0;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 4px;
-    }
-
-    .btn.primary {
-      background: var(--accent-soft);
-      color: var(--accent);
-    }
-
-    .btn.danger {
-      border-color: rgba(239,68,68,0.7);
-      color: var(--danger);
-    }
-
-    .btn:active {
-      transform: translateY(1px);
-    }
-
-    .tasks {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .task-input-row {
       display: flex;
       gap: 6px;
       margin-bottom: 4px;
     }
-
-    input[type="text"] {
-      flex: 1;
+    button {
       border-radius: 999px;
-      border: 1px solid rgba(148,163,184,0.6);
-      padding: 5px 9px;
+      border: 1px solid #374151;
+      background: #111827;
+      color: #e5e7eb;
       font-size: 12px;
-      background: rgba(15,23,42,0.9);
-      color: var(--fg);
+      padding: 5px 12px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #1f2937;
+    }
+    .btn-small {
+      padding: 3px 10px;
+      font-size: 11px;
+    }
+    .btn-primary {
+      background: #2563eb;
+      border-color: #2563eb;
+    }
+    .btn-primary:hover {
+      background: #1d4ed8;
+    }
+    input[type="text"] {
+      width: 100%;
+      border-radius: 999px;
+      border: 1px solid #374151;
+      background: #020617;
+      color: #e5e7eb;
+      font-size: 12px;
+      padding: 5px 9px;
       outline: none;
+      margin-bottom: 6px;
     }
-
     input[type="text"]::placeholder {
-      color: rgba(148,163,184,0.75);
+      color: #6b7280;
     }
-
     .task-list {
       max-height: 140px;
-      overflow: auto;
-      padding-right: 2px;
+      overflow-y: auto;
+      padding-right: 4px;
     }
-
     .task {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 6px;
+      font-size: 12px;
       padding: 4px 7px;
       border-radius: 999px;
-      background: rgba(15,23,42,0.85);
-      border: 1px solid rgba(148,163,184,0.45);
-      font-size: 11px;
+      border: 1px solid #374151;
+      background: #020617;
+      margin-bottom: 4px;
     }
-
-    .task span.label {
+    .task-label {
       flex: 1;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      cursor: pointer;
     }
-
-    .task span.label.done {
+    .task-label.done {
       text-decoration: line-through;
-      color: rgba(148,163,184,0.7);
+      color: #6b7280;
     }
-
-    .tag {
-      border-radius: 999px;
-      padding: 1px 6px;
-      font-size: 10px;
-      background: rgba(22,163,74,0.18);
-      color: #4ade80;
-    }
-
-    .live-preview {
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-      gap: 8px;
-      margin-top: 8px;
-    }
-
-    @media (max-width: 640px) {
-      .live-preview {
-        grid-template-columns: 1fr;
-      }
-    }
-
     textarea {
       width: 100%;
       min-height: 90px;
-      border-radius: 12px;
-      border: 1px solid rgba(148,163,184,0.6);
-      padding: 7px 9px;
+      border-radius: 10px;
+      border: 1px solid #374151;
+      background: #020617;
+      color: #e5e7eb;
       font-size: 12px;
       font-family: inherit;
-      background: rgba(15,23,42,0.9);
-      color: var(--fg);
+      padding: 6px 8px;
       resize: vertical;
       outline: none;
+      margin-bottom: 6px;
     }
-
-    .preview-box {
-      border-radius: 12px;
-      border: 1px dashed rgba(148,163,184,0.6);
-      padding: 7px 9px;
+    .preview {
+      border-radius: 10px;
+      border: 1px dashed #374151;
       font-size: 12px;
-      background: rgba(15,23,42,0.65);
-      color: var(--fg-soft);
+      padding: 6px 8px;
+      color: #9ca3af;
+      min-height: 60px;
+      background: #020617;
     }
-
-    .preview-box strong {
-      color: var(--accent);
-    }
-
-    .footer-row {
-      margin-top: 10px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 8px;
+    .footer {
+      margin-top: 8px;
       font-size: 11px;
-      color: var(--fg-soft);
+      color: #9ca3af;
     }
-
-    .footer-row a {
-      color: var(--accent);
-      text-decoration: none;
-      opacity: 0.85;
-    }
-
-    .footer-row a:hover {
-      opacity: 1;
-      text-decoration: underline;
-    }
-
-    .status-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 999px;
-      background: #22c55e;
-      box-shadow: 0 0 0 4px rgba(34,197,94,0.25);
+    @media (max-width: 640px) {
+      .row {
+        flex-direction: column;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="shell light" id="appShell">
-    <header>
-      <div>
-        <div class="brand">
-          <div class="logo">
-            <div class="logo-inner">D</div>
-          </div>
-          <div>
-            <h1>Interactive Demo <span>HTML • CSS • JS</span></h1>
-          </div>
-        </div>
-        <div class="nav-tabs" style="margin-top: 8px;">
-          <button class="active" data-target="overview"><span>Overview</span></button>
-          <button data-target="playground"><span>Playground</span> <span class="badge">Live</span></button>
-          <button data-target="notes"><span>Notes</span></button>
+  <div class="container">
+    <h1>Interactive Demo</h1>
+    <p class="subtitle">A minimal, self-contained page with a counter, task list, and live preview.</p>
+
+    <div class="row">
+      <!-- Counter -->
+      <div class="card">
+        <div class="card-title">Counter</div>
+        <div class="card-desc">Click the buttons to change the number.</div>
+        <div class="metric" id="counterValue">0</div>
+        <div class="btn-row">
+          <button class="btn-primary" id="btnInc">+ Increment</button>
+          <button id="btnDec">– Decrement</button>
+          <button id="btnReset" class="btn-small">Reset</button>
         </div>
       </div>
-      <div class="header-actions">
-        <button class="toggle" id="themeToggle">
-          <span class="icon" id="themeIcon">🌞</span>
-          <span id="themeLabel">Light mode</span>
-        </button>
-        <button class="primary-btn" id="scrollToPlayground">
-          <span class="dot"></span>
-          Try the interactions
-        </button>
+
+      <!-- Task list -->
+      <div class="card">
+        <div class="card-title">Task list</div>
+        <div class="card-desc">Add tasks, toggle them done, or remove them.</div>
+        <input type="text" id="taskInput" placeholder="Add a task and press Enter…" />
+        <div class="task-list" id="taskList"></div>
       </div>
-    </header>
+    </div>
 
-    <main>
-      <!-- Left column -->
-      <section class="panel" id="panelOverview">
-        <div class="panel-header">
-          <div class="panel-title">
-            Live Playground
-            <span class="chip">Client-side only</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--fg-soft);">
-            <span class="status-dot"></span>
-            <span>Interactive in your browser</span>
-          </div>
+    <div class="row">
+      <!-- Live preview -->
+      <div class="card">
+        <div class="card-title">Live text preview</div>
+        <div class="card-desc">Type below and see the preview update instantly.</div>
+        <textarea id="noteInput" placeholder="Type something here…"></textarea>
+        <div class="preview" id="notePreview">
+          Start typing in the box above to see a live preview here.
         </div>
-        <div class="panel-body">
-          <h2>Experiment with simple UI logic</h2>
-          <p>
-            Use the widgets below to see how state changes, events, and live previews
-            can be wired together with just a few lines of JavaScript.
-          </p>
+      </div>
+    </div>
 
-          <div class="grid-2" id="playground">
-            <!-- Counter card -->
-            <div class="card">
-              <div class="card-header">
-                <span>Click counter</span>
-                <span class="pill">Stateful</span>
-              </div>
-              <div class="metric">
-                <span id="counterValue">0</span>
-                <span class="small">clicks</span>
-              </div>
-              <div class="btn-row">
-                <button class="btn primary" id="btnIncrement">+ Increment</button>
-                <button class="btn" id="btnDecrement">– Decrement</button>
-              </div>
-              <div style="font-size:11px;color:var(--fg-soft);margin-top:5px;">
-                Try clicking a few times and then switching the theme. State persists in memory.
-              </div>
-            </div>
-
-            <!-- Tasks card -->
-            <div class="card">
-              <div class="card-header">
-                <span>Task list</span>
-                <span class="pill">Interactive</span>
-              </div>
-              <div class="tasks">
-                <div class="task-input-row">
-                  <input id="taskInput" type="text" placeholder="Add a task and press Enter…" />
-                  <button class="btn" id="addTaskBtn" style="flex:0 0 auto;padding:4px 10px;font-size:11px;">
-                    Add
-                  </button>
-                </div>
-                <div class="task-list" id="taskList"></div>
-              </div>
-              <div style="font-size:11px;color:var(--fg-soft);margin-top:4px;">
-                Click any item to toggle <span class="tag">done</span>, or remove it with ✕.
-              </div>
-            </div>
-          </div>
-
-          <!-- Live preview row -->
-          <div class="live-preview">
-            <div>
-              <div style="font-size:11px;color:var(--fg-soft);margin-bottom:4px;">
-                Live text input
-              </div>
-              <textarea id="noteInput" placeholder="Type here to see a live preview…"></textarea>
-            </div>
-            <div>
-              <div style="font-size:11px;color:var(--fg-soft);margin-bottom:4px;">
-                Instant preview
-              </div>
-              <div class="preview-box" id="notePreview">
-                Start typing on the left. <strong>This box updates as you type.</strong>
-              </div>
-            </div>
-          </div>
-
-          <div class="footer-row">
-            <div>
-              Press <strong>Tab</strong> and <strong>Enter</strong> to navigate with your keyboard.
-            </div>
-            <div>
-              Built with plain HTML, CSS, and JS – no build step, just open this file in a browser.
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Right column -->
-      <section class="panel" id="panelNotes">
-        <div class="panel-header">
-          <div class="panel-title">
-            What this demo shows
-            <span class="chip">Guide</span>
-          </div>
-        </div>
-        <div class="panel-body">
-          <p style="margin-top:0;">
-            This page is intentionally small but complete: it has layout, theming,
-            interactive widgets, and smooth scrolling, all in a single file.
-          </p>
-          <ul style="padding-left:16px;margin:6px 0 10px;font-size:12px;color:var(--fg-soft);">
-            <li>Theme toggle that swaps a single <code>class</code> on the shell.</li>
-            <li>Counter and tasks managed with in-memory JavaScript state.</li>
-            <li>Live textarea preview using <code>input</code> events.</li>
-            <li>Smooth-scroll button to jump into the playground.</li>
-          </ul>
-          <p style="font-size:12px;">
-            You can extend it by adding routing, persistence (localStorage),
-            or wiring it into your own backend.
-          </p>
-
-          <div style="margin-top:10px;font-size:11px;color:var(--fg-soft);line-height:1.5;">
-            <strong>How to use this file:</strong><br/>
-            1. Save it as <code>index.html</code> on your machine.<br/>
-            2. Double-click to open it in a modern browser.<br/>
-            3. Start modifying the markup, styles, or script to fit your needs.
-          </div>
-        </div>
-      </section>
-    </main>
+    <div class="footer">
+      How to use: save this file as <code>index.html</code>, then double-click it to open in your browser.
+    </div>
   </div>
 
   <script>
+    // Counter
     (function () {
-      const shell = document.getElementById('appShell');
-      const themeToggle = document.getElementById('themeToggle');
-      const themeLabel = document.getElementById('themeLabel');
-      const themeIcon = document.getElementById('themeIcon');
-      const scrollBtn = document.getElementById('scrollToPlayground');
-      const playground = document.getElementById('playground');
+      var value = 0;
+      var counterEl = document.getElementById('counterValue');
+      var btnInc = document.getElementById('btnInc');
+      var btnDec = document.getElementById('btnDec');
+      var btnReset = document.getElementById('btnReset');
 
-      const navButtons = document.querySelectorAll('.nav-tabs button');
-
-      function setTheme(light) {
-        if (light) {
-          shell.classList.add('light');
-          themeLabel.textContent = 'Light mode';
-          themeIcon.textContent = '🌞';
-        } else {
-          shell.classList.remove('light');
-          themeLabel.textContent = 'Dark mode';
-          themeIcon.textContent = '🌙';
-        }
+      function render() {
+        counterEl.textContent = value;
       }
 
-      let isLight = true;
-      setTheme(isLight);
-
-      themeToggle.addEventListener('click', () => {
-        isLight = !isLight;
-        setTheme(isLight);
+      btnInc.addEventListener('click', function () {
+        value += 1;
+        render();
       });
 
-      if (scrollBtn && playground) {
-        scrollBtn.addEventListener('click', () => {
-          playground.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        });
-      }
-
-      navButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-          navButtons.forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-          const target = btn.dataset.target;
-          if (target === 'playground') {
-            playground.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          } else if (target === 'notes') {
-            document.getElementById('panelNotes').scrollIntoView({
-              behavior: 'smooth',
-              block: 'start'
-            });
-          } else {
-            shell.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }
-        });
+      btnDec.addEventListener('click', function () {
+        value -= 1;
+        render();
       });
 
-      let counter = 0;
-      const counterEl = document.getElementById('counterValue');
-      function renderCounter() {
-        counterEl.textContent = counter;
-      }
-      document.getElementById('btnIncrement').addEventListener('click', () => {
-        counter++;
-        renderCounter();
-      });
-      document.getElementById('btnDecrement').addEventListener('click', () => {
-        counter--;
-        renderCounter();
+      btnReset.addEventListener('click', function () {
+        value = 0;
+        render();
       });
 
-      const taskInput = document.getElementById('taskInput');
-      const addTaskBtn = document.getElementById('addTaskBtn');
-      const taskList = document.getElementById('taskList');
-      let tasks = [];
-      let taskId = 1;
+      render();
+    })();
+
+    // Task list
+    (function () {
+      var tasks = [];
+      var nextId = 1;
+      var input = document.getElementById('taskInput');
+      var list = document.getElementById('taskList');
 
       function renderTasks() {
-        taskList.innerHTML = '';
+        list.innerHTML = '';
         if (tasks.length === 0) {
-          const empty = document.createElement('div');
-          empty.style.fontSize = '11px';
-          empty.style.color = 'var(--fg-soft)';
+          var empty = document.createElement('div');
+          empty.style.fontSize = '12px';
+          empty.style.color = '#6b7280';
           empty.textContent = 'No tasks yet. Add one above.';
-          taskList.appendChild(empty);
+          list.appendChild(empty);
           return;
         }
-
-        tasks.forEach(task => {
-          const row = document.createElement('div');
+        tasks.forEach(function (task) {
+          var row = document.createElement('div');
           row.className = 'task';
 
-          const label = document.createElement('span');
-          label.className = 'label' + (task.done ? ' done' : '');
+          var label = document.createElement('span');
+          label.className = 'task-label' + (task.done ? ' done' : '');
           label.textContent = task.text;
-          label.title = 'Click to toggle done';
-          label.addEventListener('click', () => {
+          label.addEventListener('click', function () {
             task.done = !task.done;
             renderTasks();
           });
 
-          const remove = document.createElement('button');
-          remove.textContent = '✕';
-          remove.className = 'btn danger';
-          remove.style.flex = '0 0 auto';
-          remove.style.padding = '2px 7px';
-          remove.style.fontSize = '11px';
-          remove.addEventListener('click', () => {
-            tasks = tasks.filter(t => t.id !== task.id);
+          var removeBtn = document.createElement('button');
+          removeBtn.textContent = '✕';
+          removeBtn.className = 'btn-small';
+          removeBtn.addEventListener('click', function () {
+            tasks = tasks.filter(function (t) { return t.id !== task.id; });
             renderTasks();
           });
 
           row.appendChild(label);
-          row.appendChild(remove);
-          taskList.appendChild(row);
+          row.appendChild(removeBtn);
+          list.appendChild(row);
         });
       }
 
       function addTaskFromInput() {
-        const text = taskInput.value.trim();
+        var text = input.value.trim();
         if (!text) return;
-        tasks.unshift({ id: taskId++, text, done: false });
-        taskInput.value = '';
+        tasks.unshift({ id: nextId++, text: text, done: false });
+        input.value = '';
         renderTasks();
       }
 
-      addTaskBtn.addEventListener('click', addTaskFromInput);
-      taskInput.addEventListener('keydown', e => {
+      input.addEventListener('keydown', function (e) {
         if (e.key === 'Enter') {
           e.preventDefault();
           addTaskFromInput();
         }
       });
-      renderTasks();
 
-      const noteInput = document.getElementById('noteInput');
-      const notePreview = document.getElementById('notePreview');
-      noteInput.addEventListener('input', () => {
-        const text = noteInput.value.trim();
+      renderTasks();
+    })();
+
+    // Live preview
+    (function () {
+      var noteInput = document.getElementById('noteInput');
+      var notePreview = document.getElementById('notePreview');
+
+      noteInput.addEventListener('input', function () {
+        var text = noteInput.value.trim();
         if (!text) {
-          notePreview.innerHTML =
-            'Start typing on the left. <strong>This box updates as you type.</strong>';
+          notePreview.textContent =
+            'Start typing in the box above to see a live preview here.';
         } else {
-          const escaped = text
-            .replace(/&/g, '&amp;')
-            .replace(/</g, '&lt;')
-            .replace(/>/g, '&gt;')
-            .replace(/\n/g, '<br/>');
-          notePreview.innerHTML = escaped;
+          notePreview.textContent = text;
         }
       });
     })();
