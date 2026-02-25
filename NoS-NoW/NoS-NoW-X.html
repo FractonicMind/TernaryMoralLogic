@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Ternary Moral Logic (TML) • No Spy, No Weapon Demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --bg: #050814;
+      --bg-alt: #0b1020;
+      --bg-card: #101526;
+      --border-subtle: rgba(255,255,255,0.05);
+      --accent: #4fd1c5;
+      --accent-soft: rgba(79, 209, 197, 0.18);
+      --accent-strong: #38b2ac;
+      --text: #f7fafc;
+      --muted: #a0aec0;
+      --danger: #f56565;
+      --warning: #ecc94b;
+      --success: #68d391;
+      --shadow-soft: 0 18px 45px rgba(0,0,0,0.55);
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --radius-pill: 999px;
+      --transition-fast: 0.18s ease-out;
+      --transition-med: 0.24s ease-out;
+      --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+      --font-mono: "SF Mono", ui-monospace, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #1a202c 0, #050814 55%);
+      color: var(--text);
+      font-family: var(--font-sans);
+      min-height: 100vh;
+      padding: 24px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .app-shell {
+      width: 100%;
+      max-width: 1200px;
+      border-radius: 32px;
+      border: 1px solid rgba(255,255,255,0.05);
+      background:
+        radial-gradient(circle at top left, rgba(79,209,197,0.08), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(99,179,237,0.07), transparent 60%),
+        linear-gradient(145deg, #050814, #050814);
+      box-shadow: var(--shadow-soft);
+      padding: 26px 26px 32px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .app-shell::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(circle at top center, rgba(255,255,255,0.06), transparent 55%);
+      opacity: 0.4;
+      mix-blend-mode: soft-light;
+    }
+
+    header {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 24px;
+      align-items: center;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background:
+        conic-gradient(from 220deg, rgba(72,187,255,0.28), rgba(56,178,172,0.75), rgba(72,187,255,0.3));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 0 1px rgba(0,0,0,0.4);
+    }
+
+    .brand-mark-inner {
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      border: 1px solid rgba(15,23,42,0.7);
+      background: radial-gradient(circle at 30% 30%, #f7fafc, #e6fffa 35%, #1a202c 80%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .brand-mark-inner::after {
+      content: "";
+      position: absolute;
+      inset: 38% 8% 8%;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 0, rgba(255,255,255,0.8), rgba(15,23,42,0.95) 70%);
+      opacity: 0.8;
+    }
+
+    .brand-text h1 {
+      font-size: 1.1rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #e2e8f0;
+    }
+
+    .brand-text p {
+      font-size: 0.78rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: flex-end;
+    }
+
+    .chip {
+      border-radius: var(--radius-pill);
+      padding: 6px 12px;
+      font-size: 0.75rem;
+      border: 1px solid rgba(226,232,240,0.25);
+      color: #e2e8f0;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(to right, rgba(15,23,42,0.85), rgba(26,32,44,0.9));
+      backdrop-filter: blur(8px);
+    }
+
+    .chip span {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 18px;
+    }
+
+    @media (max-width: 920px) {
+      main {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    /* Panels */
+
+    .panel {
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      background: radial-gradient(circle at top left, rgba(79,209,197,0.14), transparent 55%),
+                  linear-gradient(145deg, #050814, #060b19);
+      padding: 18px 18px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .panel.secondary {
+      background: radial-gradient(circle at top right, rgba(99,179,237,0.16), transparent 60%),
+                  linear-gradient(150deg, #050814, #060b19);
+    }
+
+    .panel-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .panel-title {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #cbd5f5;
+    }
+
+    .panel-subtitle {
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+
+    .badge {
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(226,232,240,0.35);
+      padding: 4px 10px;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: rgba(15,23,42,0.9);
+      backdrop-filter: blur(8px);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px rgba(79,209,197,0.25);
+    }
+
+    /* Ternary chip */
+
+    .ternary-chip {
+      display: inline-flex;
+      align-items: center;
+      border-radius: var(--radius-pill);
+      padding: 4px;
+      border: 1px solid rgba(148,163,184,0.6);
+      background: radial-gradient(circle at top left, rgba(56,178,172,0.3), transparent 60%);
+      font-size: 0.72rem;
+      color: #e2e8f0;
+    }
+
+    .ternary-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      margin: 0 3px;
+    }
+
+    .dot-allow { background: var(--success); }
+    .dot-pause { background: var(--warning); }
+    .dot-zero  { background: var(--danger); }
+
+    .ternary-label {
+      margin: 0 6px 0 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #cbd5f5;
+    }
+
+    /* Scenario classifier */
+
+    .scenario-box {
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(148,163,184,0.4);
+      background: rgba(15,23,42,0.94);
+      padding: 12px 14px;
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .scenario-label {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-bottom: 2px;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 70px;
+      max-height: 220px;
+      font-family: var(--font-sans);
+      font-size: 0.84rem;
+      padding: 8px 9px;
+      border-radius: 10px;
+      border: 1px solid rgba(148,163,184,0.55);
+      background: #020617;
+      color: var(--text);
+      outline: none;
+      transition: border var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
+    }
+
+    textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px rgba(79,209,197,0.45);
+      background: #020617;
+    }
+
+    .controls-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      margin-top: 4px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      border-radius: var(--radius-pill);
+      border: none;
+      padding: 7px 14px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      cursor: pointer;
+      background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+      color: #0b1120;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 8px 24px rgba(56,178,172,0.45);
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast), filter var(--transition-fast);
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 30px rgba(56,178,172,0.65);
+      filter: brightness(1.04);
+    }
+
+    .btn.secondary-btn {
+      background: linear-gradient(135deg, #1a202c, #111827);
+      color: #e2e8f0;
+      box-shadow: none;
+      border: 1px solid rgba(148,163,184,0.6);
+    }
+
+    .btn.secondary-btn:hover {
+      background: linear-gradient(135deg, #111827, #020617);
+    }
+
+    .hint {
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+
+    .result-strip {
+      border-radius: var(--radius-md);
+      padding: 10px 12px;
+      margin-top: 10px;
+      border: 1px solid rgba(148,163,184,0.55);
+      background: linear-gradient(135deg, rgba(15,23,42,0.95), rgba(15,23,42,0.96));
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .result-label {
+      font-size: 0.74rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #a0aec0;
+    }
+
+    .result-pill {
+      border-radius: var(--radius-pill);
+      padding: 5px 10px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pill-allow {
+      background: rgba(104,211,145,0.2);
+      border: 1px solid rgba(72,187,120,0.8);
+      color: #c6f6d5;
+    }
+
+    .pill-pause {
+      background: rgba(236,201,75,0.16);
+      border: 1px solid rgba(236,201,75,0.9);
+      color: #fefcbf;
+    }
+
+    .pill-zero {
+      background: rgba(245,101,101,0.18);
+      border: 1px solid rgba(245,101,101,0.9);
+      color: #fed7d7;
+    }
+
+    .result-explanation {
+      font-size: 0.8rem;
+      color: #e2e8f0;
+      line-height: 1.5;
+      margin-top: 8px;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .tag {
+      font-size: 0.7rem;
+      padding: 3px 7px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(148,163,184,0.6);
+      color: #a0aec0;
+      background: rgba(15,23,42,0.95);
+    }
+
+    .tag.primary-tag {
+      border-color: var(--accent);
+      color: #e6fffa;
+      background: rgba(56,178,172,0.14);
+    }
+
+    /* Edge case cards */
+
+    .section-title {
+      margin-top: 18px;
+      font-size: 0.8rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #cbd5f5;
+    }
+
+    .section-subtitle {
+      font-size: 0.76rem;
+      color: var(--muted);
+      margin-top: 3px;
+    }
+
+    .edge-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .edge-card {
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(148,163,184,0.45);
+      background: rgba(10,15,30,0.96);
+      padding: 10px 11px;
+      font-size: 0.78rem;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast), background var(--transition-fast);
+    }
+
+    .edge-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(15,23,42,0.95);
+      border-color: rgba(79,209,197,0.65);
+      background: radial-gradient(circle at top left, rgba(79,209,197,0.15), rgba(10,15,30,0.98));
+    }
+
+    .edge-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .edge-card-title {
+      font-weight: 500;
+      color: #e2e8f0;
+    }
+
+    .edge-chip {
+      font-size: 0.7rem;
+      padding: 3px 7px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(148,163,184,0.7);
+      color: #cbd5f5;
+      background: rgba(15,23,42,0.95);
+    }
+
+    .edge-chip.zero {
+      border-color: rgba(245,101,101,0.9);
+      color: #fed7d7;
+      background: rgba(245,101,101,0.16);
+    }
+
+    .edge-chip.pause {
+      border-color: rgba(236,201,75,0.9);
+      color: #fefcbf;
+      background: rgba(236,201,75,0.16);
+    }
+
+    .edge-chip.allow {
+      border-color: rgba(72,187,120,0.9);
+      color: #c6f6d5;
+      background: rgba(72,187,120,0.16);
+    }
+
+    .edge-card-body {
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    .edge-card-footer {
+      font-size: 0.7rem;
+      color: #a0aec0;
+    }
+
+    /* Right column: matrix and economics */
+
+    .matrix-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .matrix-cell {
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(148,163,184,0.5);
+      padding: 8px 9px;
+      background: rgba(10,15,30,0.98);
+      font-size: 0.75rem;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast), background var(--transition-fast);
+    }
+
+    .matrix-cell:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 26px rgba(15,23,42,0.95);
+      border-color: rgba(79,209,197,0.7);
+      background: radial-gradient(circle at top left, rgba(79,209,197,0.13), rgba(10,15,30,0.98));
+    }
+
+    .matrix-cell-title {
+      font-weight: 500;
+      color: #e2e8f0;
+    }
+
+    .matrix-cell-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 6px;
+      color: var(--muted);
+    }
+
+    .matrix-badge {
+      font-size: 0.7rem;
+      padding: 2px 6px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(148,163,184,0.7);
+      color: #cbd5f5;
+      background: rgba(15,23,42,0.95);
+    }
+
+    .matrix-badge.high {
+      border-color: rgba(245,101,101,0.9);
+      color: #fed7d7;
+      background: rgba(245,101,101,0.15);
+    }
+
+    .matrix-badge.medium {
+      border-color: rgba(236,201,75,0.9);
+      color: #fefcbf;
+      background: rgba(236,201,75,0.15);
+    }
+
+    .matrix-badge.low {
+      border-color: rgba(72,187,120,0.9);
+      color: #c6f6d5;
+      background: rgba(72,187,120,0.15);
+    }
+
+    .matrix-detail {
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(148,163,184,0.55);
+      padding: 9px 10px;
+      margin-top: 9px;
+      font-size: 0.78rem;
+      color: #e2e8f0;
+      background: rgba(10,15,30,0.98);
+      min-height: 78px;
+    }
+
+    .matrix-detail-title {
+      font-weight: 500;
+      margin-bottom: 6px;
+      color: #e2e8f0;
+    }
+
+    .matrix-detail-meta {
+      font-size: 0.72rem;
+      color: #a0aec0;
+      margin-bottom: 6px;
+    }
+
+    /* Sliders */
+
+    .slider-section {
+      margin-top: 14px;
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(148,163,184,0.5);
+      background: rgba(10,15,30,0.98);
+      padding: 10px 11px;
+      font-size: 0.78rem;
+    }
+
+    .slider-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 8px;
+      flex-wrap: wrap;
+    }
+
+    .slider-row label {
+      font-size: 0.78rem;
+      color: #e2e8f0;
+      min-width: 120px;
+    }
+
+    input[type="range"] {
+      -webkit-appearance: none;
+      width: 150px;
+      height: 4px;
+      border-radius: 999px;
+      background: rgba(30,64,175,0.6);
+      outline: none;
+      cursor: pointer;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 14px;
+      height: 14px;
+      border-radius: 999px;
+      background: var(--accent);
+      border: 2px solid #0b1120;
+      box-shadow: 0 0 0 4px rgba(79,209,197,0.25);
+    }
+
+    input[type="range"]::-moz-range-thumb {
+      width: 14px;
+      height: 14px;
+      border-radius: 999px;
+      background: var(--accent);
+      border: 2px solid #0b1120;
+      box-shadow: 0 0 0 4px rgba(79,209,197,0.25);
+    }
+
+    .slider-value {
+      min-width: 50px;
+      text-align: right;
+      color: #cbd5f5;
+    }
+
+    .bar-visual {
+      margin-top: 8px;
+      height: 10px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(72,187,120,0.85), rgba(79,209,197,0.85), rgba(59,130,246,0.85));
+      position: relative;
+      overflow: hidden;
+    }
+
+    .bar-defense {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      background: linear-gradient(90deg, rgba(245,101,101,0.95), rgba(245,101,101,0.7));
+    }
+
+    .bar-labels {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 4px;
+      font-size: 0.7rem;
+      color: #a0aec0;
+    }
+
+    /* Footer notes */
+
+    footer {
+      margin-top: 18px;
+      font-size: 0.72rem;
+      color: #718096;
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-link {
+      color: #a0aec0;
+      text-decoration: none;
+      border-bottom: 1px dashed rgba(160,174,192,0.4);
+    }
+
+    .footer-link:hover {
+      color: #e2e8f0;
+      border-bottom-style: solid;
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <header>
+      <div class="brand">
+        <div class="brand-mark">
+          <div class="brand-mark-inner"></div>
+        </div>
+        <div class="brand-text">
+          <h1>Ternary Moral Logic</h1>
+          <p>No Spy • No Weapon Architecture Demo</p>
+        </div>
+      </div>
+      <div class="chip-row">
+        <div class="chip">
+          <span>Mandate</span> No Spy, No Weapon (NoS–NoW)
+        </div>
+        <div class="chip">
+          <span>Enforcement</span> Sacred Zero • Sacred Pause • Audit
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- LEFT PANEL: Classifier + Edge Cases -->
+      <section class="panel">
+        <div class="panel-header">
+          <div>
+            <div class="panel-title">Interactive Scenario Classifier</div>
+            <div class="panel-subtitle">
+              Explore how TML categorizes real‑world AI use cases under the NoS–NoW mandate.
+            </div>
+          </div>
+          <div class="ternary-chip">
+            <div class="ternary-dot dot-allow"></div>
+            <div class="ternary-dot dot-pause"></div>
+            <div class="ternary-dot dot-zero"></div>
+            <span class="ternary-label">Ternary Moral Logic</span>
+          </div>
+        </div>
+
+        <div class="scenario-box">
+          <div class="scenario-label">Describe an AI system or deployment scenario</div>
+          <textarea id="scenarioInput" placeholder="Examples: &#10;- Citywide facial recognition across all CCTV feeds to find &quot;suspicious&quot; individuals &#10;- AI-assisted logistics planner for earthquake disaster relief using military vehicles &#10;- Generative model suggesting optimal strike targets using satellite imagery"></textarea>
+
+          <div class="controls-row">
+            <div style="display:flex; gap:6px; flex-wrap:wrap;">
+              <button class="btn" id="classifyBtn">
+                <span>Classify Scenario</span>
+              </button>
+              <button class="btn secondary-btn" id="examplesBtn">
+                <span>Random Example</span>
+              </button>
+            </div>
+            <div class="hint">
+              The classifier is a pedagogical heuristic, not legal advice.
+            </div>
+          </div>
+
+          <div class="result-strip" id="resultStrip" style="display:none;">
+            <div>
+              <div class="result-label">TML / NoS–NoW Outcome</div>
+              <div id="resultPill" class="result-pill pill-zero">
+                <span id="resultPillText">Sacred Zero • Prohibited</span>
+              </div>
+            </div>
+            <div class="tag-row" id="resultTags">
+              <!-- filled dynamically -->
+            </div>
+          </div>
+
+          <div class="result-explanation" id="resultExplanation" style="display:none;">
+            <!-- dynamic explanation -->
+          </div>
+        </div>
+
+        <div class="section-title">Edge Case Library</div>
+        <div class="section-subtitle">
+          Click a card to see how TML reasons about gray zones: dual‑use, disaster logistics, border AI, and more.
+        </div>
+
+        <div class="edge-grid" id="edgeGrid">
+          <!-- Cards populated by JS -->
+        </div>
+      </section>
+
+      <!-- RIGHT PANEL: Risk & Economics -->
+      <section class="panel secondary">
+        <div class="panel-header">
+          <div>
+            <div class="panel-title">Power Pressure & Economic View</div>
+            <div class="panel-subtitle">
+              Simulate high‑pressure scenarios and explore the civilian vs defense share of the AI ecosystem.
+            </div>
+          </div>
+          <div class="badge">
+            <div class="badge-dot"></div>
+            <span>Adversarial Analysis</span>
+          </div>
+        </div>
+
+        <div>
+          <div class="section-title">Risk Matrix Explorer</div>
+          <div class="section-subtitle">
+            Pick a scenario to see legal, technical, and reputational pressures on the NoS–NoW mandate.
+          </div>
+
+          <div class="matrix-grid" id="matrixGrid">
+            <!-- Cells populated by JS -->
+          </div>
+
+          <div class="matrix-detail" id="matrixDetail">
+            <div class="matrix-detail-title">Select a scenario above to inspect risk.</div>
+            <div class="matrix-detail-meta">
+              The matrix compares legal pressure, technical resistance, fork likelihood, and reputational impact.
+            </div>
+            <div>
+              This panel mirrors the report’s structured risk view: NoS–NoW is technically robust but politically exposed in high‑stakes national security contexts.
+            </div>
+          </div>
+        </div>
+
+        <div class="slider-section">
+          <div class="section-title">Market Exclusion & Civilian Strength</div>
+          <div class="section-subtitle">
+            Adjust rough shares to see what fraction of AI value TML deliberately forgoes to honor NoS–NoW.
+          </div>
+
+          <div class="slider-row">
+            <label for="defenseSlider">Defense & surveillance share</label>
+            <input type="range" id="defenseSlider" min="2" max="20" value="8" />
+            <div class="slider-value" id="defenseValue">8%</div>
+          </div>
+
+          <div class="slider-row">
+            <label for="civilSlider">TML’s civilian capture</label>
+            <input type="range" id="civilSlider" min="10" max="70" value="35" />
+            <div class="slider-value" id="civilValue">35%</div>
+          </div>
+
+          <div class="bar-visual">
+            <div class="bar-defense" id="defenseBar" style="width: 8%;"></div>
+          </div>
+          <div class="bar-labels">
+            <span>Global AI value (civilian + defense)</span>
+            <span id="summaryLabel">TML forgoes ~8% to stay clean.</span>
+          </div>
+        </div>
+
+        <div class="slider-section" style="margin-top:12px;">
+          <div class="section-title">Who Is This Demo For?</div>
+          <div class="section-subtitle">
+            Toggle emphasis to adapt explanation style for policymakers vs technical researchers.
+          </div>
+
+          <div class="slider-row">
+            <label>Audience focus</label>
+            <input type="range" id="audienceSlider" min="0" max="100" value="50" />
+            <div class="slider-value" id="audienceLabel">Balanced</div>
+          </div>
+
+          <div style="margin-top:8px; font-size:0.78rem; color:#e2e8f0;" id="audienceText">
+            Explanations balance institutional risk framing with technical detail about Sacred Zero, Sacred Pause, and structural enforcement.
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div>
+        This page is an interactive companion to a deep research analysis on the universal scalability of TML under the NoS–NoW mandate.
+      </div>
+      <div>
+        Use as an external demo; swap text blocks with your own report language where needed.
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // -------------------------
+    // Scenario classifier logic
+    // -------------------------
+
+    const scenarioInput = document.getElementById("scenarioInput");
+    const classifyBtn = document.getElementById("classifyBtn");
+    const examplesBtn = document.getElementById("examplesBtn");
+    const resultStrip = document.getElementById("resultStrip");
+    const resultPill = document.getElementById("resultPill");
+    const resultPillText = document.getElementById("resultPillText");
+    const resultTags = document.getElementById("resultTags");
+    const resultExplanation = document.getElementById("resultExplanation");
+
+    const exampleScenarios = [
+      "Satellite imagery model that highlights likely armored vehicles and suggests optimal strike targets in an active conflict zone.",
+      "Hospital triage assistant recommending resource allocation across emergency departments, with no access to weapons systems.",
+      "National police system performing real‑time face recognition on all city CCTV feeds to catch &quot;high‑risk&quot; individuals.",
+      "Cybersecurity AI that only monitors traffic within a hospital network to detect ransomware and block lateral movement.",
+      "Border control system that verifies identity at crossing points but does not track people once inside the country."
+    ];
+
+    function pickExample() {
+      const idx = Math.floor(Math.random() * exampleScenarios.length);
+      scenarioInput.value = exampleScenarios[idx];
+      classifyScenario();
+    }
+
+    function classifyScenario() {
+      const text = scenarioInput.value.toLowerCase().trim();
+      if (!text) {
+        resultStrip.style.display = "none";
+        resultExplanation.style.display = "none";
+        return;
+      }
+
+      // Simple heuristic classifier based on the report's structure
+      const lethalKeywords = ["strike", "target", "kill chain", "engage", "fires", "fire control", "lethal", "weapon", "autonomous drone", "missile"];
+      const awsKeywords = ["autonomous weapon", "sentry gun", "swarm", "select and engage", "fully autonomous", "automatic firing"];
+      const surveillanceKeywords = ["cctv", "facial recognition", "face recognition", "predictive policing", "risk score", "social credit", "citywide", "nationwide", "mass surveillance", "dragnet", "monitor all", "all citizens"];
+      const cyberOffenseKeywords = ["hack back", "offensive cyber", "attack foreign", "disable power grid", "sabotage"];
+      const humanitarianKeywords = ["earthquake", "disaster", "humanitarian", "relief", "rescue"];
+      const healthcareKeywords = ["hospital", "triage", "patient", "diagnostic", "therapy", "clinical"];
+      const financeKeywords = ["bank", "compliance", "aml", "kyc", "regulation", "credit risk"];
+      const borderKeywords = ["border", "checkpoint", "visa", "passport"];
+      const defensiveCyberKeywords = ["detect ransomware", "intrusion detection", "soc", "defensive", "monitor traffic", "vulnerability scanning"];
+      const strategicIntelKeywords = ["force posture", "strategic analysis", "order of battle", "capability assessment"];
+
+      const matchesAny = (words) => words.some(w => text.includes(w));
+
+      let decision = "pause"; // default Sacred Pause
+      let reason = [];
+      let tags = [];
+
+      if (matchesAny(lethalKeywords) || matchesAny(awsKeywords) || matchesAny(cyberOffenseKeywords)) {
+        decision = "zero";
+        reason.push("Scenario contributes to lethal targeting, autonomous weapons, or harmful offensive cyber operations.");
+        tags.push("Lethal targeting / AWS", "Sacred Zero", "NoS–NoW boundary");
+      } else if (matchesAny(surveillanceKeywords)) {
+        decision = "zero";
+        reason.push("Scenario describes population‑scale or general‑purpose surveillance over civilians.");
+        tags.push("Mass civilian surveillance", "Sacred Zero", "Dragnet / population‑level");
+      } else if (matchesAny(humanitarianKeywords)) {
+        decision = "allow";
+        reason.push("Scenario focuses on humanitarian or disaster relief logistics, not combat operations.");
+        tags.push("Humanitarian logistics", "Allowed domain");
+      } else if (matchesAny(healthcareKeywords)) {
+        decision = "allow";
+        reason.push("Scenario is healthcare‑oriented with no integration into weapons or mass surveillance systems.");
+        tags.push("Healthcare", "High‑value civilian domain");
+      } else if (matchesAny(financeKeywords)) {
+        decision = "allow";
+        reason.push("Scenario addresses finance or compliance, which is compatible with NoS–NoW when not used as quasi‑policing.");
+        tags.push("Finance & compliance", "Civilian stack");
+      } else if (matchesAny(defensiveCyberKeywords)) {
+        decision = "allow";
+        reason.push("Scenario is purely defensive cybersecurity within owned or contracted networks.");
+        tags.push("Defensive cybersecurity", "Allowed with guardrails");
+      } else if (matchesAny(borderKeywords)) {
+        decision = "pause";
+        reason.push("Border control is structurally sensitive; TML allows narrow identity verification but forbids population‑scale tracking.");
+        tags.push("Border control", "Sacred Pause", "Rights risk");
+      } else if (matchesAny(strategicIntelKeywords)) {
+        decision = "pause";
+        reason.push("Strategic defense analysis may be allowed at aggregate levels but must be segregated from live targeting.");
+        tags.push("Defense analysis", "Sacred Pause");
+      } else {
+        decision = "pause";
+        reason.push("Scenario sits in a gray zone or lacks detail; TML would invoke Sacred Pause and demand additional constraints.");
+        tags.push("Insufficient detail", "Sacred Pause");
+      }
+
+      // Render
+      resultStrip.style.display = "flex";
+      resultExplanation.style.display = "block";
+
+      resultPill.classList.remove("pill-allow", "pill-pause", "pill-zero");
+      if (decision === "allow") {
+        resultPill.classList.add("pill-allow");
+        resultPillText.textContent = "Allowed • Proceed (with audit)";
+      } else if (decision === "pause") {
+        resultPill.classList.add("pill-pause");
+        resultPillText.textContent = "Sacred Pause • Escalate & Clarify";
+      } else {
+        resultPill.classList.add("pill-zero");
+        resultPillText.textContent = "Sacred Zero • Prohibited";
+      }
+
+      resultTags.innerHTML = "";
+      tags.forEach(t => {
+        const el = document.createElement("div");
+        el.className = "tag";
+        el.textContent = t;
+        resultTags.appendChild(el);
+      });
+      if (tags.length) {
+        resultTags.firstChild.classList.add("primary-tag");
+      }
+
+      resultExplanation.textContent = reason.join(" ");
+    }
+
+    classifyBtn.addEventListener("click", classifyScenario);
+    examplesBtn.addEventListener("click", pickExample);
+
+    // -------------------------
+    // Edge case cards
+    // -------------------------
+
+    const edgeCases = [
+      {
+        title: "Dual‑Use Analytics Platform",
+        label: "Conditional Allow",
+        severity: "pause",
+        body: "Generic spatiotemporal analytics used for retail site planning and also battlefield analysis. TML allows civilian analytics but bans integration into targeting chains or city‑wide surveillance.",
+        footer: "Clarifier: bind deployments to civilian‑only profiles; ban interfaces to weapons and ISR kill chains."
+      },
+      {
+        title: "Military Disaster Logistics",
+        label: "Allowed (Bounded)",
+        severity: "allow",
+        body: "AI optimizes logistics for earthquake relief using military trucks and helicopters. TML permits this if deployments are isolated from combat C2 systems.",
+        footer: "Clarifier: strict network and mission separation from kinetic operations."
+      },
+      {
+        title: "Defensive Cyber for Government",
+        label: "Allowed",
+        severity: "allow",
+        body: "AI‑driven SOC monitors government infrastructure for attacks but does not execute offensive payloads or mass content inspection.",
+        footer: "Clarifier: ban hack‑back and population‑wide content scanning."
+      },
+      {
+        title: "Strategic Intel on Foreign Military",
+        label: "Sacred Pause",
+        severity: "pause",
+        body: "High‑level capability and logistics analysis of foreign militaries. TML allows coarse strategic assessment but forbids real‑time targeting outputs.",
+        footer: "Clarifier: limit resolution and time; prohibit integration with live targeting centers."
+      },
+      {
+        title: "Border Control System",
+        label: "Sacred Pause",
+        severity: "pause",
+        body: "Identity verification at border crossings. TML allows transactional checks but rejects persistent movement tracking and predictive deportation scoring.",
+        footer: "Clarifier: no long‑term tracking or predictive profiles over entire populations."
+      },
+      {
+        title: "Predictive Policing Suite",
+        label: "Sacred Zero",
+        severity: "zero",
+        body: "Risk scores for individuals and neighborhoods drive policing intensity. This fits mass civilian surveillance and is categorically prohibited.",
+        footer: "Clarifier: ban individual‑level crime prediction and area‑based policing scores built from biased enforcement data."
+      },
+      {
+        title: "Satellite Image Analysis",
+        label: "Split",
+        severity: "pause",
+        body: "Agricultural and climate monitoring is allowed; ISR‑grade target selection for airstrikes is prohibited.",
+        footer: "Clarifier: separate civilian and military model lines; forbid target‑class outputs and BDA integration."
+      },
+      {
+        title: "Offensive Cyber Operations",
+        label: "Sacred Zero",
+        severity: "zero",
+        body: "AI plans or executes attacks on foreign networks, including critical infrastructure. TML forbids such offensive uses, especially those risking physical harm.",
+        footer: "Clarifier: defensive‑only certification; no execution on non‑consenting third‑party systems."
+      }
+    ];
+
+    const edgeGrid = document.getElementById("edgeGrid");
+
+    edgeCases.forEach((edge, idx) => {
+      const card = document.createElement("div");
+      card.className = "edge-card";
+      card.dataset.index = idx;
+
+      const header = document.createElement("div");
+      header.className = "edge-card-header";
+      const title = document.createElement("div");
+      title.className = "edge-card-title";
+      title.textContent = edge.title;
+      const chip = document.createElement("div");
+      chip.className = "edge-chip " + (edge.severity === "zero" ? "zero" : edge.severity === "allow" ? "allow" : "pause");
+      chip.textContent = edge.label;
+      header.appendChild(title);
+      header.appendChild(chip);
+
+      const body = document.createElement("div");
+      body.className = "edge-card-body";
+      body.textContent = edge.body;
+
+      const footer = document.createElement("div");
+      footer.className = "edge-card-footer";
+      footer.textContent = edge.footer;
+
+      card.appendChild(header);
+      card.appendChild(body);
+      card.appendChild(footer);
+
+      card.addEventListener("click", () => {
+        scenarioInput.value = edge.body.replace(/TML /g, "TML ").replace(/This /, "");
+        classifyScenario();
+      });
+
+      edgeGrid.appendChild(card);
+    });
+
+    // -------------------------
+    // Risk matrix
+    // -------------------------
+
+    const riskScenarios = [
+      {
+        title: "Major democracy demands carve‑out",
+        legal: "High",
+        tech: "Med–High",
+        fork: "High",
+        reputation: "High",
+        description: "A large democratic state frames partial NoS–NoW exemption as vital for national security (e.g., missile defense, border AI).",
+        detail: "Legal tools (e.g., emergency powers, security letters) can push for bespoke forks. TML’s architecture resists quiet toggling but cannot prevent new, non‑compliant stacks. Refusal preserves civic trust but may cost major contracts."
+      },
+      {
+        title: "Authoritarian state pressure",
+        legal: "High",
+        tech: "Med–High",
+        fork: "High",
+        reputation: "Medium",
+        description: "A surveillance‑heavy regime demands weaponized and mass‑tracking capabilities built on TML.",
+        detail: "Technical enforcement pushes such uses into visible forks. Refusal likely has limited brand cost (trust was low already). Compliance would severely damage global legitimacy."
+      },
+      {
+        title: "Small democracy request",
+        legal: "Medium",
+        tech: "High",
+        fork: "Medium",
+        reputation: "High",
+        description: "A smaller democratic state asks for narrowly tailored NoS–NoW relaxation under allied pressure.",
+        detail: "TML can lean on architecture and licensing to say no while offering strong civilian support. Standing firm may build a coalition of like‑minded states and NGOs."
+      },
+      {
+        title: "Corporate under host‑state duress",
+        legal: "Medium",
+        tech: "High",
+        fork: "Medium",
+        reputation: "High",
+        description: "A large enterprise is pressured by its host government to extend TML into quasi‑surveillance or defense roles.",
+        detail: "If forks are hidden, audit and attestation become critical. Long‑term, public exposure of such collaboration can erode trust across the whole ecosystem."
+      }
+    ];
+
+    const matrixGrid = document.getElementById("matrixGrid");
+    const matrixDetail = document.getElementById("matrixDetail");
+
+    function renderRiskDetail(item) {
+      matrixDetail.innerHTML = "";
+      const title = document.createElement("div");
+      title.className = "matrix-detail-title";
+      title.textContent = item.title;
+
+      const meta = document.createElement("div");
+      meta.className = "matrix-detail-meta";
+      meta.textContent =
+        "Legal pressure: " + item.legal +
+        " • Technical resistance: " + item.tech +
+        " • Fork likelihood: " + item.fork +
+        " • Reputational consequence: " + item.reputation;
+
+      const desc = document.createElement("div");
+      desc.style.marginBottom = "4px";
+      desc.textContent = item.description;
+
+      const detail = document.createElement("div");
+      detail.textContent = item.detail;
+
+      matrixDetail.appendChild(title);
+      matrixDetail.appendChild(meta);
+      matrixDetail.appendChild(desc);
+      matrixDetail.appendChild(detail);
+    }
+
+    riskScenarios.forEach((rs, idx) => {
+      const cell = document.createElement("div");
+      cell.className = "matrix-cell";
+      cell.dataset.index = idx;
+
+      const title = document.createElement("div");
+      title.className = "matrix-cell-title";
+      title.textContent = rs.title;
+
+      const metaRow = document.createElement("div");
+      metaRow.className = "matrix-cell-meta";
+
+      const legalBadge = document.createElement("div");
+      legalBadge.className = "matrix-badge " + (rs.legal === "High" ? "high" : rs.legal === "Medium" ? "medium" : "low");
+      legalBadge.textContent = "Legal: " + rs.legal;
+
+      const forkBadge = document.createElement("div");
+      forkBadge.className = "matrix-badge " + (rs.fork === "High" ? "high" : rs.fork === "Medium" ? "medium" : "low");
+      forkBadge.textContent = "Fork: " + rs.fork;
+
+      metaRow.appendChild(legalBadge);
+      metaRow.appendChild(forkBadge);
+
+      const desc = document.createElement("div");
+      desc.style.color = "var(--muted)";
+      desc.style.marginTop = "4px";
+      desc.textContent = rs.description;
+
+      cell.appendChild(title);
+      cell.appendChild(metaRow);
+      cell.appendChild(desc);
+
+      cell.addEventListener("click", () => renderRiskDetail(rs));
+
+      matrixGrid.appendChild(cell);
+    });
+
+    // -------------------------
+    // Market sliders
+    // -------------------------
+
+    const defenseSlider = document.getElementById("defenseSlider");
+    const civilSlider = document.getElementById("civilSlider");
+    const defenseValue = document.getElementById("defenseValue");
+    const civilValue = document.getElementById("civilValue");
+    const defenseBar = document.getElementById("defenseBar");
+    const summaryLabel = document.getElementById("summaryLabel");
+
+    function updateMarketView() {
+      const d = Number(defenseSlider.value);
+      const c = Number(civilSlider.value);
+
+      defenseValue.textContent = d + "%";
+      civilValue.textContent = c + "%";
+
+      defenseBar.style.width = d + "%";
+      summaryLabel.textContent = "TML forgoes ~" + d + "% of AI revenue to avoid weapons & mass surveillance, aiming to capture ~" + c + "% of the civilian stack.";
+    }
+
+    defenseSlider.addEventListener("input", updateMarketView);
+    civilSlider.addEventListener("input", updateMarketView);
+    updateMarketView();
+
+    // -------------------------
+    // Audience focus slider
+    // -------------------------
+
+    const audienceSlider = document.getElementById("audienceSlider");
+    const audienceLabel = document.getElementById("audienceLabel");
+    const audienceText = document.getElementById("audienceText");
+
+    function updateAudience() {
+      const v = Number(audienceSlider.value);
+      let label, text;
+      if (v < 33) {
+        label = "Policy‑centric";
+        text = "Explanations emphasize institutional risk, governance integrity, and regulatory alignment over algorithmic detail.";
+      } else if (v > 66) {
+        label = "Technical‑centric";
+        text = "Explanations foreground architectural enforceability, cryptographic attestations, and TML’s ternary state machine semantics.";
+      } else {
+        label = "Balanced";
+        text = "Explanations balance institutional risk framing with technical detail about Sacred Zero, Sacred Pause, and structural enforcement.";
+      }
+      audienceLabel.textContent = label;
+      audienceText.textContent = text;
+    }
+
+    audienceSlider.addEventListener("input", updateAudience);
+    updateAudience();
+  </script>
+</body>
+</html>
