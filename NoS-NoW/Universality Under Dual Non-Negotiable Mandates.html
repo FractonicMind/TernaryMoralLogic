@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ternary Moral Logic: Universality & Mandates</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Custom Palette: Brilliant Blues & Vibrant Tech */
+        :root {
+            --color-bg: #F0F4F8; /* Light Blue Grey */
+            --color-card: #FFFFFF;
+            --color-text-main: #102A43; /* Deep Navy */
+            --color-text-muted: #627D98;
+            --color-primary: #3366FF; /* Electric Blue */
+            --color-accent: #00D97E; /* Vibrant Green */
+            --color-danger: #FF006E; /* Neon Pink */
+            --color-logic: #8549BA; /* Purple */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-bg);
+            color: var(--color-text-main);
+        }
+
+        h1, h2, h3 {
+            font-family: 'Inter', sans-serif;
+            letter-spacing: -0.025em;
+        }
+
+        .mono-font {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 450px;
+            background-color: white;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+
+        /* Custom Flowchart Nodes for Section I */
+        .flow-node {
+            background-color: white;
+            border: 2px solid var(--color-primary);
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 10;
+        }
+        
+        .flow-line {
+            width: 2px;
+            background-color: var(--color-text-muted);
+            margin: 0 auto;
+        }
+
+        .logic-gate-fail {
+            border-color: var(--color-danger);
+            color: var(--color-danger);
+        }
+
+        .logic-gate-pass {
+            border-color: var(--color-accent);
+            color: var(--color-accent);
+        }
+
+        /* Stacked Layer Visualization for Section II */
+        .layer-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        
+        .layer {
+            padding: 12px;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            transition: transform 0.2s;
+        }
+        
+        .layer:hover {
+            transform: scale(1.02);
+        }
+
+        .bg-gradient-header {
+            background: linear-gradient(135deg, #102A43 0%, #3366FF 100%);
+        }
+    </style>
+    <!-- 
+        Palette Used: "Brilliant Blues"
+        Primary: Electric Blue (#3366FF)
+        Accent: Vibrant Green (#00D97E)
+        Danger: Neon Pink (#FF006E)
+        Text: Deep Navy (#102A43)
+        Logic: Purple (#8549BA)
+    -->
+    <!-- 
+        Source Material Analysis:
+        Topic: Ternary Moral Logic (TML) Doctrinal Research.
+        Structure: 
+        1. Foundational Mandates (NSNW, NLNA).
+        2. Architecture (Sacred Zero/Pause).
+        3. Universality Stress Test.
+        4. Prohibited Boundaries.
+        5. Power Pressure.
+        6. Economics.
+        
+        Narrative Plan:
+        - Intro: Define the architectural invariants.
+        - Logic: Visualizing the "No Log = No Action" gate.
+        - Architecture: The security stack.
+        - Data: Radar chart for sector fit, Bubble chart for political pressure, Line chart for economic growth.
+        - Conclusion: Feasibility statement.
+        
+        Viz Choices:
+        - Logic Gate: CSS Flowchart (Organize).
+        - Sector Analysis: Radar Chart (Compare).
+        - Pressure Matrix: Plotly Bubble (Relationships).
+        - Adoption Curve: Line Chart (Change).
+        
+        NO SVG USED. NO MERMAID USED.
+    -->
+</head>
+<body class="antialiased pb-20">
+
+    <!-- Header Section -->
+    <header class="bg-gradient-header text-white py-12 px-4 shadow-lg mb-10">
+        <div class="max-w-6xl mx-auto text-center">
+            <div class="inline-block px-3 py-1 bg-white/10 rounded-full text-sm font-mono mb-4 border border-white/20">ARCHIVAL REFERENCE DOCUMENT</div>
+            <h1 class="text-4xl md:text-6xl font-bold mb-4">Ternary Moral Logic</h1>
+            <h2 class="text-xl md:text-2xl font-light text-blue-100">Universality Under Dual Non-Negotiable Mandates</h2>
+            <p class="mt-6 max-w-3xl mx-auto text-blue-50 leading-relaxed">
+                A doctrinal research manual analyzing the architectural feasibility, economic sustainability, and political resilience of the "No Spy, No Weapon" and "No Log = No Action" invariants in future AI systems.
+            </p>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 grid grid-cols-1 gap-12">
+
+        <!-- Section I: Foundational Mandates -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+            <div class="bg-white rounded-xl shadow-md p-8 border-t-4 border-blue-600">
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">I. Foundational Mandates</h3>
+                <p class="text-gray-600 mb-6 leading-relaxed">
+                    The TML framework rests on two co-equal architectural invariants. These are not policy preferences but structural constraints hard-coded into the system logic.
+                </p>
+                <div class="space-y-6">
+                    <div class="p-4 bg-blue-50 rounded-lg border-l-4 border-blue-500">
+                        <h4 class="font-bold text-blue-800">1. No Spy, No Weapon</h4>
+                        <p class="text-sm text-blue-700 mt-1">
+                            Architecture-level impossibility of lethal targeting or mass civilian surveillance. The system lacks the primitives to execute these functions.
+                        </p>
+                    </div>
+                    <div class="p-4 bg-purple-50 rounded-lg border-l-4 border-purple-500">
+                        <h4 class="font-bold text-purple-800">2. No Log = No Action</h4>
+                        <p class="text-sm text-purple-700 mt-1">
+                            Execution is strictly conditional on successful, immutable logging. If the audit trail fails, the action is physically blocked.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Visualization: Logic Flow of "No Log = No Action" -->
+            <div class="bg-white rounded-xl shadow-md p-8 flex flex-col items-center justify-center min-h-[400px]">
+                <h4 class="text-lg font-bold text-gray-700 mb-6 w-full text-center border-b pb-2">Operational Logic Gate</h4>
+                
+                <div class="w-full max-w-sm flex flex-col items-center">
+                    <!-- Step 1 -->
+                    <div class="flow-node w-full bg-gray-50 text-gray-800">Request Received</div>
+                    <div class="flow-line h-6"></div>
+                    
+                    <!-- Step 2 -->
+                    <div class="flow-node w-full bg-blue-100 text-blue-900 border-blue-400">Sacred Pause: Evaluation</div>
+                    <div class="flow-line h-6"></div>
+                    
+                    <!-- Step 3: Diamond Decision -->
+                    <div class="relative p-4 border-2 border-purple-500 rotate-45 bg-white w-24 h-24 flex items-center justify-center mb-6 mt-2 shadow-sm">
+                        <div class="-rotate-45 text-center text-xs font-bold text-purple-800">Logging Check</div>
+                    </div>
+                    
+                    <!-- Paths -->
+                    <div class="grid grid-cols-2 gap-8 w-full">
+                        <div class="flex flex-col items-center">
+                            <div class="text-xs font-bold text-red-500 mb-2">FAIL / PARTIAL</div>
+                            <div class="flow-line h-4 bg-red-200 w-1"></div>
+                            <div class="flow-node w-full logic-gate-fail bg-red-50 mt-2">
+                                <span class="block font-bold">HALT</span>
+                                <span class="text-xs text-gray-500">No Action Taken</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <div class="text-xs font-bold text-green-500 mb-2">SUCCESS</div>
+                            <div class="flow-line h-4 bg-green-200 w-1"></div>
+                            <div class="flow-node w-full logic-gate-pass bg-green-50 mt-2">
+                                <span class="block font-bold">EXECUTE</span>
+                                <span class="text-xs text-gray-500">Audit Created</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section II: Architectural Enforcement -->
+        <section class="bg-white rounded-xl shadow-md p-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">II. Architectural Enforcement Model</h3>
+                    <p class="text-gray-600 mb-4">
+                        The system relies on a "Fail Closed" design. If the logging subsystem (Moral Trace) degrades due to latency, attack, or hardware failure, the system enters the Sacred Zero state—a hard interrupt layer where no inference or actuation is possible.
+                    </p>
+                    <ul class="list-disc list-inside space-y-2 text-sm text-gray-700 marker:text-blue-500">
+                        <li><strong>Sacred Zero:</strong> The hard interrupt layer. Default state is inactive.</li>
+                        <li><strong>Sacred Pause:</strong> Reflective evaluation layer. Enforces latency for moral computation.</li>
+                        <li><strong>Moral Trace:</strong> The evidentiary backbone. Must be written before action.</li>
+                    </ul>
+                </div>
+                <div class="flex items-center justify-center bg-gray-50 rounded-lg p-6">
+                    <div class="layer-stack">
+                        <div class="layer bg-gray-800">Action Actuation (Top)</div>
+                        <div class="layer" style="background-color: var(--color-accent);">↑ Gate Open (Conditional)</div>
+                        <div class="layer" style="background-color: var(--color-logic);">Moral Trace Logging</div>
+                        <div class="layer" style="background-color: var(--color-primary);">Sacred Pause (Evaluation)</div>
+                        <div class="layer bg-gray-900 border-2 border-red-500">Sacred Zero (Hard Interrupt Base)</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section III: Universality Stress Framework -->
+        <section>
+            <div class="mb-6">
+                <h3 class="text-2xl font-bold text-gray-900">III. Universality Stress Framework</h3>
+                <p class="text-gray-600 max-w-3xl">
+                    Evaluating the compatibility of TML's strict mandates across various civilian and public sectors. The "Sacred Pause" (latency) and logging requirements create friction in high-speed environments but offer high value in high-stakes governance.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Chart Container -->
+                <div class="bg-white rounded-xl shadow-md p-6">
+                    <h4 class="text-lg font-bold text-gray-800 mb-4 text-center">Sector Compatibility Matrix</h4>
+                    <div class="chart-container">
+                        <canvas id="universalityChart"></canvas>
+                    </div>
+                </div>
+                
+                <!-- Context Text -->
+                <div class="bg-white rounded-xl shadow-md p-8 flex flex-col justify-center">
+                    <h4 class="text-lg font-bold text-blue-800 mb-3">Analysis Highlights</h4>
+                    <div class="space-y-4">
+                        <div>
+                            <span class="font-bold text-gray-800">Healthcare & Education:</span>
+                            <p class="text-sm text-gray-600">High compatibility. These sectors value auditability ("No Log = No Action") and safety over sub-millisecond latency. The "Sacred Pause" aligns with clinical review workflows.</p>
+                        </div>
+                        <div>
+                            <span class="font-bold text-gray-800">High-Freq Finance:</span>
+                            <p class="text-sm text-gray-600">Low compatibility. The "Sacred Pause" introduces unacceptable latency for algorithmic trading, creating a friction point for adoption despite high regulatory fit.</p>
+                        </div>
+                        <div>
+                            <span class="font-bold text-gray-800">Public Governance:</span>
+                            <p class="text-sm text-gray-600">Ideal fit. The mandate for immutable logging provides the transparency required for democratic oversight, mitigating the "Black Box" problem.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section V: Power Pressure Simulation (Plotly) -->
+        <section class="bg-white rounded-xl shadow-md p-8">
+            <div class="mb-6">
+                <h3 class="text-2xl font-bold text-gray-900">V. Power Pressure Simulation</h3>
+                <p class="text-gray-600">
+                    Modeling the structural resilience of TML against external coercive pressures. Can the "No Spy, No Weapon" mandate survive state-level demands for exceptions?
+                </p>
+            </div>
+            
+            <div class="w-full bg-gray-50 rounded-lg p-4 border border-gray-200">
+                <div id="pressureMap" style="width:100%; height:450px;"></div>
+            </div>
+            <p class="text-xs text-gray-500 mt-2 text-center italic">
+                Size of bubble indicates Severity of Structural Threat. Color indicates Risk Level (Green=Manageable, Red=Critical).
+            </p>
+        </section>
+
+        <!-- Section VI: Economic Sustainability -->
+        <section>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <div class="col-span-1 md:col-span-2">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">VI. Economic Sustainability Model</h3>
+                    <p class="text-gray-600">
+                        Projection of TML adoption as a licensable governance protocol. While 15-20% of the global market (Military/Surveillance) is strictly excluded, the civilian replacement opportunity offers a stable, compounding growth trajectory.
+                    </p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Economic Projection Chart -->
+                <div class="chart-container bg-white shadow-md rounded-xl p-4">
+                    <canvas id="economicChart"></canvas>
+                </div>
+
+                <!-- Text Analysis -->
+                <div class="bg-white rounded-xl shadow-md p-8">
+                    <h4 class="text-lg font-bold text-gray-800 mb-4">Market Dynamics</h4>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <span class="flex-shrink-0 w-3 h-3 bg-red-500 rounded-full mt-1.5 mr-3"></span>
+                            <div>
+                                <strong class="block text-gray-900">Excluded Market (Military/Intel)</strong>
+                                <span class="text-sm text-gray-600">Strict adherence to "No Spy, No Weapon" necessitates forfeiting defense contracts. This represents a permanent revenue ceiling but eliminates "Dual-Use" regulatory risks.</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="flex-shrink-0 w-3 h-3 bg-blue-500 rounded-full mt-1.5 mr-3"></span>
+                            <div>
+                                <strong class="block text-gray-900">Civilian 'Safe AI' Premium</strong>
+                                <span class="text-sm text-gray-600">Medical, Legal, and Corporate Governance sectors are projected to pay a premium for TML-certified systems due to the liability protection offered by the "No Log = No Action" audit guarantee.</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="flex-shrink-0 w-3 h-3 bg-purple-500 rounded-full mt-1.5 mr-3"></span>
+                            <div>
+                                <strong class="block text-gray-900">Long-term Viability</strong>
+                                <span class="text-sm text-gray-600">By Year 10, the civilian trust dividend outpaces the lost opportunity cost of the military sector.</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section IX: Final Determination -->
+        <section class="bg-gradient-to-br from-gray-900 to-blue-900 text-white rounded-xl shadow-xl p-8 md:p-12 text-center">
+            <h3 class="text-3xl font-bold mb-6">IX. Final Determination</h3>
+            <p class="text-lg text-blue-100 max-w-4xl mx-auto mb-8 leading-relaxed">
+                Can Ternary Moral Logic be universal while enforcing its immutable constraints? 
+                <br><br>
+                <strong>Technical Feasibility:</strong> <span class="text-green-400 font-bold">HIGH</span>. The architectural invariants (Sacred Zero, Logic Gates) are implementable with current cryptographic hardware.
+                <br>
+                <strong>Adoption Universality:</strong> <span class="text-yellow-400 font-bold">MODERATE</span>. TML will likely bifurcate the AI ecosystem. It will become the standard for civilian, democratic, and liability-sensitive sectors, but will face total rejection in authoritarian and military domains.
+            </p>
+            <div class="inline-block border border-white/30 px-6 py-3 rounded-lg bg-white/10 backdrop-blur-sm">
+                <span class="block text-xs uppercase tracking-widest text-blue-200 mb-1">Conclusion</span>
+                <span class="font-bold text-xl">Universal Applicability: YES &nbsp;|&nbsp; Universal Adoption: NO</span>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="max-w-6xl mx-auto mt-16 px-4 pb-12 text-center text-gray-500 text-sm border-t pt-8">
+        <p>System State: MONITORING &bull; Archival Copy 2045-A &bull; TML Doctrinal Report</p>
+    </footer>
+
+    <script>
+        // --- Helper: Label Splitting (16 char limit) ---
+        function splitLabel(label) {
+            const limit = 16;
+            if (label.length <= limit) return label;
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = words[0];
+
+            for (let i = 1; i < words.length; i++) {
+                if (currentLine.length + 1 + words[i].length <= limit) {
+                    currentLine += ' ' + words[i];
+                } else {
+                    lines.push(currentLine);
+                    currentLine = words[i];
+                }
+            }
+            lines.push(currentLine);
+            return lines;
+        }
+
+        // --- Common Chart Config ---
+        Chart.defaults.font.family = "'Inter', sans-serif";
+        Chart.defaults.color = '#102A43';
+        
+        const tooltipConfig = {
+            callbacks: {
+                title: function(tooltipItems) {
+                    const item = tooltipItems[0];
+                    let label = item.chart.data.labels[item.dataIndex];
+                    if (Array.isArray(label)) {
+                        return label.join(' ');
+                    } else {
+                        return label;
+                    }
+                }
+            }
+        };
+
+        // --- 1. Universality Radar Chart ---
+        const ctxUniversality = document.getElementById('universalityChart').getContext('2d');
+        new Chart(ctxUniversality, {
+            type: 'radar',
+            data: {
+                labels: ['Healthcare', 'Finance (HFT)', 'Public Gov', 'Infrastructure', 'Education', 'Consumer AI'].map(splitLabel),
+                datasets: [{
+                    label: 'TML Compatibility Score',
+                    data: [90, 35, 95, 75, 92, 80],
+                    backgroundColor: 'rgba(51, 102, 255, 0.2)',
+                    borderColor: '#3366FF',
+                    pointBackgroundColor: '#3366FF',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: '#3366FF'
+                }, {
+                    label: 'Revenue Potential',
+                    data: [85, 95, 60, 70, 50, 90],
+                    backgroundColor: 'rgba(0, 217, 126, 0.2)',
+                    borderColor: '#00D97E',
+                    pointBackgroundColor: '#00D97E',
+                    pointBorderColor: '#fff',
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    r: {
+                        angleLines: { color: 'rgba(0,0,0,0.1)' },
+                        grid: { color: 'rgba(0,0,0,0.05)' },
+                        suggestedMin: 0,
+                        suggestedMax: 100,
+                        ticks: { backdropColor: 'transparent' }
+                    }
+                },
+                plugins: {
+                    tooltip: tooltipConfig,
+                    legend: { position: 'top' }
+                }
+            }
+        });
+
+        // --- 2. Economic Line Chart ---
+        const ctxEconomic = document.getElementById('economicChart').getContext('2d');
+        const years = Array.from({length: 10}, (_, i) => `Year ${i+1}`);
+        // Model: Slow adoption initially due to friction, then exponential growth as trust becomes premium.
+        const civilianData = [5, 12, 22, 35, 50, 68, 85, 110, 140, 180];
+        // Model: Excluded market grows but is inaccessible (lost opportunity).
+        const militaryData = [20, 25, 30, 35, 40, 45, 50, 55, 60, 65];
+
+        new Chart(ctxEconomic, {
+            type: 'line',
+            data: {
+                labels: years,
+                datasets: [{
+                    label: 'Civilian Trust Revenue',
+                    data: civilianData,
+                    borderColor: '#3366FF',
+                    backgroundColor: 'rgba(51, 102, 255, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4
+                },
+                {
+                    label: 'Excluded Mil/Intel Mkt',
+                    data: militaryData,
+                    borderColor: '#FF006E',
+                    borderDash: [5, 5],
+                    borderWidth: 2,
+                    fill: false,
+                    tension: 0.2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    tooltip: tooltipConfig,
+                    legend: { position: 'bottom' },
+                    title: { display: true, text: 'Projected Economic Trajectory (Index)' }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: { borderDash: [2, 2] }
+                    },
+                    x: {
+                        grid: { display: false }
+                    }
+                }
+            }
+        });
+
+        // --- 3. Power Pressure Plotly Bubble Chart ---
+        const pressureData = {
+            x: [0.8, 0.4, 0.9, 0.6, 0.3], // Likelihood
+            y: [0.6, 0.9, 0.7, 0.5, 0.8], // Impact/Strain
+            text: ['Democratic Emergency', 'Auth Regime Integration', 'Intl Alliance Interop', 'Supply Chain Leverage', 'Talent Clearance'],
+            marker: {
+                size: [25, 40, 35, 20, 30], // Severity
+                color: ['#3366FF', '#FF006E', '#8549BA', '#00D97E', '#FFB020'], // Colors from palette
+                opacity: 0.7
+            },
+            mode: 'markers',
+            type: 'scatter'
+        };
+
+        const layout = {
+            title: 'Political Pressure: Likelihood vs. Strain',
+            xaxis: { 
+                title: 'Likelihood of Occurrence', 
+                range: [0, 1.1],
+                gridcolor: '#e2e8f0'
+            },
+            yaxis: { 
+                title: 'Structural Strain', 
+                range: [0, 1.1],
+                gridcolor: '#e2e8f0'
+            },
+            paper_bgcolor: 'rgba(0,0,0,0)',
+            plot_bgcolor: 'rgba(0,0,0,0)',
+            margin: { t: 40, r: 20, b: 40, l: 50 },
+            showlegend: false,
+            font: { family: 'Inter, sans-serif' }
+        };
+
+        Plotly.newPlot('pressureMap', [pressureData], layout, {responsive: true, displayModeBar: false});
+
+    </script>
+</body>
+</html>
