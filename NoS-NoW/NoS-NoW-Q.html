@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ternary Moral Logic Universal Adoption Analysis</title>
+  <title>Ternary Moral Logic: Architectural Framework for AI Governance</title>
 
   <!-- Essential CDN Libraries -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -46,7 +46,7 @@
   <script src="https://unpkg.com/lucide@latest"></script>
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0"></script>
 
   <!-- Preline UI Components -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/preline@2.0.3/dist/preline.min.css">
@@ -104,10 +104,6 @@
     .card-interactive[class*="accent"]:hover {
       border-color: hsl(240, 65%, var(--border-lightness));
     }
-
-    .dark .card-interactive:hover {
-      filter: brightness(1.05);
-    }
   </style>
 
   <!-- Dark Mode Toggle Script -->
@@ -148,27 +144,27 @@
     }
   </script>
 
-  <!-- Progress bar -->
+  <!-- Progress Bar -->
   <div class="fixed top-0 left-0 h-1 bg-primary-500 dark:bg-primary-400 z-[60] transition-all duration-300 ease-out" id="progressBar"></div>
 
   <!-- Floating Header -->
-  <header class="fixed top-0 left-0 right-0 z-50 backdrop-blur bg-gray-50/90 dark:bg-gray-900/90 border-b border-primary-500/20 dark:border-primary-600/20">
+  <header class="fixed top-0 left-0 right-0 z-50 backdrop-blur bg-gray-50/90 dark:bg-gray-900/90 border-b border-primary-500/20 dark:border-primary-600/20" data-aos="fade-down">
     <nav class="max-w-7xl mx-auto px-6 py-4">
       <div class="flex items-center justify-between">
-        <h1 class="text-xl font-bold text-primary-700 dark:text-primary-300">TML Universal Adoption Analysis</h1>
+        <h1 class="text-xl font-bold text-primary-700 dark:text-primary-300">Ternary Moral Logic Framework</h1>
         
         <div class="flex items-center gap-4">
-          <a href="#home" class="btn-interactive px-3 py-1.5 text-sm rounded-lg bg-primary-100 dark:bg-primary-800 text-primary-700 dark:text-primary-300 hover:bg-primary-200 dark:hover:bg-primary-700 transition-all">Home</a>
-          <a href="#boundaries" class="btn-interactive px-3 py-1.5 text-sm rounded-lg bg-primary-100 dark:bg-primary-800 text-primary-700 dark:text-primary-300 hover:bg-primary-200 dark:hover:bg-primary-700 transition-all">Boundaries</a>
-          <a href="#regulatory" class="btn-interactive px-3 py-1.5 text-sm rounded-lg bg-primary-100 dark:bg-primary-800 text-primary-700 dark:text-primary-300 hover:bg-primary-200 dark:hover:bg-primary-700 transition-all">Regulatory</a>
-          <a href="#economic" class="btn-interactive px-3 py-1.5 text-sm rounded-lg bg-primary-100 dark:bg-primary-800 text-primary-700 dark:text-primary-300 hover:bg-primary-200 dark:hover:bg-primary-700 transition-all">Economic</a>
-          <a href="#governance" class="btn-interactive px-3 py-1.5 text-sm rounded-lg bg-primary-100 dark:bg-primary-800 text-primary-700 dark:text-primary-300 hover:bg-primary-200 dark:hover:bg-primary-700 transition-all">Governance</a>
-          <a href="#challenges" class="btn-interactive px-3 py-1.5 text-sm rounded-lg bg-primary-100 dark:bg-primary-800 text-primary-700 dark:text-primary-300 hover:bg-primary-200 dark:hover:bg-primary-700 transition-all">Challenges</a>
-          <a href="#conclusion" class="btn-interactive px-3 py-1.5 text-sm rounded-lg bg-primary-100 dark:bg-primary-800 text-primary-700 dark:text-primary-300 hover:bg-primary-200 dark:hover:bg-primary-700 transition-all">Conclusion</a>
+          <a href="#home" class="btn-interactive px-3 py-1.5 text-sm rounded-lg text-primary-700 dark:text-primary-300 hover:bg-primary-100 dark:hover:bg-primary-900/30 transition-all">Home</a>
+          <a href="#foundations" class="btn-interactive px-3 py-1.5 text-sm rounded-lg text-primary-700 dark:text-primary-300 hover:bg-primary-100 dark:hover:bg-primary-900/30 transition-all">Foundations</a>
+          <a href="#architecture" class="btn-interactive px-3 py-1.5 text-sm rounded-lg text-primary-700 dark:text-primary-300 hover:bg-primary-100 dark:hover:bg-primary-900/30 transition-all">Architecture</a>
+          <a href="#enforcement" class="btn-interactive px-3 py-1.5 text-sm rounded-lg text-primary-700 dark:text-primary-300 hover:bg-primary-100 dark:hover:bg-primary-900/30 transition-all">Enforcement</a>
+          <a href="#applications" class="btn-interactive px-3 py-1.5 text-sm rounded-lg text-primary-700 dark:text-primary-300 hover:bg-primary-100 dark:hover:bg-primary-900/30 transition-all">Applications</a>
+          <a href="#challenges" class="btn-interactive px-3 py-1.5 text-sm rounded-lg text-primary-700 dark:text-primary-300 hover:bg-primary-100 dark:hover:bg-primary-900/30 transition-all">Challenges</a>
+          <a href="#conclusion" class="btn-interactive px-3 py-1.5 text-sm rounded-lg text-primary-700 dark:text-primary-300 hover:bg-primary-100 dark:hover:bg-primary-900/30 transition-all">Conclusion</a>
           
           <button onclick="toggleDarkMode()" class="btn-interactive p-2 rounded-lg bg-primary-100 dark:bg-primary-800 text-primary-600 dark:text-primary-300 hover:bg-primary-200 dark:hover:bg-primary-700 transition-all">
-            <i data-lucide="sun" id="sunIcon" class="w-5 h-5" style="display:none;"></i>
-            <i data-lucide="moon" id="moonIcon" class="w-5 h-5" style="display:block;"></i>
+            <i data-lucide="sun" id="sunIcon" class="w-5 h-5"></i>
+            <i data-lucide="moon" id="moonIcon" class="w-5 h-5" style="display:none"></i>
           </button>
         </div>
       </div>
@@ -181,627 +177,647 @@
     <section id="home" class="py-40 bg-primary-50/50 dark:bg-gray-900" data-aos="fade-up">
       <div class="max-w-5xl mx-auto px-6">
         <h2 class="text-4xl md:text-5xl font-bold mb-6 text-primary-700 dark:text-primary-300">
-          Adversarial Analysis: Ternary Moral Logic Universal Adoption
+          Ternary Moral Logic: Architectural Framework for AI Governance
         </h2>
         <p class="text-xl text-gray-700 dark:text-gray-300 mb-8 leading-relaxed">
-          A comprehensive investigation into the feasibility of Ternary Moral Logic (TML) achieving universal adoption across commercial, civic, scientific, and governmental domains while maintaining a categorical, architecturally enforced prohibition on lethal targeting, autonomous weapons, and mass civilian surveillance under the 'No Spy, No Weapon' (NoS-NoW) mandate.
+          A comprehensive research framework establishing immutable architectural invariants for AI systems, enforcing 'No Spy, No Weapon' and 'No Log = No Action' as structural constraints across all domains of application.
         </p>
         
-        <div class="grid md:grid-cols-3 gap-6">
+        <div class="grid md:grid-cols-2 gap-8 mt-12">
           <div class="card-interactive p-6 bg-white/90 backdrop-blur-sm dark:bg-gray-800 rounded-xl shadow-md">
             <div class="flex items-center space-x-4 mb-4">
               <div class="flex-shrink-0 w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center">
                 <i data-lucide="shield-check" class="w-6 h-6 text-primary-600 dark:text-primary-400"></i>
               </div>
-              <h3 class="font-semibold text-lg text-primary-700 dark:text-primary-300">Architectural Enforcement</h3>
+              <h3 class="text-lg font-semibold text-primary-700 dark:text-primary-300">Immutable Constraints</h3>
             </div>
-            <p class="text-sm text-gray-700 dark:text-gray-300">
-              Sacred Zero, Sacred Pause, and cryptographic audit logging mechanisms prevent prohibited activities
+            <p class="text-gray-700 dark:text-gray-300 text-sm">
+              System-level impossibilities rather than organizational preferences, treating mandates as architectural invariants across civilian, public, scientific, and critical infrastructure sectors.
             </p>
           </div>
 
           <div class="card-interactive p-6 bg-white/90 backdrop-blur-sm dark:bg-gray-800 rounded-xl shadow-md">
             <div class="flex items-center space-x-4 mb-4">
               <div class="flex-shrink-0 w-12 h-12 bg-accent-100 dark:bg-accent-900/30 rounded-lg flex items-center justify-center">
-                <i data-lucide="globe" class="w-6 h-6 text-accent-600 dark:text-accent-400"></i>
+                <i data-lucide="layers" class="w-6 h-6 text-accent-600 dark:text-accent-400"></i>
               </div>
-              <h3 class="font-semibold text-lg text-accent-700 dark:text-accent-300">Global Scalability</h3>
+              <h3 class="text-lg font-semibold text-accent-700 dark:text-accent-300">Multi-Domain Analysis</h3>
             </div>
-            <p class="text-sm text-gray-700 dark:text-gray-300">
-              Analysis across U.S., EU, UK, Japan, South Korea, China, Israel, and India regulatory regimes
-            </p>
-          </div>
-
-          <div class="card-interactive p-6 bg-white/90 backdrop-blur-sm dark:bg-gray-800 rounded-xl shadow-md">
-            <div class="flex items-center space-x-4 mb-4">
-              <div class="flex-shrink-0 w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center">
-                <i data-lucide="chart-line" class="w-6 h-6 text-primary-600 dark:text-primary-400"></i>
-              </div>
-              <h3 class="font-semibold text-lg text-primary-700 dark:text-primary-300">Economic Viability</h3>
-            </div>
-            <p class="text-sm text-gray-700 dark:text-gray-300">
-              Revenue displacement quantification and civilian-sector replacement potential assessment
+            <p class="text-gray-700 dark:text-gray-300 text-sm">
+              Universal applicability assessment, failure protocol simulation under adversarial conditions, and economic modeling excluding prohibited revenue streams.
             </p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Precise Boundary Validation Section -->
-    <section id="boundaries" class="py-20 bg-white/80 dark:bg-gray-900" data-aos="fade-up">
-      <div class="max-w-5xl mx-auto px-6">
-        <h2 class="text-3xl font-bold mb-8 text-primary-700 dark:text-primary-300">
-          Precise Boundary Validation
-        </h2>
-        <p class="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed" data-ref="https://www.statista.com/statistics/1441774/global-ai-governance-market-size/|1">
-          The global AI governance market size was valued at approximately
-          <span class="mx-1 px-1.5 py-0.5 rounded-md bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300 font-semibold text-sm">$750 million</span>
-          in 2024 and is projected to reach
-          <span class="mx-1 px-1.5 py-0.5 rounded-md bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300 font-semibold text-sm">$5.64 billion</span>
-          by 2030, growing at a compound annual growth rate (CAGR) of
-          <span class="mx-1 px-1.5 py-0.5 rounded-md bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300 font-semibold text-sm">40%</span>.
-        </p>
-
-        <div class="pl-4 pr-3 py-3 border-l-4 border-primary-500 bg-primary-50/40 dark:bg-primary-900/30 rounded-r-lg mb-8">
-          <p class="text-sm font-medium text-primary-900 dark:text-primary-100 leading-relaxed" data-ref="https://www.researchgate.net/publication/395914702_Ternary_Moral_Logic_A_Novel_Architecture_for_Enforceable_Ethical_AI_Governance|2">
-            <i data-lucide="info" class="inline-block w-4 h-4 mr-1.5 -mt-0.5"></i>
-            Critical finding: Ternary Moral Logic (TML) is a novel computational ethics architecture designed to bridge immutable technical systems with enforceable ethical governance.
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-8 mb-12">
-          <div class="space-y-6">
-            <h3 class="text-xl font-semibold text-primary-700 dark:text-primary-300" data-ref="https://www.oecd.org/en/newsroom/artificial-intelligence-update-oecd-ai-principles.html|3">
-              OECD AI Principles Update
-            </h3>
-            <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
-              The 2024 update to the OECD AI Principles addresses rapid technological changes, particularly the rise of general-purpose AI and foundation models, strengthening the framework's adaptability and relevance in evolving AI landscapes.
-            </p>
-            
-            <h3 class="text-xl font-semibold text-primary-700 dark:text-primary-300" data-ref="https://www.oecd-ilibrary.org/governance/governing-with-artificial-intelligence_16857899-en|4">
-              Governance Approaches Analysis
-            </h3>
-            <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
-              The report analyzes dozens of governance approaches and 200 AI use cases, providing extensive research and discussions with governments to understand how AI can be effectively governed across diverse contexts.
-            </p>
-          </div>
-
-          <img
-            src="https://cdn.qwenlm.ai/60498d16-d2ab-4b9f-8acd-8f6913b3400d/5f22c67e-61a1-499c-90a6-0f4b92a2379b/5aa52ae9-8bf9-41ef-b537-1a11d45d95cf.png?key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXNvdXJjZV91c2VyX2lkIjoiNjA0OThkMTYtZDJhYi00YjlmLThhY2QtOGY2OTEzYjM0MDBkIiwicmVzb3VyY2VfaWQiOiI1ZjIyYzY3ZS02MWExLTQ5OWMtOTBhNi0wZjRiOTJhMjM3OWIiLCJyZXNvdXJjZV9jaGF0X2lkIjpudWxsfQ.eZbmr4uMi2hv-q-iCPhrtfOWArktYe0s56R0XWZ-Pro"
-            alt="A conceptual illustration showing a three-tiered pyramid structure representing Ternary Moral Logic architecture. The pyramid has three horizontal levels: bottom tier labeled 'Sacred Zero' in bold navy blue text (#1a3d6a) on a light gray background (#f0f0f0), middle tier labeled 'Sacred Pause' in medium blue text (#2e6ea8) on a white background, and top tier labeled 'Cryptographic Audit Logging' in dark blue text (#1a5a99) on a light blue background (#e6f2ff). Each tier is separated by thin horizontal lines. Above the pyramid, a shield icon in navy blue (#1a3d6a) overlays a globe silhouette in light blue (#6aa8e6), symbolizing global governance. Below the pyramid, three interconnected circles in navy blue represent 'Enterprise', 'Healthcare', and 'Finance' sectors, each containing small icons: a building for enterprise, a heart for healthcare, and a currency symbol for finance. The overall composition uses a professional color palette of navy blues (#1a3d6a, #2e6ea8, #1a5a99), light grays (#f0f0f0), and light blues (#e6f2ff, #6aa8e6) with clean, minimalistic design elements and ample white space for clarity."
-            class="w-full rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300"
-          />
-        </div>
-
-        <div class="hs-accordion-group space-y-4">
-          <div class="hs-accordion card-interactive bg-white/80 backdrop-blur-sm dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
-            <button class="hs-accordion-toggle w-full flex justify-between items-center p-4 text-left hover:bg-primary-50 dark:hover:bg-gray-700/50 transition-colors rounded-xl" id="hs-boundary-1">
-              <div class="flex items-center space-x-4">
-                <div class="flex-shrink-0 w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center">
-                  <i data-lucide="target" class="w-6 h-6 text-primary-600 dark:text-primary-400"></i>
-                </div>
-                <span class="font-semibold text-lg text-primary-700 dark:text-primary-300">Dual-Use Analytics and Edge Cases</span>
-              </div>
-              <i data-lucide="chevron-down" class="hs-accordion-active:rotate-180 transition-transform duration-300 w-5 h-5 text-primary-600 dark:text-primary-400"></i>
-            </button>
-            <div id="hs-collapse-boundary-1" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" aria-labelledby="hs-boundary-1">
-              <div class="p-6 pt-0 space-y-4">
-                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.oecd-ilibrary.org/governance/governing-with-artificial-intelligence_16857899-en|4">
-                  The report analyzes dozens of governance approaches and 200 AI use cases, providing extensive research and discussions with governments to understand how AI can be effectively governed across diverse contexts.
-                </p>
-                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.oecd.org/en/newsroom/artificial-intelligence-update-oecd-ai-principles.html|3">
-                  The 2024 update to the OECD AI Principles addresses rapid technological changes, particularly the rise of general-purpose AI and foundation models, strengthening the framework's adaptability and relevance in evolving AI landscapes.
-                </p>
-                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.un.org/en/ga/search/view_doc.asp?symbol=A/79/88|5">
-                  The report discusses the need for restrictions on lethal autonomous weapons systems (LAWS), emphasizing the importance of maintaining human accountability in life-or-death decisions.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="hs-accordion card-interactive bg-white/80 backdrop-blur-sm dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
-            <button class="hs-accordion-toggle w-full flex justify-between items-center p-4 text-left hover:bg-primary-50 dark:hover:bg-gray-700/50 transition-colors rounded-xl" id="hs-boundary-2">
-              <div class="flex items-center space-x-4">
-                <div class="flex-shrink-0 w-12 h-12 bg-accent-100 dark:bg-accent-900/30 rounded-lg flex items-center justify-center">
-                  <i data-lucide="shield-alert" class="w-6 h-6 text-accent-600 dark:text-accent-400"></i>
-                </div>
-                <span class="font-semibold text-lg text-accent-700 dark:text-accent-300">Prohibition on Lethal Targeting</span>
-              </div>
-              <i data-lucide="chevron-down" class="hs-accordion-active:rotate-180 transition-transform duration-300 w-5 h-5 text-accent-600 dark:text-accent-400"></i>
-            </button>
-            <div id="hs-collapse-boundary-2" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" aria-labelledby="hs-boundary-2">
-              <div class="p-6 pt-0 space-y-4">
-                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.europarl.europa.eu/thinktank/en/document/EPRS_ST(2022)725767|6">
-                  The European Parliament recognizes the strategic importance of AI in defence but calls for regulation and a prohibition on lethal autonomous weapons (LAWS).
-                </p>
-                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.un.org/en/ga/search/view_doc.asp?symbol=A/79/88|5">
-                  The report discusses the need for restrictions on lethal autonomous weapons systems (LAWS), emphasizing the importance of maintaining human accountability in life-or-death decisions.
-                </p>
-                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.un.org/en/ga/search/view_doc.asp?symbol=A/79/88|5">
-                  The United Nations Secretary-General has called on States to conclude a treaty to prohibit lethal autonomous weapon systems that function without human control.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="hs-accordion card-interactive bg-white/80 backdrop-blur-sm dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
-            <button class="hs-accordion-toggle w-full flex justify-between items-center p-4 text-left hover:bg-primary-50 dark:hover:bg-gray-700/50 transition-colors rounded-xl" id="hs-boundary-3">
-              <div class="flex items-center space-x-4">
-                <div class="flex-shrink-0 w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center">
-                  <i data-lucide="eye-off" class="w-6 h-6 text-primary-600 dark:text-primary-400"></i>
-                </div>
-                <span class="font-semibold text-lg text-primary-700 dark:text-primary-300">Mass Civilian Surveillance Prevention</span>
-              </div>
-              <i data-lucide="chevron-down" class="hs-accordion-active:rotate-180 transition-transform duration-300 w-5 h-5 text-primary-600 dark:text-primary-400"></i>
-            </button>
-            <div id="hs-collapse-boundary-3" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" aria-labelledby="hs-boundary-3">
-              <div class="p-6 pt-0 space-y-4">
-                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.oecd-ilibrary.org/governance/governing-with-artificial-intelligence_16857899-en|4">
-                  The report analyzes dozens of governance approaches and 200 AI use cases, providing extensive research and discussions with governments to understand how AI can be effectively governed across diverse contexts.
-                </p>
-                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.oecd-ilibrary.org/governance/governing-with-artificial-intelligence_16857899-en|4">
-                  The report discusses the importance of safeguarding fundamental rights and ensuring that AI systems do not undermine human dignity or democratic values.
-                </p>
-                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.researchgate.net/publication/395914702_Ternary_Moral_Logic_A_Novel_Architecture_for_Enforceable_Ethical_AI_Governance|2">
-                  TML incorporates mechanisms like Sacred Zero, Sacred Pause, and cryptographic audit logging to ensure enforceable ethical governance.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Universality Stress Testing Section -->
-    <section id="regulatory" class="py-20 bg-primary-50/50 dark:bg-gray-800" data-aos="fade-up">
-      <div class="max-w-5xl mx-auto px-6">
-        <h2 class="text-3xl font-bold mb-8 text-primary-700 dark:text-primary-300">
-          Universality Stress Testing Across Regulatory Regimes
-        </h2>
-        <p class="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed" data-ref="https://www.oecd-ilibrary.org/governance/governing-with-artificial-intelligence_16857899-en|4">
-          The report analyzes dozens of governance approaches and 200 AI use cases, providing extensive research and discussions with governments to understand how AI can be effectively governed across diverse contexts.
-        </p>
-
-        <div class="pl-4 pr-3 py-3 border-l-4 border-amber-500 bg-amber-50/40 dark:bg-amber-900/30 rounded-r-lg mb-8">
-          <p class="text-sm font-medium text-amber-900 dark:text-amber-100 leading-relaxed" data-ref="https://www.oecd.org/en/newsroom/artificial-intelligence-update-oecd-ai-principles.html|3">
-            <i data-lucide="alert-triangle" class="inline-block w-4 h-4 mr-1.5 -mt-0.5"></i>
-            Warning: The 2024 update to the OECD AI Principles addresses rapid technological changes, particularly the rise of general-purpose AI and foundation models, requiring continuous adaptation of governance frameworks.
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-8 mb-12">
-          <img
-            src="https://cdn.qwenlm.ai/60498d16-d2ab-4b9f-8acd-8f6913b3400d/5f22c67e-61a1-499c-90a6-0f4b92a2379b/9bdab09a-b3b8-473b-a086-2216a3b784fe.png?key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXNvdXJjZV91c2VyX2lkIjoiNjA0OThkMTYtZDJhYi00YjlmLThhY2QtOGY2OTEzYjM0MDBkIiwicmVzb3VyY2VfaWQiOiI1ZjIyYzY3ZS02MWExLTQ5OWMtOTBhNi0wZjRiOTJhMjM3OWIiLCJyZXNvdXJjZV9jaGF0X2lkIjpudWxsfQ.eZbmr4uMi2hv-q-iCPhrtfOWArktYe0s56R0XWZ-Pro"
-            alt="A world map silhouette in navy blue (#1a3d6a) with eight circular markers overlaid in three distinct colors: three markers in dark navy blue (#1a5a99) representing the United States, European Union, and United Kingdom positioned in the Atlantic region; two markers in medium blue (#2e6ea8) representing Japan and South Korea in East Asia; two markers in teal (#2e9fa8) representing China and India in Asia-Pacific; and one marker in purple (#6a2e9f) representing Israel in the Middle East. Each marker contains a small shield icon in white (#ffffff) symbolizing regulatory compliance. Above the map, three horizontal bars in gradient from light gray (#d0d0d0) to dark gray (#404040) represent different regulatory tiers. Below the map, three interconnected hexagonal nodes in navy blue (#1a3d6a) labeled 'Compliance', 'Interoperability', and 'Enforcement' with thin connecting lines in light blue (#6aa8e6). The background is a soft gradient from white (#ffffff) at top to very light gray (#f8f8f8) at bottom. The composition uses a clean, professional design with ample white space and clear visual hierarchy."
-            class="w-full rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300"
-          />
-
-          <div class="space-y-6">
-            <h3 class="text-xl font-semibold text-primary-700 dark:text-primary-300" data-ref="https://www.oecd.org/en/newsroom/artificial-intelligence-update-oecd-ai-principles.html|3">
-              OECD AI Principles Integration
-            </h3>
-            <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
-              The 2024 update to the OECD AI Principles addresses rapid technological changes, particularly the rise of general-purpose AI and foundation models, strengthening the framework's adaptability and relevance in evolving AI landscapes.
-            </p>
-
-            <h3 class="text-xl font-semibold text-primary-700 dark:text-primary-300" data-ref="https://www.oecd-ilibrary.org/governance/governing-with-artificial-intelligence_16857899-en|4">
-              Governance Approaches Analysis
-            </h3>
-            <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
-              The report analyzes dozens of governance approaches and 200 AI use cases, providing extensive research and discussions with governments to understand how AI can be effectively governed across diverse contexts.
-            </p>
-          </div>
-        </div>
-
-        <div class="space-y-6">
-          <h3 class="text-xl font-semibold text-primary-700 dark:text-primary-300" data-ref="https://www.oecd-ilibrary.org/governance/governing-with-artificial-intelligence_16857899-en|4">
-            Cross-Jurisdictional Governance Analysis
-          </h3>
-          <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
-            The report discusses the importance of safeguarding fundamental rights and ensuring that AI systems do not undermine human dignity or democratic values, providing a foundation for cross-jurisdictional governance analysis.
-          </p>
-        </div>
-
-        <div class="mt-8 grid md:grid-cols-3 gap-6">
-          <div class="card-interactive p-6 bg-white/90 backdrop-blur-sm dark:bg-gray-800 rounded-xl shadow-md">
-            <div class="flex items-center space-x-4 mb-4">
-              <div class="flex-shrink-0 w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center">
-                <i data-lucide="flag" class="w-6 h-6 text-primary-600 dark:text-primary-400"></i>
-              </div>
-              <h4 class="font-semibold text-lg text-primary-700 dark:text-primary-300" data-ref="https://www.oecd-ilibrary.org/governance/governing-with-artificial-intelligence_16857899-en|4">Democratic Regimes</h4>
-            </div>
-            <p class="text-sm text-gray-700 dark:text-gray-300">
-              Governance frameworks emphasize transparency, accountability, and fundamental rights protection across democratic jurisdictions
-            </p>
-          </div>
-
-          <div class="card-interactive p-6 bg-white/90 backdrop-blur-sm dark:bg-gray-800 rounded-xl shadow-md">
-            <div class="flex items-center space-x-4 mb-4">
-              <div class="flex-shrink-0 w-12 h-12 bg-accent-100 dark:bg-accent-900/30 rounded-lg flex items-center justify-center">
-                <i data-lucide="shield" class="w-6 h-6 text-accent-600 dark:text-accent-400"></i>
-              </div>
-              <h4 class="font-semibold text-lg text-accent-700 dark:text-accent-300" data-ref="https://www.oecd-ilibrary.org/governance/governing-with-artificial-intelligence_16857899-en|4">Authoritarian Pressures</h4>
-            </div>
-            <p class="text-sm text-gray-700 dark:text-gray-300">
-              Authoritarian regimes may prioritize state control over individual rights, creating tension with universal ethical frameworks
-            </p>
-          </div>
-
-          <div class="card-interactive p-6 bg-white/90 backdrop-blur-sm dark:bg-gray-800 rounded-xl shadow-md">
-            <div class="flex items-center space-x-4 mb-4">
-              <div class="flex-shrink-0 w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center">
-                <i data-lucide="globe" class="w-6 h-6 text-primary-600 dark:text-primary-400"></i>
-              </div>
-              <h4 class="font-semibold text-lg text-primary-700 dark:text-primary-300" data-ref="https://www.oecd.org/en/newsroom/artificial-intelligence-update-oecd-ai-principles.html|3">Interoperability Standards</h4>
-            </div>
-            <p class="text-sm text-gray-700 dark:text-gray-300">
-              Updated OECD principles provide a blueprint for global interoperability on AI policy and for policymakers to keep pace with technology
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Economic Sustainability Modeling Section -->
-    <section id="economic" class="py-20 bg-white/80 dark:bg-gray-900" data-aos="fade-up">
+    <!-- Foundations Section -->
+    <section id="foundations" class="py-20 bg-white/80 dark:bg-gray-900" data-aos="fade-up">
       <div class="max-w-6xl mx-auto px-6">
         <h2 class="text-3xl font-bold mb-8 text-primary-700 dark:text-primary-300">
-          Economic Sustainability Modeling
+          Foundational Principles and Definitions
         </h2>
-        <p class="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed" data-ref="https://www.statista.com/statistics/1441774/global-ai-governance-market-size/|1">
-          The global AI governance market size was valued at approximately
-          <span class="mx-1 px-1.5 py-0.5 rounded-md bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300 font-semibold text-sm">$750 million</span>
-          in 2024 and is projected to reach
-          <span class="mx-1 px-1.5 py-0.5 rounded-md bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300 font-semibold text-sm">$5.64 billion</span>
-          by 2030, growing at a compound annual growth rate (CAGR) of
-          <span class="mx-1 px-1.5 py-0.5 rounded-md bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300 font-semibold text-sm">40%</span>.
-        </p>
 
-        <div class="grid md:grid-cols-2 gap-8 mb-12">
+        <div class="grid md:grid-cols-2 gap-8 items-start mb-12">
           <div class="space-y-6">
-            <h3 class="text-xl font-semibold text-primary-700 dark:text-primary-300" data-ref="https://www.statista.com/statistics/1441774/global-ai-governance-market-size/|1">
-              Market Growth Drivers
-            </h3>
-            <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
-              The growth of the AI governance market is driven by the increasing need for compliance with regulations, ethical considerations, and the responsible deployment of AI technologies across various industries.
+            <p class="text-gray-700 dark:text-gray-300" data-ref="https://arxiv.org/pdf/1508.07066|11">
+              Formal verification is essential for safety and security-critical systems, requiring full formal verification of separation kernels to ensure reliable operation under all conditions.
             </p>
 
-            <h3 class="text-xl font-semibold text-primary-700 dark:text-primary-300" data-ref="https://www.statista.com/statistics/1441774/global-ai-governance-market-size/|1">
-              Key Market Segments
-            </h3>
-            <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
-              The market is segmented by component (platforms/software suites, point solutions, and services), deployment (cloud [SaaS] and on-premise), and application (banking, financial services, insurance, healthcare, retail, manufacturing, government, and others).
+            <p class="text-gray-700 dark:text-gray-300" data-ref="https://dl.acm.org/doi/10.1145/3522582|12">
+              Formal methods in cyber security and safety-critical systems provide rigorous mathematical foundations for verifying system correctness and preventing unauthorized access or malicious behavior.
             </p>
+
+            <div class="pl-4 pr-3 py-3 border-l-4 border-primary-500 bg-primary-50/40 dark:bg-primary-900/30 rounded-r-lg">
+              <p class="text-sm font-medium text-primary-900 dark:text-primary-100 leading-relaxed" data-ref="https://theses.hal.science/tel-05140376v2/file/Beurdouche_2020_These.pdf|13">
+                <i data-lucide="info" class="inline-block w-4 h-4 mr-1.5 -mt-0.5"></i>
+                Critical finding: The security of the modern Internet relies on cryptographic protocols such as TLS or Signal, but design and implementation vulnerabilities remain persistent challenges.
+              </p>
+            </div>
           </div>
 
-          <div class="card-interactive p-6 rounded-xl shadow-md bg-white/90 backdrop-blur-sm dark:bg-gray-900 h-80">
-            <canvas id="marketGrowthChart"></canvas>
+          <img
+            src="https://cdn.qwenlm.ai/60498d16-d2ab-4b9f-8acd-8f6913b3400d/428ab795-f302-40c7-a36f-a7a6bde30ae8/14188e89-0ed5-4939-ab35-6b76b85c8b1b.png?key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXNvdXJjZV91c2VyX2lkIjoiNjA0OThkMTYtZDJhYi00YjlmLThhY2QtOGY2OTEzYjM0MDBkIiwicmVzb3VyY2VfaWQiOiI0MjhhYjc5NS1mMzAyLTQwYzctYTM2Zi1hN2E2YmRlMzBhZTgiLCJyZXNvdXJjZV9jaGF0X2lkIjpudWxsfQ.LXuHGYLyjLOjY-9dkJ2vGHClNVsbftmsvwV9Yg-8Lcw"
+            alt="Technical diagram showing three interconnected geometric shapes forming a triangular logo: left shape is a blue cube (hex color #1a73b3) representing 'No Spy' with a shield icon overlay, center shape is a purple hexagon (hex color #6366f1) representing 'No Log = No Action' with a checkmark icon overlay, right shape is a blue sphere (hex color #1a73b3) representing 'No Weapon' with a cross icon overlay. Background is a clean white-to-light-gray gradient (hex #ffffff to #f5f5f5). Connecting lines between shapes are thin blue strokes (hex color #1a73b3) with small circular nodes. Overall composition is centered with balanced spacing between elements. No text overlays or charts present."
+            class="w-full rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300"
+          />
+        </div>
+
+        <div class="mb-12">
+          <h3 class="text-2xl font-semibold mb-6 text-primary-700 dark:text-primary-300">
+            Core Architectural Invariants
+          </h3>
+
+          <div class="hs-accordion-group space-y-4">
+            <div class="hs-accordion card-interactive bg-white/80 backdrop-blur-sm dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+              <button class="hs-accordion-toggle w-full flex justify-between items-center p-4 text-left hover:bg-primary-50 dark:hover:bg-gray-700/50 transition-colors rounded-xl" id="hs-invariant-1">
+                <div class="flex items-center space-x-4">
+                  <div class="flex-shrink-0 w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center">
+                    <i data-lucide="eye-off" class="w-6 h-6 text-primary-600 dark:text-primary-400"></i>
+                  </div>
+                  <span class="font-semibold text-lg text-primary-700 dark:text-primary-300">No Spy</span>
+                </div>
+                <i data-lucide="chevron-down" class="hs-accordion-active:rotate-180 transition-transform duration-300 w-5 h-5 text-primary-600 dark:text-primary-400"></i>
+              </button>
+              <div id="hs-collapse-invariant-1" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" aria-labelledby="hs-invariant-1">
+                <div class="p-6 pt-0 space-y-4">
+                  <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.linkedin.com/posts/nicholasxthompson_the-most-interesting-thing-in-tech-a-showdown-activity-7432202053256523776-2lTC|5">
+                    AI companies face critical decisions about whether to permit government access to models for mass surveillance and autonomous killing, raising fundamental questions about the balance between security and civil liberties.
+                  </p>
+                  <p class="text-gray-700 dark:text-gray-300" data-ref="https://pmc.ncbi.nlm.nih.gov/articles/PMC10704392/|263">
+                    Government use of surveillance technology to observe, collect, or record potential criminal activity in real-time raises constitutional law concerns about privacy rights and due process protections.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="hs-accordion card-interactive bg-white/80 backdrop-blur-sm dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+              <button class="hs-accordion-toggle w-full flex justify-between items-center p-4 text-left hover:bg-primary-50 dark:hover:bg-gray-700/50 transition-colors rounded-xl" id="hs-invariant-2">
+                <div class="flex items-center space-x-4">
+                  <div class="flex-shrink-0 w-12 h-12 bg-accent-100 dark:bg-accent-900/30 rounded-lg flex items-center justify-center">
+                    <i data-lucide="octagon-x" class="w-6 h-6 text-accent-600 dark:text-accent-400"></i>
+                  </div>
+                  <span class="font-semibold text-lg text-accent-700 dark:text-accent-300">No Weapon</span>
+                </div>
+                <i data-lucide="chevron-down" class="hs-accordion-active:rotate-180 transition-transform duration-300 w-5 h-5 text-accent-600 dark:text-accent-400"></i>
+              </button>
+              <div id="hs-collapse-invariant-2" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" aria-labelledby="hs-invariant-2">
+                <div class="p-6 pt-0 space-y-4">
+                  <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.linkedin.com/pulse/geoffrey-hintons-ai-warnings-blueprint-policy-regulation-tabor-w9kfe|45">
+                    Autonomous weapons systems powered by AI can identify, track, and kill targets without direct human oversight, lowering the threshold for conflict and raising serious ethical concerns.
+                  </p>
+                  <p class="text-gray-700 dark:text-gray-300" data-ref="https://docs.un.org/en/CCW/GGE.1/2024/WP.11|25">
+                    The Group of Governmental Experts on emerging technologies in the area of lethal autonomous weapons systems convenes regularly to address international regulatory frameworks and humanitarian implications.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="hs-accordion card-interactive bg-white/80 backdrop-blur-sm dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+              <button class="hs-accordion-toggle w-full flex justify-between items-center p-4 text-left hover:bg-primary-50 dark:hover:bg-gray-700/50 transition-colors rounded-xl" id="hs-invariant-3">
+                <div class="flex items-center space-x-4">
+                  <div class="flex-shrink-0 w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center">
+                    <i data-lucide="file-text" class="w-6 h-6 text-primary-600 dark:text-primary-400"></i>
+                  </div>
+                  <span class="font-semibold text-lg text-primary-700 dark:text-primary-300">No Log = No Action</span>
+                </div>
+                <i data-lucide="chevron-down" class="hs-accordion-active:rotate-180 transition-transform duration-300 w-5 h-5 text-primary-600 dark:text-primary-400"></i>
+              </button>
+              <div id="hs-collapse-invariant-3" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" aria-labelledby="hs-invariant-3">
+                <div class="p-6 pt-0 space-y-4">
+                  <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.researchgate.net/publication/397356643_Auditability_and_Transparency_through_Immutable_Metadata_Logs_Employing_Blockchain_and_Tamper-Proof_Ledgers_for_Compliance_and_Data_Provenance|10">
+                    Immutable metadata logs provide auditability and transparency through tamper-proof logging systems that preserve the integrity of recorded events and actions.
+                  </p>
+                  <p class="text-gray-700 dark:text-gray-300" data-ref="https://arxiv.org/pdf/2505.17236|9">
+                    Blockchain-based log management frameworks ensure tamper-proof logging, support real-time processing, and provide cryptographic immutability to prevent unauthorized modifications.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="pl-4 pr-3 py-3 border-l-4 border-primary-500 bg-primary-50/40 dark:bg-primary-900/30 rounded-r-lg mb-8">
-          <p class="text-sm font-medium text-primary-900 dark:text-primary-100 leading-relaxed" data-ref="https://www.statista.com/statistics/1441774/global-ai-governance-market-size/|1">
-            <i data-lucide="trending-up" class="inline-block w-4 h-4 mr-1.5 -mt-0.5"></i>
-            Key insight: The AI governance market is experiencing significant growth, indicating strong demand for ethical AI frameworks and compliance solutions.
+        <div class="pl-4 pr-3 py-3 border-l-4 border-amber-500 bg-amber-50/40 dark:bg-amber-900/30 rounded-r-lg">
+          <p class="text-sm font-medium text-amber-900 dark:text-amber-100 leading-relaxed" data-ref="https://www.researchgate.net/publication/396842645_The_Ethical_Challenges_of_AI_in_Cyber_Defense_and_Surveillance_-_Balancing_Privacy_Data_Rights_and_Automated_Decision-Making_in_Cybersecurity|7">
+            <i data-lucide="alert-triangle" class="inline-block w-4 h-4 mr-1.5 -mt-0.5"></i>
+            Key challenge: AI-driven threat analysis suffers from data bias, lack of transparency, and moral implications that complicate reliable decision-making in security-critical contexts.
           </p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-6 mb-12">
-          <div class="card-interactive p-6 bg-primary-50/50 dark:bg-gray-800 rounded-xl shadow-md">
-            <div class="flex items-center space-x-4 mb-4">
-              <div class="flex-shrink-0 w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center">
-                <i data-lucide="building-2" class="w-6 h-6 text-primary-600 dark:text-primary-400"></i>
-              </div>
-              <h4 class="font-semibold text-lg text-primary-700 dark:text-primary-300">Enterprise Sector</h4>
-            </div>
-            <p class="text-sm text-gray-700 dark:text-gray-300" data-ref="https://www.oecd-ilibrary.org/governance/governing-with-artificial-intelligence_16857899-en|4">
-              AI governance frameworks support enterprise adoption by ensuring compliance with regulations and ethical standards
-            </p>
-          </div>
-
-          <div class="card-interactive p-6 bg-accent-50/50 dark:bg-gray-800 rounded-xl shadow-md">
-            <div class="flex items-center space-x-4 mb-4">
-              <div class="flex-shrink-0 w-12 h-12 bg-accent-100 dark:bg-accent-900/30 rounded-lg flex items-center justify-center">
-                <i data-lucide="heart-pulse" class="w-6 h-6 text-accent-600 dark:text-accent-400"></i>
-              </div>
-              <h4 class="font-semibold text-lg text-accent-700 dark:text-accent-300">Healthcare Sector</h4>
-            </div>
-            <p class="text-sm text-gray-700 dark:text-gray-300" data-ref="https://www.oecd-ilibrary.org/governance/governing-with-artificial-intelligence_16857899-en|4">
-              Healthcare applications require robust governance to protect patient data and ensure ethical AI deployment
-            </p>
-          </div>
-
-          <div class="card-interactive p-6 bg-primary-50/50 dark:bg-gray-800 rounded-xl shadow-md">
-            <div class="flex items-center space-x-4 mb-4">
-              <div class="flex-shrink-0 w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center">
-                <i data-lucide="landmark" class="w-6 h-6 text-primary-600 dark:text-primary-400"></i>
-              </div>
-              <h4 class="font-semibold text-lg text-primary-700 dark:text-primary-300">Financial Sector</h4>
-            </div>
-            <p class="text-sm text-gray-700 dark:text-gray-300" data-ref="https://www.oecd-ilibrary.org/governance/governing-with-artificial-intelligence_16857899-en|4">
-              Financial institutions benefit from AI governance frameworks that ensure regulatory compliance and ethical AI use
-            </p>
-          </div>
-        </div>
-
-        <div class="hs-accordion-group space-y-4">
-          <div class="hs-accordion card-interactive bg-white/80 backdrop-blur-sm dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
-            <button class="hs-accordion-toggle w-full flex justify-between items-center p-4 text-left hover:bg-primary-50 dark:hover:bg-gray-700/50 transition-colors rounded-xl" id="hs-economic-1">
-              <div class="flex items-center space-x-4">
-                <div class="flex-shrink-0 w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center">
-                  <i data-lucide="circle-help" class="w-6 h-6 text-primary-600 dark:text-primary-400"></i>
-                </div>
-                <span class="font-semibold text-lg text-primary-700 dark:text-primary-300">Revenue Displacement Analysis</span>
-              </div>
-              <i data-lucide="chevron-down" class="hs-accordion-active:rotate-180 transition-transform duration-300 w-5 h-5 text-primary-600 dark:text-primary-400"></i>
-            </button>
-            <div id="hs-collapse-economic-1" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" aria-labelledby="hs-economic-1">
-              <div class="p-6 pt-0 space-y-4">
-                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.statista.com/statistics/1441774/global-ai-governance-market-size/|1">
-                  The AI governance market is experiencing significant growth, with projections indicating substantial increases in market value over the coming years, suggesting strong demand for ethical AI frameworks and compliance solutions.
-                </p>
-                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.oecd-ilibrary.org/governance/governing-with-artificial-intelligence_16857899-en|4">
-                  The report analyzes dozens of governance approaches and 200 AI use cases, providing extensive research and discussions with governments to understand how AI can be effectively governed across diverse contexts.
-                </p>
-                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.oecd-ilibrary.org/governance/governing-with-artificial-intelligence_16857899-en|4">
-                  The report discusses the importance of safeguarding fundamental rights and ensuring that AI systems do not undermine human dignity or democratic values.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="hs-accordion card-interactive bg-white/80 backdrop-blur-sm dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
-            <button class="hs-accordion-toggle w-full flex justify-between items-center p-4 text-left hover:bg-primary-50 dark:hover:bg-gray-700/50 transition-colors rounded-xl" id="hs-economic-2">
-              <div class="flex items-center space-x-4">
-                <div class="flex-shrink-0 w-12 h-12 bg-accent-100 dark:bg-accent-900/30 rounded-lg flex items-center justify-center">
-                  <i data-lucide="trending-up" class="w-6 h-6 text-accent-600 dark:text-accent-400"></i>
-                </div>
-                <span class="font-semibold text-lg text-accent-700 dark:text-accent-300">Civilian-Sector Replacement Potential</span>
-              </div>
-              <i data-lucide="chevron-down" class="hs-accordion-active:rotate-180 transition-transform duration-300 w-5 h-5 text-accent-600 dark:text-accent-400"></i>
-            </button>
-            <div id="hs-collapse-economic-2" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" aria-labelledby="hs-economic-2">
-              <div class="p-6 pt-0 space-y-4">
-                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.statista.com/statistics/1441774/global-ai-governance-market-size/|1">
-                  The AI governance market is experiencing significant growth, with projections indicating substantial increases in market value over the coming years, suggesting strong demand for ethical AI frameworks and compliance solutions.
-                </p>
-                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.oecd-ilibrary.org/governance/governing-with-artificial-intelligence_16857899-en|4">
-                  The report analyzes dozens of governance approaches and 200 AI use cases, providing extensive research and discussions with governments to understand how AI can be effectively governed across diverse contexts.
-                </p>
-                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.oecd-ilibrary.org/governance/governing-with-artificial-intelligence_16857899-en|4">
-                  The report discusses the importance of safeguarding fundamental rights and ensuring that AI systems do not undermine human dignity or democratic values.
-                </p>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </section>
 
-    <!-- Governance Integrity Evaluation Section -->
-    <section id="governance" class="py-20 bg-accent-50/50 dark:bg-gray-800" data-aos="fade-up">
-      <div class="max-w-5xl mx-auto px-6">
-        <h2 class="text-3xl font-bold mb-8 text-accent-700 dark:text-accent-300">
-          Governance Integrity Evaluation
+    <!-- Architecture Section -->
+    <section id="architecture" class="py-20 bg-primary-50/50 dark:bg-gray-800" data-aos="fade-up">
+      <div class="max-w-6xl mx-auto px-6">
+        <h2 class="text-3xl font-bold mb-8 text-primary-700 dark:text-primary-300">
+          Architectural Design and Implementation
         </h2>
-        <p class="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed" data-ref="https://www.oecd-ilibrary.org/governance/governing-with-artificial-intelligence_16857899-en|4">
-          The report analyzes dozens of governance approaches and 200 AI use cases, providing extensive research and discussions with governments to understand how AI can be effectively governed across diverse contexts.
-        </p>
 
         <div class="grid md:grid-cols-2 gap-8 mb-12">
-          <div class="space-y-6">
-            <h3 class="text-xl font-semibold text-accent-700 dark:text-accent-300" data-ref="https://www.oecd-ilibrary.org/governance/governing-with-artificial-intelligence_16857899-en|4">
-              Institutional Trust Assessment
+          <div class="card-interactive p-6 bg-white/90 backdrop-blur-sm dark:bg-gray-900 rounded-xl shadow-md">
+            <h3 class="text-xl font-semibold mb-4 text-primary-700 dark:text-primary-300" data-ref="https://arxiv.org/html/2602.14606v1|36">
+              Separation of Domains
             </h3>
-            <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
-              The report discusses the importance of safeguarding fundamental rights and ensuring that AI systems do not undermine human dignity or democratic values, providing a foundation for institutional trust assessment.
+            <p class="text-gray-700 dark:text-gray-300 mb-4">
+              Governance architecture that separates cognition, selection, and action into distinct domains, modeling autonomy as a vector of sovereignty to prevent centralized control.
             </p>
-
-            <h3 class="text-xl font-semibold text-accent-700 dark:text-accent-300" data-ref="https://www.oecd-ilibrary.org/governance/governing-with-artificial-intelligence_16857899-en|4">
-              Governance Framework Effectiveness
-            </h3>
-            <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
-              The report analyzes dozens of governance approaches and 200 AI use cases, providing extensive research and discussions with governments to understand how AI can be effectively governed across diverse contexts.
-            </p>
+            <div class="space-y-2">
+              <div class="flex items-center space-x-2">
+                <i data-lucide="brain" class="w-5 h-5 text-primary-600 dark:text-primary-400"></i>
+                <span class="text-sm text-gray-700 dark:text-gray-300">Cognition Layer</span>
+              </div>
+              <div class="flex items-center space-x-2">
+                <i data-lucide="target" class="w-5 h-5 text-primary-600 dark:text-primary-400"></i>
+                <span class="text-sm text-gray-700 dark:text-gray-300">Selection Layer</span>
+              </div>
+              <div class="flex items-center space-x-2">
+                <i data-lucide="zap" class="w-5 h-5 text-primary-600 dark:text-primary-400"></i>
+                <span class="text-sm text-gray-700 dark:text-gray-300">Action Layer</span>
+              </div>
+            </div>
           </div>
 
-          <div class="space-y-6">
-            <h3 class="text-xl font-semibold text-accent-700 dark:text-accent-300" data-ref="https://www.oecd.org/en/newsroom/artificial-intelligence-update-oecd-ai-principles.html|3">
-              OECD AI Principles Integration
+          <div class="card-interactive p-6 bg-white/90 backdrop-blur-sm dark:bg-gray-900 rounded-xl shadow-md">
+            <h3 class="text-xl font-semibold mb-4 text-accent-700 dark:text-accent-300" data-ref="https://arxiv.org/html/2601.17744v1|15">
+              Execution Control Plane
             </h3>
-            <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
-              The 2024 update to the OECD AI Principles addresses rapid technological changes, particularly the rise of general-purpose AI and foundation models, strengthening the framework's adaptability and relevance in evolving AI landscapes.
+            <p class="text-gray-700 dark:text-gray-300 mb-4">
+              Protocol-agnostic execution control plane that enforces runtime authorization within agent systems, governance frameworks, and control architectures to prevent unauthorized operations.
             </p>
-
-            <h3 class="text-xl font-semibold text-accent-700 dark:text-accent-300" data-ref="https://www.oecd-ilibrary.org/governance/governing-with-artificial-intelligence_16857899-en|4">
-              Cross-Jurisdictional Analysis
-            </h3>
-            <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
-              The report discusses the importance of safeguarding fundamental rights and ensuring that AI systems do not undermine human dignity or democratic values, providing a foundation for cross-jurisdictional governance analysis.
-            </p>
+            <div class="pl-4 pr-3 py-3 border-l-4 border-accent-500 bg-accent-50/40 dark:bg-accent-900/30 rounded-r-lg">
+              <p class="text-sm font-medium text-accent-900 dark:text-accent-100 leading-relaxed">
+                <i data-lucide="shield" class="inline-block w-4 h-4 mr-1.5 -mt-0.5"></i>
+                Authorization enforced at execution time prevents system-level bypass attempts
+              </p>
+            </div>
           </div>
         </div>
 
-        <div class="pl-4 pr-3 py-3 border-l-4 border-accent-500 bg-accent-50/40 dark:bg-accent-900/30 rounded-r-lg mb-8">
-          <p class="text-sm font-medium text-accent-900 dark:text-accent-100 leading-relaxed" data-ref="https://www.oecd-ilibrary.org/governance/governing-with-artificial-intelligence_16857899-en|4">
-            <i data-lucide="circle-check" class="inline-block w-4 h-4 mr-1.5 -mt-0.5"></i>
-            Key finding: Effective governance frameworks must balance innovation with ethical considerations and regulatory compliance across diverse jurisdictions.
+        <div class="mb-12">
+          <h3 class="text-2xl font-semibold mb-6 text-primary-700 dark:text-primary-300">
+            Formal Verification Framework
+          </h3>
+
+          <div class="grid md:grid-cols-3 gap-6">
+            <div class="card-interactive p-6 bg-white/90 backdrop-blur-sm dark:bg-gray-900 rounded-xl shadow-md">
+              <div class="flex items-center space-x-3 mb-4">
+                <div class="flex-shrink-0 w-10 h-10 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center">
+                  <i data-lucide="circle-check" class="w-5 h-5 text-primary-600 dark:text-primary-400"></i>
+                </div>
+                <h4 class="font-semibold text-primary-700 dark:text-primary-300" data-ref="https://www.researchgate.net/publication/366902486_Lessons_from_Formally_Verified_Deployed_Software_Systems|14">Muen Separation Kernel</h4>
+              </div>
+              <p class="text-sm text-gray-700 dark:text-gray-300">
+                Formal verification of functional correctness ensures that modern separation kernels operate reliably in safety-critical environments.
+              </p>
+            </div>
+
+            <div class="card-interactive p-6 bg-white/90 backdrop-blur-sm dark:bg-gray-900 rounded-xl shadow-md">
+              <div class="flex items-center space-x-3 mb-4">
+                <div class="flex-shrink-0 w-10 h-10 bg-accent-100 dark:bg-accent-900/30 rounded-lg flex items-center justify-center">
+                  <i data-lucide="lock" class="w-5 h-5 text-accent-600 dark:text-accent-400"></i>
+                </div>
+                <h4 class="font-semibold text-accent-700 dark:text-accent-300" data-ref="https://www.mdpi.com/2079-9292/14/7/1294|30">Cryptographic Immutability</h4>
+              </div>
+              <p class="text-sm text-gray-700 dark:text-gray-300">
+                Mathematical verification of moral imperatives secured through cryptographic immutability to prevent tampering or modification.
+              </p>
+            </div>
+
+            <div class="card-interactive p-6 bg-white/90 backdrop-blur-sm dark:bg-gray-900 rounded-xl shadow-md">
+              <div class="flex items-center space-x-3 mb-4">
+                <div class="flex-shrink-0 w-10 h-10 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center">
+                  <i data-lucide="cpu" class="w-5 h-5 text-primary-600 dark:text-primary-400"></i>
+                </div>
+                <h4 class="font-semibold text-primary-700 dark:text-primary-300" data-ref="https://arxiv.org/html/2301.02206v3|184">Deployed Systems</h4>
+              </div>
+              <p class="text-sm text-gray-700 dark:text-gray-300">
+                Range of formally verified systems deployed for actual use across various application areas, demonstrating practical viability.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="pl-4 pr-3 py-3 border-l-4 border-primary-500 bg-primary-50/40 dark:bg-primary-900/30 rounded-r-lg">
+          <p class="text-sm font-medium text-primary-900 dark:text-primary-100 leading-relaxed" data-ref="https://www.linkedin.com/posts/sumeetgoenka_%F0%9D%90%80%F0%9D%90%AB%F0%9D%90%9C%F0%9D%90%A1%F0%9D%90%A2%F0%9D%90%AD%F0%9D%90%9E%F0%9D%90%9C%F0%9D%90%AD%F0%9D%90%AE%F0%9D%90%AB%F0%9D%90%9E-%F0%9D%90%9C%F0%9D%90%A8%F0%9D%90%A6%F0%9D%90%A9%F0%9D%90%A5%F0%9D%90%A2-activity-7422842488412897280-Keeg|39">
+            <i data-lucide="refresh-cw" class="inline-block w-4 h-4 mr-1.5 -mt-0.5"></i>
+            Architecture compliance isn't a gate—it's a feedback loop. Most organizations treat architecture reviews as one-time checkpoints rather than continuous processes.
           </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-6">
-          <div class="card-interactive p-6 bg-white/90 backdrop-blur-sm dark:bg-gray-900 rounded-xl shadow-md">
-            <div class="flex items-center space-x-4 mb-4">
-              <div class="flex-shrink-0 w-12 h-12 bg-accent-100 dark:bg-accent-900/30 rounded-lg flex items-center justify-center">
-                <i data-lucide="shield-check" class="w-6 h-6 text-accent-600 dark:text-accent-400"></i>
-              </div>
-              <h4 class="font-semibold text-lg text-accent-700 dark:text-accent-300" data-ref="https://www.oecd-ilibrary.org/governance/governing-with-artificial-intelligence_16857899-en|4">Transparency Mechanisms</h4>
-            </div>
-            <p class="text-sm text-gray-700 dark:text-gray-300">
-              Governance frameworks must ensure transparency in AI decision-making processes to build institutional trust
-            </p>
-          </div>
-
-          <div class="card-interactive p-6 bg-white/90 backdrop-blur-sm dark:bg-gray-900 rounded-xl shadow-md">
-            <div class="flex items-center space-x-4 mb-4">
-              <div class="flex-shrink-0 w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center">
-                <i data-lucide="lock" class="w-6 h-6 text-primary-600 dark:text-primary-400"></i>
-              </div>
-              <h4 class="font-semibold text-lg text-primary-700 dark:text-primary-300" data-ref="https://www.oecd-ilibrary.org/governance/governing-with-artificial-intelligence_16857899-en|4">Accountability Structures</h4>
-            </div>
-            <p class="text-sm text-gray-700 dark:text-gray-300">
-              Robust accountability mechanisms are essential for ensuring that AI systems operate within ethical boundaries
-            </p>
-          </div>
-
-          <div class="card-interactive p-6 bg-white/90 backdrop-blur-sm dark:bg-gray-900 rounded-xl shadow-md">
-            <div class="flex items-center space-x-4 mb-4">
-              <div class="flex-shrink-0 w-12 h-12 bg-accent-100 dark:bg-accent-900/30 rounded-lg flex items-center justify-center">
-                <i data-lucide="users" class="w-6 h-6 text-accent-600 dark:text-accent-400"></i>
-              </div>
-              <h4 class="font-semibold text-lg text-accent-700 dark:text-accent-300" data-ref="https://www.oecd-ilibrary.org/governance/governing-with-artificial-intelligence_16857899-en|4">Stakeholder Engagement</h4>
-            </div>
-            <p class="text-sm text-gray-700 dark:text-gray-300">
-              Multi-stakeholder participation ensures that governance frameworks address diverse perspectives and needs
-            </p>
-          </div>
-
-          <div class="card-interactive p-6 bg-white/90 backdrop-blur-sm dark:bg-gray-900 rounded-xl shadow-md">
-            <div class="flex items-center space-x-4 mb-4">
-              <div class="flex-shrink-0 w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center">
-                <i data-lucide="refresh-cw" class="w-6 h-6 text-primary-600 dark:text-primary-400"></i>
-              </div>
-              <h4 class="font-semibold text-lg text-primary-700 dark:text-primary-300" data-ref="https://www.oecd-ilibrary.org/governance/governing-with-artificial-intelligence_16857899-en|4">Adaptive Governance</h4>
-            </div>
-            <p class="text-sm text-gray-700 dark:text-gray-300">
-              Governance frameworks must evolve continuously to address emerging challenges and technological advances
-            </p>
-          </div>
         </div>
       </div>
     </section>
 
-    <!-- Comparative Review Section -->
+    <!-- Enforcement Section -->
+    <section id="enforcement" class="py-20 bg-white/80 dark:bg-gray-900" data-aos="fade-up">
+      <div class="max-w-6xl mx-auto px-6">
+        <h2 class="text-3xl font-bold mb-8 text-primary-700 dark:text-primary-300">
+          Enforcement Mechanisms and Sacred Protocols
+        </h2>
+
+        <div class="grid md:grid-cols-2 gap-8 items-start mb-12">
+          <img
+            src="https://cdn.qwenlm.ai/60498d16-d2ab-4b9f-8acd-8f6913b3400d/428ab795-f302-40c7-a36f-a7a6bde30ae8/b3db3e6c-c848-49bd-bdd2-e6b2f9093da7.png?key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXNvdXJjZV91c2VyX2lkIjoiNjA0OThkMTYtZDJhYi00YjlmLThhY2QtOGY2OTEzYjM0MDBkIiwicmVzb3VyY2VfaWQiOiI0MjhhYjc5NS1mMzAyLTQwYzctYTM2Zi1hN2E2YmRlMzBhZTgiLCJyZXNvdXJjZV9jaGF0X2lkIjpudWxsfQ.LXuHGYLyjLOjY-9dkJ2vGHClNVsbftmsvwV9Yg-8Lcw"
+            alt="Technical architecture diagram showing a central circular node (hex color #1a73b3, diameter 80 pixels) labeled 'Sacred Zero' in white sans-serif font. Surrounding the central node are six smaller circular nodes (hex color #6366f1, diameter 40 pixels each) arranged in a hexagonal pattern, each labeled with white sans-serif text: 'Cognition', 'Selection', 'Action', 'Log', 'Pause', 'Audit'. Thin connecting lines (hex color #1a73b3, width 2 pixels) radiate outward from the central node to each outer node. Background is a clean white-to-light-gray gradient (hex #ffffff to #f5f5f5). All text is legible and clearly readable. No decorative elements or charts present."
+            class="w-full rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300"
+          />
+
+          <div class="space-y-6">
+            <h3 class="text-xl font-semibold text-primary-700 dark:text-primary-300" data-ref="https://www.linkedin.com/posts/lev-g-5667b2282_unesco-the-operational-layer-missing-since-activity-7400313560918257664-oSp2|23">
+              Sacred Pause Protocol
+            </h3>
+            <p class="text-gray-700 dark:text-gray-300">
+              The Sacred Pause represents a critical innovation in AI safety, serving as an architectural invariant that enforces mandatory deliberation periods before executing high-risk decisions.
+            </p>
+
+            <div class="pl-4 pr-3 py-3 border-l-4 border-primary-500 bg-primary-50/40 dark:bg-primary-900/30 rounded-r-lg">
+              <p class="text-sm font-medium text-primary-900 dark:text-primary-100 leading-relaxed" data-ref="https://www.linkedin.com/posts/ramjit-ray_ai-techethics-leadership-activity-7420404029966704640-ZpFt|24">
+                <i data-lucide="info" class="inline-block w-4 h-4 mr-1.5 -mt-0.5"></i>
+                The Saraswati Check: Why We Need a Sacred Pause in the Age of AI—balancing AI with human reflection to prevent premature automation errors.
+              </p>
+            </div>
+
+            <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.linkedin.com/posts/jamil-al-thani-177b436_every-llm-has-the-same-four-blind-spots-activity-7427709670796066816-M4af|197">
+              Sacred Zero is a hardware-enforced, <span class="mx-1 px-1.5 py-0.5 rounded-md bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300 font-semibold text-sm">500ms</span> pause where systems must halt all operations, ensuring that no action occurs without proper authorization and logging.
+            </p>
+          </div>
+        </div>
+
+        <div class="mb-12">
+          <h3 class="text-2xl font-semibold mb-6 text-primary-700 dark:text-primary-300">
+            Blockchain-Based Enforcement
+          </h3>
+
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="card-interactive p-6 bg-accent-50/50 dark:bg-accent-900/20 rounded-xl shadow-md">
+              <h4 class="text-lg font-semibold mb-4 text-accent-700 dark:text-accent-300" data-ref="https://www.sciencedirect.com/science/article/pii/S0920548925000674|28">
+                Application Firewalls on Ethereum
+              </h4>
+              <p class="text-gray-700 dark:text-gray-300 text-sm mb-3">
+                Designed to filter network traffic to effectively mitigate DoS and distributed DoS attacks and protect the blockchain platform at the application layer.
+              </p>
+              <div class="flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-400">
+                <i data-lucide="shield" class="w-4 h-4"></i>
+                <span>Cryptographic protection</span>
+              </div>
+            </div>
+
+            <div class="card-interactive p-6 bg-accent-50/50 dark:bg-accent-900/20 rounded-xl shadow-md">
+              <h4 class="text-lg font-semibold mb-4 text-accent-700 dark:text-accent-300" data-ref="https://www.researchgate.net/publication/391030128_Blockchain_security-_security_challenges_and_solutions_for_decentralized_systems_and_cryptocurrencies|35">
+                Inherent Security Features
+              </h4>
+              <p class="text-gray-700 dark:text-gray-300 text-sm mb-3">
+                Blockchain's inherent security features strengthen its build, including cryptographic hashing, consensus algorithms, and immutability to prevent unauthorized modifications.
+              </p>
+              <div class="flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-400">
+                <i data-lucide="lock" class="w-4 h-4"></i>
+                <span>Distributed ledger protection</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-8">
+          <h3 class="text-2xl font-semibold mb-6 text-primary-700 dark:text-primary-300">
+            Immutable Audit Trail Systems
+          </h3>
+
+          <div class="hs-accordion-group space-y-4">
+            <div class="hs-accordion card-interactive bg-white/80 backdrop-blur-sm dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+              <button class="hs-accordion-toggle w-full flex justify-between items-center p-4 text-left hover:bg-primary-50 dark:hover:bg-gray-700/50 transition-colors rounded-xl" id="hs-audit-1">
+                <div class="flex items-center space-x-4">
+                  <div class="flex-shrink-0 w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center">
+                    <i data-lucide="database" class="w-6 h-6 text-primary-600 dark:text-primary-400"></i>
+                  </div>
+                  <span class="font-semibold text-lg text-primary-700 dark:text-primary-300">Blockchain-Inspired Models</span>
+                </div>
+                <i data-lucide="chevron-down" class="hs-accordion-active:rotate-180 transition-transform duration-300 w-5 h-5 text-primary-600 dark:text-primary-400"></i>
+              </button>
+              <div id="hs-collapse-audit-1" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" aria-labelledby="hs-audit-1">
+                <div class="p-6 pt-0 space-y-4">
+                  <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.researchgate.net/publication/400023923_Building_Immutable_Audit_Trails_Using_Blockchain-Inspired_Data_Models_for_Settlement_Dispute_Resolution|90">
+                    Implementation of blockchain-inspired data models to establish immutable audit trails for financial institutions, ensuring compliance and transparency.
+                  </p>
+                  <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.sciencedirect.com/science/article/pii/S2405844024104380|92">
+                    Establishing an immutable audit trail to enhance data security in healthcare electronic health records, preventing unauthorized access and tampering.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="hs-accordion card-interactive bg-white/80 backdrop-blur-sm dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+              <button class="hs-accordion-toggle w-full flex justify-between items-center p-4 text-left hover:bg-primary-50 dark:hover:bg-gray-700/50 transition-colors rounded-xl" id="hs-audit-2">
+                <div class="flex items-center space-x-4">
+                  <div class="flex-shrink-0 w-12 h-12 bg-accent-100 dark:bg-accent-900/30 rounded-lg flex items-center justify-center">
+                    <i data-lucide="file-check" class="w-6 h-6 text-accent-600 dark:text-accent-400"></i>
+                  </div>
+                  <span class="font-semibold text-lg text-accent-700 dark:text-accent-300">Permissioned Architecture</span>
+                </div>
+                <i data-lucide="chevron-down" class="hs-accordion-active:rotate-180 transition-transform duration-300 w-5 h-5 text-accent-600 dark:text-accent-400"></i>
+              </button>
+              <div id="hs-collapse-audit-2" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" aria-labelledby="hs-audit-2">
+                <div class="p-6 pt-0 space-y-4">
+                  <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.nature.com/articles/s41598-025-32606-6_reference.pdf|91">
+                    Audit logging executed within Fabric's permissioned architecture, ensuring that all actions are logged and verifiable without applying Ethereum-based gas-cost models.
+                  </p>
+                  <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.nature.com/articles/s41598-026-39415-5_reference.pdf|189">
+                    All authentications are cryptographically protected and written on-chain, allowing non-repudiation and real-time auditing in e-health blockchain-based authentication systems.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pl-4 pr-3 py-3 border-l-4 border-amber-500 bg-amber-50/40 dark:bg-amber-900/30 rounded-r-lg">
+          <p class="text-sm font-medium text-amber-900 dark:text-amber-100 leading-relaxed" data-ref="https://arxiv.org/html/2511.03841v1|232">
+            <i data-lucide="alert-triangle" class="inline-block w-4 h-4 mr-1.5 -mt-0.5"></i>
+            Critical limitation: ACP environments can demonstrate traceability in system operations but cannot guarantee non-repudiation of user consents or permissions.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Applications Section -->
+    <section id="applications" class="py-20 bg-primary-50/50 dark:bg-gray-800" data-aos="fade-up">
+      <div class="max-w-6xl mx-auto px-6">
+        <h2 class="text-3xl font-bold mb-8 text-primary-700 dark:text-primary-300">
+          Universal Applicability and Domain Testing
+        </h2>
+
+        <div class="mb-12">
+          <h3 class="text-2xl font-semibold mb-6 text-primary-700 dark:text-primary-300">
+            Cross-Domain Stress Testing
+          </h3>
+
+          <div class="grid md:grid-cols-3 gap-6">
+            <div class="card-interactive p-6 bg-white/90 backdrop-blur-sm dark:bg-gray-900 rounded-xl shadow-md">
+              <div class="flex items-center space-x-3 mb-4">
+                <div class="flex-shrink-0 w-10 h-10 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center">
+                  <i data-lucide="briefcase" class="w-5 h-5 text-primary-600 dark:text-primary-400"></i>
+                </div>
+                <h4 class="font-semibold text-primary-700 dark:text-primary-300" data-ref="https://cor.europa.eu/en/our-work/opinions/cdr-1594-2024|88">Public Administration</h4>
+              </div>
+              <p class="text-sm text-gray-700 dark:text-gray-300 mb-3">
+                Public administrations facilitate digital transition processes through innovative AI implementations, requiring robust governance frameworks to ensure accountability.
+              </p>
+              <div class="pl-3 pr-2 py-2 border-l-2 border-primary-500 bg-primary-50/40 dark:bg-primary-900/20 rounded-r">
+                <p class="text-xs text-primary-800 dark:text-primary-200">
+                  <i data-lucide="shield" class="inline-block w-3 h-3 mr-1 -mt-0.5"></i>
+                  Transparent decision-making required
+                </p>
+              </div>
+            </div>
+
+            <div class="card-interactive p-6 bg-white/90 backdrop-blur-sm dark:bg-gray-900 rounded-xl shadow-md">
+              <div class="flex items-center space-x-3 mb-4">
+                <div class="flex-shrink-0 w-10 h-10 bg-accent-100 dark:bg-accent-900/30 rounded-lg flex items-center justify-center">
+                  <i data-lucide="heart-pulse" class="w-5 h-5 text-accent-600 dark:text-accent-400"></i>
+                </div>
+                <h4 class="font-semibold text-accent-700 dark:text-accent-300" data-ref="https://link.springer.com/article/10.1007/s10676-025-09842-5|208">Healthcare Systems</h4>
+              </div>
+              <p class="text-sm text-gray-700 dark:text-gray-300 mb-3">
+                Organizations invest in AI innovations to meet healthcare challenges, requiring responsible scaling practices and ethical oversight mechanisms.
+              </p>
+              <div class="pl-3 pr-2 py-2 border-l-2 border-accent-500 bg-accent-50/40 dark:bg-accent-900/20 rounded-r">
+                <p class="text-xs text-accent-800 dark:text-accent-200">
+                  <i data-lucide="shield" class="inline-block w-3 h-3 mr-1 -mt-0.5"></i>
+                  Patient privacy paramount
+                </p>
+              </div>
+            </div>
+
+            <div class="card-interactive p-6 bg-white/90 backdrop-blur-sm dark:bg-gray-900 rounded-xl shadow-md">
+              <div class="flex items-center space-x-3 mb-4">
+                <div class="flex-shrink-0 w-10 h-10 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center">
+                  <i data-lucide="flask-conical" class="w-5 h-5 text-primary-600 dark:text-primary-400"></i>
+                </div>
+                <h4 class="font-semibold text-primary-700 dark:text-primary-300" data-ref="https://pmc.ncbi.nlm.nih.gov/articles/PMC11371030/|62">Scientific Computing</h4>
+              </div>
+              <p class="text-sm text-gray-700 dark:text-gray-300 mb-3">
+                Augmentation paving the way for next-generation synchrotron imaging research, requiring reproducible and auditable computational methods.
+              </p>
+              <div class="pl-3 pr-2 py-2 border-l-2 border-primary-500 bg-primary-50/40 dark:bg-primary-900/20 rounded-r">
+                <p class="text-xs text-primary-800 dark:text-primary-200">
+                  <i data-lucide="shield" class="inline-block w-3 h-3 mr-1 -mt-0.5"></i>
+                  Reproducibility essential
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-12">
+          <h3 class="text-2xl font-semibold mb-6 text-primary-700 dark:text-primary-300">
+            Critical Infrastructure Integration
+          </h3>
+
+          <div class="grid md:grid-cols-2 gap-8 items-start">
+            <div class="space-y-6">
+              <p class="text-gray-700 dark:text-gray-300" data-ref="https://dl.acm.org/doi/10.1145/3548691|67">
+                The cyberattack surface within the oil and gas industry requires comprehensive analysis of emerging trends in the offshore sub-sector and historical perspectives on security incidents.
+              </p>
+
+              <div class="pl-4 pr-3 py-3 border-l-4 border-primary-500 bg-primary-50/40 dark:bg-primary-900/30 rounded-r-lg">
+                <p class="text-sm font-medium text-primary-900 dark:text-primary-100 leading-relaxed" data-ref="http://ieeexplore.ieee.org/iel8/8782706/10836121/11098952.pdf|68">
+                  <i data-lucide="info" class="inline-block w-4 h-4 mr-1.5 -mt-0.5"></i>
+                  Modularity of the system architecture and local data processing capabilities have led to reduced maintenance costs while maintaining security integrity.
+                </p>
+              </div>
+
+              <p class="text-gray-700 dark:text-gray-300" data-ref="https://dl.acm.org/doi/fullHtml/10.1145/3401980|65">
+                Details on vulnerabilities in the modern PCB supply chain, possible attacks, and existing and emerging countermeasures are essential for protecting critical infrastructure components.
+              </p>
+            </div>
+
+            <div class="card-interactive p-6 bg-white/90 backdrop-blur-sm dark:bg-gray-900 rounded-xl shadow-md">
+              <h4 class="text-lg font-semibold mb-4 text-primary-700 dark:text-primary-300" data-ref="https://dl.acm.org/doi/fullHtml/10.1145/3613424.3614271|71">
+                Space Microdatacenters
+              </h4>
+              <p class="text-gray-700 dark:text-gray-300 text-sm mb-4">
+                Large computational satellites whose primary task is to support in-space computation of Earth observation data, requiring hardened security architectures for extreme environments.
+              </p>
+              <div class="space-y-3">
+                <div class="flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-400">
+                  <i data-lucide="satellite" class="w-4 h-4"></i>
+                  <span>In-space processing</span>
+                </div>
+                <div class="flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-400">
+                  <i data-lucide="shield" class="w-4 h-4"></i>
+                  <span>Radiation-hardened systems</span>
+                </div>
+                <div class="flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-400">
+                  <i data-lucide="cloud" class="w-4 h-4"></i>
+                  <span>Edge computing architecture</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pl-4 pr-3 py-3 border-l-4 border-amber-500 bg-amber-50/40 dark:bg-amber-900/30 rounded-r-lg">
+          <p class="text-sm font-medium text-amber-900 dark:text-amber-100 leading-relaxed" data-ref="https://arxiv.org/html/2504.07358v1|214">
+            <i data-lucide="alert-triangle" class="inline-block w-4 h-4 mr-1.5 -mt-0.5"></i>
+            Premature failure of components and untimely destruction of drones can occur when security breaches compromise circuit functions, highlighting the need for robust fail-safes.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Challenges Section -->
     <section id="challenges" class="py-20 bg-white/80 dark:bg-gray-900" data-aos="fade-up">
       <div class="max-w-6xl mx-auto px-6">
         <h2 class="text-3xl font-bold mb-8 text-primary-700 dark:text-primary-300">
-          Comparative Review Against Existing Frameworks
+          Adversarial Pressures and Fragmentation Risks
         </h2>
-        <p class="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed" data-ref="https://www.oecd-ilibrary.org/governance/governing-with-artificial-intelligence_16857899-en|4">
-          The report analyzes dozens of governance approaches and 200 AI use cases, providing extensive research and discussions with governments to understand how AI can be effectively governed across diverse contexts.
-        </p>
 
         <div class="grid md:grid-cols-2 gap-8 mb-12">
-          <div class="card-interactive p-6 bg-primary-50/50 dark:bg-gray-800 rounded-xl shadow-md h-80">
-            <canvas id="frameworkComparisonChart"></canvas>
+          <div class="card-interactive p-6 bg-accent-50/50 dark:bg-accent-900/20 rounded-xl shadow-md">
+            <h3 class="text-xl font-semibold mb-4 text-accent-700 dark:text-accent-300" data-ref="https://arxiv.org/html/2505.18371v2|74">
+              Technically-Informed Regulation
+            </h3>
+            <p class="text-gray-700 dark:text-gray-300 mb-4">
+              Engagement is essential to ensure that governance reflects real-world system behavior—not just design intentions or policy abstractions, requiring continuous adaptation to emerging threats.
+            </p>
+            <div class="space-y-2">
+              <div class="flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-400">
+                <i data-lucide="circle-alert" class="w-4 h-4"></i>
+                <span>Dynamic threat landscape</span>
+              </div>
+              <div class="flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-400">
+                <i data-lucide="triangle-alert" class="w-4 h-4"></i>
+                <span>Motivated adversaries</span>
+              </div>
+              <div class="flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-400">
+                <i data-lucide="shield-alert" class="w-4 h-4"></i>
+                <span>Continuous adaptation required</span>
+              </div>
+            </div>
           </div>
+
+          <div class="card-interactive p-6 bg-accent-50/50 dark:bg-accent-900/20 rounded-xl shadow-md">
+            <h3 class="text-xl font-semibold mb-4 text-accent-700 dark:text-accent-300" data-ref="https://www.linkedin.com/posts/joshua-goossen-cissp-gicsp-137a164_adversary-informed-architecture-ive-been-activity-7428190498302885888-xBy6|127">
+              Adversary-Informed Architecture
+            </h3>
+            <p class="text-gray-700 dark:text-gray-300 mb-4">
+              Compile-time security focuses on enforcing invariants before execution, preventing unsafe states by construction, and restricting behavior through strict architectural constraints.
+            </p>
+            <div class="space-y-2">
+              <div class="flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-400">
+                <i data-lucide="lock" class="w-4 h-4"></i>
+                <span>Prevention by construction</span>
+              </div>
+              <div class="flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-400">
+                <i data-lucide="shield-check" class="w-4 h-4"></i>
+                <span>Invariant enforcement</span>
+              </div>
+              <div class="flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-400">
+                <i data-lucide="ban" class="w-4 h-4"></i>
+                <span>Unsafe state prevention</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-12">
+          <h3 class="text-2xl font-semibold mb-6 text-primary-700 dark:text-primary-300">
+            State-Sponsored Forks and Fragmentation
+          </h3>
+
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="card-interactive p-6 bg-white/90 backdrop-blur-sm dark:bg-gray-800 rounded-xl shadow-md">
+              <h4 class="text-lg font-semibold mb-4 text-primary-700 dark:text-primary-300" data-ref="https://www.linkedin.com/pulse/chinas-ai-blueprint-broke-rulesnow-world-has-playbook-dion-wiggins-whpsc|22">
+                Independent Development Paths
+              </h4>
+              <p class="text-gray-700 dark:text-gray-300 text-sm mb-3">
+                China has redefined the rules of AI—delivering GPT-tier performance without Nvidia, trillion-dollar clouds, or Silicon Valley capital, demonstrating alternative development models.
+              </p>
+              <div class="pl-3 pr-2 py-2 border-l-2 border-primary-500 bg-primary-50/40 dark:bg-primary-900/20 rounded-r">
+                <p class="text-xs text-primary-800 dark:text-primary-200">
+                  <i data-lucide="cpu" class="inline-block w-3 h-3 mr-1 -mt-0.5"></i>
+                  Resource independence possible
+                </p>
+              </div>
+            </div>
+
+            <div class="card-interactive p-6 bg-white/90 backdrop-blur-sm dark:bg-gray-800 rounded-xl shadow-md">
+              <h4 class="text-lg font-semibold mb-4 text-accent-700 dark:text-accent-300" data-ref="https://www.tandfonline.com/doi/full/10.1080/23311975.2023.2262715|157">
+                Defense Industry Independence
+              </h4>
+              <p class="text-gray-700 dark:text-gray-300 text-sm mb-3">
+                Examination of factors related to business performance that can explain the independence of the defense industry in developing countries, highlighting self-reliance strategies.
+              </p>
+              <div class="pl-3 pr-2 py-2 border-l-2 border-accent-500 bg-accent-50/40 dark:bg-accent-900/20 rounded-r">
+                <p class="text-xs text-accent-800 dark:text-accent-200">
+                  <i data-lucide="factory" class="inline-block w-3 h-3 mr-1 -mt-0.5"></i>
+                  Local capability building
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-12">
+          <h3 class="text-2xl font-semibold mb-6 text-primary-700 dark:text-primary-300">
+            International Legal Framework Alignment
+          </h3>
 
           <div class="space-y-6">
-            <h3 class="text-xl font-semibold text-primary-700 dark:text-primary-300" data-ref="https://www.oecd.org/en/newsroom/artificial-intelligence-update-oecd-ai-principles.html|3">
-              OECD AI Principles
-            </h3>
-            <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
-              The 2024 update to the OECD AI Principles addresses rapid technological changes, particularly the rise of general-purpose AI and foundation models, strengthening the framework's adaptability and relevance in evolving AI landscapes.
-            </p>
+            <div class="card-interactive p-6 bg-primary-50/50 dark:bg-primary-900/20 rounded-xl shadow-md">
+              <h4 class="text-lg font-semibold mb-4 text-primary-700 dark:text-primary-300" data-ref="https://www.cambridge.org/core/journals/international-legal-materials/article/framework-convention-on-artificial-intelligence-and-human-rights-democracy-and-the-rule-of-law-council-eur/0CCDA03299BF85537031F1CA26CF2CBD|43">
+                Framework Convention on AI and Human Rights
+              </h4>
+              <p class="text-gray-700 dark:text-gray-300 text-sm mb-3">
+                With the adoption of the AI Treaty by the Council of Ministers in September 2024, the AI Treaty is now open for signature and ratification by member states and stakeholders.
+              </p>
+              <div class="pl-3 pr-2 py-2 border-l-2 border-primary-500 bg-primary-50/40 dark:bg-primary-900/20 rounded-r">
+                <p class="text-xs text-primary-800 dark:text-primary-200">
+                  <i data-lucide="globe" class="inline-block w-3 h-3 mr-1 -mt-0.5"></i>
+                  International cooperation framework
+                </p>
+              </div>
+            </div>
 
-            <h3 class="text-xl font-semibold text-primary-700 dark:text-primary-300" data-ref="https://www.europarl.europa.eu/thinktank/en/document/EPRS_ST(2022)725767|6">
-              EU AI Act
-            </h3>
-            <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
-              The European Parliament recognizes the strategic importance of AI in defence but calls for regulation and a prohibition on lethal autonomous weapons (LAWS).
-            </p>
-
-            <h3 class="text-xl font-semibold text-primary-700 dark:text-primary-300" data-ref="https://www.oecd-ilibrary.org/governance/governing-with-artificial-intelligence_16857899-en|4">
-              Cross-Jurisdictional Analysis
-            </h3>
-            <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
-              The report discusses the importance of safeguarding fundamental rights and ensuring that AI systems do not undermine human dignity or democratic values, providing a foundation for cross-jurisdictional governance analysis.
-            </p>
+            <div class="card-interactive p-6 bg-primary-50/50 dark:bg-primary-900/20 rounded-xl shadow-md">
+              <h4 class="text-lg font-semibold mb-4 text-primary-700 dark:text-primary-300" data-ref="https://docs.un.org/en/CCW/GGE.1/2024/WP.11|25">
+                Convention on Prohibitions or Restrictions
+              </h4>
+              <p class="text-gray-700 dark:text-gray-300 text-sm mb-3">
+                The second 2024 session of the Group of Governmental Experts on emerging technologies in the area of lethal autonomous weapons systems convened to address regulatory challenges.
+              </p>
+              <div class="pl-3 pr-2 py-2 border-l-2 border-primary-500 bg-primary-50/40 dark:bg-primary-900/20 rounded-r">
+                <p class="text-xs text-primary-800 dark:text-primary-200">
+                  <i data-lucide="scale" class="inline-block w-3 h-3 mr-1 -mt-0.5"></i>
+                  Multilateral governance approach
+                </p>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="pl-4 pr-3 py-3 border-l-4 border-primary-500 bg-primary-50/40 dark:bg-primary-900/30 rounded-r-lg mb-8">
-          <p class="text-sm font-medium text-primary-900 dark:text-primary-100 leading-relaxed" data-ref="https://www.oecd-ilibrary.org/governance/governing-with-artificial-intelligence_16857899-en|4">
-            <i data-lucide="info" class="inline-block w-4 h-4 mr-1.5 -mt-0.5"></i>
-            Critical insight: The report analyzes dozens of governance approaches and 200 AI use cases, providing extensive research and discussions with governments to understand how AI can be effectively governed across diverse contexts.
+        <div class="pl-4 pr-3 py-3 border-l-4 border-amber-500 bg-amber-50/40 dark:bg-amber-900/30 rounded-r-lg">
+          <p class="text-sm font-medium text-amber-900 dark:text-amber-100 leading-relaxed" data-ref="https://www.linkedin.com/pulse/privacy-strategic-power-ra%C3%A9d-alexander-ayyad-rhq7c|213">
+            <i data-lucide="alert-triangle" class="inline-block w-4 h-4 mr-1.5 -mt-0.5"></i>
+            Enforcement lag alone guarantees failure. The primary risk posed by AI is not automation error, but premature certainty applied at scale without adequate safeguards.
           </p>
-        </div>
-
-        <div class="hs-accordion-group space-y-4">
-          <div class="hs-accordion card-interactive bg-white/80 backdrop-blur-sm dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
-            <button class="hs-accordion-toggle w-full flex justify-between items-center p-4 text-left hover:bg-primary-50 dark:hover:bg-gray-700/50 transition-colors rounded-xl" id="hs-challenge-1">
-              <div class="flex items-center space-x-4">
-                <div class="flex-shrink-0 w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center">
-                  <i data-lucide="shield-alert" class="w-6 h-6 text-primary-600 dark:text-primary-400"></i>
-                </div>
-                <span class="font-semibold text-lg text-primary-700 dark:text-primary-300">Defense AI Ethics Frameworks</span>
-              </div>
-              <i data-lucide="chevron-down" class="hs-accordion-active:rotate-180 transition-transform duration-300 w-5 h-5 text-primary-600 dark:text-primary-400"></i>
-            </button>
-            <div id="hs-collapse-challenge-1" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" aria-labelledby="hs-challenge-1">
-              <div class="p-6 pt-0 space-y-4">
-                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.europarl.europa.eu/thinktank/en/document/EPRS_ST(2022)725767|6">
-                  The European Parliament recognizes the strategic importance of AI in defence but calls for regulation and a prohibition on lethal autonomous weapons (LAWS).
-                </p>
-                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.un.org/en/ga/search/view_doc.asp?symbol=A/79/88|5">
-                  The report discusses the need for restrictions on lethal autonomous weapons systems (LAWS), emphasizing the importance of maintaining human accountability in life-or-death decisions.
-                </p>
-                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.un.org/en/ga/search/view_doc.asp?symbol=A/79/88|5">
-                  The United Nations Secretary-General has called on States to conclude a treaty to prohibit lethal autonomous weapon systems that function without human control.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="hs-accordion card-interactive bg-white/80 backdrop-blur-sm dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
-            <button class="hs-accordion-toggle w-full flex justify-between items-center p-4 text-left hover:bg-primary-50 dark:hover:bg-gray-700/50 transition-colors rounded-xl" id="hs-challenge-2">
-              <div class="flex items-center space-x-4">
-                <div class="flex-shrink-0 w-12 h-12 bg-accent-100 dark:bg-accent-900/30 rounded-lg flex items-center justify-center">
-                  <i data-lucide="eye-off" class="w-6 h-6 text-accent-600 dark:text-accent-400"></i>
-                </div>
-                <span class="font-semibold text-lg text-accent-700 dark:text-accent-300">Surveillance Ethics Frameworks</span>
-              </div>
-              <i data-lucide="chevron-down" class="hs-accordion-active:rotate-180 transition-transform duration-300 w-5 h-5 text-accent-600 dark:text-accent-400"></i>
-            </button>
-            <div id="hs-collapse-challenge-2" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" aria-labelledby="hs-challenge-2">
-              <div class="p-6 pt-0 space-y-4">
-                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.oecd-ilibrary.org/governance/governing-with-artificial-intelligence_16857899-en|4">
-                  The report discusses the importance of safeguarding fundamental rights and ensuring that AI systems do not undermine human dignity or democratic values.
-                </p>
-                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.oecd-ilibrary.org/governance/governing-with-artificial-intelligence_16857899-en|4">
-                  The report analyzes dozens of governance approaches and 200 AI use cases, providing extensive research and discussions with governments to understand how AI can be effectively governed across diverse contexts.
-                </p>
-                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.researchgate.net/publication/395914702_Ternary_Moral_Logic_A_Novel_Architecture_for_Enforceable_Ethical_AI_Governance|2">
-                  TML incorporates mechanisms like Sacred Zero, Sacred Pause, and cryptographic audit logging to ensure enforceable ethical governance.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="hs-accordion card-interactive bg-white/80 backdrop-blur-sm dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
-            <button class="hs-accordion-toggle w-full flex justify-between items-center p-4 text-left hover:bg-primary-50 dark:hover:bg-gray-700/50 transition-colors rounded-xl" id="hs-challenge-3">
-              <div class="flex items-center space-x-4">
-                <div class="flex-shrink-0 w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center">
-                  <i data-lucide="code" class="w-6 h-6 text-primary-600 dark:text-primary-400"></i>
-                </div>
-                <span class="font-semibold text-lg text-primary-700 dark:text-primary-300">Ternary Moral Logic Architecture</span>
-              </div>
-              <i data-lucide="chevron-down" class="hs-accordion-active:rotate-180 transition-transform duration-300 w-5 h-5 text-primary-600 dark:text-primary-400"></i>
-            </button>
-            <div id="hs-collapse-challenge-3" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" aria-labelledby="hs-challenge-3">
-              <div class="p-6 pt-0 space-y-4">
-                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.researchgate.net/publication/395914702_Ternary_Moral_Logic_A_Novel_Architecture_for_Enforceable_Ethical_AI_Governance|2">
-                  Ternary Moral Logic (TML) is a novel computational ethics architecture designed to bridge immutable technical systems with enforceable ethical governance.
-                </p>
-                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.researchgate.net/publication/395914702_Ternary_Moral_Logic_A_Novel_Architecture_for_Enforceable_Ethical_AI_Governance|2">
-                  TML incorporates mechanisms like Sacred Zero, Sacred Pause, and cryptographic audit logging to ensure enforceable ethical governance.
-                </p>
-                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.researchgate.net/publication/395914702_Ternary_Moral_Logic_A_Novel_Architecture_for_Enforceable_Ethical_AI_Governance|2">
-                  The architecture is designed to prevent prohibited activities through architectural enforcement mechanisms.
-                </p>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </section>
@@ -810,243 +826,139 @@
     <section id="conclusion" class="py-20 bg-primary-50/50 dark:bg-gray-800" data-aos="fade-up">
       <div class="max-w-5xl mx-auto px-6">
         <h2 class="text-3xl font-bold mb-8 text-primary-700 dark:text-primary-300">
-          Final Determination: Technical Feasibility, Economic Viability, and Political Realism
+          Conclusion and Future Directions
         </h2>
-        
+
         <div class="space-y-6 mb-12">
-          <p class="text-gray-700 dark:text-gray-300 leading-relaxed" data-ref="https://www.statista.com/statistics/1441774/global-ai-governance-market-size/|1">
-            The global AI governance market size was valued at approximately
-            <span class="mx-1 px-1.5 py-0.5 rounded-md bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300 font-semibold text-sm">$750 million</span>
-            in 2024 and is projected to reach
-            <span class="mx-1 px-1.5 py-0.5 rounded-md bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300 font-semibold text-sm">$5.64 billion</span>
-            by 2030, growing at a compound annual growth rate (CAGR) of
-            <span class="mx-1 px-1.5 py-0.5 rounded-md bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300 font-semibold text-sm">40%</span>,
-            indicating strong market demand for ethical AI frameworks.
+          <p class="text-gray-700 dark:text-gray-300" data-ref="https://link.springer.com/article/10.1007/s43681-025-00759-9|111">
+            Central to this study is an immutable ethical principle: AI must not harm humanity or violate fundamental values, must monitor and mitigate misuse of its capabilities, and must maintain transparency through verifiable audit trails.
           </p>
 
-          <div class="pl-4 pr-3 py-3 border-l-4 border-primary-500 bg-primary-50/40 dark:bg-primary-900/30 rounded-r-lg">
-            <p class="text-sm font-medium text-primary-900 dark:text-primary-100 leading-relaxed" data-ref="https://www.oecd-ilibrary.org/governance/governing-with-artificial-intelligence_16857899-en|4">
-              <i data-lucide="circle-check" class="inline-block w-4 h-4 mr-1.5 -mt-0.5"></i>
-              Key insight: The report analyzes dozens of governance approaches and 200 AI use cases, providing extensive research and discussions with governments to understand how AI can be effectively governed across diverse contexts.
-            </p>
-          </div>
+          <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.nature.com/articles/s41599-024-03560-x|76">
+            Theoretical framework being established in relation to the development of international law applicable to AI requires careful consideration of jurisdictional differences and enforcement mechanisms across sovereign states.
+          </p>
 
-          <p class="text-gray-700 dark:text-gray-300 leading-relaxed" data-ref="https://www.oecd-ilibrary.org/governance/governing-with-artificial-intelligence_16857899-en|4">
-            The report discusses the importance of safeguarding fundamental rights and ensuring that AI systems do not undermine human dignity or democratic values, providing a foundation for cross-jurisdictional governance analysis.
+          <p class="text-gray-700 dark:text-gray-300" data-ref="https://academic.oup.com/book/61416/chapter/533868374|174">
+            Distinction between conventional AI systems in civilian domains versus conventional AI in military applications highlights the need for differentiated governance approaches that account for varying risk profiles.
           </p>
         </div>
 
-        <div class="grid md:grid-cols-3 gap-6 mb-12">
+        <div class="grid md:grid-cols-2 gap-8 mb-12">
           <div class="card-interactive p-6 bg-white/90 backdrop-blur-sm dark:bg-gray-900 rounded-xl shadow-md">
-            <div class="flex items-center space-x-4 mb-4">
-              <div class="flex-shrink-0 w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center">
-                <i data-lucide="cpu" class="w-6 h-6 text-primary-600 dark:text-primary-400"></i>
+            <div class="flex items-center space-x-3 mb-4">
+              <div class="flex-shrink-0 w-10 h-10 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center">
+                <i data-lucide="trending-up" class="w-5 h-5 text-primary-600 dark:text-primary-400"></i>
               </div>
-              <h4 class="font-semibold text-lg text-primary-700 dark:text-primary-300" data-ref="https://www.researchgate.net/publication/395914702_Ternary_Moral_Logic_A_Novel_Architecture_for_Enforceable_Ethical_AI_Governance|2">Technical Feasibility</h4>
+              <h3 class="font-semibold text-primary-700 dark:text-primary-300" data-ref="https://ajithp.com/2025/12/14/enterprise-ai-governance-framework/|124">Governance Maturity Gap</h3>
             </div>
-            <p class="text-sm text-gray-700 dark:text-gray-300">
-              TML architecture demonstrates technical feasibility through Sacred Zero, Sacred Pause, and cryptographic audit logging mechanisms
+            <p class="text-gray-700 dark:text-gray-300 text-sm">
+              <span class="mx-1 px-1.5 py-0.5 rounded-md bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300 font-semibold text-sm">72%</span> have AI in production, only <span class="mx-1 px-1.5 py-0.5 rounded-md bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300 font-semibold text-sm">9%</span> have mature governance. The CTRS framework addresses decision rights, audit trails, and regulatory readiness.
             </p>
           </div>
 
           <div class="card-interactive p-6 bg-white/90 backdrop-blur-sm dark:bg-gray-900 rounded-xl shadow-md">
-            <div class="flex items-center space-x-4 mb-4">
-              <div class="flex-shrink-0 w-12 h-12 bg-accent-100 dark:bg-accent-900/30 rounded-lg flex items-center justify-center">
-                <i data-lucide="trending-up" class="w-6 h-6 text-accent-600 dark:text-accent-400"></i>
+            <div class="flex items-center space-x-3 mb-4">
+              <div class="flex-shrink-0 w-10 h-10 bg-accent-100 dark:bg-accent-900/30 rounded-lg flex items-center justify-center">
+                <i data-lucide="target" class="w-5 h-5 text-accent-600 dark:text-accent-400"></i>
               </div>
-              <h4 class="font-semibold text-lg text-accent-700 dark:text-accent-300" data-ref="https://www.statista.com/statistics/1441774/global-ai-governance-market-size/|1">Economic Viability</h4>
+              <h3 class="font-semibold text-accent-700 dark:text-accent-300" data-ref="https://www.linkedin.com/posts/yaseen-ali-8a78214_most-ai-governance-today-still-looks-solid-activity-7426966597665329152-RS6A|195">Operational Reality Gap</h3>
             </div>
-            <p class="text-sm text-gray-700 dark:text-gray-300">
-              Strong market growth projections indicate economic viability of ethical AI governance frameworks
-            </p>
-          </div>
-
-          <div class="card-interactive p-6 bg-white/90 backdrop-blur-sm dark:bg-gray-900 rounded-xl shadow-md">
-            <div class="flex items-center space-x-4 mb-4">
-              <div class="flex-shrink-0 w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center">
-                <i data-lucide="globe" class="w-6 h-6 text-primary-600 dark:text-primary-400"></i>
-              </div>
-              <h4 class="font-semibold text-lg text-primary-700 dark:text-primary-300" data-ref="https://www.oecd-ilibrary.org/governance/governing-with-artificial-intelligence_16857899-en|4">Political Realism</h4>
-            </div>
-            <p class="text-sm text-gray-700 dark:text-gray-300">
-              Cross-jurisdictional analysis shows potential for global interoperability despite regulatory differences
+            <p class="text-gray-700 dark:text-gray-300 text-sm">
+              Most AI governance today still looks solid on paper. Policies are well written. Frameworks are thoughtful. Committees are in place—but the gap between policy and operational reality remains significant.
             </p>
           </div>
         </div>
 
-        <div class="card-interactive p-8 bg-white/90 backdrop-blur-sm dark:bg-gray-900 rounded-xl shadow-lg">
-          <h3 class="text-2xl font-bold mb-6 text-primary-700 dark:text-primary-300">
-            Universal Adoption Assessment
-          </h3>
-          <div class="space-y-4">
-            <p class="text-gray-700 dark:text-gray-300 leading-relaxed" data-ref="https://www.oecd-ilibrary.org/governance/governing-with-artificial-intelligence_16857899-en|4">
-              The report analyzes dozens of governance approaches and 200 AI use cases, providing extensive research and discussions with governments to understand how AI can be effectively governed across diverse contexts.
-            </p>
-            <p class="text-gray-700 dark:text-gray-300 leading-relaxed" data-ref="https://www.oecd.org/en/newsroom/artificial-intelligence-update-oecd-ai-principles.html|3">
-              The 2024 update to the OECD AI Principles addresses rapid technological changes, particularly the rise of general-purpose AI and foundation models, strengthening the framework's adaptability and relevance in evolving AI landscapes.
-            </p>
-            <p class="text-gray-700 dark:text-gray-300 leading-relaxed" data-ref="https://www.researchgate.net/publication/395914702_Ternary_Moral_Logic_A_Novel_Architecture_for_Enforceable_Ethical_AI_Governance|2">
-              TML architecture demonstrates potential for universal adoption through enforceable ethical governance mechanisms.
-            </p>
-          </div>
+        <div class="pl-4 pr-3 py-3 border-l-4 border-primary-500 bg-primary-50/40 dark:bg-primary-900/30 rounded-r-lg">
+          <p class="text-sm font-medium text-primary-900 dark:text-primary-100 leading-relaxed" data-ref="https://www.linkedin.com/posts/center-for-ai-and-digital-policy_artificial-intelligence-and-the-great-divergence-activity-7420849602263678976-5CBJ|216">
+            <i data-lucide="info" class="inline-block w-4 h-4 mr-1.5 -mt-0.5"></i>
+            Nations, regions, and corporations are entering a new phase: AI resilience over AI speed, AI infrastructure over AI hype, and execution jurisdictions over policy intentions.
+          </p>
         </div>
       </div>
     </section>
   </main>
 
   <!-- Footer -->
-  <footer class="bg-primary-900 dark:bg-gray-950 text-gray-300 py-8">
-    <div class="max-w-5xl mx-auto px-6 text-center">
-      <p class="text-sm">
-        &copy; 2025 Ternary Moral Logic Universal Adoption Analysis. Educational research content.
-      </p>
-      <p class="text-xs mt-2 text-gray-400">
-        This analysis is based on publicly available research and regulatory documents.
-      </p>
+  <footer class="bg-primary-900 dark:bg-gray-950 text-gray-300 py-12">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid md:grid-cols-3 gap-8 mb-8">
+        <div>
+          <h3 class="text-lg font-semibold text-primary-300 dark:text-primary-400 mb-4">About This Research</h3>
+          <p class="text-sm text-gray-400">
+            A comprehensive framework for Ternary Moral Logic in AI governance, establishing immutable architectural constraints for ethical AI deployment across all domains.
+          </p>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold text-primary-300 dark:text-primary-400 mb-4">Core Principles</h3>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li class="flex items-center space-x-2">
+              <i data-lucide="shield-check" class="w-4 h-4 text-primary-400"></i>
+              <span>No Spy, No Weapon</span>
+            </li>
+            <li class="flex items-center space-x-2">
+              <i data-lucide="file-text" class="w-4 h-4 text-primary-400"></i>
+              <span>No Log = No Action</span>
+            </li>
+            <li class="flex items-center space-x-2">
+              <i data-lucide="layers" class="w-4 h-4 text-primary-400"></i>
+              <span>Architectural Invariants</span>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold text-primary-300 dark:text-primary-400 mb-4">Research Scope</h3>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li class="flex items-center space-x-2">
+              <i data-lucide="briefcase" class="w-4 h-4 text-primary-400"></i>
+              <span>Civilian Applications</span>
+            </li>
+            <li class="flex items-center space-x-2">
+              <i data-lucide="heart-pulse" class="w-4 h-4 text-primary-400"></i>
+              <span>Healthcare Systems</span>
+            </li>
+            <li class="flex items-center space-x-2">
+              <i data-lucide="flask-conical" class="w-4 h-4 text-primary-400"></i>
+              <span>Scientific Computing</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-gray-700 pt-8 text-center">
+        <p class="text-sm text-gray-400">
+          © 2025 Ternary Moral Logic Research Framework. All content based on referenced academic and technical sources.
+        </p>
+      </div>
     </div>
   </footer>
 
-  <!-- Chart Initialization Script -->
-  <script>
-    const getThemeColor = (light, dark) => document.body.classList.contains('dark') ? dark : light;
-    let charts = {};
-    
-    const getColors = () => ({
-      primary: getThemeColor('#1a5a99', '#6aa8e6'),
-      accent: getThemeColor('#6a2e9f', '#b19cd9'),
-      text: getThemeColor('#1f2937', '#e5e7eb'),
-      grid: getThemeColor('#e5e7eb', '#4b5563')
-    });
-    
-    const updateCharts = () => {
-      const { text, grid } = getColors();
-      
-      Object.values(charts).forEach(chart => {
-        if (chart?.options) {
-          if (chart.options.plugins?.legend?.labels) chart.options.plugins.legend.labels.color = text;
-          if (chart.options.plugins?.title) chart.options.plugins.title.color = text;
-          if (chart.options.scales) {
-            Object.values(chart.options.scales).forEach(scale => {
-              if (scale.ticks) scale.ticks.color = text;
-              if (scale.grid) scale.grid.color = grid;
-              if (scale.pointLabels) scale.pointLabels.color = text;
-              if (scale.title) scale.title.color = text;
-            });
-          }
-          chart.update('none');
-        }
-      });
-    };
-
-    // Data from https://www.statista.com/statistics/1441774/global-ai-governance-market-size/|1
-    const marketGrowthData = {
-      labels: ['2024', '2025', '2030'],
-      datasets: [{
-        label: 'Market Value ($ billions)',
-        data: [0.75, 0.94, 5.64],
-        borderColor: getThemeColor('#1a5a99', '#6aa8e6'),
-        backgroundColor: getThemeColor('rgba(26, 90, 153, 0.1)', 'rgba(106, 168, 230, 0.1)'),
-        tension: 0.4
-      }]
-    };
-
-    // Data from https://www.statista.com/statistics/1441774/global-ai-governance-market-size/|1, https://www.oecd.org/en/newsroom/artificial-intelligence-update-oecd-ai-principles.html|3, https://www.europarl.europa.eu/thinktank/en/document/EPRS_ST(2022)725767|6, https://www.oecd-ilibrary.org/governance/governing-with-artificial-intelligent|4
-    const frameworkComparisonData = {
-      labels: ['OECD AI Principles', 'EU AI Act', 'Cross-Jurisdictional Analysis', 'TML Architecture'],
-      datasets: [{
-        label: 'Effectiveness Score',
-        data: [85, 80, 75, 90],
-        backgroundColor: [
-          getThemeColor('rgba(26, 90, 153, 0.7)', 'rgba(106, 168, 230, 0.7)'),
-          getThemeColor('rgba(106, 46, 159, 0.7)', 'rgba(177, 156, 217, 0.7)'),
-          getThemeColor('rgba(46, 159, 168, 0.7)', 'rgba(128, 203, 196, 0.7)'),
-          getThemeColor('rgba(26, 90, 153, 0.7)', 'rgba(106, 168, 230, 0.7)')
-        ]
-      }]
-    };
-
-    document.addEventListener('DOMContentLoaded', function() {
-      requestAnimationFrame(() => {
-        const { primary, accent, text, grid } = getColors();
-        
-        const commonOptions = {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: { legend: { labels: { color: text } } },
-          scales: {
-            x: { ticks: { color: text }, grid: { color: grid } },
-            y: { beginAtZero: true, ticks: { color: text }, grid: { color: grid } }
-          }
-        };
-
-        if (document.getElementById('marketGrowthChart')) {
-          charts.marketGrowth = new Chart(document.getElementById('marketGrowthChart'), {
-            type: 'line',
-            data: marketGrowthData,
-            options: {
-              ...commonOptions,
-              plugins: {
-                legend: { display: false },
-                title: {
-                  display: true,
-                  text: 'AI Governance Market Growth Projection',
-                  color: text,
-                  font: { size: 14, weight: 'bold' }
-                }
-              }
-            }
-          });
-        }
-
-        if (document.getElementById('frameworkComparisonChart')) {
-          charts.frameworkComparison = new Chart(document.getElementById('frameworkComparisonChart'), {
-            type: 'bar',
-            data: frameworkComparisonData,
-            options: {
-              ...commonOptions,
-              plugins: {
-                legend: { display: false },
-                title: {
-                  display: true,
-                  text: 'Framework Effectiveness Comparison',
-                  color: text,
-                  font: { size: 14, weight: 'bold' }
-                }
-              }
-            }
-          });
-        }
-        
-        lucide.createIcons();
-        updateCharts();
-      });
-    });
-
-    // Update charts when theme changes
-    new MutationObserver(() => updateCharts()).observe(document.body, { attributes: true, attributeFilter: ['class'] });
-  </script>
-
-  <!-- AOS Initialization -->
+  <!-- Initialize Libraries -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+      // Initialize Lucide icons
+      lucide.createIcons();
+
+      // Initialize AOS animations
       AOS.init({
         duration: 800,
-        easing: 'ease-in-out',
         once: true,
         offset: 100
       });
-      
-      // Progress bar
+
+      // Initialize Preline components
+      setTimeout(() => {
+        window.HSStaticMethods.autoInit();
+      }, 100);
+
+      // Progress bar functionality
       const progressBar = document.getElementById('progressBar');
-      const updateProgress = () => {
+      
+      window.addEventListener('scroll', () => {
         const scrollTop = window.pageYOffset;
         const docHeight = document.body.scrollHeight - window.innerHeight;
         const scrollPercent = (scrollTop / docHeight) * 100;
         progressBar.style.width = scrollPercent + '%';
-      };
-      
-      window.addEventListener('scroll', updateProgress);
-      updateProgress();
+      });
 
       // Initialize citation system
       initCitationSystem();
