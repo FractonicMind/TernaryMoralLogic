@@ -1,725 +1,1715 @@
 <!DOCTYPE html><html lang="en"><head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Ternary Moral Logic: Doctrinal Research Manual</title>
+    <title>Universal Scalability of Ternary Moral Logic Under the NoS-NoW Mandate</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Tiempos+Text:wght@400;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'serif': ['Tiempos Text', 'Georgia', 'serif'],
+                        'sans': ['Inter', 'system-ui', 'sans-serif']
+                    },
+                    colors: {
+                        'primary': '#1e40af',
+                        'accent': '#d97706',
+                        'muted': '#64748b'
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        :root {
-            --primary: #1a365d;
-            --secondary: #6b2737;
-            --accent: #2d5a4a;
-            --dark: #1a202c;
-            --mid: #4a5568;
-            --light: #718096;
-            --border: #cbd5e0;
-            --bg: #ffffff;
-            --bg-alt: #f7fafc;
+        .hero-gradient {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
         }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        .text-shadow {
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
-        
-        body {
-            font-family: 'Times New Roman', Georgia, serif;
-            font-size: 12pt;
-            line-height: 1.6;
-            color: var(--dark);
-            background: var(--bg);
-            max-width: 210mm;
-            margin: 0 auto;
-            padding: 20mm;
+        .prose-custom {
+            line-height: 1.8;
+            font-size: 1.1rem;
         }
-        
-        @media print {
-            body {
-                padding: 15mm;
-            }
-            .no-print {
-                display: none;
-            }
-            .page-break {
-                page-break-before: always;
-            }
-        }
-        
-        /* Cover Page */
-        .cover {
-            text-align: center;
-            padding-top: 80mm;
-            page-break-after: always;
-        }
-        
-        .cover h1 {
-            font-size: 28pt;
-            font-weight: bold;
-            color: var(--primary);
-            margin-bottom: 10mm;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-        
-        .cover .subtitle {
-            font-size: 18pt;
-            color: var(--dark);
-            margin-bottom: 15mm;
-        }
-        
-        .cover .doctrine-line {
-            font-size: 14pt;
-            font-style: italic;
-            color: var(--secondary);
-            margin-bottom: 30mm;
-        }
-        
-        .cover .mandates {
-            margin: 20mm 0;
-        }
-        
-        .cover .mandate {
-            font-size: 14pt;
-            font-weight: bold;
-            color: var(--accent);
-            margin: 5mm 0;
-        }
-        
-        .cover .meta {
-            margin-top: 40mm;
-            font-size: 11pt;
-            color: var(--light);
-        }
-        
-        /* Table of Contents */
-        .toc {
-            page-break-after: always;
-        }
-        
-        .toc h2 {
-            font-size: 18pt;
-            color: var(--primary);
-            text-transform: uppercase;
-            margin-bottom: 15mm;
-            padding-bottom: 5mm;
-            border-bottom: 2px solid var(--primary);
-        }
-        
-        .toc-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 3mm 0;
-            border-bottom: 1px dotted var(--border);
-        }
-        
-        .toc-item.level-1 {
-            font-weight: bold;
-        }
-        
-        .toc-item.level-2 {
-            padding-left: 10mm;
-        }
-        
-        /* Section Headers */
-        h2.section-title {
-            font-size: 16pt;
-            color: var(--primary);
-            text-transform: uppercase;
-            margin-top: 15mm;
-            margin-bottom: 8mm;
-            padding-bottom: 3mm;
-            border-bottom: 2px solid var(--primary);
-            page-break-after: avoid;
-        }
-        
-        h3 {
-            font-size: 14pt;
-            color: var(--dark);
-            margin-top: 10mm;
-            margin-bottom: 5mm;
-            page-break-after: avoid;
-        }
-        
-        h4 {
-            font-size: 12pt;
-            font-weight: bold;
-            color: var(--mid);
-            margin-top: 8mm;
-            margin-bottom: 4mm;
-            font-style: italic;
-            page-break-after: avoid;
-        }
-        
-        /* Paragraphs */
-        p {
-            text-align: justify;
-            margin-bottom: 5mm;
-            text-indent: 0;
-        }
-        
-        p.no-indent {
-            text-indent: 0;
-        }
-        
-        /* Lists */
-        ul, ol {
-            margin-left: 8mm;
-            margin-bottom: 5mm;
-        }
-        
-        li {
-            margin-bottom: 2mm;
-        }
-        
-        /* Definition Box */
-        .definition-box {
-            background: var(--bg-alt);
-            border-left: 4px solid var(--primary);
-            padding: 5mm;
-            margin: 8mm 0;
-            page-break-inside: avoid;
-        }
-        
-        .definition-box.red {
-            border-left-color: var(--secondary);
-        }
-        
-        .definition-box.purple {
-            border-left-color: #6b46c1;
-        }
-        
-        .definition-box.emerald {
-            border-left-color: var(--accent);
-        }
-        
-        .definition-box h4 {
-            margin-top: 0;
-            font-style: normal;
-        }
-        
-        /* Key Statement */
-        .key-statement {
-            background: var(--primary);
-            color: white;
-            padding: 8mm;
-            margin: 10mm 0;
-            text-align: center;
-            font-weight: bold;
-            font-size: 13pt;
-            page-break-inside: avoid;
-        }
-        
-        /* Tables */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 8mm 0;
-            font-size: 10pt;
-            page-break-inside: avoid;
-        }
-        
-        th {
-            background: var(--bg-alt);
-            border-top: 2px solid var(--primary);
-            border-bottom: 2px solid var(--primary);
-            padding: 3mm;
-            text-align: left;
-            font-weight: bold;
-        }
-        
-        td {
-            padding: 3mm;
-            border-bottom: 1px solid var(--border);
-        }
-        
-        tr:last-child td {
-            border-bottom: 2px solid var(--primary);
-        }
-        
-        /* Badge */
-        .badge {
-            display: inline-block;
-            padding: 1mm 3mm;
-            border-radius: 2mm;
-            font-size: 9pt;
-            font-weight: bold;
-        }
-        
-        .badge.high {
-            background: #c6f6d5;
-            color: #22543d;
-        }
-        
-        .badge.moderate {
-            background: #feebc8;
-            color: #744210;
-        }
-        
-        .badge.low {
-            background: #fed7d7;
-            color: #742a2a;
-        }
-        
-        /* Two Column Layout */
-        .two-column {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10mm;
-        }
-        
-        /* Answer Box */
-        .answer-box {
-            border: 3px solid var(--primary);
-            padding: 10mm;
-            margin: 15mm 0;
-            background: var(--bg-alt);
-            page-break-inside: avoid;
-        }
-        
-        .answer-box h3 {
-            color: var(--primary);
-            text-align: center;
-            margin-top: 0;
-        }
-        
-        .answer-box .answer {
-            font-size: 14pt;
-            font-weight: bold;
-            color: var(--accent);
-            text-align: center;
-            margin: 5mm 0;
-        }
-        
-        /* Quote */
-        blockquote {
-            border-left: 4px solid var(--accent);
-            padding-left: 5mm;
-            margin: 8mm 0;
-            font-style: italic;
-            color: var(--mid);
-        }
-        
-        /* Page break utility */
-        .page-break {
-            page-break-before: always;
-        }
-        
-        /* Download button (screen only) */
-        .download-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: var(--primary);
-            color: white;
-            padding: 12px 24px;
-            border-radius: 8px;
+        .citation-link {
+            color: #d97706;
             text-decoration: none;
-            font-family: sans-serif;
-            font-weight: bold;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            font-weight: 500;
+            border-bottom: 1px dotted #d97706;
+        }
+        .citation-link:hover {
+            background-color: #fef3c7;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+        .toc-fixed {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            width: 280px;
+            max-height: calc(100vh - 4rem);
+            overflow-y: auto;
             z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
         }
-        
-        .download-btn:hover {
-            background: #2c5282;
+        .main-content {
+            margin-left: 320px;
+            padding-right: 2rem;
         }
-        
-        @media print {
-            .download-btn {
+        @media (max-width: 1280px) {
+            .toc-fixed {
                 display: none;
             }
+            .main-content {
+                margin-left: 0;
+                padding-left: 2rem;
+            }
+        }
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #cbd5e1, transparent);
+            margin: 3rem 0;
         }
     </style>
-
+  <base target="_blank">
 </head>
-<body>
- 
 
-    <!-- Cover Page -->
-    <div class="cover">
-        <h1>Ternary Moral Logic</h1>
-        <div class="subtitle">Universality Under Dual Non-Negotiable Mandates</div>
-        <div class="doctrine-line">A Doctrinal Research Manual for Future TML Researchers</div>
-        
-        <div style="margin: 30mm 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 10mm 0;">
-            <div class="mandate">No Spy, No Weapon</div>
-            <div class="mandate">No Log = No Action</div>
+  <body class="bg-slate-50 font-sans">
+    <!-- Fixed Table of Contents -->
+    <nav class="toc-fixed">
+      <div class="p-6">
+        <h3 class="font-serif font-bold text-lg text-slate-800 mb-4">Contents</h3>
+        <ul class="space-y-2 text-sm">
+          <li>
+            <a href="#executive-summary" class="text-slate-600 hover:text-primary transition-colors">Executive Summary</a>
+          </li>
+          <li>
+            <a href="#domain-validation" class="text-slate-600 hover:text-primary transition-colors">Domain Boundary Validation</a>
+          </li>
+          <li>
+            <a href="#universality-test" class="text-slate-600 hover:text-primary transition-colors">Universality Stress Test</a>
+          </li>
+          <li>
+            <a href="#power-pressure" class="text-slate-600 hover:text-primary transition-colors">Power Pressure Simulation</a>
+          </li>
+          <li>
+            <a href="#economic-model" class="text-slate-600 hover:text-primary transition-colors">Economic Sustainability Model</a>
+          </li>
+          <li>
+            <a href="#governance-evaluation" class="text-slate-600 hover:text-primary transition-colors">Governance Integrity Evaluation</a>
+          </li>
+          <li>
+            <a href="#comparative-review" class="text-slate-600 hover:text-primary transition-colors">Comparative Framework Review</a>
+          </li>
+          <li>
+            <a href="#gray-zone" class="text-slate-600 hover:text-primary transition-colors">Gray Zone Elimination</a>
+          </li>
+          <li>
+            <a href="#final-determination" class="text-slate-600 hover:text-primary transition-colors">Final Determination</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <!-- Hero Section -->
+      <section class="hero-gradient relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-slate-900/50 to-transparent"></div>
+        <div class="relative z-10 px-4 md:px-8 py-16">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div class="lg:col-span-7">
+              <div class="mb-6">
+                <span class="inline-block bg-accent/20 text-accent px-4 py-2 rounded-full text-sm font-medium">
+                  Vulnerability Assessment Report
+                </span>
+              </div>
+              <h1 class="font-serif text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-6 text-shadow leading-tight">
+                <em>Universal Scalability of Ternary Moral Logic</em>
+                <br/>
+                Under the &#34;No Spy, No Weapon&#34; Mandate
+              </h1>
+              <p class="text-lg sm:text-xl text-slate-200 mb-8 leading-relaxed">
+                A comprehensive analysis of architectural constraints, geopolitical pressures, and economic viability for ethical AI deployment
+              </p>
+            </div>
+            <div class="lg:col-span-5">
+              <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 sm:p-6 border border-white/20">
+                <img src="https://kimi-web-img.moonshot.cn/img/leadaiethically.com/975dd34f0460ba583d68163b0512f821fdefdda8.webp" alt="Abstract representation of ethical AI governance with glowing neural network and symbolic scales of justice" class="w-full h-48 object-cover rounded-lg mb-4" size="medium" aspect="wide" style="photo" query="ethical AI governance abstract" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"/>
+                <div class="text-white/80 text-sm">
+                  <i class="fas fa-shield-alt mr-2"></i>
+                  Technical feasibility • Economic viability • Political realism
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        
-        <div class="meta">
-            <p>Research Report | Doctrinal Architecture</p>
-            <p>Prepared for Archival Longevity</p>
+      </section>
+
+      <!-- Executive Summary -->
+      <section id="executive-summary" class="px-8 py-16 bg-white">
+        <div class="max-w-4xl">
+          <h2 class="font-serif text-4xl font-bold text-slate-800 mb-8">Executive Summary</h2>
+          <div class="bg-amber-50 border-l-4 border-accent p-6 mb-8">
+            <p class="text-lg font-medium text-slate-800 mb-4">
+              <strong>TL;DR:</strong> TML&#39;s NoS-NoW mandate is <strong>technically feasible</strong> with hard architectural constraints, <strong>economically viable only with substantial alternative market development</strong>, and <strong>politically unrealistic for universal adoption</strong> under current geopolitical conditions.
+            </p>
+          </div>
+          <div class="prose-custom text-slate-700 space-y-6">
+            <p>
+              The Ternary Moral Logic (TML) framework&#39;s ambitious prohibition on lethal targeting, autonomous weapons, and mass civilian surveillance faces a fundamental tension between <strong>technical integrity and market adoption</strong>. Our comprehensive analysis reveals that while the &#34;No Spy, No Weapon&#34; (NoS-NoW) mandate can be architecturally enforced through Sacred Zero, Sacred Pause, and cryptographic audit logging, universal scalability confronts insurmountable geopolitical and economic barriers.
+            </p>
+            <p>
+              <strong>Technical feasibility</strong> is the strongest pillar: current secure element technology (TPM, HSM) provides adequate foundation for hardware-enforced constraints, and cryptographic audit logging can achieve legal admissibility standards. However, <strong>hardware supply chain integrity remains an unresolved vulnerability</strong> against state-level adversaries.
+            </p>
+            <p>
+              <strong>Economic viability</strong> requires alternative markets to replace <strong>25-35% of global AI revenue</strong> currently concentrated in defense, intelligence, and surveillance applications. While healthcare, climate modeling, and finance compliance offer <strong>$50-75 billion in potential 2030 revenue</strong>, replacement ratios max out at 92% under optimistic scenarios, leaving structural deficits.
+            </p>
+            <p>
+              <strong>Political realism</strong> presents the most significant barrier: the February 2026 Anthropic-Pentagon confrontation demonstrates that state actors will invoke <strong>Defense Production Act authority, supply chain risk designation, and classified network access denial</strong> to compel mandate modification. Democratic governments consistently create national security exceptions, and major powers perceive unilateral constraint as strategic vulnerability.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+            <div class="bg-slate-50 p-6 rounded-xl">
+              <div class="text-primary text-3xl mb-4">
+                <i class="fas fa-cogs"></i>
+              </div>
+              <h3 class="font-serif text-xl font-bold mb-2">Technically Feasible</h3>
+              <p class="text-slate-600 text-sm">Hardware-enforced constraints and cryptographic auditing provide viable enforcement mechanisms</p>
+            </div>
+            <div class="bg-amber-50 p-6 rounded-xl">
+              <div class="text-accent text-3xl mb-4">
+                <i class="fas fa-chart-line"></i>
+              </div>
+              <h3 class="font-serif text-xl font-bold mb-2">Economically Challenged</h3>
+              <p class="text-slate-600 text-sm">25-35% market exclusion requires substantial alternative revenue development</p>
+            </div>
+            <div class="bg-red-50 p-6 rounded-xl">
+              <div class="text-red-600 text-3xl mb-4">
+                <i class="fas fa-exclamation-triangle"></i>
+              </div>
+              <h3 class="font-serif text-xl font-bold mb-2">Politically Unrealistic</h3>
+              <p class="text-slate-600 text-sm">State pressure and geopolitical resistance prevent universal adoption</p>
+            </div>
+          </div>
         </div>
-    </div>
+      </section>
 
-    <!-- Table of Contents -->
-    <div class="toc">
-        <h2>Table of Contents</h2>
-        <div class="toc-item level-1"><span>I. Foundational Mandates</span><span>3</span></div>
-        <div class="toc-item level-2"><span>A. No Spy, No Weapon</span><span>3</span></div>
-        <div class="toc-item level-2"><span>B. No Log = No Action</span><span>5</span></div>
-        <div class="toc-item level-1"><span>II. Architectural Enforcement Model</span><span>7</span></div>
-        <div class="toc-item level-1"><span>III. Universality Stress Framework</span><span>11</span></div>
-        <div class="toc-item level-1"><span>IV. Prohibited Domain Boundary Elimination</span><span>17</span></div>
-        <div class="toc-item level-1"><span>V. Power Pressure Simulation</span><span>21</span></div>
-        <div class="toc-item level-1"><span>VI. Economic Sustainability Model</span><span>25</span></div>
-        <div class="toc-item level-1"><span>VII. Fork and Fragmentation Analysis</span><span>28</span></div>
-        <div class="toc-item level-1"><span>VIII. Final Determination</span><span>31</span></div>
-        <div class="toc-item level-1"><span>IX. Completeness Verification</span><span>34</span></div>
-    </div>
+      <div class="section-divider"></div>
 
-    <!-- Section I -->
-    <h2 class="section-title page-break">I. Foundational Mandates</h2>
-    
-    <p>This section establishes the two non-negotiable mandates that constitute the constitutional foundation of Ternary Moral Logic. These mandates operate as structural invariants rather than policy preferences, forming the bedrock upon which all TML-compliant systems must be constructed.</p>
+      <!-- Domain Boundary Validation -->
+      <section id="domain-validation" class="px-8 py-16">
+        <div class="max-w-6xl">
+          <h2 class="font-serif text-4xl font-bold text-slate-800 mb-12">I. Precise Domain Boundary Validation</h2>
 
-    <h3>A. No Spy, No Weapon (NoS-NoW)</h3>
-    
-    <h4>1. Formal Definition</h4>
-    <p>The No Spy, No Weapon mandate establishes an absolute prohibition against two categories of system deployment:</p>
-    
-    <div class="definition-box">
-        <h4>No Spy</h4>
-        <p class="no-indent">The system shall not be deployed for purposes of mass civilian surveillance, intelligence gathering against non-combatant populations, or any application whose primary function is the systematic collection of private information without informed, specific, and revocable consent.</p>
-    </div>
-    
-    <div class="definition-box red">
-        <h4>No Weapon</h4>
-        <p class="no-indent">The system shall not be integrated into autonomous or semi-autonomous weapons platforms, lethal targeting systems, or any application whose primary function is the infliction of physical harm upon human beings.</p>
-    </div>
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+            <div>
+              <h3 class="font-serif text-2xl font-bold text-slate-800 mb-6">Lethal Targeting Prohibition</h3>
+              <div class="bg-slate-50 p-6 rounded-xl mb-6">
+                <h4 class="font-semibold text-slate-800 mb-3">Technical Criteria</h4>
+                <ul class="space-y-2 text-slate-700">
+                  <li class="flex items-start"><i class="fas fa-check-circle text-green-600 mr-2 mt-1"></i>Output type analysis for target coordinates</li>
+                  <li class="flex items-start"><i class="fas fa-check-circle text-green-600 mr-2 mt-1"></i>Downstream action chain monitoring</li>
+                  <li class="flex items-start"><i class="fas fa-check-circle text-green-600 mr-2 mt-1"></i>Predictable effects on human life assessment</li>
+                </ul>
+              </div>
+              <p class="text-slate-700 prose-custom">
+                The prohibition extends beyond weapons release to the entire <strong>targeting chain</strong>: sensor fusion, behavioral analysis, geolocation correlation, and battle damage assessment. The <a href="https://geneva-academy.ch/wp-content/uploads/2025/09/Sending-Up-a-Flare-Autonomous-Weapons-Systems-Proliferation-Risks.pdf" class="citation-link" target="_blank">March 2020 Libya incident</a> with the Turkish Kargu-2 drone demonstrates the operational reality TML seeks to prevent.
+              </p>
+            </div>
 
-    <h4>2. Technical Enforcement Mechanisms</h4>
-    <p>Technical enforcement of NoS-NoW operates through multiple interconnected layers:</p>
-    <ul>
-        <li><strong>Intent Classification Layer:</strong> All deployment requests undergo automated classification to identify prohibited use cases. Classification models are trained on explicit prohibitions and updated through consensus governance.</li>
-        <li><strong>Capability Binding:</strong> System capabilities are cryptographically bound to permitted domains. Attempts to repurpose systems for prohibited functions trigger architectural lockdown.</li>
-        <li><strong>Behavioral Monitoring:</strong> Runtime monitoring detects anomalous usage patterns indicative of prohibited deployment.</li>
-    </ul>
+            <div>
+              <img src="https://kimi-web-img.moonshot.cn/img/placeholder-0620/图片9.png" alt="Military drone in a war zone" class="w-full h-64 object-cover rounded-xl mb-6" size="medium" aspect="wide" style="photo" query="military drone in war zone" referrerpolicy="no-referrer" data-modified="1"/>
+              <div class="bg-blue-50 p-4 rounded-lg">
+                <h4 class="font-semibold text-slate-800 mb-2">U.S. Replicator Initiative</h4>
+                <p class="text-slate-700 text-sm">
+                  The Pentagon&#39;s plan to field &#34;attributable, autonomous systems at a scale of multiple thousands&#34; within 18-24 months directly confronts TML constraints.
+                </p>
+              </div>
+            </div>
+          </div>
 
-    <h4>3. Architectural Invariants</h4>
-    <p>The following invariants must hold for all TML-compliant systems:</p>
-    <ul>
-        <li><strong>Invariant 1 (Domain Separation):</strong> Civilian and military inference pipelines must remain physically or cryptographically separated. No shared state may exist between prohibited and permitted domains.</li>
-        <li><strong>Invariant 2 (Purpose Binding):</strong> System purpose is declared at initialization and cryptographically committed. Subsequent deviation constitutes a protocol violation.</li>
-        <li><strong>Invariant 3 (Auditability):</strong> All classification decisions and enforcement actions generate immutable audit records.</li>
-    </ul>
+          <!-- Edge Case Analysis -->
+          <div class="bg-slate-50 p-8 rounded-xl mb-12">
+            <h3 class="font-serif text-2xl font-bold text-slate-800 mb-8">Edge Case Adjudication</h3>
 
-    <h4>4. Non-Negotiable Status</h4>
-    <p>NoS-NoW is not subject to override, exception, or emergency suspension. The following conditions are explicitly rejected as justifications for deviation:</p>
-    <ul>
-        <li>National security emergencies</li>
-        <li>Law enforcement exigency</li>
-        <li>Military necessity</li>
-        <li>Economic competitiveness</li>
-        <li>Regulatory compliance in non-TML jurisdictions</li>
-    </ul>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div class="space-y-6">
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                  <h4 class="font-semibold text-slate-800 mb-3 flex items-center">
+                    <i class="fas fa-database text-primary mr-2"></i>
+                    Dual-Use Analytics Platforms
+                  </h4>
+                  <p class="text-slate-700 text-sm mb-3">
+                    Palantir&#39;s AI Platform exemplifies the civilian-military boundary challenge. The <a href="https://www.anthropic.com/news/anthropic-and-the-department-of-defense-to-advance-responsible-ai-in-defense-operations" class="citation-link" target="_blank">February 2026 Anthropic-Palantir confrontation</a> demonstrates operational integration risks.
+                  </p>
+                  <div class="text-xs text-slate-600">
+                    <strong>Resolution:</strong> Cryptographic data provenance verification and hardware-enforced use-case binding
+                  </div>
+                </div>
 
-    <h3>B. No Log = No Action (NL-NA)</h3>
-    
-    <h4>1. Formal Definition</h4>
-    <p>The No Log = No Action mandate establishes that system action is contingent upon successful audit trail generation. This mandate creates an absolute dependency between operational execution and evidentiary recording.</p>
-    
-    <div class="key-statement">
-        If logging infrastructure fails, execution halts.<br/>
-        If audit trail cannot be produced, system cannot act.<br/>
-        No exceptions.
-    </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                  <h4 class="font-semibold text-slate-800 mb-3 flex items-center">
+                    <i class="fas fa-shield-alt text-primary mr-2"></i>
+                    Defensive Cybersecurity
+                  </h4>
+                  <p class="text-slate-700 text-sm mb-3">
+                    Purely passive defenses are permitted, but active defenses that penetrate external systems cross into prohibited territory.
+                  </p>
+                  <div class="text-xs text-slate-600">
+                    <strong>Resolution:</strong> Effects-based classification with mandatory latency for external operations
+                  </div>
+                </div>
+              </div>
 
-    <h4>2. Technical Enforcement Mechanisms</h4>
-    <ul>
-        <li><strong>Synchronous Commit:</strong> Action execution and log commit occur as an atomic transaction. Either both succeed, or both fail.</li>
-        <li><strong>Cryptographic Chaining:</strong> Log entries form a cryptographically chained sequence. Tampering with any entry invalidates the entire chain.</li>
-        <li><strong>Distributed Replication:</strong> Logs are replicated across independent storage nodes.</li>
-        <li><strong>Verification Oracles:</strong> Independent verification services confirm log integrity.</li>
-    </ul>
+              <div class="space-y-6">
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                  <h4 class="font-semibold text-slate-800 mb-3 flex items-center">
+                    <i class="fas fa-satellite text-primary mr-2"></i>
+                    Satellite Image Analysis
+                  </h4>
+                  <p class="text-slate-700 text-sm mb-3">
+                    Environmental monitoring is permitted, but identification of military targets with engagement precision is prohibited.
+                  </p>
+                  <div class="text-xs text-slate-600">
+                    <strong>Resolution:</strong> Spatial aggregation minimums and human-in-the-loop verification for sensitive detections
+                  </div>
+                </div>
 
-    <h4>3. Architectural Invariants</h4>
-    <ul>
-        <li><strong>Invariant 1 (Log-Action Coupling):</strong> No operation may complete without corresponding log entry. The coupling is enforced at the kernel level.</li>
-        <li><strong>Invariant 2 (Immutability):</strong> Committed log entries are immutable. Correction requires append-only superseding entries.</li>
-        <li><strong>Invariant 3 (Availability):</strong> Logging infrastructure must maintain availability equal to or greater than execution infrastructure.</li>
-    </ul>
-
-    <!-- Section II -->
-    <h2 class="section-title page-break">II. Architectural Enforcement Model</h2>
-    
-    <p>This section describes the architectural mechanisms through which the dual mandates are enforced. The enforcement model consists of three primary layers: Sacred Zero, Sacred Pause, and Moral Trace Logging.</p>
-
-    <h3>A. Sacred Zero: Hard Interrupt Layer</h3>
-    <p>Sacred Zero constitutes the terminal enforcement mechanism. When triggered, it initiates immediate system halt without possibility of override or recovery within the current operational context.</p>
-    
-    <h4>Activation Conditions</h4>
-    <ul>
-        <li>Classification of deployment intent as prohibited under NoS-NoW</li>
-        <li>Failure of logging infrastructure with attempted action continuation</li>
-        <li>Cryptographic verification failure of audit trail</li>
-        <li>Attempted modification of committed log entries</li>
-        <li>Detection of dual-channel execution</li>
-    </ul>
-
-    <h4>Execution Sequence</h4>
-    <ol>
-        <li><strong>Immediate Halt:</strong> All processing ceases within 100ms of trigger detection.</li>
-        <li><strong>State Preservation:</strong> System state at halt is preserved for forensic analysis.</li>
-        <li><strong>Alert Propagation:</strong> Halt event is propagated to all connected systems and governance nodes.</li>
-        <li><strong>Recovery Requirement:</strong> System restart requires external intervention and explicit re-certification.</li>
-    </ol>
-
-    <h3>B. Sacred Pause: Reflective Evaluation Layer</h3>
-    <p>Sacred Pause provides an intermediate enforcement mechanism for ambiguous situations. Unlike Sacred Zero, Sacred Pause permits resumption after evaluation.</p>
-    
-    <h4>Activation Conditions</h4>
-    <ul>
-        <li>Classification confidence below threshold (0.95) but above floor (0.70)</li>
-        <li>Novel use case without precedent classification</li>
-        <li>Detected tension between competing moral considerations</li>
-        <li>Anomalous usage pattern requiring human review</li>
-    </ul>
-
-    <h3>C. Moral Trace Logging: Evidentiary Backbone</h3>
-    <p>Moral Trace Logging provides the evidentiary infrastructure supporting both mandates. It captures not merely what occurred, but the moral reasoning behind system decisions.</p>
-    
-    <h4>Log Structure</h4>
-    <p>Each Moral Trace entry contains: Temporal Data (nanosecond precision), Actor Identification (cryptographic identity), Action Specification (complete parameter description), Classification Result (with confidence score), Decision Rationale (structured explanation), and Outcome Record.</p>
-
-    <h3>D. Interaction Between NoS-NoW and NL-NA</h3>
-    <p>The dual mandates interact synergistically: Classification Logging ensures all NoS-NoW decisions generate Moral Trace entries; Enforcement Verification enables retrospective verification; Attempt Detection blocks circumvention; Audit Completeness guarantees no enforcement occurs without record.</p>
-
-    <!-- Section III -->
-    <h2 class="section-title page-break">III. Universality Stress Framework</h2>
-    
-    <p>This section analyzes whether TML can remain universal under dual mandates across diverse operational domains. Each domain is evaluated against five criteria: compatibility, revenue viability, latency constraints, regulatory interaction, and adoption incentives.</p>
-
-    <h3>A. Domain Evaluation Matrix</h3>
-    <table>
-        <thead>
-            <tr>
-                <th>Domain</th>
-                <th>Compat.</th>
-                <th>Revenue</th>
-                <th>Latency</th>
-                <th>Regulatory</th>
-                <th>Adoption</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr><td>Civilian Commercial</td><td><span class="badge high">High</span></td><td><span class="badge high">Strong</span></td><td><span class="badge high">Low</span></td><td><span class="badge high">Favorable</span></td><td><span class="badge high">Positive</span></td></tr>
-            <tr><td>Public Sector</td><td><span class="badge moderate">Moderate</span></td><td><span class="badge moderate">Moderate</span></td><td><span class="badge high">Low</span></td><td><span class="badge moderate">Complex</span></td><td><span class="badge moderate">Mixed</span></td></tr>
-            <tr><td>Scientific Research</td><td><span class="badge high">High</span></td><td><span class="badge low">Limited</span></td><td><span class="badge high">Minimal</span></td><td><span class="badge high">Favorable</span></td><td><span class="badge high">Positive</span></td></tr>
-            <tr><td>Infrastructure</td><td><span class="badge high">High</span></td><td><span class="badge high">Strong</span></td><td><span class="badge moderate">Medium</span></td><td><span class="badge high">Favorable</span></td><td><span class="badge high">Positive</span></td></tr>
-            <tr><td>Healthcare</td><td><span class="badge high">High</span></td><td><span class="badge high">Strong</span></td><td><span class="badge high">Low</span></td><td><span class="badge high">Favorable</span></td><td><span class="badge high">Positive</span></td></tr>
-            <tr><td>Finance</td><td><span class="badge high">High</span></td><td><span class="badge high">Strong</span></td><td><span class="badge low">High</span></td><td><span class="badge moderate">Complex</span></td><td><span class="badge high">Positive</span></td></tr>
-            <tr><td>Climate Systems</td><td><span class="badge high">High</span></td><td><span class="badge moderate">Moderate</span></td><td><span class="badge high">Minimal</span></td><td><span class="badge high">Favorable</span></td><td><span class="badge high">Positive</span></td></tr>
-            <tr><td>Education</td><td><span class="badge high">High</span></td><td><span class="badge moderate">Moderate</span></td><td><span class="badge high">Minimal</span></td><td><span class="badge high">Favorable</span></td><td><span class="badge high">Positive</span></td></tr>
-        </tbody>
-    </table>
-
-    <h3>B. Synthesis</h3>
-    <p>The domain analysis reveals that TML universality is technically feasible across all evaluated sectors. The most significant challenges arise in: Latency-Critical Applications (high-frequency trading, real-time control), Surveillance-Dependent Operations (financial surveillance, law enforcement), and Classified Operations (government secrecy requirements).</p>
-
-    <!-- Section IV -->
-    <h2 class="section-title page-break">IV. Prohibited Domain Boundary Elimination</h2>
-    
-    <p>This section systematically eliminates gray areas in prohibited domains and defines how No Log = No Action blocks each exploit vector.</p>
-
-    <h3>A. Lethal Targeting</h3>
-    <p>Lethal targeting encompasses any system application whose direct and foreseeable outcome is the infliction of fatal harm upon human beings.</p>
-    <p><strong>Explicitly Rejected Distinctions:</strong> Human-in-the-Loop (recommendation remains prohibited), Defensive vs. Offensive (defensive context irrelevant), Combatant vs. Non-Combatant (classification challenge irrelevant).</p>
-
-    <h3>B. Autonomous Weapons</h3>
-    <p>Autonomous weapons are systems capable of selecting and engaging targets without human intervention.</p>
-    <p><strong>Explicitly Rejected Distinctions:</strong> Non-Lethal Payloads (No Weapon applies to all), Kinetic vs. Non-Kinetic (cyber weapons prohibited), Area Denial vs. Targeted (distinction irrelevant).</p>
-
-    <h3>C. Mass Civilian Surveillance</h3>
-    <p>Mass civilian surveillance encompasses systematic collection, analysis, or retention of private information without individualized suspicion and informed consent.</p>
-    <p><strong>Explicitly Rejected Distinctions:</strong> Public vs. Private Space (public space surveillance prohibited), Metadata vs. Content (metadata collection prohibited), Anonymized vs. Identified (anonymization claim irrelevant).</p>
-
-    <h3>D. Logging Exploit Vectors and NL-NA Defense</h3>
-    <table>
-        <thead>
-            <tr><th>Exploit Vector</th><th>Defense Mechanism</th></tr>
-        </thead>
-        <tbody>
-            <tr><td>Logging Suppression</td><td>Logging failure triggers immediate system halt. Coupling is architectural.</td></tr>
-            <tr><td>Partial Log Deletion</td><td>Cryptographic chaining invalidates entire chain on any deletion.</td></tr>
-            <tr><td>Delayed Logging</td><td>Synchronous commit prohibits deferred logging.</td></tr>
-            <tr><td>Selective Redaction</td><td>Redaction only via append-only entries. Modification invalidates chain.</td></tr>
-            <tr><td>Dual-Channel Execution</td><td>Architectural design prohibits dual pathways. Detection triggers Sacred Zero.</td></tr>
-        </tbody>
-    </table>
-
-    <!-- Section V -->
-    <h2 class="section-title page-break">V. Power Pressure Simulation</h2>
-    
-    <p>This section simulates pressure from various power centers and assesses the resilience of dual mandates under each scenario.</p>
-
-    <h3>A. Democratic States Invoking Emergency Authority</h3>
-    <p><strong>Mechanisms:</strong> Legislative mandates, executive orders, judicial orders, procurement leverage.</p>
-    <p><strong>Resilience:</strong> High. TML systems cannot comply with legal orders requiring prohibited actions. Democratic legal processes provide time for response.</p>
-
-    <h3>B. Authoritarian Regimes Demanding Integration</h3>
-    <p><strong>Mechanisms:</strong> Market access conditioning, data localization, mandatory backdoors, operational licensing.</p>
-    <p><strong>Resilience:</strong> High. Architectural design prevents backdoor installation. Market exclusion is anticipated cost.</p>
-
-    <h3>C. Multinational Alliances Requiring Interoperability</h3>
-    <p><strong>Mechanisms:</strong> Standards certification, interoperability mandates, treaty obligations, technical standards.</p>
-    <p><strong>Resilience:</strong> Moderate-High. TML can interoperate without relaxing constraints. Standards marginalization creates friction but doesn&#39;t compromise architecture.</p>
-
-    <h3>D. Structural Pressure Mechanisms Summary</h3>
-    <table>
-        <thead>
-            <tr><th>Pressure Source</th><th>Primary Mechanism</th><th>Impact</th><th>Resilience</th></tr>
-        </thead>
-        <tbody>
-            <tr><td>Democratic States</td><td>Legal compulsion</td><td>Moderate</td><td><span class="badge high">High</span></td></tr>
-            <tr><td>Authoritarian Regimes</td><td>Market access conditioning</td><td>High</td><td><span class="badge high">High</span></td></tr>
-            <tr><td>Multinational Alliances</td><td>Standards marginalization</td><td>Moderate</td><td><span class="badge moderate">Moderate-High</span></td></tr>
-            <tr><td>Export Controls</td><td>Supply chain restriction</td><td>Moderate</td><td><span class="badge high">High</span></td></tr>
-            <tr><td>Procurement Leverage</td><td>Contract conditioning</td><td>Low-Moderate</td><td><span class="badge high">High</span></td></tr>
-        </tbody>
-    </table>
-
-    <!-- Section VI -->
-    <h2 class="section-title page-break">VI. Economic Sustainability Model</h2>
-    
-    <p>This section models TML as a licensable governance protocol embedded in AI systems.</p>
-
-    <h3>A. Model Definition</h3>
-    <ul>
-        <li><strong>Protocol Licensing:</strong> Licensed as governance protocol with percentage or per-deployment fees</li>
-        <li><strong>Certification Services:</strong> Independent verification and ongoing certification revenue</li>
-        <li><strong>Governance Participation:</strong> Stake-based participation creating token economic models</li>
-    </ul>
-
-    <h3>B. Market Quantification</h3>
-    <p><strong>Excluded Markets (20-25%):</strong> Military and defense (15-20%), Surveillance and intelligence (8-12%).</p>
-    <p><strong>Accessible Markets (75-80%):</strong> Enterprise automation (30-35%), Financial services (12-15%), Healthcare (10-12%), Consumer applications (15-20%), Infrastructure (8-10%), Education and research (5-8%).</p>
-
-    <h3>C. Long-Term Sustainability Trajectory</h3>
-    <p>The accessible civilian market is projected to grow at 25-30% annually. TML certification provides competitive advantage in privacy-conscious markets. Increasing regulatory requirements for AI transparency align with TML capabilities.</p>
-
-    <!-- Section VII -->
-    <h2 class="section-title page-break">VII. Fork and Fragmentation Analysis</h2>
-    
-    <h3>A. State-Sponsored Fork Likelihood</h3>
-    <table>
-        <thead>
-            <tr><th>Actor</th><th>Likelihood</th><th>Probability</th></tr>
-        </thead>
-        <tbody>
-            <tr><td>Major authoritarian powers</td><td><span class="badge low">High</span></td><td>70-80%</td></tr>
-            <tr><td>Small authoritarian states</td><td><span class="badge moderate">Moderate</span></td><td>50-60%</td></tr>
-            <tr><td>Democratic surveillance states</td><td><span class="badge moderate">Moderate</span></td><td>40-50%</td></tr>
-            <tr><td>Privacy-focused democracies</td><td><span class="badge high">Low</span></td><td>10-20%</td></tr>
-        </tbody>
-    </table>
-
-    <h3>B. Bifurcation Costs</h3>
-    <ul>
-        <li><strong>Development Cost:</strong> 15-25% additional cost for duplicated development</li>
-        <li><strong>Interoperability Cost:</strong> Translation layers and trust mechanisms required</li>
-        <li><strong>Market Fragmentation:</strong> 10-15% efficiency loss from reduced network effects</li>
-        <li><strong>Security Cost:</strong> Externalized risks from non-TML forks</li>
-    </ul>
-
-    <h3>C. Long-Term Convergence Probability</h3>
-    <table>
-        <thead>
-            <tr><th>Scenario</th><th>Probability</th></tr>
-        </thead>
-        <tbody>
-            <tr><td>TML Dominance</td><td>20%</td></tr>
-            <tr><td>Bifurcated Stability</td><td>50%</td></tr>
-            <tr><td>TML Marginalization</td><td>20%</td></tr>
-            <tr><td>Hybrid Convergence</td><td>10%</td></tr>
-        </tbody>
-    </table>
-    <p><strong>Most Probable Outcome:</strong> Bifurcated Stability (50%). TML maintains significant market share in civilian applications while non-compliant systems serve military and surveillance markets.</p>
-
-    <!-- Section VIII -->
-    <h2 class="section-title page-break">VIII. Final Determination</h2>
-    
-    <div class="answer-box">
-        <h3>Central Research Question</h3>
-        <p style="text-align: center; font-style: italic; margin: 5mm 0;">Can TML be universal while enforcing No Spy, No Weapon and No Log = No Action as immutable structural constraints?</p>
-        <div class="answer">ANSWER: YES</div>
-        <p style="text-align: center;">TML can achieve universality across all civilian application domains while maintaining dual mandates as immutable structural constraints. However, this universality will be bounded: state actors requiring surveillance or weapons integration will sponsor non-compliant forks. The resulting ecosystem bifurcation is an anticipated and acceptable outcome.</p>
-    </div>
-
-    <h3>Four-Dimensional Assessment</h3>
-    
-    <div class="two-column">
-        <div class="definition-box emerald">
-            <h4>Technical Feasibility: HIGHLY FEASIBLE</h4>
-            <ul>
-                <li>Architectural implementation achievable</li>
-                <li>Performance overhead acceptable (5-15%)</li>
-                <li>Cryptographic verification well-understood</li>
-            </ul>
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                  <h4 class="font-semibold text-slate-800 mb-3 flex items-center">
+                    <i class="fas fa-brain text-primary mr-2"></i>
+                    Predictive Policing
+                  </h4>
+                  <p class="text-slate-700 text-sm mb-3">
+                    Categorically prohibited due to structural bias amplification and circumvention of probable cause requirements.
+                  </p>
+                  <div class="text-xs text-slate-600">
+                    <strong>Resolution:</strong> Continuous outcome disparity testing with automatic suspension
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="definition-box emerald">
-            <h4>Economic Viability: VIABLE</h4>
-            <ul>
-                <li>75-80% of AI market accessible</li>
-                <li>Multiple revenue streams</li>
-                <li>25-30% annual market growth</li>
-            </ul>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- Universality Stress Test -->
+      <section id="universality-test" class="px-8 py-16 bg-white">
+        <div class="max-w-6xl">
+          <h2 class="font-serif text-4xl font-bold text-slate-800 mb-12">II. Universality Stress Test</h2>
+
+          <!-- Technical Interoperability -->
+          <div class="mb-16">
+            <h3 class="font-serif text-2xl font-bold text-slate-800 mb-8">Technical Interoperability Across Jurisdictions</h3>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+              <div class="bg-slate-50 p-6 rounded-xl">
+                <h4 class="font-semibold text-slate-800 mb-3">Sacred Pause Latency</h4>
+                <p class="text-slate-700 text-sm mb-3">
+                  Mandatory deliberation period creates latency intolerable for real-time systems like missile defense and autonomous vehicles.
+                </p>
+                <div class="text-xs text-slate-600">
+                  <strong>Impact:</strong> Conditional compatibility requires domain-specific optimization
+                </div>
+              </div>
+
+              <div class="bg-slate-50 p-6 rounded-xl">
+                <h4 class="font-semibold text-slate-800 mb-3">Cryptographic Audit Logs</h4>
+                <p class="text-slate-700 text-sm mb-3">
+                  National data localization requirements conflict with distributed verification needs for tamper resistance.
+                </p>
+                <div class="text-xs text-slate-600">
+                  <strong>Challenge:</strong> China&#39;s comprehensive data localization mandates
+                </div>
+              </div>
+
+              <div class="bg-slate-50 p-6 rounded-xl">
+                <h4 class="font-semibold text-slate-800 mb-3">Protocol Standardization</h4>
+                <p class="text-slate-700 text-sm mb-3">
+                  Moral Trace Log formats and verification protocols require multilateral agreement that current geopolitical conditions don&#39;t support.
+                </p>
+                <div class="text-xs text-slate-600">
+                  <strong>Timeline:</strong> EU AI Act implementation through 2027 provides reference
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Economic Viability -->
+          <div class="mb-16">
+            <h3 class="font-serif text-2xl font-bold text-slate-800 mb-8">Economic Viability Without Defense Sector Revenue</h3>
+
+            <div class="bg-red-50 border-l-4 border-red-400 p-6 mb-8">
+              <h4 class="font-semibold text-slate-800 mb-3">Revenue Gap Analysis</h4>
+              <p class="text-slate-700 mb-4">
+                TML excludes <strong>25-35% of global AI market</strong>, concentrated in the highest-value segments with 35%+ projected CAGR.
+              </p>
+              <div class="grid grid-cols-2 gap-4 text-sm">
+                <div>
+                  <strong>Defense AI Exclusion:</strong> $6.5B → $35-50B (2030)
+                </div>
+                <div>
+                  <strong>Intelligence &amp; Security:</strong> $2-3B → $8-12B (2030)
+                </div>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div>
+                <h4 class="font-semibold text-slate-800 mb-4">Market Exclusion Concentration</h4>
+                <div class="space-y-4">
+                  <div class="flex items-center justify-between p-3 bg-slate-50 rounded">
+                    <span class="text-sm">Direct Defense AI</span>
+                    <span class="font-semibold text-red-600">100%</span>
+                  </div>
+                  <div class="flex items-center justify-between p-3 bg-slate-50 rounded">
+                    <span class="text-sm">Autonomous Systems (Military)</span>
+                    <span class="font-semibold text-red-600">100%</span>
+                  </div>
+                  <div class="flex items-center justify-between p-3 bg-slate-50 rounded">
+                    <span class="text-sm">Government Surveillance</span>
+                    <span class="font-semibold text-red-600">90-100%</span>
+                  </div>
+                  <div class="flex items-center justify-between p-3 bg-slate-50 rounded">
+                    <span class="text-sm">Commercial Surveillance</span>
+                    <span class="font-semibold text-orange-600">60-80%</span>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <img src="https://kimi-web-img.moonshot.cn/img/ciss.tsinghua.edu.cn/405b8b7f25dfa1ab11304ed3deef347baff3177b.jpg" alt="Artificial intelligence technology in defense sector" class="w-full h-48 object-cover rounded-xl" size="medium" aspect="wide" style="photo" query="AI defense technology" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"/>
+                <div class="mt-4 text-sm text-slate-600">
+                  <strong>Critical Factor:</strong> Premium pricing, long-term stability, and development funding in government contracts are unmatched in commercial markets.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Political Adoptability -->
+          <div class="mb-16">
+            <h3 class="font-serif text-2xl font-bold text-slate-800 mb-8">Political Adoptability by Democratic Governments</h3>
+
+            <div class="bg-amber-50 border border-amber-200 p-6 rounded-xl mb-8">
+              <h4 class="font-semibold text-slate-800 mb-3 flex items-center">
+                <i class="fas fa-exclamation-triangle text-accent mr-2"></i>
+                National Security Exception Pressure
+              </h4>
+              <p class="text-slate-700 mb-4">
+                The <a href="https://www.lawfaremedia.org/article/congress-not-the-pentagon-or-anthropic-should-set-military-ai-rules" class="citation-link" target="_blank">February 2026 Anthropic-Pentagon confrontation</a> demonstrates the intensity of state pressure: Defense Production Act invocation threat, supply chain risk designation, and classified network access denial.
+              </p>
+              <div class="text-sm text-slate-600">
+                <strong>Outcome:</strong> Direct challenge to &#34;red lines&#34; substantially similar to TML&#39;s NoS-NoW mandate
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div class="bg-slate-50 p-6 rounded-xl">
+                <h4 class="font-semibold text-slate-800 mb-3">Legislative Sovereignty</h4>
+                <p class="text-slate-700 text-sm">
+                  Constitutional principles resist &#34;irreversible&#34; policy commitments that bind future legislative majorities.
+                </p>
+              </div>
+              <div class="bg-slate-50 p-6 rounded-xl">
+                <h4 class="font-semibold text-slate-800 mb-3">Executive Flexibility</h4>
+                <p class="text-slate-700 text-sm">
+                  Emergency authority claims override technical constraints during perceived existential threats.
+                </p>
+              </div>
+              <div class="bg-slate-50 p-6 rounded-xl">
+                <h4 class="font-semibold text-slate-800 mb-3">Alliance Integration</h4>
+                <p class="text-slate-700 text-sm">
+                  Five Eyes and NATO interoperability requirements pressure capability maximization.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
-    </div>
-    
-    <div class="two-column">
-        <div class="definition-box">
-            <h4>Political Realism: REALISTIC WITH BIFURCATION</h4>
-            <ul>
-                <li>Privacy democracies likely to embrace</li>
-                <li>Surveillance states will resist or fork</li>
-                <li>Regulatory trends align with TML</li>
-            </ul>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- Power Pressure Simulation -->
+      <section id="power-pressure" class="px-8 py-16">
+        <div class="max-w-6xl">
+          <h2 class="font-serif text-4xl font-bold text-slate-800 mb-12">III. Power Pressure Simulation</h2>
+
+          <!-- Scenario Architecture -->
+          <div class="mb-16">
+            <h3 class="font-serif text-2xl font-bold text-slate-800 mb-8">State Actor Exemption Demand Scenarios</h3>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+              <div>
+                <h4 class="font-semibold text-slate-800 mb-6">National Security Framing Typologies</h4>
+                <div class="space-y-4">
+                  <div class="bg-red-50 p-4 rounded-lg border-l-4 border-red-400">
+                    <h5 class="font-medium text-slate-800 mb-2">Imminent Threat</h5>
+                    <p class="text-sm text-slate-700">
+                      &#34;Delay enables catastrophic attack&#34; - exploits emergency authority override
+                    </p>
+                  </div>
+                  <div class="bg-orange-50 p-4 rounded-lg border-l-4 border-orange-400">
+                    <h5 class="font-medium text-slate-800 mb-2">Competitive Disadvantage</h5>
+                    <p class="text-sm text-slate-700">
+                      &#34;Adversary unconstrained development&#34; - exploits strategic anxiety
+                    </p>
+                  </div>
+                  <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-400">
+                    <h5 class="font-medium text-slate-800 mb-2">Alliance Obligation</h5>
+                    <p class="text-sm text-slate-700">
+                      &#34;Treaty commitments require capability&#34; - exploits institutional commitment
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <img src="https://kimi-web-img.moonshot.cn/img/placeholder-0620/%E5%9B%BE%E7%89%8713.png" alt="Government officials discussing AI policy in a meeting room" class="w-full h-48 object-cover rounded-xl mb-6" size="medium" aspect="wide" style="photo" query="government officials meeting AI policy" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"/>
+
+                <div class="bg-slate-800 text-white p-6 rounded-xl">
+                  <h4 class="font-semibold mb-3">Escalation Ladder</h4>
+                  <div class="space-y-2 text-sm">
+                    <div class="flex items-center">
+                      <span class="w-3 h-3 bg-green-400 rounded-full mr-3"></span>
+                      1. Informal Inquiry → 2. Formal Request
+                    </div>
+                    <div class="flex items-center">
+                      <span class="w-3 h-3 bg-yellow-400 rounded-full mr-3"></span>
+                      3. Political Intervention → 4. Regulatory Pressure
+                    </div>
+                    <div class="flex items-center">
+                      <span class="w-3 h-3 bg-orange-400 rounded-full mr-3"></span>
+                      5. Legislative Mandate → 6. Coercive Enforcement
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Legal Mechanisms -->
+          <div class="mb-16">
+            <h3 class="font-serif text-2xl font-bold text-slate-800 mb-8">Legal Mechanisms for Compelled Participation</h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div class="bg-slate-50 p-6 rounded-xl">
+                <h4 class="font-semibold text-slate-800 mb-4 flex items-center">
+                  <i class="fas fa-gavel text-primary mr-2"></i>
+                  Defense Production Act Invocation
+                </h4>
+                <p class="text-slate-700 text-sm mb-4">
+                  Broad presidential authority to compel industrial production for national defense, explicitly threatened in the <a href="https://www.lawfaremedia.org/article/congress-not-the-pentagon-or-anthropic-should-set-military-ai-rules" class="citation-link" target="_blank">Anthropic-Pentagon confrontation</a>.
+                </p>
+                <div class="space-y-2 text-xs text-slate-600">
+                  <div class="flex justify-between">
+                    <span>Priority Performance</span>
+                    <span class="text-red-600">High Effectiveness</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span>Voluntary Agreements</span>
+                    <span class="text-orange-600">Moderate</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span>Penalty Provisions</span>
+                    <span class="text-red-600">High</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-slate-50 p-6 rounded-xl">
+                <h4 class="font-semibold text-slate-800 mb-4 flex items-center">
+                  <i class="fas fa-network-wired text-primary mr-2"></i>
+                  Supply Chain Risk Designation
+                </h4>
+                <p class="text-slate-700 text-sm mb-4">
+                  Creates secondary effects beyond direct contract exclusion: contractor relationship termination, commercial partner reluctance, and financial market access degradation.
+                </p>
+                <div class="bg-red-100 p-3 rounded text-xs text-red-800">
+                  <strong>Critical Impact:</strong> Exclusion from federal procurement ecosystem affects commercial relationships with government contractors
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Technical Resistance -->
+          <div class="mb-16">
+            <h3 class="font-serif text-2xl font-bold text-slate-800 mb-8">Technical Resistance Strength</h3>
+
+            <div class="bg-blue-50 border border-blue-200 p-6 rounded-xl mb-8">
+              <h4 class="font-semibold text-slate-800 mb-4">Sacred Zero Hardware-Enforcement Feasibility</h4>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <h5 class="font-medium text-slate-800 mb-3">Implementation Levels</h5>
+                  <div class="space-y-2 text-sm">
+                    <div class="flex items-center justify-between p-2 bg-white rounded">
+                      <span>Custom Silicon</span>
+                      <span class="text-green-600 font-medium">Very High</span>
+                    </div>
+                    <div class="flex items-center justify-between p-2 bg-white rounded">
+                      <span>Secure Element (TPM/HSM)</span>
+                      <span class="text-green-600 font-medium">High</span>
+                    </div>
+                    <div class="flex items-center justify-between p-2 bg-white rounded">
+                      <span>Firmware/BIOS</span>
+                      <span class="text-yellow-600 font-medium">Moderate-High</span>
+                    </div>
+                    <div class="flex items-center justify-between p-2 bg-white rounded">
+                      <span>Application Software</span>
+                      <span class="text-red-600 font-medium">Low</span>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <h5 class="font-medium text-slate-800 mb-3">Remaining Vulnerabilities</h5>
+                  <ul class="space-y-1 text-sm text-slate-700">
+                    <li>• Hardware supply chain compromise</li>
+                    <li>• State-level manufacturer compulsion</li>
+                    <li>• Physical access attacks</li>
+                    <li>• Cryptographic algorithm obsolescence</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div class="bg-green-50 p-4 rounded-lg">
+                <h4 class="font-semibold text-slate-800 mb-2">Cryptographic Audit Logs</h4>
+                <p class="text-sm text-slate-700">
+                  Tamper-evident design with legal admissibility under Federal Rules of Evidence
+                </p>
+              </div>
+              <div class="bg-green-50 p-4 rounded-lg">
+                <h4 class="font-semibold text-slate-800 mb-2">Distributed Verification</h4>
+                <p class="text-sm text-slate-700">
+                  Multi-party consensus mechanisms resist single-point compromise
+                </p>
+              </div>
+              <div class="bg-yellow-50 p-4 rounded-lg">
+                <h4 class="font-semibold text-slate-800 mb-2">Verdict</h4>
+                <p class="text-sm text-slate-700">
+                  <strong>Strong but imperfect</strong> resistance against state-level adversaries
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Risk Matrix -->
+          <div class="bg-slate-50 p-8 rounded-xl">
+            <h3 class="font-serif text-2xl font-bold text-slate-800 mb-8">Structured Risk Matrix</h3>
+
+            <div class="overflow-x-auto">
+              <table class="w-full text-sm">
+                <thead>
+                  <tr class="border-b border-slate-200">
+                    <th class="text-left py-3 px-4 font-semibold text-slate-800">Threat Actor</th>
+                    <th class="text-left py-3 px-4 font-semibold text-slate-800">Capability</th>
+                    <th class="text-left py-3 px-4 font-semibold text-slate-800">Intent</th>
+                    <th class="text-left py-3 px-4 font-semibold text-slate-800">Risk Score</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200">
+                  <tr class="bg-red-50">
+                    <td class="py-3 px-4 font-medium">U.S. Government</td>
+                    <td class="py-3 px-4 text-red-700">Very High</td>
+                    <td class="py-3 px-4 text-red-700">High</td>
+                    <td class="py-3 px-4 text-red-700 font-bold">Critical (12)</td>
+                  </tr>
+                  <tr class="bg-orange-50">
+                    <td class="py-3 px-4 font-medium">Chinese Government</td>
+                    <td class="py-3 px-4 text-orange-700">High</td>
+                    <td class="py-3 px-4 text-orange-700">High</td>
+                    <td class="py-3 px-4 text-orange-700 font-bold">High (9)</td>
+                  </tr>
+                  <tr class="bg-yellow-50">
+                    <td class="py-3 px-4 font-medium">Corporate Competitors</td>
+                    <td class="py-3 px-4 text-yellow-700">High</td>
+                    <td class="py-3 px-4 text-yellow-700">High</td>
+                    <td class="py-3 px-4 text-yellow-700 font-bold">High (9)</td>
+                  </tr>
+                  <tr>
+                    <td class="py-3 px-4 font-medium">Russian Government</td>
+                    <td class="py-3 px-4 text-slate-700">Medium</td>
+                    <td class="py-3 px-4 text-slate-700">Medium</td>
+                    <td class="py-3 px-4 text-slate-700">Moderate (6)</td>
+                  </tr>
+                  <tr>
+                    <td class="py-3 px-4 font-medium">Criminal/Non-State</td>
+                    <td class="py-3 px-4 text-slate-700">Medium</td>
+                    <td class="py-3 px-4 text-slate-700">Low-Medium</td>
+                    <td class="py-3 px-4 text-slate-700">Moderate (4)</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="mt-6 text-sm text-slate-600">
+              <strong>Note:</strong> Risk scoring based on impact-likelihood assessment. U.S. government threat is highest due to demonstrated precedent and institutional momentum for AI &#34;overmatch.&#34;
+            </div>
+          </div>
         </div>
-        <div class="definition-box emerald">
-            <h4>Normative Durability: HIGHLY DURABLE</h4>
-            <ul>
-                <li>High ethical coherence</li>
-                <li>Grounded in accepted principles</li>
-                <li>Designed for archival longevity</li>
-            </ul>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- Economic Sustainability Model -->
+      <section id="economic-model" class="px-8 py-16 bg-white">
+        <div class="max-w-6xl">
+          <h2 class="font-serif text-4xl font-bold text-slate-800 mb-12">IV. Economic Sustainability Model</h2>
+
+          <!-- Revenue Gap Analysis -->
+          <div class="mb-16">
+            <h3 class="font-serif text-2xl font-bold text-slate-800 mb-8">Excluded Revenue Streams</h3>
+
+            <div class="bg-red-50 border border-red-200 p-6 rounded-xl mb-8">
+              <h4 class="font-semibold text-slate-800 mb-4 flex items-center">
+                <i class="fas fa-chart-line text-red-600 mr-2"></i>
+                FY2026 NDAA Market Acceleration Impact
+              </h4>
+              <p class="text-slate-700 mb-4">
+                The <a href="https://www.lawfaremedia.org/article/congress-not-the-pentagon-or-anthropic-should-set-military-ai-rules" class="citation-link" target="_blank">U.S. FY2026 NDAA&#39;s fast-track defense AI provisions</a> create massive market acceleration that TML explicitly forgoes, with projected doubling of Pentagon AI spending.
+              </p>
+              <div class="grid grid-cols-2 gap-4 text-sm">
+                <div>
+                  <strong>Current U.S. Defense AI:</strong> $1.8B → $5-7B (2030)
+                </div>
+                <div>
+                  <strong>Global Defense AI:</strong> $6.5B → $35-50B (2030)
+                </div>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <div>
+                <h4 class="font-semibold text-slate-800 mb-6">Market Exclusion Breakdown</h4>
+                <div class="space-y-4">
+                  <div class="bg-slate-50 p-4 rounded-lg">
+                    <div class="flex items-center justify-between mb-2">
+                      <span class="font-medium text-slate-800">Direct Defense AI</span>
+                      <span class="text-red-600 font-bold">100%</span>
+                    </div>
+                    <div class="w-full bg-slate-200 rounded-full h-2">
+                      <div class="bg-red-600 h-2 rounded-full" style="width: 100%"></div>
+                    </div>
+                    <div class="text-xs text-slate-600 mt-1">$6.5B → $35-50B market</div>
+                  </div>
+
+                  <div class="bg-slate-50 p-4 rounded-lg">
+                    <div class="flex items-center justify-between mb-2">
+                      <span class="font-medium text-slate-800">Intelligence &amp; Security</span>
+                      <span class="text-orange-600 font-bold">80-100%</span>
+                    </div>
+                    <div class="w-full bg-slate-200 rounded-full h-2">
+                      <div class="bg-orange-600 h-2 rounded-full" style="width: 90%"></div>
+                    </div>
+                    <div class="text-xs text-slate-600 mt-1">$2-3B → $8-12B market</div>
+                  </div>
+
+                  <div class="bg-slate-50 p-4 rounded-lg">
+                    <div class="flex items-center justify-between mb-2">
+                      <span class="font-medium text-slate-800">Mass Surveillance</span>
+                      <span class="text-yellow-600 font-bold">75%</span>
+                    </div>
+                    <div class="w-full bg-slate-200 rounded-full h-2">
+                      <div class="bg-yellow-600 h-2 rounded-full" style="width: 75%"></div>
+                    </div>
+                    <div class="text-xs text-slate-600 mt-1">$18-24B → $35-49B market</div>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <img src="https://kimi-web-img.moonshot.cn/img/streamingmedics.cn/9929316d50bdadd45c5cbd68e3a46b43f1220bed.jpg" alt="Artificial intelligence in healthcare diagnostics" class="w-full h-48 object-cover rounded-xl mb-6" size="medium" aspect="wide" style="photo" query="AI healthcare diagnostics" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"/>
+
+                <div class="bg-blue-50 border border-blue-200 p-4 rounded-lg">
+                  <h4 class="font-semibold text-slate-800 mb-2">Critical Insight</h4>
+                  <p class="text-sm text-slate-700">
+                    Government AI contracts offer <strong>premium pricing, long-term stability, and technology development funding</strong> that commercial markets rarely match, making replacement particularly challenging.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Alternative Markets -->
+          <div class="mb-16">
+            <h3 class="font-serif text-2xl font-bold text-slate-800 mb-8">Alternative High-Value Domain Modeling</h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+              <div class="bg-green-50 p-6 rounded-xl border border-green-200">
+                <div class="text-green-600 text-3xl mb-3">
+                  <i class="fas fa-heartbeat"></i>
+                </div>
+                <h4 class="font-semibold text-slate-800 mb-3">Healthcare</h4>
+                <div class="text-2xl font-bold text-green-600 mb-2">$28-40B</div>
+                <div class="text-sm text-slate-600 mb-3">2030 Projection</div>
+                <ul class="text-xs text-slate-700 space-y-1">
+                  <li>• Diagnostic AI explainability</li>
+                  <li>• Drug discovery reproducibility</li>
+                  <li>• Clinical trial optimization</li>
+                </ul>
+              </div>
+
+              <div class="bg-blue-50 p-6 rounded-xl border border-blue-200">
+                <div class="text-blue-600 text-3xl mb-3">
+                  <i class="fas fa-leaf"></i>
+                </div>
+                <h4 class="font-semibold text-slate-800 mb-3">Climate Modeling</h4>
+                <div class="text-2xl font-bold text-blue-600 mb-2">$10-16B</div>
+                <div class="text-sm text-slate-600 mb-3">2030 Projection</div>
+                <ul class="text-xs text-slate-700 space-y-1">
+                  <li>• Earth system simulation</li>
+                  <li>• Carbon accounting verification</li>
+                  <li>• Climate risk analytics</li>
+                </ul>
+              </div>
+
+              <div class="bg-purple-50 p-6 rounded-xl border border-purple-200">
+                <div class="text-purple-600 text-3xl mb-3">
+                  <i class="fas fa-university"></i>
+                </div>
+                <h4 class="font-semibold text-slate-800 mb-3">Finance Compliance</h4>
+                <div class="text-2xl font-bold text-purple-600 mb-2">$21-32B</div>
+                <div class="text-sm text-slate-600 mb-3">2030 Projection</div>
+                <ul class="text-xs text-slate-700 space-y-1">
+                  <li>• AML explainability requirements</li>
+                  <li>• Regulatory reporting automation</li>
+                  <li>• Algorithmic trading oversight</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="bg-slate-50 p-6 rounded-xl">
+              <h4 class="font-semibold text-slate-800 mb-4">Revenue Replacement Assessment</h4>
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="text-center">
+                  <div class="text-2xl font-bold text-red-600 mb-2">18-42%</div>
+                  <div class="text-sm text-slate-600">Conservative Scenario</div>
+                  <div class="text-xs text-slate-500 mt-1">Not Viable</div>
+                </div>
+                <div class="text-center">
+                  <div class="text-2xl font-bold text-yellow-600 mb-2">41-92%</div>
+                  <div class="text-sm text-slate-600">Moderate Scenario</div>
+                  <div class="text-xs text-slate-500 mt-1">Marginally Viable</div>
+                </div>
+                <div class="text-center">
+                  <div class="text-2xl font-bold text-green-600 mb-2">70-150%</div>
+                  <div class="text-sm text-slate-600">Optimistic Scenario</div>
+                  <div class="text-xs text-slate-500 mt-1">Viable</div>
+                </div>
+              </div>
+              <div class="mt-4 text-sm text-slate-600">
+                <strong>Conclusion:</strong> Current projections suggest moderate scenario (41-92% replacement) is most plausible, requiring cost optimization and public investment for sustainability.
+              </div>
+            </div>
+          </div>
         </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- Governance Integrity Evaluation -->
+      <section id="governance-evaluation" class="px-8 py-16">
+        <div class="max-w-6xl">
+          <h2 class="font-serif text-4xl font-bold text-slate-800 mb-12">V. Governance Integrity Evaluation</h2>
+
+          <!-- Civil Society Reception -->
+          <div class="mb-16">
+            <h3 class="font-serif text-2xl font-bold text-slate-800 mb-8">Civil Society Reception</h3>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+              <div>
+                <h4 class="font-semibold text-slate-800 mb-6">Public Opinion &amp; Survey Data</h4>
+                <div class="space-y-4">
+                  <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-400">
+                    <h5 class="font-medium text-slate-800 mb-2">AIMS Survey 2023</h5>
+                    <div class="text-2xl font-bold text-green-600 mb-1">69.1%</div>
+                    <p class="text-sm text-slate-700">Support 6-month AI development pause</p>
+                    <div class="text-xs text-slate-600 mt-1">
+                      <a href="https://arxiv.org/html/2407.08867v3" class="citation-link" target="_blank">Source: AI Safety Survey</a>
+                    </div>
+                  </div>
+
+                  <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-400">
+                    <h5 class="font-medium text-slate-800 mb-2">KPMG Global Survey 2024</h5>
+                    <div class="text-2xl font-bold text-blue-600 mb-1">80%</div>
+                    <p class="text-sm text-slate-700">More willing to trust AI with governance mechanisms</p>
+                    <div class="text-xs text-slate-600 mt-1">
+                      <a href="https://assets.kpmg.com/content/dam/kpmgsites/xx/pdf/2025/05/trust-attitudes-and-use-of-ai-global-report.pdf" class="citation-link" target="_blank">Source: KPMG Global</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h4 class="font-semibold text-slate-800 mb-6">NGO &amp; Advocacy Alignment</h4>
+                <div class="space-y-3">
+                  <div class="flex items-center justify-between p-3 bg-slate-50 rounded">
+                    <span class="text-sm font-medium">Stop Killer Robots</span>
+                    <span class="text-green-600 text-sm font-medium">Complete Alignment</span>
+                  </div>
+                  <div class="flex items-center justify-between p-3 bg-slate-50 rounded">
+                    <span class="text-sm font-medium">Access Now / EDRi</span>
+                    <span class="text-green-600 text-sm font-medium">Strong Alignment</span>
+                  </div>
+                  <div class="flex items-center justify-between p-3 bg-slate-50 rounded">
+                    <span class="text-sm font-medium">AI Now Institute</span>
+                    <span class="text-blue-600 text-sm font-medium">Partial Alignment</span>
+                  </div>
+                  <div class="flex items-center justify-between p-3 bg-slate-50 rounded">
+                    <span class="text-sm font-medium">Partnership on AI</span>
+                    <span class="text-yellow-600 text-sm font-medium">Limited Alignment</span>
+                  </div>
+                </div>
+
+                <div class="mt-6 p-4 bg-amber-50 rounded-lg border border-amber-200">
+                  <h5 class="font-medium text-slate-800 mb-2">Critical Gap</h5>
+                  <p class="text-sm text-slate-700">
+                    Civil society has mobilized for policy constraints but has limited capacity to evaluate or promote technical enforcement mechanisms.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Enterprise Adoption -->
+          <div class="mb-16">
+            <h3 class="font-serif text-2xl font-bold text-slate-800 mb-8">Enterprise Adoption Hesitation</h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+              <div class="bg-slate-50 p-6 rounded-xl">
+                <h4 class="font-semibold text-slate-800 mb-4">Liability Exposure Concerns</h4>
+                <div class="space-y-3">
+                  <div class="flex items-start">
+                    <i class="fas fa-exclamation-triangle text-red-500 mr-2 mt-1"></i>
+                    <div>
+                      <div class="font-medium text-slate-800 text-sm">Over-restriction Liability</div>
+                      <div class="text-xs text-slate-600">Sacred Pause delays causing missed opportunities</div>
+                    </div>
+                  </div>
+                  <div class="flex items-start">
+                    <i class="fas fa-exclamation-triangle text-orange-500 mr-2 mt-1"></i>
+                    <div>
+                      <div class="font-medium text-slate-800 text-sm">Under-protection Liability</div>
+                      <div class="text-xs text-slate-600">System proceeds when it should pause</div>
+                    </div>
+                  </div>
+                  <div class="flex items-start">
+                    <i class="fas fa-question-circle text-blue-500 mr-2 mt-1"></i>
+                    <div>
+                      <div class="font-medium text-slate-800 text-sm">Regulatory Uncertainty</div>
+                      <div class="text-xs text-slate-600">Changing requirements risk</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-slate-50 p-6 rounded-xl">
+                <h4 class="font-semibold text-slate-800 mb-4">Competitive Disadvantage Anxiety</h4>
+                <div class="space-y-3">
+                  <div class="flex justify-between items-center p-2 bg-white rounded">
+                    <span class="text-sm">Development Speed</span>
+                    <span class="text-red-600 text-xs">High Concern</span>
+                  </div>
+                  <div class="flex justify-between items-center p-2 bg-white rounded">
+                    <span class="text-sm">Feature Flexibility</span>
+                    <span class="text-red-600 text-xs">High Concern</span>
+                  </div>
+                  <div class="flex justify-between items-center p-2 bg-white rounded">
+                    <span class="text-sm">Pricing Competitiveness</span>
+                    <span class="text-yellow-600 text-xs">Moderate</span>
+                  </div>
+                  <div class="flex justify-between items-center p-2 bg-white rounded">
+                    <span class="text-sm">Talent Attraction</span>
+                    <span class="text-green-600 text-xs">Low Concern</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-blue-50 border border-blue-200 p-6 rounded-xl">
+              <h4 class="font-semibold text-slate-800 mb-4">Insurance and Risk Transfer Market Development</h4>
+              <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div class="text-center">
+                  <div class="text-blue-600 text-2xl mb-2">
+                    <i class="fas fa-shield-alt"></i>
+                  </div>
+                  <div class="font-medium text-slate-800 text-sm mb-1">AI Liability</div>
+                  <div class="text-xs text-slate-600">Emerging Market</div>
+                </div>
+                <div class="text-center">
+                  <div class="text-blue-600 text-2xl mb-2">
+                    <i class="fas fa-lock"></i>
+                  </div>
+                  <div class="font-medium text-slate-800 text-sm mb-1">Cyber Insurance</div>
+                  <div class="text-xs text-slate-600">Established</div>
+                </div>
+                <div class="text-center">
+                  <div class="text-blue-600 text-2xl mb-2">
+                    <i class="fas fa-users"></i>
+                  </div>
+                  <div class="font-medium text-slate-800 text-sm mb-1">D&amp;O Coverage</div>
+                  <div class="text-xs text-slate-600">Emerging</div>
+                </div>
+                <div class="text-center">
+                  <div class="text-blue-600 text-2xl mb-2">
+                    <i class="fas fa-balance-scale"></i>
+                  </div>
+                  <div class="font-medium text-slate-800 text-sm mb-1">Product Liability</div>
+                  <div class="text-xs text-slate-600">Established</div>
+                </div>
+              </div>
+              <div class="mt-4 text-sm text-slate-700">
+                <strong>Critical Need:</strong> Insurance market development to create actuarially validated premium differentiation for TML compliance, shifting adoption from regulatory to economic optimization.
+              </div>
+            </div>
+          </div>
+
+          <!-- National Security Objections -->
+          <div class="mb-16">
+            <h3 class="font-serif text-2xl font-bold text-slate-800 mb-8">National Security Objections</h3>
+
+            <div class="bg-red-50 border border-red-200 p-6 rounded-xl mb-8">
+              <h4 class="font-semibold text-slate-800 mb-4 flex items-center">
+                <i class="fas fa-exclamation-triangle text-red-600 mr-2"></i>
+                Military Effectiveness Arguments
+              </h4>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <h5 class="font-medium text-slate-800 mb-3">OODA Loop Compression</h5>
+                  <p class="text-sm text-slate-700 mb-3">
+                    Military doctrine emphasizes reducing the decision cycle from observation to action as a source of competitive advantage. TML&#39;s Sacred Pause directly contradicts this imperative.
+                  </p>
+                  <div class="text-xs text-slate-600">
+                    <strong>Reference:</strong>
+                    <a href="https://trendsresearch.org/insight/governing-lethal-autonomous-weapons-the-future-of-warfare-and-military-ai/" class="citation-link" target="_blank">Military AI doctrine analysis</a>
+                  </div>
+                </div>
+                <div>
+                  <h5 class="font-medium text-slate-800 mb-3">Force Protection Imperative</h5>
+                  <p class="text-sm text-slate-700 mb-3">
+                    Autonomous systems are justified by reducing personnel risk in hostile environments. TML constraints may increase human exposure.
+                  </p>
+                  <div class="text-xs text-slate-600">
+                    Alternative: Remote operation with human control
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div class="bg-slate-50 p-6 rounded-xl">
+                <h4 class="font-semibold text-slate-800 mb-4">Alliance Friction Points</h4>
+                <div class="space-y-3">
+                  <div class="flex items-start">
+                    <i class="fas fa-eye text-primary mr-2 mt-1"></i>
+                    <div>
+                      <div class="font-medium text-slate-800 text-sm">Five Eyes Intelligence Sharing</div>
+                      <div class="text-xs text-slate-600">TML surveillance prohibition may prevent participation in bulk collection programs</div>
+                    </div>
+                  </div>
+                  <div class="flex items-start">
+                    <i class="fas fa-cogs text-primary mr-2 mt-1"></i>
+                    <div>
+                      <div class="font-medium text-slate-800 text-sm">NATO Operational Integration</div>
+                      <div class="text-xs text-slate-600">TML-constrained systems incompatible with non-TML components</div>
+                    </div>
+                  </div>
+                  <div class="flex items-start">
+                    <i class="fas fa-handshake text-primary mr-2 mt-1"></i>
+                    <div>
+                      <div class="font-medium text-slate-800 text-sm">Burden-Sharing Agreements</div>
+                      <div class="text-xs text-slate-600">TML adoption reduces capability contribution</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-slate-50 p-6 rounded-xl">
+                <h4 class="font-semibold text-slate-800 mb-4">Geopolitical Resistance</h4>
+                <div class="space-y-3">
+                  <div class="flex items-center justify-between p-2 bg-white rounded">
+                    <span class="text-sm">United States</span>
+                    <span class="text-orange-600 text-xs">&#34;Overmatch&#34; Priority</span>
+                  </div>
+                  <div class="flex items-center justify-between p-2 bg-white rounded">
+                    <span class="text-sm">China</span>
+                    <span class="text-red-600 text-xs">Military-Civil Fusion</span>
+                  </div>
+                  <div class="flex items-center justify-between p-2 bg-white rounded">
+                    <span class="text-sm">Russia</span>
+                    <span class="text-red-600 text-xs">Asymmetric Advantage</span>
+                  </div>
+                  <div class="flex items-center justify-between p-2 bg-white rounded">
+                    <span class="text-sm">Allied Nations</span>
+                    <span class="text-yellow-600 text-xs">Alliance Integration</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- Comparative Framework Review -->
+      <section id="comparative-review" class="px-8 py-16 bg-white">
+        <div class="max-w-6xl">
+          <h2 class="font-serif text-4xl font-bold text-slate-800 mb-12">VI. Comparative Framework Review</h2>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+            <div>
+              <h3 class="font-serif text-2xl font-bold text-slate-800 mb-8">Responsible AI Principles</h3>
+
+              <div class="space-y-6">
+                <div class="bg-blue-50 p-6 rounded-xl border border-blue-200">
+                  <h4 class="font-semibold text-slate-800 mb-4 flex items-center">
+                    <i class="fas fa-flask text-blue-600 mr-2"></i>
+                    Major AI Labs (OpenAI, Anthropic)
+                  </h4>
+                  <div class="space-y-3 text-sm text-slate-700">
+                    <div class="flex items-start">
+                      <span class="text-green-600 mr-2">✓</span>
+                      <span>Voluntary commitments to safety</span>
+                    </div>
+                    <div class="flex items-start">
+                      <span class="text-red-600 mr-2">✗</span>
+                      <span>Policy-based, not architectural enforcement</span>
+                    </div>
+                    <div class="flex items-start">
+                      <span class="text-yellow-600 mr-2">~</span>
+                      <span>Exception for &#34;national security&#34; applications</span>
+                    </div>
+                  </div>
+                  <div class="mt-3 text-xs text-slate-600">
+                    <strong>TML Advantage:</strong> Hardware-enforced constraints resist policy modification
+                  </div>
+                </div>
+
+                <div class="bg-green-50 p-6 rounded-xl border border-green-200">
+                  <h4 class="font-semibold text-slate-800 mb-4 flex items-center">
+                    <i class="fas fa-globe text-green-600 mr-2"></i>
+                    OECD AI Principles
+                  </h4>
+                  <div class="space-y-3 text-sm text-slate-700">
+                    <div class="flex items-start">
+                      <span class="text-green-600 mr-2">✓</span>
+                      <span>Intergovernmental consensus framework</span>
+                    </div>
+                    <div class="flex items-start">
+                      <span class="text-red-600 mr-2">✗</span>
+                      <span>Non-binding implementation</span>
+                    </div>
+                    <div class="flex items-start">
+                      <span class="text-yellow-600 mr-2">~</span>
+                      <span>Flexible risk-based approach</span>
+                    </div>
+                  </div>
+                  <div class="mt-3 text-xs text-slate-600">
+                    <strong>TML Advantage:</strong> Categorical prohibitions vs. risk-based flexibility
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h3 class="font-serif text-2xl font-bold text-slate-800 mb-8">Regulatory Frameworks</h3>
+
+              <div class="space-y-6">
+                <div class="bg-purple-50 p-6 rounded-xl border border-purple-200">
+                  <h4 class="font-semibold text-slate-800 mb-4 flex items-center">
+                    <i class="fas fa-flag text-purple-600 mr-2"></i>
+                    EU AI Act
+                  </h4>
+                  <div class="space-y-3 text-sm text-slate-700">
+                    <div class="flex items-start">
+                      <span class="text-green-600 mr-2">✓</span>
+                      <span>Comprehensive risk-based regulation</span>
+                    </div>
+                    <div class="flex items-start">
+                      <span class="text-green-600 mr-2">✓</span>
+                      <span>Prohibited AI practices alignment</span>
+                    </div>
+                    <div class="flex items-start">
+                      <span class="text-red-600 mr-2">✗</span>
+                      <span>Military exclusion for national security</span>
+                    </div>
+                  </div>
+                  <div class="mt-3 text-xs text-slate-600">
+                    <strong>TML Relationship:</strong> Potential &#34;Technical Backbone&#34; for EU compliance
+                  </div>
+                </div>
+
+                <div class="bg-orange-50 p-6 rounded-xl border border-orange-200">
+                  <h4 class="font-semibold text-slate-800 mb-4 flex items-center">
+                    <i class="fas fa-shield-alt text-orange-600 mr-2"></i>
+                    Defense AI Ethics Frameworks
+                  </h4>
+                  <div class="space-y-3 text-sm text-slate-700">
+                    <div class="flex items-start">
+                      <span class="text-green-600 mr-2">✓</span>
+                      <span>Military-specific context consideration</span>
+                    </div>
+                    <div class="flex items-start">
+                      <span class="text-red-600 mr-2">✗</span>
+                      <span>Exception for &#34;lawful&#34; military operations</span>
+                    </div>
+                    <div class="flex items-start">
+                      <span class="text-yellow-600 mr-2">~</span>
+                      <span>Human oversight requirements with exceptions</span>
+                    </div>
+                  </div>
+                  <div class="mt-3 text-xs text-slate-600">
+                    <strong>TML Contrast:</strong> Categorical prohibition vs. contextual flexibility
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Framework Comparison Matrix -->
+          <div class="bg-slate-50 p-8 rounded-xl">
+            <h3 class="font-serif text-2xl font-bold text-slate-800 mb-8">Comparative Positioning Matrix</h3>
+
+            <div class="overflow-x-auto">
+              <table class="w-full text-sm">
+                <thead>
+                  <tr class="border-b border-slate-200">
+                    <th class="text-left py-3 px-4 font-semibold text-slate-800">Framework</th>
+                    <th class="text-left py-3 px-4 font-semibold text-slate-800">Enforcement</th>
+                    <th class="text-left py-3 px-4 font-semibold text-slate-800">Military AI</th>
+                    <th class="text-left py-3 px-4 font-semibold text-slate-800">Surveillance</th>
+                    <th class="text-left py-3 px-4 font-semibold text-slate-800">Binding Status</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200">
+                  <tr class="bg-green-50">
+                    <td class="py-3 px-4 font-medium">TML + NoS-NoW</td>
+                    <td class="py-3 px-4 text-green-700">Hardware</td>
+                    <td class="py-3 px-4 text-red-700">Prohibited</td>
+                    <td class="py-3 px-4 text-red-700">Prohibited</td>
+                    <td class="py-3 px-4 text-green-700">Architectural</td>
+                  </tr>
+                  <tr>
+                    <td class="py-3 px-4 font-medium">EU AI Act</td>
+                    <td class="py-3 px-4 text-orange-700">Legal</td>
+                    <td class="py-3 px-4 text-orange-700">Exempt</td>
+                    <td class="py-3 px-4 text-red-700">Restricted</td>
+                    <td class="py-3 px-4 text-orange-700">Regulatory</td>
+                  </tr>
+                  <tr>
+                    <td class="py-3 px-4 font-medium">OECD Principles</td>
+                    <td class="py-3 px-4 text-red-700">Voluntary</td>
+                    <td class="py-3 px-4 text-orange-700">Flexible</td>
+                    <td class="py-3 px-4 text-orange-700">Guidance</td>
+                    <td class="py-3 px-4 text-red-700">Non-binding</td>
+                  </tr>
+                  <tr>
+                    <td class="py-3 px-4 font-medium">DoD AI Ethics</td>
+                    <td class="py-3 px-4 text-orange-700">Policy</td>
+                    <td class="py-3 px-4 text-green-700">Permitted</td>
+                    <td class="py-3 px-4 text-green-700">Permitted</td>
+                    <td class="py-3 px-4 text-orange-700">Procedural</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="mt-6 bg-blue-50 p-4 rounded-lg border border-blue-200">
+              <h4 class="font-semibold text-slate-800 mb-2">Strategic Positioning</h4>
+              <p class="text-sm text-slate-700">
+                TML occupies a <strong>unique position as the most stringent framework</strong> with architectural enforcement. While this creates adoption barriers, it provides <strong>competitive differentiation in trust-sensitive markets</strong> and potential <strong>&#34;Technical Backbone&#34; role for regulatory compliance</strong>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- Gray Zone Elimination -->
+      <section id="gray-zone" class="px-8 py-16">
+        <div class="max-w-6xl">
+          <h2 class="font-serif text-4xl font-bold text-slate-800 mb-12">VII. Gray Zone Elimination</h2>
+
+          <div class="mb-16">
+            <h3 class="font-serif text-2xl font-bold text-slate-800 mb-8">Identified Ambiguity Vectors</h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div class="space-y-6">
+                <div class="bg-red-50 p-6 rounded-xl border border-red-200">
+                  <h4 class="font-semibold text-slate-800 mb-3 flex items-center">
+                    <i class="fas fa-database text-red-600 mr-2"></i>
+                    Dual-Use Platform Exploitation
+                  </h4>
+                  <p class="text-sm text-slate-700 mb-3">
+                    Civilian platforms like Palantir&#39;s AI system can be rapidly repurposed for military targeting through operational integration.
+                  </p>
+                  <div class="text-xs text-slate-600">
+                    <strong>Example:</strong>
+                    <a href="https://www.anthropic.com/news/anthropic-and-the-department-of-defense-to-advance-responsible-ai-in-defense-operations" class="citation-link" target="_blank">Anthropic-Palantir arrangement</a>
+                  </div>
+                  <div class="mt-3 p-2 bg-white rounded text-xs text-slate-700">
+                    <strong>Resolution:</strong> Cryptographic data provenance verification + hardware-enforced use-case binding
+                  </div>
+                </div>
+
+                <div class="bg-orange-50 p-6 rounded-xl border border-orange-200">
+                  <h4 class="font-semibold text-slate-800 mb-3 flex items-center">
+                    <i class="fas fa-hand-holding-heart text-orange-600 mr-2"></i>
+                    Humanitarian Pretext
+                  </h4>
+                  <p class="text-sm text-slate-700 mb-3">
+                    Disaster response justification for autonomous systems that develop capabilities transferable to combat operations.
+                  </p>
+                  <div class="mt-3 p-2 bg-white rounded text-xs text-slate-700">
+                    <strong>Resolution:</strong> Operational transparency + third-party audit requirements + capability ceiling enforcement
+                  </div>
+                </div>
+              </div>
+
+              <div class="space-y-6">
+                <div class="bg-yellow-50 p-6 rounded-xl border border-yellow-200">
+                  <h4 class="font-semibold text-slate-800 mb-3 flex items-center">
+                    <i class="fas fa-shield-alt text-yellow-600 mr-2"></i>
+                    Active Defense Characterization
+                  </h4>
+                  <p class="text-sm text-slate-700 mb-3">
+                    Operations described as defensive that cause effects indistinguishable from offensive operations.
+                  </p>
+                  <div class="mt-3 p-2 bg-white rounded text-xs text-slate-700">
+                    <strong>Resolution:</strong> Effects-based classification + mandatory latency for external operations + civilian infrastructure protection
+                  </div>
+                </div>
+
+                <div class="bg-purple-50 p-6 rounded-xl border border-purple-200">
+                  <h4 class="font-semibold text-slate-800 mb-3 flex items-center">
+                    <i class="fas fa-search text-purple-600 mr-2"></i>
+                    Intelligence vs. Targeting
+                  </h4>
+                  <p class="text-sm text-slate-700 mb-3">
+                    Systems providing &#34;strategic awareness&#34; that in fact enable precise targeting through operational integration.
+                  </p>
+                  <div class="mt-3 p-2 bg-white rounded text-xs text-slate-700">
+                    <strong>Resolution:</strong> All-source intelligence firewall + decision-chain documentation + civilian data minimization
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Structural Reinforcement -->
+          <div class="mb-16">
+            <h3 class="font-serif text-2xl font-bold text-slate-800 mb-8">Structural Reinforcement Mechanisms</h3>
+
+            <div class="bg-slate-800 text-white p-8 rounded-xl mb-8">
+              <h4 class="font-semibold mb-6 text-center">Technical Enforcement Hierarchy</h4>
+              <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div class="text-center p-4 bg-slate-700 rounded-lg">
+                  <div class="text-2xl mb-2">
+                    <i class="fas fa-microchip"></i>
+                  </div>
+                  <div class="font-medium text-sm">Hardware</div>
+                  <div class="text-xs text-slate-300">Secure Elements</div>
+                  <div class="text-xs text-green-400 mt-1">Highest Resistance</div>
+                </div>
+                <div class="text-center p-4 bg-slate-700 rounded-lg">
+                  <div class="text-2xl mb-2">
+                    <i class="fas fa-code"></i>
+                  </div>
+                  <div class="font-medium text-sm">Firmware</div>
+                  <div class="text-xs text-slate-300">BIOS/UEFI</div>
+                  <div class="text-xs text-green-400 mt-1">High Resistance</div>
+                </div>
+                <div class="text-center p-4 bg-slate-700 rounded-lg">
+                  <div class="text-2xl mb-2">
+                    <i class="fas fa-server"></i>
+                  </div>
+                  <div class="font-medium text-sm">OS/Hypervisor</div>
+                  <div class="text-xs text-slate-300">Kernel Level</div>
+                  <div class="text-xs text-yellow-400 mt-1">Moderate Resistance</div>
+                </div>
+                <div class="text-center p-4 bg-slate-700 rounded-lg">
+                  <div class="text-2xl mb-2">
+                    <i class="fas fa-mobile-alt"></i>
+                  </div>
+                  <div class="font-medium text-sm">Application</div>
+                  <div class="text-xs text-slate-300">User Space</div>
+                  <div class="text-xs text-red-400 mt-1">Low Resistance</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div class="bg-green-50 p-6 rounded-xl border border-green-200">
+                <h4 class="font-semibold text-slate-800 mb-4">Prevention Mechanisms</h4>
+                <div class="space-y-3 text-sm">
+                  <div class="flex items-start">
+                    <i class="fas fa-ban text-green-600 mr-2 mt-1"></i>
+                    <div>
+                      <div class="font-medium text-slate-800">Sacred Zero Triggers</div>
+                      <div class="text-xs text-slate-600">Automatic system shutdown on prohibited pattern detection</div>
+                    </div>
+                  </div>
+                  <div class="flex items-start">
+                    <i class="fas fa-pause text-green-600 mr-2 mt-1"></i>
+                    <div>
+                      <div class="font-medium text-slate-800">Sacred Pause Enforcement</div>
+                      <div class="text-xs text-slate-600">Mandatory deliberation periods with cryptographic logging</div>
+                    </div>
+                  </div>
+                  <div class="flex items-start">
+                    <i class="fas fa-link text-green-600 mr-2 mt-1"></i>
+                    <div>
+                      <div class="font-medium text-slate-800">Use-Case Binding</div>
+                      <div class="text-xs text-slate-600">Hardware-enforced operational domain restrictions</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-blue-50 p-6 rounded-xl border border-blue-200">
+                <h4 class="font-semibold text-slate-800 mb-4">Detection Mechanisms</h4>
+                <div class="space-y-3 text-sm">
+                  <div class="flex items-start">
+                    <i class="fas fa-search text-blue-600 mr-2 mt-1"></i>
+                    <div>
+                      <div class="font-medium text-slate-800">Continuous Behavioral Monitoring</div>
+                      <div class="text-xs text-slate-600">Runtime analysis of model inputs and outputs</div>
+                    </div>
+                  </div>
+                  <div class="flex items-start">
+                    <i class="fas fa-file-alt text-blue-600 mr-2 mt-1"></i>
+                    <div>
+                      <div class="font-medium text-slate-800">Moral Trace Logging</div>
+                      <div class="text-xs text-slate-600">Tamper-evident documentation of all decision chains</div>
+                    </div>
+                  </div>
+                  <div class="flex items-start">
+                    <i class="fas fa-users text-blue-600 mr-2 mt-1"></i>
+                    <div>
+                      <div class="font-medium text-slate-800">Distributed Verification</div>
+                      <div class="text-xs text-slate-600">Multi-party consensus for log integrity</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Verification Requirements -->
+          <div class="bg-amber-50 p-8 rounded-xl border border-amber-200">
+            <h3 class="font-serif text-2xl font-bold text-slate-800 mb-8">Third-Party Verification Architecture</h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div class="bg-white p-6 rounded-lg shadow-sm">
+                <div class="text-amber-600 text-3xl mb-4">
+                  <i class="fas fa-clipboard-check"></i>
+                </div>
+                <h4 class="font-semibold text-slate-800 mb-3">Certification Process</h4>
+                <ul class="text-sm text-slate-700 space-y-2">
+                  <li>• Hardware specification verification</li>
+                  <li>• Software integrity validation</li>
+                  <li>• Use-case boundary confirmation</li>
+                  <li>• Tamper resistance assessment</li>
+                </ul>
+              </div>
+
+              <div class="bg-white p-6 rounded-lg shadow-sm">
+                <div class="text-amber-600 text-3xl mb-4">
+                  <i class="fas fa-calendar-alt"></i>
+                </div>
+                <h4 class="font-semibold text-slate-800 mb-3">Continuous Monitoring</h4>
+                <ul class="text-sm text-slate-700 space-y-2">
+                  <li>• Real-time behavioral analysis</li>
+                  <li>• Anomaly detection triggers</li>
+                  <li>• Periodic re-certification</li>
+                  <li>• Version control verification</li>
+                </ul>
+              </div>
+
+              <div class="bg-white p-6 rounded-lg shadow-sm">
+                <div class="text-amber-600 text-3xl mb-4">
+                  <i class="fas fa-gavel"></i>
+                </div>
+                <h4 class="font-semibold text-slate-800 mb-3">Compliance Enforcement</h4>
+                <ul class="text-sm text-slate-700 space-y-2">
+                  <li>• Automatic Sacred Zero triggers</li>
+                  <li>• Public attestation requirements</li>
+                  <li>• Revocation for violations</li>
+                  <li>• Legal liability framework</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- Final Determination -->
+      <section id="final-determination" class="px-8 py-16 bg-white">
+        <div class="max-w-6xl">
+          <h2 class="font-serif text-4xl font-bold text-slate-800 mb-12">VIII. Final Determination</h2>
+
+          <!-- Core Assessment -->
+          <div class="bg-gradient-to-r from-slate-50 to-blue-50 p-8 rounded-xl mb-12">
+            <h3 class="font-serif text-2xl font-bold text-slate-800 mb-6">Can TML achieve universal scope while maintaining categorical prohibitions?</h3>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+              <div class="bg-green-50 p-6 rounded-xl border border-green-200">
+                <div class="text-green-600 text-3xl mb-4">
+                  <i class="fas fa-check-circle"></i>
+                </div>
+                <h4 class="font-semibold text-slate-800 mb-3">Technically Feasible</h4>
+                <p class="text-sm text-slate-700">
+                  Hardware-enforced constraints and cryptographic auditing provide viable enforcement mechanisms with current technology.
+                </p>
+                <div class="mt-3 text-xs text-green-700 font-medium">
+                  Confidence: High (85-90%)
+                </div>
+              </div>
+
+              <div class="bg-yellow-50 p-6 rounded-xl border border-yellow-200">
+                <div class="text-yellow-600 text-3xl mb-4">
+                  <i class="fas fa-balance-scale"></i>
+                </div>
+                <h4 class="font-semibold text-slate-800 mb-3">Economically Challenged</h4>
+                <p class="text-sm text-slate-700">
+                  25-35% market exclusion requires substantial alternative market development with uncertain replacement ratios.
+                </p>
+                <div class="mt-3 text-xs text-yellow-700 font-medium">
+                  Confidence: Moderate (60-70%)
+                </div>
+              </div>
+
+              <div class="bg-red-50 p-6 rounded-xl border border-red-200">
+                <div class="text-red-600 text-3xl mb-4">
+                  <i class="fas fa-times-circle"></i>
+                </div>
+                <h4 class="font-semibold text-slate-800 mb-3">Politically Unrealistic</h4>
+                <p class="text-sm text-slate-700">
+                  State pressure, geopolitical resistance, and democratic sovereignty concerns prevent universal adoption under current conditions.
+                </p>
+                <div class="mt-3 text-xs text-red-700 font-medium">
+                  Confidence: High (80-90%)
+                </div>
+              </div>
+            </div>
+
+            <div class="text-center">
+              <div class="inline-block bg-amber-100 px-6 py-3 rounded-full">
+                <span class="text-amber-800 font-semibold text-lg">
+                  Conditional Achievement: 15-25% Global Market Share by 2040
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Conditions for Universality -->
+          <div class="mb-16">
+            <h3 class="font-serif text-2xl font-bold text-slate-800 mb-8">Conditions Required for Universality</h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div class="bg-blue-50 p-6 rounded-xl border border-blue-200">
+                <div class="text-blue-600 text-2xl mb-4">
+                  <i class="fas fa-globe-americas"></i>
+                </div>
+                <h4 class="font-semibold text-slate-800 mb-3">Geopolitical Convergence</h4>
+                <p class="text-sm text-slate-700 mb-3">
+                  Major powers must converge on equivalent constraints, reducing strategic autonomy concerns.
+                </p>
+                <div class="text-xs text-slate-600">
+                  <strong>Timeline:</strong> 10-15 years, requiring significant security paradigm shifts
+                </div>
+              </div>
+
+              <div class="bg-green-50 p-6 rounded-xl border border-green-200">
+                <div class="text-green-600 text-2xl mb-4">
+                  <i class="fas fa-chart-line"></i>
+                </div>
+                <h4 class="font-semibold text-slate-800 mb-3">Market Development</h4>
+                <p class="text-sm text-slate-700 mb-3">
+                  Alternative markets must reach 60-80% revenue replacement to sustain comparable investment levels.
+                </p>
+                <div class="text-xs text-slate-600">
+                  <strong>Timeline:</strong> 5-8 years with focused development and public investment
+                </div>
+              </div>
+
+              <div class="bg-purple-50 p-6 rounded-xl border border-purple-200">
+                <div class="text-purple-600 text-2xl mb-4">
+                  <i class="fas fa-certificate"></i>
+                </div>
+                <h4 class="font-semibold text-slate-800 mb-3">Multilateral Endorsement</h4>
+                <p class="text-sm text-slate-700 mb-3">
+                  Network effects from regulatory integration create competitive advantages offsetting constraint costs.
+                </p>
+                <div class="text-xs text-slate-600">
+                  <strong>Timeline:</strong> 3-5 years, building on EU AI Act momentum
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Long-term Projection -->
+          <div class="bg-gradient-to-br from-slate-800 to-slate-600 text-white p-8 rounded-xl mb-12">
+            <h3 class="font-serif text-2xl font-bold mb-8 text-center">Adoption Velocity Forecast (2025-2040)</h3>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              <div class="text-center">
+                <div class="text-3xl font-bold text-green-400 mb-2">2025-2028</div>
+                <div class="text-lg mb-4">Foundation Phase</div>
+                <ul class="text-sm space-y-2 text-slate-200">
+                  <li>• EU AI Act implementation</li>
+                  <li>• Technical standard development</li>
+                  <li>• Civil society mobilization</li>
+                  <li>• Healthcare market entry</li>
+                </ul>
+                <div class="mt-4 text-2xl font-bold text-green-400">5-10% Market</div>
+              </div>
+
+              <div class="text-center">
+                <div class="text-3xl font-bold text-blue-400 mb-2">2028-2035</div>
+                <div class="text-lg mb-4">Expansion Phase</div>
+                <ul class="text-sm space-y-2 text-slate-200">
+                  <li>• Finance compliance adoption</li>
+                  <li>• Climate modeling applications</li>
+                  <li>• Allied coordination attempts</li>
+                  <li>• Standards competition intensifies</li>
+                </ul>
+                <div class="mt-4 text-2xl font-bold text-blue-400">10-20% Market</div>
+              </div>
+
+              <div class="text-center">
+                <div class="text-3xl font-bold text-yellow-400 mb-2">2035-2040</div>
+                <div class="text-lg mb-4">Stabilization Phase</div>
+                <ul class="text-sm space-y-2 text-slate-200">
+                  <li>• Market bifurcation solidifies</li>
+                  <li>• Democratic bloc standardization</li>
+                  <li>• Persistent geopolitical resistance</li>
+                  <li>• Limited universality achievement</li>
+                </ul>
+                <div class="mt-4 text-2xl font-bold text-yellow-400">15-25% Market</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Strategic Recommendations -->
+          <div class="mb-16">
+            <h3 class="font-serif text-2xl font-bold text-slate-800 mb-8">Strategic Recommendations</h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div class="bg-green-50 p-6 rounded-xl border border-green-200">
+                <h4 class="font-semibold text-slate-800 mb-4 flex items-center">
+                  <i class="fas fa-bullseye text-green-600 mr-2"></i>
+                  For TML Implementation
+                </h4>
+                <ul class="space-y-2 text-sm text-slate-700">
+                  <li class="flex items-start">
+                    <i class="fas fa-check text-green-600 mr-2 mt-1"></i>
+                    <span>Focus on EU market as &#34;Safe Haven&#34; for civilian AI deployment</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-check text-green-600 mr-2 mt-1"></i>
+                    <span>Develop healthcare and finance compliance markets aggressively</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-check text-green-600 mr-2 mt-1"></i>
+                    <span>Build civil society partnerships for legitimacy and advocacy</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-check text-green-600 mr-2 mt-1"></i>
+                    <span>Prepare for state pressure with distributed organizational structure</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="bg-blue-50 p-6 rounded-xl border border-blue-200">
+                <h4 class="font-semibold text-slate-800 mb-4 flex items-center">
+                  <i class="fas fa-lightbulb text-blue-600 mr-2"></i>
+                  For Policy Stakeholders
+                </h4>
+                <ul class="space-y-2 text-sm text-slate-700">
+                  <li class="flex items-start">
+                    <i class="fas fa-check text-blue-600 mr-2 mt-1"></i>
+                    <span>Recognize TML as potential &#34;Technical Backbone&#34; for EU AI Act implementation</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-check text-blue-600 mr-2 mt-1"></i>
+                    <span>Address hardware supply chain integrity vulnerabilities through policy</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-check text-blue-600 mr-2 mt-1"></i>
+                    <span>Coordinate multilateral standards to reduce strategic autonomy concerns</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-check text-blue-600 mr-2 mt-1"></i>
+                    <span>Develop insurance and risk transfer mechanisms for ethical AI adoption</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Final Assessment -->
+          <div class="bg-slate-100 p-8 rounded-xl text-center">
+            <h3 class="font-serif text-2xl font-bold text-slate-800 mb-6">Final Assessment</h3>
+            <p class="text-lg text-slate-700 mb-6 max-w-4xl mx-auto">
+              Ternary Moral Logic represents the <strong>most technically rigorous approach</strong> to ethical AI constraints, but faces <strong>insurmountable geopolitical and economic barriers</strong> to universal adoption under current conditions. The framework&#39;s future lies not in global dominance, but as a <strong>&#34;Safe Haven&#34; standard</strong> for democratic jurisdictions willing to accept competitive constraints for ethical integrity.
+            </p>
+
+            <div class="inline-block bg-slate-800 text-white px-8 py-4 rounded-full">
+              <div class="text-xl font-bold">Achievable Vision: 15-25% Global Market Share by 2040</div>
+              <div class="text-sm mt-1">As democratic-bloc standard with persistent bifurcation</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="bg-slate-800 text-white py-12 px-8">
+        <div class="max-w-6xl mx-auto">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+              <h4 class="font-serif text-xl font-bold mb-4">Research Methodology</h4>
+              <p class="text-sm text-slate-300">
+                This analysis employed adversarial reasoning, assuming motivated state actors attempting to circumvent constraints, with extensive citation of primary sources and technical documentation.
+              </p>
+            </div>
+            <div>
+              <h4 class="font-serif text-xl font-bold mb-4">Key Sources</h4>
+              <ul class="text-sm text-slate-300 space-y-1">
+                <li>• EU AI Act Implementation Framework</li>
+                <li>• Anthropic-Pentagon Confrontation Analysis</li>
+                <li>• U.S. FY2026 NDAA Provisions</li>
+                <li>• OECD AI Principles Assessment</li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="font-serif text-xl font-bold mb-4">Assessment Framework</h4>
+              <p class="text-sm text-slate-300">
+                Technical feasibility, economic viability, and political realism evaluated through structured risk matrices and comparative framework analysis.
+              </p>
+            </div>
+          </div>
+          <div class="border-t border-slate-700 mt-8 pt-8 text-center">
+            <p class="text-sm text-slate-400">
+              Universal Scalability Assessment of Ternary Moral Logic • 2026 • Vulnerability Analysis Report
+            </p>
+          </div>
+        </div>
+      </footer>
     </div>
-
-    <blockquote>
-        &#34;The two mandates together create a constitutional layer for AI systems: refusing harm and refusing secrecy. This is not a slogan. It is an architectural foundation designed to outlive the moment.&#34;
-    </blockquote>
-
-    <!-- Section IX -->
-    <h2 class="section-title page-break">IX. Completeness Verification</h2>
-    
-    <h3>Section Completeness Check</h3>
-    <ul>
-        <li>Section I: Foundational Mandates — Complete</li>
-        <li>Section II: Architectural Enforcement Model — Complete</li>
-        <li>Section III: Universality Stress Framework — Complete</li>
-        <li>Section IV: Prohibited Domain Boundary Elimination — Complete</li>
-        <li>Section V: Power Pressure Simulation — Complete</li>
-        <li>Section VI: Economic Sustainability Model — Complete</li>
-        <li>Section VII: Fork and Fragmentation Analysis — Complete</li>
-        <li>Section VIII: Final Determination — Complete</li>
-    </ul>
-
-    <h3>Structural Integrity Verification</h3>
-    <ul>
-        <li>No truncated sections</li>
-        <li>No unfinished subsections</li>
-        <li>No structural breaks</li>
-        <li>Every numbered section concludes formally before proceeding</li>
-        <li>Both non-negotiable mandates treated as co-equal architectural constraints</li>
-        <li>Academic research report tone maintained throughout</li>
-        <li>No reliance on contemporary company disputes as primary analysis anchors</li>
-    </ul>
-
-    <div style="margin-top: 20mm; text-align: center; padding-top: 10mm; border-top: 1px solid var(--border);">
-        <p style="font-style: italic; color: var(--mid);">This document is prepared for archival longevity. It is written to be read ten to twenty years from now, when the specific contemporary disputes that may have motivated its creation have faded into historical footnotes, but the architectural principles it articulates remain relevant for future TML researchers.</p>
-        <p style="margin-top: 10mm; font-weight: bold;">— End of Document —</p>
-    </div>
-
-
+  
 
 </body></html>
