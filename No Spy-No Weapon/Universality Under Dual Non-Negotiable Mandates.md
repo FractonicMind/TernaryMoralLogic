@@ -2,7 +2,7 @@
 
 ## **Foundations of Triadic Governance and the Goukassian Promise**
 
-### [Interactive Web Report with an Audio](https://fractonicmind.github.io/TernaryMoralLogic/No_Spy-No_Weapon/Universality Under Dual Non-Negotiable Mandates.html)
+### [Interactive Web Report with an Audio](https://fractonicmind.github.io/TernaryMoralLogic/No_Spy-No_Weapon/Universality_Under_Dual_Non-Negotiable_Mandates.html)
 
 The historical trajectory of autonomous systems has been characterized by an increasing divergence between computational execution and moral accountability. Traditional software architectures, rooted in Boolean logic, operate within a binary paradigm: 1 (True/Proceed) or \-1 (False/Reject). While this dichotomy facilitates high-speed processing, it creates an "excluded middle" that is fundamentally incompatible with the nuances of human law, ethics, and planetary preservation.1 Ternary Moral Logic (TML) is designed to resolve this structural deficiency by introducing a third operational state: the "Sacred Zero" (State 0), representing epistemic hold or recognized complexity.3  
 TML is not a post-inference filter or a set of optional safety guidelines; it is a governance-native architecture designed to be un-ownable, un-corruptible, and unkillable.3 This framework transforms abstract legal principles into operational facts through system-level checkpoints. The framework is architecturally anchored by the "Goukassian Promise," a tripartite covenant consisting of the Lantern (representing the persistence of the logic), the Signature (the root of trust and identity), and the License (the non-negotiable prohibitions).7 At its core, TML asserts that the primary challenges in artificial intelligence are architectural, not technical.7  
