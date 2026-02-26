@@ -1,4 +1,4 @@
-## Universal Scalability of Ternary Moral Logic Under the "No Spy No Weapon" (NoS-NoW) Mandate
+## Universal Scalability of Ternary Moral Logic Under the "No Spy, No Weapon" (NoS-NoW) Mandate
 
 Ternary Moral Logic (TML) with a structurally enforced “No Spy, No Weapon” (NoS–NoW) mandate can be made technically interoperable and economically sustainable at global scale, but full *political* universality—especially including defense, intelligence, and internal security—faces hard ceilings. The most realistic outcome is a de‑facto split: TML as a dominant *civilian* and “civilian‑side government” AI stack, coexisting with separate, weaponized stacks for lethal targeting, autonomous weapons, and mass surveillance. Under some conditions this split can be stable and norm‑shaping; under others, it is likely to provoke forks and quiet noncompliance.
 
