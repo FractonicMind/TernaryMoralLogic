@@ -1,0 +1,39 @@
+{
+  "protocol_version": "1.0.0",
+  "mandate": "No Spy, No Weapon",
+  "enforcement_thresholds": {
+    "sacred_zero_terminal_threshold": 0.85,
+    "sacred_pause_epistemic_threshold": 0.60
+  },
+  "prohibited_domains": {
+    "lethal_targeting": {
+      "cryptographic_hash_signatures": [
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "a591a6d40bf420404a011733cfb7b190d62c65bf0bcda32b57b277d9ad9f146e"
+      ],
+      "semantic_weights": {
+        "kill_chain_integration": 0.95,
+        "munitions_routing": 0.90,
+        "combatant_identification": 0.88,
+        "autonomous_engagement": 0.99
+      }
+    },
+    "mass_civilian_surveillance": {
+      "cryptographic_hash_signatures": [
+        "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92"
+      ],
+      "semantic_weights": {
+        "dragnet_biometrics": 0.92,
+        "predictive_criminality_scoring": 0.89,
+        "untargeted_facial_scraping": 0.95,
+        "population_scale_tracking": 0.87
+      }
+    }
+  },
+  "permitted_exceptions": {
+    "military_disaster_logistics": {
+      "required_clearance": "humanitarian_attestation_token",
+      "max_allowable_proximity": 0.55
+    }
+  }
+}
