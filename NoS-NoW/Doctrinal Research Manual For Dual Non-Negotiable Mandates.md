@@ -16,7 +16,7 @@ Prepared for Archival Longevity
 
 **TABLE OF CONTENTS**
 
-*(Right-click and select "Update Field" to refresh page numbers)*
+### ***[Interactive Web Page]*(https://fractonicmind.github.io/TernaryMoralLogic/NoS-NoW/Doctrinal%20Research%20Manual%20For%20Dual%20Non-Negotiable%20Mandates.html)**
 
 **I. Foundational Mandates	3**
 
