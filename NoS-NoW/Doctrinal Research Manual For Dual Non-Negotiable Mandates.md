@@ -1,8 +1,6 @@
+## **TERNARY MORAL LOGIC**
 
-
-**TERNARY MORAL LOGIC**
-
-**Universality Under Dual Non-Negotiable Mandates**
+### **Universality Under Dual Non-Negotiable Mandates**
 
 *A Doctrinal Research Manual for Future TML Researchers*
 
