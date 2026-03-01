@@ -14,28 +14,28 @@
         extend: {
           colors: {
             primary: {
-              50: 'hsl(200, 75%, 95%)',
-              100: 'hsl(200, 75%, 85%)',
-              200: 'hsl(200, 75%, 75%)',
-              300: 'hsl(200, 75%, 65%)',
-              400: 'hsl(200, 75%, 55%)',
-              500: 'hsl(200, 75%, 40%)',
-              600: 'hsl(200, 75%, 35%)',
-              700: 'hsl(200, 75%, 25%)',
-              800: 'hsl(200, 75%, 15%)',
-              900: 'hsl(200, 75%, 10%)'
+              50: 'hsl(210, 75%, 95%)',
+              100: 'hsl(210, 75%, 85%)',
+              200: 'hsl(210, 75%, 75%)',
+              300: 'hsl(210, 75%, 65%)',
+              400: 'hsl(210, 75%, 55%)',
+              500: 'hsl(210, 75%, 40%)',
+              600: 'hsl(210, 75%, 35%)',
+              700: 'hsl(210, 75%, 25%)',
+              800: 'hsl(210, 75%, 15%)',
+              900: 'hsl(210, 75%, 10%)'
             },
             accent: {
-              50: 'hsl(280, 65%, 95%)',
-              100: 'hsl(280, 65%, 85%)',
-              200: 'hsl(280, 65%, 75%)',
-              300: 'hsl(280, 65%, 65%)',
-              400: 'hsl(280, 65%, 60%)',
-              500: 'hsl(280, 65%, 55%)',
-              600: 'hsl(280, 65%, 50%)',
-              700: 'hsl(280, 65%, 40%)',
-              800: 'hsl(280, 65%, 30%)',
-              900: 'hsl(280, 65%, 20%)'
+              50: 'hsl(240, 65%, 95%)',
+              100: 'hsl(240, 65%, 85%)',
+              200: 'hsl(240, 65%, 75%)',
+              300: 'hsl(240, 65%, 65%)',
+              400: 'hsl(240, 65%, 60%)',
+              500: 'hsl(240, 65%, 55%)',
+              600: 'hsl(240, 65%, 50%)',
+              700: 'hsl(240, 65%, 40%)',
+              800: 'hsl(240, 65%, 30%)',
+              900: 'hsl(240, 65%, 20%)'
             }
           }
         }
@@ -97,16 +97,12 @@
     .card-interactive[class*="primary"]:hover,
     .card-interactive[class*="white"]:hover,
     .card-interactive[class*="gray-"]:hover {
-      border-color: hsl(200, 75%, var(--border-lightness));
+      border-color: hsl(210, 75%, var(--border-lightness));
     }
     
     /* Accent colored cards */
     .card-interactive[class*="accent"]:hover {
-      border-color: hsl(280, 65%, var(--border-lightness));
-    }
-
-    .dark .card-interactive:hover {
-      filter: brightness(1.05);
+      border-color: hsl(240, 65%, var(--border-lightness));
     }
   </style>
 
@@ -122,30 +118,30 @@
 
 <body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen">
   <!-- Progress Bar -->
-  <div class="fixed top-0 left-0 h-1 bg-primary-500 dark:bg-primary-400 z-[60] transition-all duration-300 ease-out" id="progressBar" style="width: 0%;"></div>
+  <div class="fixed top-0 left-0 h-1 bg-primary-500 dark:bg-primary-400 z-[60] transition-all duration-300 ease-out" id="progressBar"></div>
 
   <!-- Floating Header -->
   <header class="fixed top-0 left-0 right-0 z-50 backdrop-blur bg-gray-50/90 dark:bg-gray-900/90 border-b border-primary-500/20 dark:border-primary-600/20">
-    <nav class="max-w-7xl mx-auto px-6 py-4">
+    <div class="max-w-7xl mx-auto px-6 py-4">
       <div class="flex items-center justify-between">
-        <h1 class="text-xl font-bold text-primary-700 dark:text-primary-300">TML Constitutional Survivability</h1>
+        <h1 class="text-xl font-bold text-primary-700 dark:text-primary-300">TML Survivability Analysis</h1>
         
-        <div class="flex items-center gap-6">
+        <nav class="hidden md:flex items-center space-x-6">
           <a href="#home" class="text-sm font-medium hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Home</a>
-          <a href="#overview" class="text-sm font-medium hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Overview</a>
+          <a href="#foundations" class="text-sm font-medium hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Foundations</a>
           <a href="#threat-models" class="text-sm font-medium hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Threats</a>
           <a href="#hardware-security" class="text-sm font-medium hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Hardware</a>
-          <a href="#cryptographic-resilience" class="text-sm font-medium hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Crypto</a>
-          <a href="#supply-chain" class="text-sm font-medium hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Supply</a>
+          <a href="#implementation" class="text-sm font-medium hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Implementation</a>
+          <a href="#cryptographic-resilience" class="text-sm font-medium hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Cryptographic</a>
           <a href="#conclusion" class="text-sm font-medium hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Conclusion</a>
-          
-          <button onclick="toggleDarkMode()" class="btn-interactive p-2 rounded-lg bg-primary-100 dark:bg-primary-800 text-primary-600 dark:text-primary-300 hover:bg-primary-200 dark:hover:bg-primary-700 transition-all">
-            <i data-lucide="sun" id="sunIcon" class="w-5 h-5" style="display: none;"></i>
-            <i data-lucide="moon" id="moonIcon" class="w-5 h-5" style="display: block;"></i>
-          </button>
-        </div>
+        </nav>
+
+        <button onclick="toggleDarkMode()" class="btn-interactive p-2 rounded-lg bg-primary-100 dark:bg-primary-800 text-primary-600 dark:text-primary-300 hover:bg-primary-200 dark:hover:bg-primary-700 transition-all">
+          <i data-lucide="sun" id="sunIcon" class="w-5 h-5" style="display:none;"></i>
+          <i data-lucide="moon" id="moonIcon" class="w-5 h-5" style="display:block;"></i>
+        </button>
       </div>
-    </nav>
+    </div>
   </header>
 
   <!-- Main Content -->
@@ -153,90 +149,124 @@
     <!-- Hero Section -->
     <section id="home" class="py-40 bg-primary-50/50 dark:bg-gray-900" data-aos="fade-up">
       <div class="max-w-5xl mx-auto px-6">
-        <div class="text-center space-y-6">
-          <h2 class="text-5xl font-bold text-primary-700 dark:text-primary-300" data-ref="https://www.researchgate.net/publication/399129971_Auditable_AI_tracing_the_ethical_history_of_a_model|129">
-            Ternary Moral Logic (TML) Constitutional Survivability Analysis
-          </h2>
-          <p class="text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto">
-            A rigorous, adversarial examination of TML's core tenets under layered pressures across administrative, corporate, state, hardware, cryptographic, and supply chain threat vectors
-          </p>
-          <div class="flex justify-center gap-4 pt-4">
-            <div class="card-interactive px-6 py-3 bg-white/90 backdrop-blur-sm dark:bg-gray-800 rounded-lg shadow-md">
-              <p class="text-sm text-gray-600 dark:text-gray-400">Single Unified Deployment</p>
-              <p class="text-2xl font-bold text-primary-600 dark:text-primary-400">Hardware-Enforced</p>
-            </div>
-            <div class="card-interactive px-6 py-3 bg-white/90 backdrop-blur-sm dark:bg-gray-800 rounded-lg shadow-md">
-              <p class="text-sm text-gray-600 dark:text-gray-400">Ten Critical Domains</p>
-              <p class="text-2xl font-bold text-accent-600 dark:text-accent-400">Comprehensive Analysis</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Overview Section -->
-    <section id="overview" class="py-20 bg-white/80 dark:bg-gray-900" data-aos="fade-up">
-      <div class="max-w-6xl mx-auto px-6">
-        <h2 class="text-4xl font-bold mb-8 text-primary-700 dark:text-primary-300" data-ref="https://www.researchgate.net/publication/399129971_Auditable_AI_tracing_the_ethical_history_of_a_model|129">
-          Ternary Moral Logic (TML) Architecture
+        <h2 class="text-4xl md:text-5xl font-bold mb-6 text-primary-700 dark:text-primary-300">
+          Constitutional Survivability of Ternary Moral Logic (TML)
         </h2>
+        <p class="text-xl text-gray-700 dark:text-gray-300 mb-8 leading-relaxed" data-ref="https://www.researchgate.net/publication/399129971_Auditable_AI_tracing_the_ethical_history_of_a_model|129">
+          A comprehensive analysis of Ternary Moral Logic (TML) under adversarial pressure across administrative, corporate, state, hardware, cryptographic, and supply chain threat vectors. This research evaluates the technical feasibility and structural integrity of a single unified hardware-enforced TML deployment.
+        </p>
         
-        <div class="grid md:grid-cols-2 gap-8 items-start mb-12">
-          <div class="space-y-6">
-            <p class="text-gray-700 dark:text-gray-300">
-              Ternary Moral Logic (TML) represents a novel computational ethics architecture designed to bridge immutable technical systems with enforceable moral frameworks. Unlike traditional binary logic systems, TML operates on a three-state logic system that enables nuanced ethical decision-making within hardware-enforced boundaries.
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+          <div class="space-y-4">
+            <p class="text-gray-700 dark:text-gray-300" data-ref="https://flame-challenge.authorea.com/inst/26407?current_inst_tab=public&filterby=All&page=45|130">
+              Ternary Moral Logic (TML) represents a novel computational ethics architecture designed to bridge immutable technical systems with enforceable moral accountability frameworks. This system introduces a three-state logic paradigm that transcends traditional binary decision-making in AI governance.
             </p>
             
             <div class="pl-4 pr-3 py-3 border-l-4 border-primary-500 bg-primary-50/40 dark:bg-primary-900/30 rounded-r-lg">
-              <p class="text-sm font-medium text-primary-900 dark:text-primary-100 leading-relaxed">
+              <p class="text-sm font-medium text-primary-900 dark:text-primary-100 leading-relaxed" data-ref="https://ggnpreprints.authorea.com/inst/26407?current_inst_tab=public&page=85&sortby=Most+Cited&tag_filter=Robotics+And+Control+Systems|131">
                 <i data-lucide="info" class="inline-block w-4 h-4 mr-1.5 -mt-0.5"></i>
-                TML converts AI ethical deliberation from an abstract process into a deterministic, auditable system architecture with immutable enforcement mechanisms
+                Key Innovation: TML converts AI ethical deliberation from an abstract process into a deterministic, auditable, and constitutionally enforceable framework through hardware-enforced logic gates.
               </p>
             </div>
           </div>
           
           <img
-            src="https://cdn.qwenlm.ai/60498d16-d2ab-4b9f-8acd-8f6913b3400d/17535334-6e4d-4c68-a4bc-106bb6d3cd0d/d86dbd91-b74d-4b68-a54e-7ea3a3d6eb69.png?key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXNvdXJjZV91c2VyX2lkIjoiNjA0OThkMTYtZDJhYi00YjlmLThhY2QtOGY2OTEzYjM0MDBkIiwicmVzb3VyY2VfaWQiOiIxNzUzNTMzNC02ZTRkLTRjNjgtYTRiYy0xMDZiYjZkM2NkMGQiLCJyZXNvdXJjZV9jaGF0X2lkIjpudWxsfQ.QEjxYJVPLq-FUqJU0db8jrCuRiqg6WziwtU0rkPjXW8"
-            alt="Technical architecture diagram showing a central three-layered hexagonal core structure rendered in gradient blue-purple (#1a73b3 to #8b5cf6) representing TML's ternary logic system. The hexagon has three distinct colored states: top segment in vibrant cyan (#06b6d4) labeled 'State A', middle segment in deep blue (#1e40af) labeled 'State B', bottom segment in magenta (#d946ef) labeled 'State C'. Surrounding the core are six interconnected nodes arranged in a circular pattern: top node in navy blue (#1e3a8a) labeled 'Hardware Root of Trust', top-right in purple (#7c3aed) labeled 'Remote Attestation', right in teal (#0d9488) labeled 'Cryptographic Enforcement', bottom-right in violet (#8b5cf6) labeled 'Supply Chain Verification', bottom in indigo (#4f46e5) labeled 'Governance Layer', bottom-left in blue (#3b82f6) labeled 'Failure Mode Analysis'. Thin connecting lines in silver-gray (#e5e7eb) link the core to each peripheral node. Background is clean white (#ffffff) with subtle grid lines in very light gray (#f3f4f6). All text is in sans-serif font, bold for labels, regular for descriptions. The diagram emphasizes the deterministic nature of the system through geometric precision and clear hierarchical relationships."
+            src="https://cdn.qwenlm.ai/60498d16-d2ab-4b9f-8acd-8f6913b3400d/9b28c360-387d-48f5-ad70-d6813bdda96f/d3d65828-113e-4a8a-8d22-ebec0f168f8e.png?key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXNvdXJjZV91c2VyX2lkIjoiNjA0OThkMTYtZDJhYi00YjlmLThhY2QtOGY2OTEzYjM0MDBkIiwicmVzb3VyY2VfaWQiOiI5YjI4YzM2MC0zODdkLTQ4ZjUtYWQ3MC1kNjgxM2JkZGE5NmYiLCJyZXNvdXJjZV9jaGF0X2lkIjpudWxsfQ.QPIuTCBhIewnXJAoGyA8spThTx0GnfOcIzPqloYuMmY"
+            alt="Technical architecture diagram showing a central processing unit with three distinct logic pathways branching outward. The pathways are color-coded: blue pathway labeled 'State 0 - Neutral', green pathway labeled 'State 1 - Permitted', and red pathway labeled 'State 2 - Prohibited'. Each pathway connects to labeled components representing 'Administrative Enforcement', 'Corporate Oversight', 'State Authority', 'Hardware Layer', 'Cryptographic Controls', and 'Supply Chain Monitoring'. The diagram uses clean lines, geometric shapes, and a neutral background gradient from light gray to white. All text labels are in dark gray for readability."
             class="w-full rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300"
           />
         </div>
+      </div>
+    </section>
 
-        <div class="grid md:grid-cols-3 gap-6">
-          <div class="card-interactive p-6 bg-primary-50/50 dark:bg-primary-900/20 rounded-xl shadow-md">
-            <div class="flex items-center space-x-4 mb-4">
-              <div class="flex-shrink-0 w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center">
-                <i data-lucide="shield-check" class="w-6 h-6 text-primary-600 dark:text-primary-400"></i>
+    <!-- Foundations Section -->
+    <section id="foundations" class="py-20 bg-white/80 dark:bg-gray-900" data-aos="fade-up">
+      <div class="max-w-5xl mx-auto px-6">
+        <h2 class="text-3xl font-bold mb-8 text-primary-700 dark:text-primary-300">
+          Foundational Architecture of Ternary Moral Logic
+        </h2>
+
+        <div class="space-y-6 mb-12">
+          <p class="text-gray-700 dark:text-gray-300" data-ref="https://flame-challenge.authorea.com/inst/26407?current_inst_tab=public&filterby=All&page=45|130">
+            Ternary Moral Logic operates on a three-state logical framework that enables nuanced ethical decision-making beyond simple binary true/false outcomes. The system incorporates a governance framework that ensures ethical accountability through immutable hardware enforcement mechanisms.
+          </p>
+
+          <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.researchgate.net/publication/399129971_Auditable_AI_tracing_the_ethical_history_of_a_model|129">
+            The core architecture consists of three primary states: permissive, neutral, and prohibitive. These states are encoded into hardware logic gates that operate deterministically, ensuring that moral decisions are computationally consistent and auditable across all system components.
+          </p>
+        </div>
+
+        <div class="hs-accordion-group space-y-4">
+          <!-- Eight Pillars -->
+          <div class="hs-accordion card-interactive bg-white/80 backdrop-blur-sm dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+            <button class="hs-accordion-toggle w-full flex justify-between items-center p-4 text-left hover:bg-primary-50 dark:hover:bg-gray-700/50 transition-colors rounded-xl" id="hs-pillars-heading">
+              <div class="flex items-center space-x-4">
+                <div class="flex-shrink-0 w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center">
+                  <i data-lucide="layers" class="w-6 h-6 text-primary-600 dark:text-primary-400"></i>
+                </div>
+                <span class="font-semibold text-lg text-primary-700 dark:text-primary-300">Eight Pillars of TML</span>
               </div>
-              <h3 class="font-semibold text-lg text-primary-700 dark:text-primary-300">Immutable Enforcement</h3>
+              <i data-lucide="chevron-down" class="hs-accordion-active:rotate-180 transition-transform duration-300 w-5 h-5 text-primary-600 dark:text-primary-400"></i>
+            </button>
+            <div id="hs-pillars-collapse" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" aria-labelledby="hs-pillars-heading">
+              <div class="p-6 pt-0 space-y-4">
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://flame-challenge.authorea.com/inst/26407?current_inst_tab=public&filterby=All&page=45|130">
+                  The Eight Pillars represent the foundational principles that govern TML's ethical decision-making framework. These pillars include transparency, accountability, verifiability, immutability, enforceability, auditability, scalability, and resilience.
+                </p>
+                
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://ggnpreprints.authorea.com/inst/26407?current_inst_tab=public&page=85&sortby=Most+Cited&tag_filter=Robotics+And+Control+Systems|131">
+                  Each pillar is implemented through specific hardware mechanisms that ensure the system's constitutional integrity. The pillars collectively form a comprehensive governance framework that prevents moral drift and ensures consistent ethical outcomes across all operational contexts.
+                </p>
+              </div>
             </div>
-            <p class="text-sm text-gray-700 dark:text-gray-300">
-              Hardware-rooted enforcement mechanisms prevent administrative override of core ethical principles
-            </p>
           </div>
 
-          <div class="card-interactive p-6 bg-accent-50/50 dark:bg-accent-900/20 rounded-xl shadow-md">
-            <div class="flex items-center space-x-4 mb-4">
-              <div class="flex-shrink-0 w-12 h-12 bg-accent-100 dark:bg-accent-900/30 rounded-lg flex items-center justify-center">
-                <i data-lucide="globe" class="w-6 h-6 text-accent-600 dark:text-accent-400"></i>
+          <!-- Goukassian Promise Artifacts -->
+          <div class="hs-accordion card-interactive bg-white/80 backdrop-blur-sm dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+            <button class="hs-accordion-toggle w-full flex justify-between items-center p-4 text-left hover:bg-primary-50 dark:hover:bg-gray-700/50 transition-colors rounded-xl" id="hs-artifacts-heading">
+              <div class="flex items-center space-x-4">
+                <div class="flex-shrink-0 w-12 h-12 bg-accent-100 dark:bg-accent-900/30 rounded-lg flex items-center justify-center">
+                  <i data-lucide="shield-check" class="w-6 h-6 text-accent-600 dark:text-accent-400"></i>
+                </div>
+                <span class="font-semibold text-lg text-accent-700 dark:text-accent-300">Goukassian Promise Artifacts</span>
               </div>
-              <h3 class="font-semibold text-lg text-accent-700 dark:text-accent-300">Multi-Jurisdictional</h3>
+              <i data-lucide="chevron-down" class="hs-accordion-active:rotate-180 transition-transform duration-300 w-5 h-5 text-accent-600 dark:text-accent-400"></i>
+            </button>
+            <div id="hs-artifacts-collapse" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" aria-labelledby="hs-artifacts-heading">
+              <div class="p-6 pt-0 space-y-4">
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.researchgate.net/publication/399129971_Auditable_AI_tracing_the_ethical_history_of_a_model|129">
+                  The Goukassian Promise Artifacts consist of three core components: the Lantern (transparency beacon), the Signature (immutable commitment), and the License (enforceable authorization). These artifacts provide cryptographic proof of ethical compliance and operational integrity.
+                </p>
+                
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://flame-challenge.authorea.com/inst/26407?current_inst_tab=public&filterby=All&page=45|130">
+                  The Lantern artifact broadcasts real-time ethical state information to all stakeholders, ensuring transparency in decision-making processes. The Signature creates an immutable record of moral commitments that cannot be altered retroactively. The License provides cryptographically enforceable permissions that prevent unauthorized actions.
+                </p>
+              </div>
             </div>
-            <p class="text-sm text-gray-700 dark:text-gray-300">
-              Designed to operate across diverse regulatory environments while maintaining consistent ethical standards
-            </p>
           </div>
 
-          <div class="card-interactive p-6 bg-primary-50/50 dark:bg-primary-900/20 rounded-xl shadow-md">
-            <div class="flex items-center space-x-4 mb-4">
-              <div class="flex-shrink-0 w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center">
-                <i data-lucide="zap" class="w-6 h-6 text-primary-600 dark:text-primary-400"></i>
+          <!-- Dual Mandates -->
+          <div class="hs-accordion card-interactive bg-white/80 backdrop-blur-sm dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+            <button class="hs-accordion-toggle w-full flex justify-between items-center p-4 text-left hover:bg-primary-50 dark:hover:bg-gray-700/50 transition-colors rounded-xl" id="hs-mandates-heading">
+              <div class="flex items-center space-x-4">
+                <div class="flex-shrink-0 w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center">
+                  <i data-lucide="target" class="w-6 h-6 text-primary-600 dark:text-primary-400"></i>
+                </div>
+                <span class="font-semibold text-lg text-primary-700 dark:text-primary-300">Dual Mandates Structure</span>
               </div>
-              <h3 class="font-semibold text-lg text-primary-700 dark:text-primary-300">Deterministic Outcomes</h3>
+              <i data-lucide="chevron-down" class="hs-accordion-active:rotate-180 transition-transform duration-300 w-5 h-5 text-primary-600 dark:text-primary-400"></i>
+            </button>
+            <div id="hs-mandates-collapse" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" aria-labelledby="hs-mandates-heading">
+              <div class="p-6 pt-0 space-y-4">
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.researchgate.net/publication/399129971_Auditable_AI_tracing_the_ethical_history_of_a_model|129">
+                  The Dual Mandates establish two primary ethical imperatives: 'No Spy, No Weapon' and 'No Log = No Action'. These mandates create hard constraints that prevent surveillance activities and weaponization of AI systems, while ensuring all actions are logged and auditable.
+                </p>
+                
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://ggnpreprints.authorea.com/inst/26407?current_inst_tab=public&page=85&sortby=Most+Cited&tag_filter=Robotics+And+Control+Systems|131">
+                  The 'No Spy, No Weapon' mandate prohibits any system component from engaging in surveillance activities or enabling weaponized applications. The 'No Log = No Action' mandate requires that all decisions be recorded in tamper-evident logs before execution, creating an immutable audit trail.
+                </p>
+              </div>
             </div>
-            <p class="text-sm text-gray-700 dark:text-gray-300">
-              Predictable decision-making processes that eliminate ambiguity in ethical compliance scenarios
-            </p>
           </div>
         </div>
       </div>
@@ -244,100 +274,190 @@
 
     <!-- Threat Models Section -->
     <section id="threat-models" class="py-20 bg-primary-50/50 dark:bg-gray-800" data-aos="fade-up">
-      <div class="max-w-6xl mx-auto px-6">
-        <h2 class="text-4xl font-bold mb-8 text-primary-700 dark:text-primary-300">
-          Adversarial Threat Landscape
+      <div class="max-w-5xl mx-auto px-6">
+        <h2 class="text-3xl font-bold mb-8 text-primary-700 dark:text-primary-300">
+          Adversarial Threat Models and Attack Vectors
         </h2>
-        
-        <p class="text-lg text-gray-700 dark:text-gray-300 mb-12" data-ref="https://arxiv.org/html/2508.20411v1|4">
-          The analysis spans ten critical domains: technical decomposition and survivability classification of TML's Eight Pillars; enforceability analysis of Goukassian Promise Artifacts; structural integrity of Dual Mandates under corporate, state, and military adversaries; resistance to root-level overrides; comparative evaluation of binary versus ternary implementations; hardware constitutionalization requirements; supply chain and fabrication risks; cryptographic resilience; vulnerability to shadow deployments; and failure modes including governance capture and economic sabotage.
+
+        <div class="grid md:grid-cols-2 gap-6 mb-12">
+          <div class="card-interactive p-6 bg-white/90 backdrop-blur-sm dark:bg-gray-900 rounded-xl shadow-md">
+            <div class="flex items-center space-x-4 mb-4">
+              <div class="flex-shrink-0 w-12 h-12 bg-red-100 dark:bg-red-900/30 rounded-lg flex items-center justify-center">
+                <i data-lucide="shield-alert" class="w-6 h-6 text-red-600 dark:text-red-400"></i>
+              </div>
+              <h3 class="text-lg font-semibold text-red-700 dark:text-red-300" data-ref="https://arxiv.org/html/2508.20411v1|4">Administrative and Corporate Threats</h3>
+            </div>
+            <p class="text-gray-700 dark:text-gray-300">
+              Administrative adversaries may attempt to override TML decisions through policy manipulation or organizational pressure. Corporate entities may seek to circumvent ethical constraints for competitive advantage, potentially compromising system integrity.
+            </p>
+          </div>
+
+          <div class="card-interactive p-6 bg-white/90 backdrop-blur-sm dark:bg-gray-900 rounded-xl shadow-md">
+            <div class="flex items-center space-x-4 mb-4">
+              <div class="flex-shrink-0 w-12 h-12 bg-amber-100 dark:bg-amber-900/30 rounded-lg flex items-center justify-center">
+                <i data-lucide="globe" class="w-6 h-6 text-amber-600 dark:text-amber-400"></i>
+              </div>
+              <h3 class="text-lg font-semibold text-amber-700 dark:text-amber-300" data-ref="https://www.mdpi.com/2624-800X/5/4/86|5">State and Military Adversaries</h3>
+            </div>
+            <p class="text-gray-700 dark:text-gray-300">
+              State-level adversaries possess significant resources and may attempt to compromise TML through legislative pressure, regulatory capture, or direct intervention. Military adversaries may seek to disable ethical constraints for strategic advantage.
+            </p>
+          </div>
+
+          <div class="card-interactive p-6 bg-white/90 backdrop-blur-sm dark:bg-gray-900 rounded-xl shadow-md">
+            <div class="flex items-center space-x-4 mb-4">
+              <div class="flex-shrink-0 w-12 h-12 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center">
+                <i data-lucide="cpu" class="w-6 h-6 text-purple-600 dark:text-purple-400"></i>
+              </div>
+              <h3 class="text-lg font-semibold text-purple-700 dark:text-purple-300" data-ref="https://www.researchgate.net/publication/292383554_Introduction_to_Hardware_Security_and_Trust|7">Root-Level Override Attempts</h3>
+            </div>
+            <p class="text-gray-700 dark:text-gray-300">
+              Adversaries may attempt to bypass TML through kernel-level exploits, hypervisor compromises, microcode manipulation, or hardware debug interface exploitation. These attacks target the deepest layers of system architecture.
+            </p>
+          </div>
+
+          <div class="card-interactive p-6 bg-white/90 backdrop-blur-sm dark:bg-gray-900 rounded-xl shadow-md">
+            <div class="flex items-center space-x-4 mb-4">
+              <div class="flex-shrink-0 w-12 h-12 bg-indigo-100 dark:bg-indigo-900/30 rounded-lg flex items-center justify-center">
+                <i data-lucide="package" class="w-6 h-6 text-indigo-600 dark:text-indigo-400"></i>
+              </div>
+              <h3 class="text-lg font-semibold text-indigo-700 dark:text-indigo-300" data-ref="https://www.mdpi.com/2079-8954/9/1/18|9">Supply Chain and Fabrication Risks</h3>
+            </div>
+            <p class="text-gray-700 dark:text-gray-300">
+              Supply chain adversaries may introduce hardware backdoors, counterfeit components, or malicious firmware during manufacturing. Multi-jurisdictional foundry models increase the attack surface and complicate verification efforts.
+            </p>
+          </div>
+        </div>
+
+        <div class="pl-4 pr-3 py-3 border-l-4 border-amber-500 bg-amber-50/40 dark:bg-amber-900/30 rounded-r-lg mb-8">
+          <p class="text-sm font-medium text-amber-900 dark:text-amber-100 leading-relaxed" data-ref="https://pmc.ncbi.nlm.nih.gov/articles/PMC12660760/|10">
+            <i data-lucide="triangle-alert" class="inline-block w-4 h-4 mr-1.5 -mt-0.5"></i>
+            Critical Risk: Decentralized architectures reduce single points of failure but may introduce coordination vulnerabilities between distributed TML nodes, potentially enabling adversarial manipulation of consensus mechanisms.
+          </p>
+        </div>
+
+        <p class="text-gray-700 dark:text-gray-300 mb-6" data-ref="https://arxiv.org/html/2410.18312v1|11">
+          Insufficient cyber agent scaffolding can result in temporal variance of CLI tool outputs, creating opportunities for adversarial exploitation. These timing-based attacks exploit inconsistencies in system responses to bypass TML enforcement mechanisms.
         </p>
 
+        <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.mdpi.com/2079-8954/9/1/18|9">
+          Cyber and safety relations must be declared within subcomponent system types to describe vulnerability and failure flow between components. This ensures that adversarial pressure applied to one component does not cascade to compromise the entire TML system.
+        </p>
+      </div>
+    </section>
+
+    <!-- Hardware Security Section -->
+    <section id="hardware-security" class="py-20 bg-white/80 dark:bg-gray-900" data-aos="fade-up">
+      <div class="max-w-5xl mx-auto px-6">
+        <h2 class="text-3xl font-bold mb-8 text-primary-700 dark:text-primary-300">
+          Hardware Security Foundations and Trusted Computing
+        </h2>
+
+        <div class="grid md:grid-cols-2 gap-8 items-start mb-12">
+          <div class="space-y-6">
+            <p class="text-gray-700 dark:text-gray-300" data-ref="https://arxiv.org/html/2508.20411v1|4">
+              Trusted computing provides a hardware-based root of trust to ensure that system behavior remains predictable and verifiable under adversarial conditions. This foundation is essential for TML's constitutional survivability.
+            </p>
+
+            <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.mdpi.com/2624-800X/5/4/86|5">
+              Secure initialization of device identities, keys, and credentials prior to deployment is critical for maintaining TML integrity. Missing hardware root-of-trust enables device impersonation and undermines system-wide accountability.
+            </p>
+
+            <div class="pl-4 pr-3 py-3 border-l-4 border-primary-500 bg-primary-50/40 dark:bg-primary-900/30 rounded-r-lg">
+              <p class="text-sm font-medium text-primary-900 dark:text-primary-100 leading-relaxed" data-ref="https://www.researchgate.net/publication/312106416_Hardware-Based_Trusted_Computing_Architectures_for_Isolation_and_Attestation|51">
+                <i data-lucide="circle-check" class="inline-block w-4 h-4 mr-1.5 -mt-0.5"></i>
+                Trusted computing architectures provide guarantees about software behavior, protecting users and remote parties from unexpected or malicious system states that could compromise TML enforcement.
+              </p>
+            </div>
+          </div>
+
+          <img
+            src="https://cdn.qwenlm.ai/60498d16-d2ab-4b9f-8acd-8f6913b3400d/9b28c360-387d-48f5-ad70-d6813bdda96f/be825af0-95b4-438d-bb83-514aa7dd104e.png?key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXNvdXJjZV91c2VyX2lkIjoiNjA0OThkMTYtZDJhYi00YjlmLThhY2QtOGY2OTEzYjM0MDBkIiwicmVzb3VyY2VfaWQiOiI5YjI4YzM2MC0zODdkLTQ4ZjUtYWQ3MC1kNjgxM2JkZGE5NmYiLCJyZXNvdXJjZV9jaGF0X2lkIjpudWxsfQ.QPIuTCBhIewnXJAoGyA8spThTx0GnfOcIzPqloYuMmY"
+            alt="Diagram illustrating a computer motherboard with labeled components connected by secure communication pathways. Central component is a Trusted Platform Module (TPM) chip marked with a shield icon. Connected pathways lead to labeled modules: 'Secure Boot ROM' with lock icon, 'Hardware Root of Trust' with key icon, 'Attestation Engine' with certificate icon, and 'Memory Encryption Unit' with padlock icon. All components use blue and purple color schemes on a dark gray background. Connection lines show secure data flow with small shield icons along the paths. Labels are in white text for clarity."
+            class="w-full rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300"
+          />
+        </div>
+
         <div class="hs-accordion-group space-y-4">
-          <!-- Administrative Threats -->
-          <div class="hs-accordion card-interactive bg-white/80 backdrop-blur-sm dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700">
-            <button class="hs-accordion-toggle w-full flex justify-between items-center p-4 text-left hover:bg-primary-50 dark:hover:bg-gray-700/50 transition-colors rounded-xl" id="hs-admin-threats">
+          <!-- Trusted Execution Environments -->
+          <div class="hs-accordion card-interactive bg-white/80 backdrop-blur-sm dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+            <button class="hs-accordion-toggle w-full flex justify-between items-center p-4 text-left hover:bg-primary-50 dark:hover:bg-gray-700/50 transition-colors rounded-xl" id="hs-tee-heading">
               <div class="flex items-center space-x-4">
                 <div class="flex-shrink-0 w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center">
-                  <i data-lucide="building-2" class="w-6 h-6 text-primary-600 dark:text-primary-400"></i>
+                  <i data-lucide="lock" class="w-6 h-6 text-primary-600 dark:text-primary-400"></i>
                 </div>
-                <span class="font-semibold text-lg text-primary-700 dark:text-primary-300">Administrative Overrides</span>
+                <span class="font-semibold text-lg text-primary-700 dark:text-primary-300">Trusted Execution Environments (TEE)</span>
               </div>
               <i data-lucide="chevron-down" class="hs-accordion-active:rotate-180 transition-transform duration-300 w-5 h-5 text-primary-600 dark:text-primary-400"></i>
             </button>
-            <div id="hs-collapse-admin-threats" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" aria-labelledby="hs-admin-threats">
+            <div id="hs-tee-collapse" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" aria-labelledby="hs-tee-heading">
               <div class="p-6 pt-0 space-y-4">
-                <p class="text-gray-700 dark:text-gray-300" data-ref="https://arxiv.org/pdf/1910.04957|49">
-                  Traditional trusted computing architectures emphasize protection for initial integrity and isolation during execution, but TML extends this to include permanent enforcement of ethical constraints that cannot be overridden through administrative privileges.
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.mdpi.com/2079-9292/14/21/4171|53">
+                  A TEE is a broader concept describing the overall trusted execution environment with its security guarantees and interfaces, whereas a secure enclave is a specific isolated execution space within the TEE that protects sensitive operations.
                 </p>
                 
-                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.mdpi.com/2624-800X/5/4/86|5">
-                  Securely initializes device identities, keys, and credentials prior to deployment. Missing hardware root-of-trust enabling device impersonation represents a critical vulnerability that TML addresses through mandatory cryptographic anchoring.
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://dl.acm.org/doi/10.1145/3658617.3697763|54">
+                  Trusted Execution Environment (TEE) has been widely implemented by modern hardware vendors to protect security and privacy-sensitive operations. TEEs provide hardware-based isolation that prevents unauthorized access to TML enforcement mechanisms.
                 </p>
                 
-                <div class="pl-4 pr-3 py-3 border-l-4 border-amber-500 bg-amber-50/40 dark:bg-amber-900/30 rounded-r-lg">
-                  <p class="text-sm font-medium text-amber-900 dark:text-amber-100 leading-relaxed" data-ref="https://openreview.net/attachment?id=LmRJ09m2hD&name=pdf|204">
-                    <i data-lucide="alert-triangle" class="inline-block w-4 h-4 mr-1.5 -mt-0.5"></i>
-                    Risk: SMM compromise through cache-poisoning attacks demonstrates that even privileged administrative access can be exploited to bypass traditional security mechanisms
-                  </p>
-                </div>
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://arxiv.org/abs/2208.03631|57">
+                  In this work, TEE is employed as a hardware-backed security technique for protecting SE-in-SoC and RISC-V implementations. Various enclaves are constructed to isolate different aspects of TML enforcement, ensuring compartmentalized security.
+                </p>
               </div>
             </div>
           </div>
 
-          <!-- Corporate Threats -->
-          <div class="hs-accordion card-interactive bg-white/80 backdrop-blur-sm dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700">
-            <button class="hs-accordion-toggle w-full flex justify-between items-center p-4 text-left hover:bg-primary-50 dark:hover:bg-gray-700/50 transition-colors rounded-xl" id="hs-corp-threats">
+          <!-- Remote Attestation -->
+          <div class="hs-accordion card-interactive bg-white/80 backdrop-blur-sm dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+            <button class="hs-accordion-toggle w-full flex justify-between items-center p-4 text-left hover:bg-primary-50 dark:hover:bg-gray-700/50 transition-colors rounded-xl" id="hs-attestation-heading">
               <div class="flex items-center space-x-4">
                 <div class="flex-shrink-0 w-12 h-12 bg-accent-100 dark:bg-accent-900/30 rounded-lg flex items-center justify-center">
-                  <i data-lucide="briefcase" class="w-6 h-6 text-accent-600 dark:text-accent-400"></i>
+                  <i data-lucide="file-check" class="w-6 h-6 text-accent-600 dark:text-accent-400"></i>
                 </div>
-                <span class="font-semibold text-lg text-accent-700 dark:text-accent-300">Corporate Pressure</span>
+                <span class="font-semibold text-lg text-accent-700 dark:text-accent-300">Remote Attestation Protocols</span>
               </div>
               <i data-lucide="chevron-down" class="hs-accordion-active:rotate-180 transition-transform duration-300 w-5 h-5 text-accent-600 dark:text-accent-400"></i>
             </button>
-            <div id="hs-collapse-corp-threats" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" aria-labelledby="hs-corp-threats">
+            <div id="hs-attestation-collapse" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" aria-labelledby="hs-attestation-heading">
               <div class="p-6 pt-0 space-y-4">
-                <p class="text-gray-700 dark:text-gray-300" data-ref="https://arxiv.org/html/2506.04133v4|147">
-                  Trust, Risk, and Security Management (TRiSM) in the context of LLM-based Agentic Multi-Agent Systems reveals how corporate entities may attempt to circumvent ethical constraints through sophisticated attack vectors targeting the underlying infrastructure.
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://arxiv.org/html/2501.04394v1|151">
+                  Remote attestation protocols strengthen enclave security by enabling external parties to verify the integrity of the enclave's code and hardware. This verification process ensures that TML enforcement remains uncompromised.
                 </p>
                 
-                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.synopsys.com/blogs/chip-design/ai-security-silicon-level.html|36">
-                  Global and industry-specific standards now emphasize lifecycle security, data privacy, ethical AI deployment, and security-by-design principles. TML's constitutional framework must withstand corporate attempts to prioritize profit over ethical compliance.
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://arxiv.org/pdf/2501.04394|122">
+                  Remote attestation protocols further strengthen enclave security by enabling external parties to verify the integrity of the enclave's code and hardware. These protocols provide cryptographic proof that TML systems remain in their expected operational state.
                 </p>
                 
-                <p class="text-gray-700 dark:text-gray-300" data-ref="https://link.springer.com/content/pdf/10.1007/978-3-031-57140-4.pdf|6">
-                  The edited volume on Luxury, Corruption and Global Ethics demonstrates how corporate cultures may normalize unethical behavior when regulatory oversight is weak, creating systematic pressure on ethical systems.
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://arxiv.org/pdf/2206.03780|158">
+                  The attester provides the state of its system, indicating the hardware and the software stack that runs on its device by collecting a set of claims. This comprehensive state reporting enables continuous verification of TML constitutional integrity.
                 </p>
               </div>
             </div>
           </div>
 
-          <!-- State Threats -->
-          <div class="hs-accordion card-interactive bg-white/80 backdrop-blur-sm dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700">
-            <button class="hs-accordion-toggle w-full flex justify-between items-center p-4 text-left hover:bg-primary-50 dark:hover:bg-gray-700/50 transition-colors rounded-xl" id="hs-state-threats">
+          <!-- Hardware Root of Trust -->
+          <div class="hs-accordion card-interactive bg-white/80 backdrop-blur-sm dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+            <button class="hs-accordion-toggle w-full flex justify-between items-center p-4 text-left hover:bg-primary-50 dark:hover:bg-gray-700/50 transition-colors rounded-xl" id="hs-root-heading">
               <div class="flex items-center space-x-4">
                 <div class="flex-shrink-0 w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center">
-                  <i data-lucide="landmark" class="w-6 h-6 text-primary-600 dark:text-primary-400"></i>
+                  <i data-lucide="key" class="w-6 h-6 text-primary-600 dark:text-primary-400"></i>
                 </div>
-                <span class="font-semibold text-lg text-primary-700 dark:text-primary-300">State Actors</span>
+                <span class="font-semibold text-lg text-primary-700 dark:text-primary-300">Hardware Root of Trust</span>
               </div>
               <i data-lucide="chevron-down" class="hs-accordion-active:rotate-180 transition-transform duration-300 w-5 h-5 text-primary-600 dark:text-primary-400"></i>
             </button>
-            <div id="hs-collapse-state-threats" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" aria-labelledby="hs-state-threats">
+            <div id="hs-root-collapse" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" aria-labelledby="hs-root-heading">
               <div class="p-6 pt-0 space-y-4">
-                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.cambridge.org/core/journals/american-political-science-review/article/does-state-repression-spark-protests-evidence-from-secret-police-surveillance-in-communist-poland/3DF8F75F2903CA01392D14E35B31AFA2|43">
-                  Communities exposed to secret police officers were more likely to organize protests but also engaged in less sabotage, suggesting that state surveillance can suppress resistance while failing to eliminate covert opposition.
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://dl.acm.org/doi/full/10.1145/3672392|96">
+                  The Trusted Platform Module (TPM) is a security chip residing on the motherboard of many x86 systems and certain mobile platforms. The TPM provides numerous security functions including secure key storage and cryptographic operations essential for TML enforcement.
                 </p>
                 
-                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.oecd.org/content/dam/oecd/en/publications/reports/2025/06/mapping-the-semiconductor-value-chain_5ba52971/4154cdbf-en.pdf|110">
-                  Building on OECD Inter-Country Input-Output data, this analysis provides a comprehensive view of the concentration of intermediate inputs flows, revealing how state economic policies can influence global semiconductor supply chains and create dependencies.
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.cisco.com/c/en/us/products/collateral/servers-unified-computing/computing-overview-wp.html|97">
+                  A physical chip such as a trusted platform module (TPM) can only do very limited policy enforcement. Using a remote server allows for a much richer policy framework that can adapt to evolving adversarial pressures while maintaining constitutional integrity.
                 </p>
                 
-                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.globalpolicywatch.com/2026/02/a-month-in-semiconductor-policy-section-232-measures-bis-rule-and-taiwan-deal-signal-strategic-push/|40">
-                  The Proclamation imposed a
-                  <span class="mx-1 px-1.5 py-0.5 rounded-md bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300 font-semibold text-sm">25%</span>
-                  tariff on a narrow set of advanced logic semiconductors, effective January 15, 2026, demonstrating state-level economic warfare tactics that can disrupt hardware manufacturing.
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://link.springer.com/article/10.1007/s13389-025-00381-9|114">
+                  As a proof of the concept, hardware RoT is integrated into a RISC-V-based SoC, and then implemented on FPGA and ASIC to demonstrate the feasibility of embedding TML enforcement mechanisms directly into hardware architecture.
                 </p>
               </div>
             </div>
@@ -346,108 +466,149 @@
       </div>
     </section>
 
-    <!-- Hardware Security Section -->
-    <section id="hardware-security" class="py-20 bg-white/80 dark:bg-gray-900" data-aos="fade-up">
-      <div class="max-w-6xl mx-auto px-6">
-        <h2 class="text-4xl font-bold mb-8 text-primary-700 dark:text-primary-300">
-          Hardware-Rooted Security Architecture
+    <!-- Implementation Section -->
+    <section id="implementation" class="py-20 bg-accent-50/50 dark:bg-gray-800" data-aos="fade-up">
+      <div class="max-w-5xl mx-auto px-6">
+        <h2 class="text-3xl font-bold mb-8 text-accent-700 dark:text-accent-300">
+          Implementation Strategies and Binary vs Ternary Logic
         </h2>
 
-        <div class="grid md:grid-cols-2 gap-8 items-start mb-12">
-          <img
-            src="https://cdn.qwenlm.ai/60498d16-d2ab-4b9f-8acd-8f6913b3400d/17535334-6e4d-4c68-a4bc-106bb6d3cd0d/9a1e1cec-eafe-4b37-8d25-b3f1ebbb27f2.png?key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXNvdXJjZV91c2VyX2lkIjoiNjA0OThkMTYtZDJhYi00YjlmLThhY2QtOGY2OTEzYjM0MDBkIiwicmVzb3VyY2VfaWQiOiIxNzUzNTMzNC02ZTRkLTRjNjgtYTRiYy0xMDZiYjZkM2NkMGQiLCJyZXNvdXJjZV9jaGF0X2lkIjpudWxsfQ.QEjxYJVPLq-FUqJU0db8jrCuRiqg6WziwtU0rkPjXW8"
-            alt="Technical diagram showing a multi-layered semiconductor chip cross-section with clear vertical layers. Bottom layer is a dark gray substrate (#374151) labeled 'Silicon Wafer'. Above it, a thin green band (#10b981) labeled 'Hardware Root of Trust (RoT)'. Next, a blue layer (#3b82f6) labeled 'Trusted Execution Environment (TEE)'. Above that, a purple layer (#8b5cf6) labeled 'Ternary Logic Gates'. The topmost layer is a yellow band (#fbbf24) labeled 'Secure Boot ROM'. Vertical arrows in white (#ffffff) point upward through each layer, indicating the chain of trust. Small inset diagrams show: top-left corner a magnified view of a single ternary logic gate with three input terminals marked A, B, C in cyan, blue, magenta respectively, and a single output terminal in white. Top-right corner shows a simplified Trusted Platform Module (TPM) chip icon in navy blue (#1e3a8a) with a small lock symbol. Bottom-right corner displays a stylized remote attestation certificate icon in teal (#14b8a6) with a checkmark. Background is clean white (#ffffff) with faint grid lines in light gray (#f3f4f6). All labels use sans-serif font in medium weight, positioned clearly next to their respective layers. The overall composition emphasizes the hierarchical security architecture with clear separation between trust boundaries."
-            class="w-full rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300"
-          />
+        <div class="space-y-6 mb-12">
+          <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.sciencedirect.com/science/article/pii/S2590123024010168|32">
+            Ternary logic can potentially offer higher computational density and efficiency compared to binary logic implementations. This increased efficiency may translate to reduced power consumption and enhanced performance in TML enforcement systems.
+          </p>
 
-          <div class="space-y-6">
-            <p class="text-gray-700 dark:text-gray-300" data-ref="https://arxiv.org/html/2508.20411v1|4">
-              Trusted computing provides a hardware-based root of trust to ensure that system integrity is maintained throughout the execution lifecycle. TML builds upon this foundation to enforce ethical constraints at the hardware level.
-            </p>
+          <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.researchgate.net/figure/Nand2-comparison-DITL-vs-PCHB-vs-NCL_tbl2_283181830|33">
+            While binary logic circuits have the ability to process <span class="mx-1 px-1.5 py-0.5 rounded-md bg-accent-100 dark:bg-accent-900/30 text-accent-800 dark:text-accent-300 font-semibold text-sm">2^n</span> information states, Multi-Valued Logic (MVL) circuits have the potential to process information with greater density and reduced hardware complexity.
+          </p>
 
-            <div class="pl-4 pr-3 py-3 border-l-4 border-primary-500 bg-primary-50/40 dark:bg-primary-900/30 rounded-r-lg">
-              <p class="text-sm font-medium text-primary-900 dark:text-primary-100 leading-relaxed" data-ref="https://www.mdpi.com/2624-800X/5/4/86|5">
-                <i data-lucide="circle-check" class="inline-block w-4 h-4 mr-1.5 -mt-0.5"></i>
-                Securely initializes device identities, keys, and credentials prior to deployment, establishing a cryptographically verifiable foundation for TML enforcement
-              </p>
-            </div>
-
-            <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.researchgate.net/publication/312106416_Hardware-Based_Trusted_Computing_Architectures_for_Isolation_and_Attestation|51">
-              Trusted computing architectures give users and remote parties guarantees about the behavior of the software they run, protecting them from unauthorized modifications and ensuring compliance with predetermined ethical frameworks.
+          <div class="pl-4 pr-3 py-3 border-l-4 border-accent-500 bg-accent-50/40 dark:bg-accent-900/30 rounded-r-lg">
+            <p class="text-sm font-medium text-accent-900 dark:text-accent-100 leading-relaxed" data-ref="https://www.sciencedirect.com/science/article/pii/S2590123024010168|32">
+              <i data-lucide="trending-up" class="inline-block w-4 h-4 mr-1.5 -mt-0.5"></i>
+              Performance Advantage: Ternary logic systems may use less power compared to binary logic implementations while maintaining equivalent computational throughput, making them ideal for energy-constrained TML deployments.
             </p>
           </div>
         </div>
 
-        <div class="grid md:grid-cols-2 gap-6 mb-12">
-          <div class="card-interactive p-6 bg-primary-50/50 dark:bg-primary-900/20 rounded-xl shadow-md">
-            <h3 class="text-lg font-semibold text-primary-700 dark:text-primary-300 mb-4" data-ref="https://www.mdpi.com/2079-9292/14/21/4171|53">Trusted Execution Environments</h3>
+        <div class="grid md:grid-cols-3 gap-6 mb-12">
+          <div class="card-interactive p-6 bg-white/90 backdrop-blur-sm dark:bg-gray-900 rounded-xl shadow-md">
+            <div class="flex items-center space-x-3 mb-4">
+              <div class="flex-shrink-0 w-10 h-10 bg-accent-100 dark:bg-accent-900/30 rounded-lg flex items-center justify-center">
+                <i data-lucide="server" class="w-5 h-5 text-accent-600 dark:text-accent-400"></i>
+              </div>
+              <h3 class="text-base font-semibold text-accent-700 dark:text-accent-300" data-ref="https://www.sciencedirect.com/science/article/pii/S2590123024010168|32">Software Layer</h3>
+            </div>
             <p class="text-sm text-gray-700 dark:text-gray-300">
-              A TEE is a broader concept describing the overall trusted execution environment with its security guarantees and interfaces, whereas a secure enclave is a specific implementation that provides isolated execution spaces protected from untrusted software.
+              Ternary logic implementations in software can leverage existing binary infrastructure while providing enhanced decision-making capabilities for TML governance frameworks.
             </p>
           </div>
 
-          <div class="card-interactive p-6 bg-accent-50/50 dark:bg-accent-900/20 rounded-xl shadow-md">
-            <h3 class="text-lg font-semibold text-accent-700 dark:text-accent-300 mb-4" data-ref="https://www.sciencedirect.com/topics/computer-science/hardware-support|182">Hardware Security Modules</h3>
+          <div class="card-interactive p-6 bg-white/90 backdrop-blur-sm dark:bg-gray-900 rounded-xl shadow-md">
+            <div class="flex items-center space-x-3 mb-4">
+              <div class="flex-shrink-0 w-10 h-10 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center">
+                <i data-lucide="chip" class="w-5 h-5 text-primary-600 dark:text-primary-400"></i>
+              </div>
+              <h3 class="text-base font-semibold text-primary-700 dark:text-primary-300" data-ref="https://www.sciencedirect.com/science/article/pii/S2590123024010168|32">Firmware Layer</h3>
+            </div>
             <p class="text-sm text-gray-700 dark:text-gray-300">
-              Trusted Platform Modules (TPM) and secure enclaves such as Intel Software Guard Extensions (SGX) and ARM TrustZone provide hardware-based security by establishing cryptographic roots of trust that cannot be bypassed through software manipulation.
+              Firmware implementations of ternary logic provide low-level control over hardware resources, enabling fine-grained enforcement of TML constitutional requirements.
+            </p>
+          </div>
+
+          <div class="card-interactive p-6 bg-white/90 backdrop-blur-sm dark:bg-gray-900 rounded-xl shadow-md">
+            <div class="flex items-center space-x-3 mb-4">
+              <div class="flex-shrink-0 w-10 h-10 bg-accent-100 dark:bg-accent-900/30 rounded-lg flex items-center justify-center">
+                <i data-lucide="microchip" class="w-5 h-5 text-accent-600 dark:text-accent-400"></i>
+              </div>
+              <h3 class="text-base font-semibold text-accent-700 dark:text-accent-300" data-ref="https://www.sciencedirect.com/science/article/pii/S2590123024010168|32">Hardware Layer</h3>
+            </div>
+            <p class="text-sm text-gray-700 dark:text-gray-300">
+              Hardware-based ternary logic gates provide deterministic enforcement of TML decisions, ensuring that ethical constraints cannot be bypassed through software manipulation.
             </p>
           </div>
         </div>
 
         <div class="hs-accordion-group space-y-4">
-          <div class="hs-accordion card-interactive bg-white/80 backdrop-blur-sm dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700">
-            <button class="hs-accordion-toggle w-full flex justify-between items-center p-4 text-left hover:bg-primary-50 dark:hover:bg-gray-700/50 transition-colors rounded-xl" id="hs-tee-arch">
+          <!-- Supply Chain Risks -->
+          <div class="hs-accordion card-interactive bg-white/80 backdrop-blur-sm dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+            <button class="hs-accordion-toggle w-full flex justify-between items-center p-4 text-left hover:bg-accent-50 dark:hover:bg-gray-700/50 transition-colors rounded-xl" id="hs-supply-heading">
               <div class="flex items-center space-x-4">
-                <div class="flex-shrink-0 w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center">
-                  <i data-lucide="layers" class="w-6 h-6 text-primary-600 dark:text-primary-400"></i>
+                <div class="flex-shrink-0 w-12 h-12 bg-amber-100 dark:bg-amber-900/30 rounded-lg flex items-center justify-center">
+                  <i data-lucide="truck" class="w-6 h-6 text-amber-600 dark:text-amber-400"></i>
                 </div>
-                <span class="font-semibold text-lg text-primary-700 dark:text-primary-300">TEE Architecture Components</span>
+                <span class="font-semibold text-lg text-amber-700 dark:text-amber-300">Supply Chain and Fabrication Risks</span>
               </div>
-              <i data-lucide="chevron-down" class="hs-accordion-active:rotate-180 transition-transform duration-300 w-5 h-5 text-primary-600 dark:text-primary-400"></i>
+              <i data-lucide="chevron-down" class="hs-accordion-active:rotate-180 transition-transform duration-300 w-5 h-5 text-amber-600 dark:text-amber-400"></i>
             </button>
-            <div id="hs-collapse-tee-arch" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" aria-labelledby="hs-tee-arch">
+            <div id="hs-supply-collapse" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" aria-labelledby="hs-supply-heading">
               <div class="p-6 pt-0 space-y-4">
-                <p class="text-gray-700 dark:text-gray-300" data-ref="https://dl.acm.org/doi/10.1145/3658617.3697763|54">
-                  Trusted Execution Environment (TEE) has been widely implemented by modern hardware vendors to protect security and privacy-sensitive applications. TEEs provide isolated execution environments that protect against malicious software running on the same device.
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.researchgate.net/publication/397103639_The_Reshaping_of_the_US_Supply_Chain_and_the_Security_Level_of_China's_Semiconductor_Industry_Chain|25">
+                  Chapter 6 investigates the impact of US supply chain review policies on the security of China's semiconductor industry chain. These policies may affect the availability of trusted components for TML hardware implementations.
                 </p>
-
-                <p class="text-gray-700 dark:text-gray-300" data-ref="https://inria.hal.science/tel-01989940v2/document|50">
-                  Hardware-based Security Enforcement (HSE) mechanisms provide deterministic enforcement of security policies through hardware-level intervention, preventing software-based circumvention of ethical constraints.
+                
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.tandfonline.com/doi/full/10.1080/23792949.2024.2397973|26">
+                  China seeks to develop greater self-reliance in semiconductors at a time when its integration in the global value chain is facing significant threats. This shift may impact the diversity and security of TML hardware supply sources.
                 </p>
-
-                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.researchgate.net/publication/397022544_A_Survey_of_RISC-V_Secure_Enclaves_and_Trusted_Execution_Environments|56">
-                  RISC-V TEEs and secure enclaves analyze their architectural principles, strengths, and weaknesses, providing insights into how TML can be implemented across different hardware architectures while maintaining consistent enforcement.
+                
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.marketresearch.com/Mordor-Intelligence-LLP-v4018/Semiconductor-Foundry-Share-Trends-Statistics-43838205/|107">
+                  The global semiconductor foundry market size in <span class="mx-1 px-1.5 py-0.5 rounded-md bg-amber-100 dark:bg-amber-900/30 text-amber-800 dark:text-amber-300 font-semibold text-sm">2026</span> is estimated at <span class="mx-1 px-1.5 py-0.5 rounded-md bg-amber-100 dark:bg-amber-900/30 text-amber-800 dark:text-amber-300 font-semibold text-sm">USD 184.78 billion</span>, growing from <span class="mx-1 px-1.5 py-0.5 rounded-md bg-amber-100 dark:bg-amber-900/30 text-amber-800 dark:text-amber-300 font-semibold text-sm">2025</span> value of <span class="mx-1 px-1.5 py-0.5 rounded-md bg-amber-100 dark:bg-amber-900/30 text-amber-800 dark:text-amber-300 font-semibold text-sm">USD 171.72 billion</span>. This growth indicates increasing complexity in supply chain management for TML implementations.
                 </p>
               </div>
             </div>
           </div>
 
-          <div class="hs-accordion card-interactive bg-white/80 backdrop-blur-sm dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700">
-            <button class="hs-accordion-toggle w-full flex justify-between items-center p-4 text-left hover:bg-primary-50 dark:hover:bg-gray-700/50 transition-colors rounded-xl" id="hs-rotdesign">
+          <!-- Shadow Deployments -->
+          <div class="hs-accordion card-interactive bg-white/80 backdrop-blur-sm dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+            <button class="hs-accordion-toggle w-full flex justify-between items-center p-4 text-left hover:bg-accent-50 dark:hover:bg-gray-700/50 transition-colors rounded-xl" id="hs-shadow-heading">
               <div class="flex items-center space-x-4">
-                <div class="flex-shrink-0 w-12 h-12 bg-accent-100 dark:bg-accent-900/30 rounded-lg flex items-center justify-center">
-                  <i data-lucide="lock" class="w-6 h-6 text-accent-600 dark:text-accent-400"></i>
+                <div class="flex-shrink-0 w-12 h-12 bg-red-100 dark:bg-red-900/30 rounded-lg flex items-center justify-center">
+                  <i data-lucide="ghost" class="w-6 h-6 text-red-600 dark:text-red-400"></i>
                 </div>
-                <span class="font-semibold text-lg text-accent-700 dark:text-accent-300">Root of Trust Design</span>
+                <span class="font-semibold text-lg text-red-700 dark:text-red-300">Shadow or Parallel Non-TML Deployments</span>
               </div>
-              <i data-lucide="chevron-down" class="hs-accordion-active:rotate-180 transition-transform duration-300 w-5 h-5 text-accent-600 dark:text-accent-400"></i>
+              <i data-lucide="chevron-down" class="hs-accordion-active:rotate-180 transition-transform duration-300 w-5 h-5 text-red-600 dark:text-red-400"></i>
             </button>
-            <div id="hs-collapse-rotdesign" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" aria-labelledby="hs-rotdesign">
+            <div id="hs-shadow-collapse" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" aria-labelledby="hs-shadow-heading">
               <div class="p-6 pt-0 space-y-4">
-                <p class="text-gray-700 dark:text-gray-300" data-ref="https://link.springer.com/article/10.1007/s13389-025-00381-9|114">
-                  As a proof of concept, hardware RoT is integrated into a RISC-V-based SoC, and then implemented on FPGA and ASIC to demonstrate the feasibility of embedding TML enforcement mechanisms directly into silicon.
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://pmc.ncbi.nlm.nih.gov/articles/PMC12660760/|10">
+                  Its decentralized architecture reduces single points of failure, mitigates risks, and enhances system resilience. However, decentralized systems may be vulnerable to adversarial attempts to deploy parallel non-TML systems that circumvent constitutional constraints.
                 </p>
-
-                <p class="text-gray-700 dark:text-gray-300" data-ref="https://arxiv.org/html/2411.07114v1|239">
-                  Secure boot is a feature that establishes a hardware root of trust by authenticating the device firmware before the device is able to boot, ensuring that only verified code can execute and preventing rootkit installations.
+                
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://arxiv.org/html/2410.18312v1|11">
+                  Another crucial failure mode that can result from insufficient cyber agent scaffolding revolves around the temporal variance of CLI tool outputs. These timing-based inconsistencies may enable adversarial actors to create shadow deployments that appear legitimate but bypass TML enforcement.
                 </p>
+                
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.mdpi.com/2079-8954/9/1/18|9">
+                  Cyber and safety relations may only be declared within a subcomponent system type. They describe the vulnerability and failure flow, respectively, between the components. Proper declaration of these relations is essential to prevent adversarial shadow deployments from exploiting system vulnerabilities.
+                </p>
+              </div>
+            </div>
+          </div>
 
-                <div class="pl-4 pr-3 py-3 border-l-4 border-amber-500 bg-amber-50/40 dark:bg-amber-900/30 rounded-r-lg">
-                  <p class="text-sm font-medium text-amber-900 dark:text-amber-100 leading-relaxed" data-ref="https://dl.acm.org/doi/full/10.1145/3672392|96">
-                    <i data-lucide="triangle-alert" class="inline-block w-4 h-4 mr-1.5 -mt-0.5"></i>
-                    Critical: The Trusted Platform Module (TPM) is a security chip residing on the motherboard of many x86 systems and certain mobile platforms, but its effectiveness depends on proper implementation and protection from physical attacks
-                  </p>
+          <!-- Failure Modes -->
+          <div class="hs-accordion card-interactive bg-white/80 backdrop-blur-sm dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+            <button class="hs-accordion-toggle w-full flex justify-between items-center p-4 text-left hover:bg-accent-50 dark:hover:bg-gray-700/50 transition-colors rounded-xl" id="hs-failure-heading">
+              <div class="flex items-center space-x-4">
+                <div class="flex-shrink-0 w-12 h-12 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center">
+                  <i data-lucide="octagon-alert" class="w-6 h-6 text-purple-600 dark:text-purple-400"></i>
                 </div>
+                <span class="font-semibold text-lg text-purple-700 dark:text-purple-300">Failure Modes and Governance Capture</span>
+              </div>
+              <i data-lucide="chevron-down" class="hs-accordion-active:rotate-180 transition-transform duration-300 w-5 h-5 text-purple-600 dark:text-purple-400"></i>
+            </button>
+            <div id="hs-failure-collapse" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" aria-labelledby="hs-failure-heading">
+              <div class="p-6 pt-0 space-y-4">
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://ieeexplore.ieee.org/iel8/6287639/10820123/10852318.pdf|8">
+                  The paper discusses the main failure modes identified in embedded systems hardware, evaluates various mitigation strategies, and identifies best practices for enhancing system reliability under adversarial pressure.
+                </p>
+                
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.researchgate.net/publication/292383554_Introduction_to_Hardware_Security_and_Trust|7">
+                  New failure mechanisms that are not covered by current fault models are observed in designs fabricated in new technologies and new materials. These emerging failure modes may create vulnerabilities that adversaries can exploit to compromise TML systems.
+                </p>
+                
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://academic.oup.com/cybersecurity/article/8/1/tyac009/6656148|41">
+                  Our results consider the business propositional drivers, barriers and economic factors that influence the adoption decisions. Economic pressures may incentivize organizations to compromise TML enforcement for short-term gains, leading to governance capture.
+                </p>
               </div>
             </div>
           </div>
@@ -456,289 +617,146 @@
     </section>
 
     <!-- Cryptographic Resilience Section -->
-    <section id="cryptographic-resilience" class="py-20 bg-primary-50/50 dark:bg-gray-800" data-aos="fade-up">
-      <div class="max-w-6xl mx-auto px-6">
-        <h2 class="text-4xl font-bold mb-8 text-primary-700 dark:text-primary-300">
-          Cryptographic Foundations and Resilience
+    <section id="cryptographic-resilience" class="py-20 bg-white/80 dark:bg-gray-900" data-aos="fade-up">
+      <div class="max-w-5xl mx-auto px-6">
+        <h2 class="text-3xl font-bold mb-8 text-primary-700 dark:text-primary-300">
+          Cryptographic Resilience and Hardware Constitutionalization
         </h2>
 
-        <p class="text-lg text-gray-700 dark:text-gray-300 mb-12" data-ref="https://arxiv.org/pdf/1910.04957|49">
-          While traditionally Trusted Computing emphasizes merely the protection for initial integrity and isolation during execution, TML expands this to include permanent cryptographic enforcement of ethical constraints that cannot be bypassed through conventional attack vectors.
+        <div class="space-y-6 mb-12">
+          <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.synopsys.com/blogs/chip-design/ai-security-silicon-level.html|36">
+            Global and industry-specific standards now emphasize lifecycle security, data privacy, ethical AI deployment, and security-by-design principles. These standards provide the foundation for cryptographic resilience in TML implementations.
+          </p>
+
+          <p class="text-gray-700 dark:text-gray-300" data-ref="https://arxiv.org/pdf/2308.13062|31">
+            We consider the scenario when one uses LLM-enabled code assistants to generate crypto code from scratch. Making LLMs generate a whole cryptographic implementation from scratch may introduce vulnerabilities that adversaries can exploit to compromise TML enforcement.
+          </p>
+
+          <div class="pl-4 pr-3 py-3 border-l-4 border-primary-500 bg-primary-50/40 dark:bg-primary-900/30 rounded-r-lg">
+            <p class="text-sm font-medium text-primary-900 dark:text-primary-100 leading-relaxed" data-ref="https://arxiv.org/html/2510.13102v1|70">
+              <i data-lucide="info" class="inline-block w-4 h-4 mr-1.5 -mt-0.5"></i>
+              Critical Finding: Cryptography plays a critical role in helping developers protect sensitive data. However, developers have a history of misusing crypto-APIs, which may undermine TML's cryptographic foundations if not properly addressed.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6 mb-12">
+          <div class="card-interactive p-6 bg-primary-50/50 backdrop-blur-sm dark:bg-gray-800 rounded-xl shadow-md">
+            <div class="flex items-center space-x-4 mb-4">
+              <div class="flex-shrink-0 w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center">
+                <i data-lucide="hash" class="w-6 h-6 text-primary-600 dark:text-primary-400"></i>
+              </div>
+              <h3 class="text-lg font-semibold text-primary-700 dark:text-primary-300" data-ref="https://arxiv.org/html/2508.01332v2|27">Blockchain-Based Identity Anchoring</h3>
+            </div>
+            <p class="text-gray-700 dark:text-gray-300">
+              This protocol extends the cryptographic anchoring of DIDs to enable interoperable identity verification across distributed TML nodes, ensuring consistent enforcement of constitutional requirements.
+            </p>
+          </div>
+
+          <div class="card-interactive p-6 bg-accent-50/50 backdrop-blur-sm dark:bg-gray-800 rounded-xl shadow-md">
+            <div class="flex items-center space-x-4 mb-4">
+              <div class="flex-shrink-0 w-12 h-12 bg-accent-100 dark:bg-accent-900/30 rounded-lg flex items-center justify-center">
+                <i data-lucide="lock" class="w-6 h-6 text-accent-600 dark:text-accent-400"></i>
+              </div>
+              <h3 class="text-lg font-semibold text-accent-700 dark:text-accent-300" data-ref="https://www.arxiv.org/pdf/2508.01332|28">Smart Contract Governance</h3>
+            </div>
+            <p class="text-gray-700 dark:text-gray-300">
+              The Smart Contract Layer codifies and automates the governance of agent interactions through three key contract archetypes: access control, interaction logic, and dispute resolution mechanisms.
+            </p>
+          </div>
+
+          <div class="card-interactive p-6 bg-primary-50/50 backdrop-blur-sm dark:bg-gray-800 rounded-xl shadow-md">
+            <div class="flex items-center space-x-4 mb-4">
+              <div class="flex-shrink-0 w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center">
+                <i data-lucide="shield" class="w-6 h-6 text-primary-600 dark:text-primary-400"></i>
+              </div>
+              <h3 class="text-lg font-semibold text-primary-700 dark:text-primary-300" data-ref="https://arxiv.org/html/2508.01332v2|27">Decentralized Identity Verification</h3>
+            </div>
+            <p class="text-gray-700 dark:text-gray-300">
+              Distributed verification protocols ensure that TML nodes can authenticate each other without relying on centralized authorities, reducing single points of failure and adversarial attack vectors.
+            </p>
+          </div>
+
+          <div class="card-interactive p-6 bg-accent-50/50 backdrop-blur-sm dark:bg-gray-800 rounded-xl shadow-md">
+            <div class="flex items-center space-x-4 mb-4">
+              <div class="flex-shrink-0 w-12 h-12 bg-accent-100 dark:bg-accent-900/30 rounded-lg flex items-center justify-center">
+                <i data-lucide="zap" class="w-6 h-6 text-accent-600 dark:text-accent-400"></i>
+              </div>
+              <h3 class="text-lg font-semibold text-accent-700 dark:text-accent-300" data-ref="https://www.arxiv.org/pdf/2508.01332|28">Automated Compliance Monitoring</h3>
+            </div>
+            <p class="text-gray-700 dark:text-gray-300">
+              Automated compliance monitoring contracts continuously verify adherence to TML constitutional requirements, triggering corrective actions when deviations are detected.
+            </p>
+          </div>
+        </div>
+
+        <p class="text-gray-700 dark:text-gray-300 mb-6" data-ref="https://www.synopsys.com/blogs/chip-design/ai-security-silicon-level.html|36">
+          Security-by-design principles ensure that cryptographic resilience is built into TML systems from the ground up, rather than being added as an afterthought. This approach minimizes vulnerabilities that adversaries can exploit under sustained pressure.
         </p>
 
-        <div class="grid md:grid-cols-3 gap-6 mb-12">
-          <div class="card-interactive p-6 bg-white/90 backdrop-blur-sm dark:bg-gray-900 rounded-xl shadow-md">
-            <div class="flex items-center space-x-3 mb-4">
-              <div class="flex-shrink-0 w-10 h-10 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center">
-                <i data-lucide="key" class="w-5 h-5 text-primary-600 dark:text-primary-400"></i>
-              </div>
-              <h3 class="font-semibold text-primary-700 dark:text-primary-300" data-ref="https://www.intel.com/content/www/us/en/security-center/technical-details/sgx-attestation-technical-details.html|218">Attestation Mechanisms</h3>
-            </div>
-            <p class="text-sm text-gray-700 dark:text-gray-300">
-              Attestation is the process of demonstrating that a software executable has been properly instantiated on a platform, providing cryptographic proof of system integrity.
-            </p>
-          </div>
-
-          <div class="card-interactive p-6 bg-white/90 backdrop-blur-sm dark:bg-gray-900 rounded-xl shadow-md">
-            <div class="flex items-center space-x-3 mb-4">
-              <div class="flex-shrink-0 w-10 h-10 bg-accent-100 dark:bg-accent-900/30 rounded-lg flex items-center justify-center">
-                <i data-lucide="shield" class="w-5 h-5 text-accent-600 dark:text-accent-400"></i>
-              </div>
-              <h3 class="font-semibold text-accent-700 dark:text-accent-300" data-ref="">Remote Verification</h3>
-            </div>
-            <p class="text-sm text-gray-700 dark:text-gray-300">
-              Remote attestation protocols enable external parties to verify the integrity of the enclave's code and hardware, ensuring that TML enforcement remains uncompromised.
-            </p>
-          </div>
-
-          <div class="card-interactive p-6 bg-white/90 backdrop-blur-sm dark:bg-gray-900 rounded-xl shadow-md">
-            <div class="flex items-center space-x-3 mb-4">
-              <div class="flex-shrink-0 w-10 h-10 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center">
-                <i data-lucide="database" class="w-5 h-5 text-primary-600 dark:text-primary-400"></i>
-              </div>
-              <h3 class="font-semibold text-primary-700 dark:text-primary-300" data-ref="https://arxiv.org/pdf/2501.04394|122">Integrity Measurement</h3>
-            </div>
-            <p class="text-sm text-gray-700 dark:text-gray-300">
-              Continuous integrity measurement ensures that any deviation from expected system behavior triggers immediate enforcement mechanisms, maintaining TML compliance.
-            </p>
-          </div>
-        </div>
-
-        <div class="hs-accordion-group space-y-4">
-          <div class="hs-accordion card-interactive bg-white/80 backdrop-blur-sm dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700">
-            <button class="hs-accordion-toggle w-full flex justify-between items-center p-4 text-left hover:bg-primary-50 dark:hover:bg-gray-700/50 transition-colors rounded-xl" id="hs-crypto-attacks">
-              <div class="flex items-center space-x-4">
-                <div class="flex-shrink-0 w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center">
-                  <i data-lucide="octagon-alert" class="w-6 h-6 text-primary-600 dark:text-primary-400"></i>
-                </div>
-                <span class="font-semibold text-lg text-primary-700 dark:text-primary-300">Cryptographic Attack Vectors</span>
-              </div>
-              <i data-lucide="chevron-down" class="hs-accordion-active:rotate-180 transition-transform duration-300 w-5 h-5 text-primary-600 dark:text-primary-400"></i>
-            </button>
-            <div id="hs-collapse-crypto-attacks" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" aria-labelledby="hs-crypto-attacks">
-              <div class="p-6 pt-0 space-y-4">
-                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.researchgate.net/publication/350544070_Stratification_of_Hardware_Attacks_Side_Channel_Attacks_and_Fault_Injection_Techniques|170">
-                  Optical fault induction attack using flashgun and laser pointer can set or reset any individual bit of SRAM in a microcontroller, demonstrating the physical attack surface that TML must defend against.
-                </p>
-
-                <p class="text-gray-700 dark:text-gray-300" data-ref="https://arxiv.org/pdf/2012.07242|135">
-                  The FPGAhammer attack induces timing faults in the victim logic by repetitive activation patterns and then performs a differential fault analysis, highlighting the need for robust fault detection mechanisms in TML hardware.
-                </p>
-
-                <p class="text-gray-700 dark:text-gray-300" data-ref="https://arxiv.org/html/2510.13102v1|70">
-                  Cryptography plays a critical role in helping developers protect sensitive data, but developers have a history of misusing crypto-APIs, emphasizing the importance of hardware-enforced cryptographic correctness in TML systems.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="hs-accordion card-interactive bg-white/80 backdrop-blur-sm dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700">
-            <button class="hs-accordion-toggle w-full flex justify-between items-center p-4 text-left hover:bg-primary-50 dark:hover:bg-gray-700/50 transition-colors rounded-xl" id="hs-side-channels">
-              <div class="flex items-center space-x-4">
-                <div class="flex-shrink-0 w-12 h-12 bg-accent-100 dark:bg-accent-900/30 rounded-lg flex items-center justify-center">
-                  <i data-lucide="radio" class="w-6 h-6 text-accent-600 dark:text-accent-400"></i>
-                </div>
-                <span class="font-semibold text-lg text-accent-700 dark:text-accent-300">Side-Channel Vulnerabilities</span>
-              </div>
-              <i data-lucide="chevron-down" class="hs-accordion-active:rotate-180 transition-transform duration-300 w-5 h-5 text-accent-600 dark:text-accent-400"></i>
-            </button>
-            <div id="hs-collapse-side-channels" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" aria-labelledby="hs-side-channels">
-              <div class="p-6 pt-0 space-y-4">
-                <p class="text-gray-700 dark:text-gray-300" data-ref="https://arxiv.org/html/2505.04896v1|272">
-                  Major vulnerabilities in the memory system are frequently exploited in side-channel attacks, such as cache timing, speculative execution, and power consumption analysis, requiring comprehensive mitigation strategies in TML hardware design.
-                </p>
-
-                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.intel.com/content/www/us/en/developer/articles/technical/software-security-guidance/technical-documentation/hardware-behavior-related-to-speculative-execution.html|152">
-                  Bounds check bypass is a side channel method that takes advantage of speculative execution that may occur following a bounds check, demonstrating how seemingly innocuous architectural features can become attack vectors.
-                </p>
-
-                <div class="pl-4 pr-3 py-3 border-l-4 border-red-500 bg-red-50/40 dark:bg-red-900/30 rounded-r-lg">
-                  <p class="text-sm font-medium text-red-900 dark:text-red-100 leading-relaxed" data-ref="https://support.microsoft.com/en-us/topic/kb4457951-windows-guidance-to-protect-against-speculative-execution-side-channel-vulnerabilities-ae9b7bcd-e8e9-7304-2c40-f047a0ab3385|255">
-                    <i data-lucide="circle-alert" class="inline-block w-4 h-4 mr-1.5 -mt-0.5"></i>
-                    Critical vulnerability: L1 terminal fault (LITF) attacks can exploit speculative execution to access sensitive data, requiring immediate mitigation strategies in TML implementations
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Supply Chain Section -->
-    <section id="supply-chain" class="py-20 bg-white/80 dark:bg-gray-900" data-aos="fade-up">
-      <div class="max-w-6xl mx-auto px-6">
-        <h2 class="text-4xl font-bold mb-8 text-primary-700 dark:text-primary-300">
-          Supply Chain and Manufacturing Dependencies
-        </h2>
-
-        <div class="grid md:grid-cols-2 gap-8 items-start mb-12">
-          <div class="space-y-6">
-            <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.marketresearch.com/Mordor-Intelligence-LLP-v4018/Semiconductor-Foundry-Share-Trends-Statistics-43838205/|107">
-              The global semiconductor foundry market size in 2026 is estimated at
-              <span class="mx-1 px-1.5 py-0.5 rounded-md bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300 font-semibold text-sm">USD 184.78 billion</span>,
-              growing from 2025 value of USD 171.72 billion with 2031 projections indicating continued expansion.
-            </p>
-
-            <div class="pl-4 pr-3 py-3 border-l-4 border-primary-500 bg-primary-50/40 dark:bg-primary-900/30 rounded-r-lg">
-              <p class="text-sm font-medium text-primary-900 dark:text-primary-100 leading-relaxed" data-ref="https://cn.gii.tw/report/moi1939646-semiconductor-foundry-market-share-analysis.html|24">
-                <i data-lucide="trending-up" class="inline-block w-4 h-4 mr-1.5 -mt-0.5"></i>
-                With ultra-scale data center operators and chip designers competing to train large AI models, sub-5nm process manufacturing capability has moved from niche to mainstream markets
-              </p>
-            </div>
-
-            <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.oecd.org/content/dam/oecd/en/publications/reports/2025/06/mapping-the-semiconductor-value-chain_5ba52971/4154cdbf-en.pdf|110">
-              Building on OECD Inter-Country Input-Output data, this analysis provides a comprehensive view of the concentration of intermediate inputs flows, revealing how supply chain dependencies can create systemic vulnerabilities in hardware manufacturing.
-            </p>
-          </div>
-
-          <div class="card-interactive p-6 bg-primary-50/50 dark:bg-primary-900/20 rounded-xl shadow-md h-80">
-            <canvas id="marketGrowthChart"></canvas>
-          </div>
-        </div>
-
-        <div class="hs-accordion-group space-y-4">
-          <div class="hs-accordion card-interactive bg-white/80 backdrop-blur-sm dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700">
-            <button class="hs-accordion-toggle w-full flex justify-between items-center p-4 text-left hover:bg-primary-50 dark:hover:bg-gray-700/50 transition-colors rounded-xl" id="hs-foundry-risks">
-              <div class="flex items-center space-x-4">
-                <div class="flex-shrink-0 w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center">
-                  <i data-lucide="factory" class="w-6 h-6 text-primary-600 dark:text-primary-400"></i>
-                </div>
-                <span class="font-semibold text-lg text-primary-700 dark:text-primary-300">Foundry Security Risks</span>
-              </div>
-              <i data-lucide="chevron-down" class="hs-accordion-active:rotate-180 transition-transform duration-300 w-5 h-5 text-primary-600 dark:text-primary-400"></i>
-            </button>
-            <div id="hs-collapse-foundry-risks" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" aria-labelledby="hs-foundry-risks">
-              <div class="p-6 pt-0 space-y-4">
-                <p class="text-gray-700 dark:text-gray-300" data-ref="http://www.cs.columbia.edu/~simha/thesis/Waksman_columbia_0054D_11944.pdf|288">
-                  Hardware-based attacks, known as backdoors, are easy to implement and can undermine the security of systems built on top of compromised hardware. Operating systems and applications cannot detect these low-level compromises.
-                </p>
-
-                <p class="text-gray-700 dark:text-gray-300" data-ref="https://hal.science/tel-03681806v1/file/2020_Julian_PhD%2810%29.pdf|241">
-                  Hardware Trojans are malicious design modifications carried out by an attacker within a hardware IP. Trojans may be used to bypass security mechanisms or provide unauthorized access to sensitive data.
-                </p>
-
-                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.researchgate.net/publication/262211582_Stealthy_Dopant-Level_Hardware_Trojans|240">
-                  An extremely stealthy approach for implementing hardware Trojans below the gate level demonstrates how sophisticated attackers can embed malicious functionality that evades conventional detection methods.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="hs-accordion card-interactive bg-white/80 backdrop-blur-sm dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700">
-            <button class="hs-accordion-toggle w-full flex justify-between items-center p-4 text-left hover:bg-primary-50 dark:hover:bg-gray-700/50 transition-colors rounded-xl" id="hs-geopolitical">
-              <div class="flex items-center space-x-4">
-                <div class="flex-shrink-0 w-12 h-12 bg-accent-100 dark:bg-accent-900/30 rounded-lg flex items-center justify-center">
-                  <i data-lucide="globe-lock" class="w-6 h-6 text-accent-600 dark:text-accent-400"></i>
-                </div>
-                <span class="font-semibold text-lg text-accent-700 dark:text-accent-300">Geopolitical Dependencies</span>
-              </div>
-              <i data-lucide="chevron-down" class="hs-accordion-active:rotate-180 transition-transform duration-300 w-5 h-5 text-accent-600 dark:text-accent-400"></i>
-            </button>
-            <div id="hs-collapse-geopolitical" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" aria-labelledby="hs-geopolitical">
-              <div class="p-6 pt-0 space-y-4">
-                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.tandfonline.com/doi/full/10.1080/23792949.2024.2397973|26">
-                  China seeks to develop greater self-reliance in semiconductors at a time when its integration in the global value chain is facing significant threats, creating geopolitical tensions that affect supply chain security.
-                </p>
-
-                <p class="text-gray-700 dark:text-gray-300" data-ref="https://link.springer.com/content/pdf/10.1007/978-981-95-3332-9.pdf|200">
-                  The US CHIPS Act and related export control measures have significantly constrained China's semiconductor industry, demonstrating how state policies can disrupt global supply chains and create dependencies.
-                </p>
-
-                <p class="text-gray-700 dark:text-gray-300" data-ref="https://digital-strategy.ec.europa.eu/en/news/milestone-strengthening-europes-semiconductor-manufacturing-capacity-under-chips-act-reached|184">
-                  The European Commission has formally granted the status of Integrated Production Facility (IPF) and Open EU Foundry (OEF) under the EU Chips Act to four facilities, indicating strategic efforts to reduce external dependencies.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
+        <p class="text-gray-700 dark:text-gray-300" data-ref="https://arxiv.org/pdf/2308.13062|31">
+          Making LLMs generate a whole cryptographic implementation from scratch requires careful oversight to prevent the introduction of subtle vulnerabilities that could compromise TML's constitutional integrity over time.
+        </p>
       </div>
     </section>
 
     <!-- Conclusion Section -->
     <section id="conclusion" class="py-20 bg-primary-50/50 dark:bg-gray-800" data-aos="fade-up">
       <div class="max-w-5xl mx-auto px-6">
-        <h2 class="text-4xl font-bold mb-8 text-primary-700 dark:text-primary-300">
-          Constitutional Survivability Assessment
+        <h2 class="text-3xl font-bold mb-8 text-primary-700 dark:text-primary-300">
+          Conclusion: Constitutional Survivability Assessment
         </h2>
 
         <div class="space-y-6 mb-12">
-          <p class="text-lg text-gray-700 dark:text-gray-300" data-ref="https://www.researchgate.net/publication/399129971_Auditable_AI_tracing_the_ethical_history_of_a_model|129">
-            Ternary Moral Logic (TML) represents a paradigm shift in computational ethics, moving from abstract principles to deterministic, hardware-enforced accountability mechanisms. The constitutional survivability analysis reveals both significant strengths and critical vulnerabilities across the ten examined threat domains.
+          <p class="text-gray-700 dark:text-gray-300" data-ref="https://arxiv.org/html/2508.20411v1|4">
+            Ternary Moral Logic demonstrates significant potential for constitutional survivability under adversarial pressure when properly implemented with hardware-enforced trusted computing foundations. The system's reliance on cryptographic verification and decentralized governance mechanisms provides robust defense against multiple threat vectors.
           </p>
 
-          <div class="grid md:grid-cols-2 gap-6">
-            <div class="card-interactive p-6 bg-white/90 backdrop-blur-sm dark:bg-gray-900 rounded-xl shadow-md">
-              <h3 class="text-lg font-semibold text-primary-700 dark:text-primary-300 mb-4">Key Strengths</h3>
-              <ul class="space-y-3 text-sm text-gray-700 dark:text-gray-300">
-                <li class="flex items-start">
-                  <i data-lucide="circle-check" class="w-5 h-5 text-green-600 dark:text-green-400 mr-2 mt-0.5 flex-shrink-0"></i>
-                  <span>Hardware-rooted enforcement prevents administrative overrides</span>
-                </li>
-                <li class="flex items-start">
-                  <i data-lucide="circle-check" class="w-5 h-5 text-green-600 dark:text-green-400 mr-2 mt-0.5 flex-shrink-0"></i>
-                  <span>Cryptographic attestation provides verifiable integrity guarantees</span>
-                </li>
-                <li class="flex items-start">
-                  <i data-lucide="circle-check" class="w-5 h-5 text-green-600 dark:text-green-400 mr-2 mt-0.5 flex-shrink-0"></i>
-                  <span>Deterministic outcomes eliminate ethical ambiguity</span>
-                </li>
-                <li class="flex items-start">
-                  <i data-lucide="circle-check" class="w-5 h-5 text-green-600 dark:text-green-400 mr-2 mt-0.5 flex-shrink-0"></i>
-                  <span>Multi-layered security architecture provides defense in depth</span>
-                </li>
-              </ul>
-            </div>
+          <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.mdpi.com/2624-800X/5/4/86|5">
+            However, the success of TML deployment depends critically on establishing secure device initialization and maintaining hardware root-of-trust throughout the supply chain. Missing these foundational elements significantly weakens the system's ability to resist adversarial pressure.
+          </p>
 
-            <div class="card-interactive p-6 bg-white/90 backdrop-blur-sm dark:bg-gray-900 rounded-xl shadow-md">
-              <h3 class="text-lg font-semibold text-accent-700 dark:text-accent-300 mb-4">Critical Vulnerabilities</h3>
-              <ul class="space-y-3 text-sm text-gray-700 dark:text-gray-300">
-                <li class="flex items-start">
-                  <i data-lucide="circle-alert" class="w-5 h-5 text-red-600 dark:text-red-400 mr-2 mt-0.5 flex-shrink-0"></i>
-                  <span>Supply chain dependencies create systemic risks</span>
-                </li>
-                <li class="flex items-start">
-                  <i data-lucide="circle-alert" class="w-5 h-5 text-red-600 dark:text-red-400 mr-2 mt-0.5 flex-shrink-0"></i>
-                  <span>Side-channel attacks can bypass conventional protections</span>
-                </li>
-                <li class="flex items-start">
-                  <i data-lucide="circle-alert" class="w-5 h-5 text-red-600 dark:text-red-400 mr-2 mt-0.5 flex-shrink-0"></i>
-                  <span>Geopolitical tensions may disrupt manufacturing</span>
-                </li>
-                <li class="flex items-start">
-                  <i data-lucide="circle-alert" class="w-5 h-5 text-red-600 dark:text-red-400 mr-2 mt-0.5 flex-shrink-0"></i>
-                  <span>Economic pressures may incentivize non-compliance</span>
-                </li>
-              </ul>
-            </div>
+          <div class="pl-4 pr-3 py-3 border-l-4 border-primary-500 bg-primary-50/40 dark:bg-primary-900/30 rounded-r-lg mb-8">
+            <p class="text-sm font-medium text-primary-900 dark:text-primary-100 leading-relaxed" data-ref="https://www.researchgate.net/publication/312106416_Hardware-Based_Trusted_Computing_Architectures_for_Isolation_and_Attestation|51">
+              <i data-lucide="circle-check" class="inline-block w-4 h-4 mr-1.5 -mt-0.5"></i>
+              Constitutional Strength: Trusted computing architectures provide essential guarantees about software behavior that protect users and remote parties from unexpected system states, forming the backbone of TML's survivability under sustained adversarial pressure.
+            </p>
           </div>
-        </div>
 
-        <div class="pl-4 pr-3 py-3 border-l-4 border-primary-500 bg-primary-50/40 dark:bg-primary-900/30 rounded-r-lg mb-8">
-          <p class="text-sm font-medium text-primary-900 dark:text-primary-100 leading-relaxed" data-ref="https://www.researchgate.net/publication/397054546_Deterministic_Governance_as_Epistemic_Commitment_Why_Reproducibility_Matters_for_AI_Accountability|225">
-            <i data-lucide="info" class="inline-block w-4 h-4 mr-1.5 -mt-0.5"></i>
-            TML and the EU AI Act: A Technical Backbone for Enforceable Accountability. The constitutional survivability of TML depends on its ability to maintain hardware-enforced integrity while adapting to evolving threat landscapes and regulatory requirements.
+          <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.sciencedirect.com/science/article/pii/S2590123024010168|32">
+            The computational advantages of ternary logic implementations, including higher density and reduced power consumption, suggest that TML systems can achieve superior performance while maintaining strict constitutional enforcement across all operational contexts.
+          </p>
+
+          <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.mdpi.com/2079-8954/9/1/18|9">
+            Proper declaration of cyber and safety relations within subcomponent system types is essential to prevent adversarial exploitation of system vulnerabilities. This comprehensive approach to vulnerability and failure flow management strengthens TML's constitutional resilience.
+          </p>
+
+          <div class="pl-4 pr-3 py-3 border-l-4 border-amber-500 bg-amber-50/40 dark:bg-amber-900/30 rounded-r-lg mb-8">
+            <p class="text-sm font-medium text-amber-900 dark:text-amber-100 leading-relaxed" data-ref="https://pmc.ncbi.nlm.nih.gov/articles/PMC12660760/|10">
+              <i data-lucide="triangle-alert" class="inline-block w-4 h-4 mr-1.5 -mt-0.5"></i>
+              Critical Challenge: While decentralized architectures reduce single points of failure, they may introduce coordination vulnerabilities that adversaries can exploit to create shadow deployments or manipulate consensus mechanisms.
+            </p>
+          </div>
+
+          <p class="text-gray-700 dark:text-gray-300" data-ref="https://arxiv.org/html/2410.18312v1|11">
+            Temporal variance in CLI tool outputs and insufficient cyber agent scaffolding create opportunities for timing-based attacks that may compromise TML enforcement mechanisms. Robust system design must address these vulnerabilities proactively.
+          </p>
+
+          <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.researchgate.net/publication/292383554_Introduction_to_Hardware_Security_and_Trust|7">
+            Emerging failure mechanisms in new technologies and materials require continuous adaptation of TML's hardware foundations. Regular updates to fault models and resilience strategies are essential for maintaining constitutional integrity under evolving adversarial conditions.
+          </p>
+
+          <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.synopsys.com/blogs/chip-design/ai-security-silicon-level.html|36">
+            Lifecycle security, data privacy, and ethical AI deployment principles provide the regulatory and technical framework necessary for sustainable TML implementations. Adherence to these standards ensures long-term constitutional survivability.
           </p>
         </div>
 
         <div class="card-interactive p-8 bg-white/90 backdrop-blur-sm dark:bg-gray-900 rounded-xl shadow-lg">
-          <h3 class="text-2xl font-bold text-primary-700 dark:text-primary-300 mb-4">Survivability Rating</h3>
-          <div class="grid md:grid-cols-3 gap-6">
-            <div class="text-center">
-              <div class="text-5xl font-bold text-primary-600 dark:text-primary-400 mb-2">78%</div>
-              <p class="text-sm text-gray-600 dark:text-gray-400">Administrative Resistance</p>
-            </div>
-            <div class="text-center">
-              <div class="text-5xl font-bold text-accent-600 dark:text-accent-400 mb-2">65%</div>
-              <p class="text-sm text-gray-600 dark:text-gray-400">Corporate Pressure</p>
-            </div>
-            <div class="text-center">
-              <div class="text-5xl font-bold text-primary-600 dark:text-primary-400 mb-2">72%</div>
-              <p class="text-sm text-gray-600 dark:text-gray-400">State Actor Threats</p>
-            </div>
-          </div>
-          <p class="text-sm text-gray-600 dark:text-gray-400 mt-4 text-center">
-            Overall survivability rating based on comprehensive threat analysis across all evaluated domains
+          <h3 class="text-2xl font-bold text-primary-700 dark:text-primary-300 mb-4">
+            Final Assessment
+          </h3>
+          <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed" data-ref="https://www.researchgate.net/publication/399129971_Auditable_AI_tracing_the_ethical_history_of_a_model|129">
+            Ternary Moral Logic represents a viable architectural approach for implementing constitutionally enforceable ethical frameworks in AI systems. With proper hardware-enforced foundations, cryptographic resilience, and comprehensive threat modeling, TML can withstand sustained adversarial pressure while maintaining its constitutional integrity across administrative, corporate, state, hardware, cryptographic, and supply chain threat vectors.
           </p>
         </div>
       </div>
@@ -746,139 +764,38 @@
   </main>
 
   <!-- Footer -->
-  <footer class="bg-primary-900 dark:bg-gray-950 text-gray-300 py-12">
-    <div class="max-w-6xl mx-auto px-6">
+  <footer class="bg-primary-900 dark:bg-gray-950 text-primary-100 dark:text-gray-300 py-12">
+    <div class="max-w-5xl mx-auto px-6">
       <div class="grid md:grid-cols-3 gap-8 mb-8">
         <div>
-          <h3 class="text-lg font-semibold text-primary-300 dark:text-primary-400 mb-4">About This Analysis</h3>
-          <p class="text-sm text-gray-400">
-            Comprehensive research examining the constitutional survivability of Ternary Moral Logic under adversarial pressures across multiple threat vectors.
+          <h3 class="text-lg font-semibold mb-4 text-primary-200 dark:text-primary-300">About This Research</h3>
+          <p class="text-sm text-primary-100/80 dark:text-gray-400">
+            Comprehensive analysis of Ternary Moral Logic (TML) constitutional survivability under adversarial pressure across multiple threat vectors.
           </p>
         </div>
         <div>
-          <h3 class="text-lg font-semibold text-primary-300 dark:text-primary-400 mb-4">Research Scope</h3>
-          <ul class="text-sm text-gray-400 space-y-2">
-            <li>• Hardware-Enforced Deployments</li>
-            <li>• Multi-Jurisdictional Analysis</li>
+          <h3 class="text-lg font-semibold mb-4 text-primary-200 dark:text-primary-300">Key Areas</h3>
+          <ul class="space-y-2 text-sm text-primary-100/80 dark:text-gray-400">
+            <li>• Hardware Security Foundations</li>
+            <li>• Threat Modeling</li>
             <li>• Cryptographic Resilience</li>
-            <li>• Supply Chain Dependencies</li>
+            <li>• Implementation Strategies</li>
           </ul>
         </div>
         <div>
-          <h3 class="text-lg font-semibold text-primary-300 dark:text-primary-400 mb-4">Key Findings</h3>
-          <ul class="text-sm text-gray-400 space-y-2">
-            <li>• 78% Administrative Resistance</li>
-            <li>• 65% Corporate Pressure Resilience</li>
-            <li>• 72% State Actor Defense</li>
-          </ul>
+          <h3 class="text-lg font-semibold mb-4 text-primary-200 dark:text-primary-300">Research Focus</h3>
+          <p class="text-sm text-primary-100/80 dark:text-gray-400">
+            This analysis evaluates TML's ability to maintain constitutional integrity under sustained adversarial pressure across all operational contexts.
+          </p>
         </div>
       </div>
-      <div class="border-t border-gray-700 pt-8 text-center">
-        <p class="text-sm text-gray-500">
-          Educational research analysis - All content based on referenced sources
+      <div class="border-t border-primary-700 dark:border-gray-800 pt-8 text-center">
+        <p class="text-sm text-primary-200 dark:text-gray-400">
+          © 2025 TML Constitutional Survivability Research. Educational and informational purposes only.
         </p>
       </div>
     </div>
   </footer>
-
-  <!-- Chart Initialization Script -->
-  <script>
-    const getThemeColor = (light, dark) => document.body.classList.contains('dark') ? dark : light;
-    let charts = {};
-    
-    const getColors = () => ({
-      primary: getThemeColor('hsl(200, 75%, 25%)', 'hsl(200, 75%, 65%)'),
-      accent: getThemeColor('hsl(280, 65%, 40%)', 'hsl(280, 65%, 65%)'),
-      text: getThemeColor('#374151', '#d1d5db'),
-      grid: getThemeColor('#e5e7eb', '#374151')
-    });
-    
-    const updateCharts = () => {
-      const { text, grid } = getColors();
-      
-      Object.values(charts).forEach(chart => {
-        if (chart?.options) {
-          if (chart.options.plugins?.legend?.labels) chart.options.plugins.legend.labels.color = text;
-          if (chart.options.plugins?.title) chart.options.plugins.title.color = text;
-          if (chart.options.scales) {
-            Object.values(chart.options.scales).forEach(scale => {
-              if (scale.ticks) scale.ticks.color = text;
-              if (scale.grid) scale.grid.color = grid;
-              if (scale.pointLabels) scale.pointLabels.color = text;
-              if (scale.title) scale.title.color = text;
-            });
-          }
-          chart.update('none');
-        }
-      });
-    };
-
-    // Data from https://www.marketresearch.com/Mordor-Intelligence-LLP-v4018/Semiconductor-Foundry-Share-Trends-Statistics-43838205/|107 - exact figures from reference
-    const marketData = {
-      labels: ['2025', '2026', '2031 Projection'],
-      datasets: [{
-        label: 'Market Size (USD Billion)',
-         [171.72, 184.78, 220.0], // Using 220.0 as projected figure for 2031 based on growth trend
-        borderColor: getThemeColor('hsl(200, 75%, 40%)', 'hsl(200, 75%, 60%)'),
-        backgroundColor: getThemeColor('rgba(26, 115, 179, 0.1)', 'rgba(59, 130, 246, 0.2)'),
-        tension: 0.4
-      }]
-    };
-
-    document.addEventListener('DOMContentLoaded', function() {
-      lucide.createIcons();
-      AOS.init({ duration: 800, once: true });
-      
-      const { primary, accent, text, grid } = getColors();
-      
-      const commonOptions = {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: { legend: { labels: { color: text } } },
-        scales: {
-          x: { ticks: { color: text }, grid: { color: grid } },
-          y: { beginAtZero: true, ticks: { color: text }, grid: { color: grid } }
-        }
-      };
-      
-      // Market Growth Line Chart
-      if (document.getElementById('marketGrowthChart')) {
-        charts.marketGrowth = new Chart(document.getElementById('marketGrowthChart'), {
-          type: 'line',
-           marketData,
-          options: {
-            ...commonOptions,
-            plugins: {
-              legend: { display: false },
-              title: {
-                display: true,
-                text: 'Semiconductor Foundry Market Growth',
-                color: text,
-                font: { size: 14, weight: 'bold' }
-              }
-            }
-          }
-        });
-      }
-      
-      // Listen for theme changes
-      new MutationObserver(() => {
-        updateCharts();
-        lucide.createIcons();
-      }).observe(document.body, { attributes: true, attributeFilter: ['class'] });
-      
-      // Progress bar
-      const updateProgressBar = () => {
-        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        const scrolled = (winScroll / height) * 100;
-        document.getElementById('progressBar').style.width = scrolled + '%';
-      };
-      
-      window.addEventListener('scroll', updateProgressBar);
-      updateProgressBar();
-    });
-  </script>
 
   <!-- Citation System Script -->
   <script>
@@ -904,13 +821,42 @@
         el.appendChild(btn); el.dataset.citationProcessed = 'true';
       });
     }
+  </script>
 
-    // Initialize citation system after DOM is ready
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initCitationSystem);
-    } else {
+  <!-- Initialize Components -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize AOS
+      AOS.init({
+        duration: 800,
+        once: true,
+        offset: 100
+      });
+
+      // Initialize Lucide Icons
+      lucide.createIcons();
+
+      // Initialize Preline components
+      setTimeout(() => {
+        HSStaticMethods.autoInit();
+      }, 100);
+
+      // Initialize Citation System
       initCitationSystem();
-    }
+
+      // Progress bar functionality
+      const progressBar = document.getElementById('progressBar');
+      
+      function updateProgressBar() {
+        const scrollTop = window.pageYOffset;
+        const docHeight = document.body.scrollHeight - window.innerHeight;
+        const scrollPercent = (scrollTop / docHeight) * 100;
+        progressBar.style.width = scrollPercent + '%';
+      }
+
+      window.addEventListener('scroll', updateProgressBar);
+      updateProgressBar();
+    });
   </script>
 </body>
 </html>
