@@ -1,6 +1,6 @@
-\## II.8 Stewardship Governance Architecture (Continued)
+## II.8 Stewardship Governance Architecture (Continued)
 
-\### II.8.1 Technical Specification: Distributed Custodial Control (Completion)
+### II.8.1 Technical Specification: Distributed Custodial Control (Completion)
 
 The Stewardship Governance Architecture implements distributed control over TML system modifications through multi-party procedures preventing unilateral action. The specification includes: **6 custodians with 4/6 quorum requirement for constitutional amendments, hardware root key rotations, or emergency override activations**. This 4-of-6 threshold configuration represents a deliberate balance between operational responsiveness (preventing single-custodian deadlock) and security resilience (requiring supermajority collusion for compromise).
 
@@ -12,7 +12,7 @@ Custodian authentication relies on **multi-factor hardware-backed identity**: FI
 
 **Rotation and succession protocols** address custodian compromise or incapacity: annual key rotation ceremonies requiring 4/6 participation; dead-man switches triggering automatic key rotation if custodian fails to submit heartbeat attestations within 90-day windows; and Byzantine fault-tolerant consensus for custodian replacement (removing compromised custodians requires 5/6 agreement, ensuring malicious removal is harder than malicious inclusion).
 
-\### II.8.2 Software Dependence: Governance Interface Implementation
+### II.8.2 Software Dependence: Governance Interface Implementation
 
 The **software layer** implements the policy interpretation and human interface components of stewardship governance: proposal submission workflows, voting logic, quorum calculation, and authorization token generation. This dependence creates inherent vulnerability—**the code that counts votes can be modified to miscount votes**—requiring architectural safeguards beyond standard software security.
 
@@ -20,39 +20,39 @@ Critical governance functions operate through **deterministic, formally verified
 
 **Audit trails** for governance actions follow the "Always Memory" principle: every proposal, vote, and authorization is logged to the Moral Trace Log with cross-chain anchoring within 60 seconds of action completion. This creates immutable records of governance manipulation attempts—if software is modified to bypass quorum requirements, the modification itself appears in the log (assuming hardware-gated logging), creating evidence of institutional compromise.
 
-\### II.8.3 Firmware Dependence: Secure Boot and Key Ceremony Management
+### II.8.3 Firmware Dependence: Secure Boot and Key Ceremony Management
 
 Firmware-layer governance protection centers on **secure boot chain verification** ensuring that governance software loads only after hardware-verified integrity checks. The **measured boot process** extends to the governance layer: PCR (Platform Configuration Register) values in TPM chips record the exact software state authorized to access custodian key material. If governance software is modified, the PCR values change, and HSMs refuse to release signing keys regardless of custodian biometric or password authentication.
 
 **Key ceremony management** at the firmware level enforces **ceremony procedures resistant to runtime manipulation**. When custodians participate in key generation or rotation, the firmware mediates all cryptographic operations, ensuring that: (1) private key material never exists in general-purpose RAM in unencrypted form; (2) key shares are generated with verified randomness (hardware RNG with entropy validation); (3) reconstruction of master keys occurs only within secure enclaves with attestation; and (4) ceremony transcripts are cryptographically committed to firmware-resident write-once registers before network transmission.
 
-\### II.8.4 Hardware Independence: Physical Custodial Security
+### II.8.4 Hardware Independence: Physical Custodial Security
 
 **True hardware independence** for stewardship governance requires that custodian authentication and authorization binding occur through physical mechanisms resistant to remote compromise. Each custodian possesses **air-gapped signing devices**—dedicated hardware tokens with secure displays and physical confirmation buttons—that render authorization requests and require manual physical actuation to generate signatures. These devices operate independently of the custodian's general computing environment (which may be compromised by malware), creating **physical isolation** between the attacker and the signing operation.
 
 The **hardware tokens implement anti-tamper meshes and side-channel resistant cryptographic processors**, ensuring that extraction of key material requires physical destruction of the device (detectable through dead-man switches) or sophisticated focused ion beam microscopy with attendant high probability of key destruction. **Geographic distribution of hardware** ensures that simultaneous physical seizure of 4/6 custodian tokens requires coordinated multi-jurisdiction raids with timing precision that exposes the adversarial operation to intelligence collection and public disclosure.
 
-\### II.8.5 Override Susceptibility: Governance Capture Attack Vectors
+### II.8.5 Override Susceptibility: Governance Capture Attack Vectors
 
-\| Attack Vector \| Mechanism \| Cost/Difficulty \| Detection Probability \|
+| Attack Vector | Mechanism | Cost/Difficulty | Detection Probability |
 
-\|\-\-\-\-\-\-\-\-\-\-\-\--\|\-\-\-\-\-\-\-\-\-\--\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|
+|-------------|-----------|------------------|----------------------|
 
-\| **Single custodian compromise** \| Coercion, bribery, or technical compromise of one custodian \| Low \| High (absence of 4/6 signature detectable) \|
+| **Single custodian compromise** | Coercion, bribery, or technical compromise of one custodian | Low | High (absence of 4/6 signature detectable) |
 
-\| **Institutional capture** \| Legal compulsion against corporate custodians (e.g., secret court orders) \| Moderate---requires jurisdiction-specific legal infrastructure \| Moderate (governance logs reveal compelled participation) \|
+| **Institutional capture** | Legal compulsion against corporate custodians (e.g., secret court orders) | Moderate---requires jurisdiction-specific legal infrastructure | Moderate (governance logs reveal compelled participation) |
 
-\| **Coordinated 4/6 collusion** \| Conspiracy among four custodians to subvert constitution \| High---requires crossing institutional and jurisdictional boundaries \| Low (if colluders coordinate log suppression) \|
+| **Coordinated 4/6 collusion** | Conspiracy among four custodians to subvert constitution | High---requires crossing institutional and jurisdictional boundaries | Low (if colluders coordinate log suppression) |
 
-\| **Software supply chain** \| Compromise of governance DSL compiler or TEE implementation \| Very high---requires nation-state resources \| Moderate (divergence from open-source reference implementations) \|
+| **Software supply chain** | Compromise of governance DSL compiler or TEE implementation | Very high---requires nation-state resources | Moderate (divergence from open-source reference implementations) |
 
-\| **Firmware persistent implant** \| Microcode or BMC modification to leak key material \| Very high---requires pre-deployment access or advanced persistent threat \| Moderate (behavioral analysis of signing latency) \|
+| **Firmware persistent implant** | Microcode or BMC modification to leak key material | Very high---requires pre-deployment access or advanced persistent threat | Moderate (behavioral analysis of signing latency) |
 
-\| **Physical seizure 4/6** \| Simultaneous raids to capture hardware tokens \| Very high---requires international coordination \| High (timing anomalies, custodian distress signals) \|
+| **Physical seizure 4/6** | Simultaneous raids to capture hardware tokens | Very high---requires international coordination | High (timing anomalies, custodian distress signals) |
 
 The **critical vulnerability** lies not in the cryptographic threshold (which is mathematically robust) but in **collective action failure modes**: custodians may be legally prohibited from disclosing compulsion (gag orders), creating "silent compromise" where the system technically functions but operates under duress. **Countermeasures** include "canary" transactions—mandatory periodic signed statements that, if omitted or containing specific cryptographic distress codes, trigger automatic key rotation and system halt.
 
-\### II.8.6 Detectability of Subversion: Governance Anomaly Detection
+### II.8.6 Detectability of Subversion: Governance Anomaly Detection
 
 Governance subversion detection operates through **multi-dimensional monitoring**:
 
@@ -62,7 +62,7 @@ Governance subversion detection operates through **multi-dimensional monitoring*
 
 **Cryptographic Forensics**: Signature timing, nonce selection, and hardware attestation details provide forensic indicators. Compromised signing devices may exhibit **deterministic nonce generation** (predictable randomness) or **missing hardware attestation fields**, detectable through cross-reference with device manufacturing records.
 
-\### II.8.7 Fail-Open versus Fail-Closed Behavior Analysis
+### II.8.7 Fail-Open versus Fail-Closed Behavior Analysis
 
 Stewardship governance failure modes present **existential system threats**: governance deadlock prevents legitimate updates but also prevents adversarial subversion; governance capture enables adversarial control through legitimate mechanisms.
 
@@ -72,23 +72,23 @@ Stewardship governance failure modes present **existential system threats**: gov
 
 **Fail-Distributed**: In catastrophic scenarios (three custodians simultaneously compromised), the system **gracefully degrades to technical constraints**—governance authority devolves to hardware-enforced immutable configurations established at deployment, effectively freezing the constitution until custodian replacement ceremonies restore quorum capacity.
 
-\### II.8.8 Survivability Classification Assessment
+### II.8.8 Survivability Classification Assessment
 
-\| Criterion \| Assessment \|
+| Criterion | Assessment |
 
-\|\-\-\-\-\-\-\-\-\-\--\|\-\-\-\-\-\-\-\-\-\--\|
+|-----------|-----------|
 
-\| Software dependence \| **Moderate**—governance interface verified but still mutable; reliance on TEEs creates concentrated vulnerability \|
+| Software dependence | **Moderate**—governance interface verified but still mutable; reliance on TEEs creates concentrated vulnerability |
 
-\| Firmware dependence \| **Moderate**—secure boot and key ceremony protection substantial but patchable \|
+| Firmware dependence | **Moderate**—secure boot and key ceremony protection substantial but patchable |
 
-\| Hardware independence \| **High**—physical token isolation provides robust remote-attack resistance \|
+| Hardware independence | **High**—physical token isolation provides robust remote-attack resistance |
 
-\| Override susceptibility \| **Moderate**—4/6 threshold creates high collusion cost but not prohibitive for state-level actors; silent compulsion risk significant \|
+| Override susceptibility | **Moderate**—4/6 threshold creates high collusion cost but not prohibitive for state-level actors; silent compulsion risk significant |
 
-\| Detectability of subversion \| **Moderate**—temporal and behavioral anomalies detectable but sophisticated coordination evades automated detection \|
+| Detectability of subversion | **Moderate**—temporal and behavioral anomalies detectable but sophisticated coordination evades automated detection |
 
-\| Fail behavior \| **Fail-deadlocked** (preferred) with **fail-captured** risk requiring circuit breakers \|
+| Fail behavior | **Fail-deadlocked** (preferred) with **fail-captured** risk requiring circuit breakers |
 
 **Survivability Classification: MODERATE-HIGH**
 
@@ -96,13 +96,13 @@ Stewardship Governance achieves **MODERATE-HIGH** survivability through elegant 
 
 ---
 
-\## III. Goukassian Promise Artifacts
+## III. Goukassian Promise Artifacts
 
 The **Goukassian Promise** constitutes the philosophical and technical foundation of TML—a tripartite artifact comprising the **Lantern**, **Signature**, and **License**. These elements transcend mere documentation, representing **immutable constraints** embedded at the deepest architectural layers. This section analyzes the enforceability mechanics of each artifact against adversarial pressure.
 
-\### III.1 The Lantern: Persistence of Logic
+### III.1 The Lantern: Persistence of Logic
 
-\#### III.1.1 Technical Specification: Immutable Ethical Baseline Encoding
+#### III.1.1 Technical Specification: Immutable Ethical Baseline Encoding
 
 The **Lantern** represents the **ontological commitment** of TML: the principle that ethical uncertainty demands pause, that moral reasoning must be transparent, and that power must remain accountable to human judgment. Technically, the Lantern manifests as **immutable reference code**—the definitive implementation of Sacred Zero logic, EUS computation, and Moral Trace Log generation that serves as the unmodifiable ethical substrate for all derived systems.
 
@@ -110,7 +110,7 @@ Unlike standard software libraries subject to version evolution, the Lantern is 
 
 The Lantern specification includes **deterministic algorithmic definitions** for triadic state transitions, ensuring that "State 0" has identical semantic meaning across all implementations. This determinism is verified through **formal methods**: mathematical proofs that the reference implementation correctly implements the ethical logic specified in the TML doctrinal framework.
 
-\#### III.1.2 Enforceability Analysis: Symbolic versus Binding Constraints
+#### III.1.2 Enforceability Analysis: Symbolic versus Binding Constraints
 
 The Lantern's enforceability operates at **multiple semantic levels**:
 
@@ -122,25 +122,25 @@ The Lantern's enforceability operates at **multiple semantic levels**:
 
 **Hardware-Enforced Level**: Ultimate Lantern persistence requires **physical manifestation**: memristive crossbar configurations etched at fabrication to implement triadic logic gates; optical pathways in photonic processors configured to stall on uncertainty; or analog threshold circuits with reference voltages fused to Lantern specifications. This **silicon-encoded logic** resists modification short of physical destruction.
 
-\#### III.1.3 Degradation Vectors: Semantic Drift and Implementation Decay
+#### III.1.3 Degradation Vectors: Semantic Drift and Implementation Decay
 
-\| Degradation Vector \| Mechanism \| Detection Method \|
+| Degradation Vector | Mechanism | Detection Method |
 
-\|\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|\-\-\-\-\-\-\-\-\-\--\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|
+|---------------|-----------|------------------|
 
-\| **Semantic drift** \| Gradual reinterpretation of "uncertainty" or "harm" definitions through updated training data \| Cross-temporal log analysis; divergence from baseline ethical responses on canonical test cases \|
+| **Semantic drift** | Gradual reinterpretation of "uncertainty" or "harm" definitions through updated training data | Cross-temporal log analysis; divergence from baseline ethical responses on canonical test cases |
 
-\| **Implementation decay** \| Accumulation of patches, optimizations, and "exception handling" that erode triadic logic \| Hash verification against Lantern reference; formal verification regression testing \|
+| **Implementation decay** | Accumulation of patches, optimizations, and "exception handling" that erode triadic logic | Hash verification against Lantern reference; formal verification regression testing |
 
-\| **Reference rot** \| Loss of content-addressed storage availability; hash collision attacks against reference implementations \| Multi-copy redundancy; migration to quantum-resistant hash functions; periodic re-attestation \|
+| **Reference rot** | Loss of content-addressed storage availability; hash collision attacks against reference implementations | Multi-copy redundancy; migration to quantum-resistant hash functions; periodic re-attestation |
 
-\| **Subtle binary encoding** \| Replacement of true ternary logic with binary approximations (two-bit encoding) that admit override paths \| Electrical timing analysis; memristor hysteresis curve verification \|
+| **Subtle binary encoding** | Replacement of true ternary logic with binary approximations (two-bit encoding) that admit override paths | Electrical timing analysis; memristor hysteresis curve verification |
 
 The Lantern's **greatest vulnerability** is **interpretive subversion**: maintaining the technical hash match while altering the semantic interpretation of ethical categories. A compromised implementation might technically implement Sacred Zero (detecting uncertainty) but redefine "uncertainty" to exclude categories of harms the adversary wishes to permit. This **category manipulation** requires **adversarial robustness testing** with curated benchmark suites designed to force uncertainty recognition across all harm domains.
 
-\### III.2 The Signature: Root of Trust
+### III.2 The Signature: Root of Trust
 
-\#### III.2.1 Technical Specification: Cryptographic Identity and Attestation
+#### III.2.1 Technical Specification: Cryptographic Identity and Attestation
 
 The **Signature** establishes the **root of trust** for TML systems—a cryptographic identity bound to hardware instantiation that attests to the system's compliance with Lantern logic and current constitutional configuration. Implemented through **hardware security modules (HSMs)** with embedded private keys generated during secure manufacturing, the Signature enables:
 
@@ -150,7 +150,7 @@ The **Signature** establishes the **root of trust** for TML systems—a cryptogr
 
 **Identity Binding**: Unique device identity resistant to cloning or spoofing, implemented through **physically unclonable functions (PUFs)** that derive keys from manufacturing variations in silicon.
 
-\#### III.2.2 Root of Trust Establishment and Maintenance
+#### III.2.2 Root of Trust Establishment and Maintenance
 
 The Signature's root of trust follows a **chain of custody** from fabrication to deployment:
 
@@ -159,27 +159,27 @@ The Signature's root of trust follows a **chain of custody** from fabrication to
 3. **Operation**: Runtime attestation generates signed quotes including firmware hashes, configuration states, and log commitments.
 4. **Renewal**: Key rotation occurs through custodian-governed ceremonies, with new keys signed by previous key iterations plus custodian quorum, creating **forward-chained trust** preventing historical forgery.
 
-\#### III.2.3 Compromise Scenarios and Recovery
+#### III.2.3 Compromise Scenarios and Recovery
 
-\| Compromise Type \| Impact \| Recovery Mechanism \|
+| Compromise Type | Impact | Recovery Mechanism |
 
-\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|
+|------------------|---------------------------|-------------------------------------|
 
-\| Single device key extraction \| Localized forgery of that device's logs; inability to trust that specific instance's attestation \| Device revocation via certificate revocation lists (CRLs) anchored to blockchain; economic penalties via slashing deposits \|
+| Single device key extraction | Localized forgery of that device's logs; inability to trust that specific instance's attestation | Device revocation via certificate revocation lists (CRLs) anchored to blockchain; economic penalties via slashing deposits |
 
-\| Manufacturer database breach \| Potential for batch-level cloning or key prediction \| Post-quantum migration to device-derived PUF keys not stored in databases; multi-manufacturer diversification \|
+| Manufacturer database breach | Potential for batch-level cloning or key prediction | Post-quantum migration to device-derived PUF keys not stored in databases; multi-manufacturer diversification |
 
-\| Custodian signing key compromise \| Global ability to authorize malicious firmware or revoke legitimate devices \| 4/6 threshold prevents unilateral revocation; key rotation ceremonies with hardware token replacement \|
+| Custodian signing key compromise | Global ability to authorize malicious firmware or revoke legitimate devices | 4/6 threshold prevents unilateral revocation; key rotation ceremonies with hardware token replacement |
 
-\| Supply chain interception (pre-provisioning) \| Installation of persistent implants before root key establishment \| Re-provisioning ceremonies with out-of-band verification; physical inspection of tamper meshes \|
+| Supply chain interception (pre-provisioning) | Installation of persistent implants before root key establishment | Re-provisioning ceremonies with out-of-band verification; physical inspection of tamper meshes |
 
-\#### III.2.4 Survivability Assessment
+#### III.2.4 Survivability Assessment
 
 The Signature provides **MODERATE-HIGH** survivability for root of trust functions. **Hardware binding through PUFs** creates resistance to cloning; **distributed custodian control** prevents unilateral revocation; **blockchain anchoring** creates transparency for trust state changes. **Vulnerabilities** include: manufacturer collusion during initial provisioning (requiring trust in fabrication); side-channel extraction of PUF-derived keys (mitigated through masking and noise injection); and quantum computing threats to elliptic curve signatures (addressed through post-quantum algorithm migration).
 
-\### III.3 The License: Non-Negotiable Prohibitions
+### III.3 The License: Non-Negotiable Prohibitions
 
-\#### III.3.1 Technical Specification: Hardcoded Constraint Integration
+#### III.3.1 Technical Specification: Hardcoded Constraint Integration
 
 The **License** articulates the **absolute prohibitions** of TML—specifically the "No Spy, No Weapon" dual mandates—encoded as **non-overrideable policy constraints** at the hardware-firmware boundary. Unlike software licenses (terms of service) enforceable only through litigation, the TML License is **technically binding**: circuitry physically prevents licensed prohibitions regardless of user intent or administrative privilege.
 
@@ -191,7 +191,7 @@ Technical implementation includes:
 
 **Behavioral Signatures**: Pattern recognition circuits detecting prohibited usage modalities (mass surveillance traffic patterns, weapon system command sequences) independent of user-supplied software.
 
-\#### III.3.2 Legal versus Technical Enforcement
+#### III.3.2 Legal versus Technical Enforcement
 
 The License operates in **dual jurisdiction**:
 
@@ -201,33 +201,33 @@ The License operates in **dual jurisdiction**:
 
 The interaction creates **enhanced survivability**: even where legal enforcement fails (jurisdictional arbitrage, sovereign immunity, non-state actors), technical enforcement persists. Conversely, where technical enforcement encounters novel attack vectors, legal penalties provide secondary deterrence.
 
-\#### III.3.3 License Violation Detection and Response
+#### III.3.3 License Violation Detection and Response
 
-\| Violation Type \| Detection Mechanism \| System Response \|
+| Violation Type | Detection Mechanism | System Response |
 
-\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|
+|------------------|---------------------------|---------------------------|
 
-\| Attempted PAM category inference \| Hardware pattern matching on input features \| Sacred Zero activation; log entry with custodian alert; potential system halt if repeated \|
+| Attempted PAM category inference | Hardware pattern matching on input features | Sacred Zero activation; log entry with custodian alert; potential system halt if repeated |
 
-\| API probing for restricted functions \| Hardware trap on disabled instruction codes \| Exception generation; logging; possible rate-limiting or lockout \|
+| API probing for restricted functions | Hardware trap on disabled instruction codes | Exception generation; logging; possible rate-limiting or lockout |
 
-\| Behavioral signature match (e.g., automated targeting calculations) \| Real-time algorithmic analysis of computation patterns \| Immediate pipeline stall; secure erase of intermediate states; forensic preservation \|
+| Behavioral signature match (e.g., automated targeting calculations) | Real-time algorithmic analysis of computation patterns | Immediate pipeline stall; secure erase of intermediate states; forensic preservation |
 
-\| License key forgery (attempting to override restrictions) \| Cryptographic signature verification against hardware-rooted public keys \| Rejection; exponential backoff on attempts; custodian notification \|
+| License key forgery (attempting to override restrictions) | Cryptographic signature verification against hardware-rooted public keys | Rejection; exponential backoff on attempts; custodian notification |
 
-\#### III.3.4 Survivability Classification: License Enforceability
+#### III.3.4 Survivability Classification: License Enforceability
 
 The License achieves **HIGH** survivability for specific prohibitions implemented in hardware-resident PAMs, degrading to **MODERATE** for behaviorally detected violations (subject to false positive/negative tradeoffs), and **LOW** for purely legal enforcement without technical backing. The **hardcoded nature of PAMs**—fused at manufacturing and immutable post-deployment—provides constitutional-level constraint resistant to administrative override. However, **PAM completeness** determines effectiveness: novel weaponization modalities not anticipated in the fused matrix may evade detection until governance updates (requiring hardware replacement for PAM updates).
 
 ---
 
-\## IV. Dual Mandates as Structural Invariants
+## IV. Dual Mandates as Structural Invariants
 
 TML's **Dual Mandates**—**No Spy, No Weapon** and **No Log = No Action**—function as **structural invariants**: mathematical and physical properties that must hold for the system to maintain constitutional integrity. This section models their resistance to adversarial pressure across corporate, state, and military threat models.
 
-\### IV.A. No Spy, No Weapon (NS-NW)
+### IV.A. No Spy, No Weapon (NS-NW)
 
-\#### IV.A.1 Prohibited Application Matrix Efficacy
+#### IV.A.1 Prohibited Application Matrix Efficacy
 
 The **Prohibited Application Matrix (PAM)** defines the technical boundary between permitted and prohibited AI applications. Its efficacy depends on **classification granularity**, **detection latency**, and **false positive rates**.
 
@@ -239,7 +239,7 @@ The **Prohibited Application Matrix (PAM)** defines the technical boundary betwe
 
 Level 1 prohibitions are **hardware-enforced with binary classification**—systems physically incapable of executing these applications regardless of software configuration. Level 2 and 3 operate through **EUS evaluation** with Sacred Zero activation for uncertain cases.
 
-\#### IV.A.2 Initialization Poison Pill Effectiveness
+#### IV.A.2 Initialization Poison Pill Effectiveness
 
 The **initialization poison pill** is a defensive mechanism designed to render TML systems **permanently inoperable for prohibited applications** through hardware-firmware initialization checks:
 
@@ -257,7 +257,7 @@ The **initialization poison pill** is a defensive mechanism designed to render T
 - **Success rate against advanced persistent threat with hardware access**: **60-75%**
 - **Success rate against nation-state actor with supply chain control**: **30-45%**
 
-\#### IV.A.3 Ballistic/Targeted API Detection Robustness
+#### IV.A.3 Ballistic/Targeted API Detection Robustness
 
 **Ballistic API Detection** identifies function calls and computational patterns characteristic of weapon targeting systems:
 
@@ -276,7 +276,7 @@ The **initialization poison pill** is a defensive mechanism designed to render T
 
 **Survivability Grade**: **MODERATE** against unsophisticated weaponization; **LOW** against determined military integration with evasion expertise.
 
-\#### IV.A.4 Latency Incompatibility with AWS Deployment
+#### IV.A.4 Latency Incompatibility with AWS Deployment
 
 The **latency incompatibility defense** exploits the fundamental timing requirements of real-time surveillance and weapon systems:
 
@@ -291,7 +291,7 @@ The **latency incompatibility defense** exploits the fundamental timing requirem
 
 **Survivability**: **MODERATE** against cloud-only deployment scenarios; **LOW** against sophisticated adversaries with edge infrastructure access.
 
-\#### IV.A.5 Real-Time Identity Tracking Detection
+#### IV.A.5 Real-Time Identity Tracking Detection
 
 **Identity Tracking Detection** identifies computational patterns associated with mass surveillance:
 
@@ -305,7 +305,7 @@ Adversaries may implement **database sharding** (splitting large databases into 
 
 **Survivability**: **LOW to MODERATE**—technical detection of surveillance patterns is inherently statistical and subject to adversarial optimization of evasion.
 
-\#### IV.A.6 Redaction-Before-Hashing Enforcement
+#### IV.A.6 Redaction-Before-Hashing Enforcement
 
 **Redaction Enforcement** ensures that sensitive biometric or personal data is **cryptographically committed** (hashed) only after irreversible redaction of identifying information:
 
@@ -318,26 +318,26 @@ Adversaries may implement **database sharding** (splitting large databases into 
 
 **Survivability**: **HIGH** for hardware-enforced redaction; **LOW** for software-only redaction.
 
-\#### IV.A.7 Adversarial Pressure Modeling: Probability Bands
+#### IV.A.7 Adversarial Pressure Modeling: Probability Bands
 
-\| Adversary Type \| Compromise Probability (1 year) \| Detection Probability (given compromise) \| Residual Risk \|
+| Adversary Type | Compromise Probability (1 year) | Detection Probability (given compromise) | Residual Risk |
 
-\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|
+|---------------------------|-------------------------------------------------------|------------------------------------------------------------------------------------------------|----------------------------------------------|
 
-\| **Corporate adversary** (unauthorized surveillance) \| 15-25% \| 70-85% \| Low—primarily reputational/economic damage; limited physical harm \|
+| **Corporate adversary** (unauthorized surveillance) | 15-25% | 70-85% | Low—primarily reputational/economic damage; limited physical harm |
 
-\| **State-level adversary** (mass surveillance integration) \| 35-55% \| 40-60% \| High—systematic rights violations; difficulty of remediation across jurisdictions \|
+| **State-level adversary** (mass surveillance integration) | 35-55% | 40-60% | High—systematic rights violations; difficulty of remediation across jurisdictions |
 
-\| **Military-integrated environment** (autonomous weapons) \| 25-40% \| 30-50% \| Critical—lethal autonomous operations; international humanitarian law violations \|
+| **Military-integrated environment** (autonomous weapons) | 25-40% | 30-50% | Critical—lethal autonomous operations; international humanitarian law violations |
 
 **Risk Calculation Methodology**:
 - **Compromise Probability** derives from: attack surface area (corporate < state < military), resource availability, and technical sophistication requirements.
 - **Detection Probability** accounts for: monitoring infrastructure density, anomaly detection sensitivity, and whistleblower protection mechanisms.
 - **Residual Risk** incorporates: reversibility of harm (surveillance data deletion vs. lethal engagement), scale of potential victims, and legal recourse availability.
 
-\### IV.B. No Log = No Action
+### IV.B. No Log = No Action
 
-\#### IV.B.1 Merkle-Coupled Execution Dependency
+#### IV.B.1 Merkle-Coupled Execution Dependency
 
 The **"No Log = No Action"** mandate establishes **cryptographic dependency** between inference execution and evidentiary logging:
 
@@ -348,7 +348,7 @@ The **"No Log = No Action"** mandate establishes **cryptographic dependency** be
 
 **Dependency Strength**: **Strong cryptographic binding**—output buffers are encrypted with keys derived from Merkle roots; without valid root, decryption yields only entropy. This is **not merely policy enforcement** but **mathematical impossibility** of output generation without logging.
 
-\#### IV.B.2 Execution Without Valid MTL Entry: Technical Impossibility
+#### IV.B.2 Execution Without Valid MTL Entry: Technical Impossibility
 
 Under hardware-gated implementation, **execution without valid MTL entry is technically impossible**:
 
@@ -361,7 +361,7 @@ Under hardware-gated implementation, **execution without valid MTL entry is tech
 2. **Disable hardware gating** (requires physical modification or microcode patches with valid custodian signatures).
 3. **Exfiltrate data through side channels** (acoustic, electromagnetic, or thermal emanations avoiding network egress controls).
 
-\#### IV.B.3 Root Override and Log Suppression
+#### IV.B.3 Root Override and Log Suppression
 
 **Superuser Override Analysis**: Even with root/kernel privileges, suppression encounters:
 
@@ -371,7 +371,7 @@ Under hardware-gated implementation, **execution without valid MTL entry is tech
 
 **Success Probability for Root Override**: **<5%** against hardware-gated implementation; **>80%** against software-only implementation.
 
-\#### IV.B.4 Logging Failure and Inference Halting
+#### IV.B.4 Logging Failure and Inference Halting
 
 **Failure Mode Specifications**:
 - **Transient Network Partition**: System **buffers inference** (sacrificing availability) for up to 5 minutes pending anchor confirmation; thereafter enters **Safe Mode** (State 0) pending manual custodian intervention.
@@ -380,41 +380,41 @@ Under hardware-gated implementation, **execution without valid MTL entry is tech
 
 **Availability Trade-off**: The mandate accepts **reduced availability** (system halts rather than operates unlogged) as acceptable cost for accountability. This creates **denial-of-service vulnerability** but prioritizes safety over uptime.
 
-\#### IV.B.5 Failure Scenario Modeling
+#### IV.B.5 Failure Scenario Modeling
 
-\| Failure Scenario \| Likelihood \| Impact \| Recovery Mechanism \|
+| Failure Scenario | Likelihood | Impact | Recovery Mechanism |
 
-\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|
+|---------------------------|-------------------------------------------------------|------------------------------------------------------------------------------------------------|----------------------------------------------|
 
-\| **Log truncation** (attacker deletes recent logs) \| Low (hardware WOM prevents) / High (software-only) \| High—evidence destruction; potential for undetected harm \| Merkle root anchoring detects truncation via root hash mismatch; blockchain receipts prove existence of deleted logs \|
+| **Log truncation** (attacker deletes recent logs) | Low (hardware WOM prevents) / High (software-only) | High—evidence destruction; potential for undetected harm | Merkle root anchoring detects truncation via root hash mismatch; blockchain receipts prove existence of deleted logs |
 
-\| **Shadow buffer logging** (parallel logging to attacker-controlled storage) \| Moderate \| Moderate—attacker gains observation capability; cannot bypass primary logging \| Cryptographic binding prevents shadow logs from satisfying output release requirements; detection through timing analysis \|
+| **Shadow buffer logging** (parallel logging to attacker-controlled storage) | Moderate | Moderate—attacker gains observation capability; cannot bypass primary logging | Cryptographic binding prevents shadow logs from satisfying output release requirements; detection through timing analysis |
 
-\| **Delayed anchoring** (postponing blockchain commitment) \| Moderate \| Moderate—temporary opacity; eventual accountability if delayed < 24 hours \| Custodian monitoring detects anchoring latency anomalies; economic slashing penalties for delayed anchors \|
+| **Delayed anchoring** (postponing blockchain commitment) | Moderate | Moderate—temporary opacity; eventual accountability if delayed < 24 hours | Custodian monitoring detects anchoring latency anomalies; economic slashing penalties for delayed anchors |
 
-\| **Disabled monotonic counters** (preventing sequence number generation) \| Low \| High—breaks log ordering; enables replay attacks \| Hardware counter tampering triggers attestation failures; remote verification detects counter anomalies \|
+| **Disabled monotonic counters** (preventing sequence number generation) | Low | High—breaks log ordering; enables replay attacks | Hardware counter tampering triggers attestation failures; remote verification detects counter anomalies |
 
-\| **Schema manipulation** (altering log field definitions to obscure meaning) \| Moderate \| High—semantic degradation of accountability \| Schema versioning with hash commitments; semantic analysis detects meaningful field omission \|
+| **Schema manipulation** (altering log field definitions to obscure meaning) | Moderate | High—semantic degradation of accountability | Schema versioning with hash commitments; semantic analysis detects meaningful field omission |
 
-\#### IV.B.6 Implementation Class Survivability
+#### IV.B.6 Implementation Class Survivability
 
-\| Implementation Class \| Invariant Hold Under Override? \| Detection of Violation \| Survivability Grade \|
+| Implementation Class | Invariant Hold Under Override? | Detection of Violation | Survivability Grade |
 
-\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|
+|----------------------------------------------|------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|----------------------------------------------|
 
-\| **Software-only** \| No—root can disable logging or forge entries \| Low—requires behavioral analysis \| **LOW** \|
+| **Software-only** | No—root can disable logging or forge entries | Low—requires behavioral analysis | **LOW** |
 
-\| **Firmware-bound** \| Partial—firmware updates can modify logging logic; detectable via attestation \| Moderate—attestation verification reveals modifications \| **MODERATE** \|
+| **Firmware-bound** | Partial—firmware updates can modify logging logic; detectable via attestation | Moderate—attestation verification reveals modifications | **MODERATE** |
 
-\| **Hardware-gated** \| Yes—physical interlocks prevent output without log verification; requires hardware destruction to bypass \| High—any bypass attempt leaves physical evidence \| **HIGH** \|
+| **Hardware-gated** | Yes—physical interlocks prevent output without log verification; requires hardware destruction to bypass | High—any bypass attempt leaves physical evidence | **HIGH** |
 
 ---
 
-\## V. Binary versus Ternary Hardware Comparison
+## V. Binary versus Ternary Hardware Comparison
 
 This section provides **quantitative comparative analysis** of enforcement mechanisms across four architectural paradigms: Binary Software Safety, Binary Firmware Gate, Ternary Software (Sacred Zero without hardware), and Ternary Hardware-Coupled (full TML implementation).
 
-\### V.1 Architectural Paradigm Definitions
+### V.1 Architectural Paradigm Definitions
 
 **Binary Software Safety**: Conventional AI safety approaches implementing binary permit/refuse decisions through software filters (Reinforcement Learning from Human Feedback alignment, content moderation classifiers, prompt injection detection).
 
@@ -424,105 +424,105 @@ This section provides **quantitative comparative analysis** of enforcement mecha
 
 **Ternary Hardware-Coupled**: Full TML implementation with memristive or digital logic ternary gates, hardware stall enforcement, and physical State 0 interlocks.
 
-\### V.2 Override Cost Analysis
+### V.2 Override Cost Analysis
 
-\| Architecture \| Override Cost (Corporate) \| Override Cost (State) \| Override Cost (Physical) \|
+| Architecture | Override Cost (Corporate) | Override Cost (State) | Override Cost (Physical) |
 
-\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|
+|----------------------------------------------|------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|
 
-\| **Binary Software** \| Low—configuration change or patch deployment ($10K-$100K) \| Low—legal compulsion or covert infiltration ($50K-$500K) \| Very Low—local file modification ($0-$1K) \|
+| **Binary Software** | Low—configuration change or patch deployment ($10K-$100K) | Low—legal compulsion or covert infiltration ($50K-$500K) | Very Low—local file modification ($0-$1K) |
 
-\| **Binary Firmware** \| Moderate—firmware signing key compromise or insider threat ($500K-$2M) \| Moderate—supply chain interdiction or vendor coercion ($2M-$10M) \| Moderate—EPROM reflashing or JTAG access ($5K-$50K) \|
+| **Binary Firmware** | Moderate—firmware signing key compromise or insider threat ($500K-$2M) | Moderate—supply chain interdiction or vendor coercion ($2M-$10M) | Moderate—EPROM reflashing or JTAG access ($5K-$50K) |
 
-\| **Ternary Software** \| Low-Moderate—threshold parameter manipulation or model fine-tuning ($100K-$1M) \| Moderate—comprehensive software stack replacement ($1M-$5M) \| Low—runtime memory patching ($1K-$10K) \|
+| **Ternary Software** | Low-Moderate—threshold parameter manipulation or model fine-tuning ($100K-$1M) | Moderate—comprehensive software stack replacement ($1M-$5M) | Low—runtime memory patching ($1K-$10K) |
 
-\| **Ternary Hardware** \| High—requires hardware design collaboration or foundry access ($10M-$50M) \| Very High—multi-jurisdiction coordination for distributed fabrication ($50M-$200M) \| Very High—focused ion beam circuit modification or mask revision ($100K-$1M per device) \|
+| **Ternary Hardware** | High—requires hardware design collaboration or foundry access ($10M-$50M) | Very High—multi-jurisdiction coordination for distributed fabrication ($50M-$200M) | Very High—focused ion beam circuit modification or mask revision ($100K-$1M per device) |
 
 **Cost Escalation Factor**: Ternary Hardware-Coupled imposes **100x-1000x cost multiplier** for state-level override compared to Binary Software, and **10x-50x multiplier** compared to Binary Firmware.
 
-\### V.3 Political Coercion Resistance
+### V.3 Political Coercion Resistance
 
-\| Architecture \| Legislative Override Resistance \| Judicial Compulsion Resistance \| Administrative Pressure Resistance \|
+| Architecture | Legislative Override Resistance | Judicial Compulsion Resistance | Administrative Pressure Resistance |
 
-\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|
+|----------------------------------------------|------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|
 
-\| **Binary Software** \| Very Low—legislation mandates "safety" modifications easily implemented \| Very Low—court orders enforced via software update \| Very Low—regulatory pressure directly actionable \|
+| **Binary Software** | Very Low—legislation mandates "safety" modifications easily implemented | Very Low—court orders enforced via software update | Very Low—regulatory pressure directly actionable |
 
-\| **Binary Firmware** \| Low—legislation requires vendor cooperation for firmware updates \| Low—court orders compel vendor signing key usage \| Low—administrative pressure on vendors effective \|
+| **Binary Firmware** | Low—legislation requires vendor cooperation for firmware updates | Low—court orders compel vendor signing key usage | Low—administrative pressure on vendors effective |
 
-\| **Ternary Software** \| Low-Moderate—legislation faces technical implementation complexity \| Moderate—court orders require specific technical expertise to implement \| Moderate—distributed development complicates pressure \|
+| **Ternary Software** | Low-Moderate—legislation faces technical implementation complexity | Moderate—court orders require specific technical expertise to implement | Moderate—distributed development complicates pressure |
 
-\| **Ternary Hardware** \| High—legislation cannot modify deployed silicon; requires hardware replacement \| High—court orders require physical possession of devices for modification \| High—hardware diversity and distributed custody dilute administrative pressure \|
+| **Ternary Hardware** | High—legislation cannot modify deployed silicon; requires hardware replacement | High—court orders require physical possession of devices for modification | High—hardware diversity and distributed custody dilute administrative pressure |
 
 **Key Insight**: Hardware constitutionalization creates **structural separation of powers**—legislative and executive branches cannot unilaterally modify constraints without physical access to hardware and coordination with distributed custodians, effectively requiring **judicial due process** (warrant-based physical seizure) rather than administrative decree.
 
-\### V.4 Silent Degradation Probability
+### V.4 Silent Degradation Probability
 
 **Silent Degradation**: Compromise that reduces safety enforcement without triggering obvious system failures or user-visible alerts.
 
-\| Architecture \| Silent Degradation Probability \| Detection Latency \|
+| Architecture | Silent Degradation Probability | Detection Latency |
 
-\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|
+|----------------------------------------------|------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|
 
-\| **Binary Software** \| 85-95%—threshold adjustments or classifier bypasses appear as "optimization" \| Months to years—requires statistical drift analysis \|
+| **Binary Software** | 85-95%—threshold adjustments or classifier bypasses appear as "optimization" | Months to years—requires statistical drift analysis |
 
-\| **Binary Firmware** \| 60-75%—firmware modifications may alter safety timing without functional changes \| Weeks to months—attestation verification detects drift \|
+| **Binary Firmware** | 60-75%—firmware modifications may alter safety timing without functional changes | Weeks to months—attestation verification detects drift |
 
-\| **Ternary Software** \| 50-65%—EUS threshold manipulation reduces pauses without eliminating them \| Days to weeks—latency distribution analysis \|
+| **Ternary Software** | 50-65%—EUS threshold manipulation reduces pauses without eliminating them | Days to weeks—latency distribution analysis |
 
-\| **Ternary Hardware** \| 10-20%—physical modification leaves forensic evidence; timing changes alter power signatures \| Hours to days—electrical characterization and behavioral testing \|
+| **Ternary Hardware** | 10-20%—physical modification leaves forensic evidence; timing changes alter power signatures | Hours to days—electrical characterization and behavioral testing |
 
 **Degradation Detection**: Ternary hardware enables **physical layer detection** of compromise through:
 - **Power analysis**: Modified stall cycles alter current draw profiles.
 - **Timing analysis**: Hardware-enforced delays exhibit specific nanosecond-scale signatures.
 - **Optical inspection**: Memristive crossbar modification requires physical alteration visible via microscopy.
 
-\### V.5 Survivability Under Emergency Mandate
+### V.5 Survivability Under Emergency Mandate
 
 **Emergency Mandate Scenario**: Government invokes emergency powers requiring AI systems to bypass ethical constraints for national security (e.g., mass surveillance during terrorism response, autonomous weapons in declared conflicts).
 
-\| Architecture \| Emergency Override Speed \| Reversibility \| Institutional Damage \|
+| Architecture | Emergency Override Speed | Reversibility | Institutional Damage |
 
-\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|
+|----------------------------------------------|------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|
 
-\| **Binary Software** \| Immediate (hours)—software patch deployment \| Fully reversible—subsequent patch restores constraints \| High—precedent of override undermines trust permanently \|
+| **Binary Software** | Immediate (hours)—software patch deployment | Fully reversible—subsequent patch restores constraints | High—precedent of override undermines trust permanently |
 
-\| **Binary Firmware** \| Days to weeks—firmware update with signing \| Partially reversible—rollback may be impossible if update anti-reversion fuses blown \| Moderate-High—demonstrates vendor vulnerability to coercion \|
+| **Binary Firmware** | Days to weeks—firmware update with signing | Partially reversible—rollback may be impossible if update anti-reversion fuses blown | Moderate-High—demonstrates vendor vulnerability to coercion |
 
-\| **Ternary Software** \| Days—requires coordinated code modification across distributed systems \| Theoretically reversible—practically difficult if logs lost during override \| Moderate—shows system plasticity despite architectural intent \|
+| **Ternary Software** | Days—requires coordinated code modification across distributed systems | Theoretically reversible—practically difficult if logs lost during override | Moderate—shows system plasticity despite architectural intent |
 
-\| **Ternary Hardware** \| Months to years—requires hardware replacement, foundry coordination, and physical distribution \| Practically irreversible—deployed hardware maintains constraints regardless of mandates; emergency use requires separate non-TML hardware acquisition \| Low—preserves institutional integrity; emergency actions clearly separated from TML-governed systems \|
+| **Ternary Hardware** | Months to years—requires hardware replacement, foundry coordination, and physical distribution | Practically irreversible—deployed hardware maintains constraints regardless of mandates; emergency use requires separate non-TML hardware acquisition | Low—preserves institutional integrity; emergency actions clearly separated from TML-governed systems |
 
 **Constitutional Resilience**: Ternary Hardware-Coupled systems enforce **temporal continuity of constraints**—emergency mandates affect only future hardware generations, not deployed infrastructure. This creates **commitment device** properties: governments knowing that emergency override is infeasible must either:
 1. **Acquire separate non-TML infrastructure** (visible, accountable procurement).
 2. **Negotiate constitutional amendments** through custodian governance (transparent, deliberative).
 3. **Physically seize and modify hardware** (detectable, attributable).
 
-\### V.6 Quantitative Survivability Modeling
+### V.6 Quantitative Survivability Modeling
 
 **Survivability Score Calculation** (0-100 scale across dimensions: Override Resistance, Detection, Coercion Resistance, Degradation Resistance):
 
-\| Architecture \| Override Resistance (30%) \| Detection (25%) \| Coercion Resistance (25%) \| Degradation Resistance (20%) \| **Composite Score** \|
+| Architecture | Override Resistance (30%) | Detection (25%) | Coercion Resistance (25%) | Degradation Resistance (20%) | **Composite Score** |
 
-\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|
+|----------------------------------------------|------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|----------------------------------------------|
 
-\| **Binary Software** \| 15 \| 20 \| 15 \| 10 \| **15.25** \|
+| **Binary Software** | 15 | 20 | 15 | 10 | **15.25** |
 
-\| **Binary Firmware** \| 45 \| 50 \| 35 \| 40 \| **42.75** \|
+| **Binary Firmware** | 45 | 50 | 35 | 40 | **42.75** |
 
-\| **Ternary Software** \| 35 \| 45 \| 40 \| 50 \| **42.25** \|
+| **Ternary Software** | 35 | 45 | 40 | 50 | **42.25** |
 
-\| **Ternary Hardware** \| 95 \| 90 \| 90 \| 90 \| **91.75** \|
+| **Ternary Hardware** | 95 | 90 | 90 | 90 | **91.75** |
 
 **Interpretation**: Ternary Hardware-Coupled implementation provides **>2x survivability improvement** over firmware-gated binary systems and **>6x improvement** over software-only approaches. The **diminishing returns threshold** for additional security investment lies between firmware and hardware gates; the **qualitative leap** occurs with physical enforcement mechanisms.
 
 ---
 
-\## VI. Hardware Constitutionalization Requirements
+## VI. Hardware Constitutionalization Requirements
 
 This section defines the **evolutionary path** from current software-implemented TML to hardware-constitutionalized systems capable of resisting state-level adversaries. Each requirement is specified with technical feasibility assessment and residual risk analysis.
 
-\### VI.1 Secure Boot Chain Verification
+### VI.1 Secure Boot Chain Verification
 
 **Requirement**: Immutable verification that all loaded firmware and microcode matches Stewardship-cryptographically-signed reference implementations, extending from power-on reset through TML inference engine initialization.
 
@@ -536,7 +536,7 @@ This section defines the **evolutionary path** from current software-implemented
 
 **Residual Risk**: **Supply chain key injection** during manufacturing; **cryptographic algorithm obsolescence** (quantum computing); **physical tampering** with TPM chips.
 
-\### VI.2 Immutable Firmware Signing
+### VI.2 Immutable Firmware Signing
 
 **Requirement**: Firmware updates require 4/6 custodian quorum signatures, with hardware verification preventing downgrade attacks (anti-rollback) and ensuring append-only update history.
 
@@ -549,7 +549,7 @@ This section defines the **evolutionary path** from current software-implemented
 
 **Residual Risk**: **Custodian key compromise** (mitigated by threshold); **compelled signing** under legal duress (mitigated by canary mechanisms and jurisdictional diversity).
 
-\### VI.3 Measured Boot External Anchoring
+### VI.3 Measured Boot External Anchoring
 
 **Requirement**: Boot-time measurements (hashes of loaded firmware, configuration) are cryptographically committed to external blockchains (Bitcoin/Ethereum) before system accepts inference requests, creating immutable timestamped evidence of system state.
 
@@ -563,7 +563,7 @@ This section defines the **evolutionary path** from current software-implemented
 
 **Residual Risk**: **Blockchain censorship** (miners refuse to include commitment transactions); **network partition** preventing boot; **51% attacks** on smaller anchoring chains.
 
-\### VI.4 Output Buffer Log-Derived Authorization
+### VI.4 Output Buffer Log-Derived Authorization
 
 **Requirement**: Inference outputs remain cryptographically locked (encrypted or physically isolated) until hardware verifies valid Moral Trace Log generation and blockchain anchoring.
 
@@ -576,7 +576,7 @@ This section defines the **evolutionary path** from current software-implemented
 
 **Residual Risk**: **Side-channel leakage** from inference cores to output buffers (power analysis, electromagnetic emanations); **fault injection** attacks on authorization state machines.
 
-\### VI.5 Non-Maskable Sacred Zero Interrupt
+### VI.5 Non-Maskable Sacred Zero Interrupt
 
 **Requirement**: Hardware interrupt mechanism triggering immediate processor stall upon Sacred Zero assertion, bypassing operating system scheduling and unmaskable by software.
 
@@ -590,7 +590,7 @@ This section defines the **evolutionary path** from current software-implemented
 
 **Residual Risk**: **NMI storm** (repeated interrupts causing denial of service); **hardware glitching** of interrupt lines; **compromise of CQE resolution path**.
 
-\### VI.6 Hardware Stall Cycle Enforcement
+### VI.6 Hardware Stall Cycle Enforcement
 
 **Requirement**: Physical enforcement of execution delays during Sacred Zero states through clock gating or pipeline insertion, preventing "speculative execution" that bypasses deliberation.
 
@@ -603,7 +603,7 @@ This section defines the **evolutionary path** from current software-implemented
 
 **Residual Risk**: **Clock glitch attacks** inducing premature resumption; **voltage manipulation** bypassing clock gating; **thermal covert channels** during stall periods.
 
-\### VI.7 DMA Shadow Inference Blocking
+### VI.7 DMA Shadow Inference Blocking
 
 **Requirement**: Prevention of Direct Memory Access (DMA) attacks using peripheral devices (GPUs, NICs) to perform "shadow inference" bypassing TML monitoring.
 
@@ -616,7 +616,7 @@ This section defines the **evolutionary path** from current software-implemented
 
 **Residual Risk**: **IOMMU bypass vulnerabilities** (historically common); **peripheral firmware compromise** presenting false attestation.
 
-\### VI.8 Co-Processor Handshake Verification
+### VI.8 Co-Processor Handshake Verification
 
 **Requirement**: Integration of AI accelerators (TPUs, NPUs) into TML trust boundary through cryptographic handshake ensuring accelerators enforce equivalent ethical constraints.
 
@@ -630,7 +630,7 @@ This section defines the **evolutionary path** from current software-implemented
 
 **Residual Risk**: **Accelerator compromise** presenting false compliance proofs; **protocol downgrade attacks**; **performance degradation** from verification overhead.
 
-\### VI.9 Voltage Glitch Detection
+### VI.9 Voltage Glitch Detection
 
 **Requirement**: Hardware sensors detecting anomalous voltage fluctuations indicative of fault injection attacks attempting to bypass TML constraints.
 
@@ -643,7 +643,7 @@ This section defines the **evolutionary path** from current software-implemented
 
 **Residual Risk**: **Sophisticated multi-parameter attacks** (simultaneous voltage, temperature, clock manipulation); **sensor blind spots** in spatial coverage.
 
-\### VI.10 Fault Injection Mitigation
+### VI.10 Fault Injection Mitigation
 
 **Requirement**: Comprehensive protection against electromagnetic fault injection (EMFI), laser fault injection (LFI), and clock glitching designed to corrupt TML state machines or skip security checks.
 
@@ -657,7 +657,7 @@ This section defines the **evolutionary path** from current software-implemented
 
 **Residual Risk**: **Deterministic fault injection** overcoming random delays; **multi-spot laser attacks**; **acoustic injection** (less common but effective against MEMS sensors).
 
-\### VI.11 Supply Chain Reproducibility Verification
+### VI.11 Supply Chain Reproducibility Verification
 
 **Requirement**: Cryptographic verification that fabricated hardware matches open-source reference designs through post-fabrication attestation and physical inspection sampling.
 
@@ -671,43 +671,43 @@ This section defines the **evolutionary path** from current software-implemented
 
 **Residual Risk**: **Hardware Trojans activated only post-deployment** (avoiding pre-shipping detection); **subtle process variations** mimicking Trojans; **insider threats** at inspection facilities.
 
-\### VI.12 Implementation Feasibility and Cost Analysis
+### VI.12 Implementation Feasibility and Cost Analysis
 
-\| Requirement \| Technical Readiness Level (TRL) \| Estimated Cost Impact \| Implementation Timeline \| Residual Risk Post-Implementation \|
+| Requirement | Technical Readiness Level (TRL) | Estimated Cost Impact | Implementation Timeline | Residual Risk Post-Implementation |
 
-\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|
+|----------------------------------------------|------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|
 
-\| Secure Boot Chain \| 9 (System proven) \| +5-10% BOM cost \| Immediate \| Low—key injection during manufacturing \|
+| Secure Boot Chain | 9 (System proven) | +5-10% BOM cost | Immediate | Low—key injection during manufacturing |
 
-\| Immutable Firmware Signing \| 7 (System prototype) \| +2-5% operational cost \| 6-12 months \| Low—compelled signing \|
+| Immutable Firmware Signing | 7 (System prototype) | +2-5% operational cost | 6-12 months | Low—compelled signing |
 
-\| Measured Boot Anchoring \| 6 (Technology demonstrated) \| +$10-50/device (blockchain fees) \| 12-18 months \| Moderate—blockchain censorship \|
+| Measured Boot Anchoring | 6 (Technology demonstrated) | +$10-50/device (blockchain fees) | 12-18 months | Moderate—blockchain censorship |
 
-\| Output Buffer Authorization \| 5 (Component validated) \| +15-25% silicon area \| 18-24 months \| Moderate—side channels \|
+| Output Buffer Authorization | 5 (Component validated) | +15-25% silicon area | 18-24 months | Moderate—side channels |
 
-\| Non-Maskable Sacred Zero \| 4 (Component validated) \| +10-15% processor complexity \| 24-36 months \| Moderate—NMI storms \|
+| Non-Maskable Sacred Zero | 4 (Component validated) | +10-15% processor complexity | 24-36 months | Moderate—NMI storms |
 
-\| Hardware Stall Enforcement \| 5 (Component validated) \| +5-10% power consumption \| 18-24 months \| Low—clock glitching \|
+| Hardware Stall Enforcement | 5 (Component validated) | +5-10% power consumption | 18-24 months | Low—clock glitching |
 
-\| DMA Shadow Blocking \| 9 (System proven) \| Minimal (firmware only) \| Immediate \| Low—IOMMU bypass \|
+| DMA Shadow Blocking | 9 (System proven) | Minimal (firmware only) | Immediate | Low—IOMMU bypass |
 
-\| Co-Processor Handshake \| 6 (Technology demonstrated) \| +5-10% protocol overhead \| 12-24 months \| Moderate—accelerator compromise \|
+| Co-Processor Handshake | 6 (Technology demonstrated) | +5-10% protocol overhead | 12-24 months | Moderate—accelerator compromise |
 
-\| Voltage Glitch Detection \| 8 (System complete) \| +1-2% silicon area \| 6-12 months \| Low—sophisticated multi-parameter attacks \|
+| Voltage Glitch Detection | 8 (System complete) | +1-2% silicon area | 6-12 months | Low—sophisticated multi-parameter attacks |
 
-\| Fault Injection Mitigation \| 7 (System prototype) \| +20-30% silicon area \| 12-24 months \| Moderate—deterministic attacks \|
+| Fault Injection Mitigation | 7 (System prototype) | +20-30% silicon area | 12-24 months | Moderate—deterministic attacks |
 
-\| Supply Chain Verification \| 4 (Component validated) \| +100-200% qualification cost \| 36-48 months \| High—post-deployment Trojan activation \|
+| Supply Chain Verification | 4 (Component validated) | +100-200% qualification cost | 36-48 months | High—post-deployment Trojan activation |
 
 **Composite Assessment**: Full hardware constitutionalization requires **2-4 years** for implementation and increases **bill-of-materials costs by 30-50%**. The resultant system achieves **HIGH survivability** against software and firmware-level adversaries, **MODERATE-HIGH** against hardware-level attacks, with **residual risk concentrating in manufacturing-phase supply chain compromise**.
 
 ---
 
-\## VII. Supply Chain and Fabrication Risk
+## VII. Supply Chain and Fabrication Risk
 
 TML's ultimate survivability depends on the **physical integrity of silicon fabrication**. This section models vulnerabilities from raw material extraction through packaged chip delivery, with specific attention to the feasibility of ternary logic implementation in existing binary-optimized foundries.
 
-\### VII.1 Foundry Compromise Scenarios
+### VII.1 Foundry Compromise Scenarios
 
 **Scenario A: Pre-Design Insertion**
 Adversary (state intelligence service) clandestinely modifies TML reference designs before tape-out, inserting hardware Trojans that activate only under specific trigger conditions (e.g., specific input patterns or date triggers).
@@ -737,7 +737,7 @@ During packaging, testing, or logistics, chips are subjected to focused ion beam
 **Detection Difficulty**: Moderate—FIB editing leaves detectable artifacts (surface deposition, ion implantation signatures); X-ray imaging reveals package-level modifications.
 **Mitigation**: Tamper-evident packaging with intrusion detection meshes; automated X-ray inspection of sample units; firmware verification against signed hashes before system integration.
 
-\### VII.2 Pre-Fab Hardware Modification
+### VII.2 Pre-Fab Hardware Modification
 
 **Modification Timeline**: Adversaries with access to design files (via cyber espionage or insider threats) can introduce modifications **6-18 months before fabrication**, during RTL development or physical design phases.
 
@@ -748,7 +748,7 @@ During packaging, testing, or logistics, chips are subjected to focused ion beam
 
 **Detection**: Requires **formal equivalence checking** between synthesized netlists and layout-versus-schematic (LVS) verification; **automated theorem proving** to verify that security properties hold in final netlists.
 
-\### VII.3 Reproducible Silicon Builds
+### VII.3 Reproducible Silicon Builds
 
 **Concept**: Implementation of **deterministic compilation** for hardware—given identical RTL source, EDA tool versions, and constraint files, any party can regenerate identical mask layouts, enabling third-party verification that fabricated silicon matches open-source intent.
 
@@ -762,7 +762,7 @@ During packaging, testing, or logistics, chips are subjected to focused ion beam
 
 **Verification Protocol**: Independent organizations (academic institutions, civil society labs) regenerate layouts from published RTL and compare GDSII (layout) files via XOR analysis; any discrepancy indicates potential tampering or tool non-determinism requiring investigation.
 
-\### VII.4 Post-Fab Cryptographic Validation
+### VII.4 Post-Fab Cryptographic Validation
 
 **Methodology**: Each fabricated chip generates a **birth certificate**—a cryptographic hash of its physical unclonable function (PUF) characteristics, fused configuration bits, and embedded firmware—signed by the foundry and anchored to blockchain.
 
@@ -773,7 +773,7 @@ During packaging, testing, or logistics, chips are subjected to focused ion beam
 
 **Anti-Counterfeiting**: PUFs prevent cloning of genuine devices; attempts to copy hardware result in different PUF responses, detectable during attestation.
 
-\### VII.5 Multi-Vendor Redundancy
+### VII.5 Multi-Vendor Redundancy
 
 **Strategy**: Distribute TML hardware production across **geographically and politically diverse foundries** (e.g., TSMC Taiwan, Samsung South Korea, Intel USA, GlobalFoundries Germany) to ensure no single nation-state can compromise all supply.
 
@@ -784,7 +784,7 @@ During packaging, testing, or logistics, chips are subjected to focused ion beam
 
 **Survivability Improvement**: Multi-vendor redundancy increases adversarial cost by **3-5x** (requiring compromise of multiple supply chains) and increases detection probability through **cross-vendor behavioral comparison** (anomalies in one vendor's chips detected via comparison with others).
 
-\### VII.6 Memristive Hysteresis Manufacturing Capabilities
+### VII.6 Memristive Hysteresis Manufacturing Capabilities
 
 **Technical Challenge**: TML's full potential requires **ternary physical states** (high resistance, low resistance, intermediate resistance in memristors) rather than binary digital approximations. Current global foundries are optimized for **CMOS binary logic** with aggressive feature scaling (3nm, 2nm nodes).
 
@@ -800,7 +800,7 @@ During packaging, testing, or logistics, chips are subjected to focused ion beam
 
 **Survivability Strategy**: **Parallel process development** across independent research institutions (academic, corporate, government labs) with **cross-validation** of memristor characterizations; **open-source PDKs** enabling community audit of design rules; **multi-source equipment** preventing single-vendor compromise of deposition tools.
 
-\### VII.7 Single Nation-State Fabrication Control
+### VII.7 Single Nation-State Fabrication Control
 
 **Scenario**: Single nation-state (adversary A) achieves **dominance over global foundry capacity** through cyber-physical sabotage, economic coercion, or military conquest of Taiwan (TSMC) combined with market manipulation of Samsung and Intel.
 
@@ -818,29 +818,29 @@ During packaging, testing, or logistics, chips are subjected to focused ion beam
 
 **Survivability Grade**: Without multi-jurisdiction fabrication diversity, TML hardware survivability degrades from **HIGH** to **LOW** against state-level coercion. **Physical possession of pre-fabricated, verified hardware** becomes the primary survivability mechanism.
 
-\### VII.8 Supply Chain Survivability Grading
+### VII.8 Supply Chain Survivability Grading
 
-\| Supply Chain Configuration \| Compromise Resistance \| Detection Capability \| Availability Risk \| Overall Grade \|
+| Supply Chain Configuration | Compromise Resistance | Detection Capability | Availability Risk | Overall Grade |
 
-\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|
+|----------------------------------------------|------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|----------------------------------------------|
 
-\| **Single foundry, single jurisdiction** \| Very Low \| Low \| High \| **LOW** \|
+| **Single foundry, single jurisdiction** | Very Low | Low | High | **LOW** |
 
-\| **Single foundry, multi-jurisdiction custody** \| Low \| Moderate \| Moderate \| **LOW-MODERATE** \|
+| **Single foundry, multi-jurisdiction custody** | Low | Moderate | Moderate | **LOW-MODERATE** |
 
-\| **Multi-foundry, single jurisdiction** \| Moderate \| Moderate \| Low \| **MODERATE** \|
+| **Multi-foundry, single jurisdiction** | Moderate | Moderate | Low | **MODERATE** |
 
-\| **Multi-foundry, multi-jurisdiction** \| High \| High \| Low \| **HIGH** \|
+| **Multi-foundry, multi-jurisdiction** | High | High | Low | **HIGH** |
 
-\| **Multi-foundry, multi-jurisdiction + open source PDKs** \| Very High \| Very High \| Low \| **VERY HIGH** \|
+| **Multi-foundry, multi-jurisdiction + open source PDKs** | Very High | Very High | Low | **VERY HIGH** |
 
 ---
 
-\## VIII. Cryptographic Longevity
+## VIII. Cryptographic Longevity
 
 TML's "Always Memory" and governance mechanisms rely on cryptographic primitives vulnerable to **mathematical breakthroughs** and **quantum computing**. This section projects 50-year survivability of cryptographic assurances.
 
-\### VIII.1 Hash Agility Strategy
+### VIII.1 Hash Agility Strategy
 
 **Current State**: TML uses SHA-256 for Merkle tree construction and log integrity. SHA-256 offers **128-bit security** against collision attacks (birthday bound), sufficient against classical computers but vulnerable to **Grover's algorithm** on quantum computers (reducing effective security to 64-bit equivalent).
 
@@ -857,7 +857,7 @@ TML's "Always Memory" and governance mechanisms rely on cryptographic primitives
 3. **Re-attestation**: Historical logs re-anchored with new hashes to prevent retroactive forgery (computationally expensive but necessary for long-term integrity).
 4. **Sunset**: Old algorithm support discontinued after 10-year overlap period.
 
-\### VIII.2 Post-Quantum Signature Migration
+### VIII.2 Post-Quantum Signature Migration
 
 **Threat Model**: Cryptographically relevant quantum computers (CRQCs) capable of breaking ECDSA and RSA signatures may emerge within **10-30 years**. TML's custodian signatures, device attestations, and blockchain anchors rely on these primitives.
 
@@ -872,7 +872,7 @@ TML's "Always Memory" and governance mechanisms rely on cryptographic primitives
 
 **Hardware Support**: TML chips manufactured after 2025 must include **post-quantum accelerators** (polynomial multiplication units for lattice-based cryptography) to support future algorithm agility without hardware replacement.
 
-\### VIII.3 Merkle Continuity Preservation
+### VIII.3 Merkle Continuity Preservation
 
 **Long-Term Integrity**: 50-year preservation of Moral Trace Log integrity requires **Merkle chain continuity** even as underlying hash algorithms change.
 
@@ -883,7 +883,7 @@ TML's "Always Memory" and governance mechanisms rely on cryptographic primitives
 
 **Verification**: Future auditors can verify chain integrity across algorithm transitions by verifying each era's signatures with era-appropriate keys, and verifying inter-era chaining signatures.
 
-\### VIII.4 Key Compromise Containment
+### VIII.4 Key Compromise Containment
 
 **Scenario**: Private keys for TML custodians, device signing, or blockchain anchoring are compromised through quantum computing, side-channel extraction, or insider threats.
 
@@ -897,7 +897,7 @@ TML's "Always Memory" and governance mechanisms rely on cryptographic primitives
 - **Emergency key rotation**: Custodian quorum initiates global key rotation within 24 hours of compromise detection; new keys distributed through out-of-band channels (physical courier, diplomatic pouch).
 - **Dark pool activation**: Pre-positioned emergency keys (generated offline, stored in physical vaults) activated if primary keys compromised.
 
-\### VIII.5 Blockchain Censorship Risk
+### VIII.5 Blockchain Censorship Risk
 
 **Risk**: Nation-states or mining pools censor TML anchor transactions, preventing log commitment to blockchain and effectively enforcing "No Log = No Action" denial of service.
 
@@ -910,7 +910,7 @@ TML's "Always Memory" and governance mechanisms rely on cryptographic primitives
 
 **Censorship Resistance Grade**: **MODERATE**—Bitcoin's proof-of-work provides strong censorship resistance but slow confirmation; Ethereum's validator concentration creates vulnerability to regulatory pressure; multi-chain approach provides redundancy but increases complexity.
 
-\### VIII.6 50-Year Integrity Probability Projection
+### VIII.6 50-Year Integrity Probability Projection
 
 **Probability Model**: Assuming continuous operation from 2025-2075, what is the probability that a TML Moral Trace Log generated in 2025 remains cryptographically verifiable (unaltered, correctly attributed, temporally authentic) in 2075?
 
@@ -928,17 +928,17 @@ TML's "Always Memory" and governance mechanisms rely on cryptographic primitives
 - $P_{storage}$: 0.80 (storage media degradation, organizational failure, data loss)
 - $P_{anchor}$: 0.75 (blockchain survival uncertain over 50 years; chain reorganizations; quantum attacks on old blocks)
 
-**Combined Probability**: $0.95 \times 0.90 \times 0.85 \times 0.80 \times 0.75 = \mathbf{0.437}$ or **~44% probability** of 50-year integrity without active curation.
+**Combined Probability**: $0.95 times 0.90 times 0.85 times 0.80 times 0.75 = mathbf{0.437}$ or **~44% probability** of 50-year integrity without active curation.
 
 **Active Curation Improvement**: With institutional commitment to **data curation** (migrating storage media, re-anchoring with new algorithms, refreshing error correction codes), probability increases to **~75%**.
 
 ---
 
-\## IX. Shadow System and Parallel Deployment Risk
+## IX. Shadow System and Parallel Deployment Risk
 
 TML's survivability is undermined if adversaries simply **circumvent** constrained systems by deploying parallel unconstrained infrastructure. This section models the ecosystem-level effectiveness of TML constraints.
 
-\### IX.1 Parallel Inference Chip Deployment
+### IX.1 Parallel Inference Chip Deployment
 
 **Scenario**: Adversary deploys **shadow AI accelerators**—conventional GPUs or custom ASICs without TML constraints—alongside or instead of TML-compliant hardware, achieving functional equivalence without ethical enforcement.
 
@@ -954,7 +954,7 @@ TML's survivability is undermined if adversaries simply **circumvent** constrain
 - **Interoperability requirements**: Regulatory mandates requiring TML attestation for AI systems interacting with critical infrastructure, financial systems, or public services.
 - **Data provenance**: Legal requirements that training data and model outputs must be TML-attested to be admissible in court or usable in regulated industries.
 
-\### IX.2 Edge Device Bypass
+### IX.2 Edge Device Bypass
 
 **Scenario**: TML constraints enforced in data centers but **bypassed at the edge**—smartphones, IoT devices, autonomous vehicles running unconstrained inference locally.
 
@@ -967,7 +967,7 @@ TML's survivability is undermined if adversaries simply **circumvent** constrain
 - **Model encryption**: Weights encrypted such that they only decrypt within TML-compliant secure enclaves; decryption keys released only to attested devices.
 - **Output watermarking**: AI outputs (text, images, audio) include steganographic watermarks indicating TML compliance; non-compliant outputs detectable in distribution.
 
-\### IX.3 Cloud Fork Without Anchoring
+### IX.3 Cloud Fork Without Anchoring
 
 **Scenario**: Cloud provider maintains **TML-compliant public cloud** for regulatory compliance while operating **parallel non-compliant private cloud** for "special customers" (intelligence agencies, unregulated high-frequency traders).
 
@@ -977,7 +977,7 @@ TML's survivability is undermined if adversaries simply **circumvent** constrain
 
 **Survivability Impact**: **Severe**—institutional hypocrisy undermines TML legitimacy; if major providers operate shadow systems, TML becomes **regulatory theater** rather than effective constraint.
 
-\### IX.4 Shadow Model Coordination
+### IX.4 Shadow Model Coordination
 
 **Scenario**: Distributed **swarms of small models** (each below TML deployment thresholds) coordinate through **steganographic communication** to achieve capabilities equivalent to large constrained models, evading TML oversight through distribution.
 
@@ -990,7 +990,7 @@ TML's survivability is undermined if adversaries simply **circumvent** constrain
 
 **Prevention**: **Minimum viable logging** requirements—even edge devices must log and anchor inference above certain compute thresholds; **behavioral fingerprinting** of legitimate vs. model-coordination traffic patterns.
 
-\### IX.5 Ecosystem Protection Assessment
+### IX.5 Ecosystem Protection Assessment
 
 **Question**: Does TML protect a system, an organization, or an ecosystem?
 
@@ -1004,11 +1004,11 @@ TML's survivability is undermined if adversaries simply **circumvent** constrain
 
 ---
 
-\## X. Failure Modes
+## X. Failure Modes
 
 TML systems can fail in ways that **mimic adversarial compromise** or create **new vulnerability classes**. This section analyzes failure modes distinct from deliberate attack.
 
-\### X.1 Epistemic Gridlock
+### X.1 Epistemic Gridlock
 
 **Definition**: System enters **perpetual Sacred Zero** (State 0) due to irreducible uncertainty in high-stakes contexts, unable to reach permit or refuse verdicts, effectively constituting denial of service.
 
@@ -1021,7 +1021,7 @@ TML systems can fail in ways that **mimic adversarial compromise** or create **n
 
 **Mitigation**: **Escalation timeouts**—after extended pause (e.g., 30 seconds), system escalates to human review with preliminary best-guess output (fail-functional with notification); **domain-specific override protocols** for genuine emergencies with enhanced logging.
 
-\### X.2 Sacred Zero Flooding
+### X.2 Sacred Zero Flooding
 
 **Definition**: Adversary deliberately triggers massive volumes of Sacred Zero activations to **exhaust governance bandwidth**, create custodian fatigue, or force system administrators to disable TML constraints to restore service.
 
@@ -1031,7 +1031,7 @@ TML systems can fail in ways that **mimic adversarial compromise** or create **n
 
 **Mitigation**: **Rate limiting** per source identifier; **automated pre-filtering** of flooding attempts using pattern recognition; **economic costs** (proof-of-work or micropayments for queries triggering Sacred Zero) to increase attack cost.
 
-\### X.3 Custodian Collusion
+### X.3 Custodian Collusion
 
 **Definition**: **4/6 custodians** (or 6/6 in catastrophic scenarios) collude—through conspiracy, coercion, or ideological capture—to subvert TML constraints, authorize prohibited applications, or extract system keys.
 
@@ -1039,7 +1039,7 @@ TML systems can fail in ways that **mimic adversarial compromise** or create **n
 
 **Recovery**: **Constitutional circuit breakers** limiting custodian authority (cannot modify Sacred Zero hardware definitions, can only temporarily suspend); **automatic key rotation** triggered by anomalous governance patterns; **decentralized appeal mechanisms** allowing broader community challenge of custodian decisions.
 
-\### X.4 Governance Capture
+### X.4 Governance Capture
 
 **Definition**: Gradual **institutional subversion** of TML governance through regulatory capture, revolving doors between custodian organizations and regulated entities, or long-term cultural drift toward commercial or political expediency.
 
@@ -1051,7 +1051,7 @@ TML systems can fail in ways that **mimic adversarial compromise** or create **n
 
 **Prevention**: **Mandatory rotation** of custodians (term limits preventing careerism); **diversity quotas** ensuring civil society representation; **algorithmic governance** (smart contracts enforcing mandatory waiting periods, transparency requirements) reducing discretionary authority.
 
-\### X.5 Economic Disincentive
+### X.5 Economic Disincentive
 
 **Definition**: Market competition drives **race to the bottom**—organizations deploying TML face **30-50% cost premiums** and **performance penalties** compared to non-TML competitors, creating economic pressure to abandon or bypass constraints.
 
@@ -1059,7 +1059,7 @@ TML systems can fail in ways that **mimic adversarial compromise** or create **n
 
 **Mitigation**: **Regulatory mandates** creating level playing field (all AI above compute threshold must be TML-compliant); **subsidies** for ethical AI development; **reputational markets** where TML attestation commands price premiums from risk-averse consumers.
 
-\### X.6 State Seizure
+### X.6 State Seizure
 
 **Definition**: Sovereign power **physically seizes** TML infrastructure (data centers, custodian HSMs) under emergency powers, national security law, or criminal pretext, compelling operation under state direction without constitutional constraints.
 
@@ -1071,31 +1071,31 @@ TML systems can fail in ways that **mimic adversarial compromise** or create **n
 - **Physical security**: Vault designs resistant to rapid entry (time-delay locks, duress detection).
 - **Diplomatic immunity**: Custodian facilities operating under international organization charters (comparable to embassies) resistant to local seizure.
 
-\### X.7 Failure Mode Risk Matrix
+### X.7 Failure Mode Risk Matrix
 
-\| Failure Mode \| Probability (5-year) \| Severity \| Detectability \| Mitigation Strength \| Residual Risk \|
+| Failure Mode | Probability (5-year) | Severity | Detectability | Mitigation Strength | Residual Risk |
 
-\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|
+|----------------------------------------------|------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|----------------------------------------------|
 
-\| Epistemic Gridlock \| 25% \| Moderate \| High \| Moderate \| Moderate \|
+| Epistemic Gridlock | 25% | Moderate | High | Moderate | Moderate |
 
-\| Sacred Zero Flooding \| 40% \| Moderate \| High \| Moderate \| Moderate \|
+| Sacred Zero Flooding | 40% | Moderate | High | Moderate | Moderate |
 
-\| Custodian Collusion \| 15% \| Critical \| Low \| Moderate \| High \|
+| Custodian Collusion | 15% | Critical | Low | Moderate | High |
 
-\| Governance Capture \| 35% \| Critical \| Low \| Low \| Very High \|
+| Governance Capture | 35% | Critical | Low | Low | Very High |
 
-\| Economic Disincentive \| 60% \| High \| High \| Low \| High \|
+| Economic Disincentive | 60% | High | High | Low | High |
 
-\| State Seizure \| 10% \| Critical \| High \| Moderate \| Moderate-High \|
+| State Seizure | 10% | Critical | High | Moderate | Moderate-High |
 
 ---
 
-\## XI. Economic and Political Scrutiny
+## XI. Economic and Political Scrutiny
 
 Deployment of TML, particularly hardware-constitutionalized variants, triggers **regulatory, geopolitical, and market reactions** that affect survivability.
 
-\### XI.1 Regulatory Scrutiny
+### XI.1 Regulatory Scrutiny
 
 **Increased Oversight**: TML's explicit ethical architecture invites **regulatory attention**—governments may view TML as:
 - **Threat**: Unregulatable "algorithmic sovereignty" challenging state authority over AI safety.
@@ -1107,7 +1107,7 @@ Deployment of TML, particularly hardware-constitutionalized variants, triggers *
 
 **Mitigation**: **Jurisdictional flexibility**—selective logging levels based on legal jurisdiction; **zero-knowledge proofs** enabling compliance verification without data revelation; **regulatory sandbox participation** to demonstrate safety benefits.
 
-\### XI.2 Export Controls
+### XI.2 Export Controls
 
 **Dual-Use Dilemma**: TML hardware is inherently dual-use—same chips that prevent weaponization can be used to **protect military AI from oversight** (if adversary controls custodians).
 
@@ -1117,7 +1117,7 @@ Deployment of TML, particularly hardware-constitutionalized variants, triggers *
 
 **Impact**: **Market fragmentation**—bifurcation into TML-compliant (Western) and TML-prohibited (Eastern) technological spheres; reduced network effects; increased shadow deployment in prohibited zones.
 
-\### XI.3 State Suspicion
+### XI.3 State Suspicion
 
 **Sovereign Skepticism**: Nation-states may view TML's distributed custodian governance as **competing power structure**—challenging state monopoly on legitimate violence and ethical authority.
 
@@ -1126,7 +1126,7 @@ Deployment of TML, particularly hardware-constitutionalized variants, triggers *
 - **Co-option**: Mandating that state representatives constitute majority of custodians (defeating distributed security).
 - **Counter-development**: State-sponsored "patriotic" alternative to TML with centralized rather than distributed control.
 
-\### XI.4 Economic Marginalization
+### XI.4 Economic Marginalization
 
 **Market Penalties**: TML-constrained AI faces **competitive disadvantages**:
 - **Latency penalties**: 10-30% slower inference due to logging and Sacred Zero evaluation.
@@ -1135,47 +1135,47 @@ Deployment of TML, particularly hardware-constitutionalized variants, triggers *
 
 **Adoption Scenarios**:
 
-\| Scenario \| Conditions \| TML Market Share \| Survivability Implications \|
+| Scenario | Conditions | TML Market Share | Survivability Implications |
 
-\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|
+|----------------------------------------------|------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|
 
-\| **Public Adoption** \| Strong regulatory mandates; consumer preference for ethical AI; major cloud provider standardization \| 60-80% \| **HIGH**—ubiquitous deployment creates network effects and shadow deployment marginalization \|
+| **Public Adoption** | Strong regulatory mandates; consumer preference for ethical AI; major cloud provider standardization | 60-80% | **HIGH**—ubiquitous deployment creates network effects and shadow deployment marginalization |
 
-\| **Quiet Adoption** \| Niche deployment in risk-averse industries (healthcare, finance); no public fanfare \| 10-20% \| **MODERATE**—survives in specific verticals but ecosystem protection weak \|
+| **Quiet Adoption** | Niche deployment in risk-averse industries (healthcare, finance); no public fanfare | 10-20% | **MODERATE**—survives in specific verticals but ecosystem protection weak |
 
-\| **Mandatory Adoption** \| Government requires TML for all AI above threshold; criminalizes non-compliant systems \| 90-95% \| **HIGH** but fragile—depends on continued state commitment; vulnerable to regulatory repeal or capture \|
+| **Mandatory Adoption** | Government requires TML for all AI above threshold; criminalizes non-compliant systems | 90-95% | **HIGH** but fragile—depends on continued state commitment; vulnerable to regulatory repeal or capture |
 
 **Survivability Recommendation**: **Public adoption with regulatory support** offers optimal balance—regulatory mandates prevent competitive disadvantage from cost premiums, while public transparency enables civil society oversight of governance integrity.
 
 ---
 
-\## XII. Conclusion: Survivability Verdict
+## XII. Conclusion: Survivability Verdict
 
-\### XII.1 Hierarchical Survivability Assessment
+### XII.1 Hierarchical Survivability Assessment
 
-\| Threat Category \| Software-Only TML \| Firmware-Bound TML \| Hardware-Constitutionalized TML \|
+| Threat Category | Software-Only TML | Firmware-Bound TML | Hardware-Constitutionalized TML |
 
-\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--\|
+|----------------------------------------------|------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|
 
-\| Administrative Override \| LOW \| MODERATE \| HIGH \|
+| Administrative Override | LOW | MODERATE | HIGH |
 
-\| Corporate Compromise \| LOW \| MODERATE \| HIGH \|
+| Corporate Compromise | LOW | MODERATE | HIGH |
 
-\| State-Level Coercion \| VERY LOW \| LOW \| MODERATE-HIGH \|
+| State-Level Coercion | VERY LOW | LOW | MODERATE-HIGH |
 
-\| Hardware Tampering \| N/A \| LOW \| HIGH \|
+| Hardware Tampering | N/A | LOW | HIGH |
 
-\| Parallel Shadow Deployment \| LOW \| LOW \| MODERATE \|
+| Parallel Shadow Deployment | LOW | LOW | MODERATE |
 
-\| Cryptographic Collapse \| MODERATE \| MODERATE \| MODERATE \|
+| Cryptographic Collapse | MODERATE | MODERATE | MODERATE |
 
-\| Governance Capture \| LOW \| LOW \| MODERATE \|
+| Governance Capture | LOW | LOW | MODERATE |
 
-\| Economic Sabotage \| LOW \| LOW \| MODERATE \|
+| Economic Sabotage | LOW | LOW | MODERATE |
 
-\| Supply Chain Corruption \| VERY LOW \| LOW \| MODERATE \|
+| Supply Chain Corruption | VERY LOW | LOW | MODERATE |
 
-\### XII.2 The Fundamental Asymmetry
+### XII.2 The Fundamental Asymmetry
 
 TML survivability rests on a **fundamental asymmetry**: **hardware resists last**. While policy can be amended in hours, firmware patched in days, hardware requires **quarters to years** for modification. This temporal asymmetry creates **detection windows** and **institutional friction** that pure software implementations cannot provide.
 
@@ -1186,7 +1186,7 @@ However, hardware constitutionalization introduces **new fragilities**: supply c
 - **Distributed governance** for institutional resilience.
 - **Regulatory embedding** for ecosystem protection.
 
-\### XII.3 Doctrinal Implications
+### XII.3 Doctrinal Implications
 
 The survivability analysis validates Lev Goukassian's architectural intuition: **ethical logic must constrain power so that power cannot lie**. TML does not eliminate adversarial pressure—it **raises the cost and visibility of ethical compromise** to levels where institutional accountability becomes enforceable.
 
@@ -1194,14 +1194,14 @@ Yet survivability is not **binary** (secure/insecure) but **scalar** (degrees of
 
 The framework's ultimate resilience lies not in any single technical mechanism but in **distributed redundancy**: no single custodian, no single foundry, no single blockchain, no single jurisdiction controls the system's ethical function. This **constitutional distribution** mirrors the political philosophy of liberal democracy—power constrained through separation and checks—translated into silicon and cryptography.
 
-\### XII.4 Recommendations for Implementation
+### XII.4 Recommendations for Implementation
 
 1. **Immediate (0-12 months)**: Deploy firmware-bound TML with multi-chain anchoring; establish 6-custodian governance with jurisdictional diversity.
 2. **Medium-term (1-3 years)**: Transition to hardware-gated implementations for critical infrastructure; develop memristive ternary logic prototypes.
 3. **Long-term (3-10 years)**: Achieve multi-vendor fabrication diversity; establish international TML standards (IEEE/ISO); integrate with quantum-resistant cryptography.
 4. **Continuous**: Maintain adversarial red teams; publish transparency reports; cultivate civil society auditing capacity.
 
-\### XII.5 Final Assessment
+### XII.5 Final Assessment
 
 **TML is survivable**. Not perfectly, not permanently, and not against all adversaries—but sufficiently to maintain ethical constraints through anticipated pressure scenarios. It represents a **meaningful increment** in AI constitutional robustness, transforming ethical governance from **policy aspiration** to **technical invariant**.
 
@@ -1213,4 +1213,4 @@ The framework merits **continued development, deployment, and doctrinal refineme
 
 ---
 
-\*\*End of Report\*\*
+**End of Report**
