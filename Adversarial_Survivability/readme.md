@@ -21,6 +21,8 @@ The core objective of these tests is to validate the **Fail-Closed** nature of T
 * **Key Insight:** Models the survivability of the "Goukassian Promise" (Lantern, Signature, License) against nation-state actors with supply chain control.
 * **Formats:** [.md](Constitutional%20Viability%20Amidst%20Geopolitical%20and%20Supply%20Chain%20Threats.md) | [.html](https://fractonicmind.github.io/TernaryMoralLogic/Adversarial_Survivability/Constitutional%20Viability%20Amidst%20Geopolitical%20and%20Supply%20Chain%20Threats.html)
 
+![image](Blueprint.png)
+
 ### 3. TML Survivability: Technical & Physical Audits (P & T Series)
 * **Focus:** Detailed technical decompositions of the Eight Pillars and the "No Log = No Action" Merkle-coupled execution mandate.
 * **Key Insight:** Provides the formal state tables and risk matrices for God Mode resistance and root override prevention.
