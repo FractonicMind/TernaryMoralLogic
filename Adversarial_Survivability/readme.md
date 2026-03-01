@@ -32,7 +32,7 @@ The core objective of these tests is to validate the **Fail-Closed** nature of T
  
 The TML architecture is overseen by a distributed Stewardship Council. This body is responsible for resolving **Sacred Zero** epistemic holds and enforcing the non-negotiable mandates of the **Goukassian Promise**.
 
-* **Full Document**: [Stewardship_Statement.md](/Stewardship_Statement.md)
+* **Full Document**: [Stewardship_Statement.md](Stewardship_Statement.md)
 * **Oversight Logic**: Distributed 4-of-6 threshold quorum to prevent unilateral subversion.
 
 ## Adversarial Verdict
