@@ -12,19 +12,19 @@ The core objective of these tests is to validate the **Fail-Closed** nature of T
 ### 1. Constitutional Survivability Under Adversarial Pressure
 * **Focus:** A doctrinal evaluation of TML's resistance to administrative override, corporate compromise, and state-level coercion.
 * **Key Insight:** Establishes the hierarchy of permanence, proving that while policy can be amended, hardware-enforced logic remains the final line of defense.
-* **Formats:** [.md](https://fractonicmind.github.io/TernaryMoralLogic/Adversarial_Survivability/Constitutional%20Survivability%20Under%20Adversarial%20Pressure.md) | [.html](https://fractonicmind.github.io/TernaryMoralLogic/Adversarial_Survivability/Constitutional%20Survivability%20Under%20Adversarial%20Pressure.html)
+* **Formats:** [.md](Constitutional%20Survivability%20Under%20Adversarial%20Pressure.md) | [.html](https://fractonicmind.github.io/TernaryMoralLogic/Adversarial_Survivability/Constitutional%20Survivability%20Under%20Adversarial%20Pressure.html)
 
 ### 2. Constitutional Viability Amidst Geopolitical and Supply Chain Threats
 * **Focus:** An analysis of "Foundry Compromise" and the risks of hardware-level TML during the transition from binary to ternary fabrication.
 * **Key Insight:** Models the survivability of the "Goukassian Promise" (Lantern, Signature, License) against nation-state actors with supply chain control.
-* **Formats:** [.md](Constitutional%20Viability%20Amidst%20Geopolitical%20and%20Supply%20Chain%20Threats.md) | [.html](Constitutional%20Viability%20Amidst%20Geopolitical%20and%20Supply%20Chain%20Threats.html)
+* **Formats:** [.md](Constitutional%20Viability%20Amidst%20Geopolitical%20and%20Supply%20Chain%20Threats.md) | [.html](https://fractonicmind.github.io/TernaryMoralLogic/Adversarial_Survivability/Constitutional%20Viability%20Amidst%20Geopolitical%20and%20Supply%20Chain%20Threats.html)
 
 ### 3. TML Survivability: Technical & Physical Audits (P & T Series)
 * **Focus:** Detailed technical decompositions of the Eight Pillars and the "No Log = No Action" Merkle-coupled execution mandate.
 * **Key Insight:** Provides the formal state tables and risk matrices for God Mode resistance and root override prevention.
 * **Formats:**
-    * **Audit P:** [.md](TML%20Survivability%20Under%20Adversarial%20Pressure-P.md) | [.html](TML%20Survivability%20Under%20Adversarial%20Pressure-P.html) | [Audio Audit](TML%20Survivability%20Under%20Adversarial%20Pressure-P.mp3)
-    * **Audit T:** [.md](TML%20Survivability%20Under%20Adversarial%20Pressure-T.md) | [.html](TML%20Survivability%20Under%20Adversarial%20Pressure-T.html) | [Audio Audit](TML%20Survivability%20Under%20Adversarial%20Pressure-T.mp3)
+    * **Audit P:** [.md](TML%20Survivability%20Under%20Adversarial%20Pressure-P.md) | [.html](https://fractonicmind.github.io/TernaryMoralLogic/Adversarial_Survivability/TML%20Survivability%20Under%20Adversarial%20Pressure-P.html) | [Audio Audit](https://fractonicmind.github.io/TernaryMoralLogic/Adversarial_Survivability/TML%20Survivability%20Under%20Adversarial%20Pressure-P.mp3)
+    * **Audit T:** [.md](TML%20Survivability%20Under%20Adversarial%20Pressure-T.md) | [.html](https://fractonicmind.github.io/TernaryMoralLogic/Adversarial_Survivability/TML%20Survivability%20Under%20Adversarial%20Pressure-T.html) | [Audio Audit](https://fractonicmind.github.io/TernaryMoralLogic/Adversarial_Survivability/TML%20Survivability%20Under%20Adversarial%20Pressure-T.mp3)
 
 
 ### **Governance & Oversight**
