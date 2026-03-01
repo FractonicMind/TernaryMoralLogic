@@ -26,6 +26,15 @@ The core objective of these tests is to validate the **Fail-Closed** nature of T
     * **Audit P:** [.md](TML%20Survivability%20Under%20Adversarial%20Pressure-P.md) | [.html](TML%20Survivability%20Under%20Adversarial%20Pressure-P.html) | [Audio Audit](TML%20Survivability%20Under%20Adversarial%20Pressure-P.mp3)
     * **Audit T:** [.md](TML%20Survivability%20Under%20Adversarial%20Pressure-T.md) | [.html](TML%20Survivability%20Under%20Adversarial%20Pressure-T.html) | [Audio Audit](TML%20Survivability%20Under%20Adversarial%20Pressure-T.mp3)
 
+
+### **Governance & Oversight**
+ 
+ 
+The TML architecture is overseen by a distributed Stewardship Council. This body is responsible for resolving **Sacred Zero** epistemic holds and enforcing the non-negotiable mandates of the **Goukassian Promise**.
+
+* **Full Document**: [Stewardship_Statement.md](/Stewardship_Statement.md)
+* **Oversight Logic**: Distributed 4-of-6 threshold quorum to prevent unilateral subversion.
+
 ## Adversarial Verdict
 These audits confirm that **Hardware-Coupled TML** achieves a **High Survivability Grade**. While an adversary may physically destroy a TML system, the architectural interlocks prevent the system from being "slaved" or repurposed for prohibited applications.
 
