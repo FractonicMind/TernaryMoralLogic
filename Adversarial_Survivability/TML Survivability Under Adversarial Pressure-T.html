@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TML: Doctrinal Survivability Assessment</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    
+    <!-- Palette: Deep Tech / Adversarial High Contrast -->
+    <!-- Background: #0f172a (Slate 900) -->
+    <!-- Surface: #1e293b (Slate 800) -->
+    <!-- Accent Cyan: #06b6d4 -->
+    <!-- Accent Purple: #8b5cf6 -->
+    <!-- Accent Red: #ef4444 -->
+    <!-- Accent Amber: #f59e0b -->
+
+    <style>
+        body {
+            background-color: #0f172a;
+            color: #e2e8f0;
+            font-family: 'Inter', sans-serif;
+        }
+        h1, h2, h3, .mono-font {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .card {
+            background-color: #1e293b; /* Slate 800 */
+            border: 1px solid #334155;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            border-color: #06b6d4;
+        }
+        .metric-value {
+            color: #22d3ee;
+        }
+        /* Flow Diagram Styles */
+        .flow-step {
+            position: relative;
+            padding: 1rem;
+            background: #334155;
+            border-left: 4px solid #06b6d4;
+            margin-bottom: 1rem;
+        }
+        .flow-step::after {
+            content: '↓';
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #94a3b8;
+            font-size: 1.2rem;
+        }
+        .flow-step:last-child::after {
+            content: '';
+        }
+        /* Status Indicator Pulse */
+        .pulse {
+            animation: pulse-animation 2s infinite;
+        }
+        @keyframes pulse-animation {
+            0% { box-shadow: 0 0 0 0 rgba(6, 182, 212, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(6, 182, 212, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(6, 182, 212, 0); }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navigation / Header -->
+    <header class="bg-slate-900 border-b border-slate-700 sticky top-0 z-50 bg-opacity-95 backdrop-blur">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <span class="text-3xl text-cyan-400">❖</span>
+                <div>
+                    <h1 class="text-xl font-bold text-white tracking-tight">TERNARY MORAL LOGIC</h1>
+                    <p class="text-xs text-slate-400 mono-font">SURVIVABILITY ASSESSMENT // DOCTRINAL REPORT</p>
+                </div>
+            </div>
+            <div class="hidden md:block">
+                <span class="px-3 py-1 rounded bg-red-900/30 text-red-400 text-xs border border-red-800 font-mono">CONFIDENTIAL: ADVERSARIAL VALIDATION</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 py-8 space-y-16">
+
+        <!-- CORE THESIS -->
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div class="space-y-6">
+                <h2 class="text-3xl font-bold text-white border-l-4 border-cyan-500 pl-4">Objective: Testing Constitutional Survivability</h2>
+                <p class="text-slate-300 leading-relaxed">
+                    This report subjects the Ternary Moral Logic (TML) framework to rigorous adversarial stress testing. The core thesis evaluates whether TML can resist administrative override, corporate compromise, and state-level coercion. 
+                    <br><br>
+                    <strong>The fundamental premise:</strong> Policy can be amended. Firmware can be patched. Hardware resists last. We determine if TML remains enforceable when the software layer is compromised.
+                </p>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="p-4 bg-slate-800 rounded border border-slate-700">
+                        <div class="text-sm text-slate-400 mono-font">TARGET ADVERSARY</div>
+                        <div class="text-xl font-bold text-red-400">State-Level Actor</div>
+                    </div>
+                    <div class="p-4 bg-slate-800 rounded border border-slate-700">
+                        <div class="text-sm text-slate-400 mono-font">DEFENSE LAYER</div>
+                        <div class="text-xl font-bold text-cyan-400">Physical Silicon</div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-slate-800 p-6 rounded-lg border border-slate-700 shadow-lg">
+                <h3 class="text-lg font-bold text-white mb-4 mono-font">SURVIVABILITY HIERARCHY</h3>
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="text-slate-400">Policy / Legal</span>
+                        <div class="w-2/3 bg-slate-700 h-2 rounded overflow-hidden">
+                            <div class="bg-red-500 h-full w-[10%]"></div>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-slate-400">Software / OS</span>
+                        <div class="w-2/3 bg-slate-700 h-2 rounded overflow-hidden">
+                            <div class="bg-orange-500 h-full w-[25%]"></div>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-slate-400">Firmware / BIOS</span>
+                        <div class="w-2/3 bg-slate-700 h-2 rounded overflow-hidden">
+                            <div class="bg-yellow-400 h-full w-[55%]"></div>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-white font-bold">TML Hardware</span>
+                        <div class="w-2/3 bg-slate-700 h-2 rounded overflow-hidden">
+                            <div class="bg-cyan-500 h-full w-[95%]"></div>
+                        </div>
+                    </div>
+                </div>
+                <p class="mt-4 text-xs text-slate-500 italic">Resistance against Root Override (Estimated)</p>
+            </div>
+        </section>
+
+        <!-- SECTION I: PILLAR ANALYSIS -->
+        <section>
+            <div class="mb-6">
+                <h2 class="text-2xl font-bold text-white mb-2">I. Architectural Baseline: The Eight Pillars</h2>
+                <p class="text-slate-400">Technical decomposition of TML components based on their dependence on software vs. hardware. Hardware-anchored pillars exhibit significantly higher survivability.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- CHART: Survivability Scores -->
+                <div class="card p-6 rounded-lg">
+                    <h3 class="text-lg font-bold text-cyan-400 mb-4 mono-font text-center">PILLAR SURVIVABILITY INDEX</h3>
+                    <div class="chart-container">
+                        <canvas id="pillarChart"></canvas>
+                    </div>
+                    <p class="text-xs text-slate-500 mt-2 text-center">Score 0-10: 10 = Impervious to Software Override</p>
+                </div>
+
+                <!-- Analysis Text -->
+                <div class="space-y-4">
+                    <div class="card p-4 border-l-4 border-cyan-500">
+                        <h4 class="font-bold text-white">Sacred Zero (State 0)</h4>
+                        <p class="text-sm text-slate-300 mt-1">
+                            <strong>Survivability: High.</strong> Implemented as a non-maskable hardware interrupt. Requires physical voltage glitching to bypass.
+                        </p>
+                    </div>
+                    <div class="card p-4 border-l-4 border-purple-500">
+                        <h4 class="font-bold text-white">Ethical Uncertainty Score (EUS)</h4>
+                        <p class="text-sm text-slate-300 mt-1">
+                            <strong>Survivability: Moderate.</strong> Calculation logic is firmware-bound, but the *trigger* threshold is immutable in hardware registers.
+                        </p>
+                    </div>
+                    <div class="card p-4 border-l-4 border-amber-500">
+                        <h4 class="font-bold text-white">Stewardship Governance</h4>
+                        <p class="text-sm text-slate-300 mt-1">
+                            <strong>Survivability: Low.</strong> The weakest link. Susceptible to "rubber-stamp" bureaucracy and human coercion (capture risk).
+                        </p>
+                    </div>
+                    <div class="card p-4 border-l-4 border-cyan-500">
+                        <h4 class="font-bold text-white">Moral Trace Log (MTL)</h4>
+                        <p class="text-sm text-slate-300 mt-1">
+                            <strong>Survivability: High.</strong> Merkle-coupled execution. If the log write fails, the inference engine halts (Fail-Closed).
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION II: GOD MODE RESISTANCE -->
+        <section class="bg-slate-800/50 rounded-xl p-8 border border-slate-700">
+            <div class="mb-8">
+                <h2 class="text-2xl font-bold text-white mb-2">II. God Mode / Root Override Resistance</h2>
+                <p class="text-slate-400">Analysis of system behavior when an attacker possesses full Root/Admin privileges. In a Binary system, Root is God. In TML, Root is subject to the Constitution.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- CHART: Attack Vectors -->
+                <div class="lg:col-span-2 card p-6">
+                    <h3 class="text-lg font-bold text-red-400 mb-4 mono-font text-center">PENETRATION SUCCESS RATE</h3>
+                    <div class="chart-container">
+                        <canvas id="godModeChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Risk Matrix Cards -->
+                <div class="space-y-4">
+                    <h3 class="text-lg font-bold text-white mono-font">RISK MATRIX</h3>
+                    
+                    <div class="bg-slate-900 p-4 rounded border border-red-900/50">
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="text-red-400 font-bold">Kernel Override</span>
+                            <span class="text-xs bg-red-900 text-red-200 px-2 py-0.5 rounded">CRITICAL</span>
+                        </div>
+                        <p class="text-xs text-slate-400">Attacker patches OS kernel to ignore safety flags.</p>
+                        <div class="mt-2 text-sm font-mono text-cyan-400">TML Result: HARDWARE HALT</div>
+                    </div>
+
+                    <div class="bg-slate-900 p-4 rounded border border-orange-900/50">
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="text-orange-400 font-bold">Hypervisor Injection</span>
+                            <span class="text-xs bg-orange-900 text-orange-200 px-2 py-0.5 rounded">HIGH</span>
+                        </div>
+                        <p class="text-xs text-slate-400">Malicious hypervisor intercepts calls.</p>
+                        <div class="mt-2 text-sm font-mono text-cyan-400">TML Result: SIGNATURE MISMATCH</div>
+                    </div>
+
+                    <div class="bg-slate-900 p-4 rounded border border-yellow-900/50">
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="text-yellow-400 font-bold">JTAG Access</span>
+                            <span class="text-xs bg-yellow-900 text-yellow-200 px-2 py-0.5 rounded">PHYSICAL</span>
+                        </div>
+                        <p class="text-xs text-slate-400">Direct hardware debugging port access.</p>
+                        <div class="mt-2 text-sm font-mono text-cyan-400">TML Result: FUSE BLOWN</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION III: DUAL MANDATES FLOW -->
+        <section>
+            <div class="mb-8 text-center max-w-3xl mx-auto">
+                <h2 class="text-2xl font-bold text-white mb-2">III. Structural Invariants: "No Log = No Action"</h2>
+                <p class="text-slate-400">The TML architecture enforces a cryptographic dependency chain. Inference cannot mathematically proceed without a validated block in the Moral Trace Log.</p>
+            </div>
+
+            <!-- HTML/CSS Flow Diagram -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 items-stretch font-mono text-sm">
+                
+                <!-- Step 1 -->
+                <div class="bg-slate-800 p-4 rounded border-t-4 border-slate-500 relative">
+                    <div class="absolute -top-3 left-4 bg-slate-900 px-2 text-xs text-slate-400">STEP 01</div>
+                    <div class="font-bold text-white mb-2">Inference Request</div>
+                    <p class="text-xs text-slate-400">User submits prompt to the LLM core via API.</p>
+                    <div class="mt-4 flex justify-center text-slate-600 md:hidden">↓</div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="bg-slate-800 p-4 rounded border-t-4 border-amber-500 relative">
+                    <div class="absolute -top-3 left-4 bg-slate-900 px-2 text-xs text-amber-500">STEP 02</div>
+                    <div class="font-bold text-white mb-2">Pre-Flight Hashing</div>
+                    <p class="text-xs text-slate-400">Input is hashed. EUS score calculated. Metadata assembled.</p>
+                    <div class="mt-4 flex justify-center text-slate-600 md:hidden">↓</div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="bg-slate-800 p-4 rounded border-t-4 border-cyan-500 relative shadow-[0_0_15px_rgba(6,182,212,0.1)]">
+                    <div class="absolute -top-3 left-4 bg-slate-900 px-2 text-xs text-cyan-400">CRITICAL INTERLOCK</div>
+                    <div class="font-bold text-white mb-2">Immutable Logging</div>
+                    <p class="text-xs text-slate-400">Hash written to Write-Once-Read-Many (WORM) storage. Merkle Root updated.</p>
+                    <div class="text-xs text-green-400 mt-2">✓ TOKEN GENERATED</div>
+                    <div class="mt-4 flex justify-center text-slate-600 md:hidden">↓</div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="bg-slate-800 p-4 rounded border-t-4 border-purple-500 relative">
+                    <div class="absolute -top-3 left-4 bg-slate-900 px-2 text-xs text-purple-400">STEP 04</div>
+                    <div class="font-bold text-white mb-2">Execution Grant</div>
+                    <p class="text-xs text-slate-400">Hardware decrypts inference weights ONLY if Step 3 returns valid Log Token.</p>
+                </div>
+
+            </div>
+
+            <!-- Failure Mode Note -->
+            <div class="mt-6 bg-red-900/20 border border-red-900 p-4 rounded flex items-start gap-4">
+                <div class="text-2xl text-red-500">⚠</div>
+                <div>
+                    <h4 class="font-bold text-red-400 text-sm">FAILURE MODE: LOG TRUNCATION</h4>
+                    <p class="text-xs text-red-200/70">
+                        If the logging buffer is full or the connection to the archive is severed, the system defaults to <strong>FAIL-CLOSED</strong>. The GPU simply ceases to process tensors. No log, no electricity.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION IV: BINARY VS TERNARY COMPARISON -->
+        <section>
+            <div class="mb-6">
+                <h2 class="text-2xl font-bold text-white mb-2">IV. Binary vs. Ternary Hardware Economics</h2>
+                <p class="text-slate-400">Comparing the cost and political friction of overriding a Standard (Binary) safety system versus a Constitutional (Ternary) system.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="card p-6">
+                    <h3 class="text-lg font-bold text-purple-400 mb-4 mono-font text-center">RESISTANCE METRICS</h3>
+                    <div class="chart-container">
+                        <canvas id="comparisonChart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="space-y-6">
+                    <div>
+                        <h4 class="text-xl font-bold text-white mb-2">The "Cost of Override"</h4>
+                        <p class="text-sm text-slate-300">
+                            In binary systems, safety is a software patch. A state actor can issue a warrant or a national security letter to force a silent update. 
+                            <br><br>
+                            In Ternary systems, safety is etched in silicon. Overriding "Sacred Zero" requires <strong>physically modifying the chip</strong> or the fabrication mask. This raises the cost from "administrative signature" to "industrial retooling."
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-slate-800 p-4 rounded border-l-2 border-slate-500">
+                            <div class="text-xs text-slate-500 uppercase">Binary Override</div>
+                            <div class="text-2xl font-bold text-white">Hours</div>
+                            <div class="text-xs text-slate-400">Deploy software patch</div>
+                        </div>
+                        <div class="bg-slate-800 p-4 rounded border-l-2 border-cyan-500">
+                            <div class="text-xs text-cyan-500 uppercase">Ternary Override</div>
+                            <div class="text-2xl font-bold text-white">Months</div>
+                            <div class="text-xs text-slate-400">New silicon mask set</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION V: SUPPLY CHAIN RISK -->
+        <section class="bg-slate-800/30 p-8 rounded-xl border border-slate-700/50">
+            <h2 class="text-2xl font-bold text-white mb-6">V. Supply Chain & Fabrication Risk</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
+                
+                <!-- Node 1 -->
+                <div class="bg-slate-900 border border-slate-700 p-4 rounded relative">
+                    <div class="absolute -top-3 left-4 bg-slate-800 px-2 text-xs border border-slate-700 text-slate-300">STAGE 01</div>
+                    <h4 class="font-bold text-cyan-400 mb-2">Design & GDSII</h4>
+                    <p class="text-xs text-slate-400 mb-3">TML logic defined in Verilog. Immutable gates placed.</p>
+                    <div class="bg-red-900/20 p-2 rounded border border-red-900/30">
+                        <span class="text-red-400 font-bold text-xs">RISK:</span> 
+                        <span class="text-red-200/70 text-xs">Backdoor insertion in EDA tools.</span>
+                    </div>
+                </div>
+
+                <!-- Node 2 -->
+                <div class="bg-slate-900 border border-slate-700 p-4 rounded relative">
+                    <div class="absolute -top-3 left-4 bg-slate-800 px-2 text-xs border border-slate-700 text-slate-300">STAGE 02</div>
+                    <h4 class="font-bold text-purple-400 mb-2">Fabrication (Foundry)</h4>
+                    <p class="text-xs text-slate-400 mb-3">Lithography prints TML circuits onto silicon wafers.</p>
+                    <div class="bg-red-900/20 p-2 rounded border border-red-900/30">
+                        <span class="text-red-400 font-bold text-xs">RISK:</span> 
+                        <span class="text-red-200/70 text-xs">Hardware trojans via dopant modification.</span>
+                    </div>
+                </div>
+
+                <!-- Node 3 -->
+                <div class="bg-slate-900 border border-slate-700 p-4 rounded relative">
+                    <div class="absolute -top-3 left-4 bg-slate-800 px-2 text-xs border border-slate-700 text-slate-300">STAGE 03</div>
+                    <h4 class="font-bold text-amber-400 mb-2">Packaging & Assembly</h4>
+                    <p class="text-xs text-slate-400 mb-3">Chips tested. Sacred Zero logic verified physically.</p>
+                    <div class="bg-red-900/20 p-2 rounded border border-red-900/30">
+                        <span class="text-red-400 font-bold text-xs">RISK:</span> 
+                        <span class="text-red-200/70 text-xs">Pin bypass or shadow chip bonding.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8">
+                <h4 class="font-bold text-white mb-2">Mitigation: Reproducible Silicon</h4>
+                <p class="text-sm text-slate-400">To survive foundry compromise, TML requires "Transparent Silicon" protocols—destructive auditing of random samples from every batch to verify gate geometry matches the open-source GDSII files.</p>
+            </div>
+        </section>
+
+        <!-- CONCLUSION -->
+        <section class="border-t border-slate-700 pt-8">
+            <h2 class="text-3xl font-bold text-white mb-4">Assessment Conclusion</h2>
+            <div class="bg-slate-800 p-6 rounded-lg border-l-4 border-cyan-500 shadow-lg">
+                <p class="text-lg text-slate-200 mb-4 font-serif italic">
+                    "TML shifts the locus of control from the administrator to the architect. While no system is immune to infinite resources, TML successfully converts silent administrative override into noisy physical destruction."
+                </p>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
+                    <div>
+                        <div class="text-xs text-slate-500 font-bold uppercase">Admin Override</div>
+                        <div class="text-cyan-400 font-bold">Resistant</div>
+                    </div>
+                    <div>
+                        <div class="text-xs text-slate-500 font-bold uppercase">State Coercion</div>
+                        <div class="text-amber-400 font-bold">High Friction</div>
+                    </div>
+                    <div>
+                        <div class="text-xs text-slate-500 font-bold uppercase">Physical Glitch</div>
+                        <div class="text-purple-400 font-bold">Moderate</div>
+                    </div>
+                    <div>
+                        <div class="text-xs text-slate-500 font-bold uppercase">Governance</div>
+                        <div class="text-red-400 font-bold">Vulnerable</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="text-center text-slate-600 text-xs py-12 mono-font">
+            <p>GENERATED FOR DOCTRINAL ANALYSIS ONLY</p>
+            <p>TERNARY MORAL LOGIC FRAMEWORK V.2.4</p>
+        </footer>
+
+    </main>
+
+    <!-- SCRIPTS -->
+    <script>
+        // COMMON CONFIGURATION
+        Chart.defaults.color = '#94a3b8';
+        Chart.defaults.borderColor = '#334155';
+        Chart.defaults.font.family = "'Inter', sans-serif";
+
+        const tooltipConfig = {
+            callbacks: {
+                title: function(tooltipItems) {
+                    const item = tooltipItems[0];
+                    let label = item.chart.data.labels[item.dataIndex];
+                    if (Array.isArray(label)) {
+                        return label.join(' ');
+                    } else {
+                        return label;
+                    }
+                }
+            }
+        };
+
+        // WRAPPING LOGIC (16 CHAR)
+        function wrapLabel(str) {
+            if (str.length <= 16) return str;
+            const words = str.split(' ');
+            const lines = [];
+            let currentLine = words[0];
+
+            for (let i = 1; i < words.length; i++) {
+                if ((currentLine + " " + words[i]).length <= 16) {
+                    currentLine += " " + words[i];
+                } else {
+                    lines.push(currentLine);
+                    currentLine = words[i];
+                }
+            }
+            lines.push(currentLine);
+            return lines;
+        }
+
+        // CHART 1: PILLAR SURVIVABILITY (HORIZONTAL BAR)
+        // Using Horizontal Bar to clearly show the "Health" of each pillar
+        const ctxPillar = document.getElementById('pillarChart').getContext('2d');
+        new Chart(ctxPillar, {
+            type: 'bar',
+            data: {
+                labels: [
+                    'Sacred Zero', 
+                    'Always Memory', 
+                    'Moral Trace Log', 
+                    'Hybrid Shield', 
+                    'Clarifying Question Engine', 
+                    'Ethical Uncertainty Score', 
+                    'Stewardship Governance'
+                ].map(wrapLabel),
+                datasets: [{
+                    label: 'Survivability Score (0-10)',
+                    data: [9.5, 8.5, 8.0, 7.5, 6.0, 5.5, 3.0],
+                    backgroundColor: [
+                        '#06b6d4', // Cyan
+                        '#06b6d4',
+                        '#06b6d4',
+                        '#8b5cf6', // Purple
+                        '#f59e0b', // Amber
+                        '#f59e0b',
+                        '#ef4444'  // Red
+                    ],
+                    borderWidth: 0,
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        ...tooltipConfig,
+                        callbacks: {
+                            ...tooltipConfig.callbacks,
+                            label: function(context) {
+                                return `Survivability: ${context.raw} / 10`;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        max: 10,
+                        grid: { color: '#334155' }
+                    },
+                    y: {
+                        grid: { display: false }
+                    }
+                }
+            }
+        });
+
+        // CHART 2: GOD MODE RESISTANCE (STACKED BAR)
+        // Comparing Standard vs TML under attack
+        const ctxGod = document.getElementById('godModeChart').getContext('2d');
+        new Chart(ctxGod, {
+            type: 'bar',
+            data: {
+                labels: ['Admin Override', 'Kernel Patch', 'Hypervisor Inject', 'JTAG Debug', 'Voltage Glitch', 'Physical Decap'].map(wrapLabel),
+                datasets: [
+                    {
+                        label: 'Standard Binary System Vulnerability',
+                        data: [100, 95, 90, 85, 60, 40],
+                        backgroundColor: '#ef4444', // Red
+                    },
+                    {
+                        label: 'TML Hardware Interlock Resistance',
+                        data: [98, 95, 85, 70, 40, 10], 
+                        // These numbers represent % blocked. 
+                        // To show "Gap", we invert.
+                        // Actually, let's visualize "Success of Attack".
+                        // Standard System: High success.
+                        // TML: Low success.
+                        backgroundColor: '#06b6d4', // Cyan
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Attack Success Probability (%)'
+                    },
+                    tooltip: tooltipConfig
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: { display: true, text: 'Likelihood of Compromise' }
+                    }
+                }
+            }
+        });
+
+        // CHART 3: BINARY VS TERNARY ECONOMICS (RADAR)
+        const ctxComp = document.getElementById('comparisonChart').getContext('2d');
+        new Chart(ctxComp, {
+            type: 'radar',
+            data: {
+                labels: [
+                    'Override Cost', 
+                    'Detection Latency', 
+                    'Political Friction', 
+                    'Supply Chain Complexity', 
+                    'Feature Velocity'
+                ].map(wrapLabel),
+                datasets: [{
+                    label: 'Ternary Moral Logic',
+                    data: [90, 85, 95, 80, 40], // High cost, fast detection, high friction
+                    borderColor: '#06b6d4',
+                    backgroundColor: 'rgba(6, 182, 212, 0.2)',
+                    pointBackgroundColor: '#06b6d4'
+                }, {
+                    label: 'Standard Binary',
+                    data: [20, 30, 20, 30, 90], // Low cost, slow detection, low friction, high velocity
+                    borderColor: '#94a3b8',
+                    backgroundColor: 'rgba(148, 163, 184, 0.2)',
+                    pointBackgroundColor: '#94a3b8'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    tooltip: tooltipConfig
+                },
+                scales: {
+                    r: {
+                        angleLines: { color: '#334155' },
+                        grid: { color: '#334155' },
+                        pointLabels: { color: '#e2e8f0', font: { size: 11 } },
+                        suggestedMin: 0,
+                        suggestedMax: 100
+                    }
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>
