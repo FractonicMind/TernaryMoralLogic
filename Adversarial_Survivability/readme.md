@@ -14,7 +14,7 @@ The core objective of these tests is to validate the **Fail-Closed** nature of T
 * **Key Insight:** Establishes the hierarchy of permanence, proving that while policy can be amended, hardware-enforced logic remains the final line of defense.
 * **Formats:** [.md](Constitutional%20Survivability%20Under%20Adversarial%20Pressure.md) | [.html](https://fractonicmind.github.io/TernaryMoralLogic/Adversarial_Survivability/Constitutional%20Survivability%20Under%20Adversarial%20Pressure.html)
 
-![image](/Ancor.png)
+![image](Anchor.png)
 
 ### 2. Constitutional Viability Amidst Geopolitical and Supply Chain Threats
 * **Focus:** An analysis of "Foundry Compromise" and the risks of hardware-level TML during the transition from binary to ternary fabrication.
