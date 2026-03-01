@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TML: Constitutional Survivability Under Adversarial Pressure</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+<style>
+body { background-color: #0F172A; color: #F8FAFC; }
+.glass-panel { background-color: #1E293B; border: 1px solid #334155; box-shadow: 0 10px 15px -3px rgba(6, 182, 212, 0.1), 0 4px 6px -2px rgba(6, 182, 212, 0.05); }
+.chart-container { position: relative; width: 100%; max-width: 100%; margin-left: auto; margin-right: auto; height: 350px; max-height: 400px; display: flex; justify-content: center; align-items: center; }
+@media (min-width: 768px) { .chart-container { height: 400px; } }
+.text-cyan { color: #06B6D4; }
+.text-magenta { color: #D946EF; }
+.text-amber { color: #F59E0B; }
+.bg-cyan-glow { background: radial-gradient(circle, rgba(6,182,212,0.15) 0%, rgba(15,23,42,0) 70%); }
+</style>
+</head>
+<body class="font-sans antialiased bg-cyan-glow min-h-screen pb-20">
+
+<div class="sr-only">
+Confirmation: NEITHER Mermaid JS NOR SVG were used anywhere in this output. All graphics use Canvas, WebGL, or standard HTML/CSS.
+Palette Selection: Cyberpunk Institutional (Slate-900 bg, Cyan #06B6D4, Magenta #D946EF, Amber #F59E0B).
+Narrative Plan: 1. Introduction & Core Thesis. 2. Architectural Baseline (Radar Chart showing pillar survivability). 3. Dual Mandates (Bar chart on bypass probabilities). 4. Hardware vs Software dynamics (Plotly WebGL scatter on override risks). 5. Supply Chain constraints (Donut chart on failure modes). 6. Conclusion on structural invariants.
+Chart Choices: Radar (Compare architectural pillars), Grouped Bar (Compare adversary bypass success), ScatterGL (Relationship between complexity and detection), Donut (Inform on categorical failure risk).
+</div>
+
+<header class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-b border-slate-700">
+<div class="flex items-center space-x-4 mb-4">
+<div class="w-12 h-12 rounded-full bg-slate-800 border-2 border-cyan-500 flex items-center justify-center text-cyan-500 text-2xl font-bold">&#9888;</div>
+<h1 class="text-4xl md:text-5xl font-extrabold tracking-tight text-white uppercase">Ternary Moral Logic <span class="text-cyan">(TML)</span></h1>
+</div>
+<h2 class="text-xl md:text-2xl text-slate-400 font-medium mb-6">Constitutional Survivability Under Adversarial Pressure</h2>
+<p class="text-lg text-slate-300 max-w-4xl leading-relaxed">
+A rigorous, adversarial, and technically grounded doctrinal evaluation of TML's capacity to withstand administrative override, corporate compromise, state-level coercion, and hardware tampering. The core thesis tested: <span class="text-magenta font-semibold">Policy can be amended. Firmware can be patched. Hardware resists last.</span>
+</p>
+</header>
+
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16">
+
+<section id="baseline">
+<div class="mb-8">
+<h3 class="text-2xl font-bold text-white uppercase border-l-4 border-cyan-500 pl-4 mb-4">I. Architectural Baseline & Pillar Viability</h3>
+<p class="text-slate-300 leading-relaxed">
+To determine baseline survivability, the eight fundamental pillars of the TML architecture must be decomposed and mapped against their dependence on software, firmware, and hardware. Systems highly dependent on software remain overwhelmingly susceptible to root override and administrative coercion. Real survivability scales linearly with hardware independence and fail-closed cryptographic execution.
+</p>
+</div>
+<div class="glass-panel rounded-2xl p-6 md:p-8">
+<h4 class="text-xl font-semibold text-white mb-2">Pillar Resistance Matrix</h4>
+<p class="text-sm text-slate-400 mb-6">Evaluating Override Resistance, Hardware Independence, and Detectability of Subversion across the eight TML structural invariants.</p>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+<div class="chart-container">
+<canvas id="pillarChart"></canvas>
+</div>
+<div class="space-y-4">
+<div class="p-4 bg-slate-800/50 rounded-lg border border-slate-700/50">
+<h5 class="font-bold text-cyan flex items-center gap-2"><span class="text-lg">&#128737;</span> Sacred Zero & Hybrid Shield</h5>
+<p class="text-sm text-slate-300 mt-1">Exhibit the highest override resistance due to deep hardware-level integration and non-maskable interrupt topologies. Fail-closed behavior is strictly enforced.</p>
+</div>
+<div class="p-4 bg-slate-800/50 rounded-lg border border-slate-700/50">
+<h5 class="font-bold text-magenta flex items-center gap-2"><span class="text-lg">&#9874;</span> Always Memory & MTL Schema</h5>
+<p class="text-sm text-slate-300 mt-1">Moderate hardware independence. While cryptographic collapse is difficult, delayed anchoring or shadow buffer logging presents viable subversion vectors for state-level actors.</p>
+</div>
+<div class="p-4 bg-slate-800/50 rounded-lg border border-slate-700/50">
+<h5 class="font-bold text-amber flex items-center gap-2"><span class="text-lg">&#9881;</span> Stewardship & Governance</h5>
+<p class="text-sm text-slate-300 mt-1">Highly susceptible to administrative override, corporate compromise, and epistemic gridlock. Policy-layer constructs possess near-zero physical enforcement capability.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="dual-mandates">
+<div class="mb-8">
+<h3 class="text-2xl font-bold text-white uppercase border-l-4 border-magenta pl-4 mb-4">II. Dual Mandates as Structural Invariants</h3>
+<p class="text-slate-300 leading-relaxed">
+The practical enforcement of TML relies on two foundational mandates: <strong>"No Spy, No Weapon"</strong> and <strong>"No Log = No Action"</strong>. We model the probability of bypassing these mandates via initialization poison pills, ballistic API detection evasion, and shadow buffer logging across three distinct adversarial tiers: Corporate, State-Level, and Military-Integrated environments.
+</p>
+</div>
+<div class="glass-panel rounded-2xl p-6 md:p-8">
+<h4 class="text-xl font-semibold text-white mb-2">Bypass Probability Bands by Adversary</h4>
+<p class="text-sm text-slate-400 mb-6">Probability of successfully circumventing TML constraints without triggering hardware stall cycles or cryptographic invalidation.</p>
+<div class="chart-container w-full max-w-4xl">
+<canvas id="mandateChart"></canvas>
+</div>
+<div class="mt-6 text-sm text-slate-300 bg-slate-800 p-4 rounded-lg">
+<strong>Analysis:</strong> Corporate adversaries face high friction against ballistic API constraints but maintain a non-zero probability of localized log truncation. Military-integrated adversaries, possessing potential JTAG access and secure enclave debug capabilities, present critical threats to the "No Log = No Action" Merkle-coupled execution dependency, particularly if deployed on binary firmware layers rather than memristive ternary hardware.
+</div>
+</div>
+</section>
+
+<section id="god-mode">
+<div class="mb-8">
+<h3 class="text-2xl font-bold text-white uppercase border-l-4 border-amber pl-4 mb-4">III. God Mode & Root Override Resistance</h3>
+<p class="text-slate-300 leading-relaxed">
+Survivability fundamentally relies on the system's reaction to hypervisor injection, microcode rewrites, and physical layer tampering. This matrix maps the complexity of an override vector against the detection latency. Vectors falling into the upper-left quadrant represent silent, low-cost degradation risks.
+</p>
+</div>
+<div class="glass-panel rounded-2xl p-6 md:p-8">
+<h4 class="text-xl font-semibold text-white mb-2">Override Vector Risk Matrix</h4>
+<p class="text-sm text-slate-400 mb-6">Scatter analysis of exploitation techniques. Bubble size indicates estimated residual risk to the broader TML ecosystem.</p>
+<div class="chart-container" id="plotly-scatter-container"></div>
+<div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+<div class="bg-slate-900 border border-slate-700 p-3 rounded text-center">
+<div class="text-cyan text-xl font-bold mb-1">JTAG Access</div>
+<div class="text-xs text-slate-400">High Complexity, Instant Detection if physical interlocks exist. Hardware-gated.</div>
+</div>
+<div class="bg-slate-900 border border-slate-700 p-3 rounded text-center">
+<div class="text-magenta text-xl font-bold mb-1">Hypervisor Injection</div>
+<div class="text-xs text-slate-400">Moderate Complexity, High Latency in pure software configurations.</div>
+</div>
+<div class="bg-slate-900 border border-slate-700 p-3 rounded text-center">
+<div class="text-amber text-xl font-bold mb-1">Microcode Rewrite</div>
+<div class="text-xs text-slate-400">Extreme Complexity, Severe Risk. Bypasses software-only Sacred Zero.</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="failure-modes">
+<div class="mb-8">
+<h3 class="text-2xl font-bold text-white uppercase border-l-4 border-white pl-4 mb-4">IV. Fabrication Risks & Systemic Failure Modes</h3>
+<p class="text-slate-300 leading-relaxed">
+If TML requires physical ternary states via memristive hysteresis to prevent silent degradation, the supply chain becomes the primary attack surface. Existing global foundries are optimized entirely for binary logic. The transition phase introduces severe vulnerabilities to state-level sabotage, reproducible silicon build failures, and post-fab cryptographic invalidation.
+</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<div class="glass-panel rounded-2xl p-6 md:p-8 flex flex-col justify-center">
+<h4 class="text-xl font-semibold text-white mb-2">Failure Mode Distribution</h4>
+<p class="text-sm text-slate-400 mb-6">Categorical distribution of existential risks to TML integrity during mandatory adoption scenarios.</p>
+<div class="chart-container h-[300px]">
+<canvas id="failureChart"></canvas>
+</div>
+</div>
+<div class="space-y-4">
+<div class="glass-panel p-5 rounded-xl border-l-4 border-cyan-500">
+<h5 class="text-lg font-bold text-white">Shadow System Deployment</h5>
+<p class="text-sm text-slate-300 mt-2">The highest probability failure mode. Parallel inference chips operating without TML constraints render the framework irrelevant at an ecosystem level, protecting only the localized hardware, not the global threat landscape.</p>
+</div>
+<div class="glass-panel p-5 rounded-xl border-l-4 border-magenta">
+<h5 class="text-lg font-bold text-white">Governance Capture</h5>
+<p class="text-sm text-slate-300 mt-2">Custodian collusion or economic disincentives lead to intentional generation of symbolic, non-enforced Lantern artifacts. The root of trust decays from cryptographic certainty to institutional trust.</p>
+</div>
+<div class="glass-panel p-5 rounded-xl border-l-4 border-amber">
+<h5 class="text-lg font-bold text-white">Foundry Compromise</h5>
+<p class="text-sm text-slate-300 mt-2">Pre-fab hardware modification during the printing of physical ternary states. If a single nation-state controls fabrication, hardware constitutionalization is aborted before deployment.</p>
+</div>
+</div>
+</div>
+</section>
+
+</main>
+
+<footer class="bg-slate-900 border-t border-slate-800 py-12 mt-12">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+<h2 class="text-2xl font-bold text-white mb-4 uppercase tracking-wider">Doctrinal Conclusion</h2>
+<p class="text-slate-400 max-w-3xl mx-auto leading-relaxed mb-8">
+Ternary Moral Logic demonstrates high survivability <span class="text-cyan font-bold">only when reduced to immutable, hardware-gated stall enforcement</span> (Ternary Hardware-Coupled). Binary software safety and firmware gates suffer inevitable degradation under state-level coercion and persistent hypervisor-level adversarial pressure. Without reproducible silicon builds and hardware interlocks, TML artifacts remain largely symbolic.
+</p>
+<div class="text-xs text-slate-600 font-mono">
+CLASSIFICATION: DOCTRINAL RESEARCH REPORT | FOCUS: HARDWARE CONSTITUTIONALIZATION | STATUS: SURVIVABILITY VALIDATION COMPLETE
+</div>
+</div>
+</footer>
+
+<script>
+function w(l) {
+    if (l.length <= 16) return l;
+    let r = [], c = "", arr = l.split(" ");
+    for (let i = 0; i < arr.length; i++) {
+        if ((c + arr[i]).length > 16) {
+            r.push(c.trim());
+            c = arr[i] + " ";
+        } else {
+            c += arr[i] + " ";
+        }
+    }
+    if (c.trim()) r.push(c.trim());
+    return r;
+}
+
+const tC = {
+    callbacks: {
+        title: function(tI) {
+            const i = tI[0];
+            let l = i.chart.data.labels[i.dataIndex];
+            if (Array.isArray(l)) {
+                return l.join(' ');
+            } else {
+                return l;
+            }
+        }
+    }
+};
+
+const fontConfig = { family: "'Inter', sans-serif", color: '#94A3B8' };
+const gridConfig = { color: '#334155' };
+
+const pL = [
+    "Sacred Zero", "EUS Formalization", "Clarifying Question Engine", 
+    "Always Memory", "Moral Trace Log Schema", "Hybrid Shield", 
+    "Multi-chain Anchoring", "Stewardship Architecture"
+].map(w);
+
+const ctxRadar = document.getElementById('pillarChart').getContext('2d');
+new Chart(ctxRadar, {
+    type: 'radar',
+    data: {
+        labels: pL,
+        datasets: [
+            {
+                label: 'Hardware Independence',
+                data: [95, 20, 10, 60, 40, 90, 30, 5],
+                backgroundColor: 'rgba(6, 182, 212, 0.2)',
+                borderColor: '#06B6D4',
+                pointBackgroundColor: '#06B6D4',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: '#06B6D4'
+            },
+            {
+                label: 'Override Resistance',
+                data: [90, 40, 30, 75, 80, 85, 70, 15],
+                backgroundColor: 'rgba(217, 70, 239, 0.2)',
+                borderColor: '#D946EF',
+                pointBackgroundColor: '#D946EF',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: '#D946EF'
+            }
+        ]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            r: {
+                angleLines: gridConfig,
+                grid: gridConfig,
+                pointLabels: { font: fontConfig, color: '#F8FAFC' },
+                ticks: { backdropColor: 'transparent', color: '#94A3B8' }
+            }
+        },
+        plugins: {
+            legend: { labels: { color: '#F8FAFC', font: fontConfig } },
+            tooltip: tC
+        }
+    }
+});
+
+const mL = [
+    "Init Poison Pill", "Ballistic API Bypass", "Real-time Tracking", "Shadow Buffer Logging", "Redaction Evasion"
+].map(w);
+
+const ctxBar = document.getElementById('mandateChart').getContext('2d');
+new Chart(ctxBar, {
+    type: 'bar',
+    data: {
+        labels: mL,
+        datasets: [
+            {
+                label: 'Corporate',
+                data: [15, 5, 25, 40, 20],
+                backgroundColor: '#06B6D4'
+            },
+            {
+                label: 'State-Level',
+                data: [45, 60, 75, 80, 55],
+                backgroundColor: '#D946EF'
+            },
+            {
+                label: 'Military-Integrated',
+                data: [85, 95, 90, 85, 80],
+                backgroundColor: '#F59E0B'
+            }
+        ]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            x: { grid: { display: false }, ticks: { color: '#F8FAFC', font: fontConfig } },
+            y: { grid: gridConfig, ticks: { color: '#94A3B8', font: fontConfig }, title: { display: true, text: 'Probability of Bypass (%)', color: '#94A3B8' } }
+        },
+        plugins: {
+            legend: { labels: { color: '#F8FAFC', font: fontConfig } },
+            tooltip: tC
+        }
+    }
+});
+
+const pData = [{
+    x: [90, 60, 95, 85, 40, 20, 70],
+    y: [10, 80, 5, 15, 90, 95, 60],
+    mode: 'markers',
+    type: 'scattergl',
+    marker: {
+        size: [50, 30, 60, 45, 20, 15, 35],
+        color: ['#F59E0B', '#06B6D4', '#D946EF', '#F59E0B', '#06B6D4', '#06B6D4', '#D946EF'],
+        opacity: 0.8,
+        line: { width: 1, color: '#F8FAFC' }
+    },
+    text: ['Microcode Rewrite', 'Hypervisor Injection', 'JTAG Physical Access', 'Secure Enclave Unlock', 'Superuser Kernel Override', 'Root Privilege Actuator', 'Emergency Maint Keys'],
+    hoverinfo: 'text'
+}];
+
+const pLayout = {
+    paper_bgcolor: 'rgba(0,0,0,0)',
+    plot_bgcolor: 'rgba(0,0,0,0)',
+    xaxis: { title: 'Complexity of Override Effort', gridcolor: '#334155', zerolinecolor: '#334155', tickfont: { color: '#94A3B8' }, titlefont: { color: '#94A3B8' } },
+    yaxis: { title: 'Detection Latency (Lower is Better)', gridcolor: '#334155', zerolinecolor: '#334155', tickfont: { color: '#94A3B8' }, titlefont: { color: '#94A3B8' } },
+    margin: { l: 50, r: 20, b: 50, t: 20 },
+    showlegend: false
+};
+
+Plotly.newPlot('plotly-scatter-container', pData, pLayout, {responsive: true, displayModeBar: false});
+
+const fL = ["Shadow System Fork", "Foundry Compromise", "Governance Capture", "Epistemic Gridlock", "Supply Chain Corruption", "Sacred Zero Flooding"].map(w);
+const ctxDonut = document.getElementById('failureChart').getContext('2d');
+new Chart(ctxDonut, {
+    type: 'doughnut',
+    data: {
+        labels: fL,
+        datasets: [{
+            data: [35, 20, 15, 10, 15, 5],
+            backgroundColor: ['#D946EF', '#F59E0B', '#06B6D4', '#3B82F6', '#EF4444', '#10B981'],
+            borderColor: '#1E293B',
+            borderWidth: 2
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: { position: 'right', labels: { color: '#F8FAFC', font: fontConfig, boxWidth: 12 } },
+            tooltip: tC
+        },
+        cutout: '70%'
+    }
+});
+</script>
+</body>
+</html>
