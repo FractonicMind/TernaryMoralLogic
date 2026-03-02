@@ -5,7 +5,7 @@
 **License:** Open Source / Research Preview
 
 ---
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18637240.svg)](https://doi.org/10.5281/zenodo.18637240)
+[![DOI: https://doi.org/10.5281/zenodo.18637240](https://zenodo.org/badge/DOI/10.5281/zenodo.18637240.svg)](https://doi.org/10.5281/zenodo.18637240)
 
 ---
 
