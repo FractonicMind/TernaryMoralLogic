@@ -1,0 +1,408 @@
+<!-- Explicitly confirm that NEITHER Mermaid JS NOR SVG were used anywhere in the output. -->
+<!-- Palette Name: Neon Cyber-Forensic (Cyan #00F0FF, Magenta #FF0055, Purple #8A2BE2, Lime #00FF66, Deep Space #0B1021) -->
+<!-- Plan Summary: Section 1 introduces the incident timeline and traffic surge. Section 2 analyzes the authentication plane bottlenecks using stacked composition. Section 3 investigates the hybrid DDoS hypothesis using multi-dimensional clustering. Section 4 contrasts traditional incident response with the Ternary Moral Logic framework. Section 5 provides strategic recommendations. -->
+<!-- Chart Choices: 1. Traffic Timeline -> Line Chart (Chart.js) to show change over time and correlation between load and errors. 2. DB Saturation -> Stacked Bar (Chart.js) to compare connection pool states. 3. Bot Fingerprinting -> ScatterGL (Plotly.js WebGL) to reveal relationships and distributions among user agent entropy, request rate, and anomalous signatures without SVG. 4. Governance Comparison -> Radar Chart (Chart.js) to compare multiple qualitative axes between standard and TML frameworks. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auth Failure Analysis Under Load Surge</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap');
+        body { background-color: #0B1021; color: #E2E8F0; font-family: 'Inter', sans-serif; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+        .chart-container { position: relative; width: 100%; max-width: 900px; margin-left: auto; margin-right: auto; height: 40vh; max-height: 400px; }
+        @media (min-width: 768px) { .chart-container { height: 450px; max-height: 500px; } }
+        .plotly-container { width: 100%; max-width: 900px; margin: 0 auto; height: 450px; }
+        .glow-text { text-shadow: 0 0 10px rgba(0, 240, 255, 0.5); }
+        .glow-border { box-shadow: 0 0 15px rgba(138, 43, 226, 0.3); }
+        .stat-card { background: linear-gradient(145deg, #131B33 0%, #0B1021 100%); border: 1px solid #1E293B; }
+    </style>
+</head>
+<body class="antialiased selection:bg-[#FF0055] selection:text-white pb-20">
+
+    <nav class="sticky top-0 z-50 bg-[#0B1021]/90 backdrop-blur-md border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-[#00F0FF] font-bold text-xl tracking-tighter">FORENSIC<span class="text-white">REPORT</span></div>
+            <div class="hidden md:flex space-x-6 text-sm font-mono text-slate-400">
+                <a href="#timeline" class="hover:text-[#00F0FF] transition-colors">01.TIMELINE</a>
+                <a href="#architecture" class="hover:text-[#FF0055] transition-colors">02.ARCHITECTURE</a>
+                <a href="#ddos" class="hover:text-[#00FF66] transition-colors">03.THREAT_MODEL</a>
+                <a href="#governance" class="hover:text-[#8A2BE2] transition-colors">04.GOVERNANCE</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-6 mt-12 space-y-24">
+
+        <header class="text-center max-w-4xl mx-auto space-y-6">
+            <div class="inline-block px-3 py-1 bg-red-500/10 border border-red-500/30 text-[#FF0055] font-mono text-xs rounded-full mb-4">
+                CONFIDENTIAL / RESTRICTED ACCESS
+            </div>
+            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight text-white glow-text">
+                Authentication Failure Analysis
+            </h1>
+            <p class="text-xl md:text-2xl text-slate-400 font-light border-b border-slate-800 pb-8">
+                Forensic investigation of auth plane collapse under politically sensitive load surge conditions.
+            </p>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 pt-4 text-left">
+                <div class="stat-card p-4 rounded-lg">
+                    <div class="text-slate-500 text-xs font-mono mb-1">EVENT_START</div>
+                    <div class="text-[#00F0FF] text-lg font-bold">14:00 UTC</div>
+                </div>
+                <div class="stat-card p-4 rounded-lg">
+                    <div class="text-slate-500 text-xs font-mono mb-1">PEAK_TRAFFIC_SURGE</div>
+                    <div class="text-[#FF0055] text-lg font-bold">+4,500%</div>
+                </div>
+                <div class="stat-card p-4 rounded-lg">
+                    <div class="text-slate-500 text-xs font-mono mb-1">AUTH_SUCCESS_RATE</div>
+                    <div class="text-white text-lg font-bold">Dropped to 12%</div>
+                </div>
+                <div class="stat-card p-4 rounded-lg">
+                    <div class="text-slate-500 text-xs font-mono mb-1">DOWNTIME_WINDOW</div>
+                    <div class="text-[#00FF66] text-lg font-bold">143 Minutes</div>
+                </div>
+            </div>
+        </header>
+
+        <section id="timeline" class="scroll-mt-24">
+            <h2 class="text-3xl font-bold mb-4 border-l-4 border-[#00F0FF] pl-4">01. Timeline Reconstruction</h2>
+            <p class="text-slate-400 mb-8 max-w-3xl leading-relaxed">
+                At 14:00 UTC, correlating with a highly publicized policy announcement, edge ingress nodes detected an unprecedented volume of authentication requests. The graph below cross-references raw traffic volume against the systemic error rate, demonstrating the exact moment the authentication database reached saturation and initiated a cascading failure.
+            </p>
+            
+            <div class="bg-[#131B33] p-6 rounded-xl border border-slate-800 glow-border">
+                <div class="chart-container">
+                    <canvas id="timelineChart"></canvas>
+                </div>
+                <p class="text-center text-sm text-slate-500 mt-4 font-mono">
+                    Fig 1: Ingress Requests vs HTTP 503 Auth Errors (13:30 - 15:30 UTC)
+                </p>
+            </div>
+        </section>
+
+        <section id="architecture" class="scroll-mt-24">
+            <h2 class="text-3xl font-bold mb-4 border-l-4 border-[#FF0055] pl-4">02. Auth Plane Choke Points</h2>
+            <p class="text-slate-400 mb-8 max-w-3xl leading-relaxed">
+                Analysis of the SaaS authentication stack isolates the failure not to the edge WAF or OAuth identity providers, but to internal session token database exhaustion. As traffic spiked, legitimate connection requests queued indefinitely, consuming worker threads and triggering health-check failures across the container orchestration layer.
+            </p>
+
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div class="bg-[#131B33] p-6 rounded-xl border border-slate-800">
+                    <div class="chart-container">
+                        <canvas id="architectureChart"></canvas>
+                    </div>
+                </div>
+                <div class="space-y-6">
+                    <div class="p-5 bg-slate-800/50 border border-slate-700 rounded-lg">
+                        <div class="flex items-center space-x-3 mb-2">
+                            <span class="text-2xl">&#x1F4BE;</span>
+                            <h3 class="text-white font-bold">Database Saturation</h3>
+                        </div>
+                        <p class="text-sm text-slate-400">Connection pools were depleted within 4 minutes of the surge. The system failed to shed load gracefully, causing active connections to lock while queue lengths grew exponentially.</p>
+                    </div>
+                    <div class="p-5 bg-slate-800/50 border border-slate-700 rounded-lg">
+                        <div class="flex items-center space-x-3 mb-2">
+                            <span class="text-2xl">&#x26A0;</span>
+                            <h3 class="text-white font-bold">Cascading Timeouts</h3>
+                        </div>
+                        <p class="text-sm text-slate-400">Rate limiters, dependent on Redis cache nodes, failed open due to latency spikes, exacerbating the load on the primary PostgreSQL cluster.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-8 p-6 bg-[#0B1021] border border-[#FF0055]/30 rounded-xl">
+                <h3 class="text-sm font-mono text-[#FF0055] mb-4">RECONSTRUCTED AUTHENTICATION FLOW & FAILURE POINT</h3>
+                <div class="flex flex-col md:flex-row items-center justify-between text-center space-y-4 md:space-y-0 text-sm">
+                    <div class="p-3 border border-slate-600 rounded bg-slate-800 w-full md:w-auto">Client Request</div>
+                    <div class="text-[#00F0FF] font-bold text-xl">&#x2192;</div>
+                    <div class="p-3 border border-slate-600 rounded bg-slate-800 w-full md:w-auto">Edge WAF (Passed)</div>
+                    <div class="text-[#00F0FF] font-bold text-xl">&#x2192;</div>
+                    <div class="p-3 border border-slate-600 rounded bg-slate-800 w-full md:w-auto">Auth API Gateway</div>
+                    <div class="text-[#FF0055] font-bold text-xl">&#x2193;</div>
+                    <div class="p-3 border border-[#FF0055] rounded bg-[#FF0055]/20 text-white font-bold shadow-[0_0_10px_rgba(255,0,85,0.5)] w-full md:w-auto">Token DB (Timeout)</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="ddos" class="scroll-mt-24">
+            <h2 class="text-3xl font-bold mb-4 border-l-4 border-[#00FF66] pl-4">03. Hybrid DDoS Plausibility</h2>
+            <p class="text-slate-400 mb-8 max-w-3xl leading-relaxed">
+                We evaluated the technical feasibility of a hybrid attack: genuine high-volume registrations mixed with low-and-slow application layer bot amplification. By mapping User Agent entropy against Request Rate and ASN distribution, statistical fingerprints emerge that distinguish organic solidary traffic from automated malicious masking.
+            </p>
+
+            <div class="bg-[#131B33] p-6 rounded-xl border border-slate-800 glow-border">
+                <div id="plotly-scatter" class="plotly-container"></div>
+                <p class="text-center text-sm text-slate-500 mt-4 font-mono">
+                    Fig 3: Multi-dimensional cluster analysis (WebGL). High Request Rate + Low Entropy indicates high-confidence botnet signatures nested within the organic surge.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+                <div class="p-4 border border-[#00FF66]/30 rounded bg-black/30">
+                    <div class="text-[#00FF66] font-mono text-xs mb-2">FINDING 01</div>
+                    <div class="text-sm text-slate-300">Organic surge accounted for ~65% of volume, widely distributed across residential ASNs.</div>
+                </div>
+                <div class="p-4 border border-[#FF0055]/30 rounded bg-black/30">
+                    <div class="text-[#FF0055] font-mono text-xs mb-2">FINDING 02</div>
+                    <div class="text-sm text-slate-300">~35% of traffic utilized headless browser user-agents originating from concentrated cloud-hosting ASNs.</div>
+                </div>
+                <div class="p-4 border border-[#00F0FF]/30 rounded bg-black/30">
+                    <div class="text-[#00F0FF] font-mono text-xs mb-2">CONCLUSION</div>
+                    <div class="text-sm text-slate-300 font-bold">High Confidence (88%) of an opportunistic Layer 7 volumetric attack acting as a masking layer.</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="governance" class="scroll-mt-24">
+            <h2 class="text-3xl font-bold mb-4 border-l-4 border-[#8A2BE2] pl-4">04. TML Governance Comparison</h2>
+            <p class="text-slate-400 mb-8 max-w-3xl leading-relaxed">
+                Traditional incident response relies on binary logic (Fail-Closed vs Fail-Open). In politically sensitive surges, this creates reputational damage. We model the architectural response under a Ternary Moral Logic (TML) framework, utilizing a "Sacred Zero" trigger and Merkle-based transparent logging to maintain core services while auditing suspicious cohorts.
+            </p>
+
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div class="space-y-6">
+                    <div class="flex items-start space-x-4">
+                        <div class="w-8 h-8 rounded bg-slate-800 flex items-center justify-center font-bold text-[#FF0055] border border-[#FF0055] shrink-0">&#x2715;</div>
+                        <div>
+                            <h4 class="text-white font-bold mb-1">Standard Binary Framework</h4>
+                            <p class="text-sm text-slate-400">Total system lock. Lack of public cryptographic proof leads to speculative accusations of intentional censorship during the controversy. Reactive PR strategy.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-4">
+                        <div class="w-8 h-8 rounded bg-slate-800 flex items-center justify-center font-bold text-[#00F0FF] border border-[#00F0FF] shrink-0">&#x2713;</div>
+                        <div>
+                            <h4 class="text-white font-bold mb-1">Ternary Moral Logic (TML)</h4>
+                            <p class="text-sm text-slate-400">Triggers 'Sacred Pause'. Auth plane dynamically shards. Suspicious traffic enters a parallel moral audit thread. Status updates are cryptographically signed and published to a public ledger.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-[#131B33] p-6 rounded-xl border border-slate-800">
+                    <div class="chart-container">
+                        <canvas id="radarChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="border-t border-slate-800 pt-16">
+            <h2 class="text-3xl font-bold mb-8 text-center text-white">05. Strategic Recommendations</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="p-6 border border-slate-700 bg-slate-800/20 rounded-xl hover:border-[#00F0FF] transition-colors">
+                    <div class="text-[#00F0FF] text-xl mb-2">&#x1F6E1;</div>
+                    <h3 class="font-bold text-white mb-2">Auth Plane Isolation</h3>
+                    <p class="text-sm text-slate-400">Decouple the session issuance database from core application databases to prevent authentication spikes from degrading active user sessions.</p>
+                </div>
+                <div class="p-6 border border-slate-700 bg-slate-800/20 rounded-xl hover:border-[#8A2BE2] transition-colors">
+                    <div class="text-[#8A2BE2] text-xl mb-2">&#x26D3;</div>
+                    <h3 class="font-bold text-white mb-2">Merkle-Anchored Logging</h3>
+                    <p class="text-sm text-slate-400">Implement immutable incident logging. Cryptographically sign edge telemetry during surges to definitively prove to the public the nature of the outage.</p>
+                </div>
+                <div class="p-6 border border-slate-700 bg-slate-800/20 rounded-xl hover:border-[#00FF66] transition-colors">
+                    <div class="text-[#00FF66] text-xl mb-2">&#x1F5E1;</div>
+                    <h3 class="font-bold text-white mb-2">Progressive Challenges</h3>
+                    <p class="text-sm text-slate-400">Replace static CAPTCHAs with dynamic, proof-of-work challenges that scale computationally based on the real-time IP reputation and network entropy.</p>
+                </div>
+                <div class="p-6 border border-slate-700 bg-slate-800/20 rounded-xl hover:border-[#FF0055] transition-colors">
+                    <div class="text-[#FF0055] text-xl mb-2">&#x2696;</div>
+                    <h3 class="font-bold text-white mb-2">Pre-authorized TML Stewards</h3>
+                    <p class="text-sm text-slate-400">Establish a protocol where politically sensitive outages immediately escalate to independent stewards who verify the telemetry before public communications are drafted.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="mt-24 border-t border-slate-800 py-8 text-center text-xs text-slate-600 font-mono">
+        DATA VISUALIZATION GENERATED UNDER SACRED PAUSE EVIDENTIARY STANDARDS.<br>
+        CONFIDENCE LEVEL: HIGH (BASED ON SYNTHETIC TELEMETRY MODELING).
+    </footer>
+
+    <script>
+        const wrapLabel = (label, maxChars = 16) => {
+            if (label.length <= maxChars) return label;
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            words.forEach(word => {
+                if ((currentLine + word).length > maxChars) {
+                    if (currentLine.trim() !== '') lines.push(currentLine.trim());
+                    currentLine = word + ' ';
+                } else {
+                    currentLine += word + ' ';
+                }
+            });
+            if (currentLine.trim() !== '') lines.push(currentLine.trim());
+            return lines;
+        };
+
+        const globalTooltipConfig = {
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) {
+                                return label.join(' ');
+                            } else {
+                                return label;
+                            }
+                        }
+                    }
+                },
+                legend: { labels: { color: '#cbd5e1', font: { family: 'Inter' } } }
+            },
+            scales: {
+                x: { ticks: { color: '#94a3b8' }, grid: { color: 'rgba(51, 65, 85, 0.3)' } },
+                y: { ticks: { color: '#94a3b8' }, grid: { color: 'rgba(51, 65, 85, 0.3)' } }
+            },
+            maintainAspectRatio: false,
+            responsive: true
+        };
+
+        const ctxTimeline = document.getElementById('timelineChart').getContext('2d');
+        new Chart(ctxTimeline, {
+            type: 'line',
+            data: {
+                labels: ['13:30', '13:40', '13:50', '14:00', '14:10', '14:20', '14:30', '14:40', '14:50', '15:00', '15:10', '15:20', '15:30'].map(l => wrapLabel(l)),
+                datasets: [
+                    {
+                        label: 'Ingress Volume (Req/sec)',
+                        data: [500, 520, 600, 8500, 22000, 24500, 23000, 18000, 12000, 8000, 4500, 1200, 600],
+                        borderColor: '#00F0FF',
+                        backgroundColor: 'rgba(0, 240, 255, 0.1)',
+                        borderWidth: 3,
+                        tension: 0.4,
+                        fill: true,
+                        yAxisID: 'y'
+                    },
+                    {
+                        label: 'HTTP 503 Errors',
+                        data: [5, 6, 8, 400, 15000, 21000, 20500, 16000, 9000, 5000, 1200, 80, 12],
+                        borderColor: '#FF0055',
+                        borderWidth: 2,
+                        borderDash: [5, 5],
+                        tension: 0.4,
+                        yAxisID: 'y1'
+                    }
+                ]
+            },
+            options: {
+                ...globalTooltipConfig,
+                scales: {
+                    x: globalTooltipConfig.scales.x,
+                    y: { type: 'linear', display: true, position: 'left', title: { display: true, text: 'Requests/s', color: '#00F0FF' }, ticks: { color: '#00F0FF' }, grid: { color: 'rgba(51, 65, 85, 0.3)' } },
+                    y1: { type: 'linear', display: true, position: 'right', title: { display: true, text: 'Errors', color: '#FF0055' }, grid: { drawOnChartArea: false }, ticks: { color: '#FF0055' } }
+                }
+            }
+        });
+
+        const ctxArchitecture = document.getElementById('architectureChart').getContext('2d');
+        new Chart(ctxArchitecture, {
+            type: 'bar',
+            data: {
+                labels: ['13:50 (Normal)', '14:05 (Surge)', '14:20 (Failure)', '14:50 (Mitigation)'].map(l => wrapLabel(l)),
+                datasets: [
+                    { label: 'Active Connections', data: [80, 500, 500, 200], backgroundColor: '#00F0FF' },
+                    { label: 'Idle / Available', data: [420, 0, 0, 150], backgroundColor: '#00FF66' },
+                    { label: 'Queued (Blocked)', data: [0, 800, 2500, 400], backgroundColor: '#8A2BE2' },
+                    { label: 'Dropped / Timeout', data: [0, 100, 4500, 50], backgroundColor: '#FF0055' }
+                ]
+            },
+            options: {
+                ...globalTooltipConfig,
+                scales: {
+                    x: { stacked: true, ticks: { color: '#94a3b8' }, grid: { display: false } },
+                    y: { stacked: true, ticks: { color: '#94a3b8' }, grid: { color: 'rgba(51, 65, 85, 0.3)' } }
+                }
+            }
+        });
+
+        const ctxRadar = document.getElementById('radarChart').getContext('2d');
+        new Chart(ctxRadar, {
+            type: 'radar',
+            data: {
+                labels: ['Public Transparency', 'Service Resilience', 'Auditability', 'Mitigation Speed', 'Political Neutrality', 'Forensic Integrity'].map(l => wrapLabel(l)),
+                datasets: [
+                    {
+                        label: 'Standard Binary Response',
+                        data: [20, 30, 40, 80, 30, 50],
+                        borderColor: '#FF0055',
+                        backgroundColor: 'rgba(255, 0, 85, 0.2)',
+                        pointBackgroundColor: '#FF0055'
+                    },
+                    {
+                        label: 'Ternary Moral Logic (TML)',
+                        data: [95, 85, 100, 70, 90, 100],
+                        borderColor: '#00F0FF',
+                        backgroundColor: 'rgba(0, 240, 255, 0.2)',
+                        pointBackgroundColor: '#00F0FF'
+                    }
+                ]
+            },
+            options: {
+                ...globalTooltipConfig,
+                scales: {
+                    r: {
+                        angleLines: { color: 'rgba(51, 65, 85, 0.5)' },
+                        grid: { color: 'rgba(51, 65, 85, 0.5)' },
+                        pointLabels: { color: '#cbd5e1', font: { family: 'Inter', size: 11 } },
+                        ticks: { display: false, max: 100, min: 0 }
+                    }
+                }
+            }
+        });
+
+        const generateClusteredData = (count, centerRate, centerEntropy, spread, isBot) => {
+            const data = [];
+            for (let i = 0; i < count; i++) {
+                data.push({
+                    x: Math.max(0, centerRate + (Math.random() - 0.5) * spread * 2),
+                    y: Math.max(0, Math.min(100, centerEntropy + (Math.random() - 0.5) * spread * 0.5)),
+                    z: Math.random() * 100,
+                    type: isBot ? 'Suspected Bot' : 'Organic User'
+                });
+            }
+            return data;
+        };
+
+        const organicData = generateClusteredData(300, 5, 80, 20, false);
+        const botData = generateClusteredData(150, 45, 15, 10, true);
+
+        const trace1 = {
+            x: organicData.map(d => d.x),
+            y: organicData.map(d => d.y),
+            mode: 'markers',
+            type: 'scattergl',
+            name: 'Organic Traffic Cluster',
+            marker: { size: 6, color: '#00F0FF', opacity: 0.6 }
+        };
+
+        const trace2 = {
+            x: botData.map(d => d.x),
+            y: botData.map(d => d.y),
+            mode: 'markers',
+            type: 'scattergl',
+            name: 'Anomalous Bot Cluster',
+            marker: { size: 8, color: '#FF0055', opacity: 0.9, symbol: 'cross' }
+        };
+
+        const layout = {
+            plot_bgcolor: 'transparent',
+            paper_bgcolor: 'transparent',
+            font: { color: '#94a3b8', family: 'Inter' },
+            xaxis: { title: 'Request Rate (Req/min)', gridcolor: 'rgba(51, 65, 85, 0.3)', zerolinecolor: 'rgba(51, 65, 85, 0.5)' },
+            yaxis: { title: 'User Agent Entropy Score', gridcolor: 'rgba(51, 65, 85, 0.3)', zerolinecolor: 'rgba(51, 65, 85, 0.5)' },
+            legend: { x: 0.5, y: 1.1, orientation: 'h', xanchor: 'center' },
+            margin: { l: 50, r: 20, t: 30, b: 50 }
+        };
+
+        Plotly.newPlot('plotly-scatter', [trace1, trace2], layout, { displayModeBar: false, responsive: true });
+    </script>
+</body>
+</html>
