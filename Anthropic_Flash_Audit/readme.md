@@ -50,5 +50,3 @@ The following directory provides direct, authenticated access to the four indepe
 ---
 
 
-> "It is the mark of an educated mind to be able to entertain a thought without accepting it."
-> **Aristotle**
