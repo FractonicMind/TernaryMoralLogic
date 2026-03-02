@@ -1,0 +1,1498 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Authentication Failure Analysis: Anthropic Outage Investigation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Canela:wght@300;400;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <script>
+        // Smooth scrolling for TOC links
+        document.addEventListener('DOMContentLoaded', function() {
+            const tocLinks = document.querySelectorAll('.toc-link');
+            tocLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Highlight active section in TOC
+            const sections = document.querySelectorAll('section[id]');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        tocLinks.forEach(link => link.classList.remove('active-toc'));
+                        const activeLink = document.querySelector(`[href="#${entry.target.id}"]`);
+                        if (activeLink) activeLink.classList.add('active-toc');
+                    }
+                });
+            }, { threshold: 0.3 });
+
+            sections.forEach(section => observer.observe(section));
+        });
+    </script>
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+        
+        .canela { font-family: 'Canela', serif; }
+        .inter { font-family: 'Inter', sans-serif; }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 50%, #475569 100%);
+        }
+        
+        .text-shadow {
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .glass-effect {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .hover-lift {
+            transition: transform 0.2s ease;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-2px);
+        }
+        
+        .toc-link {
+            transition: all 0.2s ease;
+        }
+        
+        .toc-link:hover {
+            color: #3b82f6;
+            background: rgba(59, 130, 246, 0.1);
+        }
+        
+        .active-toc {
+            color: #3b82f6;
+            background: rgba(59, 130, 246, 0.1);
+            border-left: 3px solid #3b82f6;
+        }
+        
+        @media (max-width: 1024px) {
+            .hero-gradient {
+                padding: 1.5rem;
+            }
+            .hero-gradient .flex-col {
+                gap: 1.5rem;
+            }
+            .hero-gradient h1 {
+                font-size: 2.25rem;
+                line-height: 2.5rem;
+            }
+            .hero-gradient p {
+                font-size: 1rem;
+            }
+            .hero-gradient > div > div {
+                padding: 1rem;
+            }
+        }
+    </style>
+  <base target="_blank">
+</head>
+
+  <body class="bg-gray-50 inter">
+    <!-- Fixed Table of Contents -->
+    <nav class="fixed left-0 top-0 h-screen w-64 bg-white shadow-lg z-40 overflow-y-auto border-r border-gray-200 hidden lg:block">
+      <div class="p-6">
+        <h3 class="text-sm font-semibold text-gray-700 mb-4">Contents</h3>
+        <ul class="space-y-2 text-sm">
+          <li>
+            <a href="#executive-summary" class="toc-link block py-2 px-3 rounded text-gray-600 hover:text-blue-600 transition-colors">Executive Summary</a>
+          </li>
+          <li>
+            <a href="#timeline-reconstruction" class="toc-link block py-2 px-3 rounded text-gray-600 hover:text-blue-600 transition-colors">Timeline Reconstruction</a>
+          </li>
+          <li>
+            <a href="#authentication-architecture" class="toc-link block py-2 px-3 rounded text-gray-600 hover:text-blue-600 transition-colors">Authentication Architecture</a>
+          </li>
+          <li>
+            <a href="#hybrid-ddos-analysis" class="toc-link block py-2 px-3 rounded text-gray-600 hover:text-blue-600 transition-colors">Hybrid DDoS Analysis</a>
+          </li>
+          <li>
+            <a href="#political-correlation" class="toc-link block py-2 px-3 rounded text-gray-600 hover:text-blue-600 transition-colors">Political Timing Analysis</a>
+          </li>
+          <li>
+            <a href="#incident-response" class="toc-link block py-2 px-3 rounded text-gray-600 hover:text-blue-600 transition-colors">Incident Response</a>
+          </li>
+          <li>
+            <a href="#ternary-moral-logic" class="toc-link block py-2 px-3 rounded text-gray-600 hover:text-blue-600 transition-colors">Ternary Moral Logic</a>
+          </li>
+          <li>
+            <a href="#recommendations" class="toc-link block py-2 px-3 rounded text-gray-600 hover:text-blue-600 transition-colors">Strategic Recommendations</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="lg:ml-64">
+      <!-- Hero Section -->
+      <section class="hero-gradient text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-20">
+          <img src="https://kimi-web-img.moonshot.cn/img/st5.depositphotos.com/af286598c82eb74f12338f5bd2730219b6848d7b.jpg" alt="Abstract digital network with interconnected nodes" class="w-full h-full object-cover" size="wallpaper" aspect="wide" query="abstract digital network" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"/>
+        </div>
+
+        <div class="relative z-10 px-8 py-16">
+          <div class="max-w-6xl mx-auto">
+            <!-- Bento Grid Layout -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+              <!-- Main Title -->
+              <div class="col-span-12 md:col-span-8">
+                <h1 class="text-4xl md:text-5xl canela font-light leading-tight mb-6 text-shadow">
+                  <em class="italic">Authentication Failure Analysis</em>
+                  <br/>
+                  Under Politically Sensitive Load Surge Conditions
+                </h1>
+                <p class="text-lg md:text-xl text-blue-100 mb-8 leading-relaxed">
+                  A forensic investigation into Anthropic&#39;s authentication outage during unprecedented demand surge and supply chain risk designation
+                </p>
+              </div>
+
+              <!-- Key Metrics -->
+              <div class="col-span-12 md:col-span-4 space-y-4">
+                <div class="glass-effect rounded-lg p-6 hover-lift">
+                  <div class="text-3xl font-bold text-blue-300">~5 hours</div>
+                  <div class="text-sm text-blue-100">Outage Duration</div>
+                </div>
+                <div class="glass-effect rounded-lg p-6 hover-lift">
+                  <div class="text-3xl font-bold text-blue-300">72 hours</div>
+                  <div class="text-sm text-blue-100">Post-Pentagon Dispute</div>
+                </div>
+                <div class="glass-effect rounded-lg p-6 hover-lift">
+                  <div class="text-3xl font-bold text-blue-300">#1</div>
+                  <div class="text-sm text-blue-100">App Store Ranking</div>
+                </div>
+              </div>
+
+              <!-- Key Finding -->
+              <div class="col-span-12">
+                <div class="bg-white/10 backdrop-blur-sm rounded-lg p-8 border border-white/20">
+                  <h3 class="text-xl font-semibold mb-4 text-blue-200">Key Finding</h3>
+                  <p class="text-lg leading-relaxed">
+                    <strong>70% confidence</strong> in internal architectural fragility exposed by scale,
+                    particularly recent OAuth infrastructure changes. Hybrid DDoS remains technically plausible (15% confidence)
+                    but lacks evidentiary support.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Executive Summary -->
+      <section id="executive-summary" class="bg-white py-16">
+        <div class="max-w-5xl mx-auto px-8">
+          <h2 class="text-3xl font-bold text-gray-900 mb-12 canela">Executive Summary</h2>
+
+          <div class="prose prose-lg max-w-none">
+            <div class="bg-blue-50 border-l-4 border-blue-500 p-6 mb-8">
+              <p class="text-lg font-medium text-blue-900 mb-4">
+                March 2, 2026: Anthropic&#39;s Claude AI platform experienced a ~5-hour authentication outage
+                while core API services remained operational, coinciding with unprecedented political and user surge pressures.
+              </p>
+              <p class="text-blue-800">
+                <strong>Forensic analysis cannot conclusively determine causation</strong>:
+                the outage pattern aligns most closely with internal architectural fragility exposed by scale,
+                though hybrid DDoS concealed within legitimate surge remains technically plausible.
+              </p>
+            </div>
+
+            <h3 class="text-xl font-semibold mt-8 mb-4">Incident Overview</h3>
+            <p class="mb-6">
+              On <strong>March 2, 2026</strong>, Anthropic&#39;s Claude AI platform experienced a significant authentication
+              infrastructure failure at <strong>11:49 UTC</strong>, rendering web and mobile interfaces inaccessible
+              while paradoxically preserving core API functionality. The incident persisted for approximately
+              <strong>five hours</strong>, with substantial service restoration achieved by 16:00–17:00 UTC.
+            </p>
+
+            <p class="mb-6">
+              The outage occurred merely <strong>72 hours</strong> after President Trump directed federal agencies
+              to cease Anthropic technology usage, and Defense Secretary Pete Hegseth designated the company
+              a <strong>&#34;supply chain risk to national security&#34;</strong>. Simultaneously, Claude had achieved
+              <strong>#1 ranking on Apple&#39;s U.S. App Store</strong>, driven by user migration from competitors.
+            </p>
+
+            <h3 class="text-xl font-semibold mt-8 mb-4">Classification of Outage Causation</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+              <div class="bg-green-50 p-6 rounded-lg">
+                <h4 class="font-semibold text-green-800 mb-2">Most Likely (70% confidence)</h4>
+                <p class="text-green-700"><strong>Internal Architectural Fragility</strong></p>
+                <p class="text-sm mt-2">Recent OAuth infrastructure changes, API/web segregation pattern</p>
+              </div>
+              <div class="bg-yellow-50 p-6 rounded-lg">
+                <h4 class="font-semibold text-yellow-800 mb-2">Contributing (55% confidence)</h4>
+                <p class="text-yellow-700"><strong>Organic Surge Failure</strong></p>
+                <p class="text-sm mt-2">App Store #1 ranking, unprecedented demand characterization</p>
+              </div>
+              <div class="bg-orange-50 p-6 rounded-lg">
+                <h4 class="font-semibold text-orange-800 mb-2">Plausible (15% confidence)</h4>
+                <p class="text-orange-700"><strong>Opportunistic Attack</strong></p>
+                <p class="text-sm mt-2">Political timing, demonstrated actor capabilities</p>
+              </div>
+              <div class="bg-red-50 p-6 rounded-lg">
+                <h4 class="font-semibold text-red-800 mb-2">Unlikely (10% confidence)</h4>
+                <p class="text-red-700"><strong>Pure Volumetric DDoS</strong></p>
+                <p class="text-sm mt-2">API preservation contradicts network-layer attack pattern</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Timeline Reconstruction -->
+      <section id="timeline-reconstruction" class="bg-gray-50 py-16">
+        <div class="max-w-5xl mx-auto px-8">
+          <h2 class="text-3xl font-bold text-gray-900 mb-12 canela">Timeline Reconstruction</h2>
+
+          <div class="relative">
+            <!-- Timeline visualization -->
+            <div class="absolute left-8 top-0 bottom-0 w-0.5 bg-blue-300"></div>
+
+            <!-- Pre-Incident Context -->
+            <div class="relative mb-12 pl-20">
+              <div class="absolute left-6 w-4 h-4 bg-blue-500 rounded-full border-4 border-white"></div>
+              <h3 class="text-xl font-semibold mb-4">Pre-Incident Context (February 27–March 1, 2026)</h3>
+
+              <div class="bg-white p-6 rounded-lg shadow-sm mb-6">
+                <h4 class="font-semibold text-red-700 mb-2">February 27: Pentagon Dispute Escalation</h4>
+                <p class="text-gray-700 mb-2">
+                  Defense Secretary Pete Hegseth imposed a <strong>5:01 p.m. deadline</strong> for Anthropic
+                  to remove safeguards restricting military use. Anthropic&#39;s refusal triggered:
+                </p>
+                <ul class="list-disc list-inside text-gray-600 space-y-1">
+                  <li>Presidential directive to cease all federal agency usage</li>
+                  <li>&#34;Supply chain risk to national security&#34; designation</li>
+                  <li>CEO Dario Amodei&#39;s public confrontation statement</li>
+                </ul>
+              </div>
+
+              <div class="bg-white p-6 rounded-lg shadow-sm mb-6">
+                <h4 class="font-semibold text-blue-700 mb-2">March 1: User Migration Patterns</h4>
+                <p class="text-gray-700">
+                  Instructional content for migrating from ChatGPT to Claude achieved significant distribution,
+                  driven by protest against competitor platforms&#39; Pentagon partnerships. Claude reached
+                  <strong>#1 on Apple&#39;s U.S. App Store</strong>.
+                </p>
+              </div>
+            </div>
+
+            <!-- Incident Timeline -->
+            <div class="relative mb-12 pl-20">
+              <div class="absolute left-6 w-4 h-4 bg-red-500 rounded-full border-4 border-white"></div>
+              <h3 class="text-xl font-semibold mb-4">Incident Chronology (March 2, 2026 UTC)</h3>
+
+              <div class="space-y-4">
+                <div class="bg-white p-6 rounded-lg shadow-sm border-l-4 border-red-500">
+                  <div class="flex justify-between items-start mb-2">
+                    <h4 class="font-semibold text-red-700">11:49 UTC - Initial Error Detection</h4>
+                    <span class="text-sm text-gray-500">T+0 min</span>
+                  </div>
+                  <p class="text-gray-700">
+                    Anthropic status page: &#34;Elevated errors on claude.ai, console, and claude code.&#34;
+                    DownDetector shows surge in user reports starting ~12:00 UTC.
+                  </p>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-sm border-l-4 border-yellow-500">
+                  <div class="flex justify-between items-start mb-2">
+                    <h4 class="font-semibold text-yellow-700">12:21 UTC - API Segregation Identified</h4>
+                    <span class="text-sm text-gray-500">T+32 min</span>
+                  </div>
+                  <p class="text-gray-700">
+                    <strong>Critical forensic evidence:</strong> &#34;Claude API working as intended.
+                    Issues related to Claude.ai and login/logout paths.&#34;
+                  </p>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-sm border-l-4 border-green-500">
+                  <div class="flex justify-between items-start mb-2">
+                    <h4 class="font-semibold text-green-700">13:22 UTC - Root Cause Identified</h4>
+                    <span class="text-sm text-gray-500">T+93 min</span>
+                  </div>
+                  <p class="text-gray-700">
+                    &#34;Issue identified and fix being implemented.&#34;
+                    <strong>No root cause disclosed.</strong>
+                  </p>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-sm border-l-4 border-blue-500">
+                  <div class="flex justify-between items-start mb-2">
+                    <h4 class="font-semibold text-blue-700">15:50 UTC - Service Restoration</h4>
+                    <span class="text-sm text-gray-500">T+4h 1m</span>
+                  </div>
+                  <p class="text-gray-700">
+                    Full functionality returning gradually. Total duration: ~5 hours.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Post-Incident Pattern -->
+            <div class="relative pl-20">
+              <div class="absolute left-6 w-4 h-4 bg-orange-500 rounded-full border-4 border-white"></div>
+              <h3 class="text-xl font-semibold mb-4">Post-Incident Pattern: April 2 Recurrence</h3>
+
+              <div class="bg-orange-50 p-6 rounded-lg border border-orange-200">
+                <h4 class="font-semibold text-orange-700 mb-2">April 2, 2026 - Failed Fix Implementation</h4>
+                <p class="text-gray-700 mb-3">
+                  Users &#34;again reported errors&#34; with <strong>HTTP 529 error codes</strong>.
+                  Anthropic &#34;attempted to implement a fix, but it failed.&#34;
+                </p>
+                <p class="text-sm text-orange-600">
+                  <strong>Significance:</strong> Failed fix implementation suggests incomplete root cause
+                  identification or persistent architectural fragility.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Authentication Architecture -->
+      <section id="authentication-architecture" class="bg-white py-16">
+        <div class="max-w-5xl mx-auto px-8">
+          <h2 class="text-3xl font-bold text-gray-900 mb-12 canela">Authentication Plane Architecture Modeling</h2>
+
+          <div class="mb-12">
+            <img src="https://kimi-web-img.moonshot.cn/img/ars.els-cdn.com/42c84a04a28fe8517d31bf2d60748197ed1e7fb7.jpg" alt="Authentication system architecture" class="w-full rounded-lg shadow-lg mb-6" size="large" aspect="wide" query="authentication system architecture" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"/>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            <div class="bg-blue-50 p-6 rounded-lg">
+              <h3 class="text-xl font-semibold text-blue-800 mb-4">Standard SaaS Authentication Stack</h3>
+              <ul class="space-y-3 text-gray-700">
+                <li class="flex items-start">
+                  <i class="fas fa-shield-alt text-blue-500 mt-1 mr-3"></i>
+                  <span><strong>Login Endpoints:</strong> claude.ai/login with session management</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-key text-blue-500 mt-1 mr-3"></i>
+                  <span><strong>OAuth Infrastructure:</strong> ANTHROPIC_AUTH_TOKEN deployment Feb 28</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-database text-blue-500 mt-1 mr-3"></i>
+                  <span><strong>Database &amp; Cache:</strong> User credentials, session store, rate limiting</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-firewall text-blue-500 mt-1 mr-3"></i>
+                  <span><strong>WAF &amp; Rate Limiting:</strong> Traffic classification and security controls</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="bg-yellow-50 p-6 rounded-lg">
+              <h3 class="text-xl font-semibold text-yellow-800 mb-4">Recent Architectural Changes</h3>
+              <div class="mb-4 p-4 bg-yellow-100 rounded">
+                <h4 class="font-semibold text-yellow-900 mb-2">February 28, 2026</h4>
+                <p class="text-yellow-800 text-sm">
+                  <strong>OAuth Support Deployment:</strong> ANTHROPIC_AUTH_TOKEN
+                  environment variable for Claude Code authentication
+                </p>
+              </div>
+              <ul class="space-y-2 text-gray-700 text-sm">
+                <li class="flex items-start">
+                  <i class="fas fa-exclamation-triangle text-yellow-500 mt-1 mr-2 text-xs"></i>
+                  <span>48-hour pre-incident window</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-exclamation-triangle text-yellow-500 mt-1 mr-2 text-xs"></i>
+                  <span>New authentication code path introduction</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-exclamation-triangle text-yellow-500 mt-1 mr-2 text-xs"></i>
+                  <span>External identity provider dependency</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <h3 class="text-2xl font-semibold mb-6">Structural Choke Points Under Surge</h3>
+
+          <div class="space-y-6">
+            <div class="bg-gray-50 p-6 rounded-lg">
+              <h4 class="font-semibold text-gray-800 mb-3">Connection Pool Exhaustion</h4>
+              <div class="grid grid-cols-1 md:grid-cols-4 gap-4 text-sm">
+                <div class="text-center">
+                  <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                    <i class="fas fa-check text-green-600"></i>
+                  </div>
+                  <div class="font-medium">Healthy</div>
+                  <div class="text-gray-600">Normal operations</div>
+                </div>
+                <div class="text-center">
+                  <div class="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                    <i class="fas fa-exclamation text-yellow-600"></i>
+                  </div>
+                  <div class="font-medium">Stressed</div>
+                  <div class="text-gray-600">Queue forming</div>
+                </div>
+                <div class="text-center">
+                  <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                    <i class="fas fa-times text-red-600"></i>
+                  </div>
+                  <div class="font-medium">Exhausted</div>
+                  <div class="text-gray-600">Timeouts, errors</div>
+                </div>
+                <div class="text-center">
+                  <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                    <i class="fas fa-sync text-blue-600"></i>
+                  </div>
+                  <div class="font-medium">Recovery</div>
+                  <div class="text-gray-600">Slow restoration</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-gray-50 p-6 rounded-lg">
+              <h4 class="font-semibold text-gray-800 mb-3">Database Saturation Cascade</h4>
+              <div class="flex flex-wrap items-center gap-2 text-sm">
+                <div class="bg-red-100 text-red-800 px-3 py-1 rounded-full">Lock Contention</div>
+                <div class="text-gray-400">→</div>
+                <div class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full">I/O Saturation</div>
+                <div class="text-gray-400">→</div>
+                <div class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full">Replication Lag</div>
+                <div class="text-gray-400">→</div>
+                <div class="bg-red-100 text-red-800 px-3 py-1 rounded-full">Query Pileup</div>
+              </div>
+            </div>
+          </div>
+
+          <h3 class="text-2xl font-semibold mt-10 mb-6">API/Web Interface Segregation Evidence</h3>
+
+          <div class="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-500">
+            <p class="text-blue-800 mb-4">
+              <strong>Critical Diagnostic Evidence:</strong> API preservation while web interface failed
+              suggests architectural separation between authentication mechanisms.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h4 class="font-semibold text-blue-700 mb-2">Possible Explanations</h4>
+                <ul class="space-y-2 text-sm text-blue-700">
+                  <li>• Separate authentication domains (API keys vs. sessions)</li>
+                  <li>• Different scaling limits and traffic patterns</li>
+                  <li>• Infrastructure isolation with failure domain boundaries</li>
+                  <li>• Deliberate API prioritization during degradation</li>
+                </ul>
+              </div>
+              <div>
+                <h4 class="font-semibold text-blue-700 mb-2">Confidence Assessment</h4>
+                <div class="space-y-2">
+                  <div class="flex justify-between">
+                    <span class="text-sm">Separate auth domains</span>
+                    <span class="text-sm font-medium text-green-600">High</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-sm">Infrastructure isolation</span>
+                    <span class="text-sm font-medium text-yellow-600">Moderate</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-sm">Deliberate prioritization</span>
+                    <span class="text-sm font-medium text-red-600">Low</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Hybrid DDoS Analysis -->
+      <section id="hybrid-ddos-analysis" class="bg-gray-50 py-16">
+        <div class="max-w-5xl mx-auto px-8">
+          <h2 class="text-3xl font-bold text-gray-900 mb-12 canela">Hybrid DDoS Plausibility Assessment</h2>
+
+          <div class="mb-8">
+            <img src="https://kimi-web-img.moonshot.cn/img/blazenetworks.co.uk/f0caac4cd37dc5035b183188a073ef498a339680.png" alt="Diagram depicting hybrid DDoS attack mechanism" class="w-full rounded-lg shadow-lg mb-6" size="large" aspect="wide" query="hybrid DDoS attack" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"/>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+              <h3 class="text-xl font-semibold mb-4">Attack Vector Taxonomy</h3>
+              <div class="space-y-4">
+                <div class="flex items-start">
+                  <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mr-3 mt-1">
+                    <i class="fas fa-users text-green-600 text-sm"></i>
+                  </div>
+                  <div>
+                    <div class="font-medium">Genuine High-Volume Registration</div>
+                    <div class="text-sm text-gray-600">App Store #1 ranking provides cover traffic</div>
+                  </div>
+                </div>
+                <div class="flex items-start">
+                  <div class="w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center mr-3 mt-1">
+                    <i class="fas fa-robot text-yellow-600 text-sm"></i>
+                  </div>
+                  <div>
+                    <div class="font-medium">Coordinated Bot Amplification</div>
+                    <div class="text-sm text-gray-600">Human behavior mimicry with residential proxies</div>
+                  </div>
+                </div>
+                <div class="flex items-start">
+                  <div class="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center mr-3 mt-1">
+                    <i class="fas fa-crosshairs text-orange-600 text-sm"></i>
+                  </div>
+                  <div>
+                    <div class="font-medium">Low-and-Slow Application Attacks</div>
+                    <div class="text-sm text-gray-600">Login API targeting with credential stuffing</div>
+                  </div>
+                </div>
+                <div class="flex items-start">
+                  <div class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center mr-3 mt-1">
+                    <i class="fas fa-wave-square text-red-600 text-sm"></i>
+                  </div>
+                  <div>
+                    <div class="font-medium">Volumetric L3/L4 Noise</div>
+                    <div class="text-sm text-gray-600">Masking layer for application attacks</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+              <h3 class="text-xl font-semibold mb-4">Behavioral Signature Analysis</h3>
+              <div class="space-y-4">
+                <div>
+                  <h4 class="font-medium text-gray-800 mb-2">Required Forensic Artifacts</h4>
+                  <div class="space-y-2 text-sm">
+                    <div class="flex justify-between">
+                      <span>User Agent Entropy</span>
+                      <span class="text-red-500">Unavailable</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span>ASN Distribution</span>
+                      <span class="text-red-500">Unavailable</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span>Login Success Ratios</span>
+                      <span class="text-red-500">Unavailable</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span>Retry Pattern Clustering</span>
+                      <span class="text-red-500">Unavailable</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="bg-red-50 p-4 rounded border-l-4 border-red-400">
+                  <p class="text-sm text-red-700">
+                    <strong>Critical Gap:</strong> No behavioral data published prevents
+                    distinguishing organic surge from coordinated attack.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white p-8 rounded-lg shadow-sm">
+            <h3 class="text-xl font-semibold mb-6">Capability Precedent: GTG-1002 Incident</h3>
+
+            <div class="border-l-4 border-blue-500 pl-6 mb-6">
+              <p class="text-gray-700 mb-4">
+                <strong>November 2025:</strong> Anthropic disclosed disruption of the first reported
+                AI-orchestrated cyber espionage campaign, where Chinese state-sponsored actors used
+                Claude Code to automate <strong>80–90% of cyber espionage tasks</strong>.
+                <a href="https://assets.anthropic.com/m/ec212e6566a0d47/original/Disrupting-the-first-reported-AI-orchestrated-cyber-espionage-campaign.pdf" class="text-blue-600 hover:text-blue-800 text-sm ml-1">
+                  <i class="fas fa-external-link-alt"></i>
+                </a>
+              </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h4 class="font-medium text-gray-800 mb-3">Demonstrated Capabilities</h4>
+                <ul class="space-y-2 text-sm text-gray-700">
+                  <li>• Reconnaissance and vulnerability discovery</li>
+                  <li>• Exploitation and payload generation</li>
+                  <li>• Data exfiltration automation</li>
+                  <li>• Campaign orchestration with AI assistance</li>
+                </ul>
+              </div>
+              <div>
+                <h4 class="font-medium text-gray-800 mb-3">Relevance Assessment</h4>
+                <div class="space-y-2">
+                  <div class="flex justify-between">
+                    <span class="text-sm">Actor sophistication benchmark</span>
+                    <span class="text-sm font-medium text-green-600">High</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-sm">Technical feasibility for March 2</span>
+                    <span class="text-sm font-medium text-green-600">High</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-sm">Direct evidence of involvement</span>
+                    <span class="text-sm font-medium text-red-600">None</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <h3 class="text-2xl font-semibold mt-10 mb-6">Plausibility Conclusion</h3>
+
+          <div class="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-500">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div class="text-center">
+                <div class="text-3xl font-bold text-blue-600 mb-2">85%</div>
+                <div class="font-medium text-blue-800">Technical Feasibility</div>
+                <div class="text-sm text-blue-600 mt-1">All components achievable</div>
+              </div>
+              <div class="text-center">
+                <div class="text-3xl font-bold text-yellow-600 mb-2">15%</div>
+                <div class="font-medium text-yellow-800">Attack Occurrence</div>
+                <div class="text-sm text-yellow-600 mt-1">No direct evidence</div>
+              </div>
+              <div class="text-center">
+                <div class="text-3xl font-bold text-red-600 mb-2">0%</div>
+                <div class="font-medium text-red-800">Definitive Determination</div>
+                <div class="text-sm text-red-600 mt-1">Evidence gaps preclude assessment</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Political Correlation -->
+      <section id="political-correlation" class="bg-white py-16">
+        <div class="max-w-5xl mx-auto px-8">
+          <h2 class="text-3xl font-bold text-gray-900 mb-12 canela">Political Timing Correlation Analysis</h2>
+
+          <div class="mb-8">
+            <img src="https://kimi-web-img.moonshot.cn/imagegen/20260303/021772487153336f3d1fdaa5e961ea5a6156e3d27d6a985ff5a20_0.jpeg" alt="Symbolic representation of tension between government and technology company" class="w-full rounded-lg shadow-lg mb-6" size="large" aspect="wide" query="government vs tech company tension illustration" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"/>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            <div class="bg-red-50 p-6 rounded-lg">
+              <h3 class="text-xl font-semibold text-red-800 mb-4">Pentagon Negotiation Breakdown</h3>
+              <div class="space-y-4">
+                <div class="border-l-4 border-red-400 pl-4">
+                  <div class="font-medium text-red-700">February 27, 2026</div>
+                  <div class="text-sm text-red-600">Hegseth 5:01 p.m. deadline for military safeguard removal</div>
+                </div>
+                <div class="border-l-4 border-red-400 pl-4">
+                  <div class="font-medium text-red-700">Same Evening</div>
+                  <div class="text-sm text-red-600">Presidential federal agency usage prohibition</div>
+                </div>
+                <div class="border-l-4 border-red-400 pl-4">
+                  <div class="font-medium text-red-700">Supply Chain Risk Designation</div>
+                  <div class="text-sm text-red-600">Defense industrial base exclusion</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-blue-50 p-6 rounded-lg">
+              <h3 class="text-xl font-semibold text-blue-800 mb-4">Public Response &amp; User Migration</h3>
+              <div class="space-y-4">
+                <div class="border-l-4 border-blue-400 pl-4">
+                  <div class="font-medium text-blue-700">CEO Public Confrontation</div>
+                  <div class="text-sm text-blue-600">&#34;No amount of intimidation will change our position&#34;</div>
+                </div>
+                <div class="border-l-4 border-blue-400 pl-4">
+                  <div class="font-medium text-blue-700">User Migration Guidance</div>
+                  <div class="text-sm text-blue-600">ChatGPT-to-Claude migration content circulation</div>
+                </div>
+                <div class="border-l-4 border-blue-400 pl-4">
+                  <div class="font-medium text-blue-700">App Store Achievement</div>
+                  <div class="text-sm text-blue-600">Claude reaches #1 ranking pre-incident</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <h3 class="text-2xl font-semibold mb-6">Comparative Case Analysis</h3>
+
+          <div class="overflow-x-auto mb-8">
+            <table class="w-full bg-white rounded-lg shadow-sm">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="px-6 py-4 text-left font-semibold text-gray-700">Platform</th>
+                  <th class="px-6 py-4 text-left font-semibold text-gray-700">Date</th>
+                  <th class="px-6 py-4 text-left font-semibold text-gray-700">Political Context</th>
+                  <th class="px-6 py-4 text-left font-semibold text-gray-700">Classification</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-200">
+                <tr>
+                  <td class="px-6 py-4 font-medium text-gray-900">OpenAI</td>
+                  <td class="px-6 py-4 text-gray-600">Nov 2023</td>
+                  <td class="px-6 py-4 text-gray-600">Israel-Gaza conflict positioning</td>
+                  <td class="px-6 py-4">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                      Ambiguous
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="px-6 py-4 font-medium text-gray-900">Cloudflare</td>
+                  <td class="px-6 py-4 text-gray-600">Nov 2025</td>
+                  <td class="px-6 py-4 text-gray-600">Content moderation controversies</td>
+                  <td class="px-6 py-4">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                      Infrastructure
+                    </span>
+                  </td>
+                </tr>
+                <tr class="bg-blue-50">
+                  <td class="px-6 py-4 font-medium text-blue-900">Anthropic</td>
+                  <td class="px-6 py-4 text-blue-700">Mar 2026</td>
+                  <td class="px-6 py-4 text-blue-700">Pentagon dispute, supply chain risk</td>
+                  <td class="px-6 py-4">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-200 text-blue-900">
+                      Architectural Fragility
+                    </span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="bg-yellow-50 p-6 rounded-lg border-l-4 border-yellow-400">
+            <h3 class="text-xl font-semibold text-yellow-800 mb-4">Concurrent Global Cyber Activity</h3>
+            <p class="text-yellow-700 mb-4">
+              <strong>March 2, 2026:</strong> Same day as Anthropic outage, significant cyber activity
+              in Middle East following Israeli-US strikes on Iran.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+              <div class="text-center">
+                <div class="text-xl font-bold text-yellow-700">~4%</div>
+                <div class="text-yellow-600">Normal Iran connectivity</div>
+              </div>
+              <div class="text-center">
+                <div class="text-xl font-bold text-yellow-700">150+</div>
+                <div class="text-yellow-600">Hacktivist incidents</div>
+              </div>
+              <div class="text-center">
+                <div class="text-xl font-bold text-yellow-700">Active</div>
+                <div class="text-yellow-600">HydraC2 botnet &amp; groups</div>
+              </div>
+            </div>
+            <p class="text-xs text-yellow-600 mt-4">
+              <a href="https://www.infosecurity-magazine.com/news/middle-east-conflict-surge-global/" class="underline hover:text-yellow-800">
+                Source: Infosecurity Magazine
+              </a>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Incident Response -->
+      <section id="incident-response" class="bg-gray-50 py-16">
+        <div class="max-w-5xl mx-auto px-8">
+          <h2 class="text-3xl font-bold text-gray-900 mb-12 canela">Incident Response Evaluation</h2>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+              <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                <i class="fas fa-clock text-blue-600 text-xl"></i>
+              </div>
+              <h3 class="font-semibold text-gray-800 mb-2">Response Timeline</h3>
+              <div class="text-2xl font-bold text-blue-600 mb-1">93 minutes</div>
+              <div class="text-sm text-gray-600">Detection to root cause ID</div>
+              <div class="text-xs text-gray-500 mt-2">Moderate complexity or cautious communication</div>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+              <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+                <i class="fas fa-shield-alt text-green-600 text-xl"></i>
+              </div>
+              <h3 class="font-semibold text-gray-800 mb-2">Service Preservation</h3>
+              <div class="text-2xl font-bold text-green-600 mb-1">API</div>
+              <div class="text-sm text-gray-600">Full functionality maintained</div>
+              <div class="text-xs text-gray-500 mt-2">Demonstrates architectural resilience</div>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+              <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mb-4">
+                <i class="fas fa-info-circle text-yellow-600 text-xl"></i>
+              </div>
+              <h3 class="font-semibold text-gray-800 mb-2">Transparency</h3>
+              <div class="text-2xl font-bold text-yellow-600 mb-1">Limited</div>
+              <div class="text-sm text-gray-600">No technical details disclosed</div>
+              <div class="text-xs text-gray-500 mt-2">Industry standard but limits validation</div>
+            </div>
+          </div>
+
+          <div class="bg-white p-8 rounded-lg shadow-sm mb-8">
+            <h3 class="text-xl font-semibold mb-6">Communication Timeline Analysis</h3>
+
+            <div class="relative">
+              <div class="absolute left-8 top-0 bottom-0 w-0.5 bg-gray-300"></div>
+
+              <div class="space-y-6">
+                <div class="flex items-start">
+                  <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mr-6">
+                    <span class="text-red-600 font-semibold">T+0</span>
+                  </div>
+                  <div class="flex-1">
+                    <div class="font-semibold text-red-700">11:49 UTC - Elevated Errors</div>
+                    <div class="text-gray-600 text-sm mb-2">&#34;Elevated errors on claude.ai, console, and claude code&#34;</div>
+                    <div class="text-xs text-gray-500">Minimal specificity - service identification only</div>
+                  </div>
+                </div>
+
+                <div class="flex items-start">
+                  <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mr-6">
+                    <span class="text-yellow-600 font-semibold">T+32</span>
+                  </div>
+                  <div class="flex-1">
+                    <div class="font-semibold text-yellow-700">12:21 UTC - API Segregation</div>
+                    <div class="text-gray-600 text-sm mb-2">&#34;Core Claude API functioning; authentication paths failing&#34;</div>
+                    <div class="text-xs text-yellow-600">Most specific update - critical diagnostic evidence</div>
+                  </div>
+                </div>
+
+                <div class="flex items-start">
+                  <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mr-6">
+                    <span class="text-green-600 font-semibold">T+93</span>
+                  </div>
+                  <div class="flex-1">
+                    <div class="font-semibold text-green-700">13:22 UTC - Root Cause ID</div>
+                    <div class="text-gray-600 text-sm mb-2">&#34;Issue identified; fix being implemented&#34;</div>
+                    <div class="text-xs text-gray-500">No root cause or ETA provided</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-red-50 p-6 rounded-lg border-l-4 border-red-400">
+              <h3 class="font-semibold text-red-800 mb-4">Transparency Gaps</h3>
+              <ul class="space-y-2 text-sm text-red-700">
+                <li>• No technical root cause disclosure</li>
+                <li>• No error rate quantification</li>
+                <li>• No affected user percentage</li>
+                <li>• No geographic scope details</li>
+                <li>• No traffic volume metrics</li>
+                <li>• No WAF or security alerts</li>
+              </ul>
+            </div>
+
+            <div class="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-400">
+              <h3 class="font-semibold text-blue-800 mb-4">Service Segregation Success</h3>
+              <ul class="space-y-2 text-sm text-blue-700">
+                <li>• API functionality preserved throughout</li>
+                <li>• Clear architectural boundaries maintained</li>
+                <li>• Critical infrastructure prioritized</li>
+                <li>• Demonstrates failure domain isolation</li>
+                <li>• Enables differential degradation strategy</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="mt-8 bg-yellow-50 p-6 rounded-lg">
+            <h3 class="font-semibold text-yellow-800 mb-4">April 2 Recurrence Analysis</h3>
+            <p class="text-yellow-700 mb-4">
+              One month later, similar outage occurred with <strong>HTTP 529 errors</strong>
+              and <strong>explicitly failed fix implementation</strong>.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+              <div>
+                <h4 class="font-medium text-yellow-800 mb-2">Implications</h4>
+                <ul class="space-y-1 text-yellow-700">
+                  <li>• Incomplete root cause understanding</li>
+                  <li>• Persistent architectural fragility</li>
+                  <li>• Distinct but related failure mode</li>
+                </ul>
+              </div>
+              <div>
+                <h4 class="font-medium text-yellow-800 mb-2">Concerns</h4>
+                <ul class="space-y-1 text-yellow-700">
+                  <li>• Recurrence pattern indicates systematic issue</li>
+                  <li>• Failed fix suggests complexity underestimation</li>
+                  <li>• Architectural redesign may be necessary</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Ternary Moral Logic -->
+      <section id="ternary-moral-logic" class="bg-white py-16">
+        <div class="max-w-5xl mx-auto px-8">
+          <h2 class="text-3xl font-bold text-gray-900 mb-12 canela">Governance Comparison: Ternary Moral Logic Framework</h2>
+
+          <div class="mb-8">
+            <img src="https://kimi-web-img.moonshot.cn/img/ars.els-cdn.com/2dbeed32c08dc1e5e7f98a6017d90d3fccce4990.jpg" alt="Ternary moral logic decision framework diagram" class="w-full rounded-lg shadow-lg mb-6" size="medium" aspect="wide" query="ternary moral logic diagram" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"/>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            <div class="bg-red-50 p-6 rounded-lg">
+              <h3 class="text-xl font-semibold text-red-800 mb-4">Binary Fail-Closed Limitations</h3>
+              <div class="space-y-4">
+                <div class="border-l-4 border-red-400 pl-4">
+                  <div class="font-medium text-red-700">False Positive</div>
+                  <div class="text-sm text-red-600">Legitimate traffic blocked → user exclusion</div>
+                </div>
+                <div class="border-l-4 border-red-400 pl-4">
+                  <div class="font-medium text-red-700">False Negative</div>
+                  <div class="text-sm text-red-600">Attack traffic admitted → resource exhaustion</div>
+                </div>
+                <div class="border-l-4 border-red-400 pl-4">
+                  <div class="font-medium text-red-700">Premature Attribution</div>
+                  <div class="text-sm text-red-600">Attack claimed without evidence → credibility loss</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-green-50 p-6 rounded-lg">
+              <h3 class="text-xl font-semibold text-green-800 mb-4">Ternary Moral Logic Advantages</h3>
+              <div class="space-y-4">
+                <div class="border-l-4 border-green-400 pl-4">
+                  <div class="font-medium text-green-700">Sacred Zero Pause</div>
+                  <div class="text-sm text-green-600">Operational pause when evidence insufficient</div>
+                </div>
+                <div class="border-l-4 border-green-400 pl-4">
+                  <div class="font-medium text-green-700">Parallel Moral Audit</div>
+                  <div class="text-sm text-green-600">Separate evidence collection thread</div>
+                </div>
+                <div class="border-l-4 border-green-400 pl-4">
+                  <div class="font-medium text-green-700">Uncertain State Preservation</div>
+                  <div class="text-sm text-green-600">Maintain capability without forcing classification</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <h3 class="text-2xl font-semibold mb-6">TML Architectural Mechanisms</h3>
+
+          <div class="space-y-6">
+            <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+              <h4 class="font-semibold text-gray-800 mb-3 flex items-center">
+                <i class="fas fa-pause-circle text-blue-500 mr-3"></i>
+                Sacred Zero Trigger on Anomaly Detection
+              </h4>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                <div>
+                  <div class="font-medium text-gray-700 mb-2">Traditional Response</div>
+                  <div class="bg-red-50 p-3 rounded text-red-700">
+                    &#34;Elevated errors&#34; (implies known cause)
+                  </div>
+                </div>
+                <div>
+                  <div class="font-medium text-gray-700 mb-2">TML Response</div>
+                  <div class="bg-blue-50 p-3 rounded text-blue-700">
+                    &#34;Anomaly detected 11:44 UTC. Causation under investigation. Uncertainty preserved.&#34;
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+              <h4 class="font-semibold text-gray-800 mb-3 flex items-center">
+                <i class="fas fa-project-diagram text-purple-500 mr-3"></i>
+                Parallel Moral Audit Thread
+              </h4>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="bg-purple-50 p-4 rounded">
+                  <div class="font-medium text-purple-800 mb-2">Operational Thread</div>
+                  <ul class="text-sm text-purple-700 space-y-1">
+                    <li>• Rapid mitigation</li>
+                    <li>• Service preservation</li>
+                    <li>• Prevents evidence corruption</li>
+                  </ul>
+                </div>
+                <div class="bg-blue-50 p-4 rounded">
+                  <div class="font-medium text-blue-800 mb-2">Moral Audit Thread</div>
+                  <ul class="text-sm text-blue-700 space-y-1">
+                    <li>• Evidence collection</li>
+                    <li>• Attribution analysis</li>
+                    <li>• Uncertainty quantification</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+              <h4 class="font-semibold text-gray-800 mb-3 flex items-center">
+                <i class="fas fa-link text-green-500 mr-3"></i>
+                Immutable Merkle-Based Incident Logging
+              </h4>
+              <div class="grid grid-cols-1 md:grid-cols-4 gap-4 text-sm">
+                <div class="text-center">
+                  <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                    <i class="fas fa-shield-alt text-green-600"></i>
+                  </div>
+                  <div class="font-medium">Tamper Evidence</div>
+                  <div class="text-gray-600">Merkle root publication</div>
+                </div>
+                <div class="text-center">
+                  <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                    <i class="fas fa-clock text-green-600"></i>
+                  </div>
+                  <div class="font-medium">Verifiable Ordering</div>
+                  <div class="text-gray-600">Hash chain inclusion</div>
+                </div>
+                <div class="text-center">
+                  <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                    <i class="fas fa-eye-slash text-green-600"></i>
+                  </div>
+                  <div class="font-medium">Selective Disclosure</div>
+                  <div class="text-gray-600">Zero-knowledge proofs</div>
+                </div>
+                <div class="text-center">
+                  <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                    <i class="fas fa-users text-green-600"></i>
+                  </div>
+                  <div class="font-medium">Third-Party Audit</div>
+                  <div class="text-gray-600">Distributed witnesses</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <h3 class="text-2xl font-semibold mt-10 mb-6">Hypothetical TML Response Simulation</h3>
+
+          <div class="bg-gray-50 p-6 rounded-lg">
+            <table class="w-full text-sm">
+              <thead>
+                <tr class="border-b border-gray-300">
+                  <th class="text-left py-3 font-semibold text-gray-700">Phase</th>
+                  <th class="text-left py-3 font-semibold text-gray-700">Actual Response</th>
+                  <th class="text-left py-3 font-semibold text-gray-700">TML Response</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-200">
+                <tr>
+                  <td class="py-3 font-medium text-gray-800">Detection</td>
+                  <td class="py-3 text-gray-600">&#34;Elevated errors&#34;</td>
+                  <td class="py-3 text-blue-600">Sacred Zero trigger; signed status with uncertainty preservation</td>
+                </tr>
+                <tr>
+                  <td class="py-3 font-medium text-gray-800">Investigation</td>
+                  <td class="py-3 text-gray-600">Opaque, no visibility</td>
+                  <td class="py-3 text-blue-600">Parallel moral audit reporting; challenge mode for uncertain cohorts</td>
+                </tr>
+                <tr>
+                  <td class="py-3 font-medium text-gray-800">Segregation ID</td>
+                  <td class="py-3 text-gray-600">Implicit API survival</td>
+                  <td class="py-3 text-blue-600">Explicit ethical mode fallback announcement</td>
+                </tr>
+                <tr>
+                  <td class="py-3 font-medium text-gray-800">Restoration</td>
+                  <td class="py-3 text-gray-600">Gradual recovery</td>
+                  <td class="py-3 text-blue-600">Verifiable restoration with uncertainty tracking</td>
+                </tr>
+                <tr>
+                  <td class="py-3 font-medium text-gray-800">Post-incident</td>
+                  <td class="py-3 text-gray-600">No detailed disclosure</td>
+                  <td class="py-3 text-blue-600">Merkle-anchored log publication; 72-hour transparency commitment</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Recommendations -->
+      <section id="recommendations" class="bg-gray-50 py-16">
+        <div class="max-w-5xl mx-auto px-8">
+          <h2 class="text-3xl font-bold text-gray-900 mb-12 canela">Strategic and Architectural Recommendations</h2>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+              <div class="flex items-center mb-4">
+                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                  <i class="fas fa-shield-alt text-blue-600 text-xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold">Authentication Plane Isolation</h3>
+              </div>
+              <ul class="space-y-2 text-gray-700">
+                <li class="flex items-start">
+                  <i class="fas fa-check text-green-500 mr-2 mt-1 text-sm"></i>
+                  <span>Dedicated auth service boundaries with independent scaling</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-check text-green-500 mr-2 mt-1 text-sm"></i>
+                  <span>Failure domain segregation and blast radius containment</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-check text-green-500 mr-2 mt-1 text-sm"></i>
+                  <span>Resource isolation with CPU/memory quotas</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+              <div class="flex items-center mb-4">
+                <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mr-4">
+                  <i class="fas fa-layer-group text-purple-600 text-xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold">Progressive Challenge Systems</h3>
+              </div>
+              <ul class="space-y-2 text-gray-700">
+                <li class="flex items-start">
+                  <i class="fas fa-check text-green-500 mr-2 mt-1 text-sm"></i>
+                  <span>Adaptive rate limiting with behavioral signals</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-check text-green-500 mr-2 mt-1 text-sm"></i>
+                  <span>Proof-of-work or CAPTCHA escalation pathways</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-check text-green-500 mr-2 mt-1 text-sm"></i>
+                  <span>Reputation scoring and resource cost tracking</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+              <div class="flex items-center mb-4">
+                <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4">
+                  <i class="fas fa-database text-green-600 text-xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold">Telemetry Preservation Standards</h3>
+              </div>
+              <ul class="space-y-2 text-gray-700">
+                <li class="flex items-start">
+                  <i class="fas fa-check text-green-500 mr-2 mt-1 text-sm"></i>
+                  <span>Immutable logging with 90-day minimum retention</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-check text-green-500 mr-2 mt-1 text-sm"></i>
+                  <span>Real-time anomaly detection with ML integration</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-check text-green-500 mr-2 mt-1 text-sm"></i>
+                  <span>Cross-organization attestation for CDN analytics</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+              <div class="flex items-center mb-4">
+                <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mr-4">
+                  <i class="fas fa-link text-yellow-600 text-xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold">Merkle-Anchored Incident Logging</h3>
+              </div>
+              <ul class="space-y-2 text-gray-700">
+                <li class="flex items-start">
+                  <i class="fas fa-check text-green-500 mr-2 mt-1 text-sm"></i>
+                  <span>Cryptographic verification of status communications</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-check text-green-500 mr-2 mt-1 text-sm"></i>
+                  <span>Third-party auditability with community verification</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-check text-green-500 mr-2 mt-1 text-sm"></i>
+                  <span>Daily Merkle tree root publication</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="bg-white p-8 rounded-lg shadow-sm mb-8">
+            <h3 class="text-xl font-semibold mb-6">Implementation Priority Matrix</h3>
+
+            <div class="overflow-x-auto">
+              <table class="w-full text-sm">
+                <thead>
+                  <tr class="border-b border-gray-300">
+                    <th class="text-left py-3 font-semibold text-gray-700">Recommendation</th>
+                    <th class="text-center py-3 font-semibold text-gray-700">Impact</th>
+                    <th class="text-center py-3 font-semibold text-gray-700">Effort</th>
+                    <th class="text-center py-3 font-semibold text-gray-700">Priority</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200">
+                  <tr>
+                    <td class="py-3 font-medium">Authentication plane isolation</td>
+                    <td class="py-3 text-center">
+                      <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">High</span>
+                    </td>
+                    <td class="py-3 text-center">
+                      <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">Medium</span>
+                    </td>
+                    <td class="py-3 text-center">
+                      <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">P0</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="py-3 font-medium">Immutable logging requirements</td>
+                    <td class="py-3 text-center">
+                      <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">High</span>
+                    </td>
+                    <td class="py-3 text-center">
+                      <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">Low</span>
+                    </td>
+                    <td class="py-3 text-center">
+                      <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">P0</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="py-3 font-medium">Progressive challenge systems</td>
+                    <td class="py-3 text-center">
+                      <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">High</span>
+                    </td>
+                    <td class="py-3 text-center">
+                      <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">Medium</span>
+                    </td>
+                    <td class="py-3 text-center">
+                      <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-orange-100 text-orange-800">P1</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="py-3 font-medium">Merkle-anchored logging</td>
+                    <td class="py-3 text-center">
+                      <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">Medium</span>
+                    </td>
+                    <td class="py-3 text-center">
+                      <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">High</span>
+                    </td>
+                    <td class="py-3 text-center">
+                      <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-orange-100 text-orange-800">P1</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="py-3 font-medium">Surge simulation testing</td>
+                    <td class="py-3 text-center">
+                      <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">High</span>
+                    </td>
+                    <td class="py-3 text-center">
+                      <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">High</span>
+                    </td>
+                    <td class="py-3 text-center">
+                      <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">P2</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="bg-blue-50 p-8 rounded-lg border-l-4 border-blue-500">
+            <h3 class="text-xl font-semibold text-blue-800 mb-4">Politically Charged Scenario Modeling</h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h4 class="font-medium text-blue-700 mb-3">Solidarity Migration Scenario</h4>
+                <div class="space-y-2 text-sm text-blue-700">
+                  <div class="flex justify-between">
+                    <span>Surge multiple:</span>
+                    <span class="font-medium">10-50× registration rate</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span>Success criteria:</span>
+                    <span class="font-medium">&lt;5% error rate</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span>Latency target:</span>
+                    <span class="font-medium">&lt;2s p95</span>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h4 class="font-medium text-blue-700 mb-3">Hybrid Attack Scenario</h4>
+                <div class="space-y-2 text-sm text-blue-700">
+                  <div class="flex justify-between">
+                    <span>Attack blend:</span>
+                    <span class="font-medium">Surge + DDoS</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span>Service continuity:</span>
+                    <span class="font-medium">Core functions preserved</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span>Attribution confidence:</span>
+                    <span class="font-medium">Quantified uncertainty</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-8 bg-red-50 p-6 rounded-lg border-l-4 border-red-400">
+            <h3 class="font-semibold text-red-800 mb-4">Evidentiary Integrity Requirements</h3>
+            <p class="text-red-700 mb-4">
+              Future incidents require comprehensive forensic data collection to enable
+              definitive attribution and root cause analysis.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+              <div>
+                <h4 class="font-medium text-red-800 mb-2">P0 Artifacts (Critical)</h4>
+                <ul class="space-y-1 text-red-700">
+                  <li>• Raw authentication logs (90-day retention)</li>
+                  <li>• WAF telemetry with request samples (30-day retention)</li>
+                  <li>• Database performance metrics (sub-second granularity)</li>
+                </ul>
+              </div>
+              <div>
+                <h4 class="font-medium text-red-800 mb-2">P1 Artifacts (Important)</h4>
+                <ul class="space-y-1 text-red-700">
+                  <li>• CDN edge analytics (7-day retention)</li>
+                  <li>• Network flow records (24-hour operational)</li>
+                  <li>• ASN distribution with temporal granularity</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-5xl mx-auto px-8">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+              <h3 class="text-lg font-semibold mb-4">Investigation Methodology</h3>
+              <p class="text-gray-300 text-sm leading-relaxed">
+                This forensic analysis adheres to the principles of Ternary Moral Logic,
+                preserving uncertainty where evidence is insufficient and distinguishing
+                verified facts from hypotheses requiring additional forensic artifacts.
+              </p>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold mb-4">Confidence Calibration</h3>
+              <p class="text-gray-300 text-sm leading-relaxed">
+                All conclusions include explicit confidence levels and clearly identify
+                evidentiary gaps that prevent definitive attribution. The Sacred Pause
+                principle applies where evidence is insufficient for conclusive assessment.
+              </p>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold mb-4">Transparency Framework</h3>
+              <p class="text-gray-300 text-sm leading-relaxed">
+                Recommendations focus on architectural and governance improvements
+                that enhance resilience and transparency for politically sensitive
+                infrastructure incidents while maintaining operational security.
+              </p>
+            </div>
+          </div>
+
+          <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+            <p class="text-gray-400 text-sm">
+              Report compiled: March 3, 2026 | Methodology: Public source analysis with Ternary Moral Logic framework |
+              <a href="#executive-summary" class="text-blue-400 hover:text-blue-300">Return to Top</a>
+            </p>
+          </div>
+        </div>
+      </footer>
+    </main>
+
+    <style>
+        /* Responsive sidebar */
+        @media (max-width: 1024px) {
+            nav {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+                z-index: 100;
+            }
+            
+            nav.open {
+                transform: translateX(0);
+            }
+            
+            main {
+                margin-left: 0;
+            }
+            
+            /* Hamburger menu button */
+            .menu-toggle {
+                position: fixed;
+                top: 20px;
+                left: 20px;
+                z-index: 101;
+                background: white;
+                border: none;
+                border-radius: 4px;
+                padding: 10px;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            
+            /* Backdrop overlay */
+            .menu-backdrop {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.5);
+                z-index: 99;
+                display: none;
+            }
+            
+            .menu-backdrop.show {
+                display: block;
+            }
+        }
+        
+        /* Hide toggle button on desktop */
+        @media (min-width: 1024px) {
+            .menu-toggle, .menu-backdrop {
+                display: none !important;
+            }
+        }
+    </style>
+
+    <!-- Hamburger menu button for mobile -->
+    <button class="menu-toggle lg:hidden">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Backdrop overlay -->
+    <div class="menu-backdrop"></div>
+
+    <script>
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const nav = document.querySelector('nav');
+            const backdrop = document.querySelector('.menu-backdrop');
+            
+            // Toggle menu
+            menuToggle.addEventListener('click', function() {
+                nav.classList.toggle('open');
+                backdrop.classList.toggle('show');
+            });
+            
+            // Close menu when clicking backdrop
+            backdrop.addEventListener('click', function() {
+                nav.classList.remove('open');
+                backdrop.classList.remove('show');
+            });
+            
+            // Close menu when clicking TOC links
+            const tocLinks = document.querySelectorAll('.toc-link');
+            tocLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    nav.classList.remove('open');
+                    backdrop.classList.remove('show');
+                });
+            });
+            
+            // Close menu when window is resized to desktop
+            window.addEventListener('resize', function() {
+                if (window.innerWidth >= 1024) {
+                    nav.classList.remove('open');
+                    backdrop.classList.remove('show');
+                }
+            });
+        });
+    </script>
+  
+
+</body></html>
