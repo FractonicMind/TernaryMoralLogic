@@ -31,6 +31,9 @@ Regulators can verify individual events using Simple Payment Verification (SPV) 
 * 📄 **Read Report:** [TML Merkle Architecture Overview (.md)](https://github.com/FractonicMind/TernaryMoralLogic/tree/main/Merkle_Architecture/TML_Merkle_Architecture_Overview.md)
 * 📊 **View Data:** [Interactive Overview (.html)](https://fractonicmind.github.io/TernaryMoralLogic/Merkle_Architecture/TML_Merkle_Architecture_Overview.html)
 * 🎧 **Audio:** [Listen to the Strategy (.mp3)](https://fractonicmind.github.io/TernaryMoralLogic/Merkle_Architecture/TML_Merkle_Architecture_Overview.mp3)
+* **Purpose:** This is the strategic introduction. It explains *why* the Merkle tree is non-optional for TML's ethical guarantees. It details how the structure prevents "moral drift" and enables the "Hybrid Shield" governance model.
+* **Audience:** Executives, Policy Makers, Non-Technical Stakeholders.
+* **Key Concept:** The "collapse conditions" of TML if Merkle structures are removed.
 
 ### 2. Engineering Blueprint (The Specification)
 
@@ -38,6 +41,9 @@ Regulators can verify individual events using Simple Payment Verification (SPV) 
 
 * 📄 **Read Specification:** [TML Merkle Protocol Specification (.md)](https://github.com/FractonicMind/TernaryMoralLogic/tree/main/Merkle_Architecture/TML_Merkle_Protocol_Specification.md)
 * 🔵 **Live Spec:** [Interactive Architecture (.html)](https://fractonicmind.github.io/TernaryMoralLogic/Merkle_Architecture/TML_Merkle_Protocol_Specification.html)
+* **Purpose:** The implementation "Source of Truth" for developers. It defines the **Canonical Leaf Node Schema**, mandatory fields (e.g., UUIDv7, Trusted Timestamp), and specific cryptographic primitives (BLAKE3-256). It also details the Data Availability (DA) strategy and storage tiers.
+* **Audience:** Systems Engineers, Backend Developers, DevOps.
+* **Key Concept:** The rigorous schema definition and "Active Axiom Set Hash" implementation.
 
 ### 3. Threat Model (The Security Report)
 
@@ -47,6 +53,9 @@ Regulators can verify individual events using Simple Payment Verification (SPV) 
 * 🔴 **Live Dashboard:** [View Interactive Risk Monitor (.html)](https://fractonicmind.github.io/TernaryMoralLogic/Merkle_Architecture/TML_Adversarial_Security_Hardening.html)
 * 🎧 **Audio:** [Listen to the Audit (.mp3)](https://fractonicmind.github.io/TernaryMoralLogic/Merkle_Architecture/TML_Adversarial_Security_Hardening.mp3)
 * 📑 **Document:** [Download PDF (.pdf)](https://github.com/FractonicMind/TernaryMoralLogic/tree/main/Merkle_Architecture/TML_Adversarial_Security_Hardening.pdf)
+* **Purpose:** A defensive analysis focusing on how the system survives hostility. It details the **Execution Interlock** (hardware enforcement), **Crypto-Shredding** (GDPR compliance), and protection against retroactive reinterpretation. It assumes a "Zero Trust" environment.
+* **Audience:** Security Auditors, Cryptographers, Regulators.
+* **Key Concept:** The "Causal Integrity Enforcement" preventing silent bypass of the Sacred Zero.
 
 ### 4. Academic Proof (The Research Report)
 
@@ -55,39 +64,6 @@ Regulators can verify individual events using Simple Payment Verification (SPV) 
 * 📄 **Read Report:** [TML Cryptographic Imperative Research (.md)](https://github.com/FractonicMind/TernaryMoralLogic/tree/main/Merkle_Architecture/TML_Cryptographic_Imperative_Research.md)
 * 🧠 **View Model Specs:** [Interactive Research (.html)](https://fractonicmind.github.io/TernaryMoralLogic/Merkle_Architecture/TML_Cryptographic_Imperative_Research.html)
 * 📑 **Document:** [Download PDF (.pdf)](https://github.com/FractonicMind/TernaryMoralLogic/tree/main/Merkle_Architecture/TML_Cryptographic_Imperative_Research.pdf)
-
-## Documentation Index
-
-This folder contains the complete architectural suite, segmented by audience and technical depth.
-
-### 1. The Executive Strategy (Overview)
-**Filename:** `TML_Merkle_Architecture_Overview`
-* **Formats:** `.md`, `.html`, `.mp3` (Audio Deep Dive)
-* **Purpose:** This is the strategic introduction. It explains *why* the Merkle tree is non-optional for TML's ethical guarantees. It details how the structure prevents "moral drift" and enables the "Hybrid Shield" governance model.
-* **Audience:** Executives, Policy Makers, Non-Technical Stakeholders.
-* **Key Concept:** The "collapse conditions" of TML if Merkle structures are removed.
-
-### 2. The Engineering Blueprint (Specification)
-**Filename:** `TML_Merkle_Protocol_Specification`
-* **Formats:** `.md`, `.html`
-* **Purpose:** The implementation "Source of Truth" for developers. It defines the **Canonical Leaf Node Schema**, mandatory fields (e.g., UUIDv7, Trusted Timestamp), and specific cryptographic primitives (BLAKE3-256). It also details the Data Availability (DA) strategy and storage tiers.
-* **Audience:** Systems Engineers, Backend Developers, DevOps.
-* **Key Concept:** The rigorous schema definition and "Active Axiom Set Hash" implementation.
-
-### 3. The Threat Model (Security)
-**Filename:** `TML_Adversarial_Security_Hardening`
-* **Formats:** `.md`, `.html`, `.mp3` (Audio Deep Dive)
-* **Purpose:** A defensive analysis focusing on how the system survives hostility. It details the **Execution Interlock** (hardware enforcement), **Crypto-Shredding** (GDPR compliance), and protection against retroactive reinterpretation. It assumes a "Zero Trust" environment.
-* **Audience:** Security Auditors, Cryptographers, Regulators.
-* **Key Concept:** The "Causal Integrity Enforcement" preventing silent bypass of the Sacred Zero.
-
-### 4. The Academic Proof (Research)
-**Filename:** `TML_Cryptographic_Imperative_Research`
-* **Formats:** `.md`, `.html`
 * **Purpose:** A formal research report providing mathematical justification for the architecture. It includes a comparative analysis against Bitcoin and Ethereum structures and proves the efficiency gains of the **Ternary** tree topology (35% reduction in depth vs. binary).
 * **Audience:** Academic Researchers, Governance Institutions, IEEE/SSRN Reviewers.
 * **Key Concept:** The information-theoretic optimality of Ternary trees for TML's triadic logic.
-
----
-
-> "Integrity is not the hash. It is the refusal to let history be edited."
