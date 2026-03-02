@@ -22,51 +22,40 @@ Regulators can verify individual events using Simple Payment Verification (SPV) 
 
 ---
 
-Here is the clean, list-based Documentation Index formatted exactly like your reference file. You can copy and paste this directly into your `readme.md` without losing any structure.
-
----
-
 ## 📂 Documentation Index
 
 ### 1. Executive Strategy (The Overview)
 
 *Focus: The collapse conditions of TML and how the structure prevents moral drift.*
 
-* 📄 **Read Report:** [TML Merkle Architecture Overview (.md)](https://www.google.com/search?q=https://github.com/FractonicMind/TernaryMoralLogic/tree/main/Merkle_Architecture/TML_Merkle_Architecture_Overview.md)
-* 📊 **View Data:** [Interactive Overview (.html)](https://www.google.com/search?q=https://fractonicmind.github.io/TernaryMoralLogic/Merkle_Architecture/TML_Merkle_Architecture_Overview.html)
-* 🎧 **Audio:** [Listen to the Strategy (.mp3)](https://www.google.com/search?q=https://fractonicmind.github.io/TernaryMoralLogic/Merkle_Architecture/TML_Merkle_Architecture_Overview.mp3)
+* 📄 **Read Report:** [TML Merkle Architecture Overview (.md)](https://github.com/FractonicMind/TernaryMoralLogic/tree/main/Merkle_Architecture/TML_Merkle_Architecture_Overview.md)
+* 📊 **View Data:** [Interactive Overview (.html)](https://fractonicmind.github.io/TernaryMoralLogic/Merkle_Architecture/TML_Merkle_Architecture_Overview.html)
+* 🎧 **Audio:** [Listen to the Strategy (.mp3)](https://fractonicmind.github.io/TernaryMoralLogic/Merkle_Architecture/TML_Merkle_Architecture_Overview.mp3)
 
 ### 2. Engineering Blueprint (The Specification)
 
 *Focus: Technical Source of Truth defining the Canonical Leaf Node Schema and BLAKE3 primitives.*
 
-* 📄 **Read Specification:** [TML Merkle Protocol Specification (.md)](https://www.google.com/search?q=https://github.com/FractonicMind/TernaryMoralLogic/tree/main/Merkle_Architecture/TML_Merkle_Protocol_Specification.md)
-* 🔵 **Live Spec:** [Interactive Architecture (.html)](https://www.google.com/search?q=https://fractonicmind.github.io/TernaryMoralLogic/Merkle_Architecture/TML_Merkle_Protocol_Specification.html)
+* 📄 **Read Specification:** [TML Merkle Protocol Specification (.md)](https://github.com/FractonicMind/TernaryMoralLogic/tree/main/Merkle_Architecture/TML_Merkle_Protocol_Specification.md)
+* 🔵 **Live Spec:** [Interactive Architecture (.html)](https://fractonicmind.github.io/TernaryMoralLogic/Merkle_Architecture/TML_Merkle_Protocol_Specification.html)
 
 ### 3. Threat Model (The Security Report)
 
 *Focus: Defensive analysis, Execution Interlocks, and protection against retroactive reinterpretation.*
 
-* 📄 **Read Report:** [TML Adversarial Security Hardening (.md)](https://www.google.com/search?q=https://github.com/FractonicMind/TernaryMoralLogic/tree/main/Merkle_Architecture/TML_Adversarial_Security_Hardening.md)
-* 🔴 **Live Dashboard:** [View Interactive Risk Monitor (.html)](https://www.google.com/search?q=https://fractonicmind.github.io/TernaryMoralLogic/Merkle_Architecture/TML_Adversarial_Security_Hardening.html)
-* 🎧 **Audio:** [Listen to the Audit (.mp3)](https://www.google.com/search?q=https://fractonicmind.github.io/TernaryMoralLogic/Merkle_Architecture/TML_Adversarial_Security_Hardening.mp3)
-* 📑 **Document:** [Download PDF (.pdf)](https://www.google.com/search?q=https://github.com/FractonicMind/TernaryMoralLogic/tree/main/Merkle_Architecture/TML_Adversarial_Security_Hardening.pdf)
+* 📄 **Read Report:** [TML Adversarial Security Hardening (.md)](https://github.com/FractonicMind/TernaryMoralLogic/tree/main/Merkle_Architecture/TML_Adversarial_Security_Hardening.md)
+* 🔴 **Live Dashboard:** [View Interactive Risk Monitor (.html)](https://fractonicmind.github.io/TernaryMoralLogic/Merkle_Architecture/TML_Adversarial_Security_Hardening.html)
+* 🎧 **Audio:** [Listen to the Audit (.mp3)](https://fractonicmind.github.io/TernaryMoralLogic/Merkle_Architecture/TML_Adversarial_Security_Hardening.mp3)
+* 📑 **Document:** [Download PDF (.pdf)](https://github.com/FractonicMind/TernaryMoralLogic/tree/main/Merkle_Architecture/TML_Adversarial_Security_Hardening.pdf)
 
 ### 4. Academic Proof (The Research Report)
 
 *Focus: Mathematical justification proving the 35% reduction in depth via Ternary tree topology.*
 
-* 📄 **Read Report:** [TML Cryptographic Imperative Research (.md)](https://www.google.com/search?q=https://github.com/FractonicMind/TernaryMoralLogic/tree/main/Merkle_Architecture/TML_Cryptographic_Imperative_Research.md)
-* 🧠 **View Model Specs:** [Interactive Research (.html)](https://www.google.com/search?q=https://fractonicmind.github.io/TernaryMoralLogic/Merkle_Architecture/TML_Cryptographic_Imperative_Research.html)
-* 📑 **Document:** [Download PDF (.pdf)](https://www.google.com/search?q=https://github.com/FractonicMind/TernaryMoralLogic/tree/main/Merkle_Architecture/TML_Cryptographic_Imperative_Research.pdf)
+* 📄 **Read Report:** [TML Cryptographic Imperative Research (.md)](https://github.com/FractonicMind/TernaryMoralLogic/tree/main/Merkle_Architecture/TML_Cryptographic_Imperative_Research.md)
+* 🧠 **View Model Specs:** [Interactive Research (.html)](https://fractonicmind.github.io/TernaryMoralLogic/Merkle_Architecture/TML_Cryptographic_Imperative_Research.html)
+* 📑 **Document:** [Download PDF (.pdf)](https://github.com/FractonicMind/TernaryMoralLogic/tree/main/Merkle_Architecture/TML_Cryptographic_Imperative_Research.pdf)
 
----
-
-Would you like me to review the rest of your `readme.md` to ensure the formatting matches this updated, cleaner style?
-
-> "A logical theory may be tested by its capacity for dealing with puzzles; and it is a wholesome plan, in thinking about logic, to stock the mind with as many puzzles as possible, since these serve much the same purpose as is served by experiments in physical science."
-> — **Bertrand Russell**
----
 ## Documentation Index
 
 This folder contains the complete architectural suite, segmented by audience and technical depth.
