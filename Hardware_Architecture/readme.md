@@ -13,6 +13,9 @@ This repository contains the engineering research and architectural specificatio
 
 While TML defines the *logical* rules for ethical AI (Proceed, Refuse, Hesitate), this repository defines the *physical* mechanisms required to enforce those rules at the transistor level. The central thesis is that safe Agentic AI cannot be secured by software alone; it requires a hardware-enforced, non-volatile state of "Hesitation" (The Null State).
 
+* 📄 **Read Specification:** [The Transition to Mandated Ternary Architecture (.md)](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/Hardware_Architecture/The%20Transition%20to%20Mandated%20Ternary%20Architecture.md)
+* 🔵 **Live Spec:** [View Interactive Architecture (.html)](https://fractonicmind.github.io/TernaryMoralLogic/Hardware_Architecture/The%20Transition%20to%20Mandated%20Ternary%20Architecture.html)
+
 ## **The Core Thesis: The "Mandate"**
 
 Current binary chips (CMOS) are designed for speed, not safety. They lack a physical state for "Uncertainty."
