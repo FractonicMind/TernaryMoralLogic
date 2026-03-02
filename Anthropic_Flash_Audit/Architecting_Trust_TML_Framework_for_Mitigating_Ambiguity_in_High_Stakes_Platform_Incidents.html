@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anthropic Authentication Outage Analysis: Technical Forensics &amp; Governance Framework</title>
+
+  <!-- Essential CDN Libraries -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              50: 'hsl(210, 75%, 95%)',
+              100: 'hsl(210, 75%, 85%)',
+              200: 'hsl(210, 75%, 75%)',
+              300: 'hsl(210, 75%, 65%)',
+              400: 'hsl(210, 75%, 55%)',
+              500: 'hsl(210, 75%, 40%)',
+              600: 'hsl(210, 75%, 35%)',
+              700: 'hsl(210, 75%, 25%)',
+              800: 'hsl(210, 75%, 15%)',
+              900: 'hsl(210, 75%, 10%)'
+            },
+            accent: {
+              50: 'hsl(240, 65%, 95%)',
+              100: 'hsl(240, 65%, 85%)',
+              200: 'hsl(240, 65%, 75%)',
+              300: 'hsl(240, 65%, 65%)',
+              400: 'hsl(240, 65%, 60%)',
+              500: 'hsl(240, 65%, 55%)',
+              600: 'hsl(240, 65%, 50%)',
+              700: 'hsl(240, 65%, 40%)',
+              800: 'hsl(240, 65%, 30%)',
+              900: 'hsl(240, 65%, 20%)'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0"></script>
+
+  <!-- Preline UI Components -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/preline@2.0.3/dist/preline.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/preline@2.0.3/dist/preline.js"></script>
+
+  <!-- Micro-interactions & Custom Styles -->
+  <style>
+    html { scroll-behavior: smooth; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      html { scroll-behavior: auto; }
+    }
+
+    .btn-interactive {
+      transition: all 0.2s ease-out;
+    }
+    
+    .btn-interactive:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+    
+    .btn-interactive:active {
+      transform: scale(0.95);
+    }
+
+    .card-interactive {
+      transition: all 0.3s ease-out;
+      border: 1px solid transparent;
+      --border-lightness: 40%;
+    }
+
+    .dark .card-interactive {
+      --border-lightness: 60%;
+    }
+
+    .card-interactive:hover {
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      filter: brightness(0.98);
+    }
+    
+    /* Primary colored cards */
+    .card-interactive[class*="primary"]:hover,
+    .card-interactive[class*="white"]:hover,
+    .card-interactive[class*="gray-"]:hover {
+      border-color: hsl(210, 75%, var(--border-lightness));
+    }
+    
+    /* Accent colored cards */
+    .card-interactive[class*="accent"]:hover {
+      border-color: hsl(240, 65%, var(--border-lightness));
+    }
+
+    .dark .card-interactive:hover {
+      filter: brightness(1.05);
+    }
+  </style>
+
+  <!-- Dark Mode Toggle Script -->
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark');
+      const isDark = document.body.classList.contains('dark');
+      document.getElementById('sunIcon').style.display = isDark ? 'block' : 'none';
+      document.getElementById('moonIcon').style.display = isDark ? 'none' : 'block';
+    }
+  </script>
+</head>
+
+<body class="transition-colors duration-300 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+  <!-- Citation System Script -->
+  <script>
+    function initCitationSystem() {
+      let i = 1, map = new Map();
+      document.querySelectorAll('[data-ref]').forEach(el => {
+        if (el.dataset.citationProcessed) return;
+        const raw = (el.getAttribute('data-ref')||'').trim();
+        if (!raw) return;
+
+        const parts = raw.split('|');
+        const url = parts[0].trim();
+        const idx = (parts[1]||'').trim() || map.get(raw) || (map.set(raw, String(i)), String(i++));
+
+        if (!el.textContent || !el.textContent.trim()) { el.dataset.citationProcessed = 'true'; return; }
+
+        const btn = document.createElement('sup'); btn.textContent = String(idx);
+        Object.assign(btn.style, { fontSize:'8px', color:'#fff', cursor:'pointer', top: '1px', fontWeight:'bold', backgroundColor:'#0284c7', borderRadius:'50%', transition:'all .15s', userSelect:'none', minWidth:'19px', height:'19px', marginLeft:'6px', display:'inline-flex', alignItems:'center', justifyContent:'center', boxShadow:'0 1px 3px rgba(0,0,0,.2)', lineHeight:'1'});
+        btn.addEventListener('mouseenter', ()=> Object.assign(btn.style, { backgroundColor:'#0369a1', transform:'scale(1.12)' }));
+        btn.addEventListener('mouseleave', ()=> Object.assign(btn.style, { backgroundColor:'#0284c7', transform:'scale(1)' }));
+        btn.addEventListener('click', e=>{ e.preventDefault(); e.stopPropagation(); window.open(url, '_blank'); });
+
+        el.appendChild(btn); el.dataset.citationProcessed = 'true';
+      });
+    }
+  </script>
+
+  <!-- Progress bar -->
+  <div class="fixed top-0 left-0 h-1 bg-primary-500 dark:bg-primary-400 z-[60] transition-all duration-300 ease-out" id="progressBar" style="width: 0%;"></div>
+
+  <!-- Floating Header -->
+  <header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-gray-50/90 dark:bg-gray-900/90 border-b border-primary-500/20 dark:border-primary-600/20 shadow-sm">
+    <nav class="max-w-7xl mx-auto px-6 py-3">
+      <div class="flex items-center justify-between">
+        <h1 class="text-lg font-bold text-primary-700 dark:text-primary-300">Anthropic Outage Analysis</h1>
+        
+        <div class="hidden md:flex items-center space-x-6">
+          <a href="#home" class="text-sm text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Home</a>
+          <a href="#timeline" class="text-sm text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Timeline</a>
+          <a href="#forensics" class="text-sm text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Forensics</a>
+          <a href="#attack" class="text-sm text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Attack</a>
+          <a href="#framework" class="text-sm text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Framework</a>
+          <a href="#recommendations" class="text-sm text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Recommendations</a>
+          <a href="#conclusion" class="text-sm text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Conclusion</a>
+        </div>
+
+        <button onclick="toggleDarkMode()" class="btn-interactive p-2 rounded-lg bg-primary-100 dark:bg-primary-800 text-primary-600 dark:text-primary-300 hover:bg-primary-200 dark:hover:bg-primary-700 transition-all">
+          <i data-lucide="sun" id="sunIcon" class="w-5 h-5"></i>
+          <i data-lucide="moon" id="moonIcon" class="w-5 h-5" style="display:none;"></i>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main id="home" class="min-h-screen">
+    <!-- Hero Section -->
+    <section class="py-40 bg-gradient-to-br from-primary-50/50 via-white/80 to-accent-50/50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900" data-aos="fade-up">
+      <div class="max-w-5xl mx-auto px-6">
+        <div class="text-center mb-12">
+          <h1 class="text-5xl md:text-6xl font-bold mb-6 text-primary-700 dark:text-primary-300">
+            Anthropic Authentication Outage Analysis
+          </h1>
+          <p class="text-xl text-gray-700 dark:text-gray-300 leading-relaxed max-w-3xl mx-auto">
+            A comprehensive technical and governance investigation into the authentication failure experienced by Anthropic amid a politically sensitive surge in user demand, evaluating the plausibility of a hybrid DDoS attack concealed within organic traffic.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6 mt-16">
+          <div class="card-interactive p-6 bg-white/90 backdrop-blur-sm dark:bg-gray-800 rounded-xl shadow-md">
+            <div class="flex items-center space-x-4 mb-4">
+              <div class="flex-shrink-0 w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center">
+                <i data-lucide="shield-alert" class="w-6 h-6 text-primary-600 dark:text-primary-400"></i>
+              </div>
+              <h3 class="text-lg font-semibold text-primary-700 dark:text-primary-300">Technical Forensics</h3>
+            </div>
+            <p class="text-sm text-gray-600 dark:text-gray-400">
+              External observability analysis using Cloudflare Radar, DownDetector, and network telemetry to reconstruct incident timeline.
+            </p>
+          </div>
+
+          <div class="card-interactive p-6 bg-white/90 backdrop-blur-sm dark:bg-gray-800 rounded-xl shadow-md">
+            <div class="flex items-center space-x-4 mb-4">
+              <div class="flex-shrink-0 w-12 h-12 bg-accent-100 dark:bg-accent-900/30 rounded-lg flex items-center justify-center">
+                <i data-lucide="globe" class="w-6 h-6 text-accent-600 dark:text-accent-400"></i>
+              </div>
+              <h3 class="text-lg font-semibold text-accent-700 dark:text-accent-300">Hybrid Attack Modeling</h3>
+            </div>
+            <p class="text-sm text-gray-600 dark:text-gray-400">
+              Behavioral signature analysis of user agent entropy, ASN distribution, geo dispersion, and login success ratios.
+            </p>
+          </div>
+
+          <div class="card-interactive p-6 bg-white/90 backdrop-blur-sm dark:bg-gray-800 rounded-xl shadow-md">
+            <div class="flex items-center space-x-4 mb-4">
+              <div class="flex-shrink-0 w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center">
+                <i data-lucide="layers" class="w-6 h-6 text-primary-600 dark:text-primary-400"></i>
+              </div>
+              <h3 class="text-lg font-semibold text-primary-700 dark:text-primary-300">Governance Framework</h3>
+            </div>
+            <p class="text-sm text-gray-600 dark:text-gray-400">
+              Partial Ternary Moral Logic integration with Sacred Zero triggers and Immutable Merkle Logging for forensic transparency.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Timeline Reconstruction Section -->
+    <section id="timeline" class="py-20 bg-white/80 dark:bg-gray-900" data-aos="fade-up">
+      <div class="max-w-6xl mx-auto px-6">
+        <h2 class="text-4xl font-bold mb-8 text-primary-700 dark:text-primary-300 text-center">
+          Timeline Reconstruction
+        </h2>
+        <p class="text-center text-gray-700 dark:text-gray-300 mb-12 text-lg max-w-4xl mx-auto">
+          Chronological reconstruction of the authentication outage based on external observability data from Cloudflare Radar, DownDetector, and network observatories.
+        </p>
+
+        <div class="grid md:grid-cols-2 gap-8 items-start">
+          <div class="space-y-6">
+            <div class="pl-4 pr-3 py-3 border-l-4 border-primary-500 bg-primary-50/40 dark:bg-primary-900/30 rounded-r-lg">
+              <p class="text-sm font-medium text-primary-900 dark:text-primary-100 leading-relaxed" data-ref="https://www.downdetector.com/status/anthropic|1">
+                <i data-lucide="info" class="inline-block w-4 h-4 mr-1.5 -mt-0.5"></i>
+                Nearly
+                <span class="mx-1 px-1.5 py-0.5 rounded-md bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300 font-semibold text-sm">1,700</span>
+                complaints were logged during a spike in outage reports on Monday morning, indicating a widespread service issue.
+              </p>
+            </div>
+
+            <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.downdetector.com/status/anthropic|1">
+              According to Downdetector, nearly
+              <span class="mx-1 px-1.5 py-0.5 rounded-md bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300 font-semibold text-sm">1,700</span>
+              complaints were logged during a spike in outage reports on Monday morning, suggesting a widespread service issue. The outage affected Claude.ai and Claude Code, with users reporting login/logout path issues.
+            </p>
+
+            <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.downdetector.com/status/anthropic|1">
+              Anthropic's status page confirmed the issue was related to login/logout paths but stated the Claude API was working as intended. The outage followed a significant influx of users to Claude services, which rose to the top of the App Store charts this weekend, overtaking ChatGPT.
+            </p>
+
+            <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.downdetector.com/status/anthropic|1">
+              The political context for the user surge involved U.S. President Donald Trump ordering federal agencies to stop using Anthropic products after a dispute over safeguards preventing its AI models from being used for mass domestic surveillance or fully autonomous weapons. Secretary of Defense Pete Hegseth also indicated he would designate the company as a supply-chain threat.
+            </p>
+
+            <div class="pl-4 pr-3 py-3 border-l-4 border-accent-500 bg-accent-50/40 dark:bg-accent-900/30 rounded-r-lg">
+              <p class="text-sm font-medium text-accent-900 dark:text-accent-100 leading-relaxed" data-ref="https://www.downdetector.com/status/anthropic|1">
+                <i data-lucide="circle-check" class="inline-block w-4 h-4 mr-1.5 -mt-0.5"></i>
+                Resolution: Anthropic confirmed systems were operational again after the Monday morning outage.
+              </p>
+            </div>
+          </div>
+
+          <img
+            src="https://cdn.qwenlm.ai/60498d16-d2ab-4b9f-8acd-8f6913b3400d/201b3126-5c18-4a80-af7b-87e11502f12f/45585b16-4aab-4f29-9191-5e0086cb603b.png?key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXNvdXJjZV91c2VyX2lkIjoiNjA0OThkMTYtZDJhYi00YjlmLThhY2QtOGY2OTEzYjM0MDBkIiwicmVzb3VyY2VfaWQiOiIyMDFiMzEyNi01YzE4LTRhODAtYWY3Yi04N2UxMTUwMmYxMmYiLCJyZXNvdXJjZV9jaGF0X2lkIjpudWxsfQ.5ixE3hlOi6zE2YKyHgTUK7s8Ow_5Usw64FzThUVhWUE"
+            alt="A horizontal timeline visualization on a white background with subtle grid lines. The timeline spans from left to right with five labeled milestones in sequential order: 'Friday' showing a smartphone icon with a blue upward arrow trending graph, 'Saturday' displaying an App Store badge with a crown icon, 'Sunday' featuring a desktop computer monitor with Claude AI logo, 'Monday 6 AM EST' showing a red alert triangle icon with 'Outage' text, and 'Monday 11:49 AM EST' displaying a green checkmark icon with 'Resolved' text. Between Friday and Saturday, there's a small cloud icon with 'Political Surge' label in dark gray text. Between Sunday and Monday 6 AM EST, a red lightning bolt icon indicates 'Authentication Failure'. The timeline uses primary blue color (#1a73b3) for milestone dots and connecting lines, with accent purple (#6366f1) for the political surge annotation. Each milestone dot is a filled circle with a diameter of 16 pixels, evenly spaced along the timeline axis. The background gradient transitions subtly from light gray (#f5f5f5) on the left to white (#ffffff) on the right. Text labels are in dark gray (#374151) for dates and black (#000000) for annotations."
+            class="w-full rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Technical Forensics Section -->
+    <section id="forensics" class="py-20 bg-primary-50/50 dark:bg-gray-800" data-aos="fade-up">
+      <div class="max-w-6xl mx-auto px-6">
+        <h2 class="text-4xl font-bold mb-8 text-primary-700 dark:text-primary-300 text-center">
+          Technical Forensics Analysis
+        </h2>
+        <p class="text-center text-gray-700 dark:text-gray-300 mb-12 text-lg max-w-4xl mx-auto">
+          Examination of external observability data from Cloudflare Radar, network telemetry, and behavioral pattern analysis to understand the nature of the authentication failure.
+        </p>
+
+        <div class="hs-accordion-group space-y-4">
+          <!-- Accordion Item 1: Cloudflare Radar Analysis -->
+          <div class="hs-accordion card-interactive bg-white/80 backdrop-blur-sm dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+            <button class="hs-accordion-toggle w-full flex justify-between items-center p-4 text-left hover:bg-primary-50 dark:hover:bg-gray-700/50 transition-colors rounded-xl" id="hs-forensics-1">
+              <div class="flex items-center space-x-4">
+                <div class="flex-shrink-0 w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center">
+                  <i data-lucide="activity" class="w-6 h-6 text-primary-600 dark:text-primary-400"></i>
+                </div>
+                <span class="font-semibold text-lg text-primary-700 dark:text-primary-300">Cloudflare Radar Traffic Patterns</span>
+              </div>
+              <i data-lucide="chevron-down" class="hs-accordion-active:rotate-180 transition-transform duration-300 w-5 h-5 text-primary-600 dark:text-primary-400"></i>
+            </button>
+            <div id="hs-collapse-forensics-1" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" aria-labelledby="hs-forensics-1">
+              <div class="p-6 pt-0 space-y-4">
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://blog.cloudflare.com/cloudflare-radar-year-in-review-2025/|3">
+                  Anthropic's ClaudeBot exhibited the highest exploration-to-traffic (or 'exploration/renvoi') ratio among major AI and search platforms in 2025. The ratio fluctuated erratically from January to May but became more consistent later in the year, ranging from approximately
+                  <span class="mx-1 px-1.5 py-0.5 rounded-md bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300 font-semibold text-sm">25,000:1</span>
+                  to nearly
+                  <span class="mx-1 px-1.5 py-0.5 rounded-md bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300 font-semibold text-sm">100,000:1</span>.
+                </p>
+
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://blog.cloudflare.com/cloudflare-radar-year-in-review-2025/|3">
+                  The overall Internet traffic volume grew by
+                  <span class="mx-1 px-1.5 py-0.5 rounded-md bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300 font-semibold text-sm">19%</span>
+                  in 2025, reaching a peak increase of 19% during September, October, and November. This growth was supported by a significant rise in traffic from mobile devices, which accounted for
+                  <span class="mx-1 px-1.5 py-0.5 rounded-md bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300 font-semibold text-sm">43%</span>
+                  of all requests globally, up from 41% in 2024.
+                </p>
+
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://blog.cloudflare.com/cloudflare-radar-year-in-review-2025/|3">
+                  Cloudflare's systems mitigated
+                  <span class="mx-1 px-1.5 py-0.5 rounded-md bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300 font-semibold text-sm">6.2%</span>
+                  of global traffic on its network in 2025. Of this,
+                  <span class="mx-1 px-1.5 py-0.5 rounded-md bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300 font-semibold text-sm">3.3%</span>
+                  was specifically due to DDoS attacks or WAF rules, an increase of 0.1 percentage points compared to 2024.
+                </p>
+
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://blog.cloudflare.com/cloudflare-radar-year-in-review-2025/|3">
+                  In 2025, bots generated
+                  <span class="mx-1 px-1.5 py-0.5 rounded-md bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300 font-semibold text-sm">4.2%</span>
+                  of total HTTP requests, while non-IA bots accounted for 44%. Human-generated traffic made up 47% of requests. The Googlebot alone was responsible for
+                  <span class="mx-1 px-1.5 py-0.5 rounded-md bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300 font-semibold text-sm">4.5%</span>
+                  of HTML requests.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Accordion Item 2: Bot Traffic Analysis -->
+          <div class="hs-accordion card-interactive bg-white/80 backdrop-blur-sm dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+            <button class="hs-accordion-toggle w-full flex justify-between items-center p-4 text-left hover:bg-primary-50 dark:hover:bg-gray-700/50 transition-colors rounded-xl" id="hs-forensics-2">
+              <div class="flex items-center space-x-4">
+                <div class="flex-shrink-0 w-12 h-12 bg-accent-100 dark:bg-accent-900/30 rounded-lg flex items-center justify-center">
+                  <i data-lucide="bot" class="w-6 h-6 text-accent-600 dark:text-accent-400"></i>
+                </div>
+                <span class="font-semibold text-lg text-accent-700 dark:text-accent-300">AI Bot Traffic Behavior</span>
+              </div>
+              <i data-lucide="chevron-down" class="hs-accordion-active:rotate-180 transition-transform duration-300 w-5 h-5 text-accent-600 dark:text-accent-400"></i>
+            </button>
+            <div id="hs-collapse-forensics-2" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" aria-labelledby="hs-forensics-2">
+              <div class="p-6 pt-0 space-y-4">
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://blog.cloudflare.com/cloudflare-radar-year-in-review-2025/|3">
+                  The most active bot observed by Cloudflare in 2025 was Googlebot, responsible for over
+                  <span class="mx-1 px-1.5 py-0.5 rounded-md bg-accent-100 dark:bg-accent-900/30 text-accent-800 dark:text-accent-300 font-semibold text-sm">28%</span>
+                  of verified bot traffic. The second most active was OpenAI's GPTBot at nearly
+                  <span class="mx-1 px-1.5 py-0.5 rounded-md bg-accent-100 dark:bg-accent-900/30 text-accent-800 dark:text-accent-300 font-semibold text-sm">7.5%</span>,
+                  followed by Microsoft's Bingbot at 6%.
+                </p>
+
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://blog.cloudflare.com/cloudflare-radar-year-in-review-2025/|3">
+                  Cloudflare Radar launched a 'Crawl/refer ratio' metric to compare crawling requests from a platform's crawler with HTML page requests referred by that platform (human traffic). This is intended to measure the revenue impact of AI platforms on publishers.
+                </p>
+
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://blog.cloudflare.com/cloudflare-radar-year-in-review-2025/|3">
+                  In a default view across all industries during the first week of August, Anthropic's ClaudeBot had the highest crawl-to-refer ratio at nearly
+                  <span class="mx-1 px-1.5 py-0.5 rounded-md bg-accent-100 dark:bg-accent-900/30 text-accent-800 dark:text-accent-300 font-semibold text-sm">50,000:1</span>,
+                  followed by OpenAI's GPTBot at 887:1 and Perplexity's Meta-ExternalAgent at 118:1.
+                </p>
+
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://blog.cloudflare.com/cloudflare-radar-year-in-review-2025/|3">
+                  When filtered to the 'News and Publications' industry set for the first week of August, the crawl-to-refer ratios decreased significantly. Anthropic's ratio dropped to
+                  <span class="mx-1 px-1.5 py-0.5 rounded-md bg-accent-100 dark:bg-accent-900/30 text-accent-800 dark:text-accent-300 font-semibold text-sm">2,500:1</span>,
+                  OpenAI's to 152:1, and Perplexity's to 32.7:1.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Accordion Item 3: Bot Classification -->
+          <div class="hs-accordion card-interactive bg-white/80 backdrop-blur-sm dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+            <button class="hs-accordion-toggle w-full flex justify-between items-center p-4 text-left hover:bg-primary-50 dark:hover:bg-gray-700/50 transition-colors rounded-xl" id="hs-forensics-3">
+              <div class="flex items-center space-x-4">
+                <div class="flex-shrink-0 w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center">
+                  <i data-lucide="git-branch" class="w-6 h-6 text-primary-600 dark:text-primary-400"></i>
+                </div>
+                <span class="font-semibold text-lg text-primary-700 dark:text-primary-300">Bot Traffic Classification</span>
+              </div>
+              <i data-lucide="chevron-down" class="hs-accordion-active:rotate-180 transition-transform duration-300 w-5 h-5 text-primary-600 dark:text-primary-400"></i>
+            </button>
+            <div id="hs-collapse-forensics-3" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" aria-labelledby="hs-forensics-3">
+              <div class="p-6 pt-0 space-y-4">
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://blog.cloudflare.com/cloudflare-radar-year-in-review-2025/|3">
+                  A new 'Crawl purpose' selector was added to the 'AI bot &amp; crawler traffic' card, allowing users to filter traffic into four categories: Training (content for models), Search (indexing), User action (crawling in response to a prompt), and Undeclared (unknown purpose).
+                </p>
+
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://blog.cloudflare.com/cloudflare-radar-year-in-review-2025/|3">
+                  For sites in the 'Cryptocurrency' industry within the 'Finance' vertical during the first week of August,
+                  <span class="mx-1 px-1.5 py-0.5 rounded-md bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300 font-semibold text-sm">80%</span>
+                  of crawling traffic was for 'Training' purposes, with three-quarters of that traffic concentrated in just four bots.
+                </p>
+
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://blog.cloudflare.com/cloudflare-radar-year-in-review-2025/|3">
+                  Traffic analysis shows distinct behavioral patterns among different types of AI crawlers. 'User action' bots like ChatGPT-User exhibit clear daily cycles, while 'Training' bots show erratic, non-cyclical patterns.
+                </p>
+
+                <div class="pl-4 pr-3 py-3 border-l-4 border-primary-500 bg-primary-50/40 dark:bg-primary-900/30 rounded-r-lg">
+                  <p class="text-sm font-medium text-primary-900 dark:text-primary-100 leading-relaxed" data-ref="https://blog.cloudflare.com/cloudflare-radar-year-in-review-2025/|3">
+                    <i data-lucide="trending-up" class="inline-block w-4 h-4 mr-1.5 -mt-0.5"></i>
+                    ChatGPT-User: API-based or browser usage of ChatGPT experienced a surge in requests, growing by 2,825% and reaching a 1.3% share of total crawling traffic.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hybrid DDoS Attack Analysis Section -->
+    <section id="attack" class="py-20 bg-white/80 dark:bg-gray-900" data-aos="fade-up">
+      <div class="max-w-6xl mx-auto px-6">
+        <h2 class="text-4xl font-bold mb-8 text-primary-700 dark:text-primary-300 text-center">
+          Hybrid DDoS Attack Hypothesis
+        </h2>
+        <p class="text-center text-gray-700 dark:text-gray-300 mb-12 text-lg max-w-4xl mx-auto">
+          Assessment of whether the authentication outage resulted from a hybrid DDoS attack blending legitimate signups with coordinated bot activity, based on behavioral signature analysis.
+        </p>
+
+        <div class="grid md:grid-cols-2 gap-8 items-start mb-12">
+          <div class="space-y-6">
+            <h3 class="text-2xl font-semibold text-primary-700 dark:text-primary-300">
+              Behavioral Signature Indicators
+            </h3>
+
+            <div class="card-interactive p-6 bg-accent-50/50 dark:bg-accent-900/20 rounded-xl shadow-md">
+              <h4 class="text-lg font-semibold text-accent-700 dark:text-accent-300 mb-3" data-ref="https://www.cloudflare.com/en-ca/learning/ddos/ddos-attack-tools/botnet/|5">User Agent Entropy Analysis</h4>
+              <p class="text-sm text-gray-700 dark:text-gray-300">
+                A DDoS attack involving a botnet uses multiple compromised devices to send malicious traffic simultaneously. Botnets can be controlled through command-and-control (C&amp;C) servers, and bot traffic often exhibits low user agent entropy, as bots typically use identical or similar user agent strings.
+              </p>
+            </div>
+
+            <div class="card-interactive p-6 bg-accent-50/50 dark:bg-accent-900/20 rounded-xl shadow-md">
+              <h4 class="text-lg font-semibold text-accent-700 dark:text-accent-300 mb-3" data-ref="https://www.cloudflare.com/en-ca/learning/ddos/ddos-attack-tools/botnet/|5">ASN Distribution Patterns</h4>
+              <p class="text-sm text-gray-700 dark:text-gray-300">
+                Botnet traffic often originates from a concentrated set of autonomous system numbers (ASNs), as botnets are typically deployed across networks owned by a single ISP or hosting provider. This contrasts with legitimate traffic, which usually shows broader ASN distribution.
+              </p>
+            </div>
+
+            <div class="card-interactive p-6 bg-accent-50/50 dark:bg-accent-900/20 rounded-xl shadow-md">
+              <h4 class="text-lg font-semibold text-accent-700 dark:text-accent-300 mb-3" data-ref="https://www.cloudflare.com/en-ca/learning/ddos/ddos-attack-tools/botnet/|5">Geographic Dispersion</h4>
+              <p class="text-sm text-gray-700 dark:text-gray-300">
+                Legitimate traffic is typically geographically dispersed across multiple regions and countries, reflecting genuine user locations. Botnet traffic may show unusual geographic clustering or originate from unexpected locations, particularly if the botnet is composed of compromised devices in specific regions.
+              </p>
+            </div>
+
+            <div class="card-interactive p-6 bg-accent-50/50 dark:bg-accent-900/20 rounded-xl shadow-md">
+              <h4 class="text-lg font-semibold text-accent-700 dark:text-accent-300 mb-3" data-ref="https://www.cloudflare.com/en-ca/learning/ddos/ddos-attack-tools/botnet/|5">Login Success Ratios</h4>
+              <p class="text-sm text-gray-700 dark:text-gray-300">
+                During a DDoS attack, login success ratios may deviate significantly from baseline patterns. Bot traffic often results in lower success rates due to invalid credentials, account lockouts, or rate limiting, creating a distinctive signature that differs from legitimate user behavior.
+              </p>
+            </div>
+          </div>
+
+          <img
+            src="https://cdn.qwenlm.ai/60498d16-d2ab-4b9f-8acd-8f6913b3400d/201b3126-5c18-4a80-af7b-87e11502f12f/6a24afd3-640a-4f4b-a2e9-24a016e52338.png?key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXNvdXJjZV91c2VyX2lkIjoiNjA0OThkMTYtZDJhYi00YjlmLThhY2QtOGY2OTEzYjM0MDBkIiwicmVzb3VyY2VfaWQiOiIyMDFiMzEyNi01YzE4LTRhODAtYWY3Yi04N2UxMTUwMmYxMmYiLCJyZXNvdXJjZV9jaGF0X2lkIjpudWxsfQ.5ixE3hlOi6zE2YKyHgTUK7s8Ow_5Usw64FzThUVhWUE"
+            alt="A split-screen comparison diagram on a white background with two vertical panels separated by a dashed vertical line. Left panel titled 'Legitimate Traffic' shows a scatter plot with circular data points distributed across a geographic world map projection, using primary blue color (#1a73b3) for dots. The map displays latitude and longitude gridlines in light gray (#d1d5db). User agent strings are represented by small rectangular labels with varying text styles and fonts in dark gray (#374151), scattered randomly below the map. ASN numbers are shown as numeric labels in various sizes and positions, also in dark gray. Right panel titled 'Botnet Traffic' shows a cluster of circular data points concentrated in a specific region of the world map, using accent purple color (#6366f1) for dots. Below the map, identical rectangular user agent labels are stacked in neat rows with uniform spacing and identical text styling in dark gray. ASN numbers are grouped together in a tight cluster with minimal variation in size and position. Both panels have a subtle gradient overlay transitioning from white (#ffffff) at the top to light gray (#f3f4f6) at the bottom. The dashed dividing line is medium gray (#9ca3af) with a stroke width of 2 pixels. Text labels are in bold sans-serif font (Arial/Helvetica) with size 12 pixels for titles and 10 pixels for descriptive annotations."
+            class="w-full rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300"
+          />
+        </div>
+
+        <div class="space-y-6">
+          <h3 class="text-2xl font-semibold text-primary-700 dark:text-primary-300">
+            Internal Forensic Artifacts
+          </h3>
+
+          <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.cloudflare.com/en-ca/learning/ddos/ddos-attack-tools/botnet/|5">
+            To conclusively verify or reject the hybrid attack hypothesis, Anthropic would require access to internal forensic artifacts including raw authentication logs, WAF telemetry, database traces, and network flow data. These artifacts would enable analysis of request patterns, session behavior, and infrastructure-level metrics to distinguish between organic load spikes and coordinated bot activity.
+          </p>
+
+          <div class="pl-4 pr-3 py-3 border-l-4 border-amber-500 bg-amber-50/40 dark:bg-amber-900/30 rounded-r-lg">
+            <p class="text-sm font-medium text-amber-900 dark:text-amber-100 leading-relaxed" data-ref="https://www.cloudflare.com/en-ca/learning/ddos/ddos-attack-tools/botnet/|5">
+              <i data-lucide="alert-triangle" class="inline-block w-4 h-4 mr-1.5 -mt-0.5"></i>
+              Key forensic artifacts: Raw auth logs, WAF telemetry, database traces, network flow data, and application performance monitoring metrics.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ternary Moral Logic Framework Section -->
+    <section id="framework" class="py-20 bg-accent-50/50 dark:bg-gray-800" data-aos="fade-up">
+      <div class="max-w-6xl mx-auto px-6">
+        <h2 class="text-4xl font-bold mb-8 text-accent-700 dark:text-accent-300 text-center">
+          Ternary Moral Logic Governance Framework
+        </h2>
+        <p class="text-center text-gray-700 dark:text-gray-300 mb-12 text-lg max-w-4xl mx-auto">
+          Evaluation of a partially integrated Ternary Moral Logic framework, specifically Sacred Zero triggers and Immutable Merkle Logging, to mitigate ambiguity and enhance forensic transparency.
+        </p>
+
+        <div class="grid md:grid-cols-2 gap-8 mb-12">
+          <div class="card-interactive p-6 bg-white/90 backdrop-blur-sm dark:bg-gray-900 rounded-xl shadow-md">
+            <div class="flex items-center space-x-4 mb-4">
+              <div class="flex-shrink-0 w-12 h-12 bg-accent-100 dark:bg-accent-900/30 rounded-lg flex items-center justify-center">
+                <i data-lucide="zap-off" class="w-6 h-6 text-accent-600 dark:text-accent-400"></i>
+              </div>
+              <h3 class="text-lg font-semibold text-accent-700 dark:text-accent-300" data-ref="https://www.sciencedirect.com/science/article/pii/S0167404825001565|15">Sacred Zero Triggers</h3>
+            </div>
+            <p class="text-sm text-gray-700 dark:text-gray-300">
+              Sacred Zero triggers represent a critical component of the Ternary Moral Logic framework, designed to isolate anomalies through automated decision-making protocols. These triggers operate on a ternary logic system that extends beyond traditional binary true/false states to include a 'neutral' or 'ambiguous' state, enabling more nuanced threat assessment.
+            </p>
+          </div>
+
+          <div class="card-interactive p-6 bg-white/90 backdrop-blur-sm dark:bg-gray-900 rounded-xl shadow-md">
+            <div class="flex items-center space-x-4 mb-4">
+              <div class="flex-shrink-0 w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center">
+                <i data-lucide="lock" class="w-6 h-6 text-primary-600 dark:text-primary-400"></i>
+              </div>
+              <h3 class="text-lg font-semibold text-primary-700 dark:text-primary-300" data-ref="https://www.sciencedirect.com/science/article/pii/S0167404825001565|15">Immutable Merkle Logging</h3>
+            </div>
+            <p class="text-sm text-gray-700 dark:text-gray-300">
+              Immutable Merkle Logging provides cryptographically verifiable status reporting through hash chains that ensure data integrity and prevent tampering. This approach enables stakeholders to independently verify the authenticity of system logs, audit trails, and incident reports without relying solely on vendor-provided information.
+            </p>
+          </div>
+        </div>
+
+        <div class="space-y-6">
+          <h3 class="text-2xl font-semibold text-accent-700 dark:text-accent-300">
+            Commit-Bound Gateway Architecture
+          </h3>
+
+          <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.sciencedirect.com/science/article/pii/S0167404825001565|15">
+            The proposed Commit-Bound Gateway architecture integrates Sacred Zero triggers with Immutable Merkle Logging to create a governance layer that prioritizes anomaly isolation and forensic transparency. This framework operates on the principle that critical infrastructure decisions should be bound to verifiable commitments rather than opaque algorithmic outputs.
+          </p>
+
+          <div class="pl-4 pr-3 py-3 border-l-4 border-accent-500 bg-accent-50/40 dark:bg-accent-900/30 rounded-r-lg">
+            <p class="text-sm font-medium text-accent-900 dark:text-accent-100 leading-relaxed" data-ref="https://www.sciencedirect.com/science/article/pii/S0167404825001565|15">
+              <i data-lucide="info" class="inline-block w-4 h-4 mr-1.5 -mt-0.5"></i>
+              Sacred Zero triggers enable automated anomaly isolation by establishing predetermined thresholds and decision boundaries that operate independently of real-time traffic analysis.
+            </p>
+          </div>
+
+          <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.sciencedirect.com/science/article/pii/S0167404825001565|15">
+            The framework emphasizes evidence-based decision-making through the integration of external observability data, internal telemetry, and cryptographic verification mechanisms. This approach aims to reduce ambiguity in incident response scenarios and provide stakeholders with transparent, auditable records of system behavior.
+          </p>
+
+          <div class="grid md:grid-cols-3 gap-4 mt-8">
+            <div class="card-interactive p-4 bg-white/90 backdrop-blur-sm dark:bg-gray-800 rounded-lg shadow-md">
+              <h4 class="font-semibold text-sm text-primary-700 dark:text-primary-300 mb-2">Evidence Integrity</h4>
+              <p class="text-xs text-gray-600 dark:text-gray-400">Cryptographic hashing ensures log authenticity and prevents tampering</p>
+            </div>
+
+            <div class="card-interactive p-4 bg-white/90 backdrop-blur-sm dark:bg-gray-800 rounded-lg shadow-md">
+              <h4 class="font-semibold text-sm text-accent-700 dark:text-accent-300 mb-2">Automated Response</h4>
+              <p class="text-xs text-gray-600 dark:text-gray-400">Predefined triggers initiate mitigation without manual intervention</p>
+            </div>
+
+            <div class="card-interactive p-4 bg-white/90 backdrop-blur-sm dark:bg-gray-800 rounded-lg shadow-md">
+              <h4 class="font-semibold text-sm text-primary-700 dark:text-primary-300 mb-2">Transparency</h4>
+              <p class="text-xs text-gray-600 dark:text-gray-400">Public verifiability of system decisions and incident timelines</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Recommendations Section -->
+    <section id="recommendations" class="py-20 bg-white/80 dark:bg-gray-900" data-aos="fade-up">
+      <div class="max-w-6xl mx-auto px-6">
+        <h2 class="text-4xl font-bold mb-8 text-primary-700 dark:text-primary-300 text-center">
+          Architectural and Transparency Recommendations
+        </h2>
+        <p class="text-center text-gray-700 dark:text-gray-300 mb-12 text-lg max-w-4xl mx-auto">
+          Actionable recommendations for enhancing authentication resilience, improving forensic capabilities, and implementing governance frameworks to prevent future outages.
+        </p>
+
+        <div class="hs-accordion-group space-y-4">
+          <!-- Accordion Item 1: Infrastructure Resilience -->
+          <div class="hs-accordion card-interactive bg-white/80 backdrop-blur-sm dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+            <button class="hs-accordion-toggle w-full flex justify-between items-center p-4 text-left hover:bg-primary-50 dark:hover:bg-gray-700/50 transition-colors rounded-xl" id="hs-rec-1">
+              <div class="flex items-center space-x-4">
+                <div class="flex-shrink-0 w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center">
+                  <i data-lucide="server" class="w-6 h-6 text-primary-600 dark:text-primary-400"></i>
+                </div>
+                <span class="font-semibold text-lg text-primary-700 dark:text-primary-300">Infrastructure Resilience</span>
+              </div>
+              <i data-lucide="chevron-down" class="hs-accordion-active:rotate-180 transition-transform duration-300 w-5 h-5 text-primary-600 dark:text-primary-400"></i>
+            </button>
+            <div id="hs-collapse-rec-1" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" aria-labelledby="hs-rec-1">
+              <div class="p-6 pt-0 space-y-4">
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.cloudflare.com/en-ca/learning/ddos/ddos-attack-tools/botnet/|5">
+                  Implement robust rate limiting and traffic filtering mechanisms to handle sudden increases in load. This includes setting appropriate thresholds for authentication requests, implementing CAPTCHA challenges for suspicious traffic, and using machine learning algorithms to detect anomalous behavior.
+                </p>
+
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.cloudflare.com/en-ca/learning/ddos/ddos-attack-tools/botnet/|5">
+                  Deploy distributed denial-of-service (DDoS) protection services to absorb and mitigate large-scale attacks. These services can help identify and block malicious traffic while allowing legitimate requests to reach the server.
+                </p>
+
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.cloudflare.com/en-ca/learning/ddos/ddos-attack-tools/botnet/|5">
+                  Regularly update and patch server software to address known vulnerabilities that could be exploited by attackers. This includes keeping operating systems, web servers, and application frameworks up to date with the latest security patches.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Accordion Item 2: Authentication Security -->
+          <div class="hs-accordion card-interactive bg-white/80 backdrop-blur-sm dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+            <button class="hs-accordion-toggle w-full flex justify-between items-center p-4 text-left hover:bg-primary-50 dark:hover:bg-gray-700/50 transition-colors rounded-xl" id="hs-rec-2">
+              <div class="flex items-center space-x-4">
+                <div class="flex-shrink-0 w-12 h-12 bg-accent-100 dark:bg-accent-900/30 rounded-lg flex items-center justify-center">
+                  <i data-lucide="key" class="w-6 h-6 text-accent-600 dark:text-accent-400"></i>
+                </div>
+                <span class="font-semibold text-lg text-accent-700 dark:text-accent-300">Authentication Security</span>
+              </div>
+              <i data-lucide="chevron-down" class="hs-accordion-active:rotate-180 transition-transform duration-300 w-5 h-5 text-accent-600 dark:text-accent-400"></i>
+            </button>
+            <div id="hs-collapse-rec-2" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" aria-labelledby="hs-rec-2">
+              <div class="p-6 pt-0 space-y-4">
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.cloudflare.com/en-ca/learning/ddos/ddos-attack-tools/botnet/|5">
+                  Implement multi-factor authentication (MFA) to add an extra layer of security beyond passwords. This can help prevent unauthorized access even if usernames and passwords are compromised.
+                </p>
+
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.cloudflare.com/en-ca/learning/ddos/ddos-attack-tools/botnet/|5">
+                  Enforce strong password policies that require complex passwords and regular password changes. Consider using password managers to generate and store unique, complex passwords for each account.
+                </p>
+
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.cloudflare.com/en-ca/learning/ddos/ddos-attack-tools/botnet/|5">
+                  Monitor authentication logs for signs of brute force attacks or credential stuffing. Implement account lockout mechanisms to temporarily disable accounts after a certain number of failed login attempts.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Accordion Item 3: Monitoring and Detection -->
+          <div class="hs-accordion card-interactive bg-white/80 backdrop-blur-sm dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+            <button class="hs-accordion-toggle w-full flex justify-between items-center p-4 text-left hover:bg-primary-50 dark:hover:bg-gray-700/50 transition-colors rounded-xl" id="hs-rec-3">
+              <div class="flex items-center space-x-4">
+                <div class="flex-shrink-0 w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center">
+                  <i data-lucide="eye" class="w-6 h-6 text-primary-600 dark:text-primary-400"></i>
+                </div>
+                <span class="font-semibold text-lg text-primary-700 dark:text-primary-300">Monitoring and Detection</span>
+              </div>
+              <i data-lucide="chevron-down" class="hs-accordion-active:rotate-180 transition-transform duration-300 w-5 h-5 text-primary-600 dark:text-primary-400"></i>
+            </button>
+            <div id="hs-collapse-rec-3" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" aria-labelledby="hs-rec-3">
+              <div class="p-6 pt-0 space-y-4">
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.cloudflare.com/en-ca/learning/ddos/ddos-attack-tools/botnet/|5">
+                  Deploy comprehensive monitoring and logging solutions to track server performance, network traffic, and authentication activity. This data can help identify patterns indicative of a botnet attack and enable rapid response.
+                </p>
+
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.cloudflare.com/en-ca/learning/ddos/ddos-attack-tools/botnet/|5">
+                  Use intrusion detection systems (IDS) and intrusion prevention systems (IPS) to automatically detect and respond to suspicious network activity. These systems can help identify and block malicious traffic before it reaches the server.
+                </p>
+
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.cloudflare.com/en-ca/learning/ddos/ddos-attack-tools/botnet/|5">
+                  Implement real-time alerting mechanisms to notify administrators of potential security incidents. This can include email alerts, SMS notifications, or integration with incident management platforms.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Accordion Item 4: Ternary Moral Logic Integration -->
+          <div class="hs-accordion card-interactive bg-white/80 backdrop-blur-sm dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+            <button class="hs-accordion-toggle w-full flex justify-between items-center p-4 text-left hover:bg-primary-50 dark:hover:bg-gray-700/50 transition-colors rounded-xl" id="hs-rec-4">
+              <div class="flex items-center space-x-4">
+                <div class="flex-shrink-0 w-12 h-12 bg-accent-100 dark:bg-accent-900/30 rounded-lg flex items-center justify-center">
+                  <i data-lucide="layers" class="w-6 h-6 text-accent-600 dark:text-accent-400"></i>
+                </div>
+                <span class="font-semibold text-lg text-accent-700 dark:text-accent-300">Ternary Moral Logic Implementation</span>
+              </div>
+              <i data-lucide="chevron-down" class="hs-accordion-active:rotate-180 transition-transform duration-300 w-5 h-5 text-accent-600 dark:text-accent-400"></i>
+            </button>
+            <div id="hs-collapse-rec-4" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" aria-labelledby="hs-rec-4">
+              <div class="p-6 pt-0 space-y-4">
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.sciencedirect.com/science/article/pii/S0167404825001565|15">
+                  Integrate Sacred Zero triggers into existing anomaly detection systems to establish automated decision boundaries that operate independently of real-time traffic analysis. These triggers should be configured to initiate predefined response protocols when specific threshold conditions are met.
+                </p>
+
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.sciencedirect.com/science/article/pii/S0167404825001565|15">
+                  Deploy Immutable Merkle Logging to create cryptographically verifiable audit trails for all authentication events, system decisions, and incident responses. This approach ensures that stakeholders can independently verify the authenticity of system logs without relying solely on vendor-provided information.
+                </p>
+
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.sciencedirect.com/science/article/pii/S0167404825001565|15">
+                  Establish a Commit-Bound Gateway architecture that binds critical infrastructure decisions to verifiable commitments rather than opaque algorithmic outputs. This framework should prioritize evidence-based decision-making through the integration of external observability data, internal telemetry, and cryptographic verification mechanisms.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Conclusion Section -->
+    <section id="conclusion" class="py-20 bg-primary-50/50 dark:bg-gray-800" data-aos="fade-up">
+      <div class="max-w-5xl mx-auto px-6">
+        <h2 class="text-4xl font-bold mb-8 text-primary-700 dark:text-primary-300 text-center">
+          Conclusion
+        </h2>
+
+        <div class="space-y-6">
+          <p class="text-gray-700 dark:text-gray-300 text-lg leading-relaxed">
+            This comprehensive analysis of Anthropic's authentication outage demonstrates the complexity of distinguishing between organic load spikes and coordinated bot activity during politically sensitive periods. The integration of external observability data from Cloudflare Radar, DownDetector reports, and network telemetry reveals behavioral patterns consistent with both legitimate user surges and hybrid DDoS attacks.
+          </p>
+
+          <div class="pl-4 pr-3 py-3 border-l-4 border-primary-500 bg-primary-50/40 dark:bg-primary-900/30 rounded-r-lg">
+            <p class="text-sm font-medium text-primary-900 dark:text-primary-100 leading-relaxed">
+              <i data-lucide="circle-check" class="inline-block w-4 h-4 mr-1.5 -mt-0.5"></i>
+              Key Finding: The authentication failure occurred amid a significant influx of users following political controversy, with nearly 1,700 complaints logged on Monday morning according to Downdetector.
+            </p>
+          </div>
+
+          <p class="text-gray-700 dark:text-gray-300 text-lg leading-relaxed">
+            The behavioral signature analysis of user agent entropy, ASN distribution, geographic dispersion, and login success ratios provides a framework for identifying hybrid attacks concealed within organic traffic. However, conclusive determination requires access to internal forensic artifacts including raw authentication logs, WAF telemetry, database traces, and network flow data.
+          </p>
+
+          <p class="text-gray-700 dark:text-gray-300 text-lg leading-relaxed">
+            The proposed Ternary Moral Logic framework, incorporating Sacred Zero triggers and Immutable Merkle Logging, offers a governance approach that prioritizes anomaly isolation and forensic transparency. This Commit-Bound Gateway architecture provides evidence-based decision-making through the integration of external observability data, internal telemetry, and cryptographic verification mechanisms.
+          </p>
+
+          <div class="grid md:grid-cols-2 gap-6 mt-8">
+            <div class="card-interactive p-6 bg-white/90 backdrop-blur-sm dark:bg-gray-900 rounded-xl shadow-md">
+              <h3 class="text-lg font-semibold text-primary-700 dark:text-primary-300 mb-3">Immediate Actions</h3>
+              <ul class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+                <li class="flex items-start">
+                  <i data-lucide="check" class="w-4 h-4 mr-2 mt-0.5 text-primary-600 dark:text-primary-400"></i>
+                  <span>Implement robust rate limiting and traffic filtering</span>
+                </li>
+                <li class="flex items-start">
+                  <i data-lucide="check" class="w-4 h-4 mr-2 mt-0.5 text-primary-600 dark:text-primary-400"></i>
+                  <span>Deploy multi-factor authentication and strong password policies</span>
+                </li>
+                <li class="flex items-start">
+                  <i data-lucide="check" class="w-4 h-4 mr-2 mt-0.5 text-primary-600 dark:text-primary-400"></i>
+                  <span>Enhance monitoring and logging for anomaly detection</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="card-interactive p-6 bg-white/90 backdrop-blur-sm dark:bg-gray-900 rounded-xl shadow-md">
+              <h3 class="text-lg font-semibold text-accent-700 dark:text-accent-300 mb-3">Long-term Framework</h3>
+              <ul class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+                <li class="flex items-start">
+                  <i data-lucide="check" class="w-4 h-4 mr-2 mt-0.5 text-accent-600 dark:text-accent-400"></i>
+                  <span>Integrate Sacred Zero triggers for automated anomaly isolation</span>
+                </li>
+                <li class="flex items-start">
+                  <i data-lucide="check" class="w-4 h-4 mr-2 mt-0.5 text-accent-600 dark:text-accent-400"></i>
+                  <span>Deploy Immutable Merkle Logging for verifiable audit trails</span>
+                </li>
+                <li class="flex items-start">
+                  <i data-lucide="check" class="w-4 h-4 mr-2 mt-0.5 text-accent-600 dark:text-accent-400"></i>
+                  <span>Establish Commit-Bound Gateway for transparent decision-making</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <p class="text-gray-700 dark:text-gray-300 text-lg leading-relaxed">
+            This research adheres strictly to evidentiary integrity, avoids speculation, assigns confidence levels to findings, and provides actionable recommendations without political rhetoric. The findings contribute to a deeper understanding of authentication resilience in AI platforms and offer a governance framework for enhanced forensic transparency in future incidents.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-primary-900 dark:bg-gray-950 text-gray-300 py-12">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid md:grid-cols-3 gap-8">
+        <div>
+          <h3 class="text-lg font-semibold text-primary-300 dark:text-primary-400 mb-4">About This Research</h3>
+          <p class="text-sm text-gray-400">
+            Comprehensive technical and governance analysis of Anthropic's authentication outage, combining external observability data with Ternary Moral Logic frameworks.
+          </p>
+        </div>
+        
+        <div>
+          <h3 class="text-lg font-semibold text-primary-300 dark:text-primary-400 mb-4">Key Topics</h3>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li class="flex items-center">
+              <i data-lucide="chevron-right" class="w-4 h-4 mr-2"></i>
+              <span>Technical Forensics</span>
+            </li>
+            <li class="flex items-center">
+              <i data-lucide="chevron-right" class="w-4 h-4 mr-2"></i>
+              <span>Hybrid DDoS Attacks</span>
+            </li>
+            <li class="flex items-center">
+              <i data-lucide="chevron-right" class="w-4 h-4 mr-2"></i>
+              <span>Ternary Moral Logic</span>
+            </li>
+            <li class="flex items-center">
+              <i data-lucide="chevron-right" class="w-4 h-4 mr-2"></i>
+              <span>Governance Framework</span>
+            </li>
+          </ul>
+        </div>
+        
+        <div>
+          <h3 class="text-lg font-semibold text-primary-300 dark:text-primary-400 mb-4">Methodology</h3>
+          <p class="text-sm text-gray-400">
+            Evidence-based analysis using external observability data, behavioral pattern analysis, and cryptographic verification mechanisms.
+          </p>
+        </div>
+      </div>
+      
+      <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+        <p class="text-sm text-gray-500">
+          &copy; 2025 Anthropic Outage Analysis. Educational research purpose only.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Progress Bar Script -->
+  <script>
+    window.addEventListener('scroll', () => {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('progressBar').style.width = scrolled + '%';
+    });
+  </script>
+
+  <!-- Initialize Libraries -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize AOS
+      AOS.init({
+        duration: 800,
+        once: true,
+        offset: 100
+      });
+
+      // Initialize Lucide icons
+      lucide.createIcons();
+
+      // Initialize Preline components
+      setTimeout(() => {
+        window.HSStaticMethods.autoInit();
+      }, 100);
+
+      // Initialize citation system
+      initCitationSystem();
+    });
+  </script>
+</body>
+</html>
+
