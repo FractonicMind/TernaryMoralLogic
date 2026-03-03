@@ -2,7 +2,7 @@
 
 ## I. Executive Summary: Survivability Thesis
 
-## **[Interactive Web Report](Adversarial_Survivability/Constitutional Survivability Under Adversarial Pressure.html)**
+## **[Interactive Web Report]([Adversarial_Survivability/Constitutional Survivability Under Adversarial Pressure.html](https://fractonicmind.github.io/TernaryMoralLogic/Adversarial_Survivability/Constitutional%20Survivability%20Under%20Adversarial%20Pressure.html))**
 
 ### I.1 Core Proposition
 
