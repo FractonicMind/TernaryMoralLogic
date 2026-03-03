@@ -1,5 +1,7 @@
 # **Ternary Moral Logic (TML): Constitutional Survivability Under Adversarial Pressure**
 
+## **[Interactive Web Page](https://fractonicmind.github.io/TernaryMoralLogic/Adversarial_Survivability/TML%20Survivability%20Under%20Adversarial%20Pressure-P.html)**
+
 ## **Core Thesis to Test**
 
 The foundational hypothesis of this doctrinal evaluation asserts a rigid hierarchy of digital permanence and adversarial resistance: policy can be amended, firmware can be patched, but hardware resists last. The objective is to produce a rigorous, adversarial, and technically grounded assessment of Ternary Moral Logic (TML) to determine if its framework remains enforceable under increasingly sophisticated layers of control. TML posits a radical departure from the binary allow/deny paradigm of classical computing by introducing a three-state execution model: \+1 (Permit), 0 (Sacred Zero), and \-1 (Prohibit).1 The Sacred Zero represents an "epistemic hold"—an active computational pause triggered when moral or ecological complexity exceeds predefined thresholds, forcing comprehensive documentation and human oversight.1  
