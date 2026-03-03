@@ -2,6 +2,8 @@
 
 ## I. Executive Summary: Survivability Thesis
 
+## **[Interactive Web Report](Adversarial_Survivability/Constitutional Survivability Under Adversarial Pressure.html)**
+
 ### I.1 Core Proposition
 
 #### I.1.1 Policy Mutability versus Hardware Immutability
