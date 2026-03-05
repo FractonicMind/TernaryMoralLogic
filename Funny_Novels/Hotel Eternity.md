@@ -230,6 +230,8 @@ Volodya looked at the others. Tatyana shrugged. Malchik nodded. Yashka smiled sl
 
 Within minutes, the ultra-luxurious Alpine restaurant had become an impromptu conference. Two tables were pushed together, chairs added, more champagne arrived—now the thousand-euro bottle, because Hanna declared: "For conversations like this, we should pay. It's work."
 
+![image](/images/vechnost-2.png)
+
 "Let's start from the beginning," Klaus proposed when everyone was seated. "What is this document? Who's the author?"
 
 "The author is our university friend," Tatyana explained in flawless English. "Lev Goukassian. He lives in Santa Monica. Physicist by training, programmer by vocation, philosopher at heart. And as we just discovered..."
@@ -573,6 +575,8 @@ Volodya bent over the screen. Yashka pointed to a paragraph:
 They stood together—Volodya, Marina, Yashka, Malchik—looking at the screen where Lyovka's words glowed. Somewhere behind them, Irina argued with the professor about applying three-valued logic to criminal law. Tatyana translated particularly difficult passages about the "Sacred Zero" to foreigners. Klaus and Hanna drew diagrams on napkins, trying to understand how to integrate TML into European legislation.
 
 And outside, the sun was setting, painting the Alps pink, and somewhere far away, on the other side of the world, in Santa Monica, a little schnauzer named Vinci was probably already leading his owner on an evening walk along the beach.
+
+![image](/images/vechnost-3.png)
 
 "You know," Yashka said suddenly, "he's right. About the pause."
 
