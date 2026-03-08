@@ -6,11 +6,7 @@ Thomas Miller, lean and perpetually amused, sat on the step nursing a bottle of 
 
 "You know," Oleg said, still admiring the bus, "this machine is like a woman. Needs attention, needs money, and needs to be washed. Regularly."
 
-Thomas didn't look up from his phone. "Oleg, if I talked about my wife that way, I'd be sleeping in the garage."
-
-"You don't have a wife."
-
-"Exactly why I *can* sleep in the garage if I want to. It's called philosophy, my friend."
+Thomas didn't look up from his phone. "Oleg, if I talked about my wife that way, I'd be sleeping in the garage. It's called philosophy, my friend."
 
 Oleg laughed and clapped Thomas on the shoulder hard enough to make him almost drop the phone. At that exact moment, a notification popped up. Thomas raised an eyebrow.
 
