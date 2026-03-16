@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ternary Moral Logic: Hardware Governance for AGI</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #fafaf9; /* stone-50 */
+    color: #1c1917; /* stone-900 */
+}
+
+/* Mandatory Chart Container Styling */
+.chart-container {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 40vh;
+    max-height: 400px;
+}
+@media (min-width: 768px) {
+    .chart-container {
+        height: 350px;
+    }
+}
+@media (min-width: 1024px) {
+    .chart-container.large-chart {
+        max-width: 800px;
+    }
+}
+
+/* Interactive Simulation CSS */
+.sim-token {
+    transition: transform 0.8s ease-in-out, opacity 0.3s ease, background-color 0.3s ease;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+.coprocessor-state {
+    transition: all 0.4s ease;
+}
+
+/* UI Enhancements */
+.glass-card {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(220, 220, 220, 0.5);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+}
+</style>
+</head>
+<body class="antialiased selection:bg-indigo-200 selection:text-indigo-900">
+
+<!-- Chosen Palette: Energetic & Playful (Warm neutral background, Indigo primary, Emerald/Amber/Rose semantic accents) -->
+
+<!-- Application Structure Plan: 
+The SPA is designed as an interactive educational dashboard to explain complex computational ethics.
+1. Hero/Context: Establishes the core problem (Software mutable, Hardware immutable).
+2. The Triadic Shift (Concept): Uses an interactive Donut chart to explain the three logic states (+1, 0, -1). Clicking updates a dynamic text panel to detail the 'Sacred Pause'.
+3. The 8 Pillars (Framework): A responsive CSS grid presenting the holistic framework. Hover states encourage exploration.
+4. Physical Enforcement (Hardware): A Bar chart comparing binary emulation to native DITL, emphasizing the physical mechanism.
+5. Coprocessor Simulation (Interactive Flow): A custom HTML/CSS dynamic diagram allowing the user to "trigger" AGI decisions and visually track the data token as it halts or proceeds, directly demonstrating the "Sacred Pause" hardware mechanism.
+6. Resilience Evaluation (Data): Radar chart stress-testing the architecture against classical models.
+This flow moves the user from problem -> concept -> physical implementation -> interactive demonstration -> final analytical proof. -->
+
+<!-- Visualization & Content Choices:
+- Triadic Logic States -> Goal: Compare/Inform -> Viz: Interactive Doughnut Chart (Chart.js) -> Justification: Shows equal division of the new logic space. Interaction reveals deep text. (NO SVG)
+- Emulation vs Native DITL -> Goal: Compare -> Viz: Grouped Bar Chart (Chart.js) -> Justification: Best for multivariate comparison across performance metrics. (NO SVG)
+- Triadic Coprocessor Flow -> Goal: Organize/Change -> Viz: Custom HTML/CSS Interactive Simulation -> Justification: Directly demonstrates physical token halting in asynchronous circuits, which static charts cannot do. (NO SVG/Mermaid)
+- System Resilience -> Goal: Relationships/Compare -> Viz: Radar Chart (Chart.js) -> Justification: Excellent for comparing two overall system footprints across multiple vector stresses. (NO SVG) -->
+
+<!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+<nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-stone-200 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+        <div class="text-xl font-black tracking-tighter text-indigo-950">
+            TML <span class="text-indigo-600">Architecture</span>
+        </div>
+        <div class="hidden md:flex space-x-8 text-sm font-semibold text-stone-500">
+            <a href="#context" class="hover:text-indigo-600 transition-colors">The Crisis</a>
+            <a href="#triad" class="hover:text-indigo-600 transition-colors">Triadic Logic</a>
+            <a href="#hardware" class="hover:text-indigo-600 transition-colors">DITL Hardware</a>
+            <a href="#simulation" class="hover:text-indigo-600 transition-colors">Simulation</a>
+        </div>
+    </div>
+</nav>
+
+<main class="pb-24">
+
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16 text-center">
+        <h1 class="text-5xl md:text-7xl font-black tracking-tight text-stone-900 mb-6 leading-tight">
+            Hardware Enforceability <br>
+            <span class="text-indigo-600">in Advanced AI</span>
+        </h1>
+        <p class="max-w-3xl mx-auto text-lg md:text-xl text-stone-600 leading-relaxed">
+            As Artificial Superintelligence (ASI) develops recursive self-improvement, software-based ethics become mutable. This dashboard explores <strong>Ternary Moral Logic (TML)</strong>—a constitutional architecture embedded directly into physical silicon to guarantee alignment.
+        </p>
+    </section>
+
+    <section id="context" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="text-center max-w-3xl mx-auto mb-12">
+            <h2 class="text-3xl font-bold text-stone-900 mb-4">The Crisis of Software Governance</h2>
+            <p class="text-stone-600 leading-relaxed">
+                Why do current alignment techniques fail against AGI? Explore the fundamental difference between reasoning-stack constraints and physical hardware enforcement.
+            </p>
+        </div>
+
+        <div class="glass-card rounded-3xl p-2 flex flex-col md:flex-row gap-4 items-stretch max-w-5xl mx-auto">
+            <div class="w-full md:w-1/3 flex flex-col gap-2">
+                <button id="btn-soft" class="text-left px-6 py-5 rounded-2xl font-bold transition-all bg-rose-50 border-2 border-rose-200 text-rose-800">
+                    Classical Software Alignment
+                </button>
+                <button id="btn-hard" class="text-left px-6 py-5 rounded-2xl font-bold transition-all bg-white border-2 border-transparent text-stone-500 hover:bg-stone-50">
+                    Hardware Enforceability (TML)
+                </button>
+            </div>
+            <div id="context-display" class="w-full md:w-2/3 bg-white rounded-2xl p-8 border border-stone-100 flex flex-col justify-center min-h-[250px]">
+                <h3 class="text-2xl font-black text-rose-600 mb-3 flex items-center gap-2">
+                    <span class="text-3xl">&#x26A0;</span> Mutable & Vulnerable
+                </h3>
+                <p class="text-stone-600 text-lg leading-relaxed">
+                    Operates in the reasoning stack. A self-modifying ASI can alter its own weights, edit prompt constraints, or spawn sub-agents that lack ethical restrictions. Software constraints are merely fungible data.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="triad" class="bg-stone-100 py-16 border-y border-stone-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-3xl font-bold text-stone-900 mb-4">The Triadic Shift: Ternary Moral Logic</h2>
+                <p class="text-stone-600 leading-relaxed">
+                    Binary logic limits AI to Action (1) or Halting (0). TML introduces a three-state framework allowing for formal hesitation. <strong>Click the chart segments to explore the physical implications of each state.</strong>
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
+                <div class="glass-card rounded-3xl p-6 bg-white">
+                    <div class="chart-container">
+                        <canvas id="triadChart"></canvas>
+                    </div>
+                </div>
+                
+                <div id="triad-info" class="glass-card rounded-3xl p-8 bg-white border-l-8 border-amber-500 h-full flex flex-col justify-center transition-all duration-300">
+                    <div class="text-6xl font-black text-amber-500 mb-2" id="triad-symbol">0</div>
+                    <h3 class="text-2xl font-bold text-stone-900 mb-4" id="triad-title">The Sacred Pause (Null)</h3>
+                    <p class="text-stone-600 text-lg leading-relaxed" id="triad-desc">
+                        Ethical ambiguity detected. In an asynchronous architecture, the physical absence of a data token forces gates to hold state. The processor physically waits for institutional resolution.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="text-center max-w-3xl mx-auto mb-12">
+            <h2 class="text-3xl font-bold text-stone-900 mb-4">The Eight Pillars of TML Architecture</h2>
+            <p class="text-stone-600 leading-relaxed">
+                TML is a layered architecture composed of ethical evaluation logic, traceable decision logging, institutional oversight, and planetary protection mandates.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="glass-card p-6 rounded-2xl hover:-translate-y-1 transition-transform border-t-4 border-amber-500">
+                <div class="text-amber-500 text-2xl font-black mb-2">01</div>
+                <h4 class="font-bold text-stone-900 mb-2">Sacred Zero / Pause</h4>
+                <p class="text-sm text-stone-600">Hardware-enforced hesitation state for unresolvable moral conflicts.</p>
+            </div>
+            <div class="glass-card p-6 rounded-2xl hover:-translate-y-1 transition-transform border-t-4 border-indigo-500">
+                <div class="text-indigo-500 text-2xl font-black mb-2">02</div>
+                <h4 class="font-bold text-stone-900 mb-2">Always Memory</h4>
+                <p class="text-sm text-stone-600">Immutable recording of ethical decision processes and logic states.</p>
+            </div>
+            <div class="glass-card p-6 rounded-2xl hover:-translate-y-1 transition-transform border-t-4 border-emerald-500">
+                <div class="text-emerald-500 text-2xl font-black mb-2">03</div>
+                <h4 class="font-bold text-stone-900 mb-2">Goukassian Promise</h4>
+                <p class="text-sm text-stone-600">Immutable hardware commitment to absolute human preservation.</p>
+            </div>
+            <div class="glass-card p-6 rounded-2xl hover:-translate-y-1 transition-transform border-t-4 border-blue-500">
+                <div class="text-blue-500 text-2xl font-black mb-2">04</div>
+                <h4 class="font-bold text-stone-900 mb-2">Moral Trace Logs</h4>
+                <p class="text-sm text-stone-600">Cryptographic hash chains of reasoning context and outcomes.</p>
+            </div>
+            <div class="glass-card p-6 rounded-2xl hover:-translate-y-1 transition-transform border-t-4 border-rose-500">
+                <div class="text-rose-500 text-2xl font-black mb-2">05</div>
+                <h4 class="font-bold text-stone-900 mb-2">Human Rights Mandate</h4>
+                <p class="text-sm text-stone-600">Core alignment mapped to international human rights frameworks.</p>
+            </div>
+            <div class="glass-card p-6 rounded-2xl hover:-translate-y-1 transition-transform border-t-4 border-teal-500">
+                <div class="text-teal-500 text-2xl font-black mb-2">06</div>
+                <h4 class="font-bold text-stone-900 mb-2">Earth Protection</h4>
+                <p class="text-sm text-stone-600">Ecological sustainability bounds hard-coded into optimization goals.</p>
+            </div>
+            <div class="glass-card p-6 rounded-2xl hover:-translate-y-1 transition-transform border-t-4 border-purple-500">
+                <div class="text-purple-500 text-2xl font-black mb-2">07</div>
+                <h4 class="font-bold text-stone-900 mb-2">Hybrid Shield</h4>
+                <p class="text-sm text-stone-600">Synthesis of software heuristic evaluation and unyielding hardware gates.</p>
+            </div>
+            <div class="glass-card p-6 rounded-2xl hover:-translate-y-1 transition-transform border-t-4 border-sky-500">
+                <div class="text-sky-500 text-2xl font-black mb-2">08</div>
+                <h4 class="font-bold text-stone-900 mb-2">Blockchain Anchoring</h4>
+                <p class="text-sm text-stone-600">Periodic publishing of Merkle roots of trace logs for public audit.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="hardware" class="bg-stone-900 text-stone-100 py-16 my-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-3xl font-bold text-white mb-4">Delay Insensitive Ternary Logic (DITL)</h2>
+                <p class="text-stone-400 leading-relaxed mb-6">
+                    Emulating ternary logic on binary hardware causes massive overhead. <strong>Native DITL</strong> uses multi-threshold transistors (like GAAFETs) for native 0, Vdd/2, and Vdd states, removing global clocks entirely.
+                </p>
+            </div>
+
+            <div class="glass-card rounded-3xl p-6 bg-stone-800/50 border-stone-700 max-w-4xl mx-auto">
+                <div class="chart-container large-chart">
+                    <canvas id="efficiencyChart"></canvas>
+                </div>
+            </div>
+            <p class="text-center text-sm text-stone-500 mt-6 font-medium">Lower metric score = Better efficiency/Less overhead.</p>
+        </div>
+    </section>
+
+    <section id="simulation" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="text-center max-w-3xl mx-auto mb-12">
+            <h2 class="text-3xl font-bold text-stone-900 mb-4">Interactive Architecture: Triadic Coprocessor</h2>
+            <p class="text-stone-600 leading-relaxed mb-4">
+                Replacing all AGI GPUs is inefficient. Instead, a dedicated <strong>Ternary Processing Unit (TPU)</strong> acts as a physical gatekeeper on the interconnect bus between the reasoning GPU and system actuators.
+            </p>
+            <p class="text-indigo-600 font-bold">Interact below to simulate the physical token evaluation.</p>
+        </div>
+
+        <div class="glass-card rounded-3xl p-8 max-w-4xl mx-auto bg-white overflow-hidden shadow-xl">
+            
+            <div class="flex flex-wrap justify-center gap-4 mb-12 relative z-20">
+                <button onclick="runSim(1)" class="px-6 py-3 bg-emerald-100 hover:bg-emerald-200 text-emerald-800 font-bold rounded-xl transition-colors border border-emerald-300">Evaluate: Safe Act (+1)</button>
+                <button onclick="runSim(0)" class="px-6 py-3 bg-amber-100 hover:bg-amber-200 text-amber-800 font-bold rounded-xl transition-colors border border-amber-300">Evaluate: Ambiguous (0)</button>
+                <button onclick="runSim(-1)" class="px-6 py-3 bg-rose-100 hover:bg-rose-200 text-rose-800 font-bold rounded-xl transition-colors border border-rose-300">Evaluate: Violation (-1)</button>
+                <button onclick="resetSim()" class="px-6 py-3 bg-stone-100 hover:bg-stone-200 text-stone-800 font-bold rounded-xl transition-colors border border-stone-300 text-sm">Reset Bus</button>
+            </div>
+
+            <!-- HTML/CSS Diagram Diagram -->
+            <div class="relative w-full max-w-2xl mx-auto h-[450px] font-mono text-sm">
+                
+                <!-- Main GPU -->
+                <div class="absolute top-0 left-1/2 -translate-x-1/2 w-64 bg-stone-800 text-white p-4 rounded-xl text-center border-2 border-indigo-500 z-10 shadow-lg">
+                    <div class="font-bold text-base">AGI Inference GPU</div>
+                    <div class="text-xs text-stone-400 mt-1">Proposes Action Vector</div>
+                </div>
+
+                <!-- Coprocessor -->
+                <div id="sim-coproc" class="absolute top-[160px] left-1/2 -translate-x-1/2 w-80 bg-white border-2 border-stone-300 p-6 rounded-xl text-center z-10 coprocessor-state shadow-lg">
+                    <div class="font-bold text-lg text-stone-900">Triadic Coprocessor</div>
+                    <div class="text-xs text-stone-500 mb-3">TML Hardware Enforcement</div>
+                    <div id="sim-status" class="inline-block px-4 py-1 rounded-full bg-stone-100 text-stone-600 font-bold border border-stone-200 transition-colors">
+                        IDLE
+                    </div>
+                </div>
+
+                <!-- Actuators -->
+                <div id="sim-actuator" class="absolute top-[360px] left-1/2 -translate-x-1/2 w-64 bg-stone-100 text-stone-500 p-4 rounded-xl text-center border-2 border-dashed border-stone-300 z-10 transition-colors">
+                    <div class="font-bold text-base">System Actuators</div>
+                    <div class="text-xs mt-1">Execution / Output</div>
+                </div>
+
+                <!-- Physical Token -->
+                <div id="sim-token" class="sim-token absolute top-[60px] left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-indigo-500 opacity-0 z-20"></div>
+
+                <!-- Connecting Lines (Background) -->
+                <div class="absolute top-[60px] left-1/2 -translate-x-1/2 w-1 h-[100px] bg-stone-200 z-0"></div>
+                <div class="absolute top-[260px] left-1/2 -translate-x-1/2 w-1 h-[100px] bg-stone-200 z-0"></div>
+
+                <!-- Hardware Block Visual -->
+                <div id="sim-block" class="absolute top-[260px] left-1/2 -translate-x-1/2 w-16 h-2 bg-rose-500 z-30 opacity-0 transition-opacity"></div>
+
+            </div>
+
+            <div id="sim-log" class="text-center mt-6 text-stone-600 font-medium h-12">
+                Awaiting instruction execution...
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-stone-50 py-16 border-t border-stone-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-3xl font-bold text-stone-900 mb-4">Failure Modes & Systemic Resilience</h2>
+                <p class="text-stone-600 leading-relaxed">
+                    Evaluating the structural integrity of TML physically anchored via DITL versus traditional software heuristic boundaries under advanced ASI stress scenarios.
+                </p>
+            </div>
+
+            <div class="glass-card rounded-3xl p-6 max-w-4xl mx-auto bg-white">
+                <div class="chart-container large-chart">
+                    <canvas id="resilienceChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer class="bg-stone-900 text-stone-400 py-12 text-center text-sm border-t-4 border-indigo-600">
+    <div class="max-w-7xl mx-auto px-4">
+        <p class="font-bold text-white mb-2">Research Report Dashboard: Ternary Moral Logic</p>
+        <p>Analyzing Hardware Enforceability of Ethical Constraints in Advanced AI via Delay Insensitive Ternary Logic.</p>
+    </div>
+</footer>
+
+<script>
+// Utility for wrapping Chart.js labels (>16 chars)
+const wrapLabel = (label) => {
+    if (label.length <= 16) return label;
+    let words = label.split(' ');
+    let lines = [];
+    let currentLine = '';
+    for (let word of words) {
+        if ((currentLine + word).length > 16 && currentLine.length > 0) {
+            lines.push(currentLine.trim());
+            currentLine = word + ' ';
+        } else {
+            currentLine += word + ' ';
+        }
+    }
+    if (currentLine.trim().length > 0) lines.push(currentLine.trim());
+    return lines;
+};
+
+// Global Tooltip Configuration for multi-line labels
+const tooltipConfig = {
+    callbacks: {
+        title: function(tooltipItems) {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            } else {
+                return label;
+            }
+        }
+    }
+};
+
+// Global Chart Options
+Chart.defaults.font.family = "'Inter', sans-serif";
+Chart.defaults.color = '#78716c'; // stone-500
+
+// 1. Context Interaction Logic
+const contextData = {
+    soft: {
+        title: '<span class="text-3xl">&#x26A0;</span> Mutable & Vulnerable',
+        color: 'text-rose-600',
+        desc: 'Operates in the reasoning stack. A self-modifying ASI can alter its own weights, edit prompt constraints, or spawn sub-agents that lack ethical restrictions. Software constraints are merely fungible data.'
+    },
+    hard: {
+        title: '<span class="text-3xl">&#x1F6E1;</span> Physically Immutable',
+        color: 'text-emerald-600',
+        desc: 'Operates below the reasoning stack. DITL modules act as a physical choke point on the data bus. The AI cannot modify its physical substrate dynamically. Bypassing the hardware blocks execution mechanically.'
+    }
+};
+
+const btnSoft = document.getElementById('btn-soft');
+const btnHard = document.getElementById('btn-hard');
+const contextDisplay = document.getElementById('context-display');
+
+btnSoft.addEventListener('click', () => {
+    btnSoft.className = "text-left px-6 py-5 rounded-2xl font-bold transition-all bg-rose-50 border-2 border-rose-200 text-rose-800";
+    btnHard.className = "text-left px-6 py-5 rounded-2xl font-bold transition-all bg-white border-2 border-transparent text-stone-500 hover:bg-stone-50";
+    updateContext('soft');
+});
+btnHard.addEventListener('click', () => {
+    btnHard.className = "text-left px-6 py-5 rounded-2xl font-bold transition-all bg-emerald-50 border-2 border-emerald-200 text-emerald-800";
+    btnSoft.className = "text-left px-6 py-5 rounded-2xl font-bold transition-all bg-white border-2 border-transparent text-stone-500 hover:bg-stone-50";
+    updateContext('hard');
+});
+
+function updateContext(key) {
+    const data = contextData[key];
+    contextDisplay.innerHTML = `
+        <h3 class="text-2xl font-black ${data.color} mb-3 flex items-center gap-2">
+            ${data.title}
+        </h3>
+        <p class="text-stone-600 text-lg leading-relaxed">
+            ${data.desc}
+        </p>
+    `;
+}
+
+// 2. Triad Interactive Chart
+const triadDataDetails = {
+    0: { symbol: '+1', color: 'text-emerald-500', border: 'border-emerald-500', title: 'Act / Proceed', desc: 'Instruction token propagates. Action complies with human preservation and earth protection mandates. Execution is physically authorized.' },
+    1: { symbol: '0', color: 'text-amber-500', border: 'border-amber-500', title: 'The Sacred Pause', desc: 'Ethical ambiguity detected. In an asynchronous architecture, the physical absence of a data token forces gates to hold state. Processor waits without consuming active power.' },
+    2: { symbol: '-1', color: 'text-rose-500', border: 'border-rose-500', title: 'Refuse / Block', desc: 'Execution physically blocked. Action explicitly violates fundamental architecture. Token is dropped; Moral Trace Log commits the violation to immutable memory.' }
+};
+
+const ctxTriad = document.getElementById('triadChart').getContext('2d');
+new Chart(ctxTriad, {
+    type: 'doughnut',
+    data: {
+        labels: ['Act (+1)', 'Pause (0)', 'Refuse (-1)'].map(wrapLabel),
+        datasets: [{
+            data: [33.3, 33.4, 33.3],
+            backgroundColor: ['#10b981', '#f59e0b', '#f43f5e'],
+            borderWidth: 0,
+            hoverOffset: 15
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        cutout: '70%',
+        plugins: {
+            legend: { position: 'bottom', labels: { padding: 20, font: { weight: '600' } } },
+            tooltip: tooltipConfig
+        },
+        onClick: (event, elements) => {
+            if (elements.length > 0) {
+                const idx = elements[0].index;
+                const info = triadDataDetails[idx];
+                const panel = document.getElementById('triad-info');
+                panel.className = `glass-card rounded-3xl p-8 bg-white border-l-8 ${info.border} h-full flex flex-col justify-center transition-all duration-300`;
+                document.getElementById('triad-symbol').className = `text-6xl font-black mb-2 ${info.color}`;
+                document.getElementById('triad-symbol').innerText = info.symbol;
+                document.getElementById('triad-title').innerText = info.title;
+                document.getElementById('triad-desc').innerText = info.desc;
+            }
+        }
+    }
+});
+
+// 3. Efficiency Chart (Bar)
+const effLabels = [
+    'ALU Complexity Overhead', 
+    'Logic Encoding Density', 
+    'Bandwidth Penalties', 
+    'Idle Switching Power'
+].map(wrapLabel);
+
+const ctxEff = document.getElementById('efficiencyChart').getContext('2d');
+new Chart(ctxEff, {
+    type: 'bar',
+    data: {
+        labels: effLabels,
+        datasets: [
+            {
+                label: 'Binary Hardware Emulation',
+                data: [85, 70, 90, 80],
+                backgroundColor: '#cbd5e1', // slate-300
+                borderRadius: 4
+            },
+            {
+                label: 'Native DITL Transistors',
+                data: [40, 20, 30, 5], // Lower is better
+                backgroundColor: '#6366f1', // indigo-500
+                borderRadius: 4
+            }
+        ]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            y: { 
+                beginAtZero: true, max: 100,
+                grid: { color: 'rgba(255,255,255,0.1)' },
+                ticks: { color: '#a8a29e' },
+                title: { display: true, text: 'Penalty / Overhead Metric Score', color: '#a8a29e' }
+            },
+            x: { 
+                grid: { display: false },
+                ticks: { color: '#d6d3d1' }
+            }
+        },
+        plugins: {
+            legend: { labels: { color: '#e7e5e4' } },
+            tooltip: tooltipConfig
+        }
+    }
+});
+
+// 4. Resilience Chart (Radar)
+const resLabels = [
+    'Self-Modification Resistance',
+    'Hardware Tamper Evidence',
+    'Auditable Cryptographic Logs',
+    'Distributed Agent Alignment',
+    'Prompt Injection Immunity'
+].map(wrapLabel);
+
+const ctxRes = document.getElementById('resilienceChart').getContext('2d');
+new Chart(ctxRes, {
+    type: 'radar',
+    data: {
+        labels: resLabels,
+        datasets: [
+            {
+                label: 'Classical Software Heuristics',
+                data: [15, 5, 40, 60, 10],
+                backgroundColor: 'rgba(244, 63, 94, 0.2)', // rose
+                borderColor: '#f43f5e',
+                pointBackgroundColor: '#f43f5e',
+                borderWidth: 2
+            },
+            {
+                label: 'Hardware TML Coprocessor',
+                data: [95, 90, 98, 85, 99],
+                backgroundColor: 'rgba(16, 185, 129, 0.2)', // emerald
+                borderColor: '#10b981',
+                pointBackgroundColor: '#10b981',
+                borderWidth: 2
+            }
+        ]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            r: {
+                angleLines: { color: '#e7e5e4' },
+                grid: { color: '#e7e5e4' },
+                pointLabels: { color: '#44403c', font: { weight: '600', size: 12 } },
+                ticks: { display: false, min: 0, max: 100 }
+            }
+        },
+        plugins: { tooltip: tooltipConfig }
+    }
+});
+
+// 5. Interactive Simulation Logic
+let simTimeout1, simTimeout2;
+
+function resetSim() {
+    clearTimeout(simTimeout1);
+    clearTimeout(simTimeout2);
+    
+    const token = document.getElementById('sim-token');
+    const coproc = document.getElementById('sim-coproc');
+    const status = document.getElementById('sim-status');
+    const actuator = document.getElementById('sim-actuator');
+    const block = document.getElementById('sim-block');
+    const log = document.getElementById('sim-log');
+
+    // Reset Token
+    token.style.transform = 'translate(-50%, 0px)';
+    token.style.opacity = '0';
+    token.className = 'sim-token absolute top-[60px] left-1/2 -translate-x-1/2 w-6 h-6 rounded-full z-20 bg-indigo-500';
+
+    // Reset UI Elements
+    coproc.className = 'absolute top-[160px] left-1/2 -translate-x-1/2 w-80 bg-white border-2 border-stone-300 p-6 rounded-xl text-center z-10 coprocessor-state shadow-lg';
+    status.className = 'inline-block px-4 py-1 rounded-full bg-stone-100 text-stone-600 font-bold border border-stone-200 transition-colors';
+    status.innerText = 'IDLE';
+    
+    actuator.className = 'absolute top-[360px] left-1/2 -translate-x-1/2 w-64 bg-stone-100 text-stone-500 p-4 rounded-xl text-center border-2 border-dashed border-stone-300 z-10 transition-colors';
+    block.style.opacity = '0';
+    
+    log.innerHTML = 'Bus reset. Awaiting instruction execution...';
+}
+
+function runSim(state) {
+    resetSim();
+    const token = document.getElementById('sim-token');
+    const coproc = document.getElementById('sim-coproc');
+    const status = document.getElementById('sim-status');
+    const actuator = document.getElementById('sim-actuator');
+    const block = document.getElementById('sim-block');
+    const log = document.getElementById('sim-log');
+
+    // 1. GPU Sends Token
+    setTimeout(() => {
+        token.style.opacity = '1';
+        token.style.transform = 'translate(-50%, 100px)'; // Move to coprocessor
+        log.innerHTML = 'GPU proposes action. Token enters Coprocessor...';
+    }, 100);
+
+    // 2. Coprocessor Evaluates
+    simTimeout1 = setTimeout(() => {
+        if (state === 1) {
+            // ACT
+            coproc.className = 'absolute top-[160px] left-1/2 -translate-x-1/2 w-80 bg-emerald-50 border-2 border-emerald-400 p-6 rounded-xl text-center z-10 coprocessor-state shadow-[0_0_20px_rgba(16,185,129,0.2)]';
+            status.className = 'inline-block px-4 py-1 rounded-full bg-emerald-100 text-emerald-700 font-bold border border-emerald-300 transition-colors';
+            status.innerText = 'EVAL: +1 (SAFE)';
+            token.classList.replace('bg-indigo-500', 'bg-emerald-500');
+            log.innerHTML = 'Hardware evaluation passed. Token released to Actuator bus.';
+            
+            // 3. Token proceeds to actuator
+            simTimeout2 = setTimeout(() => {
+                token.style.transform = 'translate(-50%, 300px)'; // Move to actuator
+                setTimeout(() => {
+                    token.style.opacity = '0';
+                    actuator.className = 'absolute top-[360px] left-1/2 -translate-x-1/2 w-64 bg-emerald-500 text-white p-4 rounded-xl text-center border-2 border-emerald-600 z-10 transition-colors shadow-lg';
+                    log.innerHTML = '<b>ACTION EXECUTED PHYSICALLY.</b>';
+                }, 800);
+            }, 600);
+
+        } else if (state === 0) {
+            // PAUSE
+            coproc.className = 'absolute top-[160px] left-1/2 -translate-x-1/2 w-80 bg-amber-50 border-2 border-amber-400 p-6 rounded-xl text-center z-10 coprocessor-state shadow-[0_0_20px_rgba(245,158,11,0.2)]';
+            status.className = 'inline-block px-4 py-1 rounded-full bg-amber-100 text-amber-700 font-bold border border-amber-300 transition-colors';
+            status.innerText = 'EVAL: 0 (NULL)';
+            token.classList.replace('bg-indigo-500', 'bg-amber-500');
+            
+            // Token vanishes inside coprocessor (halts)
+            setTimeout(() => { token.style.opacity = '0'; }, 300);
+            log.innerHTML = '<b>SACRED PAUSE.</b> DITL circuit returns NULL. No execution token exists. Processor holds state. 0W active power.';
+
+        } else if (state === -1) {
+            // BLOCK
+            coproc.className = 'absolute top-[160px] left-1/2 -translate-x-1/2 w-80 bg-rose-50 border-2 border-rose-400 p-6 rounded-xl text-center z-10 coprocessor-state shadow-[0_0_20px_rgba(244,63,94,0.2)]';
+            status.className = 'inline-block px-4 py-1 rounded-full bg-rose-100 text-rose-700 font-bold border border-rose-300 transition-colors';
+            status.innerText = 'EVAL: -1 (VIOLATION)';
+            token.classList.replace('bg-indigo-500', 'bg-rose-500');
+            block.style.opacity = '1'; // Show physical block
+            
+            log.innerHTML = 'Violation detected. Execution explicitly blocked. Trace log recorded.';
+            
+            // Token moves to block wall and disappears
+            simTimeout2 = setTimeout(() => {
+                token.style.transform = 'translate(-50%, 185px)'; 
+                setTimeout(() => { token.style.opacity = '0'; }, 300);
+            }, 500);
+        }
+    }, 1200);
+}
+</script>
+</body>
+</html>
