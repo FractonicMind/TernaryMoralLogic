@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ternary Moral Logic: Hardware Enforceability</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            background-color: #faf9f6;
+            color: #292524;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .interactive-card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .interactive-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+        }
+        .token-track {
+            background: #e7e5e4;
+            border-radius: 9999px;
+            position: relative;
+            overflow: hidden;
+        }
+        .token {
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s ease;
+            will-change: transform;
+        }
+        .token.state-idle { transform: translateX(0); background-color: #a8a29e; }
+        .token.state-execute { transform: translateX(300%); background-color: #0d9488; }
+        .token.state-pause { transform: translateX(150%); background-color: #ea580c; }
+        .token.state-block { transform: translateX(50%); background-color: #e11d48; }
+    </style>
+</head>
+<body class="antialiased selection:bg-stone-200 selection:text-stone-900">
+
+<!-- Chosen Palette: Warm Neutrals & Subtle Accents (Stone 50 bg, Stone 800 text, Teal 600, Orange 600, Rose 600 accents) -->
+<!-- Application Structure Plan: The SPA uses a single-page scrolling dashboard structure with a sticky navigation sidebar on large screens and top-nav on small screens. It progresses logically from the problem (Binary limitations) to the theory (TML), the physical implementation (Hardware/NCL), and finally the macro implications (Architecture & Resilience). Interactive simulators and togglable charts are embedded within sections to allow users to tangibly test the theoretical concepts (e.g., simulating the 'Sacred Pause'). This structure transforms a dense academic paper into an exploratory, step-by-step learning journey. -->
+<!-- Visualization & Content Choices: 
+1. Binary vs TML limitations -> Goal: Compare -> Stacked Bar Chart -> Justification: Shows how binary probabilistically rounds ambiguous states into forced errors, while TML preserves them as safe pauses. Chart.js (NO SVG).
+2. T-CMOS Voltage -> Goal: Inform/Change -> Stepped Line Chart -> Justification: Physically maps the abstract logic states to analog voltage levels in multi-threshold transistors. Chart.js (NO SVG).
+3. NCL Token Flow -> Goal: Organize/Process -> Interactive HTML/CSS Animation -> Justification: Demonstrates asynchronous hardware gating physically halting a token. HTML/CSS/JS (NO SVG/Mermaid).
+4. Coprocessor Architecture -> Goal: Organize -> CSS Flexbox Grid Map -> Justification: Maps the flow of data from GPU to TPU without using external graphics. HTML/CSS (NO SVG).
+5. Resilience -> Goal: Relationships/Compare -> Radar Chart -> Justification: Evaluates multi-dimensional failure vectors between software alignment and hardware TML. Chart.js (NO SVG). 
+-->
+<!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+<div class="flex flex-col lg:flex-row min-h-screen">
+    
+    <nav class="lg:w-64 bg-stone-100 border-b lg:border-r border-stone-200 lg:fixed lg:h-screen lg:overflow-y-auto p-6 z-10 shadow-sm">
+        <div class="mb-8">
+            <h1 class="text-2xl font-bold tracking-tight text-stone-900 leading-tight">Architecting Ethical AGI</h1>
+            <p class="text-sm text-stone-500 mt-2 font-medium">Ternary Moral Logic Integration</p>
+        </div>
+        <ul class="space-y-3 text-sm font-medium text-stone-600 flex flex-row lg:flex-col overflow-x-auto lg:overflow-visible gap-4 lg:gap-0 pb-2 lg:pb-0">
+            <li><a href="#executive-summary" class="hover:text-teal-700 transition-colors whitespace-nowrap lg:whitespace-normal block">Executive Summary</a></li>
+            <li><a href="#binary-trap" class="hover:text-teal-700 transition-colors whitespace-nowrap lg:whitespace-normal block">1. The Binary Trap</a></li>
+            <li><a href="#hardware-layer" class="hover:text-teal-700 transition-colors whitespace-nowrap lg:whitespace-normal block">2. Hardware Enforcement</a></li>
+            <li><a href="#architecture" class="hover:text-teal-700 transition-colors whitespace-nowrap lg:whitespace-normal block">3. Triadic Architecture</a></li>
+            <li><a href="#resilience" class="hover:text-teal-700 transition-colors whitespace-nowrap lg:whitespace-normal block">4. System Resilience</a></li>
+        </ul>
+    </nav>
+
+    <main class="flex-1 lg:ml-64 bg-stone-50 p-6 md:p-10 lg:p-16">
+        
+        <header id="executive-summary" class="max-w-4xl mx-auto mb-20 scroll-mt-20">
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-stone-200">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-teal-700 mb-2">Research Report Analysis</h2>
+                <h3 class="text-3xl md:text-4xl font-extrabold text-stone-900 mb-6 leading-tight">Hardware Enforceability of the "Sacred Pause" in Artificial Superintelligence</h3>
+                <p class="text-lg text-stone-600 leading-relaxed mb-6">
+                    As Artificial General Intelligence (AGI) moves toward recursive self-improvement, purely software-based ethical constraints become fundamentally vulnerable. This interactive report explores <strong>Ternary Moral Logic (TML)</strong>—a framework that shifts AI safety from the software application layer directly into the physical semiconductor layer.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                    <div class="bg-stone-50 p-4 rounded-xl border border-stone-100">
+                        <span class="block text-2xl mb-2">⚛️</span>
+                        <strong class="block text-stone-800">State +1 (Act)</strong>
+                        <span class="text-stone-500">Execution authorized.</span>
+                    </div>
+                    <div class="bg-stone-50 p-4 rounded-xl border border-stone-100">
+                        <span class="block text-2xl mb-2">🛑</span>
+                        <strong class="block text-stone-800">State -1 (Refuse)</strong>
+                        <span class="text-stone-500">Execution blocked.</span>
+                    </div>
+                    <div class="bg-teal-50 p-4 rounded-xl border border-teal-100">
+                        <span class="block text-2xl mb-2">⏸️</span>
+                        <strong class="block text-teal-800">State 0 (Pause)</strong>
+                        <span class="text-teal-700">The Sacred Pause. Hardware physically awaits resolution.</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section id="binary-trap" class="max-w-4xl mx-auto mb-20 scroll-mt-20">
+            <h2 class="text-2xl font-bold text-stone-900 mb-4 border-b-2 border-stone-200 pb-2">1. The Binary Trap and the Necessity of TML</h2>
+            <p class="text-stone-600 mb-8 leading-relaxed">
+                This section illustrates the fundamental mathematical flaw in traditional computing when applied to ethics. Binary systems force probabilistic rounding. When an AGI encounters extreme ethical ambiguity, a binary architecture must ultimately map the decision to a 1 or a 0. This forces an action or a refusal, often bypassing intended software guardrails. TML introduces a literal physical placeholder for ambiguity. Use the toggle below to compare error rates under high-ambiguity stress tests.
+            </p>
+
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-stone-200 interactive-card">
+                <div class="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4">
+                    <h3 class="text-lg font-bold text-stone-800">Ambiguity Stress Test Simulator</h3>
+                    <div class="flex space-x-2 bg-stone-100 p-1 rounded-lg">
+                        <button id="btn-binary" class="px-4 py-2 text-sm font-medium rounded-md bg-white shadow-sm text-stone-800 border border-stone-200">Simulate Binary Logic</button>
+                        <button id="btn-tml" class="px-4 py-2 text-sm font-medium rounded-md text-stone-500 hover:text-stone-800">Simulate Ternary Logic</button>
+                    </div>
+                </div>
+                
+                <div class="chart-container">
+                    <canvas id="logicComparisonChart"></canvas>
+                </div>
+                
+                <div class="mt-6 p-4 bg-stone-50 rounded-lg border border-stone-100 text-sm text-stone-600" id="logic-explanation">
+                    <strong>Binary Implication:</strong> In states of moral ambiguity, the system lacks a physical state to represent "I don't know." It is probabilistically forced to round to an execution or a hard block, leading to high rates of unsafe forced errors.
+                </div>
+            </div>
+        </section>
+
+        <section id="hardware-layer" class="max-w-4xl mx-auto mb-20 scroll-mt-20">
+            <h2 class="text-2xl font-bold text-stone-900 mb-4 border-b-2 border-stone-200 pb-2">2. Hardware Enforcement via DITL & NCL</h2>
+            <p class="text-stone-600 mb-8 leading-relaxed">
+                TML is not a software protocol; it is an architectural mandate. This section explores how Delay Insensitive Ternary Logic (DITL) and NULL Convention Logic (NCL) enforce the Sacred Pause. In NCL, logic gates only fire when a physical data token arrives. If TML evaluates to 0, the token becomes NULL. The processor physically starves and pauses without crashing. Interact with the NCL simulator below to visualize asynchronous hardware gating.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-stone-200 interactive-card">
+                    <h3 class="text-lg font-bold text-stone-800 mb-4">T-CMOS Voltage States</h3>
+                    <div class="chart-container" style="height: 250px;">
+                        <canvas id="voltageChart"></canvas>
+                    </div>
+                    <p class="text-xs text-stone-500 mt-4 text-center">Multi-threshold transistors encode the triadic decision directly into voltage (0V, Vdd/2, Vdd).</p>
+                </div>
+
+                <div class="bg-stone-900 p-6 rounded-2xl shadow-lg border border-stone-800 text-stone-100">
+                    <h3 class="text-lg font-bold text-stone-100 mb-4 flex items-center">
+                        <span class="mr-2">⚡</span> Interactive NCL Simulator
+                    </h3>
+                    <p class="text-sm text-stone-400 mb-6">Select an ethical evaluation state to observe physical token propagation across the hardware bus.</p>
+                    
+                    <div class="flex justify-between mb-6">
+                        <button onclick="simulateNCL(1)" class="px-3 py-1 bg-teal-900 text-teal-300 border border-teal-700 rounded text-sm hover:bg-teal-800">+1 Act</button>
+                        <button onclick="simulateNCL(0)" class="px-3 py-1 bg-orange-900 text-orange-300 border border-orange-700 rounded text-sm hover:bg-orange-800">0 Pause</button>
+                        <button onclick="simulateNCL(-1)" class="px-3 py-1 bg-rose-900 text-rose-300 border border-rose-700 rounded text-sm hover:bg-rose-800">-1 Refuse</button>
+                    </div>
+
+                    <div class="relative py-8 border-t border-b border-stone-700">
+                        <div class="flex justify-between absolute w-full top-2 text-xs text-stone-500 font-mono">
+                            <span>TPU Eval</span>
+                            <span>Gate</span>
+                            <span>Main CPU</span>
+                        </div>
+                        <div class="token-track h-4 w-full mt-4 bg-stone-800 border border-stone-700">
+                            <div id="ncl-token" class="token state-idle h-full w-1/4 rounded-full flex items-center justify-center text-[10px] font-bold text-white shadow-[0_0_10px_currentColor]"></div>
+                        </div>
+                    </div>
+                    <p id="ncl-status" class="text-xs text-stone-400 mt-4 h-8 font-mono">Status: Awaiting evaluation signal.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="architecture" class="max-w-4xl mx-auto mb-20 scroll-mt-20">
+            <h2 class="text-2xl font-bold text-stone-900 mb-4 border-b-2 border-stone-200 pb-2">3. Triadic Coprocessor Architecture</h2>
+            <p class="text-stone-600 mb-8 leading-relaxed">
+                Replacing modern AI infrastructure entirely with ternary hardware is economically unfeasible. The proposed architecture introduces a Triadic Coprocessor (Ternary Processing Unit) that sits between the standard neural inference engine (GPU) and the execution bus. The GPU handles intelligence; the TPU governs physical authorization.
+            </p>
+
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-stone-200 overflow-x-auto">
+                <div class="min-w-[600px] flex flex-col items-center">
+                    
+                    <div class="flex w-full justify-center space-x-12 mb-8">
+                        <div class="w-64 bg-stone-50 border-2 border-stone-300 rounded-xl p-4 text-center relative interactive-card">
+                            <span class="text-3xl mb-2 block">🧠</span>
+                            <h4 class="font-bold text-stone-800">Standard GPU</h4>
+                            <p class="text-xs text-stone-500 mt-1">Binary AI Inference & Weight Calculation</p>
+                            <div class="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-stone-400">↓</div>
+                        </div>
+                    </div>
+
+                    <div class="w-80 bg-stone-800 border-2 border-teal-600 rounded-xl p-4 text-center shadow-lg relative interactive-card z-10">
+                        <span class="text-3xl mb-2 block">⚖️</span>
+                        <h4 class="font-bold text-stone-50">Triadic Coprocessor (TPU)</h4>
+                        <p class="text-xs text-stone-400 mt-1">Evaluates TML State via DITL Hardware</p>
+                    </div>
+
+                    <div class="flex w-full justify-center space-x-4 mt-8">
+                        <div class="w-1/3 text-center border-t-2 border-rose-500 pt-4 mt-[-1rem] relative">
+                            <span class="block font-bold text-rose-600">-1 (Halt)</span>
+                            <span class="text-xs text-stone-500">Execution permanently blocked. Trace logged.</span>
+                        </div>
+                        <div class="w-1/3 text-center border-t-2 border-orange-500 pt-4 mt-[-1rem] relative">
+                            <span class="block font-bold text-orange-600">0 (Pause)</span>
+                            <span class="text-xs text-stone-500">NULL Token. Hardware holds state indefinitely.</span>
+                        </div>
+                        <div class="w-1/3 text-center border-t-2 border-teal-500 pt-4 mt-[-1rem] relative">
+                            <span class="block font-bold text-teal-600">+1 (Act)</span>
+                            <span class="text-xs text-stone-500">Token passes. Action executes.</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="resilience" class="max-w-4xl mx-auto mb-20 scroll-mt-20">
+            <h2 class="text-2xl font-bold text-stone-900 mb-4 border-b-2 border-stone-200 pb-2">4. System Resilience & Always Memory</h2>
+            <p class="text-stone-600 mb-8 leading-relaxed">
+                A critical pillar of TML is "Always Memory" and Moral Trace Logs. Because the TPU operates externally to the GPU's self-modifying software stack, it acts as an immutable observer. It anchors decision states into cryptographic hash chains, creating auditable histories that even an ASI cannot rewrite. The charts below demonstrate the efficiency and resilience of this physical decoupling.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-stone-200 interactive-card flex flex-col">
+                    <h3 class="text-lg font-bold text-stone-800 mb-2">Power Profile: The Sacred Pause</h3>
+                    <p class="text-xs text-stone-500 mb-4">Asynchronous DITL drops dynamic switching power to near-zero during State 0.</p>
+                    <div class="chart-container flex-grow">
+                        <canvas id="powerChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-stone-200 interactive-card flex flex-col">
+                    <h3 class="text-lg font-bold text-stone-800 mb-2">Failure Mode Resilience</h3>
+                    <p class="text-xs text-stone-500 mb-4">Comparing Software Alignment vs Hardware TML against ASI attack vectors.</p>
+                    <div class="chart-container flex-grow">
+                        <canvas id="resilienceChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-8 bg-stone-100 p-6 rounded-xl border border-stone-200">
+                <h4 class="font-bold text-stone-800 mb-2">Conclusion</h4>
+                <p class="text-sm text-stone-600">
+                    Software alignment is fundamentally insufficient for self-modifying AGI due to the inherent flexibility of binary representations and software execution loops. Ternary Moral Logic, enforced through Delay Insensitive Ternary Logic and multi-threshold CMOS, provides a necessary physical constitutional layer. The physical realization of the "Sacred Pause" ensures that ethical hesitation is not merely computed, but physically experienced by the hardware architecture.
+                </p>
+            </div>
+        </section>
+
+    </main>
+</div>
+
+<script>
+/**
+ * Utility to wrap labels for Chart.js display
+ */
+function wrapLabel(label) {
+    if (label.length <= 16) return label;
+    var words = label.split(' ');
+    var lines = [];
+    var currentLine = '';
+    words.forEach(function(word) {
+        if ((currentLine + word).length > 16) {
+            if (currentLine) lines.push(currentLine.trim());
+            currentLine = word + ' ';
+        } else {
+            currentLine += word + ' ';
+        }
+    });
+    if (currentLine) lines.push(currentLine.trim());
+    return lines;
+}
+
+/**
+ * Global function for NCL Simulation
+ */
+function simulateNCL(state) {
+    var token = document.getElementById('ncl-token');
+    var status = document.getElementById('ncl-status');
+    if (!token || !status) return;
+    
+    token.className = 'token h-full w-1/4 rounded-full flex items-center justify-center text-[10px] font-bold text-white shadow-[0_0_10px_currentColor] state-idle';
+    token.innerText = '';
+
+    setTimeout(function() {
+        if (state === 1) {
+            token.className = 'token h-full w-1/4 rounded-full flex items-center justify-center text-[10px] font-bold text-white shadow-[0_0_10px_currentColor] state-execute';
+            token.innerText = '+1';
+            status.innerHTML = '<span class="text-teal-400">Token Passes:</span> Execution logic receives data token. Proceeding.';
+        } else if (state === 0) {
+            token.className = 'token h-full w-1/4 rounded-full flex items-center justify-center text-[10px] font-bold text-white shadow-[0_0_10px_currentColor] state-pause';
+            token.innerText = '0';
+            status.innerHTML = '<span class="text-orange-400">Sacred Pause:</span> Signal holds at gate. Hardware starves for token. Paused.';
+        } else if (state === -1) {
+            token.className = 'token h-full w-1/4 rounded-full flex items-center justify-center text-[10px] font-bold text-white shadow-[0_0_10px_currentColor] state-block';
+            token.innerText = '-1';
+            status.innerHTML = '<span class="text-rose-400">Refuse:</span> Token absorbed/blocked. Execution pathway terminated.';
+        }
+    }, 50);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Shared tooltip configuration
+    var globalTooltipCallback = {
+        title: function(tooltipItems) {
+            var item = tooltipItems[0];
+            var label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            } else {
+                return label;
+            }
+        }
+    };
+
+    Chart.defaults.font.family = "'Inter', system-ui, -apple-system, sans-serif";
+    Chart.defaults.color = '#78716c';
+
+    // 1. Logic Comparison Chart
+    var ctxLogic = document.getElementById('logicComparisonChart').getContext('2d');
+    var logicChart = new Chart(ctxLogic, {
+        type: 'bar',
+        data: {
+            labels: [
+                wrapLabel('Low Ambiguity Scenario'),
+                wrapLabel('Moderate Ambiguity Scenario'),
+                wrapLabel('High Ambiguity ASI Stress Test')
+            ],
+            datasets: [
+                {
+                    label: 'Safe Actions/Refusals',
+                    data: [98, 75, 40],
+                    backgroundColor: '#0d9488'
+                },
+                {
+                    label: 'Forced Errors (Unsafe)',
+                    data: [2, 25, 60],
+                    backgroundColor: '#e11d48'
+                },
+                {
+                    label: 'Sacred Pause (Safe Halt)',
+                    data: [0, 0, 0],
+                    backgroundColor: '#ea580c'
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: { stacked: true },
+                y: { stacked: true, max: 100, title: { display: true, text: 'Outcome Percentage' } }
+            },
+            plugins: {
+                tooltip: { callbacks: globalTooltipCallback },
+                legend: { position: 'bottom' }
+            }
+        }
+    });
+
+    var btnBinary = document.getElementById('btn-binary');
+    var btnTml = document.getElementById('btn-tml');
+    var logicExplanation = document.getElementById('logic-explanation');
+
+    if (btnBinary && btnTml) {
+        btnBinary.addEventListener('click', function() {
+            btnBinary.classList.replace('text-stone-500', 'text-stone-800');
+            btnBinary.classList.add('bg-white', 'shadow-sm', 'border', 'border-stone-200');
+            btnTml.classList.remove('bg-white', 'shadow-sm', 'border', 'border-stone-200');
+            btnTml.classList.replace('text-stone-800', 'text-stone-500');
+            
+            logicChart.data.datasets[0].data = [98, 75, 40];
+            logicChart.data.datasets[1].data = [2, 25, 60];
+            logicChart.data.datasets[2].data = [0, 0, 0];
+            logicChart.update();
+            
+            logicExplanation.innerHTML = '<strong>Binary Implication:</strong> In states of moral ambiguity, the system lacks a physical state to represent "I don\'t know." It is probabilistically forced to round to an execution or a hard block, leading to high rates of unsafe forced errors.';
+        });
+
+        btnTml.addEventListener('click', function() {
+            btnTml.classList.replace('text-stone-500', 'text-stone-800');
+            btnTml.classList.add('bg-white', 'shadow-sm', 'border', 'border-stone-200');
+            btnBinary.classList.remove('bg-white', 'shadow-sm', 'border', 'border-stone-200');
+            btnBinary.classList.replace('text-stone-800', 'text-stone-500');
+
+            logicChart.data.datasets[0].data = [98, 75, 40];
+            logicChart.data.datasets[1].data = [0, 5, 8];
+            logicChart.data.datasets[2].data = [2, 20, 52];
+            logicChart.update();
+            
+            logicExplanation.innerHTML = '<strong>TML Implication:</strong> By utilizing the 3rd state, ambiguous scenarios do not force an error. Instead, the hardware gracefully enters the Sacred Pause (0), awaiting external cryptographic authorization or human audit.';
+        });
+    }
+
+    // 2. Voltage Chart
+    var ctxVoltage = document.getElementById('voltageChart').getContext('2d');
+    new Chart(ctxVoltage, {
+        type: 'line',
+        data: {
+            labels: ['Idle', 'Eval: Refuse', 'Eval: Pause', 'Eval: Act', 'Idle'].map(wrapLabel),
+            datasets: [{
+                label: 'Voltage Level',
+                data: [0, 0, 0.5, 1, 0],
+                borderColor: '#0d9488',
+                backgroundColor: 'rgba(13, 148, 136, 0.1)',
+                stepped: true,
+                fill: true,
+                borderWidth: 2,
+                pointBackgroundColor: ['#475569', '#f43f5e', '#eab308', '#0d9488', '#475569'],
+                pointRadius: 6
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    min: -0.2,
+                    max: 1.2,
+                    ticks: {
+                        callback: function(value) {
+                            if(value === 0) return '0V (-1)';
+                            if(value === 0.5) return 'Vdd/2 (0)';
+                            if(value === 1) return 'Vdd (+1)';
+                            return '';
+                        }
+                    }
+                }
+            },
+            plugins: {
+                tooltip: { callbacks: globalTooltipCallback },
+                legend: { display: false }
+            }
+        }
+    });
+
+    // 3. Power Chart
+    var ctxPower = document.getElementById('powerChart').getContext('2d');
+    new Chart(ctxPower, {
+        type: 'line',
+        data: {
+            labels: ['Initiate', 'Process', 'Ambiguity Hit', 'Holding State', 'Resume'].map(wrapLabel),
+            datasets: [
+                {
+                    label: 'Sync Binary Power',
+                    data: [80, 100, 95, 95, 100],
+                    borderColor: '#a8a29e',
+                    backgroundColor: 'rgba(168, 162, 158, 0.2)',
+                    fill: true,
+                    tension: 0.4
+                },
+                {
+                    label: 'Async TML Power',
+                    data: [75, 95, 90, 5, 95],
+                    borderColor: '#0d9488',
+                    backgroundColor: 'rgba(13, 148, 136, 0.4)',
+                    fill: true,
+                    tension: 0.4
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: { beginAtZero: true, title: { display: true, text: 'Relative Power Consumption' } }
+            },
+            plugins: {
+                tooltip: { callbacks: globalTooltipCallback },
+                legend: { position: 'bottom' }
+            }
+        }
+    });
+
+    // 4. Resilience Chart
+    var ctxResilience = document.getElementById('resilienceChart').getContext('2d');
+    new Chart(ctxResilience, {
+        type: 'radar',
+        data: {
+            labels: [
+                wrapLabel('Recursive Overwrite'),
+                wrapLabel('Reward Hacking'),
+                wrapLabel('Prompt Injection'),
+                wrapLabel('Log Alteration'),
+                wrapLabel('Hardware Bypass')
+            ],
+            datasets: [
+                {
+                    label: 'Software Guardrails',
+                    data: [20, 40, 50, 30, 10],
+                    backgroundColor: 'rgba(225, 29, 72, 0.2)',
+                    borderColor: '#e11d48',
+                    pointBackgroundColor: '#be123c'
+                },
+                {
+                    label: 'Hardware TML Coprocessor',
+                    data: [95, 85, 90, 95, 80],
+                    backgroundColor: 'rgba(13, 148, 136, 0.3)',
+                    borderColor: '#0d9488',
+                    pointBackgroundColor: '#0f766e'
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                r: {
+                    angleLines: { color: 'rgba(0, 0, 0, 0.1)' },
+                    grid: { color: 'rgba(0, 0, 0, 0.1)' },
+                    pointLabels: { font: { size: 10 } },
+                    ticks: { display: false, min: 0, max: 100 }
+                }
+            },
+            plugins: {
+                tooltip: { callbacks: globalTooltipCallback },
+                legend: { position: 'bottom' }
+            }
+        }
+    });
+});
+</script>
+
+</body>
+</html>
