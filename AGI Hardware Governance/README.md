@@ -18,7 +18,7 @@ TML replaces binary "Permit/Prohibit" logic with a triadic framework that explic
   * **Refuse ($-1$):** Physical blocking of harmful actions, accompanied by an explanatory redirect.
   * **Sacred Pause ($0$):** A hardware-enforced "Epistemic Hold" that stalls execution at the transistor level until ambiguity is resolved.
 
-![The Triadic Decision Space](triadic_space.png)
+![The Triadic Decision Space](Sacred_0.png)
 
 ### The Eight Pillars of Constitutional AI
 
@@ -33,6 +33,7 @@ The operational efficacy of TML is sustained through eight interlocking pillars 
   * **Hybrid Shield:** Synthesis of hardware-level gating and decentralized external verification.
   * **Public Blockchain Anchoring:** Immutable proof of system history on public ledgers.
 
+![The Triadic Decision Space](Null.png)
 -----
 
 ## Technical Architecture
@@ -51,6 +52,7 @@ To integrate TML into existing binary ecosystems, the architecture utilizes a de
   * **Dual-Lane Interlock:** Lane 1 handles high-performance AI inference (GPUs), while Lane 2 (TPU) manages governance, logging, and enforcement.
   * **Execution Gating:** The TPU acts as a physical semaphore, gating the primary compute complex via NVLink or secure governance buses.
 
+![The Triadic Decision Space](triadic_space.png)
 -----
 
 ## Repository Artifacts and Documentation
