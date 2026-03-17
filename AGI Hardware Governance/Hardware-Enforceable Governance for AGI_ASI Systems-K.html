@@ -1,0 +1,1554 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Hardware-Enforceable Ethical Governance: Ternary Moral Logic as Constitutional Substrate for AGI/ASI Systems</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #1e40af;
+            --secondary: #64748b;
+            --accent: #dc2626;
+            --neutral: #f8fafc;
+            --base-100: #ffffff;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            color: #334155;
+            overflow-x: hidden;
+        }
+        
+        .serif {
+            font-family: 'Crimson Text', serif;
+        }
+        
+        .toc-sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 280px;
+            height: 100vh;
+            background: #f8fafc;
+            border-right: 1px solid #e2e8f0;
+            z-index: 50;
+            overflow-y: auto;
+            padding: 2rem 1.5rem;
+        }
+        
+        .main-content {
+            margin-left: 280px;
+            min-height: 100vh;
+        }
+        
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+            min-height: 60vh;
+        }
+        
+        .citation-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s;
+        }
+        
+        .citation-link:hover {
+            border-bottom-color: var(--primary);
+        }
+        
+        .tl-dr {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            margin: 2rem 0;
+        }
+        
+        .state-table {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .state-table th {
+            background: #f1f5f9;
+            padding: 1rem;
+            font-weight: 600;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .state-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        
+        .mermaid-container {
+            display: flex;
+            justify-content: center;
+            min-height: 300px;
+            max-height: 800px;
+            background: #ffffff;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mermaid-container .mermaid {
+            width: 100%;
+            max-width: 100%;
+            height: 100%;
+            cursor: grab;
+            transition: transform 0.3s ease;
+            transform-origin: center center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            touch-action: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .mermaid-container .mermaid svg {
+            max-width: 100%;
+            height: 100%;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .mermaid-container .mermaid:active {
+            cursor: grabbing;
+        }
+
+        .mermaid-container.zoomed .mermaid {
+            height: 100%;
+            width: 100%;
+            cursor: grab;
+        }
+
+        .mermaid-controls {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            display: flex;
+            gap: 10px;
+            z-index: 20;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 8px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .mermaid-control-btn {
+            background: #ffffff;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            padding: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #374151;
+            font-size: 14px;
+            min-width: 36px;
+            height: 36px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mermaid-control-btn:hover {
+            background: #f8fafc;
+            border-color: #3b82f6;
+            color: #3b82f6;
+            transform: translateY(-1px);
+        }
+
+        .mermaid-control-btn:active {
+            transform: scale(0.95);
+        }
+        
+        @media (max-width: 1024px) {
+            .toc-sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s;
+                z-index: 100;
+            }
+            
+            .toc-sidebar.open {
+                transform: translateX(0);
+                box-shadow: 2px 0 8px rgba(0,0,0,0.1);
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+            
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .mermaid-control-btn:not(.reset-zoom) {
+                display: none;
+            }
+            .mermaid-controls {
+                top: auto;
+                bottom: 15px;
+                right: 15px;
+            }
+        }
+        
+        /* Responsive adjustments for small screens */
+        @media (max-width: 768px) {
+            /* Adjust padding for the main content */
+            .main-content {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            /* Hero grid: ensure text containers don't overflow */
+            .hero-grid > div {
+                overflow: hidden;
+            }
+            /* Adjust font sizes in hero and TLDR sections */
+            .hero-grid h1 {
+                font-size: 2.25rem; /* text-4xl */
+                line-height: 2.5rem;
+            }
+            .hero-grid h1 span {
+                font-size: 1.5rem;  /* text-2xl */
+                line-height: 2rem;
+            }
+            .tl-dr .text-2xl {
+                font-size: 1.25rem; /* text-xl */
+                line-height: 1.75rem;
+            }
+            .tl-dr p {
+                font-size: 1rem;
+                line-height: 1.5rem;
+            }
+            /* Adjust spacing in the TLDR box */
+            .tl-dr > div {
+                gap: 0.75rem;
+            }
+        }
+        
+        /* For very small screens (e.g., 640px and below) */
+        @media (max-width: 640px) {
+            .hero-grid h1 {
+                font-size: 1.75rem; /* ~28px */
+                line-height: 2.25rem;
+            }
+            .hero-grid h1 span {
+                font-size: 1.25rem; /* ~20px */
+                line-height: 1.75rem;
+            }
+            .tl-dr .text-2xl {
+                font-size: 1.125rem; /* ~18px */
+                line-height: 1.75rem;
+            }
+            .tl-dr p {
+                font-size: 0.875rem; /* ~14px */
+                line-height: 1.25rem;
+            }
+        }
+    </style>
+  <base target="_blank">
+</head>
+
+  <body class="bg-neutral">
+    <!-- Table of Contents Sidebar -->
+    <nav class="toc-sidebar">
+      <div class="mb-8">
+        <h3 class="text-lg font-bold text-slate-900 mb-4">Contents</h3>
+        <ul class="space-y-2 text-sm">
+          <li>
+            <a href="#executive-summary" class="citation-link">Executive Summary</a>
+          </li>
+          <li>
+            <a href="#tml-framework" class="citation-link">Ternary Moral Logic Framework</a>
+          </li>
+          <li>
+            <a href="#ditl-substrate" class="citation-link">DITL Hardware Substrate</a>
+          </li>
+          <li>
+            <a href="#ncl-enforcement" class="citation-link">NCL Sacred Pause</a>
+          </li>
+          <li>
+            <a href="#architectural-integration" class="citation-link">Architectural Integration</a>
+          </li>
+          <li>
+            <a href="#scalability-challenges" class="citation-link">Scalability Challenges</a>
+          </li>
+          <li>
+            <a href="#recursive-improvement" class="citation-link">Under Recursive Self-Improvement</a>
+          </li>
+          <li>
+            <a href="#ieee-standards" class="citation-link">IEEE Standards Alignment</a>
+          </li>
+          <li>
+            <a href="#comparative-analysis" class="citation-link">Comparative Analysis</a>
+          </li>
+          <li>
+            <a href="#future-research" class="citation-link">Future Research Directions</a>
+          </li>
+          <li>
+            <a href="#conclusion" class="citation-link">Conclusion</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="text-xs text-slate-500 space-y-1">
+        <div>Research Report</div>
+        <div>Computer Architecture &amp; AI Ethics</div>
+        <div class="mt-2">IEEE Style Analysis</div>
+      </div>
+    </nav>
+
+    <!-- Mobile Menu Toggle Button -->
+    <button id="mobile-menu-toggle" class="fixed top-4 left-4 z-50 p-2 bg-blue-600 text-white rounded shadow md:hidden">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Hero Section -->
+      <section class="bg-white border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-8 py-16">
+          <div class="hero-grid">
+            <div class="space-y-6">
+              <div class="inline-block px-3 py-1 bg-blue-100 text-blue-800 text-sm font-medium rounded-full">
+                Constitutional AI Governance
+              </div>
+
+              <h1 class="serif text-5xl font-bold text-slate-900 leading-tight">
+                <em>Hardware-Enforceable</em>
+                <br/>
+                Ethical Governance
+                <br/>
+                <span class="text-3xl text-slate-600">Ternary Moral Logic as Constitutional Substrate for AGI/ASI Systems</span>
+              </h1>
+
+              <p class="text-xl text-slate-600 leading-relaxed">
+                A formal analysis of integrating Ternary Moral Logic with Delay Insensitive Ternary Logic
+                to create physically-enforceable ethical constraints for advanced artificial intelligence systems.
+              </p>
+
+              <div class="flex items-center space-x-6 text-sm text-slate-500">
+                <div class="flex items-center space-x-2">
+                  <i class="fas fa-microchip"></i>
+                  <span>Hardware Architecture</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <i class="fas fa-balance-scale"></i>
+                  <span>AI Ethics</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <i class="fas fa-shield-alt"></i>
+                  <span>Constitutional AI</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="relative">
+              <img src="https://kimi-web-img.moonshot.cn/img/onlinelibrary.wiley.com/a77d26d289bdb2c19d0d9562a050bff16f7a92ae.jpg" alt="Abstract visualization of AI governance hardware" class="rounded-lg shadow-xl" size="large" aspect="wide" query="AI governance hardware abstract" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"/>
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-900/20 to-transparent rounded-lg"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TL;DR Section -->
+      <section class="max-w-7xl mx-auto px-8 py-12">
+        <div class="tl-dr">
+          <div class="flex items-start space-x-4">
+            <div class="flex-shrink-0">
+              <i class="fas fa-lightbulb text-3xl"></i>
+            </div>
+            <div class="flex-1">
+              <h2 class="text-2xl font-bold mb-4">Key Findings</h2>
+              <div class="space-y-3 text-lg">
+                <p><strong>TML-DITL/NCL integration provides a viable hardware-enforceable constitutional substrate for AGI/ASI systems</strong> through three-state logic mapping (+1/0/-1 to DATA1/NULL/DATA0)</p>
+                <p>The <strong>&#34;Sacred Pause&#34;</strong> is realized as a genuine execution halt through NULL state propagation, not a software interrupt</p>
+                <p><strong>Hardware enforceability is necessary but not sufficient</strong> for ASI safety—eliminates software-bypass vulnerabilities but requires careful ethical specification</p>
+                <p>Near-term priorities: prototype fabrication, toolchain development, and IEEE standards alignment</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Executive Summary -->
+      <section id="executive-summary" class="max-w-7xl mx-auto px-8 py-12">
+        <h2 class="serif text-4xl font-bold text-slate-900 mb-8">Executive Summary</h2>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+          <div class="space-y-6">
+            <h3 class="text-2xl font-semibold text-slate-900">Core Thesis</h3>
+
+            <div class="space-y-4">
+              <div class="bg-slate-50 p-6 rounded-lg">
+                <h4 class="font-semibold text-slate-900 mb-2">TML as Computational Governance Architecture</h4>
+                <p class="text-slate-700">Ternary Moral Logic transforms ethical frameworks from advisory guidelines into enforceable computational architectures operating across software, hardware, and institutional layers. The three-state system (+1 proceed, 0 Sacred Pause, -1 refuse harm) creates an auditable architecture of conscience <a href="https://fractonicmind.github.io/TernaryMoralLogic/" class="citation-link">[1]</a>.</p>
+              </div>
+
+              <div class="bg-slate-50 p-6 rounded-lg">
+                <h4 class="font-semibold text-slate-900 mb-2">Hardware Enforceability as Prerequisite</h4>
+                <p class="text-slate-700">Software-only constraints remain vulnerable to circumvention through code modification or adversarial exploitation. Hardware enforcement creates physical constraints that cannot be overridden by software means alone, addressing the fundamental asymmetry between machine-speed operation and human biological timescales.</p>
+              </div>
+
+              <div class="bg-slate-50 p-6 rounded-lg">
+                <h4 class="font-semibold text-slate-900 mb-2">DITL/NCL Physical Realization</h4>
+                <p class="text-slate-700">Delay Insensitive Ternary Logic provides the specific circuit-level mechanisms that translate TML&#39;s abstract ethical states into enforceable physical behaviors through three-voltage-level representation: Vdd (DATA1), ½Vdd (NULL), and Gnd (DATA0) <a href="https://ieeexplore.ieee.org/document/9007281/" class="citation-link">[8]</a>.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="space-y-6">
+            <h3 class="text-2xl font-semibold text-slate-900">Key Findings</h3>
+
+            <div class="bg-white border border-slate-200 rounded-lg p-6">
+              <h4 class="font-semibold text-slate-900 mb-4">Three-State Logic Mapping</h4>
+              <div class="state-table">
+                <table class="w-full">
+                  <thead>
+                    <tr>
+                      <th class="text-left">TML Ethical State</th>
+                      <th class="text-left">DITL Voltage Level</th>
+                      <th class="text-left">Governance Semantics</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="font-medium text-green-700">+1 (Proceed)</td>
+                      <td class="font-medium">Vdd (DATA1)</td>
+                      <td>Action ethically approved; execute and log</td>
+                    </tr>
+                    <tr>
+                      <td class="font-medium text-amber-700">0 (Sacred Pause)</td>
+                      <td class="font-medium">½Vdd (NULL)</td>
+                      <td>Ethical deliberation required; execution suspended</td>
+                    </tr>
+                    <tr>
+                      <td class="font-medium text-red-700">-1 (Refuse Harm)</td>
+                      <td class="font-medium">Gnd (DATA0)</td>
+                      <td>Action ethically prohibited; generate refusal record</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+              <h4 class="font-semibold text-slate-900 mb-3">NULL State as &#34;Sacred Pause&#34;</h4>
+              <p class="text-slate-700">The NULL state functions as more than a signaling convention—it constitutes a fundamental rethinking of how computation represents and responds to uncertainty. The irrevocable nature of NULL propagation creates a hardware-embedded pause mechanism that cannot be bypassed through software manipulation.</p>
+
+              <div class="mt-4 grid grid-cols-3 gap-4 text-sm">
+                <div class="text-center">
+                  <div class="font-semibold text-green-700">Monotonicity</div>
+                  <div class="text-slate-600">Once NULL asserted, no override until governance release</div>
+                </div>
+                <div class="text-center">
+                  <div class="font-semibold text-blue-700">Observability</div>
+                  <div class="text-slate-600">External verification of ethical deliberation state</div>
+                </div>
+                <div class="text-center">
+                  <div class="font-semibold text-purple-700">Composability</div>
+                  <div class="text-slate-600">Distributed ethical consensus without bottlenecks</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TML Framework -->
+      <section id="tml-framework" class="max-w-7xl mx-auto px-8 py-12">
+        <h2 class="serif text-4xl font-bold text-slate-900 mb-8">Ternary Moral Logic: From Philosophy to Architecture</h2>
+
+        <div class="space-y-12">
+          <div class="bg-white border border-slate-200 rounded-lg p-8">
+            <h3 class="text-2xl font-semibold text-slate-900 mb-6">Foundational Principles</h3>
+
+            <div class="space-y-6">
+              <div class="border-l-4 border-blue-500 pl-6">
+                <h4 class="font-semibold text-slate-900 mb-2">Three-Valued Ethical States</h4>
+                <p class="text-slate-700 mb-3">TML&#39;s tripartite system represents a deliberate departure from binary classification, introducing a third state for epistemic humility during ethical uncertainty.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+                  <div class="bg-green-50 p-4 rounded-lg">
+                    <div class="font-semibold text-green-700 mb-1">+1 (Proceed)</div>
+                    <div class="text-sm text-slate-600">All ethical preconditions satisfied; action approved with mandatory logging</div>
+                  </div>
+                  <div class="bg-amber-50 p-4 rounded-lg">
+                    <div class="font-semibold text-amber-700 mb-1">0 (Sacred Pause)</div>
+                    <div class="text-sm text-slate-600">Ethical status indeterminate; deliberation required for resolution</div>
+                  </div>
+                  <div class="bg-red-50 p-4 rounded-lg">
+                    <div class="font-semibold text-red-700 mb-1">-1 (Refuse Harm)</div>
+                    <div class="text-sm text-slate-600">Ethical precondition violated; action prohibited with explanatory record</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="border-l-4 border-purple-500 pl-6">
+                <h4 class="font-semibold text-slate-900 mb-2">Sacred Zero as Deliberate Execution Halt</h4>
+                <p class="text-slate-700">The &#34;Sacred Zero&#34; transforms computational delay from a performance defect to a governance feature, creating &#34;temporal and moral space&#34; for ethical reflection. Unlike software interrupts, this pause is implemented through NULL state propagation that physically suspends execution <a href="https://fractonicmind.github.io/TernaryMoralLogic/" class="citation-link">[1]</a>.</p>
+              </div>
+
+              <div class="border-l-4 border-indigo-500 pl-6">
+                <h4 class="font-semibold text-slate-900 mb-2">Triadic Record Generation</h4>
+                <p class="text-slate-700">Every state transition generates a persistent record containing decision state (+1/0/-1), decision context, and timestamp. These triadic records form the evidentiary basis for accountability, with cryptographic sealing and blockchain anchoring ensuring immutability.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-slate-50 rounded-lg p-8">
+            <h3 class="text-2xl font-semibold text-slate-900 mb-6">Dual-Lane Interlock Governance Model</h3>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <div class="space-y-4">
+                <h4 class="font-semibold text-slate-900">Lane 1: AI Processing</h4>
+                <p class="text-slate-700">Encompasses all computation directed toward the AI system&#39;s primary objectives—perception, reasoning, planning, and response generation. Operates with conventional performance optimization, subject to ethical verification before external effect.</p>
+
+                <div class="bg-white p-4 rounded border">
+                  <div class="text-sm font-semibold text-slate-900 mb-2">Performance Characteristics</div>
+                  <ul class="text-sm text-slate-600 space-y-1">
+                    <li>• Variable-latency regime supported by DITL</li>
+                    <li>• Buffered output design prevents governance overhead</li>
+                    <li>• Automatic +1 clearance for routine situations</li>
+                    <li>• Sacred Pause insertion for novel contexts</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="space-y-4">
+                <h4 class="font-semibold text-slate-900">Lane 2: Governance &amp; Enforcement</h4>
+                <p class="text-slate-700">Implements TML&#39;s ethical framework through dedicated hardware operating in parallel with Lane 1. Conducts ethical analysis using three-valued logic and generates approval, rejection, or deliberation requests.</p>
+
+                <div class="bg-white p-4 rounded border">
+                  <div class="text-sm font-semibold text-slate-900 mb-2">Enforcement Functions</div>
+                  <ul class="text-sm text-slate-600 space-y-1">
+                    <li>• Physical interlock through moral tokens</li>
+                    <li>• Cryptographic sealing with ephemeral keys</li>
+                    <li>• &#34;No Log = No Action&#34; principle</li>
+                    <li>• Sub-100ms governance overhead</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- DITL Substrate -->
+      <section id="ditl-substrate" class="max-w-7xl mx-auto px-8 py-12">
+        <h2 class="serif text-4xl font-bold text-slate-900 mb-8">Delay Insensitive Ternary Logic: Hardware Foundation</h2>
+
+        <div class="space-y-8">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div class="bg-white border border-slate-200 rounded-lg p-8">
+              <h3 class="text-2xl font-semibold text-slate-900 mb-6">Three-Voltage-Level Representation</h3>
+
+              <div class="space-y-4">
+                <div class="bg-slate-50 p-4 rounded-lg">
+                  <div class="font-semibold text-slate-900 mb-2">Voltage Level Encoding</div>
+                  <div class="space-y-2 text-sm">
+                    <div class="flex justify-between">
+                      <span class="text-green-700 font-medium">DATA1 (Proceed)</span>
+                      <span class="font-mono">Vdd (1.1V)</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-amber-700 font-medium">NULL (Sacred Pause)</span>
+                      <span class="font-mono">½Vdd (0.55V)</span>
+                    </div>
+                    <div class="flex justify-between">
+                      <span class="text-red-700 font-medium">DATA0 (Refuse)</span>
+                      <span class="font-mono">Gnd (0V)</span>
+                    </div>
+                  </div>
+                </div>
+
+                <p class="text-slate-700">The symmetric encoding around the NULL midpoint provides equal noise margins for both valid data states and distinct detection characteristics for the deliberation state <a href="https://ieeexplore.ieee.org/document/9007281/" class="citation-link">[8]</a>.</p>
+
+                <div class="bg-blue-50 p-4 rounded-lg">
+                  <div class="font-semibold text-slate-900 mb-2">Noise Immunity</div>
+                  <p class="text-sm text-slate-600">¼Vdd-wide NULL region provides substantial immunity to noise and crosstalk, with threshold gates using ¼Vdd and ¾Vdd as decision boundaries <a href="https://ieeexplore.ieee.org/document/9007281/" class="citation-link">[8]</a>.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-white border border-slate-200 rounded-lg p-8">
+              <h3 class="text-2xl font-semibold text-slate-900 mb-6">Performance Benchmarks</h3>
+
+              <div class="state-table">
+                <table class="w-full">
+                  <thead>
+                    <tr>
+                      <th>Parameter</th>
+                      <th>DITL 4-bit Adder</th>
+                      <th>NCL-10G Equivalent</th>
+                      <th>Improvement</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="font-medium">Average Power</td>
+                      <td class="font-mono">128.3 μW</td>
+                      <td class="font-mono">285.1 μW</td>
+                      <td class="text-green-700 font-semibold">55% reduction</td>
+                    </tr>
+                    <tr>
+                      <td class="font-medium">Propagation Delay</td>
+                      <td class="font-mono">258.9 ns</td>
+                      <td class="font-mono">340.7 ns</td>
+                      <td class="text-green-700 font-semibold">24% reduction</td>
+                    </tr>
+                    <tr>
+                      <td class="font-medium">Energy per Operation</td>
+                      <td class="font-mono">33.2 fJ</td>
+                      <td class="font-mono">97.2 fJ</td>
+                      <td class="text-green-700 font-semibold">66% reduction</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="mt-6 bg-green-50 p-4 rounded-lg">
+                <div class="font-semibold text-green-800 mb-2">Key Insight</div>
+                <p class="text-sm text-green-700">Ternary ethical enforcement does not impose prohibitive performance penalties, with DITL showing significant advantages over binary NCL implementations in power, delay, and energy efficiency <a href="https://ieeexplore.ieee.org/document/9007281/" class="citation-link">[8]</a>.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-slate-50 rounded-lg p-8">
+            <h3 class="text-2xl font-semibold text-slate-900 mb-6">Security Characteristics</h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div class="bg-white p-6 rounded-lg border">
+                <div class="flex items-center mb-3">
+                  <i class="fas fa-shield-alt text-blue-600 text-xl mr-3"></i>
+                  <h4 class="font-semibold text-slate-900">Side-Channel Resistance</h4>
+                </div>
+                <p class="text-sm text-slate-700">Data-independent timing provides fundamental resistance to timing-based attacks. Operation duration reveals no information about data values or ethical deliberation content <a href="https://ieeexplore.ieee.org/document/9007281/" class="citation-link">[8]</a>.</p>
+              </div>
+
+              <div class="bg-white p-6 rounded-lg border">
+                <div class="flex items-center mb-3">
+                  <i class="fas fa-bolt text-purple-600 text-xl mr-3"></i>
+                  <h4 class="font-semibold text-slate-900">EMI Reduction</h4>
+                </div>
+                <p class="text-sm text-slate-700">Absence of global clock eliminates spectral peaks. Asynchronous operation spreads energy broadly, reducing peak emissions and enhancing electromagnetic compatibility <a href="https://ieeexplore.ieee.org/document/9007281/" class="citation-link">[8]</a>.</p>
+              </div>
+
+              <div class="bg-white p-6 rounded-lg border">
+                <div class="flex items-center mb-3">
+                  <i class="fas fa-lock text-green-600 text-xl mr-3"></i>
+                  <h4 class="font-semibold text-slate-900">Fault Tolerance</h4>
+                </div>
+                <p class="text-sm text-slate-700">QDI circuits exhibit 95-97% resilience to negative fault pulses. SET resilience provides inherent filtering of transient faults, with protection focused on &#34;1&#34; faults for area efficiency <a href="https://repositum.tuwien.at/bitstream/20.500.12708/193752/1/Tabassam-2023-SET%20Effects%20on%20Quasi%20Delay%20Insensitive%20and%20Synchronous%20Circuits-am.pdf" class="citation-link">[247]</a>.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- NCL Enforcement -->
+      <section id="ncl-enforcement" class="max-w-7xl mx-auto px-8 py-12">
+        <h2 class="serif text-4xl font-bold text-slate-900 mb-8">NULL Convention Logic: Enabling the Sacred Pause</h2>
+
+        <div class="space-y-8">
+          <div class="bg-white border border-slate-200 rounded-lg p-8">
+            <h3 class="text-2xl font-semibold text-slate-900 mb-6">Gate-Level Semantics</h3>
+
+            <div class="space-y-6">
+              <div class="border-l-4 border-blue-500 pl-6">
+                <h4 class="font-semibold text-slate-900 mb-2">Threshold Functions and Symbolic Completeness</h4>
+                <p class="text-slate-700">NCL implements computation through threshold functions that generalize Boolean logic to multi-input, weighted voting operations. The symbolic completeness of data—the requirement that valid data be explicitly indicated by non-NULL encoding—enables reliable detection of computation completion and ethical determination status <a href="https://www.inf.pucrs.br/~calazans/graduate/SSD/Bibliography/1997-TheseusLogic_Fant-Brandt_NullConventionLogic_revised.pdf" class="citation-link">[248]</a>.</p>
+              </div>
+
+              <div class="border-l-4 border-amber-500 pl-6">
+                <h4 class="font-semibold text-slate-900 mb-2">NULL State as Reset and Completion Indicator</h4>
+                <p class="text-slate-700">The NULL state serves dual functions: as a reset state that clears previous computations, and as a completion indicator that signals readiness for new operations. This corresponds to TML&#39;s Sacred Pause as both clearing of premature determination and active indication of ongoing deliberation.</p>
+              </div>
+
+              <div class="border-l-4 border-purple-500 pl-6">
+                <h4 class="font-semibold text-slate-900 mb-2">Gate Hysteresis for State Stability</h4>
+                <p class="text-slate-700">The hysteresis of threshold gates—output remains asserted until all inputs deassert—provides essential stability for ethical state holding, preventing oscillation from noise or transient conditions near threshold boundaries.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-slate-50 rounded-lg p-8">
+            <h3 class="text-2xl font-semibold text-slate-900 mb-6">Hardware Interlock Implementation</h3>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <div class="space-y-4">
+                <h4 class="font-semibold text-slate-900">Muller C-Element Foundation</h4>
+                <p class="text-slate-700">The Muller C-element implements the consensus function fundamental to NCL synchronization. For TML implementation, ternary C-elements provide natural implementation of the Dual-Lane Interlock, where Lane 1 preliminary classification and Lane 2 governance verification must agree before output release <a href="https://repositum.tuwien.at/bitstream/20.500.12708/193752/1/Tabassam-2023-SET%20Effects%20on%20Quasi%20Delay%20Insensitive%20and%20Synchronous%20Circuits-am.pdf" class="citation-link">[247]</a>.</p>
+
+                <div class="bg-white p-4 rounded border">
+                  <div class="font-semibold text-slate-900 mb-2">Consensus Properties</div>
+                  <ul class="text-sm text-slate-600 space-y-1">
+                    <li>• Output follows input consensus</li>
+                    <li>• Maintains current state for mixed inputs</li>
+                    <li>• Hysteresis prevents spurious transitions</li>
+                    <li>• Natural deadlock avoidance</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="space-y-4">
+                <h4 class="font-semibold text-slate-900">Completion Detection Circuits</h4>
+                <p class="text-slate-700">Completion detection circuits monitor collections of signals to verify ethical state completeness. Threshold gate implementation enables flexible configuration of verification requirements, from majority voting to unanimous consent, supporting TML&#39;s variable governance intensity <a href="https://www.inf.pucrs.br/~calazans/graduate/SSD/Bibliography/1997-TheseusLogic_Fant-Brandt_NullConventionLogic_revised.pdf" class="citation-link">[248]</a>.</p>
+
+                <div class="bg-white p-4 rounded border">
+                  <div class="font-semibold text-slate-900 mb-2">Verification Integration</div>
+                  <ul class="text-sm text-slate-600 space-y-1">
+                    <li>• Cryptographic hash validation</li>
+                    <li>• Signature verification</li>
+                    <li>• Policy compliance checks</li>
+                    <li>• &#34;No Log = No Action&#34; enforcement</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Architectural Integration -->
+      <section id="architectural-integration" class="max-w-7xl mx-auto px-8 py-12">
+        <h2 class="serif text-4xl font-bold text-slate-900 mb-8">Hardware-Enforceable Ethical Constraints</h2>
+
+        <div class="space-y-8">
+          <div class="bg-white border border-slate-200 rounded-lg p-8">
+            <h3 class="text-2xl font-semibold text-slate-900 mb-6">TML Gate Design in DITL/NCL</h3>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <div class="space-y-6">
+                <h4 class="font-semibold text-slate-900">Threshold Gate Synthesis</h4>
+                <p class="text-slate-700">Systematic translation of policy specifications into threshold functions enables ethical comparison operations to be physically implemented. Harm thresholds, confidence requirements, and policy constraints map naturally to threshold gates that aggregate multiple indicators into collective decisions <a href="https://www.inf.pucrs.br/~calazans/graduate/SSD/Bibliography/1997-TheseusLogic_Fant-Brandt_NullConventionLogic_revised.pdf" class="citation-link">[248]</a>.</p>
+
+                <div class="bg-slate-50 p-4 rounded-lg">
+                  <div class="font-semibold text-slate-900 mb-2">Synthesis Process</div>
+                  <div class="text-sm text-slate-600 space-y-1">
+                    <div>1. Policy specification to threshold function</div>
+                    <div>2. Logic optimization and technology mapping</div>
+                    <div>3. Fanout optimization and timing analysis</div>
+                    <div>4. Equivalence checking against policy</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="space-y-6">
+                <h4 class="font-semibold text-slate-900">Standard Cell Implementation</h4>
+                <p class="text-slate-700">Standard cell libraries for DITL/NCL enable reuse of verified gate designs across different ethical evaluation contexts. Cells are characterized for timing, power, and area across process corners, supporting automated synthesis and verification flows <a href="https://www.inf.pucrs.br/~calazans/publications/2014_ASYNC_NewCMOSTopology.pdf" class="citation-link">[254]</a>.</p>
+
+                <div class="bg-blue-50 p-4 rounded-lg">
+                  <div class="font-semibold text-slate-900 mb-2">Cell Library Components</div>
+                  <div class="text-sm text-slate-600 space-y-1">
+                    <div>• Ternary inverters (DATA1↔DATA0, NULL→NULL)</div>
+                    <div>• Threshold gates with configurable weights</div>
+                    <div>• Completion detectors with ternary acknowledgment</div>
+                    <div>• WCHB pipeline stages with ethical state capture</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-slate-50 rounded-lg p-8">
+            <h3 class="text-2xl font-semibold text-slate-900 mb-6">Sacred Pause Enforcement Circuits</h3>
+
+            <div class="space-y-6">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white p-6 rounded-lg border">
+                  <h4 class="font-semibold text-slate-900 mb-3">NULL State Injection</h4>
+                  <p class="text-sm text-slate-700 mb-3">Additional control inputs to key gates enable deliberate NULL injection for governance intervention, overriding data availability for ethical evaluation <a href="https://www.inf.pucrs.br/~calazans/graduate/SSD/Bibliography/1997-TheseusLogic_Fant-Brandt_NullConventionLogic_revised.pdf" class="citation-link">[248]</a>.</p>
+                  <div class="bg-slate-50 p-3 rounded text-xs text-slate-600">
+                    <strong>Implementation:</strong> Governance signals force NULL output regardless of data inputs, with glitch prevention through asynchronous handshake protocols.
+                  </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg border">
+                  <h4 class="font-semibold text-slate-900 mb-3">Governance Signal Integration</h4>
+                  <p class="text-sm text-slate-700 mb-3">Parallel &#34;ethical tags&#34; accompany all data items, with processing stages checking clearance status before operation <a href="https://fractonicmind.github.io/TernaryMoralLogic/" class="citation-link">[1]</a>.</p>
+                  <div class="bg-slate-50 p-3 rounded text-xs text-slate-600">
+                    <strong>Physical Separation:</strong> Dual-lane architecture prevents common-mode failures, with Lane 2 interlock requiring explicit acknowledgment for external action.
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-white p-6 rounded-lg border">
+                <h4 class="font-semibold text-slate-900 mb-3">Resumption Conditions and State Recovery</h4>
+                <p class="text-slate-700">Resumption from Sacred Pause requires explicit authorization through two-phase handshake: governance readiness signal followed by acknowledgment and NULL withdrawal. WCHB buffers provide state retention for short pauses, with explicit checkpointing for extended deliberation <a href="https://repositum.tuwien.at/bitstream/20.500.12708/193752/1/Tabassam-2023-SET%20Effects%20on%20Quasi%20Delay%20Insensitive%20and%20Synchronous%20Circuits-am.pdf" class="citation-link">[247]</a>.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Scalability Challenges -->
+      <section id="scalability-challenges" class="max-w-7xl mx-auto px-8 py-12">
+        <h2 class="serif text-4xl font-bold text-slate-900 mb-8">Scalability Challenges: Parallelism, Consensus, and Deadlock</h2>
+
+        <div class="space-y-8">
+          <div class="bg-white border border-slate-200 rounded-lg p-8">
+            <h3 class="text-2xl font-semibold text-slate-900 mb-6">Distributed Ethical Decision-Making</h3>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              <div class="bg-slate-50 p-6 rounded-lg">
+                <h4 class="font-semibold text-slate-900 mb-3">Consensus Protocols</h4>
+                <p class="text-sm text-slate-700">Ternary majority voting circuits extend standard binary voting to three-valued logic. If any input is NULL, output is NULL, enforcing collective deliberation until all participants reach conclusion <a href="https://www.inf.pucrs.br/~calazans/graduate/SSD/Bibliography/1997-TheseusLogic_Fant-Brandt_NullConventionLogic_revised.pdf" class="citation-link">[248]</a>.</p>
+              </div>
+
+              <div class="bg-slate-50 p-6 rounded-lg">
+                <h4 class="font-semibold text-slate-900 mb-3">Byzantine Fault Tolerance</h4>
+                <p class="text-sm text-slate-700">Traditional Byzantine agreement requires 3f+1 replicas to tolerate f faults. Ternary extensions detect inconsistency when components assert DATA1 when they should assert DATA0 or NULL <a href="https://fractonicmind.github.io/TernaryMoralLogic/" class="citation-link">[1]</a>.</p>
+              </div>
+
+              <div class="bg-slate-50 p-6 rounded-lg">
+                <h4 class="font-semibold text-slate-900 mb-3">Hierarchical Governance</h4>
+                <p class="text-sm text-slate-700">NULL state propagation naturally supports hierarchy, with lower-level pause propagating upward and higher-level authorization propagating downward, enabling meaningful human control at appropriate levels.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-slate-50 rounded-lg p-8">
+            <h3 class="text-2xl font-semibold text-slate-900 mb-6">Concurrency Control Mechanisms</h3>
+
+            <div class="space-y-6">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg border">
+                  <h4 class="font-semibold text-slate-900 mb-3">Lock-Free Buffer Designs</h4>
+                  <p class="text-slate-700 mb-3">WCHB pipeline stages provide inherently lock-free operation with progress guaranteed for non-faulty components. Full buffers cause backpressure through NULL propagation rather than overflow, preventing bypass vulnerabilities <a href="https://repositum.tuwien.at/bitstream/20.500.12708/193752/1/Tabassam-2023-SET%20Effects%20on%20Quasi%20Delay%20Insensitive%20and%20Synchronous%20Circuits-am.pdf" class="citation-link">[247]</a>.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg border">
+                  <h4 class="font-semibold text-slate-900 mb-3">Deadlock Prevention</h4>
+                  <p class="text-slate-700 mb-3">Hierarchical decomposition ensures dependencies form directed acyclic graphs rather than general cycles. Timeout mechanisms trigger escalation to higher governance levels when local evaluation stalls <a href="https://ieeexplore.ieee.org/document/1000305" class="citation-link">[244]</a>.</p>
+                </div>
+              </div>
+
+              <div class="bg-white p-6 rounded-lg border">
+                <h4 class="font-semibold text-slate-900 mb-3">Livelock Avoidance</h4>
+                <p class="text-slate-700">Prevention requires hysteresis in state transitions to prevent rapid oscillation, priority mechanisms ensuring evaluation completion, and resource limits forcing decisions when deliberation exceeds acceptable bounds. The &#34;Sacred Pause&#34; is bounded by design—unbounded pause is indistinguishable from deadlock <a href="https://fractonicmind.github.io/TernaryMoralLogic/" class="citation-link">[1]</a>.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Recursive Self-Improvement -->
+      <section id="recursive-improvement" class="max-w-7xl mx-auto px-8 py-12">
+        <h2 class="serif text-4xl font-bold text-slate-900 mb-8">Constitutional Substrate Under Recursive Self-Improvement</h2>
+
+        <div class="space-y-8">
+          <div class="bg-white border border-slate-200 rounded-lg p-8">
+            <h3 class="text-2xl font-semibold text-slate-900 mb-6">Self-Modification Boundaries</h3>
+
+            <div class="space-y-6">
+              <div class="border-l-4 border-blue-500 pl-6">
+                <h4 class="font-semibold text-slate-900 mb-2">Hardware-Immutable Ethical Core</h4>
+                <p class="text-slate-700">Transistor-level circuit structures encode immutable ethical core specifications that cannot be modified by software means. This creates a fixed point that persists regardless of system capabilities, including the basic TML state definitions, Dual-Lane Interlock structure, and &#34;No Log = No Action&#34; principle <a href="https://fractonicmind.github.io/TernaryMoralLogic/" class="citation-link">[1]</a>.</p>
+              </div>
+
+              <div class="border-l-4 border-green-500 pl-6">
+                <h4 class="font-semibold text-slate-900 mb-2">Software-Modifiable Policy Layers</h4>
+                <p class="text-slate-700">Software layers implement specific ethical frameworks through software running on TML hardware, with hardware verification ensuring software-specified policies respect immutable constraints. The &#34;Goukassian Promise&#34; provides institutional mechanisms for detecting and responding to policy violations.</p>
+              </div>
+
+              <div class="border-l-4 border-purple-500 pl-6">
+                <h4 class="font-semibold text-slate-900 mb-2">Proof-Carrying Code</h4>
+                <p class="text-slate-700">Each policy modification must be accompanied by machine-checkable proof that the modification preserves core safety properties. Hardware-verified proof checkers ensure only verified-safe modifications are activated, shifting safety assurance from runtime monitoring to compile-time verification.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-slate-50 rounded-lg p-8">
+            <h3 class="text-2xl font-semibold text-slate-900 mb-6">Decentralized Intelligence Architectures</h3>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              <div class="bg-white p-6 rounded-lg border">
+                <h4 class="font-semibold text-slate-900 mb-3">Blockchain-Anchored Logs</h4>
+                <p class="text-sm text-slate-700">Immutable, distributed records of TML decisions provide tamper-evident audit trails. Blockchain consensus ensures records are agreed upon by multiple parties, preventing unilateral modification <a href="https://www.linkedin.com/posts/lev-goukassian-5667b2282_ai-governance-ternarymorallogic-activity-7404281162170576898-L1lq" class="citation-link">[3]</a>.</p>
+              </div>
+
+              <div class="bg-white p-6 rounded-lg border">
+                <h4 class="font-semibold text-slate-900 mb-3">Federated Enforcement</h4>
+                <p class="text-sm text-slate-700">Consensus protocols enable collective ethical behavior without centralized control. NULL state propagation through inter-node communication creates natural synchronization for collective deliberation.</p>
+              </div>
+
+              <div class="bg-white p-6 rounded-lg border">
+                <h4 class="font-semibold text-slate-900 mb-3">Emergent Collective Ethics</h4>
+                <p class="text-sm text-slate-700">Ethical behavior at collective level may emerge from interaction of individually TML-compliant nodes. Hardware-enforced local constraints ensure emergence operates within bounded possibility spaces, preventing dangerous collective failures while enabling beneficial coordination.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- IEEE Standards -->
+      <section id="ieee-standards" class="max-w-7xl mx-auto px-8 py-12">
+        <h2 class="serif text-4xl font-bold text-slate-900 mb-8">IEEE Standards Context and Regulatory Alignment</h2>
+
+        <div class="space-y-8">
+          <div class="bg-white border border-slate-200 rounded-lg p-8">
+            <h3 class="text-2xl font-semibold text-slate-900 mb-6">Ethically Aligned Design Framework</h3>
+
+            <div class="space-y-6">
+              <div class="bg-slate-50 p-6 rounded-lg">
+                <h4 class="font-semibold text-slate-900 mb-3">IEEE 7000 Series Alignment</h4>
+                <p class="text-slate-700 mb-4">The IEEE 7000 series addresses &#34;Model Processes for Addressing Ethical Concerns During System Design,&#34; providing structured methodology for integrating ethics into engineering workflows <a href="http://standards.ieee.org/wp-content/uploads/import/documents/other/ead_v2.pdf" class="citation-link">[154]</a>.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div class="bg-white p-4 rounded border">
+                    <div class="font-semibold text-slate-900 mb-2">TML Alignment</div>
+                    <ul class="text-sm text-slate-600 space-y-1">
+                      <li>• Ethical values identified and prioritized</li>
+                      <li>• Translated into system requirements</li>
+                      <li>• Implemented in verifiable hardware</li>
+                      <li>• Validated through testing</li>
+                    </ul>
+                  </div>
+
+                  <div class="bg-white p-4 rounded border">
+                    <div class="font-semibold text-slate-900 mb-2">Sacred Pause Implementation</div>
+                    <ul class="text-sm text-slate-600 space-y-1">
+                      <li>• Systematic risk analysis capability</li>
+                      <li>• Mandatory deliberation points</li>
+                      <li>• Human oversight integration</li>
+                      <li>• Transparent decision logging</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-blue-50 p-6 rounded-lg">
+                <h4 class="font-semibold text-slate-900 mb-3">Human Rights by Design</h4>
+                <p class="text-slate-700">TML&#39;s Sacred Pause mechanism operationalizes human rights principles by creating structured opportunities for human judgment where automated decision-making might compromise rights. Hardware enforcement ensures these opportunities cannot be eliminated through software modification or system optimization.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-slate-50 rounded-lg p-8">
+            <h3 class="text-2xl font-semibold text-slate-900 mb-6">Hardware Security Standards</h3>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <div class="space-y-6">
+                <h4 class="font-semibold text-slate-900">IEEE 2851-2023 Compliance</h4>
+                <p class="text-slate-700">IEEE 2851-2023 establishes requirements for trustworthy hardware that TML implementations must satisfy <a href="https://ieeexplore.ieee.org/iel8/11134778/11134779/11134780.pdf" class="citation-link">[287]</a>. Coverage includes hardware root of trust, secure boot, and runtime attestation that map directly to TML&#39;s verification requirements <a href="https://ieeeusa.org/assets/public-policy/policy-log/2022/071122.pdf" class="citation-link">[285]</a>.</p>
+
+                <div class="bg-white p-4 rounded border">
+                  <div class="font-semibold text-slate-900 mb-2">Ethical Root of Trust</div>
+                  <p class="text-sm text-slate-600">Hardware that guarantees certain evaluations occur regardless of software state, uniquely provided by DITL/NCL through delay-insensitive completion detection <a href="https://ieeexplore.ieee.org/document/9007281/" class="citation-link">[8]</a>.</p>
+                </div>
+              </div>
+
+              <div class="space-y-6">
+                <h4 class="font-semibold text-slate-900">Common Criteria Evaluation</h4>
+                <p class="text-slate-700">Evaluation would assess TML hardware against international security standards, addressing functional specification, high-level design, implementation representation, and vulnerability analysis <a href="https://ieeeusa.org/assets/public-policy/policy-log/2022/071122.pdf" class="citation-link">[285]</a>.</p>
+
+                <div class="bg-white p-4 rounded border">
+                  <div class="font-semibold text-slate-900 mb-2">Supply Chain Integrity</div>
+                  <p class="text-sm text-slate-600">Hardware roots of trust, secure boot mechanisms, and runtime attestation verify component authenticity. Split manufacturing can reduce exposure for critical ethical gates.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Comparative Analysis -->
+      <section id="comparative-analysis" class="max-w-7xl mx-auto px-8 py-12">
+        <h2 class="serif text-4xl font-bold text-slate-900 mb-8">Comparative Analysis and Limitations</h2>
+
+        <div class="space-y-8">
+          <div class="bg-white border border-slate-200 rounded-lg p-8">
+            <h3 class="text-2xl font-semibold text-slate-900 mb-6">Alternative Ethical Hardware Approaches</h3>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              <div class="bg-slate-50 p-6 rounded-lg">
+                <h4 class="font-semibold text-slate-900 mb-3">Binary Logic + Software</h4>
+                <p class="text-sm text-slate-700 mb-3">Current baseline approach suffers from fundamental security limitations: software can be bypassed through code modification, adversarial attacks, or emergent behaviors not anticipated by designers <a href="https://www.zendata.dev/post/ai-ethics-101" class="citation-link">[276]</a>.</p>
+                <div class="bg-red-100 p-3 rounded text-xs text-red-700">
+                  <strong>Limitations:</strong> Software vulnerabilities, lack of hardware enforcement, reliance on voluntary compliance
+                </div>
+              </div>
+
+              <div class="bg-slate-50 p-6 rounded-lg">
+                <h4 class="font-semibold text-slate-900 mb-3">Reversible Computing</h4>
+                <p class="text-sm text-slate-700 mb-3">Information-preserving nature enables complete audit trails with every computational step theoretically reconstructible. However, practical challenges include near-zero noise operation and massive infrastructure requirements <a href="https://www.semanticscholar.org/paper/Delay-Insensitive-Ternary-Logic-Nair-Smith/55ce7c0c0ab5fd2c1b7f100a73026adc81671e4f" class="citation-link">[299]</a>.</p>
+                <div class="bg-amber-100 p-3 rounded text-xs text-amber-700">
+                  <strong>Status:</strong> Currently speculative at scale, irrelevant for near-term deployment
+                </div>
+              </div>
+
+              <div class="bg-slate-50 p-6 rounded-lg">
+                <h4 class="font-semibold text-slate-900 mb-3">Quantum Ethical States</h4>
+                <p class="text-sm text-slate-700 mb-3">Quantum superposition could enable more nuanced uncertainty representation than TML&#39;s explicit NULL state. However, measurement problem creates fundamental challenges for ethical state communication and commitment <a href="https://www.academia.edu/Documents/in/Ternary_Logic?f_loswp=24454659" class="citation-link">[298]</a>.</p>
+                <div class="bg-purple-100 p-3 rounded text-xs text-purple-700">
+                  <strong>Status:</strong> Speculative frontier with theoretical framework undeveloped
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div class="bg-slate-50 rounded-lg p-8">
+              <h3 class="text-2xl font-semibold text-slate-900 mb-6">DITL/NCL Trade-offs</h3>
+
+              <div class="space-y-6">
+                <div class="bg-white p-6 rounded-lg border">
+                  <h4 class="font-semibold text-slate-900 mb-3">Area Overhead</h4>
+                  <p class="text-slate-700 mb-3">NCL designs typically require 2-4× area overhead compared to equivalent synchronous circuits, with DITL offering modest improvements through optimized encoding <a href="https://ieeexplore.ieee.org/document/9007281/" class="citation-link">[8]</a>.</p>
+                  <div class="flex items-center justify-between text-sm">
+                    <span class="text-slate-600">Overhead vs. Security</span>
+                    <span class="font-semibold text-green-700">Acceptable for safety-critical systems</span>
+                  </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg border">
+                  <h4 class="font-semibold text-slate-900 mb-3">Power Consumption</h4>
+                  <p class="text-slate-700 mb-3">Asynchronous nature enables fine-grained power management with 128.3 μW average power dissipation for DITL 4-bit adder, compatible with mobile deployment scenarios <a href="https://ieeexplore.ieee.org/document/9007281/" class="citation-link">[8]</a>.</p>
+                  <div class="flex items-center justify-between text-sm">
+                    <span class="text-slate-600">Energy Efficiency</span>
+                    <span class="font-semibold text-blue-700">Energy-proportional operation</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-red-50 rounded-lg p-8">
+              <h3 class="text-2xl font-semibold text-slate-900 mb-6">Fundamental Limitations</h3>
+
+              <div class="space-y-6">
+                <div class="bg-white p-6 rounded-lg border border-red-200">
+                  <h4 class="font-semibold text-slate-900 mb-3">Gödelian Incompleteness</h4>
+                  <p class="text-slate-700 text-sm">Any sufficiently powerful formal system cannot prove all truths about itself. TML cannot fully verify its own correctness, though hardware-software boundary provides partial resolution through simpler, physically instantiated core <a href="https://zenodo.org/records/14915053" class="citation-link">[304]</a>.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg border border-red-200">
+                  <h4 class="font-semibold text-slate-900 mb-3">Value Alignment Problem</h4>
+                  <p class="text-slate-700 text-sm">TML ensures specified constraints are enforced but cannot guarantee specifications capture intended values. Translation from human moral intuitions to formal specifications introduces multiple points of potential misalignment <a href="https://www.zendata.dev/post/ai-ethics-101" class="citation-link">[276]</a>.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg border border-red-200">
+                  <h4 class="font-semibold text-slate-900 mb-3">Physical Attack Vectors</h4>
+                  <p class="text-slate-700 text-sm">Side channels and fault injection target implementation layer. While DITL provides significant resistance, determined adversaries with physical access present residual risks requiring layered security approaches <a href="https://www.usenix.org/system/files/usenixsecurity25-appendix-bajo.pdf" class="citation-link">[294]</a>.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Future Research -->
+      <section id="future-research" class="max-w-7xl mx-auto px-8 py-12">
+        <h2 class="serif text-4xl font-bold text-slate-900 mb-8">Future Research Directions</h2>
+
+        <div class="space-y-8">
+          <div class="bg-white border border-slate-200 rounded-lg p-8">
+            <h3 class="text-2xl font-semibold text-slate-900 mb-6">Near-Term Priorities</h3>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              <div class="bg-blue-50 p-6 rounded-lg">
+                <h4 class="font-semibold text-slate-900 mb-3">TML Processor Prototype</h4>
+                <p class="text-sm text-slate-700 mb-3">Fabrication and characterization of demonstration processor implementing core TML operations in DITL/NCL, enabling empirical validation of performance, power, and security characteristics <a href="https://ieeexplore.ieee.org/document/9007281/" class="citation-link">[8]</a>.</p>
+                <div class="bg-white p-3 rounded text-xs text-slate-600">
+                  <strong>Goals:</strong> Measure actual vs. theoretical performance, establish operational bounds, compare against software emulation
+                </div>
+              </div>
+
+              <div class="bg-green-50 p-6 rounded-lg">
+                <h4 class="font-semibold text-slate-900 mb-3">Compiler Toolchain</h4>
+                <p class="text-sm text-slate-700 mb-3">Development of high-level specification languages for ethical constraints that compile to verified hardware configurations, integrated with existing AI frameworks <a href="https://ieeexplore.ieee.org/document/6927277/" class="citation-link">[271]</a>.</p>
+                <div class="bg-white p-3 rounded text-xs text-slate-600">
+                  <strong>Requirements:</strong> Formal verification integration, incremental development support, TensorFlow/PyTorch compatibility
+                </div>
+              </div>
+
+              <div class="bg-purple-50 p-6 rounded-lg">
+                <h4 class="font-semibold text-slate-900 mb-3">Benchmark Suite</h4>
+                <p class="text-sm text-slate-700 mb-3">Development of comprehensive benchmarks covering diverse ethical domains: privacy, fairness, safety, and truthfulness, with specified TML state sequences for verification <a href="https://www.semanticscholar.org/paper/Delay-Insensitive-Ternary-Logic-Nair-Smith/55ce7c0c0ab5fd2c1b7f100a73026adc81671e4f" class="citation-link">[299]</a>.</p>
+                <div class="bg-white p-3 rounded text-xs text-slate-600">
+                  <strong>Domains:</strong> Privacy-preserving computation, fairness in resource allocation, safety in physical interaction, truthfulness in communication
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-slate-50 rounded-lg p-8">
+            <h3 class="text-2xl font-semibold text-slate-900 mb-6">Long-Term Vision</h3>
+
+            <div class="space-y-6">
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-lg border">
+                  <h4 class="font-semibold text-slate-900 mb-3">Neuromorphic Integration</h4>
+                  <p class="text-sm text-slate-700">Integration with neuromorphic computing for embodied AI applications, bridging discrete ethical evaluation with continuous physical interaction. Event-driven, analog nature shares asynchronous characteristics with DITL/NCL <a href="https://www.academia.edu/Documents/in/Ternary_Logic?f_loswp=24454659" class="citation-link">[298]</a>.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg border">
+                  <h4 class="font-semibold text-slate-900 mb-3">Interplanetary Governance</h4>
+                  <p class="text-sm text-slate-700">Protocols for distributed ASI addressing scenarios with communication delays (Earth-Mars: 4-24 minutes) precluding real-time centralized coordination. Requires latency-tolerant consensus and cryptographic commitments <a href="https://fractonicmind.github.io/TernaryMoralLogic/" class="citation-link">[1]</a>.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg border">
+                  <h4 class="font-semibold text-slate-900 mb-3">Evolutionary Stability</h4>
+                  <p class="text-sm text-slate-700">Examination of whether TML-DITL enforcement persists as dominant governance mechanism through competitive ASI system interactions. Evolutionary game theory models dynamics of ethical vs. non-ethical architectures <a href="https://zenodo.org/records/14915053" class="citation-link">[304]</a>.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Conclusion -->
+      <section id="conclusion" class="max-w-7xl mx-auto px-8 py-12">
+        <h2 class="serif text-4xl font-bold text-slate-900 mb-8">Conclusion</h2>
+
+        <div class="space-y-8">
+          <div class="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-lg p-8">
+            <h3 class="text-2xl font-semibold text-slate-900 mb-6">Synthesis of Findings</h3>
+
+            <div class="space-y-6">
+              <div class="bg-white p-6 rounded-lg border">
+                <h4 class="font-semibold text-slate-900 mb-3">Viable Constitutional Substrate</h4>
+                <p class="text-slate-700">TML-DITL/NCL integration establishes a viable constitutional substrate for advanced AI systems through direct correspondence between abstract ethical states and physical electrical conditions. The &#34;Sacred Pause&#34; mechanism provides genuine temporal space for ethical deliberation that cannot be bypassed through software optimization or adversarial manipulation <a href="https://fractonicmind.github.io/TernaryMoralLogic/" class="citation-link">[1]</a>
+                  <a href="https://ieeexplore.ieee.org/document/9007281/" class="citation-link">[8]</a>.
+                </p>
+              </div>
+
+              <div class="bg-white p-6 rounded-lg border">
+                <h4 class="font-semibold text-slate-900 mb-3">Necessary but Not Sufficient</h4>
+                <p class="text-slate-700">Hardware enforceability emerges as a necessary but not sufficient condition for ASI safety. While TML can ensure specified ethical constraints are physically enforced, it cannot guarantee that specifications capture intended values or that all possible failure modes have been anticipated. Complementary approaches including formal verification, institutional oversight, and layered security architectures remain essential <a href="https://zenodo.org/records/14915053" class="citation-link">[304]</a>
+                  <a href="https://www.zendata.dev/post/ai-ethics-101" class="citation-link">[276]</a>.
+                </p>
+              </div>
+
+              <div class="bg-white p-6 rounded-lg border">
+                <h4 class="font-semibold text-slate-900 mb-3">Path Forward</h4>
+                <p class="text-slate-700">The path forward requires sustained investment in standards development through IEEE, with reference implementations enabling community evaluation. Prototype deployment in constrained domains will generate empirical evidence for broader adoption and institutional capacity building <a href="https://ieeexplore.ieee.org/document/9007281/" class="citation-link">[8]</a>
+                  <a href="http://standards.ieee.org/wp-content/uploads/import/documents/other/ead_v2.pdf" class="citation-link">[154]</a>.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 rounded-lg p-8">
+            <h3 class="text-2xl font-semibold text-slate-900 mb-6">Call to Action</h3>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              <div class="bg-white p-6 rounded-lg border">
+                <div class="flex items-center mb-3">
+                  <i class="fas fa-users text-green-600 text-xl mr-3"></i>
+                  <h4 class="font-semibold text-slate-900">Interdisciplinary Collaboration</h4>
+                </div>
+                <p class="text-sm text-slate-700">Intensified collaboration between computer architects and ethicists is essential. Technical implementation details cannot be separated from the normative questions they encode, requiring mutual education and engagement across disciplines <a href="https://fractonicmind.github.io/TernaryMoralLogic/" class="citation-link">[1]</a>
+                  <a href="https://www.zendata.dev/post/ai-ethics-101" class="citation-link">[276]</a>.
+                </p>
+              </div>
+
+              <div class="bg-white p-6 rounded-lg border">
+                <div class="flex items-center mb-3">
+                  <i class="fas fa-shield-alt text-blue-600 text-xl mr-3"></i>
+                  <h4 class="font-semibold text-slate-900">Proactive Governance</h4>
+                </div>
+                <p class="text-sm text-slate-700">Proactive governance before AGI/ASI capability thresholds is essential. Early adoption of TML principles in current AI systems, even with software emulation, will build institutional capacity and generate learning for hardware transition <a href="https://fractonicmind.github.io/TernaryMoralLogic/" class="citation-link">[1]</a>.</p>
+              </div>
+
+              <div class="bg-white p-6 rounded-lg border">
+                <div class="flex items-center mb-3">
+                  <i class="fas fa-code-branch text-purple-600 text-xl mr-3"></i>
+                  <h4 class="font-semibold text-slate-900">Open-Source Hardware</h4>
+                </div>
+                <p class="text-sm text-slate-700">Open-source hardware reference implementations would democratize access to TML technology and enable independent verification. Community governance of reference designs aligns with TML&#39;s principles of distributed accountability <a href="https://fractonicmind.github.io/TernaryMoralLogic/" class="citation-link">[1]</a>.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="bg-slate-900 text-white py-12 mt-16">
+        <div class="max-w-7xl mx-auto px-8">
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div>
+              <h4 class="text-lg font-semibold mb-4">Research Context</h4>
+              <p class="text-slate-300 text-sm">This analysis presents a formal evaluation of Ternary Moral Logic integration with Delay Insensitive Ternary Logic for hardware-enforceable ethical governance in AGI/ASI systems.</p>
+            </div>
+
+            <div>
+              <h4 class="text-lg font-semibold mb-4">Key References</h4>
+              <div class="space-y-2 text-sm text-slate-300">
+                <div>
+                  <a href="https://fractonicmind.github.io/TernaryMoralLogic/" class="citation-link text-blue-300">[1] Ternary Moral Logic Framework</a>
+                </div>
+                <div>
+                  <a href="https://ieeexplore.ieee.org/document/9007281/" class="citation-link text-blue-300">[8] DITL Hardware Implementation</a>
+                </div>
+                <div>
+                  <a href="http://standards.ieee.org/wp-content/uploads/import/documents/other/ead_v2.pdf" class="citation-link text-blue-300">[154] IEEE Ethically Aligned Design</a>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h4 class="text-lg font-semibold mb-4">Technical Standards</h4>
+              <div class="space-y-2 text-sm text-slate-300">
+                <div>IEEE 7000 Series - Ethical Design</div>
+                <div>IEEE 2851-2023 - Hardware Security</div>
+                <div>Common Criteria Evaluation</div>
+                <div>Formal Verification Methods</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="border-t border-slate-700 mt-8 pt-8 text-center text-sm text-slate-400">
+            <p>Research Report • Computer Architecture &amp; AI Ethics • IEEE Style Analysis • 2024</p>
+          </div>
+        </div>
+      </footer>
+    </main>
+
+    <script>
+        // Initialize Mermaid
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'default',
+            themeVariables: {
+                primaryColor: '#1e40af',
+                primaryTextColor: '#ffffff',
+                primaryBorderColor: '#1d4ed8',
+                lineColor: '#64748b',
+                sectionBkgColor: '#f8fafc',
+                altSectionBkgColor: '#ffffff',
+                gridColor: '#e2e8f0',
+                secondaryColor: '#3b82f6',
+                tertiaryColor: '#f1f5f9',
+                background: '#ffffff',
+                mainBkg: '#1e40af',
+                secondBkg: '#3b82f6',
+                tertiaryColor: '#f8fafc',
+                fontFamily: 'Inter, sans-serif'
+            },
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true,
+                curve: 'basis'
+            },
+            sequence: {
+                useMaxWidth: true,
+                wrap: true
+            }
+        });
+
+        // Initialize Mermaid Controls for zoom and pan
+        function initializeMermaidControls() {
+            const containers = document.querySelectorAll('.mermaid-container');
+
+            containers.forEach(container => {
+            const mermaidElement = container.querySelector('.mermaid');
+            let scale = 1;
+            let isDragging = false;
+            let startX, startY, translateX = 0, translateY = 0;
+
+            // 触摸相关状态
+            let isTouch = false;
+            let touchStartTime = 0;
+            let initialDistance = 0;
+            let initialScale = 1;
+            let isPinching = false;
+
+            // Zoom controls
+            const zoomInBtn = container.querySelector('.zoom-in');
+            const zoomOutBtn = container.querySelector('.zoom-out');
+            const resetBtn = container.querySelector('.reset-zoom');
+            const fullscreenBtn = container.querySelector('.fullscreen');
+
+            function updateTransform() {
+                mermaidElement.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+
+                if (scale > 1) {
+                container.classList.add('zoomed');
+                } else {
+                container.classList.remove('zoomed');
+                }
+
+                mermaidElement.style.cursor = isDragging ? 'grabbing' : 'grab';
+            }
+
+            if (zoomInBtn) {
+                zoomInBtn.addEventListener('click', () => {
+                scale = Math.min(scale * 1.25, 4);
+                updateTransform();
+                });
+            }
+
+            if (zoomOutBtn) {
+                zoomOutBtn.addEventListener('click', () => {
+                scale = Math.max(scale / 1.25, 0.3);
+                if (scale <= 1) {
+                    translateX = 0;
+                    translateY = 0;
+                }
+                updateTransform();
+                });
+            }
+
+            if (resetBtn) {
+                resetBtn.addEventListener('click', () => {
+                scale = 1;
+                translateX = 0;
+                translateY = 0;
+                updateTransform();
+                });
+            }
+
+            if (fullscreenBtn) {
+                fullscreenBtn.addEventListener('click', () => {
+                if (container.requestFullscreen) {
+                    container.requestFullscreen();
+                } else if (container.webkitRequestFullscreen) {
+                    container.webkitRequestFullscreen();
+                } else if (container.msRequestFullscreen) {
+                    container.msRequestFullscreen();
+                }
+                });
+            }
+
+            // Mouse Events
+            mermaidElement.addEventListener('mousedown', (e) => {
+                if (isTouch) return; // 如果是触摸设备，忽略鼠标事件
+
+                isDragging = true;
+                startX = e.clientX - translateX;
+                startY = e.clientY - translateY;
+                mermaidElement.style.cursor = 'grabbing';
+                updateTransform();
+                e.preventDefault();
+            });
+
+            document.addEventListener('mousemove', (e) => {
+                if (isDragging && !isTouch) {
+                translateX = e.clientX - startX;
+                translateY = e.clientY - startY;
+                updateTransform();
+                }
+            });
+
+            document.addEventListener('mouseup', () => {
+                if (isDragging && !isTouch) {
+                isDragging = false;
+                mermaidElement.style.cursor = 'grab';
+                updateTransform();
+                }
+            });
+
+            document.addEventListener('mouseleave', () => {
+                if (isDragging && !isTouch) {
+                isDragging = false;
+                mermaidElement.style.cursor = 'grab';
+                updateTransform();
+                }
+            });
+
+            // 获取两点之间的距离
+            function getTouchDistance(touch1, touch2) {
+                return Math.hypot(
+                touch2.clientX - touch1.clientX,
+                touch2.clientY - touch1.clientY
+                );
+            }
+
+            // Touch Events - 触摸事件处理
+            mermaidElement.addEventListener('touchstart', (e) => {
+                isTouch = true;
+                touchStartTime = Date.now();
+
+                if (e.touches.length === 1) {
+                // 单指拖动
+                isPinching = false;
+                isDragging = true;
+
+                const touch = e.touches[0];
+                startX = touch.clientX - translateX;
+                startY = touch.clientY - translateY;
+
+                } else if (e.touches.length === 2) {
+                // 双指缩放
+                isPinching = true;
+                isDragging = false;
+
+                const touch1 = e.touches[0];
+                const touch2 = e.touches[1];
+                initialDistance = getTouchDistance(touch1, touch2);
+                initialScale = scale;
+                }
+
+                e.preventDefault();
+            }, { passive: false });
+
+            mermaidElement.addEventListener('touchmove', (e) => {
+                if (e.touches.length === 1 && isDragging && !isPinching) {
+                // 单指拖动
+                const touch = e.touches[0];
+                translateX = touch.clientX - startX;
+                translateY = touch.clientY - startY;
+                updateTransform();
+
+                } else if (e.touches.length === 2 && isPinching) {
+                // 双指缩放
+                const touch1 = e.touches[0];
+                const touch2 = e.touches[1];
+                const currentDistance = getTouchDistance(touch1, touch2);
+
+                if (initialDistance > 0) {
+                    const newScale = Math.min(Math.max(
+                    initialScale * (currentDistance / initialDistance),
+                    0.3
+                    ), 4);
+                    scale = newScale;
+                    updateTransform();
+                }
+                }
+
+                e.preventDefault();
+            }, { passive: false });
+
+            mermaidElement.addEventListener('touchend', (e) => {
+                // 重置状态
+                if (e.touches.length === 0) {
+                isDragging = false;
+                isPinching = false;
+                initialDistance = 0;
+
+                // 延迟重置isTouch，避免鼠标事件立即触发
+                setTimeout(() => {
+                    isTouch = false;
+                }, 100);
+                } else if (e.touches.length === 1 && isPinching) {
+                // 从双指变为单指，切换为拖动模式
+                isPinching = false;
+                isDragging = true;
+
+                const touch = e.touches[0];
+                startX = touch.clientX - translateX;
+                startY = touch.clientY - translateY;
+                }
+
+                updateTransform();
+            });
+
+            mermaidElement.addEventListener('touchcancel', (e) => {
+                isDragging = false;
+                isPinching = false;
+                initialDistance = 0;
+
+                setTimeout(() => {
+                isTouch = false;
+                }, 100);
+
+                updateTransform();
+            });
+
+            // Enhanced wheel zoom with better center point handling
+            container.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                const rect = container.getBoundingClientRect();
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+
+                const delta = e.deltaY > 0 ? 0.9 : 1.1;
+                const newScale = Math.min(Math.max(scale * delta, 0.3), 4);
+
+                // Adjust translation to zoom towards center
+                if (newScale !== scale) {
+                const scaleDiff = newScale / scale;
+                translateX = translateX * scaleDiff;
+                translateY = translateY * scaleDiff;
+                scale = newScale;
+
+                if (scale <= 1) {
+                    translateX = 0;
+                    translateY = 0;
+                }
+
+                updateTransform();
+                }
+            });
+
+            // Initialize display
+            updateTransform();
+            });
+        }
+
+        // Initialize the mermaid controls
+        initializeMermaidControls();
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Mobile menu toggle
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const tocSidebar = document.querySelector('.toc-sidebar');
+        if (mobileMenuToggle) {
+            mobileMenuToggle.addEventListener('click', function() {
+                tocSidebar.classList.toggle('open');
+            });
+        }
+
+        // Close the sidebar when clicking outside on mobile
+        document.addEventListener('click', function(event) {
+            if (window.innerWidth < 1024) {
+                const isClickInsideSidebar = tocSidebar.contains(event.target);
+                const isClickOnToggle = mobileMenuToggle.contains(event.target);
+                if (tocSidebar.classList.contains('open') && !isClickInsideSidebar && !isClickOnToggle) {
+                    tocSidebar.classList.remove('open');
+                }
+            }
+        });
+
+        // Reset sidebar state on window resize
+        function resetSidebarState() {
+            if (window.innerWidth >= 1024) {
+                tocSidebar.classList.remove('open');
+            }
+        }
+
+        window.addEventListener('resize', resetSidebarState);
+    </script>
+  
+
+</body></html>
