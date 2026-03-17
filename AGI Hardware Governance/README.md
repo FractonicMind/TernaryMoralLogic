@@ -64,32 +64,32 @@ The artifacts in this repository provide a comprehensive technical defense for h
 Detailed specifications for mapping TML ethical states to physical voltage levels and asynchronous handshakes.
 
   * **Text:** [View Markdown](TML_DITL_Engineering_Mapping.md)
-  * **Web:** [View HTML](https://fractonicmind.github.io/TernaryMoralLogic/AGI%2520Hardware%2520Governance/TML_DITL_Engineering_Mapping.html)
+  * **Web:** [View HTML](https://fractonicmind.github.io/TernaryMoralLogic/AGI Hardware Governance/TML_DITL_Engineering_Mapping.html)
 
 ### 2\. TML Constitutional Substrate Resilience
 
 Analysis of TML's performance and security properties under conditions of recursive self-improvement and adversarial pressure.
 
   * **Text:** [View Markdown](TML_Constitutional_Substrate_Resilience.md)
-  * **Infographic:** [View HTML Infographic](https://fractonicmind.github.io/TernaryMoralLogic/AGI%2520Hardware%2520Governance/TML_Constitutional_Substrate_Resilience-I.html)
-  * **Web Page:** [View HTML Web Page](https://fractonicmind.github.io/TernaryMoralLogic/AGI%2520Hardware%2520Governance/TML_Constitutional_Substrate_Resilience-W.html)
-  * **Audio:** [Listen to MP3 Overview](https://fractonicmind.github.io/TernaryMoralLogic/AGI%2520Hardware%2520Governance/TML_Constitutional_Substrate_Resilience.mp3)
+  * **Infographic:** [View HTML Infographic](https://fractonicmind.github.io/TernaryMoralLogic/AGI Hardware Governance/TML_Constitutional_Substrate_Resilience-I.html)
+  * **Web Page:** [View HTML Web Page](https://fractonicmind.github.io/TernaryMoralLogic/AGI Hardware Governance/TML_Constitutional_Substrate_Resilience-W.html)
+  * **Audio:** [Listen to MP3 Overview](https://fractonicmind.github.io/TernaryMoralLogic/AGI Hardware Governance/TML_Constitutional_Substrate_Resilience.mp3)
 
 ### 3\. TML Triadic Coprocessor Architecture
 
 Strategic integration models for embedding ternary governance logic within existing binary hardware ecosystems.
 
   * **Text:** [View Markdown](TML_Triadic_Coprocessor_Architecture.md)
-  * **Infographic:** [View HTML Infographic](https://fractonicmind.github.io/TernaryMoralLogic/AGI%2520Hardware%2520Governance/TML_Triadic_Coprocessor_Architecture-I.html)
-  * **Web Page:** [View HTML Web Page](https://fractonicmind.github.io/TernaryMoralLogic/AGI%2520Hardware%2520Governance/TML_Triadic_Coprocessor_Architecture-W.html)
-  * **Audio:** [Listen to MP3 Overview](https://fractonicmind.github.io/TernaryMoralLogic/AGI%2520Hardware%2520Governance/TML_Triadic_Coprocessor_Architecture.mp3)
+  * **Infographic:** [View HTML Infographic](https://fractonicmind.github.io/TernaryMoralLogic/AGI Hardware Governance/TML_Triadic_Coprocessor_Architecture-I.html)
+  * **Web Page:** [View HTML Web Page](https://fractonicmind.github.io/TernaryMoralLogic/AGI Hardware Governance/TML_Triadic_Coprocessor_Architecture-W.html)
+  * **Audio:** [Listen to MP3 Overview](https://fractonicmind.github.io/TernaryMoralLogic/AGI Hardware Governance/TML_Triadic_Coprocessor_Architecture.mp3)
 
 ### 4\. TML Physical Governance Imperative
 
 The foundational argument for transitioning AI governance from malleable software guardrails to immutable hardware enforcement.
 
   * **Text:** [View Markdown](TML_Physical_Governance_Imperative.md)
-  * **Web:** [View HTML](https://fractonicmind.github.io/TernaryMoralLogic/AGI%2520Hardware%2520Governance/TML_Physical_Governance_Imperative.html)
+  * **Web:** [View HTML](https://fractonicmind.github.io/TernaryMoralLogic/AGI Hardware Governance/TML_Physical_Governance_Imperative.html)
 
 -----
 
