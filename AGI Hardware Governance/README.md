@@ -71,7 +71,7 @@ Detailed specifications for mapping TML ethical states to physical voltage level
 Analysis of TML's performance and security properties under conditions of recursive self-improvement and adversarial pressure.
 
   * **Text:** [View Markdown](TML_Constitutional_Substrate_Resilience.md)
-  * **Infographic:** [View HTML Infographic](https://fractonicmind.github.io/TernaryMoralLogic/AGI Hardware Governance/TML_Constitutional_Substrate_Resilience-I.html)
+  * **Infographic:** [View HTML Infographic](https://fractonicmind.github.io/TernaryMoralLogic/AGI%20Hardware%20Governance/TML_Constitutional_Substrate_Resilience-I.html)
   * **Web Page:** [View HTML Web Page](https://fractonicmind.github.io/TernaryMoralLogic/AGI Hardware Governance/TML_Constitutional_Substrate_Resilience-W.html)
   * **Audio:** [Listen to MP3 Overview](https://fractonicmind.github.io/TernaryMoralLogic/AGI Hardware Governance/TML_Constitutional_Substrate_Resilience.mp3)
 
