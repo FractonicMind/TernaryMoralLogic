@@ -52,7 +52,7 @@ To integrate TML into existing binary ecosystems, the architecture utilizes a de
   * **Dual-Lane Interlock:** Lane 1 handles high-performance AI inference (GPUs), while Lane 2 (TPU) manages governance, logging, and enforcement.
   * **Execution Gating:** The TPU acts as a physical semaphore, gating the primary compute complex via NVLink or secure governance buses.
 
-![The Triadic Decision Space](triadic_space.png)
+![The Triadic Decision Space](System.png)
 -----
 
 ## Repository Artifacts and Documentation
