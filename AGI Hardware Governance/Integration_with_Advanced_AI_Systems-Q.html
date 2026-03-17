@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ternary Moral Logic Integration with AI Systems</title>
+
+  <!-- Essential CDN Libraries -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              50: 'hsl(210, 75%, 95%)',
+              100: 'hsl(210, 75%, 85%)',
+              200: 'hsl(210, 75%, 75%)',
+              300: 'hsl(210, 75%, 65%)',
+              400: 'hsl(210, 75%, 55%)',
+              500: 'hsl(210, 75%, 40%)',
+              600: 'hsl(210, 75%, 35%)',
+              700: 'hsl(210, 75%, 25%)',
+              800: 'hsl(210, 75%, 15%)',
+              900: 'hsl(210, 75%, 10%)'
+            },
+            accent: {
+              50: 'hsl(270, 70%, 95%)',
+              100: 'hsl(270, 70%, 85%)',
+              200: 'hsl(270, 70%, 75%)',
+              300: 'hsl(270, 70%, 65%)',
+              400: 'hsl(270, 70%, 60%)',
+              500: 'hsl(270, 70%, 55%)',
+              600: 'hsl(270, 70%, 50%)',
+              700: 'hsl(270, 70%, 40%)',
+              800: 'hsl(270, 70%, 30%)',
+              900: 'hsl(270, 70%, 20%)'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0"></script>
+
+  <!-- Preline UI Components -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/preline@2.0.3/dist/preline.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/preline@2.0.3/dist/preline.js"></script>
+
+  <!-- Micro-interactions & Custom Styles -->
+  <style>
+    html { scroll-behavior: smooth; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      html { scroll-behavior: auto; }
+    }
+
+    .btn-interactive {
+      transition: all 0.2s ease-out;
+    }
+    
+    .btn-interactive:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+    
+    .btn-interactive:active {
+      transform: scale(0.95);
+    }
+
+    .card-interactive {
+      transition: all 0.3s ease-out;
+      border: 1px solid transparent;
+      --border-lightness: 40%;
+    }
+
+    .dark .card-interactive {
+      --border-lightness: 60%;
+    }
+
+    .card-interactive:hover {
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      filter: brightness(0.98);
+    }
+    
+    /* Primary colored cards */
+    .card-interactive[class*="primary"]:hover,
+    .card-interactive[class*="white"]:hover,
+    .card-interactive[class*="gray-"]:hover {
+      border-color: hsl(210, 75%, var(--border-lightness));
+    }
+    
+    /* Accent colored cards */
+    .card-interactive[class*="accent"]:hover {
+      border-color: hsl(270, 70%, var(--border-lightness));
+    }
+
+    .dark .card-interactive:hover {
+      filter: brightness(1.05);
+    }
+  </style>
+
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark');
+      const isDark = document.body.classList.contains('dark');
+      document.getElementById('sunIcon').style.display = isDark ? 'block' : 'none';
+      document.getElementById('moonIcon').style.display = isDark ? 'none' : 'block';
+    }
+  </script>
+</head>
+
+<body class="transition-colors duration-300 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+  <!-- Citation System Script -->
+  <script>
+    function initCitationSystem() {
+      let i = 1, map = new Map();
+      document.querySelectorAll('[data-ref]').forEach(el => {
+        if (el.dataset.citationProcessed) return;
+        const raw = (el.getAttribute('data-ref')||'').trim();
+        if (!raw) return;
+
+        const parts = raw.split('|');
+        const url = parts[0].trim();
+        const idx = (parts[1]||'').trim() || map.get(raw) || (map.set(raw, String(i)), String(i++));
+
+        if (!el.textContent || !el.textContent.trim()) { el.dataset.citationProcessed = 'true'; return; }
+
+        const btn = document.createElement('sup'); btn.textContent = String(idx);
+        Object.assign(btn.style, { fontSize:'8px', color:'#fff', cursor:'pointer', top: '1px', fontWeight:'bold', backgroundColor:'#0284c7', borderRadius:'50%', transition:'all .15s', userSelect:'none', minWidth:'19px', height:'19px', marginLeft:'6px', display:'inline-flex', alignItems:'center', justifyContent:'center', boxShadow:'0 1px 3px rgba(0,0,0,.2)', lineHeight:'1'});
+        btn.addEventListener('mouseenter', ()=> Object.assign(btn.style, { backgroundColor:'#0369a1', transform:'scale(1.12)' }));
+        btn.addEventListener('mouseleave', ()=> Object.assign(btn.style, { backgroundColor:'#0284c7', transform:'scale(1)' }));
+        btn.addEventListener('click', e=>{ e.preventDefault(); e.stopPropagation(); window.open(url, '_blank'); });
+
+        el.appendChild(btn); el.dataset.citationProcessed = 'true';
+      });
+    }
+  </script>
+
+  <!-- Progress Bar -->
+  <div class="fixed top-0 left-0 h-1 bg-primary-500 dark:bg-primary-400 z-[60] transition-all duration-300 ease-out" id="progressBar" style="width: 0%;"></div>
+
+  <!-- Floating Header -->
+  <header class="fixed top-0 left-0 right-0 z-50 backdrop-blur bg-gray-50/90 dark:bg-gray-900/90 border-b border-primary-500/20 dark:border-primary-600/20">
+    <nav class="max-w-7xl mx-auto px-6 py-4">
+      <div class="flex items-center justify-between">
+        <h1 class="text-xl font-bold text-primary-700 dark:text-primary-300">TML-AI Integration</h1>
+        
+        <div class="flex items-center gap-6">
+          <a href="#home" class="btn-interactive text-sm font-medium text-primary-600 dark:text-primary-300 hover:text-primary-800 dark:hover:text-primary-200 transition-colors">Home</a>
+          <a href="#foundations" class="btn-interactive text-sm font-medium text-primary-600 dark:text-primary-300 hover:text-primary-800 dark:hover:text-primary-200 transition-colors">Foundations</a>
+          <a href="#hardware" class="btn-interactive text-sm font-medium text-primary-600 dark:text-primary-300 hover:text-primary-800 dark:hover:text-primary-200 transition-colors">Hardware</a>
+          <a href="#architecture" class="btn-interactive text-sm font-medium text-primary-600 dark:text-primary-300 hover:text-primary-800 dark:hover:text-primary-200 transition-colors">Architecture</a>
+          <a href="#governance" class="btn-interactive text-sm font-medium text-primary-600 dark:text-primary-300 hover:text-primary-800 dark:hover:text-primary-200 transition-colors">Governance</a>
+          <a href="#challenges" class="btn-interactive text-sm font-medium text-primary-600 dark:text-primary-300 hover:text-primary-800 dark:hover:text-primary-200 transition-colors">Challenges</a>
+          <a href="#future" class="btn-interactive text-sm font-medium text-primary-600 dark:text-primary-300 hover:text-primary-800 dark:hover:text-primary-200 transition-colors">Future</a>
+          <a href="#conclusion" class="btn-interactive text-sm font-medium text-primary-600 dark:text-primary-300 hover:text-primary-800 dark:hover:text-primary-200 transition-colors">Conclusion</a>
+          
+          <button onclick="toggleDarkMode()" class="btn-interactive p-2 rounded-lg bg-primary-100 dark:bg-primary-800 text-primary-600 dark:text-primary-300 hover:bg-primary-200 dark:hover:bg-primary-700 transition-all">
+            <i data-lucide="sun" id="sunIcon" class="w-5 h-5" style="display: none;"></i>
+            <i data-lucide="moon" id="moonIcon" class="w-5 h-5" style="display: block;"></i>
+          </button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main class="min-h-screen">
+    <!-- Hero Section -->
+    <section id="home" class="py-40 bg-primary-50/50 dark:bg-gray-900" data-aos="fade-up">
+      <div class="max-w-5xl mx-auto px-6">
+        <h2 class="text-4xl md:text-5xl font-bold mb-6 text-primary-700 dark:text-primary-300">
+          Ternary Moral Logic Integration with Advanced AI Systems
+        </h2>
+        <p class="text-xl text-gray-700 dark:text-gray-300 mb-8 leading-relaxed">
+          Exploring the convergence of Ternary Moral Logic (TML) with Artificial General Intelligence (AGI) and Artificial Superintelligence (ASI) through hardware-enforceable ethical constraints using Delay Insensitive Ternary Logic (DITL) and NULL Convention Logic (NCL).
+        </p>
+        
+        <div class="grid md:grid-cols-3 gap-6 mt-12">
+          <div class="card-interactive p-6 bg-white/90 backdrop-blur-sm dark:bg-gray-800 rounded-xl shadow-md">
+            <div class="flex items-center space-x-4 mb-4">
+              <div class="flex-shrink-0 w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center">
+                <i data-lucide="cpu" class="w-6 h-6 text-primary-600 dark:text-primary-400"></i>
+              </div>
+              <h3 class="font-semibold text-lg text-primary-700 dark:text-primary-300">Hardware Enforcement</h3>
+            </div>
+            <p class="text-sm text-gray-600 dark:text-gray-400">
+              Physical realization of ethical constraints through asynchronous ternary circuits and DITL/NCL paradigms
+            </p>
+          </div>
+
+          <div class="card-interactive p-6 bg-white/90 backdrop-blur-sm dark:bg-gray-800 rounded-xl shadow-md">
+            <div class="flex items-center space-x-4 mb-4">
+              <div class="flex-shrink-0 w-12 h-12 bg-accent-100 dark:bg-accent-900/30 rounded-lg flex items-center justify-center">
+                <i data-lucide="shield-check" class="w-6 h-6 text-accent-600 dark:text-accent-400"></i>
+              </div>
+              <h3 class="font-semibold text-lg text-accent-700 dark:text-accent-300">Constitutional Governance</h3>
+            </div>
+            <p class="text-sm text-gray-600 dark:text-gray-400">
+              TML as a foundational substrate for AI governance aligned with IEEE 7000 standards
+            </p>
+          </div>
+
+          <div class="card-interactive p-6 bg-white/90 backdrop-blur-sm dark:bg-gray-800 rounded-xl shadow-md">
+            <div class="flex items-center space-x-4 mb-4">
+              <div class="flex-shrink-0 w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center">
+                <i data-lucide="zap" class="w-6 h-6 text-primary-600 dark:text-primary-400"></i>
+              </div>
+              <h3 class="font-semibold text-lg text-primary-700 dark:text-primary-300">Sacred Pause</h3>
+            </div>
+            <p class="text-sm text-gray-600 dark:text-gray-400">
+              Formal hesitation state implemented via asynchronous ternary circuits for ethical decision-making
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Foundations Section -->
+    <section id="foundations" class="py-20 bg-white/80 dark:bg-gray-900" data-aos="fade-up">
+      <div class="max-w-5xl mx-auto px-6">
+        <h2 class="text-3xl font-bold mb-8 text-primary-700 dark:text-primary-300">
+          Theoretical Foundations of Ternary Moral Logic
+        </h2>
+
+        <div class="space-y-6 mb-12">
+          <p class="text-gray-700 dark:text-gray-300 leading-relaxed" data-ref="https://www.academia.edu/Documents/in/Ternary_Logic?f_loswp=24454659|3">
+            Ternary logic is a form of multi-valued logic that extends classical binary logic by incorporating three truth values, typically represented as true, false, and an indeterminate or null state. This extension enables more nuanced logical expressions that better model real-world scenarios involving ambiguity, uncertainty, or incomplete information.
+          </p>
+
+          <div class="pl-4 pr-3 py-3 border-l-4 border-primary-500 bg-primary-50/40 dark:bg-primary-900/30 rounded-r-lg">
+            <p class="text-sm font-medium text-primary-900 dark:text-primary-100 leading-relaxed" data-ref="https://www.linkedin.com/posts/lev-goukassian-5667b2282_aiandethicsj-aiethics-tml-activity-7411089557263179776-X34u|24">
+              <i data-lucide="info" class="inline-block w-4 h-4 mr-1.5 -mt-0.5"></i>
+              Ternary Moral Logic (TML) was formally established as a methodology for creating transparent, mathematically verifiable ethical histories for AI models, moving AI alignment from abstract principles to engineering practice.
+            </p>
+          </div>
+
+          <p class="text-gray-700 dark:text-gray-300 leading-relaxed" data-ref="https://www.linkedin.com/posts/lev-goukassian-5667b2282_aiandethicsj-aiethics-tml-activity-7411089557263179776-X34u|24">
+            The paper defining Ternary Moral Logic was published in the journal "AI and Ethics" by Springer Nature, confirming its status as peer-reviewed research on the topic.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8 items-start">
+          <img
+            src="https://cdn.qwenlm.ai/60498d16-d2ab-4b9f-8acd-8f6913b3400d/add3c052-92dd-4081-81da-32f57c23ffd2/208c8560-1aad-4457-b8f9-55a8e4c9f9ee.png?key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXNvdXJjZV91c2VyX2lkIjoiNjA0OThkMTYtZDJhYi00YjlmLThhY2QtOGY2OTEzYjM0MDBkIiwicmVzb3VyY2VfaWQiOiJhZGQzYzA1Mi05MmRkLTQwODEtODFkYS0zMmY1N2MyM2ZmZDIiLCJyZXNvdXJjZV9jaGF0X2lkIjpudWxsfQ.QINkg3p-bRM16ndrvFEw5jERnZTofkVJ5Whh86LZwp8"
+            alt="Conceptual diagram illustrating ternary logic decision states: a central circular node labeled 'Sacred Zero' in deep blue (#1a5490) surrounded by three connected nodes arranged in a triangle formation. Top node labeled 'Act (+1)' in green (#2d7a3e), bottom left node labeled 'Refuse (-1)' in red (#a83232), bottom right node labeled 'Pause/Ambiguity (0)' in amber (#b8860b). All nodes connected by thin lines in dark gray (#4a4a4a). Background is clean white (#ffffff) with subtle grid pattern in very light gray (#f5f5f5). Central node has a small pause symbol (two vertical bars) inside it. Overall composition is minimalistic and professional, suitable for academic presentation."
+            class="w-full rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300"
+          />
+
+          <div class="space-y-6">
+            <h3 class="text-xl font-semibold text-primary-700 dark:text-primary-300">
+              Three-State Decision Framework
+            </h3>
+            
+            <p class="text-gray-700 dark:text-gray-300 leading-relaxed" data-ref="https://www.linkedin.com/posts/lev-goukassian-5667b2282_tml-dual-line-architecture-activity-7427857161835454464-nVXB|23">
+              TML operates on a three-state decision framework: Act (+1), Refuse (-1), and Pause/Ambiguity (0). The 'Sacred Zero' represents a hardware-enforced pause state triggered when the system detects high-stakes intent, freezing action and initiating an audit against a rigid moral/legal code.
+            </p>
+
+            <p class="text-gray-700 dark:text-gray-300 leading-relaxed" data-ref="https://www.linkedin.com/posts/lev-goukassian-5667b2282_tml-dual-line-architecture-activity-7427857161835454464-nVXB|23">
+              The specific duration mentioned for the Sacred Zero pause is
+              <span class="mx-1 px-1.5 py-0.5 rounded-md bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300 font-semibold text-sm">500ms</span>, providing sufficient time for ethical evaluation while maintaining operational efficiency.
+            </p>
+
+            <div class="pl-4 pr-3 py-3 border-l-4 border-accent-500 bg-accent-50/40 dark:bg-accent-900/30 rounded-r-lg">
+              <p class="text-sm font-medium text-accent-900 dark:text-accent-100 leading-relaxed" data-ref="https://www.linkedin.com/posts/keiichi-shiraishi-22ab41316_ai-agi-aisafety-activity-7435474270102794240-fih2|20">
+                <i data-lucide="circle-alert" class="inline-block w-4 h-4 mr-1.5 -mt-0.5"></i>
+                Critical finding: A safer AI architecture requires two core layers—an Operating System that defines policy, context, and decision states, and an Execution Engine that enforces whether an action is allowed to occur.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-12">
+          <h3 class="text-xl font-semibold text-primary-700 dark:text-primary-300 mb-6">
+            Historical Context of Multi-Valued Logic
+          </h3>
+
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="card-interactive p-6 bg-primary-50/50 dark:bg-primary-900/20 rounded-xl shadow-md">
+              <h4 class="text-lg font-semibold text-primary-700 dark:text-primary-300 mb-3" data-ref="https://www.semanticscholar.org/paper/Towards-a-balanced-ternary-FPGA-Beckett/617938c0aceac9b5ff3e8094f334f7b9104effc8|2">Balanced Ternary FPGA Organization</h4>
+              <p class="text-sm text-gray-700 dark:text-gray-300">
+                This work proposes and analyzes an organization for a Field-Programmable Gate Array structure that operates using a balanced ternary logic system, demonstrating the practical viability of ternary computing architectures.
+              </p>
+            </div>
+
+            <div class="card-interactive p-6 bg-accent-50/50 dark:bg-accent-900/20 rounded-xl shadow-md">
+              <h4 class="text-lg font-semibold text-accent-700 dark:text-accent-300 mb-3" data-ref="https://dl.acm.org/doi/10.1007/s00521-025-10981-5|5">NULL Convention Arithmetic Logic Units</h4>
+              <p class="text-sm text-gray-700 dark:text-gray-300">
+                Design and characterization of NULL convention arithmetic logic units demonstrates the feasibility of implementing complex computational operations using ternary logic paradigms.
+              </p>
+            </div>
+
+            <div class="card-interactive p-6 bg-primary-50/50 dark:bg-primary-900/20 rounded-xl shadow-md">
+              <h4 class="text-lg font-semibold text-primary-700 dark:text-primary-300 mb-3" data-ref="https://hal.science/hal-03091459v1/file/PhilippeCoquet_2019_applsci-9-4212.pdf|18">Transistor Reduction Efficiency</h4>
+              <p class="text-sm text-gray-700 dark:text-gray-300">
+                Our design shows about a
+                <span class="mx-1 px-1.5 py-0.5 rounded-md bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300 font-semibold text-sm">50%</span>
+                reduction in the required number of transistors compared to existing ternary technology, indicating significant efficiency gains.
+              </p>
+            </div>
+
+            <div class="card-interactive p-6 bg-accent-50/50 dark:bg-accent-900/20 rounded-xl shadow-md">
+              <h4 class="text-lg font-semibold text-accent-700 dark:text-accent-300 mb-3" data-ref="https://www.researchgate.net/figure/Five-gate-Full-Adder-for-Secure-DITL-and-Boolean-Logic_fig7_283181830|38">Power Consumption Benefits</h4>
+              <p class="text-sm text-gray-700 dark:text-gray-300">
+                Ternary logic provides reduced power consumption compared to binary logic, which can help prevent power analysis attacks by reducing the amount of information leakage.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hardware Implementation Section -->
+    <section id="hardware" class="py-20 bg-primary-50/50 dark:bg-gray-800" data-aos="fade-up">
+      <div class="max-w-5xl mx-auto px-6">
+        <h2 class="text-3xl font-bold mb-8 text-primary-700 dark:text-primary-300">
+          Hardware Implementation: DITL and NCL Paradigms
+        </h2>
+
+        <div class="space-y-6 mb-12">
+          <p class="text-gray-700 dark:text-gray-300 leading-relaxed" data-ref="https://www.semanticscholar.org/paper/Delay-Insensitive-Ternary-Logic-Nair-Smith/55ce7c0c0ab5fd2c1b7f100a73026adc81671e4f|16">
+            Delay-Insensitive Ternary Logic (DITL) represents a new paradigm compared with other delay-insensitive paradigms, showing that DITL significantly outperforms PCHB and NCL in various performance metrics. This superior performance makes DITL particularly suitable for hardware-enforceable ethical constraints in AI systems.
+          </p>
+
+          <p class="text-gray-700 dark:text-gray-300 leading-relaxed" data-ref="https://www.semanticscholar.org/paper/Delay-insensitive-ternary-logic-utilizing-cMOS-and-Nair-Sankar/ae37ff327fe60486fcb64d675329ca19405b709d|41">
+            This dissertation develops the Delay-Insensitive Ternary Logic (DITL) asynchronous design paradigm that combines the design aspects of similar dual-rail asynchronous paradigms, enabling robust and reliable ternary logic implementations.
+          </p>
+
+          <div class="pl-4 pr-3 py-3 border-l-4 border-amber-500 bg-amber-50/40 dark:bg-amber-900/30 rounded-r-lg">
+            <p class="text-sm font-medium text-amber-900 dark:text-amber-100 leading-relaxed" data-ref="https://ietresearch.onlinelibrary.wiley.com/doi/full/10.1049/cdt2.12047|26">
+              <i data-lucide="triangle-alert" class="inline-block w-4 h-4 mr-1.5 -mt-0.5"></i>
+              Warning: A fundamental security vulnerability exists in NCL circuits due to their typical verification process, which focuses on legal inputs. Malicious actors can exploit illegal inputs (11) to create Trojans that remain undetected by standard methods.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8 items-start mb-12">
+          <div class="space-y-6">
+            <h3 class="text-xl font-semibold text-primary-700 dark:text-primary-300">
+              NULL Convention Logic Characteristics
+            </h3>
+
+            <p class="text-gray-700 dark:text-gray-300 leading-relaxed" data-ref="https://www.researchgate.net/publication/3657599_NULL_Convention_LogicTM_a_complete_and_consistent_logic_for_asynchronous_digital_circuit_synthesis|4">
+              NULL Convention Logic (NCL) is a symbolically complete logic which expresses process completely in terms of the logic itself and inherently and conveniently supports asynchronous operation. This completeness enables comprehensive process modeling within the logic framework.
+            </p>
+
+            <p class="text-gray-700 dark:text-gray-300 leading-relaxed" data-ref="https://www.researchgate.net/publication/245551156_Designing_Asynchronous_Circuits_using_NULL_Convention_Logic_NCL|27">
+              NCL is an asynchronous logic and latency-insensitive model. To achieve delay insensitivity, NCL circuits must satisfy two rules: input-completeness and output-consistency, ensuring reliable operation regardless of timing variations.
+            </p>
+
+            <p class="text-gray-700 dark:text-gray-300 leading-relaxed" data-ref="https://www.researchgate.net/publication/278647490_Null_Convention_Logic_Circuits_Using_Balanced_Ternary_on_SOI|1">
+              Novel Ternary logic circuits targeting an asynchronous Null Convention Logic (NCL) pipeline utilize the Null value as Data not ready, enabling efficient asynchronous processing with built-in pause states.
+            </p>
+          </div>
+
+          <img
+            src="https://cdn.qwenlm.ai/60498d16-d2ab-4b9f-8acd-8f6913b3400d/add3c052-92dd-4081-81da-32f57c23ffd2/8ad6e5f9-cb0f-4d9c-a7f2-5d92b7e4ac87.png?key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXNvdXJjZV91c2VyX2lkIjoiNjA0OThkMTYtZDJhYi00YjlmLThhY2QtOGY2OTEzYjM0MDBkIiwicmVzb3VyY2VfaWQiOiJhZGQzYzA1Mi05MmRkLTQwODEtODFkYS0zMmY1N2MyM2ZmZDIiLCJyZXNvdXJjZV9jaGF0X2lkIjpudWxsfQ.QINkg3p-bRM16ndrvFEw5jERnZTofkVJ5Whh86LZwp8"
+            alt="Technical schematic diagram showing NCL dual-rail logic encoding: three horizontal pairs of parallel lines representing rail pairs. Top pair labeled 'DATA0 (10)' in green (#2d7a3e) with small filled circles on the upper rail and unfilled circles on the lower rail. Middle pair labeled 'DATA1 (01)' in red (#a83232) with unfilled circles on the upper rail and filled circles on the lower rail. Bottom pair labeled 'NULL (00)' in amber (#b8860b) with no circles, representing empty data state. Each pair has a small arrow pointing right indicating data flow direction. Background is clean white (#ffffff) with subtle grid pattern in very light gray (#f5f5f5). Text labels use sans-serif font in dark gray (#333333). Overall composition is clean and technical, suitable for academic presentation."
+            class="w-full rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300"
+          />
+        </div>
+
+        <div class="hs-accordion-group space-y-4">
+          <div class="hs-accordion card-interactive bg-white/80 backdrop-blur-sm dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+            <button class="hs-accordion-toggle w-full flex justify-between items-center p-4 text-left hover:bg-primary-50 dark:hover:bg-gray-700/50 transition-colors rounded-xl" id="hs-ditl-ncl-heading">
+              <div class="flex items-center space-x-4">
+                <div class="flex-shrink-0 w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center">
+                  <i data-lucide="circuit-board" class="w-6 h-6 text-primary-600 dark:text-primary-400"></i>
+                </div>
+                <span class="font-semibold text-lg text-primary-700 dark:text-primary-300">Comparison: DITL vs NCL Performance</span>
+              </div>
+              <i data-lucide="chevron-down" class="hs-accordion-active:rotate-180 transition-transform duration-300 w-5 h-5 text-primary-600 dark:text-primary-400"></i>
+            </button>
+            <div id="hs-ditl-ncl-collapse" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" aria-labelledby="hs-ditl-ncl-heading">
+              <div class="p-6 pt-0 space-y-4">
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.semanticscholar.org/paper/Delay-Insensitive-Ternary-Logic-Nair-Smith/55ce7c0c0ab5fd2c1b7f100a73026adc81671e4f|16">
+                  DITL significantly outperforms PCHB and NCL in various performance metrics, demonstrating superior efficiency in ternary logic implementations.
+                </p>
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.semanticscholar.org/paper/f2a2cdc453d7f54d1f7120fd904695652455a315|68">
+                  The DITL asynchronous design paradigm combines design aspects of similar dual-rail asynchronous paradigms and Boolean logic, providing a comprehensive framework for reliable ternary computing.
+                </p>
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.researchgate.net/figure/Simulated-correlation-attack_fig3_228744618|59">
+                  The Delay-Insensitive Ternary Logic (DITL) asynchronous design paradigm effectively combines design aspects of similar dual-rail asynchronous paradigms, enabling robust and fault-tolerant implementations.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="hs-accordion card-interactive bg-white/80 backdrop-blur-sm dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+            <button class="hs-accordion-toggle w-full flex justify-between items-center p-4 text-left hover:bg-primary-50 dark:hover:bg-gray-700/50 transition-colors rounded-xl" id="hs-ncl-security-heading">
+              <div class="flex items-center space-x-4">
+                <div class="flex-shrink-0 w-12 h-12 bg-amber-100 dark:bg-amber-900/30 rounded-lg flex items-center justify-center">
+                  <i data-lucide="shield-alert" class="w-6 h-6 text-amber-600 dark:text-amber-400"></i>
+                </div>
+                <span class="font-semibold text-lg text-amber-700 dark:text-amber-300">NCL Security Vulnerabilities</span>
+              </div>
+              <i data-lucide="chevron-down" class="hs-accordion-active:rotate-180 transition-transform duration-300 w-5 h-5 text-amber-600 dark:text-amber-400"></i>
+            </button>
+            <div id="hs-ncl-security-collapse" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" aria-labelledby="hs-ncl-security-heading">
+              <div class="p-6 pt-0 space-y-4">
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://ietresearch.onlinelibrary.wiley.com/doi/full/10.1049/cdt2.12047|26">
+                  In NCL circuits, Boolean values are encoded with two bits: DATA0 (10) represents Boolean 0, DATA1 (01) represents Boolean 1, and NULL (00) signifies an empty set or lack of data. The state where both rails are asserted (11) is considered illegal and should not occur in a properly operating circuit.
+                </p>
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://ietresearch.onlinelibrary.wiley.com/doi/full/10.1049/cdt2.12047|26">
+                  Three specific Trojan threat models were defined for NCL/MTNCL circuits exploiting illegal inputs: AND Trojan, NAND Trojan, and MUX Tree Trojan, each designed to leak sensitive information through illegal input combinations.
+                </p>
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://ietresearch.onlinelibrary.wiley.com/doi/full/10.1049/cdt2.12047|26">
+                  Experimental results demonstrated the effectiveness of proposed detection methods. When applied to 512-bit RSA decryption circuits, the formal verification properties achieved a
+                  <span class="mx-1 px-1.5 py-0.5 rounded-md bg-amber-100 dark:bg-amber-900/30 text-amber-800 dark:text-amber-300 font-semibold text-sm">100%</span>
+                  detection rate for all three types of illegal Trojans without false positives or negatives.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Architecture Section -->
+    <section id="architecture" class="py-20 bg-white/80 dark:bg-gray-900" data-aos="fade-up">
+      <div class="max-w-5xl mx-auto px-6">
+        <h2 class="text-3xl font-bold mb-8 text-primary-700 dark:text-primary-300">
+          TML Governance Architecture
+        </h2>
+
+        <div class="space-y-6 mb-12">
+          <p class="text-gray-700 dark:text-gray-300 leading-relaxed" data-ref="https://www.linkedin.com/posts/keiichi-shiraishi-22ab41316_ai-agi-aisafety-activity-7435474270102794240-fih2|20">
+            True AI governance requires a structural separation between reasoning and execution. An AI system should be able to propose actions but must not automatically execute them. Governance must exist at a system layer to define policies, control decision authority, and validate actions before execution.
+          </p>
+
+          <div class="pl-4 pr-3 py-3 border-l-4 border-primary-500 bg-primary-50/40 dark:bg-primary-900/30 rounded-r-lg">
+            <p class="text-sm font-medium text-primary-900 dark:text-primary-100 leading-relaxed" data-ref="https://www.linkedin.com/posts/keiichi-shiraishi-22ab41316_ai-agi-aisafety-activity-7435474270102794240-fih2|20">
+              <i data-lucide="info" class="inline-block w-4 h-4 mr-1.5 -mt-0.5"></i>
+              A future full AI governance stack is envisioned as having four layers: Model (Intelligence Layer), Operating System (Governance Layer), Execution Engine (Control Layer), and Hardware Enforcement (Physical Boundary).
+            </p>
+          </div>
+
+          <p class="text-gray-700 dark:text-gray-300 leading-relaxed" data-ref="https://www.linkedin.com/posts/keiichi-shiraishi-22ab41316_ai-agi-aisafety-activity-7435474270102794240-fih2|20">
+            The bottleneck in deploying autonomous AI is often not computational power ('silicon') but trust architecture ('trust'). A study of
+            <span class="mx-1 px-1.5 py-0.5 rounded-md bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300 font-semibold text-sm">63</span>
+            research artifacts found that organizations permit their agents to act at only
+            <span class="mx-1 px-1.5 py-0.5 rounded-md bg-primary-100 dark:bg-primary-900/30 text-primary-800 dark:text-primary-300 font-semibold text-sm">40%</span>
+            of their demonstrated capability because governance controls are too slow or restrictive compared to the speed of the signals being generated.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8 items-start mb-12">
+          <div class="space-y-6">
+            <h3 class="text-xl font-semibold text-primary-700 dark:text-primary-300">
+              TML Dual-Line Architecture
+            </h3>
+
+            <p class="text-gray-700 dark:text-gray-300 leading-relaxed" data-ref="https://www.linkedin.com/posts/lev-goukassian-5667b2282_tml-dual-line-architecture-activity-7427857161835454464-nVXB|23">
+              The TML Dual-Line Architecture splits an AI system's processing into two distinct physical timelines: The Fast Lane (The Mouth) for conversation and expression, optimized for speed ('Optimistic'), and The Slow Lane (The Hand) for execution and transactions, optimized for safety ('Pessimistic').
+            </p>
+
+            <p class="text-gray-700 dark:text-gray-300 leading-relaxed" data-ref="https://www.linkedin.com/posts/lev-goukassian-5667b2282_tml-dual-line-architecture-activity-7427857161835454464-nVXB|23">
+              The TML architecture has been open-sourced with four independent engineering reports covering security, systems integration, hardware economics (FPGA vs. GPU), and machine learning for intent classification. The project is presented as a blueprint for Digital Liability Insurance.
+            </p>
+          </div>
+
+          <div class="card-interactive p-6 bg-accent-50/50 dark:bg-accent-900/20 rounded-xl shadow-md">
+            <h4 class="text-lg font-semibold text-accent-700 dark:text-accent-300 mb-4" data-ref="https://www.linkedin.com/posts/keiichi-shiraishi-22ab41316_ai-agi-aisafety-activity-7435474270102794240-fih2|20">Capability-Based Security Model</h4>
+            <p class="text-sm text-gray-700 dark:text-gray-300 mb-3">
+              A capability-based security model, similar to operating system process isolation, is proposed for AI agents. In this model, the LLM is treated as untrusted userland, and every action request passes through controlled interfaces governed by strict capability rules.
+            </p>
+            <p class="text-sm text-gray-700 dark:text-gray-300">
+              This prevents direct execution by the model, creating clear separation between reasoning and execution capabilities.
+            </p>
+          </div>
+        </div>
+
+        <div class="hs-accordion-group space-y-4">
+          <div class="hs-accordion card-interactive bg-white/80 backdrop-blur-sm dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+            <button class="hs-accordion-toggle w-full flex justify-between items-center p-4 text-left hover:bg-primary-50 dark:hover:bg-gray-700/50 transition-colors rounded-xl" id="hs-eight-pillars-heading">
+              <div class="flex items-center space-x-4">
+                <div class="flex-shrink-0 w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center">
+                  <i data-lucide="columns-3" class="w-6 h-6 text-primary-600 dark:text-primary-400"></i>
+                </div>
+                <span class="font-semibold text-lg text-primary-700 dark:text-primary-300">Eight Pillars of TML</span>
+              </div>
+              <i data-lucide="chevron-down" class="hs-accordion-active:rotate-180 transition-transform duration-300 w-5 h-5 text-primary-600 dark:text-primary-400"></i>
+            </button>
+            <div id="hs-eight-pillars-collapse" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" aria-labelledby="hs-eight-pillars-heading">
+              <div class="p-6 pt-0 space-y-4">
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.linkedin.com/posts/lev-goukassian-5667b2282_tml-dual-line-architecture-activity-7427857161835454464-nVXB|23">
+                  Key entities include the Eight Pillars of TML (e.g., Sacred Zero, Goukassian Promise, Hybrid Shield), which form the foundational elements of the constitutional governance architecture.
+                </p>
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.linkedin.com/posts/lev-goukassian-5667b2282_tml-dual-line-architecture-activity-7427857161835454464-nVXB|23">
+                  The Sacred Zero represents a hardware-enforced pause state that freezes action and initiates an audit against a rigid moral/legal code when high-stakes intent is detected.
+                </p>
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.linkedin.com/posts/keiichi-shiraishi-22ab41316_ai-agi-aisafety-activity-7435474270102794240-fih2|20">
+                  Software-only approaches may be insufficient for long-term AI governance. The next step is hardware-level enforcement, where execution governance is embedded directly into chips, providing a physical execution boundary.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="hs-accordion card-interactive bg-white/80 backdrop-blur-sm dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+            <button class="hs-accordion-toggle w-full flex justify-between items-center p-4 text-left hover:bg-primary-50 dark:hover:bg-gray-700/50 transition-colors rounded-xl" id="hs-coprocessor-heading">
+              <div class="flex items-center space-x-4">
+                <div class="flex-shrink-0 w-12 h-12 bg-accent-100 dark:bg-accent-900/30 rounded-lg flex items-center justify-center">
+                  <i data-lucide="microchip" class="w-6 h-6 text-accent-600 dark:text-accent-400"></i>
+                </div>
+                <span class="font-semibold text-lg text-accent-700 dark:text-accent-300">Triadic Coprocessor Architectures</span>
+              </div>
+              <i data-lucide="chevron-down" class="hs-accordion-active:rotate-180 transition-transform duration-300 w-5 h-5 text-accent-600 dark:text-accent-400"></i>
+            </button>
+            <div id="hs-coprocessor-collapse" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" aria-labelledby="hs-coprocessor-heading">
+              <div class="p-6 pt-0 space-y-4">
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.linkedin.com/posts/lev-goukassian-5667b2282_tml-dual-line-architecture-activity-7427857161835454464-nVXB|23">
+                  Triadic coprocessor architectures are integrated with existing AI hardware, enabling seamless incorporation of TML governance mechanisms without disrupting primary computational pipelines.
+                </p>
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.linkedin.com/posts/lev-goukassian-5667b2282_tml-dual-line-architecture-activity-7427857161835454464-nVXB|23">
+                  A related post discusses Anthropic's approach to Constitutional AI, which involves making a model's assumptions explicit regarding what it should optimize for, what it should refuse, and how it should reason during training and inference.
+                </p>
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.linkedin.com/posts/chburkhardt_ethics-cannot-be-an-afterthought-in-automated-activity-7435791347074179072-Fzph|42">
+                  AI doesn't invent ethics. It executes the assumptions embedded in the system. When decisions move into automated workflows, the embedded assumptions become the de facto ethical framework.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Governance Models Section -->
+    <section id="governance" class="py-20 bg-accent-50/50 dark:bg-gray-800" data-aos="fade-up">
+      <div class="max-w-5xl mx-auto px-6">
+        <h2 class="text-3xl font-bold mb-8 text-accent-700 dark:text-accent-300">
+          Governance Models and Standards Alignment
+        </h2>
+
+        <div class="space-y-6 mb-12">
+          <p class="text-gray-700 dark:text-gray-300 leading-relaxed" data-ref="https://ieeexplore.ieee.org/iel7/9536677/9536678/09536679.pdf|21">
+            IEEE Standard Model Process for Addressing Ethical Concerns provides engineers and technologists with an implementable process aligning innovation management processes, system design, and ethical considerations throughout the development lifecycle.
+          </p>
+
+          <div class="pl-4 pr-3 py-3 border-l-4 border-accent-500 bg-accent-50/40 dark:bg-accent-900/30 rounded-r-lg">
+            <p class="text-sm font-medium text-accent-900 dark:text-accent-100 leading-relaxed" data-ref="https://arxiv.org/html/2603.06599v1|22">
+              <i data-lucide="circle-check" class="inline-block w-4 h-4 mr-1.5 -mt-0.5"></i>
+              The proposed ethics-by-design framework is built on three core principles: Pipeline Integration, Multi-Layered Accountability, and Dynamic Adaptation, ensuring comprehensive ethical oversight across all stages.
+            </p>
+          </div>
+
+          <p class="text-gray-700 dark:text-gray-300 leading-relaxed" data-ref="https://arxiv.org/html/2603.06599v1|22">
+            The framework implements a triple-gate structure at each lifecycle stage: Metric gates (quantitative performance and safety thresholds), Governance gates (legal, rights, and procedural compliance), and Eco gates (carbon and water budgets and sustainability constraints).
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8 items-start mb-12">
+          <div class="card-interactive p-6 bg-white/90 backdrop-blur-sm dark:bg-gray-800 rounded-xl shadow-md">
+            <h3 class="text-xl font-semibold text-accent-700 dark:text-accent-300 mb-4" data-ref="https://arxiv.org/html/2603.06599v1|22">Triple-Gate Structure</h3>
+            <div class="space-y-3">
+              <div class="flex items-start space-x-3">
+                <div class="flex-shrink-0 w-8 h-8 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center">
+                  <i data-lucide="circle-check" class="w-4 h-4 text-green-600 dark:text-green-400"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-sm text-gray-800 dark:text-gray-200">Metric Gates</h4>
+                  <p class="text-xs text-gray-600 dark:text-gray-400">Quantitative performance and safety thresholds</p>
+                </div>
+              </div>
+              <div class="flex items-start space-x-3">
+                <div class="flex-shrink-0 w-8 h-8 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center">
+                  <i data-lucide="shield-check" class="w-4 h-4 text-blue-600 dark:text-blue-400"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-sm text-gray-800 dark:text-gray-200">Governance Gates</h4>
+                  <p class="text-xs text-gray-600 dark:text-gray-400">Legal, rights, and procedural compliance</p>
+                </div>
+              </div>
+              <div class="flex items-start space-x-3">
+                <div class="flex-shrink-0 w-8 h-8 bg-emerald-100 dark:bg-emerald-900/30 rounded-lg flex items-center justify-center">
+                  <i data-lucide="leaf" class="w-4 h-4 text-emerald-600 dark:text-emerald-400"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-sm text-gray-800 dark:text-gray-200">Eco Gates</h4>
+                  <p class="text-xs text-gray-600 dark:text-gray-400">Carbon and water budgets and sustainability constraints</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="space-y-6">
+            <h3 class="text-xl font-semibold text-accent-700 dark:text-accent-300">
+              Ethical Reasoning Integration
+            </h3>
+
+            <p class="text-gray-700 dark:text-gray-300 leading-relaxed" data-ref="https://arxiv.org/html/2603.06599v1|22">
+              The framework explicitly integrates consequentialist, deontological, and virtue-ethical reasoning into engineering checkpoints. Consequentialism drives harm audits and escalation protocols based on outcome risks. Deontology enforces non-negotiable rules like human-in-the-loop reviews.
+            </p>
+
+            <p class="text-gray-700 dark:text-gray-300 leading-relaxed" data-ref="https://arxiv.org/html/2603.06599v1|22">
+              Virtue ethics shapes organizational culture through norms of cautious iteration and responsible practice, ensuring ethical considerations permeate the entire development process.
+            </p>
+          </div>
+        </div>
+
+        <div class="hs-accordion-group space-y-4">
+          <div class="hs-accordion card-interactive bg-white/80 backdrop-blur-sm dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+            <button class="hs-accordion-toggle w-full flex justify-between items-center p-4 text-left hover:bg-accent-50 dark:hover:bg-gray-700/50 transition-colors rounded-xl" id="hs-eco-gate-heading">
+              <div class="flex items-center space-x-4">
+                <div class="flex-shrink-0 w-12 h-12 bg-emerald-100 dark:bg-emerald-900/30 rounded-lg flex items-center justify-center">
+                  <i data-lucide="leaf" class="w-6 h-6 text-emerald-600 dark:text-emerald-400"></i>
+                </div>
+                <span class="font-semibold text-lg text-emerald-700 dark:text-emerald-300">Environmental Accountability</span>
+              </div>
+              <i data-lucide="chevron-down" class="hs-accordion-active:rotate-180 transition-transform duration-300 w-5 h-5 text-emerald-600 dark:text-emerald-400"></i>
+            </button>
+            <div id="hs-eco-gate-collapse" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" aria-labelledby="hs-eco-gate-heading">
+              <div class="p-6 pt-0 space-y-4">
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://arxiv.org/html/2603.06599v1|22">
+                  A key innovation is the 'Eco gate,' which treats environmental accountability as a first-class, non-negotiable constraint alongside accuracy and fairness. It uses tools like CarbonTracker and CodeCarbon to log emissions (CO2e) and water usage during training and inference.
+                </p>
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://arxiv.org/html/2603.06599v1|22">
+                  A deployment might be blocked if projected serving emissions exceed an organizational budget, ensuring environmental responsibility remains a core consideration in AI development.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="hs-accordion card-interactive bg-white/80 backdrop-blur-sm dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+            <button class="hs-accordion-toggle w-full flex justify-between items-center p-4 text-left hover:bg-accent-50 dark:hover:bg-gray-700/50 transition-colors rounded-xl" id="hs-accountability-heading">
+              <div class="flex items-center space-x-4">
+                <div class="flex-shrink-0 w-12 h-12 bg-accent-100 dark:bg-accent-900/30 rounded-lg flex items-center justify-center">
+                  <i data-lucide="book-open" class="w-6 h-6 text-accent-600 dark:text-accent-400"></i>
+                </div>
+                <span class="font-semibold text-lg text-accent-700 dark:text-accent-300">Accountability in AI Governance</span>
+              </div>
+              <i data-lucide="chevron-down" class="hs-accordion-active:rotate-180 transition-transform duration-300 w-5 h-5 text-accent-600 dark:text-accent-400"></i>
+            </button>
+            <div id="hs-accountability-collapse" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" aria-labelledby="hs-accountability-heading">
+              <div class="p-6 pt-0 space-y-4">
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://link.springer.com/article/10.1007/s00146-023-01635-y|25">
+                  Accountability in AI is formally defined as a relation of answerability between an agent (A) and a forum (F), where A must justify its conduct to F. This relation requires three necessary conditions: authority recognition, interrogation, and limitation of power.
+                </p>
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://link.springer.com/article/10.1007/s00146-023-01635-y|25">
+                  The article identifies four primary goals that accountability serves in AI governance: Compliance, Report, Oversight, and Enforcement, each addressing different aspects of responsible AI development.
+                </p>
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://link.springer.com/article/10.1007/s00146-023-01635-y|25">
+                  AI accountability is best understood through a sociotechnical approach, recognizing that technology and human/social systems are intertwined, necessitating distributed accountability across the network of technological and social inputs.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Challenges Section -->
+    <section id="challenges" class="py-20 bg-white/80 dark:bg-gray-900" data-aos="fade-up">
+      <div class="max-w-5xl mx-auto px-6">
+        <h2 class="text-3xl font-bold mb-8 text-primary-700 dark:text-primary-300">
+          Technical Challenges and Failure Modes
+        </h2>
+
+        <div class="space-y-6 mb-12">
+          <p class="text-gray-700 dark:text-gray-300 leading-relaxed" data-ref="https://iopscience.iop.org/article/10.1088/2752-5724/ae1fa2|34">
+            Looking ahead, atomic-scale CMP faces several pressing challenges: deciphering multiphysics-coupled removal mechanisms; balancing removal rate selectivity with surface quality; and developing predictive models for defect formation during processing.
+          </p>
+
+          <div class="pl-4 pr-3 py-3 border-l-4 border-amber-500 bg-amber-50/40 dark:bg-amber-900/30 rounded-r-lg">
+            <p class="text-sm font-medium text-amber-900 dark:text-amber-100 leading-relaxed" data-ref="https://www.linkedin.com/posts/keiichi-shiraishi-22ab41316_ai-agi-aisafety-activity-7435474270102794240-fih2|20">
+              <i data-lucide="triangle-alert" class="inline-block w-4 h-4 mr-1.5 -mt-0.5"></i>
+              Risk: In enterprise settings, agentic AI introduces new failure modes due to non-determinism. Safeguards include confidence thresholds before execution, policy validation layers, and deterministic override rules.
+            </p>
+          </div>
+
+          <p class="text-gray-700 dark:text-gray-300 leading-relaxed" data-ref="https://www.linkedin.com/posts/keiichi-shiraishi-22ab41316_ai-agi-aisafety-activity-7435474270102794240-fih2|20">
+            The bottleneck in deploying autonomous AI is often not computational power ('silicon') but trust architecture ('trust'). Organizations permit their agents to act at only
+            <span class="mx-1 px-1.5 py-0.5 rounded-md bg-amber-100 dark:bg-amber-900/30 text-amber-800 dark:text-amber-300 font-semibold text-sm">40%</span>
+            of their demonstrated capability because governance controls are too slow or restrictive.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6 mb-12">
+          <div class="card-interactive p-6 bg-primary-50/50 dark:bg-primary-900/20 rounded-xl shadow-md">
+            <div class="flex items-center space-x-3 mb-4">
+              <div class="flex-shrink-0 w-10 h-10 bg-amber-100 dark:bg-amber-900/30 rounded-lg flex items-center justify-center">
+                <i data-lucide="activity" class="w-5 h-5 text-amber-600 dark:text-amber-400"></i>
+              </div>
+              <h4 class="font-semibold text-primary-700 dark:text-primary-300" data-ref="https://www.linkedin.com/posts/keiichi-shiraishi-22ab41316_ai-agi-aisafety-activity-7435474270102794240-fih2|20">Non-Determinism</h4>
+            </div>
+            <p class="text-sm text-gray-700 dark:text-gray-300">
+              Agentic AI introduces new failure modes due to non-deterministic behavior requiring robust safeguards and validation layers.
+            </p>
+          </div>
+
+          <div class="card-interactive p-6 bg-accent-50/50 dark:bg-accent-900/20 rounded-xl shadow-md">
+            <div class="flex items-center space-x-3 mb-4">
+              <div class="flex-shrink-0 w-10 h-10 bg-amber-100 dark:bg-amber-900/30 rounded-lg flex items-center justify-center">
+                <i data-lucide="shield-alert" class="w-5 h-5 text-amber-600 dark:text-amber-400"></i>
+              </div>
+              <h4 class="font-semibold text-accent-700 dark:text-accent-300" data-ref="https://ietresearch.onlinelibrary.wiley.com/doi/full/10.1049/cdt2.12047|26">Security Vulnerabilities</h4>
+            </div>
+            <p class="text-sm text-gray-700 dark:text-gray-300">
+              NCL circuits have fundamental security vulnerabilities due to illegal input exploitation, requiring formal verification methods.
+            </p>
+          </div>
+
+          <div class="card-interactive p-6 bg-primary-50/50 dark:bg-primary-900/20 rounded-xl shadow-md">
+            <div class="flex items-center space-x-3 mb-4">
+              <div class="flex-shrink-0 w-10 h-10 bg-amber-100 dark:bg-amber-900/30 rounded-lg flex items-center justify-center">
+                <i data-lucide="thermometer" class="w-5 h-5 text-amber-600 dark:text-amber-400"></i>
+              </div>
+              <h4 class="font-semibold text-primary-700 dark:text-primary-300" data-ref="https://iopscience.iop.org/article/10.1088/2752-5724/ae1fa2|34">Processing Challenges</h4>
+            </div>
+            <p class="text-sm text-gray-700 dark:text-gray-300">
+              Atomic-scale CMP faces challenges in multiphysics-coupled removal mechanisms and surface quality optimization.
+            </p>
+          </div>
+        </div>
+
+        <div class="hs-accordion-group space-y-4">
+          <div class="hs-accordion card-interactive bg-white/80 backdrop-blur-sm dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+            <button class="hs-accordion-toggle w-full flex justify-between items-center p-4 text-left hover:bg-primary-50 dark:hover:bg-gray-700/50 transition-colors rounded-xl" id="hs-safeguards-heading">
+              <div class="flex items-center space-x-4">
+                <div class="flex-shrink-0 w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center">
+                  <i data-lucide="shield-check" class="w-6 h-6 text-primary-600 dark:text-primary-400"></i>
+                </div>
+                <span class="font-semibold text-lg text-primary-700 dark:text-primary-300">Enterprise Safeguards</span>
+              </div>
+              <i data-lucide="chevron-down" class="hs-accordion-active:rotate-180 transition-transform duration-300 w-5 h-5 text-primary-600 dark:text-primary-400"></i>
+            </button>
+            <div id="hs-safeguards-collapse" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" aria-labelledby="hs-safeguards-heading">
+              <div class="p-6 pt-0 space-y-4">
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.linkedin.com/posts/keiichi-shiraishi-22ab41316_ai-agi-aisafety-activity-7435474270102794240-fih2|20">
+                  In enterprise settings, agentic AI introduces new failure modes due to non-determinism. Safeguards include confidence thresholds before execution, policy validation layers, deterministic override rules, secondary model verification, schema validation gateways, tool health scoring, retry and fallback orchestration, and explicit uncertainty recognition.
+                </p>
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.linkedin.com/posts/keiichi-shiraishi-22ab41316_ai-agi-aisafety-activity-7435474270102794240-fih2|20">
+                  The bottleneck in deploying autonomous AI is often not computational power ('silicon') but trust architecture ('trust'). Organizations permit their agents to act at only 40% of their demonstrated capability because governance controls are too slow or restrictive.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="hs-accordion card-interactive bg-white/80 backdrop-blur-sm dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+            <button class="hs-accordion-toggle w-full flex justify-between items-center p-4 text-left hover:bg-primary-50 dark:hover:bg-gray-700/50 transition-colors rounded-xl" id="hs-verification-heading">
+              <div class="flex items-center space-x-4">
+                <div class="flex-shrink-0 w-12 h-12 bg-accent-100 dark:bg-accent-900/30 rounded-lg flex items-center justify-center">
+                  <i data-lucide="scan-search" class="w-6 h-6 text-accent-600 dark:text-accent-400"></i>
+                </div>
+                <span class="font-semibold text-lg text-accent-700 dark:text-accent-300">Formal Verification Methods</span>
+              </div>
+              <i data-lucide="chevron-down" class="hs-accordion-active:rotate-180 transition-transform duration-300 w-5 h-5 text-accent-600 dark:text-accent-400"></i>
+            </button>
+            <div id="hs-verification-collapse" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" aria-labelledby="hs-verification-heading">
+              <div class="p-6 pt-0 space-y-4">
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://ietresearch.onlinelibrary.wiley.com/doi/full/10.1049/cdt2.12047|26">
+                  The paper proposes formal verification properties to detect illegal Trojans. Property 1 detects AND Trojans by checking if a gate can be asserted with illegal inputs but not with legal ones. Property 2 detects NAND Trojans by checking if a gate can be de-asserted with illegal inputs but not with legal ones.
+                </p>
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://ietresearch.onlinelibrary.wiley.com/doi/full/10.1049/cdt2.12047|26">
+                  Property 3 detects MUX Tree Trojans by checking if a register's value impacts an output only under illegal conditions. These formal verification methods enable comprehensive security assessment of NCL circuits.
+                </p>
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://ietresearch.onlinelibrary.wiley.com/doi/full/10.1049/cdt2.12047|26">
+                  Experimental results demonstrated the effectiveness of proposed detection methods. When applied to 512-bit RSA decryption circuits, the formal verification properties achieved a 100% detection rate for all three types of illegal Trojans without false positives or negatives.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Future Directions Section -->
+    <section id="future" class="py-20 bg-primary-50/50 dark:bg-gray-800" data-aos="fade-up">
+      <div class="max-w-5xl mx-auto px-6">
+        <h2 class="text-3xl font-bold mb-8 text-primary-700 dark:text-primary-300">
+          Future Directions and Long-Term Coexistence
+        </h2>
+
+        <div class="space-y-6 mb-12">
+          <p class="text-gray-700 dark:text-gray-300 leading-relaxed" data-ref="https://pmc.ncbi.nlm.nih.gov/articles/PMC12436270/|32">
+            This review introduces promising semiconductor materials for future transistors, including two-dimensional van der Waals materials, Mott insulators, organic semiconductors, and topological insulators, each offering unique advantages for next-generation computing architectures.
+          </p>
+
+          <div class="pl-4 pr-3 py-3 border-l-4 border-primary-500 bg-primary-50/40 dark:bg-primary-900/30 rounded-r-lg">
+            <p class="text-sm font-medium text-primary-900 dark:text-primary-100 leading-relaxed" data-ref="https://advanced.onlinelibrary.wiley.com/doi/10.1002/adfm.202424012|44">
+              <i data-lucide="info" class="inline-block w-4 h-4 mr-1.5 -mt-0.5"></i>
+              Gate-all-around FETs (GAAFETs) are an emerging transistor technology that improves gate control by stacking multiple horizontal nanowire or nanosheet conducting channels, enabling continued scaling beyond traditional FinFET architectures.
+            </p>
+          </div>
+
+          <p class="text-gray-700 dark:text-gray-300 leading-relaxed" data-ref="https://www.mdpi.com/2079-9292/15/1/137|7">
+            Support for CIM: The ternary storage mechanism directly supports multi-valued logic computations within the memory, enabling higher data density and reduced energy consumption for AI workloads.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8 items-start mb-12">
+          <div class="space-y-6">
+            <h3 class="text-xl font-semibold text-primary-700 dark:text-primary-300">
+              Emerging Semiconductor Technologies
+            </h3>
+
+            <p class="text-gray-700 dark:text-gray-300 leading-relaxed" data-ref="https://pmc.ncbi.nlm.nih.gov/articles/PMC12436270/|32">
+              Two-dimensional van der Waals materials offer exceptional electrostatic control and reduced short-channel effects, making them ideal candidates for ultra-scaled transistors with superior performance characteristics.
+            </p>
+
+            <p class="text-gray-700 dark:text-gray-300 leading-relaxed" data-ref="https://pmc.ncbi.nlm.nih.gov/articles/PMC12436270/|32">
+              Mott insulators provide unique opportunities for resistive switching and neuromorphic computing applications, leveraging quantum mechanical phase transitions for novel computing paradigms.
+            </p>
+
+            <p class="text-gray-700 dark:text-gray-300 leading-relaxed" data-ref="https://advanced.onlinelibrary.wiley.com/doi/10.1002/adfm.74729|64">
+              This review provides a comprehensive overview of ALD-fabricated 2D metal oxide, high-κ dielectric, and 2D transition metal dichalcogenide materials, highlighting their role in enabling advanced transistor architectures.
+            </p>
+          </div>
+
+          <div class="card-interactive p-6 bg-accent-50/50 dark:bg-accent-900/20 rounded-xl shadow-md">
+            <h4 class="text-lg font-semibold text-accent-700 dark:text-accent-300 mb-4" data-ref="https://advanced.onlinelibrary.wiley.com/doi/10.1002/adfm.202424012|44">GAAFET Advantages</h4>
+            <div class="space-y-3">
+              <div class="flex items-start space-x-3">
+                <div class="flex-shrink-0 w-8 h-8 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center">
+                  <i data-lucide="circle-check" class="w-4 h-4 text-green-600 dark:text-green-400"></i>
+                </div>
+                <div>
+                  <h5 class="font-semibold text-sm text-gray-800 dark:text-gray-200">Improved Gate Control</h5>
+                  <p class="text-xs text-gray-600 dark:text-gray-400">Stacked horizontal nanowire/nanosheet channels</p>
+                </div>
+              </div>
+              <div class="flex items-start space-x-3">
+                <div class="flex-shrink-0 w-8 h-8 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center">
+                  <i data-lucide="zap" class="w-4 h-4 text-blue-600 dark:text-blue-400"></i>
+                </div>
+                <div>
+                  <h5 class="font-semibold text-sm text-gray-800 dark:text-gray-200">Continued Scaling</h5>
+                  <p class="text-xs text-gray-600 dark:text-gray-400">Beyond traditional FinFET limitations</p>
+                </div>
+              </div>
+              <div class="flex items-start space-x-3">
+                <div class="flex-shrink-0 w-8 h-8 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center">
+                  <i data-lucide="layers" class="w-4 h-4 text-purple-600 dark:text-purple-400"></i>
+                </div>
+                <div>
+                  <h5 class="font-semibold text-sm text-gray-800 dark:text-gray-200">Higher Density</h5>
+                  <p class="text-xs text-gray-600 dark:text-gray-400">Multiple conducting channels per device</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hs-accordion-group space-y-4">
+          <div class="hs-accordion card-interactive bg-white/80 backdrop-blur-sm dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+            <button class="hs-accordion-toggle w-full flex justify-between items-center p-4 text-left hover:bg-primary-50 dark:hover:bg-gray-700/50 transition-colors rounded-xl" id="hs-coexistence-heading">
+              <div class="flex items-center space-x-4">
+                <div class="flex-shrink-0 w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center">
+                  <i data-lucide="users" class="w-6 h-6 text-primary-600 dark:text-primary-400"></i>
+                </div>
+                <span class="font-semibold text-lg text-primary-700 dark:text-primary-300">Human-AI Coexistence Scenarios</span>
+              </div>
+              <i data-lucide="chevron-down" class="hs-accordion-active:rotate-180 transition-transform duration-300 w-5 h-5 text-primary-600 dark:text-primary-400"></i>
+            </button>
+            <div id="hs-coexistence-collapse" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" aria-labelledby="hs-coexistence-heading">
+              <div class="p-6 pt-0 space-y-4">
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.linkedin.com/posts/larihamalainen_had-the-privilege-being-at-nvidia-with-jensen-activity-7436563286441201664-zXjU|49">
+                  Intense session with Jensen reasoning from first principles about where AI is going and what it means for every company and every leader, highlighting the transformative impact of advanced AI systems on society and business.
+                </p>
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://www.nvidia.com/en-us/ai-trust-center/trustworthy-ai/|48">
+                  NVIDIA is committed to the advancement of AI we can trust, founded in principles that reflect our core values and ethics, emphasizing the importance of trustworthy AI development.
+                </p>
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://link.springer.com/article/10.1007/s40820-025-01898-8|66">
+                  This review introduces promising semiconductor materials for future transistors, including two-dimensional van der Waals materials, Mott insulators, organic semiconductors, and topological insulators, enabling advanced computing platforms for human-AI collaboration.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="hs-accordion card-interactive bg-white/80 backdrop-blur-sm dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+            <button class="hs-accordion-toggle w-full flex justify-between items-center p-4 text-left hover:bg-primary-50 dark:hover:bg-gray-700/50 transition-colors rounded-xl" id="hs-traceability-heading">
+              <div class="flex items-center space-x-4">
+                <div class="flex-shrink-0 w-12 h-12 bg-accent-100 dark:bg-accent-900/30 rounded-lg flex items-center justify-center">
+                  <i data-lucide="file-text" class="w-6 h-6 text-accent-600 dark:text-accent-400"></i>
+                </div>
+                <span class="font-semibold text-lg text-accent-700 dark:text-accent-300">Moral Trace Logging Systems</span>
+              </div>
+              <i data-lucide="chevron-down" class="hs-accordion-active:rotate-180 transition-transform duration-300 w-5 h-5 text-accent-600 dark:text-accent-400"></i>
+            </button>
+            <div id="hs-traceability-collapse" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" aria-labelledby="hs-traceability-heading">
+              <div class="p-6 pt-0 space-y-4">
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://dev.to/veritaschain/ed25519-merkle-tree-uuidv7-building-tamper-proof-decision-logs-o1e|29">
+                  A tamper-proof audit trail for AI systems can be constructed using four cryptographic primitives: UUIDv7 (for time-ordered unique identifiers), Hash Chains (for tamper-evident linking), Ed25519 (for digital signatures), and Merkle Trees (for efficient batch verification).
+                </p>
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://dev.to/veritaschain/ed25519-merkle-tree-uuidv7-building-tamper-proof-decision-logs-o1e|29">
+                  UUIDv7 (RFC 9562) embeds a 48-bit Unix timestamp in milliseconds directly into the identifier, allowing for lexicographic sorting that equals chronological sorting and provides embedded temporal proof independent of any external timestamp field.
+                </p>
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://dev.to/veritaschain/ed25519-merkle-tree-uuidv7-building-tamper-proof-decision-logs-o1e|29">
+                  Hash chains are created by having each event include the hash of the previous event. If any past event is modified, its hash changes, which breaks the chain and makes the tampering immediately detectable when verifying subsequent links.
+                </p>
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://dev.to/veritaschain/ed25519-merkle-tree-uuidv7-building-tamper-proof-decision-logs-o1e|29">
+                  Ed25519 (RFC 8032) is used for digital signatures to provide authenticity and non-repudiation. It offers 256-bit security with fast signing (~25,000 ops/sec on commodity hardware) and deterministic outputs, ensuring records cannot be forged without access to the private key.
+                </p>
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://dev.to/veritaschain/building-tamper-evident-audit-trails-for-ai-trading-systems-a-deep-dive-into-vcp-v11-1nc8|47">
+                  The VeritasChain Protocol (VCP) v1.1 is an open standard for creating tamper-evident cryptographic audit trails, designed to comply with regulations like the EU AI Act, MiFID II RTS 25, and SEC Rule 17a-4.
+                </p>
+                <p class="text-gray-700 dark:text-gray-300" data-ref="https://dev.to/veritaschain/building-tamper-evident-audit-trails-for-ai-trading-systems-a-deep-dive-into-vcp-v11-1nc8|47">
+                  VCP v1.1 employs a three-layer architecture for integrity: Layer 1 uses SHA-256 hash chains to prove individual event integrity; Layer 2 uses RFC 6962 compliant Merkle trees to ensure batch completeness; Layer 3 uses external anchoring for third-party verifiability.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Conclusion Section -->
+    <section id="conclusion" class="py-20 bg-white/80 dark:bg-gray-900" data-aos="fade-up">
+      <div class="max-w-5xl mx-auto px-6">
+        <h2 class="text-3xl font-bold mb-8 text-primary-700 dark:text-primary-300">
+          Conclusion and Future Outlook
+        </h2>
+
+        <div class="space-y-6">
+          <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+            The integration of Ternary Moral Logic (TML) with advanced AI systems represents a paradigm shift toward constitutionally-governed artificial intelligence. By embedding ethical constraints directly into hardware through Delay Insensitive Ternary Logic (DITL) and NULL Convention Logic (NCL), we can create robust, tamper-resistant governance mechanisms that transcend the limitations of software-only approaches.
+          </p>
+
+          <div class="pl-4 pr-3 py-3 border-l-4 border-primary-500 bg-primary-50/40 dark:bg-primary-900/30 rounded-r-lg">
+            <p class="text-sm font-medium text-primary-900 dark:text-primary-100 leading-relaxed">
+              <i data-lucide="lightbulb" class="inline-block w-4 h-4 mr-1.5 -mt-0.5"></i>
+              Key insight: The 'Sacred Pause' state, implemented as a hardware-enforced pause through asynchronous ternary circuits, provides a crucial safeguard that ensures ethical evaluation occurs before high-stakes actions are executed.
+            </p>
+          </div>
+
+          <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+            The research demonstrates that TML can serve as a constitutional substrate for AI governance, providing a structured framework that balances computational efficiency with ethical accountability. The eight pillars of TML—including the Sacred Zero, Goukassian Promise, and Hybrid Shield—form a comprehensive governance architecture that addresses both immediate safety concerns and long-term coexistence scenarios.
+          </p>
+
+          <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+            Technical challenges remain, particularly in addressing security vulnerabilities in NCL circuits and optimizing ternary logic implementations for performance. However, emerging semiconductor technologies such as GAAFETs and two-dimensional van der Waals materials offer promising pathways for overcoming these obstacles while enabling continued scaling and efficiency improvements.
+          </p>
+
+          <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+            The future of AI governance lies in the seamless integration of ethical principles with computational architecture. Through the development of tamper-proof audit trails, capability-based security models, and hardware-enforced execution boundaries, we can build AI systems that are not only powerful but also trustworthy and accountable to human values.
+          </p>
+
+          <div class="mt-8 p-6 bg-gradient-to-br from-primary-50 to-accent-50 dark:from-primary-900/30 dark:to-accent-900/30 rounded-xl border border-primary-200 dark:border-primary-700">
+            <h3 class="text-lg font-semibold text-primary-700 dark:text-primary-300 mb-3">Final Reflection</h3>
+            <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+              As we advance toward Artificial General Intelligence and beyond, the integration of TML with advanced AI systems offers a pathway to ensure that these powerful technologies remain aligned with human values and ethical principles. The constitutional substrate provided by TML, implemented through hardware-enforceable constraints, represents a critical step toward building AI systems that we can trust with increasing autonomy and responsibility.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-primary-900 dark:bg-gray-950 text-gray-300 py-12 border-t border-primary-700 dark:border-gray-800">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="grid md:grid-cols-3 gap-8">
+        <div>
+          <h3 class="text-lg font-semibold text-primary-300 dark:text-primary-400 mb-4">About This Research</h3>
+          <p class="text-sm text-gray-400">
+            Comprehensive analysis of Ternary Moral Logic integration with advanced AI systems, exploring hardware-enforceable ethical constraints and constitutional governance architectures.
+          </p>
+        </div>
+        
+        <div>
+          <h3 class="text-lg font-semibold text-primary-300 dark:text-primary-400 mb-4">Key Topics</h3>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li class="flex items-center space-x-2">
+              <i data-lucide="chevron-right" class="w-4 h-4 text-primary-400"></i>
+              <span>Ternary Moral Logic (TML)</span>
+            </li>
+            <li class="flex items-center space-x-2">
+              <i data-lucide="chevron-right" class="w-4 h-4 text-primary-400"></i>
+              <span>Delay Insensitive Ternary Logic (DITL)</span>
+            </li>
+            <li class="flex items-center space-x-2">
+              <i data-lucide="chevron-right" class="w-4 h-4 text-primary-400"></i>
+              <span>NULL Convention Logic (NCL)</span>
+            </li>
+            <li class="flex items-center space-x-2">
+              <i data-lucide="chevron-right" class="w-4 h-4 text-primary-400"></i>
+              <span>Constitutional AI Governance</span>
+            </li>
+          </ul>
+        </div>
+        
+        <div>
+          <h3 class="text-lg font-semibold text-primary-300 dark:text-primary-400 mb-4">Research Focus Areas</h3>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li class="flex items-center space-x-2">
+              <i data-lucide="chevron-right" class="w-4 h-4 text-primary-400"></i>
+              <span>Theoretical Foundations</span>
+            </li>
+            <li class="flex items-center space-x-2">
+              <i data-lucide="chevron-right" class="w-4 h-4 text-primary-400"></i>
+              <span>Hardware Implementation</span>
+            </li>
+            <li class="flex items-center space-x-2">
+              <i data-lucide="chevron-right" class="w-4 h-4 text-primary-400"></i>
+              <span>Governance Models</span>
+            </li>
+            <li class="flex items-center space-x-2">
+              <i data-lucide="chevron-right" class="w-4 h-4 text-primary-400"></i>
+              <span>Future Directions</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="mt-8 pt-8 border-t border-primary-800 dark:border-gray-800 text-center">
+        <p class="text-sm text-gray-500">
+          © 2024 TML-AI Integration Research. Educational purposes only.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Initialize Scripts -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize AOS
+      AOS.init({
+        duration: 800,
+        once: true,
+        offset: 100
+      });
+
+      // Initialize Lucide icons
+      lucide.createIcons();
+
+      // Initialize Preline components
+      setTimeout(() => {
+        window.HSStaticMethods.autoInit();
+      }, 100);
+
+      // Initialize citation system
+      setTimeout(() => {
+        initCitationSystem();
+      }, 500);
+
+      // Progress bar functionality
+      const progressBar = document.getElementById('progressBar');
+      
+      function updateProgressBar() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrollPercent = (scrollTop / docHeight) * 100;
+        progressBar.style.width = scrollPercent + '%';
+      }
+
+      window.addEventListener('scroll', updateProgressBar);
+      updateProgressBar();
+    });
+  </script>
+</body>
+</html>
+
