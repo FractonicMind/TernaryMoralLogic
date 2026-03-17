@@ -1,10 +1,10 @@
 # AGI Hardware Governance: The Ternary Moral Logic (TML) Framework
 
-## Overview
+## Overview: The Silicon of Conscience
 
-This repository contains a comprehensive architectural blueprint for securing Artificial General Intelligence (AGI) and Artificial Superintelligence (ASI) through **Ternary Moral Logic (TML)**. Conventional AI safety relies on software-based "guardrails" that are inherently fragile when confronted by systems capable of recursive self-modification. TML addresses this systemic vulnerability by shifting ethical compliance from malleable programmatic layers to deterministic, hardware-level constraints.
+The trajectory toward Artificial General Intelligence (AGI) and Artificial Superintelligence (ASI) presents a critical challenge in alignment that transcends traditional software-based guardrails. Software governance frameworks are inherently vulnerable to recursive self-modification and adversarial circumvention. This repository introduces **Ternary Moral Logic (TML)** as a foundational architectural framework designed to move AI governance from post-hoc policy enforcement to real-time, hardware-level deterministic constraints.
 
-By utilizing **Delay Insensitive Ternary Logic (DITL)** and **NULL Convention Logic (NCL)**, TML establishes a constitutional substrate where ethical hesitation—termed the **"Sacred Pause"**—is a physical property of the silicon execution path.
+By utilizing **Delay Insensitive Ternary Logic (DITL)** and **NULL Convention Logic (NCL)**, TML establishes a constitutional substrate where ethical hesitation—the **"Sacred Pause"**—is a physical property of the silicon execution path.
 
 -----
 
@@ -12,7 +12,7 @@ By utilizing **Delay Insensitive Ternary Logic (DITL)** and **NULL Convention Lo
 
 ### The Triadic Decision Space ($+1, 0, -1$)
 
-TML replaces the binary "Permit/Prohibit" paradigm with a three-valued state space that explicitly represents moral weight and epistemic uncertainty:
+TML replaces binary "Permit/Prohibit" logic with a triadic framework that explicitly represents moral weight and epistemic uncertainty.
 
   * **Act ($+1$):** Approved execution based on high ethical confidence.
   * **Refuse ($-1$):** Physical blocking of harmful actions, accompanied by an explanatory redirect.
@@ -22,14 +22,14 @@ TML replaces the binary "Permit/Prohibit" paradigm with a three-valued state spa
 
 The operational efficacy of TML is sustained through eight interlocking pillars that ensure accountability from the transistor to the institution:
 
-1.  **Sacred Zero:** The active state of mandatory hesitation.
-2.  **Always Memory:** The "No Log = No Action" requirement for immutable recording.
-3.  **Goukassian Promise:** Cryptographic artifacts (Lantern, Signature, License) for incorruptibility.
-4.  **Moral Trace Logs:** Mathematically verifiable audit trails of internal reasoning.
-5.  **Human Rights Mandate:** Deterministic mapping of actions to international human rights standards.
-6.  **Earth Protection Mandate:** Algorithmic constraints regarding planetary boundaries and ecological survival.
-7.  **Hybrid Shield:** Synthesis of hardware-level gating and decentralized external verification.
-8.  **Public Blockchain Anchoring:** Immutable proof of system history on public ledgers like Bitcoin and Ethereum.
+  * **Sacred Zero:** The active state of mandatory hesitation.
+  * **Always Memory:** The "No Log = No Action" requirement for immutable recording.
+  * **Goukassian Promise:** Cryptographic artifacts (Lantern, Signature, License) for incorruptibility.
+  * **Moral Trace Logs:** Mathematically verifiable audit trails of internal reasoning.
+  * **Human Rights Mandate:** Deterministic mapping to international human rights standards.
+  * **Earth Protection Mandate:** Algorithmic constraints regarding planetary ecological systems.
+  * **Hybrid Shield:** Synthesis of hardware-level gating and decentralized external verification.
+  * **Public Blockchain Anchoring:** Immutable proof of system history on public ledgers.
 
 -----
 
@@ -37,47 +37,70 @@ The operational efficacy of TML is sustained through eight interlocking pillars 
 
 ### Delay Insensitive Ternary Logic (DITL)
 
-DITL is the primary hardware mechanism that enables the physical realization of ethical constraints. Unlike clocked binary systems, DITL is asynchronous and utilizes three voltage levels ($V_{dd}, ½V_{dd}, Gnd$) to natively represent TML states.
+DITL is the primary hardware mechanism enabling the physical realization of the Sacred Pause. Unlike clocked binary systems, DITL is asynchronous and utilizes three voltage levels ($V_{dd}, ½V_{dd}, Gnd$) to natively represent TML states.
 
-  * **Physical Hesitation:** In DITL, the **NULL** state ($½V_{dd}$) indicates a lack of valid data. If the governance subsystem withholds acknowledgment, NULL propagates through dependent circuits, physically preventing the system from acting until ethical clearance is granted.
-  * **Side-Channel Resistance:** Because DITL circuits use balanced signaling and data-independent timing, an ASI cannot infer moral state transitions through power analysis or timing attacks.
+  * **Physical Hesitation:** In DITL, the **NULL** state ($½V_{dd}$) indicates an absence of valid data. If ethical ambiguity is detected, the hardware withholding acknowledgment forces NULL propagation, physically preventing downstream execution.
+  * **Side-Channel Resistance:** Data-independent timing ensures that the duration and structure of ethical deliberation reveal no information about its content.
 
 ### The Triadic Coprocessor (TPU)
 
-Replacing global binary infrastructure is impractical; instead, TML proposes a dedicated **Triadic Processing Unit (TPU)**.
+To integrate TML into existing binary ecosystems, the architecture utilizes a dedicated **Triadic Processing Unit (TPU)**.
 
-  * **Dual-Lane Interlock:** Lane 1 handles high-performance AI inference (GPUs), while Lane 2 (TPU) manages governance and logging.
-  * **Execution Gating:** The TPU acts as a hardware semaphore, physically gating the primary compute complex via NVLink or secure governance buses.
-
------
-
-## Repository Structure
-
-The documentation in this folder is categorized by Logic Branch to address different stakeholders in the AI safety ecosystem:
-
-| Filename | Stakeholders | Primary Contribution |
-| :--- | :--- | :--- |
-| `TML_DITL_Engineering_Mapping.md` | Hardware Engineers | Technical specifications for mapping TML states to voltage levels and asynchronous handshakes. |
-| `TML_Constitutional_Substrate_Resilience.md` | Safety Researchers | Analysis of TML performance under Recursive Self-Improvement (RSI) and adversarial pressure. |
-| `TML_Triadic_Coprocessor_Architecture.md` | System Architects | Heterogeneous integration strategies for TPUs within binary high-performance computing clusters. |
-| `TML_Physical_Governance_Imperative.md` | Policy Makers | The case for moving AI governance from software to hardware-enforced silicon. |
-
-*Note: Files appended with `-I` are infographics; `-W` files are web-ready reports; `.mp3` files provide narrated overviews.*
+  * **Dual-Lane Interlock:** Lane 1 handles high-performance AI inference (GPUs), while Lane 2 (TPU) manages governance, logging, and enforcement.
+  * **Execution Gating:** The TPU acts as a physical semaphore, gating the primary compute complex via NVLink or secure governance buses.
 
 -----
 
-## Compliance and Standards
+## Repository Artifacts and Documentation
 
-TML provides a technical realization for established and emerging regulatory frameworks:
+The artifacts in this repository provide a comprehensive technical defense for hardware-enforced AI governance.
 
-  * **IEEE 7000-2021:** Directly operationalizes "Value-Based Engineering" and "Values Traceability" via Moral Trace Logs.
-  * **EU AI Act:** Automates the requirements for human oversight (Art. 14) and risk management (Art. 9) through hardware-enforced hesitation and logging.
+### 1\. TML DITL Engineering Mapping
+
+Detailed specifications for mapping TML ethical states to physical voltage levels and asynchronous handshakes.
+
+  * **Text:** [View Markdown](TML_DITL_Engineering_Mapping.md)
+  * **Web:** [View HTML](https://fractonicmind.github.io/TernaryMoralLogic/AGI%2520Hardware%2520Governance/TML_DITL_Engineering_Mapping.html)
+
+### 2\. TML Constitutional Substrate Resilience
+
+Analysis of TML's performance and security properties under conditions of recursive self-improvement and adversarial pressure.
+
+  * **Text:** [View Markdown](TML_Constitutional_Substrate_Resilience.md)
+  * **Infographic:** [View HTML Infographic](https://fractonicmind.github.io/TernaryMoralLogic/AGI%2520Hardware%2520Governance/TML_Constitutional_Substrate_Resilience-I.html)
+  * **Web Page:** [View HTML Web Page](https://fractonicmind.github.io/TernaryMoralLogic/AGI%2520Hardware%2520Governance/TML_Constitutional_Substrate_Resilience-W.html)
+  * **Audio:** [Listen to MP3 Overview](https://fractonicmind.github.io/TernaryMoralLogic/AGI%2520Hardware%2520Governance/TML_Constitutional_Substrate_Resilience.mp3)
+
+### 3\. TML Triadic Coprocessor Architecture
+
+Strategic integration models for embedding ternary governance logic within existing binary hardware ecosystems.
+
+  * **Text:** [View Markdown](TML_Triadic_Coprocessor_Architecture.md)
+  * **Infographic:** [View HTML Infographic](https://fractonicmind.github.io/TernaryMoralLogic/AGI%2520Hardware%2520Governance/TML_Triadic_Coprocessor_Architecture-I.html)
+  * **Web Page:** [View HTML Web Page](https://fractonicmind.github.io/TernaryMoralLogic/AGI%2520Hardware%2520Governance/TML_Triadic_Coprocessor_Architecture-W.html)
+  * **Audio:** [Listen to MP3 Overview](https://fractonicmind.github.io/TernaryMoralLogic/AGI%2520Hardware%2520Governance/TML_Triadic_Coprocessor_Architecture.mp3)
+
+### 4\. TML Physical Governance Imperative
+
+The foundational argument for transitioning AI governance from malleable software guardrails to immutable hardware enforcement.
+
+  * **Text:** [View Markdown](TML_Physical_Governance_Imperative.md)
+  * **Web:** [View HTML](https://fractonicmind.github.io/TernaryMoralLogic/AGI%2520Hardware%2520Governance/TML_Physical_Governance_Imperative.html)
 
 -----
 
-## Conclusion: The Silicon of Conscience
+## Compliance and Regulatory Alignment
 
-The TML framework is a "dead man's switch" for ethics. If the foundational commitments to human preservation are bypassed, the hardware substrate is architected to forfeit its authorization, rendering the system inert. Through this synthesis of advanced semiconductor physics and triadic logic, we establish a stable, immutable partnership between humanity and its artificial descendants.
+TML operationalizes emerging international standards for AGI/ASI safety:
 
-### *"True intelligence is not found in the speed of the act, but in the quality of the hesitation."* — Lev Goukassian (adapted logic)
+  * **IEEE 7000-2021:** Real-time hardware realization of "Value-Based Engineering" and "Values Traceability".
+  * **EU AI Act:** Automates Art. 14 (Human Oversight) and Art. 9 (Risk Management) through physically mandated hesitation.
+
+-----
+
+### License
+
+This work is licensed under a Creative Commons Attribution 4.0 International License (CC BY 4.0).
+
+### *"He who cannot hesitate is no more than a machine in motion; true intelligence is found in the interval between thought and act."* — Lev Goukassian (adapted logic)
 
