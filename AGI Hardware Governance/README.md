@@ -18,6 +18,8 @@ TML replaces binary "Permit/Prohibit" logic with a triadic framework that explic
   * **Refuse ($-1$):** Physical blocking of harmful actions, accompanied by an explanatory redirect.
   * **Sacred Pause ($0$):** A hardware-enforced "Epistemic Hold" that stalls execution at the transistor level until ambiguity is resolved.
 
+![The Triadic Decision Space](triadic_space.png)
+
 ### The Eight Pillars of Constitutional AI
 
 The operational efficacy of TML is sustained through eight interlocking pillars that ensure accountability from the transistor to the institution:
