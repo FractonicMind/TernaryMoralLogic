@@ -2,6 +2,8 @@
 
 ## 1\. Executive Summary
 
+### [Interactive Report: Constitutional AI Governance](https://fractonicmind.github.io/TernaryMoralLogic/AGI%20Hardware%20Governance/TML_DITL_Engineering_Mapping.html)
+
 ### 1.1 Core Thesis
 
 #### 1.1.1 TML as Computational Governance Architecture Spanning Software, Hardware, and Institutional Layers
