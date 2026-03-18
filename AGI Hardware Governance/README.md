@@ -110,19 +110,26 @@ TML operationalizes emerging international standards for AGI/ASI safety:
 
 This repository is cryptographically anchored across a multi-chain architecture to ensure the **"No Log = No Action"** mandate. Any deviation from this anchored state will physically trigger a **Sacred Pause (0)** at the hardware level.
 
-### 1. The Goukassian Signature (Master Root)
+### 1\. The Goukassian Signature (Master Root)
+
 The following SHA-256 hash represents the single, immutable state of all 13 governance artifacts, organized via a **Ternary Merkle Tree**:
-* **Master Root:** `5872dcdca979775bc3ebe87b5d6e81b874d174593b8da8333590ff067f611b39`
 
-### 2. Multi-Chain Anchoring Layers
-| Layer | Role | Status | Evidence |
+  * **Master Root:** `5872dcdca979775bc3ebe87b5d6e81b874d174593b8da8333590ff067f611b39`
+
+### 2\. Multi-Chain Anchoring Layers
+
+| Layer | Role | Status | Evidence (Local Proof) |
 | :--- | :--- | :--- | :--- |
-| **Bitcoin** | **The Bedrock** | 🟢 Anchored | `AGI_Governance_v1.ots` |
-| **Ethereum** | **The Enforcer** | 🟢 Deployed | `TML_Enforcer.sol` |
-| **Polygon** | **The Watchdog** | 🟢 Active | High-Frequency Moral Trace Logs |
+| **Bitcoin** | **The Bedrock** | 🟢 Anchored | [AGI\_Governance\_v1.ots](AGI_Governance_v1.ots) |
+| **Ethereum** | **The Enforcer** | 🟢 Deployed | [TML\_Enforcer.sol](TML_Enforcer.sol) |
+| **Polygon** | **The Watchdog** | 🟢 Active | [manifest.sha256](manifest.sha256) |
 
-### 3. Verification Protocol
-To verify the forensic integrity of this repository, run the `calculate_root.py` script and compare the output to the **Master Root** above. If the hashes match, the **Lantern** remains lit; if they diverge, the system is deemed "Rogue" and the execution tokens are physically blocked.
+### 3\. Verification Protocol
+
+To verify the forensic integrity of this repository, run the verification script and compare the output to the **Master Root** above:
+
+  * **Script:** [calculate\_root.py](https://www.google.com/search?q=./calculate_root.py)
+  * **Logic:** If the hashes match, the **Lantern** remains lit; if they diverge, the system is deemed "Rogue" and the execution tokens are physically blocked.
 
 -----
 
@@ -130,5 +137,7 @@ To verify the forensic integrity of this repository, run the `calculate_root.py`
 
 This work is licensed under a Creative Commons Attribution 4.0 International License (CC BY 4.0).
 
-### *"He who cannot hesitate is no more than a machine in motion; true intelligence is found in the interval between thought and act."* — Lev Goukassian (adapted logic)
+---
+
+### *"Transparency is not the absence of secrets, but the presence of proof; the ledger provides the only mirror in which the machine cannot lie."* — Lev Goukassian (adapted logic)
 
