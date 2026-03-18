@@ -1,5 +1,8 @@
 # **Hardware-Enforced Computational Governance: Integrating Ternary Moral Logic (TML) with Advanced Artificial Intelligence Architectures**
 
+  * **Infographic:** [View HTML Infographic](https://fractonicmind.github.io/TernaryMoralLogic/AGI%20Hardware%20Governance/TML_Triadic_Coprocessor_Architecture-I.html)
+  * **Web Page:** [View HTML Web Page](https://fractonicmind.github.io/TernaryMoralLogic/AGI%20Hardware%20Governance/TML_Triadic_Coprocessor_Architecture-W.html)
+
 ## **Abstract**
 
 The trajectory toward Artificial General Intelligence (AGI) and Artificial Superintelligence (ASI) presents a critical challenge in alignment and safety that transcends traditional software-based guardrails. This research report introduces Ternary Moral Logic (TML) as a foundational architectural framework designed to move AI governance from post-hoc policy enforcement to real-time, hardware-level deterministic constraints. TML introduces a third logical state, the "Sacred Pause" ($0$), positioned between conventional Permit ($+1$) and Prohibit ($-1$) states. The analysis focuses on the physical realization of this pause through Delay Insensitive Ternary Logic (DITL) and NULL Convention Logic (NCL), utilizing native ternary complementary metal-oxide-semiconductor (T-CMOS) technologies. By embedding ethical mandates into the silicon layer, TML establishes a constitutional substrate that remains enforceable even under conditions of recursive self-improvement (RSI) and decentralized intelligence. The report further examines the implementation of triadic coprocessors, "Always Memory" logging systems, and the "Goukassian Promise" as a multi-layered defense against adversarial goal-shifting and the "black box" liability problem in autonomous systems.
