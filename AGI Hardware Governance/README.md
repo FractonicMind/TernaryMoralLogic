@@ -124,7 +124,6 @@ The following SHA-256 hash represents the single, immutable state of all 13 gove
 ### 3. Verification Protocol
 To verify the forensic integrity of this repository, run the `calculate_root.py` script and compare the output to the **Master Root** above. If the hashes match, the **Lantern** remains lit; if they diverge, the system is deemed "Rogue" and the execution tokens are physically blocked.
 
----
 -----
 
 ### License
