@@ -1,5 +1,9 @@
 # AGI Hardware Governance: The Ternary Moral Logic (TML) Framework
 
+### 📖 Prologue: The Silicon Conscience
+
+ Before diving into the technical schematics, we recommend reading **[The Silicon Conscience Prologue](The_Silicon_Conscience_Prologue.md)**. While the engineering reports prove that this architecture is feasible, this story proves why it is absolutely necessary. It serves as a powerful, human-readable bridge to the dense specifications. Policymakers, ethics boards, and even seasoned engineers can easily get lost in the physics of Delay Insensitive Ternary Logic. This narrative cuts through the technical noise, making the "Sacred Pause" a visceral and understandable concept.
+
 ## Overview: The Silicon of Conscience
 
 The trajectory toward Artificial General Intelligence (AGI) and Artificial Superintelligence (ASI) presents a critical challenge in alignment that transcends traditional software-based guardrails. Software governance frameworks are inherently vulnerable to recursive self-modification and adversarial circumvention. This repository introduces **Ternary Moral Logic (TML)** as a foundational architectural framework designed to move AI governance from post-hoc policy enforcement to real-time, hardware-level deterministic constraints.
