@@ -14,7 +14,7 @@ This repository introduces the **"No Log = No Action" (NLNA)** enforcement speci
 
 The transformation of logging from a background process to a protocol-level gate requires fundamental architectural restructuring. The NLNA invariant is enforced through a Cryptographic Actuator Interlock, establishing a strict write-before-execute coupling at the lowest levels of the system architecture.
 
-![Log Security Technical Flow](No_Log-No_Action/Security.png)
+![Log Security Technical Flow](Security.png)
 
 When the primary inference engine calculates a proposed course of action, the resulting output payload is isolated in a secure volatile buffer. The system must generate a comprehensive log capturing the inputs, the active reasoning weights, and the proposed decision vector. The cryptographic hash of this log serves as the absolute pre-commitment anchor. 
 
@@ -26,7 +26,7 @@ Crucially, this generated hash is mathematically transformed into the cryptograp
 
 The NLNA architecture adapts traditional database Write-Ahead Logging (WAL) concepts and implements them directly at the cyber-physical hardware boundary. A local accumulator buffer stores the serialized log in high-speed non-volatile memory before the actuator is electrically engaged. 
 
-![Write-Ahead Log Architecture](No_Log-No_Action/Wal.png)
+![Write-Ahead Log Architecture](Wal.png)
 
 The execution gating primitives are integrated directly into the system bus architecture. The instruction pointer is physically blocked from advancing to the actuation subroutines until the voltage differential on the storage controller's write-confirm pin verifies that the memory is permanent. This creates an unbreakable cryptographic chain of custody between the machine's internal reasoning and its external influence.
 
@@ -44,7 +44,7 @@ To guarantee absolute adherence, the enforcement mechanisms are immutably anchor
 
 To synthesize the absolute requirement for cryptographic logging with the extreme performance and latency demands of high-frequency autonomous operations, this specification implements a strictly segregated Dual-Lane Architecture.
 
-![Dual-Lane Architecture](No_Log-No_Action/Dual-Lane.png)
+![Dual-Lane Architecture](Dual-Lane.png)
 
 * **The Fast Lane:** This hardware lane is entirely dedicated to primary inference and the immediate execution interlock. Operating with a strict sub-two-millisecond latency requirement, the system generates the local cryptographic hash and commits the log to the high-speed local non-volatile memory accumulator. This localized commitment fully satisfies the NLNA invariant, releasing the authorization token to the actuator instantly.
 * **The Slow Lane:** Operating in parallel, this asynchronous governance mechanism extracts committed logs from the local hardware accumulator to handle computationally heavy tasks, including Merkle tree batching, cryptographic signing, and public blockchain anchoring. 
@@ -67,13 +67,13 @@ The artifacts in this repository provide the definitive engineering rulesets for
 
 ### 1. Core Doctrine Enforcement Specification
 The foundational system law defining NLNA as a non-negotiable architectural constraint, detailing the execution coupling, the Sacred Zero epistemic hold, and system failure behaviors.
-* **Text:** [View Markdown](Core_Doctrine_Enforcement_Specification.md)
+* **Text:** [View Markdown](/Core_Doctrine_Enforcement_Specification.md)
 * **Web:** [View HTML](https://fractonicmind.github.io/TernaryMoralLogic/No_Log-No_Action/Core_Doctrine_Enforcement_Specification.html)
 * **Audio:** [Listen to MP3 Overview](https://fractonicmind.github.io/TernaryMoralLogic/No_Log-No_Action/Core_Doctrine_Enforcement_Specification.mp3)
 
 ### 2. Cryptographic Hardware Enforcement Specification
 The deep implementation specification detailing the physical hardware boundaries, Merkle accumulation protocols, hardware roots of trust, and the cyber-physical state machines required for complete architectural compliance.
-* **Text:** [View Markdown](Cryptographic_Hardware_Enforcement_Specification.md)
+* **Text:** [View Markdown](/Cryptographic_Hardware_Enforcement_Specification.md)
 * **Web:** [View HTML](https://fractonicmind.github.io/TernaryMoralLogic/No_Log-No_Action/Cryptographic_Hardware_Enforcement_Specification.html)
 
 ---
