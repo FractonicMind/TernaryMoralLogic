@@ -67,14 +67,14 @@ The artifacts in this repository provide the definitive engineering rulesets for
 
 ### 1. Core Doctrine Enforcement Specification
 The foundational system law defining NLNA as a non-negotiable architectural constraint, detailing the execution coupling, the Sacred Zero epistemic hold, and system failure behaviors.
-* **Text:** [View Markdown](/Core_Doctrine_Enforcement_Specification.md)
-* **Web:** [View HTML](https://fractonicmind.github.io/TernaryMoralLogic/No_Log-No_Action/Core_Doctrine_Enforcement_Specification.html)
-* **Audio:** [Listen to MP3 Overview](https://fractonicmind.github.io/TernaryMoralLogic/No_Log-No_Action/Core_Doctrine_Enforcement_Specification.mp3)
+* **Text:** [View Markdown](TML_Core_Doctrine_Enforcement_Specification.md)
+* **Web:** [View HTML](https://fractonicmind.github.io/TernaryMoralLogic/No_Log-No_Action/TML_Core_Doctrine_Enforcement_Specification.html)
+* **Audio:** [Listen to MP3 Overview](https://fractonicmind.github.io/TernaryMoralLogic/No_Log-No_Action/TML_Core_Doctrine_Enforcement_Specification.mp3)
 
 ### 2. Cryptographic Hardware Enforcement Specification
 The deep implementation specification detailing the physical hardware boundaries, Merkle accumulation protocols, hardware roots of trust, and the cyber-physical state machines required for complete architectural compliance.
-* **Text:** [View Markdown](/Cryptographic_Hardware_Enforcement_Specification.md)
-* **Web:** [View HTML](https://fractonicmind.github.io/TernaryMoralLogic/No_Log-No_Action/Cryptographic_Hardware_Enforcement_Specification.html)
+* **Text:** [View Markdown](/TML_Cryptographic_Hardware_Enforcement_Specification.md)
+* **Web:** [View HTML](https://fractonicmind.github.io/TernaryMoralLogic/No_Log-No_Action/TML_Cryptographic_Hardware_Enforcement_Specification.html)
 
 ---
 ### License
