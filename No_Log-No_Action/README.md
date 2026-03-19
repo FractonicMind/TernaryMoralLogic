@@ -73,7 +73,7 @@ The foundational system law defining NLNA as a non-negotiable architectural cons
 
 ### 2. Cryptographic Hardware Enforcement Specification
 The deep implementation specification detailing the physical hardware boundaries, Merkle accumulation protocols, hardware roots of trust, and the cyber-physical state machines required for complete architectural compliance.
-* **Text:** [View Markdown](/TML_Cryptographic_Hardware_Enforcement_Specification.md)
+* **Text:** [View Markdown](TML_Cryptographic_Hardware_Enforcement_Specification.md)
 * **Web:** [View HTML](https://fractonicmind.github.io/TernaryMoralLogic/No_Log-No_Action/TML_Cryptographic_Hardware_Enforcement_Specification.html)
 
 ---
