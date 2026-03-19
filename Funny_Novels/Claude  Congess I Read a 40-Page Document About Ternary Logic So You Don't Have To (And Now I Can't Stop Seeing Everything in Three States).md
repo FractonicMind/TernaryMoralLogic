@@ -4,8 +4,6 @@
 
 \---
 
-I Read a 40-Page Document About Ternary Logic: An Evidentiary Framework for Economic Systems So You Don't Have To (Spoiler: The Future Has Three States of Mind).
-
 So there we are, the United States House of Representatives, minding our own business, when a terrified intern handed us a document titled "Ternary Logic (TL): Evidentiary Framework for Economic Systems – Research Report."
 
 The intern—let's call him Brad because he looked like a Brad—was sweating through his Brooks Brothers shirt. "They said you need to read this," he whispered, his voice cracking like a teenager asking someone to prom. "They said it's important."
