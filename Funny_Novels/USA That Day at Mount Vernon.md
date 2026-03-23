@@ -2,6 +2,8 @@
 
 Somewhere deep in the Virginia autumn, when the leaves had already turned that particular shade of crimson that tourist brochures call “historic,” Mount Vernon was quiet. Not the silence that comes from an absence of sound, but the kind that forms when sounds exist—the crackle of a fireplace, the groan of floorboards beneath heavy boots, the rustle of paper—yet they do not disturb so much as underscore that within these walls, words have always carried more weight than anywhere else.
 
+![image](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/Funny_Novels/USA_Government.png)
+
 In the house where Washington once planned wars and doubted the future of a young republic, six people had gathered. Their names did not appear in newspapers. Their decisions were not announced by press secretaries. Their consequences… well, consequences were usually dealt with by others.
 
 The room chosen for the meeting was deliberately small for such a gathering. Architecture of power, as one of those present had once explained, worked better in tight quarters. A long mahogany table, its surface covered with a layer of dust that an antique dealer would call patina and the current White House occupants would call a cleaning staff problem. The fireplace burned not so much for warmth as for light—that particular flickering, living light that makes faces look older and thoughts feel newer.
