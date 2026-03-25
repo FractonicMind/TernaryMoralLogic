@@ -2,7 +2,8 @@
 
 [![License](https://img.shields.io/badge/License-MIT_with_Attribution-green.svg)](LICENSE)
 [![Conformance Testing](https://img.shields.io/badge/Conformance-Level_3_Certified-brightgreen.svg)](docs/CONFORMANCE_TESTING.md)
-[![Memorial Fund](https://img.shields.io/badge/Memorial-Lev_Goukassian-purple.svg)](memorial/MEMORIAL_FUND.md)[![Published](https://img.shields.io/badge/Published-AI%20and%20Ethics%20%7C%20Springer%20Nature-blue.svg)](https://rdcu.be/eWCCH)   
+[![Memorial Fund](https://img.shields.io/badge/Memorial-Lev_Goukassian-purple.svg)](memorial/MEMORIAL_FUND.md) 
+[![Published](https://img.shields.io/badge/Published-AI%20and%20Ethics%20%7C%20Springer%20Nature-blue.svg)](https://rdcu.be/eWCCH)   
 [![ZENODO](https://img.shields.io/badge/ZENODO-Notarized%20Constitutional%20Core%20October%202025-red?style=flat-square)](https://zenodo.org/records/17352897)
 [![ZENODO](https://img.shields.io/badge/ZENODO-Notarized%20Constitutional%20Core%20November%202025-red?style=flat-square)](https://zenodo.org/records/17613006)
 
