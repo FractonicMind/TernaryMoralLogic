@@ -3,7 +3,7 @@
 [![License](https://img.shields.io/badge/License-MIT_with_Attribution-green.svg)](LICENSE)
 [![Conformance Testing](https://img.shields.io/badge/Conformance-Level_3_Certified-brightgreen.svg)](docs/CONFORMANCE_TESTING.md)
 [![Memorial Fund](https://img.shields.io/badge/Memorial-Lev_Goukassian-purple.svg)](memorial/MEMORIAL_FUND.md) 
-[![Published](https://img.shields.io/badge/Published-AI%20and%20Ethics%20%7C%20Springer%20Nature-blue.svg)](https://rdcu.be/eWCCH)   
+[![Published](https://img.shields.io/badge/Published-AI%20and%20Ethics%20%7C%20Springer%20Nature-blue.svg)](https://doi.org/10.1007/s43681-025-00910-6)   
 [![ZENODO](https://img.shields.io/badge/ZENODO-Notarized%20Constitutional%20Core%20October%202025-red?style=flat-square)](https://zenodo.org/records/17352897)
 [![ZENODO](https://img.shields.io/badge/ZENODO-Notarized%20Constitutional%20Core%20November%202025-red?style=flat-square)](https://zenodo.org/records/17613006)
 
@@ -12,6 +12,7 @@
 
 ### Official Citations
 
+* Goukassian, L. (2025). *Auditable AI: tracing the ethical history of a model*. **AI and Ethics**. Springer Nature. [https://doi.org/10.1007/s43681-025-00910-6](https://doi.org/10.1007/s43681-025-00910-6)
 * Goukassian, L. (2025). *Ternary Moral Logic — Notarized Constitutional Core, October 2025* [Data set]. Zenodo. [https://doi.org/10.5281/zenodo.17352897](https://doi.org/10.5281/zenodo.17352897)
 * Goukassian, L. (2025). *Ternary Moral Logic — Notarized Constitutional Core, November 2025* [Data set]. Zenodo. [https://doi.org/10.5281/zenodo.17613006](https://doi.org/10.5281/zenodo.17613006)
 
