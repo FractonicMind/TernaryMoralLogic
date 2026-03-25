@@ -8,6 +8,13 @@
 **Keywords:** Ternary Moral Logic, Ethical Forensics, AI Accountability, Auditable AI, Sacred Pause, AI Governance, Immutable Logs, Public Blockchains, AI Ethics  
 **Declaration of Interest:** The author declares no competing financial or personal interests.
 
+> **STATUS: PUBLISHED** — This paper has been published in *AI and Ethics* (Springer Nature), December 28, 2025.  
+> DOI: [https://doi.org/10.1007/s43681-025-00910-6](https://doi.org/10.1007/s43681-025-00910-6)  
+> SharedIt full-text: [https://rdcu.be/eWCCH](https://rdcu.be/eWCCH)  
+> ORCID: [0009-0006-5966-1243](https://orcid.org/0009-0006-5966-1243)
+
+---
+
 ## **Abstract**
 
 The proliferation of autonomous AI systems has created a critical "responsibility gap," where the opacity of decision-making processes makes accountability elusive. Prevailing alignment techniques, such as Reinforcement Learning from Human Feedback (RLHF) and Constitutional AI (CAI), address ethical behavior through training and principle-adherence but fail to produce a verifiable, contemporaneous record of moral reasoning. This paper introduces Ternary Moral Logic (TML), a novel system architecture that converts AI ethics from abstract principles into a cryptographically secured, evidentiary proof. TML implements a third logical state—the Sacred Pause (0)—alongside conventional permit (+1) and prohibit (-1) states, which is triggered when a model encounters moral complexity. This pause initiates a non-blocking, parallel process that generates a Moral Trace Log via a mandatory Always Memory component. These logs are rendered immutable through a Hybrid Shield that uses multi-chain blockchain anchoring. We present empirical results demonstrating TML's ability to reduce harmful outputs while maintaining performance, and we argue that its architecture provides the technical substrate necessary to meet the traceability and record-keeping mandates of emerging regulations like the EU AI Act. By transforming moral hesitation into verifiable data, TML establishes a new discipline: Ethical Forensics for AI Systems.
