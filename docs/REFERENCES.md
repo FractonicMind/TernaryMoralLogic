@@ -7,6 +7,12 @@
 
 ---
 
+## Primary Publication
+
+Goukassian, L. (2025). Auditable AI: tracing the ethical history of a model. *AI and Ethics*. Springer Nature. https://doi.org/10.1007/s43681-025-00910-6
+
+---
+
 ## Core Theoretical Foundations
 
 ### Classical Moral Philosophy
