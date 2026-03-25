@@ -1150,7 +1150,6 @@ The framework is not a restriction on innovation; it is the precondition for tru
 
 ### Navigation
 - **[Repository Structure](./repository-navigation.html)** - Visual site map
-- **[Repository Tree](./repository-tree.html)** - File hierarchy
 - **[Index](./index.html)** - Main documentation hub
 - **[Sitemap](./sitemap.xml)** - Search engine index
 
