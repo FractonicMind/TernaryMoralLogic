@@ -7,6 +7,20 @@
 
 ---
 
+## ✅ Peer-Reviewed Publication — Springer Nature
+
+**"Auditable AI: tracing the ethical history of a model"**  
+*AI and Ethics* — Springer Nature  
+Published: December 28, 2025  
+Author: Lev Goukassian (ORCID: 0009-0006-5966-1243)  
+DOI: [https://doi.org/10.1007/s43681-025-00910-6](https://doi.org/10.1007/s43681-025-00910-6)  
+SharedIt full-text: [https://rdcu.be/eWCCH](https://rdcu.be/eWCCH)  
+Manuscript ID: 719886b3-9a34-474b-8a97-d7a18c2f862c  
+Submission ID: bd9272d0 | Editor: Larry Medsker
+
+This publication constitutes the primary peer-reviewed academic validation of the Ternary Moral Logic framework, confirming its standing as a legitimate contribution to the field of AI ethics and governance.
+
+---
 ## Research Overview
 
 ### Abstract
