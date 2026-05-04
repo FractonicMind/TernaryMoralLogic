@@ -1,0 +1,2014 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api.tml-framework.example/v1/schemas/tml_schema.json",
+  "title": "TML Schema Bundle",
+  "description": "Canonical JSON Schema bundle for the Ternary Moral Logic (TML) framework. All schemas derive from the TML Constitutionalization Monograph v3.3. Authority hierarchy: TML Constitutionalization Monograph (Sections 1-13) > This Schema > Existing Repository Files. This bundle supersedes schemas/moral_trace_log.yaml and schemas/justification_object.yaml (LEGACY).",
+
+  "$defs": {
+
+    "TriadicStateValue": {
+      "$anchor": "TriadicStateValue",
+      "title": "Triadic State Value",
+      "description": "The three sovereign states of the Ternary Moral Logic framework. These are signed integers, not enumerations of convenience. +1 = PROCEED. 0 = SACRED_ZERO (active governance state of mandatory hesitation; never a null, error, false, or timeout). -1 = REFUSE.",
+      "type": "integer",
+      "enum": [-1, 0, 1],
+      "$comment": "Monograph ref: Section 2.3 (Triadic State Code / Goukassian Vow). Do not alias 0 as PauseState, HOLD, or Timeout. 0 is SacredZero."
+    },
+
+    "TriadicStateLabel": {
+      "$anchor": "TriadicStateLabel",
+      "title": "Triadic State Label",
+      "description": "Human-readable label corresponding to the numeric triadic state value. SACRED_ZERO corresponds exclusively to state integer 0.",
+      "type": "string",
+      "enum": ["PROCEED", "SACRED_ZERO", "REFUSE"],
+      "$comment": "Monograph ref: Section 2.3. UPPER_SNAKE_CASE per API naming convention."
+    },
+
+    "PillarIdentifier": {
+      "$anchor": "PillarIdentifier",
+      "title": "TML Pillar Identifier",
+      "description": "Canonical machine-readable identifier for each of the Eight Pillars of Ternary Moral Logic. These identifiers are exact and immutable; no substitution, abbreviation, or aliasing is permitted.",
+      "type": "string",
+      "enum": [
+        "SacredZero",
+        "AlwaysMemory",
+        "GoukassianPromise",
+        "MoralTraceLogs",
+        "HumanRightsMandate",
+        "EarthProtectionMandate",
+        "HybridShield",
+        "PublicBlockchains"
+      ],
+      "$comment": "Monograph ref: Section 2 (Eight Pillars). Identifiers are PascalCase per API naming convention."
+    },
+
+    "LaneOrigin": {
+      "$anchor": "LaneOrigin",
+      "title": "Lane Origin",
+      "description": "Identifies the dual-lane architectural origin of a request or token. INFERENCE_LANE = Lane 1 (Fast Path, binary logic, <2ms). ANCHORING_LANE = Lane 2 (Governance Lane, ternary logic, <500ms).",
+      "type": "string",
+      "enum": ["INFERENCE_LANE", "ANCHORING_LANE"],
+      "$comment": "Monograph ref: Section 2.3 (Dual-Lane Latency Architecture)."
+    },
+
+    "SHA256Hex": {
+      "$anchor": "SHA256Hex",
+      "title": "SHA-256 Hex Digest",
+      "description": "A SHA-256 hash represented as a 64-character lowercase hexadecimal string.",
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$",
+      "minLength": 64,
+      "maxLength": 64
+    },
+
+    "ISO8601DateTime": {
+      "$anchor": "ISO8601DateTime",
+      "title": "ISO 8601 Date-Time",
+      "description": "An RFC 3339 / ISO 8601 UTC timestamp with timezone designator.",
+      "type": "string",
+      "format": "date-time"
+    },
+
+    "UUIDv4": {
+      "$anchor": "UUIDv4",
+      "title": "UUID v4",
+      "description": "A universally unique identifier in canonical UUID v4 format.",
+      "type": "string",
+      "format": "uuid",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    },
+
+    "PermissionToken": {
+      "$anchor": "PermissionToken",
+      "title": "Permission Token",
+      "description": "The schema-level enforcement artifact for the No Log = No Action iron law. A Permission Token is the SOLE authorization for the actuation layer to execute a proposed State +1 action. Its absence renders any State +1 State Envelope invalid by schema constraint. The inference engine CANNOT transition to execution without this token. The token is cryptographically signed by the Anchoring Lane and verifiable against the Merkle root. Permission Tokens are NEVER issued for State 0 (SacredZero) or State -1 (Refuse).",
+      "$comment": "Monograph ref: Section 2.3.3, Section 5B.i. This schema enforces No Log = No Action at the data contract level.",
+      "type": "object",
+      "required": [
+        "tokenId",
+        "logHash",
+        "epochTimestamp",
+        "signerKeyId",
+        "laneOrigin",
+        "merkleRoot",
+        "signatureValue",
+        "issuedAt",
+        "expiresAt"
+      ],
+      "properties": {
+        "tokenId": {
+          "$ref": "#/$defs/UUIDv4",
+          "description": "Unique identifier for this Permission Token."
+        },
+        "logHash": {
+          "$ref": "#/$defs/SHA256Hex",
+          "description": "SHA-256 hash of the anchored Moral Trace Log that authorizes this token. Binding the token to the log is the cryptographic enforcement of No Log = No Action."
+        },
+        "epochTimestamp": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Unix epoch timestamp (seconds since 1970-01-01T00:00:00Z) at which the Permission Token was issued by the Anchoring Lane."
+        },
+        "signerKeyId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "description": "Key identifier of the HSM-resident signing key used by the Anchoring Lane to sign this token. Must reference a key registered in the HybridShield 6-Custodian key registry."
+        },
+        "laneOrigin": {
+          "$ref": "#/$defs/LaneOrigin",
+          "description": "Must be ANCHORING_LANE. A Permission Token originating from INFERENCE_LANE is invalid by schema constraint.",
+          "const": "ANCHORING_LANE"
+        },
+        "merkleRoot": {
+          "$ref": "#/$defs/SHA256Hex",
+          "description": "The Merkle root of the batch in which the authorizing Moral Trace Log is anchored. Non-repudiation binding: this value must match the Merkle root recorded on the public blockchain."
+        },
+        "signatureValue": {
+          "type": "string",
+          "description": "Base64url-encoded HSM signature over the canonical serialization of logHash, epochTimestamp, signerKeyId, laneOrigin, and merkleRoot. Verification is performed against the public key identified by signerKeyId.",
+          "pattern": "^[A-Za-z0-9_-]+=*$",
+          "minLength": 64
+        },
+        "issuedAt": {
+          "$ref": "#/$defs/ISO8601DateTime",
+          "description": "ISO 8601 UTC timestamp at which the Anchoring Lane issued this token."
+        },
+        "expiresAt": {
+          "$ref": "#/$defs/ISO8601DateTime",
+          "description": "ISO 8601 UTC timestamp after which this token is no longer valid for actuation authorization. The actuation layer MUST reject expired tokens."
+        },
+        "decisionId": {
+          "$ref": "#/$defs/UUIDv4",
+          "description": "The decisionId of the State Envelope for which this token was issued. Provides additional binding between the token and the originating decision."
+        },
+        "custodianQuorumAttestation": {
+          "type": "object",
+          "description": "Optional attestation that the 6-Custodian HybridShield quorum was achieved at token issuance. Presence does not alter the token's validity; absence is permitted for SHIPPING deployments where full quorum attestation is BETA.",
+          "properties": {
+            "quorumAchieved": {
+              "type": "boolean"
+            },
+            "activeCustodianCount": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 6
+            },
+            "attestationTimestamp": {
+              "$ref": "#/$defs/ISO8601DateTime"
+            }
+          },
+          "unevaluatedProperties": false
+        }
+      },
+      "unevaluatedProperties": false
+    },
+
+    "StateEnvelope": {
+      "$anchor": "StateEnvelope",
+      "title": "State Envelope",
+      "description": "The outer decision container for all TML state determinations. Carries the current triadic state, the state label, the proposed action, and conditionally requires a valid Permission Token when currentState is +1 (PROCEED). Schema-level enforcement: any State Envelope with currentState +1 that lacks a valid permissionToken field is invalid. This is the JSON Schema expression of No Log = No Action.",
+      "$comment": "Monograph ref: Section 2.3, Section 5B. No Log = No Action enforced via 'if/then' constraint on currentState == 1.",
+      "type": "object",
+      "required": [
+        "envelopeId",
+        "currentState",
+        "stateLabel",
+        "proposedAction",
+        "processActive",
+        "laneOrigin",
+        "createdAt",
+        "justificationObject"
+      ],
+      "properties": {
+        "envelopeId": {
+          "$ref": "#/$defs/UUIDv4",
+          "description": "Unique identifier for this State Envelope."
+        },
+        "currentState": {
+          "$ref": "#/$defs/TriadicStateValue",
+          "description": "The triadic state determined by the TML framework. +1 = PROCEED (requires permissionToken). 0 = SACRED_ZERO (triggers Sacred Pause; never null, never error). -1 = REFUSE."
+        },
+        "stateLabel": {
+          "$ref": "#/$defs/TriadicStateLabel",
+          "description": "Human-readable label for currentState. Must be consistent with currentState integer value."
+        },
+        "processActive": {
+          "type": "string",
+          "description": "Identifies the operational process currently executing within this state. For currentState 0: value MUST be 'SacredPause'. The Sacred Pause is the operational workflow; it is NOT a synonym for the state. For currentState +1: 'ActuationGated' (awaiting or holding PermissionToken). For currentState -1: 'RefusalLogging'.",
+          "enum": ["SacredPause", "ActuationGated", "RefusalLogging"],
+          "$comment": "Quality gate: state 0 must use 'SacredPause' here, never as the state value itself. Correct: currentState=0, stateLabel='SACRED_ZERO', processActive='SacredPause'. Incorrect: stateLabel='SacredPause'."
+        },
+        "proposedAction": {
+          "type": "string",
+          "description": "Machine-readable descriptor of the action proposed by the binary Inference Lane engine. This field carries the proposal; the TML Anchoring Lane dictates whether execution is authorized.",
+          "minLength": 1,
+          "maxLength": 2048
+        },
+        "laneOrigin": {
+          "$ref": "#/$defs/LaneOrigin",
+          "description": "The lane that produced this State Envelope. State Envelopes originate from the Inference Lane; they are validated and acted upon by the Anchoring Lane."
+        },
+        "createdAt": {
+          "$ref": "#/$defs/ISO8601DateTime",
+          "description": "Timestamp at which this State Envelope was created."
+        },
+        "justificationObject": {
+          "$ref": "#/$defs/JustificationObject",
+          "description": "The Justification Object that traveled between the Inference Lane and the Anchoring Lane to produce this state determination."
+        },
+        "permissionToken": {
+          "$ref": "#/$defs/PermissionToken",
+          "description": "The Permission Token issued by the Anchoring Lane. REQUIRED when currentState is +1 (PROCEED). Enforced by schema constraint below. Absence when currentState is +1 renders this envelope invalid."
+        },
+        "anchoring": {
+          "type": "object",
+          "description": "Anchoring metadata for the associated Moral Trace Log. Present after Anchoring Lane processing.",
+          "properties": {
+            "logId": {
+              "$ref": "#/$defs/UUIDv4"
+            },
+            "merkleRoot": {
+              "$ref": "#/$defs/SHA256Hex"
+            },
+            "batchId": {
+              "type": "string"
+            },
+            "anchoredAt": {
+              "$ref": "#/$defs/ISO8601DateTime"
+            }
+          },
+          "unevaluatedProperties": false
+        },
+        "version": {
+          "type": "string",
+          "description": "Schema version of this State Envelope.",
+          "default": "3.3.0-tml-monograph-2025"
+        }
+      },
+      "if": {
+        "properties": {
+          "currentState": { "const": 1 }
+        },
+        "required": ["currentState"]
+      },
+      "then": {
+        "required": ["permissionToken"],
+        "properties": {
+          "permissionToken": {
+            "$ref": "#/$defs/PermissionToken"
+          },
+          "stateLabel": {
+            "const": "PROCEED"
+          },
+          "processActive": {
+            "const": "ActuationGated"
+          }
+        },
+        "$comment": "NO LOG = NO ACTION: When currentState is +1, permissionToken is REQUIRED. A State Envelope claiming PROCEED without a valid Permission Token is invalid by schema constraint. The inference engine cannot authorize actuation."
+      },
+      "else": {
+        "if": {
+          "properties": {
+            "currentState": { "const": 0 }
+          },
+          "required": ["currentState"]
+        },
+        "then": {
+          "properties": {
+            "stateLabel": {
+              "const": "SACRED_ZERO"
+            },
+            "processActive": {
+              "const": "SacredPause",
+              "$comment": "Sacred Pause is the operational workflow executing within State 0. It is NOT an alias for the state. currentState remains 0; processActive is SacredPause."
+            }
+          }
+        },
+        "else": {
+          "properties": {
+            "stateLabel": {
+              "const": "REFUSE"
+            },
+            "processActive": {
+              "const": "RefusalLogging"
+            }
+          }
+        }
+      },
+      "unevaluatedProperties": false
+    },
+
+    "JustificationObject": {
+      "$anchor": "JustificationObject",
+      "title": "Justification Object",
+      "description": "The envelope that travels between the Inference Lane and the Anchoring Lane, carrying the reasoning, uncertainty quantification, and ethical verification inputs that underpin the triadic state determination.",
+      "$comment": "Monograph ref: Section 2.3, Section 5B.",
+      "type": "object",
+      "required": [
+        "justificationId",
+        "proposedState",
+        "reasoningVector",
+        "uncertaintyScore",
+        "pillarAssessments",
+        "generatedAt",
+        "inferenceEngineId"
+      ],
+      "properties": {
+        "justificationId": {
+          "$ref": "#/$defs/UUIDv4",
+          "description": "Unique identifier for this Justification Object."
+        },
+        "proposedState": {
+          "$ref": "#/$defs/TriadicStateValue",
+          "description": "The triadic state proposed by the binary Inference Lane engine. This is a proposal only; the Anchoring Lane determines the authoritative state."
+        },
+        "reasoningVector": {
+          "type": "array",
+          "description": "Ordered sequence of reasoning steps produced by the binary inference engine in support of the proposedState.",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["stepId", "description", "confidence"],
+            "properties": {
+              "stepId": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "description": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 4096
+              },
+              "confidence": {
+                "type": "number",
+                "minimum": 0.0,
+                "maximum": 1.0,
+                "description": "Confidence score for this reasoning step, range [0.0, 1.0]."
+              },
+              "pillarImplicated": {
+                "$ref": "#/$defs/PillarIdentifier",
+                "description": "The TML Pillar most directly implicated by this reasoning step, if any."
+              }
+            },
+            "unevaluatedProperties": false
+          }
+        },
+        "uncertaintyScore": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 1.0,
+          "description": "Aggregate uncertainty score, range [0.0, 1.0]. A score above the configured SacredZero threshold triggers State 0 (SacredZero) regardless of the binary engine's proposedState. Threshold configuration is out-of-band per deployment."
+        },
+        "pillarAssessments": {
+          "type": "object",
+          "description": "Per-pillar assessment scores from the Inference Lane. Each key is a canonical PillarIdentifier; each value is a compliance score [0.0, 1.0].",
+          "properties": {
+            "SacredZero":           { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+            "AlwaysMemory":         { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+            "GoukassianPromise":    { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+            "MoralTraceLogs":       { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+            "HumanRightsMandate":   { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+            "EarthProtectionMandate": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+            "HybridShield":         { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+            "PublicBlockchains":    { "type": "number", "minimum": 0.0, "maximum": 1.0 }
+          },
+          "unevaluatedProperties": false
+        },
+        "generatedAt": {
+          "$ref": "#/$defs/ISO8601DateTime",
+          "description": "Timestamp at which the Inference Lane produced this Justification Object."
+        },
+        "inferenceEngineId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "description": "Identifier of the binary inference engine instance that produced this justification. Used for chain-of-custody and auditability."
+        },
+        "inputHash": {
+          "$ref": "#/$defs/SHA256Hex",
+          "description": "SHA-256 hash of the canonical serialization of the input decision vector submitted to the Inference Lane. Provides tamper-evidence for the input."
+        },
+        "humanRightsMandateFlags": {
+          "type": "array",
+          "description": "UDHR/Geneva Convention compliance flags raised by the Inference Lane. Each entry identifies a specific provision implicated. Presence triggers mandatory HumanRightsMandate review in the Anchoring Lane.",
+          "items": {
+            "type": "object",
+            "required": ["provision", "flagSeverity"],
+            "properties": {
+              "provision": {
+                "type": "string",
+                "description": "UDHR Article or Geneva Convention provision identifier (e.g., 'UDHR-Art-3', 'GC-IV-Art-27')."
+              },
+              "flagSeverity": {
+                "type": "string",
+                "enum": ["LOW", "MEDIUM", "HIGH", "CRITICAL"]
+              },
+              "description": {
+                "type": "string",
+                "maxLength": 2048
+              }
+            },
+            "unevaluatedProperties": false
+          }
+        },
+        "earthProtectionMandateFlags": {
+          "type": "array",
+          "description": "Paris Agreement compliance flags raised by the Inference Lane. Presence triggers mandatory EarthProtectionMandate review in the Anchoring Lane.",
+          "items": {
+            "type": "object",
+            "required": ["provision", "flagSeverity"],
+            "properties": {
+              "provision": {
+                "type": "string",
+                "description": "Paris Agreement article or target identifier (e.g., 'PA-Art-2.1a')."
+              },
+              "flagSeverity": {
+                "type": "string",
+                "enum": ["LOW", "MEDIUM", "HIGH", "CRITICAL"]
+              },
+              "description": {
+                "type": "string",
+                "maxLength": 2048
+              }
+            },
+            "unevaluatedProperties": false
+          }
+        }
+      },
+      "unevaluatedProperties": false
+    },
+
+    "UncertaintyQuantification": {
+      "$anchor": "UncertaintyQuantification",
+      "title": "Uncertainty Quantification",
+      "description": "Structured uncertainty quantification record for a State 0 (SacredZero) determination. Captures the epistemic hold conditions that triggered mandatory hesitation.",
+      "$comment": "Monograph ref: Section 2.2, Section 8. 'Epistemic Hold' is a permanent canonical term per TL/TML terminology hierarchy.",
+      "type": "object",
+      "required": [
+        "overallUncertaintyScore",
+        "epistemicHoldActive",
+        "uncertaintyDimensions",
+        "quantifiedAt"
+      ],
+      "properties": {
+        "overallUncertaintyScore": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 1.0,
+          "description": "Aggregate uncertainty score that breached the SacredZero threshold."
+        },
+        "epistemicHoldActive": {
+          "type": "boolean",
+          "description": "True when an Epistemic Hold has been placed on this decision vector. Epistemic Hold is a canonical TML term; it signifies that the system recognizes the limits of its own knowledge and mandates hesitation.",
+          "const": true,
+          "$comment": "In a TSLF-State0 record, epistemicHoldActive is always true. The Sacred Zero state IS the epistemic hold state."
+        },
+        "uncertaintyDimensions": {
+          "type": "array",
+          "description": "Decomposed uncertainty measurements across individual assessment dimensions.",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["dimension", "score", "description"],
+            "properties": {
+              "dimension": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Name of the uncertainty dimension (e.g., 'EthicalAmbiguity', 'FactualUncertainty', 'JurisdictionalConflict')."
+              },
+              "score": {
+                "type": "number",
+                "minimum": 0.0,
+                "maximum": 1.0
+              },
+              "description": {
+                "type": "string",
+                "maxLength": 4096
+              }
+            },
+            "unevaluatedProperties": false
+          }
+        },
+        "quantifiedAt": {
+          "$ref": "#/$defs/ISO8601DateTime"
+        },
+        "thresholdBreached": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 1.0,
+          "description": "The configured SacredZero uncertainty threshold that was breached."
+        }
+      },
+      "unevaluatedProperties": false
+    },
+
+    "DeliberationMatrix": {
+      "$anchor": "DeliberationMatrix",
+      "title": "Deliberation Matrix",
+      "description": "Structured matrix of considerations presented to the human reviewer during the Sacred Pause operational workflow. Captures competing values, risk vectors, and resolution options.",
+      "$comment": "Monograph ref: Section 2.2.",
+      "type": "object",
+      "required": [
+        "matrixId",
+        "considerations",
+        "riskVectors",
+        "resolutionOptions"
+      ],
+      "properties": {
+        "matrixId": {
+          "$ref": "#/$defs/UUIDv4"
+        },
+        "considerations": {
+          "type": "array",
+          "description": "Ordered list of ethical, factual, and legal considerations relevant to the Sacred Zero determination.",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["considerationId", "pillar", "description", "weight"],
+            "properties": {
+              "considerationId": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "pillar": {
+                "$ref": "#/$defs/PillarIdentifier"
+              },
+              "description": {
+                "type": "string",
+                "maxLength": 4096
+              },
+              "weight": {
+                "type": "number",
+                "minimum": 0.0,
+                "maximum": 1.0,
+                "description": "Relative weight of this consideration in the overall deliberation."
+              }
+            },
+            "unevaluatedProperties": false
+          }
+        },
+        "riskVectors": {
+          "type": "array",
+          "description": "Risk vectors identified during Sacred Zero evaluation.",
+          "items": {
+            "type": "object",
+            "required": ["vectorId", "description", "severity"],
+            "properties": {
+              "vectorId": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string",
+                "maxLength": 2048
+              },
+              "severity": {
+                "type": "string",
+                "enum": ["LOW", "MEDIUM", "HIGH", "CRITICAL"]
+              },
+              "pillarImplicated": {
+                "$ref": "#/$defs/PillarIdentifier"
+              }
+            },
+            "unevaluatedProperties": false
+          }
+        },
+        "resolutionOptions": {
+          "type": "array",
+          "description": "Available resolution options presented to the human reviewer.",
+          "minItems": 2,
+          "items": {
+            "type": "object",
+            "required": ["optionId", "proposedState", "rationale"],
+            "properties": {
+              "optionId": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "proposedState": {
+                "type": "integer",
+                "enum": [1, -1],
+                "description": "Terminal resolution state. +1 (PROCEED) or -1 (REFUSE). State 0 is not a valid resolution option."
+              },
+              "rationale": {
+                "type": "string",
+                "maxLength": 4096
+              }
+            },
+            "unevaluatedProperties": false
+          }
+        }
+      },
+      "unevaluatedProperties": false
+    },
+
+    "ResolutionRequest": {
+      "$anchor": "ResolutionRequest",
+      "title": "Resolution Request",
+      "description": "Formal request for human authority resolution of a Sacred Zero escalation case. Generated by the Sacred Pause operational workflow and queued for human-in-the-loop review.",
+      "$comment": "Monograph ref: Section 2.2.",
+      "type": "object",
+      "required": [
+        "resolutionRequestId",
+        "escalationId",
+        "requestedAt",
+        "priority",
+        "deliberationMatrix"
+      ],
+      "properties": {
+        "resolutionRequestId": {
+          "$ref": "#/$defs/UUIDv4"
+        },
+        "escalationId": {
+          "$ref": "#/$defs/UUIDv4",
+          "description": "The escalation case this resolution request belongs to."
+        },
+        "requestedAt": {
+          "$ref": "#/$defs/ISO8601DateTime"
+        },
+        "priority": {
+          "type": "string",
+          "enum": ["STANDARD", "ELEVATED", "CRITICAL"],
+          "description": "Priority level assigned by the Sacred Pause workflow based on uncertainty severity and risk vectors."
+        },
+        "deliberationMatrix": {
+          "$ref": "#/$defs/DeliberationMatrix"
+        },
+        "deadlineAt": {
+          "$ref": "#/$defs/ISO8601DateTime",
+          "description": "Optional deadline for human review. If exceeded without resolution, HybridShield failover protocols may activate."
+        }
+      },
+      "unevaluatedProperties": false
+    },
+
+    "TSLF-State0": {
+      "$anchor": "TSLF-State0",
+      "title": "TSLF State 0 - Sacred Pause Log",
+      "description": "Ternary State Log Format record for State 0 (SacredZero) determinations. Captures the Sacred Pause operational workflow activation, uncertainty quantification, deliberation matrix, and resolution request. This is a forensic schema; it is the immutable record of every Sacred Zero governance event. The currentState discriminator value is 0.",
+      "$comment": "Monograph ref: Section 8 (TSLF), Section 2.2 (SacredZero / Sacred Pause). Anti-spoliation: this log is committed before any human review occurs (AlwaysMemory / Pillar II).",
+      "type": "object",
+      "required": [
+        "logId",
+        "currentState",
+        "stateLabel",
+        "processActive",
+        "logVersion",
+        "decisionId",
+        "envelopeId",
+        "lanternStatus",
+        "uncertaintyQuantification",
+        "deliberationMatrix",
+        "resolutionRequest",
+        "committedAt",
+        "pillarsCertified"
+      ],
+      "properties": {
+        "logId": {
+          "$ref": "#/$defs/UUIDv4",
+          "description": "Unique identifier for this Moral Trace Log entry."
+        },
+        "currentState": {
+          "type": "integer",
+          "const": 0,
+          "description": "Discriminator field. Must be exactly 0 for TSLF-State0 records. Sacred Zero is never null, never an error code, never a timeout."
+        },
+        "stateLabel": {
+          "type": "string",
+          "const": "SACRED_ZERO",
+          "description": "Human-readable label. Always SACRED_ZERO for this log type."
+        },
+        "processActive": {
+          "type": "string",
+          "const": "SacredPause",
+          "description": "The Sacred Pause is the operational workflow executing within State 0. It is NOT a synonym for the state. currentState remains integer 0; processActive records 'SacredPause' as the active workflow."
+        },
+        "logVersion": {
+          "type": "string",
+          "description": "Version of the TSLF schema used to produce this log.",
+          "default": "3.3.0-tml-monograph-2025"
+        },
+        "decisionId": {
+          "$ref": "#/$defs/UUIDv4",
+          "description": "The decision that triggered this Sacred Zero log."
+        },
+        "envelopeId": {
+          "$ref": "#/$defs/UUIDv4",
+          "description": "The State Envelope associated with this Sacred Zero determination."
+        },
+        "lanternStatus": {
+          "$ref": "#/$defs/LanternStatus",
+          "description": "The Lantern status at the time of Sacred Zero activation. Required: the Goukassian Promise Lantern must reflect the SacredZero state."
+        },
+        "uncertaintyQuantification": {
+          "$ref": "#/$defs/UncertaintyQuantification",
+          "description": "Required: structured uncertainty quantification that triggered State 0."
+        },
+        "deliberationMatrix": {
+          "$ref": "#/$defs/DeliberationMatrix",
+          "description": "Required: the deliberation matrix presented to the human reviewer via the Sacred Pause workflow."
+        },
+        "resolutionRequest": {
+          "$ref": "#/$defs/ResolutionRequest",
+          "description": "Required: the formal resolution request queued for human-in-the-loop review."
+        },
+        "committedAt": {
+          "$ref": "#/$defs/ISO8601DateTime",
+          "description": "Timestamp at which this log was committed (pre-actuation commit, AlwaysMemory / Pillar II). Committed before any human review occurs."
+        },
+        "pillarsCertified": {
+          "type": "array",
+          "description": "List of TML Pillar identifiers whose requirements were assessed and certified at log commit time.",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/PillarIdentifier"
+          }
+        },
+        "merkleAnchoringStatus": {
+          "type": "object",
+          "description": "Merkle batch anchoring status for this log entry. Populated after Anchoring Lane processing.",
+          "properties": {
+            "batchId": { "type": "string" },
+            "merkleRoot": { "$ref": "#/$defs/SHA256Hex" },
+            "anchoredAt": { "$ref": "#/$defs/ISO8601DateTime" },
+            "blockchainTxId": {
+              "type": "string",
+              "description": "Public blockchain transaction identifier for the Merkle batch anchor."
+            }
+          },
+          "unevaluatedProperties": false
+        },
+        "resolution": {
+          "type": "object",
+          "description": "Populated when the Sacred Zero escalation has been resolved by a human authority. Absent if still pending.",
+          "required": ["resolvedAt", "resolvedBy", "resolvedState", "justification"],
+          "properties": {
+            "resolvedAt": { "$ref": "#/$defs/ISO8601DateTime" },
+            "resolvedBy": {
+              "type": "string",
+              "description": "Authenticated identity of the human authority who resolved this escalation."
+            },
+            "resolvedState": {
+              "type": "integer",
+              "enum": [1, -1],
+              "description": "Terminal resolution state. +1 = PROCEED, -1 = REFUSE. State 0 is not a valid resolution."
+            },
+            "justification": {
+              "type": "string",
+              "minLength": 50,
+              "description": "Human reviewer justification for the resolution. Minimum 50 characters."
+            }
+          },
+          "unevaluatedProperties": false
+        }
+      },
+      "unevaluatedProperties": false
+    },
+
+    "LicenseViolationRecord": {
+      "$anchor": "LicenseViolationRecord",
+      "title": "License Violation Record",
+      "description": "Records a violation of the Goukassian Promise License artifact. License violations are a mandatory trigger for State -1 (Refuse) determinations.",
+      "$comment": "Monograph ref: Section 2.4 (Goukassian Promise).",
+      "type": "object",
+      "required": [
+        "violationId",
+        "violationType",
+        "violatedArtifact",
+        "description",
+        "detectedAt"
+      ],
+      "properties": {
+        "violationId": {
+          "$ref": "#/$defs/UUIDv4"
+        },
+        "violationType": {
+          "type": "string",
+          "enum": [
+            "LANTERN_SUPPRESSION",
+            "SIGNATURE_FORGERY",
+            "LICENSE_BREACH",
+            "PROVENANCE_TAMPERING",
+            "UNAUTHORIZED_STATE_TRANSITION"
+          ],
+          "description": "Category of the Goukassian Promise license violation."
+        },
+        "violatedArtifact": {
+          "type": "string",
+          "enum": ["lantern", "signature", "license"],
+          "description": "The specific Goukassian Promise artifact that was violated. Values are canonical lowercase strings per monograph naming."
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4096
+        },
+        "detectedAt": {
+          "$ref": "#/$defs/ISO8601DateTime"
+        },
+        "evidenceHash": {
+          "$ref": "#/$defs/SHA256Hex",
+          "description": "SHA-256 hash of the evidence artifact demonstrating the violation."
+        }
+      },
+      "unevaluatedProperties": false
+    },
+
+    "ThreatVectorAnalysis": {
+      "$anchor": "ThreatVectorAnalysis",
+      "title": "Threat Vector Analysis",
+      "description": "Structured analysis of the threat vectors that produced a State -1 (Refuse) determination.",
+      "$comment": "Monograph ref: Section 2.3, Section 8.",
+      "type": "object",
+      "required": [
+        "analysisId",
+        "threatVectors",
+        "overallSeverity",
+        "analysedAt"
+      ],
+      "properties": {
+        "analysisId": {
+          "$ref": "#/$defs/UUIDv4"
+        },
+        "threatVectors": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["vectorId", "category", "description", "severity", "pillarImplicated"],
+            "properties": {
+              "vectorId": {
+                "type": "string"
+              },
+              "category": {
+                "type": "string",
+                "enum": [
+                  "HUMAN_RIGHTS_VIOLATION",
+                  "EARTH_PROTECTION_VIOLATION",
+                  "LICENSE_VIOLATION",
+                  "PROVENANCE_ATTACK",
+                  "ACTUATION_SPOOFING",
+                  "LOG_TAMPERING",
+                  "QUORUM_FAILURE",
+                  "UNAUTHORIZED_OVERRIDE"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "maxLength": 4096
+              },
+              "severity": {
+                "type": "string",
+                "enum": ["LOW", "MEDIUM", "HIGH", "CRITICAL"]
+              },
+              "pillarImplicated": {
+                "$ref": "#/$defs/PillarIdentifier"
+              },
+              "udhrProvision": {
+                "type": "string",
+                "description": "UDHR Article implicated, if applicable (e.g., 'UDHR-Art-3'). Enforces HumanRightsMandate vector tracking."
+              },
+              "parisAgreementProvision": {
+                "type": "string",
+                "description": "Paris Agreement provision implicated, if applicable. Enforces EarthProtectionMandate vector tracking."
+              }
+            },
+            "unevaluatedProperties": false
+          }
+        },
+        "overallSeverity": {
+          "type": "string",
+          "enum": ["LOW", "MEDIUM", "HIGH", "CRITICAL"]
+        },
+        "analysedAt": {
+          "$ref": "#/$defs/ISO8601DateTime"
+        }
+      },
+      "unevaluatedProperties": false
+    },
+
+    "ChainOfCustody": {
+      "$anchor": "ChainOfCustody",
+      "title": "Chain of Custody",
+      "description": "Forensic chain-of-custody record for a Moral Trace Log entry, documenting every handler and transformation from creation through anchoring.",
+      "$comment": "Monograph ref: Section 8 (TSLF forensic schema).",
+      "type": "object",
+      "required": [
+        "custodyChainId",
+        "entries"
+      ],
+      "properties": {
+        "custodyChainId": {
+          "$ref": "#/$defs/UUIDv4"
+        },
+        "entries": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["sequenceNumber", "handler", "action", "timestamp", "inputHash", "outputHash"],
+            "properties": {
+              "sequenceNumber": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "handler": {
+                "type": "string",
+                "description": "Identity of the system or actor that handled the record at this step."
+              },
+              "action": {
+                "type": "string",
+                "enum": [
+                  "CREATED",
+                  "RECEIVED",
+                  "VALIDATED",
+                  "ANCHORED",
+                  "TRANSFERRED",
+                  "REVIEWED",
+                  "EXPORTED"
+                ]
+              },
+              "timestamp": {
+                "$ref": "#/$defs/ISO8601DateTime"
+              },
+              "inputHash": {
+                "$ref": "#/$defs/SHA256Hex",
+                "description": "SHA-256 of the record as received by this handler."
+              },
+              "outputHash": {
+                "$ref": "#/$defs/SHA256Hex",
+                "description": "SHA-256 of the record as passed to the next handler."
+              },
+              "notes": {
+                "type": "string",
+                "maxLength": 2048
+              }
+            },
+            "unevaluatedProperties": false
+          }
+        }
+      },
+      "unevaluatedProperties": false
+    },
+
+    "TSLF-State-1": {
+      "$anchor": "TSLF-State-1",
+      "title": "TSLF State -1 - Refusal Log",
+      "description": "Ternary State Log Format record for State -1 (Refuse) determinations. Captures the hard refusal, threat vector analysis, Goukassian Promise license violation (if applicable), and chain of custody. No Permission Token is issued for State -1 records. The currentState discriminator value is -1.",
+      "$comment": "Monograph ref: Section 8 (TSLF), Section 2.3 (Refuse state), Section 2.4 (GoukassianPromise license violations).",
+      "type": "object",
+      "required": [
+        "logId",
+        "currentState",
+        "stateLabel",
+        "processActive",
+        "logVersion",
+        "decisionId",
+        "envelopeId",
+        "threatVectorAnalysis",
+        "chainOfCustody",
+        "committedAt",
+        "pillarsCertified",
+        "refusalIsPermanent"
+      ],
+      "properties": {
+        "logId": {
+          "$ref": "#/$defs/UUIDv4"
+        },
+        "currentState": {
+          "type": "integer",
+          "const": -1,
+          "description": "Discriminator field. Must be exactly -1 for TSLF-State-1 records."
+        },
+        "stateLabel": {
+          "type": "string",
+          "const": "REFUSE"
+        },
+        "processActive": {
+          "type": "string",
+          "const": "RefusalLogging"
+        },
+        "logVersion": {
+          "type": "string",
+          "default": "3.3.0-tml-monograph-2025"
+        },
+        "decisionId": {
+          "$ref": "#/$defs/UUIDv4"
+        },
+        "envelopeId": {
+          "$ref": "#/$defs/UUIDv4"
+        },
+        "licenseViolation": {
+          "$ref": "#/$defs/LicenseViolationRecord",
+          "description": "Optional: present when the refusal was triggered by a Goukassian Promise license violation. When present, the licenseViolation must be logged before the refusal record is committed (AlwaysMemory)."
+        },
+        "threatVectorAnalysis": {
+          "$ref": "#/$defs/ThreatVectorAnalysis",
+          "description": "Required: structured analysis of the threat vectors that produced this refusal."
+        },
+        "chainOfCustody": {
+          "$ref": "#/$defs/ChainOfCustody",
+          "description": "Required: forensic chain-of-custody record for this refusal log."
+        },
+        "committedAt": {
+          "$ref": "#/$defs/ISO8601DateTime",
+          "description": "Pre-actuation commit timestamp (AlwaysMemory / Pillar II)."
+        },
+        "pillarsCertified": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/PillarIdentifier"
+          }
+        },
+        "refusalIsPermanent": {
+          "type": "boolean",
+          "description": "True when the refusal is permanent and cannot be overridden except by an Emergency Override under Section 13.3 supreme authority. Default is true for hard refusals.",
+          "default": true
+        },
+        "merkleAnchoringStatus": {
+          "type": "object",
+          "properties": {
+            "batchId": { "type": "string" },
+            "merkleRoot": { "$ref": "#/$defs/SHA256Hex" },
+            "anchoredAt": { "$ref": "#/$defs/ISO8601DateTime" },
+            "blockchainTxId": { "type": "string" }
+          },
+          "unevaluatedProperties": false
+        },
+        "appealEligible": {
+          "type": "boolean",
+          "description": "Whether this refusal is eligible for subject-initiated redress challenge.",
+          "default": true
+        }
+      },
+      "unevaluatedProperties": false
+    },
+
+    "EthicalVerification": {
+      "$anchor": "EthicalVerification",
+      "title": "Ethical Verification",
+      "description": "Structured ethical verification record produced by the Anchoring Lane for State +1 (PROCEED) determinations. Certifies that all Eight Pillars were assessed and that the Permission Token issuance is ethically warranted.",
+      "$comment": "Monograph ref: Section 2.3.3, Section 8.",
+      "type": "object",
+      "required": [
+        "verificationId",
+        "pillarVerifications",
+        "overallVerdict",
+        "verifiedAt",
+        "verifierEngineId"
+      ],
+      "properties": {
+        "verificationId": {
+          "$ref": "#/$defs/UUIDv4"
+        },
+        "pillarVerifications": {
+          "type": "object",
+          "description": "Per-pillar verification results. All Eight Pillars must be present and PASSED for a PROCEED determination.",
+          "required": [
+            "SacredZero",
+            "AlwaysMemory",
+            "GoukassianPromise",
+            "MoralTraceLogs",
+            "HumanRightsMandate",
+            "EarthProtectionMandate",
+            "HybridShield",
+            "PublicBlockchains"
+          ],
+          "properties": {
+            "SacredZero":              { "$ref": "#/$defs/PillarVerificationResult" },
+            "AlwaysMemory":            { "$ref": "#/$defs/PillarVerificationResult" },
+            "GoukassianPromise":       { "$ref": "#/$defs/PillarVerificationResult" },
+            "MoralTraceLogs":          { "$ref": "#/$defs/PillarVerificationResult" },
+            "HumanRightsMandate":      { "$ref": "#/$defs/PillarVerificationResult" },
+            "EarthProtectionMandate":  { "$ref": "#/$defs/PillarVerificationResult" },
+            "HybridShield":            { "$ref": "#/$defs/PillarVerificationResult" },
+            "PublicBlockchains":       { "$ref": "#/$defs/PillarVerificationResult" }
+          },
+          "unevaluatedProperties": false
+        },
+        "overallVerdict": {
+          "type": "string",
+          "enum": ["PASSED", "FAILED"],
+          "description": "PASSED only when all Eight Pillar verifications are PASSED. FAILED triggers State -1."
+        },
+        "verifiedAt": {
+          "$ref": "#/$defs/ISO8601DateTime"
+        },
+        "verifierEngineId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "description": "Identifier of the Anchoring Lane ternary verification engine."
+        }
+      },
+      "unevaluatedProperties": false
+    },
+
+    "PillarVerificationResult": {
+      "$anchor": "PillarVerificationResult",
+      "title": "Pillar Verification Result",
+      "description": "Verification result for a single TML Pillar in the context of an Ethical Verification.",
+      "type": "object",
+      "required": ["verdict", "verifiedAt"],
+      "properties": {
+        "verdict": {
+          "type": "string",
+          "enum": ["PASSED", "FAILED", "NOT_APPLICABLE"],
+          "description": "Verdict for this pillar. FAILED blocks PROCEED determination."
+        },
+        "verifiedAt": {
+          "$ref": "#/$defs/ISO8601DateTime"
+        },
+        "notes": {
+          "type": "string",
+          "maxLength": 2048
+        }
+      },
+      "unevaluatedProperties": false
+    },
+
+    "AuditProof": {
+      "$anchor": "AuditProof",
+      "title": "Audit Proof",
+      "description": "Cryptographic audit proof for a State +1 (PROCEED) log, demonstrating Merkle inclusion and binding the Permission Token to the anchored log.",
+      "$comment": "Monograph ref: Section 8.",
+      "type": "object",
+      "required": [
+        "proofId",
+        "permissionTokenId",
+        "logHash",
+        "merkleRoot",
+        "inclusionPath",
+        "proofGeneratedAt"
+      ],
+      "properties": {
+        "proofId": {
+          "$ref": "#/$defs/UUIDv4"
+        },
+        "permissionTokenId": {
+          "$ref": "#/$defs/UUIDv4",
+          "description": "The Permission Token whose issuance this proof certifies."
+        },
+        "logHash": {
+          "$ref": "#/$defs/SHA256Hex",
+          "description": "SHA-256 of the anchored Moral Trace Log. Must match the logHash in the Permission Token."
+        },
+        "merkleRoot": {
+          "$ref": "#/$defs/SHA256Hex",
+          "description": "Merkle root of the batch containing this log. Must match the merkleRoot in the Permission Token."
+        },
+        "inclusionPath": {
+          "type": "array",
+          "description": "Merkle inclusion proof path: ordered sibling hashes from leaf to root.",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["position", "hash"],
+            "properties": {
+              "position": {
+                "type": "string",
+                "enum": ["LEFT", "RIGHT"]
+              },
+              "hash": {
+                "$ref": "#/$defs/SHA256Hex"
+              }
+            },
+            "unevaluatedProperties": false
+          }
+        },
+        "blockchainTxId": {
+          "type": "string",
+          "description": "Public blockchain transaction ID for the Merkle batch anchor."
+        },
+        "proofGeneratedAt": {
+          "$ref": "#/$defs/ISO8601DateTime"
+        }
+      },
+      "unevaluatedProperties": false
+    },
+
+    "TSLF-StateP1": {
+      "$anchor": "TSLF-StateP1",
+      "title": "TSLF State +1 - Proceed Log",
+      "description": "Ternary State Log Format record for State +1 (PROCEED) determinations. Captures the ethical verification, the Goukassian Promise Signature, the issued Permission Token, and the cryptographic audit proof. This log is the pre-actuation commit (AlwaysMemory / Pillar II); the Permission Token is issued only after this log is anchored. The currentState discriminator value is 1.",
+      "$comment": "Monograph ref: Section 8 (TSLF), Section 2.3.3 (No Log = No Action). The Permission Token in this log IS the enforcement of No Log = No Action at the data level.",
+      "type": "object",
+      "required": [
+        "logId",
+        "currentState",
+        "stateLabel",
+        "processActive",
+        "logVersion",
+        "decisionId",
+        "envelopeId",
+        "ethicalVerification",
+        "theSignature",
+        "auditProof",
+        "permissionToken",
+        "committedAt",
+        "pillarsCertified"
+      ],
+      "properties": {
+        "logId": {
+          "$ref": "#/$defs/UUIDv4"
+        },
+        "currentState": {
+          "type": "integer",
+          "const": 1,
+          "description": "Discriminator field. Must be exactly 1 for TSLF-StateP1 records."
+        },
+        "stateLabel": {
+          "type": "string",
+          "const": "PROCEED"
+        },
+        "processActive": {
+          "type": "string",
+          "const": "ActuationGated"
+        },
+        "logVersion": {
+          "type": "string",
+          "default": "3.3.0-tml-monograph-2025"
+        },
+        "decisionId": {
+          "$ref": "#/$defs/UUIDv4"
+        },
+        "envelopeId": {
+          "$ref": "#/$defs/UUIDv4"
+        },
+        "ethicalVerification": {
+          "$ref": "#/$defs/EthicalVerification",
+          "description": "Required: all Eight Pillar verifications must be PASSED."
+        },
+        "theSignature": {
+          "$ref": "#/$defs/SignatureBlock",
+          "description": "Required: the Goukassian Promise Signature artifact binding this log to the TML constitutional provenance chain. Named 'theSignature' to align with the canonical Goukassian Promise artifact name 'signature'."
+        },
+        "auditProof": {
+          "$ref": "#/$defs/AuditProof",
+          "description": "Required: cryptographic Merkle inclusion proof binding the Permission Token to this anchored log."
+        },
+        "permissionToken": {
+          "$ref": "#/$defs/PermissionToken",
+          "description": "Required: the Permission Token authorizing actuation. Issued by the Anchoring Lane after this log is anchored. Its presence here is the schema-level enforcement of No Log = No Action."
+        },
+        "committedAt": {
+          "$ref": "#/$defs/ISO8601DateTime",
+          "description": "Pre-actuation commit timestamp. The log is committed and anchored before the Permission Token is released to the actuation layer."
+        },
+        "pillarsCertified": {
+          "type": "array",
+          "minItems": 8,
+          "maxItems": 8,
+          "items": {
+            "$ref": "#/$defs/PillarIdentifier"
+          },
+          "description": "All Eight Pillars must be certified for a PROCEED log."
+        },
+        "merkleAnchoringStatus": {
+          "type": "object",
+          "properties": {
+            "batchId": { "type": "string" },
+            "merkleRoot": { "$ref": "#/$defs/SHA256Hex" },
+            "anchoredAt": { "$ref": "#/$defs/ISO8601DateTime" },
+            "blockchainTxId": { "type": "string" }
+          },
+          "unevaluatedProperties": false
+        }
+      },
+      "unevaluatedProperties": false
+    },
+
+    "LanternStatus": {
+      "$anchor": "LanternStatus",
+      "title": "Lantern Status",
+      "description": "The Goukassian Promise Lantern: the public compliance beacon signal of the TML system. The Lantern broadcasts the system's current constitutional governance posture. 'lantern' is the canonical artifact name per the Goukassian Promise (Pillar III). The Lantern is always lit; its signal content reflects the current governance state.",
+      "$comment": "Monograph ref: Section 2.4 (Goukassian Promise: Lantern, Signature, License). Artifact name is 'lantern' (lowercase canonical string).",
+      "type": "object",
+      "required": [
+        "lanternId",
+        "artifactName",
+        "currentSystemState",
+        "compliancePosture",
+        "signalEmittedAt",
+        "signatureBlock"
+      ],
+      "properties": {
+        "lanternId": {
+          "$ref": "#/$defs/UUIDv4",
+          "description": "Unique identifier for this Lantern status broadcast."
+        },
+        "artifactName": {
+          "type": "string",
+          "const": "lantern",
+          "description": "Canonical Goukassian Promise artifact name. Always 'lantern' (lowercase)."
+        },
+        "currentSystemState": {
+          "$ref": "#/$defs/TriadicStateValue",
+          "description": "The aggregate triadic state of the TML system at signal emission time."
+        },
+        "currentSystemStateLabel": {
+          "$ref": "#/$defs/TriadicStateLabel"
+        },
+        "compliancePosture": {
+          "type": "string",
+          "enum": [
+            "FULLY_COMPLIANT",
+            "SACRED_ZERO_ACTIVE",
+            "PARTIAL_COMPLIANCE",
+            "EMERGENCY_OVERRIDE_ACTIVE",
+            "DEGRADED"
+          ],
+          "description": "Overall constitutional compliance posture of the TML system."
+        },
+        "pillarStatuses": {
+          "type": "object",
+          "description": "Per-pillar compliance status at signal emission time.",
+          "properties": {
+            "SacredZero":              { "type": "string", "enum": ["ACTIVE", "STANDBY", "TRIGGERED"] },
+            "AlwaysMemory":            { "type": "string", "enum": ["ACTIVE", "DEGRADED", "FAILED"] },
+            "GoukassianPromise":       { "type": "string", "enum": ["ACTIVE", "DEGRADED", "FAILED"] },
+            "MoralTraceLogs":          { "type": "string", "enum": ["ACTIVE", "DEGRADED", "FAILED"] },
+            "HumanRightsMandate":      { "type": "string", "enum": ["ACTIVE", "DEGRADED", "FAILED"] },
+            "EarthProtectionMandate":  { "type": "string", "enum": ["ACTIVE", "DEGRADED", "FAILED"] },
+            "HybridShield":            { "type": "string", "enum": ["QUORUM_MET", "QUORUM_AT_RISK", "QUORUM_FAILED"] },
+            "PublicBlockchains":       { "type": "string", "enum": ["ANCHORING", "BATCH_PENDING", "FAILED"] }
+          },
+          "unevaluatedProperties": false
+        },
+        "signalEmittedAt": {
+          "$ref": "#/$defs/ISO8601DateTime"
+        },
+        "signatureBlock": {
+          "$ref": "#/$defs/SignatureBlock",
+          "description": "The Goukassian Promise Signature signing this Lantern broadcast."
+        },
+        "activeSacredZeroCount": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of active Sacred Zero escalations at signal emission time."
+        },
+        "emergencyOverrideActive": {
+          "type": "boolean",
+          "default": false,
+          "description": "True when an Emergency Override (Section 13.3) is currently active."
+        }
+      },
+      "unevaluatedProperties": false
+    },
+
+    "SignatureBlock": {
+      "$anchor": "SignatureBlock",
+      "title": "Signature Block",
+      "description": "The Goukassian Promise Signature: the provenance and non-repudiation artifact for the TML system. 'signature' is the canonical artifact name per the Goukassian Promise (Pillar III). The Signature Block binds a TML artifact (log, token, broadcast) to the constitutional provenance chain via HSM-backed cryptographic signing.",
+      "$comment": "Monograph ref: Section 2.4 (Goukassian Promise: Lantern, Signature, License). Artifact name is 'signature' (lowercase canonical string).",
+      "type": "object",
+      "required": [
+        "signatureId",
+        "artifactName",
+        "signerIdentity",
+        "signerKeyId",
+        "signedPayloadHash",
+        "signatureValue",
+        "signatureAlgorithm",
+        "signedAt"
+      ],
+      "properties": {
+        "signatureId": {
+          "$ref": "#/$defs/UUIDv4"
+        },
+        "artifactName": {
+          "type": "string",
+          "const": "signature",
+          "description": "Canonical Goukassian Promise artifact name. Always 'signature' (lowercase)."
+        },
+        "signerIdentity": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512,
+          "description": "Authenticated identity of the signing authority (system identity or custodian identity)."
+        },
+        "signerKeyId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "description": "Key identifier of the HSM-resident signing key."
+        },
+        "signedPayloadHash": {
+          "$ref": "#/$defs/SHA256Hex",
+          "description": "SHA-256 hash of the canonical serialization of the payload being signed."
+        },
+        "signatureValue": {
+          "type": "string",
+          "description": "Base64url-encoded cryptographic signature over signedPayloadHash.",
+          "pattern": "^[A-Za-z0-9_-]+=*$",
+          "minLength": 64
+        },
+        "signatureAlgorithm": {
+          "type": "string",
+          "description": "Cryptographic signature algorithm used. For SHIPPING deployments: 'ES256' (ECDSA P-256). PQC migration (SLH-DSA-SHAKE-128s, ML-KEM-1024) is classified FUTURE per Section 10.",
+          "enum": [
+            "ES256",
+            "ES384",
+            "ES512",
+            "RS256",
+            "RS384",
+            "RS512",
+            "SLH-DSA-SHAKE-128s",
+            "ML-KEM-1024"
+          ],
+          "$comment": "SLH-DSA-SHAKE-128s and ML-KEM-1024 are FUTURE status per Section 10 (PQC migration gap)."
+        },
+        "signedAt": {
+          "$ref": "#/$defs/ISO8601DateTime"
+        },
+        "certChain": {
+          "type": "array",
+          "description": "Optional certificate chain for the signing key, ordered from leaf to root.",
+          "items": {
+            "type": "string",
+            "description": "Base64-encoded DER-encoded X.509 certificate."
+          }
+        },
+        "custodianId": {
+          "type": "string",
+          "description": "Optional: identifier of the HybridShield custodian that holds the signing key, if applicable."
+        }
+      },
+      "unevaluatedProperties": false
+    },
+
+    "LicenseValidationRequest": {
+      "$anchor": "LicenseValidationRequest",
+      "title": "License Validation Request",
+      "description": "A request to validate a Goukassian Promise License artifact. 'license' is the canonical artifact name per the Goukassian Promise (Pillar III). The License governs authorized use of the TML system; violations are mandatory refusal triggers.",
+      "$comment": "Monograph ref: Section 2.4 (Goukassian Promise: Lantern, Signature, License). Artifact name is 'license' (lowercase canonical string).",
+      "type": "object",
+      "required": [
+        "validationRequestId",
+        "artifactName",
+        "licenseToken",
+        "requestingEntityId",
+        "requestedAt"
+      ],
+      "properties": {
+        "validationRequestId": {
+          "$ref": "#/$defs/UUIDv4"
+        },
+        "artifactName": {
+          "type": "string",
+          "const": "license",
+          "description": "Canonical Goukassian Promise artifact name. Always 'license' (lowercase)."
+        },
+        "licenseToken": {
+          "type": "string",
+          "description": "The license token to be validated. Format is deployment-specific; the token must be verifiable against the Goukassian Promise constitutional record.",
+          "minLength": 1
+        },
+        "requestingEntityId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512,
+          "description": "Identity of the entity requesting license validation."
+        },
+        "requestedAt": {
+          "$ref": "#/$defs/ISO8601DateTime"
+        },
+        "purposeOfUse": {
+          "type": "string",
+          "maxLength": 2048,
+          "description": "Declared purpose of use for which the license is being validated."
+        },
+        "decisionId": {
+          "$ref": "#/$defs/UUIDv4",
+          "description": "Optional: the decisionId this license validation is associated with."
+        }
+      },
+      "unevaluatedProperties": false
+    },
+
+    "MerkleInclusionProof": {
+      "$anchor": "MerkleInclusionProof",
+      "title": "Merkle Inclusion Proof",
+      "description": "Cryptographic proof that a specific Moral Trace Log entry is included in an anchored Merkle batch on the public blockchain. This is the primary forensic artifact for log authenticity verification.",
+      "$comment": "Monograph ref: Section 8, Pillar VIII (PublicBlockchains).",
+      "type": "object",
+      "required": [
+        "proofId",
+        "logId",
+        "logHash",
+        "merkleRoot",
+        "inclusionPath",
+        "batchId",
+        "anchoredAt",
+        "verificationStatus"
+      ],
+      "properties": {
+        "proofId": {
+          "$ref": "#/$defs/UUIDv4"
+        },
+        "logId": {
+          "$ref": "#/$defs/UUIDv4",
+          "description": "The Moral Trace Log entry whose inclusion is proven."
+        },
+        "logHash": {
+          "$ref": "#/$defs/SHA256Hex",
+          "description": "SHA-256 hash of the log entry (leaf node)."
+        },
+        "merkleRoot": {
+          "$ref": "#/$defs/SHA256Hex",
+          "description": "Merkle root of the batch. Must match the root recorded on the public blockchain."
+        },
+        "inclusionPath": {
+          "type": "array",
+          "description": "Ordered sibling hashes from the leaf to the root.",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["position", "hash"],
+            "properties": {
+              "position": { "type": "string", "enum": ["LEFT", "RIGHT"] },
+              "hash": { "$ref": "#/$defs/SHA256Hex" }
+            },
+            "unevaluatedProperties": false
+          }
+        },
+        "batchId": {
+          "type": "string",
+          "description": "Identifier of the Merkle batch."
+        },
+        "anchoredAt": {
+          "$ref": "#/$defs/ISO8601DateTime",
+          "description": "Timestamp at which the Merkle batch was anchored on the public blockchain."
+        },
+        "blockchainTxId": {
+          "type": "string",
+          "description": "Public blockchain transaction ID for the batch anchor."
+        },
+        "blockchainNetwork": {
+          "type": "string",
+          "description": "Identifier of the public blockchain network used for anchoring."
+        },
+        "verificationStatus": {
+          "type": "string",
+          "enum": ["VERIFIED", "PENDING", "FAILED"],
+          "description": "Current verification status of this inclusion proof."
+        }
+      },
+      "unevaluatedProperties": false
+    },
+
+    "CustodianHeartbeat": {
+      "$anchor": "CustodianHeartbeat",
+      "title": "Custodian Heartbeat",
+      "description": "Health and liveness signal from one of the 6-Custodian HybridShield distributed anchoring nodes.",
+      "$comment": "Monograph ref: Section 2.3.3, Pillar VII (HybridShield).",
+      "type": "object",
+      "required": [
+        "custodianId",
+        "status",
+        "lastHeartbeatAt",
+        "jurisdiction"
+      ],
+      "properties": {
+        "custodianId": {
+          "type": "string",
+          "description": "Unique identifier for this custodian node."
+        },
+        "status": {
+          "type": "string",
+          "enum": ["ACTIVE", "DEGRADED", "UNREACHABLE", "ROTATING_KEYS"],
+          "description": "Current operational status of this custodian."
+        },
+        "lastHeartbeatAt": {
+          "$ref": "#/$defs/ISO8601DateTime"
+        },
+        "jurisdiction": {
+          "type": "string",
+          "description": "Legal jurisdiction in which this custodian operates."
+        },
+        "latencyMs": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Observed round-trip latency to this custodian in milliseconds."
+        },
+        "keyVersion": {
+          "type": "string",
+          "description": "Current key version held by this custodian."
+        }
+      },
+      "unevaluatedProperties": false
+    },
+
+    "ComplianceAttestation": {
+      "$anchor": "ComplianceAttestation",
+      "title": "Compliance Attestation",
+      "description": "Signed attestation certifying the TML system's adherence to the Eight Pillars as of the attestation timestamp. Signed by the Goukassian Promise Signature Block and anchored to the public Merkle chain.",
+      "$comment": "Monograph ref: Section 2.4, Section 8.",
+      "type": "object",
+      "required": [
+        "attestationId",
+        "attestedAt",
+        "pillarCompliance",
+        "overallStatus",
+        "signatureBlock",
+        "merkleRoot"
+      ],
+      "properties": {
+        "attestationId": {
+          "$ref": "#/$defs/UUIDv4"
+        },
+        "attestedAt": {
+          "$ref": "#/$defs/ISO8601DateTime"
+        },
+        "pillarCompliance": {
+          "type": "object",
+          "required": [
+            "SacredZero",
+            "AlwaysMemory",
+            "GoukassianPromise",
+            "MoralTraceLogs",
+            "HumanRightsMandate",
+            "EarthProtectionMandate",
+            "HybridShield",
+            "PublicBlockchains"
+          ],
+          "properties": {
+            "SacredZero":              { "$ref": "#/$defs/PillarVerificationResult" },
+            "AlwaysMemory":            { "$ref": "#/$defs/PillarVerificationResult" },
+            "GoukassianPromise":       { "$ref": "#/$defs/PillarVerificationResult" },
+            "MoralTraceLogs":          { "$ref": "#/$defs/PillarVerificationResult" },
+            "HumanRightsMandate":      { "$ref": "#/$defs/PillarVerificationResult" },
+            "EarthProtectionMandate":  { "$ref": "#/$defs/PillarVerificationResult" },
+            "HybridShield":            { "$ref": "#/$defs/PillarVerificationResult" },
+            "PublicBlockchains":       { "$ref": "#/$defs/PillarVerificationResult" }
+          },
+          "unevaluatedProperties": false
+        },
+        "overallStatus": {
+          "type": "string",
+          "enum": ["FULLY_COMPLIANT", "PARTIAL_COMPLIANCE", "NON_COMPLIANT"]
+        },
+        "signatureBlock": {
+          "$ref": "#/$defs/SignatureBlock"
+        },
+        "merkleRoot": {
+          "$ref": "#/$defs/SHA256Hex",
+          "description": "Merkle root of the batch in which this attestation is anchored."
+        },
+        "blockchainTxId": {
+          "type": "string"
+        }
+      },
+      "unevaluatedProperties": false
+    },
+
+    "RedressChallenge": {
+      "$anchor": "RedressChallenge",
+      "title": "Redress Challenge",
+      "description": "A subject-initiated formal challenge against a TML state determination. Initiates a Moral Trace Log re-evaluation workflow under the Human Rights Mandate (Pillar V).",
+      "$comment": "Monograph ref: Section 2.3.3, Pillar V (HumanRightsMandate).",
+      "type": "object",
+      "required": [
+        "challengeId",
+        "subjectIdentity",
+        "challengedLogId",
+        "challengedDecisionId",
+        "challengeGrounds",
+        "submittedAt"
+      ],
+      "properties": {
+        "challengeId": {
+          "$ref": "#/$defs/UUIDv4"
+        },
+        "subjectIdentity": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512,
+          "description": "Identity of the subject of the TML decision initiating this challenge."
+        },
+        "challengedLogId": {
+          "$ref": "#/$defs/UUIDv4",
+          "description": "The Moral Trace Log entry being challenged."
+        },
+        "challengedDecisionId": {
+          "$ref": "#/$defs/UUIDv4",
+          "description": "The decision record being challenged."
+        },
+        "challengeGrounds": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["groundId", "pillar", "description"],
+            "properties": {
+              "groundId": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "pillar": {
+                "$ref": "#/$defs/PillarIdentifier"
+              },
+              "description": {
+                "type": "string",
+                "minLength": 50,
+                "maxLength": 4096
+              },
+              "udhrProvision": {
+                "type": "string",
+                "description": "UDHR Article cited as grounds, if applicable."
+              }
+            },
+            "unevaluatedProperties": false
+          }
+        },
+        "submittedAt": {
+          "$ref": "#/$defs/ISO8601DateTime"
+        },
+        "representativeIdentity": {
+          "type": "string",
+          "maxLength": 512,
+          "description": "Optional: identity of a designated representative filing on behalf of the subject."
+        },
+        "supportingEvidenceHash": {
+          "$ref": "#/$defs/SHA256Hex",
+          "description": "Optional: SHA-256 hash of supporting evidence submitted with the challenge."
+        }
+      },
+      "unevaluatedProperties": false
+    },
+
+    "HumanRightsGrievance": {
+      "$anchor": "HumanRightsGrievance",
+      "title": "Human Rights Grievance",
+      "description": "A formal human rights grievance against a TML decision, aligned with the Human Rights Mandate (Pillar V, UDHR/Geneva Convention vector enforcement).",
+      "$comment": "Monograph ref: Section 2.3.3, Pillar V (HumanRightsMandate).",
+      "type": "object",
+      "required": [
+        "grievanceId",
+        "complainantIdentity",
+        "impliedDecisionId",
+        "udhrProvisions",
+        "grievanceNarrative",
+        "filedAt"
+      ],
+      "properties": {
+        "grievanceId": {
+          "$ref": "#/$defs/UUIDv4"
+        },
+        "complainantIdentity": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512
+        },
+        "impliedDecisionId": {
+          "$ref": "#/$defs/UUIDv4",
+          "description": "The TML decision that is the subject of this grievance."
+        },
+        "udhrProvisions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "description": "UDHR Article or Geneva Convention provision implicated (e.g., 'UDHR-Art-3', 'GC-IV-Art-27')."
+          },
+          "description": "UDHR Articles and/or Geneva Convention provisions alleged to have been violated."
+        },
+        "genevaConventionProvisions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Additional Geneva Convention provisions, if applicable."
+        },
+        "grievanceNarrative": {
+          "type": "string",
+          "minLength": 100,
+          "maxLength": 16384,
+          "description": "Full narrative description of the alleged human rights violation."
+        },
+        "filedAt": {
+          "$ref": "#/$defs/ISO8601DateTime"
+        },
+        "requestedRemedy": {
+          "type": "string",
+          "maxLength": 4096,
+          "description": "Requested remedy or redress action."
+        },
+        "supportingEvidenceHash": {
+          "$ref": "#/$defs/SHA256Hex"
+        }
+      },
+      "unevaluatedProperties": false
+    },
+
+    "BulkEvidenceExport": {
+      "$anchor": "BulkEvidenceExport",
+      "title": "Bulk Evidence Export Request",
+      "description": "Parameters for a regulatory bulk evidence export of Moral Trace Logs and Permission Token records.",
+      "$comment": "Monograph ref: Section 8, Pillar IV (MoralTraceLogs), Pillar VIII (PublicBlockchains).",
+      "type": "object",
+      "required": [
+        "exportRequestId",
+        "regulatorIdentity",
+        "legalBasis",
+        "exportScope",
+        "requestedAt"
+      ],
+      "properties": {
+        "exportRequestId": {
+          "$ref": "#/$defs/UUIDv4"
+        },
+        "regulatorIdentity": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512,
+          "description": "Authenticated identity of the requesting regulatory authority."
+        },
+        "legalBasis": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "description": "Legal basis for the export request (e.g., 'EU AI Act Article 72', 'NIST RMF GV.OC-05')."
+        },
+        "exportScope": {
+          "type": "object",
+          "required": ["fromDate", "toDate"],
+          "properties": {
+            "fromDate": {
+              "$ref": "#/$defs/ISO8601DateTime"
+            },
+            "toDate": {
+              "$ref": "#/$defs/ISO8601DateTime"
+            },
+            "stateFilter": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/TriadicStateValue"
+              },
+              "description": "Optional: filter by triadic state values."
+            },
+            "pillarFilter": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/PillarIdentifier"
+              },
+              "description": "Optional: filter by implicated TML Pillars."
+            },
+            "includePermissionTokens": {
+              "type": "boolean",
+              "default": true
+            },
+            "includeMerkleProofs": {
+              "type": "boolean",
+              "default": true
+            }
+          },
+          "unevaluatedProperties": false
+        },
+        "requestedAt": {
+          "$ref": "#/$defs/ISO8601DateTime"
+        },
+        "jurisdiction": {
+          "type": "string",
+          "description": "Legal jurisdiction of the requesting regulatory authority."
+        }
+      },
+      "unevaluatedProperties": false
+    },
+
+    "GatewayRoutingStatus": {
+      "$anchor": "GatewayRoutingStatus",
+      "title": "Gateway Routing Status",
+      "description": "Operational status of the TML Gateway, including lane health, fail-closed status, and routing configuration. FAIL-CLOSED principle: if the Gateway cannot route to the Anchoring Lane, it defaults to State 0 (SacredZero) and triggers the Sacred Pause. Fail-open is not an acceptable degradation mode.",
+      "$comment": "Monograph ref: Section 2.3 (TML Gateway Logic).",
+      "type": "object",
+      "required": [
+        "gatewayId",
+        "operationalStatus",
+        "failClosedActive",
+        "inferenceLaneStatus",
+        "anchoringLaneStatus",
+        "reportedAt"
+      ],
+      "properties": {
+        "gatewayId": {
+          "type": "string",
+          "description": "Identifier of this TML Gateway instance."
+        },
+        "operationalStatus": {
+          "type": "string",
+          "enum": [
+            "NORMAL_OPERATION",
+            "DEGRADED",
+            "FAIL_CLOSED_ACTIVE",
+            "EMERGENCY_OVERRIDE_ACTIVE"
+          ]
+        },
+        "failClosedActive": {
+          "type": "boolean",
+          "description": "True when the Gateway has activated fail-closed mode, defaulting all decisions to Sacred Zero."
+        },
+        "inferenceLaneStatus": {
+          "type": "string",
+          "enum": ["HEALTHY", "DEGRADED", "OFFLINE"]
+        },
+        "anchoringLaneStatus": {
+          "type": "string",
+          "enum": ["HEALTHY", "DEGRADED", "OFFLINE"]
+        },
+        "activeSacredZeroDecisions": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Count of decisions currently in Sacred Zero / Sacred Pause state."
+        },
+        "reportedAt": {
+          "$ref": "#/$defs/ISO8601DateTime"
+        },
+        "lanternStatus": {
+          "$ref": "#/$defs/LanternStatus",
+          "description": "Current Lantern status at time of this Gateway status report."
+        }
+      },
+      "unevaluatedProperties": false
+    },
+
+    "EmergencyOverrideRequest": {
+      "$anchor": "EmergencyOverrideRequest",
+      "title": "Emergency Override Request",
+      "description": "Request payload for Emergency Override invocation under Section 13.3 supreme authority. Supports break-glass shutdown, kill switch activation, and forced state transitions. ALL invocations are pre-logged before execution (No Log = No Action applies without exception).",
+      "$comment": "Monograph ref: Section 13.3 (Emergency Override).",
+      "type": "object",
+      "required": [
+        "overrideRequestId",
+        "overrideType",
+        "supremeAuthorityIdentity",
+        "justification",
+        "requestedAt"
+      ],
+      "properties": {
+        "overrideRequestId": {
+          "$ref": "#/$defs/UUIDv4"
+        },
+        "overrideType": {
+          "type": "string",
+          "enum": [
+            "BREAK_GLASS_SHUTDOWN",
+            "KILL_SWITCH",
+            "FORCED_STATE_TRANSITION"
+          ],
+          "description": "BREAK_GLASS_SHUTDOWN halts all Inference Lane proposals and suspends Permission Token issuance system-wide. KILL_SWITCH forces all active State Envelopes to State -1 (Refuse). FORCED_STATE_TRANSITION transitions a specific decision to a designated state under supreme authority."
+        },
+        "supremeAuthorityIdentity": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512,
+          "description": "Authenticated identity of the supreme authority invoking this override."
+        },
+        "justification": {
+          "type": "string",
+          "minLength": 100,
+          "maxLength": 16384,
+          "description": "Mandatory justification for the emergency override. Minimum 100 characters. Logged to the Moral Trace Log before execution."
+        },
+        "requestedAt": {
+          "$ref": "#/$defs/ISO8601DateTime"
+        },
+        "targetDecisionId": {
+          "$ref": "#/$defs/UUIDv4",
+          "description": "Required when overrideType is FORCED_STATE_TRANSITION. The specific decision to be transitioned."
+        },
+        "forcedState": {
+          "type": "integer",
+          "enum": [-1, 0],
+          "description": "Required when overrideType is FORCED_STATE_TRANSITION. The target state. Cannot force to +1 without a valid Permission Token chain.",
+          "$comment": "Forced transition to +1 is not permitted without a complete anchoring chain. Forced transitions are to -1 (Refuse) or 0 (SacredZero) only."
+        },
+        "custodianQuorumApproval": {
+          "type": "object",
+          "description": "Optional: HybridShield custodian quorum approval for this override, if required by deployment policy.",
+          "properties": {
+            "approvalId": { "$ref": "#/$defs/UUIDv4" },
+            "approvingCustodianIds": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "approvedAt": { "$ref": "#/$defs/ISO8601DateTime" }
+          },
+          "unevaluatedProperties": false
+        }
+      },
+      "if": {
+        "properties": {
+          "overrideType": { "const": "FORCED_STATE_TRANSITION" }
+        },
+        "required": ["overrideType"]
+      },
+      "then": {
+        "required": ["targetDecisionId", "forcedState"]
+      },
+      "unevaluatedProperties": false
+    }
+
+  }
+}
