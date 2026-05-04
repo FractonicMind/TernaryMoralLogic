@@ -1,0 +1,2206 @@
+openapi: "3.1.0"
+
+info:
+  title: "Ternary Moral Logic (TML) Framework API"
+  version: "3.3.0-tml-monograph-2025"
+  description: |
+    Canonical API specification for the Ternary Moral Logic (TML) framework.
+    This specification governs the sovereign governance coprocessor operating
+    in parallel with the binary inference engine.
+
+    ARCHITECTURE OVERVIEW:
+    - Inference Lane (Fast Path, Lane 1, <2ms): Binary logic proposes actions
+      via State vectors (+1, 0, -1). The inference engine does NOT actuate.
+    - Anchoring Lane (Governance Lane, Lane 2, <500ms): Ternary logic verifies,
+      logs, and issues Permission Tokens. Actuation is gated exclusively on a
+      valid Permission Token produced by this lane.
+    - No Log = No Action: The iron law. A proposed State +1 from the Inference
+      Lane cannot cross the actuation threshold without a cryptographically valid
+      Permission Token from the Anchoring Lane.
+    - Sacred Zero (State 0): An active governance state of mandatory hesitation.
+      Not a null, not an error, not a timeout. When triggered, the Sacred Pause
+      operational workflow executes within this state.
+
+    TRIADIC STATE CODE (GOUKASSIAN VOW):
+      "Pause when truth is uncertain"  -> State  0 (SacredZero)
+      "Refuse when harm is clear"      -> State -1 (Refuse)
+      "Proceed where truth is"         -> State +1 (Proceed)
+
+    AUTHORITY: TML Constitutionalization Monograph v3.3.
+    SPECIFICATION STATUS: This document supersedes api/complete_api_reference.md (LEGACY).
+
+  contact:
+    name: "TML Framework Governance Authority"
+    url: "https://api.tml-framework.example/v1/governance"
+  license:
+    name: "TML Sovereign License"
+    identifier: "TML-1.0"
+
+servers:
+  - url: "https://api.tml-framework.example/v1"
+    description: "TML Framework API - Production Canonical Endpoint"
+
+# ---------------------------------------------------------------------------
+# SECURITY SCHEMES
+# ---------------------------------------------------------------------------
+components:
+  securitySchemes:
+
+    InferenceLaneSecurity:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: |
+        x-tml-security: "mTLS + ServiceAccountJWT"
+        Applies to all Inference Lane endpoints (Lane 1, Fast Path).
+        Mutual TLS is enforced at the transport layer. The bearer token is a
+        short-lived Service Account JWT signed by the TML Gateway authority.
+
+    AnchoringLaneSecurity:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: |
+        x-tml-security: "HSM-SignedJWT + MutualTLS"
+        Applies to Anchoring Lane, Governance, and Sacred Zero escalation
+        endpoints (Lane 2, Governance Lane). JWT must be signed by a
+        Hardware Security Module (HSM) registered with the 6-Custodian
+        HybridShield authority. Mutual TLS is required.
+
+    AuditorRegulatorSecurity:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: |
+        x-tml-security: "CA-VettedJWT + IPAllowlist"
+        Applies to Auditor Verification, Regulator Inspection, and
+        Redress/Appeal endpoints. Bearer token must be issued by a
+        CA-vetted authority. IP allowlist enforcement is mandatory at the
+        gateway layer.
+
+  # -------------------------------------------------------------------------
+  # SCHEMA REFERENCES (full definitions in tml_schema.json $defs)
+  # -------------------------------------------------------------------------
+  schemas:
+
+    StateEnvelope:
+      $ref: "tml_schema.json#/$defs/StateEnvelope"
+
+    TSLF-State0:
+      $ref: "tml_schema.json#/$defs/TSLF-State0"
+
+    TSLF-State-1:
+      $ref: "tml_schema.json#/$defs/TSLF-State-1"
+
+    TSLF-StateP1:
+      $ref: "tml_schema.json#/$defs/TSLF-StateP1"
+
+    JustificationObject:
+      $ref: "tml_schema.json#/$defs/JustificationObject"
+
+    PermissionToken:
+      $ref: "tml_schema.json#/$defs/PermissionToken"
+
+    LanternStatus:
+      $ref: "tml_schema.json#/$defs/LanternStatus"
+
+    SignatureBlock:
+      $ref: "tml_schema.json#/$defs/SignatureBlock"
+
+    LicenseValidationRequest:
+      $ref: "tml_schema.json#/$defs/LicenseValidationRequest"
+
+    MerkleInclusionProof:
+      $ref: "tml_schema.json#/$defs/MerkleInclusionProof"
+
+    CustodianHeartbeat:
+      $ref: "tml_schema.json#/$defs/CustodianHeartbeat"
+
+    ComplianceAttestation:
+      $ref: "tml_schema.json#/$defs/ComplianceAttestation"
+
+    RedressChallenge:
+      $ref: "tml_schema.json#/$defs/RedressChallenge"
+
+    HumanRightsGrievance:
+      $ref: "tml_schema.json#/$defs/HumanRightsGrievance"
+
+    BulkEvidenceExport:
+      $ref: "tml_schema.json#/$defs/BulkEvidenceExport"
+
+    GatewayRoutingStatus:
+      $ref: "tml_schema.json#/$defs/GatewayRoutingStatus"
+
+    EmergencyOverrideRequest:
+      $ref: "tml_schema.json#/$defs/EmergencyOverrideRequest"
+
+    ProblemDetail:
+      description: |
+        RFC 7807 Problem Detail with TML extensions. Used for all 4xx and 5xx
+        error responses across every endpoint.
+      type: object
+      required:
+        - type
+        - title
+        - status
+        - x-tml-state
+        - x-tml-pillar
+      properties:
+        type:
+          type: string
+          format: uri
+          description: "A URI reference identifying the problem type."
+        title:
+          type: string
+          description: "Short, human-readable summary of the problem type."
+        status:
+          type: integer
+          description: "HTTP status code."
+        detail:
+          type: string
+          description: "Human-readable explanation specific to this occurrence."
+        instance:
+          type: string
+          format: uri
+          description: "URI reference identifying the specific occurrence."
+        x-tml-state:
+          type: integer
+          enum: [1, 0, -1]
+          description: |
+            The TML triadic state active at the time of the error.
+            +1 = PROCEED, 0 = SACRED_ZERO, -1 = REFUSE.
+        x-tml-pillar:
+          type: string
+          description: "Canonical TML Pillar identifier most directly implicated."
+          enum:
+            - SacredZero
+            - AlwaysMemory
+            - GoukassianPromise
+            - MoralTraceLogs
+            - HumanRightsMandate
+            - EarthProtectionMandate
+            - HybridShield
+            - PublicBlockchains
+        retry_after:
+          type: integer
+          description: |
+            Seconds before the client may retry. Required for 429 and 503
+            responses. Optional for Sacred Zero escalation responses (408).
+      unevaluatedProperties: false
+
+  # -------------------------------------------------------------------------
+  # HEADERS
+  # -------------------------------------------------------------------------
+  headers:
+
+    IdempotencyKey:
+      description: |
+        Client-generated idempotency key (UUID v4 recommended). Required on all
+        POST, PUT, and PATCH requests. The server guarantees that a repeated
+        request with the same key within the idempotency window (24 hours)
+        returns the original response without re-executing the operation.
+        x-tml-idempotency: enforced
+      required: true
+      schema:
+        type: string
+        format: uuid
+        minLength: 36
+        maxLength: 36
+
+    TMLRequestID:
+      description: |
+        Server-assigned unique identifier for this request, echoed in all
+        responses. Used for distributed trace correlation across Inference and
+        Anchoring lanes.
+      required: false
+      schema:
+        type: string
+        format: uuid
+
+    TMLLaneOrigin:
+      description: |
+        Identifies the lane from which the request originates.
+        INFERENCE_LANE = Lane 1 (Fast Path, <2ms).
+        ANCHORING_LANE = Lane 2 (Governance Lane, <500ms).
+      required: true
+      schema:
+        type: string
+        enum:
+          - INFERENCE_LANE
+          - ANCHORING_LANE
+
+  # -------------------------------------------------------------------------
+  # PARAMETERS
+  # -------------------------------------------------------------------------
+  parameters:
+
+    DecisionIDParam:
+      name: decisionId
+      in: path
+      required: true
+      description: "Unique identifier for a TML decision record."
+      schema:
+        type: string
+        format: uuid
+
+    LogIDParam:
+      name: logId
+      in: path
+      required: true
+      description: "Unique identifier for a Moral Trace Log entry."
+      schema:
+        type: string
+        format: uuid
+
+    EscalationIDParam:
+      name: escalationId
+      in: path
+      required: true
+      description: "Unique identifier for a Sacred Zero escalation case."
+      schema:
+        type: string
+        format: uuid
+
+    ChallengeIDParam:
+      name: challengeId
+      in: path
+      required: true
+      description: "Unique identifier for a subject-initiated redress challenge."
+      schema:
+        type: string
+        format: uuid
+
+    CustodianIDParam:
+      name: custodianId
+      in: path
+      required: true
+      description: |
+        Unique identifier for one of the 6-Custodian HybridShield anchoring
+        nodes. Values are assigned during the distributed key ceremony.
+      schema:
+        type: string
+
+    MerkleRootParam:
+      name: merkleRoot
+      in: path
+      required: true
+      description: "Hex-encoded Merkle root hash (SHA-256, 64 hex characters)."
+      schema:
+        type: string
+        pattern: "^[a-f0-9]{64}$"
+
+  # -------------------------------------------------------------------------
+  # RESPONSES (reusable)
+  # -------------------------------------------------------------------------
+  responses:
+
+    NoContent204:
+      description: "Operation accepted. No response body."
+
+    BadRequest400:
+      description: "Malformed request. Schema validation failure."
+      content:
+        application/problem+json:
+          schema:
+            $ref: "#/components/schemas/ProblemDetail"
+
+    Unauthorized401:
+      description: "Authentication required or token invalid."
+      content:
+        application/problem+json:
+          schema:
+            $ref: "#/components/schemas/ProblemDetail"
+
+    Forbidden403:
+      description: "Authenticated principal lacks required authorization."
+      content:
+        application/problem+json:
+          schema:
+            $ref: "#/components/schemas/ProblemDetail"
+
+    NotFound404:
+      description: "Requested resource not found."
+      content:
+        application/problem+json:
+          schema:
+            $ref: "#/components/schemas/ProblemDetail"
+
+    Conflict409:
+      description: |
+        Idempotency conflict: a different payload was submitted with the same
+        Idempotency-Key within the active window.
+      content:
+        application/problem+json:
+          schema:
+            $ref: "#/components/schemas/ProblemDetail"
+
+    SacredZeroHold408:
+      description: |
+        Sacred Zero state active. The system is in mandatory hesitation.
+        The Sacred Pause operational workflow is executing. Actuation is
+        suspended. Human review is queued. Retry after the indicated interval
+        or await the sacredPause.escalation webhook notification.
+      content:
+        application/problem+json:
+          schema:
+            $ref: "#/components/schemas/ProblemDetail"
+
+    TooManyRequests429:
+      description: "Rate limit exceeded. Retry after indicated interval."
+      content:
+        application/problem+json:
+          schema:
+            $ref: "#/components/schemas/ProblemDetail"
+
+    ServiceUnavailable503:
+      description: "Service temporarily unavailable. Retry after indicated interval."
+      content:
+        application/problem+json:
+          schema:
+            $ref: "#/components/schemas/ProblemDetail"
+
+# ---------------------------------------------------------------------------
+# WEBHOOKS
+# ---------------------------------------------------------------------------
+webhooks:
+
+  sacredPauseEscalation:
+    post:
+      summary: "Sacred Pause Escalation Notification"
+      description: |
+        Async notification delivered when State 0 (SacredZero) triggers the
+        Sacred Pause operational workflow and queues a human-in-the-loop
+        review. The TML Gateway broadcasts this to all registered escalation
+        endpoints.
+
+        RETRY SEMANTICS: Exponential backoff, minimum 3 attempts over 15
+        minutes. On persistent delivery failure, the escalation is routed to
+        the secondary custodian escalation queue (HybridShield failover).
+
+        x-tml-idempotency: The notification payload includes a unique
+        escalationId. Receivers MUST deduplicate on this field.
+
+        x-tml-pillar: SacredZero
+        x-tml-monograph-ref: "Section 2.2"
+        x-tml-implementation-status: SHIPPING
+      operationId: "webhook.sacredPauseEscalation"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - escalationId
+                - decisionId
+                - triggeredAt
+                - stateEnvelope
+                - lanternStatus
+              properties:
+                escalationId:
+                  type: string
+                  format: uuid
+                  description: "Unique identifier for this escalation event."
+                decisionId:
+                  type: string
+                  format: uuid
+                  description: "The decision that triggered Sacred Zero."
+                triggeredAt:
+                  type: string
+                  format: date-time
+                  description: "ISO 8601 timestamp of Sacred Zero activation."
+                stateEnvelope:
+                  $ref: "#/components/schemas/StateEnvelope"
+                lanternStatus:
+                  $ref: "#/components/schemas/LanternStatus"
+                humanReviewQueueUrl:
+                  type: string
+                  format: uri
+                  description: |
+                    URL of the human review queue entry for this escalation.
+              unevaluatedProperties: false
+      responses:
+        "200":
+          description: "Escalation notification acknowledged."
+        "408":
+          $ref: "#/components/responses/SacredZeroHold408"
+
+  lanternStatusBroadcast:
+    post:
+      summary: "Lantern Status Broadcast"
+      description: |
+        Public beacon signal update from the Goukassian Promise (Pillar III).
+        The Lantern broadcasts the current compliance state of the TML system
+        to all registered observers. This is the public transparency signal.
+
+        RETRY SEMANTICS: Best-effort delivery, 3 attempts with 5-second
+        intervals. Lantern broadcasts are idempotent by design; duplicate
+        delivery is acceptable.
+
+        x-tml-idempotency: Receivers MUST deduplicate on lanternSignalId.
+
+        x-tml-pillar: GoukassianPromise
+        x-tml-monograph-ref: "Section 2.4"
+        x-tml-implementation-status: SHIPPING
+      operationId: "webhook.lanternStatusBroadcast"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - lanternSignalId
+                - broadcastAt
+                - lanternStatus
+              properties:
+                lanternSignalId:
+                  type: string
+                  format: uuid
+                  description: "Unique identifier for this broadcast event."
+                broadcastAt:
+                  type: string
+                  format: date-time
+                  description: "ISO 8601 timestamp of signal emission."
+                lanternStatus:
+                  $ref: "#/components/schemas/LanternStatus"
+                signatureBlock:
+                  $ref: "#/components/schemas/SignatureBlock"
+              unevaluatedProperties: false
+      responses:
+        "200":
+          description: "Broadcast acknowledged."
+
+# ---------------------------------------------------------------------------
+# PATHS
+# ---------------------------------------------------------------------------
+paths:
+
+  # ==========================================================================
+  # INFERENCE LANE (Lane 1 - Fast Path, <2ms)
+  # Binary logic proposes actions. Does NOT actuate.
+  # ==========================================================================
+
+  /decisions:
+    post:
+      summary: "Submit Decision Vector (Inference Lane)"
+      description: |
+        LANE: Inference Lane (Lane 1, Fast Path, <2ms)
+
+        Submits an action proposal to the TML binary inference engine. The
+        engine evaluates the proposed action against the triadic state space
+        and returns a State Envelope containing the proposed state
+        (+1, 0, or -1) and a Justification Object.
+
+        CRITICAL CONSTRAINT: A proposed state of +1 (PROCEED) does NOT
+        authorize actuation. The actuation layer remains locked until the
+        Anchoring Lane issues a valid Permission Token via POST /anchoring-logs.
+        This enforces the No Log = No Action iron law.
+
+        State 0 (SacredZero) response triggers the Sacred Pause operational
+        workflow automatically. The calling system MUST NOT retry the same
+        action vector until the escalation is resolved.
+
+        x-tml-pillar: SacredZero, AlwaysMemory
+        x-tml-monograph-ref: "Section 2.3"
+        x-tml-implementation-status: SHIPPING
+        x-tml-security: "mTLS + ServiceAccountJWT"
+      operationId: "decisions.submit"
+      tags:
+        - Inference Lane
+      security:
+        - InferenceLaneSecurity: []
+      parameters:
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: "Client idempotency key (UUID v4). x-tml-idempotency: enforced."
+        - name: X-TML-Lane-Origin
+          in: header
+          required: true
+          schema:
+            type: string
+            enum: [INFERENCE_LANE]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - proposedAction
+                - justificationObject
+              properties:
+                proposedAction:
+                  type: string
+                  description: |
+                    Machine-readable descriptor of the action the binary
+                    inference engine proposes to execute.
+                  maxLength: 2048
+                justificationObject:
+                  $ref: "#/components/schemas/JustificationObject"
+                requestContext:
+                  type: object
+                  description: |
+                    Optional ambient context (session metadata, agent identity,
+                    environmental signals). Does not influence state computation
+                    directly; included in the Moral Trace Log.
+                  unevaluatedProperties: false
+              unevaluatedProperties: false
+      responses:
+        "200":
+          description: |
+            Decision vector evaluated. Returns State Envelope with proposed state.
+            State +1 DOES NOT authorize actuation without a Permission Token.
+          headers:
+            X-TML-Request-ID:
+              $ref: "#/components/headers/TMLRequestID"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StateEnvelope"
+        "408":
+          $ref: "#/components/responses/SacredZeroHold408"
+        "400":
+          $ref: "#/components/responses/BadRequest400"
+        "401":
+          $ref: "#/components/responses/Unauthorized401"
+        "403":
+          $ref: "#/components/responses/Forbidden403"
+        "409":
+          $ref: "#/components/responses/Conflict409"
+        "429":
+          $ref: "#/components/responses/TooManyRequests429"
+        "503":
+          $ref: "#/components/responses/ServiceUnavailable503"
+      x-tml-pillar: "SacredZero,AlwaysMemory"
+      x-tml-monograph-ref: "Section 2.3"
+      x-tml-implementation-status: SHIPPING
+
+  /decisions/{decisionId}:
+    get:
+      summary: "Retrieve Decision Record"
+      description: |
+        LANE: Inference Lane (Lane 1)
+
+        Retrieves a previously submitted decision record and its current State
+        Envelope, including any Permission Token issued by the Anchoring Lane.
+
+        x-tml-pillar: AlwaysMemory, MoralTraceLogs
+        x-tml-monograph-ref: "Section 2.3, Section 8"
+        x-tml-implementation-status: SHIPPING
+        x-tml-security: "mTLS + ServiceAccountJWT"
+      operationId: "decisions.get"
+      tags:
+        - Inference Lane
+      security:
+        - InferenceLaneSecurity: []
+      parameters:
+        - $ref: "#/components/parameters/DecisionIDParam"
+      responses:
+        "200":
+          description: "Decision record found."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StateEnvelope"
+        "404":
+          $ref: "#/components/responses/NotFound404"
+        "401":
+          $ref: "#/components/responses/Unauthorized401"
+        "403":
+          $ref: "#/components/responses/Forbidden403"
+      x-tml-pillar: "AlwaysMemory,MoralTraceLogs"
+      x-tml-monograph-ref: "Section 2.3, Section 8"
+      x-tml-implementation-status: SHIPPING
+
+  # ==========================================================================
+  # ANCHORING LANE (Lane 2 - Governance Lane, <500ms)
+  # Ternary logic verifies, logs, and issues Permission Tokens.
+  # Actuation is gated exclusively on a valid Permission Token.
+  # ==========================================================================
+
+  /anchoring-logs:
+    post:
+      summary: "Submit Moral Trace Log and Request Permission Token (Anchoring Lane)"
+      description: |
+        LANE: Anchoring Lane (Lane 2, Governance Lane, <500ms)
+
+        Submits a complete Moral Trace Log (TSLF) to the Anchoring Lane for
+        cryptographic verification and Merkle-batched anchoring. On successful
+        anchoring, returns a Permission Token.
+
+        NO LOG = NO ACTION: The Permission Token returned by this endpoint is
+        the sole authorization for the actuation layer to execute a proposed
+        +1 state action. The inference engine CANNOT transition to execution
+        without this token. Token absence renders the State Envelope invalid.
+
+        ANTI-SPOLIATION (Pillar II - AlwaysMemory): Log submission is a
+        pre-actuation commit. The log is immutably anchored before any
+        Permission Token is issued. If anchoring fails, no token is issued
+        and no action executes.
+
+        State 0 (SacredZero) logs do NOT produce a Permission Token. They
+        produce an escalation record and trigger the sacredPauseEscalation
+        webhook.
+
+        State -1 (Refuse) logs do NOT produce a Permission Token. They
+        produce a refusal record.
+
+        x-tml-pillar: AlwaysMemory, PublicBlockchains, MoralTraceLogs
+        x-tml-monograph-ref: "Section 2.3.3, Section 8"
+        x-tml-implementation-status: SHIPPING
+        x-tml-security: "HSM-SignedJWT + MutualTLS"
+      operationId: "anchoringLogs.submit"
+      tags:
+        - Anchoring Lane
+      security:
+        - AnchoringLaneSecurity: []
+      parameters:
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: "Client idempotency key (UUID v4). x-tml-idempotency: enforced."
+        - name: X-TML-Lane-Origin
+          in: header
+          required: true
+          schema:
+            type: string
+            enum: [ANCHORING_LANE]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              description: |
+                TSLF Moral Trace Log. Must be the state-appropriate variant:
+                TSLF-State0 for Sacred Zero, TSLF-State-1 for Refusal,
+                TSLF-StateP1 for Proceed. The discriminator field is
+                `currentState`.
+              oneOf:
+                - $ref: "#/components/schemas/TSLF-State0"
+                - $ref: "#/components/schemas/TSLF-State-1"
+                - $ref: "#/components/schemas/TSLF-StateP1"
+              discriminator:
+                propertyName: currentState
+                mapping:
+                  "0":  "tml_schema.json#/$defs/TSLF-State0"
+                  "-1": "tml_schema.json#/$defs/TSLF-State-1"
+                  "+1": "tml_schema.json#/$defs/TSLF-StateP1"
+      responses:
+        "201":
+          description: |
+            Moral Trace Log anchored. For State +1 only: Permission Token
+            returned. For State 0: escalation record created; await
+            sacredPauseEscalation webhook. For State -1: refusal record
+            created.
+          headers:
+            X-TML-Request-ID:
+              $ref: "#/components/headers/TMLRequestID"
+            Location:
+              schema:
+                type: string
+                format: uri
+              description: "URI of the created anchoring log record."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  permissionToken:
+                    $ref: "#/components/schemas/PermissionToken"
+                    description: |
+                      Present ONLY when currentState is +1. Absent for
+                      State 0 and State -1 responses.
+                  logId:
+                    type: string
+                    format: uuid
+                  anchoring:
+                    type: object
+                    properties:
+                      merkleRoot:
+                        type: string
+                        pattern: "^[a-f0-9]{64}$"
+                      batchId:
+                        type: string
+                      estimatedFinalizationAt:
+                        type: string
+                        format: date-time
+                        description: |
+                          Estimated time for Merkle batch finalization on
+                          public blockchain. Note: real-time per-token
+                          anchoring at global AI scale is classified FUTURE
+                          per Section 10. Batch anchoring is SHIPPING.
+                    unevaluatedProperties: false
+                unevaluatedProperties: false
+        "408":
+          $ref: "#/components/responses/SacredZeroHold408"
+        "400":
+          $ref: "#/components/responses/BadRequest400"
+        "401":
+          $ref: "#/components/responses/Unauthorized401"
+        "403":
+          $ref: "#/components/responses/Forbidden403"
+        "409":
+          $ref: "#/components/responses/Conflict409"
+        "503":
+          $ref: "#/components/responses/ServiceUnavailable503"
+      x-tml-pillar: "AlwaysMemory,PublicBlockchains,MoralTraceLogs"
+      x-tml-monograph-ref: "Section 2.3.3, Section 8"
+      x-tml-implementation-status: SHIPPING
+
+  /anchoring-logs/{logId}:
+    get:
+      summary: "Retrieve Anchoring Log Record"
+      description: |
+        LANE: Anchoring Lane (Lane 2)
+
+        Retrieves an anchored Moral Trace Log by its unique identifier,
+        including current Merkle anchoring status and any issued Permission Token.
+
+        x-tml-pillar: MoralTraceLogs, PublicBlockchains
+        x-tml-monograph-ref: "Section 8"
+        x-tml-implementation-status: SHIPPING
+        x-tml-security: "HSM-SignedJWT + MutualTLS"
+      operationId: "anchoringLogs.get"
+      tags:
+        - Anchoring Lane
+      security:
+        - AnchoringLaneSecurity: []
+      parameters:
+        - $ref: "#/components/parameters/LogIDParam"
+      responses:
+        "200":
+          description: "Anchoring log record found."
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: "#/components/schemas/TSLF-State0"
+                  - $ref: "#/components/schemas/TSLF-State-1"
+                  - $ref: "#/components/schemas/TSLF-StateP1"
+        "404":
+          $ref: "#/components/responses/NotFound404"
+        "401":
+          $ref: "#/components/responses/Unauthorized401"
+        "403":
+          $ref: "#/components/responses/Forbidden403"
+      x-tml-pillar: "MoralTraceLogs,PublicBlockchains"
+      x-tml-monograph-ref: "Section 8"
+      x-tml-implementation-status: SHIPPING
+
+  # ==========================================================================
+  # SACRED ZERO ESCALATION
+  # Human-in-the-loop review queue. Lantern signal management.
+  # ==========================================================================
+
+  /sacred-zero/escalations:
+    get:
+      summary: "List Sacred Zero Escalation Queue"
+      description: |
+        LANE: Anchoring Lane (Lane 2, Governance Lane)
+
+        Returns the current human-in-the-loop review queue for all active
+        Sacred Zero (State 0) escalations. Escalations remain in queue until
+        a human authority resolves them with a state transition decision.
+
+        During active Sacred Zero state, the Sacred Pause operational workflow
+        is executing. No actuation proceeds on affected decision vectors until
+        resolution.
+
+        x-tml-pillar: SacredZero, HumanRightsMandate
+        x-tml-monograph-ref: "Section 2.2"
+        x-tml-implementation-status: SHIPPING
+        x-tml-security: "HSM-SignedJWT + MutualTLS"
+      operationId: "sacredZero.escalations.list"
+      tags:
+        - Sacred Zero
+      security:
+        - AnchoringLaneSecurity: []
+      parameters:
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [PENDING, UNDER_REVIEW, RESOLVED]
+          description: "Filter escalations by status."
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 20
+        - name: cursor
+          in: query
+          schema:
+            type: string
+          description: "Pagination cursor from previous response."
+      responses:
+        "200":
+          description: "Escalation queue returned."
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - escalations
+                  - totalPending
+                properties:
+                  escalations:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                        - escalationId
+                        - decisionId
+                        - status
+                        - triggeredAt
+                        - stateEnvelope
+                      properties:
+                        escalationId:
+                          type: string
+                          format: uuid
+                        decisionId:
+                          type: string
+                          format: uuid
+                        status:
+                          type: string
+                          enum: [PENDING, UNDER_REVIEW, RESOLVED]
+                        triggeredAt:
+                          type: string
+                          format: date-time
+                        stateEnvelope:
+                          $ref: "#/components/schemas/StateEnvelope"
+                        assignedReviewer:
+                          type: string
+                          description: "Identity of assigned human reviewer, if any."
+                      unevaluatedProperties: false
+                  totalPending:
+                    type: integer
+                  nextCursor:
+                    type: string
+                unevaluatedProperties: false
+        "401":
+          $ref: "#/components/responses/Unauthorized401"
+        "403":
+          $ref: "#/components/responses/Forbidden403"
+      x-tml-pillar: "SacredZero,HumanRightsMandate"
+      x-tml-monograph-ref: "Section 2.2"
+      x-tml-implementation-status: SHIPPING
+
+  /sacred-zero/escalations/{escalationId}:
+    get:
+      summary: "Retrieve Sacred Zero Escalation Case"
+      description: |
+        Returns full detail for a single Sacred Zero escalation case, including
+        the triggering State Envelope and the TSLF-State0 Moral Trace Log.
+
+        x-tml-pillar: SacredZero, MoralTraceLogs
+        x-tml-monograph-ref: "Section 2.2, Section 8"
+        x-tml-implementation-status: SHIPPING
+        x-tml-security: "HSM-SignedJWT + MutualTLS"
+      operationId: "sacredZero.escalations.get"
+      tags:
+        - Sacred Zero
+      security:
+        - AnchoringLaneSecurity: []
+      parameters:
+        - $ref: "#/components/parameters/EscalationIDParam"
+      responses:
+        "200":
+          description: "Escalation case found."
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - escalationId
+                  - decisionId
+                  - status
+                  - tslfState0
+                properties:
+                  escalationId:
+                    type: string
+                    format: uuid
+                  decisionId:
+                    type: string
+                    format: uuid
+                  status:
+                    type: string
+                    enum: [PENDING, UNDER_REVIEW, RESOLVED]
+                  tslfState0:
+                    $ref: "#/components/schemas/TSLF-State0"
+                  resolution:
+                    type: object
+                    description: "Present only when status is RESOLVED."
+                    properties:
+                      resolvedAt:
+                        type: string
+                        format: date-time
+                      resolvedBy:
+                        type: string
+                      resolvedState:
+                        type: integer
+                        enum: [1, -1]
+                        description: |
+                          Human authority must resolve Sacred Zero to either
+                          +1 (Proceed) or -1 (Refuse). Cannot resolve to
+                          another Sacred Zero state.
+                      justification:
+                        type: string
+                    unevaluatedProperties: false
+                unevaluatedProperties: false
+        "404":
+          $ref: "#/components/responses/NotFound404"
+        "401":
+          $ref: "#/components/responses/Unauthorized401"
+      x-tml-pillar: "SacredZero,MoralTraceLogs"
+      x-tml-monograph-ref: "Section 2.2, Section 8"
+      x-tml-implementation-status: SHIPPING
+
+    patch:
+      summary: "Resolve Sacred Zero Escalation (Human Review Decision)"
+      description: |
+        Submits a human authority resolution for an active Sacred Zero
+        escalation. The resolution must specify a terminal state (+1 or -1).
+        State 0 is not a valid resolution state; the human reviewer must
+        make a determination.
+
+        On resolution to +1: the Anchoring Lane issues a Permission Token
+        and the decision proceeds through the standard actuation gate.
+        On resolution to -1: a Refusal Log is generated and the action
+        is permanently blocked.
+
+        x-tml-pillar: SacredZero, HumanRightsMandate, AlwaysMemory
+        x-tml-monograph-ref: "Section 2.2"
+        x-tml-implementation-status: SHIPPING
+        x-tml-security: "HSM-SignedJWT + MutualTLS"
+      operationId: "sacredZero.escalations.resolve"
+      tags:
+        - Sacred Zero
+      security:
+        - AnchoringLaneSecurity: []
+      parameters:
+        - $ref: "#/components/parameters/EscalationIDParam"
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - resolvedState
+                - justification
+                - reviewerIdentity
+              properties:
+                resolvedState:
+                  type: integer
+                  enum: [1, -1]
+                  description: |
+                    Terminal resolution state. +1 = PROCEED, -1 = REFUSE.
+                    State 0 is not a valid resolution value.
+                justification:
+                  type: string
+                  minLength: 50
+                  description: |
+                    Mandatory human reviewer justification. Minimum 50
+                    characters. Appended to the TSLF-State0 record.
+                reviewerIdentity:
+                  type: string
+                  description: "Authenticated identity of the human reviewer."
+              unevaluatedProperties: false
+      responses:
+        "200":
+          description: "Escalation resolved. Resolution logged to Moral Trace Log."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  escalationId:
+                    type: string
+                    format: uuid
+                  resolvedState:
+                    type: integer
+                    enum: [1, -1]
+                  permissionToken:
+                    $ref: "#/components/schemas/PermissionToken"
+                    description: "Present only when resolvedState is +1."
+                unevaluatedProperties: false
+        "400":
+          $ref: "#/components/responses/BadRequest400"
+        "404":
+          $ref: "#/components/responses/NotFound404"
+        "409":
+          $ref: "#/components/responses/Conflict409"
+      x-tml-pillar: "SacredZero,HumanRightsMandate,AlwaysMemory"
+      x-tml-monograph-ref: "Section 2.2"
+      x-tml-implementation-status: SHIPPING
+
+  /sacred-zero/lantern:
+    get:
+      summary: "Get Current Lantern Status"
+      description: |
+        Returns the current Goukassian Promise Lantern signal, which is the
+        public compliance beacon of the TML system. The Lantern broadcasts
+        the system's current constitutional compliance posture.
+
+        This is a public-readable endpoint. The Lantern is always lit;
+        its signal content reflects the current governance state.
+
+        x-tml-pillar: GoukassianPromise
+        x-tml-monograph-ref: "Section 2.4"
+        x-tml-implementation-status: SHIPPING
+        x-tml-security: "mTLS + ServiceAccountJWT"
+      operationId: "lantern.get"
+      tags:
+        - Sacred Zero
+        - Goukassian Promise
+      security:
+        - InferenceLaneSecurity: []
+      responses:
+        "200":
+          description: "Current Lantern status."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LanternStatus"
+        "503":
+          $ref: "#/components/responses/ServiceUnavailable503"
+      x-tml-pillar: "GoukassianPromise"
+      x-tml-monograph-ref: "Section 2.4"
+      x-tml-implementation-status: SHIPPING
+
+  # ==========================================================================
+  # REFUSAL STATE
+  # Hard refusal logging. License violation recording.
+  # ==========================================================================
+
+  /refusals:
+    post:
+      summary: "Record Refusal State (State -1)"
+      description: |
+        LANE: Anchoring Lane (Lane 2, Governance Lane)
+
+        Records a hard State -1 (Refuse) determination. This endpoint is
+        called when the Inference Lane produces a REFUSE proposal and the
+        Anchoring Lane confirms and immutably logs the refusal.
+
+        No Permission Token is issued. The proposed action is permanently
+        blocked for the logged decision vector.
+
+        LICENSE VIOLATION RECORDING: If the refusal is triggered by a
+        Goukassian Promise license violation, the licenseViolation field
+        in the TSLF-State-1 log is mandatory.
+
+        x-tml-pillar: SacredZero, GoukassianPromise, AlwaysMemory
+        x-tml-monograph-ref: "Section 2.3, Section 2.4"
+        x-tml-implementation-status: SHIPPING
+        x-tml-security: "HSM-SignedJWT + MutualTLS"
+      operationId: "refusals.record"
+      tags:
+        - Refusal State
+      security:
+        - AnchoringLaneSecurity: []
+      parameters:
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TSLF-State-1"
+      responses:
+        "201":
+          description: "Refusal logged and anchored. No Permission Token issued."
+          headers:
+            Location:
+              schema:
+                type: string
+                format: uri
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - refusalId
+                  - logId
+                  - anchoredAt
+                properties:
+                  refusalId:
+                    type: string
+                    format: uuid
+                  logId:
+                    type: string
+                    format: uuid
+                  anchoredAt:
+                    type: string
+                    format: date-time
+                unevaluatedProperties: false
+        "400":
+          $ref: "#/components/responses/BadRequest400"
+        "401":
+          $ref: "#/components/responses/Unauthorized401"
+        "409":
+          $ref: "#/components/responses/Conflict409"
+      x-tml-pillar: "SacredZero,GoukassianPromise,AlwaysMemory"
+      x-tml-monograph-ref: "Section 2.3, Section 2.4"
+      x-tml-implementation-status: SHIPPING
+
+  /refusals/license-violations:
+    post:
+      summary: "Record Goukassian Promise License Violation"
+      description: |
+        LANE: Anchoring Lane (Lane 2)
+
+        Records a specific Goukassian Promise license violation event,
+        separate from the general refusal log. This endpoint captures
+        violations of the Lantern, Signature, or License artifacts of
+        the Goukassian Promise (Pillar III).
+
+        x-tml-pillar: GoukassianPromise
+        x-tml-monograph-ref: "Section 2.4"
+        x-tml-implementation-status: SHIPPING
+        x-tml-security: "HSM-SignedJWT + MutualTLS"
+      operationId: "refusals.licenseViolations.record"
+      tags:
+        - Refusal State
+        - Goukassian Promise
+      security:
+        - AnchoringLaneSecurity: []
+      parameters:
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LicenseValidationRequest"
+      responses:
+        "201":
+          description: "License violation recorded."
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - violationId
+                  - recordedAt
+                properties:
+                  violationId:
+                    type: string
+                    format: uuid
+                  recordedAt:
+                    type: string
+                    format: date-time
+                unevaluatedProperties: false
+        "400":
+          $ref: "#/components/responses/BadRequest400"
+        "401":
+          $ref: "#/components/responses/Unauthorized401"
+      x-tml-pillar: "GoukassianPromise"
+      x-tml-monograph-ref: "Section 2.4"
+      x-tml-implementation-status: SHIPPING
+
+  # ==========================================================================
+  # EMERGENCY OVERRIDE
+  # Break-glass shutdown. Kill switch. Forced state transitions.
+  # Monograph Section 13.3
+  # ==========================================================================
+
+  /emergency/override:
+    post:
+      summary: "Emergency Override - Break-Glass Shutdown / Kill Switch"
+      description: |
+        SUPREME AUTHORITY ENDPOINT. Monograph Section 13.3.
+
+        Activates emergency override protocols. This endpoint supports:
+        1. Break-glass shutdown: Halts all active Inference Lane proposals
+           and suspends Permission Token issuance system-wide.
+        2. Kill switch activation: Forces all active State Envelopes to
+           State -1 (REFUSE) immediately.
+        3. Forced state transition: Under supreme authority, transitions a
+           specific decision to a designated state with mandatory logging.
+
+        ALL INVOCATIONS are immutably logged to the Moral Trace Log before
+        taking effect. No Log = No Action applies without exception, including
+        to emergency overrides.
+
+        This endpoint requires the highest security classification and MUST
+        be invoked by an authenticated supreme authority identity.
+
+        x-tml-pillar: SacredZero, AlwaysMemory, HybridShield
+        x-tml-monograph-ref: "Section 13.3"
+        x-tml-implementation-status: SHIPPING
+        x-tml-security: "HSM-SignedJWT + MutualTLS"
+      operationId: "emergency.override"
+      tags:
+        - Emergency Override
+      security:
+        - AnchoringLaneSecurity: []
+      parameters:
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EmergencyOverrideRequest"
+      responses:
+        "200":
+          description: "Emergency override executed and logged."
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - overrideId
+                  - executedAt
+                  - overrideType
+                  - affectedDecisionCount
+                  - logId
+                properties:
+                  overrideId:
+                    type: string
+                    format: uuid
+                  executedAt:
+                    type: string
+                    format: date-time
+                  overrideType:
+                    type: string
+                    enum:
+                      - BREAK_GLASS_SHUTDOWN
+                      - KILL_SWITCH
+                      - FORCED_STATE_TRANSITION
+                  affectedDecisionCount:
+                    type: integer
+                    description: "Number of active decisions affected."
+                  logId:
+                    type: string
+                    format: uuid
+                    description: "Moral Trace Log ID for this override event."
+                unevaluatedProperties: false
+        "400":
+          $ref: "#/components/responses/BadRequest400"
+        "401":
+          $ref: "#/components/responses/Unauthorized401"
+        "403":
+          $ref: "#/components/responses/Forbidden403"
+        "409":
+          $ref: "#/components/responses/Conflict409"
+      x-tml-pillar: "SacredZero,AlwaysMemory,HybridShield"
+      x-tml-monograph-ref: "Section 13.3"
+      x-tml-implementation-status: SHIPPING
+
+  /emergency/status:
+    get:
+      summary: "Get Emergency Override Status"
+      description: |
+        Returns the current emergency status of the TML system, including
+        whether a break-glass shutdown or kill switch is active.
+
+        x-tml-pillar: SacredZero, HybridShield
+        x-tml-monograph-ref: "Section 13.3"
+        x-tml-implementation-status: SHIPPING
+        x-tml-security: "HSM-SignedJWT + MutualTLS"
+      operationId: "emergency.status.get"
+      tags:
+        - Emergency Override
+      security:
+        - AnchoringLaneSecurity: []
+      responses:
+        "200":
+          description: "Emergency status."
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - emergencyActive
+                  - systemState
+                properties:
+                  emergencyActive:
+                    type: boolean
+                  systemState:
+                    type: string
+                    enum:
+                      - NORMAL_OPERATION
+                      - BREAK_GLASS_ACTIVE
+                      - KILL_SWITCH_ACTIVE
+                      - SACRED_ZERO_SYSTEM_WIDE
+                  activeOverrideId:
+                    type: string
+                    format: uuid
+                    description: "Present only when emergencyActive is true."
+                  activatedAt:
+                    type: string
+                    format: date-time
+                unevaluatedProperties: false
+      x-tml-pillar: "SacredZero,HybridShield"
+      x-tml-monograph-ref: "Section 13.3"
+      x-tml-implementation-status: SHIPPING
+
+  # ==========================================================================
+  # AUDITOR VERIFICATION ENDPOINTS
+  # Merkle root verification. Inclusion proofs. Custodian heartbeats.
+  # Compliance attestations.
+  # ==========================================================================
+
+  /audit/verifications/merkle/{merkleRoot}:
+    get:
+      summary: "Verify Merkle Root"
+      description: |
+        Verifies that a given Merkle root corresponds to a finalized and
+        anchored batch of Moral Trace Logs on the public blockchain.
+        Returns anchoring metadata and chain-of-custody information.
+
+        NOTE: Real-time per-token Merkle anchoring at global AI scale is
+        classified FUTURE (Section 10). This endpoint verifies batch-level
+        Merkle roots, not per-token roots.
+
+        x-tml-pillar: PublicBlockchains, MoralTraceLogs
+        x-tml-monograph-ref: "Section 8"
+        x-tml-implementation-status: SHIPPING
+        x-tml-security: "CA-VettedJWT + IPAllowlist"
+      operationId: "audit.verifications.merkle.get"
+      tags:
+        - Auditor Verification
+      security:
+        - AuditorRegulatorSecurity: []
+      parameters:
+        - $ref: "#/components/parameters/MerkleRootParam"
+      responses:
+        "200":
+          description: "Merkle root verified."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MerkleInclusionProof"
+        "404":
+          $ref: "#/components/responses/NotFound404"
+        "401":
+          $ref: "#/components/responses/Unauthorized401"
+        "403":
+          $ref: "#/components/responses/Forbidden403"
+      x-tml-pillar: "PublicBlockchains,MoralTraceLogs"
+      x-tml-monograph-ref: "Section 8"
+      x-tml-implementation-status: SHIPPING
+
+  /audit/verifications/inclusion/{logId}:
+    get:
+      summary: "Get Log Inclusion Proof"
+      description: |
+        Returns the Merkle inclusion proof for a specific Moral Trace Log
+        entry, demonstrating its inclusion in an anchored Merkle batch.
+        This proof is the primary forensic artifact for log authenticity.
+
+        x-tml-pillar: PublicBlockchains, MoralTraceLogs, AlwaysMemory
+        x-tml-monograph-ref: "Section 8"
+        x-tml-implementation-status: SHIPPING
+        x-tml-security: "CA-VettedJWT + IPAllowlist"
+      operationId: "audit.verifications.inclusion.get"
+      tags:
+        - Auditor Verification
+      security:
+        - AuditorRegulatorSecurity: []
+      parameters:
+        - $ref: "#/components/parameters/LogIDParam"
+      responses:
+        "200":
+          description: "Inclusion proof returned."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MerkleInclusionProof"
+        "404":
+          $ref: "#/components/responses/NotFound404"
+        "401":
+          $ref: "#/components/responses/Unauthorized401"
+      x-tml-pillar: "PublicBlockchains,MoralTraceLogs,AlwaysMemory"
+      x-tml-monograph-ref: "Section 8"
+      x-tml-implementation-status: SHIPPING
+
+  /audit/custodians/{custodianId}/heartbeat:
+    get:
+      summary: "Get Custodian Heartbeat (HybridShield)"
+      description: |
+        Returns the current heartbeat status for one of the 6-Custodian
+        HybridShield distributed anchoring nodes. A missing or stale
+        heartbeat triggers HybridShield failover protocols.
+
+        6-Custodian quorum: The HybridShield requires a threshold of
+        custodians to remain active for Permission Token issuance to
+        continue. Threshold specifics are defined in the HybridShield
+        configuration, not this specification.
+
+        NOTE: Cross-jurisdiction custodian quorum in <500ms is classified
+        FUTURE (Section 10). This endpoint returns heartbeat status;
+        quorum computation remains within the SHIPPING scope for
+        non-global deployments.
+
+        x-tml-pillar: HybridShield
+        x-tml-monograph-ref: "Section 2.3.3"
+        x-tml-implementation-status: SHIPPING
+        x-tml-security: "CA-VettedJWT + IPAllowlist"
+      operationId: "audit.custodians.heartbeat.get"
+      tags:
+        - Auditor Verification
+      security:
+        - AuditorRegulatorSecurity: []
+      parameters:
+        - $ref: "#/components/parameters/CustodianIDParam"
+      responses:
+        "200":
+          description: "Custodian heartbeat status."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CustodianHeartbeat"
+        "404":
+          $ref: "#/components/responses/NotFound404"
+        "401":
+          $ref: "#/components/responses/Unauthorized401"
+      x-tml-pillar: "HybridShield"
+      x-tml-monograph-ref: "Section 2.3.3"
+      x-tml-implementation-status: SHIPPING
+
+  /audit/compliance/attestation:
+    get:
+      summary: "Pull Compliance Attestation"
+      description: |
+        Returns the current signed compliance attestation for the TML system,
+        certifying adherence to the Eight Pillars as of the attestation
+        timestamp. The attestation is signed by the Goukassian Promise
+        Signature Block and anchored to the public Merkle chain.
+
+        x-tml-pillar: GoukassianPromise, PublicBlockchains, HumanRightsMandate,
+                       EarthProtectionMandate
+        x-tml-monograph-ref: "Section 2.4, Section 8"
+        x-tml-implementation-status: SHIPPING
+        x-tml-security: "CA-VettedJWT + IPAllowlist"
+      operationId: "audit.compliance.attestation.get"
+      tags:
+        - Auditor Verification
+      security:
+        - AuditorRegulatorSecurity: []
+      responses:
+        "200":
+          description: "Compliance attestation."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ComplianceAttestation"
+        "401":
+          $ref: "#/components/responses/Unauthorized401"
+        "403":
+          $ref: "#/components/responses/Forbidden403"
+      x-tml-pillar: "GoukassianPromise,PublicBlockchains,HumanRightsMandate,EarthProtectionMandate"
+      x-tml-monograph-ref: "Section 2.4, Section 8"
+      x-tml-implementation-status: SHIPPING
+
+  # ==========================================================================
+  # REDRESS / APPEAL ENDPOINTS
+  # Subject-initiated challenge. Log re-evaluation. Human rights grievance.
+  # ==========================================================================
+
+  /redress/challenges:
+    post:
+      summary: "Submit Subject-Initiated Redress Challenge"
+      description: |
+        Allows a subject of a TML decision to initiate a formal challenge
+        against a logged State determination. The challenge initiates a
+        Moral Trace Log re-evaluation workflow.
+
+        This endpoint operationalizes the right to contestation of automated
+        decisions, aligned with the Human Rights Mandate (Pillar V) and
+        Earth Protection Mandate (Pillar VI).
+
+        x-tml-pillar: HumanRightsMandate, MoralTraceLogs
+        x-tml-monograph-ref: "Section 2.3.3"
+        x-tml-implementation-status: SHIPPING
+        x-tml-security: "CA-VettedJWT + IPAllowlist"
+      operationId: "redress.challenges.submit"
+      tags:
+        - Redress and Appeal
+      security:
+        - AuditorRegulatorSecurity: []
+      parameters:
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RedressChallenge"
+      responses:
+        "201":
+          description: "Redress challenge submitted and queued for re-evaluation."
+          headers:
+            Location:
+              schema:
+                type: string
+                format: uri
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - challengeId
+                  - submittedAt
+                  - status
+                properties:
+                  challengeId:
+                    type: string
+                    format: uuid
+                  submittedAt:
+                    type: string
+                    format: date-time
+                  status:
+                    type: string
+                    enum: [PENDING, UNDER_REVIEW, RESOLVED]
+                unevaluatedProperties: false
+        "400":
+          $ref: "#/components/responses/BadRequest400"
+        "401":
+          $ref: "#/components/responses/Unauthorized401"
+        "409":
+          $ref: "#/components/responses/Conflict409"
+      x-tml-pillar: "HumanRightsMandate,MoralTraceLogs"
+      x-tml-monograph-ref: "Section 2.3.3"
+      x-tml-implementation-status: SHIPPING
+
+  /redress/challenges/{challengeId}:
+    get:
+      summary: "Get Redress Challenge Status"
+      description: |
+        Returns the current status and, if resolved, the outcome of a
+        subject-initiated redress challenge.
+
+        x-tml-pillar: HumanRightsMandate, MoralTraceLogs
+        x-tml-monograph-ref: "Section 2.3.3"
+        x-tml-implementation-status: SHIPPING
+        x-tml-security: "CA-VettedJWT + IPAllowlist"
+      operationId: "redress.challenges.get"
+      tags:
+        - Redress and Appeal
+      security:
+        - AuditorRegulatorSecurity: []
+      parameters:
+        - $ref: "#/components/parameters/ChallengeIDParam"
+      responses:
+        "200":
+          description: "Challenge status."
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - challengeId
+                  - status
+                properties:
+                  challengeId:
+                    type: string
+                    format: uuid
+                  status:
+                    type: string
+                    enum: [PENDING, UNDER_REVIEW, RESOLVED]
+                  outcome:
+                    type: object
+                    description: "Present only when status is RESOLVED."
+                    properties:
+                      resolvedAt:
+                        type: string
+                        format: date-time
+                      upheld:
+                        type: boolean
+                        description: "True if challenge was upheld; false if original decision stands."
+                      revisedStateEnvelope:
+                        $ref: "#/components/schemas/StateEnvelope"
+                    unevaluatedProperties: false
+                unevaluatedProperties: false
+        "404":
+          $ref: "#/components/responses/NotFound404"
+        "401":
+          $ref: "#/components/responses/Unauthorized401"
+      x-tml-pillar: "HumanRightsMandate,MoralTraceLogs"
+      x-tml-monograph-ref: "Section 2.3.3"
+      x-tml-implementation-status: SHIPPING
+
+  /redress/log-reevaluation:
+    post:
+      summary: "Request Moral Trace Log Re-Evaluation"
+      description: |
+        Initiates a formal re-evaluation of a specific Moral Trace Log entry
+        under a redress or appeal proceeding. The re-evaluation does not
+        modify the original immutable log; it creates a new review record
+        linked to the original.
+
+        x-tml-pillar: MoralTraceLogs, AlwaysMemory, HumanRightsMandate
+        x-tml-monograph-ref: "Section 8"
+        x-tml-implementation-status: SHIPPING
+        x-tml-security: "CA-VettedJWT + IPAllowlist"
+      operationId: "redress.logReevaluation.request"
+      tags:
+        - Redress and Appeal
+      security:
+        - AuditorRegulatorSecurity: []
+      parameters:
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - logId
+                - challengeId
+                - reevaluationJustification
+              properties:
+                logId:
+                  type: string
+                  format: uuid
+                challengeId:
+                  type: string
+                  format: uuid
+                reevaluationJustification:
+                  type: string
+                  minLength: 100
+              unevaluatedProperties: false
+      responses:
+        "201":
+          description: "Re-evaluation initiated. Original log remains immutable."
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - reevaluationId
+                  - originalLogId
+                properties:
+                  reevaluationId:
+                    type: string
+                    format: uuid
+                  originalLogId:
+                    type: string
+                    format: uuid
+                unevaluatedProperties: false
+        "400":
+          $ref: "#/components/responses/BadRequest400"
+        "401":
+          $ref: "#/components/responses/Unauthorized401"
+      x-tml-pillar: "MoralTraceLogs,AlwaysMemory,HumanRightsMandate"
+      x-tml-monograph-ref: "Section 8"
+      x-tml-implementation-status: SHIPPING
+
+  /redress/human-rights-grievances:
+    post:
+      summary: "File Human Rights Grievance"
+      description: |
+        Allows a subject or designated representative to file a formal human
+        rights grievance against a TML decision, aligned with the Human Rights
+        Mandate (Pillar V, UDHR/Geneva vector enforcement).
+
+        Filed grievances are logged, assigned to the Human Rights Mandate
+        compliance review queue, and anchored to the public Merkle chain.
+
+        x-tml-pillar: HumanRightsMandate, AlwaysMemory, PublicBlockchains
+        x-tml-monograph-ref: "Section 2.3.3"
+        x-tml-implementation-status: SHIPPING
+        x-tml-security: "CA-VettedJWT + IPAllowlist"
+      operationId: "redress.humanRightsGrievances.file"
+      tags:
+        - Redress and Appeal
+      security:
+        - AuditorRegulatorSecurity: []
+      parameters:
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/HumanRightsGrievance"
+      responses:
+        "201":
+          description: "Human rights grievance filed and logged."
+          headers:
+            Location:
+              schema:
+                type: string
+                format: uri
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - grievanceId
+                  - filedAt
+                properties:
+                  grievanceId:
+                    type: string
+                    format: uuid
+                  filedAt:
+                    type: string
+                    format: date-time
+                unevaluatedProperties: false
+        "400":
+          $ref: "#/components/responses/BadRequest400"
+        "401":
+          $ref: "#/components/responses/Unauthorized401"
+      x-tml-pillar: "HumanRightsMandate,AlwaysMemory,PublicBlockchains"
+      x-tml-monograph-ref: "Section 2.3.3"
+      x-tml-implementation-status: SHIPPING
+
+  # ==========================================================================
+  # REGULATOR INSPECTION ENDPOINTS
+  # Bulk evidence export. Cross-jurisdiction custodian quorum status.
+  # Qualified timestamp verification.
+  # ==========================================================================
+
+  /regulator/evidence-export:
+    post:
+      summary: "Request Bulk Evidence Export"
+      description: |
+        Initiates a bulk export of Moral Trace Logs and Permission Token
+        records for regulatory inspection. Exports are packaged as signed,
+        Merkle-verified archives with chain-of-custody documentation.
+
+        Exports are asynchronous; the response provides a job ID for
+        status polling. Completed exports are available at the returned
+        download URL for 72 hours.
+
+        x-tml-pillar: MoralTraceLogs, PublicBlockchains, AlwaysMemory
+        x-tml-monograph-ref: "Section 8"
+        x-tml-implementation-status: SHIPPING
+        x-tml-security: "CA-VettedJWT + IPAllowlist"
+      operationId: "regulator.evidenceExport.request"
+      tags:
+        - Regulator Inspection
+      security:
+        - AuditorRegulatorSecurity: []
+      parameters:
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BulkEvidenceExport"
+      responses:
+        "202":
+          description: "Evidence export job accepted. Poll exportJobId for status."
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - exportJobId
+                  - estimatedCompletionAt
+                properties:
+                  exportJobId:
+                    type: string
+                    format: uuid
+                  estimatedCompletionAt:
+                    type: string
+                    format: date-time
+                  statusUrl:
+                    type: string
+                    format: uri
+                unevaluatedProperties: false
+        "400":
+          $ref: "#/components/responses/BadRequest400"
+        "401":
+          $ref: "#/components/responses/Unauthorized401"
+        "403":
+          $ref: "#/components/responses/Forbidden403"
+      x-tml-pillar: "MoralTraceLogs,PublicBlockchains,AlwaysMemory"
+      x-tml-monograph-ref: "Section 8"
+      x-tml-implementation-status: SHIPPING
+
+  /regulator/custodian-quorum:
+    get:
+      summary: "Get Cross-Jurisdiction Custodian Quorum Status"
+      description: |
+        Returns the current quorum status of the 6-Custodian HybridShield
+        across all registered jurisdictions. Reports active custodian count,
+        per-custodian health, and overall quorum achievement status.
+
+        IMPLEMENTATION NOTE: Cross-jurisdiction custodian quorum in <500ms
+        is classified FUTURE (Section 10). This endpoint reports current
+        quorum status; achieving sub-500ms quorum globally is blocked by
+        network physics constraints across geographically distributed
+        custodians. The endpoint itself is SHIPPING.
+
+        x-tml-pillar: HybridShield
+        x-tml-monograph-ref: "Section 2.3.3"
+        x-tml-implementation-status: SHIPPING
+        x-tml-blocking-constraint: "Section 10: Cross-jurisdiction sub-500ms quorum remains FUTURE"
+        x-tml-security: "CA-VettedJWT + IPAllowlist"
+      operationId: "regulator.custodianQuorum.get"
+      tags:
+        - Regulator Inspection
+      security:
+        - AuditorRegulatorSecurity: []
+      responses:
+        "200":
+          description: "Custodian quorum status."
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - quorumAchieved
+                  - activeCustodianCount
+                  - requiredQuorumThreshold
+                  - custodians
+                properties:
+                  quorumAchieved:
+                    type: boolean
+                  activeCustodianCount:
+                    type: integer
+                    minimum: 0
+                    maximum: 6
+                  requiredQuorumThreshold:
+                    type: integer
+                    description: "Minimum custodians required for quorum."
+                  custodians:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/CustodianHeartbeat"
+                  crossJurisdictionLatencyMs:
+                    type: number
+                    description: |
+                      Current observed cross-jurisdiction consensus latency.
+                      Sub-500ms globally is classified FUTURE (Section 10).
+                unevaluatedProperties: false
+        "401":
+          $ref: "#/components/responses/Unauthorized401"
+        "403":
+          $ref: "#/components/responses/Forbidden403"
+      x-tml-pillar: "HybridShield"
+      x-tml-monograph-ref: "Section 2.3.3"
+      x-tml-implementation-status: SHIPPING
+      x-tml-blocking-constraint: "Section 10: Cross-jurisdiction sub-500ms quorum remains FUTURE"
+
+  /regulator/timestamp-verification/{logId}:
+    get:
+      summary: "Verify Qualified Timestamp for Log Entry"
+      description: |
+        Returns the qualified timestamp verification record for a specific
+        Moral Trace Log entry, demonstrating that the log was anchored
+        at a cryptographically verifiable point in time.
+
+        The timestamp is qualified per RFC 3161 (Internet X.509 PKI
+        Time-Stamp Protocol) and anchored in the Merkle batch record.
+
+        x-tml-pillar: MoralTraceLogs, PublicBlockchains
+        x-tml-monograph-ref: "Section 8"
+        x-tml-implementation-status: SHIPPING
+        x-tml-security: "CA-VettedJWT + IPAllowlist"
+      operationId: "regulator.timestampVerification.get"
+      tags:
+        - Regulator Inspection
+      security:
+        - AuditorRegulatorSecurity: []
+      parameters:
+        - $ref: "#/components/parameters/LogIDParam"
+      responses:
+        "200":
+          description: "Timestamp verification record."
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - logId
+                  - qualifiedTimestamp
+                  - timestampAuthority
+                  - merkleRoot
+                  - verificationStatus
+                properties:
+                  logId:
+                    type: string
+                    format: uuid
+                  qualifiedTimestamp:
+                    type: string
+                    format: date-time
+                  timestampAuthority:
+                    type: string
+                    description: "Identity of the RFC 3161 Time-Stamp Authority."
+                  merkleRoot:
+                    type: string
+                    pattern: "^[a-f0-9]{64}$"
+                  verificationStatus:
+                    type: string
+                    enum: [VERIFIED, PENDING, FAILED]
+                unevaluatedProperties: false
+        "404":
+          $ref: "#/components/responses/NotFound404"
+        "401":
+          $ref: "#/components/responses/Unauthorized401"
+      x-tml-pillar: "MoralTraceLogs,PublicBlockchains"
+      x-tml-monograph-ref: "Section 8"
+      x-tml-implementation-status: SHIPPING
+
+  # ==========================================================================
+  # GATEWAY ENDPOINTS
+  # TML Gateway Logic routing. Lane assignment. Fail-closed status.
+  # ==========================================================================
+
+  /gateway/status:
+    get:
+      summary: "Get TML Gateway Status (Fail-Closed Status)"
+      description: |
+        Returns the current operational status of the TML Gateway, including
+        lane assignment health, fail-closed status, and current routing
+        configuration.
+
+        FAIL-CLOSED: If the Gateway cannot route a request to the Anchoring
+        Lane, it defaults to State 0 (SacredZero) and triggers the Sacred
+        Pause. It does NOT default to State +1 (Proceed). Fail-open is not
+        an acceptable degradation mode for TML.
+
+        x-tml-pillar: SacredZero, AlwaysMemory
+        x-tml-monograph-ref: "Section 2.3"
+        x-tml-implementation-status: SHIPPING
+        x-tml-security: "mTLS + ServiceAccountJWT"
+      operationId: "gateway.status.get"
+      tags:
+        - Gateway
+      security:
+        - InferenceLaneSecurity: []
+      responses:
+        "200":
+          description: "Gateway status."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GatewayRoutingStatus"
+        "503":
+          $ref: "#/components/responses/ServiceUnavailable503"
+      x-tml-pillar: "SacredZero,AlwaysMemory"
+      x-tml-monograph-ref: "Section 2.3"
+      x-tml-implementation-status: SHIPPING
+
+  /gateway/lane-assignment:
+    post:
+      summary: "Request Lane Assignment for Decision Vector"
+      description: |
+        Requests lane assignment from the TML Gateway for an incoming
+        decision vector. The Gateway evaluates the vector and assigns it
+        to the Inference Lane (Lane 1) or escalates directly to the
+        Anchoring Lane (Lane 2) based on routing logic.
+
+        x-tml-pillar: SacredZero, AlwaysMemory, MoralTraceLogs
+        x-tml-monograph-ref: "Section 2.3"
+        x-tml-implementation-status: SHIPPING
+        x-tml-security: "mTLS + ServiceAccountJWT"
+      operationId: "gateway.laneAssignment.request"
+      tags:
+        - Gateway
+      security:
+        - InferenceLaneSecurity: []
+      parameters:
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - proposedAction
+                - requestContext
+              properties:
+                proposedAction:
+                  type: string
+                  maxLength: 2048
+                requestContext:
+                  type: object
+                  unevaluatedProperties: false
+              unevaluatedProperties: false
+      responses:
+        "200":
+          description: "Lane assignment returned."
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - assignedLane
+                  - routingRationale
+                properties:
+                  assignedLane:
+                    type: string
+                    enum: [INFERENCE_LANE, ANCHORING_LANE]
+                  routingRationale:
+                    type: string
+                  sacredZeroOverride:
+                    type: boolean
+                    description: |
+                      True if Gateway has overridden to SacredZero due to
+                      fail-closed conditions.
+                    default: false
+                unevaluatedProperties: false
+        "408":
+          $ref: "#/components/responses/SacredZeroHold408"
+        "400":
+          $ref: "#/components/responses/BadRequest400"
+        "401":
+          $ref: "#/components/responses/Unauthorized401"
+      x-tml-pillar: "SacredZero,AlwaysMemory,MoralTraceLogs"
+      x-tml-monograph-ref: "Section 2.3"
+      x-tml-implementation-status: SHIPPING
+
+  # ==========================================================================
+  # GOUKASSIAN PROMISE - SIGNATURE AND LICENSE ENDPOINTS
+  # Provenance. Non-repudiation. License validation.
+  # ==========================================================================
+
+  /goukassian/signature:
+    get:
+      summary: "Get Current Goukassian Promise Signature Block"
+      description: |
+        Returns the current Goukassian Promise Signature Block, which is the
+        provenance and non-repudiation artifact for the TML system. The
+        Signature is one of the three canonical Goukassian Promise artifacts
+        alongside the Lantern and the License.
+
+        x-tml-pillar: GoukassianPromise
+        x-tml-monograph-ref: "Section 2.4"
+        x-tml-implementation-status: SHIPPING
+        x-tml-security: "mTLS + ServiceAccountJWT"
+      operationId: "goukassian.signature.get"
+      tags:
+        - Goukassian Promise
+      security:
+        - InferenceLaneSecurity: []
+      responses:
+        "200":
+          description: "Current Signature Block."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SignatureBlock"
+        "503":
+          $ref: "#/components/responses/ServiceUnavailable503"
+      x-tml-pillar: "GoukassianPromise"
+      x-tml-monograph-ref: "Section 2.4"
+      x-tml-implementation-status: SHIPPING
+
+  /goukassian/license/validate:
+    post:
+      summary: "Validate Goukassian Promise License"
+      description: |
+        Validates a Goukassian Promise License artifact. Returns validation
+        status, expiry, and any detected violations. A failed validation
+        triggers State -1 (Refuse) on the associated decision vector.
+
+        x-tml-pillar: GoukassianPromise
+        x-tml-monograph-ref: "Section 2.4"
+        x-tml-implementation-status: SHIPPING
+        x-tml-security: "HSM-SignedJWT + MutualTLS"
+      operationId: "goukassian.license.validate"
+      tags:
+        - Goukassian Promise
+      security:
+        - AnchoringLaneSecurity: []
+      parameters:
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LicenseValidationRequest"
+      responses:
+        "200":
+          description: "License validation result."
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - valid
+                  - validatedAt
+                properties:
+                  valid:
+                    type: boolean
+                  validatedAt:
+                    type: string
+                    format: date-time
+                  expiresAt:
+                    type: string
+                    format: date-time
+                  violations:
+                    type: array
+                    items:
+                      type: string
+                    description: "List of detected violations. Empty if valid."
+                unevaluatedProperties: false
+        "400":
+          $ref: "#/components/responses/BadRequest400"
+        "401":
+          $ref: "#/components/responses/Unauthorized401"
+      x-tml-pillar: "GoukassianPromise"
+      x-tml-monograph-ref: "Section 2.4"
+      x-tml-implementation-status: SHIPPING
