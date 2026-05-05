@@ -1,0 +1,391 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api.tml-framework.example/v1/schemas/eip712_typed_data.json",
+  "title": "TML EIP-712 Typed Data Schema Bundle",
+  "description": "EIP-712 domain separator and type definitions for off-chain structured data hashing in the TML framework. Defines typed data for MoralTraceLog and PermissionToken. Distinct from the on-chain ABI (tml_abi.json). Authority: TML Constitutionalization Monograph v3.3, EIP-712 (Ethereum Typed Structured Data Hashing and Signing).",
+  "version": "3.3.0-tml-monograph-2025",
+  "$comment": "Monograph ref: Section 2.3.3, Section 5B.i, Section 8. EIP-712 typed data only. No Solidity source. These definitions enable off-chain signing of TML artifacts with on-chain verifiability.",
+
+  "eip712Domain": {
+    "description": "EIP-712 domain separator definition for the TML framework. The domain separator binds all typed data signatures to a specific contract, chain, and monograph version, preventing cross-domain and cross-version replay attacks.",
+    "$comment": "EIP-712 Section 4 (Domain Separator). chainId must be set to the target deployment chain at runtime.",
+    "primaryType": "EIP712Domain",
+    "domain": {
+      "name": "TMLFramework",
+      "version": "3.3.0",
+      "chainId": "<DEPLOYMENT_CHAIN_ID>",
+      "verifyingContract": "<TML_CORE_CONTRACT_ADDRESS>",
+      "salt": "<DEPLOYMENT_SPECIFIC_SALT_BYTES32>"
+    },
+    "types": {
+      "EIP712Domain": [
+        {
+          "name": "name",
+          "type": "string",
+          "description": "Human-readable name of the signing domain."
+        },
+        {
+          "name": "version",
+          "type": "string",
+          "description": "Version of the TML monograph this domain is bound to."
+        },
+        {
+          "name": "chainId",
+          "type": "uint256",
+          "description": "EIP-155 chain ID of the target deployment network."
+        },
+        {
+          "name": "verifyingContract",
+          "type": "address",
+          "description": "Address of the TML_Core contract. Binds signatures to the specific deployment."
+        },
+        {
+          "name": "salt",
+          "type": "bytes32",
+          "description": "Deployment-specific entropy salt to further differentiate domain separators across deployments."
+        }
+      ]
+    }
+  },
+
+  "typedDataSchemas": {
+
+    "MoralTraceLog": {
+      "description": "EIP-712 typed data schema for off-chain signing of a Moral Trace Log (TSLF) entry. Enables custodians, auditors, and the Anchoring Lane to produce verifiable signatures over TSLF records without full on-chain storage of every field. The signature is verifiable against the signer's address on any EIP-712 compliant verifier.",
+      "$comment": "Monograph ref: Section 8 (TSLF forensic schema), Pillar II (AlwaysMemory), Pillar IV (MoralTraceLogs). The typehash is: keccak256('MoralTraceLog(bytes32 logId,int8 currentState,bytes32 decisionId,bytes32 envelopeId,bytes32 justificationObjectHash,bytes32 pillarsCertifiedHash,uint256 committedAt,bytes32 monographVersionHash)').",
+      "primaryType": "MoralTraceLog",
+      "domain": { "$ref": "#/eip712Domain/domain" },
+      "types": {
+        "EIP712Domain": { "$ref": "#/eip712Domain/types/EIP712Domain" },
+        "MoralTraceLog": [
+          {
+            "name": "logId",
+            "type": "bytes32",
+            "description": "Unique identifier for this Moral Trace Log entry (UUID v4 packed as bytes32)."
+          },
+          {
+            "name": "currentState",
+            "type": "int8",
+            "description": "Triadic state value. +1 = PROCEED. 0 = SACRED_ZERO. -1 = REFUSE. Encoded as int8 to preserve the signed integer semantics of the TML triadic state space. State 0 is SACRED_ZERO: not null, not error, not timeout."
+          },
+          {
+            "name": "decisionId",
+            "type": "bytes32",
+            "description": "Identifier of the decision that produced this log entry."
+          },
+          {
+            "name": "envelopeId",
+            "type": "bytes32",
+            "description": "Identifier of the State Envelope associated with this log entry."
+          },
+          {
+            "name": "justificationObjectHash",
+            "type": "bytes32",
+            "description": "SHA-256 hash of the canonical JSON serialization of the JustificationObject that traveled between Inference and Anchoring lanes."
+          },
+          {
+            "name": "pillarsCertifiedHash",
+            "type": "bytes32",
+            "description": "SHA-256 hash of the canonical serialization of the pillarsCertified array. Commits the set of Eight Pillars assessed at log creation without expanding them into the typed struct."
+          },
+          {
+            "name": "committedAt",
+            "type": "uint256",
+            "description": "Unix epoch timestamp of pre-actuation commit (AlwaysMemory). Committed before any human review or Permission Token issuance."
+          },
+          {
+            "name": "monographVersionHash",
+            "type": "bytes32",
+            "description": "keccak256 hash of the monograph version string '3.3.0-tml-monograph-2025'. Binds this log to the specific monograph version under which it was produced."
+          }
+        ]
+      },
+      "signingInstructions": {
+        "description": "Instructions for producing a valid EIP-712 signature over a MoralTraceLog typed data instance.",
+        "steps": [
+          "1. Construct the MoralTraceLog struct with all required fields populated per the TSLF schema (tml_schema.json).",
+          "2. Compute justificationObjectHash as SHA-256 of the canonical JSON serialization of the JustificationObject.",
+          "3. Compute pillarsCertifiedHash as SHA-256 of the canonical JSON serialization of the pillarsCertified array.",
+          "4. Compute monographVersionHash as keccak256(abi.encodePacked('3.3.0-tml-monograph-2025')).",
+          "5. Encode the struct per EIP-712 typeHash and hashStruct rules.",
+          "6. Produce the final digest: keccak256(abi.encodePacked('\\x19\\x01', domainSeparator, structHash)).",
+          "7. Sign the digest with the HSM-resident key identified by SignatureBlock.signerKeyId.",
+          "8. Record the signature in the Goukassian Promise SignatureBlock artifact."
+        ]
+      },
+      "example": {
+        "description": "Illustrative field values for a State 0 (SacredZero) MoralTraceLog typed data instance. All values are illustrative only.",
+        "primaryType": "MoralTraceLog",
+        "domain": {
+          "name": "TMLFramework",
+          "version": "3.3.0",
+          "chainId": 1,
+          "verifyingContract": "0x0000000000000000000000000000000000000000",
+          "salt": "0x0000000000000000000000000000000000000000000000000000000000000000"
+        },
+        "message": {
+          "logId": "0xaabbccdd...",
+          "currentState": 0,
+          "decisionId": "0x11223344...",
+          "envelopeId": "0x55667788...",
+          "justificationObjectHash": "0xdeadbeef...",
+          "pillarsCertifiedHash": "0xcafebabe...",
+          "committedAt": 1700000000,
+          "monographVersionHash": "0x..."
+        },
+        "$comment": "currentState 0 = SACRED_ZERO. The typed data encoding preserves the int8 signed value, ensuring 0 is not conflated with false, null, or an error code."
+      }
+    },
+
+    "PermissionToken": {
+      "description": "EIP-712 typed data schema for off-chain signing of a Permission Token by the Anchoring Lane. The signed PermissionToken is the cryptographic release key for the actuation layer. Its off-chain signature enables the actuation layer to verify authorization without a gas-bearing on-chain call for every action, while the logHash and merkleRoot fields maintain verifiability against the on-chain TML_Core anchor record. This is the off-chain expression of No Log = No Action.",
+      "$comment": "Monograph ref: Section 2.3.3, Section 5B.i. The typehash is: keccak256('PermissionToken(bytes32 tokenId,bytes32 logHash,uint256 epochTimestamp,bytes32 signerKeyId,bytes32 merkleRoot,uint256 expiresAt,bytes32 decisionId,bytes32 monographVersionHash)').",
+      "primaryType": "PermissionToken",
+      "domain": { "$ref": "#/eip712Domain/domain" },
+      "types": {
+        "EIP712Domain": { "$ref": "#/eip712Domain/types/EIP712Domain" },
+        "PermissionToken": [
+          {
+            "name": "tokenId",
+            "type": "bytes32",
+            "description": "Unique identifier for this Permission Token (UUID v4 packed as bytes32)."
+          },
+          {
+            "name": "logHash",
+            "type": "bytes32",
+            "description": "SHA-256 hash of the anchored Moral Trace Log that authorizes this token. Core binding field: no Permission Token is valid without a corresponding anchored log. This is the typed-data expression of No Log = No Action."
+          },
+          {
+            "name": "epochTimestamp",
+            "type": "uint256",
+            "description": "Unix epoch timestamp at which the Anchoring Lane issued this token."
+          },
+          {
+            "name": "signerKeyId",
+            "type": "bytes32",
+            "description": "keccak256 hash of the HSM signing key identifier. Identifies the Anchoring Lane key that produced this token's signature."
+          },
+          {
+            "name": "merkleRoot",
+            "type": "bytes32",
+            "description": "SHA-256 Merkle root of the batch in which the authorizing log is anchored. Non-repudiation binding: must match the root in the TML_Core on-chain anchor record."
+          },
+          {
+            "name": "expiresAt",
+            "type": "uint256",
+            "description": "Unix epoch timestamp after which this token is invalid for actuation authorization. The actuation layer MUST reject tokens where block.timestamp >= expiresAt."
+          },
+          {
+            "name": "decisionId",
+            "type": "bytes32",
+            "description": "Identifier of the decision for which this token was issued. Prevents token reuse across decisions."
+          },
+          {
+            "name": "monographVersionHash",
+            "type": "bytes32",
+            "description": "keccak256 hash of the monograph version string '3.3.0-tml-monograph-2025'. Binds this token to the specific monograph version."
+          }
+        ]
+      },
+      "securityProperties": {
+        "description": "Security properties enforced by the EIP-712 PermissionToken typed data schema.",
+        "noLogNoAction": "logHash binds the token to a specific anchored Moral Trace Log. The actuation layer must verify that logHash is included in the merkleRoot before accepting the token.",
+        "anchoringLaneOnly": "The token is signed by the HSM key identified by signerKeyId, which must be a key registered to the Anchoring Lane in the HybridShield custodian registry. Inference Lane keys are not authorized to sign Permission Tokens.",
+        "expiryEnforcement": "The actuation layer must reject any PermissionToken where the current timestamp is at or after expiresAt. Expiry is a hard constraint, not a warning.",
+        "domainBinding": "The EIP-712 domain separator binds this token to a specific chainId, verifyingContract, and monograph version. Cross-chain and cross-deployment token reuse is cryptographically prevented.",
+        "decisionBinding": "The decisionId field prevents a valid Permission Token from being replayed against a different decision. One token authorizes one decision.",
+        "merkleVerifiability": "The merkleRoot field enables any party to verify the token's authorization chain: token -> logHash -> merkleRoot -> on-chain TML_Core anchor record -> public blockchain transaction."
+      },
+      "signingInstructions": {
+        "description": "Instructions for producing a valid EIP-712 signature over a PermissionToken typed data instance.",
+        "steps": [
+          "1. Confirm the authorizing Moral Trace Log is anchored: logHash must be verifiable against an anchored merkleRoot in TML_Core.",
+          "2. Construct the PermissionToken struct with all required fields.",
+          "3. Compute signerKeyId as keccak256(abi.encodePacked(signerKeyIdString)).",
+          "4. Compute monographVersionHash as keccak256(abi.encodePacked('3.3.0-tml-monograph-2025')).",
+          "5. Encode the struct per EIP-712 typeHash and hashStruct rules.",
+          "6. Produce the final digest: keccak256(abi.encodePacked('\\x19\\x01', domainSeparator, structHash)).",
+          "7. Sign the digest with the Anchoring Lane HSM key identified by signerKeyId.",
+          "8. Record the signatureValue in the PermissionToken JSON schema object (tml_schema.json#/$defs/PermissionToken.signatureValue) as a base64url-encoded value.",
+          "9. The actuation layer verifies the signature against the public key before authorizing execution."
+        ]
+      },
+      "example": {
+        "description": "Illustrative field values for a PermissionToken typed data instance for a State +1 (PROCEED) decision. All values are illustrative only.",
+        "primaryType": "PermissionToken",
+        "domain": {
+          "name": "TMLFramework",
+          "version": "3.3.0",
+          "chainId": 1,
+          "verifyingContract": "0x0000000000000000000000000000000000000000",
+          "salt": "0x0000000000000000000000000000000000000000000000000000000000000000"
+        },
+        "message": {
+          "tokenId": "0xaabbccdd...",
+          "logHash": "0x1122334455667788...",
+          "epochTimestamp": 1700000000,
+          "signerKeyId": "0xdeadbeef...",
+          "merkleRoot": "0xcafebabe...",
+          "expiresAt": 1700003600,
+          "decisionId": "0x99aabbcc...",
+          "monographVersionHash": "0x..."
+        },
+        "$comment": "The actuation layer: (1) verifies EIP-712 signature against signerKeyId public key, (2) confirms logHash is included in merkleRoot via Merkle inclusion proof, (3) confirms merkleRoot is anchored in TML_Core on-chain, (4) confirms current timestamp < expiresAt, (5) confirms decisionId matches the pending decision. Only then does execution proceed."
+      }
+    },
+
+    "EmergencyOverride": {
+      "description": "EIP-712 typed data schema for off-chain signing of Emergency Override authorizations by supreme authority identities. The signed data is submitted to TML_Core.executeEmergencyOverride. Signing this structure constitutes a sovereign authority act; it is immutably logged before execution.",
+      "$comment": "Monograph ref: Section 13.3 (Emergency Override). x-tml-pillar: SacredZero, AlwaysMemory, HybridShield.",
+      "primaryType": "EmergencyOverride",
+      "domain": { "$ref": "#/eip712Domain/domain" },
+      "types": {
+        "EIP712Domain": { "$ref": "#/eip712Domain/types/EIP712Domain" },
+        "EmergencyOverride": [
+          {
+            "name": "overrideRequestId",
+            "type": "bytes32",
+            "description": "Unique identifier for this override request."
+          },
+          {
+            "name": "overrideType",
+            "type": "uint8",
+            "description": "0 = BREAK_GLASS_SHUTDOWN. 1 = KILL_SWITCH. 2 = FORCED_STATE_TRANSITION."
+          },
+          {
+            "name": "targetDecisionId",
+            "type": "bytes32",
+            "description": "Target decision for FORCED_STATE_TRANSITION. Zero bytes32 for other override types."
+          },
+          {
+            "name": "forcedState",
+            "type": "uint8",
+            "description": "Target state for FORCED_STATE_TRANSITION. 0 = REFUSE. 255 = SACRED_ZERO. Forced transition to PROCEED is not permitted."
+          },
+          {
+            "name": "justificationHash",
+            "type": "bytes32",
+            "description": "SHA-256 hash of the justification document. The justification document is archived off-chain and anchored before the override executes."
+          },
+          {
+            "name": "requestedAt",
+            "type": "uint256",
+            "description": "Unix epoch timestamp at which the supreme authority requested this override."
+          },
+          {
+            "name": "monographVersionHash",
+            "type": "bytes32",
+            "description": "keccak256 hash of '3.3.0-tml-monograph-2025'. Binds the override to the specific monograph under whose authority it was invoked."
+          }
+        ]
+      }
+    },
+
+    "CustodianQuorumAttestation": {
+      "description": "EIP-712 typed data schema for custodian signatures in HybridShield quorum operations. Each of the 6 custodians signs this structure to contribute to a quorum for Merkle anchoring, system-wide Sacred Zero activation, or Emergency Override authorization.",
+      "$comment": "Monograph ref: Section 2.3.3, Pillar VII (HybridShield). 6-Custodian distributed anchoring.",
+      "primaryType": "CustodianQuorumAttestation",
+      "domain": { "$ref": "#/eip712Domain/domain" },
+      "types": {
+        "EIP712Domain": { "$ref": "#/eip712Domain/types/EIP712Domain" },
+        "CustodianQuorumAttestation": [
+          {
+            "name": "custodianId",
+            "type": "bytes32",
+            "description": "Unique identifier of the attesting custodian node."
+          },
+          {
+            "name": "operationId",
+            "type": "bytes32",
+            "description": "Identifier of the operation (Merkle anchor, Sacred Zero activation, or Emergency Override) this attestation authorizes."
+          },
+          {
+            "name": "operationType",
+            "type": "uint8",
+            "description": "0 = MERKLE_ANCHOR. 1 = SACRED_ZERO_ACTIVATION. 2 = EMERGENCY_OVERRIDE."
+          },
+          {
+            "name": "operationPayloadHash",
+            "type": "bytes32",
+            "description": "SHA-256 hash of the operation payload (e.g., merkleRoot for MERKLE_ANCHOR, escalationId for SACRED_ZERO_ACTIVATION)."
+          },
+          {
+            "name": "attestedAt",
+            "type": "uint256",
+            "description": "Unix epoch timestamp of custodian attestation."
+          },
+          {
+            "name": "custodianKeyVersion",
+            "type": "bytes32",
+            "description": "Version identifier of the custodian's current key material."
+          }
+        ]
+      }
+    },
+
+    "GoukassianSignatureAttestation": {
+      "description": "EIP-712 typed data schema for the Goukassian Promise Signature artifact. Enables the Goukassian Promise Signature Block to be expressed as an EIP-712 signed structure, binding the TML system's provenance and non-repudiation record to the constitutional chain. 'signature' is the canonical artifact name.",
+      "$comment": "Monograph ref: Section 2.4 (GoukassianPromise: lantern, signature, license). x-tml-pillar: GoukassianPromise.",
+      "primaryType": "GoukassianSignatureAttestation",
+      "domain": { "$ref": "#/eip712Domain/domain" },
+      "types": {
+        "EIP712Domain": { "$ref": "#/eip712Domain/types/EIP712Domain" },
+        "GoukassianSignatureAttestation": [
+          {
+            "name": "signatureId",
+            "type": "bytes32",
+            "description": "Unique identifier for this Goukassian Promise Signature attestation."
+          },
+          {
+            "name": "artifactName",
+            "type": "bytes32",
+            "description": "keccak256 hash of the canonical artifact name string 'signature'. Encodes the canonical Goukassian Promise artifact identity.",
+            "$comment": "keccak256(abi.encodePacked('signature'))"
+          },
+          {
+            "name": "signerKeyId",
+            "type": "bytes32",
+            "description": "keccak256 hash of the HSM signing key identifier."
+          },
+          {
+            "name": "signedPayloadHash",
+            "type": "bytes32",
+            "description": "SHA-256 hash of the payload being attested (log entry, token, or broadcast)."
+          },
+          {
+            "name": "signatureAlgorithmId",
+            "type": "uint8",
+            "description": "Signature algorithm. 0 = ES256. 1 = ES384. 2 = ES512. 3 = RS256. 4 = RS384. 5 = RS512. 6 = SLH-DSA-SHAKE-128s (FUTURE). 7 = ML-KEM-1024 (FUTURE)."
+          },
+          {
+            "name": "signedAt",
+            "type": "uint256",
+            "description": "Unix epoch timestamp at which the signature was produced."
+          },
+          {
+            "name": "monographVersionHash",
+            "type": "bytes32",
+            "description": "keccak256 hash of the monograph version string. Binds this attestation to the specific constitutional version."
+          }
+        ]
+      }
+    }
+
+  },
+
+  "typeHashRegistry": {
+    "description": "Pre-computed EIP-712 typeHash strings for each primary type. These are the canonical string representations used to compute keccak256 typeHashes per EIP-712 Section 2.4. Whitespace is significant; these strings must not be reformatted.",
+    "$comment": "Per EIP-712: typeHash = keccak256(encodeType(primaryType)). These strings are authoritative.",
+    "MoralTraceLog": "MoralTraceLog(bytes32 logId,int8 currentState,bytes32 decisionId,bytes32 envelopeId,bytes32 justificationObjectHash,bytes32 pillarsCertifiedHash,uint256 committedAt,bytes32 monographVersionHash)",
+    "PermissionToken": "PermissionToken(bytes32 tokenId,bytes32 logHash,uint256 epochTimestamp,bytes32 signerKeyId,bytes32 merkleRoot,uint256 expiresAt,bytes32 decisionId,bytes32 monographVersionHash)",
+    "EmergencyOverride": "EmergencyOverride(bytes32 overrideRequestId,uint8 overrideType,bytes32 targetDecisionId,uint8 forcedState,bytes32 justificationHash,uint256 requestedAt,bytes32 monographVersionHash)",
+    "CustodianQuorumAttestation": "CustodianQuorumAttestation(bytes32 custodianId,bytes32 operationId,uint8 operationType,bytes32 operationPayloadHash,uint256 attestedAt,bytes32 custodianKeyVersion)",
+    "GoukassianSignatureAttestation": "GoukassianSignatureAttestation(bytes32 signatureId,bytes32 artifactName,bytes32 signerKeyId,bytes32 signedPayloadHash,uint8 signatureAlgorithmId,uint256 signedAt,bytes32 monographVersionHash)"
+  },
+
+  "implementationNotes": {
+    "pqcMigration": "SLH-DSA-SHAKE-128s (signatureAlgorithmId 6) and ML-KEM-1024 (signatureAlgorithmId 7) are classified FUTURE per Section 10 (Implementation Gap). Current SHIPPING deployments use ES256 (signatureAlgorithmId 0). PQC algorithm IDs are reserved in this schema to enable forward-compatible migration without a typeHash change.",
+    "noLogNoAction": "The PermissionToken.logHash field is the typed-data expression of No Log = No Action. Any off-chain verifier of a signed PermissionToken MUST verify that logHash is included in the corresponding Merkle batch before accepting the token as authorization for actuation.",
+    "sacredZeroEncoding": "currentState in MoralTraceLog is typed as int8 to faithfully represent the signed triadic state space (+1, 0, -1). Verifiers must not treat currentState == 0 as false, null, empty, or an error. State 0 is SACRED_ZERO: an active, first-class governance state."
+  }
+}
