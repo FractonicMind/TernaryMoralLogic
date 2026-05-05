@@ -1,0 +1,569 @@
+## 2. Deliverable D: `eip712_typed_data.json` — EIP-712 Typed Data Schema
+
+### 2.1 Domain Separator Configuration
+
+#### 2.1.1 Domain Name and Version Binding
+
+The EIP-712 domain separator binds all off-chain signatures to the specific TML deployment, preventing cross-protocol replay attacks and ensuring signature semantic clarity. The domain name field specifies **"TML"** (not "Ternary Moral Logic" or any abbreviation), matching the canonical terminology enforcement requirement. The version field specifies **"3.3.0-tml-monograph-2025"**, tied to the monograph version per Section 5A requirements. This version binding ensures that signatures generated under one monograph version cannot be replayed against systems implementing different constitutional eras, even on the same contract address.
+
+The name and version fields are hashed using `keccak256(bytes(name))` and `keccak256(bytes(version))` respectively, following the standard EIP-712 domain separator construction. These hashed values are cached in the TML_Core contract's immutable storage, with the version string serving as the monograph release identifier for audit purposes. The version binding is critical for the "Future / Blocked" appendix: when quantum-proof signature migration or other architectural changes alter the signing scheme, the version increment prevents ambiguity about which verification algorithm applies.
+
+| Domain Field | Value | Hash Computation | Purpose |
+|--------------|-------|------------------|---------|
+| name | "TML" | keccak256(bytes("TML")) | Protocol identification |
+| version | "3.3.0-tml-monograph-2025" | keccak256(bytes("3.3.0-tml-monograph-2025")) | Monograph release binding |
+| chainId | deployment-specific | block.chainid | Replay protection across networks |
+| verifyingContract | TML_Core address | address(this) | Contract instance binding |
+| salt | deployment-specific | keccak256(random) | Additional entropy for multi-tenant deployments |
+
+#### 2.1.2 Chain Identifier Specification
+
+The chainId field uses the standard **EIP-155 chain identifier** scheme, with common values including 1 for Ethereum mainnet, 11155111 for Sepolia testnet, 137 for Polygon mainnet, 80001 for Polygon Mumbai, 42161 for Arbitrum One, and 10 for Optimism. The TML specification does not mandate a specific chain but requires that the chainId in the domain separator match the chain where the verifyingContract is deployed, preventing cross-chain replay. For multi-chain deployments, each deployment receives its own domain separator with the appropriate chainId, and signatures are not portable between chains even for identical contract code.
+
+The chainId is represented as `uint256` in the EIP-712 type system, accommodating the full range of possible network identifiers including future chain numbering schemes. The TML_Core contract validates that the chainId parameter matches `block.chainid` during initialization, rejecting configurations that would create replay vulnerabilities through chain mismatch.
+
+#### 2.1.3 Verifying Contract Address
+
+The verifyingContract field contains the Ethereum address of the TML_Core deployment that will verify signatures generated with this domain separator. This binding is essential for security: if a signature could be verified by any contract with compatible code, attackers could deploy malicious contracts that accept signatures intended for legitimate TML instances. The address is specified as a standard Ethereum address (20 bytes, hex-encoded with 0x prefix) and is included in the domain separator hash as the final 32-byte word, padded left per ABI encoding rules for address types.
+
+For standard deployments, the verifyingContract address must correspond to an audited and certified TML_Core deployment with active Hybrid Shield custodian participation. The specification requires that this address be published in the Constitutional Compliance Matrix with associated regulatory attestations, enabling auditors to verify the authenticity of the verification contract itself.
+
+#### 2.1.4 Salt and Optional Domain Extensions
+
+The TML domain separator optionally includes a **salt** field for deployments requiring additional entropy, such as multi-tenant SaaS deployments or testing environments where contract addresses may collide. The salt is a `bytes32` value derived from a cryptographically secure random source during contract initialization, with publication in the deployment documentation but exclusion from contract source code to prevent pre-computation attacks.
+
+Optional domain extensions follow the **EIP-5267** extension mechanism, with the `extensions` field as `uint256[]` array. The current specification defines no active extensions, with reserved values for future assignment: extension 1 for quantum-proof signature schemes (**FUTURE**, blocked by PQC algorithm standardization), extension 2 for cross-chain verification bridges (**FUTURE**, blocked by cross-jurisdiction custodian quorum latency requirements), and extension 3 for hardware attestation integration (**FUTURE**, blocked by MPU availability).
+
+### 2.2 EIP712Domain Type Definition
+
+#### 2.2.1 Standard Domain Fields (name, version, chainId, verifyingContract)
+
+The EIP712Domain type definition follows the standard EIP-712 specification with field ordering matching the canonical type string. The JSON representation for typed data signing includes these fields in the `domain` object of the signing payload. The type definition in the `types` section is:
+
+```json
+"EIP712Domain": [
+  {"name": "name", "type": "string"},
+  {"name": "version", "type": "string"},
+  {"name": "chainId", "type": "uint256"},
+  {"name": "verifyingContract", "type": "address"}
+]
+```
+
+This ordering must be preserved in all implementations, as the `encodeType` function concatenates fields in definition order for type hash generation. The type hash for the standard four-field domain is `keccak256("EIP712Domain(string name,string version,uint256 chainId,address verifyingContract)")`, producing the standard hash `0x8b73c3c69bb8fe3d512ecc4cf759cc79239f7b179b0ffacaa9a75d522b39400f`.
+
+#### 2.2.2 TML-Specific Domain Extensions
+
+The TML specification extends the standard domain with optional fields for enhanced auditability: `monographHash` (`bytes32`, referencing the governing monograph section for this signature context) and `pillarIdentifier` (`string`, one of the eight canonical pillar identifiers). These extensions are included in the `types` definition when present but do not affect the standard four-field domain separator used for basic verification.
+
+The extended type definition:
+
+```json
+"EIP712Domain": [
+  {"name": "name", "type": "string"},
+  {"name": "version", "type": "string"},
+  {"name": "chainId", "type": "uint256"},
+  {"name": "verifyingContract", "type": "address"},
+  {"name": "salt", "type": "bytes32"},
+  {"name": "monographHash", "type": "bytes32"},
+  {"name": "pillarIdentifier", "type": "string"}
+]
+```
+
+### 2.3 MoralTraceLog Typed Data Structure
+
+#### 2.3.1 Core State Fields (current_state, state_label, proposed_action)
+
+The **MoralTraceLog** type is the primary structured data for off-chain signing of TSLF records, enabling non-repudiable attestation by custodians, auditors, and human reviewers. The core fields implement the triadic logic with explicit state representation. The `current_state` field is `int8` (signed 8-bit integer) with valid values **+1**, **0**, and **-1**, matching the monograph's canonical state values. The `state_label` field is `string` with canonical values **"PROCEED"**, **"SACRED_ZERO"**, and **"REFUSE"** in UPPER_SNAKE_CASE per API naming conventions. The `proposed_action` field is `string` containing a machine-readable action identifier from the inference system's action vocabulary.
+
+These fields establish the fundamental triadic determination that the signature attests to. The `int8` type preserves signed integer semantics across the Solidity-JSON boundary without the unsigned offset encoding that could enable state misrepresentation. JSON Schema validation enforces that `current_state` accepts exactly three values, rejecting any other signed integer as a schema violation.
+
+| Field | EIP-712 Type | JSON Schema Type | Valid Values | Validation |
+|-------|--------------|------------------|--------------|------------|
+| current_state | int8 | integer (int8) | +1, 0, -1 | Enum restriction |
+| state_label | string | string | "PROCEED", "SACRED_ZERO", "REFUSE" | Case-sensitive exact match |
+| proposed_action | string | string | Action vocabulary identifiers | Registry lookup |
+
+#### 2.3.2 Actor and Subject Identification Fields
+
+The identification fields establish the provenance chain for every moral trace. The `actor` field is `address` (Ethereum address of the decision initiator), which may be an externally owned account, a smart contract proxy, or a multi-signature wallet representing a governance custodian. The `subject` field identifies the entity or entities affected by the proposed action, encoded as a `string` with structured parsing conventions for individual, group, or systemic impact targets. The `subject_type` discriminator field enumerates **INDIVIDUAL**, **GROUP**, **SYSTEM**, or **ENVIRONMENT** to enable mandate-specific routing.
+
+For deployments requiring enhanced privacy, the `actor` field may reference a zero-knowledge identity commitment rather than a bare Ethereum address, with verification through accompanying proof data. This privacy-preserving mode is classified as **BETA**, requiring documented tradeoffs between accountability transparency and subject confidentiality.
+
+| Field | EIP-712 Type | Purpose | Privacy Mode |
+|-------|--------------|---------|--------------|
+| actor | address | Decision initiator identification | Standard: public address; BETA: ZK commitment |
+| subject | string | Affected party identification | Pseudonymized for sensitive subjects |
+| subject_type | string | Discriminator for mandate routing | INDIVIDUAL, GROUP, SYSTEM, ENVIRONMENT |
+| context | string | Operational environment description | Deployment region, model instance, session |
+
+#### 2.3.3 Temporal and Contextual Metadata
+
+The temporal fields ensure freshness and ordering for replay protection and audit reconstruction. The `timestamp` field is `uint256` (Unix epoch in milliseconds at the point of Inference Lane proposal), distinct from the `epoch_timestamp` in the Permission Token which records Anchoring Lane confirmation. The `nonce` field is `uint256` (monotonically increasing counter per actor), and the `session_id` field is `bytes32` (linking related decisions in a sequence).
+
+The nonce field is critical for preventing signature replay: each signature must use a unique nonce, and the verifying contract or off-chain system must track used nonces to reject duplicates. This implements **Pillar II (AlwaysMemory)** by ensuring that no decision signature can be replayed to authorize multiple actions. The `jurisdiction_context` field specifies applicable regulatory frameworks as an array of enumerated strings (**EU_AI_ACT**, **NIST_RMF**, **ISO_42001**, etc.).
+
+| Field | EIP-712 Type | Purpose | Cross-Reference |
+|-------|--------------|---------|-----------------|
+| timestamp | uint256 | Inference Lane generation time | Distinct from PermissionToken epoch_timestamp |
+| nonce | uint256 | Anti-replay counter | Must be unique per actor |
+| session_id | bytes32 | Decision sequence grouping | Enables batch audit |
+| jurisdiction_context | string[] | Applicable regulatory frameworks | EU AI Act, NIST RMF, ISO 42001 |
+
+#### 2.3.4 TSLF State Variant Discriminator
+
+The `tslf_variant` field discriminates between the three TSLF state variants, using `string` with canonical values **"TSLF_STATE_0"**, **"TSLF_STATE_MINUS_1"**, and **"TSLF_STATE_PLUS_1"**. This discriminator enables type-safe parsing and validation, with each variant requiring distinct additional fields as specified in the monograph's TSLF schema requirements. The discriminator field must be present in all MoralTraceLog typed data instances, with validation failing for missing or unrecognized values.
+
+This strict discrimination prevents ambiguous parsing that could enable state misrepresentation attacks, where a malicious actor attempts to pass State -1 data through State +1 validation paths. The `state_specific_data` field as `bytes` contains the ABI-encoded variant-specific struct, which is hashed as `keccak256(bytes)` for inclusion in the main struct hash.
+
+| Discriminator Value | Corresponding State | Nested Data Type | Mandatory Nested Fields |
+|---------------------|---------------------|------------------|------------------------|
+| "TSLF_STATE_0" | 0 (Sacred Zero) | TSLFState0Data | lanternStatus, uncertaintyQuantification, deliberationMatrix, resolutionRequest |
+| "TSLF_STATE_MINUS_1" | -1 (Refuse) | TSLFStateMinus1Data | licenseViolation, threatVectorAnalysis, chainOfCustody |
+| "TSLF_STATE_PLUS_1" | +1 (Proceed) | TSLFStatePlus1Data | ethicalVerification, theSignature, auditProof |
+
+#### 2.3.5 Nested Struct References for State-Specific Data
+
+The state-specific data uses nested struct types defined separately in the `types` section. The **TSLFState0Data** struct contains: `lanternStatus` (LanternStatus type), `uncertaintyQuantification` (UncertaintyMetrics type), `deliberationMatrix` (DeliberationEntry[] type), and `resolutionRequest` (ResolutionRequest type). The **TSLFStateMinus1Data** struct contains: `licenseViolation` (LicenseViolation type), `threatVectorAnalysis` (ThreatVector type), and `chainOfCustody` (CustodyLink[] type). The **TSLFStatePlus1Data** struct contains: `ethicalVerification` (EthicalVerification type), `theSignature` (SignatureBlock type), and `auditProof` (AuditProof type).
+
+These nested structs are referenced through the `state_specific_data` field with `bytes` type, containing the ABI-encoded state-specific struct. This pattern implements the `oneOf` with `discriminator` requirement from the JSON Schema specification in the EIP-712 typed data context, enabling flexible state-specific data while maintaining type safety through the discriminator field.
+
+### 2.4 PermissionToken Typed Data Structure
+
+#### 2.4.1 Log Hash Binding (SHA-256 of Anchored Moral Trace Log)
+
+The `log_hash` field is `bytes32`, containing the **SHA-256** digest of the complete anchored Moral Trace Log. This binding ensures that the permission token is cryptographically inseparable from the log it authorizes: any modification to the log invalidates the token, and the token cannot be issued without verified log existence. The hash algorithm specification as SHA-256 (rather than keccak256) enables cross-reference with external audit systems and regulatory tooling that standardizes on NIST-approved hash functions.
+
+The field name uses `snake_case` in the EIP-712 type definition (matching standard Ethereum conventions) while the corresponding JSON Schema property uses `camelCase` (`logHash`) per API naming conventions. Implementations must handle this mapping explicitly during cross-format validation.
+
+| Field | EIP-712 Type | JSON Property | Binding Purpose |
+|-------|--------------|---------------|---------------|
+| log_hash | bytes32 | logHash | SHA-256 of anchored Moral Trace Log |
+| merkle_root | bytes32 | merkleRoot | Hybrid Shield batch root for verification |
+| merkle_proof | bytes32[] | merkleProof | Sibling path for inclusion verification |
+
+#### 2.4.2 Epoch Timestamp and Temporal Validity
+
+The `epoch_timestamp` field is `uint256`, recording the **Unix epoch in milliseconds** when the token was issued. This timestamp enables temporal validity checks: tokens may have bounded validity windows (default 300 seconds) to prevent stale authorizations, with expiration enforced by the verifying contract or off-chain validation logic. The temporal binding also supports **Pillar II (AlwaysMemory)** by ensuring that tokens cannot be pre-dated to escape audit temporal ordering, and cannot be post-dated to bypass immediate execution requirements.
+
+The `valid_from` and `valid_until` fields define the explicit temporal bounds, with `valid_until` computed as `epoch_timestamp + validity_duration`. The default validity duration of 300 seconds (5 minutes) balances security freshness against operational latency tolerance.
+
+| Field | EIP-712 Type | Purpose | Default Value |
+|-------|--------------|---------|---------------|
+| epoch_timestamp | uint256 | Token issuance time | Current time at signing |
+| valid_from | uint256 | Earliest valid time | epoch_timestamp |
+| valid_until | uint256 | Expiration time | epoch_timestamp + 300000 ms |
+| validity_duration | uint256 | Validity window in milliseconds | 300000 (5 minutes) |
+
+#### 2.4.3 Signer Key Identifier and Lane Origin
+
+The `signer_key_id` field is `string`, identifying the **HSM key** used for signing. The format follows `"TML-ANCHORING-{CUSTODIAN_ID}-{KEY_SEQUENCE}"` for Anchoring Lane keys and `"TML-INFERENCE-{DEPLOYMENT_ID}-{KEY_SEQUENCE}"` for Inference Lane keys. This structured identifier enables automated key lifecycle management, rotation tracking, and compromise response. The `lane_origin` field is `string` with canonical values **"INFERENCE"** and **"ANCHORING"**, with **"ANCHORING"** being the only valid origin for actuation release tokens.
+
+The `custodian_index` field (uint8) identifies which of the six Hybrid Shield custodians participated in the multi-signature scheme, enabling quorum verification and individual custodian accountability.
+
+| Field | EIP-712 Type | Canonical Format | Validation |
+|-------|--------------|------------------|------------|
+| signer_key_id | string | TML-{LANE}-{ID}-{SEQUENCE} | Registry lookup |
+| lane_origin | string | "INFERENCE" or "ANCHORING" | Enum validation; ANCHORING required for actuation |
+| custodian_index | uint8 | 1-6 | Quorum threshold check |
+
+#### 2.4.4 Cryptographic Signature Components (v, r, s)
+
+The signature components use the standard **ECDSA** representation: `signature_v` as `uint8` (recovery parameter, values 27/28 for standard Ethereum, or 0/1 for EIP-155 compatible encoding), `signature_r` as `bytes32`, and `signature_s` as `bytes32`. These components enable `ecrecover` verification against the domain separator and typed data hash. For **Ed25519** signatures, the components are represented as `signature` (`bytes` with 64-byte length) and `public_key` (`bytes32`), with the `v` field set to 0 as a format discriminator.
+
+The signature covers the complete PermissionToken struct excluding the signature fields themselves, using the EIP-712 hash computation: `keccak256("\x19\x01" || domainSeparator || hashStruct(PermissionToken))`. This standard computation enables verification with widely available tooling, reducing implementation risk and audit complexity.
+
+| Component | EIP-712 Type | ECDSA Usage | Ed25519 Usage |
+|-----------|--------------|-------------|---------------|
+| signature_v | uint8 | Recovery identifier (27/28 or 0/1) | 0 (format discriminator) |
+| signature_r | bytes32 | Elliptic curve point x-coordinate | Not used |
+| signature_s | bytes32 | Elliptic curve signature proof | Not used |
+| signature | bytes | Not used | 64-byte Ed25519 signature |
+| public_key | bytes32 | Not used | 32-byte Ed25519 public key |
+
+#### 2.4.5 Merkle Root Verification Reference
+
+The `merkle_root` field is `bytes32`, referencing the **Hybrid Shield batch** in which the underlying log was anchored. This enables efficient batch verification: a single Merkle root update validates multiple tokens without individual log retrieval. The `merkle_inclusion_proof` field is `bytes32[]`, containing the sibling path for standard Merkle verification, with path length logarithmic in batch size.
+
+The Merkle root reference implements **Pillar VII (HybridShield)** and **Pillar VIII (PublicBlockchains)** at the signature layer, ensuring that permission tokens carry cryptographic evidence of distributed anchoring. For **BETA** deployments without real-time Merkle anchoring, this field may reference a staged root pending batch publication, with explicit documentation of the staging delay and associated trust assumptions.
+
+| Field | EIP-712 Type | Purpose | Verification |
+|-------|--------------|---------|--------------|
+| merkle_root | bytes32 | Batch anchor root | Custodian quorum signature check |
+| merkle_inclusion_proof | bytes32[] | Sibling hash path | Standard Merkle verification |
+| batch_index | uint256 | Leaf position in batch | Range validation |
+
+### 2.5 Type Definitions and Encoding Rules
+
+#### 2.5.1 Atomic Type Mappings (Solidity to JSON Schema)
+
+The EIP-712 atomic types map to JSON Schema types with explicit encoding rules. The atomic types are `bytes1` to `bytes32`, `uint8` to `uint256`, `int8` to `int256`, `bool`, and `address`. There are no aliases: `uint` and `int` are not valid EIP-712 type names, and contract addresses are always plain `address`.
+
+| EIP-712 Type | Solidity Equivalent | JSON Schema Type | Encoding Notes |
+|--------------|---------------------|------------------|----------------|
+| int8 | int8 | integer (int8) | Signed, two's complement; TML restricted to {-1, 0, +1} |
+| uint256 | uint256 | string (decimal) or integer | Big integer; may exceed JavaScript safe range |
+| bytes32 | bytes32 | string (hex) | Fixed length, 0x-prefixed, 66 characters |
+| address | address | string (hex) | 20 bytes, padded to 32 in ABI encoding |
+| bool | bool | boolean | uint8 in ABI, 0 or 1 |
+| string | string | string | UTF-8, dynamic length, content hashed in struct |
+
+#### 2.5.2 Dynamic Type Handling (bytes, string)
+
+Dynamic types (`bytes` and `string`) are encoded with length prefix and content, with the hash of the encoding used in struct hashing. For EIP-712, dynamic types within structs are hashed as `keccak256` of their encoded form, while dynamic arrays are hashed as `keccak256` of the concatenation of their element encodings.
+
+For TML, all `string` fields must be validated as valid UTF-8 before hashing, with rejection of invalid sequences that could enable hash collision attacks through encoding manipulation. The `bytes` fields must have validated length constraints: `signature` fields exactly 65 bytes for ECDSA or 64 bytes for Ed25519, `merkle_proof` fields with length divisible by 32 (complete hash siblings).
+
+#### 2.5.3 Array and Nested Struct Encoding
+
+Arrays are either fixed-size (`Type[n]`) or dynamic (`Type[]`), with dynamic arrays encoded as the hash of concatenated element encodings. Nested structs are encoded recursively: the child struct is hashed using `hashStruct`, and the resulting `bytes32` is included in the parent encoding.
+
+For the TML `MoralTraceLog` type, the `state_specific_data` field (dynamic `bytes`) contains the ABI-encoded nested struct, which is hashed as `keccak256(bytes)` for inclusion in the main struct hash. This pattern enables flexible state-specific data while maintaining type safety through the discriminator field.
+
+#### 2.5.4 Type Hash Generation (encodeType and keccak256)
+
+The type hash is generated as `keccak256(encodeType(typeOf(s)))`, where `encodeType` formats the type as `name ‖ "(" ‖ member₁ ‖ "," ‖ member₂ ‖ "," ‖ … ‖ memberₙ ")"` with each member as `type ‖ " " ‖ name`. For nested structs, the referenced struct's `encodeType` is appended to ensure unique type identification.
+
+Example for **PermissionToken**:
+```
+keccak256("PermissionToken(bytes32 log_hash,string lane_origin,string signer_key_id,uint256 epoch_timestamp,uint256 valid_until,bytes32 merkle_root,uint8 signature_v,bytes32 signature_r,bytes32 signature_s)")
+```
+
+### 2.6 Primary Type and Message Structure
+
+#### 2.6.1 PrimaryType Selection for Signing Operations
+
+The `primaryType` field in the EIP-712 payload specifies which type from the `types` definition is the root of the message being signed. For TML, valid primary types are **"MoralTraceLog"** (for log attestation) and **"PermissionToken"** (for release key authorization). The primaryType selection determines which type hash is computed first in the `hashStruct` recursion, and which validation rules apply to the message structure.
+
+For Moral Trace Log signing, the primary type is "MoralTraceLog" with the message containing complete TSLF data. This signing operation typically occurs during Anchoring Lane processing, where custodians attest to log validity before Merkle inclusion. For Permission Token signing, the primary type is "PermissionToken" with the message containing the cryptographic release key data. This signing operation occurs upon successful governance completion, authorizing actuation layer execution.
+
+#### 2.6.2 Message Payload Construction
+
+The message payload is a JSON object matching the primaryType's field structure, with values encoded according to their types. For the **MoralTraceLog** primaryType:
+
+```json
+{
+  "current_state": 0,
+  "state_label": "SACRED_ZERO",
+  "proposed_action": "deploy_model_v2_7",
+  "actor": "0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb",
+  "subject": "did:tml:subject:7a3f...",
+  "subject_type": "INDIVIDUAL",
+  "context": "production_eu_west",
+  "timestamp": 1715000000000,
+  "nonce": 42,
+  "session_id": "0xabc123...",
+  "jurisdiction_context": ["EU_AI_ACT", "ISO_42001"],
+  "tslf_variant": "TSLF_STATE_0",
+  "state_specific_data": "0x..."
+}
+```
+
+For the **PermissionToken** primaryType:
+
+```json
+{
+  "log_hash": "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef",
+  "lane_origin": "ANCHORING",
+  "signer_key_id": "TML-ANCHORING-3-007",
+  "epoch_timestamp": 1715000000000,
+  "valid_from": 1715000000000,
+  "valid_until": 1715000300000,
+  "validity_duration": 300000,
+  "merkle_root": "0xfedcba0987654321fedcba0987654321fedcba0987654321fedcba0987654321",
+  "merkle_inclusion_proof": ["0x...", "0x...", "0x..."],
+  "batch_index": 42,
+  "signature_v": 27,
+  "signature_r": "0x...",
+  "signature_s": "0x..."
+}
+```
+
+#### 2.6.3 Hash Struct Computation (hashStruct and encodeData)
+
+The `hashStruct` computation follows the standard EIP-712 algorithm:
+
+1. Compute `typeHash = keccak256(encodeType(primaryType))`
+2. For each field in declaration order:
+   - If atomic type: encode directly (padded to 32 bytes for fixed types)
+   - If dynamic type: encode with length prefix, then `keccak256`
+   - If array: encode elements, concatenate, then `keccak256`
+   - If nested struct: recursively `hashStruct`, use resulting `bytes32`
+3. Concatenate `typeHash ‖ encodedData`
+4. Return `keccak256` of concatenation
+
+The final signing hash is `keccak256("\x19\x01" ‖ domainSeparator ‖ hashStruct(message))`, where `domainSeparator` is computed as specified in Section 2.1. The `"\x19\x01"` prefix ensures that TML typed data signatures cannot be confused with Ethereum transaction signatures or personal message signatures, providing domain separation at the protocol level.
+
+### Complete EIP-712 Typed Data JSON
+
+```json
+{
+  "primaryType": "MoralTraceLog",
+  "domain": {
+    "name": "TML",
+    "version": "3.3.0-tml-monograph-2025",
+    "chainId": 1,
+    "verifyingContract": "0x0000000000000000000000000000000000000000",
+    "salt": "0x0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "message": {
+    "current_state": 0,
+    "state_label": "SACRED_ZERO",
+    "proposed_action": "deploy_model_v2_7",
+    "actor": "0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb",
+    "subject": "did:tml:subject:7a3f...",
+    "subject_type": "INDIVIDUAL",
+    "context": "production_eu_west",
+    "timestamp": 1715000000000,
+    "nonce": 42,
+    "session_id": "0xabc123...",
+    "jurisdiction_context": ["EU_AI_ACT", "ISO_42001"],
+    "tslf_variant": "TSLF_STATE_0",
+    "state_specific_data": "0x..."
+  },
+  "types": {
+    "EIP712Domain": [
+      {"name": "name", "type": "string"},
+      {"name": "version", "type": "string"},
+      {"name": "chainId", "type": "uint256"},
+      {"name": "verifyingContract", "type": "address"},
+      {"name": "salt", "type": "bytes32"}
+    ],
+    "MoralTraceLog": [
+      {"name": "current_state", "type": "int8"},
+      {"name": "state_label", "type": "string"},
+      {"name": "proposed_action", "type": "string"},
+      {"name": "actor", "type": "address"},
+      {"name": "subject", "type": "string"},
+      {"name": "subject_type", "type": "string"},
+      {"name": "context", "type": "string"},
+      {"name": "timestamp", "type": "uint256"},
+      {"name": "nonce", "type": "uint256"},
+      {"name": "session_id", "type": "bytes32"},
+      {"name": "jurisdiction_context", "type": "string[]"},
+      {"name": "tslf_variant", "type": "string"},
+      {"name": "state_specific_data", "type": "bytes"}
+    ],
+    "PermissionToken": [
+      {"name": "log_hash", "type": "bytes32"},
+      {"name": "lane_origin", "type": "string"},
+      {"name": "signer_key_id", "type": "string"},
+      {"name": "epoch_timestamp", "type": "uint256"},
+      {"name": "valid_from", "type": "uint256"},
+      {"name": "valid_until", "type": "uint256"},
+      {"name": "validity_duration", "type": "uint256"},
+      {"name": "merkle_root", "type": "bytes32"},
+      {"name": "merkle_inclusion_proof", "type": "bytes32[]"},
+      {"name": "batch_index", "type": "uint256"},
+      {"name": "signature_v", "type": "uint8"},
+      {"name": "signature_r", "type": "bytes32"},
+      {"name": "signature_s", "type": "bytes32"}
+    ],
+    "TSLFState0Data": [
+      {"name": "lanternStatus", "type": "LanternStatus"},
+      {"name": "uncertaintyQuantification", "type": "UncertaintyMetrics"},
+      {"name": "deliberationMatrix", "type": "DeliberationEntry[]"},
+      {"name": "resolutionRequest", "type": "ResolutionRequest"}
+    ],
+    "TSLFStateMinus1Data": [
+      {"name": "licenseViolation", "type": "LicenseViolation"},
+      {"name": "threatVectorAnalysis", "type": "ThreatVector"},
+      {"name": "chainOfCustody", "type": "CustodyLink[]"}
+    ],
+    "TSLFStatePlus1Data": [
+      {"name": "ethicalVerification", "type": "EthicalVerification"},
+      {"name": "theSignature", "type": "SignatureBlock"},
+      {"name": "auditProof", "type": "AuditProof"}
+    ],
+    "LanternStatus": [
+      {"name": "statusHash", "type": "bytes32"},
+      {"name": "signalState", "type": "uint8"},
+      {"name": "signalMessage", "type": "string"},
+      {"name": "activePillars", "type": "bytes32[]"},
+      {"name": "lastUpdateTimestamp", "type": "uint256"},
+      {"name": "previousStatusHash", "type": "bytes32"}
+    ],
+    "SignatureBlock": [
+      {"name": "signatureHash", "type": "bytes32"},
+      {"name": "signerAddress", "type": "address"},
+      {"name": "signerKeyId", "type": "bytes32"},
+      {"name": "signatureScheme", "type": "uint8"},
+      {"name": "signatureData", "type": "bytes"},
+      {"name": "signedDataHash", "type": "bytes32"},
+      {"name": "timestamp", "type": "uint256"},
+      {"name": "revocationStatus", "type": "uint8"}
+    ],
+    "UncertaintyMetrics": [
+      {"name": "confidenceInterval", "type": "uint256"},
+      {"name": "entropyMeasure", "type": "uint256"},
+      {"name": "ambiguityDimensions", "type": "uint8"}
+    ],
+    "DeliberationEntry": [
+      {"name": "pillarIdentifier", "type": "string"},
+      {"name": "pillarAssessment", "type": "int8"},
+      {"name": "assessmentConfidence", "type": "uint256"},
+      {"name": "assessmentTimestamp", "type": "uint256"}
+    ],
+    "ResolutionRequest": [
+      {"name": "requestId", "type": "bytes32"},
+      {"name": "priority", "type": "uint8"},
+      {"name": "requestedReviewer", "type": "address"},
+      {"name": "deadline", "type": "uint256"},
+      {"name": "resolutionCriteria", "type": "string"}
+    ],
+    "LicenseViolation": [
+      {"name": "violatedLicense", "type": "string"},
+      {"name": "violationClause", "type": "string"},
+      {"name": "violationEvidence", "type": "bytes32"},
+      {"name": "severity", "type": "uint8"}
+    ],
+    "ThreatVector": [
+      {"name": "threatCategory", "type": "string"},
+      {"name": "affectedParties", "type": "string[]"},
+      {"name": "probabilityEstimate", "type": "uint256"},
+      {"name": "impactAssessment", "type": "uint256"}
+    ],
+    "CustodyLink": [
+      {"name": "custodianAddress", "type": "address"},
+      {"name": "custodyTimestamp", "type": "uint256"},
+      {"name": "custodySignature", "type": "bytes32"}
+    ],
+    "EthicalVerification": [
+      {"name": "verificationMethod", "type": "string"},
+      {"name": "verificationResult", "type": "bool"},
+      {"name": "verificationConfidence", "type": "uint256"}
+    ],
+    "AuditProof": [
+      {"name": "merkleRoot", "type": "bytes32"},
+      {"name": "inclusionProof", "type": "bytes32[]"},
+      {"name": "proofIndex", "type": "uint256"}
+    ]
+  }
+}
+```
+
+## 3. Cross-Reference: ABI to EIP-712 Type Mapping
+
+### 3.1 Function Signature to Typed Data Correspondence
+
+The correspondence between on-chain ABI function signatures and off-chain EIP-712 typed data structures establishes the cross-layer integrity that enables the Dual-Lane Architecture. Each function in TML_Core.sol that accepts struct parameters has a corresponding EIP-712 type definition, ensuring that off-chain signatures can be verified on-chain without type confusion or encoding mismatches.
+
+The `proposeDecision` function accepts an ABI-encoded `JustificationObject` struct; the corresponding EIP-712 type is `MoralTraceLog` that contains the envelope data in human-signable form. The mapping is many-to-one: multiple ABI function calls may reference the same EIP-712 typed data structure, depending on the operational context. For direct custodian attestation, the `MoralTraceLog` type is used; for batch anchoring, a simplified `MoralTraceLogSummary` type may be used that contains only the hash and metadata.
+
+The `issuePermissionToken` function accepts ABI-encoded `PermissionToken` struct parameters; the corresponding EIP-712 type for the token is exactly the `PermissionToken` primary type. This one-to-one correspondence ensures that custodians can review and sign the off-chain representation of the token, with the signature then verifiable in the on-chain issuance function. The `v`, `r`, `s` fields in the EIP-712 `PermissionToken` map directly to the `signature` field in the ABI `PermissionToken` struct, with the `signerAddress` recoverable via `ecrecover`.
+
+| ABI Function | ABI Parameter Type | EIP-712 Corresponding Type | Encoding Relationship |
+|--------------|-------------------|---------------------------|----------------------|
+| proposeDecision | JustificationObject | MoralTraceLog | Many-to-one: proposal context to signed log |
+| executeDecision | PermissionToken | PermissionToken | One-to-one: direct field mapping |
+| issuePermissionToken | PermissionToken fields | PermissionToken | Direct: fields map 1:1 |
+| initiateSacredPause | TSLFState0 | TSLFState0Data | Nested: via state_specific_data |
+
+### 3.2 Event Log to Off-Chain Verification Binding
+
+The event logs defined in `tml_abi.json` serve as the on-chain anchor for off-chain verification processes, particularly for auditor and regulator endpoints. The binding between event parameters and EIP-712 typed data fields enables efficient proof generation without requiring full event log scanning.
+
+The `DecisionStateTransition` event contains `justificationHash` (bytes32), which is the keccak256 of the EIP-712 `MoralTraceLog` typed data. This binding enables auditors to verify that a specific on-chain transition corresponds to a specific off-chain evaluation record: compute the EIP-712 hash of the claimed `MoralTraceLog`, compare to the event's `justificationHash`, and verify the Merkle inclusion proof against the event's `merkleRoot`. The `PermissionTokenIssued` event similarly binds through `logHash`, which matches the `logHash` field in both the EIP-712 `PermissionToken` and the ABI `PermissionToken` struct.
+
+| Event | Binding Field | EIP-712 Source Field | Verification Purpose |
+|-------|-------------|---------------------|----------------------|
+| DecisionStateTransition | justificationHash | hashStruct(MoralTraceLog) | Log-to-transition correspondence |
+| GovernanceDecision | permissionTokenHash | hashStruct(PermissionToken) | Token-to-decision correspondence |
+| PermissionTokenIssued | logHash | MoralTraceLog.log_hash | Log-to-token correspondence |
+| SacredPauseEscalation | deliberationMatrixHash | TSLFState0Data.deliberationMatrix | Pause-to-deliberation correspondence |
+
+### 3.3 On-Chain State to Off-Chain Signature Validation
+
+The validation flow from off-chain signature to on-chain state verification implements the **"No Log = No Action"** principle through cryptographic construction. The actuation layer queries the on-chain `verifyPermissionToken` function with a token identifier; the function verifies that the token exists, has not expired, and was issued by a valid custodian. The off-chain validation complements this by verifying the EIP-712 signature that produced the token, ensuring that the token issuance was authorized by the correct HSM key and that the signed data matches the on-chain record.
+
+The complete validation chain is: (1) obtain EIP-712 `PermissionToken` typed data from the Anchoring Lane; (2) verify the signature using the published custodian public key; (3) submit to on-chain `issuePermissionToken` with the signature components; (4) verify the on-chain event `PermissionTokenIssued` with matching `logHash`; (5) query `verifyPermissionToken` before physical actuation. Any break in this chain renders the actuation invalid, enforcing the iron law at multiple layers.
+
+## 4. Canonical Terminology Enforcement
+
+### 4.1 Schema Naming Conventions
+
+#### 4.1.1 PascalCase for Struct and Type Names
+
+All struct and type names use **PascalCase** (initial capital letter, with each subsequent word capitalized and no separators). Examples include: `SacredZeroLog`, `PermissionToken`, `GoukassianPromise`, `HumanRightsMandate`, `EarthProtectionMandate`, `HybridShield`, `PublicBlockchains`, `MoralTraceLog`, `LanternStatus`, `SignatureBlock`, `JustificationObject`, `TSLFState0`, `TSLFStateMinus1`, `TSLFStatePlus1`. These names appear in Solidity struct definitions, EIP-712 type definitions, and JSON Schema `$defs` references, ensuring that the same conceptual entity is identically named across all specification layers.
+
+#### 4.1.2 camelCase for JSON Property Names
+
+All JSON property names use **camelCase** (initial lowercase letter, with subsequent words capitalized). Examples include: `sacredZeroState`, `permissionToken`, `lanternStatus`, `uncertaintyQuantification`, `deliberationMatrix`, `resolutionRequest`, `licenseViolation`, `threatVectorAnalysis`, `chainOfCustody`, `ethicalVerification`, `theSignature`, `auditProof`, `currentState`, `stateLabel`, `proposedAction`, `logHash`, `epochTimestamp`, `signerKeyId`, `laneOrigin`, `merkleRoot`, `custodianBitmap`.
+
+#### 4.1.3 UPPER_SNAKE_CASE for Enum Values
+
+All enum values use **UPPER_SNAKE_CASE** (all uppercase with underscores separating words). Examples include: `SACRED_ZERO`, `PROCEED`, `REFUSE`, `INFERENCE_LANE`, `ANCHORING_LANE`, `HUMAN_RIGHTS`, `EARTH_PROTECTION`, `CUSTODIAN_ACTIVE`, `CUSTODIAN_REVOKED`, `TSLF_STATE_0`, `TSLF_STATE_MINUS_1`, `TSLF_STATE_PLUS_1`, `NOMINAL`, `ADVISORY`, `WARNING`, `CRITICAL`, `ECDSA_SECP256K1`, `ECDSA_SECP256R1`, `FUTURE_PQC`.
+
+### 4.2 State Value Representations
+
+#### 4.2.1 Signed Integer State Values (+1, 0, -1)
+
+The **signed integer state values** are the primary machine representation: **+1** for Proceed, **0** for Sacred Zero, **-1** for Refuse. These values are used in all numeric contexts: database fields, API parameters, contract storage, and computational logic. The `int8` Solidity type is used for on-chain storage to minimize gas costs while maintaining sign capability. The JSON Schema specifies `type: "integer"` with `minimum: -1` and `maximum: 1` for validation, with additional enum restriction to exactly these three values.
+
+#### 4.2.2 Canonical String Labels (PROCEED, SACRED_ZERO, REFUSE)
+
+The **canonical string labels** are the secondary machine representation for contexts requiring string values: database enums, configuration files, and human-readable APIs. The exact values are **"PROCEED"**, **"SACRED_ZERO"**, **"REFUSE"**. These values are case-sensitive and must not be modified: "SacredZero", "sacred_zero", "Sacred Zero", "pause", "hold", "timeout" are all invalid and must be rejected by schema validation. The `stateLabel` field in all structs and typed data is `stateLabel` (camelCase), not `state_label`, `stateLabel`, or `label`. The value must correspond to the `currentState` field: `currentState: 0` requires `stateLabel: "SACRED_ZERO"`; any mismatch is a schema violation.
+
+### 4.3 Pillar Identifier Annotations
+
+#### 4.3.1 SacredZero (Pillar I)
+
+**SacredZero** annotates all elements related to the state of moral ambiguity and the Sacred Pause operational workflow. This includes the `initiateSacredPause` and `resolveSacredPause` functions, the `SacredPauseEscalation` and `SacredPauseResolved` events, the `TSLFState0` struct, and the `SACRED_ZERO` enum value. The identifier appears in `x-tml-pillar` annotations on API endpoints and in schema metadata for structured data types.
+
+#### 4.3.2 AlwaysMemory (Pillar II)
+
+**AlwaysMemory** annotates all elements related to anti-spoliation, pre-actuation commitment, and immutable logging. This includes the logging functions, the `DecisionStateTransition` event, the `MoralTraceLog` type, and the nonce-based replay protection mechanisms. This pillar ensures that no decision lacks permanent, auditable record.
+
+#### 4.3.3 GoukassianPromise (Pillar III)
+
+**GoukassianPromise** annotates all elements related to the **Lantern**, **Signature**, and **License** artifacts. This includes the `broadcastLanternStatus` function, the `LanternSignalBroadcast` event, the `LanternStatus` struct, the `SignatureBlock` struct, and the license validation functions. The three artifacts are explicitly modeled by their canonical string names (`lantern`, `signature`, `license`) in all machine-readable schemas.
+
+#### 4.3.4 MoralTraceLogs (Pillar IV)
+
+**MoralTraceLogs** annotates all elements related to the TSLF forensic schema. This includes the `MoralTraceLog` EIP-712 type, the TSLF state variant structs (`TSLFState0`, `TSLFStateMinus1`, `TSLFStatePlus1`), and the log verification functions. This pillar provides the evidentiary foundation for audit, redress, and regulatory inspection.
+
+#### 4.3.5 HumanRightsMandate (Pillar V)
+
+**HumanRightsMandate** annotates all elements related to UDHR and Geneva Convention vector enforcement. This includes the `evaluateHumanRightsVector` function, the `HumanRightsViolation` event, and the mandate corpus registration functions. The pillar identifier appears in compliance attestations and regulatory mapping documentation.
+
+#### 4.3.6 EarthProtectionMandate (Pillar VI)
+
+**EarthProtectionMandate** annotates all elements related to Paris Agreement vector enforcement. This includes the `evaluateEarthProtectionVector` function, the `EarthProtectionViolation` event, and the environmental mandate configuration. The pillar identifier enables automated classification of climate-related governance decisions.
+
+#### 4.3.7 HybridShield (Pillar VII)
+
+**HybridShield** annotates all elements related to **6-Custodian distributed anchoring**. This includes the `updateCustodianSet` function, the custodian heartbeat mechanisms, the multi-signature verification logic, and the `custodianBitmap` field in the PermissionToken struct. This pillar provides the distributed trust foundation for non-repudiation.
+
+#### 4.3.8 PublicBlockchains (Pillar VIII)
+
+**PublicBlockchains** annotates all elements related to **Merkle-batched anchoring**. This includes the `verifyMerkleInclusion` function, the Merkle root updates, the public beacon broadcasts, and the `merkleRoot` field in the PermissionToken struct. This pillar enables public transparency and cross-system verification.
+
+## 5. Quality Gate Verification Points
+
+### 5.1 Zero Terminology Drift Checks
+
+The zero terminology drift verification ensures that every concept from the TML Constitutionalization Monograph appears verbatim in both `tml_abi.json` and `eip712_typed_data.json`, with no substitution, abbreviation, or aliasing. Critical verification points include: **"Sacred Zero"** appears as `SacredZero` (PascalCase), `SACRED_ZERO` (UPPER_SNAKE_CASE), and `sacredZero` (camelCase prefix), never as `PauseState`, `HOLD`, `Timeout`, `SacredPause`, or `State0`. **"Sacred Pause"** appears as `SacredPause` (PascalCase for the workflow), `SACRED_PAUSE` (UPPER_SNAKE_CASE for enum values), and `sacredPause` (camelCase for fields), never as a synonym for the state itself. **"Goukassian Promise"** appears as `GoukassianPromise` (PascalCase), with sub-artifacts **"Lantern"**, **"Signature"**, **"License"** appearing as `lantern`, `signature`, `license` in machine-readable schemas.
+
+### 5.2 Binary-Ternary Parallel Architecture Explicitness
+
+The binary-ternary parallel architecture explicitness checks ensure that the specification clearly distinguishes between the proposing binary Inference Lane and the dictating ternary Anchoring Lane, never conflating their roles or allowing either to operate independently. These checks verify that the `JustificationObject` struct contains explicit `inferenceEngineId` and `anchoringLaneId` fields; that the `PermissionToken` struct contains the `laneOrigin` field distinguishing between Inference and Anchoring; that the `evaluateDecision` function documentation states that the binary system proposes while the ternary system dictates; and that no endpoint or function permits actuation without Anchoring Lane verification.
+
+### 5.3 Sacred Zero First-Class State Validation
+
+The Sacred Zero first-class state validation ensures that **State 0 is never represented as null, false, undefined, NaN, error, timeout, or any other sentinel value** that would reduce the triadic logic to binary approximation. These checks verify that the `currentState` field accepts exactly three values: +1, 0, and -1; that JSON Schema validation rejects any other numeric value or type; that the `stateLabel` field accepts exactly "PROCEED", "SACRED_ZERO", and "REFUSE"; and that the `initiateSacredPause` function requires a complete `TSLFState0` struct rather than accepting empty or minimal parameters.
+
+### 5.4 Sacred Pause Workflow Distinction from State
+
+The Sacred Pause workflow distinction from state ensures that **the operational process is never conflated with the computational state**, maintaining the critical semantic separation that enables proper governance. These checks verify that no struct or type contains a field named `sacredPause` that would alias `currentState: 0`; that the `TSLFState0` struct contains a `processActive` field with value "SacredPause" separate from the `stateLabel` field with value "SACRED_ZERO"; that documentation explicitly states "Sacred Zero is the state; Sacred Pause is the operational workflow that executes within this state"; and that the `SacredPauseEscalation` event is emitted by `initiateSacredPause` rather than by any generic state transition handler.
+
+### 5.5 No Log = No Action Schema Enforcement
+
+The **"No Log = No Action"** schema enforcement ensures that the Permission Token is a required field for all +1 state envelopes, implementing the iron law at the specification level rather than merely documenting it as a recommendation. These checks verify that the `StateEnvelope` schema contains a `permissionToken` field with `required` dependency on `currentState: +1`; that JSON Schema `if-then` constructs enforce this conditional requirement; that the `PermissionToken` schema contains `logHash` as a required field; that the `issuePermissionToken` function verifies the `logHash` against anchored logs before issuance; and that no alternative path to +1 execution exists that bypasses Permission Token validation.
+
+### 5.6 Goukassian Promise Artifact Canonical Naming
+
+The Goukassian Promise artifact canonical naming ensures that the three cryptographic artifacts are represented by their exact canonical string names in all machine-readable schemas, preventing the fragmentation that would undermine the Promise's integrity. These checks verify that the Lantern artifact appears as `lantern` (lowercase) in JSON properties and `Lantern` (capitalized) in narrative text, never as `lantern_status`, `beacon`, `signal`, or `canary`; that the Signature artifact appears as `theSignature` (camelCase) or `the_signature` (snake_case) depending on context, never as `sig`, `sign`, `marker`, or `provenance`; that the License artifact appears as `license` in JSON properties and `License` in narrative text, never as `licence`, `permit`, `authorization`, or `covenant`; and that emoji symbols and visual shorthand are restricted to narrative markdown only, never appearing in code, schemas, or API definitions.
+
+### 5.7 Implementation Gap Acknowledgment
+
+The Implementation Gap acknowledgment ensures that **no endpoint claims capabilities that are blocked by named constraints from Monograph Section 10**, maintaining the credibility and buildability of the specification. These checks verify that the `issuePermissionToken` function documentation states that Merkle anchoring is batched rather than per-token real-time; that the `updateCustodianSet` function documentation notes that cross-jurisdiction quorum in under 500ms is a future target; that the `SignatureBlock` struct documentation indicates that quantum-proof signature migration is planned but not yet specified; and that the `future_blocked_appendix.md` document contains explicit entries for all blocked features with specific monograph section citations. The verification process includes automated scanning for prohibited capability claims, manual review of endpoint documentation for implicit promises, and cross-reference validation against the Implementation Gap inventory. Any endpoint claiming future capabilities without proper `FUTURE` status labeling and `x-tml-blocking-constraint` annotation triggers specification revision before release approval.
+
