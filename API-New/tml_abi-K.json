@@ -1,0 +1,888 @@
+
+
+# TML Specification Architecture v3.3: Deliverables C and D — Smart Contract Interface and EIP-712 Typed Data Schema
+
+## 1. Deliverable C: `tml_abi.json` — Smart Contract Interface
+
+### 1.1 TML_Core.sol ABI Structure
+
+#### 1.1.1 Constructor Definition
+
+The **TML_Core.sol** constructor establishes the immutable constitutional baseline for each TML deployment instance. It accepts parameters that configure the **EIP-712 domain separator**, initialize the **Hybrid Shield** custodian registry, and bind the deployment to a specific monograph version. The constructor is marked `nonpayable` and emits no events; instead, it establishes immutable state variables that constrain all subsequent governance operations. The domain separator parameters include the human-readable protocol name (exactly **"TML"**), the version string tied to the monograph release (**"3.3.0-tml-monograph-2025"**), the chain identifier for replay protection, and the verifying contract address. These parameters are hashed and cached using the standard EIP-712 domain separator algorithm to prevent gas costs on subsequent signature verification operations.
+
+The constructor also accepts the initial array of six custodian addresses required for **Pillar VII (HybridShield)** distributed anchoring. This six-custodian set is immutable post-deployment; custodian rotation requires contract upgrade through the TML Succession Protocol. The initial Merkle root for batched log anchoring (**Pillar VIII: PublicBlockchains**) may be provided as a configuration parameter, or the contract may initialize with a zero root pending the first batch commitment. The constructor validates that exactly six custodian addresses are provided, rejecting any configuration that would compromise the distributed anchoring quorum.
+
+| Constructor Parameter | Solidity Type | JSON ABI Type | Constitutional Purpose |
+|-----------------------|---------------|---------------|------------------------|
+| name | string | string | Protocol identification: "TML" |
+| version | string | string | Monograph binding: "3.3.0-tml-monograph-2025" |
+| chainId | uint256 | uint256 | EIP-155 replay protection |
+| verifyingContract | address | address | This deployment's address |
+| initialCustodians | address[6] | address[] | Hybrid Shield six-custodian set |
+| initialMerkleRoot | bytes32 | bytes32 | Genesis batch anchor (may be zero) |
+
+#### 1.1.2 Core Constitutional Enforcement Functions
+
+The core functions implement the **binary-ternary parallel architecture**: the binary Inference Lane proposes actions, and the ternary Anchoring Lane dictates execution. The **`proposeDecision`** function accepts a **JustificationObject** from the Inference Lane (Lane 1, <2ms path), recording the proposed triadic state without executing it. This separation of proposal from execution is the architectural keystone. The function returns a unique proposal identifier and emits a preliminary event for audit trail initialization.
+
+The **`executeDecision`** function requires both the original proposal identifier and a valid **PermissionToken**, performing on-chain verification of the token's cryptographic integrity including Merkle root validation against the Hybrid Shield's 6-custodian distributed anchoring. If the Permission Token is invalid, expired, references an unanchored log, or was issued by an unauthorized lane, the function reverts with a constitutional error. This implements the **"No Log = No Action"** iron law at the smart contract layer: the inference engine is cryptographically decoupled from actuation.
+
+For **State 0 (SacredZero)** handling, the **`initiateSacredPause`** function transitions the proposal into active governance hesitation, emitting the **SacredPauseEscalation** event and requiring human-in-the-loop review before any resolution. The **`resolveSacredPause`** function may only be called by addresses with the **HUMAN_REVIEWER_ROLE**, enforcing the mandatory escalation protocol. The **`emergencyOverride`** function implements break-glass shutdown and forced state transitions under supreme authority per **Monograph Section 13.3**, requiring multi-custodian quorum attestation and producing permanent override records.
+
+| Function Name | State Mutability | Access Control | Primary Pillar | Monograph Reference |
+|---------------|------------------|----------------|----------------|---------------------|
+| proposeDecision | nonpayable | INFERENCE_LANE_ROLE | MoralTraceLogs | Section 2.3 |
+| executeDecision | nonpayable | ANCHORING_LANE_ROLE | SacredZero, AlwaysMemory | Section 2.4 |
+| initiateSacredPause | nonpayable | GOVERNANCE_ROLE | SacredZero | Section 2.2 |
+| resolveSacredPause | nonpayable | HUMAN_REVIEWER_ROLE | SacredZero | Section 2.2 |
+| emergencyOverride | nonpayable | SUPREME_AUTHORITY_ROLE | SacredZero | Section 13.3 |
+
+#### 1.1.3 State Transition Events
+
+Events provide the permanent, indexed audit trail required by **Pillar II (AlwaysMemory)** and **Pillar IV (MoralTraceLogs)**. The **`DecisionStateTransition`** event is the foundational record for every triadic state change, with indexed fields for efficient off-chain filtering and Merkle proof generation. It includes the `decisionId` (indexed bytes32), `actor` (indexed address), `previousState` (indexed int8), `newState` (int8), `justificationHash` (bytes32), `epochTimestamp` (uint256), and `laneOrigin` (string). The event emits for all transitions including self-transitions, ensuring complete temporal coverage.
+
+The **`GovernanceDecision`** event captures the binary-ternary handoff explicitly, recording both the `proposedActionState` from the Inference Lane and the `finalDecisionState` from the Anchoring Lane. When these values diverge, the event provides permanent evidence of governance intervention. The event includes a `permissionTokenHash` field that is non-zero only when `finalDecisionState` equals **+1 (PROCEED)**, enabling auditors to verify that every Proceed decision was accompanied by a valid Permission Token.
+
+| Event Name | Indexed Fields | Non-Indexed Fields | Constitutional Purpose |
+|------------|---------------|-------------------|------------------------|
+| DecisionStateTransition | decisionId, actor, previousState | newState, justificationHash, epochTimestamp, laneOrigin | Complete state change record |
+| GovernanceDecision | decisionId, finalState | proposedActionState, permissionTokenHash, engagedPillars | Binary-ternary handoff evidence |
+| SacredPauseEscalation | pauseId, assignedReviewer | uncertaintyQuantification, deliberationMatrix, deadline | Human-in-the-loop trigger |
+| SacredPauseResolved | pauseId | resolutionState, resolver, resolutionLog | Escalation closure |
+| ConstitutionalViolation | violator | violationType, evidenceLog, attemptedState | Override attempt logging |
+
+#### 1.1.4 Permission Token Lifecycle Functions
+
+The Permission Token functions implement the cryptographic release mechanism that bridges the Anchoring Lane (Lane 2, <500ms) to on-chain execution. The **`issuePermissionToken`** function is restricted to addresses with the **ANCHORING_LANE_SIGNER_ROLE**, requiring HSM-signed JWT authentication. It accepts the SHA-256 hash of the anchored Moral Trace Log, the lane origin identifier, the signer key identifier, and the epoch timestamp, producing a token verifiable against the contract's domain separator and the Hybrid Shield Merkle root.
+
+The **`verifyPermissionToken`** function is publicly callable (`view`) to enable pre-flight validation by any actor, returning a boolean validity indicator and optionally emitting a validation event for audit purposes. The **`revokePermissionToken`** function exists for emergency scenarios under supreme authority, producing a permanent revocation record without destroying the original token hash, preserving auditability.
+
+| Function | Mutability | Required Inputs | Outputs | Status |
+|----------|-----------|-----------------|---------|--------|
+| issuePermissionToken | nonpayable | logHash, laneOrigin, signerKeyId, epochTimestamp | tokenHash | SHIPPING |
+| verifyPermissionToken | view | tokenHash | isValid, expiration | SHIPPING |
+| revokePermissionToken | nonpayable | tokenHash, revocationProof | revoked, revocationLog | BETA |
+
+#### 1.1.5 Domain Separator and Cryptographic Utilities
+
+The contract exposes standard EIP-712 domain separator infrastructure for cross-contract and off-chain verification compatibility. The **`getDomainSeparator`** function returns the cached or recomputed domain separator `bytes32` value, following the OpenZeppelin pattern of caching with chain id invalidation. The **`hashTypedDataV4`** function computes the standard EIP-712 digest for any TML-defined typed data structure, enabling off-chain signature verification to be validated on-chain without requiring external oracle dependencies.
+
+The **`eip712Domain`** function implements the EIP-5267 retrieval standard, returning the complete domain configuration as a struct. This enables automated domain discovery by wallets and signing tools, reducing integration friction and misconfiguration risk.
+
+| Function | Mutability | Returns | Standard Reference |
+|----------|-----------|---------|-------------------|
+| getDomainSeparator | view | bytes32 | EIP-712 |
+| hashTypedDataV4 | view | bytes32 | EIP-712 |
+| eip712Domain | view | EIP712Domain struct | EIP-5267 |
+
+### 1.2 ITMLEnforcer.sol ABI Structure
+
+#### 1.2.1 Mandate Enforcement Interface Functions
+
+The **ITMLEnforcer.sol** interface defines the mandate enforcement contract for **Pillar V (HumanRightsMandate)** and **Pillar VI (EarthProtectionMandate)**, providing a pluggable architecture where specific mandate implementations may be upgraded without modifying the core constitutional contract. The interface specifies three core functions that all mandate enforcers must implement: **`evaluateVector`**, which accepts a decision vector and returns a mandate-specific assessment; **`recordViolation`**, which creates a permanent violation record; and **`getMerkleLeaf`**, which produces the hash contribution for Hybrid Shield distributed anchoring.
+
+The `evaluateVector` function returns a mandate state (PROCEED, SACRED_ZERO, or REFUSE) that the TML_Core contract combines with other pillar evaluations through the deliberation matrix. The `recordViolation` function requires structured evidence and emits the **MandateViolationRecorded** event. The `getMerkleLeaf` function ensures each mandate's evaluation is independently verifiable in the batch Merkle tree.
+
+| Function | Mutability | Inputs | Outputs | Pillar |
+|----------|-----------|--------|---------|--------|
+| evaluateVector | view | DecisionVector, contextHash | mandateState, assessmentLog | V, VI |
+| recordViolation | nonpayable | decisionId, violatedState, evidenceHash | violationLog | V, VI |
+| getMerkleLeaf | pure | decisionId, state, timestamp | leafHash | VII, VIII |
+| getMandateIdentifier | pure | none | identifier, pillarNumber | V, VI |
+
+#### 1.2.2 Human Rights Mandate Vector Enforcement
+
+The Human Rights Mandate implementation evaluates decision vectors against the **UDHR/Geneva vector framework**. The **`evaluateHumanRightsVector`** function specifically checks for rights to life and security (Article 3), prohibition of torture (Article 5), right to effective remedy (Article 8), and non-discrimination (Article 7). The function returns **SACRED_ZERO** when uncertainty exists about rights implications, requiring Sacred Pause escalation, and **REFUSE** when clear harm to protected rights is detected.
+
+The mandate-specific events include **HumanRightsViolation** with structured fields for the violated article, affected subject class, and severity assessment. The **HumanRightsEscalation** event triggers Sacred Pause workflows when automatic resolution is prohibited. The **HumanRightsAssessment** event provides the primary audit record for regulatory inspection under EU AI Act Article 52 (high-risk AI systems).
+
+| Event | Indexed Fields | Non-Indexed Fields | Regulatory Nexus |
+|-------|---------------|-------------------|------------------|
+| HumanRightsAssessment | decisionId | articleVector, assessmentState, justificationHash | UDHR Articles 3, 5, 7, 8 |
+| HumanRightsViolation | decisionId, subject | violatedArticle, severity, evidenceLog | EU AI Act Article 52 |
+| HumanRightsEscalation | decisionId | pauseId, custodianSet, reviewDeadline | NIST RMF Respond Function |
+
+#### 1.2.3 Earth Protection Mandate Vector Enforcement
+
+The Earth Protection Mandate implementation evaluates decision vectors against **Paris Agreement vector enforcement**, checking for carbon intensity thresholds (Article 4), adaptation obligations (Article 7), loss and damage considerations (Article 8), and technology transfer implications (Article 10). The **`evaluateEarthProtectionVector`** function returns **SACRED_ZERO** when climate impact uncertainty requires additional assessment, and **REFUSE** when the decision would materially contravene binding NDC commitments or 1.5°C pathway alignment.
+
+The mandate includes specialized functions for carbon footprint attribution and supply chain cascade analysis. The **`evaluateCarbonVector`** function accepts extended decision vectors with environmental impact metadata, returning mandate state, carbon log, and adaptation log. The **`recordClimateViolation`** function creates permanent records with carbon debt quantification and remediation deadlines.
+
+| Function | Specificity | Additional Inputs | Additional Outputs |
+|----------|-------------|-------------------|-------------------|
+| evaluateVector | Standard | DecisionVector, contextHash | mandateState, assessmentLog |
+| evaluateCarbonVector | Earth-specific | CarbonFootprint, NDCAlignment | mandateState, carbonLog, adaptationLog |
+| recordClimateViolation | Earth-specific | decisionId, violatedArticle, evidenceHash | violationLog |
+
+#### 1.2.4 Mandate Violation Events
+
+Both mandate implementations emit standardized violation events that the TML_Core contract consumes for unified logging. The **MandateViolationRecorded** event is indexed by mandate pillar number (5 for Human Rights, 6 for Earth Protection) and includes cross-references to the original decision, enabling complete traceability from constitutional violation through regulatory remediation. The event structure ensures that auditors can reconstruct which mandate blocked or escalated any decision without accessing implementation internals.
+
+| Event | Indexed Fields | Non-Indexed Fields | Pillar |
+|-------|---------------|-------------------|--------|
+| MandateViolationRecorded | pillarNumber, decisionId | violatedState, violationLog, enforcerContract | V, VI |
+| MandateEscalationRequired | pillarNumber, decisionId | pauseId, escalationReason, deadline | V, VI |
+| MandateOverrideAttempt | pillarNumber, decisionId | attemptedBy, authorityProof, blocked | V, VI |
+
+### 1.3 Structured Data Types for Both Contracts
+
+#### 1.3.1 TSLF State Variants (State0, State-1, State+1)
+
+The **Ternary State Log Format (TSLF)** structs represent the three canonical states with mandatory fields per **Monograph Section 8**. Each struct is designed for direct ABI encoding and simultaneous EIP-712 hashing, with field ordering optimized for both readability and gas efficiency. The structs share common base fields (`currentState` as int8, `stateLabel` as string, `proposedAction` as bytes32) while requiring distinct state-specific extensions.
+
+The **TSLFState0** struct (Sacred Zero) contains: `lanternStatus` (LanternStatus struct), `uncertaintyQuantification` (bytes32 hash of ambiguity metrics), `deliberationMatrix` (bytes32 hash of multi-factor analysis), and `resolutionRequest` (bytes32 hash of human escalation request). The **TSLFStateMinus1** struct (Refuse) contains: `licenseViolation` (bytes32 hash of violated license terms), `threatVectorAnalysis` (bytes32 hash of harm assessment), and `chainOfCustody` (bytes32 hash of evidence preservation record). The **TSLFStatePlus1** struct (Proceed) contains: `ethicalVerification` (bytes32 hash of multi-pillar compliance confirmation), `theSignature` (SignatureBlock struct), and `auditProof` (bytes32 Merkle inclusion proof).
+
+| Struct Name | State | Mandatory Fields | Optional Fields |
+|-------------|-------|------------------|-----------------|
+| TSLFState0 | 0 (Sacred Zero) | lanternStatus, uncertaintyQuantification, deliberationMatrix, resolutionRequest | humanReviewerAssigned, reviewDeadline |
+| TSLFStateMinus1 | -1 (Refuse) | licenseViolation, threatVectorAnalysis, chainOfCustody | refusalAuthority, appealWindow |
+| TSLFStatePlus1 | +1 (Proceed) | ethicalVerification, theSignature, auditProof | executionTimestamp, postHocReviewId |
+
+#### 1.3.2 Permission Token Struct
+
+The **PermissionToken** struct implements the schema-level enforcement of **"No Log = No Action"** with mandatory fields that cryptographically bind the token to a specific anchored log. The struct includes: `logHash` (bytes32, SHA-256 of anchored Moral Trace Log), `epochTimestamp` (uint256, Unix epoch in milliseconds), `signerKeyId` (string, HSM key identifier), `laneOrigin` (string, "INFERENCE" or "ANCHORING"), `signature` (bytes, ECDSA or Ed25519 signature), `merkleRoot` (bytes32, Hybrid Shield batch root), and `custodianBitmap` (uint8, bitmap of custodian attestations received).
+
+The `laneOrigin` field enforces the dual-lane architecture: only **"ANCHORING"** origin tokens authorize actuation, while **"INFERENCE"** origin tokens are classified as BETA with documented tradeoffs for development and testing. The `logHash` field creates immutable binding: any modification to the log invalidates the token, and the token cannot be issued without verified log existence in the anchoring registry.
+
+| Field | Solidity Type | Semantic | Validation Rule |
+|-------|---------------|----------|---------------|
+| logHash | bytes32 | SHA-256 of anchored Moral Trace Log | Must exist in anchoring registry |
+| laneOrigin | string | "INFERENCE" or "ANCHORING" | Enum validation; ANCHORING required for actuation |
+| signerKeyId | string | HSM key identifier | Must match active key registry |
+| epochTimestamp | uint256 | Unix epoch milliseconds | Must be within validity window |
+| merkleRoot | bytes32 | Hybrid Shield batch root | Must verify against custodian set |
+| custodianBitmap | uint8 | Bitmap of attestations | Must meet quorum threshold |
+
+#### 1.3.3 Lantern Status Struct
+
+The **LanternStatus** struct represents the public compliance beacon signal (**Pillar III: GoukassianPromise**), providing machine-readable and human-auditable system moral state. The struct includes: `statusHash` (bytes32, unique identifier), `signalState` (uint8, 0=nominal, 1=advisory, 2=warning, 3=critical), `signalMessage` (string, human-readable description), `activePillars` (bytes32[], currently engaged constitutional pillars), `lastUpdateTimestamp` (uint256), and `previousStatusHash` (bytes32, linked list reference for temporal chain integrity).
+
+The signal state values map to operational conditions: **nominal** indicates all pillars functioning within parameters; **advisory** indicates non-critical degradation or elevated monitoring; **warning** indicates active Sacred Pause workflows or mandate violations requiring attention; and **critical** indicates emergency override activation or systemic custodian failure. This four-level encoding provides sufficient granularity for automated response while maintaining human interpretability.
+
+| Field | Type | Purpose | Example Values |
+|-------|------|---------|--------------|
+| signalState | uint8 | Beacon signal category | 0=NOMINAL, 1=ADVISORY, 2=WARNING, 3=CRITICAL |
+| signalMessage | string | Human-readable status | "Sacred Zero active: 3 decisions pending review" |
+| activePillars | bytes32[] | Engaged constitutional mechanisms | [SacredZero, HumanRightsMandate] |
+| custodianConfirmations | uint8 | Quorum count | 0-6, with 4 minimum for valid broadcast |
+
+#### 1.3.4 Signature Block Struct
+
+The **SignatureBlock** struct captures provenance and non-repudiation artifacts for all critical operations, implementing the Goukassian Promise **"Signature"** component. The struct includes: `signatureHash` (bytes32, unique identifier), `signerAddress` (address, Ethereum address or zero for HSM keys), `signerKeyId` (bytes32, HSM key identifier, prioritized when present), `signatureScheme` (uint8, 1=ECDSA_SECP256K1, 2=ECDSA_SECP256R1, 3=FUTURE_PQC), `signatureData` (bytes, raw signature bytes), `signedDataHash` (bytes32, hash of covered data), `timestamp` (uint256, signing time), and `revocationStatus` (uint8, 0=ACTIVE, 1=REVOKED, 2=SUSPENDED).
+
+The `signatureScheme` field enables algorithm agility, with current specification defining ECDSA as shipping and reserving identifier 3 for post-quantum cryptographic migration classified as **FUTURE** per the Implementation Gap. The `revocationStatus` field supports real-time trust decisions without requiring full certificate chain validation.
+
+| Field | Type | Purpose | Future Extensibility |
+|-------|------|---------|-------------------|
+| scheme | uint8 | Signature algorithm | FUTURE_PQC for Dilithium migration |
+| keyId | bytes32 | Signer key identifier | Quantum-resistant key formats |
+| signedAt | uint256 | Signature generation timestamp | Freshness validation |
+| expiresAt | uint256 | Signature validity expiration | Bounded trust windows |
+| witnessAttestations | bytes32 | Multi-custodian witnessing | High-assurance operations |
+
+#### 1.3.5 Justification Object Struct
+
+The **JustificationObject** struct serves as the envelope traveling between Inference and Anchoring lanes, carrying the complete reasoning chain for a proposed decision. It is the critical data structure for **Pillar II (AlwaysMemory)**, ensuring that no decision lacks documented, auditable justification. The struct includes: `justificationHash` (bytes32, unique identifier), `decisionId` (bytes32, parent decision context), `proposedState` (int8, binary inference lane proposal), `proposedActionHash` (bytes32, action description hash), `inferenceSignature` (bytes32, binary lane cryptographic attestation), `pillarEvaluations` (PillarEvaluation[], per-pillar assessment records), `uncertaintyMetrics` (bytes32[], confidence and ambiguity measurements), and `humanOverride` (bytes32, hash of any human intervention).
+
+The `pillarEvaluations` array contains structured records for each of the Eight Pillars that participated in the decision, enabling independent verification of mandate compliance without accessing full inference internals. The `inferenceSignature` field binds the binary lane to its proposal, creating accountability for inference-governance divergence.
+
+| Field | Source Lane | Content | Cross-Lane Purpose |
+|-------|-------------|---------|-------------------|
+| inferenceJustification | Inference Lane | Hash of binary model reasoning | Provenance for divergence analysis |
+| modelVersion | Inference Lane | Identifies proposing model | Version-specific compliance |
+| trainingProvenance | Inference Lane | Hash of training data manifest | Bias and drift tracking |
+| anchoringJustification | Anchoring Lane | Hash of ternary deliberation | Governance accountability |
+| pillarEvaluations | Anchoring Lane | Per-pillar assessment records | Independent mandate verification |
+
+### 1.4 Event Log Definitions
+
+#### 1.4.1 DecisionStateTransition Event
+
+The **DecisionStateTransition** event is the primary audit hook for all state machine movements, indexed by sender address for efficient filtering and including the log hash and current state for complete traceability. The event is emitted on every state change, including internal transitions that do not result in external actuation, ensuring that the complete decision graph is reconstructible. The `currentState` field uses signed integer encoding (+1, 0, -1) with explicit prohibition of any null, false, or timeout representations, enforcing the monograph quality gate that **Sacred Zero (State 0) is never represented as null, error, false, or timeout**.
+
+The event also includes a `transitionReason` field with canonical string values: **"INFERENCE_PROPOSAL"**, **"ANCHORING_VALIDATION"**, **"SACRED_PAUSE_INITIATED"**, **"HUMAN_REVIEW_RESOLVED"**, **"EMERGENCY_OVERRIDE"**, and **"CONSTITUTIONAL_VIOLATION"**. These values enable automated classification of transition causality for regulatory reporting and system optimization.
+
+| Parameter | Indexed | Type | Description |
+|-----------|---------|------|-------------|
+| decisionId | Yes | bytes32 | Unique decision context identifier |
+| actor | Yes | address | Entity initiating the transition |
+| previousState | Yes | int8 | Triadic state before transition |
+| newState | No | int8 | Triadic state after transition |
+| transitionReason | No | string | Canonical causality classification |
+| justificationHash | No | bytes32 | Hash of JustificationObject |
+| epochTimestamp | No | uint256 | Anchoring Lane qualified timestamp |
+| laneOrigin | No | string | "INFERENCE" or "ANCHORING" |
+| finalized | No | bool | True for committed, false for proposed |
+
+#### 1.4.2 GovernanceDecision Event
+
+The **GovernanceDecision** event captures the binary-ternary handoff explicitly, recording both the `proposedActionState` from the Inference Lane and the `finalDecisionState` from the Anchoring Lane. When these values diverge, the event provides permanent evidence of governance intervention: for example, when binary inference proposes **+1 (PROCEED)** but ternary anchoring returns **0 (SACRED_ZERO)** or **-1 (REFUSE)**.
+
+The event includes a `permissionTokenHash` field that is non-zero only when `finalDecisionState` equals **+1**, implementing **"No Log = No Action"** at the event layer. Auditors can verify that every Proceed decision was accompanied by a valid Permission Token by checking this field's presence and independently verifying the token against the Merkle root. The `engagedPillars` array explicitly enumerates which constitutional pillars participated, enabling pillar-specific compliance verification without full decision reconstruction.
+
+| Parameter | Indexed | Type | Description |
+|-----------|---------|------|-------------|
+| decisionId | Yes | bytes32 | Unique decision context |
+| governanceCustodian | Yes | address | Custodian issuing determination |
+| proposedActionState | No | int8 | Binary lane proposal |
+| finalDecisionState | No | int8 | Ternary lane determination |
+| permissionTokenHash | No | bytes32 | Non-zero only for +1 transitions |
+| engagedPillars | No | bytes32[] | Participating pillar identifiers |
+| complianceAttestation | No | bytes32 | Regulatory documentation package hash |
+
+#### 1.4.3 PermissionTokenIssued Event
+
+The **PermissionTokenIssued** event is emitted when the Anchoring Lane successfully validates a Moral Trace Log and issues the cryptographic release key. It is indexed by the token hash and includes the signer's address and originating lane, enabling detection of unauthorized issuance attempts. The `laneOrigin` field uses canonical string values **"INFERENCE"** and **"ANCHORING"**, with **"INFERENCE"** indicating a token issued for fast-path validation and **"ANCHORING"** indicating standard governance lane processing.
+
+The event's `merkleBatchId` field references the Hybrid Shield batch in which this token's log was anchored, enabling efficient bulk verification. The `validityDuration` field specifies the token lifetime in seconds from issuance, with default 300 seconds for standard operations and configurable extensions for complex deliberations.
+
+| Parameter | Indexed | Type | Description |
+|-----------|---------|------|-------------|
+| tokenHash | Yes | bytes32 | Unique token identifier |
+| decisionId | Yes | bytes32 | Parent decision context |
+| logHash | No | bytes32 | SHA-256 of anchored Moral Trace Log |
+| signerKeyId | No | string | HSM key identifier |
+| laneOrigin | No | string | "INFERENCE" or "ANCHORING" |
+| epochTimestamp | No | uint256 | Token issuance time |
+| validityDuration | No | uint256 | Seconds until expiration |
+| merkleBatchId | No | bytes32 | Hybrid Shield batch reference |
+
+#### 1.4.4 SacredPauseEscalation Event
+
+The **SacredPauseEscalation** event is emitted when **State 0 (SacredZero)** triggers the operational **Sacred Pause** workflow. It includes the `pauseId` (indexed for efficient retrieval of all related events), the originating `proposalId`, the timestamp of escalation, and the current **LanternStatus** at escalation time. This event is critical for human-in-the-loop review queue management and for public beacon signal updates.
+
+The event explicitly distinguishes between the state and the process: the `currentState` field contains **0** (Sacred Zero), while the `processActive` field contains **"SacredPause"**, implementing the monograph quality gate that **the Sacred Pause is explicitly documented as the operational workflow that executes within State 0, not as a synonym for the state itself**. The `escalationPriority` field encodes urgency levels from 1 (routine review within 24 hours) to 4 (immediate human intervention, system halts all related operations).
+
+| Parameter | Indexed | Type | Description |
+|-----------|---------|------|-------------|
+| pauseId | Yes | bytes32 | Unique escalation identifier |
+| assignedReviewer | Yes | address | Human reviewer address |
+| proposalId | No | bytes32 | Original decision context |
+| sacredZeroTriggerTimestamp | No | uint256 | Escalation initiation time |
+| uncertaintyQuantification | No | uint256 | Confidence deficit percentage |
+| deliberationMatrixHash | No | bytes32 | Multi-factor analysis reference |
+| escalationDeadline | No | uint256 | Human response deadline |
+| resolutionStatus | No | uint8 | 0=PENDING, 1=RESOLVED_PROCEED, 2=RESOLVED_REFUSE, 3=EXPIRED |
+| lanternSignalEmitted | No | bool | True if beacon updated |
+
+#### 1.4.5 LanternSignalBroadcast Event
+
+The **LanternSignalBroadcast** event provides the on-chain anchor for public compliance beacon signals, enabling off-chain systems to verify signal authenticity against blockchain state. It is emitted on every scheduled broadcast slot and includes the complete **LanternStatus** struct, making signal forgery detectable through Merkle verification against the event's transaction inclusion. The `signalId` is indexed for efficient subscription, and the `epochTimestamp` field enables temporal validation: consumers should reject signals with timestamps outside the current validity window.
+
+The `broadcastScope` field controls visibility: 0 for internal custodian notification only, 1 for registered auditor access, 2 for public API consumption, and 3 for emergency broadcast to all connected systems. This graduated disclosure enables operational privacy during routine governance while ensuring maximum transparency during critical events.
+
+| Parameter | Indexed | Type | Description |
+|-----------|---------|------|-------------|
+| signalId | Yes | bytes32 | Unique broadcast identifier |
+| signalType | Yes | uint8 | 0=NOMINAL, 1=ADVISORY, 2=WARNING, 3=CRITICAL |
+| broadcastTimestamp | No | uint256 | Signal generation time |
+| custodianQuorumCount | No | uint8 | Confirming custodian count |
+| signalPayload | No | bytes | Serialized LanternStatus |
+| nextScheduledBroadcast | No | uint256 | Next broadcast block/timestamp |
+| associatedDecisions | No | bytes32[] | Referenced decision identifiers |
+| broadcastScope | No | uint8 | Visibility level |
+
+#### 1.4.6 MandateViolationRecorded Event
+
+The **MandateViolationRecorded** event consolidates violation reporting from both **Pillar V (HumanRightsMandate)** and **Pillar VI (EarthProtectionMandate)** into a unified audit stream. It is indexed by pillar number and decision ID, with non-indexed fields capturing the violated state, structured violation log, and specific enforcer contract address. This unified design enables efficient cross-mandate analysis: auditors can query all violations for a given decision across both pillars, or all violations within a pillar across decisions, without requiring knowledge of specific enforcer contract addresses.
+
+The `violatedState` field indicates which state transition was attempted in violation of mandate requirements, typically **+1 (PROCEED)** when a mandate required **0 (SACRED_ZERO)** or **-1 (REFUSE)**. The `remediationRequired` and `remediationDeadline` fields implement the "consequential accountability" principle, where violations trigger bounded recovery obligations rather than permanent operational prohibition.
+
+| Parameter | Indexed | Type | Description |
+|-----------|---------|------|-------------|
+| violationId | Yes | bytes32 | Unique violation identifier |
+| pillarNumber | Yes | uint8 | 5=HumanRights, 6=EarthProtection |
+| violationTimestamp | No | uint256 | Detection time |
+| severityLevel | No | uint8 | 1-10 normalized scale |
+| offendingDecisionId | No | bytes32 | Violating decision reference |
+| violationDescription | No | string | Human-readable violation summary |
+| remediationRequired | No | bool | True if recovery mandated |
+| remediationDeadline | No | uint256 | Compliance restoration deadline |
+| penaltyAssessment | No | uint256 | Financial penalty in base units |
+| sacredPauseTriggered | No | bool | True if State 0 activated |
+
+### Complete ABI JSON Object
+
+```json
+{
+  "contractName": "TML_Core",
+  "abiVersion": "3.3.0-tml-monograph-2025",
+  "monographRef": "Sections 1-2, 2.2, 2.3, 2.4, 8, 13.3",
+  "x-tml-pillar": "SacredZero,AlwaysMemory,GoukassianPromise,MoralTraceLogs,HybridShield,PublicBlockchains",
+  "compiler": {
+    "language": "Solidity",
+    "version": "0.8.19",
+    "optimizer": {
+      "enabled": true,
+      "runs": 200
+    }
+  },
+  "constructor": {
+    "inputs": [
+      {
+        "name": "name",
+        "type": "string",
+        "internalType": "string",
+        "description": "EIP-712 domain name: TML"
+      },
+      {
+        "name": "version",
+        "type": "string",
+        "internalType": "string",
+        "description": "Monograph version: 3.3.0-tml-monograph-2025"
+      },
+      {
+        "name": "chainId",
+        "type": "uint256",
+        "internalType": "uint256",
+        "description": "EIP-155 chain identifier"
+      },
+      {
+        "name": "verifyingContract",
+        "type": "address",
+        "internalType": "address",
+        "description": "This contract address"
+      },
+      {
+        "name": "initialCustodians",
+        "type": "address[6]",
+        "internalType": "address[6]",
+        "description": "Hybrid Shield six-custodian addresses"
+      },
+      {
+        "name": "initialMerkleRoot",
+        "type": "bytes32",
+        "internalType": "bytes32",
+        "description": "Genesis Merkle root (may be zero)"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  "functions": [
+    {
+      "name": "proposeDecision",
+      "type": "function",
+      "stateMutability": "nonpayable",
+      "inputs": [
+        {
+          "name": "justification",
+          "type": "tuple",
+          "components": [
+            {"name": "justificationHash", "type": "bytes32"},
+            {"name": "decisionId", "type": "bytes32"},
+            {"name": "proposedState", "type": "int8"},
+            {"name": "proposedActionHash", "type": "bytes32"},
+            {"name": "inferenceSignature", "type": "bytes32"},
+            {"name": "pillarEvaluations", "type": "tuple[]"},
+            {"name": "uncertaintyMetrics", "type": "bytes32[]"},
+            {"name": "humanOverride", "type": "bytes32"}
+          ],
+          "internalType": "struct JustificationObject"
+        }
+      ],
+      "outputs": [
+        {"name": "proposalId", "type": "bytes32", "internalType": "bytes32"},
+        {"name": "proposalTimestamp", "type": "uint256", "internalType": "uint256"}
+      ],
+      "x-tml-pillar": "MoralTraceLogs",
+      "x-tml-monograph-ref": "Section 2.3",
+      "x-tml-implementation-status": "SHIPPING"
+    },
+    {
+      "name": "executeDecision",
+      "type": "function",
+      "stateMutability": "nonpayable",
+      "inputs": [
+        {"name": "proposalId", "type": "bytes32", "internalType": "bytes32"},
+        {
+          "name": "permissionToken",
+          "type": "tuple",
+          "components": [
+            {"name": "logHash", "type": "bytes32"},
+            {"name": "epochTimestamp", "type": "uint256"},
+            {"name": "signerKeyId", "type": "string"},
+            {"name": "laneOrigin", "type": "string"},
+            {"name": "signature", "type": "bytes"},
+            {"name": "merkleRoot", "type": "bytes32"},
+            {"name": "custodianBitmap", "type": "uint8"}
+          ],
+          "internalType": "struct PermissionToken"
+        }
+      ],
+      "outputs": [
+        {"name": "executed", "type": "bool", "internalType": "bool"},
+        {"name": "executionTimestamp", "type": "uint256", "internalType": "uint256"}
+      ],
+      "x-tml-pillar": "SacredZero,AlwaysMemory",
+      "x-tml-monograph-ref": "Section 2.4",
+      "x-tml-implementation-status": "SHIPPING"
+    },
+    {
+      "name": "initiateSacredPause",
+      "type": "function",
+      "stateMutability": "nonpayable",
+      "inputs": [
+        {"name": "proposalId", "type": "bytes32", "internalType": "bytes32"},
+        {
+          "name": "sacredPauseData",
+          "type": "tuple",
+          "components": [
+            {"name": "lanternStatus", "type": "tuple"},
+            {"name": "uncertaintyQuantification", "type": "bytes32"},
+            {"name": "deliberationMatrix", "type": "bytes32"},
+            {"name": "resolutionRequest", "type": "bytes32"}
+          ],
+          "internalType": "struct TSLFState0"
+        }
+      ],
+      "outputs": [
+        {"name": "pauseId", "type": "bytes32", "internalType": "bytes32"}
+      ],
+      "x-tml-pillar": "SacredZero",
+      "x-tml-monograph-ref": "Section 2.2",
+      "x-tml-implementation-status": "SHIPPING"
+    },
+    {
+      "name": "resolveSacredPause",
+      "type": "function",
+      "stateMutability": "nonpayable",
+      "inputs": [
+        {"name": "pauseId", "type": "bytes32", "internalType": "bytes32"},
+        {"name": "resolutionState", "type": "int8", "internalType": "int8"}
+      ],
+      "outputs": [
+        {"name": "resolved", "type": "bool", "internalType": "bool"}
+      ],
+      "x-tml-pillar": "SacredZero",
+      "x-tml-monograph-ref": "Section 2.2",
+      "x-tml-implementation-status": "SHIPPING"
+    },
+    {
+      "name": "emergencyOverride",
+      "type": "function",
+      "stateMutability": "nonpayable",
+      "inputs": [
+        {"name": "targetId", "type": "bytes32", "internalType": "bytes32"},
+        {"name": "forcedState", "type": "int8", "internalType": "int8"},
+        {"name": "supremeAuthorityProof", "type": "bytes", "internalType": "bytes"}
+      ],
+      "outputs": [
+        {"name": "executed", "type": "bool", "internalType": "bool"}
+      ],
+      "x-tml-pillar": "SacredZero,HybridShield",
+      "x-tml-monograph-ref": "Section 13.3",
+      "x-tml-implementation-status": "BETA"
+    },
+    {
+      "name": "issuePermissionToken",
+      "type": "function",
+      "stateMutability": "nonpayable",
+      "inputs": [
+        {"name": "logHash", "type": "bytes32", "internalType": "bytes32"},
+        {"name": "laneOrigin", "type": "string", "internalType": "string"},
+        {"name": "signerKeyId", "type": "string", "internalType": "string"},
+        {"name": "epochTimestamp", "type": "uint256", "internalType": "uint256"}
+      ],
+      "outputs": [
+        {"name": "tokenHash", "type": "bytes32", "internalType": "bytes32"}
+      ],
+      "x-tml-pillar": "AlwaysMemory,GoukassianPromise",
+      "x-tml-monograph-ref": "Section 2.4",
+      "x-tml-implementation-status": "SHIPPING"
+    },
+    {
+      "name": "verifyPermissionToken",
+      "type": "function",
+      "stateMutability": "view",
+      "inputs": [
+        {"name": "tokenHash", "type": "bytes32", "internalType": "bytes32"}
+      ],
+      "outputs": [
+        {"name": "isValid", "type": "bool", "internalType": "bool"},
+        {"name": "expiration", "type": "uint256", "internalType": "uint256"}
+      ],
+      "x-tml-pillar": "AlwaysMemory",
+      "x-tml-monograph-ref": "Section 2.4",
+      "x-tml-implementation-status": "SHIPPING"
+    },
+    {
+      "name": "revokePermissionToken",
+      "type": "function",
+      "stateMutability": "nonpayable",
+      "inputs": [
+        {"name": "tokenHash", "type": "bytes32", "internalType": "bytes32"},
+        {"name": "revocationProof", "type": "bytes", "internalType": "bytes"}
+      ],
+      "outputs": [
+        {"name": "revoked", "type": "bool", "internalType": "bool"}
+      ],
+      "x-tml-pillar": "SacredZero,HybridShield",
+      "x-tml-monograph-ref": "Section 13.3",
+      "x-tml-implementation-status": "BETA"
+    },
+    {
+      "name": "getDomainSeparator",
+      "type": "function",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {"name": "", "type": "bytes32", "internalType": "bytes32"}
+      ],
+      "x-tml-pillar": "GoukassianPromise",
+      "x-tml-monograph-ref": "Section 2.2",
+      "x-tml-implementation-status": "SHIPPING"
+    },
+    {
+      "name": "hashTypedDataV4",
+      "type": "function",
+      "stateMutability": "view",
+      "inputs": [
+        {"name": "structHash", "type": "bytes32", "internalType": "bytes32"}
+      ],
+      "outputs": [
+        {"name": "", "type": "bytes32", "internalType": "bytes32"}
+      ],
+      "x-tml-pillar": "GoukassianPromise",
+      "x-tml-monograph-ref": "Section 2.2",
+      "x-tml-implementation-status": "SHIPPING"
+    },
+    {
+      "name": "eip712Domain",
+      "type": "function",
+      "stateMutability": "view",
+      "inputs": [],
+      "outputs": [
+        {"name": "fields", "type": "bytes1", "internalType": "bytes1"},
+        {"name": "name", "type": "string", "internalType": "string"},
+        {"name": "version", "type": "string", "internalType": "string"},
+        {"name": "chainId", "type": "uint256", "internalType": "uint256"},
+        {"name": "verifyingContract", "type": "address", "internalType": "address"},
+        {"name": "salt", "type": "bytes32", "internalType": "bytes32"},
+        {"name": "extensions", "type": "uint256[]", "internalType": "uint256[]"}
+      ],
+      "x-tml-pillar": "GoukassianPromise",
+      "x-tml-monograph-ref": "Section 2.2",
+      "x-tml-implementation-status": "SHIPPING"
+    }
+  ],
+  "events": [
+    {
+      "name": "DecisionStateTransition",
+      "type": "event",
+      "inputs": [
+        {"name": "decisionId", "type": "bytes32", "indexed": true, "internalType": "bytes32"},
+        {"name": "actor", "type": "address", "indexed": true, "internalType": "address"},
+        {"name": "previousState", "type": "int8", "indexed": true, "internalType": "int8"},
+        {"name": "newState", "type": "int8", "indexed": false, "internalType": "int8"},
+        {"name": "transitionReason", "type": "string", "indexed": false, "internalType": "string"},
+        {"name": "justificationHash", "type": "bytes32", "indexed": false, "internalType": "bytes32"},
+        {"name": "epochTimestamp", "type": "uint256", "indexed": false, "internalType": "uint256"},
+        {"name": "laneOrigin", "type": "string", "indexed": false, "internalType": "string"},
+        {"name": "finalized", "type": "bool", "indexed": false, "internalType": "bool"}
+      ],
+      "anonymous": false,
+      "x-tml-pillar": "MoralTraceLogs",
+      "x-tml-monograph-ref": "Section 8.1"
+    },
+    {
+      "name": "GovernanceDecision",
+      "type": "event",
+      "inputs": [
+        {"name": "decisionId", "type": "bytes32", "indexed": true, "internalType": "bytes32"},
+        {"name": "governanceCustodian", "type": "address", "indexed": true, "internalType": "address"},
+        {"name": "proposedActionState", "type": "int8", "indexed": false, "internalType": "int8"},
+        {"name": "finalDecisionState", "type": "int8", "indexed": false, "internalType": "int8"},
+        {"name": "permissionTokenHash", "type": "bytes32", "indexed": false, "internalType": "bytes32"},
+        {"name": "engagedPillars", "type": "bytes32[]", "indexed": false, "internalType": "bytes32[]"},
+        {"name": "complianceAttestation", "type": "bytes32", "indexed": false, "internalType": "bytes32"}
+      ],
+      "anonymous": false,
+      "x-tml-pillar": "HybridShield,PublicBlockchains",
+      "x-tml-monograph-ref": "Section 8.3"
+    },
+    {
+      "name": "PermissionTokenIssued",
+      "type": "event",
+      "inputs": [
+        {"name": "tokenHash", "type": "bytes32", "indexed": true, "internalType": "bytes32"},
+        {"name": "decisionId", "type": "bytes32", "indexed": true, "internalType": "bytes32"},
+        {"name": "logHash", "type": "bytes32", "indexed": false, "internalType": "bytes32"},
+        {"name": "signerKeyId", "type": "string", "indexed": false, "internalType": "string"},
+        {"name": "laneOrigin", "type": "string", "indexed": false, "internalType": "string"},
+        {"name": "epochTimestamp", "type": "uint256", "indexed": false, "internalType": "uint256"},
+        {"name": "validityDuration", "type": "uint256", "indexed": false, "internalType": "uint256"},
+        {"name": "merkleBatchId", "type": "bytes32", "indexed": false, "internalType": "bytes32"}
+      ],
+      "anonymous": false,
+      "x-tml-pillar": "AlwaysMemory,GoukassianPromise",
+      "x-tml-monograph-ref": "Section 2.4.1"
+    },
+    {
+      "name": "SacredPauseEscalation",
+      "type": "event",
+      "inputs": [
+        {"name": "pauseId", "type": "bytes32", "indexed": true, "internalType": "bytes32"},
+        {"name": "assignedReviewer", "type": "address", "indexed": true, "internalType": "address"},
+        {"name": "proposalId", "type": "bytes32", "indexed": false, "internalType": "bytes32"},
+        {"name": "sacredZeroTriggerTimestamp", "type": "uint256", "indexed": false, "internalType": "uint256"},
+        {"name": "uncertaintyQuantification", "type": "uint256", "indexed": false, "internalType": "uint256"},
+        {"name": "deliberationMatrixHash", "type": "bytes32", "indexed": false, "internalType": "bytes32"},
+        {"name": "escalationDeadline", "type": "uint256", "indexed": false, "internalType": "uint256"},
+        {"name": "resolutionStatus", "type": "uint8", "indexed": false, "internalType": "uint8"},
+        {"name": "lanternSignalEmitted", "type": "bool", "indexed": false, "internalType": "bool"}
+      ],
+      "anonymous": false,
+      "x-tml-pillar": "SacredZero",
+      "x-tml-monograph-ref": "Section 2.2"
+    },
+    {
+      "name": "SacredPauseResolved",
+      "type": "event",
+      "inputs": [
+        {"name": "pauseId", "type": "bytes32", "indexed": true, "internalType": "bytes32"},
+        {"name": "resolutionState", "type": "int8", "indexed": false, "internalType": "int8"},
+        {"name": "resolver", "type": "address", "indexed": false, "internalType": "address"},
+        {"name": "resolutionLog", "type": "bytes32", "indexed": false, "internalType": "bytes32"}
+      ],
+      "anonymous": false,
+      "x-tml-pillar": "SacredZero",
+      "x-tml-monograph-ref": "Section 2.2"
+    },
+    {
+      "name": "LanternSignalBroadcast",
+      "type": "event",
+      "inputs": [
+        {"name": "signalId", "type": "bytes32", "indexed": true, "internalType": "bytes32"},
+        {"name": "signalType", "type": "uint8", "indexed": true, "internalType": "uint8"},
+        {"name": "broadcastTimestamp", "type": "uint256", "indexed": false, "internalType": "uint256"},
+        {"name": "custodianQuorumCount", "type": "uint8", "indexed": false, "internalType": "uint8"},
+        {"name": "signalPayload", "type": "bytes", "indexed": false, "internalType": "bytes"},
+        {"name": "nextScheduledBroadcast", "type": "uint256", "indexed": false, "internalType": "uint256"},
+        {"name": "associatedDecisions", "type": "bytes32[]", "indexed": false, "internalType": "bytes32[]"},
+        {"name": "broadcastScope", "type": "uint8", "indexed": false, "internalType": "uint8"}
+      ],
+      "anonymous": false,
+      "x-tml-pillar": "GoukassianPromise",
+      "x-tml-monograph-ref": "Section 2.2.1"
+    },
+    {
+      "name": "MandateViolationRecorded",
+      "type": "event",
+      "inputs": [
+        {"name": "violationId", "type": "bytes32", "indexed": true, "internalType": "bytes32"},
+        {"name": "pillarNumber", "type": "uint8", "indexed": true, "internalType": "uint8"},
+        {"name": "violationTimestamp", "type": "uint256", "indexed": false, "internalType": "uint256"},
+        {"name": "severityLevel", "type": "uint8", "indexed": false, "internalType": "uint8"},
+        {"name": "offendingDecisionId", "type": "bytes32", "indexed": false, "internalType": "bytes32"},
+        {"name": "violationDescription", "type": "string", "indexed": false, "internalType": "string"},
+        {"name": "remediationRequired", "type": "bool", "indexed": false, "internalType": "bool"},
+        {"name": "remediationDeadline", "type": "uint256", "indexed": false, "internalType": "uint256"},
+        {"name": "penaltyAssessment", "type": "uint256", "indexed": false, "internalType": "uint256"},
+        {"name": "sacredPauseTriggered", "type": "bool", "indexed": false, "internalType": "bool"}
+      ],
+      "anonymous": false,
+      "x-tml-pillar": "HumanRightsMandate,EarthProtectionMandate",
+      "x-tml-monograph-ref": "Section 5.2, Section 6.2"
+    },
+    {
+      "name": "ConstitutionalViolation",
+      "type": "event",
+      "inputs": [
+        {"name": "violator", "type": "address", "indexed": true, "internalType": "address"},
+        {"name": "violationType", "type": "string", "indexed": false, "internalType": "string"},
+        {"name": "evidenceLog", "type": "bytes32", "indexed": false, "internalType": "bytes32"},
+        {"name": "attemptedState", "type": "int8", "indexed": false, "internalType": "int8"}
+      ],
+      "anonymous": false,
+      "x-tml-pillar": "SacredZero,HybridShield",
+      "x-tml-monograph-ref": "Section 13.3"
+    }
+  ]
+}
+```
+
+```json
+{
+  "contractName": "ITMLEnforcer",
+  "abiVersion": "3.3.0-tml-monograph-2025",
+  "monographRef": "Sections 5, 6",
+  "x-tml-pillar": "HumanRightsMandate,EarthProtectionMandate",
+  "interface": true,
+  "functions": [
+    {
+      "name": "evaluateVector",
+      "type": "function",
+      "stateMutability": "view",
+      "inputs": [
+        {
+          "name": "decisionVector",
+          "type": "tuple",
+          "components": [
+            {"name": "actionVector", "type": "bytes"},
+            {"name": "affectedSubjects", "type": "address[]"},
+            {"name": "jurisdictionContext", "type": "string"},
+            {"name": "treatyArticleReferences", "type": "uint8[]"}
+          ],
+          "internalType": "struct DecisionVector"
+        },
+        {"name": "contextHash", "type": "bytes32", "internalType": "bytes32"}
+      ],
+      "outputs": [
+        {"name": "mandateState", "type": "int8", "internalType": "int8"},
+        {"name": "assessmentLog", "type": "bytes32", "internalType": "bytes32"},
+        {"name": "confidenceScore", "type": "uint256", "internalType": "uint256"}
+      ],
+      "x-tml-pillar": "HumanRightsMandate,EarthProtectionMandate",
+      "x-tml-monograph-ref": "Section 5.3, Section 6.3",
+      "x-tml-implementation-status": "BETA"
+    },
+    {
+      "name": "evaluateHumanRightsVector",
+      "type": "function",
+      "stateMutability": "view",
+      "inputs": [
+        {
+          "name": "decisionContext",
+          "type": "tuple",
+          "components": [
+            {"name": "actionVector", "type": "bytes"},
+            {"name": "affectedSubjects", "type": "address[]"},
+            {"name": "jurisdictionContext", "type": "string"},
+            {"name": "udhrArticleReferences", "type": "uint8[]"}
+          ],
+          "internalType": "struct DecisionContext"
+        }
+      ],
+      "outputs": [
+        {"name": "complianceStatus", "type": "int8", "internalType": "int8"},
+        {"name": "violationIndicators", "type": "bytes32[]", "internalType": "bytes32[]"},
+        {"name": "confidenceScore", "type": "uint256", "internalType": "uint256"}
+      ],
+      "x-tml-pillar": "HumanRightsMandate",
+      "x-tml-monograph-ref": "Section 5.3",
+      "x-tml-implementation-status": "BETA"
+    },
+    {
+      "name": "evaluateEarthProtectionVector",
+      "type": "function",
+      "stateMutability": "view",
+      "inputs": [
+        {
+          "name": "environmentalImpactVector",
+          "type": "tuple",
+          "components": [
+            {"name": "carbonFootprintProjection", "type": "uint256"},
+            {"name": "biodiversityImpactScore", "type": "int256"},
+            {"name": "ecosystemServiceDisruption", "type": "uint256"},
+            {"name": "parisAgreementArticleRefs", "type": "uint8[]"}
+          ],
+          "internalType": "struct EnvironmentalImpactVector"
+        }
+      ],
+      "outputs": [
+        {"name": "complianceStatus", "type": "int8", "internalType": "int8"},
+        {"name": "impactQuantification", "type": "uint256", "internalType": "uint256"},
+        {"name": "recommendedMitigations", "type": "string[]", "internalType": "string[]"}
+      ],
+      "x-tml-pillar": "EarthProtectionMandate",
+      "x-tml-monograph-ref": "Section 6.3",
+      "x-tml-implementation-status": "BETA"
+    },
+    {
+      "name": "recordViolation",
+      "type": "function",
+      "stateMutability": "nonpayable",
+      "inputs": [
+        {"name": "decisionId", "type": "bytes32", "internalType": "bytes32"},
+        {"name": "violatedState", "type": "int8", "internalType": "int8"},
+        {"name": "evidenceHash", "type": "bytes32", "internalType": "bytes32"}
+      ],
+      "outputs": [
+        {"name": "violationLog", "type": "bytes32", "internalType": "bytes32"}
+      ],
+      "x-tml-pillar": "HumanRightsMandate,EarthProtectionMandate",
+      "x-tml-monograph-ref": "Section 5.2, Section 6.2",
+      "x-tml-implementation-status": "SHIPPING"
+    },
+    {
+      "name": "getMerkleLeaf",
+      "type": "function",
+      "stateMutability": "pure",
+      "inputs": [
+        {"name": "decisionId", "type": "bytes32", "internalType": "bytes32"},
+        {"name": "state", "type": "int8", "internalType": "int8"},
+        {"name": "timestamp", "type": "uint256", "internalType": "uint256"}
+      ],
+      "outputs": [
+        {"name": "leafHash", "type": "bytes32", "internalType": "bytes32"}
+      ],
+      "x-tml-pillar": "HybridShield,PublicBlockchains",
+      "x-tml-monograph-ref": "Section 8.3",
+      "x-tml-implementation-status": "SHIPPING"
+    },
+    {
+      "name": "getMandateIdentifier",
+      "type": "function",
+      "stateMutability": "pure",
+      "inputs": [],
+      "outputs": [
+        {"name": "identifier", "type": "string", "internalType": "string"},
+        {"name": "pillarNumber", "type": "uint8", "internalType": "uint8"}
+      ],
+      "x-tml-pillar": "HumanRightsMandate,EarthProtectionMandate",
+      "x-tml-monograph-ref": "Section 5.1, Section 6.1",
+      "x-tml-implementation-status": "SHIPPING"
+    }
+  ],
+  "events": [
+    {
+      "name": "MandateViolationRecorded",
+      "type": "event",
+      "inputs": [
+        {"name": "violationId", "type": "bytes32", "indexed": true, "internalType": "bytes32"},
+        {"name": "pillarNumber", "type": "uint8", "indexed": true, "internalType": "uint8"},
+        {"name": "violationTimestamp", "type": "uint256", "indexed": false, "internalType": "uint256"},
+        {"name": "severityLevel", "type": "uint8", "indexed": false, "internalType": "uint8"},
+        {"name": "offendingDecisionId", "type": "bytes32", "indexed": false, "internalType": "bytes32"},
+        {"name": "violationDescription", "type": "string", "indexed": false, "internalType": "string"},
+        {"name": "remediationRequired", "type": "bool", "indexed": false, "internalType": "bool"},
+        {"name": "remediationDeadline", "type": "uint256", "indexed": false, "internalType": "uint256"},
+        {"name": "penaltyAssessment", "type": "uint256", "indexed": false, "internalType": "uint256"},
+        {"name": "sacredPauseTriggered", "type": "bool", "indexed": false, "internalType": "bool"}
+      ],
+      "anonymous": false,
+      "x-tml-pillar": "HumanRightsMandate,EarthProtectionMandate",
+      "x-tml-monograph-ref": "Section 5.2, Section 6.2"
+    },
+    {
+      "name": "HumanRightsViolation",
+      "type": "event",
+      "inputs": [
+        {"name": "decisionId", "type": "bytes32", "indexed": true, "internalType": "bytes32"},
+        {"name": "subject", "type": "address", "indexed": true, "internalType": "address"},
+        {"name": "violatedArticle", "type": "uint8", "indexed": false, "internalType": "uint8"},
+        {"name": "severity", "type": "uint8", "indexed": false, "internalType": "uint8"},
+        {"name": "evidenceLog", "type": "bytes32", "indexed": false, "internalType": "bytes32"}
+      ],
+      "anonymous": false,
+      "x-tml-pillar": "HumanRightsMandate",
+      "x-tml-monograph-ref": "Section 5.2"
+    },
+    {
+      "name": "EarthProtectionViolation",
+      "type": "event",
+      "inputs": [
+        {"name": "decisionId", "type": "bytes32", "indexed": true, "internalType": "bytes32"},
+        {"name": "provisionIdentifier", "type": "string", "indexed": true, "internalType": "string"},
+        {"name": "carbonDebt", "type": "uint256", "indexed": false, "internalType": "uint256"},
+        {"name": "mitigationPlan", "type": "string", "indexed": false, "internalType": "string"},
+        {"name": "deadlineTimestamp", "type": "uint256", "indexed": false, "internalType": "uint256"}
+      ],
+      "anonymous": false,
+      "x-tml-pillar": "EarthProtectionMandate",
+      "x-tml-monograph-ref": "Section 6.2"
+    }
+  ]
+}
+```
+
