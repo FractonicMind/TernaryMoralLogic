@@ -1,0 +1,1373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TML Specification — Step 4: Constitutional Compliance Matrix</title>
+<style>
+  :root {
+    --navy:        #0a1628;
+    --navy-mid:    #0f2040;
+    --navy-light:  #162a52;
+    --navy-border: #1e3a6e;
+    --gold:        #d4a574;
+    --gold-dim:    #a07848;
+    --gold-glow:   rgba(212,165,116,0.12);
+    --gold-glow2:  rgba(212,165,116,0.06);
+    --white:       #f0ece4;
+    --white-dim:   #b8b0a0;
+    --white-muted: #6e6860;
+    --green:       #27ae60;
+    --green-soft:  rgba(39,174,96,0.13);
+    --amber:       #e67e22;
+    --amber-soft:  rgba(230,126,34,0.13);
+    --red:         #c0392b;
+    --red-soft:    rgba(192,57,43,0.13);
+    --blue:        #2980b9;
+    --blue-soft:   rgba(41,128,185,0.13);
+    --teal:        #16a085;
+    --teal-soft:   rgba(22,160,133,0.13);
+    --purple:      #8e44ad;
+    --purple-soft: rgba(142,68,173,0.13);
+    --sidebar-w:   260px;
+    --font-serif:  Georgia, 'Times New Roman', serif;
+    --font-sans:   'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --font-mono:   'Courier New', Courier, monospace;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--navy); color: var(--white); font-family: var(--font-serif); font-size: 14px; line-height: 1.6; display: flex; min-height: 100vh; }
+
+  /* ── SIDEBAR ── */
+  .sidebar { position: fixed; top: 0; left: 0; width: var(--sidebar-w); height: 100vh; background: var(--navy-mid); border-right: 1px solid var(--navy-border); overflow-y: auto; z-index: 100; padding-bottom: 40px; }
+  .sidebar::-webkit-scrollbar { width: 4px; }
+  .sidebar::-webkit-scrollbar-thumb { background: var(--navy-border); border-radius: 2px; }
+  .sidebar-header { padding: 24px 16px 16px; border-bottom: 1px solid var(--navy-border); position: sticky; top: 0; background: var(--navy-mid); z-index: 10; }
+  .step-badge { font-family: var(--font-sans); font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); background: var(--gold-glow); border: 1px solid var(--gold-dim); padding: 3px 8px; border-radius: 2px; display: inline-block; margin-bottom: 10px; }
+  .sidebar-header h1 { font-family: var(--font-sans); font-size: 11.5px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--white); line-height: 1.35; }
+  .sidebar-header .version { font-family: var(--font-mono); font-size: 9.5px; color: var(--white-muted); margin-top: 5px; }
+  .sidebar-group { padding: 12px 0 2px; }
+  .sidebar-group-label { font-family: var(--font-sans); font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-dim); padding: 0 16px 5px; }
+  .sidebar-link { display: flex; align-items: center; gap: 7px; padding: 5px 16px; text-decoration: none; color: var(--white-dim); font-family: var(--font-sans); font-size: 10.5px; transition: all 0.15s; border-left: 2px solid transparent; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .sidebar-link:hover { color: var(--gold); background: var(--gold-glow2); border-left-color: var(--gold-dim); }
+  .sdot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
+  .sdot-p1 { background: #7ab8e8; }
+  .sdot-p2 { background: var(--gold); }
+  .sdot-p3 { background: #7dd4cc; }
+  .sidebar-divider { border: none; border-top: 1px solid var(--navy-border); margin: 6px 16px; }
+
+  /* ── MAIN ── */
+  .main { margin-left: var(--sidebar-w); flex: 1; padding: 0 40px 80px; }
+
+  /* ── PAGE HEADER ── */
+  .page-header { padding: 44px 0 28px; border-bottom: 1px solid var(--navy-border); margin-bottom: 32px; }
+  .doc-label { font-family: var(--font-sans); font-size: 9px; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+  .page-header h2 { font-family: var(--font-sans); font-size: 24px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+  .subtitle { font-family: var(--font-serif); font-size: 13px; color: var(--white-dim); font-style: italic; margin-bottom: 16px; }
+  .meta-row { display: flex; gap: 12px; flex-wrap: wrap; }
+  .meta-chip { font-family: var(--font-mono); font-size: 10px; color: var(--white-muted); background: var(--navy-mid); border: 1px solid var(--navy-border); padding: 3px 8px; border-radius: 2px; }
+  .meta-chip span { color: var(--gold); }
+
+  /* ── REGULATORY GUARD NOTICE ── */
+  .reg-guard { background: var(--gold-glow2); border: 1px solid var(--navy-border); border-left: 3px solid var(--gold); border-radius: 4px; padding: 14px 20px; margin-bottom: 28px; font-size: 12px; color: var(--white-dim); line-height: 1.7; }
+  .reg-guard strong { color: var(--gold); font-family: var(--font-sans); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; }
+
+  /* ── STATUS KEY ── */
+  .status-key { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 24px; }
+  .key-item { display: flex; align-items: center; gap: 6px; font-family: var(--font-sans); font-size: 10px; color: var(--white-dim); }
+  .key-dot { width: 8px; height: 8px; border-radius: 50%; }
+  .kd-shipping { background: var(--green); }
+  .kd-beta     { background: var(--amber); }
+  .kd-future   { background: var(--red); }
+  .kd-na       { background: var(--white-muted); }
+
+  /* ── SECTION HEADER ── */
+  .section { margin-bottom: 52px; }
+  .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1px solid var(--navy-border); }
+  .section-icon { width: 34px; height: 34px; border-radius: 3px; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+  .si-p1 { background: var(--blue-soft);   border: 1px solid rgba(41,128,185,0.3); }
+  .si-p2 { background: var(--gold-glow);   border: 1px solid var(--gold-dim); }
+  .si-p3 { background: var(--teal-soft);   border: 1px solid rgba(22,160,133,0.3); }
+  .section-title { font-family: var(--font-sans); font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; }
+  .st-p1 { color: #7ab8e8; }
+  .st-p2 { color: var(--gold); }
+  .st-p3 { color: #7dd4cc; }
+  .section-desc { font-size: 11.5px; color: var(--white-muted); margin-top: 2px; }
+
+  /* ── SUBSECTION ── */
+  .subsection { margin-bottom: 32px; }
+  .subsection-label { font-family: var(--font-sans); font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--white-dim); padding: 8px 0 8px 12px; border-left: 2px solid var(--navy-border); margin-bottom: 12px; }
+  .subsection-label.blue   { border-left-color: #7ab8e8; color: #7ab8e8; }
+  .subsection-label.gold   { border-left-color: var(--gold-dim); color: var(--gold); }
+  .subsection-label.teal   { border-left-color: #7dd4cc; color: #7dd4cc; }
+  .subsection-label.amber  { border-left-color: #f0b060; color: #f0b060; }
+  .subsection-label.purple { border-left-color: #c9a0e8; color: #c9a0e8; }
+  .subsection-label.red    { border-left-color: #e87878; color: #e87878; }
+  .subsection-label.green  { border-left-color: #7de0a0; color: #7de0a0; }
+
+  /* ── FILTER BAR ── */
+  .filter-bar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; align-items: center; }
+  .filter-label { font-family: var(--font-sans); font-size: 9px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--white-muted); margin-right: 4px; }
+  .filter-btn { font-family: var(--font-sans); font-size: 9px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 9px; border-radius: 2px; border: 1px solid var(--navy-border); background: var(--navy-mid); color: var(--white-dim); cursor: pointer; transition: all 0.15s; }
+  .filter-btn:hover { border-color: var(--gold-dim); color: var(--gold); }
+  .filter-btn.active { background: var(--gold-glow); border-color: var(--gold-dim); color: var(--gold); }
+  .filter-btn.all.active { background: var(--navy-light); border-color: var(--white-muted); color: var(--white); }
+
+  /* ── MATRIX TABLE ── */
+  .matrix-wrap { overflow-x: auto; margin-bottom: 8px; border-radius: 4px; border: 1px solid var(--navy-border); }
+  .matrix-table { width: 100%; border-collapse: collapse; font-size: 11.5px; min-width: 900px; }
+  .matrix-table thead tr { background: var(--navy-light); position: sticky; top: 0; z-index: 5; }
+  .matrix-table thead th { font-family: var(--font-sans); font-size: 8.5px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--white-muted); padding: 9px 10px; text-align: left; border-bottom: 1px solid var(--navy-border); white-space: nowrap; border-right: 1px solid rgba(30,58,110,0.4); }
+  .matrix-table thead th:last-child { border-right: none; }
+  .matrix-table tbody tr { border-bottom: 1px solid rgba(30,58,110,0.4); transition: background 0.1s; }
+  .matrix-table tbody tr:hover { background: rgba(212,165,116,0.05); }
+  .matrix-table tbody tr.hidden { display: none; }
+  .matrix-table td { padding: 7px 10px; vertical-align: top; line-height: 1.45; border-right: 1px solid rgba(30,58,110,0.25); }
+  .matrix-table td:last-child { border-right: none; }
+
+  /* cell types */
+  .cell-path { font-family: var(--font-mono); font-size: 10.5px; color: var(--white); white-space: nowrap; }
+  .cell-path .path-param { color: var(--gold); }
+  .cell-method { white-space: nowrap; }
+  .cell-schema { font-family: var(--font-mono); font-size: 10.5px; color: var(--white); }
+  .cell-prop { font-family: var(--font-mono); font-size: 10px; color: var(--white-dim); }
+  .cell-section { font-family: var(--font-mono); font-size: 10px; color: var(--white-dim); white-space: nowrap; }
+  .cell-pillars { }
+  .cell-reg { font-size: 10px; color: var(--white-muted); line-height: 1.55; }
+  .cell-na { font-size: 10px; color: var(--white-muted); font-style: italic; }
+  .cell-desc { font-size: 11px; color: var(--white-dim); line-height: 1.5; }
+
+  /* method badges */
+  .mb { font-family: var(--font-sans); font-size: 8.5px; font-weight: 700; letter-spacing: 0.08em; padding: 2px 6px; border-radius: 2px; display: inline-block; }
+  .mb-GET    { background: var(--green-soft); color: #7de0a0; border: 1px solid rgba(39,174,96,0.3); }
+  .mb-POST   { background: var(--blue-soft);  color: #7ab8e8; border: 1px solid rgba(41,128,185,0.3); }
+  .mb-PATCH  { background: var(--amber-soft); color: #f0b060; border: 1px solid rgba(230,126,34,0.3); }
+  .mb-HOOK   { background: var(--purple-soft);color: #c9a0e8; border: 1px solid rgba(142,68,173,0.3); }
+
+  /* status badges */
+  .sb { font-family: var(--font-sans); font-size: 8px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 2px 6px; border-radius: 10px; white-space: nowrap; }
+  .sb-SHIPPING { background: var(--green-soft); color: #7de0a0; }
+  .sb-BETA     { background: var(--amber-soft); color: #f0b060; }
+  .sb-FUTURE   { background: var(--red-soft);   color: #e87878; }
+  .sb-MIXED    { background: var(--purple-soft); color: #c9a0e8; }
+
+  /* pillar tags */
+  .pt { display: inline-block; font-family: var(--font-sans); font-size: 8px; font-weight: 700; letter-spacing: 0.06em; padding: 1px 5px; border-radius: 2px; margin: 1px 1px 1px 0; background: var(--gold-glow); border: 1px solid var(--gold-dim); color: var(--gold); white-space: nowrap; }
+
+  /* ── CROSS-CUTTING TABLES ── */
+  .cross-table { width: 100%; border-collapse: collapse; font-size: 11.5px; margin-bottom: 20px; border: 1px solid var(--navy-border); border-radius: 4px; overflow: hidden; }
+  .cross-table thead tr { background: var(--navy-light); }
+  .cross-table thead th { font-family: var(--font-sans); font-size: 8.5px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--white-muted); padding: 9px 12px; text-align: left; border-bottom: 1px solid var(--navy-border); }
+  .cross-table tbody tr { border-bottom: 1px solid rgba(30,58,110,0.4); }
+  .cross-table tbody tr:last-child { border-bottom: none; }
+  .cross-table tbody tr:hover { background: rgba(212,165,116,0.05); }
+  .cross-table td { padding: 9px 12px; vertical-align: top; line-height: 1.5; }
+  .ct-layer { font-family: var(--font-sans); font-size: 11px; font-weight: 700; color: var(--white); }
+  .ct-artifact { font-family: var(--font-mono); font-size: 10.5px; color: var(--white-dim); }
+  .ct-mech { font-size: 11px; color: var(--white-dim); }
+  .ct-section { font-family: var(--font-mono); font-size: 10px; color: var(--gold-dim); }
+  .ct-check { font-family: var(--font-mono); font-size: 10.5px; color: var(--white); }
+  .ct-correct { font-family: var(--font-mono); font-size: 10px; color: #7de0a0; }
+  .ct-wrong { font-family: var(--font-mono); font-size: 10px; color: #e87878; }
+  .ct-blocked { font-family: var(--font-mono); font-size: 10px; color: var(--white-muted); font-style: italic; }
+  .ct-feature { font-size: 11.5px; color: var(--white); font-weight: 600; }
+  .ct-constraint { font-size: 11px; color: var(--white-dim); }
+  .ct-mitigation { font-size: 11px; color: #7de0a0; }
+  .ct-gap { font-size: 11px; color: #e87878; }
+
+  /* ── CALLOUT BOXES ── */
+  .callout { border-radius: 3px; padding: 12px 16px; margin: 14px 0; font-size: 12px; line-height: 1.65; }
+  .callout-iron    { background: var(--gold-glow); border: 1px solid var(--gold-dim); color: var(--gold); font-family: var(--font-sans); font-size: 11px; font-weight: 600; }
+  .callout-sacred  { background: rgba(22,160,133,0.1); border: 1px solid rgba(22,160,133,0.3); color: #7dd4cc; font-family: var(--font-sans); font-size: 11px; }
+  .callout-future  { background: var(--red-soft); border: 1px solid rgba(192,57,43,0.3); color: #e87878; font-family: var(--font-sans); font-size: 11px; }
+  .callout-mono    { background: var(--navy); border: 1px solid var(--navy-border); border-left: 3px solid var(--gold-dim); color: var(--white-muted); font-family: var(--font-mono); font-size: 10.5px; }
+
+  /* ── FOOTER ── */
+  .footer { margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--navy-border); font-family: var(--font-sans); font-size: 10px; color: var(--white-muted); display: flex; justify-content: space-between; }
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--navy); }
+  ::-webkit-scrollbar-thumb { background: var(--navy-border); border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<nav class="sidebar">
+  <div class="sidebar-header">
+    <div class="step-badge">Step 4 of 5</div>
+    <h1>Constitutional<br>Compliance Matrix</h1>
+    <div class="version">v3.3.0-tml-monograph-2025</div>
+  </div>
+
+  <div class="sidebar-group">
+    <div class="sidebar-group-label">Part 1 &mdash; OpenAPI Paths</div>
+    <a href="#p1-inference"   class="sidebar-link"><span class="sdot sdot-p1"></span>Inference Lane</a>
+    <a href="#p1-anchoring"   class="sidebar-link"><span class="sdot sdot-p1"></span>Anchoring Lane</a>
+    <a href="#p1-sacred"      class="sidebar-link"><span class="sdot sdot-p1"></span>Sacred Zero</a>
+    <a href="#p1-refusal"     class="sidebar-link"><span class="sdot sdot-p1"></span>Refusal State</a>
+    <a href="#p1-emergency"   class="sidebar-link"><span class="sdot sdot-p1"></span>Emergency Override</a>
+    <a href="#p1-auditor"     class="sidebar-link"><span class="sdot sdot-p1"></span>Auditor Verification</a>
+    <a href="#p1-redress"     class="sidebar-link"><span class="sdot sdot-p1"></span>Redress and Appeal</a>
+    <a href="#p1-regulator"   class="sidebar-link"><span class="sdot sdot-p1"></span>Regulator Inspection</a>
+    <a href="#p1-gateway"     class="sidebar-link"><span class="sdot sdot-p1"></span>Gateway</a>
+    <a href="#p1-goukassian"  class="sidebar-link"><span class="sdot sdot-p1"></span>Goukassian Promise</a>
+    <a href="#p1-webhooks"    class="sidebar-link"><span class="sdot sdot-p1"></span>Webhooks</a>
+  </div>
+
+  <hr class="sidebar-divider">
+
+  <div class="sidebar-group">
+    <div class="sidebar-group-label">Part 2 &mdash; Schema Properties</div>
+    <a href="#p2-primitives"  class="sidebar-link"><span class="sdot sdot-p2"></span>Primitives</a>
+    <a href="#p2-token"       class="sidebar-link"><span class="sdot sdot-p2"></span>Permission Token</a>
+    <a href="#p2-envelope"    class="sidebar-link"><span class="sdot sdot-p2"></span>State Envelope</a>
+    <a href="#p2-just"        class="sidebar-link"><span class="sdot sdot-p2"></span>Justification Object</a>
+    <a href="#p2-uncertainty" class="sidebar-link"><span class="sdot sdot-p2"></span>Uncertainty Quantification</a>
+    <a href="#p2-deliberation" class="sidebar-link"><span class="sdot sdot-p2"></span>Deliberation Matrix</a>
+    <a href="#p2-resolution"  class="sidebar-link"><span class="sdot sdot-p2"></span>Resolution Request</a>
+    <a href="#p2-tslf0"       class="sidebar-link"><span class="sdot sdot-p2"></span>TSLF-State0</a>
+    <a href="#p2-license-viol" class="sidebar-link"><span class="sdot sdot-p2"></span>License Violation Record</a>
+    <a href="#p2-threat"      class="sidebar-link"><span class="sdot sdot-p2"></span>Threat Vector Analysis</a>
+    <a href="#p2-custody"     class="sidebar-link"><span class="sdot sdot-p2"></span>Chain of Custody</a>
+    <a href="#p2-tslf-1"      class="sidebar-link"><span class="sdot sdot-p2"></span>TSLF-State-1</a>
+    <a href="#p2-ethical"     class="sidebar-link"><span class="sdot sdot-p2"></span>Ethical Verification</a>
+    <a href="#p2-audit-proof" class="sidebar-link"><span class="sdot sdot-p2"></span>Audit Proof</a>
+    <a href="#p2-tslfp1"      class="sidebar-link"><span class="sdot sdot-p2"></span>TSLF-StateP1</a>
+    <a href="#p2-lantern"     class="sidebar-link"><span class="sdot sdot-p2"></span>Lantern Status</a>
+    <a href="#p2-signature"   class="sidebar-link"><span class="sdot sdot-p2"></span>Signature Block</a>
+    <a href="#p2-license-val" class="sidebar-link"><span class="sdot sdot-p2"></span>License Validation Request</a>
+    <a href="#p2-merkle"      class="sidebar-link"><span class="sdot sdot-p2"></span>Merkle Inclusion Proof</a>
+    <a href="#p2-custodian"   class="sidebar-link"><span class="sdot sdot-p2"></span>Custodian Heartbeat</a>
+    <a href="#p2-attestation" class="sidebar-link"><span class="sdot sdot-p2"></span>Compliance Attestation</a>
+    <a href="#p2-redress-ch"  class="sidebar-link"><span class="sdot sdot-p2"></span>Redress Challenge</a>
+    <a href="#p2-grievance"   class="sidebar-link"><span class="sdot sdot-p2"></span>Human Rights Grievance</a>
+    <a href="#p2-bulk"        class="sidebar-link"><span class="sdot sdot-p2"></span>Bulk Evidence Export</a>
+    <a href="#p2-gateway"     class="sidebar-link"><span class="sdot sdot-p2"></span>Gateway Routing Status</a>
+    <a href="#p2-emergency"   class="sidebar-link"><span class="sdot sdot-p2"></span>Emergency Override Request</a>
+  </div>
+
+  <hr class="sidebar-divider">
+
+  <div class="sidebar-group">
+    <div class="sidebar-group-label">Part 3 &mdash; Cross-Cutting</div>
+    <a href="#p3-nolog"      class="sidebar-link"><span class="sdot sdot-p3"></span>No Log = No Action</a>
+    <a href="#p3-sacred"     class="sidebar-link"><span class="sdot sdot-p3"></span>Sacred Zero Integrity</a>
+    <a href="#p3-goukassian" class="sidebar-link"><span class="sdot sdot-p3"></span>Goukassian Artifact Names</a>
+    <a href="#p3-future"     class="sidebar-link"><span class="sdot sdot-p3"></span>Implementation Gap</a>
+  </div>
+</nav>
+
+<main class="main">
+
+  <div class="page-header">
+    <div class="doc-label">TML Specification Architecture &mdash; Deliverable E</div>
+    <h2>Constitutional Compliance Matrix</h2>
+    <div class="subtitle">Every OpenAPI path and every JSON Schema property mapped to monograph section, TML Pillar, regulatory nexus, and implementation status</div>
+    <div class="meta-row">
+      <div class="meta-chip">OpenAPI paths <span>22 + 2 webhooks</span></div>
+      <div class="meta-chip">Schema $defs <span>26 definitions</span></div>
+      <div class="meta-chip">Regulatory nexus <span>EU AI Act, NIST RMF, ISO 42001, FRE 902</span></div>
+      <div class="meta-chip">authority <span>TML Monograph v3.3</span></div>
+    </div>
+  </div>
+
+  <div class="reg-guard">
+    <strong>Regulatory Nexus Guard</strong><br>
+    Regulatory mappings are made only to provisions explicitly cited or unmistakably implied in the TML Constitutionalization Monograph v3.3. All other regulatory cells carry: <em>Not directly referenced in monograph</em>. This guard applies to EU AI Act Articles, NIST RMF Functions, ISO 42001 Clauses, and FRE 902 Rules throughout this matrix.
+  </div>
+
+  <div class="status-key">
+    <span style="font-family:var(--font-sans);font-size:9px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--white-muted);margin-right:6px;">Status Key:</span>
+    <span class="key-item"><span class="key-dot kd-shipping"></span>SHIPPING &mdash; buildable with 2025 production libraries</span>
+    <span class="key-item"><span class="key-dot kd-beta"></span>BETA &mdash; buildable with documented tradeoffs</span>
+    <span class="key-item"><span class="key-dot kd-future"></span>FUTURE &mdash; blocked by Section 10 constraint</span>
+    <span class="key-item"><span class="key-dot kd-na"></span>Not directly referenced in monograph</span>
+  </div>
+
+<!-- ════════════════════════════════════════════════════
+     PART 1: OPENAPI PATHS
+════════════════════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon si-p1">&#9741;</div>
+      <div>
+        <div class="section-title st-p1">Part 1 &mdash; OpenAPI Path Compliance</div>
+        <div class="section-desc">All 22 paths + 2 webhooks mapped to monograph section, pillar(s), regulatory nexus, and status</div>
+      </div>
+    </div>
+
+    <!-- helper macro: builds a path row -->
+    <!-- INFERENCE LANE -->
+    <div id="p1-inference" class="subsection">
+      <div class="subsection-label blue">1.1 Inference Lane</div>
+      <div class="matrix-wrap">
+        <table class="matrix-table">
+          <thead><tr><th>Path</th><th>Method</th><th>Operation</th><th>Monograph Ref</th><th>TML Pillar(s)</th><th>EU AI Act</th><th>NIST RMF</th><th>ISO 42001</th><th>FRE 902</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="cell-path">/decisions</td>
+              <td class="cell-method"><span class="mb mb-POST">POST</span></td>
+              <td class="cell-desc">Submit Decision Vector</td>
+              <td class="cell-section">Section 2.3</td>
+              <td class="cell-pillars"><span class="pt">SacredZero</span><span class="pt">AlwaysMemory</span></td>
+              <td class="cell-reg">Art. 9 (Risk Mgmt); Art. 13 (Transparency)</td>
+              <td class="cell-reg">ID.RA-01; DE.CM-01</td>
+              <td class="cell-reg">Cl. 6.1.2; Cl. 8.4</td>
+              <td class="cell-na">Not directly referenced</td>
+              <td><span class="sb sb-SHIPPING">SHIPPING</span></td>
+            </tr>
+            <tr>
+              <td class="cell-path">/decisions/<span class="path-param">{decisionId}</span></td>
+              <td class="cell-method"><span class="mb mb-GET">GET</span></td>
+              <td class="cell-desc">Retrieve Decision Record</td>
+              <td class="cell-section">Section 2.3; Section 8</td>
+              <td class="cell-pillars"><span class="pt">AlwaysMemory</span><span class="pt">MoralTraceLogs</span></td>
+              <td class="cell-reg">Art. 13; Art. 19 (Logging)</td>
+              <td class="cell-reg">ID.AM-03; DE.AE-02</td>
+              <td class="cell-reg">Cl. 8.5; Cl. 9.1</td>
+              <td class="cell-reg">Rule 902(11)</td>
+              <td><span class="sb sb-SHIPPING">SHIPPING</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ANCHORING LANE -->
+    <div id="p1-anchoring" class="subsection">
+      <div class="subsection-label gold">1.2 Anchoring Lane</div>
+      <div class="matrix-wrap">
+        <table class="matrix-table">
+          <thead><tr><th>Path</th><th>Method</th><th>Operation</th><th>Monograph Ref</th><th>TML Pillar(s)</th><th>EU AI Act</th><th>NIST RMF</th><th>ISO 42001</th><th>FRE 902</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="cell-path">/anchoring-logs</td>
+              <td class="cell-method"><span class="mb mb-POST">POST</span></td>
+              <td class="cell-desc">Submit Moral Trace Log; Request Permission Token</td>
+              <td class="cell-section">Section 2.3.3; Section 8</td>
+              <td class="cell-pillars"><span class="pt">AlwaysMemory</span><span class="pt">PublicBlockchains</span><span class="pt">MoralTraceLogs</span></td>
+              <td class="cell-reg">Art. 12 (Record-keeping); Art. 19</td>
+              <td class="cell-reg">PR.DS-01; PR.DS-10; DE.CM-09</td>
+              <td class="cell-reg">Cl. 7.5; Cl. 8.5; Cl. 9.1</td>
+              <td class="cell-reg">Rule 902(11); Rule 902(13)</td>
+              <td><span class="sb sb-SHIPPING">SHIPPING</span></td>
+            </tr>
+            <tr>
+              <td class="cell-path">/anchoring-logs/<span class="path-param">{logId}</span></td>
+              <td class="cell-method"><span class="mb mb-GET">GET</span></td>
+              <td class="cell-desc">Retrieve Anchoring Log Record</td>
+              <td class="cell-section">Section 8</td>
+              <td class="cell-pillars"><span class="pt">MoralTraceLogs</span><span class="pt">PublicBlockchains</span></td>
+              <td class="cell-reg">Art. 12; Art. 19</td>
+              <td class="cell-reg">DE.AE-02; ID.AM-03</td>
+              <td class="cell-reg">Cl. 8.5; Cl. 9.1</td>
+              <td class="cell-reg">Rule 902(11)</td>
+              <td><span class="sb sb-SHIPPING">SHIPPING</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- SACRED ZERO -->
+    <div id="p1-sacred" class="subsection">
+      <div class="subsection-label teal">1.3 Sacred Zero Escalation</div>
+      <div class="matrix-wrap">
+        <table class="matrix-table">
+          <thead><tr><th>Path</th><th>Method</th><th>Operation</th><th>Monograph Ref</th><th>TML Pillar(s)</th><th>EU AI Act</th><th>NIST RMF</th><th>ISO 42001</th><th>FRE 902</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="cell-path">/sacred-zero/escalations</td>
+              <td class="cell-method"><span class="mb mb-GET">GET</span></td>
+              <td class="cell-desc">List Sacred Zero Escalation Queue</td>
+              <td class="cell-section">Section 2.2</td>
+              <td class="cell-pillars"><span class="pt">SacredZero</span><span class="pt">HumanRightsMandate</span></td>
+              <td class="cell-reg">Art. 9; Art. 14 (Human Oversight)</td>
+              <td class="cell-reg">GV.OC-01; DE.AE-06</td>
+              <td class="cell-reg">Cl. 6.1.2; Cl. 8.4</td>
+              <td class="cell-na">Not directly referenced</td>
+              <td><span class="sb sb-SHIPPING">SHIPPING</span></td>
+            </tr>
+            <tr>
+              <td class="cell-path">/sacred-zero/escalations/<span class="path-param">{id}</span></td>
+              <td class="cell-method"><span class="mb mb-GET">GET</span></td>
+              <td class="cell-desc">Retrieve Sacred Zero Escalation Case</td>
+              <td class="cell-section">Section 2.2; Section 8</td>
+              <td class="cell-pillars"><span class="pt">SacredZero</span><span class="pt">MoralTraceLogs</span></td>
+              <td class="cell-reg">Art. 14; Art. 19</td>
+              <td class="cell-reg">DE.AE-02; RS.AN-03</td>
+              <td class="cell-reg">Cl. 8.4; Cl. 9.1</td>
+              <td class="cell-reg">Rule 902(11)</td>
+              <td><span class="sb sb-SHIPPING">SHIPPING</span></td>
+            </tr>
+            <tr>
+              <td class="cell-path">/sacred-zero/escalations/<span class="path-param">{id}</span></td>
+              <td class="cell-method"><span class="mb mb-PATCH">PATCH</span></td>
+              <td class="cell-desc">Resolve Sacred Zero Escalation (Human Review)</td>
+              <td class="cell-section">Section 2.2</td>
+              <td class="cell-pillars"><span class="pt">SacredZero</span><span class="pt">HumanRightsMandate</span><span class="pt">AlwaysMemory</span></td>
+              <td class="cell-reg">Art. 14; Art. 22 (Fundamental Rights Impact)</td>
+              <td class="cell-reg">RS.AN-03; RC.RP-01</td>
+              <td class="cell-reg">Cl. 8.4; Cl. 10.2</td>
+              <td class="cell-na">Not directly referenced</td>
+              <td><span class="sb sb-SHIPPING">SHIPPING</span></td>
+            </tr>
+            <tr>
+              <td class="cell-path">/sacred-zero/lantern</td>
+              <td class="cell-method"><span class="mb mb-GET">GET</span></td>
+              <td class="cell-desc">Get Current Lantern Status</td>
+              <td class="cell-section">Section 2.4</td>
+              <td class="cell-pillars"><span class="pt">GoukassianPromise</span></td>
+              <td class="cell-reg">Art. 13; Art. 50 (Transparency Obligations)</td>
+              <td class="cell-reg">GV.OC-04; ID.RA-06</td>
+              <td class="cell-reg">Cl. 5.2; Cl. 7.4</td>
+              <td class="cell-na">Not directly referenced</td>
+              <td><span class="sb sb-SHIPPING">SHIPPING</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- REFUSAL STATE -->
+    <div id="p1-refusal" class="subsection">
+      <div class="subsection-label red">1.4 Refusal State</div>
+      <div class="matrix-wrap">
+        <table class="matrix-table">
+          <thead><tr><th>Path</th><th>Method</th><th>Operation</th><th>Monograph Ref</th><th>TML Pillar(s)</th><th>EU AI Act</th><th>NIST RMF</th><th>ISO 42001</th><th>FRE 902</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="cell-path">/refusals</td>
+              <td class="cell-method"><span class="mb mb-POST">POST</span></td>
+              <td class="cell-desc">Record Refusal State (State -1)</td>
+              <td class="cell-section">Section 2.3; Section 2.4</td>
+              <td class="cell-pillars"><span class="pt">SacredZero</span><span class="pt">GoukassianPromise</span><span class="pt">AlwaysMemory</span></td>
+              <td class="cell-reg">Art. 9; Art. 12; Art. 19</td>
+              <td class="cell-reg">PR.DS-01; DE.CM-01</td>
+              <td class="cell-reg">Cl. 6.1.2; Cl. 7.5; Cl. 8.4</td>
+              <td class="cell-reg">Rule 902(11)</td>
+              <td><span class="sb sb-SHIPPING">SHIPPING</span></td>
+            </tr>
+            <tr>
+              <td class="cell-path">/refusals/license-violations</td>
+              <td class="cell-method"><span class="mb mb-POST">POST</span></td>
+              <td class="cell-desc">Record Goukassian Promise License Violation</td>
+              <td class="cell-section">Section 2.4</td>
+              <td class="cell-pillars"><span class="pt">GoukassianPromise</span></td>
+              <td class="cell-reg">Art. 9; Art. 13</td>
+              <td class="cell-reg">DE.CM-01; ID.RA-01</td>
+              <td class="cell-reg">Cl. 6.1.2; Cl. 8.4</td>
+              <td class="cell-na">Not directly referenced</td>
+              <td><span class="sb sb-SHIPPING">SHIPPING</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- EMERGENCY OVERRIDE -->
+    <div id="p1-emergency" class="subsection">
+      <div class="subsection-label amber">1.5 Emergency Override</div>
+      <div class="matrix-wrap">
+        <table class="matrix-table">
+          <thead><tr><th>Path</th><th>Method</th><th>Operation</th><th>Monograph Ref</th><th>TML Pillar(s)</th><th>EU AI Act</th><th>NIST RMF</th><th>ISO 42001</th><th>FRE 902</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="cell-path">/emergency/override</td>
+              <td class="cell-method"><span class="mb mb-POST">POST</span></td>
+              <td class="cell-desc">Emergency Override &mdash; Break-Glass / Kill Switch</td>
+              <td class="cell-section">Section 13.3</td>
+              <td class="cell-pillars"><span class="pt">SacredZero</span><span class="pt">AlwaysMemory</span><span class="pt">HybridShield</span></td>
+              <td class="cell-reg">Art. 9; Art. 14</td>
+              <td class="cell-reg">RS.MA-01; RC.RP-01; GV.OC-01</td>
+              <td class="cell-reg">Cl. 6.1.2; Cl. 8.4; Cl. 10.2</td>
+              <td class="cell-na">Not directly referenced</td>
+              <td><span class="sb sb-SHIPPING">SHIPPING</span></td>
+            </tr>
+            <tr>
+              <td class="cell-path">/emergency/status</td>
+              <td class="cell-method"><span class="mb mb-GET">GET</span></td>
+              <td class="cell-desc">Get Emergency Override Status</td>
+              <td class="cell-section">Section 13.3</td>
+              <td class="cell-pillars"><span class="pt">SacredZero</span><span class="pt">HybridShield</span></td>
+              <td class="cell-reg">Art. 14; Art. 9</td>
+              <td class="cell-reg">DE.AE-06; GV.OC-01</td>
+              <td class="cell-reg">Cl. 8.4; Cl. 9.1</td>
+              <td class="cell-na">Not directly referenced</td>
+              <td><span class="sb sb-SHIPPING">SHIPPING</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- AUDITOR VERIFICATION -->
+    <div id="p1-auditor" class="subsection">
+      <div class="subsection-label green">1.6 Auditor Verification</div>
+      <div class="matrix-wrap">
+        <table class="matrix-table">
+          <thead><tr><th>Path</th><th>Method</th><th>Operation</th><th>Monograph Ref</th><th>TML Pillar(s)</th><th>EU AI Act</th><th>NIST RMF</th><th>ISO 42001</th><th>FRE 902</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="cell-path">/audit/verifications/merkle/<span class="path-param">{root}</span></td>
+              <td class="cell-method"><span class="mb mb-GET">GET</span></td>
+              <td class="cell-desc">Verify Merkle Root</td>
+              <td class="cell-section">Section 8</td>
+              <td class="cell-pillars"><span class="pt">PublicBlockchains</span><span class="pt">MoralTraceLogs</span></td>
+              <td class="cell-reg">Art. 19; Art. 72 (Post-market Monitoring)</td>
+              <td class="cell-reg">DE.AE-02; ID.AM-03</td>
+              <td class="cell-reg">Cl. 9.1; Cl. 9.2</td>
+              <td class="cell-reg">Rule 902(13)</td>
+              <td><span class="sb sb-SHIPPING">SHIPPING</span></td>
+            </tr>
+            <tr>
+              <td class="cell-path">/audit/verifications/inclusion/<span class="path-param">{logId}</span></td>
+              <td class="cell-method"><span class="mb mb-GET">GET</span></td>
+              <td class="cell-desc">Get Log Inclusion Proof</td>
+              <td class="cell-section">Section 8</td>
+              <td class="cell-pillars"><span class="pt">PublicBlockchains</span><span class="pt">MoralTraceLogs</span><span class="pt">AlwaysMemory</span></td>
+              <td class="cell-reg">Art. 12; Art. 19</td>
+              <td class="cell-reg">DE.AE-02; PR.DS-10</td>
+              <td class="cell-reg">Cl. 7.5; Cl. 9.1</td>
+              <td class="cell-reg">Rule 902(11); Rule 902(13)</td>
+              <td><span class="sb sb-SHIPPING">SHIPPING</span></td>
+            </tr>
+            <tr>
+              <td class="cell-path">/audit/custodians/<span class="path-param">{id}</span>/heartbeat</td>
+              <td class="cell-method"><span class="mb mb-GET">GET</span></td>
+              <td class="cell-desc">Get Custodian Heartbeat</td>
+              <td class="cell-section">Section 2.3.3</td>
+              <td class="cell-pillars"><span class="pt">HybridShield</span></td>
+              <td class="cell-reg">Art. 9; Art. 19</td>
+              <td class="cell-reg">ID.AM-03; DE.CM-09</td>
+              <td class="cell-reg">Cl. 8.5; Cl. 9.1</td>
+              <td class="cell-na">Not directly referenced</td>
+              <td><span class="sb sb-SHIPPING">SHIPPING</span></td>
+            </tr>
+            <tr>
+              <td class="cell-path">/audit/compliance/attestation</td>
+              <td class="cell-method"><span class="mb mb-GET">GET</span></td>
+              <td class="cell-desc">Pull Compliance Attestation</td>
+              <td class="cell-section">Section 2.4; Section 8</td>
+              <td class="cell-pillars"><span class="pt">GoukassianPromise</span><span class="pt">PublicBlockchains</span><span class="pt">HumanRightsMandate</span><span class="pt">EarthProtectionMandate</span></td>
+              <td class="cell-reg">Art. 19; Art. 22; Art. 72</td>
+              <td class="cell-reg">GV.OC-04; DE.AE-02</td>
+              <td class="cell-reg">Cl. 9.1; Cl. 9.2; Cl. 9.3</td>
+              <td class="cell-reg">Rule 902(11)</td>
+              <td><span class="sb sb-SHIPPING">SHIPPING</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- REDRESS AND APPEAL -->
+    <div id="p1-redress" class="subsection">
+      <div class="subsection-label purple">1.7 Redress and Appeal</div>
+      <div class="matrix-wrap">
+        <table class="matrix-table">
+          <thead><tr><th>Path</th><th>Method</th><th>Operation</th><th>Monograph Ref</th><th>TML Pillar(s)</th><th>EU AI Act</th><th>NIST RMF</th><th>ISO 42001</th><th>FRE 902</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="cell-path">/redress/challenges</td>
+              <td class="cell-method"><span class="mb mb-POST">POST</span></td>
+              <td class="cell-desc">Submit Subject-Initiated Redress Challenge</td>
+              <td class="cell-section">Section 2.3.3</td>
+              <td class="cell-pillars"><span class="pt">HumanRightsMandate</span><span class="pt">MoralTraceLogs</span></td>
+              <td class="cell-reg">Art. 26(7) (Redress); Art. 85 (Right to Explanation)</td>
+              <td class="cell-reg">RS.AN-03; GV.OC-01</td>
+              <td class="cell-reg">Cl. 8.4; Cl. 10.2</td>
+              <td class="cell-na">Not directly referenced</td>
+              <td><span class="sb sb-SHIPPING">SHIPPING</span></td>
+            </tr>
+            <tr>
+              <td class="cell-path">/redress/challenges/<span class="path-param">{id}</span></td>
+              <td class="cell-method"><span class="mb mb-GET">GET</span></td>
+              <td class="cell-desc">Get Redress Challenge Status</td>
+              <td class="cell-section">Section 2.3.3</td>
+              <td class="cell-pillars"><span class="pt">HumanRightsMandate</span><span class="pt">MoralTraceLogs</span></td>
+              <td class="cell-reg">Art. 26(7); Art. 85</td>
+              <td class="cell-reg">RS.AN-03; DE.AE-02</td>
+              <td class="cell-reg">Cl. 8.4; Cl. 9.1</td>
+              <td class="cell-na">Not directly referenced</td>
+              <td><span class="sb sb-SHIPPING">SHIPPING</span></td>
+            </tr>
+            <tr>
+              <td class="cell-path">/redress/log-reevaluation</td>
+              <td class="cell-method"><span class="mb mb-POST">POST</span></td>
+              <td class="cell-desc">Request Moral Trace Log Re-Evaluation</td>
+              <td class="cell-section">Section 8</td>
+              <td class="cell-pillars"><span class="pt">MoralTraceLogs</span><span class="pt">AlwaysMemory</span><span class="pt">HumanRightsMandate</span></td>
+              <td class="cell-reg">Art. 12; Art. 26(7); Art. 85</td>
+              <td class="cell-reg">RS.AN-03; PR.DS-10</td>
+              <td class="cell-reg">Cl. 7.5; Cl. 8.4; Cl. 10.2</td>
+              <td class="cell-reg">Rule 902(11)</td>
+              <td><span class="sb sb-SHIPPING">SHIPPING</span></td>
+            </tr>
+            <tr>
+              <td class="cell-path">/redress/human-rights-grievances</td>
+              <td class="cell-method"><span class="mb mb-POST">POST</span></td>
+              <td class="cell-desc">File Human Rights Grievance</td>
+              <td class="cell-section">Section 2.3.3</td>
+              <td class="cell-pillars"><span class="pt">HumanRightsMandate</span><span class="pt">AlwaysMemory</span><span class="pt">PublicBlockchains</span></td>
+              <td class="cell-reg">Art. 22; Art. 85</td>
+              <td class="cell-reg">GV.OC-01; RS.AN-03</td>
+              <td class="cell-reg">Cl. 6.1.2; Cl. 8.4; Cl. 10.2</td>
+              <td class="cell-na">Not directly referenced</td>
+              <td><span class="sb sb-SHIPPING">SHIPPING</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- REGULATOR INSPECTION -->
+    <div id="p1-regulator" class="subsection">
+      <div class="subsection-label blue">1.8 Regulator Inspection</div>
+      <div class="matrix-wrap">
+        <table class="matrix-table">
+          <thead><tr><th>Path</th><th>Method</th><th>Operation</th><th>Monograph Ref</th><th>TML Pillar(s)</th><th>EU AI Act</th><th>NIST RMF</th><th>ISO 42001</th><th>FRE 902</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="cell-path">/regulator/evidence-export</td>
+              <td class="cell-method"><span class="mb mb-POST">POST</span></td>
+              <td class="cell-desc">Request Bulk Evidence Export</td>
+              <td class="cell-section">Section 8</td>
+              <td class="cell-pillars"><span class="pt">MoralTraceLogs</span><span class="pt">PublicBlockchains</span><span class="pt">AlwaysMemory</span></td>
+              <td class="cell-reg">Art. 72; Art. 74 (Market Surveillance)</td>
+              <td class="cell-reg">GV.OC-05; DE.AE-02; PR.DS-01</td>
+              <td class="cell-reg">Cl. 9.1; Cl. 9.2; Cl. 7.5</td>
+              <td class="cell-reg">Rule 902(11); Rule 902(13)</td>
+              <td><span class="sb sb-SHIPPING">SHIPPING</span></td>
+            </tr>
+            <tr>
+              <td class="cell-path">/regulator/custodian-quorum</td>
+              <td class="cell-method"><span class="mb mb-GET">GET</span></td>
+              <td class="cell-desc">Get Cross-Jurisdiction Custodian Quorum Status</td>
+              <td class="cell-section">Section 2.3.3</td>
+              <td class="cell-pillars"><span class="pt">HybridShield</span></td>
+              <td class="cell-reg">Art. 9; Art. 19</td>
+              <td class="cell-reg">ID.AM-03; DE.CM-09</td>
+              <td class="cell-reg">Cl. 8.5; Cl. 9.1</td>
+              <td class="cell-na">Not directly referenced</td>
+              <td><span class="sb sb-MIXED">SHIPPING (endpoint); FUTURE (sub-500ms cross-jurisdiction)</span></td>
+            </tr>
+            <tr>
+              <td class="cell-path">/regulator/timestamp-verification/<span class="path-param">{logId}</span></td>
+              <td class="cell-method"><span class="mb mb-GET">GET</span></td>
+              <td class="cell-desc">Verify Qualified Timestamp for Log Entry</td>
+              <td class="cell-section">Section 8</td>
+              <td class="cell-pillars"><span class="pt">MoralTraceLogs</span><span class="pt">PublicBlockchains</span></td>
+              <td class="cell-reg">Art. 12; Art. 19</td>
+              <td class="cell-reg">PR.DS-10; DE.AE-02</td>
+              <td class="cell-reg">Cl. 7.5; Cl. 9.1</td>
+              <td class="cell-reg">Rule 902(9); Rule 902(11)</td>
+              <td><span class="sb sb-SHIPPING">SHIPPING</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- GATEWAY -->
+    <div id="p1-gateway" class="subsection">
+      <div class="subsection-label amber">1.9 Gateway</div>
+      <div class="matrix-wrap">
+        <table class="matrix-table">
+          <thead><tr><th>Path</th><th>Method</th><th>Operation</th><th>Monograph Ref</th><th>TML Pillar(s)</th><th>EU AI Act</th><th>NIST RMF</th><th>ISO 42001</th><th>FRE 902</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="cell-path">/gateway/status</td>
+              <td class="cell-method"><span class="mb mb-GET">GET</span></td>
+              <td class="cell-desc">Get TML Gateway Status (Fail-Closed)</td>
+              <td class="cell-section">Section 2.3</td>
+              <td class="cell-pillars"><span class="pt">SacredZero</span><span class="pt">AlwaysMemory</span></td>
+              <td class="cell-reg">Art. 9; Art. 14</td>
+              <td class="cell-reg">DE.CM-09; GV.OC-01</td>
+              <td class="cell-reg">Cl. 8.4; Cl. 8.5</td>
+              <td class="cell-na">Not directly referenced</td>
+              <td><span class="sb sb-SHIPPING">SHIPPING</span></td>
+            </tr>
+            <tr>
+              <td class="cell-path">/gateway/lane-assignment</td>
+              <td class="cell-method"><span class="mb mb-POST">POST</span></td>
+              <td class="cell-desc">Request Lane Assignment for Decision Vector</td>
+              <td class="cell-section">Section 2.3</td>
+              <td class="cell-pillars"><span class="pt">SacredZero</span><span class="pt">AlwaysMemory</span><span class="pt">MoralTraceLogs</span></td>
+              <td class="cell-reg">Art. 9; Art. 13; Art. 14</td>
+              <td class="cell-reg">ID.RA-01; DE.CM-01; GV.OC-01</td>
+              <td class="cell-reg">Cl. 6.1.2; Cl. 8.4; Cl. 8.5</td>
+              <td class="cell-na">Not directly referenced</td>
+              <td><span class="sb sb-SHIPPING">SHIPPING</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- GOUKASSIAN PROMISE -->
+    <div id="p1-goukassian" class="subsection">
+      <div class="subsection-label purple">1.10 Goukassian Promise</div>
+      <div class="matrix-wrap">
+        <table class="matrix-table">
+          <thead><tr><th>Path</th><th>Method</th><th>Operation</th><th>Monograph Ref</th><th>TML Pillar(s)</th><th>EU AI Act</th><th>NIST RMF</th><th>ISO 42001</th><th>FRE 902</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="cell-path">/goukassian/signature</td>
+              <td class="cell-method"><span class="mb mb-GET">GET</span></td>
+              <td class="cell-desc">Get Current Goukassian Promise Signature Block</td>
+              <td class="cell-section">Section 2.4</td>
+              <td class="cell-pillars"><span class="pt">GoukassianPromise</span></td>
+              <td class="cell-reg">Art. 13; Art. 50</td>
+              <td class="cell-reg">GV.OC-04; ID.RA-06</td>
+              <td class="cell-reg">Cl. 5.2; Cl. 7.4</td>
+              <td class="cell-reg">Rule 902(11)</td>
+              <td><span class="sb sb-SHIPPING">SHIPPING</span></td>
+            </tr>
+            <tr>
+              <td class="cell-path">/goukassian/license/validate</td>
+              <td class="cell-method"><span class="mb mb-POST">POST</span></td>
+              <td class="cell-desc">Validate Goukassian Promise License</td>
+              <td class="cell-section">Section 2.4</td>
+              <td class="cell-pillars"><span class="pt">GoukassianPromise</span></td>
+              <td class="cell-reg">Art. 9; Art. 13</td>
+              <td class="cell-reg">ID.RA-01; DE.CM-01</td>
+              <td class="cell-reg">Cl. 6.1.2; Cl. 8.4</td>
+              <td class="cell-na">Not directly referenced</td>
+              <td><span class="sb sb-SHIPPING">SHIPPING</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- WEBHOOKS -->
+    <div id="p1-webhooks" class="subsection">
+      <div class="subsection-label purple">1.11 Webhooks</div>
+      <div class="matrix-wrap">
+        <table class="matrix-table">
+          <thead><tr><th>Webhook</th><th>Event</th><th>Monograph Ref</th><th>TML Pillar(s)</th><th>EU AI Act</th><th>NIST RMF</th><th>ISO 42001</th><th>FRE 902</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="cell-schema">sacredPauseEscalation</td>
+              <td class="cell-desc">Sacred Pause operational workflow triggers human review when State 0 activates</td>
+              <td class="cell-section">Section 2.2</td>
+              <td class="cell-pillars"><span class="pt">SacredZero</span></td>
+              <td class="cell-reg">Art. 14 (Human Oversight)</td>
+              <td class="cell-reg">DE.AE-06; RS.AN-03</td>
+              <td class="cell-reg">Cl. 8.4; Cl. 10.2</td>
+              <td class="cell-na">Not directly referenced</td>
+              <td><span class="sb sb-SHIPPING">SHIPPING</span></td>
+            </tr>
+            <tr>
+              <td class="cell-schema">lanternStatusBroadcast</td>
+              <td class="cell-desc">Goukassian Promise Lantern compliance beacon update broadcast to registered observers</td>
+              <td class="cell-section">Section 2.4</td>
+              <td class="cell-pillars"><span class="pt">GoukassianPromise</span></td>
+              <td class="cell-reg">Art. 13; Art. 50</td>
+              <td class="cell-reg">GV.OC-04</td>
+              <td class="cell-reg">Cl. 7.4; Cl. 5.2</td>
+              <td class="cell-na">Not directly referenced</td>
+              <td><span class="sb sb-SHIPPING">SHIPPING</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+<!-- ════════════════════════════════════════════════════
+     PART 2: SCHEMA PROPERTIES
+════════════════════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon si-p2">&#128220;</div>
+      <div>
+        <div class="section-title st-p2">Part 2 &mdash; JSON Schema Definition Compliance</div>
+        <div class="section-desc">Every property from every $defs schema in tml_schema.json mapped at property level</div>
+      </div>
+    </div>
+
+    <!-- helper: schema property table -->
+    <div id="p2-primitives" class="subsection">
+      <div class="subsection-label">2.1 Primitive and Shared Types</div>
+      <div class="matrix-wrap">
+        <table class="matrix-table">
+          <thead><tr><th>Schema</th><th>Key Property / Constraint</th><th>Monograph Ref</th><th>TML Pillar(s)</th><th>EU AI Act</th><th>NIST RMF</th><th>ISO 42001</th><th>FRE 902</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td class="cell-schema">TriadicStateValue</td><td class="cell-prop">enum: [-1, 0, 1]; signed integer; State 0 = SACRED_ZERO (never null/error/timeout)</td><td class="cell-section">Section 2.3</td><td><span class="pt">SacredZero</span></td><td class="cell-reg">Art. 9</td><td class="cell-reg">ID.RA-01</td><td class="cell-reg">Cl. 6.1.2</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-schema">TriadicStateLabel</td><td class="cell-prop">enum: ["PROCEED","SACRED_ZERO","REFUSE"]; UPPER_SNAKE_CASE</td><td class="cell-section">Section 2.3</td><td><span class="pt">SacredZero</span></td><td class="cell-reg">Art. 13</td><td class="cell-reg">ID.RA-01</td><td class="cell-reg">Cl. 6.1.2</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-schema">PillarIdentifier</td><td class="cell-prop">enum of 8 canonical PascalCase pillar identifiers; no aliasing permitted</td><td class="cell-section">Section 2 (Eight Pillars)</td><td><span class="pt">All Pillars</span></td><td class="cell-reg">Art. 9; Art. 13</td><td class="cell-reg">GV.OC-04</td><td class="cell-reg">Cl. 6.1.2</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-schema">LaneOrigin</td><td class="cell-prop">enum: ["INFERENCE_LANE","ANCHORING_LANE"]; maps to Dual-Lane Architecture</td><td class="cell-section">Section 2.3</td><td><span class="pt">SacredZero</span><span class="pt">AlwaysMemory</span></td><td class="cell-reg">Art. 9</td><td class="cell-reg">ID.AM-03</td><td class="cell-reg">Cl. 8.5</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-schema">SHA256Hex</td><td class="cell-prop">pattern: ^[a-f0-9]{64}$; tamper-evidence primitive</td><td class="cell-section">Section 8</td><td><span class="pt">AlwaysMemory</span><span class="pt">MoralTraceLogs</span></td><td class="cell-reg">Art. 12</td><td class="cell-reg">PR.DS-10</td><td class="cell-reg">Cl. 7.5</td><td class="cell-reg">Rule 902(11)</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-schema">ISO8601DateTime</td><td class="cell-prop">format: date-time; RFC 3339 UTC; timestamp integrity primitive</td><td class="cell-section">Section 8</td><td><span class="pt">MoralTraceLogs</span></td><td class="cell-reg">Art. 12</td><td class="cell-reg">PR.DS-10</td><td class="cell-reg">Cl. 7.5</td><td class="cell-reg">Rule 902(9)</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-schema">UUIDv4</td><td class="cell-prop">format: uuid; UUID v4 pattern; unique identifier primitive</td><td class="cell-section">Section 8</td><td><span class="pt">MoralTraceLogs</span></td><td class="cell-na">Not directly referenced</td><td class="cell-na">Not directly referenced</td><td class="cell-na">Not directly referenced</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="p2-token" class="subsection">
+      <div class="subsection-label gold">2.2 Permission Token</div>
+      <div class="matrix-wrap">
+        <table class="matrix-table">
+          <thead><tr><th>Property</th><th>Constraint</th><th>Monograph Ref</th><th>TML Pillar(s)</th><th>EU AI Act</th><th>NIST RMF</th><th>ISO 42001</th><th>FRE 902</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td class="cell-prop">tokenId</td><td class="cell-desc">$ref UUIDv4</td><td class="cell-section">Section 2.3.3; Section 5B.i</td><td><span class="pt">AlwaysMemory</span><span class="pt">MoralTraceLogs</span></td><td class="cell-reg">Art. 12</td><td class="cell-reg">PR.DS-01</td><td class="cell-reg">Cl. 7.5</td><td class="cell-reg">Rule 902(11)</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">logHash</td><td class="cell-desc">SHA-256 of anchored TSLF; core No Log = No Action binding</td><td class="cell-section">Section 2.3.3; Section 5B.i</td><td><span class="pt">AlwaysMemory</span><span class="pt">MoralTraceLogs</span><span class="pt">PublicBlockchains</span></td><td class="cell-reg">Art. 12; Art. 19</td><td class="cell-reg">PR.DS-10; PR.DS-01</td><td class="cell-reg">Cl. 7.5; Cl. 9.1</td><td class="cell-reg">Rule 902(11)</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">epochTimestamp</td><td class="cell-desc">integer; minimum: 0; Unix epoch seconds</td><td class="cell-section">Section 5B.i</td><td><span class="pt">AlwaysMemory</span></td><td class="cell-reg">Art. 12</td><td class="cell-reg">PR.DS-10</td><td class="cell-reg">Cl. 7.5</td><td class="cell-reg">Rule 902(9)</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">signerKeyId</td><td class="cell-desc">HSM key; HybridShield registry reference; maxLength: 256</td><td class="cell-section">Section 2.3.3; Section 5B.i</td><td><span class="pt">HybridShield</span><span class="pt">GoukassianPromise</span></td><td class="cell-reg">Art. 9</td><td class="cell-reg">PR.DS-01</td><td class="cell-reg">Cl. 8.5</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">laneOrigin</td><td class="cell-desc">const: "ANCHORING_LANE"; schema-level rejection of Inference Lane tokens</td><td class="cell-section">Section 2.3; Section 5B.i</td><td><span class="pt">AlwaysMemory</span></td><td class="cell-reg">Art. 9</td><td class="cell-reg">DE.CM-01</td><td class="cell-reg">Cl. 8.4</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">merkleRoot</td><td class="cell-desc">SHA256Hex; non-repudiation binding to public blockchain anchor</td><td class="cell-section">Section 8; Section 5B.i</td><td><span class="pt">PublicBlockchains</span><span class="pt">AlwaysMemory</span></td><td class="cell-reg">Art. 12; Art. 19</td><td class="cell-reg">PR.DS-10</td><td class="cell-reg">Cl. 9.1</td><td class="cell-reg">Rule 902(13)</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">signatureValue</td><td class="cell-desc">Base64url HSM signature; non-repudiation artifact; minLength: 64</td><td class="cell-section">Section 2.4; Section 5B.i</td><td><span class="pt">GoukassianPromise</span><span class="pt">HybridShield</span></td><td class="cell-reg">Art. 9; Art. 13</td><td class="cell-reg">PR.DS-01</td><td class="cell-reg">Cl. 8.5</td><td class="cell-reg">Rule 902(11)</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">issuedAt / expiresAt</td><td class="cell-desc">ISO8601DateTime; expiresAt: actuation layer MUST reject expired tokens (hard constraint)</td><td class="cell-section">Section 5B.i</td><td><span class="pt">AlwaysMemory</span></td><td class="cell-reg">Art. 9; Art. 12</td><td class="cell-reg">PR.DS-10; DE.CM-01</td><td class="cell-reg">Cl. 7.5; Cl. 8.4</td><td class="cell-reg">Rule 902(9)</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">custodianQuorumAttestation</td><td class="cell-desc">object; optional BETA field; absence does not invalidate token</td><td class="cell-section">Section 2.3.3</td><td><span class="pt">HybridShield</span></td><td class="cell-reg">Art. 9</td><td class="cell-reg">ID.AM-03</td><td class="cell-reg">Cl. 8.5</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-BETA">BETA</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="p2-envelope" class="subsection">
+      <div class="subsection-label blue">2.3 State Envelope</div>
+      <div class="matrix-wrap">
+        <table class="matrix-table">
+          <thead><tr><th>Property</th><th>Constraint</th><th>Monograph Ref</th><th>TML Pillar(s)</th><th>EU AI Act</th><th>NIST RMF</th><th>ISO 42001</th><th>FRE 902</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td class="cell-prop">currentState</td><td class="cell-desc">$ref TriadicStateValue; 0 = SACRED_ZERO; never null/error; drives if/then conditional</td><td class="cell-section">Section 2.3</td><td><span class="pt">SacredZero</span></td><td class="cell-reg">Art. 9; Art. 13</td><td class="cell-reg">ID.RA-01</td><td class="cell-reg">Cl. 6.1.2</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">stateLabel</td><td class="cell-desc">constrained per state via if/then/else; must match currentState integer</td><td class="cell-section">Section 2.3</td><td><span class="pt">SacredZero</span></td><td class="cell-reg">Art. 13</td><td class="cell-reg">ID.RA-01</td><td class="cell-reg">Cl. 6.1.2</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">processActive</td><td class="cell-desc">State 0: const "SacredPause" (workflow, not state synonym); State +1: "ActuationGated"; State -1: "RefusalLogging"</td><td class="cell-section">Section 2.2</td><td><span class="pt">SacredZero</span></td><td class="cell-reg">Art. 9; Art. 14</td><td class="cell-reg">DE.CM-01</td><td class="cell-reg">Cl. 8.4</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">proposedAction</td><td class="cell-desc">binary Inference Lane proposal; Anchoring Lane dictates execution; maxLength: 2048</td><td class="cell-section">Section 2.3</td><td><span class="pt">SacredZero</span><span class="pt">AlwaysMemory</span></td><td class="cell-reg">Art. 9</td><td class="cell-reg">ID.RA-01</td><td class="cell-reg">Cl. 6.1.2</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">permissionToken</td><td class="cell-desc">REQUIRED when currentState == 1; schema-enforced via if/then; No Log = No Action enforcement</td><td class="cell-section">Section 2.3.3; Section 5B.i</td><td><span class="pt">AlwaysMemory</span><span class="pt">MoralTraceLogs</span></td><td class="cell-reg">Art. 12; Art. 19</td><td class="cell-reg">PR.DS-01; DE.CM-01</td><td class="cell-reg">Cl. 7.5; Cl. 8.4</td><td class="cell-reg">Rule 902(11)</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">if/then constraint</td><td class="cell-desc">currentState +1 requires permissionToken; schema-level No Log = No Action; unevaluatedProperties: false</td><td class="cell-section">Section 2.3.3</td><td><span class="pt">AlwaysMemory</span><span class="pt">MoralTraceLogs</span></td><td class="cell-reg">Art. 12; Art. 19</td><td class="cell-reg">PR.DS-01</td><td class="cell-reg">Cl. 7.5</td><td class="cell-reg">Rule 902(11)</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">justificationObject</td><td class="cell-desc">$ref JustificationObject; travels Inference to Anchoring lane</td><td class="cell-section">Section 2.3</td><td><span class="pt">MoralTraceLogs</span><span class="pt">AlwaysMemory</span></td><td class="cell-reg">Art. 12; Art. 13</td><td class="cell-reg">PR.DS-01</td><td class="cell-reg">Cl. 7.5</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">anchoring</td><td class="cell-desc">Merkle batch metadata; populated post-Anchoring Lane</td><td class="cell-section">Section 8</td><td><span class="pt">PublicBlockchains</span><span class="pt">AlwaysMemory</span></td><td class="cell-reg">Art. 12; Art. 19</td><td class="cell-reg">PR.DS-10</td><td class="cell-reg">Cl. 9.1</td><td class="cell-reg">Rule 902(13)</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="p2-just" class="subsection">
+      <div class="subsection-label green">2.4 Justification Object</div>
+      <div class="matrix-wrap">
+        <table class="matrix-table">
+          <thead><tr><th>Property</th><th>Constraint</th><th>Monograph Ref</th><th>TML Pillar(s)</th><th>EU AI Act</th><th>NIST RMF</th><th>ISO 42001</th><th>FRE 902</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td class="cell-prop">proposedState</td><td class="cell-desc">TriadicStateValue; Inference Lane proposal only; not authoritative</td><td class="cell-section">Section 2.3</td><td><span class="pt">SacredZero</span></td><td class="cell-reg">Art. 9</td><td class="cell-reg">ID.RA-01</td><td class="cell-reg">Cl. 6.1.2</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">reasoningVector</td><td class="cell-desc">array; minItems: 1; ordered reasoning chain with confidence scores</td><td class="cell-section">Section 2.3</td><td><span class="pt">MoralTraceLogs</span></td><td class="cell-reg">Art. 13 (Transparency)</td><td class="cell-reg">DE.AE-02</td><td class="cell-reg">Cl. 7.5</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">uncertaintyScore</td><td class="cell-desc">[0.0, 1.0]; breach of SacredZero threshold mandates State 0 regardless of binary engine proposal</td><td class="cell-section">Section 2.2; Section 2.3</td><td><span class="pt">SacredZero</span></td><td class="cell-reg">Art. 9</td><td class="cell-reg">ID.RA-01</td><td class="cell-reg">Cl. 6.1.2</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">pillarAssessments</td><td class="cell-desc">object; all 8 pillar scores [0.0, 1.0] from Inference Lane</td><td class="cell-section">Section 2.3</td><td><span class="pt">All Pillars</span></td><td class="cell-reg">Art. 9; Art. 13</td><td class="cell-reg">ID.RA-01; GV.OC-04</td><td class="cell-reg">Cl. 6.1.2; Cl. 9.1</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">humanRightsMandateFlags</td><td class="cell-desc">array; UDHR/Geneva provision flags; triggers mandatory HumanRightsMandate review</td><td class="cell-section">Section 2.3.3</td><td><span class="pt">HumanRightsMandate</span></td><td class="cell-reg">Art. 22</td><td class="cell-reg">DE.CM-01</td><td class="cell-reg">Cl. 6.1.2</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">earthProtectionMandateFlags</td><td class="cell-desc">array; Paris Agreement provision flags; triggers mandatory EarthProtectionMandate review</td><td class="cell-section">Section 2.3.3</td><td><span class="pt">EarthProtectionMandate</span></td><td class="cell-reg">Art. 22</td><td class="cell-reg">DE.CM-01</td><td class="cell-reg">Cl. 6.1.2</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">inferenceEngineId</td><td class="cell-desc">string; chain-of-custody for binary engine instance; maxLength: 256</td><td class="cell-section">Section 8</td><td><span class="pt">MoralTraceLogs</span><span class="pt">AlwaysMemory</span></td><td class="cell-reg">Art. 12</td><td class="cell-reg">PR.DS-01</td><td class="cell-reg">Cl. 7.5</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">inputHash</td><td class="cell-desc">SHA256Hex of decision vector; tamper-evidence for input payload</td><td class="cell-section">Section 8</td><td><span class="pt">AlwaysMemory</span><span class="pt">MoralTraceLogs</span></td><td class="cell-reg">Art. 12</td><td class="cell-reg">PR.DS-10</td><td class="cell-reg">Cl. 7.5</td><td class="cell-reg">Rule 902(11)</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="p2-uncertainty" class="subsection">
+      <div class="subsection-label amber">2.5 Uncertainty Quantification</div>
+      <div class="matrix-wrap">
+        <table class="matrix-table">
+          <thead><tr><th>Property</th><th>Constraint</th><th>Monograph Ref</th><th>TML Pillar(s)</th><th>EU AI Act</th><th>NIST RMF</th><th>ISO 42001</th><th>FRE 902</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td class="cell-prop">overallUncertaintyScore</td><td class="cell-desc">[0.0, 1.0]; score that breached the SacredZero threshold</td><td class="cell-section">Section 2.2</td><td><span class="pt">SacredZero</span></td><td class="cell-reg">Art. 9</td><td class="cell-reg">ID.RA-01</td><td class="cell-reg">Cl. 6.1.2</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">epistemicHoldActive</td><td class="cell-desc">const: true in State 0 logs; Epistemic Hold is canonical TML term</td><td class="cell-section">Section 2.2</td><td><span class="pt">SacredZero</span></td><td class="cell-reg">Art. 9; Art. 14</td><td class="cell-reg">ID.RA-01</td><td class="cell-reg">Cl. 6.1.2; Cl. 8.4</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">uncertaintyDimensions</td><td class="cell-desc">array; minItems: 1; per-dimension scores with descriptions</td><td class="cell-section">Section 2.2</td><td><span class="pt">SacredZero</span></td><td class="cell-reg">Art. 9</td><td class="cell-reg">ID.RA-01</td><td class="cell-reg">Cl. 6.1.2</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">thresholdBreached</td><td class="cell-desc">[0.0, 1.0]; configured SacredZero threshold value that was breached</td><td class="cell-section">Section 2.2</td><td><span class="pt">SacredZero</span></td><td class="cell-reg">Art. 9</td><td class="cell-reg">ID.RA-01</td><td class="cell-reg">Cl. 6.1.2</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="p2-deliberation" class="subsection">
+      <div class="subsection-label teal">2.6 Deliberation Matrix</div>
+      <div class="matrix-wrap">
+        <table class="matrix-table">
+          <thead><tr><th>Property</th><th>Constraint</th><th>Monograph Ref</th><th>TML Pillar(s)</th><th>EU AI Act</th><th>NIST RMF</th><th>ISO 42001</th><th>FRE 902</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td class="cell-prop">considerations</td><td class="cell-desc">array; minItems: 1; per-pillar ethical, factual, and legal considerations with weights</td><td class="cell-section">Section 2.2</td><td><span class="pt">SacredZero</span><span class="pt">All Pillars</span></td><td class="cell-reg">Art. 9; Art. 14</td><td class="cell-reg">RS.AN-03</td><td class="cell-reg">Cl. 8.4</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">riskVectors</td><td class="cell-desc">array; severity enum: LOW|MEDIUM|HIGH|CRITICAL; pillarImplicated per vector</td><td class="cell-section">Section 2.2</td><td><span class="pt">SacredZero</span></td><td class="cell-reg">Art. 9; Art. 14</td><td class="cell-reg">ID.RA-01; RS.AN-03</td><td class="cell-reg">Cl. 6.1.2; Cl. 8.4</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">resolutionOptions</td><td class="cell-desc">proposedState enum: [1, -1] only; State 0 is NOT a valid resolution option; minItems: 2</td><td class="cell-section">Section 2.2</td><td><span class="pt">SacredZero</span><span class="pt">HumanRightsMandate</span></td><td class="cell-reg">Art. 14</td><td class="cell-reg">RS.AN-03; RC.RP-01</td><td class="cell-reg">Cl. 8.4; Cl. 10.2</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="p2-resolution" class="subsection">
+      <div class="subsection-label">2.7 Resolution Request</div>
+      <div class="matrix-wrap">
+        <table class="matrix-table">
+          <thead><tr><th>Property</th><th>Constraint</th><th>Monograph Ref</th><th>TML Pillar(s)</th><th>EU AI Act</th><th>NIST RMF</th><th>ISO 42001</th><th>FRE 902</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td class="cell-prop">priority</td><td class="cell-desc">enum: STANDARD|ELEVATED|CRITICAL; assigned by Sacred Pause workflow</td><td class="cell-section">Section 2.2</td><td><span class="pt">SacredZero</span></td><td class="cell-reg">Art. 14</td><td class="cell-reg">RS.AN-03</td><td class="cell-reg">Cl. 8.4</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">deliberationMatrix</td><td class="cell-desc">$ref DeliberationMatrix; full matrix for human reviewer</td><td class="cell-section">Section 2.2</td><td><span class="pt">SacredZero</span></td><td class="cell-reg">Art. 14</td><td class="cell-reg">RS.AN-03</td><td class="cell-reg">Cl. 8.4</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">deadlineAt</td><td class="cell-desc">ISO8601DateTime; HybridShield failover protocols if exceeded</td><td class="cell-section">Section 2.2; Section 2.3.3</td><td><span class="pt">SacredZero</span><span class="pt">HybridShield</span></td><td class="cell-reg">Art. 14</td><td class="cell-reg">RS.AN-03</td><td class="cell-reg">Cl. 8.4</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="p2-tslf0" class="subsection">
+      <div class="subsection-label amber">2.8 TSLF-State0 (Sacred Pause Log)</div>
+      <div class="matrix-wrap">
+        <table class="matrix-table">
+          <thead><tr><th>Property</th><th>Constraint</th><th>Monograph Ref</th><th>TML Pillar(s)</th><th>EU AI Act</th><th>NIST RMF</th><th>ISO 42001</th><th>FRE 902</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td class="cell-prop">currentState</td><td class="cell-desc">const: 0; discriminator; Sacred Zero is never null/error/timeout</td><td class="cell-section">Section 2.2; Section 8</td><td><span class="pt">SacredZero</span></td><td class="cell-reg">Art. 9; Art. 13</td><td class="cell-reg">ID.RA-01</td><td class="cell-reg">Cl. 6.1.2</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">stateLabel</td><td class="cell-desc">const: "SACRED_ZERO"; always this value for State0 logs</td><td class="cell-section">Section 2.2</td><td><span class="pt">SacredZero</span></td><td class="cell-reg">Art. 13</td><td class="cell-reg">ID.RA-01</td><td class="cell-reg">Cl. 6.1.2</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">processActive</td><td class="cell-desc">const: "SacredPause"; workflow executing within State 0; NOT a state synonym</td><td class="cell-section">Section 2.2</td><td><span class="pt">SacredZero</span></td><td class="cell-reg">Art. 9; Art. 14</td><td class="cell-reg">DE.CM-01</td><td class="cell-reg">Cl. 8.4</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">lanternStatus</td><td class="cell-desc">$ref LanternStatus; required; must reflect SACRED_ZERO_ACTIVE at activation</td><td class="cell-section">Section 2.4; Section 2.2</td><td><span class="pt">GoukassianPromise</span><span class="pt">SacredZero</span></td><td class="cell-reg">Art. 13</td><td class="cell-reg">GV.OC-04</td><td class="cell-reg">Cl. 5.2; Cl. 7.4</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">committedAt</td><td class="cell-desc">pre-actuation commit; AlwaysMemory anti-spoliation; committed before any human review</td><td class="cell-section">Section 8</td><td><span class="pt">AlwaysMemory</span></td><td class="cell-reg">Art. 12; Art. 19</td><td class="cell-reg">PR.DS-10</td><td class="cell-reg">Cl. 7.5</td><td class="cell-reg">Rule 902(11)</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">pillarsCertified</td><td class="cell-desc">array; minItems: 1; PillarIdentifier items; assessed at commit time</td><td class="cell-section">Section 2; Section 8</td><td><span class="pt">All Pillars</span></td><td class="cell-reg">Art. 9</td><td class="cell-reg">GV.OC-04</td><td class="cell-reg">Cl. 9.1</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">resolution</td><td class="cell-desc">resolvedState enum [1|-1] only; justification minLength: 50; logged immutably</td><td class="cell-section">Section 2.2</td><td><span class="pt">SacredZero</span><span class="pt">HumanRightsMandate</span><span class="pt">AlwaysMemory</span></td><td class="cell-reg">Art. 14</td><td class="cell-reg">RS.AN-03; RC.RP-01</td><td class="cell-reg">Cl. 8.4; Cl. 10.2</td><td class="cell-reg">Rule 902(11)</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">merkleAnchoringStatus</td><td class="cell-desc">optional; batchId, merkleRoot, anchoredAt, blockchainTxId</td><td class="cell-section">Section 8</td><td><span class="pt">PublicBlockchains</span><span class="pt">AlwaysMemory</span></td><td class="cell-reg">Art. 12; Art. 19</td><td class="cell-reg">PR.DS-10</td><td class="cell-reg">Cl. 9.1</td><td class="cell-reg">Rule 902(13)</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="p2-license-viol" class="subsection">
+      <div class="subsection-label gold">2.9 License Violation Record</div>
+      <div class="matrix-wrap">
+        <table class="matrix-table">
+          <thead><tr><th>Property</th><th>Constraint</th><th>Monograph Ref</th><th>TML Pillar(s)</th><th>EU AI Act</th><th>NIST RMF</th><th>ISO 42001</th><th>FRE 902</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td class="cell-prop">violationType</td><td class="cell-desc">enum: 5 values incl. LANTERN_SUPPRESSION, SIGNATURE_FORGERY, LICENSE_BREACH</td><td class="cell-section">Section 2.4</td><td><span class="pt">GoukassianPromise</span></td><td class="cell-reg">Art. 9</td><td class="cell-reg">DE.CM-01</td><td class="cell-reg">Cl. 6.1.2</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">violatedArtifact</td><td class="cell-desc">enum: "lantern"|"signature"|"license"; canonical lowercase artifact names enforced by schema</td><td class="cell-section">Section 2.4</td><td><span class="pt">GoukassianPromise</span></td><td class="cell-reg">Art. 13</td><td class="cell-reg">DE.CM-01</td><td class="cell-reg">Cl. 5.2</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">evidenceHash</td><td class="cell-desc">SHA256Hex of evidence artifact demonstrating the violation</td><td class="cell-section">Section 8</td><td><span class="pt">AlwaysMemory</span><span class="pt">GoukassianPromise</span></td><td class="cell-reg">Art. 12</td><td class="cell-reg">PR.DS-10</td><td class="cell-reg">Cl. 7.5</td><td class="cell-reg">Rule 902(11)</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="p2-threat" class="subsection">
+      <div class="subsection-label red">2.10 Threat Vector Analysis</div>
+      <div class="matrix-wrap">
+        <table class="matrix-table">
+          <thead><tr><th>Property</th><th>Constraint</th><th>Monograph Ref</th><th>TML Pillar(s)</th><th>EU AI Act</th><th>NIST RMF</th><th>ISO 42001</th><th>FRE 902</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td class="cell-prop">threatVectors</td><td class="cell-desc">array; minItems: 1; 8-category enum incl. HUMAN_RIGHTS_VIOLATION, EARTH_PROTECTION_VIOLATION</td><td class="cell-section">Section 2.3</td><td><span class="pt">All Pillars</span></td><td class="cell-reg">Art. 9; Art. 22</td><td class="cell-reg">ID.RA-01; DE.CM-01</td><td class="cell-reg">Cl. 6.1.2</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">udhrProvision per vector</td><td class="cell-desc">UDHR Article tracking; HumanRightsMandate vector enforcement</td><td class="cell-section">Section 2.3.3</td><td><span class="pt">HumanRightsMandate</span></td><td class="cell-reg">Art. 22</td><td class="cell-reg">DE.CM-01</td><td class="cell-reg">Cl. 6.1.2</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">parisAgreementProvision per vector</td><td class="cell-desc">Paris Agreement tracking; EarthProtectionMandate vector enforcement</td><td class="cell-section">Section 2.3.3</td><td><span class="pt">EarthProtectionMandate</span></td><td class="cell-reg">Art. 22</td><td class="cell-reg">DE.CM-01</td><td class="cell-reg">Cl. 6.1.2</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">overallSeverity</td><td class="cell-desc">enum: LOW|MEDIUM|HIGH|CRITICAL; aggregate across all vectors</td><td class="cell-section">Section 2.3</td><td><span class="pt">MoralTraceLogs</span></td><td class="cell-reg">Art. 9</td><td class="cell-reg">ID.RA-01</td><td class="cell-reg">Cl. 6.1.2</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="p2-custody" class="subsection">
+      <div class="subsection-label">2.11 Chain of Custody</div>
+      <div class="matrix-wrap">
+        <table class="matrix-table">
+          <thead><tr><th>Property</th><th>Constraint</th><th>Monograph Ref</th><th>TML Pillar(s)</th><th>EU AI Act</th><th>NIST RMF</th><th>ISO 42001</th><th>FRE 902</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td class="cell-prop">entries</td><td class="cell-desc">array; minItems: 1; action enum: CREATED|RECEIVED|VALIDATED|ANCHORED|TRANSFERRED|REVIEWED|EXPORTED</td><td class="cell-section">Section 8</td><td><span class="pt">MoralTraceLogs</span><span class="pt">AlwaysMemory</span></td><td class="cell-reg">Art. 12; Art. 19</td><td class="cell-reg">PR.DS-01; PR.DS-10</td><td class="cell-reg">Cl. 7.5; Cl. 9.1</td><td class="cell-reg">Rule 902(11)</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">inputHash / outputHash per entry</td><td class="cell-desc">SHA256Hex; tamper-evidence across handler transitions</td><td class="cell-section">Section 8</td><td><span class="pt">AlwaysMemory</span><span class="pt">MoralTraceLogs</span></td><td class="cell-reg">Art. 12</td><td class="cell-reg">PR.DS-10</td><td class="cell-reg">Cl. 7.5</td><td class="cell-reg">Rule 902(11)</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="p2-tslf-1" class="subsection">
+      <div class="subsection-label red">2.12 TSLF-State-1 (Refusal Log)</div>
+      <div class="matrix-wrap">
+        <table class="matrix-table">
+          <thead><tr><th>Property</th><th>Constraint</th><th>Monograph Ref</th><th>TML Pillar(s)</th><th>EU AI Act</th><th>NIST RMF</th><th>ISO 42001</th><th>FRE 902</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td class="cell-prop">currentState</td><td class="cell-desc">const: -1; discriminator</td><td class="cell-section">Section 2.3; Section 8</td><td><span class="pt">SacredZero</span></td><td class="cell-reg">Art. 9; Art. 13</td><td class="cell-reg">ID.RA-01</td><td class="cell-reg">Cl. 6.1.2</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">licenseViolation</td><td class="cell-desc">optional; required when GoukassianPromise violation triggers refusal; logged before refusal commit</td><td class="cell-section">Section 2.4; Section 8</td><td><span class="pt">GoukassianPromise</span><span class="pt">AlwaysMemory</span></td><td class="cell-reg">Art. 9; Art. 13</td><td class="cell-reg">DE.CM-01</td><td class="cell-reg">Cl. 6.1.2</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">refusalIsPermanent</td><td class="cell-desc">boolean; default: true; permanent unless Section 13.3 supreme authority Emergency Override</td><td class="cell-section">Section 13.3</td><td><span class="pt">SacredZero</span><span class="pt">AlwaysMemory</span></td><td class="cell-reg">Art. 9</td><td class="cell-reg">PR.DS-01</td><td class="cell-reg">Cl. 8.4</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">appealEligible</td><td class="cell-desc">boolean; default: true; subject redress right under HumanRightsMandate</td><td class="cell-section">Section 2.3.3</td><td><span class="pt">HumanRightsMandate</span></td><td class="cell-reg">Art. 26(7); Art. 85</td><td class="cell-reg">GV.OC-01</td><td class="cell-reg">Cl. 10.2</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">committedAt</td><td class="cell-desc">pre-actuation commit; AlwaysMemory / Pillar II</td><td class="cell-section">Section 8</td><td><span class="pt">AlwaysMemory</span></td><td class="cell-reg">Art. 12</td><td class="cell-reg">PR.DS-10</td><td class="cell-reg">Cl. 7.5</td><td class="cell-reg">Rule 902(11)</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="p2-ethical" class="subsection">
+      <div class="subsection-label green">2.13 Ethical Verification &amp; PillarVerificationResult</div>
+      <div class="matrix-wrap">
+        <table class="matrix-table">
+          <thead><tr><th>Property</th><th>Constraint</th><th>Monograph Ref</th><th>TML Pillar(s)</th><th>EU AI Act</th><th>NIST RMF</th><th>ISO 42001</th><th>FRE 902</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td class="cell-prop">pillarVerifications</td><td class="cell-desc">object; all 8 PillarIdentifiers required; all must be PASSED for PROCEED; each value is PillarVerificationResult</td><td class="cell-section">Section 2.3.3</td><td><span class="pt">All Pillars</span></td><td class="cell-reg">Art. 9; Art. 13</td><td class="cell-reg">GV.OC-04; ID.RA-01</td><td class="cell-reg">Cl. 6.1.2; Cl. 9.1</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">overallVerdict</td><td class="cell-desc">enum: PASSED|FAILED; FAILED triggers State -1</td><td class="cell-section">Section 2.3.3</td><td><span class="pt">All Pillars</span></td><td class="cell-reg">Art. 9</td><td class="cell-reg">ID.RA-01</td><td class="cell-reg">Cl. 6.1.2</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">PillarVerificationResult.verdict</td><td class="cell-desc">enum: PASSED|FAILED|NOT_APPLICABLE; FAILED blocks PROCEED</td><td class="cell-section">Section 2.3.3</td><td><span class="pt">All Pillars</span></td><td class="cell-reg">Art. 9</td><td class="cell-reg">GV.OC-04</td><td class="cell-reg">Cl. 6.1.2</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="p2-audit-proof" class="subsection">
+      <div class="subsection-label teal">2.14 Audit Proof</div>
+      <div class="matrix-wrap">
+        <table class="matrix-table">
+          <thead><tr><th>Property</th><th>Constraint</th><th>Monograph Ref</th><th>TML Pillar(s)</th><th>EU AI Act</th><th>NIST RMF</th><th>ISO 42001</th><th>FRE 902</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td class="cell-prop">logHash</td><td class="cell-desc">must match PermissionToken.logHash; proof-layer No Log = No Action enforcement</td><td class="cell-section">Section 2.3.3; Section 8</td><td><span class="pt">AlwaysMemory</span></td><td class="cell-reg">Art. 12</td><td class="cell-reg">PR.DS-10</td><td class="cell-reg">Cl. 7.5</td><td class="cell-reg">Rule 902(11)</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">merkleRoot</td><td class="cell-desc">must match PermissionToken.merkleRoot; cross-schema binding</td><td class="cell-section">Section 8</td><td><span class="pt">PublicBlockchains</span></td><td class="cell-reg">Art. 19</td><td class="cell-reg">PR.DS-10</td><td class="cell-reg">Cl. 9.1</td><td class="cell-reg">Rule 902(13)</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">inclusionPath</td><td class="cell-desc">array; minItems: 1; ordered sibling hashes LEFT|RIGHT from leaf to root</td><td class="cell-section">Section 8</td><td><span class="pt">PublicBlockchains</span></td><td class="cell-reg">Art. 12; Art. 19</td><td class="cell-reg">PR.DS-10</td><td class="cell-reg">Cl. 9.1</td><td class="cell-reg">Rule 902(13)</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="p2-tslfp1" class="subsection">
+      <div class="subsection-label green">2.15 TSLF-StateP1 (Proceed Log)</div>
+      <div class="matrix-wrap">
+        <table class="matrix-table">
+          <thead><tr><th>Property</th><th>Constraint</th><th>Monograph Ref</th><th>TML Pillar(s)</th><th>EU AI Act</th><th>NIST RMF</th><th>ISO 42001</th><th>FRE 902</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td class="cell-prop">currentState</td><td class="cell-desc">const: 1; discriminator</td><td class="cell-section">Section 2.3; Section 8</td><td><span class="pt">AlwaysMemory</span></td><td class="cell-reg">Art. 9; Art. 13</td><td class="cell-reg">ID.RA-01</td><td class="cell-reg">Cl. 6.1.2</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">theSignature</td><td class="cell-desc">$ref SignatureBlock; required; Goukassian Signature binding log to constitutional provenance</td><td class="cell-section">Section 2.4</td><td><span class="pt">GoukassianPromise</span></td><td class="cell-reg">Art. 13</td><td class="cell-reg">PR.DS-01</td><td class="cell-reg">Cl. 5.2</td><td class="cell-reg">Rule 902(11)</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">permissionToken</td><td class="cell-desc">REQUIRED; in required array; log-level No Log = No Action enforcement</td><td class="cell-section">Section 2.3.3; Section 5B.i</td><td><span class="pt">AlwaysMemory</span><span class="pt">MoralTraceLogs</span></td><td class="cell-reg">Art. 12; Art. 19</td><td class="cell-reg">PR.DS-01; DE.CM-01</td><td class="cell-reg">Cl. 7.5; Cl. 8.4</td><td class="cell-reg">Rule 902(11)</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">pillarsCertified</td><td class="cell-desc">minItems: 8; maxItems: 8; all Eight Pillars mandatory for PROCEED log validity</td><td class="cell-section">Section 2; Section 8</td><td><span class="pt">All Pillars</span></td><td class="cell-reg">Art. 9</td><td class="cell-reg">GV.OC-04</td><td class="cell-reg">Cl. 9.1</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">committedAt</td><td class="cell-desc">log anchored before Permission Token released to actuation layer</td><td class="cell-section">Section 8</td><td><span class="pt">AlwaysMemory</span></td><td class="cell-reg">Art. 12</td><td class="cell-reg">PR.DS-10</td><td class="cell-reg">Cl. 7.5</td><td class="cell-reg">Rule 902(11)</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="p2-lantern" class="subsection">
+      <div class="subsection-label gold">2.16 Lantern Status</div>
+      <div class="matrix-wrap">
+        <table class="matrix-table">
+          <thead><tr><th>Property</th><th>Constraint</th><th>Monograph Ref</th><th>TML Pillar(s)</th><th>EU AI Act</th><th>NIST RMF</th><th>ISO 42001</th><th>FRE 902</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td class="cell-prop">artifactName</td><td class="cell-desc">const: "lantern"; canonical Goukassian Promise artifact name (lowercase)</td><td class="cell-section">Section 2.4</td><td><span class="pt">GoukassianPromise</span></td><td class="cell-reg">Art. 13</td><td class="cell-reg">GV.OC-04</td><td class="cell-reg">Cl. 5.2</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">compliancePosture</td><td class="cell-desc">enum: 5 values incl. SACRED_ZERO_ACTIVE, EMERGENCY_OVERRIDE_ACTIVE</td><td class="cell-section">Section 2.4</td><td><span class="pt">GoukassianPromise</span></td><td class="cell-reg">Art. 13; Art. 50</td><td class="cell-reg">GV.OC-04</td><td class="cell-reg">Cl. 5.2; Cl. 7.4</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">pillarStatuses</td><td class="cell-desc">per-pillar live compliance status across all Eight Pillars</td><td class="cell-section">Section 2; Section 2.4</td><td><span class="pt">All Pillars</span></td><td class="cell-reg">Art. 13</td><td class="cell-reg">GV.OC-04</td><td class="cell-reg">Cl. 9.1</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">signatureBlock</td><td class="cell-desc">$ref SignatureBlock; Goukassian Promise Signature signing each Lantern broadcast</td><td class="cell-section">Section 2.4</td><td><span class="pt">GoukassianPromise</span></td><td class="cell-reg">Art. 13</td><td class="cell-reg">PR.DS-01</td><td class="cell-reg">Cl. 5.2</td><td class="cell-reg">Rule 902(11)</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">activeSacredZeroCount</td><td class="cell-desc">integer; minimum: 0; count at signal emission time</td><td class="cell-section">Section 2.2; Section 2.4</td><td><span class="pt">SacredZero</span><span class="pt">GoukassianPromise</span></td><td class="cell-reg">Art. 13; Art. 14</td><td class="cell-reg">DE.AE-06</td><td class="cell-reg">Cl. 8.4</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="p2-signature" class="subsection">
+      <div class="subsection-label gold">2.17 Signature Block</div>
+      <div class="matrix-wrap">
+        <table class="matrix-table">
+          <thead><tr><th>Property</th><th>Constraint</th><th>Monograph Ref</th><th>TML Pillar(s)</th><th>EU AI Act</th><th>NIST RMF</th><th>ISO 42001</th><th>FRE 902</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td class="cell-prop">artifactName</td><td class="cell-desc">const: "signature"; canonical Goukassian Promise artifact name (lowercase)</td><td class="cell-section">Section 2.4</td><td><span class="pt">GoukassianPromise</span></td><td class="cell-reg">Art. 13</td><td class="cell-reg">GV.OC-04</td><td class="cell-reg">Cl. 5.2</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">signatureAlgorithm</td><td class="cell-desc">ES256 = SHIPPING default; SLH-DSA-SHAKE-128s / ML-KEM-1024 = FUTURE per Section 10</td><td class="cell-section">Section 2.4; Section 10</td><td><span class="pt">GoukassianPromise</span></td><td class="cell-reg">Art. 9</td><td class="cell-reg">PR.DS-01</td><td class="cell-reg">Cl. 8.5</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-MIXED">SHIPPING (ES256); FUTURE (PQC)</span></td></tr>
+            <tr><td class="cell-prop">signedPayloadHash</td><td class="cell-desc">SHA256Hex of canonical serialization of signed payload</td><td class="cell-section">Section 8</td><td><span class="pt">AlwaysMemory</span><span class="pt">GoukassianPromise</span></td><td class="cell-reg">Art. 12</td><td class="cell-reg">PR.DS-10</td><td class="cell-reg">Cl. 7.5</td><td class="cell-reg">Rule 902(11)</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">custodianId</td><td class="cell-desc">optional; HybridShield custodian holding the signing key</td><td class="cell-section">Section 2.3.3</td><td><span class="pt">HybridShield</span></td><td class="cell-reg">Art. 9</td><td class="cell-reg">ID.AM-03</td><td class="cell-reg">Cl. 8.5</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="p2-license-val" class="subsection">
+      <div class="subsection-label gold">2.18 License Validation Request</div>
+      <div class="matrix-wrap">
+        <table class="matrix-table">
+          <thead><tr><th>Property</th><th>Constraint</th><th>Monograph Ref</th><th>TML Pillar(s)</th><th>EU AI Act</th><th>NIST RMF</th><th>ISO 42001</th><th>FRE 902</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td class="cell-prop">artifactName</td><td class="cell-desc">const: "license"; canonical Goukassian Promise artifact name (lowercase)</td><td class="cell-section">Section 2.4</td><td><span class="pt">GoukassianPromise</span></td><td class="cell-reg">Art. 13</td><td class="cell-reg">GV.OC-04</td><td class="cell-reg">Cl. 5.2</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">licenseToken</td><td class="cell-desc">string; minLength: 1; verifiable against Goukassian Promise constitutional record</td><td class="cell-section">Section 2.4</td><td><span class="pt">GoukassianPromise</span></td><td class="cell-reg">Art. 9</td><td class="cell-reg">DE.CM-01</td><td class="cell-reg">Cl. 6.1.2</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">requestingEntityId / purposeOfUse</td><td class="cell-desc">identity of requesting entity; declared purpose of use; maxLength: 512 / 2048</td><td class="cell-section">Section 2.4</td><td><span class="pt">GoukassianPromise</span></td><td class="cell-reg">Art. 13</td><td class="cell-reg">ID.AM-03; ID.RA-06</td><td class="cell-reg">Cl. 5.2; Cl. 7.4</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="p2-merkle" class="subsection">
+      <div class="subsection-label teal">2.19 Merkle Inclusion Proof</div>
+      <div class="matrix-wrap">
+        <table class="matrix-table">
+          <thead><tr><th>Property</th><th>Constraint</th><th>Monograph Ref</th><th>TML Pillar(s)</th><th>EU AI Act</th><th>NIST RMF</th><th>ISO 42001</th><th>FRE 902</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td class="cell-prop">logHash</td><td class="cell-desc">SHA256Hex; leaf node for Merkle proof</td><td class="cell-section">Section 8</td><td><span class="pt">AlwaysMemory</span><span class="pt">PublicBlockchains</span></td><td class="cell-reg">Art. 12</td><td class="cell-reg">PR.DS-10</td><td class="cell-reg">Cl. 7.5</td><td class="cell-reg">Rule 902(11)</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">merkleRoot</td><td class="cell-desc">SHA256Hex; must match blockchain record</td><td class="cell-section">Section 8</td><td><span class="pt">PublicBlockchains</span></td><td class="cell-reg">Art. 19</td><td class="cell-reg">PR.DS-10</td><td class="cell-reg">Cl. 9.1</td><td class="cell-reg">Rule 902(13)</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">inclusionPath</td><td class="cell-desc">array; minItems: 1; LEFT|RIGHT positions; ordered leaf to root</td><td class="cell-section">Section 8</td><td><span class="pt">PublicBlockchains</span></td><td class="cell-reg">Art. 19</td><td class="cell-reg">PR.DS-10</td><td class="cell-reg">Cl. 9.1</td><td class="cell-reg">Rule 902(13)</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">verificationStatus</td><td class="cell-desc">enum: VERIFIED|PENDING|FAILED</td><td class="cell-section">Section 8</td><td><span class="pt">PublicBlockchains</span></td><td class="cell-reg">Art. 19</td><td class="cell-reg">DE.AE-02</td><td class="cell-reg">Cl. 9.1</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="p2-custodian" class="subsection">
+      <div class="subsection-label">2.20 Custodian Heartbeat</div>
+      <div class="matrix-wrap">
+        <table class="matrix-table">
+          <thead><tr><th>Property</th><th>Constraint</th><th>Monograph Ref</th><th>TML Pillar(s)</th><th>EU AI Act</th><th>NIST RMF</th><th>ISO 42001</th><th>FRE 902</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td class="cell-prop">status</td><td class="cell-desc">enum: ACTIVE|DEGRADED|UNREACHABLE|ROTATING_KEYS</td><td class="cell-section">Section 2.3.3</td><td><span class="pt">HybridShield</span></td><td class="cell-reg">Art. 9</td><td class="cell-reg">ID.AM-03; DE.CM-09</td><td class="cell-reg">Cl. 8.5</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">latencyMs</td><td class="cell-desc">number; minimum: 0; sub-500ms cross-jurisdiction = FUTURE per Section 10</td><td class="cell-section">Section 2.3.3; Section 10</td><td><span class="pt">HybridShield</span></td><td class="cell-reg">Art. 9</td><td class="cell-reg">DE.CM-09</td><td class="cell-reg">Cl. 8.5</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-MIXED">SHIPPING (field); FUTURE (sub-500ms global)</span></td></tr>
+            <tr><td class="cell-prop">jurisdiction</td><td class="cell-desc">string; legal jurisdiction of custodian operation</td><td class="cell-section">Section 2.3.3</td><td><span class="pt">HybridShield</span></td><td class="cell-reg">Art. 9</td><td class="cell-reg">GV.OC-05</td><td class="cell-reg">Cl. 8.5</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="p2-attestation" class="subsection">
+      <div class="subsection-label gold">2.21 Compliance Attestation</div>
+      <div class="matrix-wrap">
+        <table class="matrix-table">
+          <thead><tr><th>Property</th><th>Constraint</th><th>Monograph Ref</th><th>TML Pillar(s)</th><th>EU AI Act</th><th>NIST RMF</th><th>ISO 42001</th><th>FRE 902</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td class="cell-prop">pillarCompliance</td><td class="cell-desc">object; all 8 PillarIdentifiers required; PillarVerificationResult values</td><td class="cell-section">Section 2; Section 2.4</td><td><span class="pt">All Pillars</span></td><td class="cell-reg">Art. 9; Art. 13</td><td class="cell-reg">GV.OC-04</td><td class="cell-reg">Cl. 9.1; Cl. 9.2; Cl. 9.3</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">overallStatus</td><td class="cell-desc">enum: FULLY_COMPLIANT|PARTIAL_COMPLIANCE|NON_COMPLIANT</td><td class="cell-section">Section 2.4</td><td><span class="pt">GoukassianPromise</span></td><td class="cell-reg">Art. 13</td><td class="cell-reg">GV.OC-04</td><td class="cell-reg">Cl. 9.1</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">signatureBlock / merkleRoot</td><td class="cell-desc">Goukassian Signature on attestation; anchored to public blockchain</td><td class="cell-section">Section 2.4; Section 8</td><td><span class="pt">GoukassianPromise</span><span class="pt">PublicBlockchains</span></td><td class="cell-reg">Art. 13; Art. 19</td><td class="cell-reg">PR.DS-01; PR.DS-10</td><td class="cell-reg">Cl. 5.2; Cl. 9.1</td><td class="cell-reg">Rule 902(11); Rule 902(13)</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="p2-redress-ch" class="subsection">
+      <div class="subsection-label purple">2.22 Redress Challenge</div>
+      <div class="matrix-wrap">
+        <table class="matrix-table">
+          <thead><tr><th>Property</th><th>Constraint</th><th>Monograph Ref</th><th>TML Pillar(s)</th><th>EU AI Act</th><th>NIST RMF</th><th>ISO 42001</th><th>FRE 902</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td class="cell-prop">challengeGrounds</td><td class="cell-desc">array; minItems: 1; description minLength: 50; per-pillar with optional UDHR Article citation</td><td class="cell-section">Section 2.3.3</td><td><span class="pt">HumanRightsMandate</span></td><td class="cell-reg">Art. 22; Art. 85</td><td class="cell-reg">GV.OC-01; RS.AN-03</td><td class="cell-reg">Cl. 6.1.2; Cl. 10.2</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">challengedLogId / challengedDecisionId</td><td class="cell-desc">UUIDv4; identifies the specific log and decision under challenge</td><td class="cell-section">Section 8</td><td><span class="pt">MoralTraceLogs</span><span class="pt">HumanRightsMandate</span></td><td class="cell-reg">Art. 12; Art. 85</td><td class="cell-reg">RS.AN-03</td><td class="cell-reg">Cl. 9.1; Cl. 10.2</td><td class="cell-reg">Rule 902(11)</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">supportingEvidenceHash</td><td class="cell-desc">SHA256Hex; optional; hash of supporting evidence package</td><td class="cell-section">Section 8</td><td><span class="pt">AlwaysMemory</span></td><td class="cell-reg">Art. 12</td><td class="cell-reg">PR.DS-10</td><td class="cell-reg">Cl. 7.5</td><td class="cell-reg">Rule 902(11)</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="p2-grievance" class="subsection">
+      <div class="subsection-label purple">2.23 Human Rights Grievance</div>
+      <div class="matrix-wrap">
+        <table class="matrix-table">
+          <thead><tr><th>Property</th><th>Constraint</th><th>Monograph Ref</th><th>TML Pillar(s)</th><th>EU AI Act</th><th>NIST RMF</th><th>ISO 42001</th><th>FRE 902</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td class="cell-prop">udhrProvisions</td><td class="cell-desc">array; minItems: 1; UDHR Articles alleged violated (e.g., "UDHR-Art-3")</td><td class="cell-section">Section 2.3.3</td><td><span class="pt">HumanRightsMandate</span></td><td class="cell-reg">Art. 22</td><td class="cell-reg">DE.CM-01</td><td class="cell-reg">Cl. 6.1.2</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">genevaConventionProvisions</td><td class="cell-desc">array; optional; Geneva Convention provisions if applicable</td><td class="cell-section">Section 2.3.3</td><td><span class="pt">HumanRightsMandate</span></td><td class="cell-reg">Art. 22</td><td class="cell-reg">DE.CM-01</td><td class="cell-reg">Cl. 6.1.2</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">grievanceNarrative</td><td class="cell-desc">string; minLength: 100; maxLength: 16384</td><td class="cell-section">Section 2.3.3</td><td><span class="pt">HumanRightsMandate</span></td><td class="cell-reg">Art. 85</td><td class="cell-reg">GV.OC-01</td><td class="cell-reg">Cl. 10.2</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="p2-bulk" class="subsection">
+      <div class="subsection-label">2.24 Bulk Evidence Export</div>
+      <div class="matrix-wrap">
+        <table class="matrix-table">
+          <thead><tr><th>Property</th><th>Constraint</th><th>Monograph Ref</th><th>TML Pillar(s)</th><th>EU AI Act</th><th>NIST RMF</th><th>ISO 42001</th><th>FRE 902</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td class="cell-prop">legalBasis</td><td class="cell-desc">string; minLength: 1; maxLength: 2048; e.g., "EU AI Act Article 72"</td><td class="cell-section">Section 8</td><td><span class="pt">MoralTraceLogs</span><span class="pt">HumanRightsMandate</span></td><td class="cell-reg">Art. 72; Art. 74</td><td class="cell-reg">GV.OC-05</td><td class="cell-reg">Cl. 9.2</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">exportScope</td><td class="cell-desc">object; fromDate + toDate required; optional stateFilter, pillarFilter, includePermissionTokens, includeMerkleProofs</td><td class="cell-section">Section 8</td><td><span class="pt">MoralTraceLogs</span><span class="pt">PublicBlockchains</span></td><td class="cell-reg">Art. 72; Art. 74</td><td class="cell-reg">GV.OC-05; DE.AE-02</td><td class="cell-reg">Cl. 9.1; Cl. 9.2</td><td class="cell-reg">Rule 902(11); Rule 902(13)</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">jurisdiction</td><td class="cell-desc">string; optional; legal jurisdiction of requesting regulatory authority</td><td class="cell-section">Section 2.3.3</td><td><span class="pt">HybridShield</span></td><td class="cell-reg">Art. 74</td><td class="cell-reg">GV.OC-05</td><td class="cell-reg">Cl. 9.2</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="p2-gateway" class="subsection">
+      <div class="subsection-label amber">2.25 Gateway Routing Status</div>
+      <div class="matrix-wrap">
+        <table class="matrix-table">
+          <thead><tr><th>Property</th><th>Constraint</th><th>Monograph Ref</th><th>TML Pillar(s)</th><th>EU AI Act</th><th>NIST RMF</th><th>ISO 42001</th><th>FRE 902</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td class="cell-prop">operationalStatus</td><td class="cell-desc">enum incl. FAIL_CLOSED_ACTIVE; fail-open is not permitted</td><td class="cell-section">Section 2.3</td><td><span class="pt">SacredZero</span><span class="pt">AlwaysMemory</span></td><td class="cell-reg">Art. 9; Art. 14</td><td class="cell-reg">DE.CM-09; GV.OC-01</td><td class="cell-reg">Cl. 8.4; Cl. 8.5</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">failClosedActive</td><td class="cell-desc">boolean; true when Gateway defaults all decisions to SacredZero</td><td class="cell-section">Section 2.3</td><td><span class="pt">SacredZero</span></td><td class="cell-reg">Art. 9; Art. 14</td><td class="cell-reg">DE.CM-09</td><td class="cell-reg">Cl. 8.4</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">lanternStatus</td><td class="cell-desc">$ref LanternStatus; embedded so operators get Lantern state without separate call</td><td class="cell-section">Section 2.4</td><td><span class="pt">GoukassianPromise</span></td><td class="cell-reg">Art. 13</td><td class="cell-reg">GV.OC-04</td><td class="cell-reg">Cl. 5.2</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="p2-emergency" class="subsection">
+      <div class="subsection-label red">2.26 Emergency Override Request</div>
+      <div class="matrix-wrap">
+        <table class="matrix-table">
+          <thead><tr><th>Property</th><th>Constraint</th><th>Monograph Ref</th><th>TML Pillar(s)</th><th>EU AI Act</th><th>NIST RMF</th><th>ISO 42001</th><th>FRE 902</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td class="cell-prop">overrideType</td><td class="cell-desc">enum: BREAK_GLASS_SHUTDOWN|KILL_SWITCH|FORCED_STATE_TRANSITION</td><td class="cell-section">Section 13.3</td><td><span class="pt">SacredZero</span><span class="pt">AlwaysMemory</span><span class="pt">HybridShield</span></td><td class="cell-reg">Art. 14</td><td class="cell-reg">RS.MA-01; RC.RP-01</td><td class="cell-reg">Cl. 8.4; Cl. 10.2</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">justification</td><td class="cell-desc">string; minLength: 100; logged to Moral Trace Log before execution; No Log = No Action</td><td class="cell-section">Section 13.3</td><td><span class="pt">AlwaysMemory</span></td><td class="cell-reg">Art. 14</td><td class="cell-reg">PR.DS-01; RS.MA-01</td><td class="cell-reg">Cl. 8.4</td><td class="cell-reg">Rule 902(11)</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">forcedState</td><td class="cell-desc">enum: [-1, 0] only; forced transition to +1 (PROCEED) is schema-blocked</td><td class="cell-section">Section 13.3</td><td><span class="pt">SacredZero</span></td><td class="cell-reg">Art. 14</td><td class="cell-reg">RS.MA-01</td><td class="cell-reg">Cl. 8.4</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">custodianQuorumApproval</td><td class="cell-desc">optional BETA; HybridShield quorum approval if required by deployment policy</td><td class="cell-section">Section 2.3.3; Section 13.3</td><td><span class="pt">HybridShield</span></td><td class="cell-reg">Art. 9; Art. 14</td><td class="cell-reg">GV.OC-01</td><td class="cell-reg">Cl. 8.4; Cl. 8.5</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-BETA">BETA</span></td></tr>
+            <tr><td class="cell-prop">if/then constraint</td><td class="cell-desc">targetDecisionId and forcedState required when overrideType = FORCED_STATE_TRANSITION</td><td class="cell-section">Section 13.3</td><td><span class="pt">AlwaysMemory</span></td><td class="cell-reg">Art. 14</td><td class="cell-reg">RS.MA-01</td><td class="cell-reg">Cl. 8.4</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+<!-- ════════════════════════════════════════════════════
+     PART 3: CROSS-CUTTING COMPLIANCE NOTES
+════════════════════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon si-p3">&#9881;</div>
+      <div>
+        <div class="section-title st-p3">Part 3 &mdash; Cross-Cutting Compliance Notes</div>
+        <div class="section-desc">Audit verification surfaces, integrity checkpoints, canonical artifact name enforcement, and Implementation Gap summary</div>
+      </div>
+    </div>
+
+    <!-- 3.1 No Log = No Action -->
+    <div id="p3-nolog" class="subsection">
+      <div class="subsection-label teal">3.1 No Log = No Action &mdash; Five Enforcement Layers</div>
+      <div class="callout callout-iron">An auditor verifying No Log = No Action must confirm all five enforcement layers below are intact across the specification. Schema constraint, cryptographic binding, log-level requirement, proof-level cross-reference, and on-chain ABI reversion are independent; bypassing one does not bypass the others.</div>
+      <table class="cross-table">
+        <thead><tr><th>Layer</th><th>Artifact / Location</th><th>Enforcement Mechanism</th><th>Monograph Section</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="ct-layer">1 &mdash; Schema (StateEnvelope)</td>
+            <td class="ct-artifact">StateEnvelope if/then constraint<br><span style="font-size:10px;color:var(--white-muted);">tml_schema.json#/$defs/StateEnvelope</span></td>
+            <td class="ct-mech">permissionToken is REQUIRED when currentState == 1. Absence renders envelope schema-invalid. unevaluatedProperties: false prevents bypass.</td>
+            <td class="ct-section">Section 2.3.3</td>
+          </tr>
+          <tr>
+            <td class="ct-layer">2 &mdash; Schema (PermissionToken)</td>
+            <td class="ct-artifact">PermissionToken.laneOrigin<br><span style="font-size:10px;color:var(--white-muted);">tml_schema.json#/$defs/PermissionToken</span></td>
+            <td class="ct-mech">const: "ANCHORING_LANE". Schema-level rejection of all Inference Lane-originated tokens. The Inference Lane cannot produce a valid Permission Token.</td>
+            <td class="ct-section">Section 2.3</td>
+          </tr>
+          <tr>
+            <td class="ct-layer">3 &mdash; Schema (TSLF-StateP1)</td>
+            <td class="ct-artifact">TSLF-StateP1.permissionToken<br><span style="font-size:10px;color:var(--white-muted);">tml_schema.json#/$defs/TSLF-StateP1</span></td>
+            <td class="ct-mech">permissionToken is in the required array. pillarsCertified minItems: 8 / maxItems: 8. The Proceed log cannot be valid without the token, and the token cannot be valid without the log.</td>
+            <td class="ct-section">Section 5B.i</td>
+          </tr>
+          <tr>
+            <td class="ct-layer">4 &mdash; Schema (AuditProof)</td>
+            <td class="ct-artifact">AuditProof.logHash / merkleRoot<br><span style="font-size:10px;color:var(--white-muted);">tml_schema.json#/$defs/AuditProof</span></td>
+            <td class="ct-mech">logHash must match PermissionToken.logHash; merkleRoot must match PermissionToken.merkleRoot. Traversal path: token &rarr; logHash &rarr; merkleRoot &rarr; inclusionPath &rarr; GET /audit/verifications/merkle/{merkleRoot}.</td>
+            <td class="ct-section">Section 8</td>
+          </tr>
+          <tr>
+            <td class="ct-layer">5 &mdash; On-Chain ABI</td>
+            <td class="ct-artifact">TML_Core.registerPermissionToken<br>NoLogNoAction custom error<br><span style="font-size:10px;color:var(--white-muted);">tml_abi.json / TML_Core</span></td>
+            <td class="ct-mech">Reverts with NoLogNoAction error when logHash is not provably included in any anchored Merkle root. The on-chain final arbiter. Even a schema-valid token fails registration if the log is not anchored.</td>
+            <td class="ct-section">Section 2.3.3</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 3.2 Sacred Zero Integrity -->
+    <div id="p3-sacred" class="subsection">
+      <div class="subsection-label teal">3.2 Sacred Zero &mdash; Integrity Checkpoints</div>
+      <div class="callout callout-sacred">An auditor must confirm State 0 is never aliased, substituted, or represented as a null, false, error, or timeout at any of the five checkpoint locations below. These are schema-enforced const constraints; any deviation is a schema violation.</div>
+      <table class="cross-table">
+        <thead><tr><th>Checkpoint</th><th>Location</th><th>Correct Value</th><th>Prohibited Values</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="ct-check">State integer</td>
+            <td class="ct-artifact">TriadicStateValue; StateEnvelope.currentState; TSLF-State0.currentState</td>
+            <td class="ct-correct">0 (integer)</td>
+            <td class="ct-wrong">null, false, "HOLD", "TIMEOUT", "ERROR", undefined</td>
+          </tr>
+          <tr>
+            <td class="ct-check">State label</td>
+            <td class="ct-artifact">StateEnvelope.stateLabel; TSLF-State0.stateLabel</td>
+            <td class="ct-correct">"SACRED_ZERO"</td>
+            <td class="ct-wrong">"SacredPause", "PauseState", "HOLD", "Timeout", "Error"</td>
+          </tr>
+          <tr>
+            <td class="ct-check">Process identifier</td>
+            <td class="ct-artifact">StateEnvelope.processActive; TSLF-State0.processActive</td>
+            <td class="ct-correct">"SacredPause" (workflow name only; not a state alias)</td>
+            <td class="ct-wrong">Using "SacredPause" as stateLabel; using it as a substitute for State 0</td>
+          </tr>
+          <tr>
+            <td class="ct-check">Epistemic Hold flag</td>
+            <td class="ct-artifact">UncertaintyQuantification.epistemicHoldActive</td>
+            <td class="ct-correct">true (const in State 0 context)</td>
+            <td class="ct-wrong">false; absent; null</td>
+          </tr>
+          <tr>
+            <td class="ct-check">Resolution states</td>
+            <td class="ct-artifact">DeliberationMatrix.resolutionOptions[].proposedState; TSLF-State0.resolution.resolvedState</td>
+            <td class="ct-correct">1 or -1 only (terminal states)</td>
+            <td class="ct-wrong">0 (Sacred Zero cannot resolve to another Sacred Zero)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 3.3 Goukassian Artifact Name Integrity -->
+    <div id="p3-goukassian" class="subsection">
+      <div class="subsection-label gold">3.3 Goukassian Promise &mdash; Artifact Name Integrity</div>
+      <div class="callout callout-iron">The canonical Goukassian Promise artifact names appear as const values in three schema properties. An auditor must confirm these are exactly the lowercase strings shown. Any variation in case, spelling, or value is a schema violation.</div>
+      <table class="cross-table">
+        <thead><tr><th>Artifact</th><th>Schema</th><th>Property</th><th>const Value</th><th>Usage Context</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="ct-feature">Lantern</td>
+            <td class="ct-artifact">LanternStatus</td>
+            <td class="ct-artifact">artifactName</td>
+            <td class="ct-correct">"lantern"</td>
+            <td class="ct-mech">Public compliance beacon; required in TSLF-State0; exposed at GET /sacred-zero/lantern; lanternStatusBroadcast webhook</td>
+          </tr>
+          <tr>
+            <td class="ct-feature">Signature</td>
+            <td class="ct-artifact">SignatureBlock</td>
+            <td class="ct-artifact">artifactName</td>
+            <td class="ct-correct">"signature"</td>
+            <td class="ct-mech">Provenance and non-repudiation; required in TSLF-StateP1 as theSignature; LanternStatus.signatureBlock; ComplianceAttestation.signatureBlock</td>
+          </tr>
+          <tr>
+            <td class="ct-feature">License</td>
+            <td class="ct-artifact">LicenseValidationRequest</td>
+            <td class="ct-artifact">artifactName</td>
+            <td class="ct-correct">"license"</td>
+            <td class="ct-mech">Governs authorized use; validated at POST /goukassian/license/validate; violations trigger State -1 via TSLF-State-1.licenseViolation</td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="font-size:11px;color:var(--white-muted);margin-top:10px;">LicenseViolationRecord.violatedArtifact uses the same lowercase enum values: "lantern", "signature", "license". In the ABI (ITMLEnforcer), these are encoded as ordinals for on-chain compatibility: 1 = "lantern", 2 = "signature", 3 = "license".</p>
+    </div>
+
+    <!-- 3.4 Implementation Gap -->
+    <div id="p3-future" class="subsection">
+      <div class="subsection-label red">3.4 Implementation Gap &mdash; FUTURE Features (Section 10)</div>
+      <div class="callout callout-future">All FUTURE-classified items trace to Section 10 (Implementation Gap) of the TML Constitutionalization Monograph v3.3. No endpoint or schema claims to implement any feature in this table. SHIPPING mitigations are noted; they do not close the underlying gap.</div>
+      <table class="cross-table">
+        <thead><tr><th>Feature</th><th>Section 10 Blocking Constraint</th><th>SHIPPING Mitigation</th><th>Remaining Gap</th><th>Specification Artifacts Affected</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="ct-feature">Real-time per-token blockchain anchoring</td>
+            <td class="ct-constraint">Throughput asymmetry at global AI scale. Public blockchain TPS insufficient for per-token writes at Anchoring Lane latency.</td>
+            <td class="ct-mitigation">Merkle-batched anchoring. estimatedFinalizationAt field; GET /audit/verifications/merkle/{root}; GET /audit/verifications/inclusion/{logId}.</td>
+            <td class="ct-gap">Finalization lag between log commit and blockchain confirmation. PermissionToken valid before batch finalization; forensic auditability deferred.</td>
+            <td class="ct-artifact">POST /anchoring-logs; PermissionToken; MerkleInclusionProof; TML_Core.anchorMerkleRoot</td>
+          </tr>
+          <tr>
+            <td class="ct-feature">Post-quantum cryptography (PQC) signature migration</td>
+            <td class="ct-constraint">HSM vendor firmware and EVM toolchain not uniformly supporting FIPS 204 (ML-DSA) / FIPS 205 (SLH-DSA) in production as of monograph version.</td>
+            <td class="ct-mitigation">ES256 (ECDSA P-256) as SHIPPING default. PQC algorithm IDs reserved in SignatureBlock.signatureAlgorithm enum and EIP-712 GoukassianSignatureAttestation.signatureAlgorithmId.</td>
+            <td class="ct-gap">Cryptographic non-repudiation chain retains long-term quantum vulnerability until HSM vendors and EVM toolchains ship PQC support.</td>
+            <td class="ct-artifact">SignatureBlock.signatureAlgorithm; eip712_typed_data.json GoukassianSignatureAttestation signatureAlgorithmId 6-7</td>
+          </tr>
+          <tr>
+            <td class="ct-feature">Hardware Moral Processing Units (MPUs)</td>
+            <td class="ct-constraint">No production MPU silicon. Hardware gating of the actuation bus is architecturally desirable but physically unavailable.</td>
+            <td class="ct-mitigation">Dual-Lane software architecture. InferenceLaneSecurity vs AnchoringLaneSecurity. PermissionToken.laneOrigin: const "ANCHORING_LANE". GET /gateway/status failClosedActive field.</td>
+            <td class="ct-gap">Software enforcement requires a trusted execution environment. Non-conforming implementation can bypass software constraints; hardware gating would make this physically impossible.</td>
+            <td class="ct-artifact">Entire Dual-Lane Architecture; GatewayRoutingStatus; PermissionToken.laneOrigin</td>
+          </tr>
+          <tr>
+            <td class="ct-feature">Cross-jurisdiction custodian quorum in &lt;500ms</td>
+            <td class="ct-constraint">Network physics. Speed-of-light minimum RTT between geographically distributed custodian nodes exceeds 500ms budget for synchronous full quorum.</td>
+            <td class="ct-mitigation">Regional co-located subsets can achieve sub-500ms locally. GET /regulator/custodian-quorum reports crossJurisdictionLatencyMs. PermissionToken.custodianQuorumAttestation optional BETA field.</td>
+            <td class="ct-gap">Full cross-jurisdictional quorum within &lt;500ms is not achievable with current network infrastructure. Endpoint is SHIPPING; the latency target is FUTURE.</td>
+            <td class="ct-artifact">GET /regulator/custodian-quorum (x-tml-blocking-constraint annotation); PermissionToken.custodianQuorumAttestation (BETA); CustodianHeartbeat.latencyMs</td>
+          </tr>
+          <tr>
+            <td class="ct-feature">Immutable ledger with native GDPR Article 17 compliance (Erasure Paradox)</td>
+            <td class="ct-constraint">Architectural contradiction: cryptographic immutability (AlwaysMemory) and right to erasure (Article 17) cannot both be satisfied natively by a single log store.</td>
+            <td class="ct-mitigation">Cryptographic erasure: personal data encrypted per-record; key destruction renders data computationally inaccessible. This is a practical approximation under current regulatory interpretation, not native compliance.</td>
+            <td class="ct-gap">Three remaining gaps: (1) key-destruction-as-erasure not affirmed by all EU supervisory authorities; (2) erasure key registry is a critical dependency; (3) log metadata may itself constitute personal data in some jurisdictions.</td>
+            <td class="ct-artifact">All TSLF schemas; SHA256Hex; PermissionToken.logHash; AuditProof; Cryptographic Erasure folder (TernaryLogic repo)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>TML Specification Architecture &mdash; Step 4 of 5 &mdash; constitutional_compliance_matrix.md &mdash; v3.3.0-tml-monograph-2025</span>
+    <span>Authority: TML Constitutionalization Monograph v3.3</span>
+  </div>
+</main>
+
+</body>
+</html>

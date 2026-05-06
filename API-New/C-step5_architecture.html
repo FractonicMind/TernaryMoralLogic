@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TML Specification — Step 5: Architecture &amp; Future Appendix</title>
+<style>
+  :root {
+    --navy:        #0a1628;
+    --navy-mid:    #0f2040;
+    --navy-light:  #162a52;
+    --navy-border: #1e3a6e;
+    --gold:        #d4a574;
+    --gold-dim:    #a07848;
+    --gold-glow:   rgba(212,165,116,0.12);
+    --gold-glow2:  rgba(212,165,116,0.06);
+    --white:       #f0ece4;
+    --white-dim:   #b8b0a0;
+    --white-muted: #6e6860;
+    --green:       #27ae60;
+    --green-soft:  rgba(39,174,96,0.13);
+    --amber:       #e67e22;
+    --amber-soft:  rgba(230,126,34,0.13);
+    --red:         #c0392b;
+    --red-soft:    rgba(192,57,43,0.13);
+    --blue:        #2980b9;
+    --blue-soft:   rgba(41,128,185,0.13);
+    --teal:        #16a085;
+    --teal-soft:   rgba(22,160,133,0.13);
+    --purple:      #8e44ad;
+    --purple-soft: rgba(142,68,173,0.13);
+    --sidebar-w:   268px;
+    --font-serif:  Georgia, 'Times New Roman', serif;
+    --font-sans:   'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --font-mono:   'Courier New', Courier, monospace;
+    --prose-max:   720px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--navy); color: var(--white); font-family: var(--font-serif); font-size: 15px; line-height: 1.8; display: flex; min-height: 100vh; }
+
+  /* ── SIDEBAR ── */
+  .sidebar { position: fixed; top: 0; left: 0; width: var(--sidebar-w); height: 100vh; background: var(--navy-mid); border-right: 1px solid var(--navy-border); overflow-y: auto; z-index: 100; padding-bottom: 40px; }
+  .sidebar::-webkit-scrollbar { width: 4px; }
+  .sidebar::-webkit-scrollbar-thumb { background: var(--navy-border); border-radius: 2px; }
+  .sidebar-header { padding: 24px 16px 16px; border-bottom: 1px solid var(--navy-border); position: sticky; top: 0; background: var(--navy-mid); z-index: 10; }
+  .step-badge { font-family: var(--font-sans); font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); background: var(--gold-glow); border: 1px solid var(--gold-dim); padding: 3px 8px; border-radius: 2px; display: inline-block; margin-bottom: 10px; }
+  .sidebar-header h1 { font-family: var(--font-sans); font-size: 11.5px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--white); line-height: 1.35; }
+  .sidebar-header .version { font-family: var(--font-mono); font-size: 9.5px; color: var(--white-muted); margin-top: 5px; }
+  .sidebar-group { padding: 12px 0 2px; }
+  .sidebar-group-label { font-family: var(--font-sans); font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-dim); padding: 0 16px 5px; }
+  .sidebar-link { display: flex; align-items: center; gap: 7px; padding: 5px 16px; text-decoration: none; color: var(--white-dim); font-family: var(--font-sans); font-size: 10.5px; transition: all 0.15s; border-left: 2px solid transparent; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .sidebar-link:hover { color: var(--gold); background: var(--gold-glow2); border-left-color: var(--gold-dim); }
+  .sdot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
+  .sdot-arch   { background: #7ab8e8; }
+  .sdot-future { background: #e87878; }
+  .sidebar-divider { border: none; border-top: 1px solid var(--navy-border); margin: 6px 16px; }
+
+  /* ── MAIN ── */
+  .main { margin-left: var(--sidebar-w); flex: 1; padding: 0 52px 80px; }
+
+  /* ── PAGE HEADER ── */
+  .page-header { padding: 46px 0 30px; border-bottom: 1px solid var(--navy-border); margin-bottom: 40px; }
+  .doc-label { font-family: var(--font-sans); font-size: 9px; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+  .page-header h2 { font-family: var(--font-sans); font-size: 26px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+  .subtitle { font-family: var(--font-serif); font-size: 14px; color: var(--white-dim); font-style: italic; margin-bottom: 18px; }
+  .meta-row { display: flex; gap: 14px; flex-wrap: wrap; }
+  .meta-chip { font-family: var(--font-mono); font-size: 10px; color: var(--white-muted); background: var(--navy-mid); border: 1px solid var(--navy-border); padding: 3px 9px; border-radius: 2px; }
+  .meta-chip span { color: var(--gold); }
+
+  /* ── PART DIVIDER ── */
+  .part-header { display: flex; align-items: center; gap: 14px; margin-bottom: 36px; margin-top: 60px; padding-bottom: 16px; border-bottom: 2px solid var(--navy-border); }
+  .part-icon { width: 42px; height: 42px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+  .pi-arch   { background: var(--blue-soft);   border: 1px solid rgba(41,128,185,0.3); }
+  .pi-future { background: var(--red-soft);    border: 1px solid rgba(192,57,43,0.3); }
+  .part-title { font-family: var(--font-sans); font-size: 13px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; }
+  .pt-arch   { color: #7ab8e8; }
+  .pt-future { color: #e87878; }
+  .part-subtitle { font-size: 13px; color: var(--white-muted); margin-top: 3px; }
+
+  /* ── SECTION HEADING ── */
+  .section { margin-bottom: 52px; max-width: var(--prose-max); }
+  .section.wide { max-width: 100%; }
+  .section-num {
+    font-family: var(--font-sans); font-size: 9px; font-weight: 700;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-dim);
+    margin-bottom: 6px;
+  }
+  .section h3 {
+    font-family: var(--font-sans); font-size: 15px; font-weight: 700;
+    color: var(--white); margin-bottom: 14px; letter-spacing: -0.01em;
+    padding-bottom: 8px; border-bottom: 1px solid var(--navy-border);
+  }
+
+  /* ── PROSE ── */
+  .prose { font-family: var(--font-serif); font-size: 15px; color: var(--white-dim); line-height: 1.85; }
+  .prose p { margin-bottom: 16px; }
+  .prose p:last-child { margin-bottom: 0; }
+  .prose strong { color: var(--white); font-weight: 600; }
+  .prose em { color: var(--gold); font-style: normal; }
+  .prose code {
+    font-family: var(--font-mono); font-size: 12px; color: var(--gold);
+    background: var(--navy-mid); border: 1px solid var(--navy-border);
+    padding: 1px 5px; border-radius: 2px;
+  }
+
+  /* ── CALLOUTS ── */
+  .callout { border-radius: 3px; padding: 14px 18px; margin: 18px 0; line-height: 1.75; }
+  .callout-vow {
+    background: var(--navy);
+    border: 1px solid var(--navy-border);
+    border-left: 3px solid var(--gold-dim);
+    font-family: var(--font-mono); font-size: 12.5px; color: var(--gold);
+  }
+  .callout-vow .vow-line { display: block; padding: 2px 0; }
+  .callout-iron {
+    background: var(--gold-glow); border: 1px solid var(--gold-dim);
+    font-family: var(--font-sans); font-size: 11.5px; color: var(--gold); font-weight: 600; letter-spacing: 0.03em;
+  }
+  .callout-sacred {
+    background: rgba(22,160,133,0.1); border: 1px solid rgba(22,160,133,0.3);
+    font-family: var(--font-sans); font-size: 12px; color: #7dd4cc;
+  }
+  .callout-future {
+    background: var(--red-soft); border: 1px solid rgba(192,57,43,0.3);
+    font-family: var(--font-sans); font-size: 12px; color: #e87878;
+  }
+  .callout-arch {
+    background: var(--navy-mid); border: 1px solid var(--navy-border);
+    border-left: 3px solid #7ab8e8;
+    font-family: var(--font-mono); font-size: 11.5px; color: var(--white-dim); line-height: 1.9;
+  }
+  .callout-arch .kw  { color: #7ab8e8; font-weight: 700; }
+  .callout-arch .val { color: var(--gold); }
+  .callout-arch .cm  { color: var(--white-muted); font-style: italic; }
+
+  /* ── FIVE-LAYER TABLE ── */
+  .layer-table { width: 100%; border-collapse: collapse; margin: 18px 0; font-size: 12.5px; border: 1px solid var(--navy-border); border-radius: 4px; overflow: hidden; }
+  .layer-table thead tr { background: var(--navy-light); }
+  .layer-table thead th { font-family: var(--font-sans); font-size: 8.5px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--white-muted); padding: 9px 12px; text-align: left; border-bottom: 1px solid var(--navy-border); }
+  .layer-table tbody tr { border-bottom: 1px solid rgba(30,58,110,0.4); transition: background 0.1s; }
+  .layer-table tbody tr:hover { background: rgba(212,165,116,0.04); }
+  .layer-table tbody tr:last-child { border-bottom: none; }
+  .layer-table td { padding: 9px 12px; vertical-align: top; line-height: 1.55; }
+  .lt-num   { font-family: var(--font-sans); font-size: 11px; font-weight: 700; color: var(--gold); white-space: nowrap; }
+  .lt-art   { font-family: var(--font-mono); font-size: 11px; color: var(--white); }
+  .lt-mech  { font-size: 12px; color: var(--white-dim); }
+  .lt-sec   { font-family: var(--font-mono); font-size: 10.5px; color: var(--gold-dim); white-space: nowrap; }
+
+  /* ── PILLAR TABLE ── */
+  .pillar-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 18px 0; max-width: 100%; }
+  .pillar-card { background: var(--navy-mid); border: 1px solid var(--navy-border); border-radius: 3px; padding: 14px 16px; }
+  .pc-num { font-family: var(--font-sans); font-size: 9px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold-dim); margin-bottom: 4px; }
+  .pc-name { font-family: var(--font-sans); font-size: 11.5px; font-weight: 700; color: var(--gold); margin-bottom: 8px; }
+  .pc-api { font-family: var(--font-mono); font-size: 10px; color: var(--white-dim); margin-bottom: 6px; line-height: 1.7; }
+  .pc-schema { font-size: 11.5px; color: var(--white-muted); line-height: 1.6; }
+
+  /* ── FUTURE FEATURE CARDS ── */
+  .feature-card { background: var(--navy-mid); border: 1px solid var(--navy-border); border-radius: 4px; margin-bottom: 28px; overflow: hidden; }
+  .feature-header { display: flex; align-items: center; gap: 14px; padding: 16px 20px; background: var(--navy-light); border-bottom: 1px solid var(--navy-border); }
+  .feature-num { font-family: var(--font-sans); font-size: 9px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--white-muted); flex-shrink: 0; }
+  .feature-name { font-family: var(--font-sans); font-size: 14px; font-weight: 700; color: var(--white); flex: 1; }
+  .future-badge { font-family: var(--font-sans); font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 8px; border-radius: 2px; background: var(--red-soft); color: #e87878; border: 1px solid rgba(192,57,43,0.4); flex-shrink: 0; }
+  .feature-body { padding: 20px; }
+
+  .feature-section-label { font-family: var(--font-sans); font-size: 9px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold-dim); margin-bottom: 8px; margin-top: 16px; }
+  .feature-section-label:first-of-type { margin-top: 0; }
+  .feature-prose { font-family: var(--font-serif); font-size: 13.5px; color: var(--white-dim); line-height: 1.8; margin-bottom: 12px; }
+  .feature-prose strong { color: var(--white); }
+  .feature-mono { font-family: var(--font-mono); font-size: 11px; color: var(--white-dim); background: var(--navy); border: 1px solid var(--navy-border); border-radius: 3px; padding: 10px 14px; line-height: 1.8; margin-bottom: 12px; }
+  .feature-mono .fk { color: #7ab8e8; }
+  .feature-mono .fv { color: var(--gold); }
+
+  .mitigation-tag { display: inline-block; font-family: var(--font-sans); font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 2px 7px; border-radius: 2px; margin-bottom: 8px; background: var(--green-soft); color: #7de0a0; border: 1px solid rgba(39,174,96,0.3); }
+  .gap-tag { display: inline-block; font-family: var(--font-sans); font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 2px 7px; border-radius: 2px; margin-bottom: 8px; background: var(--red-soft); color: #e87878; border: 1px solid rgba(192,57,43,0.3); }
+  .artifacts-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+  .artifact-chip { font-family: var(--font-mono); font-size: 10px; color: var(--white-dim); background: var(--navy); border: 1px solid var(--navy-border); padding: 2px 7px; border-radius: 2px; }
+
+  /* ── APPENDIX INDEX TABLE ── */
+  .index-table { width: 100%; border-collapse: collapse; margin-top: 24px; font-size: 12.5px; border: 1px solid var(--navy-border); border-radius: 4px; overflow: hidden; }
+  .index-table thead tr { background: var(--navy-light); }
+  .index-table thead th { font-family: var(--font-sans); font-size: 8.5px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--white-muted); padding: 9px 12px; text-align: left; border-bottom: 1px solid var(--navy-border); }
+  .index-table tbody tr { border-bottom: 1px solid rgba(30,58,110,0.4); }
+  .index-table tbody tr:last-child { border-bottom: none; }
+  .index-table tbody tr:hover { background: rgba(212,165,116,0.04); }
+  .index-table td { padding: 9px 12px; vertical-align: top; line-height: 1.55; }
+  .it-feature { font-size: 12.5px; color: var(--white); font-weight: 600; }
+  .it-pillar  { font-family: var(--font-sans); font-size: 10px; color: var(--gold); }
+  .it-constraint { font-size: 12px; color: var(--white-dim); }
+  .it-artifact { font-family: var(--font-mono); font-size: 10.5px; color: var(--white-muted); }
+
+  /* ── AUDITOR WORKFLOW ── */
+  .workflow-steps { list-style: none; margin: 16px 0; }
+  .workflow-step { display: flex; gap: 14px; margin-bottom: 14px; align-items: flex-start; }
+  .step-num { font-family: var(--font-sans); font-size: 10px; font-weight: 700; color: var(--gold); background: var(--gold-glow); border: 1px solid var(--gold-dim); width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+  .step-body { font-family: var(--font-serif); font-size: 13.5px; color: var(--white-dim); line-height: 1.75; }
+  .step-body code { font-family: var(--font-mono); font-size: 11.5px; color: var(--gold); background: var(--navy-mid); border: 1px solid var(--navy-border); padding: 1px 5px; border-radius: 2px; }
+
+  /* ── DIVIDER ── */
+  .prose-rule { border: none; border-top: 1px solid var(--navy-border); margin: 36px 0; }
+
+  /* ── FOOTER ── */
+  .footer { margin-top: 60px; padding-top: 22px; border-top: 1px solid var(--navy-border); font-family: var(--font-sans); font-size: 10px; color: var(--white-muted); letter-spacing: 0.07em; display: flex; justify-content: space-between; }
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--navy); }
+  ::-webkit-scrollbar-thumb { background: var(--navy-border); border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<nav class="sidebar">
+  <div class="sidebar-header">
+    <div class="step-badge">Step 5 of 5</div>
+    <h1>Architecture &amp;<br>Future Appendix</h1>
+    <div class="version">Deliverables F &amp; G &mdash; v3.3.0-tml-monograph-2025</div>
+  </div>
+
+  <div class="sidebar-group">
+    <div class="sidebar-group-label">Part F &mdash; Architecture</div>
+    <a href="#f1" class="sidebar-link"><span class="sdot sdot-arch"></span>1. Binary and Ternary in Parallel</a>
+    <a href="#f2" class="sidebar-link"><span class="sdot sdot-arch"></span>2. Dual-Lane in OpenAPI Paths</a>
+    <a href="#f3" class="sidebar-link"><span class="sdot sdot-arch"></span>3. Binary Proposes; Anchoring Dictates</a>
+    <a href="#f4" class="sidebar-link"><span class="sdot sdot-arch"></span>4. No Log = No Action (5 Layers)</a>
+    <a href="#f5" class="sidebar-link"><span class="sdot sdot-arch"></span>5. Sacred Zero: State, Workflow, Escalation</a>
+    <a href="#f6" class="sidebar-link"><span class="sdot sdot-arch"></span>6. Goukassian Promise: 3 Artifacts</a>
+    <a href="#f7" class="sidebar-link"><span class="sdot sdot-arch"></span>7. Eight Pillars: API vs Out-of-Band</a>
+    <a href="#f8" class="sidebar-link"><span class="sdot sdot-arch"></span>8. Auditor and Regulator Surface</a>
+    <a href="#f9" class="sidebar-link"><span class="sdot sdot-arch"></span>9. Error Handling</a>
+    <a href="#f10" class="sidebar-link"><span class="sdot sdot-arch"></span>10. Idempotency and Anti-Spoliation</a>
+  </div>
+
+  <hr class="sidebar-divider">
+
+  <div class="sidebar-group">
+    <div class="sidebar-group-label">Part G &mdash; Future Appendix</div>
+    <a href="#g1" class="sidebar-link"><span class="sdot sdot-future"></span>Feature 1: Per-Token Anchoring</a>
+    <a href="#g2" class="sidebar-link"><span class="sdot sdot-future"></span>Feature 2: PQC Migration</a>
+    <a href="#g3" class="sidebar-link"><span class="sdot sdot-future"></span>Feature 3: Hardware MPUs</a>
+    <a href="#g4" class="sidebar-link"><span class="sdot sdot-future"></span>Feature 4: Sub-500ms Quorum</a>
+    <a href="#g5" class="sidebar-link"><span class="sdot sdot-future"></span>Feature 5: GDPR Art. 17 Erasure</a>
+    <a href="#g-index" class="sidebar-link"><span class="sdot sdot-future"></span>Appendix Index</a>
+  </div>
+</nav>
+
+<main class="main">
+
+  <div class="page-header">
+    <div class="doc-label">TML Specification Architecture &mdash; Deliverables F &amp; G</div>
+    <h2>Specification Architecture &amp; Future Appendix</h2>
+    <div class="subtitle">Narrative companion to the machine-readable specifications &mdash; how the architecture works, and what remains unbuildable</div>
+    <div class="meta-row">
+      <div class="meta-chip">Deliverable F <span>specification_architecture.md</span></div>
+      <div class="meta-chip">Deliverable G <span>future_blocked_appendix.md</span></div>
+      <div class="meta-chip">authority <span>TML Monograph v3.3</span></div>
+      <div class="meta-chip">supersedes <span>docs/specs/Dual-Lane Architecture.md</span></div>
+    </div>
+  </div>
+
+<!-- ════════════════════════════════════════════════════
+     PART F: SPECIFICATION ARCHITECTURE
+════════════════════════════════════════════════════ -->
+
+  <div class="part-header">
+    <div class="part-icon pi-arch">&#9784;</div>
+    <div>
+      <div class="part-title pt-arch">Part F &mdash; specification_architecture.md</div>
+      <div class="part-subtitle">Canonical narrative explaining how the Dual-Lane Architecture, No Log = No Action, the Goukassian Promise, and the Eight Pillars are expressed across openapi.yaml and tml_schema.json</div>
+    </div>
+  </div>
+
+  <!-- 1. BINARY AND TERNARY IN PARALLEL -->
+  <div id="f1" class="section">
+    <div class="section-num">Section 1</div>
+    <h3>Foundational Architecture: Binary and Ternary in Parallel</h3>
+    <div class="prose">
+      <p>The TML framework does not replace the binary inference engine. This is the most consequential architectural fact in the entire specification, and every design decision in <code>openapi.yaml</code> and <code>tml_schema.json</code> flows from it.</p>
+      <p>The binary inference engine operates as the system's fast cognitive layer: speed, pattern recognition, and statistical throughput. The ternary logic operates as a <strong>sovereign governance coprocessor running in parallel</strong>. These two systems are not sequential; they are not a pipeline where one feeds the other and then yields. They operate simultaneously on distinct lanes, and their relationship is asymmetric by constitutional design.</p>
+      <p>The binary system <strong>proposes</strong> actions. The ternary system <strong>dictates</strong> whether those actions physically cross the threshold into execution.</p>
+      <p>This asymmetry is not a preference. It is the architectural enforcement of the Goukassian Vow:</p>
+    </div>
+    <div class="callout callout-vow">
+      <span class="vow-line">"Pause when truth is uncertain" &nbsp;&rarr;&nbsp; State &nbsp;0 (SACRED_ZERO)</span>
+      <span class="vow-line">"Refuse when harm is clear" &nbsp;&nbsp;&nbsp;&nbsp;&rarr;&nbsp; State -1 (REFUSE)</span>
+      <span class="vow-line">"Proceed where truth is" &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&rarr;&nbsp; State +1 (PROCEED)</span>
+    </div>
+    <div class="prose">
+      <p>The binary system can only ever produce a proposal. The ternary system holds the actuation gate. No proposal from the binary system authorizes execution. Only a cryptographically valid Permission Token, issued exclusively by the Anchoring Lane after an immutable Moral Trace Log has been committed, authorizes execution. This is the No Log = No Action iron law, enforced at three independent layers: the OpenAPI contract, the JSON Schema bundle, and the on-chain ABI.</p>
+    </div>
+  </div>
+
+  <!-- 2. DUAL-LANE IN OPENAPI PATHS -->
+  <div id="f2" class="section wide">
+    <div class="section-num">Section 2</div>
+    <h3>The Dual-Lane Architecture in OpenAPI Paths</h3>
+    <div class="prose">
+      <p>The <code>openapi.yaml</code> specification expresses the Dual-Lane Architecture as two structurally distinct path groups, each with its own security scheme, latency envelope, and constitutional function.</p>
+    </div>
+    <div style="max-width:var(--prose-max)">
+      <p class="prose" style="margin-bottom:12px;"><strong>Lane 1: Inference Lane (Fast Path, &lt;2ms)</strong></p>
+      <div class="callout callout-arch">
+        <span class="kw">POST</span> <span class="fv">/decisions</span> &nbsp;<span class="cm">// submit decision vector; proposal only</span><br>
+        <span class="kw">GET</span>  <span class="fv">/decisions/{decisionId}</span> &nbsp;<span class="cm">// retrieve with any issued Permission Token</span><br>
+        <span class="kw">POST</span> <span class="fv">/gateway/lane-assignment</span> &nbsp;<span class="cm">// route to Inference or Anchoring Lane</span><br>
+        <span class="kw">GET</span>  <span class="fv">/gateway/status</span> &nbsp;<span class="cm">// fail-closed status</span>
+      </div>
+      <p class="prose">These paths are secured by <code>InferenceLaneSecurity</code> (<em>mTLS + ServiceAccountJWT</em>). A <code>StateEnvelope</code> returning <code>currentState: 1</code> from <code>POST /decisions</code> does not authorize actuation. The schema enforces this structurally: an object claiming <code>currentState: 1</code> without a <code>permissionToken</code> field fails schema validation. This is the schema-level expression of the binary system's constitutional limitation. It can propose; it cannot authorize.</p>
+
+      <p class="prose" style="margin-bottom:12px;margin-top:20px;"><strong>Lane 2: Anchoring Lane (Governance Lane, &lt;500ms)</strong></p>
+      <div class="callout callout-arch">
+        <span class="kw">POST</span> <span class="fv">/anchoring-logs</span> &nbsp;<span class="cm">// central No Log = No Action enforcement; issues Permission Token for State +1</span><br>
+        <span class="kw">GET</span>  <span class="fv">/anchoring-logs/{logId}</span><br>
+        <span class="kw">GET/PATCH</span> <span class="fv">/sacred-zero/escalations/{id}</span> &nbsp;<span class="cm">// human-in-the-loop review queue</span><br>
+        <span class="kw">POST</span> <span class="fv">/refusals</span> &nbsp;<span class="cm">// hard State -1; no Permission Token issued</span><br>
+        <span class="kw">POST</span> <span class="fv">/emergency/override</span> &nbsp;<span class="cm">// Section 13.3 supreme authority; logged before execution</span>
+      </div>
+      <p class="prose">These paths are secured by <code>AnchoringLaneSecurity</code> (<em>HSM-SignedJWT + MutualTLS</em>). The HSM requirement is not incidental. The Anchoring Lane's authority to issue Permission Tokens derives from hardware-backed key material registered in the HybridShield 6-Custodian registry. A software-signed JWT cannot satisfy these endpoints.</p>
+      <p class="prose"><code>POST /anchoring-logs</code> is the central enforcement point for No Log = No Action. Its request body accepts a <code>oneOf</code> discriminated union of the three TSLF variants, discriminated on <code>currentState</code>. Its response for <code>currentState: 1</code> includes a <code>permissionToken</code> object. For <code>currentState: 0</code> and <code>currentState: -1</code>, no Permission Token is returned; no actuation is authorized; the actuation layer remains locked.</p>
+    </div>
+
+    <div class="prose" style="max-width:var(--prose-max);margin-top:20px;">
+      <p><strong>The TML Gateway</strong> sits at the entry point. Its constitutional obligation is fail-closed: if it cannot route to the Anchoring Lane, it does not route to Inference and proceed optimistically. It defaults to <code>currentState: 0</code> (SacredZero) and activates the Sacred Pause. The <code>GatewayRoutingStatus</code> schema exposes <code>failClosedActive</code> as a boolean and <code>operationalStatus</code> with a <code>FAIL_CLOSED_ACTIVE</code> value. These give the actuation layer a machine-readable signal that the system has entered constitutional hold, not a degraded best-effort mode.</p>
+    </div>
+  </div>
+
+  <!-- 3. BINARY PROPOSES; ANCHORING DICTATES -->
+  <div id="f3" class="section">
+    <div class="section-num">Section 3</div>
+    <h3>The Binary System Proposes; the Anchoring Lane Dictates</h3>
+    <div class="prose">
+      <p>The separation of proposal from authorization is expressed at every layer of the specification. This section traces the full lifecycle of a decision vector to demonstrate that no ambiguity exists in the contract between the binary and ternary systems.</p>
+
+      <p><strong>Decision vector submission.</strong> The binary inference engine submits a <code>JustificationObject</code> alongside a <code>proposedAction</code> to <code>POST /decisions</code>. The <code>JustificationObject.proposedState</code> field is described as "a proposal only; the Anchoring Lane determines the authoritative state." The <code>uncertaintyScore</code> field, if it breaches the configured SacredZero threshold, overrides the binary engine's <code>proposedState</code> and mandates <code>currentState: 0</code> regardless of what the binary engine proposed. The Anchoring Lane cannot be argued out of Sacred Zero by a confident binary engine. The <code>JustificationObject</code> travels from the Inference Lane to the Anchoring Lane. It informs. It does not authorize.</p>
+
+      <p><strong>Anchoring Lane evaluation.</strong> <code>POST /anchoring-logs</code> receives the complete TSLF record. The Anchoring Lane performs its own ternary evaluation, independent of the binary engine's <code>proposedState</code>. The <code>EthicalVerification</code> schema captures this independent assessment: it requires a <code>PillarVerificationResult</code> for each of the Eight Pillars, and its <code>overallVerdict</code> field is determined by the Anchoring Lane alone. A <code>FAILED</code> verdict from any pillar triggers <code>currentState: -1</code> regardless of what the binary engine proposed.</p>
+
+      <p><strong>Permission Token as actuation gate.</strong> The Permission Token's structure enforces authorization integrity through five properties: <code>logHash</code> (SHA-256 of the anchored log; no token without a log), <code>laneOrigin: const "ANCHORING_LANE"</code> (schema-level rejection of Inference Lane tokens), <code>merkleRoot</code> (binds token to public blockchain anchor), <code>expiresAt</code> (hard expiry; actuation layer must reject expired tokens), and <code>signatureValue</code> (HSM signature verified before actuation). The <code>StateEnvelope</code> schema enforces the token's mandatory presence via an <code>if/then</code> constraint: when <code>currentState</code> is <code>1</code>, <code>permissionToken</code> is a required field. This constraint cannot be bypassed by a conforming implementation.</p>
+    </div>
+  </div>
+
+  <!-- 4. NO LOG = NO ACTION -->
+  <div id="f4" class="section wide">
+    <div class="section-num">Section 4</div>
+    <h3>No Log = No Action: Schema-Level Enforcement</h3>
+    <div class="prose" style="max-width:var(--prose-max);">
+      <p>No Log = No Action is not a policy statement in this specification. It is a structural constraint enforced at five independent layers. An implementation that satisfies the OpenAPI contract and JSON Schema bundle cannot, by construction, issue a valid actuation authorization without a preceding immutable log commitment.</p>
+    </div>
+    <div class="callout callout-iron" style="max-width:var(--prose-max);">
+      The five layers are independent. Bypassing one does not bypass the others. An auditor must verify all five are intact.
+    </div>
+    <table class="layer-table">
+      <thead><tr><th>Layer</th><th>Location</th><th>Enforcement Mechanism</th><th>Monograph Section</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="lt-num">Layer 1</td>
+          <td class="lt-art">StateEnvelope if/then<br><span style="font-size:9.5px;color:var(--white-muted);">tml_schema.json#/$defs/StateEnvelope</span></td>
+          <td class="lt-mech">When <code>currentState == 1</code>, <code>permissionToken</code> is REQUIRED. Any StateEnvelope claiming PROCEED without a Permission Token fails schema validation. <code>unevaluatedProperties: false</code> prevents bypass.</td>
+          <td class="lt-sec">Section 2.3.3</td>
+        </tr>
+        <tr>
+          <td class="lt-num">Layer 2</td>
+          <td class="lt-art">PermissionToken.laneOrigin<br><span style="font-size:9.5px;color:var(--white-muted);">tml_schema.json#/$defs/PermissionToken</span></td>
+          <td class="lt-mech"><code>laneOrigin: const "ANCHORING_LANE"</code>. Any Permission Token carrying <code>laneOrigin: "INFERENCE_LANE"</code> is schema-invalid. The Inference Lane cannot produce a valid Permission Token by data contract.</td>
+          <td class="lt-sec">Section 2.3</td>
+        </tr>
+        <tr>
+          <td class="lt-num">Layer 3</td>
+          <td class="lt-art">TSLF-StateP1 required array<br><span style="font-size:9.5px;color:var(--white-muted);">tml_schema.json#/$defs/TSLF-StateP1</span></td>
+          <td class="lt-mech"><code>permissionToken</code> is in the <code>required</code> array alongside <code>ethicalVerification</code>, <code>theSignature</code>, and <code>auditProof</code>. <code>committedAt</code> documents the pre-actuation commit: the log is committed before the Permission Token is released to the actuation layer.</td>
+          <td class="lt-sec">Section 5B.i</td>
+        </tr>
+        <tr>
+          <td class="lt-num">Layer 4</td>
+          <td class="lt-art">AuditProof cross-reference<br><span style="font-size:9.5px;color:var(--white-muted);">tml_schema.json#/$defs/AuditProof</span></td>
+          <td class="lt-mech"><code>AuditProof.logHash</code> must match <code>PermissionToken.logHash</code>; <code>AuditProof.merkleRoot</code> must match <code>PermissionToken.merkleRoot</code>. The <code>inclusionPath</code> array provides the cryptographic proof of log inclusion. Traversal: token &rarr; logHash &rarr; merkleRoot &rarr; inclusionPath &rarr; <code>GET /audit/verifications/merkle/{merkleRoot}</code>.</td>
+          <td class="lt-sec">Section 8</td>
+        </tr>
+        <tr>
+          <td class="lt-num">Layer 5</td>
+          <td class="lt-art">TML_Core.registerPermissionToken<br>NoLogNoAction custom error<br><span style="font-size:9.5px;color:var(--white-muted);">tml_abi.json / TML_Core</span></td>
+          <td class="lt-mech">Reverts with <code>NoLogNoAction</code> error when a <code>logHash</code> is not provably included in a previously anchored Merkle root. The on-chain final arbiter. Even a schema-valid token fails registration if the authorizing log is not anchored on-chain.</td>
+          <td class="lt-sec">Section 2.3.3</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 5. SACRED ZERO -->
+  <div id="f5" class="section">
+    <div class="section-num">Section 5</div>
+    <h3>The Sacred Zero: State, Workflow, and Escalation</h3>
+    <div class="prose">
+      <p>Sacred Zero (State 0) is the most architecturally significant state in the TML framework, and the state most vulnerable to misrepresentation. It is a first-class integer member of the triadic state space. It is not <code>null</code>. It is not <code>false</code>. It is not an HTTP error code. It is not a timeout.</p>
+      <p>In <code>tml_schema.json</code>, the <code>StateEnvelope</code> <code>if/then/else</code> block enforces that when <code>currentState</code> is <code>0</code>, three distinct fields must carry three distinct values:</p>
+    </div>
+    <div class="callout callout-arch">
+      <span class="kw">currentState</span>:   <span class="fv">0</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cm">// the state value (signed integer)</span><br>
+      <span class="kw">stateLabel</span>:    <span class="fv">"SACRED_ZERO"</span> &nbsp;<span class="cm">// human-readable label</span><br>
+      <span class="kw">processActive</span>: <span class="fv">"SacredPause"</span> &nbsp;&nbsp;<span class="cm">// the operational workflow; NOT a state synonym</span>
+    </div>
+    <div class="prose">
+      <p>The Sacred Pause is <strong>not</strong> Sacred Zero. The Sacred Pause is the operational workflow that executes when the system enters Sacred Zero. A system that labels its state as <code>"SacredPause"</code> has confused the state with the process. The <code>TSLF-State0</code> schema enforces this with <code>const</code> constraints on all three fields.</p>
+      <p><strong>The Sacred Pause workflow in the API surface</strong> is expressed through four resources. <code>GET /sacred-zero/escalations</code> is the human-in-the-loop review queue. <code>GET /sacred-zero/escalations/{escalationId}</code> returns full detail including the <code>UncertaintyQuantification</code> record and the <code>DeliberationMatrix</code> presented to the human reviewer. <code>PATCH /sacred-zero/escalations/{escalationId}</code> is the human authority resolution endpoint: <code>resolvedState</code> accepts only <code>1</code> or <code>-1</code>; State <code>0</code> is not a valid resolution. The <code>sacredPauseEscalation</code> webhook delivers async notification to all registered escalation endpoints when Sacred Zero activates.</p>
+      <p>The <code>UncertaintyQuantification</code> schema captures the epistemic conditions. The <code>epistemicHoldActive</code> field carries <code>const: true</code> in State 0 contexts. Epistemic Hold is the canonical TML term for the system's recognition that it has reached the boundary of its reliable knowledge. The Anchoring Lane does not speculate beyond this boundary. It holds.</p>
+      <p>When Sacred Zero is activated, <code>LanternStatus.compliancePosture</code> reflects <code>"SACRED_ZERO_ACTIVE"</code> and <code>activeSacredZeroCount</code> increments. The <code>TSLF-State0</code> schema includes a required <code>lanternStatus</code> field: the Goukassian Promise Lantern must be captured at the moment of Sacred Zero activation. The Lantern's public signal must not lag behind the governance state.</p>
+    </div>
+  </div>
+
+  <!-- 6. GOUKASSIAN PROMISE -->
+  <div id="f6" class="section">
+    <div class="section-num">Section 6</div>
+    <h3>The Goukassian Promise: Lantern, Signature, and License as API Resources</h3>
+    <div class="prose">
+      <p>The Goukassian Promise (Pillar III) contributes three canonical artifacts to the TML system. In the monograph these are named as a triad. In the specification they are expressed as distinct schema types and API resources, each with its own <code>artifactName</code> property carrying a <code>const</code> value that is the lowercase canonical artifact name.</p>
+
+      <p><strong>The Lantern</strong> is the public compliance beacon, exposed at <code>GET /sacred-zero/lantern</code> and required in <code>TSLF-State0</code> records. The <code>LanternStatus</code> schema carries <code>artifactName: const "lantern"</code>. Its <code>compliancePosture</code> field provides a five-value enum spanning the full range of system compliance states. Its <code>pillarStatuses</code> object reports per-pillar live status across all Eight Pillars. The <code>LanternStatus</code> is embedded in the <code>GatewayRoutingStatus</code> schema, so operators reading Gateway status get the Lantern signal without a separate call.</p>
+
+      <p><strong>The Signature</strong> is the provenance and non-repudiation artifact. It is exposed at <code>GET /goukassian/signature</code> and embedded as a required field in <code>TSLF-StateP1</code> (as <code>theSignature</code>), in <code>LanternStatus</code>, in <code>ComplianceAttestation</code>, and in the EIP-712 <code>GoukassianSignatureAttestation</code> typed data schema. The <code>SignatureBlock</code> schema carries <code>artifactName: const "signature"</code>. Its <code>signatureAlgorithm</code> field enumerates current SHIPPING algorithms (ES256 through RS512) alongside FUTURE-reserved PQC identifiers (SLH-DSA-SHAKE-128s, ML-KEM-1024). The PQC identifiers are present to enable forward-compatible migration without a breaking schema change.</p>
+
+      <p><strong>The License</strong> governs authorized use of the TML system, exposed through <code>POST /goukassian/license/validate</code> (validation) and <code>POST /refusals/license-violations</code> (violation recording). The <code>LicenseValidationRequest</code> schema carries <code>artifactName: const "license"</code>. The <code>LicenseViolationRecord</code> schema records violations with a <code>violatedArtifact</code> field using lowercase canonical artifact names: <code>"lantern"</code>, <code>"signature"</code>, or <code>"license"</code>. In the <code>ITMLEnforcer</code> ABI, these are encoded as integer ordinals (1 = lantern, 2 = signature, 3 = license) for on-chain encoding compatibility.</p>
+    </div>
+  </div>
+
+  <!-- 7. EIGHT PILLARS -->
+  <div id="f7" class="section wide">
+    <div class="section-num">Section 7</div>
+    <h3>The Eight Pillars: API Capabilities and Out-of-Band Processes</h3>
+    <div class="prose" style="max-width:var(--prose-max);">
+      <p>Each Pillar is operationalized differently. Some are expressed primarily as API capabilities with specific endpoints and schema fields. Others are expressed primarily as out-of-band processes whose outputs appear in the specification as input fields or attestation artifacts.</p>
+    </div>
+    <div class="pillar-grid" style="margin-top:18px;">
+      <div class="pillar-card">
+        <div class="pc-num">Pillar I</div>
+        <div class="pc-name">SacredZero</div>
+        <div class="pc-api">API: POST /decisions, GET /sacred-zero/escalations, PATCH /sacred-zero/escalations/{id}, POST /emergency/override, GET /gateway/status</div>
+        <div class="pc-schema">Schema: TriadicStateValue enum, StateEnvelope if/then/else, TSLF-State0 const discriminators, UncertaintyQuantification.epistemicHoldActive, DeliberationMatrix.resolutionOptions[].proposedState enum constraint.</div>
+      </div>
+      <div class="pillar-card">
+        <div class="pc-num">Pillar II</div>
+        <div class="pc-name">AlwaysMemory</div>
+        <div class="pc-api">API: POST /anchoring-logs (pre-actuation commit), GET /anchoring-logs/{logId}, POST /refusals, POST /redress/log-reevaluation (creates new record; original log immutable)</div>
+        <div class="pc-schema">Schema: TSLF-State0/State-1/StateP1.committedAt, ChainOfCustody per-entry inputHash/outputHash, PermissionToken.logHash. Out-of-band: physical immutability of the log store is deployment-specific.</div>
+      </div>
+      <div class="pillar-card">
+        <div class="pc-num">Pillar III</div>
+        <div class="pc-name">GoukassianPromise</div>
+        <div class="pc-api">API: GET /sacred-zero/lantern, GET /goukassian/signature, POST /goukassian/license/validate, POST /refusals/license-violations, GET /audit/compliance/attestation, lanternStatusBroadcast webhook</div>
+        <div class="pc-schema">Schema: LanternStatus artifactName: const "lantern", SignatureBlock artifactName: const "signature", LicenseValidationRequest artifactName: const "license", LicenseViolationRecord.violatedArtifact enum, TSLF-StateP1.theSignature.</div>
+      </div>
+      <div class="pillar-card">
+        <div class="pc-num">Pillar IV</div>
+        <div class="pc-name">MoralTraceLogs</div>
+        <div class="pc-api">API: POST /anchoring-logs, GET /anchoring-logs/{logId}, GET /audit/verifications/inclusion/{logId}, POST /redress/log-reevaluation, POST /regulator/evidence-export, GET /regulator/timestamp-verification/{logId}</div>
+        <div class="pc-schema">Schema: TSLF-State0, TSLF-State-1, TSLF-StateP1, JustificationObject, ChainOfCustody, AuditProof, MerkleInclusionProof. Out-of-band: storage, indexing, and retrieval infrastructure is deployment-specific.</div>
+      </div>
+      <div class="pillar-card">
+        <div class="pc-num">Pillar V</div>
+        <div class="pc-name">HumanRightsMandate</div>
+        <div class="pc-api">API: GET /sacred-zero/escalations (human review queue), PATCH /sacred-zero/escalations/{id} (human resolution), POST /redress/challenges, GET /redress/challenges/{id}, POST /redress/human-rights-grievances</div>
+        <div class="pc-schema">Schema: JustificationObject.humanRightsMandateFlags, ThreatVectorAnalysis.udhrProvision, RedressChallenge.challengeGrounds[].udhrProvision, HumanRightsGrievance.udhrProvisions. ABI: ITMLEnforcer.verifyHumanRightsCompliance, HumanRightsMandateViolationDetected event.</div>
+      </div>
+      <div class="pillar-card">
+        <div class="pc-num">Pillar VI</div>
+        <div class="pc-name">EarthProtectionMandate</div>
+        <div class="pc-api">API: POST /anchoring-logs (mandate flags evaluated during log submission), GET /audit/compliance/attestation</div>
+        <div class="pc-schema">Schema: JustificationObject.earthProtectionMandateFlags, ThreatVectorAnalysis.parisAgreementProvision. ABI: ITMLEnforcer.verifyEarthProtectionCompliance, EarthProtectionMandateViolationDetected event. Out-of-band: Paris Agreement article registry is a deployment governance decision.</div>
+      </div>
+      <div class="pillar-card">
+        <div class="pc-num">Pillar VII</div>
+        <div class="pc-name">HybridShield</div>
+        <div class="pc-api">API: GET /audit/custodians/{custodianId}/heartbeat, GET /regulator/custodian-quorum, POST /anchoring-logs (custodian quorum required for Merkle anchoring), POST /emergency/override (optional custodian quorum approval)</div>
+        <div class="pc-schema">Schema: CustodianHeartbeat, PermissionToken.custodianQuorumAttestation (BETA), EmergencyOverrideRequest.custodianQuorumApproval. ABI: TML_Core.anchorMerkleRoot requires custodianSignatures; QuorumNotMet custom error. EIP-712: CustodianQuorumAttestation typed data.</div>
+      </div>
+      <div class="pillar-card">
+        <div class="pc-num">Pillar VIII</div>
+        <div class="pc-name">PublicBlockchains</div>
+        <div class="pc-api">API: POST /anchoring-logs (Merkle-batched anchoring), GET /audit/verifications/merkle/{merkleRoot}, GET /audit/verifications/inclusion/{logId}, GET /regulator/timestamp-verification/{logId}, POST /regulator/evidence-export (includes Merkle proofs)</div>
+        <div class="pc-schema">Schema: MerkleInclusionProof.inclusionPath, AuditProof.merkleRoot and inclusionPath, PermissionToken.merkleRoot. ABI: TML_Core.anchorMerkleRoot and verifyMerkleInclusion; MerkleRootAnchored event. EIP-712: MoralTraceLog and PermissionToken typed data.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. AUDITOR SURFACE -->
+  <div id="f8" class="section">
+    <div class="section-num">Section 8</div>
+    <h3>Auditor and Regulator API Surface</h3>
+    <div class="prose">
+      <p>The specification provides a dedicated endpoint group for auditors and regulators, secured by <code>AuditorRegulatorSecurity</code> (<em>CA-VettedJWT + IPAllowlist</em>). This group is read-dominant by design: auditors do not produce state; they verify it.</p>
+      <p>The auditor's complete verification workflow, using only endpoints in this specification, proceeds as follows:</p>
+    </div>
+    <ol class="workflow-steps">
+      <li class="workflow-step">
+        <div class="step-num">1</div>
+        <div class="step-body">Pull the current compliance attestation at <code>GET /audit/compliance/attestation</code>. The <code>ComplianceAttestation</code> schema carries <code>pillarCompliance</code> with a <code>PillarVerificationResult</code> for each of the Eight Pillars, <code>overallStatus</code>, and a <code>SignatureBlock</code> binding the attestation to the Goukassian Promise provenance chain.</div>
+      </li>
+      <li class="workflow-step">
+        <div class="step-num">2</div>
+        <div class="step-body">Verify a specific Moral Trace Log via <code>GET /audit/verifications/inclusion/{logId}</code>. The <code>MerkleInclusionProof</code> response provides the <code>inclusionPath</code> array for independent Merkle verification.</div>
+      </li>
+      <li class="workflow-step">
+        <div class="step-num">3</div>
+        <div class="step-body">Confirm the Merkle batch anchor at <code>GET /audit/verifications/merkle/{merkleRoot}</code>. The <code>blockchainTxId</code> in the response locates the public blockchain transaction.</div>
+      </li>
+      <li class="workflow-step">
+        <div class="step-num">4</div>
+        <div class="step-body">Verify the qualified timestamp at <code>GET /regulator/timestamp-verification/{logId}</code>. The response confirms RFC 3161 Time-Stamp Authority identity and <code>verificationStatus</code>.</div>
+      </li>
+      <li class="workflow-step">
+        <div class="step-num">5</div>
+        <div class="step-body">Check HybridShield custodian health at <code>GET /audit/custodians/{custodianId}/heartbeat</code> for each of the 6 custodians, and review aggregate quorum status at <code>GET /regulator/custodian-quorum</code>.</div>
+      </li>
+      <li class="workflow-step">
+        <div class="step-num">6</div>
+        <div class="step-body">Request bulk evidence export at <code>POST /regulator/evidence-export</code> for regulated inspection proceedings. The <code>BulkEvidenceExport</code> schema accepts jurisdiction, legal basis, date range, and filter parameters. Exports are asynchronous, signed, and include Merkle proofs.</div>
+      </li>
+    </ol>
+    <div class="prose">
+      <p>This workflow does not require access to implementation code, deployment infrastructure, or internal system state beyond what the API surface exposes. The constitutional compliance matrix (Step 4) maps each step to the monograph sections and regulatory provisions it satisfies.</p>
+    </div>
+  </div>
+
+  <!-- 9. ERROR HANDLING -->
+  <div id="f9" class="section">
+    <div class="section-num">Section 9</div>
+    <h3>Error Handling and Constitutional Consistency</h3>
+    <div class="prose">
+      <p>Every error response across the specification conforms to RFC 7807 <code>application/problem+json</code> with two TML-specific extensions: <code>x-tml-state</code> (the triadic state active at error time, as a signed integer) and <code>x-tml-pillar</code> (the canonical Pillar identifier most directly implicated). These extensions ensure that error responses are themselves constitutionally legible: an error is not an escape from the triadic state space. The <code>ProblemDetail</code> schema enforces <code>unevaluatedProperties: false</code>, preventing error responses from carrying undeclared fields that could introduce ambiguity.</p>
+      <p>The <code>SacredZeroHold408</code> response is the canonical HTTP expression of Sacred Zero in the error surface. A <code>408</code> response carrying <code>x-tml-state: 0</code> is not a timeout in the conventional sense. It is a constitutional hold. The <code>retry_after</code> field provides a retry interval, but the caller must await the <code>sacredPauseEscalation</code> webhook notification or poll <code>GET /sacred-zero/escalations</code> for resolution before resubmitting the same action vector.</p>
+    </div>
+  </div>
+
+  <!-- 10. IDEMPOTENCY -->
+  <div id="f10" class="section">
+    <div class="section-num">Section 10</div>
+    <h3>Idempotency and Anti-Spoliation</h3>
+    <div class="prose">
+      <p>Every <code>POST</code>, <code>PUT</code>, and <code>PATCH</code> endpoint in the specification requires an <code>Idempotency-Key</code> header (UUID v4). The idempotency window is 24 hours; within this window, a repeated request with the same key returns the original response without re-executing the operation.</p>
+      <p>Idempotency and AlwaysMemory (Pillar II) interact at the pre-actuation commit boundary. A <code>POST /anchoring-logs</code> request that commits a Moral Trace Log and receives a Permission Token in response cannot be re-executed to produce a second Permission Token for the same log. The first commit is the anti-spoliation anchor. The idempotency guarantee ensures that network failures between the Anchoring Lane and the calling system cannot result in duplicate log entries or duplicate token issuances for the same decision.</p>
+    </div>
+  </div>
+
+  <hr class="prose-rule">
+
+<!-- ════════════════════════════════════════════════════
+     PART G: FUTURE BLOCKED APPENDIX
+════════════════════════════════════════════════════ -->
+
+  <div class="part-header">
+    <div class="part-icon pi-future">&#9888;</div>
+    <div>
+      <div class="part-title pt-future">Part G &mdash; future_blocked_appendix.md</div>
+      <div class="part-subtitle">Architectural targets blocked by Section 10 (Implementation Gap). No endpoint or schema claims to implement any feature in this appendix.</div>
+    </div>
+  </div>
+
+  <div class="section" style="max-width:var(--prose-max);">
+    <div class="prose">
+      <p>A feature is FUTURE when it is blocked by a named constraint from Section 10 of the TML Constitutionalization Monograph v3.3. A feature is BETA when buildable with documented tradeoffs. A feature is SHIPPING when buildable with 2025 production libraries with no known Section 10 blockers. This appendix covers FUTURE only.</p>
+    </div>
+    <div class="callout callout-future">Every entry below traces to a named Section 10 constraint. SHIPPING mitigations are documented; they do not close the underlying gap. The gap remains FUTURE until the named constraint is resolved.</div>
+  </div>
+
+  <!-- FEATURE 1 -->
+  <div id="g1" class="feature-card">
+    <div class="feature-header">
+      <div class="feature-num">Feature 1</div>
+      <div class="feature-name">Real-Time Per-Token Blockchain Anchoring</div>
+      <div class="future-badge">FUTURE</div>
+    </div>
+    <div class="feature-body">
+      <div class="feature-section-label">Architectural Target</div>
+      <div class="feature-prose">Every Permission Token issued by the Anchoring Lane is anchored individually and in real time to a public blockchain, producing a per-token blockchain transaction ID available within the &lt;500ms Anchoring Lane latency envelope.</div>
+
+      <div class="feature-section-label">Blocking Constraint (Section 10)</div>
+      <div class="feature-prose"><strong>Throughput asymmetry at global AI scale.</strong> Public blockchain throughput is measured in tens to hundreds of transactions per second for finalized writes. A TML deployment processing millions of decisions per day would require millions of per-token blockchain writes per day. No public blockchain in production as of the monograph version provides the throughput, finality speed, and cost profile required to anchor every token individually within the &lt;500ms Anchoring Lane latency budget.</div>
+
+      <div class="feature-section-label">What Remains Unbuildable</div>
+      <div class="feature-prose">A single-token-to-single-blockchain-transaction binding at Anchoring Lane throughput. The &lt;500ms latency envelope and the per-token granularity requirement cannot be simultaneously satisfied with any 2025 production public blockchain.</div>
+
+      <div class="feature-section-label"><span class="mitigation-tag">Shipping Mitigation</span></div>
+      <div class="feature-prose">Merkle-batched anchoring. The Anchoring Lane accumulates Moral Trace Logs into batches, computes a Merkle root over the batch, and anchors the root as a single blockchain transaction. Individual log inclusion is provable via <code>MerkleInclusionProof.inclusionPath</code>. The Permission Token carries <code>merkleRoot</code> rather than a per-token transaction ID.</div>
+      <div class="feature-mono">
+        <span class="fk">POST /anchoring-logs</span> response: <span class="fv">anchoring.estimatedFinalizationAt</span> &mdash; signals deferred finalization<br>
+        <span class="fk">GET /audit/verifications/merkle/{merkleRoot}</span> &mdash; verifies batch root<br>
+        <span class="fk">GET /audit/verifications/inclusion/{logId}</span> &mdash; proves per-log inclusion<br>
+        <span class="fk">TML_Core.anchorMerkleRoot</span> &mdash; anchors batch roots, not per-token records
+      </div>
+
+      <div class="feature-section-label"><span class="gap-tag">Remaining Gap</span></div>
+      <div class="feature-prose">Batch anchoring introduces a finalization lag between log commitment and public blockchain confirmation. During this lag, <code>merkleAnchoringStatus.anchoredAt</code> and <code>MerkleInclusionProof.verificationStatus</code> may report <code>PENDING</code>. The Permission Token is valid for actuation authorization before batch finalization completes, because the token's validity is bound to the Anchoring Lane's HSM signature, not to blockchain confirmation. The forensic auditability is complete only after batch finalization. This lag is architectural, not a defect.</div>
+
+      <div class="feature-section-label">Specification Artifacts Affected</div>
+      <div class="artifacts-row">
+        <span class="artifact-chip">POST /anchoring-logs</span>
+        <span class="artifact-chip">PermissionToken.merkleRoot</span>
+        <span class="artifact-chip">MerkleInclusionProof</span>
+        <span class="artifact-chip">TML_Core.anchorMerkleRoot</span>
+        <span class="artifact-chip">TSLF-StateP1.merkleAnchoringStatus</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURE 2 -->
+  <div id="g2" class="feature-card">
+    <div class="feature-header">
+      <div class="feature-num">Feature 2</div>
+      <div class="feature-name">Post-Quantum Cryptography (PQC) Signature Migration</div>
+      <div class="future-badge">FUTURE</div>
+    </div>
+    <div class="feature-body">
+      <div class="feature-section-label">Architectural Target</div>
+      <div class="feature-prose">All TML cryptographic signatures, including Permission Token signatures, Goukassian Promise Signature Block values, HybridShield custodian signatures, and EIP-712 signed structures, use post-quantum algorithms (SLH-DSA-SHAKE-128s for signing and ML-KEM-1024 for key encapsulation) that are secure against adversaries with access to large-scale quantum computing.</div>
+
+      <div class="feature-section-label">Blocking Constraint (Section 10)</div>
+      <div class="feature-prose"><strong>Algorithm standardization maturity and HSM production availability.</strong> As of the monograph version, NIST FIPS 204 (ML-DSA) and FIPS 205 (SLH-DSA) are finalized standards, but HSM vendors have not uniformly shipped production firmware supporting these algorithms. The EIP-712 ecosystem and the broader Ethereum toolchain have not standardized PQC signature verification on-chain. Migration requires simultaneous readiness across HSM firmware, smart contract verifiers, and client SDK layers. The on-chain verification gap is the hardest constraint: no production EVM supports PQC precompiles as of the monograph version.</div>
+
+      <div class="feature-section-label">What Remains Unbuildable</div>
+      <div class="feature-prose">A fully PQC-secured TML deployment in which every signature-producing operation uses SLH-DSA-SHAKE-128s or ML-KEM-1024 and every signature-verifying operation, including on-chain ABI verification in <code>TML_Core</code>, can verify PQC signatures.</div>
+
+      <div class="feature-section-label"><span class="mitigation-tag">Shipping Mitigation</span></div>
+      <div class="feature-prose">ECDSA (ES256, ES384, ES512) and RSA (RS256, RS384, RS512) signatures are the SHIPPING algorithms. The specification reserves PQC algorithm identifiers in all relevant schema fields to enable forward-compatible migration without breaking schema changes.</div>
+      <div class="feature-mono">
+        <span class="fk">SignatureBlock.signatureAlgorithm</span>: enum includes <span class="fv">"SLH-DSA-SHAKE-128s"</span> and <span class="fv">"ML-KEM-1024"</span> &mdash; schema-valid, operationally FUTURE<br>
+        <span class="fk">eip712_typed_data.json</span> GoukassianSignatureAttestation: signatureAlgorithmId <span class="fv">6</span> (SLH-DSA), <span class="fv">7</span> (ML-KEM) reserved
+      </div>
+
+      <div class="feature-section-label"><span class="gap-tag">Remaining Gap</span></div>
+      <div class="feature-prose">ECDSA P-256 is computationally secure against classical adversaries. It is not secure against a sufficiently powerful quantum adversary running Shor's algorithm. Until HSM vendors and EVM toolchains support PQC algorithms in production, the cryptographic non-repudiation chain retains a long-term quantum vulnerability. The mitigation reserves the migration path; it does not close the vulnerability.</div>
+
+      <div class="feature-section-label">Specification Artifacts Affected</div>
+      <div class="artifacts-row">
+        <span class="artifact-chip">SignatureBlock.signatureAlgorithm</span>
+        <span class="artifact-chip">eip712_typed_data.json signatureAlgorithmId 6-7</span>
+        <span class="artifact-chip">PermissionToken.signatureValue</span>
+        <span class="artifact-chip">CustodianQuorumAttestation (EIP-712)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURE 3 -->
+  <div id="g3" class="feature-card">
+    <div class="feature-header">
+      <div class="feature-num">Feature 3</div>
+      <div class="feature-name">Hardware Moral Processing Units (MPUs)</div>
+      <div class="future-badge">FUTURE</div>
+    </div>
+    <div class="feature-body">
+      <div class="feature-section-label">Architectural Target</div>
+      <div class="feature-prose">Dedicated silicon implementing the ternary logic governance coprocessor as a hardware Moral Processing Unit, physically enforcing the separation between the binary inference engine and the ternary governance layer at the instruction execution level. An MPU would enforce No Log = No Action in hardware: the actuation bus would be physically gated by a hardware signal, making software bypass architecturally impossible rather than merely contractually prohibited.</div>
+
+      <div class="feature-section-label">Blocking Constraint (Section 10)</div>
+      <div class="feature-prose"><strong>No production MPU silicon exists.</strong> The hardware design space for ternary logic processing units is an active research area, but no commercially available MPU implementing TML's constitutional enforcement model has been fabricated, tested, or qualified for production deployment as of the monograph version.</div>
+
+      <div class="feature-section-label">What Remains Unbuildable</div>
+      <div class="feature-prose">The actuation bus hardware gate. In the absence of MPU silicon, No Log = No Action is enforced through software contracts (the <code>StateEnvelope</code> schema constraint), cryptographic verification (the Permission Token signature and Merkle proof chain), and on-chain ABI reversion (the <code>NoLogNoAction</code> custom error). These are strong enforcement mechanisms, but they do not provide the physical impossibility guarantee that hardware gating would.</div>
+
+      <div class="feature-section-label"><span class="mitigation-tag">Shipping Mitigation</span></div>
+      <div class="feature-prose">The Dual-Lane software architecture is the SHIPPING expression of the MPU concept. The Inference Lane and Anchoring Lane are architecturally separated at the API surface, security scheme level (<code>InferenceLaneSecurity</code> vs <code>AnchoringLaneSecurity</code>), and schema level (<code>PermissionToken.laneOrigin: const "ANCHORING_LANE"</code>). The <code>GatewayRoutingStatus</code> schema and <code>GET /gateway/status</code> expose the Gateway's constitutional routing state including <code>failClosedActive</code>.</div>
+
+      <div class="feature-section-label"><span class="gap-tag">Remaining Gap</span></div>
+      <div class="feature-prose">Software enforcement requires a trusted execution environment and a conforming implementation. A non-conforming implementation can bypass software constraints in ways that hardware gating would prevent. The constitutional compliance matrix and auditor verification workflow provide detection capability for non-conforming behavior after the fact, but not prevention at the execution level.</div>
+
+      <div class="feature-section-label">Specification Artifacts Affected</div>
+      <div class="artifacts-row">
+        <span class="artifact-chip">Entire Dual-Lane Architecture</span>
+        <span class="artifact-chip">GatewayRoutingStatus.failClosedActive</span>
+        <span class="artifact-chip">PermissionToken.laneOrigin: const "ANCHORING_LANE"</span>
+        <span class="artifact-chip">TML_Core.NoLogNoAction error</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURE 4 -->
+  <div id="g4" class="feature-card">
+    <div class="feature-header">
+      <div class="feature-num">Feature 4</div>
+      <div class="feature-name">Cross-Jurisdiction Custodian Quorum in Sub-500ms</div>
+      <div class="future-badge">FUTURE</div>
+    </div>
+    <div class="feature-body">
+      <div class="feature-section-label">Architectural Target</div>
+      <div class="feature-prose">The HybridShield 6-Custodian distributed anchoring achieves a cryptographic quorum across all six custodians, operating in geographically distributed jurisdictions, within the Anchoring Lane's &lt;500ms latency budget, so that every Permission Token is backed by a fully distributed, cross-jurisdictional custodian quorum completed before the token is issued.</div>
+
+      <div class="feature-section-label">Blocking Constraint (Section 10)</div>
+      <div class="feature-prose"><strong>Network physics.</strong> The speed of light imposes a minimum round-trip latency between geographically distant custodian nodes. A custodian in Western Europe and a custodian in East Asia have a minimum round-trip network latency of approximately 200-300ms under ideal conditions. A 6-of-6 or even 4-of-6 synchronous quorum across genuinely cross-jurisdictional custodian nodes cannot reliably complete within 500ms given routing overhead, cryptographic signing time, and network jitter.</div>
+
+      <div class="feature-section-label">What Remains Unbuildable</div>
+      <div class="feature-prose">Synchronous cross-jurisdiction full quorum within the &lt;500ms Anchoring Lane latency envelope. The physics constraint is absolute: no software optimization closes the gap imposed by the geographic distribution requirement.</div>
+
+      <div class="feature-section-label"><span class="mitigation-tag">Shipping Mitigation</span></div>
+      <div class="feature-prose">Two mitigations are specified. First, regionally co-located custodian subsets can achieve sub-500ms quorum within a single geographic region. <code>GET /regulator/custodian-quorum</code> reports both <code>activeCustodianCount</code> and <code>crossJurisdictionLatencyMs</code>, allowing operators to monitor the gap between the local quorum and the full cross-jurisdictional target. Second, <code>PermissionToken.custodianQuorumAttestation</code> is an optional BETA field; a token is valid without it.</div>
+      <div class="feature-mono">
+        <span class="fk">GET /regulator/custodian-quorum</span>: x-tml-blocking-constraint: <span class="fv">"Section 10: Cross-jurisdiction sub-500ms quorum remains FUTURE"</span><br>
+        <span class="fk">PermissionToken.custodianQuorumAttestation</span>: optional BETA &mdash; token valid without it
+      </div>
+
+      <div class="feature-section-label"><span class="gap-tag">Remaining Gap</span></div>
+      <div class="feature-prose">A deployment claiming full HybridShield constitutional compliance must acknowledge that the cross-jurisdiction latency target is aspirational until network infrastructure evolution or architectural changes (such as asynchronous quorum with deferred finality) make it achievable.</div>
+
+      <div class="feature-section-label">Specification Artifacts Affected</div>
+      <div class="artifacts-row">
+        <span class="artifact-chip">GET /regulator/custodian-quorum</span>
+        <span class="artifact-chip">PermissionToken.custodianQuorumAttestation (BETA)</span>
+        <span class="artifact-chip">CustodianHeartbeat.latencyMs</span>
+        <span class="artifact-chip">TML_Core.QuorumNotMet error</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURE 5 -->
+  <div id="g5" class="feature-card">
+    <div class="feature-header">
+      <div class="feature-num">Feature 5</div>
+      <div class="feature-name">Immutable Ledger with Native GDPR Article 17 Compliance (Erasure Paradox)</div>
+      <div class="future-badge">FUTURE</div>
+    </div>
+    <div class="feature-body">
+      <div class="feature-section-label">Architectural Target</div>
+      <div class="feature-prose">The Moral Trace Log store is simultaneously: (a) cryptographically immutable, with immutability provable via the Merkle inclusion chain; and (b) natively GDPR Article 17 compliant, so that any individual can exercise their right to erasure and the system can demonstrate that their personal data has been erased.</div>
+
+      <div class="feature-section-label">Blocking Constraint (Section 10)</div>
+      <div class="feature-prose"><strong>The Erasure Paradox.</strong> Immutability means no deletion. Article 17 means the right to deletion. These two properties are in direct architectural contradiction. No data architecture as of the monograph version resolves this contradiction natively.</div>
+
+      <div class="feature-section-label">What Remains Unbuildable</div>
+      <div class="feature-prose">A single log store architecture that is both cryptographically immutable and natively capable of demonstrating per-record erasure to a data subject or supervisory authority.</div>
+
+      <div class="feature-section-label"><span class="mitigation-tag">Shipping Mitigation: Cryptographic Erasure</span></div>
+      <div class="feature-prose">The monograph proposes cryptographic erasure as the mitigation. Personal data in each log entry is encrypted with a per-record key (derived from a per-subject key hierarchy such as HKDF-SHA3-256). The key is held in a separate erasure key registry. When an Article 17 erasure request is received, the erasure key for the relevant records is destroyed. Without the key, the encrypted personal data in the log entry is computationally inaccessible, providing practical erasure without modifying the ciphertext record in the immutable log.</div>
+      <div class="feature-prose">The <code>SHA256Hex</code> schema primitive and the <code>PermissionToken.logHash</code> binding accommodate this architecture: the Merkle inclusion proof verifies the ciphertext record's integrity, and the destroyed key provides the practical erasure guarantee. This is consistent with ENISA guidance on pseudonymization and with interpretations of Article 17 that accept cryptographic inaccessibility as equivalent to deletion for computationally bounded adversaries.</div>
+      <div class="feature-mono">
+        Cryptographic Erasure folder (TernaryLogic repository): HKDF-SHA3-256 key hierarchy, NuSMV LTL verification,<br>
+        NIST CAVP vectors, ML-KEM-1024 PQC migration path, FROST 3-of-5 and 5-of-7 threshold signing for key management.
+      </div>
+
+      <div class="feature-section-label"><span class="gap-tag">Remaining Gap (Three Sub-Gaps)</span></div>
+      <div class="feature-prose"><strong>Sub-gap 1: Regulatory interpretation.</strong> The interpretation that key destruction constitutes erasure has not been affirmed by all EU supervisory authorities and has not been tested in CJEU proceedings as of the monograph version. Regulatory risk remains.</div>
+      <div class="feature-prose"><strong>Sub-gap 2: Erasure key registry dependency.</strong> If erasure keys are lost before an erasure request is received, personal data becomes permanently inaccessible even to the data controller. Conversely, if the erasure key registry is compromised, all encrypted records are exposed. The registry's security posture is as critical as the log store's.</div>
+      <div class="feature-prose"><strong>Sub-gap 3: Metadata residue.</strong> Metadata fields in log records (timestamps, decision identifiers, pillar assessment scores, threat vector categories) may themselves constitute personal data in some jurisdictions when combined with other data sources. Key-destroying the personal data content does not erase metadata. Complete Article 17 compliance may require metadata suppression beyond what cryptographic erasure provides.</div>
+
+      <div class="feature-section-label">Specification Artifacts Affected</div>
+      <div class="artifacts-row">
+        <span class="artifact-chip">All TSLF schemas</span>
+        <span class="artifact-chip">SHA256Hex</span>
+        <span class="artifact-chip">PermissionToken.logHash</span>
+        <span class="artifact-chip">AuditProof</span>
+        <span class="artifact-chip">MerkleInclusionProof</span>
+        <span class="artifact-chip">Cryptographic Erasure folder (TernaryLogic repo)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- APPENDIX INDEX -->
+  <div id="g-index" class="section wide" style="margin-top:36px;">
+    <div class="section-num">Appendix Index</div>
+    <h3>FUTURE Features by Primary Pillar</h3>
+    <table class="index-table">
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>Primary Pillar(s)</th>
+          <th>Section 10 Constraint</th>
+          <th>Key Specification Artifacts Affected</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="it-feature">Real-time per-token blockchain anchoring</td>
+          <td class="it-pillar">PublicBlockchains (VIII)</td>
+          <td class="it-constraint">Throughput asymmetry at global AI scale</td>
+          <td class="it-artifact">POST /anchoring-logs; PermissionToken.merkleRoot; MerkleInclusionProof; TML_Core.anchorMerkleRoot</td>
+        </tr>
+        <tr>
+          <td class="it-feature">PQC signature migration</td>
+          <td class="it-pillar">GoukassianPromise (III); HybridShield (VII)</td>
+          <td class="it-constraint">HSM firmware and EVM toolchain readiness</td>
+          <td class="it-artifact">SignatureBlock.signatureAlgorithm; eip712_typed_data.json GoukassianSignatureAttestation signatureAlgorithmId 6-7</td>
+        </tr>
+        <tr>
+          <td class="it-feature">Hardware Moral Processing Units (MPUs)</td>
+          <td class="it-pillar">SacredZero (I); AlwaysMemory (II)</td>
+          <td class="it-constraint">No production MPU silicon</td>
+          <td class="it-artifact">Entire Dual-Lane Architecture; GatewayRoutingStatus; PermissionToken.laneOrigin</td>
+        </tr>
+        <tr>
+          <td class="it-feature">Sub-500ms cross-jurisdiction custodian quorum</td>
+          <td class="it-pillar">HybridShield (VII)</td>
+          <td class="it-constraint">Network physics; geographic distribution</td>
+          <td class="it-artifact">GET /regulator/custodian-quorum; PermissionToken.custodianQuorumAttestation (BETA); CustodianHeartbeat.latencyMs</td>
+        </tr>
+        <tr>
+          <td class="it-feature">Immutable ledger with native GDPR Art. 17 compliance</td>
+          <td class="it-pillar">AlwaysMemory (II); MoralTraceLogs (IV)</td>
+          <td class="it-constraint">Erasure Paradox (immutability vs. right to erasure)</td>
+          <td class="it-artifact">All TSLF schemas; SHA256Hex; PermissionToken.logHash; AuditProof; Cryptographic Erasure folder</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="prose" style="margin-top:20px;max-width:var(--prose-max);">
+      <p><strong>Note on BETA classification.</strong> <code>PermissionToken.custodianQuorumAttestation</code> is classified BETA, not FUTURE. It is buildable with documented tradeoffs (regional rather than full cross-jurisdictional quorum, latency penalties). It is listed in the sub-500ms quorum entry to distinguish the optional BETA field from the cross-jurisdiction latency target (which is FUTURE). BETA features appear in the specification as optional fields or annotated endpoints. They are buildable for regulated deployments where the performance tradeoffs are acceptable.</p>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>TML Specification Architecture &mdash; Step 5 of 5 &mdash; specification_architecture.md + future_blocked_appendix.md &mdash; v3.3.0-tml-monograph-2025</span>
+    <span>Authority: TML Constitutionalization Monograph v3.3</span>
+  </div>
+
+</main>
+</body>
+</html>

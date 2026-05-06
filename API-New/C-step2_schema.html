@@ -1,0 +1,1715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TML Specification — Step 2: tml_schema.json</title>
+<style>
+  /* ── DESIGN TOKENS ─────────────────────────────────────────────── */
+  :root {
+    --navy:        #0a1628;
+    --navy-mid:    #0f2040;
+    --navy-light:  #162a52;
+    --navy-border: #1e3a6e;
+    --gold:        #d4a574;
+    --gold-dim:    #a07848;
+    --gold-glow:   rgba(212,165,116,0.12);
+    --gold-glow2:  rgba(212,165,116,0.06);
+    --white:       #f0ece4;
+    --white-dim:   #b8b0a0;
+    --white-muted: #6e6860;
+    --green:       #27ae60;
+    --green-soft:  rgba(39,174,96,0.13);
+    --amber:       #e67e22;
+    --amber-soft:  rgba(230,126,34,0.13);
+    --red:         #c0392b;
+    --red-soft:    rgba(192,57,43,0.13);
+    --blue:        #2980b9;
+    --blue-soft:   rgba(41,128,185,0.13);
+    --teal:        #16a085;
+    --teal-soft:   rgba(22,160,133,0.13);
+    --purple:      #8e44ad;
+    --purple-soft: rgba(142,68,173,0.13);
+    --sidebar-w:   272px;
+    --font-serif:  Georgia, 'Times New Roman', serif;
+    --font-sans:   'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --font-mono:   'Courier New', Courier, monospace;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--navy);
+    color: var(--white);
+    font-family: var(--font-serif);
+    font-size: 15px;
+    line-height: 1.7;
+    display: flex;
+    min-height: 100vh;
+  }
+
+  /* ── SIDEBAR ───────────────────────────────────────────────────── */
+  .sidebar {
+    position: fixed;
+    top: 0; left: 0;
+    width: var(--sidebar-w);
+    height: 100vh;
+    background: var(--navy-mid);
+    border-right: 1px solid var(--navy-border);
+    overflow-y: auto;
+    z-index: 100;
+    padding-bottom: 40px;
+  }
+  .sidebar::-webkit-scrollbar { width: 4px; }
+  .sidebar::-webkit-scrollbar-track { background: var(--navy-mid); }
+  .sidebar::-webkit-scrollbar-thumb { background: var(--navy-border); border-radius: 2px; }
+
+  .sidebar-header {
+    padding: 26px 18px 18px;
+    border-bottom: 1px solid var(--navy-border);
+    position: sticky;
+    top: 0;
+    background: var(--navy-mid);
+    z-index: 10;
+  }
+  .step-badge {
+    font-family: var(--font-sans);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    background: var(--gold-glow);
+    border: 1px solid var(--gold-dim);
+    padding: 3px 8px;
+    border-radius: 2px;
+    display: inline-block;
+    margin-bottom: 10px;
+  }
+  .sidebar-header h1 {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--white);
+    line-height: 1.3;
+  }
+  .sidebar-header .version {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--white-muted);
+    margin-top: 5px;
+  }
+
+  .sidebar-group {
+    padding: 14px 0 2px;
+  }
+  .sidebar-group-label {
+    font-family: var(--font-sans);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    padding: 0 18px 5px;
+  }
+  .sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 18px;
+    text-decoration: none;
+    color: var(--white-dim);
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    transition: all 0.15s;
+    border-left: 2px solid transparent;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .sidebar-link:hover {
+    color: var(--gold);
+    background: var(--gold-glow2);
+    border-left-color: var(--gold-dim);
+  }
+  .sidebar-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .dot-primitive  { background: var(--white-muted); }
+  .dot-token      { background: var(--gold); }
+  .dot-envelope   { background: #7ab8e8; }
+  .dot-just       { background: var(--green); }
+  .dot-tslf       { background: var(--amber); }
+  .dot-gouk       { background: #c9a0e8; }
+  .dot-support    { background: var(--teal); }
+
+  /* ── MAIN ──────────────────────────────────────────────────────── */
+  .main {
+    margin-left: var(--sidebar-w);
+    flex: 1;
+    padding: 0 44px 80px;
+    max-width: 1080px;
+  }
+
+  /* ── PAGE HEADER ───────────────────────────────────────────────── */
+  .page-header {
+    padding: 46px 0 32px;
+    border-bottom: 1px solid var(--navy-border);
+    margin-bottom: 36px;
+  }
+  .doc-label {
+    font-family: var(--font-sans);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .page-header h2 {
+    font-family: var(--font-sans);
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--white);
+    margin-bottom: 6px;
+  }
+  .subtitle {
+    font-family: var(--font-serif);
+    font-size: 14px;
+    color: var(--white-dim);
+    font-style: italic;
+    margin-bottom: 18px;
+  }
+  .meta-row { display: flex; gap: 16px; flex-wrap: wrap; }
+  .meta-chip {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--white-muted);
+    background: var(--navy-mid);
+    border: 1px solid var(--navy-border);
+    padding: 3px 9px;
+    border-radius: 2px;
+  }
+  .meta-chip span { color: var(--gold); }
+
+  /* ── SCHEMA GROUP SECTION ──────────────────────────────────────── */
+  .schema-group {
+    margin-bottom: 60px;
+  }
+  .group-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--navy-border);
+  }
+  .group-icon {
+    width: 34px; height: 34px;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+  .gi-primitive  { background: rgba(110,104,96,0.2);  border: 1px solid #4a4640; }
+  .gi-token      { background: var(--gold-glow);       border: 1px solid var(--gold-dim); }
+  .gi-envelope   { background: var(--blue-soft);       border: 1px solid rgba(41,128,185,0.3); }
+  .gi-just       { background: var(--green-soft);      border: 1px solid rgba(39,174,96,0.3); }
+  .gi-tslf       { background: var(--amber-soft);      border: 1px solid rgba(230,126,34,0.3); }
+  .gi-gouk       { background: var(--purple-soft);     border: 1px solid rgba(142,68,173,0.3); }
+  .gi-support    { background: var(--teal-soft);       border: 1px solid rgba(22,160,133,0.3); }
+
+  .group-title {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  .gt-primitive  { color: var(--white-dim); }
+  .gt-token      { color: var(--gold); }
+  .gt-envelope   { color: #7ab8e8; }
+  .gt-just       { color: #7de0a0; }
+  .gt-tslf       { color: #f0b060; }
+  .gt-gouk       { color: #c9a0e8; }
+  .gt-support    { color: #7dd4cc; }
+
+  .group-desc {
+    font-size: 12px;
+    color: var(--white-muted);
+    margin-top: 2px;
+  }
+
+  /* ── SCHEMA CARD ───────────────────────────────────────────────── */
+  .schema-card {
+    background: var(--navy-mid);
+    border: 1px solid var(--navy-border);
+    border-radius: 4px;
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+
+  .schema-card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 20px;
+    cursor: pointer;
+    background: var(--navy-light);
+    user-select: none;
+    transition: background 0.15s;
+  }
+  .schema-card-header:hover { background: rgba(30,58,110,0.7); }
+
+  .schema-name-badge {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--white);
+    flex: 1;
+  }
+  .schema-name-badge .anchor-prefix {
+    color: var(--gold-dim);
+    font-size: 11px;
+    font-weight: 400;
+  }
+
+  .schema-type-tag {
+    font-family: var(--font-sans);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+  .tt-object   { background: var(--blue-soft);   color: #7ab8e8; border: 1px solid rgba(41,128,185,0.3); }
+  .tt-string   { background: var(--green-soft);  color: #7de0a0; border: 1px solid rgba(39,174,96,0.3); }
+  .tt-integer  { background: var(--amber-soft);  color: #f0b060; border: 1px solid rgba(230,126,34,0.3); }
+  .tt-number   { background: var(--teal-soft);   color: #7dd4cc; border: 1px solid rgba(22,160,133,0.3); }
+  .tt-enum     { background: var(--purple-soft); color: #c9a0e8; border: 1px solid rgba(142,68,173,0.3); }
+  .tt-oneOf    { background: var(--gold-glow);   color: var(--gold); border: 1px solid var(--gold-dim); }
+
+  .schema-expand {
+    color: var(--white-muted);
+    font-size: 11px;
+    transition: transform 0.2s;
+    flex-shrink: 0;
+  }
+  .schema-card.open .schema-expand { transform: rotate(180deg); }
+
+  .schema-card-body {
+    display: none;
+    padding: 20px;
+    border-top: 1px solid var(--navy-border);
+  }
+  .schema-card.open .schema-card-body { display: block; }
+
+  .schema-description {
+    font-size: 13px;
+    color: var(--white-dim);
+    line-height: 1.75;
+    margin-bottom: 18px;
+    border-left: 2px solid var(--gold-dim);
+    padding-left: 14px;
+  }
+
+  /* ── CONSTRAINT PILLS ──────────────────────────────────────────── */
+  .constraints-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .constraint-pill {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    padding: 3px 8px;
+    border-radius: 2px;
+    border: 1px solid var(--navy-border);
+    color: var(--white-dim);
+    background: var(--navy);
+  }
+  .constraint-pill.gold  { color: var(--gold); border-color: var(--gold-dim); background: var(--gold-glow); }
+  .constraint-pill.green { color: #7de0a0; border-color: rgba(39,174,96,0.3); background: var(--green-soft); }
+  .constraint-pill.red   { color: #e87878; border-color: rgba(192,57,43,0.3); background: var(--red-soft); }
+  .constraint-pill.blue  { color: #7ab8e8; border-color: rgba(41,128,185,0.3); background: var(--blue-soft); }
+
+  /* ── ENUM DISPLAY ──────────────────────────────────────────────── */
+  .enum-box {
+    background: var(--navy);
+    border: 1px solid var(--navy-border);
+    border-radius: 3px;
+    padding: 10px 14px;
+    margin-bottom: 16px;
+  }
+  .enum-label {
+    font-family: var(--font-sans);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    margin-bottom: 8px;
+  }
+  .enum-values {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .enum-val {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--white);
+    background: var(--navy-mid);
+    border: 1px solid var(--navy-border);
+    padding: 2px 8px;
+    border-radius: 2px;
+  }
+  .enum-val.special { color: var(--gold); border-color: var(--gold-dim); background: var(--gold-glow); }
+
+  /* ── PROPERTY TABLE ────────────────────────────────────────────── */
+  .prop-table-label {
+    font-family: var(--font-sans);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    margin-bottom: 10px;
+  }
+  .prop-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    margin-bottom: 16px;
+  }
+  .prop-table thead tr {
+    background: var(--navy);
+    border-bottom: 1px solid var(--navy-border);
+  }
+  .prop-table thead th {
+    font-family: var(--font-sans);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--white-muted);
+    padding: 7px 10px;
+    text-align: left;
+  }
+  .prop-table tbody tr {
+    border-bottom: 1px solid rgba(30,58,110,0.5);
+    transition: background 0.1s;
+  }
+  .prop-table tbody tr:hover { background: rgba(212,165,116,0.04); }
+  .prop-table tbody tr:last-child { border-bottom: none; }
+  .prop-table td {
+    padding: 8px 10px;
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  .td-name {
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    color: var(--white);
+    white-space: nowrap;
+  }
+  .td-name.required-field::after {
+    content: '*';
+    color: var(--gold);
+    margin-left: 3px;
+    font-size: 10px;
+  }
+  .td-type {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    white-space: nowrap;
+  }
+  .type-string  { color: #7de0a0; }
+  .type-integer { color: #f0b060; }
+  .type-number  { color: #7dd4cc; }
+  .type-boolean { color: #c9a0e8; }
+  .type-object  { color: #7ab8e8; }
+  .type-array   { color: #e8c07a; }
+  .type-ref     { color: var(--gold); }
+  .type-const   { color: #e87878; }
+  .td-constraint {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--white-muted);
+  }
+  .td-desc {
+    font-family: var(--font-serif);
+    font-size: 12px;
+    color: var(--white-dim);
+    line-height: 1.55;
+  }
+  .req-badge {
+    font-family: var(--font-sans);
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 1px 5px;
+    border-radius: 2px;
+  }
+  .req-yes { background: var(--gold-glow); color: var(--gold); border: 1px solid var(--gold-dim); }
+  .req-no  { background: var(--navy);      color: var(--white-muted); border: 1px solid var(--navy-border); }
+
+  /* ── CALLOUT BOXES ─────────────────────────────────────────────── */
+  .callout {
+    border-radius: 3px;
+    padding: 11px 14px;
+    margin: 12px 0;
+    font-size: 12px;
+    line-height: 1.65;
+  }
+  .callout-iron {
+    background: var(--gold-glow);
+    border: 1px solid var(--gold-dim);
+    color: var(--gold);
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+  }
+  .callout-sacred {
+    background: rgba(22,160,133,0.1);
+    border: 1px solid rgba(22,160,133,0.3);
+    color: #7dd4cc;
+    font-family: var(--font-sans);
+    font-size: 11px;
+  }
+  .callout-future {
+    background: var(--red-soft);
+    border: 1px solid rgba(192,57,43,0.3);
+    color: #e87878;
+    font-family: var(--font-sans);
+    font-size: 11px;
+  }
+  .callout-monograph {
+    background: var(--navy);
+    border: 1px solid var(--navy-border);
+    border-left: 3px solid var(--gold-dim);
+    color: var(--white-muted);
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+  }
+
+  /* ── IF/THEN BLOCK ─────────────────────────────────────────────── */
+  .ifthen-block {
+    background: var(--navy);
+    border: 1px solid var(--navy-border);
+    border-left: 3px solid #7ab8e8;
+    border-radius: 3px;
+    padding: 12px 16px;
+    margin: 12px 0;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--white-dim);
+    line-height: 1.9;
+  }
+  .ifthen-block .kw { color: #7ab8e8; font-weight: 700; }
+  .ifthen-block .val { color: var(--gold); }
+  .ifthen-block .comment { color: var(--white-muted); font-style: italic; }
+
+  /* ── DISCRIMINATOR NOTE ────────────────────────────────────────── */
+  .discriminator-note {
+    background: var(--amber-soft);
+    border: 1px solid rgba(230,126,34,0.3);
+    border-radius: 3px;
+    padding: 10px 14px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: #f0b060;
+    margin-bottom: 14px;
+  }
+
+  /* ── FOOTER ────────────────────────────────────────────────────── */
+  .footer {
+    margin-top: 60px;
+    padding-top: 22px;
+    border-top: 1px solid var(--navy-border);
+    font-family: var(--font-sans);
+    font-size: 10px;
+    color: var(--white-muted);
+    letter-spacing: 0.07em;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--navy); }
+  ::-webkit-scrollbar-thumb { background: var(--navy-border); border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<!-- ═══ SIDEBAR ═══════════════════════════════════════════════════ -->
+<nav class="sidebar">
+  <div class="sidebar-header">
+    <div class="step-badge">Step 2 of 5</div>
+    <h1>tml_schema.json<br>JSON Schema Bundle</h1>
+    <div class="version">Draft 2020-12 &mdash; v3.3.0-tml-monograph-2025</div>
+  </div>
+
+  <div class="sidebar-group">
+    <div class="sidebar-group-label">I. Primitives</div>
+    <a href="#TriadicStateValue"  class="sidebar-link"><span class="sidebar-dot dot-primitive"></span>TriadicStateValue</a>
+    <a href="#TriadicStateLabel"  class="sidebar-link"><span class="sidebar-dot dot-primitive"></span>TriadicStateLabel</a>
+    <a href="#PillarIdentifier"   class="sidebar-link"><span class="sidebar-dot dot-primitive"></span>PillarIdentifier</a>
+    <a href="#LaneOrigin"         class="sidebar-link"><span class="sidebar-dot dot-primitive"></span>LaneOrigin</a>
+    <a href="#SHA256Hex"          class="sidebar-link"><span class="sidebar-dot dot-primitive"></span>SHA256Hex</a>
+    <a href="#ISO8601DateTime"    class="sidebar-link"><span class="sidebar-dot dot-primitive"></span>ISO8601DateTime</a>
+    <a href="#UUIDv4"             class="sidebar-link"><span class="sidebar-dot dot-primitive"></span>UUIDv4</a>
+  </div>
+
+  <div class="sidebar-group">
+    <div class="sidebar-group-label">II. Permission Token</div>
+    <a href="#PermissionToken"    class="sidebar-link"><span class="sidebar-dot dot-token"></span>PermissionToken</a>
+  </div>
+
+  <div class="sidebar-group">
+    <div class="sidebar-group-label">III. State Envelope</div>
+    <a href="#StateEnvelope"      class="sidebar-link"><span class="sidebar-dot dot-envelope"></span>StateEnvelope</a>
+  </div>
+
+  <div class="sidebar-group">
+    <div class="sidebar-group-label">IV. Justification Object</div>
+    <a href="#JustificationObject" class="sidebar-link"><span class="sidebar-dot dot-just"></span>JustificationObject</a>
+  </div>
+
+  <div class="sidebar-group">
+    <div class="sidebar-group-label">V. TSLF Variants</div>
+    <a href="#UncertaintyQuantification" class="sidebar-link"><span class="sidebar-dot dot-tslf"></span>UncertaintyQuantification</a>
+    <a href="#DeliberationMatrix" class="sidebar-link"><span class="sidebar-dot dot-tslf"></span>DeliberationMatrix</a>
+    <a href="#ResolutionRequest"  class="sidebar-link"><span class="sidebar-dot dot-tslf"></span>ResolutionRequest</a>
+    <a href="#TSLF-State0"        class="sidebar-link"><span class="sidebar-dot dot-tslf"></span>TSLF-State0</a>
+    <a href="#LicenseViolationRecord" class="sidebar-link"><span class="sidebar-dot dot-tslf"></span>LicenseViolationRecord</a>
+    <a href="#ThreatVectorAnalysis" class="sidebar-link"><span class="sidebar-dot dot-tslf"></span>ThreatVectorAnalysis</a>
+    <a href="#ChainOfCustody"     class="sidebar-link"><span class="sidebar-dot dot-tslf"></span>ChainOfCustody</a>
+    <a href="#TSLF-State-1"       class="sidebar-link"><span class="sidebar-dot dot-tslf"></span>TSLF-State-1</a>
+    <a href="#EthicalVerification" class="sidebar-link"><span class="sidebar-dot dot-tslf"></span>EthicalVerification</a>
+    <a href="#PillarVerificationResult" class="sidebar-link"><span class="sidebar-dot dot-tslf"></span>PillarVerificationResult</a>
+    <a href="#AuditProof"         class="sidebar-link"><span class="sidebar-dot dot-tslf"></span>AuditProof</a>
+    <a href="#TSLF-StateP1"       class="sidebar-link"><span class="sidebar-dot dot-tslf"></span>TSLF-StateP1</a>
+  </div>
+
+  <div class="sidebar-group">
+    <div class="sidebar-group-label">VI. Goukassian Artifacts</div>
+    <a href="#LanternStatus"      class="sidebar-link"><span class="sidebar-dot dot-gouk"></span>LanternStatus</a>
+    <a href="#SignatureBlock"     class="sidebar-link"><span class="sidebar-dot dot-gouk"></span>SignatureBlock</a>
+    <a href="#LicenseValidationRequest" class="sidebar-link"><span class="sidebar-dot dot-gouk"></span>LicenseValidationRequest</a>
+  </div>
+
+  <div class="sidebar-group">
+    <div class="sidebar-group-label">VII. Supporting Schemas</div>
+    <a href="#MerkleInclusionProof" class="sidebar-link"><span class="sidebar-dot dot-support"></span>MerkleInclusionProof</a>
+    <a href="#CustodianHeartbeat" class="sidebar-link"><span class="sidebar-dot dot-support"></span>CustodianHeartbeat</a>
+    <a href="#ComplianceAttestation" class="sidebar-link"><span class="sidebar-dot dot-support"></span>ComplianceAttestation</a>
+    <a href="#RedressChallenge"   class="sidebar-link"><span class="sidebar-dot dot-support"></span>RedressChallenge</a>
+    <a href="#HumanRightsGrievance" class="sidebar-link"><span class="sidebar-dot dot-support"></span>HumanRightsGrievance</a>
+    <a href="#BulkEvidenceExport" class="sidebar-link"><span class="sidebar-dot dot-support"></span>BulkEvidenceExport</a>
+    <a href="#GatewayRoutingStatus" class="sidebar-link"><span class="sidebar-dot dot-support"></span>GatewayRoutingStatus</a>
+    <a href="#EmergencyOverrideRequest" class="sidebar-link"><span class="sidebar-dot dot-support"></span>EmergencyOverrideRequest</a>
+  </div>
+</nav>
+
+<!-- ═══ MAIN ══════════════════════════════════════════════════════ -->
+<main class="main">
+
+  <div class="page-header">
+    <div class="doc-label">TML Specification Architecture &mdash; Deliverable B</div>
+    <h2>tml_schema.json &mdash; JSON Schema Bundle</h2>
+    <div class="subtitle">All $defs definitions &mdash; JSON Schema Draft 2020-12 &mdash; unevaluatedProperties: false throughout</div>
+    <div class="meta-row">
+      <div class="meta-chip">$schema <span>json-schema.org/draft/2020-12/schema</span></div>
+      <div class="meta-chip">$defs count <span>26 named schemas</span></div>
+      <div class="meta-chip">constraint <span>unevaluatedProperties: false</span></div>
+      <div class="meta-chip">authority <span>TML Monograph v3.3</span></div>
+    </div>
+  </div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     GROUP I: PRIMITIVES
+═══════════════════════════════════════════════════════════════ -->
+<div class="schema-group">
+  <div class="group-header">
+    <div class="group-icon gi-primitive">&#9632;</div>
+    <div>
+      <div class="group-title gt-primitive">I. Primitive and Shared Types</div>
+      <div class="group-desc">Foundational scalar types reused across all complex schemas via $ref</div>
+    </div>
+  </div>
+
+  <!-- TriadicStateValue -->
+  <div id="TriadicStateValue" class="schema-card">
+    <div class="schema-card-header" onclick="toggle(this)">
+      <span class="schema-name-badge"><span class="anchor-prefix">$defs/</span>TriadicStateValue</span>
+      <span class="schema-type-tag tt-enum">enum</span>
+      <span class="schema-type-tag tt-integer">integer</span>
+      <span class="schema-expand">&#9660;</span>
+    </div>
+    <div class="schema-card-body">
+      <div class="schema-description">The three sovereign states of the Ternary Moral Logic framework. Signed integers, not enumerations of convenience. State 0 is SACRED_ZERO: an active first-class governance state, never null, never false, never an error code, never a timeout.</div>
+      <div class="callout callout-monograph">Monograph ref: Section 2.3 (Triadic State Code / Goukassian Vow)</div>
+      <div class="enum-box">
+        <div class="enum-label">Enum Values</div>
+        <div class="enum-values">
+          <span class="enum-val special">-1 &nbsp;REFUSE</span>
+          <span class="enum-val special">&nbsp;0 &nbsp;SACRED_ZERO</span>
+          <span class="enum-val special">+1 &nbsp;PROCEED</span>
+        </div>
+      </div>
+      <div class="callout callout-sacred">State 0 is SACRED_ZERO. It is never null, false, error, or timeout. It is an active governance state of mandatory hesitation.</div>
+    </div>
+  </div>
+
+  <!-- TriadicStateLabel -->
+  <div id="TriadicStateLabel" class="schema-card">
+    <div class="schema-card-header" onclick="toggle(this)">
+      <span class="schema-name-badge"><span class="anchor-prefix">$defs/</span>TriadicStateLabel</span>
+      <span class="schema-type-tag tt-enum">enum</span>
+      <span class="schema-type-tag tt-string">string</span>
+      <span class="schema-expand">&#9660;</span>
+    </div>
+    <div class="schema-card-body">
+      <div class="schema-description">Human-readable UPPER_SNAKE_CASE label corresponding to the numeric triadic state value. Must be consistent with the companion TriadicStateValue integer.</div>
+      <div class="callout callout-monograph">Monograph ref: Section 2.3. UPPER_SNAKE_CASE per API naming convention.</div>
+      <div class="enum-box">
+        <div class="enum-label">Enum Values</div>
+        <div class="enum-values">
+          <span class="enum-val">"PROCEED"</span>
+          <span class="enum-val special">"SACRED_ZERO"</span>
+          <span class="enum-val">"REFUSE"</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PillarIdentifier -->
+  <div id="PillarIdentifier" class="schema-card">
+    <div class="schema-card-header" onclick="toggle(this)">
+      <span class="schema-name-badge"><span class="anchor-prefix">$defs/</span>PillarIdentifier</span>
+      <span class="schema-type-tag tt-enum">enum</span>
+      <span class="schema-type-tag tt-string">string</span>
+      <span class="schema-expand">&#9660;</span>
+    </div>
+    <div class="schema-card-body">
+      <div class="schema-description">Canonical machine-readable PascalCase identifier for each of the Eight Pillars of Ternary Moral Logic. Exact and immutable. No substitution, abbreviation, or aliasing permitted.</div>
+      <div class="callout callout-monograph">Monograph ref: Section 2 (Eight Pillars). PascalCase per API naming convention.</div>
+      <div class="enum-box">
+        <div class="enum-label">Eight Canonical Pillar Identifiers</div>
+        <div class="enum-values">
+          <span class="enum-val special">"SacredZero"</span>
+          <span class="enum-val special">"AlwaysMemory"</span>
+          <span class="enum-val special">"GoukassianPromise"</span>
+          <span class="enum-val special">"MoralTraceLogs"</span>
+          <span class="enum-val special">"HumanRightsMandate"</span>
+          <span class="enum-val special">"EarthProtectionMandate"</span>
+          <span class="enum-val special">"HybridShield"</span>
+          <span class="enum-val special">"PublicBlockchains"</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LaneOrigin -->
+  <div id="LaneOrigin" class="schema-card">
+    <div class="schema-card-header" onclick="toggle(this)">
+      <span class="schema-name-badge"><span class="anchor-prefix">$defs/</span>LaneOrigin</span>
+      <span class="schema-type-tag tt-enum">enum</span>
+      <span class="schema-type-tag tt-string">string</span>
+      <span class="schema-expand">&#9660;</span>
+    </div>
+    <div class="schema-card-body">
+      <div class="schema-description">Identifies the dual-lane architectural origin of a request or token. Maps directly to the Dual-Lane Latency Architecture.</div>
+      <div class="callout callout-monograph">Monograph ref: Section 2.3 (Dual-Lane Latency Architecture)</div>
+      <div class="enum-box">
+        <div class="enum-label">Enum Values</div>
+        <div class="enum-values">
+          <span class="enum-val">"INFERENCE_LANE" &mdash; Lane 1, Fast Path, &lt;2ms, binary logic</span>
+          <span class="enum-val special">"ANCHORING_LANE" &mdash; Lane 2, Governance Lane, &lt;500ms, ternary logic</span>
+        </div>
+      </div>
+      <div class="callout callout-iron">PermissionToken.laneOrigin is const "ANCHORING_LANE". The Inference Lane cannot produce a valid Permission Token. Schema-level enforcement of lane separation.</div>
+    </div>
+  </div>
+
+  <!-- SHA256Hex -->
+  <div id="SHA256Hex" class="schema-card">
+    <div class="schema-card-header" onclick="toggle(this)">
+      <span class="schema-name-badge"><span class="anchor-prefix">$defs/</span>SHA256Hex</span>
+      <span class="schema-type-tag tt-string">string</span>
+      <span class="schema-expand">&#9660;</span>
+    </div>
+    <div class="schema-card-body">
+      <div class="schema-description">A SHA-256 hash represented as a 64-character lowercase hexadecimal string. Primary tamper-evidence primitive used throughout all log, token, and proof schemas.</div>
+      <div class="constraints-row">
+        <span class="constraint-pill blue">pattern: ^[a-f0-9]{64}$</span>
+        <span class="constraint-pill">minLength: 64</span>
+        <span class="constraint-pill">maxLength: 64</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ISO8601DateTime -->
+  <div id="ISO8601DateTime" class="schema-card">
+    <div class="schema-card-header" onclick="toggle(this)">
+      <span class="schema-name-badge"><span class="anchor-prefix">$defs/</span>ISO8601DateTime</span>
+      <span class="schema-type-tag tt-string">string</span>
+      <span class="schema-expand">&#9660;</span>
+    </div>
+    <div class="schema-card-body">
+      <div class="schema-description">An RFC 3339 / ISO 8601 UTC timestamp with timezone designator. Timestamp integrity primitive for all time-bearing log and token fields.</div>
+      <div class="constraints-row">
+        <span class="constraint-pill blue">format: date-time</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- UUIDv4 -->
+  <div id="UUIDv4" class="schema-card">
+    <div class="schema-card-header" onclick="toggle(this)">
+      <span class="schema-name-badge"><span class="anchor-prefix">$defs/</span>UUIDv4</span>
+      <span class="schema-type-tag tt-string">string</span>
+      <span class="schema-expand">&#9660;</span>
+    </div>
+    <div class="schema-card-body">
+      <div class="schema-description">A universally unique identifier in canonical UUID v4 format. Standard identifier primitive for all entity IDs across the schema bundle.</div>
+      <div class="constraints-row">
+        <span class="constraint-pill blue">format: uuid</span>
+        <span class="constraint-pill blue">pattern: UUID v4 canonical regex</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     GROUP II: PERMISSION TOKEN
+═══════════════════════════════════════════════════════════════ -->
+<div class="schema-group">
+  <div class="group-header">
+    <div class="group-icon gi-token">&#128273;</div>
+    <div>
+      <div class="group-title gt-token">II. Permission Token</div>
+      <div class="group-desc">Schema-level enforcement of No Log = No Action. The sole authorization for actuation.</div>
+    </div>
+  </div>
+
+  <div id="PermissionToken" class="schema-card">
+    <div class="schema-card-header" onclick="toggle(this)">
+      <span class="schema-name-badge"><span class="anchor-prefix">$defs/</span>PermissionToken</span>
+      <span class="schema-type-tag tt-object">object</span>
+      <span class="schema-expand">&#9660;</span>
+    </div>
+    <div class="schema-card-body">
+      <div class="schema-description">The schema-level enforcement artifact for the No Log = No Action iron law. A Permission Token is the SOLE authorization for the actuation layer to execute a proposed State +1 action. Its absence renders any State +1 State Envelope invalid by schema constraint. Cryptographically signed by the Anchoring Lane and verifiable against the Merkle root. Never issued for State 0 or State -1.</div>
+      <div class="callout callout-monograph">Monograph ref: Section 2.3.3, Section 5B.i</div>
+      <div class="callout callout-iron">NO LOG = NO ACTION &mdash; logHash binds this token to a specific anchored Moral Trace Log. laneOrigin: const "ANCHORING_LANE" rejects all Inference Lane tokens by schema constraint.</div>
+      <div class="constraints-row">
+        <span class="constraint-pill gold">unevaluatedProperties: false</span>
+        <span class="constraint-pill green">9 required fields</span>
+      </div>
+      <div class="prop-table-label">Properties</div>
+      <table class="prop-table">
+        <thead><tr><th>Property</th><th>Type</th><th>Constraint</th><th>Req</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td class="td-name required-field">tokenId</td><td class="td-type type-ref">$ref UUIDv4</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Unique identifier for this Permission Token.</td></tr>
+          <tr><td class="td-name required-field">logHash</td><td class="td-type type-ref">$ref SHA256Hex</td><td class="td-constraint">SHA-256 of anchored TSLF</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Core No Log = No Action binding. Token cannot exist without a corresponding anchored log.</td></tr>
+          <tr><td class="td-name required-field">epochTimestamp</td><td class="td-type type-integer">integer</td><td class="td-constraint">minimum: 0</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Unix epoch seconds at which the Anchoring Lane issued this token.</td></tr>
+          <tr><td class="td-name required-field">signerKeyId</td><td class="td-type type-string">string</td><td class="td-constraint">maxLength: 256</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">HSM-resident signing key ID; must be registered in the HybridShield 6-Custodian key registry.</td></tr>
+          <tr><td class="td-name required-field">laneOrigin</td><td class="td-type type-const">const</td><td class="td-constraint">const: "ANCHORING_LANE"</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Schema-level rejection of any token originating from the Inference Lane. Enforces lane separation.</td></tr>
+          <tr><td class="td-name required-field">merkleRoot</td><td class="td-type type-ref">$ref SHA256Hex</td><td class="td-constraint">batch anchor hash</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Non-repudiation binding to public blockchain anchor. Must match the on-chain TML_Core record.</td></tr>
+          <tr><td class="td-name required-field">signatureValue</td><td class="td-type type-string">string</td><td class="td-constraint">Base64url; minLength: 64</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">HSM signature over canonical token fields. Actuation layer verifies against signerKeyId public key.</td></tr>
+          <tr><td class="td-name required-field">issuedAt</td><td class="td-type type-ref">$ref ISO8601DateTime</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Timestamp at which the Anchoring Lane issued this token.</td></tr>
+          <tr><td class="td-name required-field">expiresAt</td><td class="td-type type-ref">$ref ISO8601DateTime</td><td class="td-constraint">hard expiry</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Actuation layer MUST reject tokens at or after this timestamp. Hard constraint.</td></tr>
+          <tr><td class="td-name">decisionId</td><td class="td-type type-ref">$ref UUIDv4</td><td class="td-constraint"></td><td><span class="req-badge req-no">opt</span></td><td class="td-desc">Prevents token reuse across decisions; additional binding to originating decision.</td></tr>
+          <tr><td class="td-name">custodianQuorumAttestation</td><td class="td-type type-object">object</td><td class="td-constraint">BETA</td><td><span class="req-badge req-no">opt</span></td><td class="td-desc">HybridShield quorum attestation at issuance. Optional BETA field; absence does not invalidate token.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     GROUP III: STATE ENVELOPE
+═══════════════════════════════════════════════════════════════ -->
+<div class="schema-group">
+  <div class="group-header">
+    <div class="group-icon gi-envelope">&#9993;</div>
+    <div>
+      <div class="group-title gt-envelope">III. State Envelope</div>
+      <div class="group-desc">Outer decision container with conditional Permission Token enforcement via if/then</div>
+    </div>
+  </div>
+
+  <div id="StateEnvelope" class="schema-card">
+    <div class="schema-card-header" onclick="toggle(this)">
+      <span class="schema-name-badge"><span class="anchor-prefix">$defs/</span>StateEnvelope</span>
+      <span class="schema-type-tag tt-object">object</span>
+      <span class="schema-expand">&#9660;</span>
+    </div>
+    <div class="schema-card-body">
+      <div class="schema-description">The outer decision container for all TML state determinations. Carries the triadic state, state label, the operational process active within that state, the proposed action, and conditionally requires a valid Permission Token when currentState is +1. Schema-level enforcement of No Log = No Action via if/then constraint.</div>
+      <div class="callout callout-monograph">Monograph ref: Section 2.3, Section 5B</div>
+      <div class="callout callout-iron">NO LOG = NO ACTION &mdash; if/then constraint: when currentState == 1, permissionToken is REQUIRED. A StateEnvelope claiming currentState +1 without permissionToken fails schema validation unconditionally.</div>
+      <div class="ifthen-block">
+        <span class="kw">if</span>: currentState == <span class="val">1</span><br>
+        <span class="kw">then</span>: permissionToken is <span class="val">REQUIRED</span> &nbsp;<span class="comment">// No Log = No Action</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stateLabel must be <span class="val">"PROCEED"</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;processActive must be <span class="val">"ActuationGated"</span><br><br>
+        <span class="kw">else if</span>: currentState == <span class="val">0</span><br>
+        <span class="kw">then</span>: stateLabel must be <span class="val">"SACRED_ZERO"</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;processActive must be <span class="val">"SacredPause"</span> &nbsp;<span class="comment">// workflow, not state synonym</span><br><br>
+        <span class="kw">else</span> (currentState == <span class="val">-1</span>):<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stateLabel must be <span class="val">"REFUSE"</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;processActive must be <span class="val">"RefusalLogging"</span>
+      </div>
+      <div class="callout callout-sacred">Sacred Pause (processActive) is the operational workflow executing within State 0. It is NOT a synonym for the state. currentState remains integer 0; stateLabel is "SACRED_ZERO"; processActive is "SacredPause". Three distinct fields, three distinct concepts.</div>
+      <div class="constraints-row">
+        <span class="constraint-pill gold">unevaluatedProperties: false</span>
+        <span class="constraint-pill green">8 required fields + conditional permissionToken</span>
+      </div>
+      <div class="prop-table-label">Properties</div>
+      <table class="prop-table">
+        <thead><tr><th>Property</th><th>Type</th><th>Constraint</th><th>Req</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td class="td-name required-field">envelopeId</td><td class="td-type type-ref">$ref UUIDv4</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Unique identifier for this State Envelope.</td></tr>
+          <tr><td class="td-name required-field">currentState</td><td class="td-type type-ref">$ref TriadicStateValue</td><td class="td-constraint">enum: [-1, 0, 1]</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Signed integer triadic state. 0 is SACRED_ZERO. Never null. Never error. Drives if/then conditional.</td></tr>
+          <tr><td class="td-name required-field">stateLabel</td><td class="td-type type-ref">$ref TriadicStateLabel</td><td class="td-constraint">constrained per state</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Human-readable label. Constrained by if/then to match currentState integer exactly.</td></tr>
+          <tr><td class="td-name required-field">processActive</td><td class="td-type type-string">string</td><td class="td-constraint">enum: 3 values</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Operational workflow executing within this state. State 0: "SacredPause". State +1: "ActuationGated". State -1: "RefusalLogging".</td></tr>
+          <tr><td class="td-name required-field">proposedAction</td><td class="td-type type-string">string</td><td class="td-constraint">maxLength: 2048</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Binary Inference Lane proposal. The ternary Anchoring Lane dictates whether execution is authorized.</td></tr>
+          <tr><td class="td-name required-field">laneOrigin</td><td class="td-type type-ref">$ref LaneOrigin</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Lane that produced this State Envelope.</td></tr>
+          <tr><td class="td-name required-field">createdAt</td><td class="td-type type-ref">$ref ISO8601DateTime</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Timestamp of envelope creation.</td></tr>
+          <tr><td class="td-name required-field">justificationObject</td><td class="td-type type-ref">$ref JustificationObject</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Justification Object that traveled between Inference and Anchoring lanes.</td></tr>
+          <tr><td class="td-name required-field">permissionToken</td><td class="td-type type-ref">$ref PermissionToken</td><td class="td-constraint">REQUIRED if currentState==1</td><td><span class="req-badge req-yes">cond</span></td><td class="td-desc">REQUIRED when currentState is +1. Absence when currentState is +1 renders this envelope schema-invalid.</td></tr>
+          <tr><td class="td-name">anchoring</td><td class="td-type type-object">object</td><td class="td-constraint"></td><td><span class="req-badge req-no">opt</span></td><td class="td-desc">Merkle batch anchoring metadata. Populated after Anchoring Lane processing.</td></tr>
+          <tr><td class="td-name">version</td><td class="td-type type-string">string</td><td class="td-constraint">default: 3.3.0-tml-monograph-2025</td><td><span class="req-badge req-no">opt</span></td><td class="td-desc">Schema version of this State Envelope.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     GROUP IV: JUSTIFICATION OBJECT
+═══════════════════════════════════════════════════════════════ -->
+<div class="schema-group">
+  <div class="group-header">
+    <div class="group-icon gi-just">&#128196;</div>
+    <div>
+      <div class="group-title gt-just">IV. Justification Object</div>
+      <div class="group-desc">The envelope traveling between Inference and Anchoring lanes. Informs; does not authorize.</div>
+    </div>
+  </div>
+
+  <div id="JustificationObject" class="schema-card">
+    <div class="schema-card-header" onclick="toggle(this)">
+      <span class="schema-name-badge"><span class="anchor-prefix">$defs/</span>JustificationObject</span>
+      <span class="schema-type-tag tt-object">object</span>
+      <span class="schema-expand">&#9660;</span>
+    </div>
+    <div class="schema-card-body">
+      <div class="schema-description">The envelope that travels between the Inference Lane and the Anchoring Lane, carrying the reasoning, uncertainty quantification, and ethical verification inputs that underpin the triadic state determination. The JustificationObject informs the Anchoring Lane's independent ternary evaluation; it does not authorize anything.</div>
+      <div class="callout callout-monograph">Monograph ref: Section 2.3, Section 5B</div>
+      <div class="constraints-row">
+        <span class="constraint-pill gold">unevaluatedProperties: false</span>
+        <span class="constraint-pill green">7 required fields</span>
+      </div>
+      <div class="prop-table-label">Properties</div>
+      <table class="prop-table">
+        <thead><tr><th>Property</th><th>Type</th><th>Constraint</th><th>Req</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td class="td-name required-field">justificationId</td><td class="td-type type-ref">$ref UUIDv4</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Unique identifier for this Justification Object.</td></tr>
+          <tr><td class="td-name required-field">proposedState</td><td class="td-type type-ref">$ref TriadicStateValue</td><td class="td-constraint">Inference Lane proposal only</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Candidate state from binary engine. Proposal only; Anchoring Lane determines authoritative state independently.</td></tr>
+          <tr><td class="td-name required-field">reasoningVector</td><td class="td-type type-array">array</td><td class="td-constraint">minItems: 1</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Ordered reasoning steps (stepId, description, confidence [0,1], pillarImplicated).</td></tr>
+          <tr><td class="td-name required-field">uncertaintyScore</td><td class="td-type type-number">number</td><td class="td-constraint">[0.0, 1.0]</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Aggregate uncertainty. Breach of configured SacredZero threshold overrides proposedState and mandates State 0 regardless of binary engine proposal.</td></tr>
+          <tr><td class="td-name required-field">pillarAssessments</td><td class="td-type type-object">object</td><td class="td-constraint">all 8 pillars, [0.0,1.0]</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Per-pillar compliance scores from the Inference Lane across all Eight Pillars.</td></tr>
+          <tr><td class="td-name required-field">generatedAt</td><td class="td-type type-ref">$ref ISO8601DateTime</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Timestamp at which the Inference Lane produced this object.</td></tr>
+          <tr><td class="td-name required-field">inferenceEngineId</td><td class="td-type type-string">string</td><td class="td-constraint">maxLength: 256</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Binary inference engine instance identifier. Chain-of-custody and auditability.</td></tr>
+          <tr><td class="td-name">inputHash</td><td class="td-type type-ref">$ref SHA256Hex</td><td class="td-constraint"></td><td><span class="req-badge req-no">opt</span></td><td class="td-desc">SHA-256 of canonical decision vector input. Tamper-evidence for the input payload.</td></tr>
+          <tr><td class="td-name">humanRightsMandateFlags</td><td class="td-type type-array">array</td><td class="td-constraint"></td><td><span class="req-badge req-no">opt</span></td><td class="td-desc">UDHR/Geneva provision flags (provision, flagSeverity). Presence triggers mandatory HumanRightsMandate review.</td></tr>
+          <tr><td class="td-name">earthProtectionMandateFlags</td><td class="td-type type-array">array</td><td class="td-constraint"></td><td><span class="req-badge req-no">opt</span></td><td class="td-desc">Paris Agreement provision flags. Presence triggers mandatory EarthProtectionMandate review.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     GROUP V: TSLF VARIANTS
+═══════════════════════════════════════════════════════════════ -->
+<div class="schema-group">
+  <div class="group-header">
+    <div class="group-icon gi-tslf">&#128220;</div>
+    <div>
+      <div class="group-title gt-tslf">V. TSLF Variants &amp; Supporting Types</div>
+      <div class="group-desc">Ternary State Log Format &mdash; three discriminated variants for State 0, -1, and +1 &mdash; plus all constituent schemas</div>
+    </div>
+  </div>
+
+  <!-- UncertaintyQuantification -->
+  <div id="UncertaintyQuantification" class="schema-card">
+    <div class="schema-card-header" onclick="toggle(this)">
+      <span class="schema-name-badge"><span class="anchor-prefix">$defs/</span>UncertaintyQuantification</span>
+      <span class="schema-type-tag tt-object">object</span>
+      <span class="schema-expand">&#9660;</span>
+    </div>
+    <div class="schema-card-body">
+      <div class="schema-description">Structured uncertainty quantification record for a State 0 (SacredZero) determination. Captures the Epistemic Hold conditions that triggered mandatory hesitation. Epistemic Hold is a canonical TML term for the system's recognition that it has reached the boundary of its reliable knowledge.</div>
+      <div class="callout callout-monograph">Monograph ref: Section 2.2, Section 8. "Epistemic Hold" is permanent canonical TML terminology.</div>
+      <div class="constraints-row">
+        <span class="constraint-pill gold">unevaluatedProperties: false</span>
+        <span class="constraint-pill green">4 required fields</span>
+      </div>
+      <div class="prop-table-label">Properties</div>
+      <table class="prop-table">
+        <thead><tr><th>Property</th><th>Type</th><th>Constraint</th><th>Req</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td class="td-name required-field">overallUncertaintyScore</td><td class="td-type type-number">number</td><td class="td-constraint">[0.0, 1.0]</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Aggregate uncertainty score that breached the SacredZero threshold.</td></tr>
+          <tr><td class="td-name required-field">epistemicHoldActive</td><td class="td-type type-const">const</td><td class="td-constraint">const: true</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Always true in TSLF-State0 records. The Sacred Zero state IS the epistemic hold state.</td></tr>
+          <tr><td class="td-name required-field">uncertaintyDimensions</td><td class="td-type type-array">array</td><td class="td-constraint">minItems: 1</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Per-dimension uncertainty measurements (dimension, score [0,1], description).</td></tr>
+          <tr><td class="td-name required-field">quantifiedAt</td><td class="td-type type-ref">$ref ISO8601DateTime</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Timestamp of quantification.</td></tr>
+          <tr><td class="td-name">thresholdBreached</td><td class="td-type type-number">number</td><td class="td-constraint">[0.0, 1.0]</td><td><span class="req-badge req-no">opt</span></td><td class="td-desc">The configured SacredZero uncertainty threshold that was breached.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- DeliberationMatrix -->
+  <div id="DeliberationMatrix" class="schema-card">
+    <div class="schema-card-header" onclick="toggle(this)">
+      <span class="schema-name-badge"><span class="anchor-prefix">$defs/</span>DeliberationMatrix</span>
+      <span class="schema-type-tag tt-object">object</span>
+      <span class="schema-expand">&#9660;</span>
+    </div>
+    <div class="schema-card-body">
+      <div class="schema-description">Structured matrix of considerations presented to the human reviewer during the Sacred Pause operational workflow. Captures competing values, risk vectors, and resolution options. Resolution options are constrained to +1 or -1 only; State 0 is not a valid resolution.</div>
+      <div class="callout callout-monograph">Monograph ref: Section 2.2</div>
+      <div class="constraints-row">
+        <span class="constraint-pill gold">unevaluatedProperties: false</span>
+        <span class="constraint-pill green">4 required fields</span>
+        <span class="constraint-pill red">resolutionOptions.proposedState: enum [1, -1] only</span>
+      </div>
+      <div class="prop-table-label">Properties</div>
+      <table class="prop-table">
+        <thead><tr><th>Property</th><th>Type</th><th>Constraint</th><th>Req</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td class="td-name required-field">matrixId</td><td class="td-type type-ref">$ref UUIDv4</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Unique identifier for this deliberation matrix.</td></tr>
+          <tr><td class="td-name required-field">considerations</td><td class="td-type type-array">array</td><td class="td-constraint">minItems: 1; per-pillar</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Ethical, factual, and legal considerations (considerationId, pillar, description, weight [0,1]).</td></tr>
+          <tr><td class="td-name required-field">riskVectors</td><td class="td-type type-array">array</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Risk vectors for reviewer (vectorId, description, severity LOW|MEDIUM|HIGH|CRITICAL, pillarImplicated).</td></tr>
+          <tr><td class="td-name required-field">resolutionOptions</td><td class="td-type type-array">array</td><td class="td-constraint">minItems: 2; proposedState enum [1,-1]</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Terminal resolution options. State 0 is NOT a valid resolution option. Reviewer must choose +1 or -1.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ResolutionRequest -->
+  <div id="ResolutionRequest" class="schema-card">
+    <div class="schema-card-header" onclick="toggle(this)">
+      <span class="schema-name-badge"><span class="anchor-prefix">$defs/</span>ResolutionRequest</span>
+      <span class="schema-type-tag tt-object">object</span>
+      <span class="schema-expand">&#9660;</span>
+    </div>
+    <div class="schema-card-body">
+      <div class="schema-description">Formal request for human authority resolution of a Sacred Zero escalation. Generated by the Sacred Pause operational workflow and queued for human-in-the-loop review.</div>
+      <div class="callout callout-monograph">Monograph ref: Section 2.2</div>
+      <div class="prop-table-label">Properties</div>
+      <table class="prop-table">
+        <thead><tr><th>Property</th><th>Type</th><th>Constraint</th><th>Req</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td class="td-name required-field">resolutionRequestId</td><td class="td-type type-ref">$ref UUIDv4</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Unique identifier for this resolution request.</td></tr>
+          <tr><td class="td-name required-field">escalationId</td><td class="td-type type-ref">$ref UUIDv4</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">The escalation case this request belongs to.</td></tr>
+          <tr><td class="td-name required-field">requestedAt</td><td class="td-type type-ref">$ref ISO8601DateTime</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Timestamp of request creation.</td></tr>
+          <tr><td class="td-name required-field">priority</td><td class="td-type type-string">string</td><td class="td-constraint">enum: STANDARD|ELEVATED|CRITICAL</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Priority assigned by Sacred Pause workflow based on uncertainty severity and risk vectors.</td></tr>
+          <tr><td class="td-name required-field">deliberationMatrix</td><td class="td-type type-ref">$ref DeliberationMatrix</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Full deliberation matrix for this resolution request.</td></tr>
+          <tr><td class="td-name">deadlineAt</td><td class="td-type type-ref">$ref ISO8601DateTime</td><td class="td-constraint"></td><td><span class="req-badge req-no">opt</span></td><td class="td-desc">If exceeded without resolution, HybridShield failover protocols may activate.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- TSLF-State0 -->
+  <div id="TSLF-State0" class="schema-card">
+    <div class="schema-card-header" onclick="toggle(this)">
+      <span class="schema-name-badge"><span class="anchor-prefix">$defs/</span>TSLF-State0</span>
+      <span class="schema-type-tag tt-object">object</span>
+      <span class="schema-expand">&#9660;</span>
+    </div>
+    <div class="schema-card-body">
+      <div class="schema-description">Ternary State Log Format record for State 0 (SacredZero) determinations. Captures the Sacred Pause operational workflow activation, uncertainty quantification, deliberation matrix, and resolution request. The currentState discriminator value is exactly 0. Immutable forensic record committed before any human review (AlwaysMemory, Pillar II).</div>
+      <div class="callout callout-monograph">Monograph ref: Section 2.2 (SacredZero / Sacred Pause), Section 8 (TSLF forensic schema)</div>
+      <div class="discriminator-note">&#9650; Discriminator: currentState: const 0 &mdash; stateLabel: const "SACRED_ZERO" &mdash; processActive: const "SacredPause"</div>
+      <div class="callout callout-sacred">Sacred Pause (processActive: "SacredPause") is the operational workflow within State 0. It is NOT the state itself. currentState: 0 | stateLabel: "SACRED_ZERO" | processActive: "SacredPause" are three distinct required fields with distinct roles.</div>
+      <div class="constraints-row">
+        <span class="constraint-pill gold">unevaluatedProperties: false</span>
+        <span class="constraint-pill green">13 required fields</span>
+        <span class="constraint-pill blue">currentState: const 0</span>
+      </div>
+      <div class="prop-table-label">Properties</div>
+      <table class="prop-table">
+        <thead><tr><th>Property</th><th>Type</th><th>Constraint</th><th>Req</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td class="td-name required-field">logId</td><td class="td-type type-ref">$ref UUIDv4</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Unique identifier for this Moral Trace Log entry.</td></tr>
+          <tr><td class="td-name required-field">currentState</td><td class="td-type type-const">const</td><td class="td-constraint">const: 0</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Discriminator. Must be exactly 0. Sacred Zero is never null, never error code, never timeout.</td></tr>
+          <tr><td class="td-name required-field">stateLabel</td><td class="td-type type-const">const</td><td class="td-constraint">const: "SACRED_ZERO"</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Always "SACRED_ZERO" for this log type.</td></tr>
+          <tr><td class="td-name required-field">processActive</td><td class="td-type type-const">const</td><td class="td-constraint">const: "SacredPause"</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Sacred Pause is the workflow executing within State 0. Not a synonym for the state.</td></tr>
+          <tr><td class="td-name required-field">logVersion</td><td class="td-type type-string">string</td><td class="td-constraint">default: 3.3.0-tml-monograph-2025</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">TSLF schema version.</td></tr>
+          <tr><td class="td-name required-field">decisionId</td><td class="td-type type-ref">$ref UUIDv4</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Decision that triggered this Sacred Zero log.</td></tr>
+          <tr><td class="td-name required-field">envelopeId</td><td class="td-type type-ref">$ref UUIDv4</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">State Envelope associated with this determination.</td></tr>
+          <tr><td class="td-name required-field">lanternStatus</td><td class="td-type type-ref">$ref LanternStatus</td><td class="td-constraint">required at activation</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Lantern status captured at moment of Sacred Zero activation. Must reflect SACRED_ZERO_ACTIVE.</td></tr>
+          <tr><td class="td-name required-field">uncertaintyQuantification</td><td class="td-type type-ref">$ref UncertaintyQuantification</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Structured quantification of uncertainty that triggered State 0.</td></tr>
+          <tr><td class="td-name required-field">deliberationMatrix</td><td class="td-type type-ref">$ref DeliberationMatrix</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Deliberation matrix presented to human reviewer via Sacred Pause workflow.</td></tr>
+          <tr><td class="td-name required-field">resolutionRequest</td><td class="td-type type-ref">$ref ResolutionRequest</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Formal resolution request queued for human-in-the-loop review.</td></tr>
+          <tr><td class="td-name required-field">committedAt</td><td class="td-type type-ref">$ref ISO8601DateTime</td><td class="td-constraint">pre-actuation commit</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Committed before any human review (AlwaysMemory / Pillar II anti-spoliation).</td></tr>
+          <tr><td class="td-name required-field">pillarsCertified</td><td class="td-type type-array">array</td><td class="td-constraint">minItems: 1; PillarIdentifier items</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Pillars assessed and certified at log commit time.</td></tr>
+          <tr><td class="td-name">merkleAnchoringStatus</td><td class="td-type type-object">object</td><td class="td-constraint"></td><td><span class="req-badge req-no">opt</span></td><td class="td-desc">Merkle batch anchoring status (batchId, merkleRoot, anchoredAt, blockchainTxId).</td></tr>
+          <tr><td class="td-name">resolution</td><td class="td-type type-object">object</td><td class="td-constraint">if escalation resolved</td><td><span class="req-badge req-no">opt</span></td><td class="td-desc">Human authority resolution record (resolvedAt, resolvedBy, resolvedState [1|-1], justification min 50 chars).</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- LicenseViolationRecord -->
+  <div id="LicenseViolationRecord" class="schema-card">
+    <div class="schema-card-header" onclick="toggle(this)">
+      <span class="schema-name-badge"><span class="anchor-prefix">$defs/</span>LicenseViolationRecord</span>
+      <span class="schema-type-tag tt-object">object</span>
+      <span class="schema-expand">&#9660;</span>
+    </div>
+    <div class="schema-card-body">
+      <div class="schema-description">Records a violation of the Goukassian Promise License artifact. License violations are a mandatory trigger for State -1 (Refuse) determinations. The violatedArtifact field uses canonical lowercase artifact names.</div>
+      <div class="callout callout-monograph">Monograph ref: Section 2.4 (Goukassian Promise: lantern, signature, license)</div>
+      <div class="prop-table-label">Properties</div>
+      <table class="prop-table">
+        <thead><tr><th>Property</th><th>Type</th><th>Constraint</th><th>Req</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td class="td-name required-field">violationId</td><td class="td-type type-ref">$ref UUIDv4</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Unique identifier for this violation record.</td></tr>
+          <tr><td class="td-name required-field">violationType</td><td class="td-type type-string">string</td><td class="td-constraint">enum: 5 values</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">LANTERN_SUPPRESSION | SIGNATURE_FORGERY | LICENSE_BREACH | PROVENANCE_TAMPERING | UNAUTHORIZED_STATE_TRANSITION</td></tr>
+          <tr><td class="td-name required-field">violatedArtifact</td><td class="td-type type-string">string</td><td class="td-constraint">enum: "lantern"|"signature"|"license"</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Canonical lowercase Goukassian Promise artifact name. Exact strings enforced by schema.</td></tr>
+          <tr><td class="td-name required-field">description</td><td class="td-type type-string">string</td><td class="td-constraint">maxLength: 4096</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Description of the violation.</td></tr>
+          <tr><td class="td-name required-field">detectedAt</td><td class="td-type type-ref">$ref ISO8601DateTime</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Timestamp of detection.</td></tr>
+          <tr><td class="td-name">evidenceHash</td><td class="td-type type-ref">$ref SHA256Hex</td><td class="td-constraint"></td><td><span class="req-badge req-no">opt</span></td><td class="td-desc">SHA-256 of evidence artifact demonstrating the violation.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ThreatVectorAnalysis -->
+  <div id="ThreatVectorAnalysis" class="schema-card">
+    <div class="schema-card-header" onclick="toggle(this)">
+      <span class="schema-name-badge"><span class="anchor-prefix">$defs/</span>ThreatVectorAnalysis</span>
+      <span class="schema-type-tag tt-object">object</span>
+      <span class="schema-expand">&#9660;</span>
+    </div>
+    <div class="schema-card-body">
+      <div class="schema-description">Structured analysis of the threat vectors that produced a State -1 (Refuse) determination. Each vector carries a category, severity, implicated pillar, and optional UDHR/Paris Agreement provision trackers.</div>
+      <div class="callout callout-monograph">Monograph ref: Section 2.3, Section 8</div>
+      <div class="prop-table-label">Threat Vector Categories (enum)</div>
+      <div class="enum-box" style="margin-bottom:14px;">
+        <div class="enum-values">
+          <span class="enum-val">HUMAN_RIGHTS_VIOLATION</span>
+          <span class="enum-val">EARTH_PROTECTION_VIOLATION</span>
+          <span class="enum-val">LICENSE_VIOLATION</span>
+          <span class="enum-val">PROVENANCE_ATTACK</span>
+          <span class="enum-val">ACTUATION_SPOOFING</span>
+          <span class="enum-val">LOG_TAMPERING</span>
+          <span class="enum-val">QUORUM_FAILURE</span>
+          <span class="enum-val">UNAUTHORIZED_OVERRIDE</span>
+        </div>
+      </div>
+      <div class="prop-table-label">Properties</div>
+      <table class="prop-table">
+        <thead><tr><th>Property</th><th>Type</th><th>Constraint</th><th>Req</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td class="td-name required-field">analysisId</td><td class="td-type type-ref">$ref UUIDv4</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Unique identifier for this analysis.</td></tr>
+          <tr><td class="td-name required-field">threatVectors</td><td class="td-type type-array">array</td><td class="td-constraint">minItems: 1</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Array of threat vectors. Each carries: vectorId, category (8-value enum), description, severity, pillarImplicated, optional udhrProvision and parisAgreementProvision.</td></tr>
+          <tr><td class="td-name required-field">overallSeverity</td><td class="td-type type-string">string</td><td class="td-constraint">enum: LOW|MEDIUM|HIGH|CRITICAL</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Aggregate severity across all threat vectors.</td></tr>
+          <tr><td class="td-name required-field">analysedAt</td><td class="td-type type-ref">$ref ISO8601DateTime</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Timestamp of analysis.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ChainOfCustody -->
+  <div id="ChainOfCustody" class="schema-card">
+    <div class="schema-card-header" onclick="toggle(this)">
+      <span class="schema-name-badge"><span class="anchor-prefix">$defs/</span>ChainOfCustody</span>
+      <span class="schema-type-tag tt-object">object</span>
+      <span class="schema-expand">&#9660;</span>
+    </div>
+    <div class="schema-card-body">
+      <div class="schema-description">Forensic chain-of-custody record for a Moral Trace Log entry, documenting every handler and transformation from creation through anchoring. Each entry carries inputHash and outputHash to provide tamper-evidence across handler transitions.</div>
+      <div class="callout callout-monograph">Monograph ref: Section 8 (TSLF forensic schema)</div>
+      <div class="prop-table-label">Entry Action Enum</div>
+      <div class="enum-box" style="margin-bottom:14px;">
+        <div class="enum-values">
+          <span class="enum-val">CREATED</span><span class="enum-val">RECEIVED</span><span class="enum-val">VALIDATED</span><span class="enum-val">ANCHORED</span><span class="enum-val">TRANSFERRED</span><span class="enum-val">REVIEWED</span><span class="enum-val">EXPORTED</span>
+        </div>
+      </div>
+      <div class="prop-table-label">Properties</div>
+      <table class="prop-table">
+        <thead><tr><th>Property</th><th>Type</th><th>Constraint</th><th>Req</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td class="td-name required-field">custodyChainId</td><td class="td-type type-ref">$ref UUIDv4</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Unique identifier for this custody chain.</td></tr>
+          <tr><td class="td-name required-field">entries</td><td class="td-type type-array">array</td><td class="td-constraint">minItems: 1</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Ordered custody entries. Each: sequenceNumber, handler, action (7-value enum), timestamp, inputHash (SHA256Hex), outputHash (SHA256Hex), notes.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- TSLF-State-1 -->
+  <div id="TSLF-State-1" class="schema-card">
+    <div class="schema-card-header" onclick="toggle(this)">
+      <span class="schema-name-badge"><span class="anchor-prefix">$defs/</span>TSLF-State-1</span>
+      <span class="schema-type-tag tt-object">object</span>
+      <span class="schema-expand">&#9660;</span>
+    </div>
+    <div class="schema-card-body">
+      <div class="schema-description">Ternary State Log Format record for State -1 (Refuse) determinations. Captures the hard refusal, threat vector analysis, Goukassian Promise license violation (if applicable), and chain of custody. No Permission Token is issued. The currentState discriminator value is exactly -1.</div>
+      <div class="callout callout-monograph">Monograph ref: Section 2.3 (Refuse state), Section 2.4 (GoukassianPromise), Section 8 (TSLF)</div>
+      <div class="discriminator-note">&#9650; Discriminator: currentState: const -1 &mdash; stateLabel: const "REFUSE" &mdash; processActive: const "RefusalLogging"</div>
+      <div class="constraints-row">
+        <span class="constraint-pill gold">unevaluatedProperties: false</span>
+        <span class="constraint-pill green">11 required fields</span>
+        <span class="constraint-pill blue">currentState: const -1</span>
+      </div>
+      <div class="prop-table-label">Properties</div>
+      <table class="prop-table">
+        <thead><tr><th>Property</th><th>Type</th><th>Constraint</th><th>Req</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td class="td-name required-field">logId</td><td class="td-type type-ref">$ref UUIDv4</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Unique identifier for this Moral Trace Log entry.</td></tr>
+          <tr><td class="td-name required-field">currentState</td><td class="td-type type-const">const</td><td class="td-constraint">const: -1</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Discriminator. Must be exactly -1.</td></tr>
+          <tr><td class="td-name required-field">stateLabel</td><td class="td-type type-const">const</td><td class="td-constraint">const: "REFUSE"</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Always "REFUSE" for this log type.</td></tr>
+          <tr><td class="td-name required-field">processActive</td><td class="td-type type-const">const</td><td class="td-constraint">const: "RefusalLogging"</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Active operational workflow for refusal recording.</td></tr>
+          <tr><td class="td-name required-field">logVersion</td><td class="td-type type-string">string</td><td class="td-constraint">default: 3.3.0-tml-monograph-2025</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">TSLF schema version.</td></tr>
+          <tr><td class="td-name required-field">decisionId</td><td class="td-type type-ref">$ref UUIDv4</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Decision that triggered this refusal.</td></tr>
+          <tr><td class="td-name required-field">envelopeId</td><td class="td-type type-ref">$ref UUIDv4</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">State Envelope associated with this refusal.</td></tr>
+          <tr><td class="td-name required-field">threatVectorAnalysis</td><td class="td-type type-ref">$ref ThreatVectorAnalysis</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Structured analysis of threat vectors producing this refusal.</td></tr>
+          <tr><td class="td-name required-field">chainOfCustody</td><td class="td-type type-ref">$ref ChainOfCustody</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Forensic chain-of-custody for this refusal log.</td></tr>
+          <tr><td class="td-name required-field">committedAt</td><td class="td-type type-ref">$ref ISO8601DateTime</td><td class="td-constraint">pre-actuation commit</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Pre-actuation commit timestamp (AlwaysMemory / Pillar II).</td></tr>
+          <tr><td class="td-name required-field">pillarsCertified</td><td class="td-type type-array">array</td><td class="td-constraint">minItems: 1</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Pillars assessed at commit time.</td></tr>
+          <tr><td class="td-name required-field">refusalIsPermanent</td><td class="td-type type-boolean">boolean</td><td class="td-constraint">default: true</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Permanent unless overridden by Section 13.3 supreme authority Emergency Override.</td></tr>
+          <tr><td class="td-name">licenseViolation</td><td class="td-type type-ref">$ref LicenseViolationRecord</td><td class="td-constraint">if GoukassianPromise triggered</td><td><span class="req-badge req-no">opt</span></td><td class="td-desc">Required when refusal triggered by Goukassian Promise violation. Must be logged before refusal record commits.</td></tr>
+          <tr><td class="td-name">merkleAnchoringStatus</td><td class="td-type type-object">object</td><td class="td-constraint"></td><td><span class="req-badge req-no">opt</span></td><td class="td-desc">Merkle batch anchoring status for this entry.</td></tr>
+          <tr><td class="td-name">appealEligible</td><td class="td-type type-boolean">boolean</td><td class="td-constraint">default: true</td><td><span class="req-badge req-no">opt</span></td><td class="td-desc">Whether this refusal is eligible for subject-initiated redress challenge.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- EthicalVerification -->
+  <div id="EthicalVerification" class="schema-card">
+    <div class="schema-card-header" onclick="toggle(this)">
+      <span class="schema-name-badge"><span class="anchor-prefix">$defs/</span>EthicalVerification</span>
+      <span class="schema-type-tag tt-object">object</span>
+      <span class="schema-expand">&#9660;</span>
+    </div>
+    <div class="schema-card-body">
+      <div class="schema-description">Structured ethical verification record produced by the Anchoring Lane for State +1 (PROCEED) determinations. Certifies that all Eight Pillars were assessed and passed. All Eight Pillars must be present and PASSED; any FAILED pillar blocks PROCEED.</div>
+      <div class="callout callout-monograph">Monograph ref: Section 2.3.3, Section 8</div>
+      <div class="constraints-row">
+        <span class="constraint-pill red">overallVerdict FAILED triggers State -1</span>
+        <span class="constraint-pill green">all 8 pillarVerifications required</span>
+      </div>
+      <div class="prop-table-label">Properties</div>
+      <table class="prop-table">
+        <thead><tr><th>Property</th><th>Type</th><th>Constraint</th><th>Req</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td class="td-name required-field">verificationId</td><td class="td-type type-ref">$ref UUIDv4</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Unique identifier for this verification.</td></tr>
+          <tr><td class="td-name required-field">pillarVerifications</td><td class="td-type type-object">object</td><td class="td-constraint">all 8 PillarIdentifiers required</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Per-pillar verification results. All Eight Pillars must be PASSED for PROCEED. Each value is a PillarVerificationResult.</td></tr>
+          <tr><td class="td-name required-field">overallVerdict</td><td class="td-type type-string">string</td><td class="td-constraint">enum: PASSED|FAILED</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">PASSED only when all Eight Pillar verifications are PASSED. FAILED triggers State -1.</td></tr>
+          <tr><td class="td-name required-field">verifiedAt</td><td class="td-type type-ref">$ref ISO8601DateTime</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Timestamp of verification.</td></tr>
+          <tr><td class="td-name required-field">verifierEngineId</td><td class="td-type type-string">string</td><td class="td-constraint">maxLength: 256</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Anchoring Lane ternary verification engine identity. Chain-of-custody.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- PillarVerificationResult -->
+  <div id="PillarVerificationResult" class="schema-card">
+    <div class="schema-card-header" onclick="toggle(this)">
+      <span class="schema-name-badge"><span class="anchor-prefix">$defs/</span>PillarVerificationResult</span>
+      <span class="schema-type-tag tt-object">object</span>
+      <span class="schema-expand">&#9660;</span>
+    </div>
+    <div class="schema-card-body">
+      <div class="schema-description">Verification result for a single TML Pillar within an EthicalVerification. A FAILED verdict for any pillar blocks the PROCEED determination. Used as the value type in EthicalVerification.pillarVerifications and ComplianceAttestation.pillarCompliance.</div>
+      <div class="prop-table-label">Properties</div>
+      <table class="prop-table">
+        <thead><tr><th>Property</th><th>Type</th><th>Constraint</th><th>Req</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td class="td-name required-field">verdict</td><td class="td-type type-string">string</td><td class="td-constraint">enum: PASSED|FAILED|NOT_APPLICABLE</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">FAILED blocks PROCEED determination.</td></tr>
+          <tr><td class="td-name required-field">verifiedAt</td><td class="td-type type-ref">$ref ISO8601DateTime</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Timestamp of this pillar's verification.</td></tr>
+          <tr><td class="td-name">notes</td><td class="td-type type-string">string</td><td class="td-constraint">maxLength: 2048</td><td><span class="req-badge req-no">opt</span></td><td class="td-desc">Narrative notes on the pillar's verification outcome.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- AuditProof -->
+  <div id="AuditProof" class="schema-card">
+    <div class="schema-card-header" onclick="toggle(this)">
+      <span class="schema-name-badge"><span class="anchor-prefix">$defs/</span>AuditProof</span>
+      <span class="schema-type-tag tt-object">object</span>
+      <span class="schema-expand">&#9660;</span>
+    </div>
+    <div class="schema-card-body">
+      <div class="schema-description">Cryptographic audit proof for a State +1 (PROCEED) log, demonstrating Merkle inclusion and binding the Permission Token to the anchored log. The inclusionPath array provides the sibling-hash path from leaf to root. Any auditor can traverse: Permission Token -> logHash -> merkleRoot -> inclusionPath -> public blockchain.</div>
+      <div class="callout callout-monograph">Monograph ref: Section 8</div>
+      <div class="callout callout-iron">logHash must match PermissionToken.logHash. merkleRoot must match PermissionToken.merkleRoot. This cross-schema binding is the proof-layer enforcement of No Log = No Action.</div>
+      <div class="prop-table-label">Properties</div>
+      <table class="prop-table">
+        <thead><tr><th>Property</th><th>Type</th><th>Constraint</th><th>Req</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td class="td-name required-field">proofId</td><td class="td-type type-ref">$ref UUIDv4</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Unique identifier for this audit proof.</td></tr>
+          <tr><td class="td-name required-field">permissionTokenId</td><td class="td-type type-ref">$ref UUIDv4</td><td class="td-constraint">binds proof to token</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">The Permission Token whose issuance this proof certifies.</td></tr>
+          <tr><td class="td-name required-field">logHash</td><td class="td-type type-ref">$ref SHA256Hex</td><td class="td-constraint">must match PermissionToken.logHash</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">SHA-256 of the anchored Moral Trace Log. Cross-schema binding with Permission Token.</td></tr>
+          <tr><td class="td-name required-field">merkleRoot</td><td class="td-type type-ref">$ref SHA256Hex</td><td class="td-constraint">must match PermissionToken.merkleRoot</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Merkle root of the batch. Must match token's merkleRoot.</td></tr>
+          <tr><td class="td-name required-field">inclusionPath</td><td class="td-type type-array">array</td><td class="td-constraint">minItems: 1; LEFT|RIGHT positions</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Ordered sibling hashes from leaf to root. Each entry: position (LEFT|RIGHT), hash (SHA256Hex).</td></tr>
+          <tr><td class="td-name required-field">proofGeneratedAt</td><td class="td-type type-ref">$ref ISO8601DateTime</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Timestamp of proof generation.</td></tr>
+          <tr><td class="td-name">blockchainTxId</td><td class="td-type type-string">string</td><td class="td-constraint"></td><td><span class="req-badge req-no">opt</span></td><td class="td-desc">Public blockchain transaction ID for the Merkle batch anchor.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- TSLF-StateP1 -->
+  <div id="TSLF-StateP1" class="schema-card">
+    <div class="schema-card-header" onclick="toggle(this)">
+      <span class="schema-name-badge"><span class="anchor-prefix">$defs/</span>TSLF-StateP1</span>
+      <span class="schema-type-tag tt-object">object</span>
+      <span class="schema-expand">&#9660;</span>
+    </div>
+    <div class="schema-card-body">
+      <div class="schema-description">Ternary State Log Format record for State +1 (PROCEED) determinations. Captures the ethical verification, the Goukassian Promise Signature, the issued Permission Token, and the cryptographic audit proof. permissionToken is a required field: this log cannot be valid without it, and the token cannot be valid without this log. Committed and anchored before the Permission Token is released to the actuation layer. pillarsCertified requires exactly 8 entries.</div>
+      <div class="callout callout-monograph">Monograph ref: Section 2.3.3 (No Log = No Action), Section 8 (TSLF)</div>
+      <div class="discriminator-note">&#9650; Discriminator: currentState: const 1 &mdash; stateLabel: const "PROCEED" &mdash; processActive: const "ActuationGated"</div>
+      <div class="callout callout-iron">NO LOG = NO ACTION enforced at the log level: permissionToken is in the required array. pillarsCertified: minItems 8, maxItems 8. All Eight Pillars mandatory for PROCEED.</div>
+      <div class="constraints-row">
+        <span class="constraint-pill gold">unevaluatedProperties: false</span>
+        <span class="constraint-pill green">12 required fields</span>
+        <span class="constraint-pill blue">currentState: const 1</span>
+        <span class="constraint-pill red">pillarsCertified: exactly 8</span>
+      </div>
+      <div class="prop-table-label">Properties</div>
+      <table class="prop-table">
+        <thead><tr><th>Property</th><th>Type</th><th>Constraint</th><th>Req</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td class="td-name required-field">logId</td><td class="td-type type-ref">$ref UUIDv4</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Unique identifier for this Moral Trace Log entry.</td></tr>
+          <tr><td class="td-name required-field">currentState</td><td class="td-type type-const">const</td><td class="td-constraint">const: 1</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Discriminator. Must be exactly 1.</td></tr>
+          <tr><td class="td-name required-field">stateLabel</td><td class="td-type type-const">const</td><td class="td-constraint">const: "PROCEED"</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Always "PROCEED" for this log type.</td></tr>
+          <tr><td class="td-name required-field">processActive</td><td class="td-type type-const">const</td><td class="td-constraint">const: "ActuationGated"</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Actuation is gated on the Permission Token. Token must be verified before execution proceeds.</td></tr>
+          <tr><td class="td-name required-field">logVersion</td><td class="td-type type-string">string</td><td class="td-constraint">default: 3.3.0-tml-monograph-2025</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">TSLF schema version.</td></tr>
+          <tr><td class="td-name required-field">decisionId</td><td class="td-type type-ref">$ref UUIDv4</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">The decision for which PROCEED was determined.</td></tr>
+          <tr><td class="td-name required-field">envelopeId</td><td class="td-type type-ref">$ref UUIDv4</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">State Envelope associated with this determination.</td></tr>
+          <tr><td class="td-name required-field">ethicalVerification</td><td class="td-type type-ref">$ref EthicalVerification</td><td class="td-constraint">all 8 pillars PASSED</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">All Eight Pillar verifications must be PASSED. Any FAILED pillar blocks this log type.</td></tr>
+          <tr><td class="td-name required-field">theSignature</td><td class="td-type type-ref">$ref SignatureBlock</td><td class="td-constraint">Goukassian Signature artifact</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">The Goukassian Promise Signature binding this log to the constitutional provenance chain. Named "theSignature" to align with the canonical artifact name "signature".</td></tr>
+          <tr><td class="td-name required-field">auditProof</td><td class="td-type type-ref">$ref AuditProof</td><td class="td-constraint">Merkle inclusion proof</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Cryptographic Merkle inclusion proof binding the Permission Token to this anchored log.</td></tr>
+          <tr><td class="td-name required-field">permissionToken</td><td class="td-type type-ref">$ref PermissionToken</td><td class="td-constraint">REQUIRED; No Log = No Action</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">The Permission Token authorizing actuation. Issued after this log is anchored. Its presence is the log-level enforcement of No Log = No Action.</td></tr>
+          <tr><td class="td-name required-field">committedAt</td><td class="td-type type-ref">$ref ISO8601DateTime</td><td class="td-constraint">log anchored before token released</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Log committed and anchored before Permission Token is released to actuation layer.</td></tr>
+          <tr><td class="td-name required-field">pillarsCertified</td><td class="td-type type-array">array</td><td class="td-constraint">minItems: 8, maxItems: 8</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">All Eight Pillars must be certified. Exactly 8 entries required for PROCEED log validity.</td></tr>
+          <tr><td class="td-name">merkleAnchoringStatus</td><td class="td-type type-object">object</td><td class="td-constraint"></td><td><span class="req-badge req-no">opt</span></td><td class="td-desc">Merkle batch anchoring status (batchId, merkleRoot, anchoredAt, blockchainTxId).</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     GROUP VI: GOUKASSIAN ARTIFACTS
+═══════════════════════════════════════════════════════════════ -->
+<div class="schema-group">
+  <div class="group-header">
+    <div class="group-icon gi-gouk">&#9978;</div>
+    <div>
+      <div class="group-title gt-gouk">VI. Goukassian Promise Artifacts</div>
+      <div class="group-desc">Three canonical artifacts: lantern, signature, license &mdash; each with artifactName: const enforcement</div>
+    </div>
+  </div>
+
+  <!-- LanternStatus -->
+  <div id="LanternStatus" class="schema-card">
+    <div class="schema-card-header" onclick="toggle(this)">
+      <span class="schema-name-badge"><span class="anchor-prefix">$defs/</span>LanternStatus</span>
+      <span class="schema-type-tag tt-object">object</span>
+      <span class="schema-expand">&#9660;</span>
+    </div>
+    <div class="schema-card-body">
+      <div class="schema-description">The Goukassian Promise Lantern: the public compliance beacon signal of the TML system. Broadcasts the system's current constitutional governance posture. The Lantern is always lit; its signal content reflects the current governance state. Canonical artifact name: "lantern" (lowercase const).</div>
+      <div class="callout callout-monograph">Monograph ref: Section 2.4 (GoukassianPromise: lantern, signature, license). artifactName: const "lantern".</div>
+      <div class="constraints-row">
+        <span class="constraint-pill gold">artifactName: const "lantern"</span>
+        <span class="constraint-pill gold">unevaluatedProperties: false</span>
+        <span class="constraint-pill green">6 required fields</span>
+      </div>
+      <div class="prop-table-label">compliancePosture Enum</div>
+      <div class="enum-box" style="margin-bottom:14px;">
+        <div class="enum-values">
+          <span class="enum-val">FULLY_COMPLIANT</span>
+          <span class="enum-val special">SACRED_ZERO_ACTIVE</span>
+          <span class="enum-val">PARTIAL_COMPLIANCE</span>
+          <span class="enum-val">EMERGENCY_OVERRIDE_ACTIVE</span>
+          <span class="enum-val">DEGRADED</span>
+        </div>
+      </div>
+      <div class="prop-table-label">Properties</div>
+      <table class="prop-table">
+        <thead><tr><th>Property</th><th>Type</th><th>Constraint</th><th>Req</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td class="td-name required-field">lanternId</td><td class="td-type type-ref">$ref UUIDv4</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Unique identifier for this Lantern status broadcast.</td></tr>
+          <tr><td class="td-name required-field">artifactName</td><td class="td-type type-const">const</td><td class="td-constraint">const: "lantern"</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Canonical Goukassian Promise artifact name. Always "lantern" (lowercase).</td></tr>
+          <tr><td class="td-name required-field">currentSystemState</td><td class="td-type type-ref">$ref TriadicStateValue</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Aggregate triadic state of the TML system at signal emission time.</td></tr>
+          <tr><td class="td-name required-field">compliancePosture</td><td class="td-type type-string">string</td><td class="td-constraint">enum: 5 values</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Overall constitutional compliance posture of the TML system.</td></tr>
+          <tr><td class="td-name required-field">signalEmittedAt</td><td class="td-type type-ref">$ref ISO8601DateTime</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Timestamp of signal emission.</td></tr>
+          <tr><td class="td-name required-field">signatureBlock</td><td class="td-type type-ref">$ref SignatureBlock</td><td class="td-constraint">Goukassian Signature on broadcast</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Goukassian Promise Signature signing this Lantern broadcast.</td></tr>
+          <tr><td class="td-name">currentSystemStateLabel</td><td class="td-type type-ref">$ref TriadicStateLabel</td><td class="td-constraint"></td><td><span class="req-badge req-no">opt</span></td><td class="td-desc">Human-readable label for currentSystemState.</td></tr>
+          <tr><td class="td-name">pillarStatuses</td><td class="td-type type-object">object</td><td class="td-constraint">per-pillar live status</td><td><span class="req-badge req-no">opt</span></td><td class="td-desc">Per-pillar live compliance status across all Eight Pillars.</td></tr>
+          <tr><td class="td-name">activeSacredZeroCount</td><td class="td-type type-integer">integer</td><td class="td-constraint">minimum: 0</td><td><span class="req-badge req-no">opt</span></td><td class="td-desc">Number of active Sacred Zero escalations at signal emission time.</td></tr>
+          <tr><td class="td-name">emergencyOverrideActive</td><td class="td-type type-boolean">boolean</td><td class="td-constraint">default: false</td><td><span class="req-badge req-no">opt</span></td><td class="td-desc">True when a Section 13.3 Emergency Override is currently active.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- SignatureBlock -->
+  <div id="SignatureBlock" class="schema-card">
+    <div class="schema-card-header" onclick="toggle(this)">
+      <span class="schema-name-badge"><span class="anchor-prefix">$defs/</span>SignatureBlock</span>
+      <span class="schema-type-tag tt-object">object</span>
+      <span class="schema-expand">&#9660;</span>
+    </div>
+    <div class="schema-card-body">
+      <div class="schema-description">The Goukassian Promise Signature: provenance and non-repudiation artifact for the TML system. Binds a TML artifact (log, token, broadcast) to the constitutional provenance chain via HSM-backed cryptographic signing. Canonical artifact name: "signature" (lowercase const). The signatureAlgorithm enum reserves PQC identifiers for forward-compatible migration.</div>
+      <div class="callout callout-monograph">Monograph ref: Section 2.4 (GoukassianPromise: signature). artifactName: const "signature".</div>
+      <div class="callout callout-future">PQC algorithms (SLH-DSA-SHAKE-128s, ML-KEM-1024) are enum members but classified FUTURE per Section 10. SHIPPING algorithms: ES256, ES384, ES512, RS256, RS384, RS512.</div>
+      <div class="constraints-row">
+        <span class="constraint-pill gold">artifactName: const "signature"</span>
+        <span class="constraint-pill gold">unevaluatedProperties: false</span>
+        <span class="constraint-pill green">8 required fields</span>
+      </div>
+      <div class="prop-table-label">Properties</div>
+      <table class="prop-table">
+        <thead><tr><th>Property</th><th>Type</th><th>Constraint</th><th>Req</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td class="td-name required-field">signatureId</td><td class="td-type type-ref">$ref UUIDv4</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Unique identifier for this Signature Block.</td></tr>
+          <tr><td class="td-name required-field">artifactName</td><td class="td-type type-const">const</td><td class="td-constraint">const: "signature"</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Canonical Goukassian Promise artifact name. Always "signature" (lowercase).</td></tr>
+          <tr><td class="td-name required-field">signerIdentity</td><td class="td-type type-string">string</td><td class="td-constraint">maxLength: 512</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Authenticated identity of the signing authority.</td></tr>
+          <tr><td class="td-name required-field">signerKeyId</td><td class="td-type type-string">string</td><td class="td-constraint">maxLength: 256</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">HSM-resident signing key identifier.</td></tr>
+          <tr><td class="td-name required-field">signedPayloadHash</td><td class="td-type type-ref">$ref SHA256Hex</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">SHA-256 of the canonical serialization of the payload being signed.</td></tr>
+          <tr><td class="td-name required-field">signatureValue</td><td class="td-type type-string">string</td><td class="td-constraint">Base64url; minLength: 64</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Base64url-encoded cryptographic signature over signedPayloadHash.</td></tr>
+          <tr><td class="td-name required-field">signatureAlgorithm</td><td class="td-type type-string">string</td><td class="td-constraint">enum: 8 values</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">ES256 (SHIPPING default). SLH-DSA-SHAKE-128s / ML-KEM-1024 reserved as FUTURE per Section 10.</td></tr>
+          <tr><td class="td-name required-field">signedAt</td><td class="td-type type-ref">$ref ISO8601DateTime</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Timestamp at which the signature was produced.</td></tr>
+          <tr><td class="td-name">certChain</td><td class="td-type type-array">array</td><td class="td-constraint">Base64 DER certs</td><td><span class="req-badge req-no">opt</span></td><td class="td-desc">Certificate chain from leaf to root for the signing key.</td></tr>
+          <tr><td class="td-name">custodianId</td><td class="td-type type-string">string</td><td class="td-constraint"></td><td><span class="req-badge req-no">opt</span></td><td class="td-desc">HybridShield custodian holding the signing key, if applicable.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- LicenseValidationRequest -->
+  <div id="LicenseValidationRequest" class="schema-card">
+    <div class="schema-card-header" onclick="toggle(this)">
+      <span class="schema-name-badge"><span class="anchor-prefix">$defs/</span>LicenseValidationRequest</span>
+      <span class="schema-type-tag tt-object">object</span>
+      <span class="schema-expand">&#9660;</span>
+    </div>
+    <div class="schema-card-body">
+      <div class="schema-description">A request to validate a Goukassian Promise License artifact. The License governs authorized use of the TML system; violations are mandatory refusal triggers. Canonical artifact name: "license" (lowercase const).</div>
+      <div class="callout callout-monograph">Monograph ref: Section 2.4 (GoukassianPromise: license). artifactName: const "license".</div>
+      <div class="constraints-row">
+        <span class="constraint-pill gold">artifactName: const "license"</span>
+        <span class="constraint-pill gold">unevaluatedProperties: false</span>
+        <span class="constraint-pill green">5 required fields</span>
+      </div>
+      <div class="prop-table-label">Properties</div>
+      <table class="prop-table">
+        <thead><tr><th>Property</th><th>Type</th><th>Constraint</th><th>Req</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td class="td-name required-field">validationRequestId</td><td class="td-type type-ref">$ref UUIDv4</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Unique identifier for this validation request.</td></tr>
+          <tr><td class="td-name required-field">artifactName</td><td class="td-type type-const">const</td><td class="td-constraint">const: "license"</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Canonical Goukassian Promise artifact name. Always "license" (lowercase).</td></tr>
+          <tr><td class="td-name required-field">licenseToken</td><td class="td-type type-string">string</td><td class="td-constraint">minLength: 1</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">License token to be validated against the Goukassian Promise constitutional record.</td></tr>
+          <tr><td class="td-name required-field">requestingEntityId</td><td class="td-type type-string">string</td><td class="td-constraint">maxLength: 512</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Identity of the entity requesting license validation.</td></tr>
+          <tr><td class="td-name required-field">requestedAt</td><td class="td-type type-ref">$ref ISO8601DateTime</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Timestamp of the validation request.</td></tr>
+          <tr><td class="td-name">purposeOfUse</td><td class="td-type type-string">string</td><td class="td-constraint">maxLength: 2048</td><td><span class="req-badge req-no">opt</span></td><td class="td-desc">Declared purpose for which the license is being validated.</td></tr>
+          <tr><td class="td-name">decisionId</td><td class="td-type type-ref">$ref UUIDv4</td><td class="td-constraint"></td><td><span class="req-badge req-no">opt</span></td><td class="td-desc">Decision this license validation is associated with, if applicable.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     GROUP VII: SUPPORTING SCHEMAS
+═══════════════════════════════════════════════════════════════ -->
+<div class="schema-group">
+  <div class="group-header">
+    <div class="group-icon gi-support">&#9881;</div>
+    <div>
+      <div class="group-title gt-support">VII. Supporting Schemas</div>
+      <div class="group-desc">Auditor, regulator, redress, gateway, and emergency operational schemas</div>
+    </div>
+  </div>
+
+  <!-- MerkleInclusionProof -->
+  <div id="MerkleInclusionProof" class="schema-card">
+    <div class="schema-card-header" onclick="toggle(this)">
+      <span class="schema-name-badge"><span class="anchor-prefix">$defs/</span>MerkleInclusionProof</span>
+      <span class="schema-type-tag tt-object">object</span>
+      <span class="schema-expand">&#9660;</span>
+    </div>
+    <div class="schema-card-body">
+      <div class="schema-description">Cryptographic proof that a specific Moral Trace Log entry is included in an anchored Merkle batch on the public blockchain. Primary forensic artifact for log authenticity verification. Auditors traverse: logHash (leaf) -> inclusionPath -> merkleRoot -> blockchainTxId.</div>
+      <div class="callout callout-monograph">Monograph ref: Section 8, Pillar VIII (PublicBlockchains)</div>
+      <div class="prop-table-label">Properties</div>
+      <table class="prop-table">
+        <thead><tr><th>Property</th><th>Type</th><th>Constraint</th><th>Req</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td class="td-name required-field">proofId</td><td class="td-type type-ref">$ref UUIDv4</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Unique identifier for this proof.</td></tr>
+          <tr><td class="td-name required-field">logId</td><td class="td-type type-ref">$ref UUIDv4</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">The Moral Trace Log entry whose inclusion is proven.</td></tr>
+          <tr><td class="td-name required-field">logHash</td><td class="td-type type-ref">$ref SHA256Hex</td><td class="td-constraint">leaf node</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">SHA-256 hash of the log entry (Merkle leaf node).</td></tr>
+          <tr><td class="td-name required-field">merkleRoot</td><td class="td-type type-ref">$ref SHA256Hex</td><td class="td-constraint">must match blockchain</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Merkle root of the batch. Must match the root recorded on the public blockchain.</td></tr>
+          <tr><td class="td-name required-field">inclusionPath</td><td class="td-type type-array">array</td><td class="td-constraint">minItems: 1; LEFT|RIGHT</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Ordered sibling hashes from leaf to root. Each: position (LEFT|RIGHT), hash (SHA256Hex).</td></tr>
+          <tr><td class="td-name required-field">batchId</td><td class="td-type type-string">string</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Identifier of the Merkle batch.</td></tr>
+          <tr><td class="td-name required-field">anchoredAt</td><td class="td-type type-ref">$ref ISO8601DateTime</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Timestamp at which the Merkle batch was anchored on-chain.</td></tr>
+          <tr><td class="td-name required-field">verificationStatus</td><td class="td-type type-string">string</td><td class="td-constraint">enum: VERIFIED|PENDING|FAILED</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Current verification status of this inclusion proof.</td></tr>
+          <tr><td class="td-name">blockchainTxId</td><td class="td-type type-string">string</td><td class="td-constraint"></td><td><span class="req-badge req-no">opt</span></td><td class="td-desc">Public blockchain transaction ID for the batch anchor.</td></tr>
+          <tr><td class="td-name">blockchainNetwork</td><td class="td-type type-string">string</td><td class="td-constraint"></td><td><span class="req-badge req-no">opt</span></td><td class="td-desc">Identifier of the public blockchain network used for anchoring.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- CustodianHeartbeat -->
+  <div id="CustodianHeartbeat" class="schema-card">
+    <div class="schema-card-header" onclick="toggle(this)">
+      <span class="schema-name-badge"><span class="anchor-prefix">$defs/</span>CustodianHeartbeat</span>
+      <span class="schema-type-tag tt-object">object</span>
+      <span class="schema-expand">&#9660;</span>
+    </div>
+    <div class="schema-card-body">
+      <div class="schema-description">Health and liveness signal from one of the 6-Custodian HybridShield distributed anchoring nodes. A missing or stale heartbeat triggers HybridShield failover protocols. Cross-jurisdiction sub-500ms quorum is FUTURE (Section 10); latencyMs documents the current observed value.</div>
+      <div class="callout callout-monograph">Monograph ref: Section 2.3.3, Pillar VII (HybridShield)</div>
+      <div class="prop-table-label">Properties</div>
+      <table class="prop-table">
+        <thead><tr><th>Property</th><th>Type</th><th>Constraint</th><th>Req</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td class="td-name required-field">custodianId</td><td class="td-type type-string">string</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Unique identifier for this custodian node.</td></tr>
+          <tr><td class="td-name required-field">status</td><td class="td-type type-string">string</td><td class="td-constraint">enum: 4 values</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">ACTIVE | DEGRADED | UNREACHABLE | ROTATING_KEYS</td></tr>
+          <tr><td class="td-name required-field">lastHeartbeatAt</td><td class="td-type type-ref">$ref ISO8601DateTime</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Timestamp of most recent heartbeat signal.</td></tr>
+          <tr><td class="td-name required-field">jurisdiction</td><td class="td-type type-string">string</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Legal jurisdiction in which this custodian operates.</td></tr>
+          <tr><td class="td-name">latencyMs</td><td class="td-type type-number">number</td><td class="td-constraint">minimum: 0; FUTURE sub-500ms</td><td><span class="req-badge req-no">opt</span></td><td class="td-desc">Observed round-trip latency in milliseconds. Sub-500ms cross-jurisdiction is FUTURE per Section 10.</td></tr>
+          <tr><td class="td-name">keyVersion</td><td class="td-type type-string">string</td><td class="td-constraint"></td><td><span class="req-badge req-no">opt</span></td><td class="td-desc">Current key version held by this custodian.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ComplianceAttestation -->
+  <div id="ComplianceAttestation" class="schema-card">
+    <div class="schema-card-header" onclick="toggle(this)">
+      <span class="schema-name-badge"><span class="anchor-prefix">$defs/</span>ComplianceAttestation</span>
+      <span class="schema-type-tag tt-object">object</span>
+      <span class="schema-expand">&#9660;</span>
+    </div>
+    <div class="schema-card-body">
+      <div class="schema-description">Signed attestation certifying the TML system's adherence to the Eight Pillars as of the attestation timestamp. Signed by the Goukassian Promise Signature Block and anchored to the public Merkle chain. All Eight Pillars required in pillarCompliance.</div>
+      <div class="callout callout-monograph">Monograph ref: Section 2.4, Section 8</div>
+      <div class="prop-table-label">Properties</div>
+      <table class="prop-table">
+        <thead><tr><th>Property</th><th>Type</th><th>Constraint</th><th>Req</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td class="td-name required-field">attestationId</td><td class="td-type type-ref">$ref UUIDv4</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Unique identifier for this attestation.</td></tr>
+          <tr><td class="td-name required-field">attestedAt</td><td class="td-type type-ref">$ref ISO8601DateTime</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Timestamp of attestation.</td></tr>
+          <tr><td class="td-name required-field">pillarCompliance</td><td class="td-type type-object">object</td><td class="td-constraint">all 8 PillarIdentifiers required</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Per-pillar compliance results (PillarVerificationResult values) for all Eight Pillars.</td></tr>
+          <tr><td class="td-name required-field">overallStatus</td><td class="td-type type-string">string</td><td class="td-constraint">enum: 3 values</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">FULLY_COMPLIANT | PARTIAL_COMPLIANCE | NON_COMPLIANT</td></tr>
+          <tr><td class="td-name required-field">signatureBlock</td><td class="td-type type-ref">$ref SignatureBlock</td><td class="td-constraint">Goukassian Signature</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Goukassian Promise Signature signing this attestation.</td></tr>
+          <tr><td class="td-name required-field">merkleRoot</td><td class="td-type type-ref">$ref SHA256Hex</td><td class="td-constraint">batch anchor</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Merkle root of the batch in which this attestation is anchored.</td></tr>
+          <tr><td class="td-name">blockchainTxId</td><td class="td-type type-string">string</td><td class="td-constraint"></td><td><span class="req-badge req-no">opt</span></td><td class="td-desc">Public blockchain transaction ID for the attestation anchor.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- RedressChallenge -->
+  <div id="RedressChallenge" class="schema-card">
+    <div class="schema-card-header" onclick="toggle(this)">
+      <span class="schema-name-badge"><span class="anchor-prefix">$defs/</span>RedressChallenge</span>
+      <span class="schema-type-tag tt-object">object</span>
+      <span class="schema-expand">&#9660;</span>
+    </div>
+    <div class="schema-card-body">
+      <div class="schema-description">A subject-initiated formal challenge against a TML state determination. Initiates a Moral Trace Log re-evaluation workflow under the Human Rights Mandate (Pillar V). challengeGrounds carries per-pillar grounds with optional UDHR Article citations.</div>
+      <div class="callout callout-monograph">Monograph ref: Section 2.3.3, Pillar V (HumanRightsMandate)</div>
+      <div class="prop-table-label">Properties</div>
+      <table class="prop-table">
+        <thead><tr><th>Property</th><th>Type</th><th>Constraint</th><th>Req</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td class="td-name required-field">challengeId</td><td class="td-type type-ref">$ref UUIDv4</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Unique identifier for this challenge.</td></tr>
+          <tr><td class="td-name required-field">subjectIdentity</td><td class="td-type type-string">string</td><td class="td-constraint">maxLength: 512</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Identity of the subject initiating the challenge.</td></tr>
+          <tr><td class="td-name required-field">challengedLogId</td><td class="td-type type-ref">$ref UUIDv4</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">The Moral Trace Log entry being challenged.</td></tr>
+          <tr><td class="td-name required-field">challengedDecisionId</td><td class="td-type type-ref">$ref UUIDv4</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">The decision record being challenged.</td></tr>
+          <tr><td class="td-name required-field">challengeGrounds</td><td class="td-type type-array">array</td><td class="td-constraint">minItems: 1; description min 50 chars</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Per-pillar grounds for challenge (groundId, pillar, description, optional udhrProvision).</td></tr>
+          <tr><td class="td-name required-field">submittedAt</td><td class="td-type type-ref">$ref ISO8601DateTime</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Timestamp of challenge submission.</td></tr>
+          <tr><td class="td-name">representativeIdentity</td><td class="td-type type-string">string</td><td class="td-constraint">maxLength: 512</td><td><span class="req-badge req-no">opt</span></td><td class="td-desc">Identity of a designated representative filing on behalf of the subject.</td></tr>
+          <tr><td class="td-name">supportingEvidenceHash</td><td class="td-type type-ref">$ref SHA256Hex</td><td class="td-constraint"></td><td><span class="req-badge req-no">opt</span></td><td class="td-desc">SHA-256 hash of supporting evidence submitted with the challenge.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- HumanRightsGrievance -->
+  <div id="HumanRightsGrievance" class="schema-card">
+    <div class="schema-card-header" onclick="toggle(this)">
+      <span class="schema-name-badge"><span class="anchor-prefix">$defs/</span>HumanRightsGrievance</span>
+      <span class="schema-type-tag tt-object">object</span>
+      <span class="schema-expand">&#9660;</span>
+    </div>
+    <div class="schema-card-body">
+      <div class="schema-description">A formal human rights grievance against a TML decision. Aligned with the Human Rights Mandate (Pillar V, UDHR/Geneva Convention vector enforcement). Grievances are logged, assigned to compliance review, and anchored to the public Merkle chain. grievanceNarrative minimum 100 characters.</div>
+      <div class="callout callout-monograph">Monograph ref: Section 2.3.3, Pillar V (HumanRightsMandate)</div>
+      <div class="prop-table-label">Properties</div>
+      <table class="prop-table">
+        <thead><tr><th>Property</th><th>Type</th><th>Constraint</th><th>Req</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td class="td-name required-field">grievanceId</td><td class="td-type type-ref">$ref UUIDv4</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Unique identifier for this grievance.</td></tr>
+          <tr><td class="td-name required-field">complainantIdentity</td><td class="td-type type-string">string</td><td class="td-constraint">maxLength: 512</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Identity of the complainant.</td></tr>
+          <tr><td class="td-name required-field">impliedDecisionId</td><td class="td-type type-ref">$ref UUIDv4</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">The TML decision that is the subject of this grievance.</td></tr>
+          <tr><td class="td-name required-field">udhrProvisions</td><td class="td-type type-array">array</td><td class="td-constraint">minItems: 1</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">UDHR Articles alleged violated (e.g., "UDHR-Art-3", "GC-IV-Art-27").</td></tr>
+          <tr><td class="td-name required-field">grievanceNarrative</td><td class="td-type type-string">string</td><td class="td-constraint">minLength: 100; maxLength: 16384</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Full narrative of the alleged human rights violation.</td></tr>
+          <tr><td class="td-name required-field">filedAt</td><td class="td-type type-ref">$ref ISO8601DateTime</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Timestamp of grievance filing.</td></tr>
+          <tr><td class="td-name">genevaConventionProvisions</td><td class="td-type type-array">array</td><td class="td-constraint"></td><td><span class="req-badge req-no">opt</span></td><td class="td-desc">Additional Geneva Convention provisions, if applicable.</td></tr>
+          <tr><td class="td-name">requestedRemedy</td><td class="td-type type-string">string</td><td class="td-constraint">maxLength: 4096</td><td><span class="req-badge req-no">opt</span></td><td class="td-desc">Requested remedy or redress action.</td></tr>
+          <tr><td class="td-name">supportingEvidenceHash</td><td class="td-type type-ref">$ref SHA256Hex</td><td class="td-constraint"></td><td><span class="req-badge req-no">opt</span></td><td class="td-desc">SHA-256 hash of supporting evidence.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- BulkEvidenceExport -->
+  <div id="BulkEvidenceExport" class="schema-card">
+    <div class="schema-card-header" onclick="toggle(this)">
+      <span class="schema-name-badge"><span class="anchor-prefix">$defs/</span>BulkEvidenceExport</span>
+      <span class="schema-type-tag tt-object">object</span>
+      <span class="schema-expand">&#9660;</span>
+    </div>
+    <div class="schema-card-body">
+      <div class="schema-description">Parameters for a regulatory bulk evidence export of Moral Trace Logs and Permission Token records. Accepts jurisdiction, legal basis, date range, state filter, and pillar filter. Exports are signed, Merkle-verified archives. Asynchronous operation.</div>
+      <div class="callout callout-monograph">Monograph ref: Section 8, Pillar IV (MoralTraceLogs), Pillar VIII (PublicBlockchains)</div>
+      <div class="prop-table-label">Properties</div>
+      <table class="prop-table">
+        <thead><tr><th>Property</th><th>Type</th><th>Constraint</th><th>Req</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td class="td-name required-field">exportRequestId</td><td class="td-type type-ref">$ref UUIDv4</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Unique identifier for this export request.</td></tr>
+          <tr><td class="td-name required-field">regulatorIdentity</td><td class="td-type type-string">string</td><td class="td-constraint">maxLength: 512</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Authenticated identity of the requesting regulatory authority.</td></tr>
+          <tr><td class="td-name required-field">legalBasis</td><td class="td-type type-string">string</td><td class="td-constraint">maxLength: 2048</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Legal basis for the export (e.g., "EU AI Act Article 72").</td></tr>
+          <tr><td class="td-name required-field">exportScope</td><td class="td-type type-object">object</td><td class="td-constraint">fromDate + toDate required</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Scope: fromDate, toDate, optional stateFilter (TriadicStateValue[]), pillarFilter (PillarIdentifier[]), includePermissionTokens, includeMerkleProofs.</td></tr>
+          <tr><td class="td-name required-field">requestedAt</td><td class="td-type type-ref">$ref ISO8601DateTime</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Timestamp of the export request.</td></tr>
+          <tr><td class="td-name">jurisdiction</td><td class="td-type type-string">string</td><td class="td-constraint"></td><td><span class="req-badge req-no">opt</span></td><td class="td-desc">Legal jurisdiction of the requesting regulatory authority.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- GatewayRoutingStatus -->
+  <div id="GatewayRoutingStatus" class="schema-card">
+    <div class="schema-card-header" onclick="toggle(this)">
+      <span class="schema-name-badge"><span class="anchor-prefix">$defs/</span>GatewayRoutingStatus</span>
+      <span class="schema-type-tag tt-object">object</span>
+      <span class="schema-expand">&#9660;</span>
+    </div>
+    <div class="schema-card-body">
+      <div class="schema-description">Operational status of the TML Gateway. FAIL-CLOSED: if the Gateway cannot route to the Anchoring Lane, failClosedActive becomes true and all decisions default to State 0 (SacredZero). Fail-open is constitutionally prohibited. Exposes lanternStatus so operators get the Lantern signal without a separate call.</div>
+      <div class="callout callout-monograph">Monograph ref: Section 2.3 (TML Gateway Logic)</div>
+      <div class="callout callout-sacred">failClosedActive: true means all incoming decisions default to SacredZero. The system does not fail open. FAIL_CLOSED_ACTIVE is a constitutional hold, not a degraded best-effort mode.</div>
+      <div class="prop-table-label">operationalStatus Enum</div>
+      <div class="enum-box" style="margin-bottom:14px;">
+        <div class="enum-values">
+          <span class="enum-val">NORMAL_OPERATION</span>
+          <span class="enum-val">DEGRADED</span>
+          <span class="enum-val special">FAIL_CLOSED_ACTIVE</span>
+          <span class="enum-val">EMERGENCY_OVERRIDE_ACTIVE</span>
+        </div>
+      </div>
+      <div class="prop-table-label">Properties</div>
+      <table class="prop-table">
+        <thead><tr><th>Property</th><th>Type</th><th>Constraint</th><th>Req</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td class="td-name required-field">gatewayId</td><td class="td-type type-string">string</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Identifier of this TML Gateway instance.</td></tr>
+          <tr><td class="td-name required-field">operationalStatus</td><td class="td-type type-string">string</td><td class="td-constraint">enum: 4 values</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Current operational status. FAIL_CLOSED_ACTIVE is a constitutional hold state.</td></tr>
+          <tr><td class="td-name required-field">failClosedActive</td><td class="td-type type-boolean">boolean</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">True when Gateway defaults all decisions to SacredZero. Fail-open is not permitted.</td></tr>
+          <tr><td class="td-name required-field">inferenceLaneStatus</td><td class="td-type type-string">string</td><td class="td-constraint">enum: HEALTHY|DEGRADED|OFFLINE</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Current health of the Inference Lane (Lane 1).</td></tr>
+          <tr><td class="td-name required-field">anchoringLaneStatus</td><td class="td-type type-string">string</td><td class="td-constraint">enum: HEALTHY|DEGRADED|OFFLINE</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Current health of the Anchoring Lane (Lane 2).</td></tr>
+          <tr><td class="td-name required-field">reportedAt</td><td class="td-type type-ref">$ref ISO8601DateTime</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Timestamp of this status report.</td></tr>
+          <tr><td class="td-name">activeSacredZeroDecisions</td><td class="td-type type-integer">integer</td><td class="td-constraint">minimum: 0</td><td><span class="req-badge req-no">opt</span></td><td class="td-desc">Count of decisions currently in Sacred Zero / Sacred Pause state.</td></tr>
+          <tr><td class="td-name">lanternStatus</td><td class="td-type type-ref">$ref LanternStatus</td><td class="td-constraint"></td><td><span class="req-badge req-no">opt</span></td><td class="td-desc">Current Lantern status embedded in Gateway status report. Avoids a separate Lantern call.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- EmergencyOverrideRequest -->
+  <div id="EmergencyOverrideRequest" class="schema-card">
+    <div class="schema-card-header" onclick="toggle(this)">
+      <span class="schema-name-badge"><span class="anchor-prefix">$defs/</span>EmergencyOverrideRequest</span>
+      <span class="schema-type-tag tt-object">object</span>
+      <span class="schema-expand">&#9660;</span>
+    </div>
+    <div class="schema-card-body">
+      <div class="schema-description">Request payload for Emergency Override invocation under Section 13.3 supreme authority. Supports BREAK_GLASS_SHUTDOWN, KILL_SWITCH, and FORCED_STATE_TRANSITION. ALL invocations are pre-logged before execution (No Log = No Action applies without exception). Forced transition to PROCEED (+1) is schema-blocked; forcedState enum is [-1, 0] only.</div>
+      <div class="callout callout-monograph">Monograph ref: Section 13.3 (Emergency Override)</div>
+      <div class="callout callout-iron">NO LOG = NO ACTION &mdash; justification (min 100 chars) is logged before execution. Emergency overrides are not exempt.</div>
+      <div class="ifthen-block">
+        <span class="kw">if</span>: overrideType == <span class="val">"FORCED_STATE_TRANSITION"</span><br>
+        <span class="kw">then</span>: targetDecisionId is <span class="val">REQUIRED</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;forcedState is <span class="val">REQUIRED</span> &nbsp;<span class="comment">// enum: [-1, 0] only; +1 is blocked</span>
+      </div>
+      <div class="prop-table-label">Properties</div>
+      <table class="prop-table">
+        <thead><tr><th>Property</th><th>Type</th><th>Constraint</th><th>Req</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td class="td-name required-field">overrideRequestId</td><td class="td-type type-ref">$ref UUIDv4</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Unique identifier for this override request.</td></tr>
+          <tr><td class="td-name required-field">overrideType</td><td class="td-type type-string">string</td><td class="td-constraint">enum: 3 values</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">BREAK_GLASS_SHUTDOWN | KILL_SWITCH | FORCED_STATE_TRANSITION</td></tr>
+          <tr><td class="td-name required-field">supremeAuthorityIdentity</td><td class="td-type type-string">string</td><td class="td-constraint">maxLength: 512</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Authenticated identity of the supreme authority invoking this override.</td></tr>
+          <tr><td class="td-name required-field">justification</td><td class="td-type type-string">string</td><td class="td-constraint">minLength: 100; maxLength: 16384</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Mandatory justification. Logged to Moral Trace Log before execution.</td></tr>
+          <tr><td class="td-name required-field">requestedAt</td><td class="td-type type-ref">$ref ISO8601DateTime</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Timestamp of the override request.</td></tr>
+          <tr><td class="td-name">targetDecisionId</td><td class="td-type type-ref">$ref UUIDv4</td><td class="td-constraint">required if FORCED_STATE_TRANSITION</td><td><span class="req-badge req-no">cond</span></td><td class="td-desc">Required when overrideType is FORCED_STATE_TRANSITION. Enforced by if/then constraint.</td></tr>
+          <tr><td class="td-name">forcedState</td><td class="td-type type-integer">integer</td><td class="td-constraint">enum: [-1, 0] only</td><td><span class="req-badge req-no">cond</span></td><td class="td-desc">Required when overrideType is FORCED_STATE_TRANSITION. Forced transition to +1 (PROCEED) is not permitted.</td></tr>
+          <tr><td class="td-name">custodianQuorumApproval</td><td class="td-type type-object">object</td><td class="td-constraint">BETA</td><td><span class="req-badge req-no">opt</span></td><td class="td-desc">HybridShield custodian quorum approval if required by deployment policy.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <span>TML Specification Architecture &mdash; Step 2 of 5 &mdash; tml_schema.json &mdash; v3.3.0-tml-monograph-2025</span>
+    <span>Authority: TML Constitutionalization Monograph v3.3</span>
+  </div>
+
+</main>
+
+<script>
+  function toggle(header) {
+    const card = header.parentElement;
+    card.classList.toggle('open');
+  }
+  // Open first card in each group by default
+  document.querySelectorAll('.schema-group .schema-card:first-of-type .schema-card-header').forEach(h => {
+    h.parentElement.classList.add('open');
+  });
+</script>
+</body>
+</html>

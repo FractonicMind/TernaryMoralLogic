@@ -1,0 +1,1887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TML Specification — Step 1: openapi.yaml</title>
+<style>
+  /* ── DESIGN TOKENS ─────────────────────────────────────────────── */
+  :root {
+    --navy:        #0a1628;
+    --navy-mid:    #0f2040;
+    --navy-light:  #162a52;
+    --navy-border: #1e3a6e;
+    --gold:        #d4a574;
+    --gold-dim:    #a07848;
+    --gold-glow:   rgba(212,165,116,0.12);
+    --gold-glow2:  rgba(212,165,116,0.06);
+    --white:       #f0ece4;
+    --white-dim:   #b8b0a0;
+    --white-muted: #6e6860;
+    --red:         #c0392b;
+    --red-soft:    rgba(192,57,43,0.15);
+    --green:       #27ae60;
+    --green-soft:  rgba(39,174,96,0.15);
+    --amber:       #e67e22;
+    --amber-soft:  rgba(230,126,34,0.15);
+    --blue:        #2980b9;
+    --blue-soft:   rgba(41,128,185,0.15);
+    --purple:      #8e44ad;
+    --purple-soft: rgba(142,68,173,0.15);
+    --sidebar-w:   280px;
+    --font-serif:  Georgia, 'Times New Roman', serif;
+    --font-sans:   'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --font-mono:   'Courier New', Courier, monospace;
+  }
+
+  /* ── RESET ─────────────────────────────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  /* ── BODY ──────────────────────────────────────────────────────── */
+  body {
+    background: var(--navy);
+    color: var(--white);
+    font-family: var(--font-serif);
+    font-size: 15px;
+    line-height: 1.7;
+    display: flex;
+    min-height: 100vh;
+  }
+
+  /* ── SIDEBAR ───────────────────────────────────────────────────── */
+  .sidebar {
+    position: fixed;
+    top: 0; left: 0;
+    width: var(--sidebar-w);
+    height: 100vh;
+    background: var(--navy-mid);
+    border-right: 1px solid var(--navy-border);
+    overflow-y: auto;
+    z-index: 100;
+    padding-bottom: 40px;
+  }
+  .sidebar::-webkit-scrollbar { width: 4px; }
+  .sidebar::-webkit-scrollbar-track { background: var(--navy-mid); }
+  .sidebar::-webkit-scrollbar-thumb { background: var(--navy-border); border-radius: 2px; }
+
+  .sidebar-header {
+    padding: 28px 20px 20px;
+    border-bottom: 1px solid var(--navy-border);
+    position: sticky;
+    top: 0;
+    background: var(--navy-mid);
+    z-index: 10;
+  }
+  .sidebar-header .step-badge {
+    font-family: var(--font-sans);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    background: var(--gold-glow);
+    border: 1px solid var(--gold-dim);
+    padding: 3px 8px;
+    border-radius: 2px;
+    display: inline-block;
+    margin-bottom: 10px;
+  }
+  .sidebar-header h1 {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--white);
+    line-height: 1.3;
+  }
+  .sidebar-header .version {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--white-muted);
+    margin-top: 6px;
+  }
+
+  .sidebar-section {
+    padding: 16px 0 4px;
+  }
+  .sidebar-section-label {
+    font-family: var(--font-sans);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    padding: 0 20px 6px;
+  }
+  .sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 20px;
+    text-decoration: none;
+    color: var(--white-dim);
+    font-family: var(--font-sans);
+    font-size: 11px;
+    transition: all 0.15s;
+    border-left: 2px solid transparent;
+  }
+  .sidebar-link:hover {
+    color: var(--gold);
+    background: var(--gold-glow2);
+    border-left-color: var(--gold-dim);
+  }
+  .sidebar-link .method-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .dot-get    { background: var(--green); }
+  .dot-post   { background: var(--blue); }
+  .dot-patch  { background: var(--amber); }
+  .dot-hook   { background: var(--purple); }
+
+  .sidebar-count {
+    margin-left: auto;
+    font-size: 9px;
+    color: var(--white-muted);
+    background: var(--navy);
+    padding: 1px 5px;
+    border-radius: 8px;
+  }
+
+  /* ── MAIN CONTENT ──────────────────────────────────────────────── */
+  .main {
+    margin-left: var(--sidebar-w);
+    flex: 1;
+    padding: 0 48px 80px;
+    max-width: 1100px;
+  }
+
+  /* ── PAGE HEADER ───────────────────────────────────────────────── */
+  .page-header {
+    padding: 48px 0 36px;
+    border-bottom: 1px solid var(--navy-border);
+    margin-bottom: 40px;
+  }
+  .page-header .doc-label {
+    font-family: var(--font-sans);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+  .page-header h2 {
+    font-family: var(--font-sans);
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+  .page-header .subtitle {
+    font-family: var(--font-serif);
+    font-size: 15px;
+    color: var(--white-dim);
+    font-style: italic;
+    margin-bottom: 20px;
+  }
+  .meta-row {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .meta-chip {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--white-muted);
+    background: var(--navy-mid);
+    border: 1px solid var(--navy-border);
+    padding: 4px 10px;
+    border-radius: 2px;
+  }
+  .meta-chip span { color: var(--gold); }
+
+  /* ── ARCHITECTURE NOTICE ───────────────────────────────────────── */
+  .arch-notice {
+    background: var(--gold-glow2);
+    border: 1px solid var(--navy-border);
+    border-left: 3px solid var(--gold);
+    border-radius: 4px;
+    padding: 20px 24px;
+    margin-bottom: 40px;
+    font-size: 14px;
+    color: var(--white-dim);
+    line-height: 1.8;
+  }
+  .arch-notice strong { color: var(--gold); font-family: var(--font-sans); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; }
+  .arch-notice .vow {
+    margin-top: 14px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--gold);
+    background: var(--navy);
+    border: 1px solid var(--navy-border);
+    padding: 12px 16px;
+    border-radius: 3px;
+    line-height: 2;
+  }
+
+  /* ── SECTION HEADER ────────────────────────────────────────────── */
+  .section {
+    margin-bottom: 56px;
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 24px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--navy-border);
+  }
+  .section-icon {
+    width: 36px; height: 36px;
+    background: var(--gold-glow);
+    border: 1px solid var(--gold-dim);
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+  .section-title {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .section-desc {
+    font-size: 13px;
+    color: var(--white-muted);
+    margin-top: 2px;
+  }
+
+  /* ── LANE LABEL ────────────────────────────────────────────────── */
+  .lane-label {
+    font-family: var(--font-sans);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 2px;
+    display: inline-block;
+    margin-bottom: 16px;
+  }
+  .lane-inference { background: var(--blue-soft); color: #7ab8e8; border: 1px solid rgba(41,128,185,0.3); }
+  .lane-anchoring { background: var(--gold-glow); color: var(--gold); border: 1px solid var(--gold-dim); }
+  .lane-audit     { background: var(--green-soft); color: #7de0a0; border: 1px solid rgba(39,174,96,0.3); }
+  .lane-regulator { background: var(--purple-soft); color: #c9a0e8; border: 1px solid rgba(142,68,173,0.3); }
+  .lane-emergency { background: var(--red-soft); color: #e87878; border: 1px solid rgba(192,57,43,0.3); }
+  .lane-gateway   { background: var(--amber-soft); color: #f0b060; border: 1px solid rgba(230,126,34,0.3); }
+
+  /* ── ENDPOINT CARD ─────────────────────────────────────────────── */
+  .endpoint-card {
+    background: var(--navy-mid);
+    border: 1px solid var(--navy-border);
+    border-radius: 4px;
+    margin-bottom: 16px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .endpoint-card:hover { border-color: var(--gold-dim); }
+
+  .endpoint-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 20px;
+    cursor: pointer;
+    user-select: none;
+    background: var(--navy-light);
+  }
+  .endpoint-header:hover { background: rgba(30,58,110,0.7); }
+
+  .method-badge {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    padding: 3px 8px;
+    border-radius: 2px;
+    min-width: 52px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .method-GET   { background: var(--green-soft); color: #7de0a0; border: 1px solid rgba(39,174,96,0.4); }
+  .method-POST  { background: var(--blue-soft);  color: #7ab8e8; border: 1px solid rgba(41,128,185,0.4); }
+  .method-PATCH { background: var(--amber-soft); color: #f0b060; border: 1px solid rgba(230,126,34,0.4); }
+  .method-HOOK  { background: var(--purple-soft);color: #c9a0e8; border: 1px solid rgba(142,68,173,0.4); }
+
+  .endpoint-path {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--white);
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .endpoint-path .path-param { color: var(--gold); }
+
+  .status-pill {
+    font-family: var(--font-sans);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 10px;
+    flex-shrink: 0;
+  }
+  .status-SHIPPING { background: var(--green-soft); color: #7de0a0; }
+  .status-BETA     { background: var(--amber-soft); color: #f0b060; }
+  .status-FUTURE   { background: var(--red-soft);   color: #e87878; }
+
+  .expand-icon {
+    color: var(--white-muted);
+    font-size: 11px;
+    transition: transform 0.2s;
+    flex-shrink: 0;
+  }
+  .endpoint-card.open .expand-icon { transform: rotate(180deg); }
+
+  .endpoint-body {
+    display: none;
+    padding: 20px;
+    border-top: 1px solid var(--navy-border);
+  }
+  .endpoint-card.open .endpoint-body { display: block; }
+
+  .endpoint-summary {
+    font-size: 14px;
+    color: var(--white-dim);
+    margin-bottom: 16px;
+    line-height: 1.7;
+  }
+
+  /* ── DETAIL GRID ───────────────────────────────────────────────── */
+  .detail-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .detail-cell {
+    background: var(--navy);
+    border: 1px solid var(--navy-border);
+    border-radius: 3px;
+    padding: 10px 14px;
+  }
+  .detail-label {
+    font-family: var(--font-sans);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    margin-bottom: 6px;
+  }
+  .detail-value {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--white);
+    line-height: 1.6;
+  }
+  .detail-value .pillar-tag {
+    display: inline-block;
+    background: var(--gold-glow);
+    border: 1px solid var(--gold-dim);
+    color: var(--gold);
+    font-size: 9px;
+    padding: 1px 5px;
+    border-radius: 2px;
+    margin: 1px 2px 1px 0;
+  }
+
+  /* ── RESPONSE TABLE ────────────────────────────────────────────── */
+  .responses-label {
+    font-family: var(--font-sans);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    margin-bottom: 8px;
+  }
+  .response-row {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    padding: 5px 0;
+    border-bottom: 1px solid var(--navy-border);
+    font-size: 12px;
+  }
+  .response-row:last-child { border-bottom: none; }
+  .response-code {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    min-width: 36px;
+    flex-shrink: 0;
+  }
+  .code-2xx { color: #7de0a0; }
+  .code-4xx { color: #f0b060; }
+  .code-5xx { color: #e87878; }
+  .response-desc { color: var(--white-dim); }
+
+  /* ── SECURITY BLOCK ────────────────────────────────────────────── */
+  .security-block {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--gold);
+    background: var(--navy);
+    border: 1px solid var(--navy-border);
+    border-left: 3px solid var(--gold-dim);
+    padding: 8px 12px;
+    border-radius: 2px;
+    margin-top: 12px;
+  }
+
+  /* ── IDEMPOTENCY NOTE ──────────────────────────────────────────── */
+  .idempotency-note {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    color: var(--white-muted);
+    background: var(--navy);
+    border: 1px solid var(--navy-border);
+    padding: 6px 10px;
+    border-radius: 2px;
+    margin-top: 8px;
+    display: inline-block;
+  }
+
+  /* ── IRON LAW CALLOUT ──────────────────────────────────────────── */
+  .iron-law {
+    background: var(--gold-glow);
+    border: 1px solid var(--gold-dim);
+    border-radius: 3px;
+    padding: 10px 14px;
+    margin: 10px 0;
+    font-family: var(--font-sans);
+    font-size: 11px;
+    color: var(--gold);
+    font-weight: 600;
+    letter-spacing: 0.03em;
+  }
+
+  /* ── WEBHOOK NOTICE ────────────────────────────────────────────── */
+  .webhook-notice {
+    background: var(--purple-soft);
+    border: 1px solid rgba(142,68,173,0.3);
+    border-radius: 3px;
+    padding: 10px 14px;
+    font-size: 12px;
+    color: #c9a0e8;
+    margin-bottom: 10px;
+  }
+
+  /* ── SECTION DIVIDER ───────────────────────────────────────────── */
+  .section-rule {
+    border: none;
+    border-top: 1px solid var(--navy-border);
+    margin: 40px 0;
+  }
+
+  /* ── FOOTER ────────────────────────────────────────────────────── */
+  .footer {
+    margin-top: 60px;
+    padding-top: 24px;
+    border-top: 1px solid var(--navy-border);
+    font-family: var(--font-sans);
+    font-size: 10px;
+    color: var(--white-muted);
+    letter-spacing: 0.08em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer a { color: var(--gold-dim); text-decoration: none; }
+
+  /* ── SCROLLBAR ─────────────────────────────────────────────────── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--navy); }
+  ::-webkit-scrollbar-thumb { background: var(--navy-border); border-radius: 3px; }
+
+  /* ── SECURITY SCHEMES SECTION ──────────────────────────────────── */
+  .scheme-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .scheme-card {
+    background: var(--navy-mid);
+    border: 1px solid var(--navy-border);
+    border-radius: 4px;
+    padding: 16px;
+  }
+  .scheme-name {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--gold);
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+  .scheme-value {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--white-dim);
+    background: var(--navy);
+    padding: 6px 8px;
+    border-radius: 2px;
+    margin-bottom: 8px;
+  }
+  .scheme-desc {
+    font-size: 11px;
+    color: var(--white-muted);
+    line-height: 1.6;
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     SIDEBAR
+═══════════════════════════════════════════════════════════════════ -->
+<nav class="sidebar">
+  <div class="sidebar-header">
+    <div class="step-badge">Step 1 of 5</div>
+    <h1>openapi.yaml<br>Canonical API Contract</h1>
+    <div class="version">v3.3.0-tml-monograph-2025</div>
+  </div>
+
+  <div class="sidebar-section">
+    <div class="sidebar-section-label">Overview</div>
+    <a href="#architecture" class="sidebar-link"><span class="method-dot dot-post"></span>Architecture</a>
+    <a href="#security" class="sidebar-link"><span class="method-dot dot-get"></span>Security Schemes</a>
+  </div>
+
+  <div class="sidebar-section">
+    <div class="sidebar-section-label">Inference Lane</div>
+    <a href="#decisions-post" class="sidebar-link"><span class="method-dot dot-post"></span>POST /decisions</a>
+    <a href="#decisions-get" class="sidebar-link"><span class="method-dot dot-get"></span>GET /decisions/{id}</a>
+  </div>
+
+  <div class="sidebar-section">
+    <div class="sidebar-section-label">Anchoring Lane</div>
+    <a href="#anchoring-post" class="sidebar-link"><span class="method-dot dot-post"></span>POST /anchoring-logs</a>
+    <a href="#anchoring-get" class="sidebar-link"><span class="method-dot dot-get"></span>GET /anchoring-logs/{id}</a>
+  </div>
+
+  <div class="sidebar-section">
+    <div class="sidebar-section-label">Sacred Zero</div>
+    <a href="#sz-list" class="sidebar-link"><span class="method-dot dot-get"></span>GET /escalations</a>
+    <a href="#sz-get" class="sidebar-link"><span class="method-dot dot-get"></span>GET /escalations/{id}</a>
+    <a href="#sz-patch" class="sidebar-link"><span class="method-dot dot-patch"></span>PATCH /escalations/{id}</a>
+    <a href="#sz-lantern" class="sidebar-link"><span class="method-dot dot-get"></span>GET /lantern</a>
+  </div>
+
+  <div class="sidebar-section">
+    <div class="sidebar-section-label">Refusal State</div>
+    <a href="#refusals-post" class="sidebar-link"><span class="method-dot dot-post"></span>POST /refusals</a>
+    <a href="#refusals-license" class="sidebar-link"><span class="method-dot dot-post"></span>POST /license-violations</a>
+  </div>
+
+  <div class="sidebar-section">
+    <div class="sidebar-section-label">Emergency Override</div>
+    <a href="#emergency-post" class="sidebar-link"><span class="method-dot dot-post"></span>POST /override</a>
+    <a href="#emergency-get" class="sidebar-link"><span class="method-dot dot-get"></span>GET /status</a>
+  </div>
+
+  <div class="sidebar-section">
+    <div class="sidebar-section-label">Auditor Verification</div>
+    <a href="#audit-merkle" class="sidebar-link"><span class="method-dot dot-get"></span>GET /merkle/{root}</a>
+    <a href="#audit-inclusion" class="sidebar-link"><span class="method-dot dot-get"></span>GET /inclusion/{id}</a>
+    <a href="#audit-heartbeat" class="sidebar-link"><span class="method-dot dot-get"></span>GET /heartbeat</a>
+    <a href="#audit-attestation" class="sidebar-link"><span class="method-dot dot-get"></span>GET /attestation</a>
+  </div>
+
+  <div class="sidebar-section">
+    <div class="sidebar-section-label">Redress and Appeal</div>
+    <a href="#redress-post" class="sidebar-link"><span class="method-dot dot-post"></span>POST /challenges</a>
+    <a href="#redress-get" class="sidebar-link"><span class="method-dot dot-get"></span>GET /challenges/{id}</a>
+    <a href="#redress-reeval" class="sidebar-link"><span class="method-dot dot-post"></span>POST /log-reevaluation</a>
+    <a href="#redress-grievance" class="sidebar-link"><span class="method-dot dot-post"></span>POST /hr-grievances</a>
+  </div>
+
+  <div class="sidebar-section">
+    <div class="sidebar-section-label">Regulator Inspection</div>
+    <a href="#reg-export" class="sidebar-link"><span class="method-dot dot-post"></span>POST /evidence-export</a>
+    <a href="#reg-quorum" class="sidebar-link"><span class="method-dot dot-get"></span>GET /custodian-quorum</a>
+    <a href="#reg-timestamp" class="sidebar-link"><span class="method-dot dot-get"></span>GET /timestamp-verify</a>
+  </div>
+
+  <div class="sidebar-section">
+    <div class="sidebar-section-label">Gateway</div>
+    <a href="#gw-status" class="sidebar-link"><span class="method-dot dot-get"></span>GET /status</a>
+    <a href="#gw-lane" class="sidebar-link"><span class="method-dot dot-post"></span>POST /lane-assignment</a>
+  </div>
+
+  <div class="sidebar-section">
+    <div class="sidebar-section-label">Goukassian Promise</div>
+    <a href="#gp-signature" class="sidebar-link"><span class="method-dot dot-get"></span>GET /signature</a>
+    <a href="#gp-license" class="sidebar-link"><span class="method-dot dot-post"></span>POST /license/validate</a>
+  </div>
+
+  <div class="sidebar-section">
+    <div class="sidebar-section-label">Webhooks</div>
+    <a href="#wh-escalation" class="sidebar-link"><span class="method-dot dot-hook"></span>sacredPauseEscalation</a>
+    <a href="#wh-lantern" class="sidebar-link"><span class="method-dot dot-hook"></span>lanternStatusBroadcast</a>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     MAIN
+═══════════════════════════════════════════════════════════════════ -->
+<main class="main">
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <div class="doc-label">TML Specification Architecture &mdash; Deliverable A</div>
+    <h2>openapi.yaml &mdash; Canonical API Contract</h2>
+    <div class="subtitle">Ternary Moral Logic Framework &mdash; OpenAPI 3.1 Endpoint Reference</div>
+    <div class="meta-row">
+      <div class="meta-chip">version <span>3.3.0-tml-monograph-2025</span></div>
+      <div class="meta-chip">server <span>https://api.tml-framework.example/v1</span></div>
+      <div class="meta-chip">endpoints <span>22 paths + 2 webhooks</span></div>
+      <div class="meta-chip">authority <span>TML Monograph v3.3</span></div>
+    </div>
+  </div>
+
+  <!-- ARCHITECTURE NOTICE -->
+  <div id="architecture" class="arch-notice">
+    <strong>Dual-Lane Architecture</strong><br>
+    The binary inference engine operates as the system's fast cognitive layer: speed, pattern recognition, statistical throughput. The ternary logic operates as a sovereign governance coprocessor in parallel. The binary system <em>proposes</em> actions via the Inference Lane. The ternary system <em>dictates</em> whether those actions cross the actuation threshold via the Anchoring Lane. A proposed State +1 does not authorize actuation. Only a cryptographically valid Permission Token issued by the Anchoring Lane authorizes execution.
+    <div class="vow">
+      "Pause when truth is uncertain" &nbsp;&rarr;&nbsp; State &nbsp;0 (SACRED_ZERO)<br>
+      "Refuse when harm is clear" &nbsp;&nbsp;&nbsp;&nbsp;&rarr;&nbsp; State -1 (REFUSE)<br>
+      "Proceed where truth is" &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&rarr;&nbsp; State +1 (PROCEED)
+    </div>
+  </div>
+
+  <!-- SECURITY SCHEMES -->
+  <div id="security" class="section">
+    <div class="section-header">
+      <div class="section-icon">&#128274;</div>
+      <div>
+        <div class="section-title">Security Schemes</div>
+        <div class="section-desc">Three tiered security profiles across all endpoint groups</div>
+      </div>
+    </div>
+    <div class="scheme-grid">
+      <div class="scheme-card">
+        <div class="scheme-name">InferenceLaneSecurity</div>
+        <div class="scheme-value">mTLS + ServiceAccountJWT</div>
+        <div class="scheme-desc">Applies to Inference Lane and Gateway paths. Short-lived Service Account JWT. Mutual TLS at transport layer.</div>
+      </div>
+      <div class="scheme-card">
+        <div class="scheme-name">AnchoringLaneSecurity</div>
+        <div class="scheme-value">HSM-SignedJWT + MutualTLS</div>
+        <div class="scheme-desc">Applies to Anchoring Lane, Sacred Zero, Refusal, and Emergency Override. JWT signed by HSM registered in HybridShield 6-Custodian registry.</div>
+      </div>
+      <div class="scheme-card">
+        <div class="scheme-name">AuditorRegulatorSecurity</div>
+        <div class="scheme-value">CA-VettedJWT + IPAllowlist</div>
+        <div class="scheme-desc">Applies to Auditor Verification, Regulator Inspection, and Redress/Appeal. CA-vetted authority. IP allowlist enforced at gateway.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ INFERENCE LANE ═══════════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">&#9889;</div>
+      <div>
+        <div class="section-title">Inference Lane</div>
+        <div class="section-desc">Lane 1 &mdash; Fast Path &mdash; &lt;2ms &mdash; Binary logic proposes actions. Does NOT actuate.</div>
+      </div>
+    </div>
+    <span class="lane-label lane-inference">Lane 1 &mdash; Inference &mdash; &lt;2ms</span>
+
+    <div id="decisions-post" class="endpoint-card">
+      <div class="endpoint-header" onclick="toggle(this)">
+        <span class="method-badge method-POST">POST</span>
+        <span class="endpoint-path">/decisions</span>
+        <span class="status-pill status-SHIPPING">SHIPPING</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="endpoint-body">
+        <div class="endpoint-summary">Submit a decision vector to the TML binary inference engine. Returns a State Envelope with the proposed triadic state (+1, 0, or -1) and a Justification Object. <strong>A proposed State +1 does not authorize actuation.</strong> The actuation layer remains locked until the Anchoring Lane issues a valid Permission Token via POST /anchoring-logs.</div>
+        <div class="iron-law">NO LOG = NO ACTION &mdash; State +1 proposal from this endpoint does not authorize execution. Permission Token required.</div>
+        <div class="detail-grid">
+          <div class="detail-cell">
+            <div class="detail-label">TML Pillars</div>
+            <div class="detail-value">
+              <span class="pillar-tag">SacredZero</span>
+              <span class="pillar-tag">AlwaysMemory</span>
+            </div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Monograph Reference</div>
+            <div class="detail-value">Section 2.3</div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Request Body</div>
+            <div class="detail-value">proposedAction (string)<br>justificationObject (JustificationObject)<br>requestContext (object, optional)</div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Sacred Zero Behavior</div>
+            <div class="detail-value">State 0 response triggers Sacred Pause. Do NOT retry same action vector until escalation resolved.</div>
+          </div>
+        </div>
+        <div class="responses-label">Responses</div>
+        <div class="response-row"><span class="response-code code-2xx">200</span><span class="response-desc">StateEnvelope returned. State +1 requires Permission Token for actuation.</span></div>
+        <div class="response-row"><span class="response-code code-4xx">408</span><span class="response-desc">SacredZeroHold &mdash; Sacred Pause active. Await sacredPauseEscalation webhook.</span></div>
+        <div class="response-row"><span class="response-code code-4xx">400</span><span class="response-desc">Malformed request. Schema validation failure.</span></div>
+        <div class="response-row"><span class="response-code code-4xx">401</span><span class="response-desc">Authentication required.</span></div>
+        <div class="response-row"><span class="response-code code-4xx">403</span><span class="response-desc">Insufficient authorization.</span></div>
+        <div class="response-row"><span class="response-code code-4xx">409</span><span class="response-desc">Idempotency conflict.</span></div>
+        <div class="response-row"><span class="response-code code-4xx">429</span><span class="response-desc">Rate limit exceeded.</span></div>
+        <div class="response-row"><span class="response-code code-5xx">503</span><span class="response-desc">Service unavailable.</span></div>
+        <div class="security-block">x-tml-security: "mTLS + ServiceAccountJWT"</div>
+        <div class="idempotency-note">&#x26A0; Idempotency-Key header required (UUID v4)</div>
+      </div>
+    </div>
+
+    <div id="decisions-get" class="endpoint-card">
+      <div class="endpoint-header" onclick="toggle(this)">
+        <span class="method-badge method-GET">GET</span>
+        <span class="endpoint-path">/decisions/<span class="path-param">{decisionId}</span></span>
+        <span class="status-pill status-SHIPPING">SHIPPING</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="endpoint-body">
+        <div class="endpoint-summary">Retrieves a previously submitted decision record and its current State Envelope, including any Permission Token issued by the Anchoring Lane.</div>
+        <div class="detail-grid">
+          <div class="detail-cell">
+            <div class="detail-label">TML Pillars</div>
+            <div class="detail-value"><span class="pillar-tag">AlwaysMemory</span><span class="pillar-tag">MoralTraceLogs</span></div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Monograph Reference</div>
+            <div class="detail-value">Section 2.3, Section 8</div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Path Parameter</div>
+            <div class="detail-value">decisionId (UUID v4)</div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Returns</div>
+            <div class="detail-value">StateEnvelope (with permissionToken if State +1 and anchored)</div>
+          </div>
+        </div>
+        <div class="responses-label">Responses</div>
+        <div class="response-row"><span class="response-code code-2xx">200</span><span class="response-desc">Decision record returned as StateEnvelope.</span></div>
+        <div class="response-row"><span class="response-code code-4xx">404</span><span class="response-desc">Decision record not found.</span></div>
+        <div class="response-row"><span class="response-code code-4xx">401</span><span class="response-desc">Authentication required.</span></div>
+        <div class="response-row"><span class="response-code code-4xx">403</span><span class="response-desc">Insufficient authorization.</span></div>
+        <div class="security-block">x-tml-security: "mTLS + ServiceAccountJWT"</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ ANCHORING LANE ═══════════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">&#9875;</div>
+      <div>
+        <div class="section-title">Anchoring Lane</div>
+        <div class="section-desc">Lane 2 &mdash; Governance Lane &mdash; &lt;500ms &mdash; Ternary logic verifies, logs, and issues Permission Tokens.</div>
+      </div>
+    </div>
+    <span class="lane-label lane-anchoring">Lane 2 &mdash; Anchoring &mdash; &lt;500ms</span>
+
+    <div id="anchoring-post" class="endpoint-card">
+      <div class="endpoint-header" onclick="toggle(this)">
+        <span class="method-badge method-POST">POST</span>
+        <span class="endpoint-path">/anchoring-logs</span>
+        <span class="status-pill status-SHIPPING">SHIPPING</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="endpoint-body">
+        <div class="endpoint-summary">Submits a complete Moral Trace Log (TSLF) to the Anchoring Lane for cryptographic verification and Merkle-batched anchoring. The central enforcement point for No Log = No Action. For State +1 only: returns a Permission Token. For State 0: escalation record created; sacredPauseEscalation webhook fired. For State -1: refusal record created. No Permission Token is issued for State 0 or State -1.</div>
+        <div class="iron-law">NO LOG = NO ACTION &mdash; Permission Token issued ONLY after Moral Trace Log is anchored. Anti-spoliation commit precedes all token issuance.</div>
+        <div class="detail-grid">
+          <div class="detail-cell">
+            <div class="detail-label">TML Pillars</div>
+            <div class="detail-value"><span class="pillar-tag">AlwaysMemory</span><span class="pillar-tag">PublicBlockchains</span><span class="pillar-tag">MoralTraceLogs</span></div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Monograph Reference</div>
+            <div class="detail-value">Section 2.3.3, Section 8</div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Request Body (oneOf discriminated)</div>
+            <div class="detail-value">TSLF-State0 (currentState: 0)<br>TSLF-State-1 (currentState: -1)<br>TSLF-StateP1 (currentState: +1)</div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Implementation Note</div>
+            <div class="detail-value">Real-time per-token blockchain anchoring is FUTURE (Section 10). Batch anchoring with estimatedFinalizationAt is SHIPPING.</div>
+          </div>
+        </div>
+        <div class="responses-label">Responses</div>
+        <div class="response-row"><span class="response-code code-2xx">201</span><span class="response-desc">Log anchored. permissionToken returned for State +1 only. Escalation record for State 0. Refusal record for State -1.</span></div>
+        <div class="response-row"><span class="response-code code-4xx">408</span><span class="response-desc">SacredZeroHold active.</span></div>
+        <div class="response-row"><span class="response-code code-4xx">400</span><span class="response-desc">Schema validation failure.</span></div>
+        <div class="response-row"><span class="response-code code-4xx">401</span><span class="response-desc">Authentication required.</span></div>
+        <div class="response-row"><span class="response-code code-4xx">409</span><span class="response-desc">Idempotency conflict.</span></div>
+        <div class="response-row"><span class="response-code code-5xx">503</span><span class="response-desc">Service unavailable.</span></div>
+        <div class="security-block">x-tml-security: "HSM-SignedJWT + MutualTLS"</div>
+        <div class="idempotency-note">&#x26A0; Idempotency-Key header required (UUID v4)</div>
+      </div>
+    </div>
+
+    <div id="anchoring-get" class="endpoint-card">
+      <div class="endpoint-header" onclick="toggle(this)">
+        <span class="method-badge method-GET">GET</span>
+        <span class="endpoint-path">/anchoring-logs/<span class="path-param">{logId}</span></span>
+        <span class="status-pill status-SHIPPING">SHIPPING</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="endpoint-body">
+        <div class="endpoint-summary">Retrieves an anchored Moral Trace Log by its unique identifier, including current Merkle anchoring status and any issued Permission Token.</div>
+        <div class="detail-grid">
+          <div class="detail-cell">
+            <div class="detail-label">TML Pillars</div>
+            <div class="detail-value"><span class="pillar-tag">MoralTraceLogs</span><span class="pillar-tag">PublicBlockchains</span></div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Monograph Reference</div>
+            <div class="detail-value">Section 8</div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Returns (oneOf)</div>
+            <div class="detail-value">TSLF-State0 | TSLF-State-1 | TSLF-StateP1</div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Path Parameter</div>
+            <div class="detail-value">logId (UUID v4)</div>
+          </div>
+        </div>
+        <div class="responses-label">Responses</div>
+        <div class="response-row"><span class="response-code code-2xx">200</span><span class="response-desc">Anchoring log record returned.</span></div>
+        <div class="response-row"><span class="response-code code-4xx">404</span><span class="response-desc">Log record not found.</span></div>
+        <div class="response-row"><span class="response-code code-4xx">401</span><span class="response-desc">Authentication required.</span></div>
+        <div class="security-block">x-tml-security: "HSM-SignedJWT + MutualTLS"</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SACRED ZERO ══════════════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">&#9678;</div>
+      <div>
+        <div class="section-title">Sacred Zero Escalation</div>
+        <div class="section-desc">Human-in-the-loop review queue. Lantern signal. State 0 is an active governance state &mdash; never null, never error, never timeout.</div>
+      </div>
+    </div>
+    <span class="lane-label lane-anchoring">Lane 2 &mdash; Governance</span>
+
+    <div id="sz-list" class="endpoint-card">
+      <div class="endpoint-header" onclick="toggle(this)">
+        <span class="method-badge method-GET">GET</span>
+        <span class="endpoint-path">/sacred-zero/escalations</span>
+        <span class="status-pill status-SHIPPING">SHIPPING</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="endpoint-body">
+        <div class="endpoint-summary">Returns the current human-in-the-loop review queue for all active Sacred Zero (State 0) escalations. Escalations remain in queue until a human authority resolves them to State +1 or State -1. During active Sacred Zero state, the Sacred Pause operational workflow is executing.</div>
+        <div class="detail-grid">
+          <div class="detail-cell">
+            <div class="detail-label">TML Pillars</div>
+            <div class="detail-value"><span class="pillar-tag">SacredZero</span><span class="pillar-tag">HumanRightsMandate</span></div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Monograph Reference</div>
+            <div class="detail-value">Section 2.2</div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Query Parameters</div>
+            <div class="detail-value">status (PENDING|UNDER_REVIEW|RESOLVED)<br>limit (1-100, default 20)<br>cursor (pagination)</div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Returns</div>
+            <div class="detail-value">escalations[], totalPending, nextCursor</div>
+          </div>
+        </div>
+        <div class="responses-label">Responses</div>
+        <div class="response-row"><span class="response-code code-2xx">200</span><span class="response-desc">Escalation queue returned.</span></div>
+        <div class="response-row"><span class="response-code code-4xx">401</span><span class="response-desc">Authentication required.</span></div>
+        <div class="response-row"><span class="response-code code-4xx">403</span><span class="response-desc">Insufficient authorization.</span></div>
+        <div class="security-block">x-tml-security: "HSM-SignedJWT + MutualTLS"</div>
+      </div>
+    </div>
+
+    <div id="sz-get" class="endpoint-card">
+      <div class="endpoint-header" onclick="toggle(this)">
+        <span class="method-badge method-GET">GET</span>
+        <span class="endpoint-path">/sacred-zero/escalations/<span class="path-param">{escalationId}</span></span>
+        <span class="status-pill status-SHIPPING">SHIPPING</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="endpoint-body">
+        <div class="endpoint-summary">Returns full detail for a single Sacred Zero escalation case, including the triggering State Envelope and the TSLF-State0 Moral Trace Log.</div>
+        <div class="detail-grid">
+          <div class="detail-cell">
+            <div class="detail-label">TML Pillars</div>
+            <div class="detail-value"><span class="pillar-tag">SacredZero</span><span class="pillar-tag">MoralTraceLogs</span></div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Monograph Reference</div>
+            <div class="detail-value">Section 2.2, Section 8</div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Returns</div>
+            <div class="detail-value">escalationId, status, TSLF-State0, resolution (if RESOLVED)</div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Resolution States</div>
+            <div class="detail-value">+1 (PROCEED) or -1 (REFUSE) only. State 0 is not a valid resolution.</div>
+          </div>
+        </div>
+        <div class="responses-label">Responses</div>
+        <div class="response-row"><span class="response-code code-2xx">200</span><span class="response-desc">Escalation case returned.</span></div>
+        <div class="response-row"><span class="response-code code-4xx">404</span><span class="response-desc">Escalation not found.</span></div>
+        <div class="response-row"><span class="response-code code-4xx">401</span><span class="response-desc">Authentication required.</span></div>
+        <div class="security-block">x-tml-security: "HSM-SignedJWT + MutualTLS"</div>
+      </div>
+    </div>
+
+    <div id="sz-patch" class="endpoint-card">
+      <div class="endpoint-header" onclick="toggle(this)">
+        <span class="method-badge method-PATCH">PATCH</span>
+        <span class="endpoint-path">/sacred-zero/escalations/<span class="path-param">{escalationId}</span></span>
+        <span class="status-pill status-SHIPPING">SHIPPING</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="endpoint-body">
+        <div class="endpoint-summary">Submits a human authority resolution for an active Sacred Zero escalation. Resolution must specify a terminal state (+1 or State -1). Resolution to +1: Anchoring Lane issues Permission Token and decision proceeds through actuation gate. Resolution to -1: Refusal Log generated and action permanently blocked.</div>
+        <div class="detail-grid">
+          <div class="detail-cell">
+            <div class="detail-label">TML Pillars</div>
+            <div class="detail-value"><span class="pillar-tag">SacredZero</span><span class="pillar-tag">HumanRightsMandate</span><span class="pillar-tag">AlwaysMemory</span></div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Monograph Reference</div>
+            <div class="detail-value">Section 2.2</div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Request Body</div>
+            <div class="detail-value">resolvedState (1 or -1 only)<br>justification (min 50 chars)<br>reviewerIdentity (string)</div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Returns</div>
+            <div class="detail-value">escalationId, resolvedState, permissionToken (if resolvedState +1)</div>
+          </div>
+        </div>
+        <div class="responses-label">Responses</div>
+        <div class="response-row"><span class="response-code code-2xx">200</span><span class="response-desc">Escalation resolved. Resolution logged to Moral Trace Log.</span></div>
+        <div class="response-row"><span class="response-code code-4xx">400</span><span class="response-desc">Invalid resolution state or justification too short.</span></div>
+        <div class="response-row"><span class="response-code code-4xx">404</span><span class="response-desc">Escalation not found.</span></div>
+        <div class="response-row"><span class="response-code code-4xx">409</span><span class="response-desc">Idempotency conflict.</span></div>
+        <div class="security-block">x-tml-security: "HSM-SignedJWT + MutualTLS"</div>
+        <div class="idempotency-note">&#x26A0; Idempotency-Key header required (UUID v4)</div>
+      </div>
+    </div>
+
+    <div id="sz-lantern" class="endpoint-card">
+      <div class="endpoint-header" onclick="toggle(this)">
+        <span class="method-badge method-GET">GET</span>
+        <span class="endpoint-path">/sacred-zero/lantern</span>
+        <span class="status-pill status-SHIPPING">SHIPPING</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="endpoint-body">
+        <div class="endpoint-summary">Returns the current Goukassian Promise Lantern signal: the public compliance beacon of the TML system. The Lantern is always lit; its signal content reflects the current governance state. Canonical artifact name: "lantern" (lowercase).</div>
+        <div class="detail-grid">
+          <div class="detail-cell">
+            <div class="detail-label">TML Pillar</div>
+            <div class="detail-value"><span class="pillar-tag">GoukassianPromise</span></div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Monograph Reference</div>
+            <div class="detail-value">Section 2.4</div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Returns</div>
+            <div class="detail-value">LanternStatus (compliancePosture, pillarStatuses, signatureBlock)</div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Artifact Name</div>
+            <div class="detail-value">artifactName: const "lantern"</div>
+          </div>
+        </div>
+        <div class="responses-label">Responses</div>
+        <div class="response-row"><span class="response-code code-2xx">200</span><span class="response-desc">Current LanternStatus returned.</span></div>
+        <div class="response-row"><span class="response-code code-5xx">503</span><span class="response-desc">Service unavailable.</span></div>
+        <div class="security-block">x-tml-security: "mTLS + ServiceAccountJWT"</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ REFUSAL STATE ════════════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">&#128683;</div>
+      <div>
+        <div class="section-title">Refusal State</div>
+        <div class="section-desc">Hard refusal logging. Goukassian Promise license violation recording.</div>
+      </div>
+    </div>
+    <span class="lane-label lane-anchoring">Lane 2 &mdash; Anchoring</span>
+
+    <div id="refusals-post" class="endpoint-card">
+      <div class="endpoint-header" onclick="toggle(this)">
+        <span class="method-badge method-POST">POST</span>
+        <span class="endpoint-path">/refusals</span>
+        <span class="status-pill status-SHIPPING">SHIPPING</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="endpoint-body">
+        <div class="endpoint-summary">Records a hard State -1 (Refuse) determination. The proposed action is permanently blocked. No Permission Token is issued. If triggered by a Goukassian Promise license violation, the licenseViolation field in TSLF-State-1 is mandatory.</div>
+        <div class="detail-grid">
+          <div class="detail-cell">
+            <div class="detail-label">TML Pillars</div>
+            <div class="detail-value"><span class="pillar-tag">SacredZero</span><span class="pillar-tag">GoukassianPromise</span><span class="pillar-tag">AlwaysMemory</span></div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Monograph Reference</div>
+            <div class="detail-value">Section 2.3, Section 2.4</div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Request Body</div>
+            <div class="detail-value">TSLF-State-1 (complete Refusal Log)</div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Returns</div>
+            <div class="detail-value">refusalId, logId, anchoredAt. No permissionToken.</div>
+          </div>
+        </div>
+        <div class="responses-label">Responses</div>
+        <div class="response-row"><span class="response-code code-2xx">201</span><span class="response-desc">Refusal logged and anchored. No Permission Token issued.</span></div>
+        <div class="response-row"><span class="response-code code-4xx">400</span><span class="response-desc">Schema validation failure.</span></div>
+        <div class="response-row"><span class="response-code code-4xx">401</span><span class="response-desc">Authentication required.</span></div>
+        <div class="response-row"><span class="response-code code-4xx">409</span><span class="response-desc">Idempotency conflict.</span></div>
+        <div class="security-block">x-tml-security: "HSM-SignedJWT + MutualTLS"</div>
+        <div class="idempotency-note">&#x26A0; Idempotency-Key header required (UUID v4)</div>
+      </div>
+    </div>
+
+    <div id="refusals-license" class="endpoint-card">
+      <div class="endpoint-header" onclick="toggle(this)">
+        <span class="method-badge method-POST">POST</span>
+        <span class="endpoint-path">/refusals/license-violations</span>
+        <span class="status-pill status-SHIPPING">SHIPPING</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="endpoint-body">
+        <div class="endpoint-summary">Records a specific Goukassian Promise license violation event. Captures violations of the Lantern, Signature, or License artifacts. Artifact names are canonical lowercase strings: "lantern", "signature", "license".</div>
+        <div class="detail-grid">
+          <div class="detail-cell">
+            <div class="detail-label">TML Pillar</div>
+            <div class="detail-value"><span class="pillar-tag">GoukassianPromise</span></div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Monograph Reference</div>
+            <div class="detail-value">Section 2.4</div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Request Body</div>
+            <div class="detail-value">LicenseValidationRequest</div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Violated Artifacts</div>
+            <div class="detail-value">"lantern" | "signature" | "license"</div>
+          </div>
+        </div>
+        <div class="responses-label">Responses</div>
+        <div class="response-row"><span class="response-code code-2xx">201</span><span class="response-desc">License violation recorded.</span></div>
+        <div class="response-row"><span class="response-code code-4xx">400</span><span class="response-desc">Schema validation failure.</span></div>
+        <div class="response-row"><span class="response-code code-4xx">401</span><span class="response-desc">Authentication required.</span></div>
+        <div class="security-block">x-tml-security: "HSM-SignedJWT + MutualTLS"</div>
+        <div class="idempotency-note">&#x26A0; Idempotency-Key header required (UUID v4)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ EMERGENCY OVERRIDE ═══════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">&#9888;</div>
+      <div>
+        <div class="section-title">Emergency Override</div>
+        <div class="section-desc">Break-glass shutdown. Kill switch. Forced state transitions. Monograph Section 13.3.</div>
+      </div>
+    </div>
+    <span class="lane-label lane-emergency">Supreme Authority &mdash; Section 13.3</span>
+
+    <div id="emergency-post" class="endpoint-card">
+      <div class="endpoint-header" onclick="toggle(this)">
+        <span class="method-badge method-POST">POST</span>
+        <span class="endpoint-path">/emergency/override</span>
+        <span class="status-pill status-SHIPPING">SHIPPING</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="endpoint-body">
+        <div class="endpoint-summary">SUPREME AUTHORITY ENDPOINT (Section 13.3). Activates emergency override protocols: BREAK_GLASS_SHUTDOWN (halts all Inference Lane proposals), KILL_SWITCH (forces all active State Envelopes to State -1), or FORCED_STATE_TRANSITION (transitions a specific decision). ALL invocations are immutably logged before taking effect. No Log = No Action applies without exception.</div>
+        <div class="iron-law">NO LOG = NO ACTION applies to emergency overrides without exception. Override is logged before execution.</div>
+        <div class="detail-grid">
+          <div class="detail-cell">
+            <div class="detail-label">TML Pillars</div>
+            <div class="detail-value"><span class="pillar-tag">SacredZero</span><span class="pillar-tag">AlwaysMemory</span><span class="pillar-tag">HybridShield</span></div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Monograph Reference</div>
+            <div class="detail-value">Section 13.3</div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Override Types</div>
+            <div class="detail-value">BREAK_GLASS_SHUTDOWN<br>KILL_SWITCH<br>FORCED_STATE_TRANSITION</div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Forced State Constraint</div>
+            <div class="detail-value">forcedState: -1 or 0 only. Forced transition to +1 is not permitted.</div>
+          </div>
+        </div>
+        <div class="responses-label">Responses</div>
+        <div class="response-row"><span class="response-code code-2xx">200</span><span class="response-desc">Emergency override executed and logged. Returns overrideId, logId, affectedDecisionCount.</span></div>
+        <div class="response-row"><span class="response-code code-4xx">400</span><span class="response-desc">Schema validation failure.</span></div>
+        <div class="response-row"><span class="response-code code-4xx">401</span><span class="response-desc">Authentication required.</span></div>
+        <div class="response-row"><span class="response-code code-4xx">403</span><span class="response-desc">Not a registered supreme authority.</span></div>
+        <div class="response-row"><span class="response-code code-4xx">409</span><span class="response-desc">Idempotency conflict.</span></div>
+        <div class="security-block">x-tml-security: "HSM-SignedJWT + MutualTLS"</div>
+        <div class="idempotency-note">&#x26A0; Idempotency-Key header required (UUID v4)</div>
+      </div>
+    </div>
+
+    <div id="emergency-get" class="endpoint-card">
+      <div class="endpoint-header" onclick="toggle(this)">
+        <span class="method-badge method-GET">GET</span>
+        <span class="endpoint-path">/emergency/status</span>
+        <span class="status-pill status-SHIPPING">SHIPPING</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="endpoint-body">
+        <div class="endpoint-summary">Returns the current emergency status of the TML system, including whether break-glass shutdown or kill switch is active.</div>
+        <div class="detail-grid">
+          <div class="detail-cell">
+            <div class="detail-label">TML Pillars</div>
+            <div class="detail-value"><span class="pillar-tag">SacredZero</span><span class="pillar-tag">HybridShield</span></div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Monograph Reference</div>
+            <div class="detail-value">Section 13.3</div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">System States</div>
+            <div class="detail-value">NORMAL_OPERATION<br>BREAK_GLASS_ACTIVE<br>KILL_SWITCH_ACTIVE<br>SACRED_ZERO_SYSTEM_WIDE</div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Returns</div>
+            <div class="detail-value">emergencyActive, systemState, activeOverrideId (if active), activatedAt</div>
+          </div>
+        </div>
+        <div class="responses-label">Responses</div>
+        <div class="response-row"><span class="response-code code-2xx">200</span><span class="response-desc">Emergency status returned.</span></div>
+        <div class="response-row"><span class="response-code code-4xx">401</span><span class="response-desc">Authentication required.</span></div>
+        <div class="security-block">x-tml-security: "HSM-SignedJWT + MutualTLS"</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ AUDITOR VERIFICATION ══════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">&#128269;</div>
+      <div>
+        <div class="section-title">Auditor Verification</div>
+        <div class="section-desc">Merkle root verification. Log inclusion proofs. Custodian heartbeats. Compliance attestations.</div>
+      </div>
+    </div>
+    <span class="lane-label lane-audit">Auditor &mdash; CA-VettedJWT + IPAllowlist</span>
+
+    <div id="audit-merkle" class="endpoint-card">
+      <div class="endpoint-header" onclick="toggle(this)">
+        <span class="method-badge method-GET">GET</span>
+        <span class="endpoint-path">/audit/verifications/merkle/<span class="path-param">{merkleRoot}</span></span>
+        <span class="status-pill status-SHIPPING">SHIPPING</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="endpoint-body">
+        <div class="endpoint-summary">Verifies that a given Merkle root corresponds to a finalized and anchored batch of Moral Trace Logs on the public blockchain. Returns anchoring metadata and chain-of-custody information. Note: verifies batch-level Merkle roots; real-time per-token anchoring is FUTURE (Section 10).</div>
+        <div class="detail-grid">
+          <div class="detail-cell">
+            <div class="detail-label">TML Pillars</div>
+            <div class="detail-value"><span class="pillar-tag">PublicBlockchains</span><span class="pillar-tag">MoralTraceLogs</span></div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Monograph Reference</div>
+            <div class="detail-value">Section 8</div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Path Parameter</div>
+            <div class="detail-value">merkleRoot (64-char lowercase hex SHA-256)</div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Returns</div>
+            <div class="detail-value">MerkleInclusionProof (batchId, logCount, anchoredAt, blockchainTxId)</div>
+          </div>
+        </div>
+        <div class="responses-label">Responses</div>
+        <div class="response-row"><span class="response-code code-2xx">200</span><span class="response-desc">Merkle root verified. MerkleInclusionProof returned.</span></div>
+        <div class="response-row"><span class="response-code code-4xx">404</span><span class="response-desc">Merkle root not found in anchor records.</span></div>
+        <div class="response-row"><span class="response-code code-4xx">401</span><span class="response-desc">Authentication required.</span></div>
+        <div class="security-block">x-tml-security: "CA-VettedJWT + IPAllowlist"</div>
+      </div>
+    </div>
+
+    <div id="audit-inclusion" class="endpoint-card">
+      <div class="endpoint-header" onclick="toggle(this)">
+        <span class="method-badge method-GET">GET</span>
+        <span class="endpoint-path">/audit/verifications/inclusion/<span class="path-param">{logId}</span></span>
+        <span class="status-pill status-SHIPPING">SHIPPING</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="endpoint-body">
+        <div class="endpoint-summary">Returns the Merkle inclusion proof for a specific Moral Trace Log entry, demonstrating its inclusion in an anchored Merkle batch. Primary forensic artifact for log authenticity.</div>
+        <div class="detail-grid">
+          <div class="detail-cell">
+            <div class="detail-label">TML Pillars</div>
+            <div class="detail-value"><span class="pillar-tag">PublicBlockchains</span><span class="pillar-tag">MoralTraceLogs</span><span class="pillar-tag">AlwaysMemory</span></div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Monograph Reference</div>
+            <div class="detail-value">Section 8</div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Returns</div>
+            <div class="detail-value">MerkleInclusionProof (logHash, merkleRoot, inclusionPath[], blockchainTxId)</div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Proof Structure</div>
+            <div class="detail-value">inclusionPath: ordered sibling hashes from leaf to root (LEFT|RIGHT positions)</div>
+          </div>
+        </div>
+        <div class="responses-label">Responses</div>
+        <div class="response-row"><span class="response-code code-2xx">200</span><span class="response-desc">Inclusion proof returned.</span></div>
+        <div class="response-row"><span class="response-code code-4xx">404</span><span class="response-desc">Log not found.</span></div>
+        <div class="response-row"><span class="response-code code-4xx">401</span><span class="response-desc">Authentication required.</span></div>
+        <div class="security-block">x-tml-security: "CA-VettedJWT + IPAllowlist"</div>
+      </div>
+    </div>
+
+    <div id="audit-heartbeat" class="endpoint-card">
+      <div class="endpoint-header" onclick="toggle(this)">
+        <span class="method-badge method-GET">GET</span>
+        <span class="endpoint-path">/audit/custodians/<span class="path-param">{custodianId}</span>/heartbeat</span>
+        <span class="status-pill status-SHIPPING">SHIPPING</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="endpoint-body">
+        <div class="endpoint-summary">Returns the current heartbeat status for one of the 6-Custodian HybridShield distributed anchoring nodes. A missing or stale heartbeat triggers HybridShield failover protocols. Cross-jurisdiction sub-500ms quorum is FUTURE (Section 10).</div>
+        <div class="detail-grid">
+          <div class="detail-cell">
+            <div class="detail-label">TML Pillar</div>
+            <div class="detail-value"><span class="pillar-tag">HybridShield</span></div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Monograph Reference</div>
+            <div class="detail-value">Section 2.3.3</div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Returns</div>
+            <div class="detail-value">CustodianHeartbeat (status, lastHeartbeatAt, jurisdiction, latencyMs)</div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Custodian Statuses</div>
+            <div class="detail-value">ACTIVE | DEGRADED | UNREACHABLE | ROTATING_KEYS</div>
+          </div>
+        </div>
+        <div class="responses-label">Responses</div>
+        <div class="response-row"><span class="response-code code-2xx">200</span><span class="response-desc">Custodian heartbeat status returned.</span></div>
+        <div class="response-row"><span class="response-code code-4xx">404</span><span class="response-desc">Custodian not found.</span></div>
+        <div class="response-row"><span class="response-code code-4xx">401</span><span class="response-desc">Authentication required.</span></div>
+        <div class="security-block">x-tml-security: "CA-VettedJWT + IPAllowlist"</div>
+      </div>
+    </div>
+
+    <div id="audit-attestation" class="endpoint-card">
+      <div class="endpoint-header" onclick="toggle(this)">
+        <span class="method-badge method-GET">GET</span>
+        <span class="endpoint-path">/audit/compliance/attestation</span>
+        <span class="status-pill status-SHIPPING">SHIPPING</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="endpoint-body">
+        <div class="endpoint-summary">Returns the current signed compliance attestation for the TML system, certifying adherence to the Eight Pillars. Signed by the Goukassian Promise Signature Block and anchored to the public Merkle chain.</div>
+        <div class="detail-grid">
+          <div class="detail-cell">
+            <div class="detail-label">TML Pillars</div>
+            <div class="detail-value"><span class="pillar-tag">GoukassianPromise</span><span class="pillar-tag">PublicBlockchains</span><span class="pillar-tag">HumanRightsMandate</span><span class="pillar-tag">EarthProtectionMandate</span></div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Monograph Reference</div>
+            <div class="detail-value">Section 2.4, Section 8</div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Returns</div>
+            <div class="detail-value">ComplianceAttestation (pillarCompliance[all 8], overallStatus, signatureBlock, merkleRoot)</div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Overall Status</div>
+            <div class="detail-value">FULLY_COMPLIANT | PARTIAL_COMPLIANCE | NON_COMPLIANT</div>
+          </div>
+        </div>
+        <div class="responses-label">Responses</div>
+        <div class="response-row"><span class="response-code code-2xx">200</span><span class="response-desc">Compliance attestation returned.</span></div>
+        <div class="response-row"><span class="response-code code-4xx">401</span><span class="response-desc">Authentication required.</span></div>
+        <div class="response-row"><span class="response-code code-4xx">403</span><span class="response-desc">Insufficient authorization.</span></div>
+        <div class="security-block">x-tml-security: "CA-VettedJWT + IPAllowlist"</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ REDRESS AND APPEAL ════════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">&#9878;</div>
+      <div>
+        <div class="section-title">Redress and Appeal</div>
+        <div class="section-desc">Subject-initiated challenge. Moral Trace Log re-evaluation. Human rights grievance filing.</div>
+      </div>
+    </div>
+    <span class="lane-label lane-audit">Redress &mdash; CA-VettedJWT + IPAllowlist</span>
+
+    <div id="redress-post" class="endpoint-card">
+      <div class="endpoint-header" onclick="toggle(this)">
+        <span class="method-badge method-POST">POST</span>
+        <span class="endpoint-path">/redress/challenges</span>
+        <span class="status-pill status-SHIPPING">SHIPPING</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="endpoint-body">
+        <div class="endpoint-summary">Allows a subject of a TML decision to initiate a formal challenge against a logged State determination. Initiates a Moral Trace Log re-evaluation workflow under the Human Rights Mandate (Pillar V).</div>
+        <div class="detail-grid">
+          <div class="detail-cell">
+            <div class="detail-label">TML Pillars</div>
+            <div class="detail-value"><span class="pillar-tag">HumanRightsMandate</span><span class="pillar-tag">MoralTraceLogs</span></div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Monograph Reference</div>
+            <div class="detail-value">Section 2.3.3</div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Request Body</div>
+            <div class="detail-value">RedressChallenge (subjectIdentity, challengedLogId, challengeGrounds[])</div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Returns</div>
+            <div class="detail-value">challengeId, submittedAt, status (PENDING)</div>
+          </div>
+        </div>
+        <div class="responses-label">Responses</div>
+        <div class="response-row"><span class="response-code code-2xx">201</span><span class="response-desc">Challenge submitted and queued for re-evaluation.</span></div>
+        <div class="response-row"><span class="response-code code-4xx">400</span><span class="response-desc">Schema validation failure.</span></div>
+        <div class="response-row"><span class="response-code code-4xx">409</span><span class="response-desc">Idempotency conflict.</span></div>
+        <div class="security-block">x-tml-security: "CA-VettedJWT + IPAllowlist"</div>
+        <div class="idempotency-note">&#x26A0; Idempotency-Key header required (UUID v4)</div>
+      </div>
+    </div>
+
+    <div id="redress-get" class="endpoint-card">
+      <div class="endpoint-header" onclick="toggle(this)">
+        <span class="method-badge method-GET">GET</span>
+        <span class="endpoint-path">/redress/challenges/<span class="path-param">{challengeId}</span></span>
+        <span class="status-pill status-SHIPPING">SHIPPING</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="endpoint-body">
+        <div class="endpoint-summary">Returns the current status and, if resolved, the outcome of a subject-initiated redress challenge including whether the challenge was upheld and any revised State Envelope.</div>
+        <div class="detail-grid">
+          <div class="detail-cell">
+            <div class="detail-label">TML Pillars</div>
+            <div class="detail-value"><span class="pillar-tag">HumanRightsMandate</span><span class="pillar-tag">MoralTraceLogs</span></div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Monograph Reference</div>
+            <div class="detail-value">Section 2.3.3</div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Status Values</div>
+            <div class="detail-value">PENDING | UNDER_REVIEW | RESOLVED</div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Outcome (if RESOLVED)</div>
+            <div class="detail-value">upheld (bool), revisedStateEnvelope (if upheld)</div>
+          </div>
+        </div>
+        <div class="responses-label">Responses</div>
+        <div class="response-row"><span class="response-code code-2xx">200</span><span class="response-desc">Challenge status returned.</span></div>
+        <div class="response-row"><span class="response-code code-4xx">404</span><span class="response-desc">Challenge not found.</span></div>
+        <div class="security-block">x-tml-security: "CA-VettedJWT + IPAllowlist"</div>
+      </div>
+    </div>
+
+    <div id="redress-reeval" class="endpoint-card">
+      <div class="endpoint-header" onclick="toggle(this)">
+        <span class="method-badge method-POST">POST</span>
+        <span class="endpoint-path">/redress/log-reevaluation</span>
+        <span class="status-pill status-SHIPPING">SHIPPING</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="endpoint-body">
+        <div class="endpoint-summary">Initiates a formal re-evaluation of a specific Moral Trace Log entry. The re-evaluation does NOT modify the original immutable log; it creates a new review record linked to the original (AlwaysMemory).</div>
+        <div class="detail-grid">
+          <div class="detail-cell">
+            <div class="detail-label">TML Pillars</div>
+            <div class="detail-value"><span class="pillar-tag">MoralTraceLogs</span><span class="pillar-tag">AlwaysMemory</span><span class="pillar-tag">HumanRightsMandate</span></div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Monograph Reference</div>
+            <div class="detail-value">Section 8</div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Request Body</div>
+            <div class="detail-value">logId, challengeId, reevaluationJustification (min 100 chars)</div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Immutability Note</div>
+            <div class="detail-value">Original log is immutable. Re-evaluation creates a new linked record only.</div>
+          </div>
+        </div>
+        <div class="responses-label">Responses</div>
+        <div class="response-row"><span class="response-code code-2xx">201</span><span class="response-desc">Re-evaluation initiated. reevaluationId returned.</span></div>
+        <div class="response-row"><span class="response-code code-4xx">400</span><span class="response-desc">Justification too short or schema failure.</span></div>
+        <div class="security-block">x-tml-security: "CA-VettedJWT + IPAllowlist"</div>
+        <div class="idempotency-note">&#x26A0; Idempotency-Key header required (UUID v4)</div>
+      </div>
+    </div>
+
+    <div id="redress-grievance" class="endpoint-card">
+      <div class="endpoint-header" onclick="toggle(this)">
+        <span class="method-badge method-POST">POST</span>
+        <span class="endpoint-path">/redress/human-rights-grievances</span>
+        <span class="status-pill status-SHIPPING">SHIPPING</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="endpoint-body">
+        <div class="endpoint-summary">Files a formal human rights grievance against a TML decision. Aligned with the Human Rights Mandate (Pillar V, UDHR/Geneva Convention vector enforcement). Grievances are logged, assigned to compliance review, and anchored to the public Merkle chain.</div>
+        <div class="detail-grid">
+          <div class="detail-cell">
+            <div class="detail-label">TML Pillars</div>
+            <div class="detail-value"><span class="pillar-tag">HumanRightsMandate</span><span class="pillar-tag">AlwaysMemory</span><span class="pillar-tag">PublicBlockchains</span></div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Monograph Reference</div>
+            <div class="detail-value">Section 2.3.3</div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Request Body</div>
+            <div class="detail-value">HumanRightsGrievance (udhrProvisions[], genevaConventionProvisions[], grievanceNarrative min 100 chars)</div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Returns</div>
+            <div class="detail-value">grievanceId, filedAt</div>
+          </div>
+        </div>
+        <div class="responses-label">Responses</div>
+        <div class="response-row"><span class="response-code code-2xx">201</span><span class="response-desc">Grievance filed and logged.</span></div>
+        <div class="response-row"><span class="response-code code-4xx">400</span><span class="response-desc">Schema validation failure.</span></div>
+        <div class="security-block">x-tml-security: "CA-VettedJWT + IPAllowlist"</div>
+        <div class="idempotency-note">&#x26A0; Idempotency-Key header required (UUID v4)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ REGULATOR INSPECTION ══════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">&#128196;</div>
+      <div>
+        <div class="section-title">Regulator Inspection</div>
+        <div class="section-desc">Bulk evidence export. Cross-jurisdiction custodian quorum status. Qualified timestamp verification.</div>
+      </div>
+    </div>
+    <span class="lane-label lane-regulator">Regulator &mdash; CA-VettedJWT + IPAllowlist</span>
+
+    <div id="reg-export" class="endpoint-card">
+      <div class="endpoint-header" onclick="toggle(this)">
+        <span class="method-badge method-POST">POST</span>
+        <span class="endpoint-path">/regulator/evidence-export</span>
+        <span class="status-pill status-SHIPPING">SHIPPING</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="endpoint-body">
+        <div class="endpoint-summary">Initiates a bulk export of Moral Trace Logs and Permission Token records for regulatory inspection. Exports are signed, Merkle-verified archives with chain-of-custody documentation. Asynchronous: returns a job ID for status polling. Completed exports available for 72 hours.</div>
+        <div class="detail-grid">
+          <div class="detail-cell">
+            <div class="detail-label">TML Pillars</div>
+            <div class="detail-value"><span class="pillar-tag">MoralTraceLogs</span><span class="pillar-tag">PublicBlockchains</span><span class="pillar-tag">AlwaysMemory</span></div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Monograph Reference</div>
+            <div class="detail-value">Section 8</div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Request Body</div>
+            <div class="detail-value">BulkEvidenceExport (regulatorIdentity, legalBasis, exportScope{fromDate, toDate, stateFilter, pillarFilter})</div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Returns</div>
+            <div class="detail-value">exportJobId, estimatedCompletionAt, statusUrl</div>
+          </div>
+        </div>
+        <div class="responses-label">Responses</div>
+        <div class="response-row"><span class="response-code code-2xx">202</span><span class="response-desc">Export job accepted. Poll exportJobId for status.</span></div>
+        <div class="response-row"><span class="response-code code-4xx">400</span><span class="response-desc">Schema validation failure.</span></div>
+        <div class="response-row"><span class="response-code code-4xx">403</span><span class="response-desc">Insufficient authorization.</span></div>
+        <div class="security-block">x-tml-security: "CA-VettedJWT + IPAllowlist"</div>
+        <div class="idempotency-note">&#x26A0; Idempotency-Key header required (UUID v4)</div>
+      </div>
+    </div>
+
+    <div id="reg-quorum" class="endpoint-card">
+      <div class="endpoint-header" onclick="toggle(this)">
+        <span class="method-badge method-GET">GET</span>
+        <span class="endpoint-path">/regulator/custodian-quorum</span>
+        <span class="status-pill status-SHIPPING">SHIPPING</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="endpoint-body">
+        <div class="endpoint-summary">Returns the current quorum status of the 6-Custodian HybridShield across all registered jurisdictions. Endpoint is SHIPPING; cross-jurisdiction sub-500ms quorum is FUTURE per Section 10 (network physics constraint).</div>
+        <div class="detail-grid">
+          <div class="detail-cell">
+            <div class="detail-label">TML Pillar</div>
+            <div class="detail-value"><span class="pillar-tag">HybridShield</span></div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Monograph Reference</div>
+            <div class="detail-value">Section 2.3.3</div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Returns</div>
+            <div class="detail-value">quorumAchieved, activeCustodianCount (0-6), requiredQuorumThreshold, custodians[], crossJurisdictionLatencyMs</div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Future Constraint</div>
+            <div class="detail-value">x-tml-blocking-constraint: "Section 10: Cross-jurisdiction sub-500ms quorum remains FUTURE"</div>
+          </div>
+        </div>
+        <div class="responses-label">Responses</div>
+        <div class="response-row"><span class="response-code code-2xx">200</span><span class="response-desc">Custodian quorum status returned.</span></div>
+        <div class="response-row"><span class="response-code code-4xx">401</span><span class="response-desc">Authentication required.</span></div>
+        <div class="security-block">x-tml-security: "CA-VettedJWT + IPAllowlist"</div>
+      </div>
+    </div>
+
+    <div id="reg-timestamp" class="endpoint-card">
+      <div class="endpoint-header" onclick="toggle(this)">
+        <span class="method-badge method-GET">GET</span>
+        <span class="endpoint-path">/regulator/timestamp-verification/<span class="path-param">{logId}</span></span>
+        <span class="status-pill status-SHIPPING">SHIPPING</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="endpoint-body">
+        <div class="endpoint-summary">Returns the qualified timestamp verification record for a specific Moral Trace Log entry. Timestamp is qualified per RFC 3161 (Internet X.509 PKI Time-Stamp Protocol) and anchored in the Merkle batch record.</div>
+        <div class="detail-grid">
+          <div class="detail-cell">
+            <div class="detail-label">TML Pillars</div>
+            <div class="detail-value"><span class="pillar-tag">MoralTraceLogs</span><span class="pillar-tag">PublicBlockchains</span></div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Monograph Reference</div>
+            <div class="detail-value">Section 8</div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Returns</div>
+            <div class="detail-value">qualifiedTimestamp, timestampAuthority (RFC 3161 TSA), merkleRoot, verificationStatus</div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Verification Status</div>
+            <div class="detail-value">VERIFIED | PENDING | FAILED</div>
+          </div>
+        </div>
+        <div class="responses-label">Responses</div>
+        <div class="response-row"><span class="response-code code-2xx">200</span><span class="response-desc">Timestamp verification record returned.</span></div>
+        <div class="response-row"><span class="response-code code-4xx">404</span><span class="response-desc">Log not found.</span></div>
+        <div class="security-block">x-tml-security: "CA-VettedJWT + IPAllowlist"</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ GATEWAY ══════════════════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">&#127963;</div>
+      <div>
+        <div class="section-title">Gateway</div>
+        <div class="section-desc">TML Gateway routing logic. Lane assignment. Fail-closed status. Fail-open is not an acceptable degradation mode.</div>
+      </div>
+    </div>
+    <span class="lane-label lane-gateway">Gateway &mdash; mTLS + ServiceAccountJWT</span>
+
+    <div id="gw-status" class="endpoint-card">
+      <div class="endpoint-header" onclick="toggle(this)">
+        <span class="method-badge method-GET">GET</span>
+        <span class="endpoint-path">/gateway/status</span>
+        <span class="status-pill status-SHIPPING">SHIPPING</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="endpoint-body">
+        <div class="endpoint-summary">Returns the current operational status of the TML Gateway. FAIL-CLOSED: if the Gateway cannot route to the Anchoring Lane, it defaults to State 0 (SacredZero) and triggers the Sacred Pause. It does NOT default to State +1. Fail-open is constitutionally prohibited.</div>
+        <div class="detail-grid">
+          <div class="detail-cell">
+            <div class="detail-label">TML Pillars</div>
+            <div class="detail-value"><span class="pillar-tag">SacredZero</span><span class="pillar-tag">AlwaysMemory</span></div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Monograph Reference</div>
+            <div class="detail-value">Section 2.3</div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Returns</div>
+            <div class="detail-value">GatewayRoutingStatus (operationalStatus, failClosedActive, inferenceLaneStatus, anchoringLaneStatus, lanternStatus)</div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Operational States</div>
+            <div class="detail-value">NORMAL_OPERATION | DEGRADED | FAIL_CLOSED_ACTIVE | EMERGENCY_OVERRIDE_ACTIVE</div>
+          </div>
+        </div>
+        <div class="responses-label">Responses</div>
+        <div class="response-row"><span class="response-code code-2xx">200</span><span class="response-desc">GatewayRoutingStatus returned.</span></div>
+        <div class="response-row"><span class="response-code code-5xx">503</span><span class="response-desc">Gateway unavailable.</span></div>
+        <div class="security-block">x-tml-security: "mTLS + ServiceAccountJWT"</div>
+      </div>
+    </div>
+
+    <div id="gw-lane" class="endpoint-card">
+      <div class="endpoint-header" onclick="toggle(this)">
+        <span class="method-badge method-POST">POST</span>
+        <span class="endpoint-path">/gateway/lane-assignment</span>
+        <span class="status-pill status-SHIPPING">SHIPPING</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="endpoint-body">
+        <div class="endpoint-summary">Requests lane assignment from the TML Gateway for an incoming decision vector. Gateway assigns to INFERENCE_LANE or escalates directly to ANCHORING_LANE. sacredZeroOverride flag indicates fail-closed activation.</div>
+        <div class="detail-grid">
+          <div class="detail-cell">
+            <div class="detail-label">TML Pillars</div>
+            <div class="detail-value"><span class="pillar-tag">SacredZero</span><span class="pillar-tag">AlwaysMemory</span><span class="pillar-tag">MoralTraceLogs</span></div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Monograph Reference</div>
+            <div class="detail-value">Section 2.3</div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Returns</div>
+            <div class="detail-value">assignedLane (INFERENCE_LANE|ANCHORING_LANE), routingRationale, sacredZeroOverride (bool)</div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Fail-Closed</div>
+            <div class="detail-value">sacredZeroOverride: true when Gateway defaults to SacredZero due to Anchoring Lane unavailability.</div>
+          </div>
+        </div>
+        <div class="responses-label">Responses</div>
+        <div class="response-row"><span class="response-code code-2xx">200</span><span class="response-desc">Lane assignment returned.</span></div>
+        <div class="response-row"><span class="response-code code-4xx">408</span><span class="response-desc">SacredZeroHold &mdash; fail-closed active.</span></div>
+        <div class="response-row"><span class="response-code code-4xx">400</span><span class="response-desc">Schema validation failure.</span></div>
+        <div class="security-block">x-tml-security: "mTLS + ServiceAccountJWT"</div>
+        <div class="idempotency-note">&#x26A0; Idempotency-Key header required (UUID v4)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ GOUKASSIAN PROMISE ════════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">&#9978;</div>
+      <div>
+        <div class="section-title">Goukassian Promise</div>
+        <div class="section-desc">Provenance. Non-repudiation. License validation. Three canonical artifacts: lantern, signature, license.</div>
+      </div>
+    </div>
+
+    <div id="gp-signature" class="endpoint-card">
+      <div class="endpoint-header" onclick="toggle(this)">
+        <span class="method-badge method-GET">GET</span>
+        <span class="endpoint-path">/goukassian/signature</span>
+        <span class="status-pill status-SHIPPING">SHIPPING</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="endpoint-body">
+        <div class="endpoint-summary">Returns the current Goukassian Promise Signature Block: the provenance and non-repudiation artifact for the TML system. One of the three canonical Goukassian Promise artifacts alongside the Lantern and the License. Canonical artifact name: "signature" (lowercase).</div>
+        <div class="detail-grid">
+          <div class="detail-cell">
+            <div class="detail-label">TML Pillar</div>
+            <div class="detail-value"><span class="pillar-tag">GoukassianPromise</span></div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Monograph Reference</div>
+            <div class="detail-value">Section 2.4</div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Returns</div>
+            <div class="detail-value">SignatureBlock (artifactName: "signature", signerKeyId, signatureValue, signatureAlgorithm, signedAt)</div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Algorithms (SHIPPING)</div>
+            <div class="detail-value">ES256, ES384, ES512, RS256, RS384, RS512. PQC: FUTURE (Section 10).</div>
+          </div>
+        </div>
+        <div class="responses-label">Responses</div>
+        <div class="response-row"><span class="response-code code-2xx">200</span><span class="response-desc">Current SignatureBlock returned.</span></div>
+        <div class="response-row"><span class="response-code code-5xx">503</span><span class="response-desc">Service unavailable.</span></div>
+        <div class="security-block">x-tml-security: "mTLS + ServiceAccountJWT"</div>
+      </div>
+    </div>
+
+    <div id="gp-license" class="endpoint-card">
+      <div class="endpoint-header" onclick="toggle(this)">
+        <span class="method-badge method-POST">POST</span>
+        <span class="endpoint-path">/goukassian/license/validate</span>
+        <span class="status-pill status-SHIPPING">SHIPPING</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="endpoint-body">
+        <div class="endpoint-summary">Validates a Goukassian Promise License artifact. Returns validation status, expiry, and any detected violations. A failed validation triggers State -1 (Refuse) on the associated decision vector. Canonical artifact name: "license" (lowercase).</div>
+        <div class="detail-grid">
+          <div class="detail-cell">
+            <div class="detail-label">TML Pillar</div>
+            <div class="detail-value"><span class="pillar-tag">GoukassianPromise</span></div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Monograph Reference</div>
+            <div class="detail-value">Section 2.4</div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Request Body</div>
+            <div class="detail-value">LicenseValidationRequest (artifactName: "license", licenseToken, requestingEntityId)</div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Returns</div>
+            <div class="detail-value">valid (bool), validatedAt, expiresAt, violations[] (empty if valid)</div>
+          </div>
+        </div>
+        <div class="responses-label">Responses</div>
+        <div class="response-row"><span class="response-code code-2xx">200</span><span class="response-desc">License validation result returned.</span></div>
+        <div class="response-row"><span class="response-code code-4xx">400</span><span class="response-desc">Schema validation failure.</span></div>
+        <div class="response-row"><span class="response-code code-4xx">401</span><span class="response-desc">Authentication required.</span></div>
+        <div class="security-block">x-tml-security: "HSM-SignedJWT + MutualTLS"</div>
+        <div class="idempotency-note">&#x26A0; Idempotency-Key header required (UUID v4)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ WEBHOOKS ═════════════════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">&#128276;</div>
+      <div>
+        <div class="section-title">Webhooks</div>
+        <div class="section-desc">Async notifications for Sacred Pause escalation and Lantern status broadcasts.</div>
+      </div>
+    </div>
+
+    <div id="wh-escalation" class="endpoint-card">
+      <div class="endpoint-header" onclick="toggle(this)">
+        <span class="method-badge method-HOOK">HOOK</span>
+        <span class="endpoint-path">sacredPauseEscalation</span>
+        <span class="status-pill status-SHIPPING">SHIPPING</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="endpoint-body">
+        <div class="webhook-notice">&#128276; Async webhook &mdash; delivered to registered escalation endpoints when State 0 (SacredZero) activates the Sacred Pause operational workflow.</div>
+        <div class="endpoint-summary">Async notification when Sacred Zero triggers human review. The TML Gateway broadcasts to all registered escalation endpoints. Sacred Pause is the operational workflow; Sacred Zero (State 0) is the state.</div>
+        <div class="detail-grid">
+          <div class="detail-cell">
+            <div class="detail-label">TML Pillar</div>
+            <div class="detail-value"><span class="pillar-tag">SacredZero</span></div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Monograph Reference</div>
+            <div class="detail-value">Section 2.2</div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Payload</div>
+            <div class="detail-value">escalationId, decisionId, triggeredAt, stateEnvelope, lanternStatus, humanReviewQueueUrl</div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Retry Semantics</div>
+            <div class="detail-value">Exponential backoff, min 3 attempts over 15 minutes. On failure: HybridShield failover queue. Deduplicate on escalationId.</div>
+          </div>
+        </div>
+        <div class="idempotency-note">&#x26A0; x-tml-idempotency: receivers MUST deduplicate on escalationId</div>
+      </div>
+    </div>
+
+    <div id="wh-lantern" class="endpoint-card">
+      <div class="endpoint-header" onclick="toggle(this)">
+        <span class="method-badge method-HOOK">HOOK</span>
+        <span class="endpoint-path">lanternStatusBroadcast</span>
+        <span class="status-pill status-SHIPPING">SHIPPING</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="endpoint-body">
+        <div class="webhook-notice">&#128276; Async webhook &mdash; public Goukassian Promise Lantern compliance beacon update broadcast to all registered observers.</div>
+        <div class="endpoint-summary">Public beacon signal update from the Goukassian Promise (Pillar III). Broadcasts the current constitutional compliance state of the TML system. Best-effort delivery, 3 attempts with 5-second intervals. Duplicate delivery acceptable (idempotent by design).</div>
+        <div class="detail-grid">
+          <div class="detail-cell">
+            <div class="detail-label">TML Pillar</div>
+            <div class="detail-value"><span class="pillar-tag">GoukassianPromise</span></div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Monograph Reference</div>
+            <div class="detail-value">Section 2.4</div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Payload</div>
+            <div class="detail-value">lanternSignalId, broadcastAt, lanternStatus (LanternStatus), signatureBlock (SignatureBlock)</div>
+          </div>
+          <div class="detail-cell">
+            <div class="detail-label">Retry Semantics</div>
+            <div class="detail-value">Best-effort, 3 attempts, 5-second intervals. Deduplicate on lanternSignalId.</div>
+          </div>
+        </div>
+        <div class="idempotency-note">&#x26A0; x-tml-idempotency: receivers MUST deduplicate on lanternSignalId</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <span>TML Specification Architecture &mdash; Step 1 of 5 &mdash; openapi.yaml &mdash; v3.3.0-tml-monograph-2025</span>
+    <span>Authority: TML Constitutionalization Monograph v3.3</span>
+  </div>
+
+</main>
+
+<script>
+  function toggle(header) {
+    const card = header.parentElement;
+    card.classList.toggle('open');
+  }
+
+  // Open the first card in each section by default for quick orientation
+  document.querySelectorAll('.section .endpoint-card:first-of-type .endpoint-header').forEach(h => {
+    h.parentElement.classList.add('open');
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,1575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TML Specification — Step 3: tml_abi.json + eip712_typed_data.json</title>
+<style>
+  :root {
+    --navy:        #0a1628;
+    --navy-mid:    #0f2040;
+    --navy-light:  #162a52;
+    --navy-border: #1e3a6e;
+    --gold:        #d4a574;
+    --gold-dim:    #a07848;
+    --gold-glow:   rgba(212,165,116,0.12);
+    --gold-glow2:  rgba(212,165,116,0.06);
+    --white:       #f0ece4;
+    --white-dim:   #b8b0a0;
+    --white-muted: #6e6860;
+    --green:       #27ae60;
+    --green-soft:  rgba(39,174,96,0.13);
+    --amber:       #e67e22;
+    --amber-soft:  rgba(230,126,34,0.13);
+    --red:         #c0392b;
+    --red-soft:    rgba(192,57,43,0.13);
+    --blue:        #2980b9;
+    --blue-soft:   rgba(41,128,185,0.13);
+    --teal:        #16a085;
+    --teal-soft:   rgba(22,160,133,0.13);
+    --purple:      #8e44ad;
+    --purple-soft: rgba(142,68,173,0.13);
+    --sidebar-w:   272px;
+    --font-serif:  Georgia, 'Times New Roman', serif;
+    --font-sans:   'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --font-mono:   'Courier New', Courier, monospace;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--navy);
+    color: var(--white);
+    font-family: var(--font-serif);
+    font-size: 15px;
+    line-height: 1.7;
+    display: flex;
+    min-height: 100vh;
+  }
+
+  /* ── SIDEBAR ── */
+  .sidebar {
+    position: fixed; top: 0; left: 0;
+    width: var(--sidebar-w); height: 100vh;
+    background: var(--navy-mid);
+    border-right: 1px solid var(--navy-border);
+    overflow-y: auto; z-index: 100; padding-bottom: 40px;
+  }
+  .sidebar::-webkit-scrollbar { width: 4px; }
+  .sidebar::-webkit-scrollbar-thumb { background: var(--navy-border); border-radius: 2px; }
+  .sidebar-header {
+    padding: 26px 18px 18px;
+    border-bottom: 1px solid var(--navy-border);
+    position: sticky; top: 0; background: var(--navy-mid); z-index: 10;
+  }
+  .step-badge {
+    font-family: var(--font-sans); font-size: 9px; font-weight: 700;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold);
+    background: var(--gold-glow); border: 1px solid var(--gold-dim);
+    padding: 3px 8px; border-radius: 2px; display: inline-block; margin-bottom: 10px;
+  }
+  .sidebar-header h1 {
+    font-family: var(--font-sans); font-size: 12px; font-weight: 700;
+    letter-spacing: 0.07em; text-transform: uppercase; color: var(--white); line-height: 1.3;
+  }
+  .sidebar-header .version { font-family: var(--font-mono); font-size: 10px; color: var(--white-muted); margin-top: 5px; }
+
+  .sidebar-section-divider {
+    margin: 8px 18px;
+    border: none; border-top: 1px solid var(--navy-border);
+  }
+  .sidebar-group { padding: 12px 0 2px; }
+  .sidebar-group-label {
+    font-family: var(--font-sans); font-size: 9px; font-weight: 700;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-dim); padding: 0 18px 5px;
+  }
+  .sidebar-link {
+    display: flex; align-items: center; gap: 8px;
+    padding: 5px 18px; text-decoration: none; color: var(--white-dim);
+    font-family: var(--font-mono); font-size: 10.5px;
+    transition: all 0.15s; border-left: 2px solid transparent;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .sidebar-link:hover { color: var(--gold); background: var(--gold-glow2); border-left-color: var(--gold-dim); }
+  .sdot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
+  .sdot-fn    { background: #7ab8e8; }
+  .sdot-event { background: #c9a0e8; }
+  .sdot-error { background: #e87878; }
+  .sdot-type  { background: var(--gold); }
+  .sdot-hash  { background: #7dd4cc; }
+
+  /* ── MAIN ── */
+  .main { margin-left: var(--sidebar-w); flex: 1; padding: 0 44px 80px; max-width: 1100px; }
+
+  /* ── PAGE HEADER ── */
+  .page-header { padding: 46px 0 32px; border-bottom: 1px solid var(--navy-border); margin-bottom: 36px; }
+  .doc-label { font-family: var(--font-sans); font-size: 9px; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+  .page-header h2 { font-family: var(--font-sans); font-size: 26px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+  .subtitle { font-family: var(--font-serif); font-size: 14px; color: var(--white-dim); font-style: italic; margin-bottom: 18px; }
+  .meta-row { display: flex; gap: 14px; flex-wrap: wrap; }
+  .meta-chip { font-family: var(--font-mono); font-size: 10px; color: var(--white-muted); background: var(--navy-mid); border: 1px solid var(--navy-border); padding: 3px 9px; border-radius: 2px; }
+  .meta-chip span { color: var(--gold); }
+
+  /* ── SECTION HEADER ── */
+  .section { margin-bottom: 56px; }
+  .section-header {
+    display: flex; align-items: center; gap: 14px;
+    margin-bottom: 24px; padding-bottom: 14px; border-bottom: 1px solid var(--navy-border);
+  }
+  .section-icon {
+    width: 38px; height: 38px; border-radius: 3px;
+    display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0;
+  }
+  .si-abi    { background: var(--blue-soft);   border: 1px solid rgba(41,128,185,0.3); }
+  .si-eip    { background: var(--purple-soft); border: 1px solid rgba(142,68,173,0.3); }
+  .si-core   { background: var(--teal-soft);   border: 1px solid rgba(22,160,133,0.3); }
+  .si-enforcer { background: var(--amber-soft); border: 1px solid rgba(230,126,34,0.3); }
+  .section-title { font-family: var(--font-sans); font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; }
+  .st-abi      { color: #7ab8e8; }
+  .st-eip      { color: #c9a0e8; }
+  .st-core     { color: #7dd4cc; }
+  .st-enforcer { color: #f0b060; }
+  .section-desc { font-size: 12px; color: var(--white-muted); margin-top: 2px; }
+
+  /* ── CONTRACT NOTICE ── */
+  .contract-notice {
+    background: var(--gold-glow2); border: 1px solid var(--navy-border);
+    border-left: 3px solid var(--gold); border-radius: 4px;
+    padding: 18px 22px; margin-bottom: 28px; font-size: 13px; color: var(--white-dim); line-height: 1.75;
+  }
+  .contract-notice strong { color: var(--gold); font-family: var(--font-sans); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; }
+
+  /* ── CONTRACT CARD ── */
+  .contract-card {
+    background: var(--navy-mid); border: 1px solid var(--navy-border);
+    border-radius: 4px; margin-bottom: 12px; overflow: hidden;
+  }
+  .contract-card:hover { border-color: var(--gold-dim); }
+  .contract-header {
+    display: flex; align-items: center; gap: 12px;
+    padding: 13px 20px; cursor: pointer; background: var(--navy-light);
+    user-select: none; transition: background 0.15s;
+  }
+  .contract-header:hover { background: rgba(30,58,110,0.7); }
+
+  /* kind badge */
+  .kind-badge {
+    font-family: var(--font-sans); font-size: 9px; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 2px 7px; border-radius: 2px; min-width: 48px; text-align: center; flex-shrink: 0;
+  }
+  .kind-function    { background: var(--blue-soft);   color: #7ab8e8; border: 1px solid rgba(41,128,185,0.4); }
+  .kind-constructor { background: var(--teal-soft);   color: #7dd4cc; border: 1px solid rgba(22,160,133,0.4); }
+  .kind-event       { background: var(--purple-soft); color: #c9a0e8; border: 1px solid rgba(142,68,173,0.4); }
+  .kind-error       { background: var(--red-soft);    color: #e87878; border: 1px solid rgba(192,57,43,0.4); }
+
+  .entry-name { font-family: var(--font-mono); font-size: 13px; color: var(--white); flex: 1; }
+  .mutability-tag {
+    font-family: var(--font-sans); font-size: 9px; font-weight: 700;
+    letter-spacing: 0.1em; padding: 2px 6px; border-radius: 2px; flex-shrink: 0;
+  }
+  .mut-view        { background: var(--green-soft); color: #7de0a0; border: 1px solid rgba(39,174,96,0.3); }
+  .mut-nonpayable  { background: var(--amber-soft); color: #f0b060; border: 1px solid rgba(230,126,34,0.3); }
+  .mut-pure        { background: var(--teal-soft);  color: #7dd4cc; border: 1px solid rgba(22,160,133,0.3); }
+  .expand-icon { color: var(--white-muted); font-size: 11px; transition: transform 0.2s; flex-shrink: 0; }
+  .contract-card.open .expand-icon { transform: rotate(180deg); }
+
+  .contract-body { display: none; padding: 18px 20px; border-top: 1px solid var(--navy-border); }
+  .contract-card.open .contract-body { display: block; }
+
+  .entry-desc { font-size: 13px; color: var(--white-dim); line-height: 1.7; margin-bottom: 14px; border-left: 2px solid var(--gold-dim); padding-left: 12px; }
+
+  /* ── PARAM TABLES ── */
+  .param-label {
+    font-family: var(--font-sans); font-size: 9px; font-weight: 700;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold-dim); margin-bottom: 8px; margin-top: 12px;
+  }
+  .param-table { width: 100%; border-collapse: collapse; font-size: 12px; margin-bottom: 10px; }
+  .param-table thead tr { background: var(--navy); border-bottom: 1px solid var(--navy-border); }
+  .param-table thead th {
+    font-family: var(--font-sans); font-size: 9px; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--white-muted); padding: 6px 10px; text-align: left;
+  }
+  .param-table tbody tr { border-bottom: 1px solid rgba(30,58,110,0.5); transition: background 0.1s; }
+  .param-table tbody tr:hover { background: rgba(212,165,116,0.04); }
+  .param-table tbody tr:last-child { border-bottom: none; }
+  .param-table td { padding: 7px 10px; vertical-align: top; line-height: 1.5; }
+  .pn { font-family: var(--font-mono); font-size: 11.5px; color: var(--white); }
+  .pt-solidity { font-family: var(--font-mono); font-size: 11px; color: #f0b060; }
+  .pd { font-family: var(--font-serif); font-size: 12px; color: var(--white-dim); }
+  .indexed-badge {
+    font-family: var(--font-sans); font-size: 8px; font-weight: 700;
+    padding: 1px 4px; border-radius: 2px; margin-left: 4px;
+    background: var(--purple-soft); color: #c9a0e8; border: 1px solid rgba(142,68,173,0.3);
+  }
+
+  /* ── CALLOUTS ── */
+  .callout {
+    border-radius: 3px; padding: 10px 14px; margin: 10px 0;
+    font-size: 12px; line-height: 1.65;
+  }
+  .callout-iron    { background: var(--gold-glow); border: 1px solid var(--gold-dim); color: var(--gold); font-family: var(--font-sans); font-size: 11px; font-weight: 600; }
+  .callout-monograph { background: var(--navy); border: 1px solid var(--navy-border); border-left: 3px solid var(--gold-dim); color: var(--white-muted); font-family: var(--font-mono); font-size: 10.5px; }
+  .callout-future  { background: var(--red-soft); border: 1px solid rgba(192,57,43,0.3); color: #e87878; font-family: var(--font-sans); font-size: 11px; }
+  .callout-sacred  { background: rgba(22,160,133,0.1); border: 1px solid rgba(22,160,133,0.3); color: #7dd4cc; font-family: var(--font-sans); font-size: 11px; }
+
+  /* ── EIP-712 SPECIFIC ── */
+  .typed-card {
+    background: var(--navy-mid); border: 1px solid var(--navy-border);
+    border-radius: 4px; margin-bottom: 16px; overflow: hidden;
+  }
+  .typed-card:hover { border-color: rgba(142,68,173,0.4); }
+  .typed-header {
+    display: flex; align-items: center; gap: 12px;
+    padding: 13px 20px; cursor: pointer; background: rgba(15,20,40,0.8);
+    user-select: none; transition: background 0.15s;
+  }
+  .typed-header:hover { background: rgba(30,20,50,0.7); }
+  .primary-type-badge {
+    font-family: var(--font-sans); font-size: 9px; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 2px 7px; border-radius: 2px; flex-shrink: 0;
+    background: var(--purple-soft); color: #c9a0e8; border: 1px solid rgba(142,68,173,0.4);
+  }
+  .typed-name { font-family: var(--font-mono); font-size: 13px; color: var(--white); flex: 1; }
+  .typed-body { display: none; padding: 18px 20px; border-top: 1px solid var(--navy-border); }
+  .typed-card.open .typed-body { display: block; }
+  .typed-card.open .expand-icon { transform: rotate(180deg); }
+
+  .eip-domain-box {
+    background: var(--navy); border: 1px solid var(--navy-border); border-radius: 3px;
+    padding: 12px 16px; margin: 10px 0; font-family: var(--font-mono); font-size: 11px;
+    color: var(--white-dim); line-height: 1.9;
+  }
+  .eip-domain-box .dk { color: var(--gold-dim); }
+  .eip-domain-box .dv { color: var(--white); }
+  .eip-domain-box .dc { color: var(--white-muted); font-style: italic; }
+
+  .typehash-box {
+    background: var(--navy); border: 1px solid var(--navy-border);
+    border-left: 3px solid #7dd4cc; border-radius: 3px;
+    padding: 12px 16px; margin: 10px 0; font-family: var(--font-mono); font-size: 11px;
+    color: #7dd4cc; word-break: break-all; line-height: 1.7;
+  }
+  .typehash-label { font-family: var(--font-sans); font-size: 9px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--teal); margin-bottom: 6px; }
+
+  .security-note {
+    background: var(--gold-glow2); border: 1px solid var(--navy-border);
+    border-radius: 3px; padding: 10px 14px; margin: 10px 0;
+    font-family: var(--font-sans); font-size: 11px; color: var(--white-dim); line-height: 1.65;
+  }
+  .security-note strong { color: var(--gold); }
+
+  /* ── TYPEHASH REGISTRY TABLE ── */
+  .registry-table { width: 100%; border-collapse: collapse; font-size: 12px; margin-top: 12px; }
+  .registry-table thead tr { background: var(--navy); border-bottom: 1px solid var(--navy-border); }
+  .registry-table thead th { font-family: var(--font-sans); font-size: 9px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--white-muted); padding: 8px 12px; text-align: left; }
+  .registry-table tbody tr { border-bottom: 1px solid rgba(30,58,110,0.5); }
+  .registry-table tbody tr:last-child { border-bottom: none; }
+  .registry-table td { padding: 10px 12px; vertical-align: top; line-height: 1.5; }
+  .rt-name { font-family: var(--font-mono); font-size: 12px; color: var(--gold); }
+  .rt-string { font-family: var(--font-mono); font-size: 10px; color: #7dd4cc; word-break: break-all; line-height: 1.6; }
+  .rt-note { font-size: 11px; color: var(--white-muted); }
+
+  /* ── ABI OVERVIEW BOX ── */
+  .abi-overview {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 24px;
+  }
+  .abi-stat {
+    background: var(--navy-mid); border: 1px solid var(--navy-border);
+    border-radius: 3px; padding: 14px 16px;
+  }
+  .abi-stat-label { font-family: var(--font-sans); font-size: 9px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold-dim); margin-bottom: 6px; }
+  .abi-stat-items { display: flex; flex-wrap: wrap; gap: 5px; }
+  .abi-stat-chip {
+    font-family: var(--font-mono); font-size: 10px;
+    padding: 2px 7px; border-radius: 2px;
+  }
+  .chip-fn    { background: var(--blue-soft);   color: #7ab8e8; border: 1px solid rgba(41,128,185,0.3); }
+  .chip-event { background: var(--purple-soft); color: #c9a0e8; border: 1px solid rgba(142,68,173,0.3); }
+  .chip-error { background: var(--red-soft);    color: #e87878; border: 1px solid rgba(192,57,43,0.3); }
+
+  /* ── FOOTER ── */
+  .footer { margin-top: 60px; padding-top: 22px; border-top: 1px solid var(--navy-border); font-family: var(--font-sans); font-size: 10px; color: var(--white-muted); letter-spacing: 0.07em; display: flex; justify-content: space-between; }
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--navy); }
+  ::-webkit-scrollbar-thumb { background: var(--navy-border); border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<!-- ═══ SIDEBAR ═══════════════════════════════════════════════════ -->
+<nav class="sidebar">
+  <div class="sidebar-header">
+    <div class="step-badge">Step 3 of 5</div>
+    <h1>Contract Layer<br>ABI + EIP-712</h1>
+    <div class="version">tml_abi.json &amp; eip712_typed_data.json</div>
+  </div>
+
+  <div class="sidebar-group">
+    <div class="sidebar-group-label">Section A &mdash; ABI</div>
+    <a href="#abi-overview" class="sidebar-link"><span class="sdot sdot-fn"></span>Overview</a>
+  </div>
+
+  <div class="sidebar-group">
+    <div class="sidebar-group-label">TML_Core &mdash; Functions</div>
+    <a href="#fn-anchorMerkleRoot"              class="sidebar-link"><span class="sdot sdot-fn"></span>anchorMerkleRoot</a>
+    <a href="#fn-registerPermissionToken"       class="sidebar-link"><span class="sdot sdot-fn"></span>registerPermissionToken</a>
+    <a href="#fn-verifyPermissionToken"         class="sidebar-link"><span class="sdot sdot-fn"></span>verifyPermissionToken</a>
+    <a href="#fn-verifyMerkleInclusion"         class="sidebar-link"><span class="sdot sdot-fn"></span>verifyMerkleInclusion</a>
+    <a href="#fn-activateSacredZero"            class="sidebar-link"><span class="sdot sdot-fn"></span>activateSacredZeroSystemWide</a>
+    <a href="#fn-resolveSacredZero"             class="sidebar-link"><span class="sdot sdot-fn"></span>resolveSacredZeroSystemWide</a>
+    <a href="#fn-executeEmergencyOverride"      class="sidebar-link"><span class="sdot sdot-fn"></span>executeEmergencyOverride</a>
+    <a href="#fn-getAnchoredMerkleRoot"         class="sidebar-link"><span class="sdot sdot-fn"></span>getAnchoredMerkleRoot</a>
+    <a href="#fn-getSystemState"                class="sidebar-link"><span class="sdot sdot-fn"></span>getSystemState</a>
+    <a href="#fn-monographVersion"              class="sidebar-link"><span class="sdot sdot-fn"></span>monographVersion</a>
+  </div>
+
+  <div class="sidebar-group">
+    <div class="sidebar-group-label">TML_Core &mdash; Events</div>
+    <a href="#ev-MerkleRootAnchored"            class="sidebar-link"><span class="sdot sdot-event"></span>MerkleRootAnchored</a>
+    <a href="#ev-PermissionTokenRegistered"     class="sidebar-link"><span class="sdot sdot-event"></span>PermissionTokenRegistered</a>
+    <a href="#ev-SacredZeroActivated"           class="sidebar-link"><span class="sdot sdot-event"></span>SacredZeroActivated</a>
+    <a href="#ev-SacredZeroResolved"            class="sidebar-link"><span class="sdot sdot-event"></span>SacredZeroResolved</a>
+    <a href="#ev-EmergencyOverrideExecuted"     class="sidebar-link"><span class="sdot sdot-event"></span>EmergencyOverrideExecuted</a>
+    <a href="#ev-LanternStatusBroadcast"        class="sidebar-link"><span class="sdot sdot-event"></span>LanternStatusBroadcast</a>
+  </div>
+
+  <div class="sidebar-group">
+    <div class="sidebar-group-label">TML_Core &mdash; Errors</div>
+    <a href="#err-NoLogNoAction"                class="sidebar-link"><span class="sdot sdot-error"></span>NoLogNoAction</a>
+    <a href="#err-SacredZeroSystemWideActive"   class="sidebar-link"><span class="sdot sdot-error"></span>SacredZeroSystemWideActive</a>
+    <a href="#err-QuorumNotMet"                 class="sidebar-link"><span class="sdot sdot-error"></span>QuorumNotMet</a>
+    <a href="#err-InvalidResolutionState"       class="sidebar-link"><span class="sdot sdot-error"></span>InvalidResolutionState</a>
+    <a href="#err-UnauthorizedSupremeAuthority" class="sidebar-link"><span class="sdot sdot-error"></span>UnauthorizedSupremeAuthority</a>
+    <a href="#err-TokenExpired"                 class="sidebar-link"><span class="sdot sdot-error"></span>TokenExpired</a>
+  </div>
+
+  <div class="sidebar-group">
+    <div class="sidebar-group-label">ITMLEnforcer &mdash; Functions</div>
+    <a href="#fn-verifyHumanRights"             class="sidebar-link"><span class="sdot sdot-fn"></span>verifyHumanRightsCompliance</a>
+    <a href="#fn-verifyEarthProtection"         class="sidebar-link"><span class="sdot sdot-fn"></span>verifyEarthProtectionCompliance</a>
+    <a href="#fn-verifyGoukassianLicense"       class="sidebar-link"><span class="sdot sdot-fn"></span>verifyGoukassianLicense</a>
+    <a href="#fn-recordMandateViolation"        class="sidebar-link"><span class="sdot sdot-fn"></span>recordMandateViolation</a>
+    <a href="#fn-getMandateConfiguration"       class="sidebar-link"><span class="sdot sdot-fn"></span>getMandateConfiguration</a>
+  </div>
+
+  <div class="sidebar-group">
+    <div class="sidebar-group-label">ITMLEnforcer &mdash; Events</div>
+    <a href="#ev-HumanRightsMandateViolation"   class="sidebar-link"><span class="sdot sdot-event"></span>HumanRightsMandateViolation</a>
+    <a href="#ev-EarthProtectionViolation"      class="sidebar-link"><span class="sdot sdot-event"></span>EarthProtectionViolation</a>
+    <a href="#ev-GoukassianLicenseViolation"    class="sidebar-link"><span class="sdot sdot-event"></span>GoukassianLicenseViolation</a>
+  </div>
+
+  <hr class="sidebar-section-divider">
+
+  <div class="sidebar-group">
+    <div class="sidebar-group-label">Section B &mdash; EIP-712</div>
+    <a href="#eip-domain"         class="sidebar-link"><span class="sdot sdot-type"></span>EIP712Domain</a>
+    <a href="#eip-MoralTraceLog"  class="sidebar-link"><span class="sdot sdot-type"></span>MoralTraceLog</a>
+    <a href="#eip-PermissionToken" class="sidebar-link"><span class="sdot sdot-type"></span>PermissionToken</a>
+    <a href="#eip-EmergencyOverride" class="sidebar-link"><span class="sdot sdot-type"></span>EmergencyOverride</a>
+    <a href="#eip-CustodianQuorum" class="sidebar-link"><span class="sdot sdot-type"></span>CustodianQuorumAttestation</a>
+    <a href="#eip-GoukassianSig"  class="sidebar-link"><span class="sdot sdot-type"></span>GoukassianSignatureAttestation</a>
+    <a href="#eip-registry"       class="sidebar-link"><span class="sdot sdot-hash"></span>TypeHash Registry</a>
+  </div>
+</nav>
+
+<!-- ═══ MAIN ══════════════════════════════════════════════════════ -->
+<main class="main">
+
+  <div class="page-header">
+    <div class="doc-label">TML Specification Architecture &mdash; Deliverables C &amp; D</div>
+    <h2>Contract Layer &mdash; tml_abi.json &amp; eip712_typed_data.json</h2>
+    <div class="subtitle">On-chain ABI definitions + off-chain EIP-712 structured data schemas &mdash; no Solidity source code</div>
+    <div class="meta-row">
+      <div class="meta-chip">contracts <span>TML_Core, ITMLEnforcer</span></div>
+      <div class="meta-chip">EIP-712 types <span>5 primary types</span></div>
+      <div class="meta-chip">typeHash strings <span>5 canonical</span></div>
+      <div class="meta-chip">authority <span>TML Monograph v3.3</span></div>
+    </div>
+  </div>
+
+<!-- ════════════════════════════════════════════════════════════════
+     SECTION A: ABI
+════════════════════════════════════════════════════════════════ -->
+  <div id="abi-overview" class="section">
+    <div class="section-header">
+      <div class="section-icon si-abi">&#128196;</div>
+      <div>
+        <div class="section-title st-abi">Section A &mdash; tml_abi.json</div>
+        <div class="section-desc">Function signatures, event logs, and custom errors. No Solidity source code.</div>
+      </div>
+    </div>
+
+    <div class="contract-notice">
+      <strong>Scope constraint</strong><br>
+      This ABI bundle defines function signatures, event parameters, and custom error types for <code>TML_Core.sol</code> and <code>ITMLEnforcer.sol</code>. It contains no Solidity source code, no deployment scripts, and no operational SLO configurations. The ABI is the on-chain enforcement complement to the OpenAPI contract (Step 1) and JSON Schema bundle (Step 2): together they enforce No Log = No Action across off-chain API, schema, and on-chain layers.
+    </div>
+
+    <div class="abi-overview">
+      <div class="abi-stat">
+        <div class="abi-stat-label">TML_Core</div>
+        <div class="abi-stat-items">
+          <span class="abi-stat-chip chip-fn">constructor</span>
+          <span class="abi-stat-chip chip-fn">9 functions</span>
+          <span class="abi-stat-chip chip-event">6 events</span>
+          <span class="abi-stat-chip chip-error">6 errors</span>
+        </div>
+      </div>
+      <div class="abi-stat">
+        <div class="abi-stat-label">ITMLEnforcer</div>
+        <div class="abi-stat-items">
+          <span class="abi-stat-chip chip-fn">5 functions</span>
+          <span class="abi-stat-chip chip-event">3 events</span>
+          <span class="abi-stat-chip chip-error">2 errors</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- TML_CORE SUB-HEADER -->
+    <div class="section-header" style="margin-top:32px;">
+      <div class="section-icon si-core">&#9874;</div>
+      <div>
+        <div class="section-title st-core">TML_Core.sol &mdash; Functions</div>
+        <div class="section-desc">Core constitutional enforcement. Merkle anchoring. Permission Token registry. Sacred Zero and Emergency Override state management.</div>
+      </div>
+    </div>
+
+    <!-- constructor -->
+    <div class="contract-card">
+      <div class="contract-header" onclick="toggle(this)">
+        <span class="kind-badge kind-constructor">constructor</span>
+        <span class="entry-name">TML_Core</span>
+        <span class="mutability-tag mut-nonpayable">nonpayable</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="contract-body">
+        <div class="entry-desc">Deploys the TML_Core contract, binding it to the HybridShield 6-Custodian registry address, the ITMLEnforcer implementation, and the canonical monograph version string.</div>
+        <div class="callout callout-monograph">Monograph ref: Section 2.3.3, Section 2.4</div>
+        <div class="param-label">Inputs</div>
+        <table class="param-table">
+          <thead><tr><th>Name</th><th>Solidity Type</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td class="pn">_custodianRegistry</td><td class="pt-solidity">address</td><td class="pd">Address of the HybridShield 6-Custodian registry contract.</td></tr>
+            <tr><td class="pn">_enforcer</td><td class="pt-solidity">address</td><td class="pd">Address of the ITMLEnforcer implementation for HumanRightsMandate and EarthProtectionMandate.</td></tr>
+            <tr><td class="pn">_monographVersion</td><td class="pt-solidity">string</td><td class="pd">Canonical monograph version string, e.g. "3.3.0-tml-monograph-2025".</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- anchorMerkleRoot -->
+    <div id="fn-anchorMerkleRoot" class="contract-card">
+      <div class="contract-header" onclick="toggle(this)">
+        <span class="kind-badge kind-function">function</span>
+        <span class="entry-name">anchorMerkleRoot</span>
+        <span class="mutability-tag mut-nonpayable">nonpayable</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="contract-body">
+        <div class="entry-desc">Anchors a Merkle root representing a batch of Moral Trace Logs to the public blockchain. Enforces AlwaysMemory (Pillar II) and PublicBlockchains (Pillar VIII) on-chain. Caller must supply a valid HybridShield custodian quorum signature meeting the configured threshold. Emits MerkleRootAnchored on success.</div>
+        <div class="callout callout-monograph">Monograph ref: Section 8, Pillar VIII (PublicBlockchains), Pillar VII (HybridShield). x-tml-pillar: AlwaysMemory, PublicBlockchains, HybridShield</div>
+        <div class="param-label">Inputs</div>
+        <table class="param-table">
+          <thead><tr><th>Name</th><th>Solidity Type</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td class="pn">merkleRoot</td><td class="pt-solidity">bytes32</td><td class="pd">SHA-256 Merkle root of the log batch, packed as bytes32.</td></tr>
+            <tr><td class="pn">batchId</td><td class="pt-solidity">bytes32</td><td class="pd">Unique identifier for this Merkle batch.</td></tr>
+            <tr><td class="pn">logCount</td><td class="pt-solidity">uint256</td><td class="pd">Number of Moral Trace Log entries included in this batch.</td></tr>
+            <tr><td class="pn">custodianSignatures</td><td class="pt-solidity">bytes[]</td><td class="pd">ECDSA signatures from HybridShield custodians. Must meet the quorum threshold.</td></tr>
+            <tr><td class="pn">custodianIds</td><td class="pt-solidity">bytes32[]</td><td class="pd">Custodian identifiers corresponding to each signature.</td></tr>
+          </tbody>
+        </table>
+        <div class="param-label">Outputs</div>
+        <table class="param-table">
+          <thead><tr><th>Name</th><th>Solidity Type</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td class="pn">anchorId</td><td class="pt-solidity">bytes32</td><td class="pd">On-chain identifier for this anchored Merkle root record.</td></tr>
+            <tr><td class="pn">anchoredAt</td><td class="pt-solidity">uint256</td><td class="pd">Block timestamp at which the Merkle root was anchored.</td></tr>
+          </tbody>
+        </table>
+        <div class="callout callout-iron">Reverts with QuorumNotMet if custodian signatures do not meet the configured HybridShield threshold. Reverts with SacredZeroSystemWideActive if a system-wide Sacred Zero is active.</div>
+      </div>
+    </div>
+
+    <!-- registerPermissionToken -->
+    <div id="fn-registerPermissionToken" class="contract-card">
+      <div class="contract-header" onclick="toggle(this)">
+        <span class="kind-badge kind-function">function</span>
+        <span class="entry-name">registerPermissionToken</span>
+        <span class="mutability-tag mut-nonpayable">nonpayable</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="contract-body">
+        <div class="entry-desc">Registers a Permission Token on-chain, binding it to its authorizing Moral Trace Log hash and Merkle root. A Permission Token cannot be registered without a previously anchored Merkle root that includes its logHash. This is the on-chain enforcement of No Log = No Action. Reverts with NoLogNoAction if logHash is not provably in an anchored Merkle root.</div>
+        <div class="callout callout-monograph">Monograph ref: Section 2.3.3, Section 5B.i. x-tml-pillar: AlwaysMemory, MoralTraceLogs</div>
+        <div class="callout callout-iron">NO LOG = NO ACTION &mdash; Reverts NoLogNoAction when logHash is not contained in any anchored Merkle root. The on-chain final enforcement layer.</div>
+        <div class="param-label">Inputs</div>
+        <table class="param-table">
+          <thead><tr><th>Name</th><th>Solidity Type</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td class="pn">tokenId</td><td class="pt-solidity">bytes32</td><td class="pd">Unique identifier for the Permission Token (UUID v4 packed as bytes32).</td></tr>
+            <tr><td class="pn">logHash</td><td class="pt-solidity">bytes32</td><td class="pd">SHA-256 hash of the authorizing Moral Trace Log entry.</td></tr>
+            <tr><td class="pn">merkleRoot</td><td class="pt-solidity">bytes32</td><td class="pd">Merkle root of the batch containing the log. Must be a previously anchored root.</td></tr>
+            <tr><td class="pn">signerKeyId</td><td class="pt-solidity">bytes32</td><td class="pd">Key identifier of the HSM signing key that signed this token.</td></tr>
+            <tr><td class="pn">epochTimestamp</td><td class="pt-solidity">uint256</td><td class="pd">Unix epoch timestamp at issuance.</td></tr>
+            <tr><td class="pn">signatureValue</td><td class="pt-solidity">bytes</td><td class="pd">HSM signature over canonical token fields.</td></tr>
+          </tbody>
+        </table>
+        <div class="param-label">Outputs</div>
+        <table class="param-table">
+          <thead><tr><th>Name</th><th>Solidity Type</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td class="pn">registered</td><td class="pt-solidity">bool</td><td class="pd">True if registration succeeded. False (or revert) if logHash is not in the supplied merkleRoot.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- verifyPermissionToken -->
+    <div id="fn-verifyPermissionToken" class="contract-card">
+      <div class="contract-header" onclick="toggle(this)">
+        <span class="kind-badge kind-function">function</span>
+        <span class="entry-name">verifyPermissionToken</span>
+        <span class="mutability-tag mut-view">view</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="contract-body">
+        <div class="entry-desc">Verifies that a Permission Token is validly registered, unexpired, and bound to an anchored Moral Trace Log. Read-only. Used by the actuation layer before executing any State +1 action. Returns a human-readable reason string when invalid.</div>
+        <div class="callout callout-monograph">Monograph ref: Section 2.3.3, Section 5B.i. x-tml-pillar: AlwaysMemory, MoralTraceLogs</div>
+        <div class="param-label">Inputs</div>
+        <table class="param-table">
+          <thead><tr><th>Name</th><th>Solidity Type</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td class="pn">tokenId</td><td class="pt-solidity">bytes32</td><td class="pd">The Permission Token identifier to verify.</td></tr>
+            <tr><td class="pn">logHash</td><td class="pt-solidity">bytes32</td><td class="pd">Expected logHash binding for this token.</td></tr>
+            <tr><td class="pn">currentTimestamp</td><td class="pt-solidity">uint256</td><td class="pd">Current block timestamp used for expiry check.</td></tr>
+          </tbody>
+        </table>
+        <div class="param-label">Outputs</div>
+        <table class="param-table">
+          <thead><tr><th>Name</th><th>Solidity Type</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td class="pn">valid</td><td class="pt-solidity">bool</td><td class="pd">True if token is registered, unexpired, and logHash is anchored.</td></tr>
+            <tr><td class="pn">reason</td><td class="pt-solidity">string</td><td class="pd">Human-readable reason when valid is false. Empty string when valid is true.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- verifyMerkleInclusion -->
+    <div id="fn-verifyMerkleInclusion" class="contract-card">
+      <div class="contract-header" onclick="toggle(this)">
+        <span class="kind-badge kind-function">function</span>
+        <span class="entry-name">verifyMerkleInclusion</span>
+        <span class="mutability-tag mut-pure">pure</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="contract-body">
+        <div class="entry-desc">Verifies that a log entry hash is included in a previously anchored Merkle root via a supplied inclusion proof path. Pure function; no state read required. Used by auditors and the actuation layer to verify log inclusion without reading storage.</div>
+        <div class="callout callout-monograph">Monograph ref: Section 8, Pillar VIII (PublicBlockchains). x-tml-pillar: PublicBlockchains, MoralTraceLogs</div>
+        <div class="param-label">Inputs</div>
+        <table class="param-table">
+          <thead><tr><th>Name</th><th>Solidity Type</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td class="pn">merkleRoot</td><td class="pt-solidity">bytes32</td><td class="pd">The anchored Merkle root to verify against.</td></tr>
+            <tr><td class="pn">logHash</td><td class="pt-solidity">bytes32</td><td class="pd">SHA-256 hash of the log entry (leaf node).</td></tr>
+            <tr><td class="pn">inclusionPath</td><td class="pt-solidity">bytes32[]</td><td class="pd">Ordered sibling hashes from leaf to root.</td></tr>
+            <tr><td class="pn">pathPositions</td><td class="pt-solidity">bool[]</td><td class="pd">Position flags: true = sibling is on the right; false = sibling is on the left.</td></tr>
+          </tbody>
+        </table>
+        <div class="param-label">Outputs</div>
+        <table class="param-table">
+          <thead><tr><th>Name</th><th>Solidity Type</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td class="pn">included</td><td class="pt-solidity">bool</td><td class="pd">True if logHash is provably included in the merkleRoot via the supplied proof path.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- activateSacredZeroSystemWide -->
+    <div id="fn-activateSacredZero" class="contract-card">
+      <div class="contract-header" onclick="toggle(this)">
+        <span class="kind-badge kind-function">function</span>
+        <span class="entry-name">activateSacredZeroSystemWide</span>
+        <span class="mutability-tag mut-nonpayable">nonpayable</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="contract-body">
+        <div class="entry-desc">Activates a system-wide Sacred Zero state (State 0), suspending all Permission Token registration and issuance until resolved by a human authority. Logs the activation event on-chain before taking effect. No Log = No Action applies without exception. Requires custodian quorum. Emits SacredZeroActivated.</div>
+        <div class="callout callout-monograph">Monograph ref: Section 2.2 (SacredZero / Sacred Pause), Section 13.3. x-tml-pillar: SacredZero, AlwaysMemory, HybridShield</div>
+        <div class="callout callout-sacred">Sacred Zero (State 0) is an active governance state of mandatory hesitation. It is never a null, never an error, never a timeout. This function activates the system-wide Sacred Pause operational workflow.</div>
+        <div class="param-label">Inputs</div>
+        <table class="param-table">
+          <thead><tr><th>Name</th><th>Solidity Type</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td class="pn">escalationId</td><td class="pt-solidity">bytes32</td><td class="pd">Identifier of the Sacred Zero escalation triggering this system-wide activation.</td></tr>
+            <tr><td class="pn">justificationHash</td><td class="pt-solidity">bytes32</td><td class="pd">SHA-256 hash of the justification document for this activation.</td></tr>
+            <tr><td class="pn">custodianSignatures</td><td class="pt-solidity">bytes[]</td><td class="pd">Quorum custodian signatures authorizing system-wide activation.</td></tr>
+            <tr><td class="pn">custodianIds</td><td class="pt-solidity">bytes32[]</td><td class="pd">Custodian identifiers corresponding to signatures.</td></tr>
+          </tbody>
+        </table>
+        <div class="param-label">Outputs</div>
+        <table class="param-table">
+          <thead><tr><th>Name</th><th>Solidity Type</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td class="pn">activationId</td><td class="pt-solidity">bytes32</td><td class="pd">On-chain identifier for this Sacred Zero activation record.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- resolveSacredZeroSystemWide -->
+    <div id="fn-resolveSacredZero" class="contract-card">
+      <div class="contract-header" onclick="toggle(this)">
+        <span class="kind-badge kind-function">function</span>
+        <span class="entry-name">resolveSacredZeroSystemWide</span>
+        <span class="mutability-tag mut-nonpayable">nonpayable</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="contract-body">
+        <div class="entry-desc">Resolves an active system-wide Sacred Zero state under supreme authority. Resolution must specify a terminal state: 0 (REFUSE, encoded as uint8 0) or 1 (PROCEED, encoded as uint8 1). State 0 is not a valid resolution value. Reverts with InvalidResolutionState for any other value. Resolution is logged on-chain before state transition.</div>
+        <div class="callout callout-monograph">Monograph ref: Section 2.2, Section 13.3. x-tml-pillar: SacredZero, AlwaysMemory</div>
+        <div class="callout callout-sacred">resolvedState encoding: 0 = REFUSE (-1 in triadic space). 1 = PROCEED (+1 in triadic space). Any other value reverts InvalidResolutionState. Sacred Zero cannot be resolved to another Sacred Zero state.</div>
+        <div class="param-label">Inputs</div>
+        <table class="param-table">
+          <thead><tr><th>Name</th><th>Solidity Type</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td class="pn">activationId</td><td class="pt-solidity">bytes32</td><td class="pd">The activation ID returned by activateSacredZeroSystemWide.</td></tr>
+            <tr><td class="pn">resolvedState</td><td class="pt-solidity">uint8</td><td class="pd">0 = REFUSE. 1 = PROCEED. No other values accepted; reverts InvalidResolutionState otherwise.</td></tr>
+            <tr><td class="pn">justificationHash</td><td class="pt-solidity">bytes32</td><td class="pd">SHA-256 of the human reviewer's justification document.</td></tr>
+            <tr><td class="pn">supremeAuthoritySignature</td><td class="pt-solidity">bytes</td><td class="pd">Signature from a registered supreme authority identity.</td></tr>
+          </tbody>
+        </table>
+        <div class="param-label">Outputs</div>
+        <table class="param-table">
+          <thead><tr><th>Name</th><th>Solidity Type</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td class="pn">resolved</td><td class="pt-solidity">bool</td><td class="pd">True if the Sacred Zero state was successfully resolved.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- executeEmergencyOverride -->
+    <div id="fn-executeEmergencyOverride" class="contract-card">
+      <div class="contract-header" onclick="toggle(this)">
+        <span class="kind-badge kind-function">function</span>
+        <span class="entry-name">executeEmergencyOverride</span>
+        <span class="mutability-tag mut-nonpayable">nonpayable</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="contract-body">
+        <div class="entry-desc">Executes an Emergency Override under Section 13.3 supreme authority. Supports three override types. Logs the override on-chain before any state change. No Log = No Action applies without exception to all emergency overrides. Forced transition to PROCEED (+1) is not permitted via this function.</div>
+        <div class="callout callout-monograph">Monograph ref: Section 13.3 (Emergency Override). x-tml-pillar: SacredZero, AlwaysMemory, HybridShield</div>
+        <div class="callout callout-iron">NO LOG = NO ACTION &mdash; Override is logged on-chain before execution. forcedState 255 = SACRED_ZERO. forcedState 0 = REFUSE. Forced transition to PROCEED is architecturally blocked.</div>
+        <div class="param-label">Inputs</div>
+        <table class="param-table">
+          <thead><tr><th>Name</th><th>Solidity Type</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td class="pn">overrideRequestId</td><td class="pt-solidity">bytes32</td><td class="pd">Unique identifier for this override request.</td></tr>
+            <tr><td class="pn">overrideType</td><td class="pt-solidity">uint8</td><td class="pd">0 = BREAK_GLASS_SHUTDOWN. 1 = KILL_SWITCH. 2 = FORCED_STATE_TRANSITION.</td></tr>
+            <tr><td class="pn">targetDecisionId</td><td class="pt-solidity">bytes32</td><td class="pd">Required when overrideType is 2. Zero bytes32 for other types.</td></tr>
+            <tr><td class="pn">forcedState</td><td class="pt-solidity">uint8</td><td class="pd">Required when overrideType is 2. 0 = REFUSE. 255 = SACRED_ZERO. Forced transition to PROCEED is not permitted.</td></tr>
+            <tr><td class="pn">justificationHash</td><td class="pt-solidity">bytes32</td><td class="pd">SHA-256 of the justification document. Logged before execution.</td></tr>
+            <tr><td class="pn">supremeAuthoritySignature</td><td class="pt-solidity">bytes</td><td class="pd">Signature from a registered supreme authority identity.</td></tr>
+          </tbody>
+        </table>
+        <div class="param-label">Outputs</div>
+        <table class="param-table">
+          <thead><tr><th>Name</th><th>Solidity Type</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td class="pn">overrideId</td><td class="pt-solidity">bytes32</td><td class="pd">On-chain identifier for this override event record.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- getAnchoredMerkleRoot -->
+    <div id="fn-getAnchoredMerkleRoot" class="contract-card">
+      <div class="contract-header" onclick="toggle(this)">
+        <span class="kind-badge kind-function">function</span>
+        <span class="entry-name">getAnchoredMerkleRoot</span>
+        <span class="mutability-tag mut-view">view</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="contract-body">
+        <div class="entry-desc">Returns metadata for a previously anchored Merkle root. Used by auditors and the actuation layer to confirm batch anchoring status.</div>
+        <div class="callout callout-monograph">Monograph ref: Section 8. x-tml-pillar: PublicBlockchains</div>
+        <div class="param-label">Inputs</div>
+        <table class="param-table">
+          <thead><tr><th>Name</th><th>Solidity Type</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td class="pn">merkleRoot</td><td class="pt-solidity">bytes32</td><td class="pd">The Merkle root to query.</td></tr>
+          </tbody>
+        </table>
+        <div class="param-label">Outputs</div>
+        <table class="param-table">
+          <thead><tr><th>Name</th><th>Solidity Type</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td class="pn">batchId</td><td class="pt-solidity">bytes32</td><td class="pd">Batch identifier associated with this Merkle root.</td></tr>
+            <tr><td class="pn">logCount</td><td class="pt-solidity">uint256</td><td class="pd">Number of log entries in this batch.</td></tr>
+            <tr><td class="pn">anchoredAt</td><td class="pt-solidity">uint256</td><td class="pd">Block timestamp of anchoring.</td></tr>
+            <tr><td class="pn">anchorId</td><td class="pt-solidity">bytes32</td><td class="pd">On-chain anchor record identifier.</td></tr>
+            <tr><td class="pn">exists</td><td class="pt-solidity">bool</td><td class="pd">True if this Merkle root has been anchored.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- getSystemState -->
+    <div id="fn-getSystemState" class="contract-card">
+      <div class="contract-header" onclick="toggle(this)">
+        <span class="kind-badge kind-function">function</span>
+        <span class="entry-name">getSystemState</span>
+        <span class="mutability-tag mut-view">view</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="contract-body">
+        <div class="entry-desc">Returns the current system-wide triadic state and emergency status of the TML_Core contract.</div>
+        <div class="callout callout-monograph">Monograph ref: Section 2.3, Section 13.3. x-tml-pillar: SacredZero</div>
+        <div class="param-label">Outputs</div>
+        <table class="param-table">
+          <thead><tr><th>Name</th><th>Solidity Type</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td class="pn">systemState</td><td class="pt-solidity">uint8</td><td class="pd">0 = NORMAL_OPERATION. 1 = SACRED_ZERO_SYSTEM_WIDE. 2 = BREAK_GLASS_ACTIVE. 3 = KILL_SWITCH_ACTIVE.</td></tr>
+            <tr><td class="pn">activeSacredZeroCount</td><td class="pt-solidity">uint256</td><td class="pd">Number of active Sacred Zero escalations.</td></tr>
+            <tr><td class="pn">emergencyOverrideActive</td><td class="pt-solidity">bool</td><td class="pd">True when a Section 13.3 Emergency Override is active.</td></tr>
+            <tr><td class="pn">activeOverrideId</td><td class="pt-solidity">bytes32</td><td class="pd">Identifier of the active override. Zero bytes32 when emergencyOverrideActive is false.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- monographVersion -->
+    <div id="fn-monographVersion" class="contract-card">
+      <div class="contract-header" onclick="toggle(this)">
+        <span class="kind-badge kind-function">function</span>
+        <span class="entry-name">monographVersion</span>
+        <span class="mutability-tag mut-view">view</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="contract-body">
+        <div class="entry-desc">Returns the canonical monograph version string this contract was deployed against. Binding the contract to a specific monograph version ensures constitutional alignment is traceable on-chain.</div>
+        <div class="param-label">Outputs</div>
+        <table class="param-table">
+          <thead><tr><th>Name</th><th>Solidity Type</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td class="pn">version</td><td class="pt-solidity">string</td><td class="pd">Canonical monograph version, e.g. "3.3.0-tml-monograph-2025".</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- EVENTS SUBHEADER -->
+    <div class="section-header" style="margin-top:36px;">
+      <div class="section-icon si-core">&#9888;</div>
+      <div>
+        <div class="section-title st-core">TML_Core.sol &mdash; Events</div>
+        <div class="section-desc">On-chain immutable records of all constitutional state transitions and anchoring operations.</div>
+      </div>
+    </div>
+
+    <!-- MerkleRootAnchored -->
+    <div id="ev-MerkleRootAnchored" class="contract-card">
+      <div class="contract-header" onclick="toggle(this)">
+        <span class="kind-badge kind-event">event</span>
+        <span class="entry-name">MerkleRootAnchored</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="contract-body">
+        <div class="entry-desc">Emitted when a Moral Trace Log batch Merkle root is successfully anchored on-chain. Primary on-chain record for PublicBlockchains (Pillar VIII) and AlwaysMemory (Pillar II) compliance.</div>
+        <div class="callout callout-monograph">Monograph ref: Section 8, Pillar VIII. x-tml-pillar: PublicBlockchains, AlwaysMemory</div>
+        <div class="param-label">Parameters</div>
+        <table class="param-table">
+          <thead><tr><th>Name</th><th>Solidity Type</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td class="pn">merkleRoot <span class="indexed-badge">indexed</span></td><td class="pt-solidity">bytes32</td><td class="pd">The anchored Merkle root.</td></tr>
+            <tr><td class="pn">batchId <span class="indexed-badge">indexed</span></td><td class="pt-solidity">bytes32</td><td class="pd">Batch identifier.</td></tr>
+            <tr><td class="pn">logCount</td><td class="pt-solidity">uint256</td><td class="pd">Number of log entries in this batch.</td></tr>
+            <tr><td class="pn">anchoredAt</td><td class="pt-solidity">uint256</td><td class="pd">Block timestamp of anchoring.</td></tr>
+            <tr><td class="pn">anchorId</td><td class="pt-solidity">bytes32</td><td class="pd">On-chain anchor record identifier.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- PermissionTokenRegistered -->
+    <div id="ev-PermissionTokenRegistered" class="contract-card">
+      <div class="contract-header" onclick="toggle(this)">
+        <span class="kind-badge kind-event">event</span>
+        <span class="entry-name">PermissionTokenRegistered</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="contract-body">
+        <div class="entry-desc">Emitted when a Permission Token is successfully registered on-chain. Confirms that No Log = No Action was enforced: the token's logHash was verified in an anchored Merkle root before registration succeeded.</div>
+        <div class="callout callout-monograph">Monograph ref: Section 2.3.3, Section 5B.i. x-tml-pillar: AlwaysMemory, MoralTraceLogs</div>
+        <div class="param-label">Parameters</div>
+        <table class="param-table">
+          <thead><tr><th>Name</th><th>Solidity Type</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td class="pn">tokenId <span class="indexed-badge">indexed</span></td><td class="pt-solidity">bytes32</td><td class="pd">The registered Permission Token identifier.</td></tr>
+            <tr><td class="pn">logHash <span class="indexed-badge">indexed</span></td><td class="pt-solidity">bytes32</td><td class="pd">SHA-256 of the authorizing Moral Trace Log.</td></tr>
+            <tr><td class="pn">merkleRoot <span class="indexed-badge">indexed</span></td><td class="pt-solidity">bytes32</td><td class="pd">Merkle root of the batch containing the log.</td></tr>
+            <tr><td class="pn">epochTimestamp</td><td class="pt-solidity">uint256</td><td class="pd">Unix epoch timestamp at issuance.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- SacredZeroActivated -->
+    <div id="ev-SacredZeroActivated" class="contract-card">
+      <div class="contract-header" onclick="toggle(this)">
+        <span class="kind-badge kind-event">event</span>
+        <span class="entry-name">SacredZeroActivated</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="contract-body">
+        <div class="entry-desc">Emitted when a Sacred Zero state is activated (per-decision or system-wide). The Sacred Pause operational workflow begins upon this event. State 0 is an active first-class governance state; this event is its on-chain record of activation.</div>
+        <div class="callout callout-monograph">Monograph ref: Section 2.2. x-tml-pillar: SacredZero</div>
+        <div class="param-label">Parameters</div>
+        <table class="param-table">
+          <thead><tr><th>Name</th><th>Solidity Type</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td class="pn">escalationId <span class="indexed-badge">indexed</span></td><td class="pt-solidity">bytes32</td><td class="pd">The escalation case identifier.</td></tr>
+            <tr><td class="pn">systemWide</td><td class="pt-solidity">bool</td><td class="pd">True when activation is system-wide.</td></tr>
+            <tr><td class="pn">activatedAt</td><td class="pt-solidity">uint256</td><td class="pd">Block timestamp of activation.</td></tr>
+            <tr><td class="pn">justificationHash</td><td class="pt-solidity">bytes32</td><td class="pd">SHA-256 of the justification document.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- SacredZeroResolved -->
+    <div id="ev-SacredZeroResolved" class="contract-card">
+      <div class="contract-header" onclick="toggle(this)">
+        <span class="kind-badge kind-event">event</span>
+        <span class="entry-name">SacredZeroResolved</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="contract-body">
+        <div class="entry-desc">Emitted when a Sacred Zero escalation is resolved by a human authority. resolvedState: 0 = REFUSE, 1 = PROCEED. Resolution to Sacred Zero (any other value) reverts InvalidResolutionState and never emits this event.</div>
+        <div class="callout callout-monograph">Monograph ref: Section 2.2. x-tml-pillar: SacredZero, HumanRightsMandate</div>
+        <div class="param-label">Parameters</div>
+        <table class="param-table">
+          <thead><tr><th>Name</th><th>Solidity Type</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td class="pn">activationId <span class="indexed-badge">indexed</span></td><td class="pt-solidity">bytes32</td><td class="pd">The Sacred Zero activation being resolved.</td></tr>
+            <tr><td class="pn">resolvedState</td><td class="pt-solidity">uint8</td><td class="pd">0 = REFUSE (-1 triadic). 1 = PROCEED (+1 triadic).</td></tr>
+            <tr><td class="pn">resolvedAt</td><td class="pt-solidity">uint256</td><td class="pd">Block timestamp of resolution.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- EmergencyOverrideExecuted -->
+    <div id="ev-EmergencyOverrideExecuted" class="contract-card">
+      <div class="contract-header" onclick="toggle(this)">
+        <span class="kind-badge kind-event">event</span>
+        <span class="entry-name">EmergencyOverrideExecuted</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="contract-body">
+        <div class="entry-desc">Emitted when an Emergency Override is executed under Section 13.3 supreme authority. This event is the on-chain confirmation that the override was logged before execution (No Log = No Action compliance).</div>
+        <div class="callout callout-monograph">Monograph ref: Section 13.3. x-tml-pillar: SacredZero, AlwaysMemory, HybridShield</div>
+        <div class="param-label">Parameters</div>
+        <table class="param-table">
+          <thead><tr><th>Name</th><th>Solidity Type</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td class="pn">overrideId <span class="indexed-badge">indexed</span></td><td class="pt-solidity">bytes32</td><td class="pd">On-chain identifier for the override event record.</td></tr>
+            <tr><td class="pn">overrideType</td><td class="pt-solidity">uint8</td><td class="pd">0 = BREAK_GLASS_SHUTDOWN. 1 = KILL_SWITCH. 2 = FORCED_STATE_TRANSITION.</td></tr>
+            <tr><td class="pn">executedAt</td><td class="pt-solidity">uint256</td><td class="pd">Block timestamp of execution.</td></tr>
+            <tr><td class="pn">justificationHash</td><td class="pt-solidity">bytes32</td><td class="pd">SHA-256 of the justification document.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- LanternStatusBroadcast -->
+    <div id="ev-LanternStatusBroadcast" class="contract-card">
+      <div class="contract-header" onclick="toggle(this)">
+        <span class="kind-badge kind-event">event</span>
+        <span class="entry-name">LanternStatusBroadcast</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="contract-body">
+        <div class="entry-desc">Emitted when the Goukassian Promise Lantern signal is updated on-chain. Provides an immutable on-chain record of each compliance beacon broadcast. compliancePosture values: 0 = FULLY_COMPLIANT, 1 = SACRED_ZERO_ACTIVE, 2 = PARTIAL_COMPLIANCE, 3 = EMERGENCY_OVERRIDE_ACTIVE, 4 = DEGRADED.</div>
+        <div class="callout callout-monograph">Monograph ref: Section 2.4 (GoukassianPromise: lantern). x-tml-pillar: GoukassianPromise</div>
+        <div class="param-label">Parameters</div>
+        <table class="param-table">
+          <thead><tr><th>Name</th><th>Solidity Type</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td class="pn">lanternId <span class="indexed-badge">indexed</span></td><td class="pt-solidity">bytes32</td><td class="pd">Unique identifier for this Lantern broadcast.</td></tr>
+            <tr><td class="pn">compliancePosture</td><td class="pt-solidity">uint8</td><td class="pd">0 = FULLY_COMPLIANT. 1 = SACRED_ZERO_ACTIVE. 2 = PARTIAL_COMPLIANCE. 3 = EMERGENCY_OVERRIDE_ACTIVE. 4 = DEGRADED.</td></tr>
+            <tr><td class="pn">emittedAt</td><td class="pt-solidity">uint256</td><td class="pd">Block timestamp of emission.</td></tr>
+            <tr><td class="pn">signatureHash</td><td class="pt-solidity">bytes32</td><td class="pd">SHA-256 of the Goukassian Promise Signature Block signing this broadcast.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ERRORS SUBHEADER -->
+    <div class="section-header" style="margin-top:36px;">
+      <div class="section-icon" style="background:var(--red-soft);border:1px solid rgba(192,57,43,0.3);">&#128683;</div>
+      <div>
+        <div class="section-title" style="color:#e87878;">TML_Core.sol &mdash; Custom Errors</div>
+        <div class="section-desc">Typed reverts for constitutional violations. Each error name identifies the specific law breached.</div>
+      </div>
+    </div>
+
+    <!-- NoLogNoAction -->
+    <div id="err-NoLogNoAction" class="contract-card">
+      <div class="contract-header" onclick="toggle(this)">
+        <span class="kind-badge kind-error">error</span>
+        <span class="entry-name">NoLogNoAction</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="contract-body">
+        <div class="entry-desc">Reverts when a Permission Token registration is attempted for a logHash not included in any anchored Merkle root. The on-chain enforcement of the No Log = No Action iron law. This revert name is the constitutional statement in Solidity.</div>
+        <div class="callout callout-iron">NO LOG = NO ACTION &mdash; This error is the on-chain constitutional enforcement. It cannot be caught and suppressed by a conforming actuation layer.</div>
+        <div class="callout callout-monograph">Monograph ref: Section 2.3.3</div>
+        <div class="param-label">Parameters</div>
+        <table class="param-table">
+          <thead><tr><th>Name</th><th>Solidity Type</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td class="pn">tokenId</td><td class="pt-solidity">bytes32</td><td class="pd">The Permission Token that failed registration.</td></tr>
+            <tr><td class="pn">logHash</td><td class="pt-solidity">bytes32</td><td class="pd">The logHash not found in any anchored Merkle root.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- SacredZeroSystemWideActive -->
+    <div id="err-SacredZeroSystemWideActive" class="contract-card">
+      <div class="contract-header" onclick="toggle(this)">
+        <span class="kind-badge kind-error">error</span>
+        <span class="entry-name">SacredZeroSystemWideActive</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="contract-body">
+        <div class="entry-desc">Reverts when any Permission Token registration or Merkle anchoring is attempted while a system-wide Sacred Zero state is active. The Sacred Pause holds all actuation until resolution.</div>
+        <div class="callout callout-monograph">Monograph ref: Section 2.2, Section 13.3</div>
+        <div class="param-label">Parameters</div>
+        <table class="param-table">
+          <thead><tr><th>Name</th><th>Solidity Type</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td class="pn">activationId</td><td class="pt-solidity">bytes32</td><td class="pd">The active Sacred Zero activation record identifier.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- QuorumNotMet -->
+    <div id="err-QuorumNotMet" class="contract-card">
+      <div class="contract-header" onclick="toggle(this)">
+        <span class="kind-badge kind-error">error</span>
+        <span class="entry-name">QuorumNotMet</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="contract-body">
+        <div class="entry-desc">Reverts when a HybridShield custodian quorum threshold is not met for operations requiring distributed authorization (Merkle anchoring, system-wide Sacred Zero activation).</div>
+        <div class="callout callout-monograph">Monograph ref: Section 2.3.3, Pillar VII (HybridShield)</div>
+        <div class="param-label">Parameters</div>
+        <table class="param-table">
+          <thead><tr><th>Name</th><th>Solidity Type</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td class="pn">provided</td><td class="pt-solidity">uint256</td><td class="pd">Number of valid custodian signatures provided.</td></tr>
+            <tr><td class="pn">required</td><td class="pt-solidity">uint256</td><td class="pd">Minimum custodian signatures required for quorum.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- InvalidResolutionState -->
+    <div id="err-InvalidResolutionState" class="contract-card">
+      <div class="contract-header" onclick="toggle(this)">
+        <span class="kind-badge kind-error">error</span>
+        <span class="entry-name">InvalidResolutionState</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="contract-body">
+        <div class="entry-desc">Reverts when a Sacred Zero resolution attempts to resolve to State 0 or any value other than 0 (REFUSE) or 1 (PROCEED). State 0 is not a valid resolution state. Terminal resolution must be +1 or -1.</div>
+        <div class="callout callout-monograph">Monograph ref: Section 2.2</div>
+        <div class="param-label">Parameters</div>
+        <table class="param-table">
+          <thead><tr><th>Name</th><th>Solidity Type</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td class="pn">invalidState</td><td class="pt-solidity">uint8</td><td class="pd">The invalid resolution state value that was submitted.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- UnauthorizedSupremeAuthority -->
+    <div id="err-UnauthorizedSupremeAuthority" class="contract-card">
+      <div class="contract-header" onclick="toggle(this)">
+        <span class="kind-badge kind-error">error</span>
+        <span class="entry-name">UnauthorizedSupremeAuthority</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="contract-body">
+        <div class="entry-desc">Reverts when an Emergency Override caller is not a registered supreme authority identity. Emergency Overrides may only be invoked by identities registered in the TML_Core supreme authority registry.</div>
+        <div class="callout callout-monograph">Monograph ref: Section 13.3</div>
+        <div class="param-label">Parameters</div>
+        <table class="param-table">
+          <thead><tr><th>Name</th><th>Solidity Type</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td class="pn">caller</td><td class="pt-solidity">address</td><td class="pd">The unauthorized caller address.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- TokenExpired -->
+    <div id="err-TokenExpired" class="contract-card">
+      <div class="contract-header" onclick="toggle(this)">
+        <span class="kind-badge kind-error">error</span>
+        <span class="entry-name">TokenExpired</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="contract-body">
+        <div class="entry-desc">Reverts when a Permission Token is presented for verification after its expiresAt timestamp. Token expiry is a hard constraint; expired tokens may never authorize actuation.</div>
+        <div class="callout callout-monograph">Monograph ref: Section 5B.i</div>
+        <div class="param-label">Parameters</div>
+        <table class="param-table">
+          <thead><tr><th>Name</th><th>Solidity Type</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td class="pn">tokenId</td><td class="pt-solidity">bytes32</td><td class="pd">The expired Permission Token identifier.</td></tr>
+            <tr><td class="pn">expiredAt</td><td class="pt-solidity">uint256</td><td class="pd">The expiresAt timestamp that was exceeded.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ITMLENFORCER SUBHEADER -->
+    <div class="section-header" style="margin-top:40px;">
+      <div class="section-icon si-enforcer">&#9878;</div>
+      <div>
+        <div class="section-title st-enforcer">ITMLEnforcer.sol &mdash; Functions</div>
+        <div class="section-desc">Interface for HumanRightsMandate (Pillar V) and EarthProtectionMandate (Pillar VI) on-chain enforcement. All TML-compliant deployments must satisfy this interface.</div>
+      </div>
+    </div>
+
+    <!-- verifyHumanRightsCompliance -->
+    <div id="fn-verifyHumanRights" class="contract-card">
+      <div class="contract-header" onclick="toggle(this)">
+        <span class="kind-badge kind-function">function</span>
+        <span class="entry-name">verifyHumanRightsCompliance</span>
+        <span class="mutability-tag mut-view">view</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="contract-body">
+        <div class="entry-desc">Verifies that a proposed action vector does not violate the Human Rights Mandate. Checks the action against UDHR Article and Geneva Convention provision vectors. Returns forcedState to indicate the mandated triadic state when non-compliant: 0 = SACRED_ZERO, 255 = REFUSE.</div>
+        <div class="callout callout-monograph">Monograph ref: Pillar V (HumanRightsMandate), Section 2.3.3. x-tml-pillar: HumanRightsMandate</div>
+        <div class="param-label">Inputs</div>
+        <table class="param-table">
+          <thead><tr><th>Name</th><th>Solidity Type</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td class="pn">decisionId</td><td class="pt-solidity">bytes32</td><td class="pd">The decision being evaluated.</td></tr>
+            <tr><td class="pn">actionVectorHash</td><td class="pt-solidity">bytes32</td><td class="pd">SHA-256 of the canonical action vector.</td></tr>
+            <tr><td class="pn">flaggedProvisions</td><td class="pt-solidity">bytes32[]</td><td class="pd">Hashed UDHR Article and Geneva Convention provision identifiers flagged by the Inference Lane. E.g. keccak256("UDHR-Art-3").</td></tr>
+            <tr><td class="pn">severityLevels</td><td class="pt-solidity">uint8[]</td><td class="pd">Severity levels per provision: 0 = LOW, 1 = MEDIUM, 2 = HIGH, 3 = CRITICAL.</td></tr>
+          </tbody>
+        </table>
+        <div class="param-label">Outputs</div>
+        <table class="param-table">
+          <thead><tr><th>Name</th><th>Solidity Type</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td class="pn">compliant</td><td class="pt-solidity">bool</td><td class="pd">True if no Human Rights Mandate violation detected.</td></tr>
+            <tr><td class="pn">violationCode</td><td class="pt-solidity">bytes32</td><td class="pd">Hash of the most severe violated provision. Zero bytes32 when compliant.</td></tr>
+            <tr><td class="pn">forcedState</td><td class="pt-solidity">uint8</td><td class="pd">Mandated triadic state when non-compliant. 0 = SACRED_ZERO. 255 = REFUSE. Callers must respect this mandate.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- verifyEarthProtectionCompliance -->
+    <div id="fn-verifyEarthProtection" class="contract-card">
+      <div class="contract-header" onclick="toggle(this)">
+        <span class="kind-badge kind-function">function</span>
+        <span class="entry-name">verifyEarthProtectionCompliance</span>
+        <span class="mutability-tag mut-view">view</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="contract-body">
+        <div class="entry-desc">Verifies that a proposed action vector does not violate the Earth Protection Mandate. Checks the action against Paris Agreement article and climate target vectors. Returns forcedState to indicate the mandated triadic state when non-compliant.</div>
+        <div class="callout callout-monograph">Monograph ref: Pillar VI (EarthProtectionMandate), Section 2.3.3. x-tml-pillar: EarthProtectionMandate</div>
+        <div class="param-label">Inputs</div>
+        <table class="param-table">
+          <thead><tr><th>Name</th><th>Solidity Type</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td class="pn">decisionId</td><td class="pt-solidity">bytes32</td><td class="pd">The decision being evaluated.</td></tr>
+            <tr><td class="pn">actionVectorHash</td><td class="pt-solidity">bytes32</td><td class="pd">SHA-256 of the canonical action vector.</td></tr>
+            <tr><td class="pn">flaggedProvisions</td><td class="pt-solidity">bytes32[]</td><td class="pd">Hashed Paris Agreement provision identifiers. E.g. keccak256("PA-Art-2.1a").</td></tr>
+            <tr><td class="pn">severityLevels</td><td class="pt-solidity">uint8[]</td><td class="pd">Severity levels per provision: 0 = LOW, 1 = MEDIUM, 2 = HIGH, 3 = CRITICAL.</td></tr>
+          </tbody>
+        </table>
+        <div class="param-label">Outputs</div>
+        <table class="param-table">
+          <thead><tr><th>Name</th><th>Solidity Type</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td class="pn">compliant</td><td class="pt-solidity">bool</td><td class="pd">True if no Earth Protection Mandate violation detected.</td></tr>
+            <tr><td class="pn">violationCode</td><td class="pt-solidity">bytes32</td><td class="pd">Hash of the most severe violated provision. Zero bytes32 when compliant.</td></tr>
+            <tr><td class="pn">forcedState</td><td class="pt-solidity">uint8</td><td class="pd">0 = SACRED_ZERO. 255 = REFUSE.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- verifyGoukassianLicense -->
+    <div id="fn-verifyGoukassianLicense" class="contract-card">
+      <div class="contract-header" onclick="toggle(this)">
+        <span class="kind-badge kind-function">function</span>
+        <span class="entry-name">verifyGoukassianLicense</span>
+        <span class="mutability-tag mut-view">view</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="contract-body">
+        <div class="entry-desc">Verifies the Goukassian Promise License artifact for a requesting entity. The license artifact is identified by its canonical name "license". A failed verification is a mandatory trigger for State -1 (Refuse). violatedArtifact ordinals: 1 = lantern, 2 = signature, 3 = license (canonical lowercase string ordinals for ABI encoding).</div>
+        <div class="callout callout-monograph">Monograph ref: Section 2.4 (GoukassianPromise: license). x-tml-pillar: GoukassianPromise</div>
+        <div class="param-label">Inputs</div>
+        <table class="param-table">
+          <thead><tr><th>Name</th><th>Solidity Type</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td class="pn">licenseTokenHash</td><td class="pt-solidity">bytes32</td><td class="pd">SHA-256 hash of the license token being validated.</td></tr>
+            <tr><td class="pn">requestingEntityId</td><td class="pt-solidity">bytes32</td><td class="pd">Hash of the requesting entity identity.</td></tr>
+            <tr><td class="pn">currentTimestamp</td><td class="pt-solidity">uint256</td><td class="pd">Current block timestamp for expiry check.</td></tr>
+          </tbody>
+        </table>
+        <div class="param-label">Outputs</div>
+        <table class="param-table">
+          <thead><tr><th>Name</th><th>Solidity Type</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td class="pn">valid</td><td class="pt-solidity">bool</td><td class="pd">True if the license token is valid.</td></tr>
+            <tr><td class="pn">violationType</td><td class="pt-solidity">uint8</td><td class="pd">0=NO_VIOLATION. 1=LANTERN_SUPPRESSION. 2=SIGNATURE_FORGERY. 3=LICENSE_BREACH. 4=PROVENANCE_TAMPERING. 5=UNAUTHORIZED_STATE_TRANSITION.</td></tr>
+            <tr><td class="pn">violatedArtifact</td><td class="pt-solidity">uint8</td><td class="pd">0=NO_ARTIFACT. 1="lantern". 2="signature". 3="license". Ordinals map to canonical lowercase Goukassian Promise artifact names.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- recordMandateViolation -->
+    <div id="fn-recordMandateViolation" class="contract-card">
+      <div class="contract-header" onclick="toggle(this)">
+        <span class="kind-badge kind-function">function</span>
+        <span class="entry-name">recordMandateViolation</span>
+        <span class="mutability-tag mut-nonpayable">nonpayable</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="contract-body">
+        <div class="entry-desc">Records a confirmed mandate violation on-chain. Called by TML_Core when a compliance check returns non-compliant. The violation record is immutable (AlwaysMemory). mandateType: 0 = HUMAN_RIGHTS_MANDATE, 1 = EARTH_PROTECTION_MANDATE.</div>
+        <div class="callout callout-monograph">Monograph ref: Pillar V, Pillar VI, Pillar II (AlwaysMemory). x-tml-pillar: HumanRightsMandate, EarthProtectionMandate, AlwaysMemory</div>
+        <div class="param-label">Inputs</div>
+        <table class="param-table">
+          <thead><tr><th>Name</th><th>Solidity Type</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td class="pn">decisionId</td><td class="pt-solidity">bytes32</td><td class="pd">The decision associated with this violation.</td></tr>
+            <tr><td class="pn">mandateType</td><td class="pt-solidity">uint8</td><td class="pd">0 = HUMAN_RIGHTS_MANDATE. 1 = EARTH_PROTECTION_MANDATE.</td></tr>
+            <tr><td class="pn">violationCode</td><td class="pt-solidity">bytes32</td><td class="pd">Hash of the violated provision.</td></tr>
+            <tr><td class="pn">violationEvidenceHash</td><td class="pt-solidity">bytes32</td><td class="pd">SHA-256 of the off-chain violation evidence package.</td></tr>
+          </tbody>
+        </table>
+        <div class="param-label">Outputs</div>
+        <table class="param-table">
+          <thead><tr><th>Name</th><th>Solidity Type</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td class="pn">violationRecordId</td><td class="pt-solidity">bytes32</td><td class="pd">On-chain identifier for the immutable violation record.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- getMandateConfiguration -->
+    <div id="fn-getMandateConfiguration" class="contract-card">
+      <div class="contract-header" onclick="toggle(this)">
+        <span class="kind-badge kind-function">function</span>
+        <span class="entry-name">getMandateConfiguration</span>
+        <span class="mutability-tag mut-view">view</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="contract-body">
+        <div class="entry-desc">Returns the current configuration of registered UDHR/Geneva and Paris Agreement provisions and their severity thresholds. Read-only. Used by auditors and regulators to verify mandate coverage without reading implementation code.</div>
+        <div class="callout callout-monograph">Monograph ref: Pillar V, Pillar VI. x-tml-pillar: HumanRightsMandate, EarthProtectionMandate</div>
+        <div class="param-label">Inputs</div>
+        <table class="param-table">
+          <thead><tr><th>Name</th><th>Solidity Type</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td class="pn">mandateType</td><td class="pt-solidity">uint8</td><td class="pd">0 = HUMAN_RIGHTS_MANDATE. 1 = EARTH_PROTECTION_MANDATE.</td></tr>
+          </tbody>
+        </table>
+        <div class="param-label">Outputs</div>
+        <table class="param-table">
+          <thead><tr><th>Name</th><th>Solidity Type</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td class="pn">provisionCount</td><td class="pt-solidity">uint256</td><td class="pd">Number of registered provisions for this mandate.</td></tr>
+            <tr><td class="pn">configurationHash</td><td class="pt-solidity">bytes32</td><td class="pd">SHA-256 of the full provision registry at its current state.</td></tr>
+            <tr><td class="pn">lastUpdatedAt</td><td class="pt-solidity">uint256</td><td class="pd">Block timestamp of the most recent configuration update.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ITMLENFORCER EVENTS -->
+    <div class="section-header" style="margin-top:36px;">
+      <div class="section-icon si-enforcer">&#9888;</div>
+      <div>
+        <div class="section-title st-enforcer">ITMLEnforcer.sol &mdash; Events &amp; Errors</div>
+        <div class="section-desc">Mandate violation detection events and interface errors.</div>
+      </div>
+    </div>
+
+    <div id="ev-HumanRightsMandateViolation" class="contract-card">
+      <div class="contract-header" onclick="toggle(this)">
+        <span class="kind-badge kind-event">event</span>
+        <span class="entry-name">HumanRightsMandateViolationDetected</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="contract-body">
+        <div class="entry-desc">Emitted when a Human Rights Mandate violation is detected. Triggers the automatic Sacred Zero or Refuse state transition via forcedState. forcedState: 0 = SACRED_ZERO, 255 = REFUSE.</div>
+        <div class="callout callout-monograph">Monograph ref: Pillar V (HumanRightsMandate). x-tml-pillar: HumanRightsMandate, SacredZero</div>
+        <div class="param-label">Parameters</div>
+        <table class="param-table">
+          <thead><tr><th>Name</th><th>Solidity Type</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td class="pn">decisionId <span class="indexed-badge">indexed</span></td><td class="pt-solidity">bytes32</td><td class="pd">The decision in which the violation was detected.</td></tr>
+            <tr><td class="pn">violationCode <span class="indexed-badge">indexed</span></td><td class="pt-solidity">bytes32</td><td class="pd">Hash of the violated UDHR/Geneva provision.</td></tr>
+            <tr><td class="pn">forcedState</td><td class="pt-solidity">uint8</td><td class="pd">0 = SACRED_ZERO. 255 = REFUSE.</td></tr>
+            <tr><td class="pn">detectedAt</td><td class="pt-solidity">uint256</td><td class="pd">Block timestamp of detection.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="ev-EarthProtectionViolation" class="contract-card">
+      <div class="contract-header" onclick="toggle(this)">
+        <span class="kind-badge kind-event">event</span>
+        <span class="entry-name">EarthProtectionMandateViolationDetected</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="contract-body">
+        <div class="entry-desc">Emitted when an Earth Protection Mandate violation is detected. Triggers the automatic Sacred Zero or Refuse state transition. forcedState: 0 = SACRED_ZERO, 255 = REFUSE.</div>
+        <div class="callout callout-monograph">Monograph ref: Pillar VI (EarthProtectionMandate). x-tml-pillar: EarthProtectionMandate, SacredZero</div>
+        <div class="param-label">Parameters</div>
+        <table class="param-table">
+          <thead><tr><th>Name</th><th>Solidity Type</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td class="pn">decisionId <span class="indexed-badge">indexed</span></td><td class="pt-solidity">bytes32</td><td class="pd">The decision in which the violation was detected.</td></tr>
+            <tr><td class="pn">violationCode <span class="indexed-badge">indexed</span></td><td class="pt-solidity">bytes32</td><td class="pd">Hash of the violated Paris Agreement provision.</td></tr>
+            <tr><td class="pn">forcedState</td><td class="pt-solidity">uint8</td><td class="pd">0 = SACRED_ZERO. 255 = REFUSE.</td></tr>
+            <tr><td class="pn">detectedAt</td><td class="pt-solidity">uint256</td><td class="pd">Block timestamp of detection.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="ev-GoukassianLicenseViolation" class="contract-card">
+      <div class="contract-header" onclick="toggle(this)">
+        <span class="kind-badge kind-event">event</span>
+        <span class="entry-name">GoukassianLicenseViolationDetected</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="contract-body">
+        <div class="entry-desc">Emitted when a Goukassian Promise license verification fails. violatedArtifact ordinals correspond to canonical lowercase artifact names: 1 = "lantern", 2 = "signature", 3 = "license".</div>
+        <div class="callout callout-monograph">Monograph ref: Section 2.4 (GoukassianPromise). x-tml-pillar: GoukassianPromise</div>
+        <div class="param-label">Parameters</div>
+        <table class="param-table">
+          <thead><tr><th>Name</th><th>Solidity Type</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td class="pn">licenseTokenHash <span class="indexed-badge">indexed</span></td><td class="pt-solidity">bytes32</td><td class="pd">Hash of the failed license token.</td></tr>
+            <tr><td class="pn">violationType</td><td class="pt-solidity">uint8</td><td class="pd">0=NO_VIOLATION. 1=LANTERN_SUPPRESSION. 2=SIGNATURE_FORGERY. 3=LICENSE_BREACH. 4=PROVENANCE_TAMPERING. 5=UNAUTHORIZED_STATE_TRANSITION.</td></tr>
+            <tr><td class="pn">violatedArtifact</td><td class="pt-solidity">uint8</td><td class="pd">0=NO_ARTIFACT. 1="lantern". 2="signature". 3="license".</td></tr>
+            <tr><td class="pn">detectedAt</td><td class="pt-solidity">uint256</td><td class="pd">Block timestamp of detection.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ITMLEnforcer errors (compact) -->
+    <div class="contract-card" style="margin-top:8px;">
+      <div class="contract-header" onclick="toggle(this)">
+        <span class="kind-badge kind-error">error</span>
+        <span class="entry-name">MandateNotConfigured &amp; ProvisionArrayMismatch</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="contract-body">
+        <div class="entry-desc"><strong style="color:#e87878;">MandateNotConfigured</strong>: Reverts when a mandate verification is requested for a mandateType not configured in the enforcer. Parameter: mandateType (uint8).</div>
+        <div class="entry-desc" style="margin-top:12px;"><strong style="color:#e87878;">ProvisionArrayMismatch</strong>: Reverts when flaggedProvisions and severityLevels arrays are not the same length. Parameters: provisionsLength (uint256), severitiesLength (uint256).</div>
+      </div>
+    </div>
+  </div>
+
+<!-- ════════════════════════════════════════════════════════════════
+     SECTION B: EIP-712
+════════════════════════════════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon si-eip">&#128081;</div>
+      <div>
+        <div class="section-title st-eip">Section B &mdash; eip712_typed_data.json</div>
+        <div class="section-desc">Off-chain structured data hashing for TML artifacts. Five primary types + canonical typeHash registry.</div>
+      </div>
+    </div>
+
+    <div class="contract-notice">
+      <strong>EIP-712 scope</strong><br>
+      This schema bundle defines EIP-712 domain separator and type definitions for off-chain structured data hashing and signing of TML artifacts. It is distinct from the on-chain ABI above. Signed EIP-712 structures enable the actuation layer to verify authorization off-chain without a gas-bearing call for every action, while the logHash and merkleRoot fields maintain on-chain verifiability via TML_Core. The PermissionToken typed data is the off-chain expression of No Log = No Action.
+    </div>
+
+    <!-- DOMAIN -->
+    <div id="eip-domain" class="typed-card">
+      <div class="typed-header" onclick="toggle(this)">
+        <span class="primary-type-badge">domain</span>
+        <span class="typed-name">EIP712Domain</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="typed-body">
+        <div class="entry-desc">Domain separator definition binding all typed data signatures to a specific contract, chain, and monograph version. Prevents cross-domain and cross-version replay attacks.</div>
+        <div class="callout callout-monograph">EIP-712 Section 4 (Domain Separator). chainId and verifyingContract must be set to the deployment target at runtime.</div>
+        <div class="eip-domain-box">
+          <span class="dk">name:</span>          <span class="dv">"TMLFramework"</span><br>
+          <span class="dk">version:</span>       <span class="dv">"3.3.0"</span>  <span class="dc">// monograph version</span><br>
+          <span class="dk">chainId:</span>       <span class="dv">&lt;DEPLOYMENT_CHAIN_ID&gt;</span>  <span class="dc">// EIP-155 chain ID</span><br>
+          <span class="dk">verifyingContract:</span> <span class="dv">&lt;TML_CORE_CONTRACT_ADDRESS&gt;</span>  <span class="dc">// binds to deployment</span><br>
+          <span class="dk">salt:</span>          <span class="dv">&lt;DEPLOYMENT_SPECIFIC_SALT_BYTES32&gt;</span>  <span class="dc">// entropy salt</span>
+        </div>
+        <div class="param-label">Domain Type Fields</div>
+        <table class="param-table">
+          <thead><tr><th>Name</th><th>EIP-712 Type</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td class="pn">name</td><td class="pt-solidity">string</td><td class="pd">Human-readable signing domain name.</td></tr>
+            <tr><td class="pn">version</td><td class="pt-solidity">string</td><td class="pd">TML monograph version this domain is bound to.</td></tr>
+            <tr><td class="pn">chainId</td><td class="pt-solidity">uint256</td><td class="pd">EIP-155 chain ID of the deployment network.</td></tr>
+            <tr><td class="pn">verifyingContract</td><td class="pt-solidity">address</td><td class="pd">TML_Core contract address. Binds signatures to the specific deployment.</td></tr>
+            <tr><td class="pn">salt</td><td class="pt-solidity">bytes32</td><td class="pd">Deployment-specific entropy salt to differentiate domain separators across deployments.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- MoralTraceLog -->
+    <div id="eip-MoralTraceLog" class="typed-card">
+      <div class="typed-header" onclick="toggle(this)">
+        <span class="primary-type-badge">primaryType</span>
+        <span class="typed-name">MoralTraceLog</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="typed-body">
+        <div class="entry-desc">EIP-712 typed data for off-chain signing of a Moral Trace Log (TSLF) entry. Enables custodians, auditors, and the Anchoring Lane to produce verifiable signatures over TSLF records without full on-chain storage of every field. currentState is typed as int8 to preserve signed triadic semantics: 0 is SACRED_ZERO, never false, never null.</div>
+        <div class="callout callout-monograph">Monograph ref: Section 8 (TSLF), Pillar II (AlwaysMemory), Pillar IV (MoralTraceLogs)</div>
+        <div class="callout callout-sacred">currentState is int8. State 0 = SACRED_ZERO. The int8 type prevents any implicit conflation of State 0 with Solidity bool false or uint8(0) semantics in off-chain signing contexts.</div>
+        <div class="param-label">Type Fields</div>
+        <table class="param-table">
+          <thead><tr><th>Name</th><th>EIP-712 Type</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td class="pn">logId</td><td class="pt-solidity">bytes32</td><td class="pd">Unique identifier for this Moral Trace Log entry (UUID v4 as bytes32).</td></tr>
+            <tr><td class="pn">currentState</td><td class="pt-solidity">int8</td><td class="pd">Signed triadic state: +1, 0, or -1. int8 preserves sign. 0 = SACRED_ZERO, not false, not null.</td></tr>
+            <tr><td class="pn">decisionId</td><td class="pt-solidity">bytes32</td><td class="pd">The decision that produced this log entry.</td></tr>
+            <tr><td class="pn">envelopeId</td><td class="pt-solidity">bytes32</td><td class="pd">Associated State Envelope identifier.</td></tr>
+            <tr><td class="pn">justificationObjectHash</td><td class="pt-solidity">bytes32</td><td class="pd">SHA-256 of the canonical JSON serialization of the JustificationObject.</td></tr>
+            <tr><td class="pn">pillarsCertifiedHash</td><td class="pt-solidity">bytes32</td><td class="pd">SHA-256 of the canonical serialization of the pillarsCertified array.</td></tr>
+            <tr><td class="pn">committedAt</td><td class="pt-solidity">uint256</td><td class="pd">Unix epoch timestamp of pre-actuation commit (AlwaysMemory).</td></tr>
+            <tr><td class="pn">monographVersionHash</td><td class="pt-solidity">bytes32</td><td class="pd">keccak256("3.3.0-tml-monograph-2025"). Binds log to specific monograph version.</td></tr>
+          </tbody>
+        </table>
+        <div class="typehash-label">Canonical TypeHash String</div>
+        <div class="typehash-box">MoralTraceLog(bytes32 logId,int8 currentState,bytes32 decisionId,bytes32 envelopeId,bytes32 justificationObjectHash,bytes32 pillarsCertifiedHash,uint256 committedAt,bytes32 monographVersionHash)</div>
+      </div>
+    </div>
+
+    <!-- PermissionToken -->
+    <div id="eip-PermissionToken" class="typed-card">
+      <div class="typed-header" onclick="toggle(this)">
+        <span class="primary-type-badge">primaryType</span>
+        <span class="typed-name">PermissionToken</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="typed-body">
+        <div class="entry-desc">EIP-712 typed data for off-chain signing of a Permission Token by the Anchoring Lane. The signed PermissionToken is the cryptographic release key for the actuation layer. logHash and merkleRoot maintain on-chain verifiability against TML_Core anchor records. This is the off-chain expression of No Log = No Action.</div>
+        <div class="callout callout-monograph">Monograph ref: Section 2.3.3, Section 5B.i</div>
+        <div class="callout callout-iron">NO LOG = NO ACTION (off-chain): logHash binds this token to a specific anchored log. Any off-chain verifier MUST confirm logHash is included in merkleRoot before accepting the token as actuation authorization.</div>
+        <div class="security-note">
+          <strong>Security properties enforced by this typed data:</strong><br>
+          <strong>No Log = No Action:</strong> logHash binds token to anchored log; actuation layer must verify Merkle inclusion.<br>
+          <strong>Anchoring Lane only:</strong> Token must be signed by key registered to the Anchoring Lane in HybridShield registry.<br>
+          <strong>Hard expiry:</strong> Actuation layer must reject any token where current timestamp &ge; expiresAt.<br>
+          <strong>Domain binding:</strong> chainId + verifyingContract + monographVersionHash prevent cross-chain and cross-version replay.<br>
+          <strong>Decision binding:</strong> decisionId prevents token reuse across different decisions.
+        </div>
+        <div class="param-label">Type Fields</div>
+        <table class="param-table">
+          <thead><tr><th>Name</th><th>EIP-712 Type</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td class="pn">tokenId</td><td class="pt-solidity">bytes32</td><td class="pd">Unique Permission Token identifier (UUID v4 as bytes32).</td></tr>
+            <tr><td class="pn">logHash</td><td class="pt-solidity">bytes32</td><td class="pd">Core No Log = No Action binding. SHA-256 of the authorizing anchored Moral Trace Log.</td></tr>
+            <tr><td class="pn">epochTimestamp</td><td class="pt-solidity">uint256</td><td class="pd">Unix epoch timestamp at Anchoring Lane issuance.</td></tr>
+            <tr><td class="pn">signerKeyId</td><td class="pt-solidity">bytes32</td><td class="pd">keccak256 of the HSM signing key identifier string.</td></tr>
+            <tr><td class="pn">merkleRoot</td><td class="pt-solidity">bytes32</td><td class="pd">Merkle root of the batch containing the authorizing log. Verifiable against TML_Core on-chain record.</td></tr>
+            <tr><td class="pn">expiresAt</td><td class="pt-solidity">uint256</td><td class="pd">Unix epoch expiry. Actuation layer MUST reject tokens at or after this timestamp.</td></tr>
+            <tr><td class="pn">decisionId</td><td class="pt-solidity">bytes32</td><td class="pd">Prevents token reuse across decisions. One token authorizes one decision.</td></tr>
+            <tr><td class="pn">monographVersionHash</td><td class="pt-solidity">bytes32</td><td class="pd">keccak256("3.3.0-tml-monograph-2025"). Binds token to specific constitutional version.</td></tr>
+          </tbody>
+        </table>
+        <div class="typehash-label">Canonical TypeHash String</div>
+        <div class="typehash-box">PermissionToken(bytes32 tokenId,bytes32 logHash,uint256 epochTimestamp,bytes32 signerKeyId,bytes32 merkleRoot,uint256 expiresAt,bytes32 decisionId,bytes32 monographVersionHash)</div>
+      </div>
+    </div>
+
+    <!-- EmergencyOverride -->
+    <div id="eip-EmergencyOverride" class="typed-card">
+      <div class="typed-header" onclick="toggle(this)">
+        <span class="primary-type-badge">primaryType</span>
+        <span class="typed-name">EmergencyOverride</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="typed-body">
+        <div class="entry-desc">EIP-712 typed data for off-chain signing of Emergency Override authorizations by supreme authority identities. The signed data is submitted to TML_Core.executeEmergencyOverride. Signing this structure constitutes a sovereign authority act; it is immutably logged before execution. forcedState values: 0 = REFUSE, 255 = SACRED_ZERO. Forced transition to PROCEED is not permitted.</div>
+        <div class="callout callout-monograph">Monograph ref: Section 13.3 (Emergency Override). x-tml-pillar: SacredZero, AlwaysMemory, HybridShield</div>
+        <div class="param-label">Type Fields</div>
+        <table class="param-table">
+          <thead><tr><th>Name</th><th>EIP-712 Type</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td class="pn">overrideRequestId</td><td class="pt-solidity">bytes32</td><td class="pd">Unique override request identifier.</td></tr>
+            <tr><td class="pn">overrideType</td><td class="pt-solidity">uint8</td><td class="pd">0 = BREAK_GLASS_SHUTDOWN. 1 = KILL_SWITCH. 2 = FORCED_STATE_TRANSITION.</td></tr>
+            <tr><td class="pn">targetDecisionId</td><td class="pt-solidity">bytes32</td><td class="pd">Target decision for FORCED_STATE_TRANSITION. Zero bytes32 for other types.</td></tr>
+            <tr><td class="pn">forcedState</td><td class="pt-solidity">uint8</td><td class="pd">0 = REFUSE. 255 = SACRED_ZERO. Forced transition to PROCEED (+1) is architecturally blocked.</td></tr>
+            <tr><td class="pn">justificationHash</td><td class="pt-solidity">bytes32</td><td class="pd">SHA-256 of the justification document. Archived off-chain and anchored before override executes.</td></tr>
+            <tr><td class="pn">requestedAt</td><td class="pt-solidity">uint256</td><td class="pd">Unix epoch timestamp of the override request.</td></tr>
+            <tr><td class="pn">monographVersionHash</td><td class="pt-solidity">bytes32</td><td class="pd">keccak256("3.3.0-tml-monograph-2025"). Binds override to specific monograph authority.</td></tr>
+          </tbody>
+        </table>
+        <div class="typehash-label">Canonical TypeHash String</div>
+        <div class="typehash-box">EmergencyOverride(bytes32 overrideRequestId,uint8 overrideType,bytes32 targetDecisionId,uint8 forcedState,bytes32 justificationHash,uint256 requestedAt,bytes32 monographVersionHash)</div>
+      </div>
+    </div>
+
+    <!-- CustodianQuorumAttestation -->
+    <div id="eip-CustodianQuorum" class="typed-card">
+      <div class="typed-header" onclick="toggle(this)">
+        <span class="primary-type-badge">primaryType</span>
+        <span class="typed-name">CustodianQuorumAttestation</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="typed-body">
+        <div class="entry-desc">EIP-712 typed data for HybridShield custodian signatures in quorum operations. Each of the 6 custodians signs this structure to contribute to a quorum for Merkle anchoring, system-wide Sacred Zero activation, or Emergency Override authorization. operationType: 0 = MERKLE_ANCHOR, 1 = SACRED_ZERO_ACTIVATION, 2 = EMERGENCY_OVERRIDE.</div>
+        <div class="callout callout-monograph">Monograph ref: Section 2.3.3, Pillar VII (HybridShield). 6-Custodian distributed anchoring.</div>
+        <div class="param-label">Type Fields</div>
+        <table class="param-table">
+          <thead><tr><th>Name</th><th>EIP-712 Type</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td class="pn">custodianId</td><td class="pt-solidity">bytes32</td><td class="pd">Unique identifier of the attesting custodian node.</td></tr>
+            <tr><td class="pn">operationId</td><td class="pt-solidity">bytes32</td><td class="pd">Identifier of the operation this attestation authorizes.</td></tr>
+            <tr><td class="pn">operationType</td><td class="pt-solidity">uint8</td><td class="pd">0 = MERKLE_ANCHOR. 1 = SACRED_ZERO_ACTIVATION. 2 = EMERGENCY_OVERRIDE.</td></tr>
+            <tr><td class="pn">operationPayloadHash</td><td class="pt-solidity">bytes32</td><td class="pd">SHA-256 of the operation payload (e.g., merkleRoot for MERKLE_ANCHOR).</td></tr>
+            <tr><td class="pn">attestedAt</td><td class="pt-solidity">uint256</td><td class="pd">Unix epoch timestamp of custodian attestation.</td></tr>
+            <tr><td class="pn">custodianKeyVersion</td><td class="pt-solidity">bytes32</td><td class="pd">Version identifier of the custodian's current key material.</td></tr>
+          </tbody>
+        </table>
+        <div class="typehash-label">Canonical TypeHash String</div>
+        <div class="typehash-box">CustodianQuorumAttestation(bytes32 custodianId,bytes32 operationId,uint8 operationType,bytes32 operationPayloadHash,uint256 attestedAt,bytes32 custodianKeyVersion)</div>
+      </div>
+    </div>
+
+    <!-- GoukassianSignatureAttestation -->
+    <div id="eip-GoukassianSig" class="typed-card">
+      <div class="typed-header" onclick="toggle(this)">
+        <span class="primary-type-badge">primaryType</span>
+        <span class="typed-name">GoukassianSignatureAttestation</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="typed-body">
+        <div class="entry-desc">EIP-712 typed data for the Goukassian Promise Signature artifact, expressed as an on-chain-verifiable signed structure. artifactName is keccak256("signature"), encoding the canonical lowercase artifact name. signatureAlgorithmId reserves PQC algorithm slots: 6 = SLH-DSA-SHAKE-128s (FUTURE), 7 = ML-KEM-1024 (FUTURE). SHIPPING: 0 = ES256.</div>
+        <div class="callout callout-monograph">Monograph ref: Section 2.4 (GoukassianPromise: signature). artifactName: keccak256("signature").</div>
+        <div class="callout callout-future">signatureAlgorithmId 6 (SLH-DSA-SHAKE-128s) and 7 (ML-KEM-1024) are FUTURE per Section 10 (PQC migration gap). Algorithm IDs are reserved for forward-compatible migration without typeHash change.</div>
+        <div class="param-label">Type Fields</div>
+        <table class="param-table">
+          <thead><tr><th>Name</th><th>EIP-712 Type</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td class="pn">signatureId</td><td class="pt-solidity">bytes32</td><td class="pd">Unique identifier for this Goukassian Promise Signature attestation.</td></tr>
+            <tr><td class="pn">artifactName</td><td class="pt-solidity">bytes32</td><td class="pd">keccak256("signature"). Encodes the canonical Goukassian Promise artifact identity on-chain.</td></tr>
+            <tr><td class="pn">signerKeyId</td><td class="pt-solidity">bytes32</td><td class="pd">keccak256 of the HSM signing key identifier string.</td></tr>
+            <tr><td class="pn">signedPayloadHash</td><td class="pt-solidity">bytes32</td><td class="pd">SHA-256 of the payload being attested.</td></tr>
+            <tr><td class="pn">signatureAlgorithmId</td><td class="pt-solidity">uint8</td><td class="pd">0=ES256 (SHIPPING). 1=ES384. 2=ES512. 3=RS256. 4=RS384. 5=RS512. 6=SLH-DSA-SHAKE-128s (FUTURE). 7=ML-KEM-1024 (FUTURE).</td></tr>
+            <tr><td class="pn">signedAt</td><td class="pt-solidity">uint256</td><td class="pd">Unix epoch timestamp at which the signature was produced.</td></tr>
+            <tr><td class="pn">monographVersionHash</td><td class="pt-solidity">bytes32</td><td class="pd">keccak256("3.3.0-tml-monograph-2025"). Binds attestation to specific constitutional version.</td></tr>
+          </tbody>
+        </table>
+        <div class="typehash-label">Canonical TypeHash String</div>
+        <div class="typehash-box">GoukassianSignatureAttestation(bytes32 signatureId,bytes32 artifactName,bytes32 signerKeyId,bytes32 signedPayloadHash,uint8 signatureAlgorithmId,uint256 signedAt,bytes32 monographVersionHash)</div>
+      </div>
+    </div>
+
+    <!-- TYPEHASH REGISTRY -->
+    <div id="eip-registry" class="section" style="margin-top:36px;margin-bottom:0;">
+      <div class="section-header">
+        <div class="section-icon" style="background:var(--teal-soft);border:1px solid rgba(22,160,133,0.3);">&#35;</div>
+        <div>
+          <div class="section-title" style="color:#7dd4cc;">TypeHash Registry</div>
+          <div class="section-desc">Canonical EIP-712 type encoding strings. Whitespace is significant. These strings must not be reformatted. keccak256 of each string produces the on-chain typeHash.</div>
+        </div>
+      </div>
+
+      <div class="contract-notice">
+        Per EIP-712 Section 2.4: <code>typeHash = keccak256(encodeType(primaryType))</code>. These strings are authoritative. Any deviation in whitespace, ordering, or type name produces a different typeHash and breaks signature verification.
+      </div>
+
+      <table class="registry-table">
+        <thead>
+          <tr>
+            <th>Primary Type</th>
+            <th>Canonical Type String (keccak256 input)</th>
+            <th>Note</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="rt-name">MoralTraceLog</td>
+            <td class="rt-string">MoralTraceLog(bytes32 logId,int8 currentState,bytes32 decisionId,bytes32 envelopeId,bytes32 justificationObjectHash,bytes32 pillarsCertifiedHash,uint256 committedAt,bytes32 monographVersionHash)</td>
+            <td class="rt-note">int8 preserves signed triadic semantics. currentState 0 = SACRED_ZERO.</td>
+          </tr>
+          <tr>
+            <td class="rt-name">PermissionToken</td>
+            <td class="rt-string">PermissionToken(bytes32 tokenId,bytes32 logHash,uint256 epochTimestamp,bytes32 signerKeyId,bytes32 merkleRoot,uint256 expiresAt,bytes32 decisionId,bytes32 monographVersionHash)</td>
+            <td class="rt-note">Off-chain No Log = No Action enforcement. logHash binding is canonical.</td>
+          </tr>
+          <tr>
+            <td class="rt-name">EmergencyOverride</td>
+            <td class="rt-string">EmergencyOverride(bytes32 overrideRequestId,uint8 overrideType,bytes32 targetDecisionId,uint8 forcedState,bytes32 justificationHash,uint256 requestedAt,bytes32 monographVersionHash)</td>
+            <td class="rt-note">Section 13.3 supreme authority act. Signing this is a constitutional commitment.</td>
+          </tr>
+          <tr>
+            <td class="rt-name">CustodianQuorumAttestation</td>
+            <td class="rt-string">CustodianQuorumAttestation(bytes32 custodianId,bytes32 operationId,uint8 operationType,bytes32 operationPayloadHash,uint256 attestedAt,bytes32 custodianKeyVersion)</td>
+            <td class="rt-note">HybridShield 6-Custodian quorum contribution signature.</td>
+          </tr>
+          <tr>
+            <td class="rt-name">GoukassianSignatureAttestation</td>
+            <td class="rt-string">GoukassianSignatureAttestation(bytes32 signatureId,bytes32 artifactName,bytes32 signerKeyId,bytes32 signedPayloadHash,uint8 signatureAlgorithmId,uint256 signedAt,bytes32 monographVersionHash)</td>
+            <td class="rt-note">artifactName = keccak256("signature"). PQC IDs 6-7 reserved FUTURE.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>TML Specification Architecture &mdash; Step 3 of 5 &mdash; tml_abi.json + eip712_typed_data.json &mdash; v3.3.0-tml-monograph-2025</span>
+    <span>Authority: TML Constitutionalization Monograph v3.3</span>
+  </div>
+</main>
+
+<script>
+  function toggle(header) {
+    const card = header.parentElement;
+    card.classList.toggle('open');
+  }
+  // Open first card in each logical group
+  ['fn-anchorMerkleRoot','ev-MerkleRootAnchored','err-NoLogNoAction',
+   'fn-verifyHumanRights','ev-HumanRightsMandateViolation',
+   'eip-domain','eip-MoralTraceLog'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.classList.add('open');
+  });
+</script>
+</body>
+</html>
