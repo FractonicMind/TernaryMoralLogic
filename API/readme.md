@@ -2,7 +2,7 @@
 
 ### 📖 Prologue: I Read This Document So You Don't Have To
 
-Before diving into the specification files, we recommend reading **[I Read the TML API Specification So You Don't Have To](I_Read_Lev_API_Documents_So_You_Don't_Have_To.md)**. While the engineering artifacts prove that this architecture is deployable, this narrative proves why every design decision matters. Engineers, auditors, and policymakers who encounter a 17-file API specification suite can easily lose the constitutional thread inside schema constraints and ABI function signatures. This companion piece restores it.
+Before diving into the specification files, we recommend reading **[I Read the TML API Specification So You Don't Have To](I_Read_API_Documents_So_You_Don't_Have_To.md)**. While the engineering artifacts prove that this architecture is deployable, this narrative proves why every design decision matters. Engineers, auditors, and policymakers who encounter a 17-file API specification suite can easily lose the constitutional thread inside schema constraints and ABI function signatures. This companion piece restores it.
 
 ---
 
