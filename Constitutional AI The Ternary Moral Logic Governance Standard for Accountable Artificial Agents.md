@@ -84,7 +84,7 @@ Finally, to ensure the longevity and integrity of this standard, the document ch
 
 [3.0 Introduction: The Architecture of Constitutional Enforcement	22](#3.0-introduction:-the-architecture-of-constitutional-enforcement)
 
-[3.1 Pillar 1: The Sacred Zero (The Epistemic Hold)	23](#3.1-pillar-1:-the-sacred-zero-\(the-epistemic-hold\))
+[3.1 Pillar 1: The Sacred Zero 23](#3.1-pillar-1:-the-sacred-zero)
 
 [3.1.1 Purpose and Philosophy	23](#3.1.1-purpose-and-philosophy)
 
@@ -722,7 +722,7 @@ At the core of the TML framework lies the Sacred Zero (State 0). This is not a n
     
 * **State 0 (The Sacred Zero):** The domain of humility, where truth is uncertain and action is suspended in favor of deliberation \[1\].
 
-The **Sacred Zero** operationalizes the "right to hesitate," often described as an "Epistemic Hold" on the system's agency \[23\]. It serves as an architectural circuit breaker that triggers automatically when the system detects ethical turbulence, conflicting mandates, or low epistemic confidence. In this state, the machine does not fail; it **thinks**. It initiates a **Sacred Pause**, halting external execution while activating internal logging and escalation protocols. This mechanism ensures that no AI system can be forced to act in the face of ambiguity simply because it lacks the code to wait \[2\].
+The **Sacred Zero** operationalizes the "right to hesitate," on the system's agency \[23\]. It serves as an architectural circuit breaker that triggers automatically when the system detects ethical turbulence, conflicting mandates, or low epistemic confidence. In this state, the machine does not fail; it **thinks**. It initiates a **Sacred Pause**, halting external execution while activating internal logging and escalation protocols. This mechanism ensures that no AI system can be forced to act in the face of ambiguity simply because it lacks the code to wait \[2\].
 
 Crucially, TML enforces this logic through the **"No Log \= No Action"** principle. This is the "iron law" of the TML constitution. The inference engine is physically, cryptographically decoupled from the actuation layer. No command to the outside world (State \+1) can be executed until the system has generated, signed, and anchored a **Moral Trace Log** validating the decision. If the logging subsystem fails, the inference engine is paralyzed. This shifts the burden of proof from the victim (who currently must prove the AI erred) to the operator (who must produce the log to prove the AI functioned correctly). It creates a **Dual-Lane Latency Architecture** where the speed of thought (Inference Lane) is forever tethered to the speed of accountability (Anchoring Lane) \[1\].
 
@@ -932,13 +932,13 @@ In this model, the validity of an AI action is contingent upon its adherence to 
 
 This section provides an exhaustive technical and legal analysis of each pillar. For every component, we examine its fundamental purpose, its technical mechanisms (including deep dives into latency architectures and cryptographic schemas), its legal effect under current regulatory regimes (such as the EU AI Act and Federal Rules of Evidence), its operational consequences for system throughput, and the specific failure cases it is designed to prevent.
 
-### **3.1 Pillar 1: The Sacred Zero (The Epistemic Hold)** {#3.1-pillar-1:-the-sacred-zero-(the-epistemic-hold)}
+### **3.1 Pillar 1: The Sacred Zero** {#3.1-pillar-1:-the-sacred-zero}
 
 #### **3.1.1 Purpose and Philosophy** {#3.1.1-purpose-and-philosophy}
 
 The Sacred Zero represents the core deviation of TML from traditional binary logic systems. In standard computational decision-making, systems are optimized to resolve inputs rapidly into binary outputs: True/False, Allow/Deny, or Act/Idle. This binary imperative creates a "decision forcing function" where ambiguity is statistically collapsed into a confidence score that triggers an action, effectively erasing the uncertainty that preceded it. This collapse is the root cause of "hallucinations" and unaligned actions in high-stakes environments \[1\].
 
-The Sacred Zero introduces a mandatory third logical state ( 0 ) distinct from Action ( \+ 1 ) or Refusal ( − 1 ). It is not a "null" value, a crash state, or an idle loop; it is an active computational state of **Epistemic Hold**. Its purpose is to reclaim the "temporal space of hesitation" within the machine's processing cycle. When a system encounters ethical ambiguity---defined by conflicting vector alignments between user intent and constitutional mandates---it is strictly forbidden from forcing a binary resolution. Instead, it must enter the Sacred Zero state, which triggers a high-fidelity governance process \[6\].
+The Sacred Zero introduces a mandatory third logical state ( 0 ) distinct from Action ( \+ 1 ) or Refusal ( − 1 ). It is not a "null" value, a crash state, or an idle loop; it is an active computational state of **Sacred Pause**. Its purpose is to reclaim the "temporal space of hesitation" within the machine's processing cycle. When a system encounters ethical ambiguity---defined by conflicting vector alignments between user intent and constitutional mandates---it is strictly forbidden from forcing a binary resolution. Instead, it must enter the Sacred Zero state, which triggers a high-fidelity governance process \[6\].
 
 #### **3.1.2 Technical Mechanisms: Vector Ambiguity and Dual-Lane Architecture** {#3.1.2-technical-mechanisms:-vector-ambiguity-and-dual-lane-architecture}
 
@@ -1270,7 +1270,7 @@ Prevents "Retroactive Edit." An operator cannot go back and change the log to sa
 
 | Pillar | Core Function | Key Mechanism | Failure Case Prevented | Legal/Standard Nexus |
 | :---- | :---- | :---- | :---- | :---- |
-| **1\. Sacred Zero** | Epistemic Hold | Triadic Logic (+1/0/-1) & Dual-Lane Architecture | Binary Collapse (Forced Errors) | EU AI Act Art 9, 14 |
+| **1\. Sacred Zero** | Sacred Pause | Triadic Logic (+1/0/-1) & Dual-Lane Architecture | Binary Collapse (Forced Errors) | EU AI Act Art 9, 14 |
 | **2\. Always Memory** | Anti-Spoliation | Pre-Actuation Commit & Cryptographic Coupling | Ghost Actions (Unrecorded Acts) | 18 U.S.C. § 1519 |
 | **3\. Goukassian Promise** | Constitutional Bond | Lantern, Signature, License | Ethics Washing / Co-opting | Contract Law / Moral Rights |
 | **4\. Moral Trace Logs** | Forensic Context | Schema (Trigger/Context), EKR, GDPR Design | Contextual Erasure (Why vs. What) | FRE 902(13/14), EU AI Act Art 12 |
