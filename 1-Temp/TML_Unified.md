@@ -1,20 +1,18 @@
-# **Ternary Moral Logic**
+# **The Constitutional Architecture for Accountable Artificial Intelligence: From Ethical Framework to Hardware-Enforceable Substrate**
 
 ***A runtime governance kernel: adoption constitutes ratification***
-
-## **The Constitutional Architecture for Accountable Artificial Intelligence: From Ethical Framework to Hardware-Enforceable Substrate**
 
 ### **Technical Specification, Legal Framework, and Implementation Guide**
 
 **Author: Lev Goukassian `(ORCID: 0009-0006-5966-1243)`**
 
-**Date: 2025–2026**
+**Date: May 2026**
 
 **Status: Final Monograph**
 
 **Classification: Deep Research / Technical Standard**
 
-**Document ID: TML-MONOGRAPH-2025-2026-Rev1**
+**Document ID: TML-MONOGRAPH-2026-Rev1**
 
 ---
 
