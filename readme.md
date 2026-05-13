@@ -12,8 +12,8 @@
 > **IMPORTANT NOTICE**: Ternary Moral Logic (TML) is a **legal-technical framework**, not software, hardware, or consulting services. Implementation requires compliance with all mandatory requirements outlined in [MANDATORY.md](https://www.google.com/search?q=docs/MANDATORY.md) and [COMPLIANCE_DISCLAIMER.md](https://www.google.com/search?q=docs/COMPLIANCE_DISCLAIMER.md).
 
 ### Official Citations
-
 * Goukassian, L. (2025). *Auditable AI: tracing the ethical history of a model*. **AI and Ethics**. Springer Nature. [https://doi.org/10.1007/s43681-025-00910-6](https://doi.org/10.1007/s43681-025-00910-6)
+* Goukassian, L. (2026). *A ternary logic framework for institutional governance: addressing the enforcement gap in global economic systems*. **AI and Ethics**, 6, 303. Springer Nature. [https://doi.org/10.1007/s43681-026-01124-0](https://doi.org/10.1007/s43681-026-01124-0)
 * Goukassian, L. (2025). *Ternary Moral Logic — Notarized Constitutional Core, October 2025* [Data set]. Zenodo. [https://doi.org/10.5281/zenodo.17352897](https://doi.org/10.5281/zenodo.17352897)
 * Goukassian, L. (2025). *Ternary Moral Logic — Notarized Constitutional Core, November 2025* [Data set]. Zenodo. [https://doi.org/10.5281/zenodo.17613006](https://doi.org/10.5281/zenodo.17613006)
 
