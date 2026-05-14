@@ -20,7 +20,7 @@
 **DOI 2: [10.1007/s43681-026-01124-0](https://doi.org/10.1007/s43681-026-01124-0)**  
 **DOI 3: [10.2139/ssrn.6438803](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6438803)**
 
-## Pause when truth is uncertain. 
+##### Pause when truth is uncertain. 
 
 ##### Refuse when harm is clear. 
 
