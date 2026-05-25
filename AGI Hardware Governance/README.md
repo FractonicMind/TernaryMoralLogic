@@ -67,7 +67,7 @@ The artifacts in this repository provide a comprehensive technical defense for h
 
 Detailed specifications for mapping TML ethical states to physical voltage levels and asynchronous handshakes.
 
-  * **Text:** [View Markdown](TML_DITL_Engineering_Mapping.md)
+  * **Text:** [View Markdown](TML_DITL_Engineering_Mapping_for_AGI-ASI_Systems.md)
   * **Web:** [View HTML](https://fractonicmind.github.io/TernaryMoralLogic/AGI%20Hardware%20Governance/TML_DITL_Engineering_Mapping.html)
 
 ### 2\. TML Constitutional Substrate Resilience
