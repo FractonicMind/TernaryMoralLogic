@@ -231,7 +231,7 @@ The Memorial Fund operates within the TML enforcement framework established in `
 **In memory of Lev Goukassian - who transformed his final months into eternal protection for humanity and Earth**
 
 **Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)  
-**Fund Governance**: TML Blockchain Network  
+**Fund Governance**: Tri-Cameral Constitutional Governance -- see [`governance/Tri_Cameral_Constitution.md`](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/governance/Tri_Cameral_Constitution.md)  
 **Framework**: https://github.com/fractonicmind/TernaryMoralLogic  
 **Earth Protection**: Integrated with Always Memory v5.0
 
