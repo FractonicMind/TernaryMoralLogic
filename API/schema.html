@@ -621,6 +621,7 @@
     <a href="#HumanRightsGrievance" class="sidebar-link"><span class="sidebar-dot dot-support"></span>HumanRightsGrievance</a>
     <a href="#BulkEvidenceExport" class="sidebar-link"><span class="sidebar-dot dot-support"></span>BulkEvidenceExport</a>
     <a href="#GatewayRoutingStatus" class="sidebar-link"><span class="sidebar-dot dot-support"></span>GatewayRoutingStatus</a>
+    <a href="#TriCameralApproval" class="sidebar-link"><span class="sidebar-dot dot-support"></span>TriCameralApproval</a>
     <a href="#EmergencyOverrideRequest" class="sidebar-link"><span class="sidebar-dot dot-support"></span>EmergencyOverrideRequest</a>
   </div>
 </nav>
@@ -1659,6 +1660,38 @@
     </div>
   </div>
 
+  <!-- TriCameralApproval -->
+  <div id="TriCameralApproval" class="schema-card">
+    <div class="schema-card-header" onclick="toggle(this)">
+      <span class="schema-name-badge"><span class="anchor-prefix">$defs/</span>TriCameralApproval</span>
+      <span class="schema-type-tag tt-object">object</span>
+      <span class="schema-expand">&#9660;</span>
+    </div>
+    <div class="schema-card-body">
+      <div class="schema-description">Tri-Cameral governance approval record. Technical Council (9 members, proposal rights only). Stewardship Custodians (11 members, binding veto, no proposal rights). Smart Contract Treasury (automatic execution, no admin key, no human override). Survivability-class amendments require proposer exit, 180-day clock from submission, dual-vote ratification at 75% both chambers calculated against seatedActiveMembers only, and one-year institution ban on filling the proposer's vacated seat. Governance structure identical to TL framework by constitutional design.</div>
+      <div class="callout callout-monograph">Monograph ref: TML Constitutionalization Monograph v3.3, Section III, Section 7A. Pillar: HybridShield.</div>
+      <div class="callout callout-iron">CONSTITUTIONAL ENFORCEMENT &mdash; vetoExercised: true from Stewardship Custodians constitutionally blocks any proposal regardless of vote counts. Smart Contract Treasury execution is automatic and cannot be overridden by any authority.</div>
+      <div class="prop-table-label">Properties</div>
+      <table class="prop-table">
+        <thead><tr><th>Property</th><th>Type</th><th>Constraint</th><th>Req</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td class="td-name required-field">technicalCouncilVotes</td><td class="td-type type-object">object</td><td class="td-constraint">totalMembers: const 9</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Technical Council vote tally. 9 members. Proposal rights only; no veto authority. seatedActiveMembers excludes vacant seats and quarantined new appointees.</td></tr>
+          <tr><td class="td-name required-field">stewardshipCustodianVotes</td><td class="td-type type-object">object</td><td class="td-constraint">totalMembers: const 11</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Stewardship Custodian vote tally. 11 members. Binding veto authority; no proposal rights. vetoExercised: true constitutionally blocks regardless of vote counts.</td></tr>
+          <tr><td class="td-name required-field">stewardshipCustodianVotes.vetoExercised</td><td class="td-type type-boolean">boolean</td><td class="td-constraint">binding veto</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">If true, proposal is constitutionally blocked. Supersedes all Technical Council votes. Emits TriCameralConstitutionalVeto on-chain.</td></tr>
+          <tr><td class="td-name required-field">smartContractTreasuryExecution</td><td class="td-type type-object">object</td><td class="td-constraint">executed + transactionHash</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Smart Contract Treasury execution record. Automatic; no admin key; no human override path. executed: true once ratification is complete.</td></tr>
+          <tr><td class="td-name required-field">quorumAchieved</td><td class="td-type type-boolean">boolean</td><td class="td-constraint">for / seatedActiveMembers &ge; 0.75</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">True when both chambers have reached 75% approval of their respective seatedActiveMembers.</td></tr>
+          <tr><td class="td-name required-field">approvalTimestamp</td><td class="td-type type-ref">$ref ISO8601DateTime</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Timestamp of final ratification approval.</td></tr>
+          <tr><td class="td-name">survivabilityClass</td><td class="td-type type-boolean">boolean</td><td class="td-constraint">triggers Section 7A</td><td><span class="req-badge req-no">opt</span></td><td class="td-desc">True if proposal modifies NL=NA chain, three-state model, Eight Pillar definitions, chamber composition, quorum thresholds, or any schema const/required/unevaluatedProperties constraint. Triggers dual-vote protocol.</td></tr>
+          <tr><td class="td-name">proposerExitConfirmed</td><td class="td-type type-boolean">boolean</td><td class="td-constraint">Section 7A.2</td><td><span class="req-badge req-no">opt</span></td><td class="td-desc">True if proposer's chamber membership suspended on submission. Required when survivabilityClass is true.</td></tr>
+          <tr><td class="td-name">clockStartTimestamp</td><td class="td-type type-ref">$ref ISO8601DateTime</td><td class="td-constraint">180-day window start</td><td><span class="req-badge req-no">opt</span></td><td class="td-desc">Timestamp of formal submission. 180-day evaluation window begins at this moment regardless of vacancy status.</td></tr>
+          <tr><td class="td-name">voteNumber</td><td class="td-type type-integer">integer</td><td class="td-constraint">enum: [1, 2]</td><td><span class="req-badge req-no">opt</span></td><td class="td-desc">1 = first vote after initial 180-day window. 2 = second vote after second 180-day window. Both required for survivability-class ratification.</td></tr>
+          <tr><td class="td-name">institutionBanActive</td><td class="td-type type-boolean">boolean</td><td class="td-constraint">one-year ban</td><td><span class="req-badge req-no">opt</span></td><td class="td-desc">True when proposer's institution is banned from filling the vacated seat. Active for one year from clockStartTimestamp.</td></tr>
+          <tr><td class="td-name">quarantinedAppointees</td><td class="td-type type-array">array[uuid]</td><td class="td-constraint">90-day quarantine</td><td><span class="req-badge req-no">opt</span></td><td class="td-desc">Member IDs of appointees quarantined from voting on this proposal (appointed within 90 days of submission). Count as abstain.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
   <!-- EmergencyOverrideRequest -->
   <div id="EmergencyOverrideRequest" class="schema-card">
     <div class="schema-card-header" onclick="toggle(this)">
@@ -1687,6 +1720,7 @@
           <tr><td class="td-name">targetDecisionId</td><td class="td-type type-ref">$ref UUIDv4</td><td class="td-constraint">required if FORCED_STATE_TRANSITION</td><td><span class="req-badge req-no">cond</span></td><td class="td-desc">Required when overrideType is FORCED_STATE_TRANSITION. Enforced by if/then constraint.</td></tr>
           <tr><td class="td-name">forcedState</td><td class="td-type type-integer">integer</td><td class="td-constraint">enum: [-1, 0] only</td><td><span class="req-badge req-no">cond</span></td><td class="td-desc">Required when overrideType is FORCED_STATE_TRANSITION. Forced transition to +1 (PROCEED) is not permitted.</td></tr>
           <tr><td class="td-name">custodianQuorumApproval</td><td class="td-type type-object">object</td><td class="td-constraint">BETA</td><td><span class="req-badge req-no">opt</span></td><td class="td-desc">HybridShield custodian quorum approval if required by deployment policy.</td></tr>
+          <tr><td class="td-name">triCameralApproval</td><td class="td-type type-ref">$ref TriCameralApproval</td><td class="td-constraint">survivability-class overrides</td><td><span class="req-badge req-no">opt</span></td><td class="td-desc">Required when the override targets a survivability-class constraint, chamber composition, or NL=NA enforcement chain. Section 7A dual-vote protocol applies.</td></tr>
         </tbody>
       </table>
     </div>

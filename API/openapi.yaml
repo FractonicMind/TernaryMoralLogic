@@ -26,6 +26,23 @@ info:
       "Refuse when harm is clear"      -> State -1 (Refuse)
       "Proceed where truth is"         -> State +1 (Proceed)
 
+    TRI-CAMERAL GOVERNANCE:
+      Constitutional schema changes require TriCameralApproval. The Technical
+      Council (9 members) holds proposal rights only. The Stewardship Custodians
+      (11 members) hold binding veto authority - vetoExercised: true blocks
+      constitutionally. The Smart Contract Treasury executes automatically with
+      no admin key and no human override path. Survivability-class changes -
+      any proposal modifying the NL=NA enforcement chain, the three-state model,
+      the Eight Pillar definitions, chamber composition, quorum thresholds, or
+      any schema const, required, or unevaluatedProperties constraint - trigger
+      the Section 7A dual-vote protocol: proposer exits the chamber on
+      submission, 180-day evaluation clock starts at submission regardless of
+      vacancies, both votes require 75% approval from both chambers calculated
+      against seated active members only, and the proposer's institution is
+      banned from filling the vacated seat for one year. Forced State +1 is
+      constitutionally blocked. Governance structure is identical to the TL
+      framework by constitutional design.
+
     AUTHORITY: TML Constitutionalization Monograph v3.3.
     SPECIFICATION STATUS: This document supersedes api/complete_api_reference.md (LEGACY).
 
@@ -130,6 +147,9 @@ components:
 
     GatewayRoutingStatus:
       $ref: "tml_schema.json#/$defs/GatewayRoutingStatus"
+
+    TriCameralApproval:
+      $ref: "tml_schema.json#/$defs/TriCameralApproval"
 
     EmergencyOverrideRequest:
       $ref: "tml_schema.json#/$defs/EmergencyOverrideRequest"
@@ -1249,6 +1269,12 @@ paths:
         taking effect. No Log = No Action applies without exception, including
         to emergency overrides.
 
+        Survivability-class overrides - those targeting the NL=NA enforcement
+        chain, Sacred Zero state model, Eight Pillar definitions, or chamber
+        composition - require TriCameralApproval with Section 7A dual-vote
+        protocol. The Stewardship Custodians hold binding veto. Forced State
+        +1 is constitutionally blocked and will revert UnauthorizedOverride.
+
         This endpoint requires the highest security classification and MUST
         be invoked by an authenticated supreme authority identity.
 
@@ -1870,9 +1896,12 @@ paths:
     get:
       summary: "Get Cross-Jurisdiction Custodian Quorum Status"
       description: |
-        Returns the current quorum status of the 6-Custodian HybridShield
-        across all registered jurisdictions. Reports active custodian count,
-        per-custodian health, and overall quorum achievement status.
+        Returns the current quorum status of the Tri-Cameral governance
+        structure across all registered jurisdictions. The HybridShield
+        registry covers the Stewardship Custodians (11 members, binding veto),
+        Technical Council (9 members, proposal rights only), and Smart Contract
+        Treasury (automatic execution, no admin key). Reports active custodian
+        count, per-custodian health, and overall quorum achievement status.
 
         IMPLEMENTATION NOTE: Cross-jurisdiction custodian quorum in <500ms
         is classified FUTURE (Section 10). This endpoint reports current

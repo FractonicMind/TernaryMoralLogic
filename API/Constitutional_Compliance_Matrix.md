@@ -118,6 +118,18 @@
 
 ---
 
+### 1.12 Tri-Cameral Governance
+
+| Path | Method | Operation | Monograph Section | TML Pillar(s) | EU AI Act | NIST RMF | ISO 42001 | FRE 902 | Implementation Status |
+|------|--------|-----------|-------------------|---------------|-----------|----------|-----------|---------|----------------------|
+| `TML_Core.registerTriCameralProposal` | ABI fn | Register governance proposal on-chain; proposer exit on submission; 180-day clock starts at submission | Section III; Section 7A | HybridShield | Art. 9; Art. 14 | GV.OC-01; GV.PO-01 | Cl. 5.2; Cl. 8.4 | Rule 902(13) | SHIPPING |
+| `TML_Core.recordTriCameralVote` | ABI fn | Record Technical Council or Stewardship Custodian vote; vetoExercised=true constitutionally blocks | Section III; Section 7A | HybridShield | Art. 9; Art. 14 | GV.OC-01 | Cl. 5.2; Cl. 8.4 | Rule 902(13) | SHIPPING |
+| `TML_Core.executeTriCameralRatification` | ABI fn | Smart Contract Treasury automatic execution; no admin key; no human override | Section III | HybridShield | Art. 9 | GV.OC-01 | Cl. 5.2 | Rule 902(13) | SHIPPING |
+| `TML_Core` event `TriCameralConstitutionalVeto` | ABI event | Emitted when Stewardship Custodians exercise binding veto; immutable on-chain record | Section III; Section 7A | HybridShield | Art. 9; Art. 14 | GV.OC-01 | Cl. 5.2; Cl. 8.4 | Rule 902(13) | SHIPPING |
+| `TML_Core` error `TriCameralNotRatified` | ABI error | Reverts premature ratification execution before dual-vote complete | Section III; Section 7A | HybridShield | Art. 9 | GV.OC-01 | Cl. 5.2 | Not directly referenced in monograph | SHIPPING |
+
+---
+
 ## PART 2: JSON Schema Definition Compliance Matrix
 
 ### 2.1 Primitive and Shared Types
@@ -447,6 +459,27 @@
 
 ---
 
+### 2.27 Tri-Cameral Approval
+
+| Schema (`$defs` key) | Property | Monograph Section | TML Pillar(s) | EU AI Act | NIST RMF | ISO 42001 | FRE 902 | Implementation Status |
+|----------------------|----------|-------------------|---------------|-----------|----------|-----------|---------|----------------------|
+| `TriCameralApproval` | `technicalCouncilVotes` (`totalMembers: const 9`; proposal rights only) | Section III; Section 7A | HybridShield | Art. 9; Art. 14 | GV.OC-01 | Cl. 5.2; Cl. 8.4 | Not directly referenced in monograph | SHIPPING |
+| `TriCameralApproval` | `technicalCouncilVotes.seatedActiveMembers` (quorum denominator; excludes vacant and quarantined) | Section III; Section 7A | HybridShield | Art. 9 | GV.OC-01 | Cl. 5.2 | Not directly referenced in monograph | SHIPPING |
+| `TriCameralApproval` | `stewardshipCustodianVotes` (`totalMembers: const 11`; binding veto authority; no proposal rights) | Section III; Section 7A | HybridShield | Art. 9; Art. 14 | GV.OC-01 | Cl. 5.2; Cl. 8.4 | Not directly referenced in monograph | SHIPPING |
+| `TriCameralApproval` | `stewardshipCustodianVotes.vetoExercised` (binding veto; `true` constitutionally blocks regardless of vote counts) | Section III; Section 7A | HybridShield | Art. 9; Art. 14 | GV.OC-01 | Cl. 5.2; Cl. 8.4 | Rule 902(13) | SHIPPING |
+| `TriCameralApproval` | `stewardshipCustodianVotes.seatedActiveMembers` (quorum denominator; excludes vacant and quarantined) | Section III; Section 7A | HybridShield | Art. 9 | GV.OC-01 | Cl. 5.2 | Not directly referenced in monograph | SHIPPING |
+| `TriCameralApproval` | `smartContractTreasuryExecution` (`executed`, `transactionHash`; automatic; no admin key; no human override) | Section III | HybridShield | Art. 9 | GV.OC-01 | Cl. 5.2 | Rule 902(13) | SHIPPING |
+| `TriCameralApproval` | `quorumAchieved` (`for / seatedActiveMembers >= 0.75` in both chambers) | Section III; Section 7A | HybridShield | Art. 9 | GV.OC-01 | Cl. 5.2 | Not directly referenced in monograph | SHIPPING |
+| `TriCameralApproval` | `survivabilityClass` (triggers Section 7A dual-vote protocol, proposer exit, institution ban) | Section 7A | HybridShield | Art. 9; Art. 14 | GV.PO-01 | Cl. 5.2; Cl. 8.4 | Not directly referenced in monograph | SHIPPING |
+| `TriCameralApproval` | `proposerExitConfirmed` (proposer's membership suspended on submission per Section 7A.2) | Section 7A | HybridShield | Art. 14 | GV.PO-01 | Cl. 5.2 | Not directly referenced in monograph | SHIPPING |
+| `TriCameralApproval` | `clockStartTimestamp` (180-day window starts at submission regardless of vacancy status) | Section 7A | HybridShield | Art. 9 | GV.PO-01 | Cl. 5.2 | Not directly referenced in monograph | SHIPPING |
+| `TriCameralApproval` | `voteNumber` (`enum: [1, 2]`; dual-vote for survivability-class; both at 75% required) | Section 7A | HybridShield | Art. 9; Art. 14 | GV.PO-01 | Cl. 5.2; Cl. 8.4 | Not directly referenced in monograph | SHIPPING |
+| `TriCameralApproval` | `institutionBanActive` (proposer's institution banned from filling vacated seat for one year) | Section 7A | HybridShield | Art. 9 | GV.PO-01 | Cl. 5.2 | Not directly referenced in monograph | SHIPPING |
+| `TriCameralApproval` | `quarantinedAppointees` (appointees within 90 days of submission quarantined from voting) | Section 7A | HybridShield | Art. 9 | GV.PO-01 | Cl. 5.2 | Not directly referenced in monograph | SHIPPING |
+| `EmergencyOverrideRequest` | `triCameralApproval` (required for survivability-class emergency overrides targeting NL=NA chain) | Section III; Section 13.3 | HybridShield | Art. 9; Art. 14 | GV.OC-01; RS.MA-01 | Cl. 8.4; Cl. 8.5 | Not directly referenced in monograph | SHIPPING |
+
+---
+
 ## PART 3: Cross-Cutting Compliance Notes
 
 ### 3.1 No Log = No Action - Cross-Cutting Enforcement Points
@@ -461,6 +494,7 @@ The following artifacts collectively enforce the No Log = No Action iron law. An
 | Schema | `AuditProof.logHash` | Must match `PermissionToken.logHash`; no valid token without anchored log | Section 8 |
 | On-chain | `TML_Core.registerPermissionToken` | Reverts with `NoLogNoAction` if `logHash` not in anchored Merkle root | Section 2.3.3 |
 
+| `TriCameralApproval.smartContractTreasuryExecution` | Smart Contract Treasury on-chain execution record for ratified proposals | `tml_abi.json` (`executeTriCameralRatification`) | `tml_schema.json` (`TriCameralApproval`) |
 ### 3.2 Sacred Zero - Integrity Checkpoints
 
 The following properties are the critical integrity checkpoints for Sacred Zero. An auditor must confirm State 0 is never aliased, substituted, or represented as a null or error:

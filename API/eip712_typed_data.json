@@ -5,7 +5,6 @@
   "description": "EIP-712 domain separator and type definitions for off-chain structured data hashing in the TML framework. Defines typed data for MoralTraceLog and PermissionToken. Distinct from the on-chain ABI (tml_abi.json). Authority: TML Constitutionalization Monograph v3.3, EIP-712 (Ethereum Typed Structured Data Hashing and Signing).",
   "version": "3.3.0-tml-monograph-2025",
   "$comment": "Monograph ref: Section 2.3.3, Section 5B.i, Section 8. EIP-712 typed data only. No Solidity source. These definitions enable off-chain signing of TML artifacts with on-chain verifiability.",
-
   "eip712Domain": {
     "description": "EIP-712 domain separator definition for the TML framework. The domain separator binds all typed data signatures to a specific contract, chain, and monograph version, preventing cross-domain and cross-version replay attacks.",
     "$comment": "EIP-712 Section 4 (Domain Separator). chainId must be set to the target deployment chain at runtime.",
@@ -47,16 +46,18 @@
       ]
     }
   },
-
   "typedDataSchemas": {
-
     "MoralTraceLog": {
       "description": "EIP-712 typed data schema for off-chain signing of a Moral Trace Log (TSLF) entry. Enables custodians, auditors, and the Anchoring Lane to produce verifiable signatures over TSLF records without full on-chain storage of every field. The signature is verifiable against the signer's address on any EIP-712 compliant verifier.",
       "$comment": "Monograph ref: Section 8 (TSLF forensic schema), Pillar II (AlwaysMemory), Pillar IV (MoralTraceLogs). The typehash is: keccak256('MoralTraceLog(bytes32 logId,int8 currentState,bytes32 decisionId,bytes32 envelopeId,bytes32 justificationObjectHash,bytes32 pillarsCertifiedHash,uint256 committedAt,bytes32 monographVersionHash)').",
       "primaryType": "MoralTraceLog",
-      "domain": { "$ref": "#/eip712Domain/domain" },
+      "domain": {
+        "$ref": "#/eip712Domain/domain"
+      },
       "types": {
-        "EIP712Domain": { "$ref": "#/eip712Domain/types/EIP712Domain" },
+        "EIP712Domain": {
+          "$ref": "#/eip712Domain/types/EIP712Domain"
+        },
         "MoralTraceLog": [
           {
             "name": "logId",
@@ -136,14 +137,17 @@
         "$comment": "currentState 0 = SACRED_ZERO. The typed data encoding preserves the int8 signed value, ensuring 0 is not conflated with false, null, or an error code."
       }
     },
-
     "PermissionToken": {
       "description": "EIP-712 typed data schema for off-chain signing of a Permission Token by the Anchoring Lane. The signed PermissionToken is the cryptographic release key for the actuation layer. Its off-chain signature enables the actuation layer to verify authorization without a gas-bearing on-chain call for every action, while the logHash and merkleRoot fields maintain verifiability against the on-chain TML_Core anchor record. This is the off-chain expression of No Log = No Action.",
       "$comment": "Monograph ref: Section 2.3.3, Section 5B.i. The typehash is: keccak256('PermissionToken(bytes32 tokenId,bytes32 logHash,uint256 epochTimestamp,bytes32 signerKeyId,bytes32 merkleRoot,uint256 expiresAt,bytes32 decisionId,bytes32 monographVersionHash)').",
       "primaryType": "PermissionToken",
-      "domain": { "$ref": "#/eip712Domain/domain" },
+      "domain": {
+        "$ref": "#/eip712Domain/domain"
+      },
       "types": {
-        "EIP712Domain": { "$ref": "#/eip712Domain/types/EIP712Domain" },
+        "EIP712Domain": {
+          "$ref": "#/eip712Domain/types/EIP712Domain"
+        },
         "PermissionToken": [
           {
             "name": "tokenId",
@@ -233,14 +237,17 @@
         "$comment": "The actuation layer: (1) verifies EIP-712 signature against signerKeyId public key, (2) confirms logHash is included in merkleRoot via Merkle inclusion proof, (3) confirms merkleRoot is anchored in TML_Core on-chain, (4) confirms current timestamp < expiresAt, (5) confirms decisionId matches the pending decision. Only then does execution proceed."
       }
     },
-
     "EmergencyOverride": {
       "description": "EIP-712 typed data schema for off-chain signing of Emergency Override authorizations by supreme authority identities. The signed data is submitted to TML_Core.executeEmergencyOverride. Signing this structure constitutes a sovereign authority act; it is immutably logged before execution.",
       "$comment": "Monograph ref: Section 13.3 (Emergency Override). x-tml-pillar: SacredZero, AlwaysMemory, HybridShield.",
       "primaryType": "EmergencyOverride",
-      "domain": { "$ref": "#/eip712Domain/domain" },
+      "domain": {
+        "$ref": "#/eip712Domain/domain"
+      },
       "types": {
-        "EIP712Domain": { "$ref": "#/eip712Domain/types/EIP712Domain" },
+        "EIP712Domain": {
+          "$ref": "#/eip712Domain/types/EIP712Domain"
+        },
         "EmergencyOverride": [
           {
             "name": "overrideRequestId",
@@ -280,14 +287,17 @@
         ]
       }
     },
-
     "CustodianQuorumAttestation": {
       "description": "EIP-712 typed data schema for custodian signatures in HybridShield quorum operations. Each of the 6 custodians signs this structure to contribute to a quorum for Merkle anchoring, system-wide Sacred Zero activation, or Emergency Override authorization.",
       "$comment": "Monograph ref: Section 2.3.3, Pillar VII (HybridShield). 6-Custodian distributed anchoring.",
       "primaryType": "CustodianQuorumAttestation",
-      "domain": { "$ref": "#/eip712Domain/domain" },
+      "domain": {
+        "$ref": "#/eip712Domain/domain"
+      },
       "types": {
-        "EIP712Domain": { "$ref": "#/eip712Domain/types/EIP712Domain" },
+        "EIP712Domain": {
+          "$ref": "#/eip712Domain/types/EIP712Domain"
+        },
         "CustodianQuorumAttestation": [
           {
             "name": "custodianId",
@@ -322,14 +332,136 @@
         ]
       }
     },
-
+    "TriCameralApproval": {
+      "description": "EIP-712 typed data schema for off-chain signing of Tri-Cameral governance proposals and votes. Used by Technical Council members (registerTriCameralProposal), Stewardship Custodians (recordTriCameralVote, including binding veto), and Smart Contract Treasury (executeTriCameralRatification). Signing this structure constitutes a constitutional governance act and is immutably logged on-chain. Survivability-class proposals require dual-vote ratification across two 180-day windows. Governance structure is identical to the TL framework by constitutional design.",
+      "$comment": "Monograph ref: TML Constitutionalization Monograph v3.3, Section III, Section 7A. x-tml-pillar: HybridShield.",
+      "primaryType": "TriCameralApproval",
+      "domain": {
+        "$ref": "#/eip712Domain/domain"
+      },
+      "types": {
+        "EIP712Domain": {
+          "$ref": "#/eip712Domain/types/EIP712Domain"
+        },
+        "TriCameralApproval": [
+          {
+            "name": "proposalId",
+            "type": "bytes32",
+            "description": "Unique identifier for this governance proposal."
+          },
+          {
+            "name": "proposerChamber",
+            "type": "uint8",
+            "description": "0 = TechnicalCouncil (9 members, proposal rights only). Stewardship Custodians hold veto rights only and may not submit proposals."
+          },
+          {
+            "name": "proposerMemberId",
+            "type": "bytes32",
+            "description": "Identity of the proposing Technical Council member. Chamber membership suspended on submission per Section 7A."
+          },
+          {
+            "name": "proposalHash",
+            "type": "bytes32",
+            "description": "SHA-256 hash of the full proposal text, anchored off-chain before on-chain registration."
+          },
+          {
+            "name": "survivabilityClass",
+            "type": "bool",
+            "description": "True if this proposal modifies the NL=NA enforcement chain, three-state model, Eight Pillar definitions, chamber composition, quorum thresholds, or any schema const, required, or unevaluatedProperties constraint. Triggers Section 7A dual-vote protocol."
+          },
+          {
+            "name": "clockStartTimestamp",
+            "type": "uint256",
+            "description": "Unix epoch timestamp at which the 180-day evaluation window begins. Set at submission regardless of vacancy status. For survivability-class proposals, two consecutive 180-day windows are required."
+          },
+          {
+            "name": "voteNumber",
+            "type": "uint8",
+            "description": "1 = first vote after initial 180-day window. 2 = second vote after second 180-day window. Both must pass at 75% of seatedActiveMembers in both chambers for ratification."
+          },
+          {
+            "name": "vetoExercised",
+            "type": "bool",
+            "description": "Stewardship Custodians only. If true, proposal is constitutionally blocked. vetoExercised=true from any Stewardship Custodian supersedes all vote counts."
+          },
+          {
+            "name": "monographVersionHash",
+            "type": "bytes32",
+            "description": "keccak256 hash of '3.3.0-tml-monograph-2025'. Binds the governance act to the specific monograph version under whose authority it was executed."
+          }
+        ],
+        "TechnicalCouncilVote": [
+          {
+            "name": "proposalId",
+            "type": "bytes32",
+            "description": "Proposal identifier."
+          },
+          {
+            "name": "votesFor",
+            "type": "uint8",
+            "description": "Votes in favour. Maximum 9."
+          },
+          {
+            "name": "votesAgainst",
+            "type": "uint8",
+            "description": "Votes against."
+          },
+          {
+            "name": "votesAbstain",
+            "type": "uint8",
+            "description": "Abstentions including vacant seats and quarantined new appointees."
+          },
+          {
+            "name": "seatedActiveMembers",
+            "type": "uint8",
+            "description": "Active non-quarantined members at time of vote. Quorum threshold calculated against this value only. Maximum 9."
+          }
+        ],
+        "StewardshipCustodianVote": [
+          {
+            "name": "proposalId",
+            "type": "bytes32",
+            "description": "Proposal identifier."
+          },
+          {
+            "name": "votesFor",
+            "type": "uint8",
+            "description": "Votes in favour. Maximum 11."
+          },
+          {
+            "name": "votesAgainst",
+            "type": "uint8",
+            "description": "Votes against."
+          },
+          {
+            "name": "votesAbstain",
+            "type": "uint8",
+            "description": "Abstentions including vacant seats and quarantined new appointees."
+          },
+          {
+            "name": "seatedActiveMembers",
+            "type": "uint8",
+            "description": "Active non-quarantined members at time of vote. Quorum threshold calculated against this value only. Maximum 11."
+          },
+          {
+            "name": "vetoExercised",
+            "type": "bool",
+            "description": "Binding veto. If true, proposal constitutionally blocked regardless of vote counts. No Technical Council vote can override a Stewardship Custodian veto."
+          }
+        ]
+      }
+    },
     "GoukassianSignatureAttestation": {
       "description": "EIP-712 typed data schema for the Goukassian Promise Signature artifact. Enables the Goukassian Promise Signature Block to be expressed as an EIP-712 signed structure, binding the TML system's provenance and non-repudiation record to the constitutional chain. 'signature' is the canonical artifact name.",
       "$comment": "Monograph ref: Section 2.4 (GoukassianPromise: lantern, signature, license). x-tml-pillar: GoukassianPromise.",
       "primaryType": "GoukassianSignatureAttestation",
-      "domain": { "$ref": "#/eip712Domain/domain" },
+      "domain": {
+        "$ref": "#/eip712Domain/domain"
+      },
       "types": {
-        "EIP712Domain": { "$ref": "#/eip712Domain/types/EIP712Domain" },
+        "EIP712Domain": {
+          "$ref": "#/eip712Domain/types/EIP712Domain"
+        },
         "GoukassianSignatureAttestation": [
           {
             "name": "signatureId",
@@ -370,9 +502,7 @@
         ]
       }
     }
-
   },
-
   "typeHashRegistry": {
     "description": "Pre-computed EIP-712 typeHash strings for each primary type. These are the canonical string representations used to compute keccak256 typeHashes per EIP-712 Section 2.4. Whitespace is significant; these strings must not be reformatted.",
     "$comment": "Per EIP-712: typeHash = keccak256(encodeType(primaryType)). These strings are authoritative.",
@@ -380,12 +510,13 @@
     "PermissionToken": "PermissionToken(bytes32 tokenId,bytes32 logHash,uint256 epochTimestamp,bytes32 signerKeyId,bytes32 merkleRoot,uint256 expiresAt,bytes32 decisionId,bytes32 monographVersionHash)",
     "EmergencyOverride": "EmergencyOverride(bytes32 overrideRequestId,uint8 overrideType,bytes32 targetDecisionId,uint8 forcedState,bytes32 justificationHash,uint256 requestedAt,bytes32 monographVersionHash)",
     "CustodianQuorumAttestation": "CustodianQuorumAttestation(bytes32 custodianId,bytes32 operationId,uint8 operationType,bytes32 operationPayloadHash,uint256 attestedAt,bytes32 custodianKeyVersion)",
+    "TriCameralApproval": "TriCameralApproval(bytes32 proposalId,uint8 proposerChamber,bytes32 proposerMemberId,bytes32 proposalHash,bool survivabilityClass,uint256 clockStartTimestamp,uint8 voteNumber,bool vetoExercised,bytes32 monographVersionHash)",
     "GoukassianSignatureAttestation": "GoukassianSignatureAttestation(bytes32 signatureId,bytes32 artifactName,bytes32 signerKeyId,bytes32 signedPayloadHash,uint8 signatureAlgorithmId,uint256 signedAt,bytes32 monographVersionHash)"
   },
-
   "implementationNotes": {
     "pqcMigration": "SLH-DSA-SHAKE-128s (signatureAlgorithmId 6) and ML-KEM-1024 (signatureAlgorithmId 7) are classified FUTURE per Section 10 (Implementation Gap). Current SHIPPING deployments use ES256 (signatureAlgorithmId 0). PQC algorithm IDs are reserved in this schema to enable forward-compatible migration without a typeHash change.",
     "noLogNoAction": "The PermissionToken.logHash field is the typed-data expression of No Log = No Action. Any off-chain verifier of a signed PermissionToken MUST verify that logHash is included in the corresponding Merkle batch before accepting the token as authorization for actuation.",
-    "sacredZeroEncoding": "currentState in MoralTraceLog is typed as int8 to faithfully represent the signed triadic state space (+1, 0, -1). Verifiers must not treat currentState == 0 as false, null, empty, or an error. State 0 is SACRED_ZERO: an active, first-class governance state."
+    "sacredZeroEncoding": "currentState in MoralTraceLog is typed as int8 to faithfully represent the signed triadic state space (+1, 0, -1). Verifiers must not treat currentState == 0 as false, null, empty, or an error. State 0 is SACRED_ZERO: an active, first-class governance state.",
+    "triCameralGovernance": "The TriCameralApproval typed data schema is the EIP-712 expression of the full Tri-Cameral governance architecture. Technical Council (9 members) holds proposal rights only. Stewardship Custodians (11 members) hold binding veto: vetoExercised=true constitutionally blocks any proposal regardless of vote counts. Smart Contract Treasury executes ratification automatically with no admin key. Survivability-class proposals require dual-vote ratification across two 180-day windows per Section 7A. This governance structure is identical to the TL framework by constitutional design."
   }
 }

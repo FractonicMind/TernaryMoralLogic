@@ -576,3 +576,65 @@ in response cannot be re-executed to produce a second Permission Token for the s
 first commit is the anti-spoliation anchor. The idempotency guarantee ensures that network
 failures between the Anchoring Lane and the calling system cannot result in duplicate log
 entries or duplicate token issuances for the same decision.
+
+---
+
+## 11. Tri-Cameral Governance
+
+### 11.1 Constitutional Architecture
+
+The TML framework's Tri-Cameral governance structure is the institutional layer that protects the constitutional integrity of this specification. It governs who may propose changes to the framework, who may veto them, and how execution is enforced without human override. The structure is identical to the TL framework by constitutional design: the same threat model, the same chamber composition, the same quorum thresholds, and the same Section 7A survivability-class protocol.
+
+Three chambers hold distinct and non-overlapping authority:
+
+**Technical Council (9 members):** Proposal rights only. The Technical Council may submit governance proposals, including survivability-class amendments. It holds no veto authority. A Technical Council member who submits a proposal exits the chamber automatically on submission per Section 7A.
+
+**Stewardship Custodians (11 members):** Binding veto authority only. The Stewardship Custodians may not submit proposals. They hold the sole power to constitutionally block any proposal through `vetoExercised: true`. A veto from any Stewardship Custodian supersedes all vote counts from both chambers. This asymmetry is intentional: the body that cannot propose is the body that cannot be pressured to advance a corruptive agenda.
+
+**Smart Contract Treasury:** Automatic execution, no admin key, no human override path. The Smart Contract Treasury does not vote. It executes ratified proposals on-chain when both chambers have satisfied their thresholds. No individual, institution, or authority can instruct the Treasury to execute a proposal that has not been ratified, or to block execution of one that has.
+
+### 11.2 Quorum and Voting Thresholds
+
+Standard proposals require a simple majority in both chambers with no Stewardship Custodian veto. Survivability-class proposals require the Section 7A dual-vote protocol at 75% approval calculated against `seatedActiveMembers` only.
+
+`seatedActiveMembers` is defined as the count of active, non-quarantined members at the time of the vote. Vacant seats and quarantined new appointees count as abstain and are excluded from the denominator. This prevents a hostile actor from engineering vacancies to lower the effective quorum threshold.
+
+The 75% threshold applies independently to both chambers. A 75% Technical Council approval with a 74% Stewardship Custodian approval does not ratify. Both must clear 75% of their respective `seatedActiveMembers`.
+
+### 11.3 Section 7A: Survivability-Class Protocol
+
+Survivability-class changes are proposals that modify any of the following:
+
+- The NL=NA enforcement chain (schema, API contract, EIP-712, on-chain, or prose layers)
+- The three-state model (+1, 0, -1)
+- The Eight Pillar definitions or pillar identifiers
+- Chamber composition or quorum thresholds
+- Any schema `const`, `required`, or `unevaluatedProperties` constraint in `tml_schema.json`
+
+When a proposal is classified survivability-class, the Section 7A protocol activates automatically on `registerTriCameralProposal`:
+
+1. **Proposer exit:** The submitting Technical Council member's chamber membership is suspended on submission. They may not vote on the proposal they submitted.
+2. **180-day evaluation clock:** Starts at `clockStartTimestamp` regardless of vacancy status. Vacancies created after submission do not pause or reset the clock.
+3. **Dual-vote ratification:** Two separate votes are required. `voteNumber: 1` occurs after the first 180-day window. `voteNumber: 2` occurs after a second 180-day window. Both must pass at 75% of `seatedActiveMembers` in both chambers.
+4. **Institution ban:** The proposer's institution is banned from filling the vacated seat for one year from `clockStartTimestamp`. New appointees from any institution appointed within 90 days of submission are quarantined from voting on that specific proposal.
+
+The `TriCameralApproval` schema in `tml_schema.json` and the `TriCameralApproval` typed data schema in `eip712_typed_data.json` enforce these fields structurally. The `registerTriCameralProposal`, `recordTriCameralVote`, and `executeTriCameralRatification` ABI functions in `tml_abi.json` enforce them on-chain.
+
+### 11.4 The Veto as Constitutional Backstop
+
+The `TriCameralConstitutionalVeto` event in `TML_Core` is emitted when `vetoExercised: true` is submitted by a Stewardship Custodian. This event is the on-chain record that a proposal was constitutionally blocked. It is immutable. It cannot be reversed by the Technical Council, the Smart Contract Treasury, or any emergency override mechanism.
+
+The `TriCameralNotRatified` error reverts any attempt to execute a proposal that has not completed the full ratification chain. For survivability-class proposals, this means both `voteNumber: 1` and `voteNumber: 2` must be on-chain before execution proceeds.
+
+Forced State +1 (Proceed) is constitutionally blocked in all governance contexts. The `forcedState` enum is limited to [-1, 0]. An attempted `FORCED_STATE_TRANSITION` to +1 reverts `UnauthorizedOverride`.
+
+### 11.5 Slow Erosion Defense
+
+The Tri-Cameral governance structure is specifically designed to defeat slow institutional erosion -- the gradual softening of constitutional constraints through incremental changes that individually appear minor but cumulatively hollow out enforcement. Each of the following mechanisms addresses a named erosion vector:
+
+- **Proposer exit:** Prevents a single actor from repeatedly submitting and voting on self-serving amendments.
+- **180-day clock:** Forces deliberation time that cannot be compressed even when vacancies exist.
+- **Dual-vote for survivability-class changes:** Requires the same chamber composition to sustain 75% approval across two separate 180-day windows. Sustained capture of both chambers across 360 days is structurally harder than a single vote.
+- **Institution ban:** Prevents a hostile institution from engineering a vacancy through the proposer exit rule and immediately filling it with a friendly appointee.
+- **Smart Contract Treasury:** Removes the final execution step from human control entirely. A captured chamber cannot instruct the Treasury to execute a non-ratified proposal.
+- **Stewardship Custodian veto with no proposal rights:** The body with the power to block has no incentive to capture proposal rights. The body with proposal rights has no veto. Neither chamber alone can advance and ratify a corruptive change.

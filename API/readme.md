@@ -62,6 +62,16 @@ Every governance decision generates a Ternary State Log Format (TSLF) record. Th
 
 ---
 
+## Tri-Cameral Governance
+
+State-mutating operations require `TriCameralApproval`. The Technical Council (9 members) holds proposal rights only. The Stewardship Custodians (11 members) hold binding veto authority -- `vetoExercised: true` blocks constitutionally regardless of vote counts. The Smart Contract Treasury executes automatically with no admin key and no human override path. Forced State +1 is constitutionally blocked and will revert `UnauthorizedOverride`.
+
+Survivability-class changes -- proposals that modify the NL=NA enforcement chain, the three-state model, the Eight Pillar definitions, chamber composition, quorum thresholds, or any schema `const`, `required`, or `unevaluatedProperties` constraint -- are governed by the Section 7A dual-vote protocol. The proposer exits the chamber automatically upon submission. The 180-day evaluation clock starts at submission regardless of vacancies. The proposer's institution is banned from filling the vacated seat for one year. Both votes require 75% approval from both chambers calculated against seated active members only. Vacant seats and quarantined new appointees count as abstain.
+
+This governance structure is identical to the TL framework by constitutional design. The same threat model applies to both: slow institutional erosion through incremental changes is defeated by requiring sustained supermajority approval across two 180-day windows, automatic execution without human override, and a veto chamber that holds no proposal rights.
+
+---
+
 ## Repository Artifacts and Documentation
 
 ### 1. OpenAPI Specification
@@ -143,16 +153,16 @@ This specification operationalizes international standards for AI governance thr
 
 ## 🛡️ Hybrid Shield Status: Active
 
-This specification is anchored to the TML framework's constitutional enforcement chain. The `PermissionToken.laneOrigin: const "ANCHORING_LANE"` constraint means no token can claim to originate from the Inference Lane. The `unevaluatedProperties: false` constraint throughout `tml_schema.json` means no undeclared field can introduce ambiguity into the enforcement logic. The on-chain `NoLogNoAction` custom error means the blockchain layer reverts any token registration attempt that lacks a previously anchored log.
+This specification is anchored to the TML framework's constitutional enforcement chain. The `PermissionToken.laneOrigin: const "ANCHORING_LANE"` constraint means no token can claim to originate from the Inference Lane. The `unevaluatedProperties: false` constraint throughout `tml_schema.json` means no undeclared field can introduce ambiguity into the enforcement logic. The on-chain `NoLogNoAction` custom error means the blockchain layer reverts any token registration attempt that lacks a previously anchored log. The Tri-Cameral governance structure ensures no survivability-class change to any enforcement layer can pass without sustained 75% supermajority approval across two 180-day windows, Stewardship Custodian veto clearance, and Smart Contract Treasury execution.
 
 | Enforcement Layer | Mechanism | File |
 |-------------------|-----------|------|
-| Schema | `StateEnvelope if/then` constraint | `tml_schema.json` |
-| API Contract | `PermissionToken.laneOrigin: const "ANCHORING_LANE"` | `openapi.yaml` |
-| EIP-712 | Domain separator binding to contract and chain | `eip712_typed_data.json` |
-| On-Chain | `NoLogNoAction` custom error in `TML_Core` | `tml_abi.json` |
-| Prose | Five-layer enforcement chain documented | `Specification_Architecture.md` |
-| Audit | Full path-to-pillar-to-regulation mapping | `Constitutional_Compliance_Matrix.md` |
+| Schema | `StateEnvelope if/then` constraint; `TriCameralApproval` definition | `tml_schema.json` |
+| API Contract | `PermissionToken.laneOrigin: const "ANCHORING_LANE"`; Tri-Cameral governance block | `openapi.yaml` |
+| EIP-712 | Domain separator binding to contract and chain; `TriCameralApproval` typed data | `eip712_typed_data.json` |
+| On-Chain | `NoLogNoAction` custom error; `TriCameralConstitutionalVeto` event; `TriCameralNotRatified` error | `tml_abi.json` |
+| Prose | Five-layer enforcement chain; Section 11 Tri-Cameral Governance | `Specification_Architecture.md` |
+| Audit | Full path-to-pillar-to-regulation mapping; Sections 1.12 and 2.27 | `Constitutional_Compliance_Matrix.md` |
 
 ---
 

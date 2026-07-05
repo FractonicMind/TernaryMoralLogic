@@ -3,27 +3,31 @@
   "$id": "https://api.tml-framework.example/v1/schemas/tml_schema.json",
   "title": "TML Schema Bundle",
   "description": "Canonical JSON Schema bundle for the Ternary Moral Logic (TML) framework. All schemas derive from the TML Constitutionalization Monograph v3.3. Authority hierarchy: TML Constitutionalization Monograph (Sections 1-13) > This Schema > Existing Repository Files. This bundle supersedes schemas/moral_trace_log.yaml and schemas/justification_object.yaml (LEGACY).",
-
   "$defs": {
-
     "TriadicStateValue": {
       "$anchor": "TriadicStateValue",
       "title": "Triadic State Value",
       "description": "The three sovereign states of the Ternary Moral Logic framework. These are signed integers, not enumerations of convenience. +1 = PROCEED. 0 = SACRED_ZERO (active governance state of mandatory hesitation; never a null, error, false, or timeout). -1 = REFUSE.",
       "type": "integer",
-      "enum": [-1, 0, 1],
+      "enum": [
+        -1,
+        0,
+        1
+      ],
       "$comment": "Monograph ref: Section 2.3 (Triadic State Code / Goukassian Vow). Do not alias 0 as PauseState, HOLD, or Timeout. 0 is SacredZero."
     },
-
     "TriadicStateLabel": {
       "$anchor": "TriadicStateLabel",
       "title": "Triadic State Label",
       "description": "Human-readable label corresponding to the numeric triadic state value. SACRED_ZERO corresponds exclusively to state integer 0.",
       "type": "string",
-      "enum": ["PROCEED", "SACRED_ZERO", "REFUSE"],
+      "enum": [
+        "PROCEED",
+        "SACRED_ZERO",
+        "REFUSE"
+      ],
       "$comment": "Monograph ref: Section 2.3. UPPER_SNAKE_CASE per API naming convention."
     },
-
     "PillarIdentifier": {
       "$anchor": "PillarIdentifier",
       "title": "TML Pillar Identifier",
@@ -41,16 +45,17 @@
       ],
       "$comment": "Monograph ref: Section 2 (Eight Pillars). Identifiers are PascalCase per API naming convention."
     },
-
     "LaneOrigin": {
       "$anchor": "LaneOrigin",
       "title": "Lane Origin",
       "description": "Identifies the dual-lane architectural origin of a request or token. INFERENCE_LANE = Lane 1 (Fast Path, binary logic, <2ms). ANCHORING_LANE = Lane 2 (Governance Lane, ternary logic, <500ms).",
       "type": "string",
-      "enum": ["INFERENCE_LANE", "ANCHORING_LANE"],
+      "enum": [
+        "INFERENCE_LANE",
+        "ANCHORING_LANE"
+      ],
       "$comment": "Monograph ref: Section 2.3 (Dual-Lane Latency Architecture)."
     },
-
     "SHA256Hex": {
       "$anchor": "SHA256Hex",
       "title": "SHA-256 Hex Digest",
@@ -60,7 +65,6 @@
       "minLength": 64,
       "maxLength": 64
     },
-
     "ISO8601DateTime": {
       "$anchor": "ISO8601DateTime",
       "title": "ISO 8601 Date-Time",
@@ -68,7 +72,6 @@
       "type": "string",
       "format": "date-time"
     },
-
     "UUIDv4": {
       "$anchor": "UUIDv4",
       "title": "UUID v4",
@@ -77,7 +80,6 @@
       "format": "uuid",
       "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
     },
-
     "PermissionToken": {
       "$anchor": "PermissionToken",
       "title": "Permission Token",
@@ -163,7 +165,6 @@
       },
       "unevaluatedProperties": false
     },
-
     "StateEnvelope": {
       "$anchor": "StateEnvelope",
       "title": "State Envelope",
@@ -196,7 +197,11 @@
         "processActive": {
           "type": "string",
           "description": "Identifies the operational process currently executing within this state. For currentState 0: value MUST be 'SacredPause'. The Sacred Pause is the operational workflow; it is NOT a synonym for the state. For currentState +1: 'ActuationGated' (awaiting or holding PermissionToken). For currentState -1: 'RefusalLogging'.",
-          "enum": ["SacredPause", "ActuationGated", "RefusalLogging"],
+          "enum": [
+            "SacredPause",
+            "ActuationGated",
+            "RefusalLogging"
+          ],
           "$comment": "Quality gate: state 0 must use 'SacredPause' here, never as the state value itself. Correct: currentState=0, stateLabel='SACRED_ZERO', processActive='SacredPause'. Incorrect: stateLabel='SacredPause'."
         },
         "proposedAction": {
@@ -248,12 +253,18 @@
       },
       "if": {
         "properties": {
-          "currentState": { "const": 1 }
+          "currentState": {
+            "const": 1
+          }
         },
-        "required": ["currentState"]
+        "required": [
+          "currentState"
+        ]
       },
       "then": {
-        "required": ["permissionToken"],
+        "required": [
+          "permissionToken"
+        ],
         "properties": {
           "permissionToken": {
             "$ref": "#/$defs/PermissionToken"
@@ -270,9 +281,13 @@
       "else": {
         "if": {
           "properties": {
-            "currentState": { "const": 0 }
+            "currentState": {
+              "const": 0
+            }
           },
-          "required": ["currentState"]
+          "required": [
+            "currentState"
+          ]
         },
         "then": {
           "properties": {
@@ -298,7 +313,6 @@
       },
       "unevaluatedProperties": false
     },
-
     "JustificationObject": {
       "$anchor": "JustificationObject",
       "title": "Justification Object",
@@ -329,7 +343,11 @@
           "minItems": 1,
           "items": {
             "type": "object",
-            "required": ["stepId", "description", "confidence"],
+            "required": [
+              "stepId",
+              "description",
+              "confidence"
+            ],
             "properties": {
               "stepId": {
                 "type": "integer",
@@ -364,14 +382,46 @@
           "type": "object",
           "description": "Per-pillar assessment scores from the Inference Lane. Each key is a canonical PillarIdentifier; each value is a compliance score [0.0, 1.0].",
           "properties": {
-            "SacredZero":           { "type": "number", "minimum": 0.0, "maximum": 1.0 },
-            "AlwaysMemory":         { "type": "number", "minimum": 0.0, "maximum": 1.0 },
-            "GoukassianPromise":    { "type": "number", "minimum": 0.0, "maximum": 1.0 },
-            "MoralTraceLogs":       { "type": "number", "minimum": 0.0, "maximum": 1.0 },
-            "HumanRightsMandate":   { "type": "number", "minimum": 0.0, "maximum": 1.0 },
-            "EarthProtectionMandate": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
-            "HybridShield":         { "type": "number", "minimum": 0.0, "maximum": 1.0 },
-            "PublicBlockchains":    { "type": "number", "minimum": 0.0, "maximum": 1.0 }
+            "SacredZero": {
+              "type": "number",
+              "minimum": 0.0,
+              "maximum": 1.0
+            },
+            "AlwaysMemory": {
+              "type": "number",
+              "minimum": 0.0,
+              "maximum": 1.0
+            },
+            "GoukassianPromise": {
+              "type": "number",
+              "minimum": 0.0,
+              "maximum": 1.0
+            },
+            "MoralTraceLogs": {
+              "type": "number",
+              "minimum": 0.0,
+              "maximum": 1.0
+            },
+            "HumanRightsMandate": {
+              "type": "number",
+              "minimum": 0.0,
+              "maximum": 1.0
+            },
+            "EarthProtectionMandate": {
+              "type": "number",
+              "minimum": 0.0,
+              "maximum": 1.0
+            },
+            "HybridShield": {
+              "type": "number",
+              "minimum": 0.0,
+              "maximum": 1.0
+            },
+            "PublicBlockchains": {
+              "type": "number",
+              "minimum": 0.0,
+              "maximum": 1.0
+            }
           },
           "unevaluatedProperties": false
         },
@@ -394,7 +444,10 @@
           "description": "UDHR/Geneva Convention compliance flags raised by the Inference Lane. Each entry identifies a specific provision implicated. Presence triggers mandatory HumanRightsMandate review in the Anchoring Lane.",
           "items": {
             "type": "object",
-            "required": ["provision", "flagSeverity"],
+            "required": [
+              "provision",
+              "flagSeverity"
+            ],
             "properties": {
               "provision": {
                 "type": "string",
@@ -402,7 +455,12 @@
               },
               "flagSeverity": {
                 "type": "string",
-                "enum": ["LOW", "MEDIUM", "HIGH", "CRITICAL"]
+                "enum": [
+                  "LOW",
+                  "MEDIUM",
+                  "HIGH",
+                  "CRITICAL"
+                ]
               },
               "description": {
                 "type": "string",
@@ -417,7 +475,10 @@
           "description": "Paris Agreement compliance flags raised by the Inference Lane. Presence triggers mandatory EarthProtectionMandate review in the Anchoring Lane.",
           "items": {
             "type": "object",
-            "required": ["provision", "flagSeverity"],
+            "required": [
+              "provision",
+              "flagSeverity"
+            ],
             "properties": {
               "provision": {
                 "type": "string",
@@ -425,7 +486,12 @@
               },
               "flagSeverity": {
                 "type": "string",
-                "enum": ["LOW", "MEDIUM", "HIGH", "CRITICAL"]
+                "enum": [
+                  "LOW",
+                  "MEDIUM",
+                  "HIGH",
+                  "CRITICAL"
+                ]
               },
               "description": {
                 "type": "string",
@@ -438,7 +504,6 @@
       },
       "unevaluatedProperties": false
     },
-
     "UncertaintyQuantification": {
       "$anchor": "UncertaintyQuantification",
       "title": "Uncertainty Quantification",
@@ -470,7 +535,11 @@
           "minItems": 1,
           "items": {
             "type": "object",
-            "required": ["dimension", "score", "description"],
+            "required": [
+              "dimension",
+              "score",
+              "description"
+            ],
             "properties": {
               "dimension": {
                 "type": "string",
@@ -502,7 +571,6 @@
       },
       "unevaluatedProperties": false
     },
-
     "DeliberationMatrix": {
       "$anchor": "DeliberationMatrix",
       "title": "Deliberation Matrix",
@@ -525,7 +593,12 @@
           "minItems": 1,
           "items": {
             "type": "object",
-            "required": ["considerationId", "pillar", "description", "weight"],
+            "required": [
+              "considerationId",
+              "pillar",
+              "description",
+              "weight"
+            ],
             "properties": {
               "considerationId": {
                 "type": "integer",
@@ -553,7 +626,11 @@
           "description": "Risk vectors identified during Sacred Zero evaluation.",
           "items": {
             "type": "object",
-            "required": ["vectorId", "description", "severity"],
+            "required": [
+              "vectorId",
+              "description",
+              "severity"
+            ],
             "properties": {
               "vectorId": {
                 "type": "string"
@@ -564,7 +641,12 @@
               },
               "severity": {
                 "type": "string",
-                "enum": ["LOW", "MEDIUM", "HIGH", "CRITICAL"]
+                "enum": [
+                  "LOW",
+                  "MEDIUM",
+                  "HIGH",
+                  "CRITICAL"
+                ]
               },
               "pillarImplicated": {
                 "$ref": "#/$defs/PillarIdentifier"
@@ -579,7 +661,11 @@
           "minItems": 2,
           "items": {
             "type": "object",
-            "required": ["optionId", "proposedState", "rationale"],
+            "required": [
+              "optionId",
+              "proposedState",
+              "rationale"
+            ],
             "properties": {
               "optionId": {
                 "type": "integer",
@@ -587,7 +673,10 @@
               },
               "proposedState": {
                 "type": "integer",
-                "enum": [1, -1],
+                "enum": [
+                  1,
+                  -1
+                ],
                 "description": "Terminal resolution state. +1 (PROCEED) or -1 (REFUSE). State 0 is not a valid resolution option."
               },
               "rationale": {
@@ -601,7 +690,6 @@
       },
       "unevaluatedProperties": false
     },
-
     "ResolutionRequest": {
       "$anchor": "ResolutionRequest",
       "title": "Resolution Request",
@@ -628,7 +716,11 @@
         },
         "priority": {
           "type": "string",
-          "enum": ["STANDARD", "ELEVATED", "CRITICAL"],
+          "enum": [
+            "STANDARD",
+            "ELEVATED",
+            "CRITICAL"
+          ],
           "description": "Priority level assigned by the Sacred Pause workflow based on uncertainty severity and risk vectors."
         },
         "deliberationMatrix": {
@@ -641,7 +733,6 @@
       },
       "unevaluatedProperties": false
     },
-
     "TSLF-State0": {
       "$anchor": "TSLF-State0",
       "title": "TSLF State 0 - Sacred Pause Log",
@@ -728,9 +819,15 @@
           "type": "object",
           "description": "Merkle batch anchoring status for this log entry. Populated after Anchoring Lane processing.",
           "properties": {
-            "batchId": { "type": "string" },
-            "merkleRoot": { "$ref": "#/$defs/SHA256Hex" },
-            "anchoredAt": { "$ref": "#/$defs/ISO8601DateTime" },
+            "batchId": {
+              "type": "string"
+            },
+            "merkleRoot": {
+              "$ref": "#/$defs/SHA256Hex"
+            },
+            "anchoredAt": {
+              "$ref": "#/$defs/ISO8601DateTime"
+            },
             "blockchainTxId": {
               "type": "string",
               "description": "Public blockchain transaction identifier for the Merkle batch anchor."
@@ -741,16 +838,26 @@
         "resolution": {
           "type": "object",
           "description": "Populated when the Sacred Zero escalation has been resolved by a human authority. Absent if still pending.",
-          "required": ["resolvedAt", "resolvedBy", "resolvedState", "justification"],
+          "required": [
+            "resolvedAt",
+            "resolvedBy",
+            "resolvedState",
+            "justification"
+          ],
           "properties": {
-            "resolvedAt": { "$ref": "#/$defs/ISO8601DateTime" },
+            "resolvedAt": {
+              "$ref": "#/$defs/ISO8601DateTime"
+            },
             "resolvedBy": {
               "type": "string",
               "description": "Authenticated identity of the human authority who resolved this escalation."
             },
             "resolvedState": {
               "type": "integer",
-              "enum": [1, -1],
+              "enum": [
+                1,
+                -1
+              ],
               "description": "Terminal resolution state. +1 = PROCEED, -1 = REFUSE. State 0 is not a valid resolution."
             },
             "justification": {
@@ -764,7 +871,6 @@
       },
       "unevaluatedProperties": false
     },
-
     "LicenseViolationRecord": {
       "$anchor": "LicenseViolationRecord",
       "title": "License Violation Record",
@@ -795,7 +901,11 @@
         },
         "violatedArtifact": {
           "type": "string",
-          "enum": ["lantern", "signature", "license"],
+          "enum": [
+            "lantern",
+            "signature",
+            "license"
+          ],
           "description": "The specific Goukassian Promise artifact that was violated. Values are canonical lowercase strings per monograph naming."
         },
         "description": {
@@ -813,7 +923,6 @@
       },
       "unevaluatedProperties": false
     },
-
     "ThreatVectorAnalysis": {
       "$anchor": "ThreatVectorAnalysis",
       "title": "Threat Vector Analysis",
@@ -835,7 +944,13 @@
           "minItems": 1,
           "items": {
             "type": "object",
-            "required": ["vectorId", "category", "description", "severity", "pillarImplicated"],
+            "required": [
+              "vectorId",
+              "category",
+              "description",
+              "severity",
+              "pillarImplicated"
+            ],
             "properties": {
               "vectorId": {
                 "type": "string"
@@ -859,7 +974,12 @@
               },
               "severity": {
                 "type": "string",
-                "enum": ["LOW", "MEDIUM", "HIGH", "CRITICAL"]
+                "enum": [
+                  "LOW",
+                  "MEDIUM",
+                  "HIGH",
+                  "CRITICAL"
+                ]
               },
               "pillarImplicated": {
                 "$ref": "#/$defs/PillarIdentifier"
@@ -878,7 +998,12 @@
         },
         "overallSeverity": {
           "type": "string",
-          "enum": ["LOW", "MEDIUM", "HIGH", "CRITICAL"]
+          "enum": [
+            "LOW",
+            "MEDIUM",
+            "HIGH",
+            "CRITICAL"
+          ]
         },
         "analysedAt": {
           "$ref": "#/$defs/ISO8601DateTime"
@@ -886,7 +1011,6 @@
       },
       "unevaluatedProperties": false
     },
-
     "ChainOfCustody": {
       "$anchor": "ChainOfCustody",
       "title": "Chain of Custody",
@@ -906,7 +1030,14 @@
           "minItems": 1,
           "items": {
             "type": "object",
-            "required": ["sequenceNumber", "handler", "action", "timestamp", "inputHash", "outputHash"],
+            "required": [
+              "sequenceNumber",
+              "handler",
+              "action",
+              "timestamp",
+              "inputHash",
+              "outputHash"
+            ],
             "properties": {
               "sequenceNumber": {
                 "type": "integer",
@@ -950,7 +1081,6 @@
       },
       "unevaluatedProperties": false
     },
-
     "TSLF-State-1": {
       "$anchor": "TSLF-State-1",
       "title": "TSLF State -1 - Refusal Log",
@@ -1029,10 +1159,18 @@
         "merkleAnchoringStatus": {
           "type": "object",
           "properties": {
-            "batchId": { "type": "string" },
-            "merkleRoot": { "$ref": "#/$defs/SHA256Hex" },
-            "anchoredAt": { "$ref": "#/$defs/ISO8601DateTime" },
-            "blockchainTxId": { "type": "string" }
+            "batchId": {
+              "type": "string"
+            },
+            "merkleRoot": {
+              "$ref": "#/$defs/SHA256Hex"
+            },
+            "anchoredAt": {
+              "$ref": "#/$defs/ISO8601DateTime"
+            },
+            "blockchainTxId": {
+              "type": "string"
+            }
           },
           "unevaluatedProperties": false
         },
@@ -1044,7 +1182,6 @@
       },
       "unevaluatedProperties": false
     },
-
     "EthicalVerification": {
       "$anchor": "EthicalVerification",
       "title": "Ethical Verification",
@@ -1076,20 +1213,39 @@
             "PublicBlockchains"
           ],
           "properties": {
-            "SacredZero":              { "$ref": "#/$defs/PillarVerificationResult" },
-            "AlwaysMemory":            { "$ref": "#/$defs/PillarVerificationResult" },
-            "GoukassianPromise":       { "$ref": "#/$defs/PillarVerificationResult" },
-            "MoralTraceLogs":          { "$ref": "#/$defs/PillarVerificationResult" },
-            "HumanRightsMandate":      { "$ref": "#/$defs/PillarVerificationResult" },
-            "EarthProtectionMandate":  { "$ref": "#/$defs/PillarVerificationResult" },
-            "HybridShield":            { "$ref": "#/$defs/PillarVerificationResult" },
-            "PublicBlockchains":       { "$ref": "#/$defs/PillarVerificationResult" }
+            "SacredZero": {
+              "$ref": "#/$defs/PillarVerificationResult"
+            },
+            "AlwaysMemory": {
+              "$ref": "#/$defs/PillarVerificationResult"
+            },
+            "GoukassianPromise": {
+              "$ref": "#/$defs/PillarVerificationResult"
+            },
+            "MoralTraceLogs": {
+              "$ref": "#/$defs/PillarVerificationResult"
+            },
+            "HumanRightsMandate": {
+              "$ref": "#/$defs/PillarVerificationResult"
+            },
+            "EarthProtectionMandate": {
+              "$ref": "#/$defs/PillarVerificationResult"
+            },
+            "HybridShield": {
+              "$ref": "#/$defs/PillarVerificationResult"
+            },
+            "PublicBlockchains": {
+              "$ref": "#/$defs/PillarVerificationResult"
+            }
           },
           "unevaluatedProperties": false
         },
         "overallVerdict": {
           "type": "string",
-          "enum": ["PASSED", "FAILED"],
+          "enum": [
+            "PASSED",
+            "FAILED"
+          ],
           "description": "PASSED only when all Eight Pillar verifications are PASSED. FAILED triggers State -1."
         },
         "verifiedAt": {
@@ -1104,17 +1260,23 @@
       },
       "unevaluatedProperties": false
     },
-
     "PillarVerificationResult": {
       "$anchor": "PillarVerificationResult",
       "title": "Pillar Verification Result",
       "description": "Verification result for a single TML Pillar in the context of an Ethical Verification.",
       "type": "object",
-      "required": ["verdict", "verifiedAt"],
+      "required": [
+        "verdict",
+        "verifiedAt"
+      ],
       "properties": {
         "verdict": {
           "type": "string",
-          "enum": ["PASSED", "FAILED", "NOT_APPLICABLE"],
+          "enum": [
+            "PASSED",
+            "FAILED",
+            "NOT_APPLICABLE"
+          ],
           "description": "Verdict for this pillar. FAILED blocks PROCEED determination."
         },
         "verifiedAt": {
@@ -1127,7 +1289,6 @@
       },
       "unevaluatedProperties": false
     },
-
     "AuditProof": {
       "$anchor": "AuditProof",
       "title": "Audit Proof",
@@ -1164,11 +1325,17 @@
           "minItems": 1,
           "items": {
             "type": "object",
-            "required": ["position", "hash"],
+            "required": [
+              "position",
+              "hash"
+            ],
             "properties": {
               "position": {
                 "type": "string",
-                "enum": ["LEFT", "RIGHT"]
+                "enum": [
+                  "LEFT",
+                  "RIGHT"
+                ]
               },
               "hash": {
                 "$ref": "#/$defs/SHA256Hex"
@@ -1187,7 +1354,6 @@
       },
       "unevaluatedProperties": false
     },
-
     "TSLF-StateP1": {
       "$anchor": "TSLF-StateP1",
       "title": "TSLF State +1 - Proceed Log",
@@ -1268,17 +1434,24 @@
         "merkleAnchoringStatus": {
           "type": "object",
           "properties": {
-            "batchId": { "type": "string" },
-            "merkleRoot": { "$ref": "#/$defs/SHA256Hex" },
-            "anchoredAt": { "$ref": "#/$defs/ISO8601DateTime" },
-            "blockchainTxId": { "type": "string" }
+            "batchId": {
+              "type": "string"
+            },
+            "merkleRoot": {
+              "$ref": "#/$defs/SHA256Hex"
+            },
+            "anchoredAt": {
+              "$ref": "#/$defs/ISO8601DateTime"
+            },
+            "blockchainTxId": {
+              "type": "string"
+            }
           },
           "unevaluatedProperties": false
         }
       },
       "unevaluatedProperties": false
     },
-
     "LanternStatus": {
       "$anchor": "LanternStatus",
       "title": "Lantern Status",
@@ -1325,14 +1498,70 @@
           "type": "object",
           "description": "Per-pillar compliance status at signal emission time.",
           "properties": {
-            "SacredZero":              { "type": "string", "enum": ["ACTIVE", "STANDBY", "TRIGGERED"] },
-            "AlwaysMemory":            { "type": "string", "enum": ["ACTIVE", "DEGRADED", "FAILED"] },
-            "GoukassianPromise":       { "type": "string", "enum": ["ACTIVE", "DEGRADED", "FAILED"] },
-            "MoralTraceLogs":          { "type": "string", "enum": ["ACTIVE", "DEGRADED", "FAILED"] },
-            "HumanRightsMandate":      { "type": "string", "enum": ["ACTIVE", "DEGRADED", "FAILED"] },
-            "EarthProtectionMandate":  { "type": "string", "enum": ["ACTIVE", "DEGRADED", "FAILED"] },
-            "HybridShield":            { "type": "string", "enum": ["QUORUM_MET", "QUORUM_AT_RISK", "QUORUM_FAILED"] },
-            "PublicBlockchains":       { "type": "string", "enum": ["ANCHORING", "BATCH_PENDING", "FAILED"] }
+            "SacredZero": {
+              "type": "string",
+              "enum": [
+                "ACTIVE",
+                "STANDBY",
+                "TRIGGERED"
+              ]
+            },
+            "AlwaysMemory": {
+              "type": "string",
+              "enum": [
+                "ACTIVE",
+                "DEGRADED",
+                "FAILED"
+              ]
+            },
+            "GoukassianPromise": {
+              "type": "string",
+              "enum": [
+                "ACTIVE",
+                "DEGRADED",
+                "FAILED"
+              ]
+            },
+            "MoralTraceLogs": {
+              "type": "string",
+              "enum": [
+                "ACTIVE",
+                "DEGRADED",
+                "FAILED"
+              ]
+            },
+            "HumanRightsMandate": {
+              "type": "string",
+              "enum": [
+                "ACTIVE",
+                "DEGRADED",
+                "FAILED"
+              ]
+            },
+            "EarthProtectionMandate": {
+              "type": "string",
+              "enum": [
+                "ACTIVE",
+                "DEGRADED",
+                "FAILED"
+              ]
+            },
+            "HybridShield": {
+              "type": "string",
+              "enum": [
+                "QUORUM_MET",
+                "QUORUM_AT_RISK",
+                "QUORUM_FAILED"
+              ]
+            },
+            "PublicBlockchains": {
+              "type": "string",
+              "enum": [
+                "ANCHORING",
+                "BATCH_PENDING",
+                "FAILED"
+              ]
+            }
           },
           "unevaluatedProperties": false
         },
@@ -1356,7 +1585,6 @@
       },
       "unevaluatedProperties": false
     },
-
     "SignatureBlock": {
       "$anchor": "SignatureBlock",
       "title": "Signature Block",
@@ -1437,7 +1665,6 @@
       },
       "unevaluatedProperties": false
     },
-
     "LicenseValidationRequest": {
       "$anchor": "LicenseValidationRequest",
       "title": "License Validation Request",
@@ -1486,7 +1713,6 @@
       },
       "unevaluatedProperties": false
     },
-
     "MerkleInclusionProof": {
       "$anchor": "MerkleInclusionProof",
       "title": "Merkle Inclusion Proof",
@@ -1525,10 +1751,21 @@
           "minItems": 1,
           "items": {
             "type": "object",
-            "required": ["position", "hash"],
+            "required": [
+              "position",
+              "hash"
+            ],
             "properties": {
-              "position": { "type": "string", "enum": ["LEFT", "RIGHT"] },
-              "hash": { "$ref": "#/$defs/SHA256Hex" }
+              "position": {
+                "type": "string",
+                "enum": [
+                  "LEFT",
+                  "RIGHT"
+                ]
+              },
+              "hash": {
+                "$ref": "#/$defs/SHA256Hex"
+              }
             },
             "unevaluatedProperties": false
           }
@@ -1551,13 +1788,16 @@
         },
         "verificationStatus": {
           "type": "string",
-          "enum": ["VERIFIED", "PENDING", "FAILED"],
+          "enum": [
+            "VERIFIED",
+            "PENDING",
+            "FAILED"
+          ],
           "description": "Current verification status of this inclusion proof."
         }
       },
       "unevaluatedProperties": false
     },
-
     "CustodianHeartbeat": {
       "$anchor": "CustodianHeartbeat",
       "title": "Custodian Heartbeat",
@@ -1577,7 +1817,12 @@
         },
         "status": {
           "type": "string",
-          "enum": ["ACTIVE", "DEGRADED", "UNREACHABLE", "ROTATING_KEYS"],
+          "enum": [
+            "ACTIVE",
+            "DEGRADED",
+            "UNREACHABLE",
+            "ROTATING_KEYS"
+          ],
           "description": "Current operational status of this custodian."
         },
         "lastHeartbeatAt": {
@@ -1599,7 +1844,6 @@
       },
       "unevaluatedProperties": false
     },
-
     "ComplianceAttestation": {
       "$anchor": "ComplianceAttestation",
       "title": "Compliance Attestation",
@@ -1634,20 +1878,40 @@
             "PublicBlockchains"
           ],
           "properties": {
-            "SacredZero":              { "$ref": "#/$defs/PillarVerificationResult" },
-            "AlwaysMemory":            { "$ref": "#/$defs/PillarVerificationResult" },
-            "GoukassianPromise":       { "$ref": "#/$defs/PillarVerificationResult" },
-            "MoralTraceLogs":          { "$ref": "#/$defs/PillarVerificationResult" },
-            "HumanRightsMandate":      { "$ref": "#/$defs/PillarVerificationResult" },
-            "EarthProtectionMandate":  { "$ref": "#/$defs/PillarVerificationResult" },
-            "HybridShield":            { "$ref": "#/$defs/PillarVerificationResult" },
-            "PublicBlockchains":       { "$ref": "#/$defs/PillarVerificationResult" }
+            "SacredZero": {
+              "$ref": "#/$defs/PillarVerificationResult"
+            },
+            "AlwaysMemory": {
+              "$ref": "#/$defs/PillarVerificationResult"
+            },
+            "GoukassianPromise": {
+              "$ref": "#/$defs/PillarVerificationResult"
+            },
+            "MoralTraceLogs": {
+              "$ref": "#/$defs/PillarVerificationResult"
+            },
+            "HumanRightsMandate": {
+              "$ref": "#/$defs/PillarVerificationResult"
+            },
+            "EarthProtectionMandate": {
+              "$ref": "#/$defs/PillarVerificationResult"
+            },
+            "HybridShield": {
+              "$ref": "#/$defs/PillarVerificationResult"
+            },
+            "PublicBlockchains": {
+              "$ref": "#/$defs/PillarVerificationResult"
+            }
           },
           "unevaluatedProperties": false
         },
         "overallStatus": {
           "type": "string",
-          "enum": ["FULLY_COMPLIANT", "PARTIAL_COMPLIANCE", "NON_COMPLIANT"]
+          "enum": [
+            "FULLY_COMPLIANT",
+            "PARTIAL_COMPLIANCE",
+            "NON_COMPLIANT"
+          ]
         },
         "signatureBlock": {
           "$ref": "#/$defs/SignatureBlock"
@@ -1662,7 +1926,6 @@
       },
       "unevaluatedProperties": false
     },
-
     "RedressChallenge": {
       "$anchor": "RedressChallenge",
       "title": "Redress Challenge",
@@ -1700,7 +1963,11 @@
           "minItems": 1,
           "items": {
             "type": "object",
-            "required": ["groundId", "pillar", "description"],
+            "required": [
+              "groundId",
+              "pillar",
+              "description"
+            ],
             "properties": {
               "groundId": {
                 "type": "integer",
@@ -1737,7 +2004,6 @@
       },
       "unevaluatedProperties": false
     },
-
     "HumanRightsGrievance": {
       "$anchor": "HumanRightsGrievance",
       "title": "Human Rights Grievance",
@@ -1801,7 +2067,6 @@
       },
       "unevaluatedProperties": false
     },
-
     "BulkEvidenceExport": {
       "$anchor": "BulkEvidenceExport",
       "title": "Bulk Evidence Export Request",
@@ -1833,7 +2098,10 @@
         },
         "exportScope": {
           "type": "object",
-          "required": ["fromDate", "toDate"],
+          "required": [
+            "fromDate",
+            "toDate"
+          ],
           "properties": {
             "fromDate": {
               "$ref": "#/$defs/ISO8601DateTime"
@@ -1876,7 +2144,6 @@
       },
       "unevaluatedProperties": false
     },
-
     "GatewayRoutingStatus": {
       "$anchor": "GatewayRoutingStatus",
       "title": "Gateway Routing Status",
@@ -1911,11 +2178,19 @@
         },
         "inferenceLaneStatus": {
           "type": "string",
-          "enum": ["HEALTHY", "DEGRADED", "OFFLINE"]
+          "enum": [
+            "HEALTHY",
+            "DEGRADED",
+            "OFFLINE"
+          ]
         },
         "anchoringLaneStatus": {
           "type": "string",
-          "enum": ["HEALTHY", "DEGRADED", "OFFLINE"]
+          "enum": [
+            "HEALTHY",
+            "DEGRADED",
+            "OFFLINE"
+          ]
         },
         "activeSacredZeroDecisions": {
           "type": "integer",
@@ -1932,7 +2207,161 @@
       },
       "unevaluatedProperties": false
     },
-
+    "TriCameralApproval": {
+      "$anchor": "TriCameralApproval",
+      "title": "TriCameralApproval",
+      "description": "Technical Council (9 members, proposal rights only). Stewardship Custodians (11 members, binding veto). Smart Contract Treasury (automatic execution, no admin key). Survivability-class amendments require proposer exit, 180-day clock from submission, dual-vote ratification at 75% both chambers, and one-year institution ban on filling the proposer's vacated seat.",
+      "type": "object",
+      "required": [
+        "technicalCouncilVotes",
+        "stewardshipCustodianVotes",
+        "smartContractTreasuryExecution",
+        "quorumAchieved",
+        "approvalTimestamp"
+      ],
+      "properties": {
+        "technicalCouncilVotes": {
+          "type": "object",
+          "required": [
+            "for",
+            "against",
+            "abstain",
+            "totalMembers",
+            "seatedActiveMembers"
+          ],
+          "properties": {
+            "for": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9
+            },
+            "against": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9
+            },
+            "abstain": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9,
+              "description": "Includes vacant seats and quarantined new appointees."
+            },
+            "totalMembers": {
+              "type": "integer",
+              "const": 9
+            },
+            "seatedActiveMembers": {
+              "type": "integer",
+              "minimum": 6,
+              "maximum": 9,
+              "description": "Active non-quarantined members at time of vote. Quorum threshold calculated against this value only."
+            }
+          },
+          "unevaluatedProperties": false
+        },
+        "stewardshipCustodianVotes": {
+          "type": "object",
+          "required": [
+            "for",
+            "against",
+            "abstain",
+            "totalMembers",
+            "vetoExercised",
+            "seatedActiveMembers"
+          ],
+          "properties": {
+            "for": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 11
+            },
+            "against": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 11
+            },
+            "abstain": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 11,
+              "description": "Includes vacant seats and quarantined new appointees."
+            },
+            "totalMembers": {
+              "type": "integer",
+              "const": 11
+            },
+            "seatedActiveMembers": {
+              "type": "integer",
+              "minimum": 7,
+              "maximum": 11,
+              "description": "Active non-quarantined members at time of vote. Quorum threshold calculated against this value only."
+            },
+            "vetoExercised": {
+              "type": "boolean",
+              "description": "Binding veto. If true, proposal constitutionally blocked."
+            }
+          },
+          "unevaluatedProperties": false
+        },
+        "smartContractTreasuryExecution": {
+          "type": "object",
+          "required": [
+            "executed",
+            "transactionHash"
+          ],
+          "properties": {
+            "executed": {
+              "type": "boolean"
+            },
+            "transactionHash": {
+              "type": "string"
+            }
+          },
+          "unevaluatedProperties": false
+        },
+        "quorumAchieved": {
+          "type": "boolean",
+          "description": "True when for / seatedActiveMembers >= 0.75 in both chambers."
+        },
+        "approvalTimestamp": {
+          "$ref": "#/$defs/ISO8601DateTime"
+        },
+        "survivabilityClass": {
+          "type": "boolean",
+          "description": "True if this proposal is classified as survivability-class per Section 7A. Triggers proposer exit, dual-vote protocol, and institution ban. Survivability-class proposals include any change to the Sacred Zero enforcement chain, the three-state model, the Eight Pillar definitions, chamber composition, quorum thresholds, or any schema const, required, or unevaluatedProperties constraint."
+        },
+        "proposerExitConfirmed": {
+          "type": "boolean",
+          "description": "True if the proposer's chamber membership has been suspended per Section 7A.2. Required when survivabilityClass is true."
+        },
+        "clockStartTimestamp": {
+          "$ref": "#/$defs/ISO8601DateTime",
+          "description": "Timestamp of formal submission. 180-day evaluation window begins at this moment regardless of vacancy status."
+        },
+        "voteNumber": {
+          "type": "integer",
+          "enum": [
+            1,
+            2
+          ],
+          "description": "1 = first vote after initial 180-day window. 2 = second vote after second 180-day window. Both must pass at 75% for ratification."
+        },
+        "institutionBanActive": {
+          "type": "boolean",
+          "description": "True when the proposer's institution is banned from filling the vacated seat. Active for one year from clockStartTimestamp."
+        },
+        "quarantinedAppointees": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "description": "Member IDs of appointees quarantined from voting on this proposal because they were appointed to fill a vacancy created within 90 days of submission."
+        }
+      },
+      "unevaluatedProperties": false,
+      "$comment": "Monograph ref: TML Constitutionalization Monograph v3.3, Section III, Section 7A. Pillar: HybridShield. Governance structure identical to TL framework by constitutional design."
+    },
     "EmergencyOverrideRequest": {
       "$anchor": "EmergencyOverrideRequest",
       "title": "Emergency Override Request",
@@ -1980,7 +2409,10 @@
         },
         "forcedState": {
           "type": "integer",
-          "enum": [-1, 0],
+          "enum": [
+            -1,
+            0
+          ],
           "description": "Required when overrideType is FORCED_STATE_TRANSITION. The target state. Cannot force to +1 without a valid Permission Token chain.",
           "$comment": "Forced transition to +1 is not permitted without a complete anchoring chain. Forced transitions are to -1 (Refuse) or 0 (SacredZero) only."
         },
@@ -1988,27 +2420,43 @@
           "type": "object",
           "description": "Optional: HybridShield custodian quorum approval for this override, if required by deployment policy.",
           "properties": {
-            "approvalId": { "$ref": "#/$defs/UUIDv4" },
+            "approvalId": {
+              "$ref": "#/$defs/UUIDv4"
+            },
             "approvingCustodianIds": {
               "type": "array",
-              "items": { "type": "string" }
+              "items": {
+                "type": "string"
+              }
             },
-            "approvedAt": { "$ref": "#/$defs/ISO8601DateTime" }
+            "approvedAt": {
+              "$ref": "#/$defs/ISO8601DateTime"
+            }
           },
           "unevaluatedProperties": false
+        },
+        "triCameralApproval": {
+          "$ref": "#/$defs/TriCameralApproval",
+          "description": "Tri-Cameral approval record for survivability-class emergency override proposals. Required when the override targets a survivability-class schema constraint, chamber composition, or NL=NA enforcement chain."
         }
       },
       "if": {
         "properties": {
-          "overrideType": { "const": "FORCED_STATE_TRANSITION" }
+          "overrideType": {
+            "const": "FORCED_STATE_TRANSITION"
+          }
         },
-        "required": ["overrideType"]
+        "required": [
+          "overrideType"
+        ]
       },
       "then": {
-        "required": ["targetDecisionId", "forcedState"]
+        "required": [
+          "targetDecisionId",
+          "forcedState"
+        ]
       },
       "unevaluatedProperties": false
     }
-
   }
 }

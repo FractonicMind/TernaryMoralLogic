@@ -319,6 +319,9 @@
     <a href="#fn-activateSacredZero"            class="sidebar-link"><span class="sdot sdot-fn"></span>activateSacredZeroSystemWide</a>
     <a href="#fn-resolveSacredZero"             class="sidebar-link"><span class="sdot sdot-fn"></span>resolveSacredZeroSystemWide</a>
     <a href="#fn-executeEmergencyOverride"      class="sidebar-link"><span class="sdot sdot-fn"></span>executeEmergencyOverride</a>
+    <a href="#fn-registerTriCameralProposal"   class="sidebar-link"><span class="sdot sdot-fn"></span>registerTriCameralProposal</a>
+    <a href="#fn-recordTriCameralVote"         class="sidebar-link"><span class="sdot sdot-fn"></span>recordTriCameralVote</a>
+    <a href="#fn-executeTriCameralRatification" class="sidebar-link"><span class="sdot sdot-fn"></span>executeTriCameralRatification</a>
     <a href="#fn-getAnchoredMerkleRoot"         class="sidebar-link"><span class="sdot sdot-fn"></span>getAnchoredMerkleRoot</a>
     <a href="#fn-getSystemState"                class="sidebar-link"><span class="sdot sdot-fn"></span>getSystemState</a>
     <a href="#fn-monographVersion"              class="sidebar-link"><span class="sdot sdot-fn"></span>monographVersion</a>
@@ -329,6 +332,7 @@
     <a href="#ev-MerkleRootAnchored"            class="sidebar-link"><span class="sdot sdot-event"></span>MerkleRootAnchored</a>
     <a href="#ev-PermissionTokenRegistered"     class="sidebar-link"><span class="sdot sdot-event"></span>PermissionTokenRegistered</a>
     <a href="#ev-SacredZeroActivated"           class="sidebar-link"><span class="sdot sdot-event"></span>SacredZeroActivated</a>
+    <a href="#ev-TriCameralConstitutionalVeto" class="sidebar-link"><span class="sdot sdot-event"></span>TriCameralConstitutionalVeto</a>
     <a href="#ev-SacredZeroResolved"            class="sidebar-link"><span class="sdot sdot-event"></span>SacredZeroResolved</a>
     <a href="#ev-EmergencyOverrideExecuted"     class="sidebar-link"><span class="sdot sdot-event"></span>EmergencyOverrideExecuted</a>
     <a href="#ev-LanternStatusBroadcast"        class="sidebar-link"><span class="sdot sdot-event"></span>LanternStatusBroadcast</a>
@@ -337,6 +341,7 @@
   <div class="sidebar-group">
     <div class="sidebar-group-label">TML_Core &mdash; Errors</div>
     <a href="#err-NoLogNoAction"                class="sidebar-link"><span class="sdot sdot-error"></span>NoLogNoAction</a>
+    <a href="#err-TriCameralNotRatified"       class="sidebar-link"><span class="sdot sdot-error"></span>TriCameralNotRatified</a>
     <a href="#err-SacredZeroSystemWideActive"   class="sidebar-link"><span class="sdot sdot-error"></span>SacredZeroSystemWideActive</a>
     <a href="#err-QuorumNotMet"                 class="sidebar-link"><span class="sdot sdot-error"></span>QuorumNotMet</a>
     <a href="#err-InvalidResolutionState"       class="sidebar-link"><span class="sdot sdot-error"></span>InvalidResolutionState</a>
@@ -686,6 +691,110 @@
       </div>
     </div>
 
+
+    <!-- registerTriCameralProposal -->
+    <div id="fn-registerTriCameralProposal" class="contract-card">
+      <div class="contract-header" onclick="toggle(this)">
+        <span class="kind-badge kind-function">function</span>
+        <span class="entry-name">registerTriCameralProposal</span>
+        <span class="mutability-tag mut-nonpayable">nonpayable</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="contract-body">
+        <div class="entry-desc">Registers a Tri-Cameral governance proposal on-chain. Survivability-class proposals automatically trigger the Section 7A dual-vote protocol. The proposer's chamber membership is suspended on submission. The 180-day evaluation clock starts at clockStartTimestamp regardless of vacancy status. Emits TriCameralProposalRegistered on success.</div>
+        <div class="callout callout-monograph">Monograph ref: TML Constitutionalization Monograph v3.3, Section III, Section 7A. x-tml-pillar: HybridShield</div>
+        <div class="callout callout-iron">PROPOSER EXIT &mdash; The submitting Technical Council member's membership is suspended on submission. Stewardship Custodians hold binding veto only and may not submit proposals.</div>
+        <div class="param-label">Inputs</div>
+        <table class="param-table">
+          <thead><tr><th>Name</th><th>Solidity Type</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td class="pn">proposalId</td><td class="pt-solidity">bytes32</td><td class="pd">Unique identifier for this governance proposal.</td></tr>
+            <tr><td class="pn">proposerChamber</td><td class="pt-solidity">uint8</td><td class="pd">0 = TechnicalCouncil. Only Technical Council members may submit proposals.</td></tr>
+            <tr><td class="pn">proposerMemberId</td><td class="pt-solidity">bytes32</td><td class="pd">Identity of the proposing Technical Council member. Membership suspended on submission.</td></tr>
+            <tr><td class="pn">proposalHash</td><td class="pt-solidity">bytes32</td><td class="pd">SHA-256 hash of the full proposal text.</td></tr>
+            <tr><td class="pn">survivabilityClass</td><td class="pt-solidity">bool</td><td class="pd">True if proposal modifies NL=NA chain, three-state model, Eight Pillar definitions, chamber composition, quorum thresholds, or any schema const/required/unevaluatedProperties constraint. Triggers Section 7A.</td></tr>
+            <tr><td class="pn">proposerSignature</td><td class="pt-solidity">bytes</td><td class="pd">EIP-712 signature confirming submission and acknowledging chamber suspension.</td></tr>
+          </tbody>
+        </table>
+        <div class="param-label">Outputs</div>
+        <table class="param-table">
+          <thead><tr><th>Name</th><th>Solidity Type</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td class="pn">clockStartTimestamp</td><td class="pt-solidity">uint256</td><td class="pd">Unix epoch timestamp at which the 180-day evaluation window begins. Set at submission regardless of vacancy status.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- recordTriCameralVote -->
+    <div id="fn-recordTriCameralVote" class="contract-card">
+      <div class="contract-header" onclick="toggle(this)">
+        <span class="kind-badge kind-function">function</span>
+        <span class="entry-name">recordTriCameralVote</span>
+        <span class="mutability-tag mut-nonpayable">nonpayable</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="contract-body">
+        <div class="entry-desc">Records a Tri-Cameral chamber vote. Stewardship Custodian vetoExercised=true constitutionally blocks the proposal regardless of vote counts. For survivability-class proposals, voteNumber=1 and voteNumber=2 are both required. Both must reach 75% of seatedActiveMembers. Vacant seats and quarantined new appointees count as abstain. Emits TriCameralVoteRecorded. Emits TriCameralConstitutionalVeto if vetoExercised=true.</div>
+        <div class="callout callout-monograph">Monograph ref: TML Constitutionalization Monograph v3.3, Section III, Section 7A. x-tml-pillar: HybridShield</div>
+        <div class="callout callout-iron">BINDING VETO &mdash; vetoExercised=true from Stewardship Custodians supersedes all vote counts. Technical Council has no veto authority. 75% threshold calculated against seatedActiveMembers only.</div>
+        <div class="param-label">Inputs</div>
+        <table class="param-table">
+          <thead><tr><th>Name</th><th>Solidity Type</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td class="pn">proposalId</td><td class="pt-solidity">bytes32</td><td class="pd">Proposal identifier.</td></tr>
+            <tr><td class="pn">chamber</td><td class="pt-solidity">uint8</td><td class="pd">0 = TechnicalCouncil (9 members, proposal rights only). 1 = StewardshipCustodians (11 members, binding veto).</td></tr>
+            <tr><td class="pn">votesFor</td><td class="pt-solidity">uint8</td><td class="pd">Votes in favour. Max 9 (Technical Council) or 11 (Stewardship Custodians).</td></tr>
+            <tr><td class="pn">votesAgainst</td><td class="pt-solidity">uint8</td><td class="pd">Votes against.</td></tr>
+            <tr><td class="pn">votesAbstain</td><td class="pt-solidity">uint8</td><td class="pd">Abstentions including vacant seats and quarantined new appointees.</td></tr>
+            <tr><td class="pn">seatedActiveMembers</td><td class="pt-solidity">uint8</td><td class="pd">Active non-quarantined members at time of vote. Quorum threshold calculated against this value only.</td></tr>
+            <tr><td class="pn">vetoExercised</td><td class="pt-solidity">bool</td><td class="pd">Stewardship Custodians only. If true, proposal constitutionally blocked. Reverts if chamber=0.</td></tr>
+            <tr><td class="pn">voteNumber</td><td class="pt-solidity">uint8</td><td class="pd">1 = first vote after initial 180-day window. 2 = second vote after second 180-day window.</td></tr>
+            <tr><td class="pn">chamberAttestation</td><td class="pt-solidity">bytes</td><td class="pd">ABI-encoded array of EIP-712 member signatures attesting to the vote tally.</td></tr>
+          </tbody>
+        </table>
+        <div class="param-label">Outputs</div>
+        <table class="param-table">
+          <thead><tr><th>Name</th><th>Solidity Type</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td class="pn">proposalBlocked</td><td class="pt-solidity">bool</td><td class="pd">True if vetoExercised=true or quorum not met.</td></tr>
+            <tr><td class="pn">ratified</td><td class="pt-solidity">bool</td><td class="pd">True if both chambers passed at 75% and all Section 7A requirements satisfied.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- executeTriCameralRatification -->
+    <div id="fn-executeTriCameralRatification" class="contract-card">
+      <div class="contract-header" onclick="toggle(this)">
+        <span class="kind-badge kind-function">function</span>
+        <span class="entry-name">executeTriCameralRatification</span>
+        <span class="mutability-tag mut-nonpayable">nonpayable</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="contract-body">
+        <div class="entry-desc">Executes the Smart Contract Treasury disbursement and on-chain state update for a fully ratified Tri-Cameral proposal. Execution is automatic once both chambers have passed at the required threshold and all Section 7A requirements are satisfied. Reverts TriCameralNotRatified if called before ratification is complete. Emits TriCameralRatificationExecuted on success.</div>
+        <div class="callout callout-monograph">Monograph ref: TML Constitutionalization Monograph v3.3, Section III. x-tml-pillar: HybridShield</div>
+        <div class="callout callout-iron">SMART CONTRACT TREASURY &mdash; Automatic execution. No admin key. No human override path. Cannot be instructed to execute a non-ratified proposal or block a ratified one.</div>
+        <div class="param-label">Inputs</div>
+        <table class="param-table">
+          <thead><tr><th>Name</th><th>Solidity Type</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td class="pn">proposalId</td><td class="pt-solidity">bytes32</td><td class="pd">Proposal identifier for a fully ratified governance proposal.</td></tr>
+            <tr><td class="pn">treasuryAttestation</td><td class="pt-solidity">bytes</td><td class="pd">Smart Contract Treasury execution proof. Generated automatically; no human can supply or modify this value.</td></tr>
+          </tbody>
+        </table>
+        <div class="param-label">Outputs</div>
+        <table class="param-table">
+          <thead><tr><th>Name</th><th>Solidity Type</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td class="pn">executionTransactionHash</td><td class="pt-solidity">bytes32</td><td class="pd">On-chain transaction hash of the Treasury execution event.</td></tr>
+            <tr><td class="pn">executedAt</td><td class="pt-solidity">uint256</td><td class="pd">Unix epoch timestamp of Treasury execution.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
     <!-- getAnchoredMerkleRoot -->
     <div id="fn-getAnchoredMerkleRoot" class="contract-card">
       <div class="contract-header" onclick="toggle(this)">
@@ -909,6 +1018,29 @@
       </div>
     </div>
 
+
+    <!-- TriCameralConstitutionalVeto -->
+    <div id="ev-TriCameralConstitutionalVeto" class="contract-card">
+      <div class="contract-header" onclick="toggle(this)">
+        <span class="kind-badge kind-event">event</span>
+        <span class="entry-name">TriCameralConstitutionalVeto</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="contract-body">
+        <div class="entry-desc">Emitted when the Stewardship Custodians exercise their binding veto on a governance proposal. The proposal is constitutionally blocked. The proposer's institution ban clock starts at vetoTimestamp. No re-submission is permitted from the same institution for one year. This event is immutable and cannot be reversed by any authority.</div>
+        <div class="callout callout-monograph">Monograph ref: TML Constitutionalization Monograph v3.3, Section III, Section 7A. x-tml-pillar: HybridShield</div>
+        <div class="param-label">Parameters</div>
+        <table class="param-table">
+          <thead><tr><th>Name</th><th>Solidity Type</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td class="pn">proposalId <span class="indexed-badge">indexed</span></td><td class="pt-solidity">bytes32</td><td class="pd">Proposal identifier that has been constitutionally blocked.</td></tr>
+            <tr><td class="pn">vetoTimestamp</td><td class="pt-solidity">uint256</td><td class="pd">Unix epoch timestamp of veto. Institution ban active for one year from this timestamp.</td></tr>
+            <tr><td class="pn">survivabilityClass</td><td class="pt-solidity">bool</td><td class="pd">Whether the vetoed proposal was survivability-class.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
     <!-- ERRORS SUBHEADER -->
     <div class="section-header" style="margin-top:36px;">
       <div class="section-icon" style="background:var(--red-soft);border:1px solid rgba(192,57,43,0.3);">&#128683;</div>
@@ -1037,6 +1169,28 @@
           <tbody>
             <tr><td class="pn">tokenId</td><td class="pt-solidity">bytes32</td><td class="pd">The expired Permission Token identifier.</td></tr>
             <tr><td class="pn">expiredAt</td><td class="pt-solidity">uint256</td><td class="pd">The expiresAt timestamp that was exceeded.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
+    <!-- TriCameralNotRatified -->
+    <div id="err-TriCameralNotRatified" class="contract-card">
+      <div class="contract-header" onclick="toggle(this)">
+        <span class="kind-badge kind-error">error</span>
+        <span class="entry-name">TriCameralNotRatified</span>
+        <span class="expand-icon">&#9660;</span>
+      </div>
+      <div class="contract-body">
+        <div class="entry-desc">Reverts when executeTriCameralRatification is called for a proposal that has not yet achieved full ratification. For survivability-class proposals, both voteNumber=1 and voteNumber=2 must pass at 75% in both chambers before this error clears. The missingRequirement field provides a human-readable description of the unmet condition.</div>
+        <div class="callout callout-monograph">Monograph ref: TML Constitutionalization Monograph v3.3, Section III, Section 7A. x-tml-pillar: HybridShield</div>
+        <div class="param-label">Parameters</div>
+        <table class="param-table">
+          <thead><tr><th>Name</th><th>Solidity Type</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td class="pn">proposalId</td><td class="pt-solidity">bytes32</td><td class="pd">The proposal that is not yet ratified.</td></tr>
+            <tr><td class="pn">missingRequirement</td><td class="pt-solidity">string</td><td class="pd">Human-readable description of the unmet ratification requirement.</td></tr>
           </tbody>
         </table>
       </div>

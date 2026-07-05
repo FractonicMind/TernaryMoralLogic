@@ -227,6 +227,7 @@
     <a href="#f8" class="sidebar-link"><span class="sdot sdot-arch"></span>8. Auditor and Regulator Surface</a>
     <a href="#f9" class="sidebar-link"><span class="sdot sdot-arch"></span>9. Error Handling</a>
     <a href="#f10" class="sidebar-link"><span class="sdot sdot-arch"></span>10. Idempotency and Anti-Spoliation</a>
+    <a href="#f11" class="sidebar-link"><span class="sdot sdot-arch"></span>11. Tri-Cameral Governance</a>
   </div>
 
   <hr class="sidebar-divider">
@@ -535,6 +536,22 @@
     <div class="prose">
       <p>Every <code>POST</code>, <code>PUT</code>, and <code>PATCH</code> endpoint in the specification requires an <code>Idempotency-Key</code> header (UUID v4). The idempotency window is 24 hours; within this window, a repeated request with the same key returns the original response without re-executing the operation.</p>
       <p>Idempotency and AlwaysMemory (Pillar II) interact at the pre-actuation commit boundary. A <code>POST /anchoring-logs</code> request that commits a Moral Trace Log and receives a Permission Token in response cannot be re-executed to produce a second Permission Token for the same log. The first commit is the anti-spoliation anchor. The idempotency guarantee ensures that network failures between the Anchoring Lane and the calling system cannot result in duplicate log entries or duplicate token issuances for the same decision.</p>
+    </div>
+  </div>
+
+  <hr class="prose-rule">
+
+
+  <div id="f11" class="section">
+    <h3>Tri-Cameral Governance</h3>
+    <div class="prose">
+      <p>The TML framework's Tri-Cameral governance structure is the institutional layer that protects the constitutional integrity of this specification. It governs who may propose changes to the framework, who may veto them, and how execution is enforced without human override. The structure is identical to the TL framework by constitutional design: the same threat model, the same chamber composition, the same quorum thresholds, and the same Section 7A survivability-class protocol.</p>
+      <p>Three chambers hold distinct and non-overlapping authority:</p>
+      <p><strong>Technical Council (9 members):</strong> Proposal rights only. The Technical Council may submit governance proposals, including survivability-class amendments. It holds no veto authority. A Technical Council member who submits a proposal exits the chamber automatically on submission per Section 7A.</p>
+      <p><strong>Stewardship Custodians (11 members):</strong> Binding veto authority only. The Stewardship Custodians may not submit proposals. They hold the sole power to constitutionally block any proposal through <code>vetoExercised: true</code>. A veto from any Stewardship Custodian supersedes all vote counts from both chambers.</p>
+      <p><strong>Smart Contract Treasury:</strong> Automatic execution, no admin key, no human override path. The Smart Contract Treasury does not vote. It executes ratified proposals on-chain when both chambers have satisfied their thresholds. No individual, institution, or authority can instruct the Treasury to execute a non-ratified proposal or block a ratified one.</p>
+      <p>Survivability-class changes -- any proposal modifying the NL=NA enforcement chain, the three-state model, the Eight Pillar definitions, chamber composition, quorum thresholds, or any schema <code>const</code>, <code>required</code>, or <code>unevaluatedProperties</code> constraint -- trigger the Section 7A dual-vote protocol: proposer exits the chamber on submission, 180-day evaluation clock starts at submission regardless of vacancies, both votes require 75% approval from both chambers calculated against <code>seatedActiveMembers</code> only, and the proposer's institution is banned from filling the vacated seat for one year. Forced State +1 is constitutionally blocked.</p>
+      <p>The <code>TriCameralApproval</code> schema in <code>tml_schema.json</code>, the <code>TriCameralApproval</code> typed data schema in <code>eip712_typed_data.json</code>, and the <code>registerTriCameralProposal</code>, <code>recordTriCameralVote</code>, and <code>executeTriCameralRatification</code> ABI functions in <code>tml_abi.json</code> enforce these requirements at the schema, EIP-712, and on-chain layers respectively.</p>
     </div>
   </div>
 

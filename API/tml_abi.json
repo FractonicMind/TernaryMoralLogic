@@ -5,16 +5,12 @@
   "description": "Standard Application Binary Interface definitions for TML_Core.sol and ITMLEnforcer.sol. Contains function signatures, event logs, and structured data types only. No Solidity source code. Authority: TML Constitutionalization Monograph v3.3.",
   "version": "3.3.0-tml-monograph-2025",
   "$comment": "Monograph ref: Section 2.3.3 (PublicBlockchains, HybridShield), Section 8 (MoralTraceLogs anchoring). ABI output only. Solidity source is out of scope per Section 3.",
-
   "contracts": {
-
     "TML_Core": {
       "contractName": "TML_Core",
       "description": "Core constitutional enforcement contract. Manages Merkle-batched anchoring of Moral Trace Logs, Permission Token registration, and Emergency Override state transitions. Enforces the No Log = No Action iron law at the on-chain layer.",
       "$comment": "Monograph ref: Section 2.3.3, Section 8, Section 13.3. Corresponds to Smart_Contracts/src/TML_Core.sol.",
-
       "abi": [
-
         {
           "type": "constructor",
           "inputs": [
@@ -36,7 +32,6 @@
           ],
           "stateMutability": "nonpayable"
         },
-
         {
           "type": "function",
           "name": "anchorMerkleRoot",
@@ -83,7 +78,6 @@
           ],
           "stateMutability": "nonpayable"
         },
-
         {
           "type": "function",
           "name": "registerPermissionToken",
@@ -130,7 +124,6 @@
           ],
           "stateMutability": "nonpayable"
         },
-
         {
           "type": "function",
           "name": "verifyPermissionToken",
@@ -165,7 +158,6 @@
           ],
           "stateMutability": "view"
         },
-
         {
           "type": "function",
           "name": "verifyMerkleInclusion",
@@ -202,7 +194,6 @@
           ],
           "stateMutability": "pure"
         },
-
         {
           "type": "function",
           "name": "activateSacredZeroSystemWide",
@@ -237,7 +228,6 @@
           ],
           "stateMutability": "nonpayable"
         },
-
         {
           "type": "function",
           "name": "resolveSacredZeroSystemWide",
@@ -272,7 +262,6 @@
           ],
           "stateMutability": "nonpayable"
         },
-
         {
           "type": "function",
           "name": "executeEmergencyOverride",
@@ -316,7 +305,6 @@
           ],
           "stateMutability": "nonpayable"
         },
-
         {
           "type": "function",
           "name": "getAnchoredMerkleRoot",
@@ -352,7 +340,6 @@
           ],
           "stateMutability": "view"
         },
-
         {
           "type": "function",
           "name": "getSystemState",
@@ -380,7 +367,6 @@
           ],
           "stateMutability": "view"
         },
-
         {
           "type": "function",
           "name": "monographVersion",
@@ -394,7 +380,149 @@
           ],
           "stateMutability": "view"
         },
-
+        {
+          "type": "function",
+          "name": "registerTriCameralProposal",
+          "description": "Registers a Tri-Cameral governance proposal on-chain. Survivability-class proposals - those modifying the NL=NA enforcement chain, the three-state model, the Eight Pillar definitions, chamber composition, quorum thresholds, or any schema const, required, or unevaluatedProperties constraint - automatically trigger the Section 7A dual-vote protocol. The proposer's chamber membership is suspended on submission. The 180-day evaluation clock starts at submission regardless of vacancy status. Emits TriCameralProposalRegistered on success.",
+          "$comment": "Monograph ref: TML Constitutionalization Monograph v3.3, Section III, Section 7A. x-tml-pillar: HybridShield.",
+          "inputs": [
+            {
+              "name": "proposalId",
+              "type": "bytes32",
+              "description": "Unique identifier for this governance proposal."
+            },
+            {
+              "name": "proposerChamber",
+              "type": "uint8",
+              "description": "0 = TechnicalCouncil. Only Technical Council members may submit proposals. Stewardship Custodians hold veto rights only."
+            },
+            {
+              "name": "proposerMemberId",
+              "type": "bytes32",
+              "description": "Identity of the proposing Technical Council member. Membership suspended on submission."
+            },
+            {
+              "name": "proposalHash",
+              "type": "bytes32",
+              "description": "SHA-256 hash of the full proposal text."
+            },
+            {
+              "name": "survivabilityClass",
+              "type": "bool",
+              "description": "True if this proposal modifies the NL=NA enforcement chain, three-state model, Eight Pillar definitions, chamber composition, quorum thresholds, or any schema const, required, or unevaluatedProperties constraint. Triggers Section 7A dual-vote protocol."
+            },
+            {
+              "name": "proposerSignature",
+              "type": "bytes",
+              "description": "EIP-712 signature from the proposing member confirming submission and acknowledging chamber suspension."
+            }
+          ],
+          "outputs": [
+            {
+              "name": "clockStartTimestamp",
+              "type": "uint256",
+              "description": "Unix epoch timestamp at which the 180-day evaluation window begins. Set at submission regardless of vacancy status."
+            }
+          ],
+          "stateMutability": "nonpayable"
+        },
+        {
+          "type": "function",
+          "name": "recordTriCameralVote",
+          "description": "Records a Tri-Cameral chamber vote on a registered proposal. Technical Council (9 members, proposal rights only) votes are advisory. Stewardship Custodian (11 members) votes carry binding veto authority: a vetoExercised=true submission constitutionally blocks the proposal regardless of Technical Council vote count. For survivability-class proposals, two votes are required: voteNumber=1 after the first 180-day window and voteNumber=2 after the second 180-day window. Both must reach 75% approval calculated against seatedActiveMembers only. Vacant seats and quarantined new appointees count as abstain. Emits TriCameralVoteRecorded. Emits TriCameralConstitutionalVeto if vetoExercised=true.",
+          "$comment": "Monograph ref: TML Constitutionalization Monograph v3.3, Section III, Section 7A. x-tml-pillar: HybridShield.",
+          "inputs": [
+            {
+              "name": "proposalId",
+              "type": "bytes32",
+              "description": "Proposal identifier matching a registered proposal."
+            },
+            {
+              "name": "chamber",
+              "type": "uint8",
+              "description": "0 = TechnicalCouncil (9 members, proposal rights only). 1 = StewardshipCustodians (11 members, binding veto)."
+            },
+            {
+              "name": "votesFor",
+              "type": "uint8",
+              "description": "Votes in favour. Maximum 9 for Technical Council, 11 for Stewardship Custodians."
+            },
+            {
+              "name": "votesAgainst",
+              "type": "uint8",
+              "description": "Votes against."
+            },
+            {
+              "name": "votesAbstain",
+              "type": "uint8",
+              "description": "Abstentions including vacant seats and quarantined new appointees."
+            },
+            {
+              "name": "seatedActiveMembers",
+              "type": "uint8",
+              "description": "Active non-quarantined members at time of vote. Quorum threshold calculated against this value only."
+            },
+            {
+              "name": "vetoExercised",
+              "type": "bool",
+              "description": "Stewardship Custodians only. If true, proposal is constitutionally blocked regardless of vote counts. Reverts if chamber=0 (Technical Council has no veto rights)."
+            },
+            {
+              "name": "voteNumber",
+              "type": "uint8",
+              "description": "1 = first vote after initial 180-day window. 2 = second vote after second 180-day window. Only relevant for survivability-class proposals requiring dual-vote ratification."
+            },
+            {
+              "name": "chamberAttestation",
+              "type": "bytes",
+              "description": "ABI-encoded array of EIP-712 member signatures attesting to the vote tally."
+            }
+          ],
+          "outputs": [
+            {
+              "name": "proposalBlocked",
+              "type": "bool",
+              "description": "True if vetoExercised=true or quorum threshold not met. Blocked proposals cannot be resubmitted by the same institution for one year."
+            },
+            {
+              "name": "ratified",
+              "type": "bool",
+              "description": "True if both chambers have passed at 75% and all Section 7A requirements satisfied. For survivability-class proposals, requires voteNumber=2 to be true."
+            }
+          ],
+          "stateMutability": "nonpayable"
+        },
+        {
+          "type": "function",
+          "name": "executeTriCameralRatification",
+          "description": "Executes the Smart Contract Treasury disbursement and on-chain state update for a fully ratified Tri-Cameral proposal. The Smart Contract Treasury has no admin key and no human override path. Execution is automatic once both chambers have passed at the required threshold and all Section 7A requirements are satisfied. Reverts TriCameralNotRatified if called before ratification is complete. Emits TriCameralRatificationExecuted on success.",
+          "$comment": "Monograph ref: TML Constitutionalization Monograph v3.3, Section III. x-tml-pillar: HybridShield. Smart Contract Treasury: automatic execution, no admin key, no human override.",
+          "inputs": [
+            {
+              "name": "proposalId",
+              "type": "bytes32",
+              "description": "Proposal identifier for a fully ratified governance proposal."
+            },
+            {
+              "name": "treasuryAttestation",
+              "type": "bytes",
+              "description": "ABI-encoded Smart Contract Treasury execution proof. Generated automatically by the Treasury contract; no human can supply or modify this value."
+            }
+          ],
+          "outputs": [
+            {
+              "name": "executionTransactionHash",
+              "type": "bytes32",
+              "description": "On-chain transaction hash of the Treasury execution event."
+            },
+            {
+              "name": "executedAt",
+              "type": "uint256",
+              "description": "Unix epoch timestamp of Treasury execution."
+            }
+          ],
+          "stateMutability": "nonpayable"
+        },
         {
           "type": "event",
           "name": "MerkleRootAnchored",
@@ -429,7 +557,6 @@
           ],
           "anonymous": false
         },
-
         {
           "type": "event",
           "name": "PermissionTokenRegistered",
@@ -459,7 +586,6 @@
           ],
           "anonymous": false
         },
-
         {
           "type": "event",
           "name": "SacredZeroActivated",
@@ -489,7 +615,6 @@
           ],
           "anonymous": false
         },
-
         {
           "type": "event",
           "name": "SacredZeroResolved",
@@ -514,7 +639,6 @@
           ],
           "anonymous": false
         },
-
         {
           "type": "event",
           "name": "EmergencyOverrideExecuted",
@@ -544,7 +668,6 @@
           ],
           "anonymous": false
         },
-
         {
           "type": "event",
           "name": "LanternStatusBroadcast",
@@ -576,7 +699,32 @@
           ],
           "anonymous": false
         },
-
+        {
+          "type": "event",
+          "name": "TriCameralConstitutionalVeto",
+          "description": "Emitted when the Stewardship Custodians exercise their binding veto on a governance proposal. The proposal is constitutionally blocked. The proposer's institution ban clock starts at this timestamp. No re-submission is permitted from the same institution for one year.",
+          "$comment": "Monograph ref: TML Constitutionalization Monograph v3.3, Section III. x-tml-pillar: HybridShield.",
+          "inputs": [
+            {
+              "name": "proposalId",
+              "type": "bytes32",
+              "indexed": true,
+              "description": "Proposal identifier that has been constitutionally blocked."
+            },
+            {
+              "name": "vetoTimestamp",
+              "type": "uint256",
+              "indexed": false,
+              "description": "Unix epoch timestamp of veto. Institution ban active for one year from this timestamp."
+            },
+            {
+              "name": "survivabilityClass",
+              "type": "bool",
+              "indexed": false,
+              "description": "Whether the vetoed proposal was survivability-class."
+            }
+          ]
+        },
         {
           "type": "error",
           "name": "NoLogNoAction",
@@ -593,7 +741,6 @@
             }
           ]
         },
-
         {
           "type": "error",
           "name": "SacredZeroSystemWideActive",
@@ -606,7 +753,6 @@
             }
           ]
         },
-
         {
           "type": "error",
           "name": "QuorumNotMet",
@@ -623,7 +769,6 @@
             }
           ]
         },
-
         {
           "type": "error",
           "name": "InvalidResolutionState",
@@ -636,7 +781,6 @@
             }
           ]
         },
-
         {
           "type": "error",
           "name": "UnauthorizedSupremeAuthority",
@@ -649,7 +793,6 @@
             }
           ]
         },
-
         {
           "type": "error",
           "name": "TokenExpired",
@@ -665,18 +808,31 @@
               "type": "uint256"
             }
           ]
+        },
+        {
+          "type": "error",
+          "name": "TriCameralNotRatified",
+          "description": "Reverts when executeTriCameralRatification is called for a proposal that has not yet achieved full ratification. For survivability-class proposals, both voteNumber=1 and voteNumber=2 must pass at 75% in both chambers before this error clears.",
+          "inputs": [
+            {
+              "name": "proposalId",
+              "type": "bytes32",
+              "description": "The proposal that is not yet ratified."
+            },
+            {
+              "name": "missingRequirement",
+              "type": "string",
+              "description": "Human-readable description of the unmet ratification requirement."
+            }
+          ]
         }
-
       ]
     },
-
     "ITMLEnforcer": {
       "contractName": "ITMLEnforcer",
       "description": "Interface for TML mandate enforcement. Implements on-chain verification of the Human Rights Mandate (Pillar V, UDHR/Geneva Convention vector enforcement) and the Earth Protection Mandate (Pillar VI, Paris Agreement vector enforcement). All implementations must satisfy this interface for a deployment to be considered TML-compliant.",
       "$comment": "Monograph ref: Section 2.3.3, Pillar V (HumanRightsMandate), Pillar VI (EarthProtectionMandate). Corresponds to Smart_Contracts/src/ITMLEnforcer.sol.",
-
       "abi": [
-
         {
           "type": "function",
           "name": "verifyHumanRightsCompliance",
@@ -723,7 +879,6 @@
           ],
           "stateMutability": "view"
         },
-
         {
           "type": "function",
           "name": "verifyEarthProtectionCompliance",
@@ -765,7 +920,6 @@
           ],
           "stateMutability": "view"
         },
-
         {
           "type": "function",
           "name": "verifyGoukassianLicense",
@@ -805,7 +959,6 @@
           ],
           "stateMutability": "view"
         },
-
         {
           "type": "function",
           "name": "recordMandateViolation",
@@ -839,7 +992,6 @@
           ],
           "stateMutability": "nonpayable"
         },
-
         {
           "type": "function",
           "name": "getMandateConfiguration",
@@ -870,7 +1022,6 @@
           ],
           "stateMutability": "view"
         },
-
         {
           "type": "event",
           "name": "HumanRightsMandateViolationDetected",
@@ -900,7 +1051,6 @@
           ],
           "anonymous": false
         },
-
         {
           "type": "event",
           "name": "EarthProtectionMandateViolationDetected",
@@ -930,7 +1080,6 @@
           ],
           "anonymous": false
         },
-
         {
           "type": "event",
           "name": "GoukassianLicenseViolationDetected",
@@ -960,7 +1109,6 @@
           ],
           "anonymous": false
         },
-
         {
           "type": "error",
           "name": "MandateNotConfigured",
@@ -972,7 +1120,6 @@
             }
           ]
         },
-
         {
           "type": "error",
           "name": "ProvisionArrayMismatch",
@@ -988,9 +1135,7 @@
             }
           ]
         }
-
       ]
     }
-
   }
 }

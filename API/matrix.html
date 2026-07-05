@@ -211,6 +211,7 @@
     <a href="#p1-gateway"     class="sidebar-link"><span class="sdot sdot-p1"></span>Gateway</a>
     <a href="#p1-goukassian"  class="sidebar-link"><span class="sdot sdot-p1"></span>Goukassian Promise</a>
     <a href="#p1-webhooks"    class="sidebar-link"><span class="sdot sdot-p1"></span>Webhooks</a>
+    <a href="#p1-tricameral"  class="sidebar-link"><span class="sdot sdot-p1"></span>Tri-Cameral Governance</a>
   </div>
 
   <hr class="sidebar-divider">
@@ -243,6 +244,7 @@
     <a href="#p2-bulk"        class="sidebar-link"><span class="sdot sdot-p2"></span>Bulk Evidence Export</a>
     <a href="#p2-gateway"     class="sidebar-link"><span class="sdot sdot-p2"></span>Gateway Routing Status</a>
     <a href="#p2-emergency"   class="sidebar-link"><span class="sdot sdot-p2"></span>Emergency Override Request</a>
+    <a href="#p2-tricameral"  class="sidebar-link"><span class="sdot sdot-p2"></span>Tri-Cameral Approval</a>
   </div>
 
   <hr class="sidebar-divider">
@@ -775,6 +777,24 @@
     </div>
   </div>
 
+
+    <div id="p1-tricameral" class="subsection">
+      <div class="subsection-label" style="background:var(--teal-soft);color:var(--teal);border-color:rgba(22,160,133,0.4);">1.12 Tri-Cameral Governance</div>
+      <div class="matrix-wrap">
+        <table class="matrix-table">
+          <thead><tr><th>ABI Entry</th><th>Description</th><th>Monograph Ref</th><th>TML Pillar(s)</th><th>EU AI Act</th><th>NIST RMF</th><th>ISO 42001</th><th>FRE 902</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td class="cell-schema">registerTriCameralProposal</td><td class="cell-desc">Register governance proposal; proposer exit on submission; 180-day clock starts at submission regardless of vacancies</td><td class="cell-section">Section III; Section 7A</td><td><span class="pt">HybridShield</span></td><td class="cell-reg">Art. 9; Art. 14</td><td class="cell-reg">GV.OC-01; GV.PO-01</td><td class="cell-reg">Cl. 5.2; Cl. 8.4</td><td class="cell-reg">Rule 902(13)</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-schema">recordTriCameralVote</td><td class="cell-desc">Record Technical Council or Stewardship Custodian vote; vetoExercised=true constitutionally blocks; 75% of seatedActiveMembers required</td><td class="cell-section">Section III; Section 7A</td><td><span class="pt">HybridShield</span></td><td class="cell-reg">Art. 9; Art. 14</td><td class="cell-reg">GV.OC-01</td><td class="cell-reg">Cl. 5.2; Cl. 8.4</td><td class="cell-reg">Rule 902(13)</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-schema">executeTriCameralRatification</td><td class="cell-desc">Smart Contract Treasury automatic execution; no admin key; no human override; reverts TriCameralNotRatified if dual-vote not complete</td><td class="cell-section">Section III</td><td><span class="pt">HybridShield</span></td><td class="cell-reg">Art. 9</td><td class="cell-reg">GV.OC-01</td><td class="cell-reg">Cl. 5.2</td><td class="cell-reg">Rule 902(13)</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-schema">TriCameralConstitutionalVeto (event)</td><td class="cell-desc">Emitted when Stewardship Custodians exercise binding veto; immutable on-chain record; institution ban clock starts at vetoTimestamp</td><td class="cell-section">Section III; Section 7A</td><td><span class="pt">HybridShield</span></td><td class="cell-reg">Art. 9; Art. 14</td><td class="cell-reg">GV.OC-01</td><td class="cell-reg">Cl. 5.2; Cl. 8.4</td><td class="cell-reg">Rule 902(13)</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-schema">TriCameralNotRatified (error)</td><td class="cell-desc">Reverts premature ratification execution; for survivability-class proposals both voteNumber=1 and voteNumber=2 required at 75%</td><td class="cell-section">Section III; Section 7A</td><td><span class="pt">HybridShield</span></td><td class="cell-reg">Art. 9</td><td class="cell-reg">GV.OC-01</td><td class="cell-reg">Cl. 5.2</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
 <!-- ════════════════════════════════════════════════════
      PART 2: SCHEMA PROPERTIES
 ════════════════════════════════════════════════════ -->
@@ -1183,6 +1203,33 @@
             <tr><td class="cell-prop">forcedState</td><td class="cell-desc">enum: [-1, 0] only; forced transition to +1 (PROCEED) is schema-blocked</td><td class="cell-section">Section 13.3</td><td><span class="pt">SacredZero</span></td><td class="cell-reg">Art. 14</td><td class="cell-reg">RS.MA-01</td><td class="cell-reg">Cl. 8.4</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
             <tr><td class="cell-prop">custodianQuorumApproval</td><td class="cell-desc">optional BETA; HybridShield quorum approval if required by deployment policy</td><td class="cell-section">Section 2.3.3; Section 13.3</td><td><span class="pt">HybridShield</span></td><td class="cell-reg">Art. 9; Art. 14</td><td class="cell-reg">GV.OC-01</td><td class="cell-reg">Cl. 8.4; Cl. 8.5</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-BETA">BETA</span></td></tr>
             <tr><td class="cell-prop">if/then constraint</td><td class="cell-desc">targetDecisionId and forcedState required when overrideType = FORCED_STATE_TRANSITION</td><td class="cell-section">Section 13.3</td><td><span class="pt">AlwaysMemory</span></td><td class="cell-reg">Art. 14</td><td class="cell-reg">RS.MA-01</td><td class="cell-reg">Cl. 8.4</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+
+    <div id="p2-tricameral" class="subsection">
+      <div class="subsection-label" style="background:var(--teal-soft);color:var(--teal);border-color:rgba(22,160,133,0.4);">2.27 Tri-Cameral Approval</div>
+      <div class="matrix-wrap">
+        <table class="matrix-table">
+          <thead><tr><th>Property</th><th>Constraint</th><th>Monograph Ref</th><th>TML Pillar(s)</th><th>EU AI Act</th><th>NIST RMF</th><th>ISO 42001</th><th>FRE 902</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td class="cell-prop">technicalCouncilVotes</td><td class="cell-desc">totalMembers: const 9; proposal rights only; no veto authority</td><td class="cell-section">Section III; Section 7A</td><td><span class="pt">HybridShield</span></td><td class="cell-reg">Art. 9; Art. 14</td><td class="cell-reg">GV.OC-01</td><td class="cell-reg">Cl. 5.2; Cl. 8.4</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">technicalCouncilVotes.seatedActiveMembers</td><td class="cell-desc">quorum denominator; excludes vacant seats and quarantined appointees; max 9</td><td class="cell-section">Section III; Section 7A</td><td><span class="pt">HybridShield</span></td><td class="cell-reg">Art. 9</td><td class="cell-reg">GV.OC-01</td><td class="cell-reg">Cl. 5.2</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">stewardshipCustodianVotes</td><td class="cell-desc">totalMembers: const 11; binding veto authority; no proposal rights</td><td class="cell-section">Section III; Section 7A</td><td><span class="pt">HybridShield</span></td><td class="cell-reg">Art. 9; Art. 14</td><td class="cell-reg">GV.OC-01</td><td class="cell-reg">Cl. 5.2; Cl. 8.4</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">stewardshipCustodianVotes.vetoExercised</td><td class="cell-desc">boolean; binding veto; true constitutionally blocks regardless of vote counts; emits TriCameralConstitutionalVeto</td><td class="cell-section">Section III; Section 7A</td><td><span class="pt">HybridShield</span></td><td class="cell-reg">Art. 9; Art. 14</td><td class="cell-reg">GV.OC-01</td><td class="cell-reg">Cl. 5.2; Cl. 8.4</td><td class="cell-reg">Rule 902(13)</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">stewardshipCustodianVotes.seatedActiveMembers</td><td class="cell-desc">quorum denominator; excludes vacant seats and quarantined appointees; max 11</td><td class="cell-section">Section III; Section 7A</td><td><span class="pt">HybridShield</span></td><td class="cell-reg">Art. 9</td><td class="cell-reg">GV.OC-01</td><td class="cell-reg">Cl. 5.2</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">smartContractTreasuryExecution</td><td class="cell-desc">executed + transactionHash; automatic; no admin key; no human override path</td><td class="cell-section">Section III</td><td><span class="pt">HybridShield</span></td><td class="cell-reg">Art. 9</td><td class="cell-reg">GV.OC-01</td><td class="cell-reg">Cl. 5.2</td><td class="cell-reg">Rule 902(13)</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">quorumAchieved</td><td class="cell-desc">boolean; true when for/seatedActiveMembers &ge; 0.75 in both chambers</td><td class="cell-section">Section III; Section 7A</td><td><span class="pt">HybridShield</span></td><td class="cell-reg">Art. 9</td><td class="cell-reg">GV.OC-01</td><td class="cell-reg">Cl. 5.2</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">survivabilityClass</td><td class="cell-desc">boolean; triggers Section 7A dual-vote, proposer exit, institution ban when true</td><td class="cell-section">Section 7A</td><td><span class="pt">HybridShield</span></td><td class="cell-reg">Art. 9; Art. 14</td><td class="cell-reg">GV.PO-01</td><td class="cell-reg">Cl. 5.2; Cl. 8.4</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">proposerExitConfirmed</td><td class="cell-desc">boolean; proposer's membership suspended on submission per Section 7A.2</td><td class="cell-section">Section 7A</td><td><span class="pt">HybridShield</span></td><td class="cell-reg">Art. 14</td><td class="cell-reg">GV.PO-01</td><td class="cell-reg">Cl. 5.2</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">clockStartTimestamp</td><td class="cell-desc">ISO8601DateTime; 180-day window starts at submission regardless of vacancy status</td><td class="cell-section">Section 7A</td><td><span class="pt">HybridShield</span></td><td class="cell-reg">Art. 9</td><td class="cell-reg">GV.PO-01</td><td class="cell-reg">Cl. 5.2</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">voteNumber</td><td class="cell-desc">enum: [1, 2]; dual-vote for survivability-class; both at 75% required for ratification</td><td class="cell-section">Section 7A</td><td><span class="pt">HybridShield</span></td><td class="cell-reg">Art. 9; Art. 14</td><td class="cell-reg">GV.PO-01</td><td class="cell-reg">Cl. 5.2; Cl. 8.4</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">institutionBanActive</td><td class="cell-desc">boolean; proposer's institution banned from filling vacated seat for one year from clockStartTimestamp</td><td class="cell-section">Section 7A</td><td><span class="pt">HybridShield</span></td><td class="cell-reg">Art. 9</td><td class="cell-reg">GV.PO-01</td><td class="cell-reg">Cl. 5.2</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">quarantinedAppointees</td><td class="cell-desc">array[uuid]; appointees within 90 days of submission quarantined from voting on this proposal; count as abstain</td><td class="cell-section">Section 7A</td><td><span class="pt">HybridShield</span></td><td class="cell-reg">Art. 9</td><td class="cell-reg">GV.PO-01</td><td class="cell-reg">Cl. 5.2</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
+            <tr><td class="cell-prop">EmergencyOverrideRequest.triCameralApproval</td><td class="cell-desc">$ref TriCameralApproval; required for survivability-class emergency overrides targeting NL=NA chain or chamber composition</td><td class="cell-section">Section III; Section 13.3</td><td><span class="pt">HybridShield</span></td><td class="cell-reg">Art. 9; Art. 14</td><td class="cell-reg">GV.OC-01; RS.MA-01</td><td class="cell-reg">Cl. 8.4; Cl. 8.5</td><td class="cell-na">Not directly referenced</td><td><span class="sb sb-SHIPPING">SHIPPING</span></td></tr>
           </tbody>
         </table>
       </div>

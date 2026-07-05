@@ -675,6 +675,12 @@
     </div>
   </div>
 
+  <!-- TRI-CAMERAL GOVERNANCE NOTICE -->
+  <div id="tricameral-governance" class="arch-notice" style="margin-top:16px;border-color:var(--teal);background:var(--teal-soft);">
+    <strong>Tri-Cameral Governance</strong><br>
+    Constitutional schema changes require <code>TriCameralApproval</code>. <strong>Technical Council (9 members)</strong> holds proposal rights only. <strong>Stewardship Custodians (11 members)</strong> hold binding veto &mdash; <code>vetoExercised: true</code> blocks constitutionally regardless of vote counts. <strong>Smart Contract Treasury</strong> executes automatically with no admin key and no human override path. Survivability-class changes trigger the Section 7A dual-vote protocol: proposer exits on submission, 180-day evaluation clock starts at submission, both votes require 75% of <code>seatedActiveMembers</code> in both chambers, and the proposer&rsquo;s institution is banned from filling the vacated seat for one year. Governance structure is identical to the TL framework by constitutional design.
+  </div>
+
   <!-- SECURITY SCHEMES -->
   <div id="security" class="section">
     <div class="section-header">
@@ -693,7 +699,7 @@
       <div class="scheme-card">
         <div class="scheme-name">AnchoringLaneSecurity</div>
         <div class="scheme-value">HSM-SignedJWT + MutualTLS</div>
-        <div class="scheme-desc">Applies to Anchoring Lane, Sacred Zero, Refusal, and Emergency Override. JWT signed by HSM registered in HybridShield 6-Custodian registry.</div>
+        <div class="scheme-desc">Applies to Anchoring Lane, Sacred Zero, Refusal, and Emergency Override. JWT signed by HSM registered in the Tri-Cameral HybridShield registry (Stewardship Custodians: 11 members binding veto; Technical Council: 9 members proposal rights; Smart Contract Treasury: automatic execution).</div>
       </div>
       <div class="scheme-card">
         <div class="scheme-name">AuditorRegulatorSecurity</div>
@@ -1140,7 +1146,7 @@
         <span class="expand-icon">&#9660;</span>
       </div>
       <div class="endpoint-body">
-        <div class="endpoint-summary">SUPREME AUTHORITY ENDPOINT (Section 13.3). Activates emergency override protocols: BREAK_GLASS_SHUTDOWN (halts all Inference Lane proposals), KILL_SWITCH (forces all active State Envelopes to State -1), or FORCED_STATE_TRANSITION (transitions a specific decision). ALL invocations are immutably logged before taking effect. No Log = No Action applies without exception.</div>
+        <div class="endpoint-summary">SUPREME AUTHORITY ENDPOINT (Section 13.3). Activates emergency override protocols: BREAK_GLASS_SHUTDOWN, KILL_SWITCH, or FORCED_STATE_TRANSITION. ALL invocations are immutably logged before taking effect. No Log = No Action applies without exception. Survivability-class overrides targeting the NL=NA chain, Sacred Zero model, or chamber composition require TriCameralApproval with Section 7A dual-vote. Forced State +1 is constitutionally blocked.</div>
         <div class="iron-law">NO LOG = NO ACTION applies to emergency overrides without exception. Override is logged before execution.</div>
         <div class="detail-grid">
           <div class="detail-cell">
@@ -1565,7 +1571,7 @@
         <span class="expand-icon">&#9660;</span>
       </div>
       <div class="endpoint-body">
-        <div class="endpoint-summary">Returns the current quorum status of the 6-Custodian HybridShield across all registered jurisdictions. Endpoint is SHIPPING; cross-jurisdiction sub-500ms quorum is FUTURE per Section 10 (network physics constraint).</div>
+        <div class="endpoint-summary">Returns the current quorum status of the Tri-Cameral governance structure across all registered jurisdictions. The HybridShield registry covers the Stewardship Custodians (11 members, binding veto), Technical Council (9 members, proposal rights only), and Smart Contract Treasury (automatic execution, no admin key). Endpoint is SHIPPING; cross-jurisdiction sub-500ms quorum is FUTURE per Section 10 (network physics constraint).</div>
         <div class="detail-grid">
           <div class="detail-cell">
             <div class="detail-label">TML Pillar</div>
