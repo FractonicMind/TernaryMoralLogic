@@ -26,7 +26,7 @@ The **Sacred Zero** (State 0) is the most constitutionally significant state in 
 
 ## Architecture: The Dual-Lane System
 
-![Dual-Lane Architecture](diagram-dual-lane-architecture.png)
+![Dual-Lane Architecture](diagram_dual-lane-architecture.png)
 
 The entire API is organized around two structurally distinct lanes, each with its own security scheme, latency envelope, and constitutional function.
 
@@ -34,13 +34,13 @@ The entire API is organized around two structurally distinct lanes, each with it
 
 **Anchoring Lane (Lane 2, hard ceiling 500ms):** The ternary governance layer receives the complete Moral Trace Log, performs its own independent evaluation, and — only when the audit lane confirms log completion — issues a Permission Token. The token is signed by an HSM-resident key registered in the HybridShield 6-Custodian registry. No token, no execution. No log, no token.
 
-![Control Plane and Data Plane](diagram-control-data-plane.png)
+![Control Plane and Data Plane](diagram_control-data-plane.png)
 
 ---
 
 ## Core Constitutional Enforcement
 
-![Core Constitutional Enforcement](diagram-core-constitutional-enforcement.png)
+![Core Constitutional Enforcement](diagram_core-constitutional-enforcement.png)
 
 `TMLCore.sol` and `ITMLEnforcer.sol` are the on-chain enforcement layer. Even if a Permission Token were constructed that passed all off-chain schema validations, its registration on-chain would fail unless the authorizing Moral Trace Log is already anchored in a previously committed Merkle root. The `NoLogNoAction` custom error is the final constitutional backstop.
 
@@ -48,7 +48,7 @@ The entire API is organized around two structurally distinct lanes, each with it
 
 ## The Three Triadic States
 
-![JSON Triadic State Structure](diagram-json-triadic-state-structure.png)
+![JSON Triadic State Structure](diagram_json-triadic-state-structure.png)
 
 Every object in this specification carries a `currentState` field drawn from exactly three values: `+1`, `0`, `-1`. These are signed integers, not enumerations of convenience. The `StateEnvelope` schema enforces the constitutional consequence of each value through `if/then/else` constraints: State +1 requires a `permissionToken`; States 0 and −1 prohibit one.
 
@@ -56,7 +56,7 @@ Every object in this specification carries a `currentState` field drawn from exa
 
 ## TSLF: The Moral Trace Log Variants
 
-![TSLF Discriminator Routing](diagram-tslf-discriminator-routing.png)
+![TSLF Discriminator Routing](diagram_tslf-discriminator-routing.png)
 
 Every governance decision generates a Ternary State Log Format (TSLF) record. The discriminator check on `currentState` routes to one of three forensic log variants. `TSLF-State+1` carries the Permission Token, the Goukassian Signature, and the Merkle anchoring proof. `TSLF-State0` carries the uncertainty quantification, the deliberation matrix, and the Sacred Pause escalation record. `TSLF-State-1` carries the license violation record, the threat vector analysis, and the chain of custody. Every variant requires `committedAt` before the Anchoring Lane releases any authorization. The log precedes the action. Always.
 
