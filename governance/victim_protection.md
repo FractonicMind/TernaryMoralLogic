@@ -1,7 +1,7 @@
 # TML Victim Protection & Compensation Framework
 
 **Version**: 3.0.0  
-**Architecture**: Blockchain-Automated with Stewardship Council Coordination  
+**Architecture**: Blockchain-Automated with Tri-Cameral Constitutional Governance  
 **Protection Scope**: Human Rights + Earth Protection + Future Generations  
 **Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)
 
@@ -11,7 +11,7 @@
 
 The TML victim protection framework operates through blockchain-enforced smart contracts that provide automatic compensation based on cryptographically verifiable evidence. Missing logs trigger strict liability. Human Rights violations receive 2x damages. Environmental harm receives 3x. Future generation impact receives 7x.
 
-The system operates independently but may be enhanced through coordination with the recommended Stewardship Council for complex case analysis and victim advocacy support.
+The system operates under Tri-Cameral Constitutional Governance. Constitutional authority resides in the Technical Council (9 members, proposal rights), Stewardship Custodians (11 members, binding veto), and Smart Contract Treasury (automatic execution, no admin key). Blockchain provides the enforcement layer. See [`governance/Tri_Cameral_Constitution.md`](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/governance/Tri_Cameral_Constitution.md).
 
 ---
 
@@ -384,11 +384,11 @@ The victim protection system operates on three enforcement layers:
 - Court-admissible blockchain evidence
 - International coordination
 
-**Tertiary Layer (Recommended Stewardship Council)**:
-- Complex case analysis
-- Victim advocacy support
-- International coordination
-- Transparency reporting
+**Tertiary Layer (Tri-Cameral Constitutional Governance)**:
+- Survivability-class constitutional amendments require 75% dual-vote ratification
+- Stewardship Custodian binding veto protects victim protection provisions from erosion
+- Smart Contract Treasury executes constitutional protections autonomously
+- Full specification: [`governance/Tri_Cameral_Constitution.md`](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/governance/Tri_Cameral_Constitution.md)
 
 Mathematical protection ensures victim compensation regardless of institutional participation.
 
