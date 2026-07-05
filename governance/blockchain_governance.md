@@ -9,7 +9,7 @@
 
 ## Executive Summary
 
-TML governance operates through **mathematical consensus on immutable blockchains**, not institutional committees. This enables immediate deployment without coordination, automatic enforcement via smart contracts, tamper-proof evidence via cryptographic proofs, and recommended Stewardship Council enhancement for those who want it later.
+TML governance operates through **mathematical consensus on immutable blockchains** as the enforcement layer, with constitutional authority residing in the Tri-Cameral Governance Architecture. Blockchain provides immediate deployment without coordination, automatic enforcement via smart contracts, and tamper-proof evidence via cryptographic proofs. Constitutional governance -- the Technical Council (9 members, proposal rights), Stewardship Custodians (11 members, binding veto), and Smart Contract Treasury (automatic execution, no admin key) -- is the primary governing authority. See [`governance/Tri_Cameral_Constitution.md`](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/governance/Tri_Cameral_Constitution.md).
 
 ---
 
@@ -160,144 +160,32 @@ contract TMLEnforcement {
 
 ---
 
-## Recommended Stewardship Council Evolution
+## Tri-Cameral Constitutional Governance
 
-### Current State (Blockchain-Only)
-- Full functionality today
-- Complete legal enforcement
-- Operating cost approximately $110/month
+Constitutional authority for TML resides in the Tri-Cameral Governance Architecture, not in blockchain consensus alone. Blockchain is the enforcement layer. The Tri-Cameral structure is the governing authority.
 
-### Future Enhancement (Add Stewardship Council)
-**Year 2-3**: Early adopters
-- 1-3 institutional members join
-- Enhanced credibility
-- Cross-border recognition
+The full constitutional specification is in [`governance/Tri_Cameral_Constitution.md`](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/governance/Tri_Cameral_Constitution.md).
 
-**Year 5+**: Mature network
-- 6 institutional members (recommended composition)
-- Insurance maximization
-- International treaties
+### Three Chambers
 
-### Stewardship Council Composition (When Added)
+**Technical Council (9 members):** Proposal rights only. No veto authority. Members who submit survivability-class proposals exit the chamber on submission per Section 7A.
 
-Six independent institutions hold synchronized copies of every TML log:
+**Stewardship Custodians (11 members):** Binding veto authority only. No proposal rights. A single `vetoExercised: true` constitutionally blocks any proposal regardless of all vote counts. Their veto is final, non-appealable, and emitted as an immutable on-chain event.
 
-1. **Technical Custodian (Recommended: Electronic Frontier Foundation)**
-   * Maintains the open-source repository
-   * Manages blockchain infrastructure
-   * Provides technical community support
-   * Ensures code integrity and updates
+**Smart Contract Treasury:** Automatic execution, no admin key, no human override path. Executes ratified proposals autonomously. Cannot be halted, paused, or redirected by any authority.
 
-2. **Human Rights Enforcement Partner (Recommended: Amnesty International)**
-   * Monitors enforcement of 26+ human rights documents
-   * Reviews complex Human Rights Sacred Zero cases
-   * Coordinates with international human rights mechanisms
-   * Supports victims in seeking remedy and justice
+### What This Supersedes
 
-3. **Earth Protection Enforcement Partner (Recommended: Indigenous Environmental Network)**
-   * Monitors enforcement of 20+ environmental treaties
-   * Reviews Earth Protection Sacred Zero cases
-   * Represents Indigenous sovereignty in environmental decisions
-   * Coordinates ecosystem restoration from Memorial Fund
+The earlier architecture of this document described a 6-member "Stewardship Council" as a recommended future enhancement. That framing was written before the Tri-Cameral model matured. It is superseded. The Tri-Cameral governance structure is the operating architecture -- not optional, not future, not an enhancement. It has been in effect since the constitutional insertions across the TML API folder (Q2 2026).
 
-4. **AI Ethics Research Partner (Recommended: MIT Media Lab or Stanford HAI)**
-   * Conducts research on TML effectiveness
-   * Validates ethical framework evolution
-   * Publishes findings on algorithmic accountability
-   * Guides implementation standards development
+### Governance Metrics
 
-5. **Memorial Fund Administrator (Recommended: Memorial Sloan Kettering Cancer Center)**
-   * Administers the cancer research portion of Memorial Fund
-   * Honors Goukassian's personal commitment to medical research
-   * Ensures victim compensation reaches intended recipients
-   * Provides transparency reporting on fund allocation
-
-6. **Community Representative (Elected Position)**
-   * Represents implementers and user community interests
-   * Elected by TML stakeholder community
-   * Ensures framework serves real-world needs
-   * Provides accountability for Council decisions
-
-### Stewardship Council Role (When Added)
-**Enhancement Only**:
-- Additional log redundancy
-- Cross-jurisdictional attestation
-- Academic research collaboration
-- Community trust building
-
-**Never Required For**:
-- Deployment approval
-- Threshold setting
-- Investigation access
-- Legal enforcement
-
----
-
-## Implementation Path
-
-### Day 1: Deploy with Blockchain
-```bash
-# No permission needed
-docker pull tml/always-memory:latest
-docker run -e BLOCKCHAIN_GOVERNANCE=true \
-           -e MANDATORY_CHAINS="bitcoin,polygon,ethereum" \
-           -e STEWARDSHIP_COUNCIL=recommended \
-           tml/always-memory
-
-# Fully operational immediately
-```
-
-### Month 1-12: Optimize and Scale
-- Monitor blockchain costs
-- Optimize batching strategies
-- Build internal expertise
-- Document ROI metrics
-
-### Year 2+: Consider Enhancement
-- Evaluate Stewardship Council candidates
-- Build relationships gradually
-- Migrate when beneficial
-- Never lose blockchain foundation
-
----
-
-## Governance Comparison
-
-### Old Model (Institutional)
-- Multiple institutions must agree
-- Extended coordination time
-- Voting delays decisions
-- Political influence possible
-- Single point of failure
-
-### New Model (Blockchain)
-- Mathematical consensus instant
-- Implementation without coordination
-- No voting needed
-- Tamper-proof by design
-- Multiple redundant chains
-
----
-
-## Key Governance Metrics
-
-### Deployment Metrics
-- Time to deployment: Immediate upon setup
-- Institutional coordination required: Zero
-- Approval processes: None
-- Full accountability active: Immediate
-
-### Protection Metrics
-- Human rights violations logged: 100%
-- Environmental harm captured: 100%
-- Missing log liability: Automatic
-- Evidence tampering: Impossible
-
-### Evolution Metrics
-- Stewardship Council institutions (Year 1): 0 (not needed)
-- Stewardship Council institutions (Year 5): 0-6 (recommended)
-- Blockchain anchoring: Always mandatory
-- Mathematical governance: Forever primary
+- Technical Council members: 9 (active)
+- Stewardship Custodian members: 11 (active)
+- Smart Contract Treasury: deployed, no admin key
+- Survivability-class quorum: 75% of seated active members in both chambers across two 180-day windows
+- Blockchain anchoring: always mandatory (enforcement layer)
+- Constitutional authority: Tri-Cameral (primary governing authority)
 
 ---
 
