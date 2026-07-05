@@ -315,7 +315,7 @@ that regulated operators must evaluate for their specific deployment context.
 
 ---
 
-## Appendix Index: FUTURE Features by Pillar
+### Appendix Index: FUTURE Features by Pillar
 
 | Feature | Primary Pillar(s) | Section 10 Constraint | Specification Artifacts Affected |
 |---------|--------------------|----------------------|----------------------------------|
