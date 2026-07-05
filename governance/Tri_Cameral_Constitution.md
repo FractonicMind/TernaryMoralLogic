@@ -2,12 +2,6 @@
 
 ### **A Tri-Cameral Constitutional Blueprint for AI Moral Reasoning Governance**
 
-**Architect:** Lev Goukassian  
-**ORCID:** [0009-0006-5966-1243](https://orcid.org/0009-0006-5966-1243)  
-**Published:** AI and Ethics, Springer Nature. [DOI: 10.1007/s43681-026-01124-0](https://doi.org/10.1007/s43681-026-01124-0)  
-**Governance Structure:** Identical to TL framework by constitutional design  
-**Status:** Active Constitutional Governance, Q2 2026  
-
 ---
 
 ## What Is TML Governance?
