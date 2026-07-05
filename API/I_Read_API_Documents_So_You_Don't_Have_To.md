@@ -1,6 +1,6 @@
 ## The Binder That Was Not a Null
 
-There we were, I with my friend, we are both Senior API Architects at a Fintech Consultancy in the glass-and-marble lobby of the Financial District's most aggressively air-conditioned WeWork, when someone handed us a binder titled "TML API Specification Suite: The Ternary Moral Logic Framework, v3.3.0. May 2026." Author: Lev Goukassian.
+There we were, I with my friend, we are both Senior API Architects at a Fintech Consultancy in the glass-and-marble lobby of the Financial District's most aggressively air-conditioned WeWork, when someone handed us a binder titled "TML API Specification Suite: The Ternary Moral Logic Framework, v3.3.0. May 2026." Author: Lev Goukassian   
 
 The someone was a courier who materialized beside the false ficus like a heat haze, wearing a polo shirt embroidered with a logo that read CONSTITUTIONAL DELIVERY in all caps, and he pressed the binder into my hands with the solemnity of a process server delivering a federal injunction. The binder was black, three-ring, and roughly the thickness of a brick that had attended graduate school. Its cover bore no illustration, only the title in stark white serif, and at the bottom a single line: "The Constitution in Code." The courier vanished into the elevator before either of us could form a syllable.
 
