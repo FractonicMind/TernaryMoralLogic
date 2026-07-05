@@ -2,7 +2,7 @@
 
 **Version**: 4.0  
 **Status**: Active via Smart Contracts  
-**Architecture**: Blockchain-Automated Rewards with Stewardship Council Coordination  
+**Architecture**: Blockchain-Automated Rewards with Tri-Cameral Constitutional Governance  
 **Core Technology**: Blockchain Bounties + Criminal Law
 
 ---
@@ -11,7 +11,7 @@
 
 The TML whistleblower protection framework operates through blockchain-enforced smart contracts that provide automatic compensation to individuals who report violations with cryptographically verifiable evidence. The system eliminates committee approval processes while maintaining rigorous evidence standards. Companies that retaliate face criminal prosecution with executive liability.
 
-The framework functions independently but may be enhanced by coordination with the recommended Stewardship Council for complex case analysis and public transparency reporting.
+The framework operates under Tri-Cameral Constitutional Governance. Constitutional authority resides in the Technical Council (9 members, proposal rights), Stewardship Custodians (11 members, binding veto), and Smart Contract Treasury (automatic execution, no admin key). Blockchain provides the enforcement layer. See [`governance/Tri_Cameral_Constitution.md`](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/governance/Tri_Cameral_Constitution.md).
 
 ---
 
@@ -359,11 +359,11 @@ The whistleblower protection system operates on three enforcement layers:
 - Court-admissible blockchain evidence
 - Strict liability for violations
 
-**Tertiary Layer (Recommended Stewardship Council)**:
-- Complex case analysis
-- Pattern identification research
-- International coordination
-- Public transparency reporting
+**Tertiary Layer (Tri-Cameral Constitutional Governance)**:
+- Survivability-class constitutional amendments require 75% dual-vote ratification
+- Stewardship Custodian binding veto protects whistleblower provisions from erosion
+- Smart Contract Treasury executes constitutional protections autonomously
+- Full specification: [`governance/Tri_Cameral_Constitution.md`](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/governance/Tri_Cameral_Constitution.md)
 
 Mathematical protection ensures whistleblower safety and compensation regardless of institutional participation.
 
