@@ -3,7 +3,7 @@
 **Version**: 3.0 (Blockchain Architecture)  
 **Status**: Active Protection via Smart Contracts  
 **Core Protection**: Blockchain Anchoring + Criminal Liability  
-**Recommended Enhancement**: Stewardship Council (Future consideration)
+**Recommended Enhancement**: Stewardship Custodians (Future consideration)
 
 ---
 

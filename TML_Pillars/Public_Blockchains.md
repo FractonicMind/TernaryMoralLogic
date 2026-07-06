@@ -58,7 +58,7 @@ This satisfies both needs: the integrity of the blockchain record remains intact
 
 ### **The Governance Lock: An Algorithmic Living Will**
 
-The most profound use of this pillar is anchoring TML's own governance rules. The TML Succession Charter—which defines the Stewardship Council, the fixed distribution percentages of the Memorial Fund, and the system's core principles—is itself anchored to the blockchains.  
+The most profound use of this pillar is anchoring TML's own governance rules. The TML Succession Charter—which defines the Stewardship Custodians, the fixed distribution percentages of the Memorial Fund, and the system's core principles—is itself anchored to the blockchains.  
 This creates an "algorithmic living will." It prevents future custodians from altering the foundational rules. Any deviation from the original, anchored charter would be immediately and publicly detectable. The system is constrained by its own mathematics, ensuring it cannot be diluted or captured over time.
 
 ### **Conclusion: Accountability as a Mathematical Fact**

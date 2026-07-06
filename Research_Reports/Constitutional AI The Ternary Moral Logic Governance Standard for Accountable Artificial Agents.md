@@ -1196,7 +1196,7 @@ Technical safeguards alone are vulnerable to "superuser" attacks---where the own
 #### **3.7.2 Technical Mechanisms: Distributed Custody** {#3.7.2-technical-mechanisms:-distributed-custody}
 
 * **Layer 1: Mathematical Shield (Public Anchors):** Use of public blockchains (Bitcoin, Ethereum, Polygon) to anchor logs. This makes deleting the history prohibitively expensive (requiring a 51% attack on the public network) \[12\].  
-* **Layer 2: Stewardship Council:** A requirement to distribute real-time log copies (or encryption keys) to **six independent custodians**. These are not just backup servers but distinct legal entities/NGOs.  
+* **Layer 2: Stewardship Custodians:** A requirement to distribute real-time log copies (or encryption keys) to **six independent custodians**. These are not just backup servers but distinct legal entities/NGOs.  
   * **Technical Custodian** (e.g., Electronic Frontier Foundation \- EFF) for infrastructure oversight.  
   * **Human Rights Partner** (e.g., Amnesty International) for treaty enforcement.  
   * **Earth Protection Partner** (e.g., Indigenous Environmental Network) for ecosystem oversight.  
@@ -1212,7 +1212,7 @@ Technical safeguards alone are vulnerable to "superuser" attacks---where the own
 #### **3.7.4 Operational Consequences** {#3.7.4-operational-consequences}
 
 * **Governance Overhead:** Managing relationships with six external custodians is legally and logistically complex. It requires formal Data Processing Agreements (DPAs) and service level agreements (SLAs).  
-* **Latency/Availability:** The system must handle scenarios where one or more custodians are unreachable without halting operations. Typically, TML uses a "quorum" consensus (e.g., 3-of-6 custodians must acknowledge receipt) to proceed, balancing redundancy with uptime.
+* **Latency/Availability:** The system must handle scenarios where one or more custodians are unreachable without halting operations. Typically, TML uses a "quorum" consensus (e.g., 3-of-11 custodians must acknowledge receipt) to proceed, balancing redundancy with uptime.
 
 #### **3.7.5 Failure Cases** {#3.7.5-failure-cases}
 
@@ -1276,7 +1276,7 @@ Prevents "Retroactive Edit." An operator cannot go back and change the log to sa
 | **4\. Moral Trace Logs** | Forensic Context | Schema (Trigger/Context), EKR, GDPR Design | Contextual Erasure (Why vs. What) | FRE 902(13/14), EU AI Act Art 12 |
 | **5\. Human Rights Mandate** | Anthropocentric Guard | Vector-based Treaty Checks | Automated Discrimination | EU AI Act Art 27 (FRIA), UDHR |
 | **6\. Earth Protection** | Ecological Guard | Carbon/Resource Accounting | Computational Externality | ESG Standards, Paris Agreement |
-| **7\. Hybrid Shield** | Institutional Redundancy | 6-Custodian Distribution | Centralized Cover-up | Subpoena Resilience |
+| **7\. Hybrid Shield** | Institutional Redundancy | Tri-Cameral Distribution | Centralized Cover-up | Subpoena Resilience |
 | **8\. Anchors** | Immutable Proof | Merkle Batching & Public Ledgers | Retroactive Editing | eIDAS (Timestamping) |
 
 This architectural stack ensures that TML is not merely a "guide" for ethical AI, but a mechanism for **constitutional enforcement**. It shifts the locus of control from the benevolent intentions of the developer to the rigid, auditable constraints of the system itself.
@@ -2313,7 +2313,7 @@ TML implements a hybrid escrow system:
 
 * Each log encrypted with unique AES-256 key K  
 * K is split into N=7 shares via Shamir Secret Sharing (threshold t=4)  
-* Shares distributed to 6 custodians \+ 1 "Dead Man's Switch"
+* Shares distributed to 11 custodians \+ 1 "Dead Man's Switch"
 
 **Custodian Distribution:**
 

@@ -130,7 +130,7 @@ The Hybrid Shield, once ambiguous, has been formally documented as a robust, dua
 The two layers of the shield are:
 
 1. **Mathematical Shield:** This layer consists of the cryptographic anchoring of Moral Trace Logs across multiple public ledgers.3 By distributing the evidentiary roots across different blockchain ecosystems, this layer ensures mathematical immutability and protects against the failure or compromise of any single chain.  
-2. **Institutional Shield:** This layer provides a human governance backstop through mirrored custody of logs across a network of independent institutions, such as universities, NGOs, and courts. This network of "Guardians" operates with rotating verification keys, and its governance model includes defined rules for participation, key rotation, and "slashing" conditions (penalties for non-compliance).
+2. **HybridShield:** This layer provides a human governance backstop through mirrored custody of logs across a network of independent institutions, such as universities, NGOs, and courts. This network of "Guardians" operates with rotating verification keys, and its governance model includes defined rules for participation, key rotation, and "slashing" conditions (penalties for non-compliance).
 
 Together, these two redundant and independently auditable layers ensure that the integrity of TML's memory is protected from both technical attacks and institutional capture. This well-defined, multi-layered defense makes the Hybrid Shield a highly durable component of the TML architecture.  
 

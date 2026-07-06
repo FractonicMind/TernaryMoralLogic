@@ -193,7 +193,7 @@ Binary systems are brittle; when they encounter "out of distribution" data (e.g.
 The **Hybrid Shield** 2 is TML’s answer to the cybersecurity mandate. It is a dual-layer defense system designed to protect the integrity of the AI’s "conscience" (its logging and constraints).
 
 * **Layer 1: Technical Shield:** Cryptographic anchoring (Merkle-Batched Storage) ensures that logs cannot be altered by attackers or corrupt insiders.  
-* **Layer 2: Institutional Shield:** A network of distributed authority. The keys to the **Stewardship Custody** are not held by a single admin but are sharded across multiple entities (e.g., the provider, an external auditor, a regulatory body). This "multisig" approach means that a hacker would need to compromise multiple independent organizations to subvert the system.
+* **Layer 2: HybridShield:** A network of distributed authority. The keys to the **Stewardship Custody** are not held by a single admin but are sharded across multiple entities (e.g., the provider, an external auditor, a regulatory body). This "multisig" approach means that a hacker would need to compromise multiple independent organizations to subvert the system.
 
 This architecture specifically addresses Article 15(4), which calls for solutions to prevent "manipulation of the training data set... or inputs designed to cause the AI model to make a mistake." By securing the decision history and the policy constraints in a distributed ledger, TML makes the system resilient to data poisoning and model evasion attacks.  
 ---

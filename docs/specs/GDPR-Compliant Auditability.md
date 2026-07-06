@@ -98,9 +98,9 @@ The foundation of the shield is **Cryptographic Law**, built upon **threshold si
 * **Distributed Authority:** The authority to validate these signatures is distributed across multiple nodes or institutions (e.g., a mix of corporate, regulatory, and NGO nodes), ensuring a system of checks and balances that is mathematically enforced.  
 * **The Mathematical Shield:** Every Moral Trace Log is hashed, and these hashes are anchored to multiple public ledgers (blockchains). This creates an immutable historical record. If an attacker attempts to alter a log in the local database, the hash mismatch with the public ledger immediately exposes the tampering. This makes compliance "mathematically impossible" to fake.
 
-### **4.2 Layer 2: The Institutional Shield**
+### **4.2 Layer 2: The HybridShield**
 
-While the Technical Shield provides cryptographic rigidity, the Institutional Shield integrates human wisdom and governance. It recognizes that code cannot anticipate every moral eventuality.
+While the Technical Shield provides cryptographic rigidity, the HybridShield integrates human wisdom and governance. It recognizes that code cannot anticipate every moral eventuality.
 
 * **Stewardship Custodians:** These are designated human entities responsible for safeguarding the "Goukassian Principle." They hold the keys required for threshold signatures and are tasked with reviewing "Epistemic Hold" escalations.  
 * **The Technical Council:** A governance body that maintains the cryptographic standards and authorizes protocol updates, ensuring that performance optimizations do not compromise the ethical core.  

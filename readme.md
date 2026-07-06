@@ -274,7 +274,7 @@ if (deployment_context == "MILITARY_TARGETING" ||
 **[GDPR-Compatible Encryption (Ephemeral Key Rotation)](./docs/specs/EKR%20Security%20Architecture.md)**:
 - Personally Identifiable Information (PII) encrypted with unique, time-limited keys
 - Keys NOT stored by operator; distributed via Shamir Secret Sharing to custodians
-- Access requires quorum authorization (3-of-6 custodians minimum)
+- Access requires quorum authorization (3-of-11 custodians minimum)
 - Satisfies "Right to be Forgotten" via cryptographic shredding (keys destroyed = data unrecoverable)
 
 **[Federal Rules of Evidence (FRE 902)](./docs/LEGAL.md)**:
@@ -393,7 +393,7 @@ if proposed_action_affects_protected_ecosystem():
 - Legally enforces multi-jurisdictional "escrow of truth"
 - If government demands deletion, operator truthfully claims "impossibility"
 
-**📖 Learn More**: [Hybrid Shield Documentation](./TML_Pillars/Hybrid_Shield.md) | [Hybrid Shield Deep Dive](./protection/Hybrid-Shield.md) | [Stewardship Council Rules](./governance/earth/COMMUNITY_SEAT_RULES.md) | [Whistleblower Protection](./governance/whistleblower_protection.md) | [Victim Protection](./governance/victim_protection.md) | [Memorial Fund](./memorial/MEMORIAL_FUND.md)
+**📖 Learn More**: [Hybrid Shield Documentation](./TML_Pillars/Hybrid_Shield.md) | [Hybrid Shield Deep Dive](./protection/Hybrid-Shield.md) | [Stewardship Custodians Rules](./governance/earth/COMMUNITY_SEAT_RULES.md) | [Whistleblower Protection](./governance/whistleblower_protection.md) | [Victim Protection](./governance/victim_protection.md) | [Memorial Fund](./memorial/MEMORIAL_FUND.md)
 
 ---
 
@@ -456,7 +456,7 @@ Batch of 5,000 logs:
 
 Ternary Moral Logic (TML) includes a **Voluntary Succession Declaration** personally authored and signed by **Lev Goukassian**, ensuring that the framework’s ethical, legal, and technical architecture will remain protected and operational beyond his lifetime.
 
-This declaration—witnessed, notarizable, and anchored on-chain—transfers stewardship of all TML repositories, blockchain anchoring systems, domains, and Memorial Fund operations to a multi-institutional **[Stewardship Council](TML-VOLUNTARY-SUCCESSION.md)** representing technology, human rights, environmental protection, academia, and medical research.
+This declaration—witnessed, notarizable, and anchored on-chain—transfers stewardship of all TML repositories, blockchain anchoring systems, domains, and Memorial Fund operations to a multi-institutional **[Stewardship Custodians](TML-VOLUNTARY-SUCCESSION.md)** representing technology, human rights, environmental protection, academia, and medical research.
 
 All core protections remain immutable and non-negotiable:
 **Always Memory before action, Sacred Zero before harm, Hybrid Shield before trust.**
@@ -600,7 +600,7 @@ signature = ed25519_sign(private_key, message, nonce)
 - Distribution:
   - 1 share: Operator (temporary, destroyed after session)
   - 6 shares: Custodians (EFF, Amnesty, etc.)
-- Threshold: 4-of-6 custodians required to reconstruct key
+- Threshold: 4-of-11 custodians required to reconstruct key
 
 **Step 3: User Requests Erasure (GDPR Article 17)**
 ```
@@ -890,12 +890,12 @@ To ensure TML's perpetual governance and prevent "orphaned constitutions," the *
 **Key Documents**:
 - **[Articles of Incorporation](./ARTICLES%20OF%20INCORPORATION%20OF%20THE%20GOUKASSIAN%20FOUNDATION.md)** - Legal charter
 - **[Governance Model](./GOVERNANCE.md)** - Organizational structure
-- **[Stewardship Council](./TML_STEWARDSHIP_COUNSIL.md)** - Community oversight
+- **[Stewardship Custodians](./TML_STEWARDSHIP_COUNSIL.md)** - Community oversight
 - **[Succession Plan](./TML-Succession-Plan.html)** - Long-term continuity
 - **[Voluntary Succession](./TML-VOLUNTARY-SUCCESSION.md)** - Leadership transitions
 - **[Memorial Fund](./memorial/MEMORIAL_FUND.md)** - Victim compensation & legacy
 
-**📖 Learn More**: [Foundation Incorporation](./ARTICLES%20OF%20INCORPORATION%20OF%20THE%20GOUKASSIAN%20FOUNDATION.md) | [Governance Documentation](./GOVERNANCE.md) | [Stewardship Council Rules](./governance/earth/COMMUNITY_SEAT_RULES.md)
+**📖 Learn More**: [Foundation Incorporation](./ARTICLES%20OF%20INCORPORATION%20OF%20THE%20GOUKASSIAN%20FOUNDATION.md) | [Governance Documentation](./GOVERNANCE.md) | [Stewardship Custodians Rules](./governance/earth/COMMUNITY_SEAT_RULES.md)
 
 ---
 

@@ -90,7 +90,7 @@ def always_memory(system_id: str = "default",
                 sacred_zero_trigger=sacred_trigger
             )
             
-            # Log would be sent to Stewardship Council here
+            # Log would be sent to Stewardship Custodians here
             # For now, just proceed with function
             
             result = func(*args, **kwargs)

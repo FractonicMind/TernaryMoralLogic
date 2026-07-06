@@ -11,7 +11,7 @@
 
 ---
 
-**Abstract:** This paper outlines a formal succession plan for the Ternary Moral Logic (TML) framework, an open-source system designed to enforce immutable ethical constraints on artificial intelligence and automated systems. Motivated by the author's terminal health diagnosis, this document details a decentralized, multi-stakeholder governance model intended to ensure the long-term viability and integrity of the TML project. The framework proposes a "Stewardship Council" composed of leading non-profit organizations in technology, human rights, and environmental protection to oversee the system's core components, including its blockchain-anchored record-keeping, smart contract-based enforcement, and a victim compensation fund. The paper serves as both a legal declaration and a call to action for institutions to assume custodianship, ensuring the continuity of a public good designed for algorithmic accountability.  
+**Abstract:** This paper outlines a formal succession plan for the Ternary Moral Logic (TML) framework, an open-source system designed to enforce immutable ethical constraints on artificial intelligence and automated systems. Motivated by the author's terminal health diagnosis, this document details a decentralized, multi-stakeholder governance model intended to ensure the long-term viability and integrity of the TML project. The framework proposes a "Stewardship Custodians" composed of leading non-profit organizations in technology, human rights, and environmental protection to oversee the system's core components, including its blockchain-anchored record-keeping, smart contract-based enforcement, and a victim compensation fund. The paper serves as both a legal declaration and a call to action for institutions to assume custodianship, ensuring the continuity of a public good designed for algorithmic accountability.  
 
 **Keywords:** AI Ethics, Algorithmic Accountability, Decentralized Governance, Blockchain, Smart Contracts, Open Source Software, Technology Succession Planning, Human Rights, Environmental Protection
 
@@ -34,9 +34,9 @@ TML is built on a foundation of mandatory transparency and non-negotiable ethica
 
 ### **3. Proposed Governance and Succession Model**
 
-To prevent capture and ensure long-term alignment with its public-interest mission, TML's governance is designed to be decentralized. A multi-organization **Stewardship Council** is proposed, with each member holding specific, non-overlapping responsibilities. No single organization can control the framework.  
+To prevent capture and ensure long-term alignment with its public-interest mission, TML's governance is designed to be decentralized. A multi-organization **Stewardship Custodians** is proposed, with each member holding specific, non-overlapping responsibilities. No single organization can control the framework.  
 
-**3.1 Stewardship Council Composition:** The proposed council structure allocates seats to specialists in key domains:
+**3.1 Stewardship Custodians Composition:** The proposed council structure allocates seats to specialists in key domains:
 
 * **Primary Technical Custodian (Recommended: Electronic Frontier Foundation):** Responsible for the open-source repository, blockchain infrastructure, and technical community support.  
 * **Human Rights Enforcement Partner (Recommended: Amnesty International):** Responsible for monitoring the enforcement of the 26+ human rights documents and coordinating victim support.  

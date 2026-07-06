@@ -2,7 +2,7 @@
 
 ## Executive Summary
 
-This report deconstructs the technical architecture of Ternary Moral Logic (TML) smart contracts operating as an immutable enforcement layer on EVM-compatible platforms (Ethereum, Polygon, Avalanche). The system operationalizes ethical commitments through three mechanisms: (1) a deterministic state machine enforcing tri-state logic (+1 Proceed, −1 Refuse, 0 Sacred Zero/Escalation), (2) a hybrid on-chain/off-chain storage model preserving auditability while optimizing gas efficiency, and (3) a human-in-the-loop Stewardship Council interface that can only resolve uncertainty, never override refusals derived from core axioms. The "No God Mode" design prevents any function—including admin operations—from escaping STATE_INTEGRITY_FROZEN, ensuring that constitutional constraints embedded at contract deployment become effectively immutable without requiring protocol-level changes.
+This report deconstructs the technical architecture of Ternary Moral Logic (TML) smart contracts operating as an immutable enforcement layer on EVM-compatible platforms (Ethereum, Polygon, Avalanche). The system operationalizes ethical commitments through three mechanisms: (1) a deterministic state machine enforcing tri-state logic (+1 Proceed, −1 Refuse, 0 Sacred Zero/Escalation), (2) a hybrid on-chain/off-chain storage model preserving auditability while optimizing gas efficiency, and (3) a human-in-the-loop Stewardship Custodians interface that can only resolve uncertainty, never override refusals derived from core axioms. The "No God Mode" design prevents any function—including admin operations—from escaping STATE_INTEGRITY_FROZEN, ensuring that constitutional constraints embedded at contract deployment become effectively immutable without requiring protocol-level changes.
 
 ***
 
@@ -50,11 +50,11 @@ This immutable encoding ensures that bytecode auditors can cryptographically ver
 
 ***
 
-## 2. The Stewardship Council: Human Protocol Interface
+## 2. The Stewardship Custodians: Human Protocol Interface
 
 ### 2.1 Architectural Role and Constraints
 
-The Stewardship Council operates as a **defined software role**, not an off-chain governance body. It is instantiated as a **multisig contract** (Gnosis Safe or similar), with explicit constraints embedded in the TML contract logic:
+The Stewardship Custodians operates as a **defined software role**, not an off-chain governance body. It is instantiated as a **multisig contract** (Gnosis Safe or similar), with explicit constraints embedded in the TML contract logic:
 
 **The Council's Scope (Hardcoded Constraints)**:  
 - ✅ **CAN**: Resolve Sacred Zero (0) escalations via weighted voting  

@@ -1,4 +1,4 @@
-# TML Stewardship Council: Operational Charter
+# TML Stewardship Custodians: Operational Charter
 
 **Document Version**: 1.0  
 **Effective Date**: October 19, 2025  
@@ -9,7 +9,7 @@
 
 ## I. Constitutional Foundation
 
-The Stewardship Council constitutes the institutional layer (Pillar 7) of Ternary Moral Logic's Hybrid Shield architecture. Established under the Voluntary Succession Declaration executed by Lev Goukassian (ORCID: 0009-0006-5966-1243), the Council provides distributed custody of Moral Trace Logs and governance coordination for the TML framework.
+The Stewardship Custodians constitutes the institutional layer (Pillar 7) of Ternary Moral Logic's Hybrid Shield architecture. Established under the Voluntary Succession Declaration executed by Lev Goukassian (ORCID: 0009-0006-5966-1243), the Council provides distributed custody of Moral Trace Logs and governance coordination for the TML framework.
 
 **Legal Basis**:
 - TML Voluntary Succession Declaration (executed October 2025)
@@ -24,7 +24,7 @@ The Council operates under strict limitations encoded in smart contracts. Even u
 
 ## II. Council Composition
 
-The Stewardship Council comprises six independent custodian organizations, each selected for domain expertise, institutional stability, and mission alignment with TML's dual mandate: protection of human rights and planetary systems.
+The Stewardship Custodians comprises six independent custodian organizations, each selected for domain expertise, institutional stability, and mission alignment with TML's dual mandate: protection of human rights and planetary systems.
 
 ### Member 1: Technical Custodian
 
@@ -197,7 +197,7 @@ The Stewardship Council comprises six independent custodian organizations, each 
 **Significant Framework Decisions** (Supermajority: 5/6):
 - Addition of new protection documents (Human Rights or Earth treaties)
 - Memorial Fund allocation policy modifications
-- Stewardship Council membership changes
+- Stewardship Custodians membership changes
 - Technical architecture enhancements
 - Implementation standards evolution
 - Cross-border recognition agreements
@@ -244,7 +244,7 @@ These limitations are encoded in Ethereum smart contracts with mathematical enfo
 
 ## IV. The Lantern Seal: Integrity Verification
 
-The Lantern Seal represents the cryptographic link between the Mathematical Shield (blockchain anchoring) and the Stewardship Council (institutional custody). This mechanism ensures both layers of the Hybrid Shield remain operational and synchronized.
+The Lantern Seal represents the cryptographic link between the Mathematical Shield (blockchain anchoring) and the Stewardship Custodians (institutional custody). This mechanism ensures both layers of the Hybrid Shield remain operational and synchronized.
 
 ### Daily Verification Cycle
 
@@ -336,7 +336,7 @@ The Lantern Seal represents the cryptographic link between the Mathematical Shie
 - Independent security audit confirming system integrity
 
 **Consequences for Intentional Tampering**:
-- Immediate removal from Stewardship Council
+- Immediate removal from Stewardship Custodians
 - Criminal referral for evidence tampering (18 U.S.C. § 1519)
 - Civil liability for all damages resulting from compromised logs
 - Permanent loss of TML ecosystem participation
@@ -345,7 +345,7 @@ The Lantern Seal represents the cryptographic link between the Mathematical Shie
 
 ## V. Powers and Limitations
 
-### What the Stewardship Council CAN Do
+### What the Stewardship Custodians CAN Do
 
 **Framework Evolution**:
 - Add new Human Rights documents as international law evolves (cannot remove existing)
@@ -380,7 +380,7 @@ The Lantern Seal represents the cryptographic link between the Mathematical Shie
 - Evaluate cancer research grant applications
 - Ensure transparent allocation consistent with established percentages
 
-### What the Stewardship Council CANNOT Do
+### What the Stewardship Custodians CANNOT Do
 
 **Constitutional Prohibitions** (mathematically enforced):
 
@@ -415,7 +415,7 @@ The Lantern Seal represents the cryptographic link between the Mathematical Shie
 - Make decisions without transparency
 - Operate outside public scrutiny
 
-These limitations exist because TML's legitimacy depends on credible commitment to unchanging constitutional requirements. The Stewardship Council governs operations, not principles.
+These limitations exist because TML's legitimacy depends on credible commitment to unchanging constitutional requirements. The Stewardship Custodians governs operations, not principles.
 
 ---
 
@@ -471,7 +471,7 @@ These limitations exist because TML's legitimacy depends on credible commitment 
 
 ## VII. Relationship to TML's Eight Pillars
 
-The Stewardship Council functions as the institutional implementation of **Pillar 7: Hybrid Shield**, working in coordination with the other pillars:
+The Stewardship Custodians functions as the institutional implementation of **Pillar 7: Hybrid Shield**, working in coordination with the other pillars:
 
 **Pillar 1: Sacred Zero**
 - Council reviews complex Sacred Zero cases requiring expert interpretation
@@ -499,7 +499,7 @@ The Stewardship Council functions as the institutional implementation of **Pilla
 
 **Pillar 7: Hybrid Shield** (Council's Primary Role)
 - Institutional layer providing redundancy and resilience
-- Real-time log distribution to all six custodians
+- Real-time log distribution to all eleven custodians
 - Lantern Seal proving mathematical and institutional integrity
 
 **Pillar 8: Public Blockchains**
@@ -535,7 +535,7 @@ Portion of penalty collections and licensing fees supports Council operations:
 
 ### Prohibited Financial Activities
 
-The Stewardship Council and its member organizations are **prohibited** from:
+The Stewardship Custodians and its member organizations are **prohibited** from:
 
 ❌ Accepting funding from AI companies subject to TML compliance  
 ❌ Licensing TML intellectual property for commercial gain  
@@ -552,7 +552,7 @@ These prohibitions prevent conflicts of interest and maintain Council independen
 
 ### Cross-Border Operations
 
-The Stewardship Council operates as distributed international entity:
+The Stewardship Custodians operates as distributed international entity:
 
 **Jurisdictional Diversity**:
 - Member organizations span multiple continents and legal systems
@@ -755,7 +755,7 @@ This operational charter can be amended to improve Council effectiveness, but co
 
 ## XIV. Conclusion: Stewardship as Constitutional Duty
 
-The Stewardship Council exists not to control TML but to **preserve** it. The Council's authority is limited by design because TML's legitimacy depends on credible commitment to unchanging protections for human rights and planetary systems.
+The Stewardship Custodians exists not to control TML but to **preserve** it. The Council's authority is limited by design because TML's legitimacy depends on credible commitment to unchanging protections for human rights and planetary systems.
 
 **The Council's Sacred Trust**:
 
@@ -781,7 +781,7 @@ A governance structure that survives:
 - Shifts in corporate power
 - Generations of implementation
 
-By limiting its own power, the Stewardship Council ensures TML's protection architecture remains credible across decades. This is governance designed not to rule, but to **endure**.
+By limiting its own power, the Stewardship Custodians ensures TML's protection architecture remains credible across decades. This is governance designed not to rule, but to **endure**.
 
 ---
 
@@ -795,7 +795,7 @@ By limiting its own power, the Stewardship Council ensures TML's protection arch
 **Smart Contract Address**: [To be deployed upon succession activation]  
 
 **Amendment History**:
-- v1.0 (2025-10-19): Initial charter establishing Stewardship Council
+- v1.0 (2025-10-19): Initial charter establishing Stewardship Custodians
 
 **Related Documents**:
 - [TML Voluntary Succession Declaration](/TML-SUCCESSION-DECLARATION.md)
@@ -810,7 +810,7 @@ By limiting its own power, the Stewardship Council ensures TML's protection arch
 - Ethereum Blockchain: [Smart contract address]
 
 **Contact Information**:
-- **Stewardship Council Coordination**: council@tml-goukassian.org
+- **Stewardship Custodians Coordination**: council@tml-goukassian.org
 - **Community Engagement**: community@tml-goukassian.org
 - **Technical Support**: support@tml-goukassian.org
 - **Emergency Response**: emergency@tml-goukassian.org

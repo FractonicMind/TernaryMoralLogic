@@ -21,7 +21,7 @@ class AlwaysMemoryService:
         
         print("🏮 Always Memory Service v3.0")
         print("Enforcement: Blockchain automatic")
-        print("Stewardship Council approval: NEVER NEEDED")
+        print("Stewardship Custodians approval: NEVER NEEDED")
         print("Missing logs = Criminal prosecution\n")
     
     async def create_log(self, decision: Dict) -> str:
@@ -49,7 +49,7 @@ class AlwaysMemoryService:
             print(f"CRITICAL: Missing log {log_hash[:8]}")
             print("Penalty: $100,000,000 (automatic)")
             print("Criminal prosecution: INITIATED")
-            print("Stewardship Council intervention: IMPOSSIBLE\n")
+            print("Stewardship Custodians intervention: IMPOSSIBLE\n")
             
             await self._initiate_prosecution(log_hash)
             return False
@@ -70,7 +70,7 @@ class AlwaysMemoryService:
         return False
     
     def get_council_reality(self) -> Dict:
-        """Return truth about Stewardship Council"""
+        """Return truth about Stewardship Custodians"""
         return {
             'exists': False,
             'needed': False,
@@ -94,7 +94,7 @@ class AlwaysMemoryService:
         """Multi-chain anchoring"""
         # Bitcoin + Ethereum + Polygon
         # Cost to attack: $50B
-        # Stewardship Council approval: Never
+        # Stewardship Custodians approval: Never
         pass  # Simplified
     
     async def _is_anchored(self, hash: str) -> bool:
@@ -121,9 +121,9 @@ async def main():
     # Verify log
     await service.verify_log(log_hash)
     
-    # Check Stewardship Council reality
+    # Check Stewardship Custodians reality
     reality = service.get_council_reality()
-    print(f"Stewardship Council: {reality['recommendation']}")
+    print(f"Stewardship Custodians: {reality['recommendation']}")
     print(f"Council approvals given: {reality['approvals_given']}")
 
 

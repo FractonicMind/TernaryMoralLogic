@@ -1,5 +1,5 @@
 /**
- * Webhook stub for forwarding Always Memory logs to Stewardship Council.
+ * Webhook stub for forwarding Always Memory logs to Stewardship Custodians.
  * Replace with your real transport; examples use fetch() and retry.
  * 
  * Creator: Lev Goukassian (ORCID: 0009-0006-5966-1243)
@@ -27,14 +27,14 @@ async function submitMemory(memoryEntry, stewardshipCouncilUrl, maxRetries = 3) 
       if (response.status === 429) {
         // Backpressure - wait and retry
         const retryAfter = response.headers.get('Retry-After') || '5';
-        console.log(`Stewardship Council backpressure. Retrying after ${retryAfter}s`);
+        console.log(`Stewardship Custodians backpressure. Retrying after ${retryAfter}s`);
         await sleep(parseInt(retryAfter) * 1000);
         attempt++;
         continue;
       }
       
       if (!response.ok) {
-        throw new Error(`Stewardship Council rejected: ${response.status}`);
+        throw new Error(`Stewardship Custodians rejected: ${response.status}`);
       }
       
       const confirmation = await response.json();

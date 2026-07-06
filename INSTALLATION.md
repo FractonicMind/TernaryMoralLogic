@@ -26,7 +26,7 @@ HUMAN_RIGHTS_FRAMEWORK=true  # 26 documents
 EARTH_PROTECTION=true         # 20+ treaties
 FUTURE_GENERATIONS=true       # 7-generation impact
 
-# RECOMMENDED - Stewardship Council (can be enabled later)
+# RECOMMENDED - Stewardship Custodians (can be enabled later)
 STEWARDSHIP_COUNCIL=false
 EOF
 ```
@@ -270,11 +270,11 @@ assert proof['polygon_tx'] is not None
 
 ---
 
-## Stewardship Council (Recommended Enhancement)
+## Stewardship Custodians (Recommended Enhancement)
 
-The Stewardship Council provides additional oversight and validation. This enhancement can be enabled at any time and is not required for core TML functionality.
+The Stewardship Custodians provides additional oversight and validation. This enhancement can be enabled at any time and is not required for core TML functionality.
 
-### Six-Institution Structure
+### Tri-Cameral Governance Structure
 
 1. **Technical Custodian** (Recommended: Electronic Frontier Foundation)
 2. **Human Rights Enforcement Partner** (Recommended: Amnesty International)
@@ -285,7 +285,7 @@ The Stewardship Council provides additional oversight and validation. This enhan
 
 ### Configuration
 ```bash
-# Enable Stewardship Council (recommended)
+# Enable Stewardship Custodians (recommended)
 STEWARDSHIP_COUNCIL=true
 STEWARDSHIP_COUNCIL_MEMBERS=6
 STEWARDSHIP_VALIDATION_THRESHOLD=4

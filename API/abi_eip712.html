@@ -449,13 +449,13 @@
         <span class="expand-icon">&#9660;</span>
       </div>
       <div class="contract-body">
-        <div class="entry-desc">Deploys the TML_Core contract, binding it to the HybridShield 6-Custodian registry address, the ITMLEnforcer implementation, and the canonical monograph version string.</div>
+        <div class="entry-desc">Deploys the TML_Core contract, binding it to the HybridShield Tri-Cameral registry address, the ITMLEnforcer implementation, and the canonical monograph version string.</div>
         <div class="callout callout-monograph">Monograph ref: Section 2.3.3, Section 2.4</div>
         <div class="param-label">Inputs</div>
         <table class="param-table">
           <thead><tr><th>Name</th><th>Solidity Type</th><th>Description</th></tr></thead>
           <tbody>
-            <tr><td class="pn">_custodianRegistry</td><td class="pt-solidity">address</td><td class="pd">Address of the HybridShield 6-Custodian registry contract.</td></tr>
+            <tr><td class="pn">_custodianRegistry</td><td class="pt-solidity">address</td><td class="pd">Address of the HybridShield Tri-Cameral registry contract.</td></tr>
             <tr><td class="pn">_enforcer</td><td class="pt-solidity">address</td><td class="pd">Address of the ITMLEnforcer implementation for HumanRightsMandate and EarthProtectionMandate.</td></tr>
             <tr><td class="pn">_monographVersion</td><td class="pt-solidity">string</td><td class="pd">Canonical monograph version string, e.g. "3.3.0-tml-monograph-2025".</td></tr>
           </tbody>
@@ -1605,8 +1605,8 @@
         <span class="expand-icon">&#9660;</span>
       </div>
       <div class="typed-body">
-        <div class="entry-desc">EIP-712 typed data for HybridShield custodian signatures in quorum operations. Each of the 6 custodians signs this structure to contribute to a quorum for Merkle anchoring, system-wide Sacred Zero activation, or Emergency Override authorization. operationType: 0 = MERKLE_ANCHOR, 1 = SACRED_ZERO_ACTIVATION, 2 = EMERGENCY_OVERRIDE.</div>
-        <div class="callout callout-monograph">Monograph ref: Section 2.3.3, Pillar VII (HybridShield). 6-Custodian distributed anchoring.</div>
+        <div class="entry-desc">EIP-712 typed data for HybridShield custodian signatures in quorum operations. Each of the 11 custodians signs this structure to contribute to a quorum for Merkle anchoring, system-wide Sacred Zero activation, or Emergency Override authorization. operationType: 0 = MERKLE_ANCHOR, 1 = SACRED_ZERO_ACTIVATION, 2 = EMERGENCY_OVERRIDE.</div>
+        <div class="callout callout-monograph">Monograph ref: Section 2.3.3, Pillar VII (HybridShield). Tri-Cameral distributed anchoring.</div>
         <div class="param-label">Type Fields</div>
         <table class="param-table">
           <thead><tr><th>Name</th><th>EIP-712 Type</th><th>Description</th></tr></thead>
@@ -1694,7 +1694,7 @@
           <tr>
             <td class="rt-name">CustodianQuorumAttestation</td>
             <td class="rt-string">CustodianQuorumAttestation(bytes32 custodianId,bytes32 operationId,uint8 operationType,bytes32 operationPayloadHash,uint256 attestedAt,bytes32 custodianKeyVersion)</td>
-            <td class="rt-note">HybridShield 6-Custodian quorum contribution signature.</td>
+            <td class="rt-note">HybridShield Tri-Cameral quorum contribution signature.</td>
           </tr>
           <tr>
             <td class="rt-name">GoukassianSignatureAttestation</td>

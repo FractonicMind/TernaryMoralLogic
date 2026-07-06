@@ -27,7 +27,7 @@ class TMLBlockchain:
             'whistleblower': config['whistleblower_contract']
         }
         
-        # No Stewardship Council addresses needed - Blockchain handles everything
+        # No Stewardship Custodians addresses needed - Blockchain handles everything
         
     def create_always_memory_log(self, decision: Dict) -> str:
         """Create immutable log - no committee approval needed"""
@@ -88,7 +88,7 @@ class TMLBlockchain:
             [violation['hash'], penalty]
         )
         
-        # No Stewardship Council approval needed
+        # No Stewardship Custodians approval needed
         return {
             'triggered': True,
             'penalty': penalty,
@@ -205,7 +205,7 @@ class TMLBlockchain:
         return len(evidence) > 0  # Simplified
     
     def get_council_status(self) -> Dict:
-        """The truth about Stewardship Council"""
+        """The truth about Stewardship Custodians"""
         return {
             'stewardship_council': 'Does not exist',
             'council_approval': 'Not needed',
@@ -232,9 +232,9 @@ def deploy_tml_protection():
     # Initialize Blockchain protection
     tml = TMLBlockchain(config)
     
-    # Everything works without Stewardship Council
+    # Everything works without Stewardship Custodians
     print("TML Protection Active")
-    print("Stewardship Council: Not Required")
+    print("Stewardship Custodians: Not Required")
     print("Annual Cost: $1,200")
     print("Protection Level: Maximum")
     

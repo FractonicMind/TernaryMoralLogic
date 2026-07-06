@@ -215,7 +215,7 @@ SYSTEM_IMPACT = {
 
 ---
 
-## Stewardship Council Alternative (Recommended Enhancement)
+## Stewardship Custodians Alternative (Recommended Enhancement)
 
 ### Recommended Institutional Governance
 

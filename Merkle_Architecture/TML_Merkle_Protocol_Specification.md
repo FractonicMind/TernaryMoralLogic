@@ -234,7 +234,7 @@ This capability is particularly valuable for **competitive or sensitive applicat
 
 #### 1.6.1 Key Destruction Protocol: Irreversible Deletion
 
-Crypto-shredding enables **GDPR-compliant erasure** by destroying decryption keys rather than attempting secure deletion of distributed data. TML’s implementation uses **per-event encryption** with keys derived through **hierarchical key derivation**: a master secret is split via **Shamir Secret Sharing** among **6 custodians with 3-of-6 quorum requirement**; event keys are derived via **HKDF-SHA256** from master secret, event ID, and epoch identifier [(Source)](about:blank) .  
+Crypto-shredding enables **GDPR-compliant erasure** by destroying decryption keys rather than attempting secure deletion of distributed data. TML’s implementation uses **per-event encryption** with keys derived through **hierarchical key derivation**: a master secret is split via **Shamir Secret Sharing** among **11 custodians with 3-of-6 quorum requirement**; event keys are derived via **HKDF-SHA256** from master secret, event ID, and epoch identifier [(Source)](about:blank) .  
 **Erasure protocol:**
 
 | Step | Action | Verification |
@@ -1310,7 +1310,7 @@ This **explicit acknowledgment** ensures that **hash commitment alone is insuffi
 
 #### 13.1.2 Coordinated Custodian Compromise: Majority of Storage Nodes Adversarial
 
-**Coordinated custodian compromise**: **majority of 6 custodians (4+) adversarial** could enable **suppression window exceeding 300-second anchoring bound**. Mitigation: **geographic and jurisdictional diversity, anomaly detection, automatic escalation**.
+**Coordinated custodian compromise**: **majority of 11 custodians (4+) adversarial** could enable **suppression window exceeding 300-second anchoring bound**. Mitigation: **geographic and jurisdictional diversity, anomaly detection, automatic escalation**.
 
 #### 13.1.3 Implementation Vulnerability: Side-Channel or Memory Safety Flaw
 

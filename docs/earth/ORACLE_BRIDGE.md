@@ -13,7 +13,7 @@ graph LR
     A[Tier 1: Global Sources] --> C[Oracle Bridge]
     B[Tier 2: Community Data] --> C
     C --> D[Validation Layer]
-    D --> E[Stewardship Council]
+    D --> E[Stewardship Custodians]
     E --> F[Always Memory]
     F --> G[Sacred Zero Triggers]
 ```
@@ -366,7 +366,7 @@ Oracle bridge can trigger Sacred Zero for:
 - Consensus failure on critical data
 - Version conflicts unresolved
 
-### With Stewardship Council
+### With Stewardship Custodians
 
 - Daily update notifications
 - Weakening detection alerts

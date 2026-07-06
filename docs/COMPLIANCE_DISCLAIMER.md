@@ -17,7 +17,7 @@ Ternary Moral Logic (TML) is a **Blockchain-anchored accountability framework** 
 - **Smart contract enforcement** with automatic penalties
 - **Human Rights protection** (26+ document framework)
 - **Earth Protection** (20+ environmental treaties)
-- **Stewardship Council** (Leading non-profit organizations in technology, human rights, and environmental protection)
+- **Stewardship Custodians** (Leading non-profit organizations in technology, human rights, and environmental protection)
 
 ### 1.2 What TML Is Not
 TML is **NOT**:
@@ -239,7 +239,7 @@ docker run tml/always-memory \
 Ternary Moral Logic Framework
 Creator: Lev Goukassian (ORCID: 0009-0006-5966-1243)
 Email: leogouk@gmail.com
-Architecture: Blockchain, Stewardship Council
+Architecture: Blockchain, Stewardship Custodians
 Protection: Humans + Earth + Future Generations
 ```
 
@@ -318,7 +318,7 @@ These terms are:
 **Blockchain Deployment**: support@tml-goukassian.org  
 **Emergency**: emergency@tml-goukassian.org  
 **Whistleblower**: Via Blockchain (anonymous)  
-**Stewardship Council**: support@tml-goukassian.org
+**Stewardship Custodians**: support@tml-goukassian.org
 
 ---
 

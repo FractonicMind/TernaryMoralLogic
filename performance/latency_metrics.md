@@ -37,7 +37,7 @@ Latency is measured across two distinct domains:
 |--------------|-------------|-------------------|----------------|
 | Local | Developer or academic setup | 8-core CPU, 16GB RAM | Single node |
 | Cluster | Production or cloud setup | 32-core CPU, 128GB RAM | Multi-node parallel |
-| Stewardship Council | Institutional replication layer | Variable | Multi-region distributed |
+| Stewardship Custodians | Institutional replication layer | Variable | Multi-region distributed |
 
 ## 6. Benchmark Schedule
 

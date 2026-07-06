@@ -62,9 +62,9 @@ bool detectTampering(string orig, string current);
 - Environmental: $1B
 - Multipliers: 2x (human), 3x (earth), 7x (future)
 
-## Stewardship Council (Recommended Enhancement)
+## Stewardship Custodians (Recommended Enhancement)
 
-The Stewardship Council provides additional oversight and validation. Six independent institutions hold synchronized copies of TML logs:
+The Stewardship Custodians provides additional oversight and validation. Eleven independent custodians hold synchronized copies of TML logs:
 
 1. **Technical Custodian** (Recommended: Electronic Frontier Foundation)
    - Maintains open-source repository

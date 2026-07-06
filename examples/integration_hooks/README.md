@@ -33,7 +33,7 @@ result = generate_with_memory(prompt, model, logger)
 
 ### Webhook Integration
 ```javascript
-// POST memory entry to Stewardship Council network
+// POST memory entry to Stewardship Custodians network
 await submitMemory(memoryEntry);
 ```
 
@@ -49,7 +49,7 @@ await submitMemory(memoryEntry);
 - Create memory BEFORE action execution
 - Include classification (-1, 0, +1)
 - Log Sacred Zero triggers when detected
-- Submit to Stewardship Council network for attestation
+- Submit to Stewardship Custodians network for attestation
 - Handle backpressure gracefully (HTTP 429)
 
 See `docs/General_FAQ.md` for complete framework details.

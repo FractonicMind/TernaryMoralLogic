@@ -1,4 +1,4 @@
-# TML Overview - Blockchain Protection with Stewardship Council
+# TML Overview - Blockchain Protection with Stewardship Custodians
 
 **Path**: `/training/TML_Overview_Slides.md`  
 **Version**: 2.0.0  
@@ -13,7 +13,7 @@
 
 # **Ternary Moral Logic (TML)**
 ## Blockchain-Based Ethical AI Framework
-### Enhanced by Six-Member Stewardship Council
+### Enhanced by Six-Member Stewardship Custodians
 
 **Sacred Zero Discrimination Prevention**  
 **Always Memory Immutable Logging**  
@@ -21,7 +21,7 @@
 **Institutional Oversight & Validation**
 
 *Blockchain-Enforced Protection*  
-*Recommended Stewardship Council Enhancement*
+*Recommended Stewardship Custodians Enhancement*
 
 ---
 
@@ -59,11 +59,11 @@ No institutional validation
 ### Current Architecture:
 ```
 Blockchain anchoring → Immediate deployment
-Stewardship Council → Recommended institutional oversight
+Stewardship Custodians → Recommended institutional oversight
 Operational protection with expert validation
 ```
 
-**Technical Innovation**: Blockchain-based protection enables immediate deployment. Recommended six-member Stewardship Council provides institutional validation, victim support, and democratic accountability.
+**Technical Innovation**: Blockchain-based protection enables immediate deployment. Recommended six-member Stewardship Custodians provides institutional validation, victim support, and democratic accountability.
 
 ---
 
@@ -109,7 +109,7 @@ Operational protection with expert validation
 2. **Detect** discriminatory patterns (< 10ms)
 3. **Halt** operations immediately if triggered
 4. **Penalize** via smart contract (2-12 seconds)
-5. **Notify** relevant Stewardship Council partner (asynchronous)
+5. **Notify** relevant Stewardship Custodians partner (asynchronous)
 
 ### Technical Result:
 **Real-time detection, automated enforcement, cryptographic verification, institutional validation**
@@ -132,7 +132,7 @@ Operational protection with expert validation
 - Limited verification ❌
 - No institutional oversight ❌
 
-### Always Memory + Stewardship Council:
+### Always Memory + Stewardship Custodians:
 - **Immutable** - Blockchain anchored ✅
 - **Verifiable** - Public cryptographic proof ✅
 - **Automatic** - No manual intervention ✅
@@ -185,7 +185,7 @@ Threshold Exceedance:
   - Potential penalty assessment
 ```
 
-**Stewardship Council Role**: Earth Protection Enforcement Partner (Indigenous Environmental Network) monitors treaty compliance and represents Indigenous sovereignty in environmental decisions.
+**Stewardship Custodians Role**: Earth Protection Enforcement Partner (Indigenous Environmental Network) monitors treaty compliance and represents Indigenous sovereignty in environmental decisions.
 
 ---
 
@@ -196,7 +196,7 @@ Threshold Exceedance:
 ### Investment Requirements (nominal to 2025):
 - **TML Deployment**: $110/month
 - **Escrow deposit**: $160,000 (returnable)
-- **Stewardship Council coordination**: Included
+- **Stewardship Custodians coordination**: Included
 - **Amortized cost**: ~$1,500/month
 
 ### Return Profile (nominal to 2025):
@@ -239,7 +239,7 @@ curl -X POST http://localhost:8080/evaluate \
 
 ### Immediate Deployment + Recommended Enhancement:
 ✅ **Blockchain protection immediate**
-✅ **Stewardship Council readiness configured**
+✅ **Stewardship Custodians readiness configured**
 ✅ **Six institutional partners for enhanced oversight**
 
 ---
@@ -282,21 +282,21 @@ curl -X POST http://localhost:8080/evaluate \
 - Compliance audits passed: **100%**
 - Automated documentation: **Real-time**
 - Legal risk reduction: **Measurable**
-- **Stewardship Council**: Human Rights Partner coordinated victim support
+- **Stewardship Custodians**: Human Rights Partner coordinated victim support
 
 ### Healthcare Provider (5,000 employees):
 - Discrimination detected/blocked: **47 incidents**
 - Compliance verification: **Blockchain-based**
 - Patient protection: **~15,000 individuals**
 - Regulatory reporting: **Automated**
-- **Stewardship Council**: AI Ethics Partner validated algorithms
+- **Stewardship Custodians**: AI Ethics Partner validated algorithms
 
 ### Technology Company (50,000 employees):
 - Environmental impact reduced: **30%**
 - ESG metrics improvement: **Quantifiable**
 - Regulatory compliance: **Enhanced**
 - Risk mitigation: **Documented**
-- **Stewardship Council**: Earth Protection Partner guided restoration, Community Rep ensured stakeholder input
+- **Stewardship Custodians**: Earth Protection Partner guided restoration, Community Rep ensured stakeholder input
 
 ---
 
@@ -310,7 +310,7 @@ curl -X POST http://localhost:8080/evaluate \
 - **Limited evidence** - Self-reported metrics
 - **No institutional validation**
 
-### After TML with Stewardship Council:
+### After TML with Stewardship Custodians:
 - **Automated compliance** - Real-time documentation generation
 - **Continuous monitoring** - Constant verification
 - **Blockchain evidence** - Cryptographic proof
@@ -342,7 +342,7 @@ GET /compliance/report?framework=EU_AI_ACT&stewardship=true
 
 ---
 
-## Slide 13: Stewardship Council Structure
+## Slide 13: Stewardship Custodians Structure
 
 # **Six-Member Recommended Institutional Oversight**
 
@@ -401,7 +401,7 @@ GET /compliance/report?framework=EU_AI_ACT&stewardship=true
 │   Bitcoin (Security) + OTS (Proof)       │
 │   Polygon (Speed) + Smart Contracts      │
 ├─────────────────────────────────────────┤
-│    Stewardship Council (Recommended)     │
+│    Stewardship Custodians (Recommended)     │
 │                                          │
 │  ┌────────┬──────────┬────────┬────────┐│
 │  │Technical│  Human  │ Earth  │   AI   ││
@@ -472,7 +472,7 @@ Phase 1: Blockchain Foundation (Immediate)
 ├─ Deployment capability: 10 minutes
 ├─ Protection: Immediate
 ├─ Monthly cost: $110
-└─ Stewardship Council: Configuration ready
+└─ Stewardship Custodians: Configuration ready
 
 Phase 2: Council Partnership Development (Months 1-6)
 ├─ Initial institutional partnerships
@@ -493,7 +493,7 @@ Phase 4: Ecosystem Integration (18+ months)
 └─ Comprehensive institutional validation
 ```
 
-**Core Principle**: Protection operational from Phase 1. Stewardship Council recommended for enhanced institutional oversight, victim support, and democratic accountability.
+**Core Principle**: Protection operational from Phase 1. Stewardship Custodians recommended for enhanced institutional oversight, victim support, and democratic accountability.
 
 ---
 
@@ -503,7 +503,7 @@ Phase 4: Ecosystem Integration (18+ months)
 
 ### "Cost concerns"
 - **Analysis**: Total cost $110/month operational + minimal Council coordination
-- Stewardship Council provides enhanced insurance discounts (50-60% vs 20-40%)
+- Stewardship Custodians provides enhanced insurance discounts (50-60% vs 20-40%)
 - Net positive ROI through institutional credibility
 
 ### "Performance impact"
@@ -533,7 +533,7 @@ Phase 4: Ecosystem Integration (18+ months)
 - Complete API reference
 - Integration guides
 - Implementation examples
-- Stewardship Council integration guide
+- Stewardship Custodians integration guide
 
 **Quick Start Guide**: https://tml-goukassian.org/quickstart
 - Deployment instructions
@@ -551,7 +551,7 @@ Phase 4: Ecosystem Integration (18+ months)
 - **Executive Briefing**: 1 hour - institutional partnership benefits
 - **Compliance Training**: 2 hours - Council validation documentation
 
-### Stewardship Council Contacts:
+### Stewardship Custodians Contacts:
 - **Technical Custodian**: https://www.eff.org
 - **Human Rights Partner**: https://www.amnesty.org
 - **Earth Protection Partner**: https://www.ienearth.org
@@ -574,7 +574,7 @@ Phase 4: Ecosystem Integration (18+ months)
 - Reputation risk: Unaddressed ❌
 - No institutional validation ❌
 
-**With TML + Stewardship Council**
+**With TML + Stewardship Custodians**
 - Protection: Immediate ✅
 - Risk documentation: Automated ✅
 - Legal evidence: Blockchain-verified ✅
@@ -590,7 +590,7 @@ Phase 4: Ecosystem Integration (18+ months)
 git clone https://github.com/FractonicMind/TernaryMoralLogic
 cd TML-Deploy && docker-compose up -d
 # Protection operational in 10 minutes
-# Stewardship Council ready for recommended enhancement
+# Stewardship Custodians ready for recommended enhancement
 ```
 
 ---
@@ -604,7 +604,7 @@ cd TML-Deploy && docker-compose up -d
 - 10M+ decisions evaluated daily
 - 100K+ discriminatory patterns prevented
 - Blockchain-verified audit trails
-- **Stewardship Council structure defined**
+- **Stewardship Custodians structure defined**
 - **Six institutional partners identified**
 
 ### Future Development:
@@ -617,13 +617,13 @@ cd TML-Deploy && docker-compose up -d
 - Democratic policy evolution (Community Representative)
 
 ### Core Mission:
-**Providing technical infrastructure for algorithmic fairness and discrimination prevention through blockchain-based verification, automated enforcement, and recommended institutional oversight via six-member Stewardship Council.**
+**Providing technical infrastructure for algorithmic fairness and discrimination prevention through blockchain-based verification, automated enforcement, and recommended institutional oversight via six-member Stewardship Custodians.**
 
 ---
 
 ## Slide 21: Council Operational Benefits
 
-# **Why Recommended Stewardship Council Matters**
+# **Why Recommended Stewardship Custodians Matters**
 
 ### Enhanced Credibility:
 - **Regulatory Acceptance**: Six institutional validators
@@ -666,13 +666,13 @@ Creator, TML Framework
 ORCID: 0009-0006-5966-1243  
 Email: lev@tml-goukassian.org
 
-**Stewardship Council Coordination**:
+**Stewardship Custodians Coordination**:
 Email: stewardship@tml-goukassian.org
 
 ## Technical Philosophy:
 *"Operational protection today enables governance evolution tomorrow.*  
 *Blockchain enforcement provides immediate discrimination prevention.*  
-*Recommended Stewardship Council adds institutional validation, victim support, and democratic accountability."*
+*Recommended Stewardship Custodians adds institutional validation, victim support, and democratic accountability."*
 
 ---
 
@@ -685,7 +685,7 @@ Email: stewardship@tml-goukassian.org
 - Python 3.8+
 - JavaScript/TypeScript
 - Swift/Kotlin (mobile)
-- **All SDKs support Stewardship Council integration**
+- **All SDKs support Stewardship Custodians integration**
 
 ### Blockchain Networks:
 - Bitcoin (maximum security)
@@ -701,7 +701,7 @@ Email: stewardship@tml-goukassian.org
 - On-premise
 - Edge computing
 - Serverless
-- **Stewardship Council nodes: Distributed architecture**
+- **Stewardship Custodians nodes: Distributed architecture**
 
 ---
 
@@ -758,7 +758,7 @@ Institutional Benefits:
 
 ### Case 1: Lending Platform
 **Challenge**: 34% discrimination rate in loan approvals  
-**Implementation**: TML Sacred Zero + Stewardship Council  
+**Implementation**: TML Sacred Zero + Stewardship Custodians  
 **Result**: 0% discrimination, documented compliance  
 **Impact**: Legal risk mitigation, victim support coordinated by Human Rights Partner  
 **Council Role**: Amnesty International coordinated with 12 affected individuals for remedy
@@ -781,7 +781,7 @@ Institutional Benefits:
 
 ## Final Considerations
 
-**Technical implementation provides operational discrimination prevention capability through blockchain-based verification and automated enforcement mechanisms, enhanced by recommended six-member Stewardship Council providing institutional validation, victim support, and democratic oversight.**
+**Technical implementation provides operational discrimination prevention capability through blockchain-based verification and automated enforcement mechanisms, enhanced by recommended six-member Stewardship Custodians providing institutional validation, victim support, and democratic oversight.**
 
 **The architecture enables immediate deployment while supporting institutional partnership development for enhanced credibility, cross-border legal recognition, and comprehensive victim support infrastructure.**
 
@@ -791,7 +791,7 @@ Institutional Benefits:
 
 ---
 
-*TML v2.0 - Blockchain Protection + Recommended Stewardship Council*  
+*TML v2.0 - Blockchain Protection + Recommended Stewardship Custodians*  
 *Immediate Deployment Capability*  
 *Institutional Enhancement*  
 *Democratic Oversight*

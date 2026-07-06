@@ -32,7 +32,7 @@ The entire API is organized around two structurally distinct lanes, each with it
 
 **Inference Lane (Lane 1, hard ceiling 2ms):** The binary inference engine submits proposed decision vectors and receives a State Envelope. A State Envelope returning State +1 from the Inference Lane does not authorize actuation. The Inference Lane cannot issue Permission Tokens. This separation is not a configuration choice. It is enforced at the schema level by the `StateEnvelope` `if/then` constraint in `tml_schema.json`.
 
-**Anchoring Lane (Lane 2, hard ceiling 500ms):** The ternary governance layer receives the complete Moral Trace Log, performs its own independent evaluation, and — only when the audit lane confirms log completion — issues a Permission Token. The token is signed by an HSM-resident key registered in the HybridShield 6-Custodian registry. No token, no execution. No log, no token.
+**Anchoring Lane (Lane 2, hard ceiling 500ms):** The ternary governance layer receives the complete Moral Trace Log, performs its own independent evaluation, and — only when the audit lane confirms log completion — issues a Permission Token. The token is signed by an HSM-resident key registered in the HybridShield Tri-Cameral registry. No token, no execution. No log, no token.
 
 ![Control Plane and Data Plane](diagram_control-data-plane.png)
 

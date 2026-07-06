@@ -33,7 +33,7 @@ This roadmap identifies critical gaps in the TML implementation and provides a p
 
 **Technical Implementation**
 1. **Production-Ready SDKs** - Only Python stubs exist
-2. **Stewardship Council Infrastructure** - No actual deployment
+2. **Stewardship Custodians Infrastructure** - No actual deployment
 3. **Blockchain Anchoring** - Not implemented
 4. **TEE Integration** - Missing hardware security
 5. **Real-time Monitoring** - No dashboard or alerts
@@ -75,7 +75,7 @@ deliverables:
     content: ["API reference", "Integration guide", "Examples"]
 ```
 
-### Stewardship Council MVP
+### Stewardship Custodians MVP
 **Gap**: No actual Council nodes running  
 **Impact**: Cannot verify logs  
 **Solution**: Deploy testnet

@@ -168,7 +168,7 @@ contract TMLPenaltyEnforcement {
 - Polygon: High-speed verification
 - Multi-chain: Attack requires compromising all simultaneously
 
-**Stewardship Council** (Institutional Redundancy):
+**Stewardship Custodians** (Institutional Redundancy):
 
 Logs distributed real-time to 6 independent custodians:
 
@@ -202,7 +202,7 @@ Logs distributed real-time to 6 independent custodians:
    - Community accountability
    - Implementation feedback
 
-**Real-time distribution**: All 6 custodians receive logs instantly as they're created.
+**Real-time distribution**: All 11 custodians receive logs instantly as they're created.
 
 **Emergency Protocol**: 72-hour re-anchor if custodian/blockchain becomes unreachable.
 
@@ -533,8 +533,8 @@ Before production deployment, verify:
 - [ ] Whistleblower rewards functional
 
 ### Hybrid Shield
-- [ ] Stewardship Council distribution configured
-- [ ] Real-time log replication to 6 custodians verified
+- [ ] Stewardship Custodians distribution configured
+- [ ] Real-time log replication to 11 custodians verified
 - [ ] 72-hour emergency re-anchor protocol tested
 - [ ] Lantern Seal synchronization operational
 

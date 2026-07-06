@@ -29,7 +29,7 @@ The TML Synchronization Protocol delivers immutable accountability through crypt
 **2. Legal Admissibility**: Every anchor meets Federal Rules of Evidence for digital authentication   
 **3. Cost Efficiency**: Approximately $0.0005 per log through Merkle tree batching   
 **4. Resilience**: Multi-chain redundancy survives network failures and state attacks   
-**5. Evolution Ready**: Architecture supports Stewardship Council integration without breaking changes   
+**5. Evolution Ready**: Architecture supports Stewardship Custodians integration without breaking changes   
 
 ### Synchronization Flow
 
@@ -357,13 +357,13 @@ phase_2_enhancements:
 
 ### Phase 3: Long-Term Institutional Reinforcement (2-5 years - Trust Enhancement)
 
-**Purpose**: Add institutional oversight for enhanced governance and cross-border trust through the Stewardship Council
+**Purpose**: Add institutional oversight for enhanced governance and cross-border trust through the Stewardship Custodians
 
 **Composition and Distribution**
 
-#### Stewardship Council
+#### Stewardship Custodians
 
-Six independent institutions hold synchronized copies of every TML log:
+Eleven independent custodians hold synchronized copies of every TML log:
 
 1. **Technical Custodian (Recommended: Electronic Frontier Foundation)**
    * Maintains the open-source repository
@@ -416,7 +416,7 @@ stewardship_council_integration:
   backward_compatibility: "Phase 1&2 proofs remain valid"
 ```
 
-**Key Principle**: Stewardship Council enhances but never replaces blockchain anchoring. Companies already protected by Phase 1 continue operating with additional governance benefits.
+**Key Principle**: Stewardship Custodians enhances but never replaces blockchain anchoring. Companies already protected by Phase 1 continue operating with additional governance benefits.
 
 ---
 
@@ -599,7 +599,7 @@ adaptation_mechanisms:
 
 ### Institutional Readiness
 
-**Stewardship Council Integration Path**:
+**Stewardship Custodians Integration Path**:
 1. **Technical infrastructure**: Blockchain anchoring proves reliability
 2. **Legal acceptance**: Court admissibility establishes evidence standards  
 3. **Insurance adoption**: Risk reduction demonstrates value

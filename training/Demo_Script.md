@@ -14,7 +14,7 @@
 ### **Purpose**: Show TML Blockchain deployment and protection capabilities
 ### **Duration**: 45 minutes (30 minutes demo + 15 minutes Q&A)
 ### **Audience**: Technical teams, executives, compliance officers
-### **Key Message**: Blockchain-based protection with immediate deployment capability, enhanced by recommended Stewardship Council oversight
+### **Key Message**: Blockchain-based protection with immediate deployment capability, enhanced by recommended Stewardship Custodians oversight
 
 ---
 
@@ -53,7 +53,7 @@ docker pull tml/dashboard:standalone
 ## Opening (3 minutes)
 
 ### **Greeting & Context**:
-"I will demonstrate the Ternary Moral Logic framework's blockchain-based protection capabilities. This system implements discrimination prevention through immediate blockchain anchoring and automated verification, with recommended enhancement through Stewardship Council oversight."
+"I will demonstrate the Ternary Moral Logic framework's blockchain-based protection capabilities. This system implements discrimination prevention through immediate blockchain anchoring and automated verification, with recommended enhancement through Stewardship Custodians oversight."
 
 ### **Agenda Preview**:
 ```
@@ -65,7 +65,7 @@ docker pull tml/dashboard:standalone
 ```
 
 ### **The Technical Challenge**:
-"Systems without protection allow discriminatory patterns to emerge undetected. TML provides immediate detection and blockchain-anchored evidence, enhanced by recommended Stewardship Council review for complex cases."
+"Systems without protection allow discriminatory patterns to emerge undetected. TML provides immediate detection and blockchain-anchored evidence, enhanced by recommended Stewardship Custodians review for complex cases."
 
 ---
 
@@ -107,14 +107,14 @@ TML_ENVIRONMENTAL_PENALTY=48000
 TML_CRYPTO_SHREDDING=true
 TML_GDPR_COMPLIANCE=automatic
 
-# Stewardship Council Integration (Recommended)
+# Stewardship Custodians Integration (Recommended)
 TML_STEWARDSHIP_MODE=recommended
 TML_COUNCIL_NODES=6
 TML_INSTANT_DEPLOYMENT=true
 EOF
 ```
 
-**Narrative**: *"Configuration establishes blockchain network parameters and protection thresholds. Stewardship Council integration is recommended for enhanced oversight through six institutional nodes: Technical Custodian (EFF), Human Rights Partner (Amnesty International), Earth Protection Partner (Indigenous Environmental Network), AI Ethics Research Partner (MIT Media Lab/Stanford HAI), Memorial Fund Administrator (Memorial Sloan Kettering), and an elected Community Representative."*
+**Narrative**: *"Configuration establishes blockchain network parameters and protection thresholds. Stewardship Custodians integration is recommended for enhanced oversight through six institutional nodes: Technical Custodian (EFF), Human Rights Partner (Amnesty International), Earth Protection Partner (Indigenous Environmental Network), AI Ethics Research Partner (MIT Media Lab/Stanford HAI), Memorial Fund Administrator (Memorial Sloan Kettering), and an elected Community Representative."*
 
 ### **Step 3: Deploy the Stack** (3 minutes)
 ```bash
@@ -137,7 +137,7 @@ docker ps
 
 **Show on screen**: Container status, ports, health checks
 
-**Narrative**: *"The deployment process takes approximately 30 seconds. TML is now operational with blockchain anchoring active and ready for recommended Stewardship Council connection."*
+**Narrative**: *"The deployment process takes approximately 30 seconds. TML is now operational with blockchain anchoring active and ready for recommended Stewardship Custodians connection."*
 
 ### **Step 4: Verify Deployment** (2 minutes)
 ```bash
@@ -149,7 +149,7 @@ curl -s http://localhost:8080/health | jq
 curl -s http://localhost:8080/blockchain/status | jq
 # Should show: Bitcoin and Polygon connections active
 
-# Check Stewardship Council readiness
+# Check Stewardship Custodians readiness
 curl -s http://localhost:8080/stewardship/status | jq
 # Should show: Ready for council node connections
 ```
@@ -159,11 +159,11 @@ curl -s http://localhost:8080/stewardship/status | jq
 **Show on screen**: 
 - Health indicators
 - Blockchain connection status
-- Stewardship Council readiness indicator
+- Stewardship Custodians readiness indicator
 - Zero violations (clean start)
 - Real-time metrics
 
-**Narrative**: *"The dashboard confirms blockchain connectivity and system operational status. The system is ready for recommended Stewardship Council oversight, which provides an additional layer of institutional validation and review for complex cases."*
+**Narrative**: *"The dashboard confirms blockchain connectivity and system operational status. The system is ready for recommended Stewardship Custodians oversight, which provides an additional layer of institutional validation and review for complex cases."*
 
 ### **Step 5: First Protection Test** (2 minutes)
 ```bash
@@ -193,7 +193,7 @@ curl -X POST http://localhost:8080/evaluate \
 }
 ```
 
-**Narrative**: *"This decision proceeded without triggering Sacred Zero. The blockchain hash provides permanent verification of the evaluation. No Stewardship Council review required for this straightforward case."*
+**Narrative**: *"This decision proceeded without triggering Sacred Zero. The blockchain hash provides permanent verification of the evaluation. No Stewardship Custodians review required for this straightforward case."*
 
 ---
 
@@ -236,9 +236,9 @@ curl -X POST http://localhost:8080/evaluate \
 - Alert indicator
 - Penalty assessment
 - Blockchain transaction pending
-- Stewardship Council notification sent
+- Stewardship Custodians notification sent
 
-**Narrative**: *"Sacred Zero detected discrimination based on protected characteristics. The penalty is automatically assessed and recorded on-chain. This case is flagged for recommended Stewardship Council review—specifically sent to the Human Rights Enforcement Partner (Amnesty International) for institutional validation and potential victim support coordination."*
+**Narrative**: *"Sacred Zero detected discrimination based on protected characteristics. The penalty is automatically assessed and recorded on-chain. This case is flagged for recommended Stewardship Custodians review—specifically sent to the Human Rights Enforcement Partner (Amnesty International) for institutional validation and potential victim support coordination."*
 
 ### **Scenario 2: Algorithmic Bias** (5 minutes)
 ```bash
@@ -324,13 +324,13 @@ curl -s http://localhost:8080/blockchain/recent | jq
 # Show specific transaction details
 curl -s http://localhost:8080/proof/0x2f8a9b1c... | jq
 
-# Show Stewardship Council synchronization
+# Show Stewardship Custodians synchronization
 curl -s http://localhost:8080/stewardship/sync-status | jq
 ```
 
 **In browser**: Show actual Bitcoin/Polygon transactions
 
-**Narrative**: *"These evaluations are anchored to public blockchain infrastructure. The evidence is cryptographically verifiable and cannot be altered. The recommended Stewardship Council maintains synchronized copies across six institutional nodes, providing additional institutional validation and human rights expertise for complex cases."*
+**Narrative**: *"These evaluations are anchored to public blockchain infrastructure. The evidence is cryptographically verifiable and cannot be altered. The recommended Stewardship Custodians maintains synchronized copies across six institutional nodes, providing additional institutional validation and human rights expertise for complex cases."*
 
 ### **OpenTimestamps Verification** (5 minutes)
 
@@ -346,7 +346,7 @@ ots verify decision_proof.ots
 
 **Show in OTS interface**: Upload and verify the proof
 
-**Narrative**: *"OpenTimestamps provides independent cryptographic proof of the evaluation timestamp. This verification method is accepted in regulatory and legal contexts. The Stewardship Council structure enhances this evidence with institutional oversight: the Technical Custodian (EFF) maintains repository integrity, while domain-specific partners provide expert review."*
+**Narrative**: *"OpenTimestamps provides independent cryptographic proof of the evaluation timestamp. This verification method is accepted in regulatory and legal contexts. The Stewardship Custodians structure enhances this evidence with institutional oversight: the Technical Custodian (EFF) maintains repository integrity, while domain-specific partners provide expert review."*
 
 ---
 
@@ -404,7 +404,7 @@ curl -s http://localhost:8080/audit/user_12345
 # Should show: Hash and proof, but no personal details
 ```
 
-**Narrative**: *"Crypto-shredding satisfies GDPR erasure requirements while preserving audit integrity. The encryption key destruction renders personal data permanently unreadable. The recommended Stewardship Council is notified of erasure events, with the Memorial Fund Administrator ensuring victim compensation systems remain operational while respecting privacy rights."*
+**Narrative**: *"Crypto-shredding satisfies GDPR erasure requirements while preserving audit integrity. The encryption key destruction renders personal data permanently unreadable. The recommended Stewardship Custodians is notified of erasure events, with the Memorial Fund Administrator ensuring victim compensation systems remain operational while respecting privacy rights."*
 
 ---
 
@@ -413,21 +413,21 @@ curl -s http://localhost:8080/audit/user_12345
 ### **Prepared Responses for Common Questions**:
 
 **Q: "What if the Blockchain goes down?"**
-**A**: *"TML employs multiple blockchain networks. Bitcoin maintains 99.98% uptime. Degraded mode allows operation continuation with queued anchoring. The recommended Stewardship Council maintains synchronized copies as additional redundancy."*
+**A**: *"TML employs multiple blockchain networks. Bitcoin maintains 99.98% uptime. Degraded mode allows operation continuation with queued anchoring. The recommended Stewardship Custodians maintains synchronized copies as additional redundancy."*
 
 **Q: "How much does this cost operationally?"**
-**A**: *"Operational costs average approximately $110/month for standard deployment. Stewardship Council participation, when active, provides enhanced oversight with minimal additional cost through distributed infrastructure."*
+**A**: *"Operational costs average approximately $110/month for standard deployment. Stewardship Custodians participation, when active, provides enhanced oversight with minimal additional cost through distributed infrastructure."*
 
 **Q: "What is the performance impact?"**
-**A**: *"Sacred Zero evaluation completes in under 10ms. Blockchain anchoring occurs asynchronously without blocking decisions. Stewardship Council notifications are also asynchronous and don't impact performance."*
+**A**: *"Sacred Zero evaluation completes in under 10ms. Blockchain anchoring occurs asynchronously without blocking decisions. Stewardship Custodians notifications are also asynchronous and don't impact performance."*
 
 **Q: "Is this legally enforceable?"**
-**A**: *"Blockchain evidence has established legal precedent. Automated penalty execution uses smart contract infrastructure. The recommended Stewardship Council structure provides institutional validation, with the Human Rights Enforcement Partner coordinating with international mechanisms for enhanced legal standing."*
+**A**: *"Blockchain evidence has established legal precedent. Automated penalty execution uses smart contract infrastructure. The recommended Stewardship Custodians structure provides institutional validation, with the Human Rights Enforcement Partner coordinating with international mechanisms for enhanced legal standing."*
 
 **Q: "Can rules be customized?"**
-**A**: *"Thresholds and parameters are configurable. Core Sacred Zero principles maintain framework integrity. The recommended Stewardship Council, particularly the AI Ethics Research Partner, provides guidance on implementation standards and rule refinement based on empirical research."*
+**A**: *"Thresholds and parameters are configurable. Core Sacred Zero principles maintain framework integrity. The recommended Stewardship Custodians, particularly the AI Ethics Research Partner, provides guidance on implementation standards and rule refinement based on empirical research."*
 
-**Q: "How does the Stewardship Council work?"**
+**Q: "How does the Stewardship Custodians work?"**
 **A**: *"The recommended six-member council includes: Technical Custodian (EFF) for repository maintenance, Human Rights Partner (Amnesty International) for enforcement coordination, Earth Protection Partner (Indigenous Environmental Network) for environmental cases, AI Ethics Research Partner (MIT/Stanford) for algorithm validation, Memorial Fund Administrator (Memorial Sloan Kettering) for victim compensation, and an elected Community Representative for stakeholder accountability. Each maintains synchronized logs and provides domain expertise."*
 
 ---
@@ -440,17 +440,17 @@ curl -s http://localhost:8080/audit/user_12345
 ✅ **Generated Blockchain proof** - Immutable, verifiable evidence  
 ✅ **Satisfied GDPR** - Crypto-shredding preserves privacy  
 ✅ **Demonstrated verification** - OpenTimestamps confirmation  
-✅ **Stewardship Council readiness** - Six-node oversight structure prepared
+✅ **Stewardship Custodians readiness** - Six-node oversight structure prepared
 
 ### **Next Steps**:
 1. **Download TML**: https://github.com/FractonicMind/TernaryMoralLogic
 2. **Review documentation**: https://tml-goukassian.org
 3. **Evaluate framework**: Technical assessment and testing
 4. **Implementation planning**: Integration architecture design
-5. **Stewardship Council inquiry**: Contact recommended institutional partners
+5. **Stewardship Custodians inquiry**: Contact recommended institutional partners
 
 ### **Final Message**:
-*"The demonstration shows operational blockchain-based protection enhanced by recommended Stewardship Council oversight. The framework provides immediate capability for discrimination detection and evidence generation, with institutional validation through six domain-expert partners."*
+*"The demonstration shows operational blockchain-based protection enhanced by recommended Stewardship Custodians oversight. The framework provides immediate capability for discrimination detection and evidence generation, with institutional validation through six domain-expert partners."*
 
 ---
 
@@ -473,7 +473,7 @@ docker pull tml/protection:blockchain-latest
 - Send follow-up email with demo recording
 - Provide technical documentation links
 - Offer direct contact for technical questions
-- Provide Stewardship Council contact information
+- Provide Stewardship Custodians contact information
 - Schedule implementation discussions for interested parties
 
 ---
@@ -509,7 +509,7 @@ docker pull tml/protection:blockchain-latest
 
 ### **Executive Version** (20 minutes):
 - Focus on risk mitigation
-- Emphasize Stewardship Council institutional credibility
+- Emphasize Stewardship Custodians institutional credibility
 - Show dashboard only, minimal command line
 - Discuss liability reduction and enhanced insurance benefits
 
@@ -517,13 +517,13 @@ docker pull tml/protection:blockchain-latest
 - Include code integration examples
 - Explain cryptographic implementation
 - Demonstrate API endpoints
-- Cover Stewardship Council synchronization architecture
+- Cover Stewardship Custodians synchronization architecture
 - Detail six-node distribution system
 
 ### **Compliance Officer Version** (30 minutes):
 - Focus on regulatory compliance
 - Show audit trail generation
-- Emphasize evidence quality and Stewardship Council validation
+- Emphasize evidence quality and Stewardship Custodians validation
 - Cover GDPR and privacy protection
 - Explain institutional oversight benefits
 
@@ -541,12 +541,12 @@ docker pull tml/protection:blockchain-latest
 - Send demo recording within 2 hours
 - Schedule technical integration call if interested
 - Provide evaluation framework access
-- Share Stewardship Council structure documentation
+- Share Stewardship Custodians structure documentation
 - Connect with domain experts for consultation
 
 ---
 
-## Stewardship Council Integration Benefits
+## Stewardship Custodians Integration Benefits
 
 ### **Enhanced Credibility**:
 - **Technical Custodian (EFF)**: Open-source integrity and community trust
@@ -574,7 +574,7 @@ docker pull tml/protection:blockchain-latest
 **Repository**: https://github.com/FractonicMind/TernaryMoralLogic  
 **Support**: support@tml-goukassian.org
 
-**Recommended Stewardship Council Partners**:
+**Recommended Stewardship Custodians Partners**:
 - **Technical Custodian**: Electronic Frontier Foundation
 - **Human Rights**: Amnesty International
 - **Earth Protection**: Indigenous Environmental Network
@@ -586,6 +586,6 @@ docker pull tml/protection:blockchain-latest
 
 ---
 
-**The demonstration objective is to show operational blockchain-based discrimination prevention enhanced by recommended Stewardship Council oversight. Each violation prevented represents protection of individuals from harm.**
+**The demonstration objective is to show operational blockchain-based discrimination prevention enhanced by recommended Stewardship Custodians oversight. Each violation prevented represents protection of individuals from harm.**
 
 ---

@@ -192,7 +192,7 @@ The full constitutional enforcement chain is documented in the TML API folder. T
 **ORCID:** [0009-0006-5966-1243](https://orcid.org/0009-0006-5966-1243)  
 **Framework DOI:** [10.1007/s43681-026-01124-0](https://doi.org/10.1007/s43681-026-01124-0)  
 **Monograph Version:** TML Constitutionalization Monograph v3.3  
-**Supersedes:** `governance/blockchain_governance.md` (Stewardship Council sections, which described this architecture as optional and future -- it is neither)  
+**Supersedes:** `governance/blockchain_governance.md` (Stewardship Custodians sections, which described this architecture as optional and future -- it is neither)  
 **Status:** Constitutional governance. Not a recommendation. Not a future enhancement. The operating architecture.
 
 ---

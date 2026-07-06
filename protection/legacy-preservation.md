@@ -4,7 +4,7 @@
 ## Blockchain-Immortalized Framework for Humanity and Earth
 
 **Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)  
-**Architecture**: Blockchain (Eternal), Stewardship Council-Recommended   
+**Architecture**: Blockchain (Eternal), Stewardship Custodians-Recommended   
 **Protection Scope**: Human Rights + Earth + Future Generations  
 **Version**: 3.0.0  
 
@@ -160,7 +160,7 @@ Protected: Humans + Earth + Future Generations
 - Institutional donations
 - Government grants
 - Committee approval
-- Stewardship Council funding
+- Stewardship Custodians funding
 
 ---
 
@@ -176,13 +176,13 @@ Protected: Humans + Earth + Future Generations
 
 ## 5.2 Recommended Future Role
 
-**If Stewardship Council Ever Forms** (Years Later):
+**If Stewardship Custodians Ever Forms** (Years Later):
 - Additional attestation
 - Academic research
 - Cross-border coordination
 - Community events
 
-**Remember**: TML works perfectly without any Stewardship Council.
+**Remember**: TML works perfectly without any Stewardship Custodians.
 
 ---
 
@@ -277,7 +277,7 @@ def learn_from_blockchain():
 - 1 billion Sacred Zero events on Blockchain
 - 10,000+ organizations using TML
 - 100+ countries with implementations
-- Zero reliance on Stewardship Council
+- Zero reliance on Stewardship Custodians
 
 **By 2050**:
 - Universal adoption for AI systems

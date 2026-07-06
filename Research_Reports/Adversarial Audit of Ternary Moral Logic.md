@@ -32,7 +32,7 @@
 | *Regulatory Lobbying* | Push for exemptions in AI‑safety regulations (e.g., EU AI Act) for “legacy systems” that cannot implement TML. | 5 (well‑funded) | 2–4 years | High |  
 | *Court Neutralization* | Sue TML implementers for “anticompetitive tying” or “unfair business practices.” | 4 (lengthy litigation) | 3–5 years | Medium |  
 | **Governance** | | | | |  
-| *Stewardship Council Capture* | Influence or replace the six custodians with industry‑friendly actors. | 2 (requires compromising multiple independent institutions) | Long‑term | Low |  
+| *Stewardship Custodians Capture* | Influence or replace the eleven custodians with industry‑friendly actors. | 2 (requires compromising multiple independent institutions) | Long‑term | Low |  
 | *Competitive Framework Proliferation* | Launch well‑funded “ethical AI” initiatives that replicate TML’s surface rhetoric but lack its enforcement teeth. | 5 (already occurring) | Immediate | High |  
 | *Internalization of Enforcement* | Offer “TML‑as‑a‑Service” that controls the logging and adjudication pipeline, allowing subtle dilution. | 4 (requires market power) | 2–3 years | Medium |
 
@@ -68,7 +68,7 @@
 |--------|-----------|------------|----------------|  
 | **Full Anonymity** | Harder to target personally; avoids personal liability. | No legal standing to enforce copyright; easier for incumbents to claim “orphan work” status. | **Avoid.** |  
 | **Partial De‑naming (Pseudonym)** | Some legal protection if pseudonym is registered (e.g., ORCID). | Still vulnerable to “author not found” challenges. | **Acceptable only if backed by a legal trust.** |  
-| **Permanent Authorship (Real Identity)** | Full moral‑rights protection (droit moral) under Berne Convention; ability to sue for infringement. | Personal exposure to litigation and harassment. | **Recommended.** Use a **foundation** (e.g., TML Stewardship Council) as legal holder, with creator as named author. |
+| **Permanent Authorship (Real Identity)** | Full moral‑rights protection (droit moral) under Berne Convention; ability to sue for infringement. | Personal exposure to litigation and harassment. | **Recommended.** Use a **foundation** (e.g., TML Stewardship Custodians) as legal holder, with creator as named author. |
 
 **Historical precedent:** Anonymous works (e.g., early cryptographic protocols) were often co‑opted or suppressed; named authorship (e.g., RSA algorithm) provided legal standing for enforcement.
 

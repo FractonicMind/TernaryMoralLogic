@@ -51,7 +51,7 @@ class ValidationResult:
 
 class OracleBridge:
     """
-    Bridges external ecological data sources with TML's Stewardship Council
+    Bridges external ecological data sources with TML's Stewardship Custodians
     Ensures all environmental triggers are current and validated
     """
     
@@ -411,7 +411,7 @@ class OracleBridge:
     
     async def propagate_update(self, source_id: str, update: ValidationResult):
         """
-        Propagate validated update to Stewardship Council
+        Propagate validated update to Stewardship Custodians
         
         Args:
             source_id: Source that was updated

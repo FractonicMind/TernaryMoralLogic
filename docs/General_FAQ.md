@@ -603,14 +603,14 @@ The [Hybrid Shield](https://github.com/FractonicMind/TernaryMoralLogic/blob/main
 **Mathematical Shield (Layer 1)**:
 Every Moral Trace Log is hashed, grouped into Merkle trees, and anchored across multiple [public blockchains](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/TML_Pillars/Public_Blockchains.md). Smart contracts automatically verify integrity, enforce immutability, and execute penalties for tampering. In this layer, mathematical proof replaces institutional trust.
 
-**[Stewardship Council](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/TML_STEWARDSHIP_COUNSIL.md) (Layer 2)**:
+**[Stewardship Custodians](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/TML_STEWARDSHIP_COUNSIL.md) (Layer 2)**:
 Six independent organizations maintain encrypted off-chain mirrors of logs. These custodians act as historical stewards and policy interpreters, offering redundancy, context, and continuity beyond the digital layer.
 
-The dual-layer architecture ensures immutability through cryptography and resilience through distributed stewardship. Even if organizations dissolve or blockchains experience technical issues, the ethical memory of actions remains verifiable and intact.
+The dual-layer architecture ensures immutability through cryptography and resilience through Tri-Cameral governance. Even if organizations dissolve or blockchains experience technical issues, the ethical memory of actions remains verifiable and intact.
 
 🛡️ **Technical Details**: [Hybrid Shield Documentation](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/protection/Hybrid-Shield.md) | [Sync Protocol](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/core/SYNC_PROTOCOL.md)
 
-### Q2: Who comprises the Stewardship Council?
+### Q2: Who comprises the Stewardship Custodians?
 
 Six independent custodian organizations hold synchronized copies of TML logs (see [Succession Charter](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/TML-SUCCESSION-CHARTER.md)):
 
@@ -652,7 +652,7 @@ Six independent custodian organizations hold synchronized copies of TML logs (se
 
 ### Q3: How does log distribution function?
 
-When TML-compliant AI systems generate Moral Trace Logs, logs are simultaneously distributed to all six custodians in real time through instantaneous replication as logs are created.
+When TML-compliant AI systems generate Moral Trace Logs, logs are simultaneously distributed to all eleven custodians in real time through instantaneous replication as logs are created.
 
 At decision completion moment:
 - Log exists on implementing organization's systems
@@ -663,7 +663,7 @@ At decision completion moment:
 
 To erase a Moral Trace Log, attackers would require:
 - Compromise of implementing organization's systems
-- Simultaneous breach of six independent institutions
+- Simultaneous breach of eleven independent custodians
 - Each in different jurisdictions with different security models
 - Each with different legal protections and oversight
 - Each with staff trained to detect and resist attacks
@@ -672,9 +672,9 @@ To erase a Moral Trace Log, attackers would require:
 
 This coordination level exceeds capability of well-resourced nation-states. The institutional diversity—spanning technical organizations, human rights NGOs, Indigenous networks, academic institutions, and medical facilities—renders coordinated compromise impractical.
 
-### Q4: What powers does the Stewardship Council possess?
+### Q4: What powers does the Stewardship Custodians possess?
 
-The Stewardship Council operates under strictly defined authorities:
+The Stewardship Custodians operates under strictly defined authorities:
 
 **Permitted Actions**:
 - Coordinate framework evolution
@@ -696,9 +696,9 @@ These limitations are encoded in smart contracts, not merely documented in gover
 
 ### Q5: What is the Lantern Seal?
 
-The Mathematical Shield and Stewardship Council verify each other through the Lantern Seal cryptographic link.
+The Mathematical Shield and Stewardship Custodians verify each other through the Lantern Seal cryptographic link.
 
-Every 24 hours, the Stewardship Council performs verification:
+Every 24 hours, the Stewardship Custodians performs verification:
 
 1. Each custodian generates hash of all logs in custody
 2. Hashes are compared against blockchain-anchored Merkle roots
@@ -740,11 +740,11 @@ Explainable AI (XAI) produces optional narratives. TML produces cryptographicall
 
 ---
 
-## Stewardship Council Governance
+## Stewardship Custodians Governance
 
-### Q1: What is the Stewardship Council's governance model?
+### Q1: What is the Stewardship Custodians's governance model?
 
-The Stewardship Council operates through distributed consensus requiring 5/6 supermajority for major decisions. This prevents single-institution control while enabling effective governance.
+The Stewardship Custodians operates through distributed consensus requiring 5/6 supermajority for major decisions. This prevents single-institution control while enabling effective governance.
 
 ### Q2: How are Council decisions made?
 
@@ -757,7 +757,7 @@ The Stewardship Council operates through distributed consensus requiring 5/6 sup
 **Major Decisions** (5/6 supermajority):
 - Framework protection document additions
 - Memorial Fund allocation policy changes
-- Stewardship Council membership changes
+- Stewardship Custodians membership changes
 - Technical architecture modifications
 
 **Constitutional Decisions** (prohibited):
@@ -784,7 +784,7 @@ Council attestations strengthen international admissibility by:
 
 ### Q5: What is the long-term vision for Council governance?
 
-The Stewardship Council serves as permanent institutional protection, analogous to certificate authorities in web ecosystem security. The Council provides:
+The Stewardship Custodians serves as permanent institutional protection, analogous to certificate authorities in web ecosystem security. The Council provides:
 - Continuity across organizational changes
 - Resistance to institutional capture
 - Cross-border coordination
@@ -828,7 +828,7 @@ Anchoring currently relies on SHA-256 and elliptic curve cryptography, which are
 
 - **Anonymous reporting channels**: Shield identities
 - **Immutable anchoring**: Ensures evidence survives internal deletion attempts
-- **Stewardship Council custody**: Serves as evidence escrow, with core accountability guaranteed by blockchain anchoring
+- **Stewardship Custodians custody**: Serves as evidence escrow, with core accountability guaranteed by blockchain anchoring
 
 ### Q8: Can organizations game Sacred Zero triggers?
 
@@ -849,9 +849,9 @@ Affirmative. Each log is cryptographically hashed, batched via Merkle trees, and
 
 Together, they provide interoperable proof formats aligning with existing legal frameworks globally.
 
-### Q3: How does Stewardship Council attestation affect admissibility?
+### Q3: How does Stewardship Custodians attestation affect admissibility?
 
-Stewardship Council attestations strengthen cross-border recognition by acting as neutral custodians. While blockchain anchoring plus OpenTimestamps proofs suffice for domestic legal systems, Council custody may strengthen international admissibility by providing institutional witnesses across jurisdictions.
+Stewardship Custodians attestations strengthen cross-border recognition by acting as neutral custodians. While blockchain anchoring plus OpenTimestamps proofs suffice for domestic legal systems, Council custody may strengthen international admissibility by providing institutional witnesses across jurisdictions.
 
 ### Q4: What happens if companies fail to produce valid anchored logs?
 
@@ -859,7 +859,7 @@ Courts can treat log absence as spoliation of evidence—shifting burden of proo
 
 ### Q5: How is international recognition handled?
 
-Cross-border recognition of digital evidence varies. Anchoring to multiple chains, combined with Stewardship Council custody, strengthens trust across jurisdictions. Regulators may recognize Council attestation as safe harbor for international admissibility.
+Cross-border recognition of digital evidence varies. Anchoring to multiple chains, combined with Stewardship Custodians custody, strengthens trust across jurisdictions. Regulators may recognize Council attestation as safe harbor for international admissibility.
 
 ---
 
@@ -915,7 +915,7 @@ Through separation of proof and data:
 
 Affirmative. They satisfy FRE 901/902 via:
 
-- Stewardship Council confirmations
+- Stewardship Custodians confirmations
 - Cryptographic proof chains
 - Expert witness program
 - NIST standards engagement
@@ -948,7 +948,7 @@ Always Memory is designed as invisible infrastructure, not supplementary feature
 
 - **Versioned log formats**: Always Memory evolves alongside new computing paradigms (neuromorphic chips, quantum processors, swarm architectures) without losing backward compatibility
 - **Adaptive capture**: Beyond text logs, framework extends to multi-modal records: video, audio, sensor feeds from embodied systems including humanoid robots. This ensures AGI actions are preserved not only in reasoning chains but physical behavior
-- **Anchored permanence**: Logs are cryptographically sealed to multiple public blockchains, with Stewardship Council custody as added safeguard. Updates never overwrite the past; they add new strata, analogous to tree rings
+- **Anchored permanence**: Logs are cryptographically sealed to multiple public blockchains, with Stewardship Custodians custody as added safeguard. Updates never overwrite the past; they add new strata, analogous to tree rings
 
 ### Q2: Can Always Memory handle AGI?
 
@@ -1013,7 +1013,7 @@ Each cycle strengthens both compliance and credibility. Self-reinforcing adoptio
 ### Q3: What if governance is needed across borders?
 
 - **Minimum viable enforcement**: Blockchain plus strict liability functions domestically today
-- **Stewardship Council attestation**: Provides cross-border case support
+- **Stewardship Custodians attestation**: Provides cross-border case support
 - **Future-proofing**: Framework supports international coordination while remaining domestically enforceable
 
 ---
@@ -1022,7 +1022,7 @@ Each cycle strengthens both compliance and credibility. Self-reinforcing adoptio
 
 ### Q1: What happens to TML if its creator can no longer oversee it?
 
-TML is covered by signed [Voluntary Succession Plan](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/TML-SUCCESSION-DECLARATION.md) transferring stewardship of repositories, blockchain anchoring, domains, and Memorial Fund to the Stewardship Council. The plan is transparent and auditable.
+TML is covered by signed [Voluntary Succession Plan](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/TML-SUCCESSION-DECLARATION.md) transferring stewardship of repositories, blockchain anchoring, domains, and Memorial Fund to the Stewardship Custodians. The plan is transparent and auditable.
 
 📄 **Complete Documentation**: [TML Succession Declaration](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/TML-SUCCESSION-DECLARATION.md) | [Audio + HTML Version](https://fractonicmind.github.io/TernaryMoralLogic/TML-Succession-Plan.html)
 
@@ -1230,7 +1230,7 @@ SHA-256: [To be generated upon finalization]
 
 **Succession Contact**: support@tml-goukassian.org  
 **Emergency Contact**: [Per Succession Charter](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/TML-SUCCESSION-CHARTER.md)  
-**Stewardship Council**: [Six member organizations per Succession Declaration](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/TML-SUCCESSION-DECLARATION.md)
+**Stewardship Custodians**: [Six member organizations per Succession Declaration](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/TML-SUCCESSION-DECLARATION.md)
 
 ---
 

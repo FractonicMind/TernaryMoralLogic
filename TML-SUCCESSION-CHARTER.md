@@ -336,7 +336,7 @@ capture_prevention:
 - Smart contracts continue enforcing penalties
 - Memorial Fund continues automatic distributions
 - Community continues maintaining code
-- Stewardship Council continues governance
+- Stewardship Custodians continues governance
 - Research continues with open data access
 
 **What Changes:**
@@ -361,7 +361,7 @@ capture_prevention:
 3. Memorial Fund: Rename to "Lev Goukassian Memorial Fund" formally
 4. Website: Update to community stewardship model
 5. Media: Public announcement of transition
-6. Academic Community: Notify Stewardship Council (if active)
+6. Academic Community: Notify Stewardship Custodians (if active)
 ```
 
 ### Continuity Verification
@@ -371,7 +371,7 @@ capture_prevention:
 - Confirm smart contracts executing correctly
 - Ensure open source repository accessible
 - Test Memorial Fund distributions
-- Validate Stewardship Council (if active)
+- Validate Stewardship Custodians (if active)
 - Confirm community communication channels
 
 ---
@@ -384,7 +384,7 @@ capture_prevention:
 - Community establishes stable governance patterns
 - Multiple implementations prove resilience
 - Academic research demonstrates effectiveness
-- Stewardship Council matures (if active)
+- Stewardship Custodians matures (if active)
 
 **Year 5-10:**
 - International adoption accelerates
@@ -485,7 +485,7 @@ threat_detected:
 - Capture the governance
 - Erase the code
 
-**The Stewardship Council Will:**
+**The Stewardship Custodians Will:**
 - Maintain the code
 - Improve the algorithms
 - Support the victims

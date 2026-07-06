@@ -63,7 +63,7 @@ Analysis of Survivability:
 
 ### **8\. Stewardship Governance Architecture**
 
-The Stewardship Council consists of independent representatives from global human rights and environmental organizations who act as the "Supreme Court" of the TML system.10 They hold the authority to resolve Sacred Zero events and revoke licenses.10  
+The Stewardship Custodians consists of independent representatives from global human rights and environmental organizations who act as the "Supreme Court" of the TML system.10 They hold the authority to resolve Sacred Zero events and revoke licenses.10  
 Analysis of Survivability:
 
 * Override Susceptibility: Moderate. While the council can be targeted for coercion, they cannot initiate code changes or access treasury funds directly, limiting the damage of a compromised steward.10
@@ -109,7 +109,7 @@ Enforceability Analysis:
 The TML License is a binding pledge that the system will never be used for weaponry or spying.19 It transforms ethical compliance from a voluntary preference into a legal and functional constraint.19  
 Enforceability Analysis:
 
-* Governance-enforced: High. Stewardship Council can revoke licenses based on evidence from Moral Trace Logs.10  
+* Governance-enforced: High. Stewardship Custodians can revoke licenses based on evidence from Moral Trace Logs.10  
 * Cryptographically enforced: Moderate. License IDs are checked before the $evaluateAction$ modifier allows execution.10
 
 ## **III. Dual Mandates as Structural Invariants**
@@ -238,8 +238,8 @@ Despite its architectural robustness, TML is vulnerable to several higher-order 
 1. Epistemic Gridlock: An adversary floods the system's input with ambiguous data specifically designed to keep the EUS above the threshold, forcing a permanent State 0 (Sacred Pause).3  
    * Mitigation: The Clarifying Question Engine (CQE) allows humans to identify and override such "Denial of Service" (DoS) attacks.1  
 2. Sacred Zero Flooding: Malicious actors intentionally trigger the Sacred Pause to overwhelm human stewards.  
-   * Mitigation: TML implements "Pause Deposits"—a fee required to trigger a pause that is only refunded if the Stewardship Council deems the pause was valid.10  
-3. Custodian Collusion: A state-level adversary coerces or bribes the majority of the Stewardship Council to resolve all pauses in the state's favor.  
+   * Mitigation: TML implements "Pause Deposits"—a fee required to trigger a pause that is only refunded if the Stewardship Custodians deems the pause was valid.10  
+3. Custodian Collusion: A state-level adversary coerces or bribes the majority of the Stewardship Custodians to resolve all pauses in the state's favor.  
    * Mitigation: Decentralized multi-sig architecture and a transparent, public record of every steward's decision in the MTL.10  
 4. Governance Capture: Adversaries infiltrate the organizations that appoint stewards.  
    * Mitigation: "Staged Rotation" of stewards and the use of the "Lantern Signal" as an automatic trigger for global revocation if governance capture is suspected.10  
@@ -263,7 +263,7 @@ Adoption Scenarios and Survivability:
 
 1. Public Adoption: Driven by insurance markets and legal defensibility. TML becomes the "Gold Standard" for Auditable AI, making non-TML systems uninsurable.22  
 2. Quiet Adoption: Corporate internal use for Model Risk Management (MRM). TML prevents "Black Swan" events in financial trading, but the ethical pillars are kept proprietary.9  
-3. Mandatory Adoption: Regulatory mandates (e.g., from the EU Joint Research Centre) force TML into high-risk systems. This leads to "State Suspicion," where governments view the independent Stewardship Council as a threat to sovereignty.1
+3. Mandatory Adoption: Regulatory mandates (e.g., from the EU Joint Research Centre) force TML into high-risk systems. This leads to "State Suspicion," where governments view the independent Stewardship Custodians as a threat to sovereignty.1
 
 Political Scrutiny Impact: Hardware-level TML increases the probability of export controls. A state may classify TML hardware as "dual-use technology" or a "threat to national security," attempting to ban its fabrication.5 However, TML’s alignment with global standards like the UNESCO Recommendation on the Ethics of AI provides a "Diplomatic Shield," making it difficult for states to marginalize the framework without publicly rejecting global ethical norms.2
 
@@ -274,7 +274,7 @@ Survivability Summary:
 
 * Administrative Override: Resistible through "No Log \= No Action" hardware interlocks.5  
 * Corporate Compromise: Prevented by multi-chain anchoring and the automatic forfeiture of the Lantern.14  
-* State-level Coercion: Mitigated by the decentralized Stewardship Council and the global nature of the "Circle of Trust" ecosystem.10  
+* State-level Coercion: Mitigated by the decentralized Stewardship Custodians and the global nature of the "Circle of Trust" ecosystem.10  
 * Hardware Tampering: Addressed through TEE enclaves and the potential for native ternary logic gates.3  
 * Supply Chain Corruption: Requires a multi-vendor distributed fabrication strategy to ensure logic integrity.3
 

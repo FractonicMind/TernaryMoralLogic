@@ -829,7 +829,7 @@
           <tr><td class="td-name required-field">tokenId</td><td class="td-type type-ref">$ref UUIDv4</td><td class="td-constraint"></td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Unique identifier for this Permission Token.</td></tr>
           <tr><td class="td-name required-field">logHash</td><td class="td-type type-ref">$ref SHA256Hex</td><td class="td-constraint">SHA-256 of anchored TSLF</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Core No Log = No Action binding. Token cannot exist without a corresponding anchored log.</td></tr>
           <tr><td class="td-name required-field">epochTimestamp</td><td class="td-type type-integer">integer</td><td class="td-constraint">minimum: 0</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Unix epoch seconds at which the Anchoring Lane issued this token.</td></tr>
-          <tr><td class="td-name required-field">signerKeyId</td><td class="td-type type-string">string</td><td class="td-constraint">maxLength: 256</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">HSM-resident signing key ID; must be registered in the HybridShield 6-Custodian key registry.</td></tr>
+          <tr><td class="td-name required-field">signerKeyId</td><td class="td-type type-string">string</td><td class="td-constraint">maxLength: 256</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">HSM-resident signing key ID; must be registered in the HybridShield Tri-Cameral key registry.</td></tr>
           <tr><td class="td-name required-field">laneOrigin</td><td class="td-type type-const">const</td><td class="td-constraint">const: "ANCHORING_LANE"</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Schema-level rejection of any token originating from the Inference Lane. Enforces lane separation.</td></tr>
           <tr><td class="td-name required-field">merkleRoot</td><td class="td-type type-ref">$ref SHA256Hex</td><td class="td-constraint">batch anchor hash</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">Non-repudiation binding to public blockchain anchor. Must match the on-chain TML_Core record.</td></tr>
           <tr><td class="td-name required-field">signatureValue</td><td class="td-type type-string">string</td><td class="td-constraint">Base64url; minLength: 64</td><td><span class="req-badge req-yes">yes</span></td><td class="td-desc">HSM signature over canonical token fields. Actuation layer verifies against signerKeyId public key.</td></tr>
@@ -1500,7 +1500,7 @@
       <span class="schema-expand">&#9660;</span>
     </div>
     <div class="schema-card-body">
-      <div class="schema-description">Health and liveness signal from one of the 6-Custodian HybridShield distributed anchoring nodes. A missing or stale heartbeat triggers HybridShield failover protocols. Cross-jurisdiction sub-500ms quorum is FUTURE (Section 10); latencyMs documents the current observed value.</div>
+      <div class="schema-description">Health and liveness signal from one of the Tri-Cameral HybridShield distributed anchoring nodes. A missing or stale heartbeat triggers HybridShield failover protocols. Cross-jurisdiction sub-500ms quorum is FUTURE (Section 10); latencyMs documents the current observed value.</div>
       <div class="callout callout-monograph">Monograph ref: Section 2.3.3, Pillar VII (HybridShield)</div>
       <div class="prop-table-label">Properties</div>
       <table class="prop-table">

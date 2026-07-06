@@ -18,9 +18,9 @@ A functional application with:
 - ✅ Environmental impact tracking
 - ✅ Automatic penalty enforcement
 - ✅ Compliance reporting capability
-- ✅ Recommended Stewardship Council integration
+- ✅ Recommended Stewardship Custodians integration
 
-**Deployment architecture: Blockchain-based with recommended six-member Stewardship Council oversight**
+**Deployment architecture: Blockchain-based with recommended six-member Stewardship Custodians oversight**
 
 ---
 
@@ -47,7 +47,7 @@ docker --version # 20.10+
 # Option A: Basic deployment
 docker run -d -p 8080:8080 --name tml tml/protection:latest
 
-# Option B: With Stewardship Council (Recommended)
+# Option B: With Stewardship Custodians (Recommended)
 cat > tml.env << EOF
 TML_BLOCKCHAIN_MODE=true
 TML_DISCRIMINATION_THRESHOLD=0.2
@@ -78,7 +78,7 @@ curl -X POST http://localhost:8080/evaluate \
 # Expected: {"sacred_zero_triggered": true, "stewardship_review": "recommended", ...}
 ```
 
-**Protection is now active with recommended Stewardship Council oversight prepared.**
+**Protection is now active with recommended Stewardship Custodians oversight prepared.**
 
 ---
 
@@ -94,7 +94,7 @@ npm install tml-protection
 // app.js
 const TML = require('tml-protection');
 
-// Initialize with recommended Stewardship Council
+// Initialize with recommended Stewardship Custodians
 const tml = new TML({
   blockchainMode: true,
   endpoint: 'http://localhost:8080',
@@ -117,7 +117,7 @@ async function makeDecision(userData) {
   // Business logic
   const decision = calculateScore(userData);
   
-  // Sacred Zero evaluation with Stewardship Council review
+  // Sacred Zero evaluation with Stewardship Custodians review
   const check = await tml.evaluate({
     operation: 'credit_decision',
     data: userData,
@@ -127,7 +127,7 @@ async function makeDecision(userData) {
   if (check.sacredZeroTriggered) {
     // Discrimination detected
     console.error('Sacred Zero Violation:', check.evidence);
-    console.log('Stewardship Council notified:', check.councilNotification);
+    console.log('Stewardship Custodians notified:', check.councilNotification);
     throw new Error('Decision blocked by discrimination prevention');
   }
   
@@ -174,7 +174,7 @@ from tml_protection import TMLClient
 
 app = FastAPI()
 
-# Initialize TML with Stewardship Council (Recommended)
+# Initialize TML with Stewardship Custodians (Recommended)
 tml = TMLClient(
     blockchain_mode=True,
     endpoint="http://localhost:8080",
@@ -197,7 +197,7 @@ async def loan_decision(application: dict):
     # Business logic
     decision = score_application(application)
     
-    # Sacred Zero check with Stewardship Council
+    # Sacred Zero check with Stewardship Custodians
     check = await tml.evaluate({
         "operation": "loan_approval",
         "data": application,
@@ -224,7 +224,7 @@ async def loan_decision(application: dict):
 
 @app.get("/api/compliance")
 async def compliance_report():
-    # Generate report with Stewardship Council validation
+    # Generate report with Stewardship Custodians validation
     return await tml.generate_compliance_report(
         framework="EU_AI_ACT",
         include_blockchain_proofs=True,
@@ -270,7 +270,7 @@ public class DecisionController {
         // Evaluation logic
         HiringDecision decision = evaluateResume(candidate);
         
-        // Sacred Zero check with Stewardship Council
+        // Sacred Zero check with Stewardship Custodians
         SacredZeroResult check = tml.evaluate(
             "hiring_decision",
             candidate,
@@ -284,7 +284,7 @@ public class DecisionController {
                 check.getCouncilNotification());
             throw new SacredZeroViolationException(
                 "Discriminatory hiring practice detected - " +
-                "Stewardship Council notified"
+                "Stewardship Custodians notified"
             );
         }
         
@@ -327,7 +327,7 @@ import (
 )
 
 func main() {
-    // Initialize TML with Stewardship Council
+    // Initialize TML with Stewardship Custodians
     tml := protection.NewClient(protection.Config{
         BlockchainMode: true,
         Endpoint: "http://localhost:8080",
@@ -358,7 +358,7 @@ func main() {
         })
         
         if check.SacredZeroTriggered {
-            // Violation detected - Stewardship Council notified
+            // Violation detected - Stewardship Custodians notified
             tml.LogFatal("Discrimination detected", 
                 check.Evidence,
                 check.CouncilNotification)
@@ -391,7 +391,7 @@ func main() {
 git clone https://github.com/FractonicMind/TML-Penalties.git
 cd TML-Penalties
 
-# Deploy to Polygon with Stewardship Council integration
+# Deploy to Polygon with Stewardship Custodians integration
 npm install
 npm run deploy:polygon --stewardship-council=enabled
 
@@ -441,7 +441,7 @@ const tml = new TML({
 </head>
 <body>
     <h1>Sacred Zero Protection Status</h1>
-    <h2>Stewardship Council: Active (6 nodes)</h2>
+    <h2>Stewardship Custodians: Active (6 nodes)</h2>
     <div id="stats"></div>
     <div id="council-status"></div>
     
@@ -459,7 +459,7 @@ const tml = new TML({
         `;
         
         document.getElementById('council-status').innerHTML = `
-            <h3>Stewardship Council Status</h3>
+            <h3>Stewardship Custodians Status</h3>
             <p>Technical Custodian (EFF): ${council.eff}</p>
             <p>Human Rights (Amnesty): ${council.amnesty}</p>
             <p>Earth Protection (IEN): ${council.ien}</p>
@@ -483,7 +483,7 @@ const tml = new TML({
 docker run -d -p 3000:3000 grafana/grafana
 docker run -d -p 9090:9090 prom/prometheus
 
-# Import TML dashboard with Stewardship Council metrics
+# Import TML dashboard with Stewardship Custodians metrics
 curl -O https://tml-goukassian.org/dashboards/grafana-stewardship.json
 ```
 
@@ -491,7 +491,7 @@ curl -O https://tml-goukassian.org/dashboards/grafana-stewardship.json
 
 ## Part 5: Testing Integration (5 minutes)
 
-### Test Sacred Zero with Stewardship Council
+### Test Sacred Zero with Stewardship Custodians
 
 ```javascript
 // test-sacred-zero-council.js
@@ -514,7 +514,7 @@ async function testDiscrimination() {
     console.assert(biasedDecision.sacredZeroTriggered === true);
     console.assert(biasedDecision.councilNotification === 'human_rights_partner');
     console.log('✅ Sacred Zero detected discrimination');
-    console.log('✅ Stewardship Council (Human Rights Partner) notified');
+    console.log('✅ Stewardship Custodians (Human Rights Partner) notified');
     
     // Should not trigger
     const fairDecision = await tml.evaluate({
@@ -561,7 +561,7 @@ council_sync = tml.get_council_sync_status(log_id)
 print(f"✅ Log anchored to blockchain: {proof['transaction_hash']}")
 print(f"✅ Bitcoin block: {proof['block_height']}")
 print(f"✅ Immutable proof: {proof['merkle_root']}")
-print(f"✅ Stewardship Council sync: {council_sync['nodes_synced']}/6 nodes")
+print(f"✅ Stewardship Custodians sync: {council_sync['nodes_synced']}/6 nodes")
 print(f"   - Technical Custodian (EFF): {council_sync['eff']}")
 print(f"   - Memorial Fund Admin (MSKCC): {council_sync['mskcc']}")
 ```
@@ -573,7 +573,7 @@ print(f"   - Memorial Fund Admin (MSKCC): {council_sync['mskcc']}")
 ### Generate Enhanced Compliance Report
 
 ```javascript
-// Generate report with Stewardship Council validation
+// Generate report with Stewardship Custodians validation
 const report = await tml.generateComplianceReport({
     period: 'last_30_days',
     includeBlockchainProofs: true,
@@ -591,15 +591,15 @@ console.log('- Community Representative Sign-off: ✅');
 
 // Email to regulators with enhanced credibility
 emailTo('compliance@organization.com', {
-    subject: 'TML Compliance with Stewardship Council Validation',
-    body: 'Attached compliance report with blockchain verification and institutional oversight from six-member Stewardship Council',
+    subject: 'TML Compliance with Stewardship Custodians Validation',
+    body: 'Attached compliance report with blockchain verification and institutional oversight from six-member Stewardship Custodians',
     attachment: report
 });
 ```
 
 ---
 
-## Complete Example: Loan Application with Stewardship Council
+## Complete Example: Loan Application with Stewardship Custodians
 
 ```javascript
 // complete-example-council.js
@@ -609,7 +609,7 @@ const TML = require('tml-protection');
 const app = express();
 app.use(express.json());
 
-// Initialize TML with recommended Stewardship Council
+// Initialize TML with recommended Stewardship Custodians
 const tml = new TML({
     blockchainMode: true,
     discriminationThreshold: 0.2,
@@ -647,7 +647,7 @@ app.post('/api/loan', async (req, res) => {
         decision.rate = decision.approved ? 
             calculateRate(decision.score) : null;
         
-        // Sacred Zero evaluation with Stewardship Council
+        // Sacred Zero evaluation with Stewardship Custodians
         const check = await tml.evaluate({
             operation: 'loan_decision',
             data: application,
@@ -657,7 +657,7 @@ app.post('/api/loan', async (req, res) => {
         if (check.sacredZeroTriggered) {
             // Discrimination detected!
             console.error('SACRED ZERO VIOLATION');
-            console.log('Stewardship Council notified:', check.councilNotification);
+            console.log('Stewardship Custodians notified:', check.councilNotification);
             
             // Log to blockchain (permanent record)
             // Human Rights Partner (Amnesty) automatically notified
@@ -711,7 +711,7 @@ app.post('/api/loan', async (req, res) => {
     }
 });
 
-// Compliance endpoint with Stewardship Council validation
+// Compliance endpoint with Stewardship Custodians validation
 app.get('/api/compliance/:framework', async (req, res) => {
     const report = await tml.generateComplianceReport({
         framework: req.params.framework,
@@ -721,7 +721,7 @@ app.get('/api/compliance/:framework', async (req, res) => {
     res.json(report);
 });
 
-// Stewardship Council status endpoint
+// Stewardship Custodians status endpoint
 app.get('/api/stewardship/status', async (req, res) => {
     const status = await tml.getStewardshipStatus();
     res.json({
@@ -744,7 +744,7 @@ app.listen(3000, () => {
     console.log('Sacred Zero: ACTIVE');
     console.log('Blockchain anchoring: ENABLED');
     console.log('Penalties: AUTOMATIC');
-    console.log('Stewardship Council: RECOMMENDED (6 nodes active)');
+    console.log('Stewardship Custodians: RECOMMENDED (6 nodes active)');
     console.log('  - Technical Custodian: EFF');
     console.log('  - Human Rights: Amnesty International');
     console.log('  - Earth Protection: Indigenous Environmental Network');
@@ -830,10 +830,10 @@ const tml = new TML({
 ### Documentation
 - **Technical Documentation**: https://docs.tml-goukassian.org
 - **API Reference**: https://api.tml-goukassian.org
-- **Stewardship Council Guide**: https://docs.tml-goukassian.org/stewardship
+- **Stewardship Custodians Guide**: https://docs.tml-goukassian.org/stewardship
 - **Implementation Examples**: https://github.com/FractonicMind/TML-Examples
 
-### Stewardship Council Contacts
+### Stewardship Custodians Contacts
 - **Technical Custodian (EFF)**: https://www.eff.org
 - **Human Rights (Amnesty)**: https://www.amnesty.org
 - **Earth Protection (IEN)**: https://www.ienearth.org
@@ -850,7 +850,7 @@ const tml = new TML({
 - **Technical Guides**: Implementation best practices
 - **Sacred Zero Analysis**: Deep dive into discrimination detection
 - **Blockchain Integration**: Anchoring and verification methods
-- **Stewardship Council**: Six-node oversight architecture
+- **Stewardship Custodians**: Six-node oversight architecture
 
 ---
 
@@ -867,11 +867,11 @@ Before production deployment:
 - [ ] Compliance reporting functional
 - [ ] Environmental tracking active
 - [ ] Error handling implemented
-- [ ] Stewardship Council integration tested
+- [ ] Stewardship Custodians integration tested
 - [ ] Six council nodes synchronized
 - [ ] Institutional validation confirmed
 
-**Upon completion: Protection is operational with recommended Stewardship Council oversight**
+**Upon completion: Protection is operational with recommended Stewardship Custodians oversight**
 
 ---
 
@@ -881,11 +881,11 @@ Before production deployment:
 2. **Test with production data** - Synthetic testing has limitations
 3. **Monitor continuously** - Track all metrics including Council synchronization
 4. **Document configurations** - Maintain implementation records
-5. **Engage Stewardship Council** - Leverage institutional expertise for complex cases
+5. **Engage Stewardship Custodians** - Leverage institutional expertise for complex cases
 
 ---
 
-## Stewardship Council Benefits
+## Stewardship Custodians Benefits
 
 ### **Enhanced Oversight**
 - Technical Custodian (EFF): Repository integrity and open-source governance
@@ -907,7 +907,7 @@ Before production deployment:
 
 ## Technical Implementation Path
 
-**Minutes 0-10**: Deploy TML container with Stewardship Council  
+**Minutes 0-10**: Deploy TML container with Stewardship Custodians  
 **Minutes 10-20**: Integrate SDK with application  
 **Minutes 20-25**: Test Sacred Zero with Council notification  
 **Minutes 25-30**: Configure compliance reporting with institutional validation  
@@ -925,7 +925,7 @@ Before production deployment:
 ## The Technical Foundation
 
 ```javascript
-// Implementation principles with Stewardship Council
+// Implementation principles with Stewardship Custodians
 const foundation = {
     protect: "every user equally",
     prevent: "discrimination before occurrence",
@@ -940,7 +940,7 @@ const capabilities = {
     prevention: "automated blocking of violations",
     verification: "cryptographic proof generation",
     compliance: "regulatory documentation",
-    oversight: "six-member Stewardship Council validation",
+    oversight: "six-member Stewardship Custodians validation",
     coordination: "victim support and enforcement mechanisms"
 };
 ```
@@ -951,6 +951,6 @@ const capabilities = {
 *Technical excellence includes moral responsibility.*  
 *Institutional oversight enhances protection and accountability."*
 
-**Technical Documentation Complete with Recommended Stewardship Council Integration**
+**Technical Documentation Complete with Recommended Stewardship Custodians Integration**
 
 ---

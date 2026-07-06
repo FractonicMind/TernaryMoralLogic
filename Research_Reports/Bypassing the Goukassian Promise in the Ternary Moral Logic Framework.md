@@ -138,9 +138,9 @@ The primary and unequivocal recommendation of this report is to abandon any and 
 
 The most viable path to leveraging TML's powerful audit and governance capabilities is to align the organization's policies with the Promise's covenants. This would involve a formal corporate commitment to renounce the use of the organization's AI for applications in autonomous weaponry and pervasive surveillance. Such a move would not only enable the safe and compliant adoption of TML but could also serve as a significant positive differentiator in the marketplace, positioning the company as a verifiable leader in ethical AI.
 
-### **Recommendation 3: Formal Engagement with the TML Stewardship Council**
+### **Recommendation 3: Formal Engagement with the TML Stewardship Custodians**
 
-The TML documentation indicates the existence of a Stewardship Council to oversee the framework's integrity, with representation from technology, human rights, and other fields.8 If policy alignment is a potential long-term goal, initiating a formal dialogue with this council would be a productive step. The objective would not be to seek an exemption—which is unlikely to be granted—but to gain clarity on the precise scope of the prohibited uses and to ensure the organization's intended use cases are correctly interpreted under the framework's rules.
+The TML documentation indicates the existence of a Stewardship Custodians to oversee the framework's integrity, with representation from technology, human rights, and other fields.8 If policy alignment is a potential long-term goal, initiating a formal dialogue with this council would be a productive step. The objective would not be to seek an exemption—which is unlikely to be granted—but to gain clarity on the precise scope of the prohibited uses and to ensure the organization's intended use cases are correctly interpreted under the framework's rules.
 
 ### **Recommendation 4: Seek Alternative Auditable AI Frameworks**
 

@@ -90,7 +90,7 @@ To implement this, the TML Core contract must be deployed with its administrativ
 1. **Deployment:** The TMLCore contract is deployed.  
 2. **Configuration:** Initial parameters (e.g., oracle addresses, bond curves) are set.  
 3. **Renunciation:** The owner role is revoked or transferred to the 0x0 address for logic upgrades.  
-4. **Parameter Tuning:** Only specific parameters (like gas price thresholds or oracle timeouts) can be adjusted by the Stewardship Council, but the *logic flow* of the Tri-State machine is immutable. The Council cannot turn a \-1 into a \+1 without a complete system migration (fork), which would be visible and verifiable by the "Hybrid Shield."
+4. **Parameter Tuning:** Only specific parameters (like gas price thresholds or oracle timeouts) can be adjusted by the Stewardship Custodians, but the *logic flow* of the Tri-State machine is immutable. The Council cannot turn a \-1 into a \+1 without a complete system migration (fork), which would be visible and verifiable by the "Hybrid Shield."
 
 ## **3\. "Always Memory": The Immutable Logging Architecture**
 
@@ -144,7 +144,7 @@ TML requires not just a log of the decision, but a reference to the *ethical sta
 
 * When an AI submits a log, it must reference the corpusId it is complying with.  
 * If the referenced corpus is not in the validCorpora registry (e.g., an outdated or rejected ethical standard), the system treats the input as invalid (-1).  
-* This allows the Stewardship Council to update the "Moral OS" by adding new treaties or standards to the registry, propagating these updates to all AI agents immediately.
+* This allows the Stewardship Custodians to update the "Moral OS" by adding new treaties or standards to the registry, propagating these updates to all AI agents immediately.
 
 ## **4\. The Goukassian Promise: Technical Artifacts**
 
@@ -176,7 +176,7 @@ The License is implemented as a **Soulbound Token (SBT)**. It is a non-transfera
 
 * **Constraint:** The evaluateAction modifier checks IERC721(LicenseContract).balanceOf(msg.sender) \> 0\.  
 * **Revocation:** The License Smart Contract contains a revoke(address agent, string reason) function.  
-* **Authority:** Only the Stewardship Council (via multi-sig) can call revoke.  
+* **Authority:** Only the Stewardship Custodians (via multi-sig) can call revoke.  
 * **Logic:** If the License is revoked (burned), the TML Core automatically defaults all evaluateAction calls from that agent to \-1 (PROHIBIT).  
 * **Effect:** This effectively "bricks" the AI's ability to interact with TML-compliant systems if it is found to violate the "No Spy" or "No Weapon" mandates , converting a legal breach into a functional lockout.
 
@@ -252,7 +252,7 @@ Once a Pause is triggered, the system enforces a mandatory "Cool-down" and revie
 3. **Signal:** LanternSignal emitted.  
 4. **Review:**  
    * *Automated:* Oracles query additional data sources (e.g., "Check conflict zone map").  
-   * *Human:* Stewardship Council members receive a notification to review the case.  
+   * *Human:* Stewardship Custodians members receive a notification to review the case.  
 5. **Resolution:**  
    * A Steward calls resolvePause(traceId, Voice.PERMIT).  
    * The contract verifies the Steward's authority.  
@@ -270,7 +270,7 @@ The governance of the TML ecosystem is designed to be "sovereign-grade," modelin
 * **Role:** Defines the cryptographic standards and maintains the codebase.  
 * **Composition:** Cryptographers, Solidity developers, System Architects.  
 * **Power:** Can propose upgrades to the *optimization* layer (e.g., making storage cheaper) but *cannot* alter the Tri-State logic definitions.  
-* **Check:** Any code upgrade requires a time-lock and a veto opportunity from the Stewardship Council.
+* **Check:** Any code upgrade requires a time-lock and a veto opportunity from the Stewardship Custodians.
 
 ### **7.2 The Stewardship Custodians (The Judicial)**
 
@@ -324,7 +324,7 @@ Unlike upgradeable proxies (OpenZeppelin UUPS/Transparent), the core TML logic c
 
 ### **9.2 Attack Vector: Sybil Pausing**
 
-* **Attack:** An adversary generates thousands of AI agents to flood the system with "0" states, clogging the Stewardship Council's review queue.  
+* **Attack:** An adversary generates thousands of AI agents to flood the system with "0" states, clogging the Stewardship Custodians's review queue.  
 * **Defense:**  
   * **License SBT:** Only licensed agents can trigger a pause. Licenses strictly vetted (KYC/KYB).  
   * **Pause Deposit:** Triggering a pause requires locking funds. If the pause is frivolous, the funds are forfeited to the Treasury.

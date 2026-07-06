@@ -183,7 +183,7 @@ Moving beyond binary blocking (529 errors), the platform should implement progre
 Anthropic should lead the industry in "Governance by Design" by adopting TML-inspired transparency standards.
 
 * **Merkle-Anchored Logs:** All infrastructure "Incidents" (any state transition to degraded or down) should be automatically anchored to a public blockchain.40  
-* **Signed Transparency Reports:** In the aftermath of an outage, publish a full forensic report where all telemetry data is cryptographically signed by the responding engineers and the Stewardship Council.41
+* **Signed Transparency Reports:** In the aftermath of an outage, publish a full forensic report where all telemetry data is cryptographically signed by the responding engineers and the Stewardship Custodians.41
 
 ### **4\. Surge Simulation Stress Testing**
 

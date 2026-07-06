@@ -2,7 +2,7 @@
 
 **Version**: 3.0 (Blockchain-Direct Architecture)  
 **Status**: Communities Report Directly to Smart Contracts  
-**Stewardship Council Seats**: Recommended for Year 5+ governance  
+**Stewardship Custodians Seats**: Recommended for Year 5+ governance  
 **Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)
 
 ---
@@ -172,7 +172,7 @@ const youthParticipation = {
 
 ---
 
-## The Recommended Stewardship Council (Year 5+)
+## The Recommended Stewardship Custodians (Year 5+)
 
 ### If Companies Choose Committee Enhancement
 
@@ -195,7 +195,7 @@ def community_strategy():
         "step_2": "Document violations directly",
         "step_3": "Submit to smart contracts",
         "step_4": "Receive automatic rewards",
-        "step_5": "Participate in Stewardship Council if desired"
+        "step_5": "Participate in Stewardship Custodians if desired"
     }
     
     return "Direct power with recommended governance oversight"
@@ -265,7 +265,7 @@ cultural_accommodation = {
 - Equal mathematical power
 - Zero cost to participate
 
-### What Stewardship Council Adds (Recommended)
+### What Stewardship Custodians Adds (Recommended)
 - Enhanced governance validation
 - Cross-jurisdictional trust
 - Research collaboration

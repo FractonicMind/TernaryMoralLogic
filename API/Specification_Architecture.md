@@ -90,7 +90,7 @@ Lane 2 paths are:
 These paths are secured by `AnchoringLaneSecurity` (`HSM-SignedJWT + MutualTLS`). The HSM
 requirement is not incidental. The Anchoring Lane's authority to issue Permission Tokens, to
 activate system-wide Sacred Zero states, and to execute Emergency Overrides derives from
-hardware-backed key material registered in the HybridShield 6-Custodian registry. A software-signed
+hardware-backed key material registered in the HybridShield Tri-Cameral registry. A software-signed
 JWT cannot satisfy these endpoints.
 
 `POST /anchoring-logs` is the central enforcement point for No Log = No Action. Its request body
@@ -530,7 +530,7 @@ proceeds as follows:
    response confirms RFC 3161 timestamp authority identity and verification status.
 
 5. Check HybridShield custodian health at
-   `GET /audit/custodians/{custodianId}/heartbeat` for each of the 6 custodians, and
+   `GET /audit/custodians/{custodianId}/heartbeat` for each of the 11 custodians, and
    review aggregate quorum status at `GET /regulator/custodian-quorum`.
 
 6. Request bulk evidence export at `POST /regulator/evidence-export` for regulated

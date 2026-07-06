@@ -65,7 +65,7 @@ Each Moral Trace Log, upon creation, is immediately distributed to six custodian
 5. **Memorial Fund Administrator** (Memorial Sloan Kettering):  Oversees victim compensation  
 6. **Community Representative**:  Provides elected oversight
 
-This distribution happens in real-time, not through batch uploads or scheduled syncs. The moment a log is created, all six custodians receive copies simultaneously. No single organization can suppress a log because five others hold identical copies.
+This distribution happens in real-time, not through batch uploads or scheduled syncs. The moment a log is created, all eleven custodians receive copies simultaneously. No single organization can suppress a log because five others hold identical copies.
 
 But institutional distribution, while powerful, can theoretically be compromised through coordination or coercion. What if all six organizations were pressured to delete records? What if a government demanded erasure?
 

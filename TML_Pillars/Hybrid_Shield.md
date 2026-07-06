@@ -109,15 +109,15 @@ Once anchored across these three blockchains, the evidence becomes mathematicall
 
 It's not just expensive or difficult. It's **effectively impossible**. The cost, coordination, and visibility make it impractical even for nation-states. The evidence survives because mathematics says it must.
 
-### **The Stewardship Council: Institutional Redundancy**
+### **The Stewardship Custodians: Institutional Redundancy**
 
 Mathematical protection is powerful, but incomplete. Blockchains prove that evidence existed and when, but they don't store the evidence itself (logs can be megabytes; blockchain storage costs would be prohibitive). The actual Moral Trace Logs need secure, distributed storage with institutional oversight.
 
-This is where the second armor layer activates: the Stewardship Council.
+This is where the second armor layer activates: the Stewardship Custodians.
 
 **Composition and Distribution:**
 
-Six independent institutions hold synchronized copies of every TML log:
+Eleven independent custodians hold synchronized copies of every TML log:
 
 1. **Technical Custodian (Recommended: Electronic Frontier Foundation)**
 
@@ -158,7 +158,7 @@ Six independent institutions hold synchronized copies of every TML log:
 
 **Real-Time Distribution:**
 
-When a TML-compliant AI system generates a Moral Trace Log, that log is **simultaneously distributed to all six custodians in real time**—not through batch uploads or scheduled syncs, but instantaneous replication as the log is created.
+When a TML-compliant AI system generates a Moral Trace Log, that log is **simultaneously distributed to all eleven custodians in real time**—not through batch uploads or scheduled syncs, but instantaneous replication as the log is created.
 
 This means that at the moment an AI system completes a decision:
 
@@ -176,7 +176,7 @@ This means that at the moment an AI system completes a decision:
 To erase a Moral Trace Log, an attacker would need to:
 
 * Compromise the implementing organization's systems  
-* Simultaneously breach six independent institutions  
+* Simultaneously breach eleven independent custodians  
 * Each in different jurisdictions with different security models  
 * Each with different legal protections and oversight  
 * Each with staff trained to detect and resist such attacks  
@@ -185,13 +185,13 @@ To erase a Moral Trace Log, an attacker would need to:
 
 This level of coordination is beyond the capability of even well-resourced nation-states. The institutional diversity—spanning technical organizations, human rights NGOs, Indigenous networks, academic institutions, and medical facilities—makes coordinated compromise impractical.
 
-More importantly, the attempt itself would constitute evidence. If six independent institutions and three blockchains all report a coordinated attack, that becomes proof of bad faith effort to destroy evidence—itself admissible in court.
+More importantly, the attempt itself would constitute evidence. If eleven independent custodians and three blockchains all report a coordinated attack, that becomes proof of bad faith effort to destroy evidence—itself admissible in court.
 
 ### **The Lantern Seal: Synchronization Proof**
 
-The Mathematical Shield and Stewardship Council operate independently, but they verify each other through a cryptographic link called the **Lantern Seal**.
+The Mathematical Shield and Stewardship Custodians operate independently, but they verify each other through a cryptographic link called the **Lantern Seal**.
 
-Every 24 hours, the Stewardship Council performs a verification cycle:
+Every 24 hours, the Stewardship Custodians performs a verification cycle:
 
 1. Each custodian generates a hash of all logs in their custody  
 2. These hashes are compared against the blockchain-anchored Merkle roots  
@@ -335,7 +335,7 @@ The mathematical and institutional redundancy means no single authority can over
 
 "Successor councils may expand the number of chains or introduce new cryptographic standards (e.g., post-quantum signatures) without altering the constitutional requirement of dual redundancy."
 
-You can add protections (more blockchains, more custodians, stronger cryptography), but you cannot remove the core requirement: dual redundancy through mathematical and institutional shields. That's constitutional bedrock.
+You can add protections (more blockchains, more custodians, stronger cryptography), but you cannot remove the core requirement: dual redundancy through mathematical and HybridShields. That's constitutional bedrock.
 
 ### **Ethical Implications**
 
@@ -384,7 +384,7 @@ To understand the Hybrid Shield's power, consider how it changes outcomes in rea
 
 * Bank deploys TML-compliant AI loan approval system  
 * Every decision creates Moral Trace Log with Human Rights assessment  
-* Logs distributed to 6 custodians, anchored to 3 blockchains  
+* Logs distributed to 11 custodians, anchored to 3 blockchains  
 * When pattern detected, victims' lawyers subpoena logs  
 * Bank cannot claim logs are "unavailable"—they exist in 6 locations plus blockchain proof  
 * Logs show system flagged protected characteristics but proceeded anyway  
@@ -467,7 +467,7 @@ To understand the Hybrid Shield's power, consider how it changes outcomes in rea
 **With Hybrid Shield:**
 
 * Government AI system creates TML logs  
-* Logs distributed to 6 custodians including Amnesty International  
+* Logs distributed to 11 custodians including Amnesty International  
 * Government attempts classification  
 * Custodians are independent, some outside jurisdiction  
 * Cannot force all six to comply (different jurisdictions, different legal protections)  
@@ -499,7 +499,7 @@ This creates perverse incentives: the more harmful the decision, the stronger th
 
 With the Hybrid Shield, evidence becomes **non-perishable**:
 
-* Organizations cannot control it (6 custodians \+ 3 blockchains)  
+* Organizations cannot control it (11 custodians \+ 3 blockchains)  
 * Attempting destruction creates additional evidence  
 * Evidence exists whether they cooperate or not  
 * Rational actors must assume evidence will surface

@@ -491,7 +491,7 @@ This extends beyond physical torture to algorithmic cruelty. An AI system design
 
 **Slavery and Human Trafficking:** Similarly absolute. Any action that facilitates forced labor, human trafficking, debt bondage, or servitude triggers automatic refusal. This includes seemingly indirect facilitation—an AI system optimizing supply chains can't ignore slavery in its calculations, claiming ignorance or efficiency.
 
-**Genocide and Crimes Against Humanity:** These represent the most serious violations of international law, subject to universal jurisdiction. Any AI involvement in genocide (the deliberate destruction of a group), ethnic cleansing, mass atrocities, or systematic discrimination rises to this level gets the strongest possible response: categorical refusal plus immediate escalation to the Stewardship Council.
+**Genocide and Crimes Against Humanity:** These represent the most serious violations of international law, subject to universal jurisdiction. Any AI involvement in genocide (the deliberate destruction of a group), ethnic cleansing, mass atrocities, or systematic discrimination rises to this level gets the strongest possible response: categorical refusal plus immediate escalation to the Stewardship Custodians.
 
 **Retroactive Punishment:** The principle of *nullum crimen sine lege* (no crime without law) is fundamental to justice. An AI system cannot suggest or implement punishment for acts that weren't crimes when committed. This prevents algorithmic tyranny disguised as efficiency.
 
@@ -709,7 +709,7 @@ Some situations demand immediate response. When the system detects:
 It triggers an emergency protocol:
 
 1. **Immediate Sacred Zero** across all potentially affected systems  
-2. **Emergency notification** to Stewardship Council  
+2. **Emergency notification** to Stewardship Custodians  
 3. **Documentation preservation** (immutable logs to blockchains)  
 4. **Victim support activation** (Memorial Fund, legal aid)  
 5. **Remedy protocol initialization**
@@ -881,7 +881,7 @@ The Legal Mapping document includes extensive "Red Team Scenarios"—anticipated
 
 1. **International Baseline Immutability**: Tier 1 universal instruments cannot be modified by any single jurisdiction. They're anchored to international law, not local preferences.
 
-2. **Multi-Jurisdiction Cross-Reference**: If local implementation diverges from international baseline, the system flags the discrepancy and escalates to Stewardship Council.
+2. **Multi-Jurisdiction Cross-Reference**: If local implementation diverges from international baseline, the system flags the discrepancy and escalates to Stewardship Custodians.
 
 3. **Blockchain Evidence Trail**: Any attempt to modify protections creates immutable evidence of the attempt, visible to international observers.
 
@@ -1028,9 +1028,9 @@ This is human rights protection not as philosophy but as process.
 
 ---
 
-## **The Stewardship Council and Oversight**
+## **The Stewardship Custodians and Oversight**
 
-While Human Rights is largely automated, complex cases require human judgment. The Stewardship Council includes:
+While Human Rights is largely automated, complex cases require human judgment. The Stewardship Custodians includes:
 
 **Human Rights Enforcement Partner (Recommended: Amnesty International):**
 

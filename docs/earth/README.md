@@ -40,7 +40,7 @@ def enforce_earth_protection():
         Blockchain.compensate_ecosystem()
 ```
 
-### 🏛️ Stewardship Council (RECOMMENDED  ENHANCEMENT)
+### 🏛️ Stewardship Custodians (RECOMMENDED  ENHANCEMENT)
 - **Not required** for deployment
 - **Not required** for enforcement  
 - **Not required** for penalties
@@ -129,7 +129,7 @@ def submit_observation():
 - Smart contract gas: $50/month
 - IPFS storage: $50/month
 - **Total: $200/month**
-- Stewardship Council: $0
+- Stewardship Custodians: $0
 
 ### With Recommended Stewardship (Enhancement)
 - Everything above: $200/month

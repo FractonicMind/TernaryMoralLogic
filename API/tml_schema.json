@@ -115,7 +115,7 @@
           "type": "string",
           "minLength": 1,
           "maxLength": 256,
-          "description": "Key identifier of the HSM-resident signing key used by the Anchoring Lane to sign this token. Must reference a key registered in the HybridShield 6-Custodian key registry."
+          "description": "Key identifier of the HSM-resident signing key used by the Anchoring Lane to sign this token. Must reference a key registered in the HybridShield Tri-Cameral key registry."
         },
         "laneOrigin": {
           "$ref": "#/$defs/LaneOrigin",
@@ -146,7 +146,7 @@
         },
         "custodianQuorumAttestation": {
           "type": "object",
-          "description": "Optional attestation that the 6-Custodian HybridShield quorum was achieved at token issuance. Presence does not alter the token's validity; absence is permitted for SHIPPING deployments where full quorum attestation is BETA.",
+          "description": "Optional attestation that the Tri-Cameral HybridShield quorum was achieved at token issuance. Presence does not alter the token's validity; absence is permitted for SHIPPING deployments where full quorum attestation is BETA.",
           "properties": {
             "quorumAchieved": {
               "type": "boolean"
@@ -1801,7 +1801,7 @@
     "CustodianHeartbeat": {
       "$anchor": "CustodianHeartbeat",
       "title": "Custodian Heartbeat",
-      "description": "Health and liveness signal from one of the 6-Custodian HybridShield distributed anchoring nodes.",
+      "description": "Health and liveness signal from one of the Tri-Cameral HybridShield distributed anchoring nodes.",
       "$comment": "Monograph ref: Section 2.3.3, Pillar VII (HybridShield).",
       "type": "object",
       "required": [

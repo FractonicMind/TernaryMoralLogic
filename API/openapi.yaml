@@ -81,7 +81,7 @@ components:
         x-tml-security: "HSM-SignedJWT + MutualTLS"
         Applies to Anchoring Lane, Governance, and Sacred Zero escalation
         endpoints (Lane 2, Governance Lane). JWT must be signed by a
-        Hardware Security Module (HSM) registered with the 6-Custodian
+        Hardware Security Module (HSM) registered with the Tri-Cameral
         HybridShield authority. Mutual TLS is required.
 
     AuditorRegulatorSecurity:
@@ -295,7 +295,7 @@ components:
       in: path
       required: true
       description: |
-        Unique identifier for one of the 6-Custodian HybridShield anchoring
+        Unique identifier for one of the Tri-Cameral HybridShield anchoring
         nodes. Values are assigned during the distributed key ceremony.
       schema:
         type: string
@@ -1478,11 +1478,11 @@ paths:
     get:
       summary: "Get Custodian Heartbeat (HybridShield)"
       description: |
-        Returns the current heartbeat status for one of the 6-Custodian
+        Returns the current heartbeat status for one of the Tri-Cameral
         HybridShield distributed anchoring nodes. A missing or stale
         heartbeat triggers HybridShield failover protocols.
 
-        6-Custodian quorum: The HybridShield requires a threshold of
+        Tri-Cameral quorum: The HybridShield requires a threshold of
         custodians to remain active for Permission Token issuance to
         continue. Threshold specifics are defined in the HybridShield
         configuration, not this specification.

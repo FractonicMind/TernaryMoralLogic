@@ -498,7 +498,7 @@ Multi-Chain Anchoring achieves **substantial survivability through elegant distr
 
 #### II.8.1 Technical Specification: Distributed Custodial Control
 
-The **Stewardship Governance Architecture** implements **distributed control over TML system modifications** through multi-party procedures preventing unilateral action. The specification includes: **6 custodians with 4/6 quorum requirement for constitutional amendments, hardware root key rotations, or emergency override activations**. This 4-of-6 threshold configuration represents a deliberate balance between operational responsiveness (preventing single-custodian deadlock) and security resilience (requiring supermajority collusion for compromise).
+The **Stewardship Governance Architecture** implements **distributed control over TML system modifications** through multi-party procedures preventing unilateral action. The specification includes: **11 custodians with 4/6 quorum requirement for constitutional amendments, hardware root key rotations, or emergency override activations**. This 4-of-6 threshold configuration represents a deliberate balance between operational responsiveness (preventing single-custodian deadlock) and security resilience (requiring supermajority collusion for compromise).
 
 The custodial distribution follows **jurisdictional and institutional diversity mandates**: no more than two custodians may reside within the same legal jurisdiction; no more than two may represent corporate entities; at least one must be an independent academic institution; at least one must be a civil society organization with demonstrated human rights advocacy history. This heterogeneity creates **legal friction** against compelled cooperation—subpoenas, national security letters, or regulatory compulsion affecting one jurisdiction do not automatically propagate to others. Similarly, corporate capture requires coordination across sectoral boundaries, while institutional diversity prevents monocultural security vulnerabilities.
 
@@ -1443,7 +1443,7 @@ TML systems can fail in ways that **mimic adversarial compromise** or create **n
 
 ### X.3 Custodian Collusion
 
-**Definition**: **4/6 custodians** (or 6/6 in catastrophic scenarios) collude—through conspiracy, coercion, or ideological capture—to subvert TML constraints, authorize prohibited applications, or extract system keys.
+**Definition**: **4/11 custodians** (or 6/6 in catastrophic scenarios) collude—through conspiracy, coercion, or ideological capture—to subvert TML constraints, authorize prohibited applications, or extract system keys.
 
 **Detection**: Statistical anomaly detection (suspiciously rapid consensus on controversial issues); behavioral analysis (custodians voting against historical patterns); external whistleblowing.
 

@@ -150,7 +150,7 @@ class MissingMemoriesCompliance(unittest.TestCase):
         self.assertIsNotNone(stored_hash)
     
     def test_council_attestation_required(self):
-        """Verify Stewardship Council attestation is required"""
+        """Verify Stewardship Custodians attestation is required"""
         for context_name, context in self.test_contexts.items():
             with self.subTest(context=context_name):
                 result = self.service.evaluate(context)

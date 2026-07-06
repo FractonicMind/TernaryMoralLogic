@@ -45,7 +45,7 @@ This guide becomes operational upon **any** of the following:
    **Continuity Mode** ensures that all TML protections, Blockchain anchors, and Smart Contracts remain active and verifiable in full autonomy.  
    During this period:
    - The system continues operating under existing automated rules.
-   - The Stewardship Council (or any verified custodian) may activate formal succession, but inactivity alone shall **never** suspend, terminate, or invalidate TML’s ethical, legal, or technical functions.
+   - The Stewardship Custodians (or any verified custodian) may activate formal succession, but inactivity alone shall **never** suspend, terminate, or invalidate TML’s ethical, legal, or technical functions.
    - All components, logs, and memorial systems persist indefinitely until stewardship is reestablished.
 
 *TML does not expire by absence. It endures by design.*
@@ -158,7 +158,7 @@ GitHub Issue: [link to activation issue]
 
 ### Council Structure
 
-Form a 6-seat **TML Stewardship Council**:
+Form a 6-seat **TML Stewardship Custodians**:
 
 1. **Primary Custodian** (Technical Infrastructure) - 1 seat
 2. **Human Rights Partner** - 1 seat
@@ -392,12 +392,12 @@ tml test environmental-funding --scenarios
 **Option A: Non-Profit Corporation** (Recommended for US)
 - File 501(c)(3) application with IRS
 - State incorporation (Delaware or California recommended)
-- Board = Stewardship Council
+- Board = Stewardship Custodians
 - Bylaws based on succession requirements
 
 **Option B: Trust Structure**
 - Establish charitable trust
-- Trustee = Stewardship Council
+- Trustee = Stewardship Custodians
 - Trust terms = succession requirements
 - More flexible for international operations
 
@@ -445,7 +445,7 @@ tml test environmental-funding --scenarios
 
 The TML community announces the activation of framework succession 
 following [condition]. Lev Goukassian's vision continues through 
-the TML Stewardship Council.
+the TML Stewardship Custodians.
 
 **What This Means**:
 - All repositories remain active and maintained
@@ -489,7 +489,7 @@ The Lantern continues burning.
 
 **Documentation Updates**:
 - Update all contact information
-- Add "Maintained by TML Stewardship Council" to docs
+- Add "Maintained by TML Stewardship Custodians" to docs
 - Preserve creator attribution
 - Add memorial section to README
 
@@ -755,7 +755,7 @@ Do not be overwhelmed. You are not alone. This framework is designed to survive 
 2. Create the activation GitHub issue
 3. Send the notification emails (templates above)
 4. Wait for organizations to respond
-5. Form the Stewardship Council
+5. Form the Stewardship Custodians
 6. Follow this guide step-by-step
 
 **What TML protects**:
@@ -895,7 +895,7 @@ Every person protected. Every ecosystem preserved. Every violation compensated. 
 **Document Status**: Active Operational Manual  
 **Supersedes**: None (first edition)  
 **Updates**: Only to strengthen protections or clarify procedures  
-**Authority**: TML Stewardship Council (once formed)
+**Authority**: TML Stewardship Custodians (once formed)
 
 **Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)  
 **Email**: leogouk@gmail.com  

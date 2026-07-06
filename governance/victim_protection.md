@@ -260,7 +260,7 @@ The blockchain's transparent record enables automatic identification of systemat
 
 ### 8.1 Enhanced Support Functions
 
-While blockchain provides core protection, the recommended Stewardship Council offers:
+While blockchain provides core protection, the recommended Stewardship Custodians offers:
 
 **Human Rights Enforcement Partner (Recommended: Amnesty International)**:
 - Complex Human Rights violation analysis
@@ -288,7 +288,7 @@ While blockchain provides core protection, the recommended Stewardship Council o
 
 ### 8.2 Council Limitations
 
-The Stewardship Council cannot:
+The Stewardship Custodians cannot:
 - Approve or deny victim compensation (blockchain determines)
 - Modify automatic payment calculations (smart contract executes)
 - Override evidence verification (cryptographic proof validates)

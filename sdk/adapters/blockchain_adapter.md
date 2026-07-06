@@ -8,7 +8,7 @@
 ## Architecture Overview
 
 **Deployment Model**: Immediate Blockchain implementation with optional institutional coordination  
-**Current Model**: Deploy with Blockchain → Add Stewardship Council participation later
+**Current Model**: Deploy with Blockchain → Add Stewardship Custodians participation later
 
 This adapter enables existing TML SDKs to operate in Blockchain mode, providing immediate Sacred Zero protection without requiring institutional coordination.
 
@@ -27,7 +27,7 @@ This adapter enables existing TML SDKs to operate in Blockchain mode, providing 
 └─────────────┴───────────────┴───────────────┘
      ↓ Optional Future Enhancement ↓
 ┌─────────────────────────────────────────────┐
-│    Stewardship Council (When Available)     │
+│    Stewardship Custodians (When Available)     │
 └─────────────────────────────────────────────┘
 ```
 
@@ -200,12 +200,12 @@ public class BlockchainAdapter {
             entry.setBlockchainProof(timestamp);
             localStorage.save(entry);
             
-            // Try Stewardship Council as backup if available
+            // Try Stewardship Custodians as backup if available
             if (stewardshipCouncilAvailable()) {
                 try {
                     sendToStewardshipCouncil(entry);
                 } catch (Exception e) {
-                    // Stewardship Council is optional, continue
+                    // Stewardship Custodians is optional, continue
                 }
             }
             
@@ -272,7 +272,7 @@ func (c *BlockchainTMLClient) Log(level tml.LogLevel, message string, metadata t
     entry.BlockchainProof = timestamp
     c.localStorage.Save(entry)
     
-    // Stewardship Council is now optional backup
+    // Stewardship Custodians is now optional backup
     if c.stewardshipCouncilAvailable {
         go c.sendToStewardshipCouncilAsync(entry)  // Non-blocking
     }
@@ -458,7 +458,7 @@ public class ResilientTMLClient {
             blockchainAnchor(entry);
         } catch (BlockchainException e) {
             try {
-                // Fallback: Stewardship Council if available
+                // Fallback: Stewardship Custodians if available
                 stewardshipCouncilSubmit(entry);
             } catch (StewardshipCouncilException sce) {
                 // Last resort: Local storage with retry

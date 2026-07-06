@@ -40,7 +40,7 @@ A "No God Mode" proof and adversarial stress test. It demonstrates:
 *(Available formats: .md, .pdf, .html)*
 **The Human Interface.**
 Details the "Human in the Loop" protocols for resolving the Sacred Zero. It covers:
-* **The Stewardship Council:** A multi-sig software role constrained to resolving ambiguity.
+* **The Stewardship Custodians:** A multi-sig software role constrained to resolving ambiguity.
 * **Automated Penalties:** Smart contracts for immediate fine execution and license revocation.
 * **The Memorial Fund:** Perpetual, code-governed distribution of funds to victims and research.
 

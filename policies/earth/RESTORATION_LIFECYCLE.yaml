@@ -209,14 +209,14 @@ lifecycle:
     reporting:
       frequency: "Annual"
       recipients:
-        - Stewardship Council (if established)
+        - Stewardship Custodians (if established)
         - Affected communities
         - Scientific Advisory Council
         - Public disclosure
         
   phase_5_completion:
     timeline: "At success metrics achievement"
-    responsible_party: "Stewardship Council or Scientific Advisory Council"
+    responsible_party: "Stewardship Custodians or Scientific Advisory Council"
     
     success_criteria:
       ecological:

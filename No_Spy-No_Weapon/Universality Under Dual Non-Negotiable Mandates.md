@@ -110,7 +110,7 @@ While the article does not detail a specific protocol for key compromise, TML's 
 
 ### **Failure Mode: Epistemic Gridlock (The Freeze Scenario)**
 
-A potential failure mode is "Epistemic Gridlock," where the EUS remains perpetually above the threshold, forcing the system into a constant Sacred Zero state. While this prevents harm, it may render the system useless for its intended purpose. TML addresses this through a tiered resolution protocol involving the Stewardship Council and the Technical Council.11
+A potential failure mode is "Epistemic Gridlock," where the EUS remains perpetually above the threshold, forcing the system into a constant Sacred Zero state. While this prevents harm, it may render the system useless for its intended purpose. TML addresses this through a tiered resolution protocol involving the Stewardship Custodians and the Technical Council.11
 
 | Adversarial Vector | Failure Mode | TML Countermeasure | Confidence Classification |
 | :---- | :---- | :---- | :---- |
@@ -157,7 +157,7 @@ This system creates an evolutionary pressure: corporations that are too proud or
 
 TML is conceptualized as "The Lantern"—a framework that continues to burn regardless of who carries it.6 To ensure its persistence over decades, the framework includes a public activation protocol and a multi-cameral governance model.6
 
-### **The Stewardship Council**
+### **The Stewardship Custodians**
 
 The TML governance structure consists of three distinct bodies:
 
@@ -167,7 +167,7 @@ The TML governance structure consists of three distinct bodies:
 
 ### **Succession Activation Protocol**
 
-The succession documentation is public and includes the TML-SUCCESSION-LAUNCH-GUIDE.md and the TML-VOLUNTARY-SUCCESSION.md.6 Activation occurs through a standardized GitHub protocol, allowing for the transfer of technical infrastructure to a newly formed Stewardship Council if the original maintainers are unable to serve. This ensures that the framework remains a permanent public good, owned by no one and protecting everyone.6
+The succession documentation is public and includes the TML-SUCCESSION-LAUNCH-GUIDE.md and the TML-VOLUNTARY-SUCCESSION.md.6 Activation occurs through a standardized GitHub protocol, allowing for the transfer of technical infrastructure to a newly formed Stewardship Custodians if the original maintainers are unable to serve. This ensures that the framework remains a permanent public good, owned by no one and protecting everyone.6
 
 ## **Strategic Projections and Confidence Intervals**
 

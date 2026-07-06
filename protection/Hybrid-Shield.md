@@ -37,10 +37,10 @@ The Shield ensures that all Moral Trace Logs and governance decisions remain ver
    Only hashes and metadata are stored on-chain; the content itself remains off-chain under encrypted custodial storage.
    This preserves privacy while maintaining verifiability.
 
-### B. [Stewardship Council](/TML-VOLUNTARY-SUCCESSION.md) — Continuity and Oversight
+### B. [Stewardship Custodians](/TML-VOLUNTARY-SUCCESSION.md) — Continuity and Oversight
 
 1. **Custodial Redundancy**
-   Six independent institutions hold synchronized copies of the anchored proofs.
+   Eleven independent custodians hold synchronized copies of the anchored proofs.
 
 2. **Rotation and Audit**
    These institutions rotate every 24 months, submitting public attestations confirming data integrity and governance neutrality.
@@ -55,7 +55,7 @@ The Shield ensures that all Moral Trace Logs and governance decisions remain ver
 Both pillars operate in continuous verification loops:
 
 * The Mathematical Shield creates immutable proofs.
-* The Stewardship Council confirms their existence and authenticity.
+* The Stewardship Custodians confirms their existence and authenticity.
 
 Each verification cycle produces a **Lantern Seal**, a cryptographic digest linking both layers.
 If either shield fails or becomes unreachable, the other provides verifiable continuity until restoration.
@@ -80,7 +80,7 @@ anchoring:
     - Ethereum AnchorLog (optional)
     - Polygon AnchorLog (optional)
 verification_cycle: 24h
-custodians_minimum: 5
+custodians_minimum: 11
 rotation_period_months: 24
 ```
 

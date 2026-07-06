@@ -136,7 +136,7 @@ class StewardshipToken:
 | 100+ | Sacred Zero council participation |
 | 500+ | Priority emergency support |
 | 1000+ | Regional coordinator eligibility |
-| 5000+ | Stewardship Council assembly invitation |
+| 5000+ | Stewardship Custodians assembly invitation |
 | 10000+ | Permanent advisory position |
 
 ## Disbursement Protocols
@@ -383,7 +383,7 @@ compliance:
 
 - Community consultation required
 - 60-day public comment period
-- Stewardship Council Network approval (5/6)
+- Stewardship Custodians Network approval (5/6)
 - Cannot reduce payment amounts
 - Cannot weaken protections
 

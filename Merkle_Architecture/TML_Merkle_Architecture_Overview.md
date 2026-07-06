@@ -199,11 +199,11 @@ TML is designed to be resistant to both external attackers and malicious insider
 
 ### **Append-Only Storage Enforcement**
 
-The "Always Memory" component is an append-only registry where once a hash is written, it cannot be modified or deleted without invalidating the Master Root.6 The system performs periodic integrity checks to detect missing Monotonic Sequence IDs. Any gap in the sequence triggers an automatic anomaly signaling event to the Stewardship Council.7
+The "Always Memory" component is an append-only registry where once a hash is written, it cannot be modified or deleted without invalidating the Master Root.6 The system performs periodic integrity checks to detect missing Monotonic Sequence IDs. Any gap in the sequence triggers an automatic anomaly signaling event to the Stewardship Custodians.7
 
 ### **Schema Governance**
 
-The schema of the TML logs is itself a governed entity. A signed schema registry tracks all valid versions. Dual control is required for schema updates: any change must be approved by both a Technical Council and a Stewardship Council.7 The hash of the active schema is independently anchored to ensure that even the *rules for recording the truth* cannot be silently changed.7
+The schema of the TML logs is itself a governed entity. A signed schema registry tracks all valid versions. Dual control is required for schema updates: any change must be approved by both a Technical Council and a Stewardship Custodians.7 The hash of the active schema is independently anchored to ensure that even the *rules for recording the truth* cannot be silently changed.7
 
 ## **Latency and Throughput Modeling**
 

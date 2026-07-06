@@ -174,8 +174,8 @@ execution level.
 
 ### Architectural Target
 
-The HybridShield 6-Custodian distributed anchoring achieves a cryptographic quorum across
-all six custodians, operating in geographically distributed jurisdictions, within the
+The HybridShield Tri-Cameral distributed anchoring achieves a cryptographic quorum across
+all eleven custodians, operating in geographically distributed jurisdictions, within the
 Anchoring Lane's <500ms latency budget. This would mean that every Permission Token is
 backed by a fully distributed, cross-jurisdictional custodian quorum completed before the
 token is issued.
@@ -200,7 +200,7 @@ geographic distribution requirement.
 Two mitigations are specified:
 
 First, regionally co-located custodian subsets can achieve sub-500ms quorum within a single
-geographic region. The 6-Custodian architecture accommodates partial quorum configurations
+geographic region. The Tri-Cameral architecture accommodates partial quorum configurations
 where the required threshold is met by a locally available subset. The
 `GET /regulator/custodian-quorum` endpoint reports both `activeCustodianCount` and
 `crossJurisdictionLatencyMs`, allowing operators to monitor the gap between the local quorum

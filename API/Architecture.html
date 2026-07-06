@@ -314,7 +314,7 @@
         <span class="kw">POST</span> <span class="fv">/refusals</span> &nbsp;<span class="cm">// hard State -1; no Permission Token issued</span><br>
         <span class="kw">POST</span> <span class="fv">/emergency/override</span> &nbsp;<span class="cm">// Section 13.3 supreme authority; logged before execution</span>
       </div>
-      <p class="prose">These paths are secured by <code>AnchoringLaneSecurity</code> (<em>HSM-SignedJWT + MutualTLS</em>). The HSM requirement is not incidental. The Anchoring Lane's authority to issue Permission Tokens derives from hardware-backed key material registered in the HybridShield 6-Custodian registry. A software-signed JWT cannot satisfy these endpoints.</p>
+      <p class="prose">These paths are secured by <code>AnchoringLaneSecurity</code> (<em>HSM-SignedJWT + MutualTLS</em>). The HSM requirement is not incidental. The Anchoring Lane's authority to issue Permission Tokens derives from hardware-backed key material registered in the HybridShield Tri-Cameral registry. A software-signed JWT cannot satisfy these endpoints.</p>
       <p class="prose"><code>POST /anchoring-logs</code> is the central enforcement point for No Log = No Action. Its request body accepts a <code>oneOf</code> discriminated union of the three TSLF variants, discriminated on <code>currentState</code>. Its response for <code>currentState: 1</code> includes a <code>permissionToken</code> object. For <code>currentState: 0</code> and <code>currentState: -1</code>, no Permission Token is returned; no actuation is authorized; the actuation layer remains locked.</p>
     </div>
 
@@ -507,7 +507,7 @@
       </li>
       <li class="workflow-step">
         <div class="step-num">5</div>
-        <div class="step-body">Check HybridShield custodian health at <code>GET /audit/custodians/{custodianId}/heartbeat</code> for each of the 6 custodians, and review aggregate quorum status at <code>GET /regulator/custodian-quorum</code>.</div>
+        <div class="step-body">Check HybridShield custodian health at <code>GET /audit/custodians/{custodianId}/heartbeat</code> for each of the 11 custodians, and review aggregate quorum status at <code>GET /regulator/custodian-quorum</code>.</div>
       </li>
       <li class="workflow-step">
         <div class="step-num">6</div>
@@ -695,7 +695,7 @@
     </div>
     <div class="feature-body">
       <div class="feature-section-label">Architectural Target</div>
-      <div class="feature-prose">The HybridShield 6-Custodian distributed anchoring achieves a cryptographic quorum across all six custodians, operating in geographically distributed jurisdictions, within the Anchoring Lane's &lt;500ms latency budget, so that every Permission Token is backed by a fully distributed, cross-jurisdictional custodian quorum completed before the token is issued.</div>
+      <div class="feature-prose">The HybridShield Tri-Cameral distributed anchoring achieves a cryptographic quorum across all eleven custodians, operating in geographically distributed jurisdictions, within the Anchoring Lane's &lt;500ms latency budget, so that every Permission Token is backed by a fully distributed, cross-jurisdictional custodian quorum completed before the token is issued.</div>
 
       <div class="feature-section-label">Blocking Constraint (Section 10)</div>
       <div class="feature-prose"><strong>Network physics.</strong> The speed of light imposes a minimum round-trip latency between geographically distant custodian nodes. A custodian in Western Europe and a custodian in East Asia have a minimum round-trip network latency of approximately 200-300ms under ideal conditions. A 6-of-6 or even 4-of-6 synchronous quorum across genuinely cross-jurisdictional custodian nodes cannot reliably complete within 500ms given routing overhead, cryptographic signing time, and network jitter.</div>

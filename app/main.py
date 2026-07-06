@@ -23,7 +23,7 @@ class TMLApplication:
     def __init__(self):
         """Initialize without institutional committees"""
         logger.info("🏮 TML Protection System v3.0 Starting...")
-        logger.info("Stewardship Council: Not required")
+        logger.info("Stewardship Custodians: Not required")
         logger.info("Annual cost: $1,200 vs Council $6.6M")
         
         # Blockchain connections (no Council endpoints)
@@ -258,7 +258,7 @@ async def main():
     print()
     print("Deployment Options:")
     print("  [1] Blockchain ($1,200/year) ✅")
-    print("  [2] Stewardship Council (12+ months, $6.6M/year) ❌")
+    print("  [2] Stewardship Custodians (12+ months, $6.6M/year) ❌")
     print()
     
     # Initialize application
@@ -298,7 +298,7 @@ async def main():
         
     else:
         print("\n❌ Initialization failed")
-        print("Tip: Blockchain required, Stewardship Council not needed")
+        print("Tip: Blockchain required, Stewardship Custodians not needed")
 
 
 if __name__ == "__main__":

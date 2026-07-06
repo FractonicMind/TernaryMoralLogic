@@ -46,8 +46,8 @@ That last one is crucial. No one has to find some hidden document. No lawyer has
 
 The framework doesn't pause to mourn. It persists.
 
-### 2. **Distributed Stewardship, Not Ownership**
-I've invited a **6-seat Stewardship Council**:
+### 2. **Tri-Cameral Governance, Not Ownership**
+I've invited a **6-seat Stewardship Custodians**:
 - **Electronic Frontier Foundation** (technical infrastructure)
 - **Amnesty International** (human rights enforcement)
 - **Indigenous Environmental Network** (Earth protection)
@@ -136,7 +136,7 @@ Any community member, any organization, any three people acting in good faith ca
 
 All that's needed is for someone to **create a GitHub issue titled "TML Succession Activation"** and follow the step-by-step guide.
 
-Then the Stewardship Council forms, the technical infrastructure transfers, and TML continues as a permanent public good—owned by no one, governed by many, protecting everyone.
+Then the Stewardship Custodians forms, the technical infrastructure transfers, and TML continues as a permanent public good—owned by no one, governed by many, protecting everyone.
 
 ## A Different Kind of Legacy
 

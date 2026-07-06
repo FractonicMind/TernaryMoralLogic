@@ -225,7 +225,7 @@ TML relies on a strict separation of concerns: **Ethical Reasoning** (computatio
 
 ### **3.1. Cryptographic Provenance with EIP-712**
 
-The industry standard for bridging off-chain decisions to the EVM is EIP-712 (Typed Structured Data Hashing and Signing). This ensures that the "Verdict" signed by the AI agent or Stewardship Council is human-readable, domain-specific, and non-replayable \[10\], \[11\].
+The industry standard for bridging off-chain decisions to the EVM is EIP-712 (Typed Structured Data Hashing and Signing). This ensures that the "Verdict" signed by the AI agent or Stewardship Custodians is human-readable, domain-specific, and non-replayable \[10\], \[11\].
 
 #### **3.1.1. The Verdict Schema**
 
@@ -345,7 +345,7 @@ To protect the integrity of the trigger, we use a "Gateway" pattern that enforce
 
 ### **5.2. MEV and Griefing Mitigation**
 
-Malicious actors could flood the system with ambiguous transactions to fill the "Sacred Zero" queue or drain the Stewardship Council's attention \[21\].
+Malicious actors could flood the system with ambiguous transactions to fill the "Sacred Zero" queue or drain the Stewardship Custodians's attention \[21\].
 
 * **Economic Stake (Bonding):** Triggering a TML check should require a small ETH deposit or "Ethics Bond."  
   * If PERMIT: Deposit is refunded.  
@@ -392,7 +392,7 @@ Borrowing from "Dual Governance" models like Lido, we implement a **Veto Mechani
   2. Stewards can call vetoUpgrade(proposalId) during the timelock.  
   3. If vetoed, the upgrade is cancelled.  
   4. If not vetoed, the upgrade executes after 7 days.  
-* **Liveness Fallback:** If the Stewardship Council goes unresponsive (e.g., keys lost), a "Liveness Module" can trigger. This module might require a much larger "Super Quorum" of token holders (e.g., 15% of total supply) to replace the Council after a proven period of inactivity (e.g., 4 weeks) \[28\].
+* **Liveness Fallback:** If the Stewardship Custodians goes unresponsive (e.g., keys lost), a "Liveness Module" can trigger. This module might require a much larger "Super Quorum" of token holders (e.g., 15% of total supply) to replace the Council after a proven period of inactivity (e.g., 4 weeks) \[28\].
 
 ## **7\. Immutability vs. Upgradability: Eliminating God Mode**
 
@@ -416,7 +416,7 @@ For large, complex systems, the Diamond Pattern allows distinct "Facets" (logic 
 
 ### **7.3. "Sacred Zero" for Upgrades**
 
-In a TML system, a code upgrade is itself an "Action" subject to moral review. The upgradeTo function should inherently trigger a Sacred Zero (State 0). This ensures that no code change occurs without the explicit, cryptographic "Permit" from the Stewardship Council, preventing a rogue developer from bypassing the logic \[27\].
+In a TML system, a code upgrade is itself an "Action" subject to moral review. The upgradeTo function should inherently trigger a Sacred Zero (State 0). This ensures that no code change occurs without the explicit, cryptographic "Permit" from the Stewardship Custodians, preventing a rogue developer from bypassing the logic \[27\].
 
 ## **8\. Formal Verification: TLA+ Invariants**
 
@@ -464,7 +464,7 @@ If the TML Oracle goes offline or its keys are lost, no valid signatures can be 
 
 ### **9.2. The "Rogue Council" Failure Mode**
 
-If the Stewardship Council is compromised and starts approving unethical actions or resolving pauses maliciously \[6\].
+If the Stewardship Custodians is compromised and starts approving unethical actions or resolving pauses maliciously \[6\].
 
 * **Mitigation:** The **Time-Delayed Execution** of resolutions. A resolution to a Sacred Zero doesn't execute immediately; it has a 24-hour timelock.  
 * **Watchdogs:** Automated Watchdog bots monitor the PauseResolved events. If a resolution contradicts known heuristics (e.g., approving a transfer to a sanctions-listed address), the Watchdogs can trigger a "Global Freeze," requiring a community hard-fork or Super-DAO vote to unlock \[32\].
@@ -476,7 +476,7 @@ Deploying TML involves a trade-off between the security of Ethereum L1 and the c
 ### **10.1. L1 (Ethereum Mainnet): The Supreme Court**
 
 * **Role:** The ultimate arbiter of truth and the anchor for the "Immutable Core."  
-* **Usage:** Stores the Stewardship Council configuration, the ZK Verification Keys, and the "Root Merkle Hashes" of all TML logs.  
+* **Usage:** Stores the Stewardship Custodians configuration, the ZK Verification Keys, and the "Root Merkle Hashes" of all TML logs.  
 * **Cost:** High. Only high-value transactions or batch roots should settle here \[34\].
 
 ### **10.2. L2 (Optimism/Arbitrum): The Civil Courts**
@@ -493,7 +493,7 @@ To ensure the "Lantern Signal" is visible globally, we use a "Pinning" strategy.
 1. Emitted as an event on L2.  
 2. The L2 State Root is posted to L1.  
 3. A Merkle Proof is generated verifying the L2 event exists within the L1 State Root.  
-4. This proof is pinned to IPFS and referenced in the Stewardship Council's dashboard, creating a unified, cross-chain view of the system's ethical hesitations.
+4. This proof is pinned to IPFS and referenced in the Stewardship Custodians's dashboard, creating a unified, cross-chain view of the system's ethical hesitations.
 
 ## **11\. Explicit Non-Goals and Boundaries**
 

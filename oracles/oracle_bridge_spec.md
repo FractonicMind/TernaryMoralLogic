@@ -3,7 +3,7 @@
 
 ## Overview
 
-The Oracle Bridge serves as the critical data ingestion and validation layer for TML's Earth Protection framework. It connects external ecological data sources with the Stewardship Council Network through a decentralized oracle system.
+The Oracle Bridge serves as the critical data ingestion and validation layer for TML's Earth Protection framework. It connects external ecological data sources with the Stewardship Custodians Network through a decentralized oracle system.
 
 ## Architecture
 

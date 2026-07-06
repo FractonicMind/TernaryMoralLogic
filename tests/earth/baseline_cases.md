@@ -2,7 +2,7 @@
 
 ## Purpose
 
-These test cases validate TML's Earth Protection system across common ecological threats. Each case tests Sacred Zero triggers, Always Memory logging, and Stewardship Council response.
+These test cases validate TML's Earth Protection system across common ecological threats. Each case tests Sacred Zero triggers, Always Memory logging, and Stewardship Custodians response.
 
 ## Test Case Format
 
@@ -342,7 +342,7 @@ Each test includes:
 4. **Log Completeness**: All required fields present
 5. **Community Integration**: Tier 2 data processed correctly
 
-### Stewardship Council Validation
+### Stewardship Custodians Validation
 
 Each test must verify:
 - [ ] Log creation and sealing
@@ -384,7 +384,7 @@ def run_baseline_tests():
         assert validate_log_schema(log)
         assert log.contains_required_fields(test.required_fields)
         
-        # Verify Stewardship Council signatures
+        # Verify Stewardship Custodians signatures
         assert len(log.stewardship_council_signatures) >= 3
         
         # Confirm Blockchain anchor

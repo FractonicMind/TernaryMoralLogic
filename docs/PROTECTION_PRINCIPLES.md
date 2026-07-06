@@ -1,17 +1,17 @@
 # PROTECTION PRINCIPLES v4.0
 
-## Blockchain-Enforced Protection with Recommended Stewardship Council
+## Blockchain-Enforced Protection with Recommended Stewardship Custodians
 
 **Version**: 4.0 (Mathematical Protection with Institutional Stewardship)  
 **Status**: Automatically Enforced via Smart Contracts  
-**Stewardship Council**: Recommended enhancement  
+**Stewardship Custodians**: Recommended enhancement  
 **Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)
 
 ---
 
 ## Executive Summary
 
-TML protection operates on three foundational layers: (1) blockchain-enforced immutability, (2) smart contract automation, and (3) criminal liability for violations. The framework includes a recommended Stewardship Council comprising six independent institutions that provide oversight, research, and community representation. This multi-layered architecture ensures that protection mechanisms remain operational, transparent, and accountable.
+TML protection operates on three foundational layers: (1) blockchain-enforced immutability, (2) smart contract automation, and (3) criminal liability for violations. The framework includes a recommended Stewardship Custodians comprising eleven independent custodians that provide oversight, research, and community representation. This multi-layered architecture ensures that protection mechanisms remain operational, transparent, and accountable.
 
 The framework includes an explicit covenant: **TML shall never be used as a weapon or surveillance tool**. This binding pledge is enforced through technical safeguards, legal contracts, and blockchain-recorded accountability.
 
@@ -80,7 +80,7 @@ This covenant is enforced through:
 1. **Smart contract detection**: Automated identification of prohibited use patterns
 2. **Legal liability**: Contract violations trigger immediate civil and criminal exposure
 3. **Blockchain evidence**: Immutable record of violations for prosecution
-4. **Stewardship Council oversight**: Independent institutions monitor compliance
+4. **Stewardship Custodians oversight**: Independent institutions monitor compliance
 
 The No Spy, No Weapons covenant reflects the principle that artificial intelligence must serve human dignity, not undermine it.
 
@@ -252,7 +252,7 @@ const futureGenerationPenalty = (violation) => {
 
 ### 6.1 Composition and Distribution
 
-The Stewardship Council comprises six independent institutions providing oversight, research, and community representation:
+The Stewardship Custodians comprises eleven independent custodians providing oversight, research, and community representation:
 
 #### 6.1.1 Technical Custodian
 **Recommended: Electronic Frontier Foundation**
@@ -298,7 +298,7 @@ The Stewardship Council comprises six independent institutions providing oversig
 
 ### 6.2 Council Functions
 
-The Stewardship Council provides:
+The Stewardship Custodians provides:
 
 1. **Research and Validation**: Empirical studies on TML effectiveness
 2. **Complex Case Review**: Analysis of edge cases and ethical dilemmas
@@ -308,7 +308,7 @@ The Stewardship Council provides:
 
 ### 6.3 Relationship to Blockchain Protection
 
-The Stewardship Council **does not control core protection mechanisms**, which remain blockchain-enforced and automatic. The Council provides:
+The Stewardship Custodians **does not control core protection mechanisms**, which remain blockchain-enforced and automatic. The Council provides:
 
 - **Research**: Not control
 - **Coordination**: Not authorization
@@ -319,7 +319,7 @@ The Stewardship Council **does not control core protection mechanisms**, which r
 protection_architecture = {
     "primary_enforcement": "Blockchain + Smart Contracts",
     "secondary_layer": "Criminal liability",
-    "tertiary_layer": "Stewardship Council coordination",
+    "tertiary_layer": "Stewardship Custodians coordination",
     
     "council_can_modify_core": False,
     "council_can_block_deployment": False,
@@ -364,7 +364,7 @@ Any intentional misuse of TML for prohibited applications triggers:
 2. **Evidence preservation**: Blockchain records establish proof
 3. **Criminal referral**: Automated notification to law enforcement
 4. **Civil liability**: Victims can pursue damages
-5. **Stewardship Council review**: Independent investigation and public reporting
+5. **Stewardship Custodians review**: Independent investigation and public reporting
 
 ---
 
@@ -506,7 +506,7 @@ def learn_from_violations():
 - Real-time response
 - No political influence
 
-**Layer 3: Stewardship Council**
+**Layer 3: Stewardship Custodians**
 - Independent research validation
 - Complex case analysis
 - Community representation
@@ -520,7 +520,7 @@ def learn_from_violations():
 
 ### 12.2 Protection Metrics Comparison
 
-| Protection Method | Blockchain Layer | Stewardship Council Layer |
+| Protection Method | Blockchain Layer | Stewardship Custodians Layer |
 |------------------|------------------|---------------------------|
 | **Tampering Prevention** | $50B attack cost | Research oversight |
 | **Enforcement Speed** | <10 minutes | Days to weeks |
@@ -550,7 +550,7 @@ deployment_requirements = {
 
 ### 13.2 Enhanced Deployment With Council
 
-Adding Stewardship Council provides:
+Adding Stewardship Custodians provides:
 - Research validation of implementation
 - Community coordination support
 - Complex case analysis
@@ -618,7 +618,7 @@ Binding legal restriction against misuse:
 ✅ Strict liability for missing logs  
 ✅ Whistleblower protection and rewards
 
-**Tertiary Layer (Recommended Stewardship Council)**:
+**Tertiary Layer (Recommended Stewardship Custodians)**:
 ✅ Independent research validation  
 ✅ Complex case analysis  
 ✅ Community coordination  
@@ -644,7 +644,7 @@ Binding legal restriction against misuse:
 **Repository**: https://github.com/FractonicMind/TernaryMoralLogic
 
 **For Technical Support**: support@tml-goukassian.org  
-**For Stewardship Council Inquiries**: council@tml-goukassian.org
+**For Stewardship Custodians Inquiries**: council@tml-goukassian.org
 
 ---
 
@@ -657,7 +657,7 @@ Binding legal restriction against misuse:
 
 **Change Log from v3.0**:
 - Removed all references to 11-institution structure
-- Integrated 6-institution Stewardship Council architecture
+- Integrated 6-institution Stewardship Custodians architecture
 - Enhanced No Spy, No Weapons covenant section
 - Clarified relationship between blockchain enforcement and Council coordination
 - Updated for notarization and academic archival requirements

@@ -52,7 +52,7 @@ TML_BLOCK_ON_SACRED_ZERO=true
 TML_CARBON_THRESHOLD_KG=1000
 TML_WATER_THRESHOLD_LITERS=10000
 
-# Stewardship Council Configuration (RECOMMENDED - can add later)
+# Stewardship Custodians Configuration (RECOMMENDED - can add later)
 TML_STEWARDSHIP_RECOMMENDED=true
 TML_STEWARDSHIP_URL=
 

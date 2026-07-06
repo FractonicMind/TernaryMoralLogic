@@ -178,9 +178,9 @@ This coverage applies regardless of:
 
 ## V. GOVERNANCE STRUCTURE
 
-### Multi-Organization Stewardship Council
+### Multi-Organization Stewardship Custodians
 
-No single organization should control TML. I recommend a **Stewardship Council** with:
+No single organization should control TML. I recommend a **Stewardship Custodians** with:
 
 **Council Composition**:
 1. Primary Custodian (technical infrastructure) - 1 seat

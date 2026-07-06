@@ -288,8 +288,8 @@
       }
     },
     "CustodianQuorumAttestation": {
-      "description": "EIP-712 typed data schema for custodian signatures in HybridShield quorum operations. Each of the 6 custodians signs this structure to contribute to a quorum for Merkle anchoring, system-wide Sacred Zero activation, or Emergency Override authorization.",
-      "$comment": "Monograph ref: Section 2.3.3, Pillar VII (HybridShield). 6-Custodian distributed anchoring.",
+      "description": "EIP-712 typed data schema for custodian signatures in HybridShield quorum operations. Each of the 11 custodians signs this structure to contribute to a quorum for Merkle anchoring, system-wide Sacred Zero activation, or Emergency Override authorization.",
+      "$comment": "Monograph ref: Section 2.3.3, Pillar VII (HybridShield). Tri-Cameral distributed anchoring.",
       "primaryType": "CustodianQuorumAttestation",
       "domain": {
         "$ref": "#/eip712Domain/domain"

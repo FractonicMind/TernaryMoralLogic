@@ -176,7 +176,7 @@ The full constitutional specification is in [`governance/Tri_Cameral_Constitutio
 
 ### What This Supersedes
 
-The earlier architecture of this document described a 6-member "Stewardship Council" as a recommended future enhancement. That framing was written before the Tri-Cameral model matured. It is superseded. The Tri-Cameral governance structure is the operating architecture -- not optional, not future, not an enhancement. It has been in effect since the constitutional insertions across the TML API folder (Q2 2026).
+The earlier architecture of this document described a 6-member "Stewardship Custodians" as a recommended future enhancement. That framing was written before the Tri-Cameral model matured. It is superseded. The Tri-Cameral governance structure is the operating architecture -- not optional, not future, not an enhancement. It has been in effect since the constitutional insertions across the TML API folder (Q2 2026).
 
 ### Governance Metrics
 
@@ -247,7 +247,7 @@ The earlier architecture of this document described a 6-member "Stewardship Coun
 - Cost optimizations ongoing
 
 ### Recommended Enhancements
-- Stewardship Council (when beneficial)
+- Stewardship Custodians (when beneficial)
 - Specialized domain chains
 - Advanced oracle networks
 - AI-assisted verification

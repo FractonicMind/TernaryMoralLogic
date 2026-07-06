@@ -4,7 +4,7 @@
 description: |
   Schema for Moral Trace Log entries in the Always Memory architecture.
   Every AI action creates an immutable log before execution.
-  Logs are cryptographically sealed and distributed to the Stewardship Council.
+  Logs are cryptographically sealed and distributed to the Stewardship Custodians.
 
 type: object
 required: 
@@ -98,14 +98,14 @@ properties:
         
   stewardship_confirmations:
     type: array
-    description: Stewardship Council attestations
+    description: Stewardship Custodians attestations
     items:
       type: object
       required: [id, type, signature]
       properties:
         id:
           type: string
-          description: Stewardship Council member identifier
+          description: Stewardship Custodians member identifier
         type:
           type: string
           enum: ["full", "lightweight"]

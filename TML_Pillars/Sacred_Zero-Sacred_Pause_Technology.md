@@ -196,7 +196,7 @@ Sacred Zero expects return signal whenever trigger conditions exist. Failure to 
 }
 ```
 
-Always Memory seals anomaly and submits to Hybrid Shield. License compliance status is flagged; Stewardship Council may be notified per policy.
+Always Memory seals anomaly and submits to Hybrid Shield. License compliance status is flagged; Stewardship Custodians may be notified per policy.
 
 ---
 
@@ -259,7 +259,7 @@ moral_trace_log:
 - Ethereum: Smart contract enforcement
 - OpenTimestamps: Archival proof
 
-**Institutional Shield (Recommended)**: Independent Stewardship Council members may maintain verification nodes:
+**HybridShield (Recommended)**: Independent Stewardship Custodians members may maintain verification nodes:
 - Technical Custodian (Recommended: Electronic Frontier Foundation)
 - Human Rights Enforcement Partner (Recommended: Amnesty International)
 - Earth Protection Enforcement Partner (Recommended: Indigenous Environmental Network)
@@ -291,7 +291,7 @@ All operator actions are logged. Original entries cannot be edited (append-only 
 | Failure Mode | Detection | Response |
 |-------------|-----------|----------|
 | Mandated Corpora missing/corrupted | Startup handshake / runtime error | Sacred Zero Lock; Critical Anomaly Log; operator notification |
-| Missing Trigger (Type-0) | Sacred Zero expectation violated | Critical Anomaly Log; license flag; Stewardship Council notification |
+| Missing Trigger (Type-0) | Sacred Zero expectation violated | Critical Anomaly Log; license flag; Stewardship Custodians notification |
 | Always Memory write failure | Write/filesystem error | Halt or degrade; retry with backoff; alert operator |
 | Anchoring delay > SLA | P95 breach | Queue + retry; performance log entry |
 | Operational Corpora integrity failure | Hash mismatch | Pause relevant operations; re-validate |
@@ -322,7 +322,7 @@ All failures are logged events. Silence is never interpreted as success.
 
 ## XV. GOVERNANCE AND UPDATES
 
-Stewardship Council may maintain Mandated Corpora content and thresholds through versioned, signed updates. Implementers must adopt new versions within governance-defined grace periods.
+Stewardship Custodians may maintain Mandated Corpora content and thresholds through versioned, signed updates. Implementers must adopt new versions within governance-defined grace periods.
 
 Non-adoption after grace period triggers license review.
 

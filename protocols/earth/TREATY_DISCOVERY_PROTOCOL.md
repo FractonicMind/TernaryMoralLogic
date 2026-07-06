@@ -4,7 +4,7 @@
 **Version**: 3.0 (Blockchain Oracle Architecture)  
 **Status**: Automated Discovery via Decentralized Oracles  
 **Human Requirement**: Zero (fully automated)  
-**Stewardship Council Involvement**: Recommended luxury after Year 5
+**Stewardship Custodians Involvement**: Recommended luxury after Year 5
 
 ---
 
@@ -313,7 +313,7 @@ contract MissedTreatyProtocol {
 
 ---
 
-## The Stewardship Council Option
+## The Stewardship Custodians Option
 
 ### What Council Members Could Add
 

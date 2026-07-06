@@ -107,10 +107,10 @@ Stewardship committees may provide additional verification.
 
 ---
 
-## Stewardship Council Questions
+## Stewardship Custodians Questions
 
 ### Q16: How do I contact the TML Council?
-**Current status:** Blockchain-based verification is primary. Future stewardship councils will enhance but not replace this:
+**Current status:** Blockchain-based verification is primary. Future Stewardship Custodianss will enhance but not replace this:
 - Report violations: Direct to smart contracts
 - Get rewards: Automatic 15% bounty
 - Verify compliance: Check Blockchain explorers
@@ -168,7 +168,7 @@ decentralization_proof = {
 ### Q24: What's the catch?
 **There isn't one.** MIT License = free use. Blockchain = unstoppable enforcement. Violations = automatic penalties. Stewardship = additional verification when available.
 
-### Q25: Why mention stewardship councils?
+### Q25: Why mention Stewardship Custodianss?
 Because organizations benefit from institutional verification that:
 - Enhances credibility
 - Provides governance structure
@@ -184,7 +184,7 @@ Because organizations benefit from institutional verification that:
 **Website**: https://tml-goukassian.org  
 **GitHub**: https://github.com/FractonicMind/TernaryMoralLogic
 
-**For Stewardship Council**: Information forthcoming as councils establish.
+**For Stewardship Custodians**: Information forthcoming as councils establish.
 
 ---
 
