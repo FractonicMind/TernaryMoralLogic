@@ -680,7 +680,7 @@ The Hybrid Shield prevents **Centralized Cover-Up**: the destruction or alterati
 
 #### **3.7.5 Measurable Outputs**
 
-* **Custodian Heartbeat Health:** Real-time status of all six custodian replication endpoints.  
+* **Custodian Heartbeat Health:** Real-time status of all seated custodian replication endpoints.  
 * **Quorum Availability:** Percentage of time during which at least three custodians are available for key assembly (target: 99.99%).  
 * **Reconstruction Time:** Time required to rebuild the complete log history from custodian copies in the event of primary storage failure.
 
@@ -1572,9 +1572,9 @@ The HSM's key management architecture is designed to satisfy FIPS 140-3 Level 3 
 
 #### **8.4.2 Ephemeral Key Rotation in Hardware**
 
-The Ephemeral Key Rotation (EKR) mechanism for Moral Trace Log encryption is implemented within the HSM, ensuring that the rotation epoch keys are never exposed outside the tamper-resistant boundary. The HSM generates rotation epoch keys using its hardware RNG, applies Shamir's Secret Sharing to produce the six custodian key shares, distributes the shares to the HybridShield custodians through the authenticated distribution protocol, and then retains only the current epoch's working key for log encryption operations.
+The Ephemeral Key Rotation (EKR) mechanism for Moral Trace Log encryption is implemented within the HSM, ensuring that the rotation epoch keys are never exposed outside the tamper-resistant boundary. The HSM generates rotation epoch keys using its hardware RNG, applies Shamir's Secret Sharing to produce the seated custodian key shares, distributes the shares to the HybridShield custodians through the authenticated distribution protocol, and then retains only the current epoch's working key for log encryption operations.
 
-The transition between rotation epochs is a hardware-enforced event: the HSM's secure timer triggers the epoch transition at the configured rotation interval, generating the new epoch key, distributing new custodian shares, and deleting the previous epoch's working key through cryptographic erasure. The erasure is performed by the HSM's internal secure storage controller, which overwrites the key material with cryptographically random data and verifies the overwrite through readback comparison. Post-epoch key material is unrecoverable from the HSM; the only remaining copy of the decryption capability for logs from that epoch is distributed across the six custodian key shares [[6]](https://github.com/FractonicMind/TernaryMoralLogic).
+The transition between rotation epochs is a hardware-enforced event: the HSM's secure timer triggers the epoch transition at the configured rotation interval, generating the new epoch key, distributing new custodian shares, and deleting the previous epoch's working key through cryptographic erasure. The erasure is performed by the HSM's internal secure storage controller, which overwrites the key material with cryptographically random data and verifies the overwrite through readback comparison. Post-epoch key material is unrecoverable from the HSM; the only remaining copy of the decryption capability for logs from that epoch is distributed across the seated custodian key shares [[6]](https://github.com/FractonicMind/TernaryMoralLogic).
 
 ### **8.5 Performance Characteristics and Manufacturing Roadmap**
 

@@ -1585,7 +1585,7 @@ The framework's ultimate resilience lies not in any single technical mechanism b
 
 ### XII.4 Recommendations for Implementation
 
-1. **Immediate (0-12 months)**: Deploy firmware-bound TML with multi-chain anchoring; establish 6-custodian governance with jurisdictional diversity.
+1. **Immediate (0-12 months)**: Deploy firmware-bound TML with multi-chain anchoring; establish Tri-Cameral governance with jurisdictional diversity.
 2. **Medium-term (1-3 years)**: Transition to hardware-gated implementations for critical infrastructure; develop memristive ternary logic prototypes.
 3. **Long-term (3-10 years)**: Achieve multi-vendor fabrication diversity; establish international TML standards (IEEE/ISO); integrate with quantum-resistant cryptography.
 4. **Continuous**: Maintain adversarial red teams; publish transparency reports; cultivate civil society auditing capacity.

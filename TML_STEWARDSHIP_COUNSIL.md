@@ -28,7 +28,7 @@ The Stewardship Custodians comprises seated institutional custodian organization
 
 ### Member 1: Technical Custodian
 
-**Recommended Organization**: Technical Infrastructure Institution (open seat) (EFF)
+**Recommended Organization**: Technical Infrastructure Institution (open seat) (open seat)
 
 **Primary Responsibilities**:
 - Maintain official TML open-source repository (GitHub primary, mirrors on GitLab/Codeberg)

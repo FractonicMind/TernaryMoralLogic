@@ -599,7 +599,7 @@ signature = ed25519_sign(private_key, message, nonce)
 - Master key for session split into 7 shares
 - Distribution:
   - 1 share: Operator (temporary, destroyed after session)
-  - 6 shares: Custodians (EFF, Amnesty, etc.)
+  - 6 shares: Custodians (open institutional seats per Tri-Cameral governance)
 - Threshold: 4-of-11 custodians required to reconstruct key
 
 **Step 3: User Requests Erasure (GDPR Article 17)**

@@ -656,7 +656,7 @@ When TML-compliant AI systems generate Moral Trace Logs, logs are simultaneously
 
 At decision completion moment:
 - Log exists on implementing organization's systems
-- Log exists on all six custodian systems
+- Log exists on all seated custodian systems
 - Log hash exists on Bitcoin, Ethereum, and Polygon blockchains
 
 **Result: No Single Point of Failure**

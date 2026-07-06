@@ -148,7 +148,7 @@ def process_decision(message):
 
 **Stewardship Custodians Synchronization**:
 - Six institutional nodes maintain synchronized copies
-- Technical Custodian (EFF) manages blockchain infrastructure
+- Technical Infrastructure Custodian (open seat) manages blockchain infrastructure
 - Cross-institutional validation enhances evidence credibility
 
 ---
@@ -217,7 +217,7 @@ Enterprise scale (1M decisions/day):
 
 **Stewardship Custodians Resilience**:
 - Six-node redundancy ensures continued oversight
-- Technical Custodian (EFF) maintains backup infrastructure
+- Technical Infrastructure Custodian (open seat) maintains backup infrastructure
 - Memorial Fund Administrator ensures victim compensation continuity
 
 ---
@@ -271,7 +271,7 @@ def erase_user_data(user_id):
 
 **Stewardship Custodians Enhancement**:
 - Six institutional validators provide additional verification layer
-- Technical Custodian (EFF) monitors blockchain infrastructure integrity
+- Technical Infrastructure Custodian (open seat) monitors blockchain infrastructure integrity
 - AI Ethics Research Partner validates cryptographic implementations
 
 **Validation**: Same cryptography securing $2 trillion in blockchain assets
@@ -297,7 +297,7 @@ penalties:
 
 **Design Rationale**:
 - Thresholds based on legal standards
-- AI Ethics Research Partner (MIT/Stanford) validates detection algorithms
+- AI Ethics Research Partner (AI Ethics Research Institution (open seat)) validates detection algorithms
 - Open source prevents unauthorized modification
 - Community Representative ensures stakeholder accountability
 
@@ -513,7 +513,7 @@ batching:
 - **Premium RPC**: Enhanced blockchain API access
 - **Local validation**: Verify before submission
 - **Async processing**: Non-blocking operations
-- **Council coordination**: Technical Custodian (EFF) provides infrastructure optimization
+- **Council coordination**: Technical Infrastructure Custodian (open seat) provides infrastructure optimization
 
 ---
 
@@ -708,7 +708,7 @@ nist_report = tml_controls.generate_report(
 
 **Development Process (Technical Custodian managed)**:
 ```bash
-# 1. Fork repository (EFF maintains)
+# 1. Fork repository (designated Technical Custodian maintains)
 git clone https://github.com/FractonicMind/TernaryMoralLogic.git
 
 # 2. Create feature branch  
@@ -803,7 +803,7 @@ git checkout -b feature/new-sacred-zero-rule
 **Technical Benefits**:
 - Repository integrity (Technical Custodian)
 - Bias detection research (AI Ethics Partner)
-- Infrastructure optimization (EFF)
+- Infrastructure optimization (open seat)
 - Public transparency
 - Democratic oversight
 
@@ -865,8 +865,8 @@ git checkout -b feature/new-sacred-zero-rule
 - **Council Integration**: Institutional partnership facilitation
 
 **Stewardship Custodians Resources**:
-- **Technical Custodian (EFF)**: Repository and infrastructure support
-- **AI Ethics Partner (MIT/Stanford)**: Algorithm validation consulting
+- **Technical Infrastructure Custodian (open seat)**: Repository and infrastructure support
+- **AI Ethics Partner (AI Ethics Research Institution (open seat))**: Algorithm validation consulting
 - **Human Rights Partner (Amnesty)**: Victim support coordination
 - **Earth Protection Partner (IEN)**: Environmental impact guidance
 - **Memorial Fund (MSKCC)**: Victim compensation administration
@@ -890,7 +890,7 @@ git checkout -b feature/new-sacred-zero-rule
 **Stewardship Custodians**: stewardship@tml-goukassian.org
 
 **Recommended Stewardship Custodians Partners**:
-- **Technical Custodian**: Technical Infrastructure Institution (open seat) (https://www.eff.org)
+- **Technical Custodian**: Technical Infrastructure Institution (open seat) (https://governance.tml.org/seats)
 - **Human Rights**: Human Rights Institution (open seat) (https://www.amnesty.org)
 - **Earth Protection**: Earth Protection Institution (open seat) (https://www.ienearth.org)
 - **AI Ethics Research**: AI Ethics Research Institution (open seat) (https://www.media.mit.edu) / AI Ethics Research Institution (open seat) (https://hai.stanford.edu)

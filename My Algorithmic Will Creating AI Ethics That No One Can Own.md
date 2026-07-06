@@ -55,7 +55,7 @@ I've invited a **6-seat Stewardship Custodians**:
 - **Medical Research Institution (open seat)** (Memorial Fund / cancer research)
 - **Community Representative** (elected by implementers)
 
-Each organization gets **one responsibility**, not comprehensive control. EFF can't change the human rights documents. Amnesty can't modify the blockchain infrastructure. No single entity can redirect the Memorial Fund or alter the MIT License.
+Each organization gets **one responsibility**, not comprehensive control. The Technical Custodian cannot change the human rights documents. Amnesty can't modify the blockchain infrastructure. No single entity can redirect the Memorial Fund or alter the MIT License.
 
 **5 out of 6 consensus required** for major decisions. But the core protections? Those are **immutable forever**.
 

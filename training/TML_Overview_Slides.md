@@ -90,7 +90,7 @@ Operational protection with expert validation
     ═══════════════════════════════════════════════════════
    Technical │ Human Rights │ Earth │ AI Ethics │ Memorial │ Community
   Custodian  │   Partner    │ Prot. │  Research │   Fund   │    Rep
-    (EFF)    │   (Amnesty)  │ (IEN) │(MIT/Stan) │  (MSKCC) │ (Elected)
+    (open seat)    │   (Amnesty)  │ (IEN) │(MIT/Stan) │  (MSKCC) │ (Elected)
 ```
 
 ---
@@ -406,7 +406,7 @@ GET /compliance/report?framework=EU_AI_ACT&stewardship=true
 │  ┌────────┬──────────┬────────┬────────┐│
 │  │Technical│  Human  │ Earth  │   AI   ││
 │  │Custodian│ Rights  │  Prot. │ Ethics ││
-│  │  (EFF)  │(Amnesty)│  (IEN) │(MIT/   ││
+│  │  (open seat)  │(Amnesty)│  (IEN) │(MIT/   ││
 │  │         │         │        │Stanford││
 │  └────────┴──────────┴────────┴────────┘│
 │  ┌─────────────┬──────────────────────┐ │
@@ -552,7 +552,7 @@ Phase 4: Ecosystem Integration (18+ months)
 - **Compliance Training**: 2 hours - Council validation documentation
 
 ### Stewardship Custodians Contacts:
-- **Technical Custodian**: https://www.eff.org
+- **Technical Custodian**: https://governance.tml.org/seats
 - **Human Rights Partner**: https://www.amnesty.org
 - **Earth Protection Partner**: https://www.ienearth.org
 - **AI Ethics Partner**: https://www.media.mit.edu | https://hai.stanford.edu
@@ -632,10 +632,10 @@ cd TML-Deploy && docker-compose up -d
 - **Public Trust**: Democratic oversight and transparency
 
 ### Operational Excellence:
-- **Technical Custodian (EFF)**: Repository integrity, infrastructure optimization
+- **Technical Infrastructure Custodian (open seat)**: Repository integrity, infrastructure optimization
 - **Human Rights (Amnesty)**: Victim support, international coordination
 - **Earth Protection (IEN)**: Indigenous sovereignty, ecosystem restoration
-- **AI Ethics (MIT/Stanford)**: Algorithm validation, bias research
+- **AI Ethics (AI Ethics Research Institution (open seat))**: Algorithm validation, bias research
 - **Memorial Fund (MSKCC)**: Victim compensation, medical research legacy
 - **Community Rep**: Stakeholder accountability, democratic input
 
@@ -693,7 +693,7 @@ Email: stewardship@tml-goukassian.org
 - Polygon (low cost, fast)
 - Arbitrum (layer 2)
 - Solana (ultra-fast)
-- **Technical Custodian (EFF) manages infrastructure**
+- **Technical Infrastructure Custodian (open seat) manages infrastructure**
 
 ### Deployment Options:
 - Docker/Kubernetes

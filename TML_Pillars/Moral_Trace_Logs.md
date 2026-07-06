@@ -56,7 +56,7 @@ But TML goes further. Each log includes the hash of the previous log, creating a
 
 Here's where the Hybrid Shield activates, and where TML's architecture reveals its deepest innovation: redundancy as defense against institutional capture.
 
-Each Moral Trace Log, upon creation, is immediately distributed to six custodian organizations established in the succession charter:
+Each Moral Trace Log, upon creation, is immediately distributed to seated institutional custodians established in the succession charter:
 
 1. **Technical Custodian** (Technical Infrastructure Institution (open seat)) Maintains repository and blockchain infrastructure  
 2. **Human Rights Partner** (Human Rights Institution (open seat)):  Enforces the 26+ human rights documents  
@@ -75,7 +75,7 @@ This is where mathematical protection becomes essential. Simultaneously with ins
 
 Consider what would be required to erase a single Moral Trace Log:
 
-1. Compromise all six custodian organizations simultaneously  
+1. Compromise all seated institutional custodians simultaneously  
 2. Rewrite Bitcoin's blockchain (requiring $50B+ and likely failing)  
 3. Rewrite Ethereum's blockchain (requiring similar resources)  
 4. Rewrite Polygon's blockchain (requiring additional resources)  

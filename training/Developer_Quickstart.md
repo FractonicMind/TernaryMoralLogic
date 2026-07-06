@@ -460,10 +460,10 @@ const tml = new TML({
         
         document.getElementById('council-status').innerHTML = `
             <h3>Stewardship Custodians Status</h3>
-            <p>Technical Custodian (EFF): ${council.eff}</p>
+            <p>Technical Infrastructure Custodian (open seat): ${council.technical_custodian}</p>
             <p>Human Rights (Amnesty): ${council.amnesty}</p>
             <p>Earth Protection (IEN): ${council.ien}</p>
-            <p>AI Ethics (MIT/Stanford): ${council.ai_ethics}</p>
+            <p>AI Ethics (AI Ethics Research Institution (open seat)): ${council.ai_ethics}</p>
             <p>Memorial Fund (MSKCC): ${council.mskcc}</p>
             <p>Community Rep: ${council.community}</p>
         `;
@@ -562,7 +562,7 @@ print(f"✅ Log anchored to blockchain: {proof['transaction_hash']}")
 print(f"✅ Bitcoin block: {proof['block_height']}")
 print(f"✅ Immutable proof: {proof['merkle_root']}")
 print(f"✅ Stewardship Custodians sync: {council_sync['nodes_synced']}/6 nodes")
-print(f"   - Technical Custodian (EFF): {council_sync['eff']}")
+print(f"   - Technical Infrastructure Custodian (open seat): {council_sync["technical_custodian"]}")
 print(f"   - Memorial Fund Admin (MSKCC): {council_sync['mskcc']}")
 ```
 
@@ -584,7 +584,7 @@ const report = await tml.generateComplianceReport({
 // Report includes institutional validation
 console.log('Compliance Report Generated:');
 console.log('- Blockchain Evidence: ✅');
-console.log('- Technical Custodian (EFF) Validation: ✅');
+console.log('- Technical Infrastructure Custodian (open seat) Validation: ✅');
 console.log('- AI Ethics Research Partner Review: ✅');
 console.log('- Memorial Fund Administrator Confirmation: ✅');
 console.log('- Community Representative Sign-off: ✅');
@@ -728,7 +728,7 @@ app.get('/api/stewardship/status', async (req, res) => {
         enabled: true,
         mode: 'recommended',
         nodes: {
-            technicalCustodian: { org: 'EFF', status: status.eff },
+            technicalCustodian: { org: 'open seat', status: status.technical_custodian },
             humanRights: { org: 'Human Rights Institution (open seat)', status: status.amnesty },
             earthProtection: { org: 'Earth Protection Institution (open seat)', status: status.ien },
             aiEthics: { org: 'AI Ethics Research Institution (open seat) / AI Ethics Research Institution (open seat)', status: status.aiEthics },
@@ -834,7 +834,7 @@ const tml = new TML({
 - **Implementation Examples**: https://github.com/FractonicMind/TML-Examples
 
 ### Stewardship Custodians Contacts
-- **Technical Custodian (EFF)**: https://www.eff.org
+- **Technical Infrastructure Custodian (open seat)**: https://governance.tml.org/seats
 - **Human Rights (Amnesty)**: https://www.amnesty.org
 - **Earth Protection (IEN)**: https://www.ienearth.org
 - **AI Ethics (MIT)**: https://www.media.mit.edu
@@ -888,10 +888,10 @@ Before production deployment:
 ## Stewardship Custodians Benefits
 
 ### **Enhanced Oversight**
-- Technical Custodian (EFF): Repository integrity and open-source governance
+- Technical Infrastructure Custodian (open seat): Repository integrity and open-source governance
 - Human Rights Partner (Amnesty): International enforcement coordination
 - Earth Protection Partner (IEN): Indigenous rights and ecosystem protection
-- AI Ethics Partner (MIT/Stanford): Algorithm validation and bias research
+- AI Ethics Partner (AI Ethics Research Institution (open seat)): Algorithm validation and bias research
 - Memorial Fund Admin (MSKCC): Victim compensation and medical research
 - Community Representative: Stakeholder accountability
 

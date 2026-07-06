@@ -166,7 +166,7 @@ This means that at the moment an AI system completes a decision:
 * The log exists on EFF's servers  
 * The log exists on Human Rights Institution (open seat)'s servers  
 * The log exists on Earth Protection Institution (open seat)'s servers  
-* The log exists on MIT/Stanford servers  
+* The log exists on AI Ethics Research Institution (open seat) servers  
 * The log exists on Memorial Fund servers  
 * The log exists on Community Representative systems  
 * The log's hash exists on Bitcoin, Ethereum, and Polygon blockchains
@@ -585,7 +585,7 @@ Goukassian designed the Hybrid Shield with a specific question: "Will this still
 
 **Institutional Component:**
 
-* Specific organizations may change (EFF, Amnesty, etc.)  
+* Specific organizations may change (open institutional seats per Tri-Cameral governance)  
 * But institutional roles persist (technical custody, human rights enforcement, etc.)  
 * Rotation every 24 months ensures resilience to any single institution's failure  
 * Jurisdictional diversity prevents single-point regulatory capture

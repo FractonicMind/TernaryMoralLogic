@@ -2317,7 +2317,7 @@ TML implements a hybrid escrow system:
 
 **Custodian Distribution:**
 
-1. Technical Custodian (EFF)  
+1. Technical Infrastructure Custodian (open seat)  
 2. Human Rights Partner (Human Rights Institution (open seat))  
 3. Earth Protection Partner (Greenpeace)  
 4. AI Ethics Research (AI Ethics Research Institution (open seat))  
@@ -3933,7 +3933,7 @@ autonomous systems;
 
 In the event of dissolution, remaining assets SHALL be distributed to:
 
-1. Technical Infrastructure Institution (open seat) (EFF) \- 40%  
+1. Technical Infrastructure Institution (open seat) (open seat) \- 40%  
 2. AI Ethics Research Institution (open seat) \- 30%  
 3. Machine Intelligence Research Institute (MIRI) \- 30%
 

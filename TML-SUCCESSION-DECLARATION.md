@@ -97,7 +97,7 @@ This coverage applies regardless of:
 
 ### Primary Custodian (Repository & Technical Infrastructure)
 
-**Recommended: Technical Infrastructure Institution (open seat) (EFF)**
+**Recommended: Technical Infrastructure Institution (open seat) (open seat)**
 - **Mission alignment**: Digital rights, accountability, long-term institutional stability
 - **Technical capability**: Open source project support, infrastructure maintenance
 - **Responsibilities**:
