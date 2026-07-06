@@ -199,7 +199,7 @@ To handle the high throughput of AI systems without clogging public blockchains 
 Compliance with Articles 84-86 (Enforcement):  
 The Hybrid Shield ensures that no single entity (including the AI provider) can falsify the compliance record.1
 
-* **Institutional Custodians:** A set of independent institutions (e.g., EFF, Human Rights Institution (open seat), or a designated EU Authority like the AI Office) hold shares of the "Master Anchor Keys" or serve as witnesses to the anchoring.  
+* **Institutional Custodians:** A set of independent institutions ( open institutional seats or a designated EU Authority like the AI Office) hold shares of the "Master Anchor Keys" or serve as witnesses to the anchoring.  
 * **Cryptographic Oversight:** This prevents a rogue provider from forking their own private chain to hide non-compliance. The consensus of the custodians validates the true history. This satisfies the strict enforcement requirements, ensuring that evidence presented in an investigation is unimpeachable.
 
 ### **4.6 Public Blockchains**
