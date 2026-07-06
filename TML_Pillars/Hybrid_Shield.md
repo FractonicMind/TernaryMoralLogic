@@ -163,7 +163,7 @@ When a TML-compliant AI system generates a Moral Trace Log, that log is **simult
 This means that at the moment an AI system completes a decision:
 
 * The log exists on the implementing organization's systems  
-* The log exists on EFF's servers  
+* The log exists on the Technical Infrastructure Custodian's servers  
 * The log exists on Human Rights Institution (open seat)'s servers  
 * The log exists on Earth Protection Institution (open seat)'s servers  
 * The log exists on AI Ethics Research Institution (open seat) servers  

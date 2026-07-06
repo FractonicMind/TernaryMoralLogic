@@ -745,7 +745,7 @@ app.listen(3000, () => {
     console.log('Blockchain anchoring: ENABLED');
     console.log('Penalties: AUTOMATIC');
     console.log('Stewardship Custodians: RECOMMENDED (6 nodes active)');
-    console.log('  - Technical Custodian: EFF');
+    console.log('  - Technical Custodian: open seat');
     console.log('  - Human Rights: Human Rights Institution (open seat)');
     console.log('  - Earth Protection: Earth Protection Institution (open seat)');
     console.log('  - AI Ethics: AI Ethics Research Institution (open seat) / AI Ethics Research Institution (open seat)');

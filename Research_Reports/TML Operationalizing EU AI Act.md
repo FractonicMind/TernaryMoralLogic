@@ -103,7 +103,7 @@ While the EU AI Act focuses heavily on safety and rights, the EU Green Deal and 
 **Legal Mapping:** Articles 17 and 61\.  
 The **Hybrid Shield** provides the security and robustness required by Article 15 and the quality management of Article 17\.1  
 Institutional \+ Mathematical Redundancy:  
-The Shield combines hash-chain integrity (mathematical proof that log $N$ is linked to log $N-1$) with multi-chain anchoring and institutional custodians (institutional oversight). The custodians (independent entities like the EFF or Human Rights Institution (open seat)) hold shares of the keys or witness the anchoring process.  
+The Shield combines hash-chain integrity (mathematical proof that log $N$ is linked to log $N-1$) with multi-chain anchoring and institutional custodians (institutional oversight). The custodians (independent entities like a designated Technical Infrastructure Institution or Human Rights Institution) hold shares of the keys or witness the anchoring process.  
 Role in Article 61 Compliance:  
 It prevents "history rewriting." If a provider realizes a model is drifting (violating Article 61), they cannot retroactively alter the logs to hide the drift. The Hybrid Shield ensures that the regulator has access to the true history of the model, enabling accurate corrective actions (Article 16\) and preventing the provider from evading liability through data tampering.1
 
