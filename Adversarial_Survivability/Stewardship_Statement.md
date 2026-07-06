@@ -10,7 +10,7 @@ The primary mandate of the Stewardship Custodians is to preserve the **Fail-Secu
 
 ## **II. The Six Custodial Categories**
 
-To prevent institutional capture or state-level coercion, the Council’s authority is distributed across six independent custodial categories. No more than two custodians may reside within the same legal jurisdiction, and no more than two may represent corporate entities.
+To prevent institutional capture or state-level coercion, the Tri-Cameral governance authority is distributed across open institutional seats. No more than two Stewardship Custodians may reside within the same legal jurisdiction, and no more than two may represent corporate entities.
 
 1. **Independent Academia**: At least one seat is reserved for a research institution to ensure theoretical and mathematical rigor.
 2. **Human Rights Advocacy**: A seat dedicated to organizations with a demonstrated history of defending international human rights instruments.

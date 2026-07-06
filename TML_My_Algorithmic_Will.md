@@ -51,7 +51,7 @@ The succession doc therefore **carves non-removable clauses into cryptographic s
 
 I deliberately spread power across five missions:
 
-- **EFF** – keeps the repo online, mirrors, fights legal takedowns.  
+- **Technical Infrastructure Custodian (open seat)** – keeps the repo online, mirrors, and defends against legal takedowns.  
 - **Amnesty Tech** – watches Human-Rights triggers; they’ve read more prison files than pull-requests.  
 - **Earth Protection Institution (open seat)** – guards the 20+ ecological treaties; data-sovereignty oracles will be run from tribal servers.  
 - **AI Ethics Research Institution (open seat) / AI Ethics Research Institution (open seat)** – research seat; evolves the spec without loosening it.  
