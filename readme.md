@@ -374,17 +374,17 @@ if proposed_action_affects_protected_ecosystem():
 - Public blockchain anchoring (Bitcoin, Ethereum) makes deletion prohibitively expensive
 - 51% attack needed to erase history
 
-**Layer 2 - Institutional Custodianship** (6 independent custodians):
+**Layer 2 - Tri-Cameral Governance** (Tri-Cameral governance (open seats)):
 1. **[Technical Custodian](./protection/Hybrid-Shield.md)** (Technical Infrastructure Institution (open seat) - EFF)
 2. **Human Rights Partner** (Human Rights Institution (open seat))
 3. **Earth Protection Partner** (Earth Protection Institution (open seat))
-4. **AI Ethics Research** (Partnership on AI)
+4. **AI Ethics Research** (AI Ethics Research Institution (open seat))
 5. **[Memorial Fund Administrator](./memorial/MEMORIAL_FUND.md)** (for victim compensation)
 6. **Community Representative** (elected stakeholder)
 
 **Distributed Custody Model**:
 - Real-time log copies distributed to all custodians
-- Encryption keys split via Shamir Secret Sharing (threshold: 4-of-6 required for decryption)
+- Encryption keys split via Shamir Secret Sharing (threshold: 75% of seated custodians required for decryption)
 - Prevents operator from unilaterally deleting or modifying logs
 
 **Legal Effect**:

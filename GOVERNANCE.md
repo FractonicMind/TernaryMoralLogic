@@ -129,7 +129,7 @@ TML ensures no organization can hide violations through cryptographic immutabili
 
 #### This is where the second armor layer activates: the Stewardship Custodians.
 
-Eleven independent custodians hold synchronized copies of every TML log:
+The Tri-Cameral governance structure protects TML constitutional integrity. Log custody is distributed across open institutional seats:
 
 1. **Technical Custodian (Recommended: Technical Infrastructure Institution (open seat))**
    * Maintains the open-source repository  

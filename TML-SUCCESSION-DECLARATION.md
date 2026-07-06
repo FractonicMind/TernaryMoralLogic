@@ -128,7 +128,7 @@ This coverage applies regardless of:
 1. Human Rights Watch
 2. Technical Infrastructure Institution (open seat)
 3. AI Now Institute (NYU)
-4. Partnership on AI
+4. AI Ethics Research Institution (open seat)
 
 ### Earth Protection Enforcement Partner
 

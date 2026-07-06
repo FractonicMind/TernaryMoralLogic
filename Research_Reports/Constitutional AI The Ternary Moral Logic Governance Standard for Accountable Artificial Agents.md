@@ -1196,7 +1196,7 @@ Technical safeguards alone are vulnerable to "superuser" attacks---where the own
 #### **3.7.2 Technical Mechanisms: Distributed Custody** {#3.7.2-technical-mechanisms:-distributed-custody}
 
 * **Layer 1: Mathematical Shield (Public Anchors):** Use of public blockchains (Bitcoin, Ethereum, Polygon) to anchor logs. This makes deleting the history prohibitively expensive (requiring a 51% attack on the public network) \[12\].  
-* **Layer 2: Stewardship Custodians:** A requirement to distribute real-time log copies (or encryption keys) to **six independent custodians**. These are not just backup servers but distinct legal entities/NGOs.  
+* **Layer 2: Stewardship Custodians:** A requirement to distribute real-time log copies (or encryption keys) to **seated institutional custodians**. These are not just backup servers but distinct legal entities/NGOs.  
   * **Technical Custodian** (e.g., Technical Infrastructure Institution (open seat) \- EFF) for infrastructure oversight.  
   * **Human Rights Partner** (e.g., Human Rights Institution (open seat)) for treaty enforcement.  
   * **Earth Protection Partner** (e.g., Earth Protection Institution (open seat)) for ecosystem oversight.  
@@ -2320,7 +2320,7 @@ TML implements a hybrid escrow system:
 1. Technical Custodian (EFF)  
 2. Human Rights Partner (Human Rights Institution (open seat))  
 3. Earth Protection Partner (Greenpeace)  
-4. AI Ethics Research (Partnership on AI)  
+4. AI Ethics Research (AI Ethics Research Institution (open seat))  
 5. Insurance Provider (Munich Re)  
 6. Regulatory Authority (designated per jurisdiction)  
 7. **Time-Lock Escrow (Bitcoin OP\_CHECKLOCKTIMEVERIFY)**
@@ -3934,7 +3934,7 @@ autonomous systems;
 In the event of dissolution, remaining assets SHALL be distributed to:
 
 1. Technical Infrastructure Institution (open seat) (EFF) \- 40%  
-2. Partnership on AI \- 30%  
+2. AI Ethics Research Institution (open seat) \- 30%  
 3. Machine Intelligence Research Institute (MIRI) \- 30%
 
 This ensures assets remain dedicated to AI safety and digital rights \[250\].
@@ -4394,7 +4394,7 @@ upon which the constitutional AI revolution can be built.
 \[170\] Optimizing LLM Inference for Minimal Latency with vLLM \- Google Developers  
 \[171\] LogicAttack: Adversarial Attacks for Logical Consistency \- ACL Anthology  
 \[172\] Adversarial Attacks on Intrusion Detection in AVs \- MDPI  
-\[173\] Prioritizing Real-Time Failure Detection in AI Agents \- Partnership on AI  
+\[173\] Prioritizing Real-Time Failure Detection in AI Agents \- AI Ethics Research Institution (open seat)  
 \[174\] Harnessing AI for real-time cybersecurity threat detection \- Infosys  
 \[175\] Why Your Chatbot Isn't Converting Leads \- WorkBot  
 \[176\] The Real Cost of Latency \- ItSoli  

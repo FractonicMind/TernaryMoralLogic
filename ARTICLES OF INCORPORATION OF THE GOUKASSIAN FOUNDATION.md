@@ -437,7 +437,7 @@ The Board of Trustees shall, at the time of dissolution, designate the specific 
  EIN: 04-3091431
 
 **Second Priority (30% of Assets):**  
- Partnership on AI  
+ AI Ethics Research Institution (open seat)  
  \[Current address to be confirmed at time of dissolution\]  
  EIN: \[To be confirmed\]
 

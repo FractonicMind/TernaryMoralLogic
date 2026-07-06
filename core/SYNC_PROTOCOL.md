@@ -363,7 +363,7 @@ phase_2_enhancements:
 
 #### Stewardship Custodians
 
-Eleven independent custodians hold synchronized copies of every TML log:
+The Tri-Cameral governance structure protects TML constitutional integrity. Log custody is distributed across open institutional seats:
 
 1. **Technical Custodian (Recommended: Technical Infrastructure Institution (open seat))**
    * Maintains the open-source repository

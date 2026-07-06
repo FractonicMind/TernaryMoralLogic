@@ -723,7 +723,7 @@ The **Earth Protection subtree** incorporates **environmental sensor binding** t
 
 #### 4.1.3 Governance Subtree: Self-Referential Structure for Meta-Decision Logging
 
-The **Governance subtree** handles **system-self-modification** with **variable epochs tied to governance procedure timelines**. **Self-referential structure** creates “strange loops” of accountability: the system logs its own modifications, creating immutable record of how record-keeping itself evolves. **Enhanced custodian requirements**: **4-of-6 approval** versus **2-of-6** for operational decisions; **7-day mandatory delay** for substantive changes.
+The **Governance subtree** handles **system-self-modification** with **variable epochs tied to governance procedure timelines**. **Self-referential structure** creates “strange loops” of accountability: the system logs its own modifications, creating immutable record of how record-keeping itself evolves. **Enhanced custodian requirements**: **75% of seated custodians approval** versus **2-of-6** for operational decisions; **7-day mandatory delay** for substantive changes.
 
 | Parameter | Value | Rationale |
 | :---- | :---- | :---- |

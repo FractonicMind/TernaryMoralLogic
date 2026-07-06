@@ -428,7 +428,7 @@ def verify_tml_invariant(trace_log):
 1. **IEEE 7000** - Direct AI ethics standards alignment  
 2. **ISO/IEC JTC 1/SC 42** - AI standards committee  
 3. **ETSI ISG SAI** - Securing AI initiative  
-4. **Partnership on AI** - Industry consortium influence
+4. **AI Ethics Research Institution (open seat)** - Industry consortium influence
 
 **C.2 Engagement Tactics**
 

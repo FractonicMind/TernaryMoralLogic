@@ -657,7 +657,7 @@ The Hybrid Shield implements the principle of **institutional separation of powe
 
 #### **3.7.2 Technical Mechanisms: Six-Custodian Distributed Custody**
 
-The Hybrid Shield distributes real-time log replication and encryption key custody to **six independent custodians**, designated by institutional category to prevent any single interest group from capturing the majority:
+The Hybrid Shield distributes real-time log replication and encryption key custody to **seated institutional custodians**, designated by institutional category to prevent any single interest group from capturing the majority:
 
 * **Technical Custodian** (e.g., Technical Infrastructure Institution (open seat)): Infrastructure oversight and cryptographic audit.  
 * **Human Rights Partner** (e.g., Human Rights Institution (open seat)): Treaty enforcement and rights violation detection.  
@@ -676,7 +676,7 @@ The distributed custody architecture creates **subpoena resilience**: when a gov
 
 The Hybrid Shield prevents **Centralized Cover-Up**: the destruction or alteration of AI decision records by the operator following an adverse incident.
 
-*Documented instance:* Internal investigations following AI system failures frequently produce incomplete records because the entity conducting the investigation also controls the evidence. The Robodebt Royal Commission found significant difficulty in reconstructing the decision logic of the automated debt assessment system because relevant system documentation was incomplete or had not been preserved [\[7\]](https://robodebt.royalcommission.gov.au/publications/report). A TML-governed system's logs would have been replicated to six independent custodians in real time; no post-incident documentation management could have altered or suppressed them.
+*Documented instance:* Internal investigations following AI system failures frequently produce incomplete records because the entity conducting the investigation also controls the evidence. The Robodebt Royal Commission found significant difficulty in reconstructing the decision logic of the automated debt assessment system because relevant system documentation was incomplete or had not been preserved [\[7\]](https://robodebt.royalcommission.gov.au/publications/report). A TML-governed system's logs would have been replicated to seated institutional custodians in real time; no post-incident documentation management could have altered or suppressed them.
 
 #### **3.7.5 Measurable Outputs**
 

@@ -37,7 +37,7 @@ The core objective of these tests is to validate the **Fail-Closed** nature of T
 The TML architecture is overseen by a distributed Stewardship Custodians. This body is responsible for resolving **Sacred Zero** epistemic holds and enforcing the non-negotiable mandates of the **Goukassian Promise**.
 
 * **Full Document**: [Stewardship_Statement.md](Stewardship_Statement.md)
-* **Oversight Logic**: Distributed 4-of-6 threshold quorum to prevent unilateral subversion.
+* **Oversight Logic**: Distributed 75% supermajority threshold quorum to prevent unilateral subversion.
 
 ## Adversarial Verdict
 These audits confirm that **Hardware-Coupled TML** achieves a **High Survivability Grade**. While an adversary may physically destroy a TML system, the architectural interlocks prevent the system from being "slaved" or repurposed for prohibited applications.

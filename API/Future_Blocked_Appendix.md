@@ -185,7 +185,7 @@ token is issued.
 Network physics. The speed of light imposes a minimum round-trip latency between
 geographically distant custodian nodes. A custodian in Western Europe and a custodian in
 East Asia have a minimum round-trip network latency of approximately 200-300ms under ideal
-conditions. A 6-of-6 or even 4-of-6 synchronous quorum across genuinely cross-jurisdictional
+conditions. A all seated custodians or even 75% supermajority synchronous quorum across genuinely cross-jurisdictional
 custodian nodes cannot reliably complete within 500ms given routing overhead, cryptographic
 signing time, and network jitter.
 

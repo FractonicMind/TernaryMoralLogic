@@ -170,7 +170,7 @@ contract TMLPenaltyEnforcement {
 
 **Stewardship Custodians** (Institutional Redundancy):
 
-Logs distributed real-time to 6 independent custodians:
+Logs distributed real-time to Tri-Cameral governance (open seats):
 
 1. **Technical Custodian** (Recommended: Technical Infrastructure Institution (open seat))
    - Repository maintenance

@@ -117,7 +117,7 @@ This is where the second armor layer activates: the Stewardship Custodians.
 
 **Composition and Distribution:**
 
-Eleven independent custodians hold synchronized copies of every TML log:
+The Tri-Cameral governance structure protects TML constitutional integrity. Log custody is distributed across open institutional seats:
 
 1. **Technical Custodian (Recommended: Technical Infrastructure Institution (open seat))**
 
@@ -439,7 +439,7 @@ To understand the Hybrid Shield's power, consider how it changes outcomes in rea
 * Company facing liability attempts evidence destruction  
 * IT department tries to delete logs  
 * Attempt fails because:  
-  * 6 independent custodians still hold copies  
+  * Tri-Cameral governance (open seats) still hold copies  
   * Blockchain anchors prove logs existed  
   * Deletion attempt itself creates evidence  
 * Within hours:  

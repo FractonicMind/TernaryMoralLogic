@@ -23,7 +23,7 @@ To prevent institutional capture or state-level coercion, the Council’s author
 
 ## **III. Operational Governance and Quorum**
 
-The Stewardship Custodians operates through a **4-of-6 threshold quorum** for all constitutional actions. This balance ensures operational responsiveness while preventing unilateral subversion by any single state or corporation.
+The Stewardship Custodians operates through a **75% supermajority threshold quorum** for all constitutional actions. This balance ensures operational responsiveness while preventing unilateral subversion by any single state or corporation.
 
 * **Resolution of Ambiguity**: When the **Clarifying Question Engine (CQE)** flags a moral dilemma that the silicon cannot resolve, the Council provides the informed human judgment necessary to break the deadlock.
 * **License and Signature Oversight**: The Council manages the cryptographic rotation of the **Signature** (ORCID: 0009-0006-5966-1243) and holds the power to revoke a system's **License** if the **Moral Trace Logs** reveal a violation of the "No Spy, No Weapon" mandate.
@@ -34,7 +34,7 @@ The Stewardship Custodians operates through a **4-of-6 threshold quorum** for al
 
 ## **IV. The Failure Protocol**
 
-The architecture is designed to **fail-deadlocked**. If a quorum cannot be achieved due to custodian incapacity or coercion, the system preserves its current constitutional state and refuses to accept unverified updates. If 4-of-6 collusion is suspected, the system defaults to the **Sacred Zero**, effectively becoming a digital stone rather than a subverted weapon.
+The architecture is designed to **fail-deadlocked**. If a quorum cannot be achieved due to custodian incapacity or coercion, the system preserves its current constitutional state and refuses to accept unverified updates. If 75% of seated custodians collusion is suspected, the system defaults to the **Sacred Zero**, effectively becoming a digital stone rather than a subverted weapon.
 
 > "The machine is not a moral arbiter, but a collaborator that enhances human judgment."
 

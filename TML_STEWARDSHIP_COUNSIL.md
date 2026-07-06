@@ -24,7 +24,7 @@ The Council operates under strict limitations encoded in smart contracts. Even u
 
 ## II. Council Composition
 
-The Stewardship Custodians comprises six independent custodian organizations, each selected for domain expertise, institutional stability, and mission alignment with TML's dual mandate: protection of human rights and planetary systems.
+The Stewardship Custodians comprises seated institutional custodian organizations, each selected for domain expertise, institutional stability, and mission alignment with TML's dual mandate: protection of human rights and planetary systems.
 
 ### Member 1: Technical Custodian
 

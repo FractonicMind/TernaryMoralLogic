@@ -447,7 +447,7 @@ log_hash   = secure_storage.write(log_entry)
   <div class="pillar">
     <span class="p-num">4</span>
     <div class="p-head"><div class="p-icon">📋</div><h3><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/TML_Pillars/Moral_Trace_Logs.md">Moral Trace Logs — The Forensic Record</a></h3></div>
-    <p><strong>Purpose:</strong> Tamper-evident, cryptographically signed records of every decision state. GDPR-compatible via Ephemeral Key Rotation (EKR). PII encrypted with Shamir Secret Sharing across 11 custodians; 4-of-6 quorum required. Satisfies GDPR "Right to be Forgotten" via cryptographic shredding.</p>
+    <p><strong>Purpose:</strong> Tamper-evident, cryptographically signed records of every decision state. GDPR-compatible via Ephemeral Key Rotation (EKR). PII encrypted with Shamir Secret Sharing across 11 custodians; 75% supermajority quorum required. Satisfies GDPR "Right to be Forgotten" via cryptographic shredding.</p>
     <div class="cw" style="margin:.6rem 0">
       <div class="cb"><span class="cd cr"></span><span class="cd cy"></span><span class="cd cg"></span>&nbsp;Moral Trace Log Schema — TSLF-2025.04</div>
       <pre>
@@ -504,9 +504,9 @@ log_hash   = secure_storage.write(log_entry)
   <div class="pillar">
     <span class="p-num">7</span>
     <div class="p-head"><div class="p-icon">🛡️</div><h3><a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/TML_Pillars/Hybrid_Shield.md">Hybrid Shield — The Institutional Redundancy</a></h3></div>
-    <p><strong>Purpose:</strong> Prevent centralized control, corporate cover-up, or government censorship of moral logs. <strong>Layer 1 — Mathematical Shield:</strong> Public blockchain anchoring (Bitcoin, Ethereum) — a 51% attack would be required to erase history. <strong>Layer 2 — Institutional Custodianship:</strong> 6 independent custodians (EFF, Human Rights Institution (open seat), Earth Protection Institution (open seat), Partnership on AI, Memorial Fund Administrator, Community Representative). Shamir Secret Sharing with 4-of-6 threshold.</p>
+    <p><strong>Purpose:</strong> Prevent centralized control, corporate cover-up, or government censorship of moral logs. <strong>Layer 1 — Mathematical Shield:</strong> Public blockchain anchoring (Bitcoin, Ethereum) — a 51% attack would be required to erase history. <strong>Layer 2 — Tri-Cameral Governance:</strong> Tri-Cameral governance (open seats) (EFF, Human Rights Institution (open seat), Earth Protection Institution (open seat), AI Ethics Research Institution (open seat), Memorial Fund Administrator, Community Representative). Shamir Secret Sharing with 75% supermajority threshold.</p>
     <p><strong>Legal Effect:</strong> Subpoena resilience. Prevents "internal investigation" cover-ups. Multi-jurisdictional "escrow of truth."</p>
-    <div class="p-tags"><span class="tag">Shamir Secret Sharing</span><span class="tag">4-of-6 Threshold</span><span class="tag">EFF</span><span class="tag">Human Rights Institution (open seat)</span></div>
+    <div class="p-tags"><span class="tag">Shamir Secret Sharing</span><span class="tag">75% of seated custodians Threshold</span><span class="tag">Open Seats</span><span class="tag">Human Rights Institution (open seat)</span></div>
     <div class="p-links">
       <a href="https://github.com/FractonicMind/TernaryMoralLogic/blob/main/TML_Pillars/Hybrid_Shield.md" class="plink">📄 Documentation</a>
       <a href="https://fractonicmind.github.io/TernaryMoralLogic/TML_Pillars/Hybrid_Shield.html" class="plink">🌐 Interactive</a>
@@ -551,7 +551,7 @@ log_hash   = secure_storage.write(log_entry)
   <p>Every log entry is signed with a uniquely derived nonce — seeded from hardware randomness (TEE RDRAND), a TPM-backed monotonic counter, and the log hash itself. If today's key is stolen, all prior and future logs remain unforgeable. Performance overhead: +0.6µs per signature (baseline 1.2µs), well within the 2ms Fast Lane budget. No wire-format changes; fully backward-compatible.</p>
 
   <h3>GDPR Compliance via Cryptographic Shredding</h3>
-  <p>Immutable blockchain logs cannot be deleted — but TML resolves this elegantly. User PII is encrypted with ephemeral session keys distributed via Shamir Secret Sharing across 6 independent custodians. When a user invokes GDPR Art. 17 (Right to Erasure), all key shares are systematically destroyed. The log hash remains on-chain (proving the decision occurred at timestamp T), but the ciphertext becomes permanently unrecoverable — satisfying both GDPR ("data no longer accessible") and TML ("decision history preserved").</p>
+  <p>Immutable blockchain logs cannot be deleted — but TML resolves this elegantly. User PII is encrypted with ephemeral session keys distributed via Shamir Secret Sharing across Tri-Cameral governance (open seats). When a user invokes GDPR Art. 17 (Right to Erasure), all key shares are systematically destroyed. The log hash remains on-chain (proving the decision occurred at timestamp T), but the ciphertext becomes permanently unrecoverable — satisfying both GDPR ("data no longer accessible") and TML ("decision history preserved").</p>
 
   <h3>Latency Performance</h3>
   <table class="tbl">
@@ -806,7 +806,7 @@ log_hash   = secure_storage.write(log_entry)
   </div>
   <div class="threat">
     <strong>3. Data Withholding (Merkle Batching)</strong>
-    <p><em>Threat:</em> Operator publishes Merkle Root hash but withholds underlying log data, appearing compliant while remaining unauditable. <em>Mitigation:</em> Data Availability Sampling (DAS) on L2 blockchains; all 6 independent custodians verify raw data availability independently and continuously.</p>
+    <p><em>Threat:</em> Operator publishes Merkle Root hash but withholds underlying log data, appearing compliant while remaining unauditable. <em>Mitigation:</em> Data Availability Sampling (DAS) on L2 blockchains; all Tri-Cameral governance (open seats) verify raw data availability independently and continuously.</p>
   </div>
   <div class="threat">
     <strong>4. Nonce Reuse — Signature Side-Channel</strong>

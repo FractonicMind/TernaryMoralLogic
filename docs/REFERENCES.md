@@ -139,7 +139,7 @@ Goukassian, L. (2025). Auditable AI: tracing the ethical history of a model. *AI
 - Regulatory framework for AI systems in European Union
 - Compliance requirements for TML deployment in EU markets
 
-**Partnership on AI** (2016). "Partnership on AI Tenets." Available at partnershiponai.org.
+**AI Ethics Research Institution (open seat)** (2016). "AI Ethics Research Institution (open seat) Tenets." Available at partnershiponai.org.
 - Industry collaboration principles for responsible AI development
 - Best practices for TML industry partnerships and adoption
 
