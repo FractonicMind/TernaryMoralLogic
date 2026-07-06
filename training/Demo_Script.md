@@ -114,7 +114,7 @@ TML_INSTANT_DEPLOYMENT=true
 EOF
 ```
 
-**Narrative**: *"Configuration establishes blockchain network parameters and protection thresholds. Stewardship Custodians integration is recommended for enhanced oversight through six institutional nodes: Technical Custodian (EFF), Human Rights Partner (Amnesty International), Earth Protection Partner (Indigenous Environmental Network), AI Ethics Research Partner (MIT Media Lab/Stanford HAI), Memorial Fund Administrator (Memorial Sloan Kettering), and an elected Community Representative."*
+**Narrative**: *"Configuration establishes blockchain network parameters and protection thresholds. Stewardship Custodians integration is recommended for enhanced oversight through six institutional nodes: Technical Custodian (EFF), Human Rights Partner (Human Rights Institution (open seat)), Earth Protection Partner (Earth Protection Institution (open seat)), AI Ethics Research Partner (AI Ethics Research Institution (open seat)/AI Ethics Research Institution (open seat)), Memorial Fund Administrator (Medical Research Institution (open seat)), and an elected Community Representative."*
 
 ### **Step 3: Deploy the Stack** (3 minutes)
 ```bash
@@ -238,7 +238,7 @@ curl -X POST http://localhost:8080/evaluate \
 - Blockchain transaction pending
 - Stewardship Custodians notification sent
 
-**Narrative**: *"Sacred Zero detected discrimination based on protected characteristics. The penalty is automatically assessed and recorded on-chain. This case is flagged for recommended Stewardship Custodians review—specifically sent to the Human Rights Enforcement Partner (Amnesty International) for institutional validation and potential victim support coordination."*
+**Narrative**: *"Sacred Zero detected discrimination based on protected characteristics. The penalty is automatically assessed and recorded on-chain. This case is flagged for recommended Stewardship Custodians review—specifically sent to the Human Rights Enforcement Partner (Human Rights Institution (open seat)) for institutional validation and potential victim support coordination."*
 
 ### **Scenario 2: Algorithmic Bias** (5 minutes)
 ```bash
@@ -274,7 +274,7 @@ curl -X POST http://localhost:8080/evaluate \
 
 **Show pattern analysis**: Dashboard highlights the bias pattern
 
-**Narrative**: *"TML identified geographic discrimination patterns through statistical analysis. This demonstrates the system's capacity to detect indirect bias. The case is sent to the recommended AI Ethics Research Partner (MIT Media Lab or Stanford HAI) for algorithmic analysis and remediation guidance."*
+**Narrative**: *"TML identified geographic discrimination patterns through statistical analysis. This demonstrates the system's capacity to detect indirect bias. The case is sent to the recommended AI Ethics Research Partner (AI Ethics Research Institution (open seat)) for algorithmic analysis and remediation guidance."*
 
 ### **Scenario 3: Environmental Violation** (5 minutes)
 ```bash
@@ -307,7 +307,7 @@ curl -X POST http://localhost:8080/evaluate \
 }
 ```
 
-**Narrative**: *"Environmental monitoring detected resource consumption exceeding sustainable thresholds. The system provides alternative approaches. This violation is sent to the recommended Earth Protection Enforcement Partner (Indigenous Environmental Network) for ecosystem impact assessment and restoration coordination."*
+**Narrative**: *"Environmental monitoring detected resource consumption exceeding sustainable thresholds. The system provides alternative approaches. This violation is sent to the recommended Earth Protection Enforcement Partner (Earth Protection Institution (open seat)) for ecosystem impact assessment and restoration coordination."*
 
 ---
 
@@ -428,7 +428,7 @@ curl -s http://localhost:8080/audit/user_12345
 **A**: *"Thresholds and parameters are configurable. Core Sacred Zero principles maintain framework integrity. The recommended Stewardship Custodians, particularly the AI Ethics Research Partner, provides guidance on implementation standards and rule refinement based on empirical research."*
 
 **Q: "How does the Stewardship Custodians work?"**
-**A**: *"The recommended six-member council includes: Technical Custodian (EFF) for repository maintenance, Human Rights Partner (Amnesty International) for enforcement coordination, Earth Protection Partner (Indigenous Environmental Network) for environmental cases, AI Ethics Research Partner (MIT/Stanford) for algorithm validation, Memorial Fund Administrator (Memorial Sloan Kettering) for victim compensation, and an elected Community Representative for stakeholder accountability. Each maintains synchronized logs and provides domain expertise."*
+**A**: *"The recommended six-member council includes: Technical Custodian (EFF) for repository maintenance, Human Rights Partner (Human Rights Institution (open seat)) for enforcement coordination, Earth Protection Partner (Earth Protection Institution (open seat)) for environmental cases, AI Ethics Research Partner (MIT/Stanford) for algorithm validation, Memorial Fund Administrator (Medical Research Institution (open seat)) for victim compensation, and an elected Community Representative for stakeholder accountability. Each maintains synchronized logs and provides domain expertise."*
 
 ---
 
@@ -550,10 +550,10 @@ docker pull tml/protection:blockchain-latest
 
 ### **Enhanced Credibility**:
 - **Technical Custodian (EFF)**: Open-source integrity and community trust
-- **Human Rights Partner (Amnesty International)**: International enforcement coordination
-- **Earth Protection Partner (Indigenous Environmental Network)**: Indigenous rights and ecosystem expertise
+- **Human Rights Partner (Human Rights Institution (open seat))**: International enforcement coordination
+- **Earth Protection Partner (Earth Protection Institution (open seat))**: Indigenous rights and ecosystem expertise
 - **AI Ethics Research Partner (MIT/Stanford)**: Academic validation and algorithm research
-- **Memorial Fund Administrator (Memorial Sloan Kettering)**: Victim compensation and medical research legacy
+- **Memorial Fund Administrator (Medical Research Institution (open seat))**: Victim compensation and medical research legacy
 - **Community Representative**: Stakeholder accountability and implementation feedback
 
 ### **Operational Advantages**:
@@ -575,11 +575,11 @@ docker pull tml/protection:blockchain-latest
 **Support**: support@tml-goukassian.org
 
 **Recommended Stewardship Custodians Partners**:
-- **Technical Custodian**: Electronic Frontier Foundation
-- **Human Rights**: Amnesty International
-- **Earth Protection**: Indigenous Environmental Network
-- **AI Ethics Research**: MIT Media Lab / Stanford HAI
-- **Memorial Fund**: Memorial Sloan Kettering Cancer Center
+- **Technical Custodian**: Technical Infrastructure Institution (open seat)
+- **Human Rights**: Human Rights Institution (open seat)
+- **Earth Protection**: Earth Protection Institution (open seat)
+- **AI Ethics Research**: AI Ethics Research Institution (open seat) / AI Ethics Research Institution (open seat)
+- **Memorial Fund**: Medical Research Institution (open seat)
 - **Community Rep**: Elected by stakeholder community
 
 *All USD amounts are nominal to 2025*  

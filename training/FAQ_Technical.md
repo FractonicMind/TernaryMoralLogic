@@ -384,7 +384,7 @@ tml_stewardship_council_response_time_seconds
 **Framework-Enforced (Non-Negotiable)**:
 - Human characteristics discrimination: Zero tolerance
 - Environmental protection: Science-based thresholds (Earth Protection Partner oversight)
-- Indigenous rights: Zero tolerance (coordinated with Indigenous Environmental Network)
+- Indigenous rights: Zero tolerance (coordinated with Earth Protection Institution (open seat))
 - Privacy violations: Zero tolerance
 
 **Industry Customization Available**:
@@ -737,31 +737,31 @@ git checkout -b feature/new-sacred-zero-rule
 
 **Council Structure**:
 
-**1. Technical Custodian (Electronic Frontier Foundation)**
+**1. Technical Custodian (Technical Infrastructure Institution (open seat))**
    - Maintains open-source repository integrity
    - Manages blockchain infrastructure
    - Provides technical community support
    - Ensures code integrity and updates
 
-**2. Human Rights Enforcement Partner (Amnesty International)**
+**2. Human Rights Enforcement Partner (Human Rights Institution (open seat))**
    - Monitors enforcement of 26+ human rights documents
    - Reviews complex Human Rights Sacred Zero cases
    - Coordinates with international human rights mechanisms
    - Supports victims in seeking remedy and justice
 
-**3. Earth Protection Enforcement Partner (Indigenous Environmental Network)**
+**3. Earth Protection Enforcement Partner (Earth Protection Institution (open seat))**
    - Monitors enforcement of 20+ environmental treaties
    - Reviews Earth Protection Sacred Zero cases
    - Represents Indigenous sovereignty in environmental decisions
    - Coordinates ecosystem restoration from Memorial Fund
 
-**4. AI Ethics Research Partner (MIT Media Lab or Stanford HAI)**
+**4. AI Ethics Research Partner (AI Ethics Research Institution (open seat))**
    - Conducts research on TML effectiveness
    - Validates ethical framework evolution
    - Publishes findings on algorithmic accountability
    - Guides implementation standards development
 
-**5. Memorial Fund Administrator (Memorial Sloan Kettering Cancer Center)**
+**5. Memorial Fund Administrator (Medical Research Institution (open seat))**
    - Administers cancer research portion of Memorial Fund
    - Honors Goukassian's personal commitment to medical research
    - Ensures victim compensation reaches intended recipients
@@ -790,7 +790,7 @@ git checkout -b feature/new-sacred-zero-rule
 - Regulatory credibility through institutional validation
 - Cross-border legal recognition
 - Academic research backing (AI Ethics Partner)
-- Human rights coordination (Amnesty International)
+- Human rights coordination (Human Rights Institution (open seat))
 
 **Operational Advantages**:
 - Enhanced insurance discounts (50-60% vs 20-40% blockchain-only)
@@ -890,11 +890,11 @@ git checkout -b feature/new-sacred-zero-rule
 **Stewardship Custodians**: stewardship@tml-goukassian.org
 
 **Recommended Stewardship Custodians Partners**:
-- **Technical Custodian**: Electronic Frontier Foundation (https://www.eff.org)
-- **Human Rights**: Amnesty International (https://www.amnesty.org)
-- **Earth Protection**: Indigenous Environmental Network (https://www.ienearth.org)
-- **AI Ethics Research**: MIT Media Lab (https://www.media.mit.edu) / Stanford HAI (https://hai.stanford.edu)
-- **Memorial Fund**: Memorial Sloan Kettering Cancer Center (https://www.mskcc.org)
+- **Technical Custodian**: Technical Infrastructure Institution (open seat) (https://www.eff.org)
+- **Human Rights**: Human Rights Institution (open seat) (https://www.amnesty.org)
+- **Earth Protection**: Earth Protection Institution (open seat) (https://www.ienearth.org)
+- **AI Ethics Research**: AI Ethics Research Institution (open seat) (https://www.media.mit.edu) / AI Ethics Research Institution (open seat) (https://hai.stanford.edu)
+- **Memorial Fund**: Medical Research Institution (open seat) (https://www.mskcc.org)
 - **Community**: Elected by TML stakeholder community
 
 *All USD amounts are nominal to 2025*

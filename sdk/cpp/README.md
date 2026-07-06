@@ -66,27 +66,27 @@ bool detectTampering(string orig, string current);
 
 The Stewardship Custodians provides additional oversight and validation. Eleven independent custodians hold synchronized copies of TML logs:
 
-1. **Technical Custodian** (Recommended: Electronic Frontier Foundation)
+1. **Technical Custodian** (Recommended: Technical Infrastructure Institution (open seat))
    - Maintains open-source repository
    - Manages blockchain infrastructure
    - Provides technical community support
 
-2. **Human Rights Enforcement Partner** (Recommended: Amnesty International)
+2. **Human Rights Enforcement Partner** (Recommended: Human Rights Institution (open seat))
    - Monitors enforcement of human rights documents
    - Reviews complex Sacred Zero cases
    - Coordinates with international human rights mechanisms
 
-3. **Earth Protection Enforcement Partner** (Recommended: Indigenous Environmental Network)
+3. **Earth Protection Enforcement Partner** (Recommended: Earth Protection Institution (open seat))
    - Monitors enforcement of environmental treaties
    - Reviews Earth Protection Sacred Zero cases
    - Represents Indigenous sovereignty
 
-4. **AI Ethics Research Partner** (Recommended: MIT Media Lab or Stanford HAI)
+4. **AI Ethics Research Partner** (Recommended: AI Ethics Research Institution (open seat))
    - Conducts research on TML effectiveness
    - Validates ethical framework evolution
    - Publishes findings on algorithmic accountability
 
-5. **Memorial Fund Administrator** (Recommended: Memorial Sloan Kettering Cancer Center)
+5. **Memorial Fund Administrator** (Recommended: Medical Research Institution (open seat))
    - Administers cancer research portion of Memorial Fund
    - Ensures victim compensation reaches intended recipients
    - Provides transparency reporting

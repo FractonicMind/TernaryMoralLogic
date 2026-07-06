@@ -276,11 +276,11 @@ The Stewardship Custodians provides additional oversight and validation. This en
 
 ### Tri-Cameral Governance Structure
 
-1. **Technical Custodian** (Recommended: Electronic Frontier Foundation)
-2. **Human Rights Enforcement Partner** (Recommended: Amnesty International)
-3. **Earth Protection Enforcement Partner** (Recommended: Indigenous Environmental Network)
-4. **AI Ethics Research Partner** (Recommended: MIT Media Lab or Stanford HAI)
-5. **Memorial Fund Administrator** (Recommended: Memorial Sloan Kettering Cancer Center)
+1. **Technical Custodian** (Recommended: Technical Infrastructure Institution (open seat))
+2. **Human Rights Enforcement Partner** (Recommended: Human Rights Institution (open seat))
+3. **Earth Protection Enforcement Partner** (Recommended: Earth Protection Institution (open seat))
+4. **AI Ethics Research Partner** (Recommended: AI Ethics Research Institution (open seat))
+5. **Memorial Fund Administrator** (Recommended: Medical Research Institution (open seat))
 6. **Community Representative** (Elected Position)
 
 ### Configuration

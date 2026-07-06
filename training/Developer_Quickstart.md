@@ -729,10 +729,10 @@ app.get('/api/stewardship/status', async (req, res) => {
         mode: 'recommended',
         nodes: {
             technicalCustodian: { org: 'EFF', status: status.eff },
-            humanRights: { org: 'Amnesty International', status: status.amnesty },
-            earthProtection: { org: 'Indigenous Environmental Network', status: status.ien },
-            aiEthics: { org: 'MIT Media Lab / Stanford HAI', status: status.aiEthics },
-            memorialFund: { org: 'Memorial Sloan Kettering', status: status.mskcc },
+            humanRights: { org: 'Human Rights Institution (open seat)', status: status.amnesty },
+            earthProtection: { org: 'Earth Protection Institution (open seat)', status: status.ien },
+            aiEthics: { org: 'AI Ethics Research Institution (open seat) / AI Ethics Research Institution (open seat)', status: status.aiEthics },
+            memorialFund: { org: 'Medical Research Institution (open seat)', status: status.mskcc },
             community: { role: 'Elected Representative', status: status.community }
         },
         syncStatus: status.syncStatus
@@ -746,10 +746,10 @@ app.listen(3000, () => {
     console.log('Penalties: AUTOMATIC');
     console.log('Stewardship Custodians: RECOMMENDED (6 nodes active)');
     console.log('  - Technical Custodian: EFF');
-    console.log('  - Human Rights: Amnesty International');
-    console.log('  - Earth Protection: Indigenous Environmental Network');
-    console.log('  - AI Ethics: MIT Media Lab / Stanford HAI');
-    console.log('  - Memorial Fund: Memorial Sloan Kettering');
+    console.log('  - Human Rights: Human Rights Institution (open seat)');
+    console.log('  - Earth Protection: Earth Protection Institution (open seat)');
+    console.log('  - AI Ethics: AI Ethics Research Institution (open seat) / AI Ethics Research Institution (open seat)');
+    console.log('  - Memorial Fund: Medical Research Institution (open seat)');
     console.log('  - Community: Elected Representative');
 });
 ```

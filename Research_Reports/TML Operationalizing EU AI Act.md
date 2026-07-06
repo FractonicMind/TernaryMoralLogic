@@ -103,7 +103,7 @@ While the EU AI Act focuses heavily on safety and rights, the EU Green Deal and 
 **Legal Mapping:** Articles 17 and 61\.  
 The **Hybrid Shield** provides the security and robustness required by Article 15 and the quality management of Article 17\.1  
 Institutional \+ Mathematical Redundancy:  
-The Shield combines hash-chain integrity (mathematical proof that log $N$ is linked to log $N-1$) with multi-chain anchoring and institutional custodians (institutional oversight). The custodians (independent entities like the EFF or Amnesty International) hold shares of the keys or witness the anchoring process.  
+The Shield combines hash-chain integrity (mathematical proof that log $N$ is linked to log $N-1$) with multi-chain anchoring and institutional custodians (institutional oversight). The custodians (independent entities like the EFF or Human Rights Institution (open seat)) hold shares of the keys or witness the anchoring process.  
 Role in Article 61 Compliance:  
 It prevents "history rewriting." If a provider realizes a model is drifting (violating Article 61), they cannot retroactively alter the logs to hide the drift. The Hybrid Shield ensures that the regulator has access to the true history of the model, enabling accurate corrective actions (Article 16\) and preventing the provider from evading liability through data tampering.1
 
@@ -199,7 +199,7 @@ To handle the high throughput of AI systems without clogging public blockchains 
 Compliance with Articles 84-86 (Enforcement):  
 The Hybrid Shield ensures that no single entity (including the AI provider) can falsify the compliance record.1
 
-* **Institutional Custodians:** A set of independent institutions (e.g., EFF, Amnesty International, or a designated EU Authority like the AI Office) hold shares of the "Master Anchor Keys" or serve as witnesses to the anchoring.  
+* **Institutional Custodians:** A set of independent institutions (e.g., EFF, Human Rights Institution (open seat), or a designated EU Authority like the AI Office) hold shares of the "Master Anchor Keys" or serve as witnesses to the anchoring.  
 * **Cryptographic Oversight:** This prevents a rogue provider from forking their own private chain to hide non-compliance. The consensus of the custodians validates the true history. This satisfies the strict enforcement requirements, ensuring that evidence presented in an investigation is unimpeachable.
 
 ### **4.6 Public Blockchains**

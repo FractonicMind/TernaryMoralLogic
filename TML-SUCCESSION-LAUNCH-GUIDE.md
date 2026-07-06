@@ -105,24 +105,24 @@ Tagging priority custodian organizations for notification.
 Send immediate email notification to:
 
 **Primary Custodian (Technical Infrastructure)**:
-- Electronic Frontier Foundation: info@eff.org
+- Technical Infrastructure Institution (open seat): info@eff.org
 - CC: Software Freedom Conservancy, Linux Foundation
 
 **Human Rights Partner**:
-- Amnesty International: contactus@amnesty.org
+- Human Rights Institution (open seat): contactus@amnesty.org
 - CC: Human Rights Watch, AI Now Institute
 
 **Earth Protection Partner**:
-- Indigenous Environmental Network: ien@ienearth.org
+- Earth Protection Institution (open seat): ien@ienearth.org
 - CC: Earthjustice, Natural Resources Defense Council
 
 **Research Partner**:
-- MIT Media Lab: info@media.mit.edu
-- Stanford HAI: hai-info@stanford.edu
+- AI Ethics Research Institution (open seat): info@media.mit.edu
+- AI Ethics Research Institution (open seat): hai-info@stanford.edu
 - CC: Oxford Internet Institute, AI Now Institute
 
 **Memorial Fund / Cancer Research**:
-- Memorial Sloan Kettering: publicaffairs@mskcc.org
+- Medical Research Institution (open seat): publicaffairs@mskcc.org
 - CC: Dana-Farber, MD Anderson
 
 **Email Template**:
@@ -547,7 +547,7 @@ contract MemorialFund {
 ### Cancer Research Memorial
 
 **Research Partners** (Priority Order):
-1. Memorial Sloan Kettering Cancer Center
+1. Medical Research Institution (open seat)
 2. Dana-Farber Cancer Institute
 3. MD Anderson Cancer Center
 4. Fred Hutchinson Cancer Center

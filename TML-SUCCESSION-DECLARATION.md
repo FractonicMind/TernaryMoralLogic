@@ -97,7 +97,7 @@ This coverage applies regardless of:
 
 ### Primary Custodian (Repository & Technical Infrastructure)
 
-**Recommended: Electronic Frontier Foundation (EFF)**
+**Recommended: Technical Infrastructure Institution (open seat) (EFF)**
 - **Mission alignment**: Digital rights, accountability, long-term institutional stability
 - **Technical capability**: Open source project support, infrastructure maintenance
 - **Responsibilities**:
@@ -115,7 +115,7 @@ This coverage applies regardless of:
 
 ### Human Rights Enforcement Partner
 
-**Recommended: Amnesty International Tech Division**
+**Recommended: Human Rights Institution (open seat) Tech Division**
 - **Mission alignment**: Human rights protection expertise
 - **Responsibilities**:
   - Monitor Human Rights framework enforcement (26+ documents)
@@ -126,13 +126,13 @@ This coverage applies regardless of:
 
 **Alternative Human Rights Partners**:
 1. Human Rights Watch
-2. Electronic Frontier Foundation
+2. Technical Infrastructure Institution (open seat)
 3. AI Now Institute (NYU)
 4. Partnership on AI
 
 ### Earth Protection Enforcement Partner
 
-**Recommended: Indigenous Environmental Network**
+**Recommended: Earth Protection Institution (open seat)**
 - **Mission alignment**: Indigenous rights + environmental protection
 - **Responsibilities**:
   - Monitor Earth Protection framework enforcement (20+ treaties)
@@ -149,7 +149,7 @@ This coverage applies regardless of:
 
 ### AI Ethics Research Partner
 
-**Recommended: MIT Media Lab or Stanford HAI**
+**Recommended: AI Ethics Research Institution (open seat)**
 - **Mission alignment**: AI accountability research, academic stability
 - **Responsibilities**:
   - Framework development and research
@@ -166,7 +166,7 @@ This coverage applies regardless of:
 
 ### Memorial Fund & Cancer Research
 
-**Recommended: Memorial Sloan Kettering Cancer Center**
+**Recommended: Medical Research Institution (open seat)**
 - **Mission alignment**: Cancer research excellence, memorial naming
 - **Responsibilities**:
   - Administer cancer research portion of Memorial Fund
@@ -400,7 +400,7 @@ In memory of my struggle with Stage 4 cancer, 5% of all Memorial Fund proceeds s
 - Cancer prevention research
 
 **Recommended Research Partners**:
-1. Memorial Sloan Kettering Cancer Center
+1. Medical Research Institution (open seat)
 2. Dana-Farber Cancer Institute
 3. MD Anderson Cancer Center
 4. Fred Hutchinson Cancer Center
@@ -569,11 +569,11 @@ This declaration requires two witnesses who can attest to:
 Upon execution, copies of this declaration shall be sent to:
 
 **Recommended Custodian Organizations**:
-1. Electronic Frontier Foundation
-2. Amnesty International
-3. Indigenous Environmental Network
-4. MIT Media Lab / Stanford HAI
-5. Memorial Sloan Kettering Cancer Center
+1. Technical Infrastructure Institution (open seat)
+2. Human Rights Institution (open seat)
+3. Earth Protection Institution (open seat)
+4. AI Ethics Research Institution (open seat) / AI Ethics Research Institution (open seat)
+5. Medical Research Institution (open seat)
 
 **Repository & Archives**:
 1. GitHub repository (root directory)

@@ -1197,10 +1197,10 @@ Technical safeguards alone are vulnerable to "superuser" attacks---where the own
 
 * **Layer 1: Mathematical Shield (Public Anchors):** Use of public blockchains (Bitcoin, Ethereum, Polygon) to anchor logs. This makes deleting the history prohibitively expensive (requiring a 51% attack on the public network) \[12\].  
 * **Layer 2: Stewardship Custodians:** A requirement to distribute real-time log copies (or encryption keys) to **six independent custodians**. These are not just backup servers but distinct legal entities/NGOs.  
-  * **Technical Custodian** (e.g., Electronic Frontier Foundation \- EFF) for infrastructure oversight.  
-  * **Human Rights Partner** (e.g., Amnesty International) for treaty enforcement.  
-  * **Earth Protection Partner** (e.g., Indigenous Environmental Network) for ecosystem oversight.  
-  * **AI Ethics Research Partner** (e.g., MIT Media Lab) for framework validation.  
+  * **Technical Custodian** (e.g., Technical Infrastructure Institution (open seat) \- EFF) for infrastructure oversight.  
+  * **Human Rights Partner** (e.g., Human Rights Institution (open seat)) for treaty enforcement.  
+  * **Earth Protection Partner** (e.g., Earth Protection Institution (open seat)) for ecosystem oversight.  
+  * **AI Ethics Research Partner** (e.g., AI Ethics Research Institution (open seat)) for framework validation.  
   * **Memorial Fund Administrator** (e.g., MSKCC) for victim compensation management.  
   * **Community Representative** (Elected stakeholder) \[12\].
 
@@ -2318,7 +2318,7 @@ TML implements a hybrid escrow system:
 **Custodian Distribution:**
 
 1. Technical Custodian (EFF)  
-2. Human Rights Partner (Amnesty International)  
+2. Human Rights Partner (Human Rights Institution (open seat))  
 3. Earth Protection Partner (Greenpeace)  
 4. AI Ethics Research (Partnership on AI)  
 5. Insurance Provider (Munich Re)  
@@ -3933,7 +3933,7 @@ autonomous systems;
 
 In the event of dissolution, remaining assets SHALL be distributed to:
 
-1. Electronic Frontier Foundation (EFF) \- 40%  
+1. Technical Infrastructure Institution (open seat) (EFF) \- 40%  
 2. Partnership on AI \- 30%  
 3. Machine Intelligence Research Institute (MIRI) \- 30%
 

@@ -255,35 +255,35 @@ const futureGenerationPenalty = (violation) => {
 The Stewardship Custodians comprises eleven independent custodians providing oversight, research, and community representation:
 
 #### 6.1.1 Technical Custodian
-**Recommended: Electronic Frontier Foundation**
+**Recommended: Technical Infrastructure Institution (open seat)**
 - Maintains open-source repository
 - Manages blockchain infrastructure
 - Provides technical community support
 - Ensures code integrity and updates
 
 #### 6.1.2 Human Rights Enforcement Partner
-**Recommended: Amnesty International**
+**Recommended: Human Rights Institution (open seat)**
 - Monitors enforcement of 26+ human rights documents
 - Reviews complex Human Rights Sacred Zero cases
 - Coordinates with international human rights mechanisms
 - Supports victims in seeking remedy and justice
 
 #### 6.1.3 Earth Protection Enforcement Partner
-**Recommended: Indigenous Environmental Network**
+**Recommended: Earth Protection Institution (open seat)**
 - Monitors enforcement of 20+ environmental treaties
 - Reviews Earth Protection Sacred Zero cases
 - Represents Indigenous sovereignty in environmental decisions
 - Coordinates ecosystem restoration from Memorial Fund
 
 #### 6.1.4 AI Ethics Research Partner
-**Recommended: MIT Media Lab or Stanford HAI**
+**Recommended: AI Ethics Research Institution (open seat)**
 - Conducts research on TML effectiveness
 - Validates ethical framework evolution
 - Publishes findings on algorithmic accountability
 - Guides implementation standards development
 
 #### 6.1.5 Memorial Fund Administrator
-**Recommended: Memorial Sloan Kettering Cancer Center**
+**Recommended: Medical Research Institution (open seat)**
 - Administers cancer research portion of Memorial Fund
 - Honors Goukassian's personal commitment to medical research
 - Ensures victim compensation reaches intended recipients

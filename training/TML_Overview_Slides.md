@@ -115,9 +115,9 @@ Operational protection with expert validation
 **Real-time detection, automated enforcement, cryptographic verification, institutional validation**
 
 **Council Routing**:
-- Discrimination cases → Human Rights Enforcement Partner (Amnesty International)
-- Environmental violations → Earth Protection Enforcement Partner (Indigenous Environmental Network)
-- Algorithmic bias → AI Ethics Research Partner (MIT Media Lab / Stanford HAI)
+- Discrimination cases → Human Rights Enforcement Partner (Human Rights Institution (open seat))
+- Environmental violations → Earth Protection Enforcement Partner (Earth Protection Institution (open seat))
+- Algorithmic bias → AI Ethics Research Partner (AI Ethics Research Institution (open seat) / AI Ethics Research Institution (open seat))
 
 ---
 
@@ -179,13 +179,13 @@ Configurable Limits:
 Threshold Exceedance:
   - Automated alert generation
   - Blockchain record creation
-  - Indigenous Environmental Network notification
+  - Earth Protection Institution (open seat) notification
   - Ecosystem restoration coordination
   - Mitigation requirement
   - Potential penalty assessment
 ```
 
-**Stewardship Custodians Role**: Earth Protection Enforcement Partner (Indigenous Environmental Network) monitors treaty compliance and represents Indigenous sovereignty in environmental decisions.
+**Stewardship Custodians Role**: Earth Protection Enforcement Partner (Earth Protection Institution (open seat)) monitors treaty compliance and represents Indigenous sovereignty in environmental decisions.
 
 ---
 
@@ -265,7 +265,7 @@ curl -X POST http://localhost:8080/evaluate \
 10% → Research funding (AI Ethics Research Partner guidance)
 ```
 
-**Memorial Fund Administrator** (Memorial Sloan Kettering Cancer Center):
+**Memorial Fund Administrator** (Medical Research Institution (open seat)):
 - Administers cancer research portion
 - Honors Goukassian's personal commitment
 - Ensures victim compensation reaches recipients
@@ -348,31 +348,31 @@ GET /compliance/report?framework=EU_AI_ACT&stewardship=true
 
 ### Council Composition:
 
-**1. Technical Custodian (Electronic Frontier Foundation)**
+**1. Technical Custodian (Technical Infrastructure Institution (open seat))**
 - Maintains open-source repository
 - Manages blockchain infrastructure  
 - Provides technical community support
 - Ensures code integrity
 
-**2. Human Rights Enforcement Partner (Amnesty International)**
+**2. Human Rights Enforcement Partner (Human Rights Institution (open seat))**
 - Monitors 26+ human rights documents
 - Reviews complex Human Rights cases
 - Coordinates international mechanisms
 - Supports victims seeking justice
 
-**3. Earth Protection Enforcement Partner (Indigenous Environmental Network)**
+**3. Earth Protection Enforcement Partner (Earth Protection Institution (open seat))**
 - Monitors 20+ environmental treaties
 - Reviews Earth Protection cases
 - Represents Indigenous sovereignty
 - Coordinates ecosystem restoration
 
-**4. AI Ethics Research Partner (MIT Media Lab / Stanford HAI)**
+**4. AI Ethics Research Partner (AI Ethics Research Institution (open seat) / AI Ethics Research Institution (open seat))**
 - Conducts TML effectiveness research
 - Validates ethical framework evolution
 - Publishes algorithmic accountability findings
 - Guides implementation standards
 
-**5. Memorial Fund Administrator (Memorial Sloan Kettering Cancer Center)**
+**5. Memorial Fund Administrator (Medical Research Institution (open seat))**
 - Administers cancer research portion
 - Honors Goukassian's medical research commitment
 - Ensures victim compensation delivery
@@ -435,9 +435,9 @@ GET /compliance/report?framework=EU_AI_ACT&stewardship=true
 - ✅ **EU AI Act** - Article 5 (Prohibited AI) | *AI Ethics Partner validates*
 - ✅ **GDPR** - Article 22 (Automated decisions) | *Technical Custodian oversees*
 - ✅ **US Civil Rights** - Title VII | *Human Rights Partner coordinates*
-- ✅ **UN Human Rights** - Universal Declaration | *Amnesty International reviews*
+- ✅ **UN Human Rights** - Universal Declaration | *Human Rights Institution (open seat) reviews*
 - ✅ **Paris Agreement** - Environmental commitments | *Earth Protection Partner monitors*
-- ✅ **UNDRIP** - Indigenous rights protection | *Indigenous Environmental Network represents*
+- ✅ **UNDRIP** - Indigenous rights protection | *Earth Protection Institution (open seat) represents*
 
 ### Verification Mechanism with Council Validation:
 ```javascript
@@ -761,14 +761,14 @@ Institutional Benefits:
 **Implementation**: TML Sacred Zero + Stewardship Custodians  
 **Result**: 0% discrimination, documented compliance  
 **Impact**: Legal risk mitigation, victim support coordinated by Human Rights Partner  
-**Council Role**: Amnesty International coordinated with 12 affected individuals for remedy
+**Council Role**: Human Rights Institution (open seat) coordinated with 12 affected individuals for remedy
 
 ### Case 2: Hiring Platform  
 **Challenge**: Gender bias in technical roles  
 **Implementation**: TML evaluation + AI Ethics Partner validation  
 **Result**: 50/50 gender balance achieved  
 **Impact**: Compliance documentation, bias elimination  
-**Council Role**: MIT Media Lab validated algorithm improvements, Community Rep ensured transparency
+**Council Role**: AI Ethics Research Institution (open seat) validated algorithm improvements, Community Rep ensured transparency
 
 ### Case 3: Healthcare AI
 **Challenge**: Racial bias in diagnosis recommendations  

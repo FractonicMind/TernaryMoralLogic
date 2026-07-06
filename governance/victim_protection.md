@@ -226,7 +226,7 @@ contract MemorialFund {
 }
 ```
 
-**Memorial Fund Administrator (Recommended: Memorial Sloan Kettering Cancer Center)**:
+**Memorial Fund Administrator (Recommended: Medical Research Institution (open seat))**:
 - Administers cancer research portion
 - Honors Goukassian's personal commitment to medical research
 - Ensures victim compensation reaches intended recipients
@@ -262,19 +262,19 @@ The blockchain's transparent record enables automatic identification of systemat
 
 While blockchain provides core protection, the recommended Stewardship Custodians offers:
 
-**Human Rights Enforcement Partner (Recommended: Amnesty International)**:
+**Human Rights Enforcement Partner (Recommended: Human Rights Institution (open seat))**:
 - Complex Human Rights violation analysis
 - International legal coordination
 - Victim advocacy support
 - Remedy pathway guidance
 
-**Earth Protection Enforcement Partner (Recommended: Indigenous Environmental Network)**:
+**Earth Protection Enforcement Partner (Recommended: Earth Protection Institution (open seat))**:
 - Environmental harm assessment
 - Indigenous community liaison
 - Restoration project coordination
 - Traditional knowledge integration
 
-**Memorial Fund Administrator (Recommended: Memorial Sloan Kettering Cancer Center)**:
+**Memorial Fund Administrator (Recommended: Medical Research Institution (open seat))**:
 - Cancer research fund oversight
 - Medical research coordination
 - Victim medical support

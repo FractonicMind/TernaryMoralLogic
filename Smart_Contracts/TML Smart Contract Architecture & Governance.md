@@ -237,7 +237,7 @@ The governance of the TML ecosystem is designed to be "sovereign-grade," modelin
 ### **7.2 The Stewardship Custodians (The Judicial)**
 
 * **Role:** The "Human in the Loop" for Sacred Zero resolutions. They act as the "Supreme Court" of the system.  
-* **Composition:** Representatives from Human Rights organizations (e.g., Amnesty), Environmental groups (e.g., Indigenous Environmental Network), and Legal Ethics bodies.  
+* **Composition:** Representatives from Human Rights organizations (e.g., Amnesty), Environmental groups (e.g., Earth Protection Institution (open seat)), and Legal Ethics bodies.  
 * **Power:** Can issue resolvePause transactions and revokeLicense transactions.  
 * **Check:** They cannot *initiate* code changes or access the Treasury funds directly.
 

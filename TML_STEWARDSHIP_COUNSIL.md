@@ -28,7 +28,7 @@ The Stewardship Custodians comprises six independent custodian organizations, ea
 
 ### Member 1: Technical Custodian
 
-**Recommended Organization**: Electronic Frontier Foundation (EFF)
+**Recommended Organization**: Technical Infrastructure Institution (open seat) (EFF)
 
 **Primary Responsibilities**:
 - Maintain official TML open-source repository (GitHub primary, mirrors on GitLab/Codeberg)
@@ -54,7 +54,7 @@ The Stewardship Custodians comprises six independent custodian organizations, ea
 
 ### Member 2: Human Rights Enforcement Partner
 
-**Recommended Organization**: Amnesty International Tech Division
+**Recommended Organization**: Human Rights Institution (open seat) Tech Division
 
 **Primary Responsibilities**:
 - Monitor enforcement of 26+ human rights documents
@@ -80,7 +80,7 @@ The Stewardship Custodians comprises six independent custodian organizations, ea
 
 ### Member 3: Earth Protection Enforcement Partner
 
-**Recommended Organization**: Indigenous Environmental Network
+**Recommended Organization**: Earth Protection Institution (open seat)
 
 **Primary Responsibilities**:
 - Monitor enforcement of 20+ environmental treaties
@@ -106,7 +106,7 @@ The Stewardship Custodians comprises six independent custodian organizations, ea
 
 ### Member 4: AI Ethics Research Partner
 
-**Recommended Organization**: MIT Media Lab or Stanford Human-Centered AI Institute
+**Recommended Organization**: AI Ethics Research Institution (open seat) or Stanford Human-Centered AI Institute
 
 **Primary Responsibilities**:
 - Conduct research on TML effectiveness and algorithmic accountability
@@ -132,7 +132,7 @@ The Stewardship Custodians comprises six independent custodian organizations, ea
 
 ### Member 5: Memorial Fund Administrator
 
-**Recommended Organization**: Memorial Sloan Kettering Cancer Center
+**Recommended Organization**: Medical Research Institution (open seat)
 
 **Primary Responsibilities**:
 - Administer cancer research portion of Memorial Fund (5%)

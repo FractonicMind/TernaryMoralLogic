@@ -172,27 +172,27 @@ contract TMLPenaltyEnforcement {
 
 Logs distributed real-time to 6 independent custodians:
 
-1. **Technical Custodian** (Recommended: Electronic Frontier Foundation)
+1. **Technical Custodian** (Recommended: Technical Infrastructure Institution (open seat))
    - Repository maintenance
    - Blockchain infrastructure
    - Technical community support
 
-2. **Human Rights Partner** (Recommended: Amnesty International)
+2. **Human Rights Partner** (Recommended: Human Rights Institution (open seat))
    - 26+ document enforcement
    - Victim support coordination
    - International mechanism liaison
 
-3. **Earth Protection Partner** (Recommended: Indigenous Environmental Network)
+3. **Earth Protection Partner** (Recommended: Earth Protection Institution (open seat))
    - 20+ treaty enforcement
    - Indigenous sovereignty protection
    - Ecosystem restoration oversight
 
-4. **AI Ethics Research Partner** (Recommended: MIT Media Lab or Stanford HAI)
+4. **AI Ethics Research Partner** (Recommended: AI Ethics Research Institution (open seat))
    - Framework validation
    - Implementation standards
    - Research publication
 
-5. **Memorial Fund Administrator** (Recommended: Memorial Sloan Kettering Cancer Center)
+5. **Memorial Fund Administrator** (Recommended: Medical Research Institution (open seat))
    - Victim compensation distribution
    - Cancer research funding
    - Transparency reporting

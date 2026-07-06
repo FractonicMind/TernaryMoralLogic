@@ -199,7 +199,7 @@ To prevent historical revisionism, TML anchors its logs to a "Trinity" of public
 * **Ethereum** provides smart-contract-based enforcement and manages the "Memorial Fund" for whistleblowers and victims.7  
 * **Polygon** acts as a high-speed watchdog for real-time verification.7
 
-Access to sensitive PII (Personally Identifiable Information) in these logs is protected via **Ephemeral Key Rotation (EKR)** and a $4$-of-$6$ quorum managed by independent institutional guardians like the EFF or Amnesty International.3
+Access to sensitive PII (Personally Identifiable Information) in these logs is protected via **Ephemeral Key Rotation (EKR)** and a $4$-of-$6$ quorum managed by independent institutional guardians like the EFF or Human Rights Institution (open seat).3
 
 ## **10\. Stress Tests and Failure Modes**
 

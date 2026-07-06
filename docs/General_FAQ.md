@@ -614,31 +614,31 @@ The dual-layer architecture ensures immutability through cryptography and resili
 
 Six independent custodian organizations hold synchronized copies of TML logs (see [Succession Charter](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/TML-SUCCESSION-CHARTER.md)):
 
-**1. Technical Custodian (Electronic Frontier Foundation)**
+**1. Technical Custodian (Technical Infrastructure Institution (open seat))**
 - Maintains [open-source repository](https://github.com/FractonicMind/TernaryMoralLogic)
 - Manages blockchain infrastructure
 - Provides technical community support
 - Ensures code integrity and updates
 
-**2. Human Rights Enforcement Partner (Amnesty International)**
+**2. Human Rights Enforcement Partner (Human Rights Institution (open seat))**
 - Monitors enforcement of 26+ human rights documents
 - Reviews complex [Human Rights Sacred Zero cases](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/mandates/categorical/human_rights/Sacred_Zero_Human.yaml)
 - Coordinates with international human rights mechanisms
 - Supports victims in seeking remedy and justice
 
-**3. Earth Protection Enforcement Partner (Indigenous Environmental Network)**
+**3. Earth Protection Enforcement Partner (Earth Protection Institution (open seat))**
 - Monitors enforcement of 20+ environmental treaties
 - Reviews [Earth Protection Sacred Zero cases](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/policies/earth/SACRED_ZERO_NATURE.yaml)
 - Represents Indigenous sovereignty in environmental decisions
 - Coordinates ecosystem restoration from [Memorial Fund](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/memorial/MEMORIAL_FUND.md)
 
-**4. AI Ethics Research Partner (MIT Media Lab or Stanford HAI)**
+**4. AI Ethics Research Partner (AI Ethics Research Institution (open seat))**
 - Conducts research on TML effectiveness
 - Validates ethical framework evolution
 - Publishes findings on algorithmic accountability
 - Guides [implementation standards](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/IMPLEMENTATION_GUIDE.md) development
 
-**5. Memorial Fund Administrator (Memorial Sloan Kettering Cancer Center)**
+**5. Memorial Fund Administrator (Medical Research Institution (open seat))**
 - Administers [cancer research portion of Memorial Fund](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/memorial/MEMORIAL_FUND.md)
 - Honors Goukassian's commitment to medical research
 - Ensures victim compensation reaches intended recipients

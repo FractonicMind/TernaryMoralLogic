@@ -48,11 +48,11 @@ The framework doesn't pause to mourn. It persists.
 
 ### 2. **Tri-Cameral Governance, Not Ownership**
 I've invited a **6-seat Stewardship Custodians**:
-- **Electronic Frontier Foundation** (technical infrastructure)
-- **Amnesty International** (human rights enforcement)
-- **Indigenous Environmental Network** (Earth protection)
-- **MIT Media Lab** or **Stanford HAI** (AI ethics research)
-- **Memorial Sloan Kettering** (Memorial Fund / cancer research)
+- **Technical Infrastructure Institution (open seat)** (technical infrastructure)
+- **Human Rights Institution (open seat)** (human rights enforcement)
+- **Earth Protection Institution (open seat)** (Earth protection)
+- **AI Ethics Research Institution (open seat)** or **AI Ethics Research Institution (open seat)** (AI ethics research)
+- **Medical Research Institution (open seat)** (Memorial Fund / cancer research)
 - **Community Representative** (elected by implementers)
 
 Each organization gets **one responsibility**, not comprehensive control. EFF can't change the human rights documents. Amnesty can't modify the blockchain infrastructure. No single entity can redirect the Memorial Fund or alter the MIT License.

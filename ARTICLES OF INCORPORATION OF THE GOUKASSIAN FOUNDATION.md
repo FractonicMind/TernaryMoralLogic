@@ -432,7 +432,7 @@ Upon dissolution of the Corporation, and after payment or provision for payment 
 The Board of Trustees shall, at the time of dissolution, designate the specific recipient organization(s) for the Corporation's remaining assets. In the absence of such designation, or if the designated organizations are no longer qualified under Section 501(c)(3), the assets shall be distributed in the following order of priority:
 
 **First Priority (40% of Assets):**  
- Electronic Frontier Foundation (EFF)  
+ Technical Infrastructure Institution (open seat) (EFF)  
  815 Eddy Street, San Francisco, CA 94109  
  EIN: 04-3091431
 

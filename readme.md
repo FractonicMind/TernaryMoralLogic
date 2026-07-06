@@ -375,9 +375,9 @@ if proposed_action_affects_protected_ecosystem():
 - 51% attack needed to erase history
 
 **Layer 2 - Institutional Custodianship** (6 independent custodians):
-1. **[Technical Custodian](./protection/Hybrid-Shield.md)** (Electronic Frontier Foundation - EFF)
-2. **Human Rights Partner** (Amnesty International)
-3. **Earth Protection Partner** (Indigenous Environmental Network)
+1. **[Technical Custodian](./protection/Hybrid-Shield.md)** (Technical Infrastructure Institution (open seat) - EFF)
+2. **Human Rights Partner** (Human Rights Institution (open seat))
+3. **Earth Protection Partner** (Earth Protection Institution (open seat))
 4. **AI Ethics Research** (Partnership on AI)
 5. **[Memorial Fund Administrator](./memorial/MEMORIAL_FUND.md)** (for victim compensation)
 6. **Community Representative** (elected stakeholder)

@@ -365,31 +365,31 @@ phase_2_enhancements:
 
 Eleven independent custodians hold synchronized copies of every TML log:
 
-1. **Technical Custodian (Recommended: Electronic Frontier Foundation)**
+1. **Technical Custodian (Recommended: Technical Infrastructure Institution (open seat))**
    * Maintains the open-source repository
    * Manages blockchain infrastructure
    * Provides technical community support
    * Ensures code integrity and updates
 
-2. **Human Rights Enforcement Partner (Recommended: Amnesty International)**
+2. **Human Rights Enforcement Partner (Recommended: Human Rights Institution (open seat))**
    * Monitors enforcement of 26+ human rights documents
    * Reviews complex Human Rights Sacred Zero cases
    * Coordinates with international human rights mechanisms
    * Supports victims in seeking remedy and justice
 
-3. **Earth Protection Enforcement Partner (Recommended: Indigenous Environmental Network)**
+3. **Earth Protection Enforcement Partner (Recommended: Earth Protection Institution (open seat))**
    * Monitors enforcement of 20+ environmental treaties
    * Reviews Earth Protection Sacred Zero cases
    * Represents Indigenous sovereignty in environmental decisions
    * Coordinates ecosystem restoration from Memorial Fund
 
-4. **AI Ethics Research Partner (Recommended: MIT Media Lab or Stanford HAI)**
+4. **AI Ethics Research Partner (Recommended: AI Ethics Research Institution (open seat))**
    * Conducts research on TML effectiveness
    * Validates ethical framework evolution
    * Publishes findings on algorithmic accountability
    * Guides implementation standards development
 
-5. **Memorial Fund Administrator (Recommended: Memorial Sloan Kettering Cancer Center)**
+5. **Memorial Fund Administrator (Recommended: Medical Research Institution (open seat))**
    * Administers the cancer research portion of Memorial Fund
    * Honors Goukassian's personal commitment to medical research
    * Ensures victim compensation reaches intended recipients
