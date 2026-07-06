@@ -1197,7 +1197,7 @@ Technical safeguards alone are vulnerable to "superuser" attacks---where the own
 
 * **Layer 1: Mathematical Shield (Public Anchors):** Use of public blockchains (Bitcoin, Ethereum, Polygon) to anchor logs. This makes deleting the history prohibitively expensive (requiring a 51% attack on the public network) \[12\].  
 * **Layer 2: Stewardship Custodians:** A requirement to distribute real-time log copies (or encryption keys) to **seated institutional custodians**. These are not just backup servers but distinct legal entities/NGOs.  
-  * **Technical Custodian** (e.g., Technical Infrastructure Institution (open seat) \- EFF) for infrastructure oversight.  
+  * **Technical Custodian** (open seat) for infrastructure oversight.  
   * **Human Rights Partner** (e.g., Human Rights Institution (open seat)) for treaty enforcement.  
   * **Earth Protection Partner** (e.g., Earth Protection Institution (open seat)) for ecosystem oversight.  
   * **AI Ethics Research Partner** (e.g., AI Ethics Research Institution (open seat)) for framework validation.  
