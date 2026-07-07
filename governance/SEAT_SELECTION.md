@@ -1,10 +1,8 @@
 # Ternary Moral Logic: Seat Selection Protocol
 
-### **How Open Institutional Seats Are Filled in the Tri-Cameral Governance Structure**
+### **How Open Institutional Seats Are Filled in the Tri-Cameral Governance Structure**   
 
-**Architect:** Lev Goukassian
-**ORCID:** [0009-0006-5966-1243](https://orcid.org/0009-0006-5966-1243)
-**Parent Document:** [`governance/Tri_Cameral_Constitution.md`](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/governance/Tri_Cameral_Constitution.md)
+**Parent Document:** [`governance/Tri_Cameral_Constitution.md`](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/governance/Tri_Cameral_Constitution.md)   
 **Status:** Operational Protocol
 
 ---
@@ -168,9 +166,9 @@ The `TriCameralApproval` schema in [`API/tml_schema.json`](https://github.com/Fr
 ## Authority
 
 **Architect:** Lev Goukassian
-**ORCID:** [0009-0006-5966-1243](https://orcid.org/0009-0006-5966-1243)
-**Parent Constitution:** [`governance/Tri_Cameral_Constitution.md`](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/governance/Tri_Cameral_Constitution.md)
-**On-Chain Enforcement:** [`API/tml_abi.json`](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/API/tml_abi.json) -- `registerTriCameralProposal`, `recordTriCameralVote`
+**ORCID:** [0009-0006-5966-1243](https://orcid.org/0009-0006-5966-1243)   
+**Parent Constitution:** [`governance/Tri_Cameral_Constitution.md`](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/governance/Tri_Cameral_Constitution.md)   
+**On-Chain Enforcement:** [`API/tml_abi.json`](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/API/tml_abi.json) -- `registerTriCameralProposal`, `recordTriCameralVote`   
 
 ---
 
