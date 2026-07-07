@@ -1,4 +1,4 @@
-# TML Framework Governance
+# TML Enforcement Charter
 
 **Enforcement Governance for Ternary Moral Logic Framework**  
 **Criminal Accountability Through Blockchain Immutability**
@@ -19,9 +19,9 @@ This document establishes the enforcement governance for the TML framework, cent
 - **Whistleblower Rewards:** 15% of recovered penalties to exposers
 - **Automatic Guilt:** Missing logs create irrebuttable presumption
 
-**Recommended Governance Enhancement:**
-- **Stewardship Custodians:** Institutional oversight for enhanced credibility 
-- **Democratic Governance:** Multi-institution consensus for policy evolution (long-term vision)
+**Constitutional Governance Authority:**
+- **Tri-Cameral Constitution:** See [`governance/Tri_Cameral_Constitution.md`](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/governance/Tri_Cameral_Constitution.md)
+- **Governance operates independently of enforcement.** This document covers criminal accountability, blockchain evidence, and victim compensation only.
 
 ---
 ## Protected Categories Under TML Governance
@@ -118,8 +118,8 @@ TML ensures no organization can hide violations through cryptographic immutabili
 - Legal admissibility via established Blockchain precedent
 - No institutional coordination required
 
-**Future Enhancement: Stewardship Custodians Governance**
-- Institutional validation adds credibility to Blockchain evidence
+**Tri-Cameral Governance Authority:**
+- Constitutional governance resides in [`governance/Tri_Cameral_Constitution.md`](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/governance/Tri_Cameral_Constitution.md)
 - Democratic policy evolution through multi-institution consensus
 - Research collaboration improves bias detection algorithms
 - International recognition enhances cross-border legal acceptance
