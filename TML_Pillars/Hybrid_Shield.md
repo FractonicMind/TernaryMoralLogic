@@ -117,75 +117,40 @@ This is where the second armor layer activates: the Stewardship Custodians.
 
 **Composition and Distribution:**
 
-The Tri-Cameral governance structure protects TML constitutional integrity. Log custody is distributed across open institutional seats:
+The Stewardship Custodians are the 11-member binding veto chamber of the Tri-Cameral governance structure. Log custody is distributed across their open institutional seats, spanning technical infrastructure, human rights enforcement, earth protection, AI ethics research, medical and victim compensation, legal expertise, privacy and civil liberties, academic validation, community representation, and two jurisdictional diversity seats. No more than two custodians may reside within the same legal jurisdiction.
 
-1. **Technical Custodian (Recommended: Technical Infrastructure Institution (open seat))**
-
-   * Maintains the open-source repository  
-   * Manages blockchain infrastructure  
-   * Provides technical community support  
-   * Ensures code integrity and updates  
-2. **Human Rights Enforcement Partner (Recommended: Human Rights Institution (open seat))**
-
-   * Monitors enforcement of 26+ human rights documents  
-   * Reviews complex Human Rights Sacred Zero cases  
-   * Coordinates with international human rights mechanisms  
-   * Supports victims in seeking remedy and justice  
-3. **Earth Protection Enforcement Partner (Recommended: Earth Protection Institution (open seat))**
-
-   * Monitors enforcement of 20+ environmental treaties  
-   * Reviews Earth Protection Sacred Zero cases  
-   * Represents Indigenous sovereignty in environmental decisions  
-   * Coordinates ecosystem restoration from Memorial Fund  
-4. **AI Ethics Research Partner (Recommended: AI Ethics Research Institution (open seat))**
-
-   * Conducts research on TML effectiveness  
-   * Validates ethical framework evolution  
-   * Publishes findings on algorithmic accountability  
-   * Guides implementation standards development  
-5. **Memorial Fund Administrator (Recommended: Medical Research Institution (open seat))**
-
-   * Administers the cancer research portion of Memorial Fund  
-   * Honors Goukassian's personal commitment to medical research  
-   * Ensures victim compensation reaches intended recipients  
-   * Provides transparency reporting on fund allocation  
-6. **Community Representative (Elected Position)**
-
-   * Represents implementers and user community interests  
-   * Elected by TML stakeholder community  
-   * Ensures framework serves real-world needs  
-   * Provides accountability for Council decisions
+Seats are filled through the nomination and confirmation process defined in [`governance/SEAT_SELECTION.md`](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/governance/SEAT_SELECTION.md). No organization is pre-assigned. Every seat is open to institutions that meet the domain criteria and commit to the Goukassian Vow.
 
 **Real-Time Distribution:**
 
-When a TML-compliant AI system generates a Moral Trace Log, that log is **simultaneously distributed to all eleven custodians in real time**—not through batch uploads or scheduled syncs, but instantaneous replication as the log is created.
+When a TML-compliant AI system generates a Moral Trace Log, that log is **simultaneously distributed to all seated custodians in real time** -- not through batch uploads or scheduled syncs, but instantaneous replication as the log is created.
 
 This means that at the moment an AI system completes a decision:
 
-* The log exists on the implementing organization's systems  
-* The log exists on the Technical Infrastructure Custodian's servers  
-* The log exists on Human Rights Institution (open seat)'s servers  
-* The log exists on Earth Protection Institution (open seat)'s servers  
-* The log exists on AI Ethics Research Institution (open seat) servers  
-* The log exists on Memorial Fund servers  
-* The log exists on Community Representative systems  
+* The log exists on the implementing organization's systems
+* The log exists on the seated Technical Infrastructure Custodian's servers
+* The log exists on the seated Human Rights Custodian's servers
+* The log exists on the seated Earth Protection Custodian's servers
+* The log exists on the seated AI Ethics Research Custodian's servers
+* The log exists on the seated Memorial Fund Administrator's servers
+* The log exists on the seated Community Representative's systems
 * The log's hash exists on Bitcoin, Ethereum, and Polygon blockchains
 
 **Result: No Single Point of Failure**
 
 To erase a Moral Trace Log, an attacker would need to:
 
-* Compromise the implementing organization's systems  
-* Simultaneously breach eleven independent custodians  
-* Each in different jurisdictions with different security models  
-* Each with different legal protections and oversight  
-* Each with staff trained to detect and resist such attacks  
-* All without triggering alerts in any of the seven locations  
+* Compromise the implementing organization's systems
+* Simultaneously breach all seated institutional custodians
+* Each in different jurisdictions with different security models
+* Each with different legal protections and oversight
+* Each with staff trained to detect and resist such attacks
+* All without triggering alerts in any location
 * AND rewrite three different blockchains simultaneously
 
-This level of coordination is beyond the capability of even well-resourced nation-states. The institutional diversity—spanning technical organizations, human rights NGOs, Indigenous networks, academic institutions, and medical facilities—makes coordinated compromise impractical.
+This level of coordination is beyond the capability of even well-resourced nation-states. The institutional diversity -- spanning technical, human rights, environmental, research, medical, and community seats across multiple legal jurisdictions -- makes coordinated compromise impractical.
 
-More importantly, the attempt itself would constitute evidence. If eleven independent custodians and three blockchains all report a coordinated attack, that becomes proof of bad faith effort to destroy evidence—itself admissible in court.
+More importantly, the attempt itself would constitute evidence. If all seated custodians and three blockchains all report a coordinated attack, that becomes proof of bad faith effort to destroy evidence -- itself admissible in court.
 
 ### **The Lantern Seal: Synchronization Proof**
 
