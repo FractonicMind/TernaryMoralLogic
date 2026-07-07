@@ -125,49 +125,14 @@ TML ensures no organization can hide violations through cryptographic immutabili
 - International recognition enhances cross-border legal acceptance
 - Enhanced insurance discounts (50-60% vs 20-40% Blockchain-only)
 
-### Stewardship Custodians Composition and Distribution
+### Tri-Cameral Governance and Seat Selection
 
-#### This is where the second armor layer activates: the Stewardship Custodians.
+Constitutional governance authority -- including institutional seat selection, custodian composition, and governance procedures -- resides in the Tri-Cameral architecture documented at:
 
-The Tri-Cameral governance structure protects TML constitutional integrity. Log custody is distributed across open institutional seats:
+- **Constitution:** [`governance/Tri_Cameral_Constitution.md`](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/governance/Tri_Cameral_Constitution.md)
+- **Seat Selection:** [`governance/SEAT_SELECTION.md`](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/governance/SEAT_SELECTION.md)
 
-1. **Technical Custodian (Recommended: Technical Infrastructure Institution (open seat))**
-   * Maintains the open-source repository  
-   * Manages blockchain infrastructure  
-   * Provides technical community support  
-   * Ensures code integrity and updates  
-
-2. **Human Rights Enforcement Partner (Recommended: Human Rights Institution (open seat))**
-   * Monitors enforcement of 26+ human rights documents  
-   * Reviews complex Human Rights Sacred Zero cases  
-   * Coordinates with international human rights mechanisms  
-   * Supports victims in seeking remedy and justice  
-
-3. **Earth Protection Enforcement Partner (Recommended: Earth Protection Institution (open seat))**
-   * Monitors enforcement of 20+ environmental treaties  
-   * Reviews Earth Protection Sacred Zero cases  
-   * Represents Indigenous sovereignty in environmental decisions  
-   * Coordinates ecosystem restoration from Memorial Fund  
-
-4. **AI Ethics Research Partner (Recommended: AI Ethics Research Institution (open seat))**
-   * Conducts research on TML effectiveness  
-   * Validates ethical framework evolution  
-   * Publishes findings on algorithmic accountability  
-   * Guides implementation standards development  
-
-5. **Memorial Fund Administrator (Recommended: Medical Research Institution (open seat))**
-   * Administers the cancer research portion of Memorial Fund  
-   * Honors Goukassian's personal commitment to medical research  
-   * Ensures victim compensation reaches intended recipients  
-   * Provides transparency reporting on fund allocation  
-
-6. **Community Representative (Elected Position)**
-   * Represents implementers and user community interests  
-   * Elected by TML stakeholder community  
-   * Ensures framework serves real-world needs  
-   * Provides accountability for Council decisions
-
-**Total: 6 institutions (operational structure)**
+This document covers enforcement only. Institutional roles and seat descriptions are defined in the governance documents above.
 
 ### Stewardship Custodians Powers (When Active)
 
