@@ -155,7 +155,7 @@ In this model, the validity of an AI action is contingent upon its adherence to 
 
 This section provides an exhaustive technical and legal analysis of each pillar. For every component, we examine its fundamental purpose, its technical mechanisms (including deep dives into latency architectures and cryptographic schemas), its legal effect under current regulatory regimes (such as the EU AI Act and Federal Rules of Evidence), its operational consequences for system throughput, and the specific failure cases it is designed to prevent.
 
-### **Pillar 1: [The Sacred Zero (The Epistemic Hold)](./TML_Pillars/Sacred_Zero-Sacred_Pause_Technology.md)**
+### **Pillar 1: [The Sacred Zero](./TML_Pillars/Sacred_Zero-Sacred_Pause_Technology.md)**
 
 **Purpose**: Enforce mandatory hesitation when moral certainty is unavailable.
 
