@@ -1,9 +1,9 @@
 # **ANCHOR LOG — TML Proofs**
 
-**Updated:** November 14, 2025
-**Method:** OpenTimestamps Web Calendar
-**Anchor Types:** Bitcoin Mainnet (Calendar Aggregation), Ethereum, Polygon
-**Verification Level:** Deep confirmations pending for most recent anchors
+**Updated:** November 14, 2025   
+**Method:** OpenTimestamps Web Calendar   
+**Anchor Types:** Bitcoin Mainnet (Calendar Aggregation), Ethereum, Polygon   
+**Verification Level:** Deep confirmations pending for most recent anchors   
 
 ---
 
@@ -32,9 +32,9 @@
 
 ## **Remarks**
 
-All notarized TML constitutional documents have been successfully timestamped using OpenTimestamps.org.
-Receipts confirm inclusion in Bitcoin block calendars.
-Immutable proofs retained locally and replicated in the public GitHub repository.
+All notarized TML constitutional documents have been successfully timestamped using OpenTimestamps.org.   
+Receipts confirm inclusion in Bitcoin block calendars.   
+Immutable proofs retained locally and replicated in the public GitHub repository.   
 
 The **Manifest entry** anchors the notarization index itself, completing the recursive integrity chain and sealing the constitutional corpus.
 
