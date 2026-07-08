@@ -29,7 +29,7 @@ The TML Synchronization Protocol delivers immutable accountability through crypt
 **2. Legal Admissibility**: Every anchor meets Federal Rules of Evidence for digital authentication   
 **3. Cost Efficiency**: Approximately $0.0005 per log through Merkle tree batching   
 **4. Resilience**: Multi-chain redundancy survives network failures and state attacks   
-**5. Evolution Ready**: Architecture supports Stewardship Custodians integration without breaking changes   
+**5. Evolution Ready**: Architecture supports full Tri-Cameral governance integration without breaking changes   
 
 ### Synchronization Flow
 
@@ -357,66 +357,43 @@ phase_2_enhancements:
 
 ### Phase 3: Long-Term Institutional Reinforcement (2-5 years - Trust Enhancement)
 
-**Purpose**: Add institutional oversight for enhanced governance and cross-border trust through the Stewardship Custodians
+**Purpose**: Activate full Tri-Cameral constitutional governance for cross-border trust, institutional oversight, and constitutional survivability.
 
-**Composition and Distribution**
+#### Tri-Cameral Governance Activation
 
-#### Stewardship Custodians
+The Tri-Cameral governance architecture is the operating authority for TML constitutional integrity. It comprises three chambers with distinct and non-overlapping authority:
 
-The Tri-Cameral governance structure protects TML constitutional integrity. Log custody is distributed across open institutional seats:
+- **Technical Council (9 members, 3-year staggered terms)** -- proposal rights only. Submits constitutional amendments and specification updates. Cannot veto.
+- **Stewardship Custodians (11 members, 4-year staggered terms)** -- binding veto authority only. A single `vetoExercised: true` constitutionally blocks any proposal regardless of all vote counts. Cannot propose.
+- **Smart Contract Treasury** -- automatic execution, no admin key, no human override. Executes ratified proposals autonomously.
 
-1. **Technical Custodian (Recommended: Technical Infrastructure Institution (open seat))**
-   * Maintains the open-source repository
-   * Manages blockchain infrastructure
-   * Provides technical community support
-   * Ensures code integrity and updates
-
-2. **Human Rights Enforcement Partner (Recommended: Human Rights Institution (open seat))**
-   * Monitors enforcement of 26+ human rights documents
-   * Reviews complex Human Rights Sacred Zero cases
-   * Coordinates with international human rights mechanisms
-   * Supports victims in seeking remedy and justice
-
-3. **Earth Protection Enforcement Partner (Recommended: Earth Protection Institution (open seat))**
-   * Monitors enforcement of 20+ environmental treaties
-   * Reviews Earth Protection Sacred Zero cases
-   * Represents Indigenous sovereignty in environmental decisions
-   * Coordinates ecosystem restoration from Memorial Fund
-
-4. **AI Ethics Research Partner (Recommended: AI Ethics Research Institution (open seat))**
-   * Conducts research on TML effectiveness
-   * Validates ethical framework evolution
-   * Publishes findings on algorithmic accountability
-   * Guides implementation standards development
-
-5. **Memorial Fund Administrator (Recommended: Medical Research Institution (open seat))**
-   * Administers the cancer research portion of Memorial Fund
-   * Honors Goukassian's personal commitment to medical research
-   * Ensures victim compensation reaches intended recipients
-   * Provides transparency reporting on fund allocation
-
-6. **Community Representative (Elected Position)**
-   * Represents implementers and user community interests
-   * Elected by TML stakeholder community
-   * Ensures framework serves real-world needs
-   * Provides accountability for Council decisions
+Seat selection follows open institutional criteria. No organization is pre-assigned. See [`governance/SEAT_SELECTION.md`](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/governance/SEAT_SELECTION.md) for full nomination and confirmation procedures.
 
 ```yaml
-stewardship_council_benefits:
-  institutional_validation: "Academic and regulatory endorsement"
-  cross_border_trust: "International treaty-level recognition"
-  insurance_optimization: "Maximum discount tiers"
-  research_collaboration: "Shared bias detection improvements"
-  geopolitical_resilience: "Multi-jurisdictional protection"
+tri_cameral_governance:
+  technical_council:
+    members: 9
+    term_years: 3
+    authority: "proposal rights only"
+    seat_selection: "peer nomination, Stewardship Custodian confirmation"
 
-stewardship_council_integration:
-  blockchain_primary: "Core protection remains blockchain-anchored"
-  stewardship_mirror: "Institutional nodes provide governance layer"
-  hybrid_verification: "Both systems validate independently"
-  backward_compatibility: "Phase 1&2 proofs remain valid"
+  stewardship_custodians:
+    members: 11
+    term_years: 4
+    authority: "binding veto only -- no proposal rights"
+    veto_threshold: "single member sufficient"
+    jurisdictional_constraint: "max 2 per jurisdiction, max 2 corporate entities"
+
+  smart_contract_treasury:
+    admin_key: "none"
+    human_override: "none"
+    execution: "automatic on full ratification"
+
+  survivability_class_threshold: "75% seatedActiveMembers both chambers, dual 180-day vote"
+  constitutional_reference: "governance/Tri_Cameral_Constitution.md"
 ```
 
-**Key Principle**: Stewardship Custodians enhances but never replaces blockchain anchoring. Companies already protected by Phase 1 continue operating with additional governance benefits.
+**Key Principle**: Blockchain anchoring is the enforcement layer. Tri-Cameral governance is the constitutional authority. Both are required. Neither replaces the other. Companies already protected by Phases 1 and 2 continue operating -- Tri-Cameral governance adds constitutional survivability and institutional accountability above the blockchain enforcement floor.
 
 ---
 
