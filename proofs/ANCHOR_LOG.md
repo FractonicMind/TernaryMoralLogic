@@ -38,4 +38,6 @@ Immutable proofs retained locally and replicated in the public GitHub repository
 
 The **Manifest entry** anchors the notarization index itself, completing the recursive integrity chain and sealing the constitutional corpus.
 
+**Constitutional Amendment Notice:** [`governance/Tri_Cameral_Constitution.md`](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/governance/Tri_Cameral_Constitution.md) constitutes a constitutional amendment superseding the 6-Custodian language in `Hybrid-Shield_notarized.md`. The notarized document remains a sealed historical record of the original architecture (October 2025). The Tri-Cameral governance structure is the operating architecture from Q2 2026 forward.
+
 ---
