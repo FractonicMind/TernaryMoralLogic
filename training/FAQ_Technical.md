@@ -737,7 +737,7 @@ git checkout -b feature/new-sacred-zero-rule
 
 **Council Structure**:
 
-**1. Technical Custodian (Technical Infrastructure Institution (open seat))**
+**1. Technical Infrastructure Custodian (open seat -- SC-1)**
    - Maintains open-source repository integrity
    - Manages blockchain infrastructure
    - Provides technical community support

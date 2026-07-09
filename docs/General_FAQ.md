@@ -614,7 +614,7 @@ The dual-layer architecture ensures immutability through cryptography and resili
 
 Six independent custodian organizations hold synchronized copies of TML logs (see [Succession Charter](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/TML-SUCCESSION-CHARTER.md)):
 
-**1. Technical Custodian (Technical Infrastructure Institution (open seat))**
+**1. Technical Infrastructure Custodian (open seat -- SC-1)**
 - Maintains [open-source repository](https://github.com/FractonicMind/TernaryMoralLogic)
 - Manages blockchain infrastructure
 - Provides technical community support

@@ -260,7 +260,7 @@ moral_trace_log:
 - OpenTimestamps: Archival proof
 
 **HybridShield (Recommended)**: Independent Stewardship Custodians members may maintain verification nodes:
-- Technical Custodian (Technical Infrastructure Custodian (open seat -- SC-1))
+- Technical Infrastructure Custodian (open seat -- SC-1)
 - Human Rights Enforcement Partner (Human Rights Enforcement Custodian (open seat -- SC-2))
 - Earth Protection Enforcement Partner (Earth Protection Custodian (open seat -- SC-3))
 - AI Ethics Research Partner (AI Ethics Research Custodian (open seat -- SC-4))

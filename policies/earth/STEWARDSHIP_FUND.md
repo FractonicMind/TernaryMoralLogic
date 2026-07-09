@@ -210,7 +210,7 @@ governance:
   fund_committee:
     members: 6
     composition:
-1. **Technical Custodian (Technical Infrastructure Custodian (open seat -- SC-1))**
+1. **Technical Infrastructure Custodian (open seat -- SC-1)**
    * Maintains the open-source repository  
    * Manages blockchain infrastructure  
    * Provides technical community support  

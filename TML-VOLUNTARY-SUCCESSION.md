@@ -38,7 +38,7 @@ To prevent capture and ensure long-term alignment with its public-interest missi
 
 **3.1 Stewardship Custodians Composition:** The proposed council structure allocates seats to specialists in key domains:
 
-* **Primary Technical Custodian (Technical Infrastructure Custodian (open seat -- SC-1)):** Responsible for the open-source repository, blockchain infrastructure, and technical community support.  
+* **Technical Infrastructure Custodian (open seat -- SC-1):** Responsible for the open-source repository, blockchain infrastructure, and technical community support.  
 * **Human Rights Enforcement Partner (Human Rights Enforcement Custodian (open seat -- SC-2)):** Responsible for monitoring the enforcement of the 26+ human rights documents and coordinating victim support.  
 * **Earth Protection Enforcement Partner (Earth Protection Custodian (open seat -- SC-3)):** Responsible for monitoring the enforcement of the 20+ environmental treaties.  
 * **AI Ethics Research Partner (AI Ethics Research Custodian (open seat -- SC-4)):** Responsible for guiding future research and the evolution of implementation standards.  

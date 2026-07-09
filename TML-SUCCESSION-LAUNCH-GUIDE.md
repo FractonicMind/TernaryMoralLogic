@@ -154,7 +154,7 @@ GitHub Issue: [link to activation issue]
 
 ---
 
-## 3. STEWARDSHIP COUNCIL FORMATION (Days 8-90)
+## 3. TRI-CAMERAL GOVERNANCE ACTIVATION (Days 8-90)
 
 ### Council Structure
 

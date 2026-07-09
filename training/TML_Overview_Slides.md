@@ -348,7 +348,7 @@ GET /compliance/report?framework=EU_AI_ACT&stewardship=true
 
 ### Council Composition:
 
-**1. Technical Custodian (Technical Infrastructure Institution (open seat))**
+**1. Technical Infrastructure Custodian (open seat -- SC-1)**
 - Maintains open-source repository
 - Manages blockchain infrastructure  
 - Provides technical community support

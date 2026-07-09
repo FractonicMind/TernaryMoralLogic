@@ -274,18 +274,18 @@ assert proof['polygon_tx'] is not None
 
 The Tri-Cameral Governance Architecture is the active constitutional authority for TML. See [governance/Tri_Cameral_Constitution.md](./governance/Tri_Cameral_Constitution.md).
 
-### Tri-Cameral Governance Structure
+### Tri-Cameral Chamber Structure
 
-1. **Technical Custodian** (Technical Infrastructure Custodian (open seat -- SC-1))
-2. **Human Rights Enforcement Partner** (Human Rights Enforcement Custodian (open seat -- SC-2))
-3. **Earth Protection Enforcement Partner** (Earth Protection Custodian (open seat -- SC-3))
-4. **AI Ethics Research Partner** (AI Ethics Research Custodian (open seat -- SC-4))
-5. **Memorial Fund Administrator** (Medical and Victim Compensation Custodian (open seat -- SC-5))
-6. **Community Representative** (Elected Position)
+- **Technical Council (9 members)** -- proposal rights only (seats TC-1 through TC-9)
+- **Stewardship Custodians (11 members)** -- binding veto authority (seats SC-1 through SC-11)
+- **Smart Contract Treasury** -- automatic execution, no admin key
+
+Seats filled per [governance/SEAT_SELECTION.md](./governance/SEAT_SELECTION.md)
 
 ### Configuration
 ```bash
-# Enable Stewardship Custodians (recommended)
+# Tri-Cameral governance -- active by constitutional design
+# STEWARDSHIP_CUSTOdians (recommended)
 STEWARDSHIP_COUNCIL=true
 STEWARDSHIP_COUNCIL_MEMBERS=6
 STEWARDSHIP_VALIDATION_THRESHOLD=4
