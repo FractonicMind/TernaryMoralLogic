@@ -374,13 +374,12 @@ if proposed_action_affects_protected_ecosystem():
 - Public blockchain anchoring (Bitcoin, Ethereum) makes deletion prohibitively expensive
 - 51% attack needed to erase history
 
-**Layer 2 - Tri-Cameral Governance** (Tri-Cameral governance (open seats)):
-1. **[Technical Custodian](./protection/Hybrid-Shield.md)** (Technical Infrastructure Institution (open seat))
-2. **Human Rights Partner** (Human Rights Institution (open seat))
-3. **Earth Protection Partner** (Earth Protection Institution (open seat))
-4. **AI Ethics Research** (AI Ethics Research Institution (open seat))
-5. **[Memorial Fund Administrator](./memorial/MEMORIAL_FUND.md)** (for victim compensation)
-6. **Community Representative** (elected stakeholder)
+**Layer 2 - Tri-Cameral Governance** (open institutional seats):
+- **Technical Council (9 members)** -- proposal rights only
+- **Stewardship Custodians (11 members)** -- binding veto authority
+- **Smart Contract Treasury** -- automatic execution, no admin key
+- Seats filled per [`governance/SEAT_SELECTION.md`](./governance/SEAT_SELECTION.md)
+- Constitutional authority: [`governance/Tri_Cameral_Constitution.md`](./governance/Tri_Cameral_Constitution.md)
 
 **Distributed Custody Model**:
 - Real-time log copies distributed to all custodians
