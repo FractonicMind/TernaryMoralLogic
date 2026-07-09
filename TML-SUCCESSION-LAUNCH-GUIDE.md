@@ -104,7 +104,7 @@ Tagging priority custodian organizations for notification.
 
 Send immediate email notification to:
 
-**Primary Custodian (Technical Infrastructure)**:
+**Technical Infrastructure Custodian (open seat -- SC-1)**:
 - Technical Infrastructure Institution (open seat): info@eff.org
 - CC: Software Freedom Conservancy, Linux Foundation
 
@@ -158,7 +158,7 @@ GitHub Issue: [link to activation issue]
 
 ### Council Structure
 
-Form a 6-seat **TML Stewardship Custodians**:
+Activate the **TML Tri-Cameral Stewardship Custodians** (11 open seats):
 
 1. **Primary Custodian** (Technical Infrastructure) - 1 seat
 2. **Human Rights Partner** - 1 seat
@@ -190,7 +190,7 @@ Organizations respond with:
 
 **Days 76-90: Council Formation**
 
-- Verify all 6 seats filled
+- Verify all required seats filled per governance/SEAT_SELECTION.md
 - Execute memorandum of understanding between organizations
 - Establish communication protocols
 - Set first council meeting
@@ -250,7 +250,7 @@ tml test smart-contracts --comprehensive
 ### Priority #2: Repository Access
 
 **GitHub Organization Transfer**:
-1. Primary Custodian becomes GitHub org owner
+1. Technical Infrastructure Custodian (seated SC-1) becomes GitHub org owner
 2. Council members get admin access
 3. Set up repository protection rules
 4. Enable required approvals (2 council members minimum)
@@ -663,7 +663,7 @@ tml resume normal-mode
 4. Community referendum as last resort
 
 **Emergency Powers**:
-- Primary Custodian can maintain operations during deadlock
+- Technical Infrastructure Custodian (seated SC-1) can maintain operations during deadlock
 - No changes to protection frameworks allowed
 - Council must resolve within 90 days
 
@@ -724,7 +724,7 @@ tml resume normal-mode
 
 **Path to Decentralization**:
 ```
-Year 1-2: Council governance (6 seats)
+Year 1-2: Tri-Cameral governance (11 Stewardship Custodian seats + 9 Technical Council seats)
 Year 3-4: Expand to regional representatives (12 seats)
 Year 5+: Hybrid council + community DAOs
 Year 10+: Fully decentralized governance with on-chain voting
@@ -880,7 +880,7 @@ https://github.com/FractonicMind/TernaryMoralLogic
 This launch guide transforms Lev Goukassian's vision into perpetual action. The framework is designed to survive beyond its creator through:
 
 - **Mathematical enforcement** (Blockchain + Smart Contracts)
-- **Distributed stewardship** (6-seat council across organizations)
+- **Distributed stewardship** (Tri-Cameral governance across open institutional seats)
 - **Community participation** (open source + transparent governance)
 - **Immutable protection** (46+ documents forever enforced)
 - **Automatic compensation** (victims + Earth + whistleblowers)

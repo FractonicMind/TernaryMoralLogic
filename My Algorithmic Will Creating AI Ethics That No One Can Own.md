@@ -47,7 +47,7 @@ That last one is crucial. No one has to find some hidden document. No lawyer has
 The framework doesn't pause to mourn. It persists.
 
 ### 2. **Tri-Cameral Governance, Not Ownership**
-I've invited a **6-seat Stewardship Custodians**:
+I've invited a **Tri-Cameral Stewardship Custodians (11 open seats)**:
 - **Technical Infrastructure Institution (open seat)** (technical infrastructure)
 - **Human Rights Institution (open seat)** (human rights enforcement)
 - **Earth Protection Institution (open seat)** (Earth protection)

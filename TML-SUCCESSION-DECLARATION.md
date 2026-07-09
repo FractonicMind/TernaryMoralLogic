@@ -95,7 +95,7 @@ This coverage applies regardless of:
 
 ## IV. CUSTODIAN ORGANIZATIONS
 
-### Primary Custodian (Repository & Technical Infrastructure)
+### Technical Infrastructure Custodian (open seat -- SC-1)
 
 **Recommended: Technical Infrastructure Institution (open seat) (open seat)**
 - **Mission alignment**: Digital rights, accountability, long-term institutional stability
@@ -107,7 +107,7 @@ This coverage applies regardless of:
   - Community coordination and support
   - Domain and communication systems
 
-**Alternative Primary Custodians** (in priority order):
+**Alternative Technical Infrastructure Custodians** (in priority order):
 1. Software Freedom Conservancy
 2. Linux Foundation
 3. Apache Software Foundation
@@ -183,7 +183,7 @@ This coverage applies regardless of:
 No single organization should control TML. I recommend a **Stewardship Custodians** with:
 
 **Council Composition**:
-1. Primary Custodian (technical infrastructure) - 1 seat
+1. Technical Infrastructure Custodian (open seat -- SC-1)
 2. Human Rights Partner - 1 seat
 3. Earth Protection Partner - 1 seat
 4. AI Ethics Research Partner - 1 seat
