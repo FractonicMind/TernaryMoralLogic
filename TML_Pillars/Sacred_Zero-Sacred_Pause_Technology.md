@@ -260,10 +260,10 @@ moral_trace_log:
 - OpenTimestamps: Archival proof
 
 **HybridShield (Recommended)**: Independent Stewardship Custodians members may maintain verification nodes:
-- Technical Custodian (Recommended: Technical Infrastructure Institution (open seat))
-- Human Rights Enforcement Partner (Recommended: Human Rights Institution (open seat))
-- Earth Protection Enforcement Partner (Recommended: Earth Protection Institution (open seat))
-- AI Ethics Research Partner (Recommended: AI Ethics Research Institution (open seat))
+- Technical Custodian (Technical Infrastructure Custodian (open seat -- SC-1))
+- Human Rights Enforcement Partner (Human Rights Enforcement Custodian (open seat -- SC-2))
+- Earth Protection Enforcement Partner (Earth Protection Custodian (open seat -- SC-3))
+- AI Ethics Research Partner (AI Ethics Research Custodian (open seat -- SC-4))
 
 Council participation is recommended but not required for core protection functionality.
 

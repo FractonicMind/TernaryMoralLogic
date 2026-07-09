@@ -226,7 +226,7 @@ contract MemorialFund {
 }
 ```
 
-**Memorial Fund Administrator (Recommended: Medical Research Institution (open seat))**:
+**Memorial Fund Administrator (Medical and Victim Compensation Custodian (open seat -- SC-5))**:
 - Administers cancer research portion
 - Honors Goukassian's personal commitment to medical research
 - Ensures victim compensation reaches intended recipients
@@ -262,19 +262,19 @@ The blockchain's transparent record enables automatic identification of systemat
 
 While blockchain provides core protection, the recommended Stewardship Custodians offers:
 
-**Human Rights Enforcement Partner (Recommended: Human Rights Institution (open seat))**:
+**Human Rights Enforcement Partner (Human Rights Enforcement Custodian (open seat -- SC-2))**:
 - Complex Human Rights violation analysis
 - International legal coordination
 - Victim advocacy support
 - Remedy pathway guidance
 
-**Earth Protection Enforcement Partner (Recommended: Earth Protection Institution (open seat))**:
+**Earth Protection Enforcement Partner (Earth Protection Custodian (open seat -- SC-3))**:
 - Environmental harm assessment
 - Indigenous community liaison
 - Restoration project coordination
 - Traditional knowledge integration
 
-**Memorial Fund Administrator (Recommended: Medical Research Institution (open seat))**:
+**Memorial Fund Administrator (Medical and Victim Compensation Custodian (open seat -- SC-5))**:
 - Cancer research fund oversight
 - Medical research coordination
 - Victim medical support

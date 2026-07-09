@@ -233,17 +233,17 @@ The blockchain's cryptographic properties prevent false claims by requiring math
 
 While the blockchain system operates independently, the recommended Stewardship Custodians can provide:
 
-**Human Rights Enforcement Partner (Recommended: Human Rights Institution (open seat))**:
+**Human Rights Enforcement Partner (Human Rights Enforcement Custodian (open seat -- SC-2))**:
 - Analysis of complex human rights violations
 - International law interpretation guidance
 - Victim support coordination
 
-**Earth Protection Enforcement Partner (Recommended: Earth Protection Institution (open seat))**:
+**Earth Protection Enforcement Partner (Earth Protection Custodian (open seat -- SC-3))**:
 - Environmental violation assessment
 - Indigenous rights compliance review
 - Restoration project oversight
 
-**AI Ethics Research Partner (Recommended: AI Ethics Research Institution (open seat))**:
+**AI Ethics Research Partner (AI Ethics Research Custodian (open seat -- SC-4))**:
 - Pattern analysis across multiple reports
 - Systemic violation identification
 - Framework effectiveness research

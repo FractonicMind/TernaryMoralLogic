@@ -276,11 +276,11 @@ The Stewardship Custodians provides additional oversight and validation. This en
 
 ### Tri-Cameral Governance Structure
 
-1. **Technical Custodian** (Recommended: Technical Infrastructure Institution (open seat))
-2. **Human Rights Enforcement Partner** (Recommended: Human Rights Institution (open seat))
-3. **Earth Protection Enforcement Partner** (Recommended: Earth Protection Institution (open seat))
-4. **AI Ethics Research Partner** (Recommended: AI Ethics Research Institution (open seat))
-5. **Memorial Fund Administrator** (Recommended: Medical Research Institution (open seat))
+1. **Technical Custodian** (Technical Infrastructure Custodian (open seat -- SC-1))
+2. **Human Rights Enforcement Partner** (Human Rights Enforcement Custodian (open seat -- SC-2))
+3. **Earth Protection Enforcement Partner** (Earth Protection Custodian (open seat -- SC-3))
+4. **AI Ethics Research Partner** (AI Ethics Research Custodian (open seat -- SC-4))
+5. **Memorial Fund Administrator** (Medical and Victim Compensation Custodian (open seat -- SC-5))
 6. **Community Representative** (Elected Position)
 
 ### Configuration

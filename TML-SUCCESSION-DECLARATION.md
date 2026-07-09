@@ -97,7 +97,7 @@ This coverage applies regardless of:
 
 ### Technical Infrastructure Custodian (open seat -- SC-1)
 
-**Recommended: Technical Infrastructure Institution (open seat) (open seat)**
+**Technical Infrastructure Custodian (open seat -- SC-1)**
 - **Mission alignment**: Digital rights, accountability, long-term institutional stability
 - **Technical capability**: Open source project support, infrastructure maintenance
 - **Responsibilities**:
@@ -115,7 +115,7 @@ This coverage applies regardless of:
 
 ### Human Rights Enforcement Partner
 
-**Recommended: Human Rights Institution (open seat) Tech Division**
+**Human Rights Enforcement Custodian (open seat -- SC-2)**
 - **Mission alignment**: Human rights protection expertise
 - **Responsibilities**:
   - Monitor Human Rights framework enforcement (26+ documents)
@@ -132,7 +132,7 @@ This coverage applies regardless of:
 
 ### Earth Protection Enforcement Partner
 
-**Recommended: Earth Protection Institution (open seat)**
+**Earth Protection Custodian (open seat -- SC-3)**
 - **Mission alignment**: Indigenous rights + environmental protection
 - **Responsibilities**:
   - Monitor Earth Protection framework enforcement (20+ treaties)
@@ -149,7 +149,7 @@ This coverage applies regardless of:
 
 ### AI Ethics Research Partner
 
-**Recommended: AI Ethics Research Institution (open seat)**
+**AI Ethics Research Custodian (open seat -- SC-4)**
 - **Mission alignment**: AI accountability research, academic stability
 - **Responsibilities**:
   - Framework development and research
@@ -166,7 +166,7 @@ This coverage applies regardless of:
 
 ### Memorial Fund & Cancer Research
 
-**Recommended: Medical Research Institution (open seat)**
+**Medical and Victim Compensation Custodian (open seat -- SC-5)**
 - **Mission alignment**: Cancer research excellence, memorial naming
 - **Responsibilities**:
   - Administer cancer research portion of Memorial Fund

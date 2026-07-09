@@ -1032,7 +1032,7 @@ This is human rights protection not as philosophy but as process.
 
 While Human Rights is largely automated, complex cases require human judgment. The Stewardship Custodians includes:
 
-**Human Rights Enforcement Partner (Recommended: Human Rights Institution (open seat)):**
+**Human Rights Enforcement Partner (Human Rights Enforcement Custodian (open seat -- SC-2)):**
 
 * Monitors enforcement of 26+ human rights documents  
 * Reviews complex Sacred Zero cases  

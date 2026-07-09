@@ -54,7 +54,7 @@ The Stewardship Custodians comprises seated institutional custodian organization
 
 ### Member 2: Human Rights Enforcement Partner
 
-**Recommended Organization**: Human Rights Institution (open seat) Tech Division
+**Recommended Organization**: Human Rights Enforcement Custodian (open seat -- SC-2)
 
 **Primary Responsibilities**:
 - Monitor enforcement of 26+ human rights documents

@@ -1024,7 +1024,7 @@ This is planetary protection not as policy statement but as executable law.
 
 While the Earth Protection pillar is largely automated through the Oracle Network and Always Memory, complex cases and enforcement require institutional support. The Stewardship Custodians includes:
 
-**Earth Protection Enforcement Partner (Recommended: Earth Protection Institution (open seat)):**
+**Earth Protection Enforcement Partner (Earth Protection Custodian (open seat -- SC-3)):**
 
 * Monitors enforcement of 20+ environmental treaties  
 * Reviews complex Sacred Zero cases affecting ecosystems  

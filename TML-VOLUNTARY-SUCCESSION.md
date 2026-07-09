@@ -38,11 +38,11 @@ To prevent capture and ensure long-term alignment with its public-interest missi
 
 **3.1 Stewardship Custodians Composition:** The proposed council structure allocates seats to specialists in key domains:
 
-* **Primary Technical Custodian (Recommended: Technical Infrastructure Institution (open seat)):** Responsible for the open-source repository, blockchain infrastructure, and technical community support.  
-* **Human Rights Enforcement Partner (Recommended: Human Rights Institution (open seat)):** Responsible for monitoring the enforcement of the 26+ human rights documents and coordinating victim support.  
-* **Earth Protection Enforcement Partner (Recommended: Earth Protection Institution (open seat)):** Responsible for monitoring the enforcement of the 20+ environmental treaties.  
-* **AI Ethics Research Partner (Recommended: AI Ethics Research Institution (open seat)):** Responsible for guiding future research and the evolution of implementation standards.  
-* **Memorial Fund Administrator (Recommended: Medical Research Institution (open seat)):** Responsible for administering the cancer research portion of the Memorial Fund.  
+* **Primary Technical Custodian (Technical Infrastructure Custodian (open seat -- SC-1)):** Responsible for the open-source repository, blockchain infrastructure, and technical community support.  
+* **Human Rights Enforcement Partner (Human Rights Enforcement Custodian (open seat -- SC-2)):** Responsible for monitoring the enforcement of the 26+ human rights documents and coordinating victim support.  
+* **Earth Protection Enforcement Partner (Earth Protection Custodian (open seat -- SC-3)):** Responsible for monitoring the enforcement of the 20+ environmental treaties.  
+* **AI Ethics Research Partner (AI Ethics Research Custodian (open seat -- SC-4)):** Responsible for guiding future research and the evolution of implementation standards.  
+* **Memorial Fund Administrator (Medical and Victim Compensation Custodian (open seat -- SC-5)):** Responsible for administering the cancer research portion of the Memorial Fund.  
 * **Community Representative:** An elected position to represent the interests of implementers and the broader user community.
 
 **3.2 Governance Limitations:** The Council's power is constitutionally limited. It cannot modify the framework's open-source MIT License, alter the Memorial Fund's distribution percentages, or remove any of the 46+ core protection documents. Major changes require a 5/6 consensus.  

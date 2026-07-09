@@ -172,27 +172,27 @@ contract TMLPenaltyEnforcement {
 
 Logs distributed real-time to Tri-Cameral governance (open seats):
 
-1. **Technical Custodian** (Recommended: Technical Infrastructure Institution (open seat))
+1. **Technical Custodian** (Technical Infrastructure Custodian (open seat -- SC-1))
    - Repository maintenance
    - Blockchain infrastructure
    - Technical community support
 
-2. **Human Rights Partner** (Recommended: Human Rights Institution (open seat))
+2. **Human Rights Partner** (Human Rights Enforcement Custodian (open seat -- SC-2))
    - 26+ document enforcement
    - Victim support coordination
    - International mechanism liaison
 
-3. **Earth Protection Partner** (Recommended: Earth Protection Institution (open seat))
+3. **Earth Protection Partner** (Earth Protection Custodian (open seat -- SC-3))
    - 20+ treaty enforcement
    - Indigenous sovereignty protection
    - Ecosystem restoration oversight
 
-4. **AI Ethics Research Partner** (Recommended: AI Ethics Research Institution (open seat))
+4. **AI Ethics Research Partner** (AI Ethics Research Custodian (open seat -- SC-4))
    - Framework validation
    - Implementation standards
    - Research publication
 
-5. **Memorial Fund Administrator** (Recommended: Medical Research Institution (open seat))
+5. **Memorial Fund Administrator** (Medical and Victim Compensation Custodian (open seat -- SC-5))
    - Victim compensation distribution
    - Cancer research funding
    - Transparency reporting
