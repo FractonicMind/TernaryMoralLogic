@@ -160,7 +160,7 @@ GitHub Issue: [link to activation issue]
 
 Activate the **TML Tri-Cameral Stewardship Custodians** (11 open seats):
 
-1. **Primary Custodian** (Technical Infrastructure) - 1 seat
+1. **Technical Infrastructure Custodian (open seat -- SC-1)**
 2. **Human Rights Partner** - 1 seat
 3. **Earth Protection Partner** - 1 seat
 4. **AI Ethics Research Partner** - 1 seat
