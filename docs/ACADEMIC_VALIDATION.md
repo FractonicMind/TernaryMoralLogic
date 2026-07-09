@@ -215,7 +215,7 @@ SYSTEM_IMPACT = {
 
 ---
 
-## Stewardship Custodians Alternative (Recommended Enhancement)
+## Tri-Cameral Governance
 
 ### Recommended Institutional Governance
 

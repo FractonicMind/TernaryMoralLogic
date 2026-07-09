@@ -270,9 +270,9 @@ assert proof['polygon_tx'] is not None
 
 ---
 
-## Stewardship Custodians (Recommended Enhancement)
+## Tri-Cameral Governance
 
-The Stewardship Custodians provides additional oversight and validation. This enhancement can be enabled at any time and is not required for core TML functionality.
+The Tri-Cameral Governance Architecture is the active constitutional authority for TML. See [governance/Tri_Cameral_Constitution.md](./governance/Tri_Cameral_Constitution.md).
 
 ### Tri-Cameral Governance Structure
 

@@ -246,7 +246,7 @@ The earlier architecture of this document described a 6-member "Stewardship Cust
 - Cross-chain interoperability
 - Cost optimizations ongoing
 
-### Recommended Enhancements
+### Tri-Cameral Governance
 - Stewardship Custodians (when beneficial)
 - Specialized domain chains
 - Advanced oracle networks

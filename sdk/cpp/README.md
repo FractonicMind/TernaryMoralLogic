@@ -62,7 +62,7 @@ bool detectTampering(string orig, string current);
 - Environmental: $1B
 - Multipliers: 2x (human), 3x (earth), 7x (future)
 
-## Stewardship Custodians (Recommended Enhancement)
+## Tri-Cameral Governance
 
 The Stewardship Custodians provides additional oversight and validation. Eleven independent custodians hold synchronized copies of TML logs:
 

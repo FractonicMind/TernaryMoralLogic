@@ -2,7 +2,7 @@
 
 ## Blockchain-Automated Earth Protection
 
-**Architecture**: Oracles + Smart Contracts (Primary), Human Council (Recommended Enhancement)  
+**Architecture**: Oracles + Smart Contracts with Tri-Cameral Constitutional Governance  
 **Deployment**: Immediate via blockchain  
 **Creator**: Lev Goukassian (ORCID: 0009-0006-5966-1243)
 
@@ -50,7 +50,7 @@ blockchain_oracles:
 
 ---
 
-## Recommended Enhancement: Scientific Advisory Council
+## Scientific Advisory Council
 
 ### Purpose and Scope
 
@@ -156,7 +156,7 @@ community_observations:
 - Smart contract gas: $50/month
 - Total: **$150/month**
 
-### With Advisory Council (Recommended Enhancement)
+### With Scientific Advisory Council
 - Core implementation: $150/month
 - 10 advisors (part-time): $50,000/year
 - Meetings and coordination: $10,000/year

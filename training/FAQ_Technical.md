@@ -767,7 +767,7 @@ git checkout -b feature/new-sacred-zero-rule
    - Ensures victim compensation reaches intended recipients
    - Provides transparency reporting on fund allocation
 
-**6. Community Representative (Elected Position)**
+**9. Community Representative (elected -- SC-9)**
    - Represents implementers and user community interests
    - Elected by TML stakeholder community
    - Ensures framework serves real-world needs

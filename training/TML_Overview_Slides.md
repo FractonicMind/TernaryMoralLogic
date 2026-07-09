@@ -237,7 +237,7 @@ curl -X POST http://localhost:8080/evaluate \
 - ❌ Institutional approval bottlenecks
 - ❌ Committee formation delays
 
-### Immediate Deployment + Recommended Enhancement:
+### Deployment with Tri-Cameral Constitutional Governance:
 ✅ **Blockchain protection immediate**
 ✅ **Stewardship Custodians readiness configured**
 ✅ **Six institutional partners for enhanced oversight**
@@ -378,7 +378,7 @@ GET /compliance/report?framework=EU_AI_ACT&stewardship=true
 - Ensures victim compensation delivery
 - Provides transparency reporting
 
-**6. Community Representative (Elected Position)**
+**9. Community Representative (elected -- SC-9)**
 - Represents stakeholder interests
 - Elected by TML community
 - Ensures real-world relevance

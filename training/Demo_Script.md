@@ -114,7 +114,7 @@ TML_INSTANT_DEPLOYMENT=true
 EOF
 ```
 
-**Narrative**: *"Configuration establishes blockchain network parameters and protection thresholds. Stewardship Custodians integration is recommended for enhanced oversight through six institutional nodes: Technical Infrastructure Custodian (open seat), Human Rights Partner (Human Rights Institution (open seat)), Earth Protection Partner (Earth Protection Institution (open seat)), AI Ethics Research Partner (AI Ethics Research Institution (open seat)/AI Ethics Research Institution (open seat)), Memorial Fund Administrator (Medical Research Institution (open seat)), and an elected Community Representative."*
+**Narrative**: *"Configuration establishes blockchain network parameters and protection thresholds. Stewardship Custodians integration is recommended for enhanced oversight through open institutional seats: Technical Infrastructure Custodian (open seat), Human Rights Partner (Human Rights Institution (open seat)), Earth Protection Partner (Earth Protection Institution (open seat)), AI Ethics Research Partner (AI Ethics Research Institution (open seat)/AI Ethics Research Institution (open seat)), Memorial Fund Administrator (Medical Research Institution (open seat)), and an elected Community Representative."*
 
 ### **Step 3: Deploy the Stack** (3 minutes)
 ```bash
@@ -330,7 +330,7 @@ curl -s http://localhost:8080/stewardship/sync-status | jq
 
 **In browser**: Show actual Bitcoin/Polygon transactions
 
-**Narrative**: *"These evaluations are anchored to public blockchain infrastructure. The evidence is cryptographically verifiable and cannot be altered. The recommended Stewardship Custodians maintains synchronized copies across six institutional nodes, providing additional institutional validation and human rights expertise for complex cases."*
+**Narrative**: *"These evaluations are anchored to public blockchain infrastructure. The evidence is cryptographically verifiable and cannot be altered. The recommended Stewardship Custodians maintains synchronized copies across open institutional seats, providing additional institutional validation and human rights expertise for complex cases."*
 
 ### **OpenTimestamps Verification** (5 minutes)
 
@@ -428,7 +428,7 @@ curl -s http://localhost:8080/audit/user_12345
 **A**: *"Thresholds and parameters are configurable. Core Sacred Zero principles maintain framework integrity. The recommended Stewardship Custodians, particularly the AI Ethics Research Partner, provides guidance on implementation standards and rule refinement based on empirical research."*
 
 **Q: "How does the Stewardship Custodians work?"**
-**A**: *"The recommended six-member council includes: Technical Infrastructure Custodian (open seat) for repository maintenance, Human Rights Partner (Human Rights Institution (open seat)) for enforcement coordination, Earth Protection Partner (Earth Protection Institution (open seat)) for environmental cases, AI Ethics Research Partner (AI Ethics Research Institution (open seat)) for algorithm validation, Memorial Fund Administrator (Medical Research Institution (open seat)) for victim compensation, and an elected Community Representative for stakeholder accountability. Each maintains synchronized logs and provides domain expertise."*
+**A**: *"The Tri-Cameral Stewardship Custodians (11 open seats) includes: Technical Infrastructure Custodian (open seat) for repository maintenance, Human Rights Partner (Human Rights Institution (open seat)) for enforcement coordination, Earth Protection Partner (Earth Protection Institution (open seat)) for environmental cases, AI Ethics Research Partner (AI Ethics Research Institution (open seat)) for algorithm validation, Memorial Fund Administrator (Medical Research Institution (open seat)) for victim compensation, and an elected Community Representative for stakeholder accountability. Each maintains synchronized logs and provides domain expertise."*
 
 ---
 

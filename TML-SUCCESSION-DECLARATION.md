@@ -180,7 +180,7 @@ This coverage applies regardless of:
 
 ### Multi-Organization Stewardship Custodians
 
-No single organization should control TML. I recommend a **Stewardship Custodians** with:
+No single organization controls TML. The **Tri-Cameral Governance Architecture** ensures constitutional separation of powers. See [governance/Tri_Cameral_Constitution.md](./governance/Tri_Cameral_Constitution.md).
 
 **Council Composition**:
 1. Technical Infrastructure Custodian (open seat -- SC-1)

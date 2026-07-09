@@ -107,7 +107,7 @@ TML ensures no organization can hide violations through cryptographic immutabili
 
 ---
 
-## Stewardship Custodians Governance (Recommended Enhancement)
+## Tri-Cameral Governance
 
 ### Evolution from Blockchain to Institutional Oversight
 

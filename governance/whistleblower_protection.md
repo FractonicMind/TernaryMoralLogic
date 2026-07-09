@@ -248,7 +248,7 @@ While the blockchain system operates independently, the recommended Stewardship 
 - Systemic violation identification
 - Framework effectiveness research
 
-**Community Representative (Elected Position)**:
+**Community Representative (elected -- SC-9)**:
 - Whistleblower community liaison
 - Implementation feedback collection
 - Transparency reporting

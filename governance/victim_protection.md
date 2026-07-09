@@ -280,7 +280,7 @@ While blockchain provides core protection, the recommended Stewardship Custodian
 - Victim medical support
 - Fund transparency reporting
 
-**Community Representative (Elected Position)**:
+**Community Representative (elected -- SC-9)**:
 - Victim community liaison
 - Support system feedback
 - Accessibility improvement
