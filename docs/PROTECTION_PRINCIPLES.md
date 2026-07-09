@@ -11,7 +11,7 @@
 
 ## Executive Summary
 
-TML protection operates on three foundational layers: (1) blockchain-enforced immutability, (2) smart contract automation, and (3) criminal liability for violations. The framework includes a recommended Stewardship Custodians comprising eleven independent custodians that provide oversight, research, and community representation. This multi-layered architecture ensures that protection mechanisms remain operational, transparent, and accountable.
+TML protection operates on three foundational layers: (1) blockchain-enforced immutability, (2) smart contract automation, and (3) criminal liability for violations. The framework includes a Tri-Cameral Stewardship Custodians comprising eleven independent custodians that provide oversight, research, and community representation. This multi-layered architecture ensures that protection mechanisms remain operational, transparent, and accountable.
 
 The framework includes an explicit covenant: **TML shall never be used as a weapon or surveillance tool**. This binding pledge is enforced through technical safeguards, legal contracts, and blockchain-recorded accountability.
 

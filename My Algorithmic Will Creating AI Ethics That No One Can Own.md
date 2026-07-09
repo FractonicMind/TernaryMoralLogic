@@ -48,11 +48,11 @@ The framework doesn't pause to mourn. It persists.
 
 ### 2. **Tri-Cameral Governance, Not Ownership**
 I've invited a **Tri-Cameral Stewardship Custodians (11 open seats)**:
-- **Technical Infrastructure Institution (open seat)** (technical infrastructure)
-- **Human Rights Institution (open seat)** (human rights enforcement)
-- **Earth Protection Institution (open seat)** (Earth protection)
-- **AI Ethics Research Institution (open seat)** or **AI Ethics Research Institution (open seat)** (AI ethics research)
-- **Medical Research Institution (open seat)** (Memorial Fund / cancer research)
+- **Technical Infrastructure Custodian (open seat -- SC-1)** (technical infrastructure)
+- **Human Rights Enforcement Custodian (open seat -- SC-2)** (human rights enforcement)
+- **Earth Protection Custodian (open seat -- SC-3)** (Earth protection)
+- **AI Ethics Research Custodian (open seat -- SC-4)** or **AI Ethics Research Custodian (open seat -- SC-4)** (AI ethics research)
+- **Medical and Victim Compensation Custodian (open seat -- SC-5)** (Memorial Fund / cancer research)
 - **Community Representative** (elected by implementers)
 
 Each organization gets **one responsibility**, not comprehensive control. The Technical Custodian cannot change the human rights documents. Amnesty can't modify the blockchain infrastructure. No single entity can redirect the Memorial Fund or alter the MIT License.

@@ -659,9 +659,9 @@ The Hybrid Shield implements the principle of **institutional separation of powe
 
 The Hybrid Shield distributes real-time log replication and encryption key custody to **seated institutional custodians**, designated by institutional category to prevent any single interest group from capturing the majority:
 
-* **Technical Custodian** (e.g., Technical Infrastructure Institution (open seat)): Infrastructure oversight and cryptographic audit.  
-* **Human Rights Partner** (e.g., Human Rights Institution (open seat)): Treaty enforcement and rights violation detection.  
-* **Earth Protection Partner** (e.g., Earth Protection Institution (open seat)): Ecological boundary monitoring.  
+* **Technical Custodian** (e.g., Technical Infrastructure Custodian (open seat -- SC-1)): Infrastructure oversight and cryptographic audit.  
+* **Human Rights Partner** (e.g., Human Rights Enforcement Custodian (open seat -- SC-2)): Treaty enforcement and rights violation detection.  
+* **Earth Protection Partner** (e.g., Earth Protection Custodian (open seat -- SC-3)): Ecological boundary monitoring.  
 * **AI Ethics Research Partner** (e.g., academic institution): Framework validation and calibration review.  
 * **Memorial Fund Administrator** (designated charitable organization): Victim compensation fund management.  
 * **Community Representative** (elected stakeholder representative): Democratic accountability for affected communities.

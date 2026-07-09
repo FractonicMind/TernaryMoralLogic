@@ -115,9 +115,9 @@ Operational protection with expert validation
 **Real-time detection, automated enforcement, cryptographic verification, institutional validation**
 
 **Council Routing**:
-- Discrimination cases → Human Rights Enforcement Partner (Human Rights Institution (open seat))
-- Environmental violations → Earth Protection Enforcement Partner (Earth Protection Institution (open seat))
-- Algorithmic bias → AI Ethics Research Partner (AI Ethics Research Institution (open seat) / AI Ethics Research Institution (open seat))
+- Discrimination cases → Human Rights Enforcement Partner (Human Rights Enforcement Custodian (open seat -- SC-2))
+- Environmental violations → Earth Protection Enforcement Partner (Earth Protection Custodian (open seat -- SC-3))
+- Algorithmic bias → AI Ethics Research Partner (AI Ethics Research Custodian (open seat -- SC-4))
 
 ---
 
@@ -179,13 +179,13 @@ Configurable Limits:
 Threshold Exceedance:
   - Automated alert generation
   - Blockchain record creation
-  - Earth Protection Institution (open seat) notification
+  - Earth Protection Custodian (open seat -- SC-3) notification
   - Ecosystem restoration coordination
   - Mitigation requirement
   - Potential penalty assessment
 ```
 
-**Stewardship Custodians Role**: Earth Protection Enforcement Partner (Earth Protection Institution (open seat)) monitors treaty compliance and represents Indigenous sovereignty in environmental decisions.
+**Stewardship Custodians Role**: Earth Protection Enforcement Partner (Earth Protection Custodian (open seat -- SC-3)) monitors treaty compliance and represents Indigenous sovereignty in environmental decisions.
 
 ---
 
@@ -265,7 +265,7 @@ curl -X POST http://localhost:8080/evaluate \
 10% → Research funding (AI Ethics Research Partner guidance)
 ```
 
-**Memorial Fund Administrator** (Medical Research Institution (open seat)):
+**Memorial Fund Administrator** (Medical and Victim Compensation Custodian (open seat -- SC-5)):
 - Administers cancer research portion
 - Honors Goukassian's personal commitment
 - Ensures victim compensation reaches recipients
@@ -354,25 +354,25 @@ GET /compliance/report?framework=EU_AI_ACT&stewardship=true
 - Provides technical community support
 - Ensures code integrity
 
-**2. Human Rights Enforcement Partner (Human Rights Institution (open seat))**
+**2. Human Rights Enforcement Partner (Human Rights Enforcement Custodian (open seat -- SC-2))**
 - Monitors 26+ human rights documents
 - Reviews complex Human Rights cases
 - Coordinates international mechanisms
 - Supports victims seeking justice
 
-**3. Earth Protection Enforcement Partner (Earth Protection Institution (open seat))**
+**3. Earth Protection Enforcement Partner (Earth Protection Custodian (open seat -- SC-3))**
 - Monitors 20+ environmental treaties
 - Reviews Earth Protection cases
 - Represents Indigenous sovereignty
 - Coordinates ecosystem restoration
 
-**4. AI Ethics Research Partner (AI Ethics Research Institution (open seat) / AI Ethics Research Institution (open seat))**
+**4. AI Ethics Research Partner (AI Ethics Research Custodian (open seat -- SC-4))**
 - Conducts TML effectiveness research
 - Validates ethical framework evolution
 - Publishes algorithmic accountability findings
 - Guides implementation standards
 
-**5. Memorial Fund Administrator (Medical Research Institution (open seat))**
+**5. Memorial Fund Administrator (Medical and Victim Compensation Custodian (open seat -- SC-5))**
 - Administers cancer research portion
 - Honors Goukassian's medical research commitment
 - Ensures victim compensation delivery
@@ -435,9 +435,9 @@ GET /compliance/report?framework=EU_AI_ACT&stewardship=true
 - ✅ **EU AI Act** - Article 5 (Prohibited AI) | *AI Ethics Partner validates*
 - ✅ **GDPR** - Article 22 (Automated decisions) | *Technical Custodian oversees*
 - ✅ **US Civil Rights** - Title VII | *Human Rights Partner coordinates*
-- ✅ **UN Human Rights** - Universal Declaration | *Human Rights Institution (open seat) reviews*
+- ✅ **UN Human Rights** - Universal Declaration | *Human Rights Enforcement Custodian (open seat -- SC-2) reviews*
 - ✅ **Paris Agreement** - Environmental commitments | *Earth Protection Partner monitors*
-- ✅ **UNDRIP** - Indigenous rights protection | *Earth Protection Institution (open seat) represents*
+- ✅ **UNDRIP** - Indigenous rights protection | *Earth Protection Custodian (open seat -- SC-3) represents*
 
 ### Verification Mechanism with Council Validation:
 ```javascript
@@ -635,7 +635,7 @@ cd TML-Deploy && docker-compose up -d
 - **Technical Infrastructure Custodian (open seat)**: Repository integrity, infrastructure optimization
 - **Human Rights (Amnesty)**: Victim support, international coordination
 - **Earth Protection (IEN)**: Indigenous sovereignty, ecosystem restoration
-- **AI Ethics (AI Ethics Research Institution (open seat))**: Algorithm validation, bias research
+- **AI Ethics (AI Ethics Research Custodian (open seat -- SC-4))**: Algorithm validation, bias research
 - **Memorial Fund (MSKCC)**: Victim compensation, medical research legacy
 - **Community Rep**: Stakeholder accountability, democratic input
 
@@ -761,14 +761,14 @@ Institutional Benefits:
 **Implementation**: TML Sacred Zero + Stewardship Custodians  
 **Result**: 0% discrimination, documented compliance  
 **Impact**: Legal risk mitigation, victim support coordinated by Human Rights Partner  
-**Council Role**: Human Rights Institution (open seat) coordinated with 12 affected individuals for remedy
+**Council Role**: Human Rights Enforcement Custodian (open seat -- SC-2) coordinated with 12 affected individuals for remedy
 
 ### Case 2: Hiring Platform  
 **Challenge**: Gender bias in technical roles  
 **Implementation**: TML evaluation + AI Ethics Partner validation  
 **Result**: 50/50 gender balance achieved  
 **Impact**: Compliance documentation, bias elimination  
-**Council Role**: AI Ethics Research Institution (open seat) validated algorithm improvements, Community Rep ensured transparency
+**Council Role**: AI Ethics Research Custodian (open seat -- SC-4) validated algorithm improvements, Community Rep ensured transparency
 
 ### Case 3: Healthcare AI
 **Challenge**: Racial bias in diagnosis recommendations  

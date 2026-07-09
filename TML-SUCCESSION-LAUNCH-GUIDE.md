@@ -97,7 +97,7 @@ I confirm that I have verified the activation condition and am
 initiating the TML succession protocol as documented in 
 TML-SUCCESSION-DECLARATION.md and this launch guide.
 
-Tagging priority custodian organizations for notification.
+Notifying open seat holders per governance/SEAT_SELECTION.md
 ```
 
 ### Step 3: Notify Priority Organizations
@@ -105,24 +105,24 @@ Tagging priority custodian organizations for notification.
 Send immediate email notification to:
 
 **Technical Infrastructure Custodian (open seat -- SC-1)**:
-- Technical Infrastructure Institution (open seat): info@eff.org
+- Contact via: https://governance.tml.org/seats/SC-1
 - CC: Software Freedom Conservancy, Linux Foundation
 
 **Human Rights Partner**:
-- Human Rights Institution (open seat): contactus@amnesty.org
+- Contact via: https://governance.tml.org/seats/SC-2
 - CC: Human Rights Watch, AI Now Institute
 
 **Earth Protection Partner**:
-- Earth Protection Institution (open seat): ien@ienearth.org
+- Contact via: https://governance.tml.org/seats/SC-3
 - CC: Earthjustice, Natural Resources Defense Council
 
 **Research Partner**:
-- AI Ethics Research Institution (open seat): info@media.mit.edu
-- AI Ethics Research Institution (open seat): hai-info@stanford.edu
+- Contact via: https://governance.tml.org/seats/SC-4
+- Alternative SC-4 contact: https://governance.tml.org/seats/SC-4
 - CC: Oxford Internet Institute, AI Now Institute
 
 **Memorial Fund / Cancer Research**:
-- Medical Research Institution (open seat): publicaffairs@mskcc.org
+- Contact via: https://governance.tml.org/seats/SC-5
 - CC: Dana-Farber, MD Anderson
 
 **Email Template**:
@@ -161,11 +161,11 @@ GitHub Issue: [link to activation issue]
 Activate the **TML Tri-Cameral Stewardship Custodians** (11 open seats):
 
 1. **Technical Infrastructure Custodian (open seat -- SC-1)**
-2. **Human Rights Partner** - 1 seat
-3. **Earth Protection Partner** - 1 seat
-4. **AI Ethics Research Partner** - 1 seat
-5. **Memorial Fund Administrator** - 1 seat
-6. **Community Representative** (elected) - 1 seat
+2. **Human Rights Enforcement Custodian (open seat -- SC-2)**
+3. **Earth Protection Custodian (open seat -- SC-3)**
+4. **AI Ethics Research Custodian (open seat -- SC-4)**
+5. **Medical and Victim Compensation Custodian (open seat -- SC-5)**
+6. **Community Representative (elected -- SC-9)**
 
 ### Selection Process
 
@@ -547,7 +547,7 @@ contract MemorialFund {
 ### Cancer Research Memorial
 
 **Research Partners** (Priority Order):
-1. Medical Research Institution (open seat)
+1. Medical and Victim Compensation Custodian (open seat -- SC-5)
 2. Dana-Farber Cancer Institute
 3. MD Anderson Cancer Center
 4. Fred Hutchinson Cancer Center

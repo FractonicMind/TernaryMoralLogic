@@ -58,11 +58,11 @@ Here's where the Hybrid Shield activates, and where TML's architecture reveals i
 
 Each Moral Trace Log, upon creation, is immediately distributed to seated institutional custodians established in the succession charter:
 
-1. **Technical Custodian** (Technical Infrastructure Institution (open seat)) Maintains repository and blockchain infrastructure  
-2. **Human Rights Partner** (Human Rights Institution (open seat)):  Enforces the 26+ human rights documents  
-3. **Earth Protection Partner** (Earth Protection Institution (open seat)):  Monitors the 20+ environmental treaties  
-4. **Research Partner** (AI Ethics Research Institution (open seat)/AI Ethics Research Institution (open seat)):  Validates implementation standards  
-5. **Memorial Fund Administrator** (Medical Research Institution (open seat)):  Oversees victim compensation  
+1. **Technical Custodian** (Technical Infrastructure Custodian (open seat -- SC-1)) Maintains repository and blockchain infrastructure  
+2. **Human Rights Partner** (Human Rights Enforcement Custodian (open seat -- SC-2)):  Enforces the 26+ human rights documents  
+3. **Earth Protection Partner** (Earth Protection Custodian (open seat -- SC-3)):  Monitors the 20+ environmental treaties  
+4. **Research Partner** (AI Ethics Research Custodian (open seat -- SC-4)/AI Ethics Research Custodian (open seat -- SC-4)):  Validates implementation standards  
+5. **Memorial Fund Administrator** (Medical and Victim Compensation Custodian (open seat -- SC-5)):  Oversees victim compensation  
 6. **Community Representative**:  Provides elected oversight
 
 This distribution happens in real-time, not through batch uploads or scheduled syncs. The moment a log is created, all eleven custodians receive copies simultaneously. No single organization can suppress a log because five others hold identical copies.

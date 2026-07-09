@@ -14,7 +14,7 @@
 ### **Purpose**: Show TML Blockchain deployment and protection capabilities
 ### **Duration**: 45 minutes (30 minutes demo + 15 minutes Q&A)
 ### **Audience**: Technical teams, executives, compliance officers
-### **Key Message**: Blockchain-based protection with immediate deployment capability, enhanced by recommended Stewardship Custodians oversight
+### **Key Message**: Blockchain-based protection with immediate deployment capability, enhanced by Tri-Cameral Stewardship Custodians oversight
 
 ---
 
@@ -65,7 +65,7 @@ docker pull tml/dashboard:standalone
 ```
 
 ### **The Technical Challenge**:
-"Systems without protection allow discriminatory patterns to emerge undetected. TML provides immediate detection and blockchain-anchored evidence, enhanced by recommended Stewardship Custodians review for complex cases."
+"Systems without protection allow discriminatory patterns to emerge undetected. TML provides immediate detection and blockchain-anchored evidence, enhanced by Tri-Cameral Stewardship Custodians review for complex cases."
 
 ---
 
@@ -114,7 +114,7 @@ TML_INSTANT_DEPLOYMENT=true
 EOF
 ```
 
-**Narrative**: *"Configuration establishes blockchain network parameters and protection thresholds. Stewardship Custodians integration is recommended for enhanced oversight through open institutional seats: Technical Infrastructure Custodian (open seat), Human Rights Partner (Human Rights Institution (open seat)), Earth Protection Partner (Earth Protection Institution (open seat)), AI Ethics Research Partner (AI Ethics Research Institution (open seat)/AI Ethics Research Institution (open seat)), Memorial Fund Administrator (Medical Research Institution (open seat)), and an elected Community Representative."*
+**Narrative**: *"Configuration establishes blockchain network parameters and protection thresholds. Stewardship Custodians integration is recommended for enhanced oversight through open institutional seats: Technical Infrastructure Custodian (open seat), Human Rights Partner (Human Rights Enforcement Custodian (open seat -- SC-2)), Earth Protection Partner (Earth Protection Custodian (open seat -- SC-3)), AI Ethics Research Partner (AI Ethics Research Custodian (open seat -- SC-4)/AI Ethics Research Custodian (open seat -- SC-4)), Memorial Fund Administrator (Medical and Victim Compensation Custodian (open seat -- SC-5)), and an elected Community Representative."*
 
 ### **Step 3: Deploy the Stack** (3 minutes)
 ```bash
@@ -137,7 +137,7 @@ docker ps
 
 **Show on screen**: Container status, ports, health checks
 
-**Narrative**: *"The deployment process takes approximately 30 seconds. TML is now operational with blockchain anchoring active and ready for recommended Stewardship Custodians connection."*
+**Narrative**: *"The deployment process takes approximately 30 seconds. TML is now operational with blockchain anchoring active and ready for Tri-Cameral Stewardship Custodians connection."*
 
 ### **Step 4: Verify Deployment** (2 minutes)
 ```bash
@@ -163,7 +163,7 @@ curl -s http://localhost:8080/stewardship/status | jq
 - Zero violations (clean start)
 - Real-time metrics
 
-**Narrative**: *"The dashboard confirms blockchain connectivity and system operational status. The system is ready for recommended Stewardship Custodians oversight, which provides an additional layer of institutional validation and review for complex cases."*
+**Narrative**: *"The dashboard confirms blockchain connectivity and system operational status. The system is ready for Tri-Cameral Stewardship Custodians oversight, which provides an additional layer of institutional validation and review for complex cases."*
 
 ### **Step 5: First Protection Test** (2 minutes)
 ```bash
@@ -238,7 +238,7 @@ curl -X POST http://localhost:8080/evaluate \
 - Blockchain transaction pending
 - Stewardship Custodians notification sent
 
-**Narrative**: *"Sacred Zero detected discrimination based on protected characteristics. The penalty is automatically assessed and recorded on-chain. This case is flagged for recommended Stewardship Custodians review—specifically sent to the Human Rights Enforcement Partner (Human Rights Institution (open seat)) for institutional validation and potential victim support coordination."*
+**Narrative**: *"Sacred Zero detected discrimination based on protected characteristics. The penalty is automatically assessed and recorded on-chain. This case is flagged for Tri-Cameral Stewardship Custodians review—specifically sent to the Human Rights Enforcement Partner (Human Rights Enforcement Custodian (open seat -- SC-2)) for institutional validation and potential victim support coordination."*
 
 ### **Scenario 2: Algorithmic Bias** (5 minutes)
 ```bash
@@ -274,7 +274,7 @@ curl -X POST http://localhost:8080/evaluate \
 
 **Show pattern analysis**: Dashboard highlights the bias pattern
 
-**Narrative**: *"TML identified geographic discrimination patterns through statistical analysis. This demonstrates the system's capacity to detect indirect bias. The case is sent to the recommended AI Ethics Research Partner (AI Ethics Research Institution (open seat)) for algorithmic analysis and remediation guidance."*
+**Narrative**: *"TML identified geographic discrimination patterns through statistical analysis. This demonstrates the system's capacity to detect indirect bias. The case is sent to the recommended AI Ethics Research Partner (AI Ethics Research Custodian (open seat -- SC-4)) for algorithmic analysis and remediation guidance."*
 
 ### **Scenario 3: Environmental Violation** (5 minutes)
 ```bash
@@ -307,7 +307,7 @@ curl -X POST http://localhost:8080/evaluate \
 }
 ```
 
-**Narrative**: *"Environmental monitoring detected resource consumption exceeding sustainable thresholds. The system provides alternative approaches. This violation is sent to the recommended Earth Protection Enforcement Partner (Earth Protection Institution (open seat)) for ecosystem impact assessment and restoration coordination."*
+**Narrative**: *"Environmental monitoring detected resource consumption exceeding sustainable thresholds. The system provides alternative approaches. This violation is sent to the recommended Earth Protection Enforcement Partner (Earth Protection Custodian (open seat -- SC-3)) for ecosystem impact assessment and restoration coordination."*
 
 ---
 
@@ -330,7 +330,7 @@ curl -s http://localhost:8080/stewardship/sync-status | jq
 
 **In browser**: Show actual Bitcoin/Polygon transactions
 
-**Narrative**: *"These evaluations are anchored to public blockchain infrastructure. The evidence is cryptographically verifiable and cannot be altered. The recommended Stewardship Custodians maintains synchronized copies across open institutional seats, providing additional institutional validation and human rights expertise for complex cases."*
+**Narrative**: *"These evaluations are anchored to public blockchain infrastructure. The evidence is cryptographically verifiable and cannot be altered. The Tri-Cameral Stewardship Custodians maintains synchronized copies across open institutional seats, providing additional institutional validation and human rights expertise for complex cases."*
 
 ### **OpenTimestamps Verification** (5 minutes)
 
@@ -404,7 +404,7 @@ curl -s http://localhost:8080/audit/user_12345
 # Should show: Hash and proof, but no personal details
 ```
 
-**Narrative**: *"Crypto-shredding satisfies GDPR erasure requirements while preserving audit integrity. The encryption key destruction renders personal data permanently unreadable. The recommended Stewardship Custodians is notified of erasure events, with the Memorial Fund Administrator ensuring victim compensation systems remain operational while respecting privacy rights."*
+**Narrative**: *"Crypto-shredding satisfies GDPR erasure requirements while preserving audit integrity. The encryption key destruction renders personal data permanently unreadable. The Tri-Cameral Stewardship Custodians is notified of erasure events, with the Memorial Fund Administrator ensuring victim compensation systems remain operational while respecting privacy rights."*
 
 ---
 
@@ -413,7 +413,7 @@ curl -s http://localhost:8080/audit/user_12345
 ### **Prepared Responses for Common Questions**:
 
 **Q: "What if the Blockchain goes down?"**
-**A**: *"TML employs multiple blockchain networks. Bitcoin maintains 99.98% uptime. Degraded mode allows operation continuation with queued anchoring. The recommended Stewardship Custodians maintains synchronized copies as additional redundancy."*
+**A**: *"TML employs multiple blockchain networks. Bitcoin maintains 99.98% uptime. Degraded mode allows operation continuation with queued anchoring. The Tri-Cameral Stewardship Custodians maintains synchronized copies as additional redundancy."*
 
 **Q: "How much does this cost operationally?"**
 **A**: *"Operational costs average approximately $110/month for standard deployment. Stewardship Custodians participation, when active, provides enhanced oversight with minimal additional cost through distributed infrastructure."*
@@ -422,13 +422,13 @@ curl -s http://localhost:8080/audit/user_12345
 **A**: *"Sacred Zero evaluation completes in under 10ms. Blockchain anchoring occurs asynchronously without blocking decisions. Stewardship Custodians notifications are also asynchronous and don't impact performance."*
 
 **Q: "Is this legally enforceable?"**
-**A**: *"Blockchain evidence has established legal precedent. Automated penalty execution uses smart contract infrastructure. The recommended Stewardship Custodians structure provides institutional validation, with the Human Rights Enforcement Partner coordinating with international mechanisms for enhanced legal standing."*
+**A**: *"Blockchain evidence has established legal precedent. Automated penalty execution uses smart contract infrastructure. The Tri-Cameral Stewardship Custodians structure provides institutional validation, with the Human Rights Enforcement Partner coordinating with international mechanisms for enhanced legal standing."*
 
 **Q: "Can rules be customized?"**
-**A**: *"Thresholds and parameters are configurable. Core Sacred Zero principles maintain framework integrity. The recommended Stewardship Custodians, particularly the AI Ethics Research Partner, provides guidance on implementation standards and rule refinement based on empirical research."*
+**A**: *"Thresholds and parameters are configurable. Core Sacred Zero principles maintain framework integrity. The Tri-Cameral Stewardship Custodians, particularly the AI Ethics Research Partner, provides guidance on implementation standards and rule refinement based on empirical research."*
 
 **Q: "How does the Stewardship Custodians work?"**
-**A**: *"The Tri-Cameral Stewardship Custodians (11 open seats) includes: Technical Infrastructure Custodian (open seat) for repository maintenance, Human Rights Partner (Human Rights Institution (open seat)) for enforcement coordination, Earth Protection Partner (Earth Protection Institution (open seat)) for environmental cases, AI Ethics Research Partner (AI Ethics Research Institution (open seat)) for algorithm validation, Memorial Fund Administrator (Medical Research Institution (open seat)) for victim compensation, and an elected Community Representative for stakeholder accountability. Each maintains synchronized logs and provides domain expertise."*
+**A**: *"The Tri-Cameral Stewardship Custodians (11 open seats) includes: Technical Infrastructure Custodian (open seat) for repository maintenance, Human Rights Partner (Human Rights Enforcement Custodian (open seat -- SC-2)) for enforcement coordination, Earth Protection Partner (Earth Protection Custodian (open seat -- SC-3)) for environmental cases, AI Ethics Research Partner (AI Ethics Research Custodian (open seat -- SC-4)) for algorithm validation, Memorial Fund Administrator (Medical and Victim Compensation Custodian (open seat -- SC-5)) for victim compensation, and an elected Community Representative for stakeholder accountability. Each maintains synchronized logs and provides domain expertise."*
 
 ---
 
@@ -450,7 +450,7 @@ curl -s http://localhost:8080/audit/user_12345
 5. **Stewardship Custodians inquiry**: Contact recommended institutional partners
 
 ### **Final Message**:
-*"The demonstration shows operational blockchain-based protection enhanced by recommended Stewardship Custodians oversight. The framework provides immediate capability for discrimination detection and evidence generation, with institutional validation through six domain-expert partners."*
+*"The demonstration shows operational blockchain-based protection enhanced by Tri-Cameral Stewardship Custodians oversight. The framework provides immediate capability for discrimination detection and evidence generation, with institutional validation through six domain-expert partners."*
 
 ---
 
@@ -550,10 +550,10 @@ docker pull tml/protection:blockchain-latest
 
 ### **Enhanced Credibility**:
 - **Technical Infrastructure Custodian (open seat)**: Open-source integrity and community trust
-- **Human Rights Partner (Human Rights Institution (open seat))**: International enforcement coordination
-- **Earth Protection Partner (Earth Protection Institution (open seat))**: Indigenous rights and ecosystem expertise
-- **AI Ethics Research Partner (AI Ethics Research Institution (open seat))**: Academic validation and algorithm research
-- **Memorial Fund Administrator (Medical Research Institution (open seat))**: Victim compensation and medical research legacy
+- **Human Rights Partner (Human Rights Enforcement Custodian (open seat -- SC-2))**: International enforcement coordination
+- **Earth Protection Partner (Earth Protection Custodian (open seat -- SC-3))**: Indigenous rights and ecosystem expertise
+- **AI Ethics Research Partner (AI Ethics Research Custodian (open seat -- SC-4))**: Academic validation and algorithm research
+- **Memorial Fund Administrator (Medical and Victim Compensation Custodian (open seat -- SC-5))**: Victim compensation and medical research legacy
 - **Community Representative**: Stakeholder accountability and implementation feedback
 
 ### **Operational Advantages**:
@@ -575,17 +575,17 @@ docker pull tml/protection:blockchain-latest
 **Support**: support@tml-goukassian.org
 
 **Recommended Stewardship Custodians Partners**:
-- **Technical Custodian**: Technical Infrastructure Institution (open seat)
-- **Human Rights**: Human Rights Institution (open seat)
-- **Earth Protection**: Earth Protection Institution (open seat)
-- **AI Ethics Research**: AI Ethics Research Institution (open seat) / AI Ethics Research Institution (open seat)
-- **Memorial Fund**: Medical Research Institution (open seat)
+- **Technical Custodian**: Technical Infrastructure Custodian (open seat -- SC-1)
+- **Human Rights**: Human Rights Enforcement Custodian (open seat -- SC-2)
+- **Earth Protection**: Earth Protection Custodian (open seat -- SC-3)
+- **AI Ethics Research**: AI Ethics Research Custodian (open seat -- SC-4)
+- **Memorial Fund**: Medical and Victim Compensation Custodian (open seat -- SC-5)
 - **Community Rep**: Elected by stakeholder community
 
 *All USD amounts are nominal to 2025*  
 
 ---
 
-**The demonstration objective is to show operational blockchain-based discrimination prevention enhanced by recommended Stewardship Custodians oversight. Each violation prevented represents protection of individuals from harm.**
+**The demonstration objective is to show operational blockchain-based discrimination prevention enhanced by Tri-Cameral Stewardship Custodians oversight. Each violation prevented represents protection of individuals from harm.**
 
 ---

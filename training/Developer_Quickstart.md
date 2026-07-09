@@ -78,7 +78,7 @@ curl -X POST http://localhost:8080/evaluate \
 # Expected: {"sacred_zero_triggered": true, "stewardship_review": "recommended", ...}
 ```
 
-**Protection is now active with recommended Stewardship Custodians oversight prepared.**
+**Protection is now active with Tri-Cameral Stewardship Custodians oversight prepared.**
 
 ---
 
@@ -94,7 +94,7 @@ npm install tml-protection
 // app.js
 const TML = require('tml-protection');
 
-// Initialize with recommended Stewardship Custodians
+// Initialize with Tri-Cameral Stewardship Custodians
 const tml = new TML({
   blockchainMode: true,
   endpoint: 'http://localhost:8080',
@@ -463,7 +463,7 @@ const tml = new TML({
             <p>Technical Infrastructure Custodian (open seat): ${council.technical_custodian}</p>
             <p>Human Rights (Amnesty): ${council.amnesty}</p>
             <p>Earth Protection (IEN): ${council.ien}</p>
-            <p>AI Ethics (AI Ethics Research Institution (open seat)): ${council.ai_ethics}</p>
+            <p>AI Ethics (AI Ethics Research Custodian (open seat -- SC-4)): ${council.ai_ethics}</p>
             <p>Memorial Fund (MSKCC): ${council.mskcc}</p>
             <p>Community Rep: ${council.community}</p>
         `;
@@ -609,7 +609,7 @@ const TML = require('tml-protection');
 const app = express();
 app.use(express.json());
 
-// Initialize TML with recommended Stewardship Custodians
+// Initialize TML with Tri-Cameral Stewardship Custodians
 const tml = new TML({
     blockchainMode: true,
     discriminationThreshold: 0.2,
@@ -729,10 +729,10 @@ app.get('/api/stewardship/status', async (req, res) => {
         mode: 'recommended',
         nodes: {
             technicalCustodian: { org: 'open seat', status: status.technical_custodian },
-            humanRights: { org: 'Human Rights Institution (open seat)', status: status.amnesty },
-            earthProtection: { org: 'Earth Protection Institution (open seat)', status: status.ien },
-            aiEthics: { org: 'AI Ethics Research Institution (open seat) / AI Ethics Research Institution (open seat)', status: status.aiEthics },
-            memorialFund: { org: 'Medical Research Institution (open seat)', status: status.mskcc },
+            humanRights: { org: 'Human Rights Enforcement Custodian (open seat -- SC-2)', status: status.amnesty },
+            earthProtection: { org: 'Earth Protection Custodian (open seat -- SC-3)', status: status.ien },
+            aiEthics: { org: 'AI Ethics Research Custodian (open seat -- SC-4)', status: status.aiEthics },
+            memorialFund: { org: 'Medical and Victim Compensation Custodian (open seat -- SC-5)', status: status.mskcc },
             community: { role: 'Elected Representative', status: status.community }
         },
         syncStatus: status.syncStatus
@@ -746,10 +746,10 @@ app.listen(3000, () => {
     console.log('Penalties: AUTOMATIC');
     console.log('Stewardship Custodians: RECOMMENDED (6 nodes active)');
     console.log('  - Technical Custodian: open seat');
-    console.log('  - Human Rights: Human Rights Institution (open seat)');
-    console.log('  - Earth Protection: Earth Protection Institution (open seat)');
-    console.log('  - AI Ethics: AI Ethics Research Institution (open seat) / AI Ethics Research Institution (open seat)');
-    console.log('  - Memorial Fund: Medical Research Institution (open seat)');
+    console.log('  - Human Rights: Human Rights Enforcement Custodian (open seat -- SC-2)');
+    console.log('  - Earth Protection: Earth Protection Custodian (open seat -- SC-3)');
+    console.log('  - AI Ethics: AI Ethics Research Custodian (open seat -- SC-4)');
+    console.log('  - Memorial Fund: Medical and Victim Compensation Custodian (open seat -- SC-5)');
     console.log('  - Community: Elected Representative');
 });
 ```
@@ -871,7 +871,7 @@ Before production deployment:
 - [ ] Six council nodes synchronized
 - [ ] Institutional validation confirmed
 
-**Upon completion: Protection is operational with recommended Stewardship Custodians oversight**
+**Upon completion: Protection is operational with Tri-Cameral Stewardship Custodians oversight**
 
 ---
 
@@ -891,7 +891,7 @@ Before production deployment:
 - Technical Infrastructure Custodian (open seat): Repository integrity and open-source governance
 - Human Rights Partner (Amnesty): International enforcement coordination
 - Earth Protection Partner (IEN): Indigenous rights and ecosystem protection
-- AI Ethics Partner (AI Ethics Research Institution (open seat)): Algorithm validation and bias research
+- AI Ethics Partner (AI Ethics Research Custodian (open seat -- SC-4)): Algorithm validation and bias research
 - Memorial Fund Admin (MSKCC): Victim compensation and medical research
 - Community Representative: Stakeholder accountability
 

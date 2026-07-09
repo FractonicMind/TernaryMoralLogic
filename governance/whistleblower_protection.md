@@ -231,7 +231,7 @@ The blockchain's cryptographic properties prevent false claims by requiring math
 
 ### 7.1 Enhanced Review for Complex Cases
 
-While the blockchain system operates independently, the recommended Stewardship Custodians can provide:
+While the blockchain system operates independently, the Tri-Cameral Stewardship Custodians can provide:
 
 **Human Rights Enforcement Partner (Human Rights Enforcement Custodian (open seat -- SC-2))**:
 - Analysis of complex human rights violations

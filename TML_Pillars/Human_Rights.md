@@ -885,7 +885,7 @@ The Legal Mapping document includes extensive "Red Team Scenarios"—anticipated
 
 3. **Blockchain Evidence Trail**: Any attempt to modify protections creates immutable evidence of the attempt, visible to international observers.
 
-4. **Civil Society Verification**: Human rights organizations (Human Rights Institution (open seat), Human Rights Watch, local NGOs) can independently verify that implementations match international standards.
+4. **Civil Society Verification**: Human rights organizations (Human Rights Enforcement Custodian (open seat -- SC-2), Human Rights Watch, local NGOs) can independently verify that implementations match international standards.
 
 5. **Victim Testimony Integration**: People affected by rights violations can submit testimony that becomes part of the permanent record, even if local authorities try to suppress it.
 

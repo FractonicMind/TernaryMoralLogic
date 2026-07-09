@@ -376,7 +376,7 @@ To understand the Hybrid Shield's power, consider how it changes outcomes in rea
 * Company deploys TML-compliant AI for data center optimization  
 * Every energy decision creates log checked against Paris Agreement targets  
 * Logs show system knew decision exceeded carbon budget  
-* Evidence distributed to Earth Protection Institution (open seat) and 5 other custodians  
+* Evidence distributed to Earth Protection Custodian (open seat -- SC-3) and 5 other custodians  
 * Anchored to blockchain with timestamp proving "knew in 2025"  
 * Future climate lawsuits access evidence showing:  
   * System warned about boundary violation  
@@ -432,7 +432,7 @@ To understand the Hybrid Shield's power, consider how it changes outcomes in rea
 **With Hybrid Shield:**
 
 * Government AI system creates TML logs  
-* Logs distributed to 11 custodians including Human Rights Institution (open seat)  
+* Logs distributed to 11 custodians including Human Rights Enforcement Custodian (open seat -- SC-2)  
 * Government attempts classification  
 * Custodians are independent, some outside jurisdiction  
 * Cannot force all six to comply (different jurisdictions, different legal protections)  

@@ -184,11 +184,11 @@ No single organization controls TML. The **Tri-Cameral Governance Architecture**
 
 **Council Composition**:
 1. Technical Infrastructure Custodian (open seat -- SC-1)
-2. Human Rights Partner - 1 seat
-3. Earth Protection Partner - 1 seat
-4. AI Ethics Research Partner - 1 seat
-5. Memorial Fund Administrator - 1 seat
-6. Community Representative (elected) - 1 seat
+2. Human Rights Enforcement Custodian (open seat -- SC-2)
+3. Earth Protection Custodian (open seat -- SC-3)
+4. AI Ethics Research Custodian (open seat -- SC-4)
+5. Medical and Victim Compensation Custodian (open seat -- SC-5)
+6. Community Representative (elected -- SC-9)
 
 **Council Responsibilities**:
 - Coordinate framework evolution

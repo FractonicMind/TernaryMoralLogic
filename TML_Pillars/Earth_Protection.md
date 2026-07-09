@@ -56,7 +56,7 @@ Every time a TML-compliant AI system makes a decision with potential environment
 6. **Make a ternary decision**: Proceed (+1), Pause for review (0), or Refuse (-1)  
 7. **Generate cryptographic proof** of this entire assessment including seven-generation impact analysis  
 8. **Anchor that proof to public blockchains** (Bitcoin, Ethereum, Polygon)  
-9. **Distribute to the Stewardship Custodians**, including Earth Protection Institution (open seat) as Earth Protection enforcement partner
+9. **Distribute to the Stewardship Custodians**, including Earth Protection Custodian (open seat -- SC-3) as Earth Protection enforcement partner
 
 This happens in milliseconds, but the implications cascade across generations.
 
@@ -231,7 +231,7 @@ The revolutionary power emerges when these two tiers integrate. Consider a scena
 * Blockchain evidence generated showing CBD violations, FPIC violations, community harm  
 * Smart contract penalties triggered automatically  
 * Memorial Fund allocates 30% to ecosystem restoration in affected region  
-* Earth Protection Institution (open seat) (Stewardship Custodians partner) receives case for enforcement  
+* Earth Protection Custodian (open seat -- SC-3) (Stewardship Custodians partner) receives case for enforcement  
 * Community observers receive Stewardship Fund payment for their monitoring
 
 This integration means **neither satellite data alone nor community knowledge alone determines outcomes—both are required, and both are enforceable**.
@@ -514,7 +514,7 @@ Some situations demand immediate response. When the Oracle Network detects:
 It triggers a cascade:
 
 1. **Immediate Sacred Zero** across all potentially affected systems  
-2. **Emergency notification** to Stewardship Custodians (Earth Protection Institution (open seat) as Earth Protection partner)  
+2. **Emergency notification** to Stewardship Custodians (Earth Protection Custodian (open seat -- SC-3) as Earth Protection partner)  
 3. **Documentation preservation** (immutable blockchain anchoring)  
 4. **Community alert system** (affected populations notified)  
 5. **Memorial Fund activation** (emergency restoration funding)  
@@ -853,7 +853,7 @@ The Legal Mapping document includes extensive red team scenarios—attacks on Ea
 
 4. **Blockchain Evidence Trail**: Any attempt to weaken protections creates permanent evidence visible to international bodies, NGOs, and future generations.
 
-5. **Stewardship Custodians Review**: Earth Protection Institution (open seat) and other Council members can challenge regulatory rollbacks and trigger enforcement at the international level.
+5. **Stewardship Custodians Review**: Earth Protection Custodian (open seat -- SC-3) and other Council members can challenge regulatory rollbacks and trigger enforcement at the international level.
 
 ### **Attack Vector 2: Greenwashing Through Offsets**
 
@@ -1013,7 +1013,7 @@ If the company forces the route change anyway:
 * 30% ($15M) to ecosystem restoration  
 * 15% ($7.5M) to community as whistleblower reward  
 * Criminal referral for treaty violation  
-* Earth Protection Institution (open seat) receives case  
+* Earth Protection Custodian (open seat -- SC-3) receives case  
 * Evidence available for international prosecution
 
 This is planetary protection not as policy statement but as executable law.

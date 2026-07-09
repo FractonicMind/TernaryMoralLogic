@@ -260,7 +260,7 @@ The blockchain's transparent record enables automatic identification of systemat
 
 ### 8.1 Enhanced Support Functions
 
-While blockchain provides core protection, the recommended Stewardship Custodians offers:
+While blockchain provides core protection, the Tri-Cameral Stewardship Custodians offers:
 
 **Human Rights Enforcement Partner (Human Rights Enforcement Custodian (open seat -- SC-2))**:
 - Complex Human Rights violation analysis

@@ -620,25 +620,25 @@ Six independent custodian organizations hold synchronized copies of TML logs (se
 - Provides technical community support
 - Ensures code integrity and updates
 
-**2. Human Rights Enforcement Partner (Human Rights Institution (open seat))**
+**2. Human Rights Enforcement Partner (Human Rights Enforcement Custodian (open seat -- SC-2))**
 - Monitors enforcement of 26+ human rights documents
 - Reviews complex [Human Rights Sacred Zero cases](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/mandates/categorical/human_rights/Sacred_Zero_Human.yaml)
 - Coordinates with international human rights mechanisms
 - Supports victims in seeking remedy and justice
 
-**3. Earth Protection Enforcement Partner (Earth Protection Institution (open seat))**
+**3. Earth Protection Enforcement Partner (Earth Protection Custodian (open seat -- SC-3))**
 - Monitors enforcement of 20+ environmental treaties
 - Reviews [Earth Protection Sacred Zero cases](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/policies/earth/SACRED_ZERO_NATURE.yaml)
 - Represents Indigenous sovereignty in environmental decisions
 - Coordinates ecosystem restoration from [Memorial Fund](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/memorial/MEMORIAL_FUND.md)
 
-**4. AI Ethics Research Partner (AI Ethics Research Institution (open seat))**
+**4. AI Ethics Research Partner (AI Ethics Research Custodian (open seat -- SC-4))**
 - Conducts research on TML effectiveness
 - Validates ethical framework evolution
 - Publishes findings on algorithmic accountability
 - Guides [implementation standards](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/docs/IMPLEMENTATION_GUIDE.md) development
 
-**5. Memorial Fund Administrator (Medical Research Institution (open seat))**
+**5. Memorial Fund Administrator (Medical and Victim Compensation Custodian (open seat -- SC-5))**
 - Administers [cancer research portion of Memorial Fund](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/memorial/MEMORIAL_FUND.md)
 - Honors Goukassian's commitment to medical research
 - Ensures victim compensation reaches intended recipients

@@ -53,9 +53,9 @@ I deliberately spread power across five missions:
 
 - **Technical Infrastructure Custodian (open seat)** – keeps the repo online, mirrors, and defends against legal takedowns.  
 - **Amnesty Tech** – watches Human-Rights triggers; they’ve read more prison files than pull-requests.  
-- **Earth Protection Institution (open seat)** – guards the 20+ ecological treaties; data-sovereignty oracles will be run from tribal servers.  
-- **AI Ethics Research Institution (open seat) / AI Ethics Research Institution (open seat)** – research seat; evolves the spec without loosening it.  
-- **Medical Research Institution (open seat)** – holds the cancer-research purse; every penalty finances another fellowship.
+- **Earth Protection Custodian (open seat -- SC-3)** – guards the 20+ ecological treaties; data-sovereignty oracles will be run from tribal servers.  
+- **AI Ethics Research Custodian (open seat -- SC-4)** – research seat; evolves the spec without loosening it.  
+- **Medical and Victim Compensation Custodian (open seat -- SC-5)** – holds the cancer-research purse; every penalty finances another fellowship.
 
 Five seats, **5-of-6 multi-sig** required for any change. No single org, nor any government, can water the framework down.
 

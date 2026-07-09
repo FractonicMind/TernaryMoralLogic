@@ -529,7 +529,7 @@ def complete_system_verification():
 **Enhancement Configuration**:
 ```python
 def test_stewardship_enhancement():
-    """Test recommended Stewardship Custodians enhancement"""
+    """Test Tri-Cameral Stewardship Custodians enhancement"""
     
     from tml.stewardship import StewardshipCouncil
     

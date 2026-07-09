@@ -13,7 +13,7 @@
 ## Deployment & Integration
 
 ### Q1: How long does TML take to deploy?
-**A**: Approximately 10 minutes for basic protection, up to 1 hour for complete configuration with monitoring, custom rules, and recommended Stewardship Custodians integration.
+**A**: Approximately 10 minutes for basic protection, up to 1 hour for complete configuration with monitoring, custom rules, and Tri-Cameral Stewardship Custodians integration.
 
 ```bash
 # Basic deployment
@@ -71,7 +71,7 @@ Stewardship Custodians coordination enhances but does not delay initial deployme
 ---
 
 ### Q4: How do I integrate TML with existing applications?
-**A**: Three integration patterns based on architecture, all supporting recommended Stewardship Custodians oversight.
+**A**: Three integration patterns based on architecture, all supporting Tri-Cameral Stewardship Custodians oversight.
 
 **Pattern 1: API Gateway**
 ```javascript
@@ -132,7 +132,7 @@ def process_decision(message):
 ## Blockchain & Performance
 
 ### Q5: Which Blockchains does TML use?
-**A**: Multi-chain architecture for resilience and cost efficiency, with recommended Stewardship Custodians synchronization.
+**A**: Multi-chain architecture for resilience and cost efficiency, with Tri-Cameral Stewardship Custodians synchronization.
 
 **Primary Networks**:
 - **Bitcoin**: Maximum security, immutable timestamps
@@ -297,7 +297,7 @@ penalties:
 
 **Design Rationale**:
 - Thresholds based on legal standards
-- AI Ethics Research Partner (AI Ethics Research Institution (open seat)) validates detection algorithms
+- AI Ethics Research Partner (AI Ethics Research Custodian (open seat -- SC-4)) validates detection algorithms
 - Open source prevents unauthorized modification
 - Community Representative ensures stakeholder accountability
 
@@ -384,7 +384,7 @@ tml_stewardship_council_response_time_seconds
 **Framework-Enforced (Non-Negotiable)**:
 - Human characteristics discrimination: Zero tolerance
 - Environmental protection: Science-based thresholds (Earth Protection Partner oversight)
-- Indigenous rights: Zero tolerance (coordinated with Earth Protection Institution (open seat))
+- Indigenous rights: Zero tolerance (coordinated with Earth Protection Custodian (open seat -- SC-3))
 - Privacy violations: Zero tolerance
 
 **Industry Customization Available**:
@@ -743,25 +743,25 @@ git checkout -b feature/new-sacred-zero-rule
    - Provides technical community support
    - Ensures code integrity and updates
 
-**2. Human Rights Enforcement Partner (Human Rights Institution (open seat))**
+**2. Human Rights Enforcement Partner (Human Rights Enforcement Custodian (open seat -- SC-2))**
    - Monitors enforcement of 26+ human rights documents
    - Reviews complex Human Rights Sacred Zero cases
    - Coordinates with international human rights mechanisms
    - Supports victims in seeking remedy and justice
 
-**3. Earth Protection Enforcement Partner (Earth Protection Institution (open seat))**
+**3. Earth Protection Enforcement Partner (Earth Protection Custodian (open seat -- SC-3))**
    - Monitors enforcement of 20+ environmental treaties
    - Reviews Earth Protection Sacred Zero cases
    - Represents Indigenous sovereignty in environmental decisions
    - Coordinates ecosystem restoration from Memorial Fund
 
-**4. AI Ethics Research Partner (AI Ethics Research Institution (open seat))**
+**4. AI Ethics Research Partner (AI Ethics Research Custodian (open seat -- SC-4))**
    - Conducts research on TML effectiveness
    - Validates ethical framework evolution
    - Publishes findings on algorithmic accountability
    - Guides implementation standards development
 
-**5. Memorial Fund Administrator (Medical Research Institution (open seat))**
+**5. Memorial Fund Administrator (Medical and Victim Compensation Custodian (open seat -- SC-5))**
    - Administers cancer research portion of Memorial Fund
    - Honors Goukassian's personal commitment to medical research
    - Ensures victim compensation reaches intended recipients
@@ -790,7 +790,7 @@ git checkout -b feature/new-sacred-zero-rule
 - Regulatory credibility through institutional validation
 - Cross-border legal recognition
 - Academic research backing (AI Ethics Partner)
-- Human rights coordination (Human Rights Institution (open seat))
+- Human rights coordination (Human Rights Enforcement Custodian (open seat -- SC-2))
 
 **Operational Advantages**:
 - Enhanced insurance discounts (50-60% vs 20-40% blockchain-only)
@@ -866,7 +866,7 @@ git checkout -b feature/new-sacred-zero-rule
 
 **Stewardship Custodians Resources**:
 - **Technical Infrastructure Custodian (open seat)**: Repository and infrastructure support
-- **AI Ethics Partner (AI Ethics Research Institution (open seat))**: Algorithm validation consulting
+- **AI Ethics Partner (AI Ethics Research Custodian (open seat -- SC-4))**: Algorithm validation consulting
 - **Human Rights Partner (Amnesty)**: Victim support coordination
 - **Earth Protection Partner (IEN)**: Environmental impact guidance
 - **Memorial Fund (MSKCC)**: Victim compensation administration
@@ -890,17 +890,17 @@ git checkout -b feature/new-sacred-zero-rule
 **Stewardship Custodians**: stewardship@tml-goukassian.org
 
 **Recommended Stewardship Custodians Partners**:
-- **Technical Custodian**: Technical Infrastructure Institution (open seat) (https://governance.tml.org/seats)
-- **Human Rights**: Human Rights Institution (open seat) (https://www.amnesty.org)
-- **Earth Protection**: Earth Protection Institution (open seat) (https://www.ienearth.org)
-- **AI Ethics Research**: AI Ethics Research Institution (open seat) (https://www.media.mit.edu) / AI Ethics Research Institution (open seat) (https://hai.stanford.edu)
-- **Memorial Fund**: Medical Research Institution (open seat) (https://www.mskcc.org)
+- **Technical Custodian**: Technical Infrastructure Custodian (open seat -- SC-1) (https://governance.tml.org/seats)
+- **Human Rights**: Human Rights Enforcement Custodian (open seat -- SC-2) (https://www.amnesty.org)
+- **Earth Protection**: Earth Protection Custodian (open seat -- SC-3) (https://www.ienearth.org)
+- **AI Ethics Research**: AI Ethics Research Custodian (open seat -- SC-4) (https://www.media.mit.edu) / AI Ethics Research Custodian (open seat -- SC-4) (https://hai.stanford.edu)
+- **Memorial Fund**: Medical and Victim Compensation Custodian (open seat -- SC-5) (https://www.mskcc.org)
 - **Community**: Elected by TML stakeholder community
 
 *All USD amounts are nominal to 2025*
 
 ---
 
-**Technical implementation focuses on operational deployment with recommended Stewardship Custodians enhancement. The blockchain architecture provides immediate discrimination prevention capability while six institutional partners provide expert oversight, victim support, and democratic accountability.**
+**Technical implementation focuses on operational deployment with Tri-Cameral Stewardship Custodians enhancement. The blockchain architecture provides immediate discrimination prevention capability while six institutional partners provide expert oversight, victim support, and democratic accountability.**
 
 ---
