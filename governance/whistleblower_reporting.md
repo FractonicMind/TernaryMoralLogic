@@ -5,7 +5,7 @@
 
 ---
 
-## Report Violations. Get Rich. Stay Protected.
+## Report Violations. Stay Protected.
 
 **15% of all penalties go to you.** Report TML violations and receive substantial rewards while maintaining complete protection. Retaliation is a criminal offense.
 
