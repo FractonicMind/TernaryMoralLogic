@@ -3,7 +3,7 @@
 **Version**: 3.0 (Blockchain Architecture)  
 **Status**: Active Protection via Smart Contracts  
 **Core Protection**: Blockchain Anchoring + Criminal Liability  
-**Recommended Enhancement**: Tri-Cameral Governance (active)
+**Tri-Cameral Governance**: active -- see governance/Tri_Cameral_Constitution.md
 
 ---
 
