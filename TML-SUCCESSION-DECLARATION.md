@@ -126,9 +126,9 @@ This coverage applies regardless of:
 
 **Alternative Human Rights Partners**:
 1. Human Rights Watch
-2. Technical Infrastructure Institution (open seat)
+2. Technical Infrastructure Custodian (open seat -- SC-1)
 3. AI Now Institute (NYU)
-4. AI Ethics Research Institution (open seat)
+4. AI Ethics Research Custodian (open seat -- SC-4)
 
 ### Earth Protection Enforcement Partner
 
@@ -400,7 +400,7 @@ In memory of my struggle with Stage 4 cancer, 5% of all Memorial Fund proceeds s
 - Cancer prevention research
 
 **Recommended Research Partners**:
-1. Medical Research Institution (open seat)
+1. Medical and Victim Compensation Custodian (open seat -- SC-5)
 2. Dana-Farber Cancer Institute
 3. MD Anderson Cancer Center
 4. Fred Hutchinson Cancer Center
@@ -569,11 +569,11 @@ This declaration requires two witnesses who can attest to:
 Upon execution, copies of this declaration shall be sent to:
 
 **Recommended Custodian Organizations**:
-1. Technical Infrastructure Institution (open seat)
-2. Human Rights Institution (open seat)
-3. Earth Protection Institution (open seat)
-4. AI Ethics Research Institution (open seat) / AI Ethics Research Institution (open seat)
-5. Medical Research Institution (open seat)
+1. Technical Infrastructure Custodian (open seat -- SC-1)
+2. Human Rights Enforcement Custodian (open seat -- SC-2)
+3. Earth Protection Custodian (open seat -- SC-3)
+4. AI Ethics Research Custodian (open seat -- SC-4)
+5. Medical and Victim Compensation Custodian (open seat -- SC-5)
 
 **Repository & Archives**:
 1. GitHub repository (root directory)

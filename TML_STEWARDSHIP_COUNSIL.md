@@ -28,7 +28,7 @@ The Stewardship Custodians comprises seated institutional custodian organization
 
 ### Member 1: Technical Custodian
 
-**Recommended Organization**: Technical Infrastructure Institution (open seat) (open seat)
+**Recommended Organization**: Technical Infrastructure Custodian (open seat -- SC-1)
 
 **Primary Responsibilities**:
 - Maintain official TML open-source repository (GitHub primary, mirrors on GitLab/Codeberg)
@@ -80,7 +80,7 @@ The Stewardship Custodians comprises seated institutional custodian organization
 
 ### Member 3: Earth Protection Enforcement Partner
 
-**Recommended Organization**: Earth Protection Institution (open seat)
+**Recommended Organization**: Earth Protection Custodian (open seat -- SC-3)
 
 **Primary Responsibilities**:
 - Monitor enforcement of 20+ environmental treaties
@@ -106,7 +106,7 @@ The Stewardship Custodians comprises seated institutional custodian organization
 
 ### Member 4: AI Ethics Research Partner
 
-**Recommended Organization**: AI Ethics Research Institution (open seat) or Stanford Human-Centered AI Institute
+**Recommended Organization**: AI Ethics Research Custodian (open seat -- SC-4)
 
 **Primary Responsibilities**:
 - Conduct research on TML effectiveness and algorithmic accountability
@@ -132,7 +132,7 @@ The Stewardship Custodians comprises seated institutional custodian organization
 
 ### Member 5: Memorial Fund Administrator
 
-**Recommended Organization**: Medical Research Institution (open seat)
+**Recommended Organization**: Medical and Victim Compensation Custodian (open seat -- SC-5)
 
 **Primary Responsibilities**:
 - Administer cancer research portion of Memorial Fund (5%)
