@@ -595,11 +595,12 @@ signature = ed25519_sign(private_key, message, nonce)
 ```
 
 **Step 2: Key Distribution (Shamir Secret Sharing)**
-- Master key for session split into 7 shares
+- Master key for session split into N+1 shares (N = number of seated custodians at time of encryption)
 - Distribution:
   - 1 share: Operator (temporary, destroyed after session)
-  - 6 shares: Custodians (open institutional seats per Tri-Cameral governance)
-- Threshold: 75% supermajority of seated custodians required to reconstruct key
+  - N shares: one per seated institutional custodian (open seats per Tri-Cameral governance)
+- Threshold: 75% of seated custodians required to reconstruct key (configurable per deployment; never fewer than simple majority)
+- Note: The share count is parameterized against `seatedActiveMembers` at encryption time, not hard-coded. As seats are filled or vacated, the scheme reconfigures at the next key rotation epoch.
 
 **Step 3: User Requests Erasure (GDPR Article 17)**
 ```
