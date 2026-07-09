@@ -274,7 +274,7 @@ if (deployment_context == "MILITARY_TARGETING" ||
 **[GDPR-Compatible Encryption (Ephemeral Key Rotation)](./docs/specs/EKR%20Security%20Architecture.md)**:
 - Personally Identifiable Information (PII) encrypted with unique, time-limited keys
 - Keys NOT stored by operator; distributed via Shamir Secret Sharing to custodians
-- Access requires quorum authorization (3-of-11 custodians minimum)
+- Access requires quorum authorization (75% supermajority of seated custodians minimum)
 - Satisfies "Right to be Forgotten" via cryptographic shredding (keys destroyed = data unrecoverable)
 
 **[Federal Rules of Evidence (FRE 902)](./docs/LEGAL.md)**:
@@ -456,7 +456,7 @@ Batch of 5,000 logs:
 
 Ternary Moral Logic (TML) includes a **Voluntary Succession Declaration** personally authored and signed by **Lev Goukassian**, ensuring that the framework’s ethical, legal, and technical architecture will remain protected and operational beyond his lifetime.
 
-This declaration—witnessed, notarizable, and anchored on-chain—transfers stewardship of all TML repositories, blockchain anchoring systems, domains, and Memorial Fund operations to a multi-institutional **[Stewardship Custodians](TML-VOLUNTARY-SUCCESSION.md)** representing technology, human rights, environmental protection, academia, and medical research.
+This declaration—witnessed, notarizable, and anchored on-chain—transfers stewardship of all TML repositories, blockchain anchoring systems, domains, and Memorial Fund operations to the **[Tri-Cameral Governance Architecture](./governance/Tri_Cameral_Constitution.md)** with open institutional seats spanning technology, human rights, environmental protection, academia, and medical research.
 
 All core protections remain immutable and non-negotiable:
 **Always Memory before action, Sacred Zero before harm, Hybrid Shield before trust.**
@@ -503,7 +503,7 @@ TML resolves the latency-safety tension through architectural bifurcation:
 - **Authority**: Can **calculate** action, NOT execute it
 - **Output**: Provisional decision + Decision Hash
 
-**Lane 2: The Anchoring Lane (Governance)**
+**Lane 2: The Anchoring Lane**
 - **Latency**: <500 milliseconds (asynchronous)
 - **Function**: Log generation, cryptographic signing, blockchain batching
 - **Output**: Permission Token (signed hash)
@@ -600,7 +600,7 @@ signature = ed25519_sign(private_key, message, nonce)
 - Distribution:
   - 1 share: Operator (temporary, destroyed after session)
   - 6 shares: Custodians (open institutional seats per Tri-Cameral governance)
-- Threshold: 4-of-11 custodians required to reconstruct key
+- Threshold: 75% supermajority of seated custodians required to reconstruct key
 
 **Step 3: User Requests Erasure (GDPR Article 17)**
 ```
@@ -889,13 +889,13 @@ To ensure TML's perpetual governance and prevent "orphaned constitutions," the *
 
 **Key Documents**:
 - **[Articles of Incorporation](./ARTICLES%20OF%20INCORPORATION%20OF%20THE%20GOUKASSIAN%20FOUNDATION.md)** - Legal charter
-- **[Governance Model](./GOVERNANCE.md)** - Organizational structure
+- **[Enforcement Charter](./TML_ENFORCEMENT_CHARTER.md)** - Enforcement and accountability
 - **[Stewardship Custodians](./TML_STEWARDSHIP_COUNSIL.md)** - Community oversight
 - **[Succession Plan](./TML-Succession-Plan.html)** - Long-term continuity
 - **[Voluntary Succession](./TML-VOLUNTARY-SUCCESSION.md)** - Leadership transitions
 - **[Memorial Fund](./memorial/MEMORIAL_FUND.md)** - Victim compensation & legacy
 
-**📖 Learn More**: [Foundation Incorporation](./ARTICLES%20OF%20INCORPORATION%20OF%20THE%20GOUKASSIAN%20FOUNDATION.md) | [Governance Documentation](./GOVERNANCE.md) | [Stewardship Custodians Rules](./governance/earth/COMMUNITY_SEAT_RULES.md)
+**📖 Learn More**: [Foundation Incorporation](./ARTICLES%20OF%20INCORPORATION%20OF%20THE%20GOUKASSIAN%20FOUNDATION.md) | [Enforcement Charter](./TML_ENFORCEMENT_CHARTER.md) | [Stewardship Custodians Rules](./governance/earth/COMMUNITY_SEAT_RULES.md)
 
 ---
 
@@ -1119,7 +1119,7 @@ The **[Adversarial_Survivability](./Adversarial_Survivability/)** folder asks th
 
 **[Constitutional Survivability Under Adversarial Pressure](./Adversarial_Survivability/Constitutional%20Survivability%20Under%20Adversarial%20Pressure.md)** models scenarios ranging from judicial injunctions demanding log deletion, to cryptocurrency exchange failures severing blockchain anchoring, to physical seizure of custodian infrastructure. In each scenario, TML's distributed Hybrid Shield architecture maintains moral record integrity through redundancy, cryptographic resilience, and institutional diversity.
 
-**[Constitutional Viability Amidst Geopolitical and Supply Chain Threats](./Adversarial_Survivability/Constitutional%20Viability%20Amidst%20Geopolitical%20and%20Supply%20Chain%20Threats.md)** extends this analysis to macro-level threats: export control regimes targeting cryptographic hardware, state-sponsored attacks on open-source infrastructure, and internet fragmentation. The **[Stewardship Statement](./Adversarial_Survivability/Stewardship_Statement.md)** documents commitments from each of TML's six institutional custodians to maintain operations under these scenarios.
+**[Constitutional Viability Amidst Geopolitical and Supply Chain Threats](./Adversarial_Survivability/Constitutional%20Viability%20Amidst%20Geopolitical%20and%20Supply%20Chain%20Threats.md)** extends this analysis to macro-level threats: export control regimes targeting cryptographic hardware, state-sponsored attacks on open-source infrastructure, and internet fragmentation. The **[Stewardship Statement](./Adversarial_Survivability/Stewardship_Statement.md)** documents commitments from each of the Tri-Cameral governance structure to maintain operations under these scenarios.
 
 The **TML Survivability Under Adversarial Pressure** series provides both policy-level (P) and technical-level (T) analyses, each in markdown, interactive HTML, and audio formats.
 
