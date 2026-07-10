@@ -1,6 +1,8 @@
 # Technical Research Report: The Transition to Mandated Ternary Architectures via Memristive Hysteresis
 
-### `Architectural Note: This report documents the research path that led to the Delay Insensitive Ternary Logic (DITL) architecture adopted in TML v3.3. It predates the DITL decision and describes memristive device candidates that were evaluated but superseded. The current canonical hardware specification is AGI Hardware Governance/TML_Triadic_Coprocessor_Architecture.md. This document is retained as the technical provenance record.`
+
+### `Architectural Note: This report documents the research path that led to the Delay Insensitive Ternary Logic (DITL) architecture adopted in TML v3.3. It predates the DITL decision and describes memristive device candidates that were evaluated but superseded. The current canonical hardware specification is [`AGI Hardware Governance/TML_Triadic_Coprocessor_Architecture.md`](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/AGI%20Hardware%20Governance/TML_Triadic_Coprocessor_Architecture.md). This document is retained as the technical provenance record.`
+
 
 ## 1. Abstract
 
