@@ -2,14 +2,6 @@
 
 ### **The Constitutional Architecture for Accountable Artificial Intelligence**
 
-**Architect:** Lev Goukassian
-**ORCID:** [0009-0006-5966-1243](https://orcid.org/0009-0006-5966-1243)
-**Published:** AI and Ethics, Springer Nature
-**DOI:** [10.1007/s43681-026-01124-0](https://doi.org/10.1007/s43681-026-01124-0)
-**Repository:** [github.com/FractonicMind/TernaryMoralLogic](https://github.com/FractonicMind/TernaryMoralLogic)
-
----
-
 ## Visual Overview
 
 ![The Unified Architecture of Constitutional AI](https://raw.githubusercontent.com/FractonicMind/TernaryMoralLogic/main/TML_Pillars/TML_Architecture_Pyramid.png)
@@ -258,6 +250,14 @@ Full constitutional specification: [governance/Tri_Cameral_Constitution.md](http
 **First Paper:** Goukassian, L. (2025). Auditable AI: Tracing the Ethical History of a Model. *AI and Ethics*, Springer Nature. [DOI: 10.1007/s43681-025-00910-6](https://doi.org/10.1007/s43681-025-00910-6)
 
 **ORCID:** [0009-0006-5966-1243](https://orcid.org/0009-0006-5966-1243)
+
+---
+
+**Architect:** Lev Goukassian   
+**ORCID:** [0009-0006-5966-1243](https://orcid.org/0009-0006-5966-1243)   
+**Published:** AI and Ethics, Springer Nature   
+**DOI:** [10.1007/s43681-026-01124-0](https://doi.org/10.1007/s43681-026-01124-0)   
+**Repository:** [github.com/FractonicMind/TernaryMoralLogic](https://github.com/FractonicMind/TernaryMoralLogic)   
 
 ---
 
