@@ -2,13 +2,7 @@
 
 ### **The Constitutional Architecture for Accountable Artificial Intelligence**
 
-**Architect:** Lev Goukassian
-**ORCID:** [0009-0006-5966-1243](https://orcid.org/0009-0006-5966-1243)
-**Published:** AI and Ethics, Springer Nature
-**DOI:** [10.1007/s43681-026-01124-0](https://doi.org/10.1007/s43681-026-01124-0)
-**Repository:** [github.com/FractonicMind/TernaryMoralLogic](https://github.com/FractonicMind/TernaryMoralLogic)
 
----
 
 ## Visual Overview
 
@@ -255,11 +249,15 @@ Full constitutional specification: [governance/Tri_Cameral_Constitution.md](http
 
 ## Publications
 
-**Primary Paper:** Goukassian, L. (2026). Ternary Moral Logic. *AI and Ethics*, Springer Nature. [DOI: 10.1007/s43681-026-01124-0](https://doi.org/10.1007/s43681-026-01124-0)
+**Primary Paper:** Goukassian, L. (2026). Ternary Moral Logic. *AI and Ethics*, Springer Nature. [DOI: 10.1007/s43681-026-01124-0](https://doi.org/10.1007/s43681-026-01124-0)   
 
-**First Paper:** Goukassian, L. (2025). Auditable AI: Tracing the Ethical History of a Model. *AI and Ethics*, Springer Nature. [DOI: 10.1007/s43681-025-00910-6](https://doi.org/10.1007/s43681-025-00910-6)
+**First Paper:** Goukassian, L. (2025). Auditable AI: Tracing the Ethical History of a Model. *AI and Ethics*, Springer Nature. [DOI: 10.1007/s43681-025-00910-6](https://doi.org/10.1007/s43681-025-00910-6)   
 
-**ORCID:** [0009-0006-5966-1243](https://orcid.org/0009-0006-5966-1243)
+---
+
+**Architect:** Lev Goukassian   
+**ORCID:** [0009-0006-5966-1243](https://orcid.org/0009-0006-5966-1243)   
+**Repository:** [github.com/FractonicMind/TernaryMoralLogic](https://github.com/FractonicMind/TernaryMoralLogic)   
 
 ---
 
