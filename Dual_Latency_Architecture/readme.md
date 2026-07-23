@@ -1,8 +1,8 @@
 # TML Dual-Lane Architecture
 ### The End of Optimistic AI: A Hardware-Enforced Architecture for High-Assurance Moral Governance
 
-**Status:** Strategic Validation Complete (February 12, 2026)
-**License:** Open Source / Research Preview
+**Status:** Strategic Validation Complete (February 12, 2026)   
+**License:** Open Source / Research Preview   
 
 ---
 
