@@ -2,10 +2,10 @@
 
 ## **Terminology Correction and Latency Reframing**
 
-**Architect:** Lev Goukassian
-**ORCID:** [0009-0006-5966-1243](https://orcid.org/0009-0006-5966-1243)
-**Document Status:** Active Constitutional Amendment
-**Amends:** All four audit documents in this folder (February 2026 vintage)
+**Architect:** Lev Goukassian   
+**ORCID:** [0009-0006-5966-1243](https://orcid.org/0009-0006-5966-1243)   
+**Document Status:** Active Constitutional Amendment   
+**Amends:** All four audit documents in this folder (February 2026 vintage)   
 **License:** CC BY 4.0
 
 ---
@@ -140,15 +140,14 @@ This is owned. It is determined by hardware physics. It will not change unless t
 
 ## Authority
 
-**Architect:** Lev Goukassian
-**ORCID:** [0009-0006-5966-1243](https://orcid.org/0009-0006-5966-1243)
-**Amends:** All documents in [`TernaryMoralLogic/Dual_Latency_Architecture/`](https://github.com/FractonicMind/TernaryMoralLogic/tree/main/Dual_Latency_Architecture)
-**Constitutional Governance:** [`governance/Tri_Cameral_Constitution.md`](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/governance/Tri_Cameral_Constitution.md)
+**Architect:** Lev Goukassian   
+**ORCID:** [0009-0006-5966-1243](https://orcid.org/0009-0006-5966-1243)   
+**Amends:** All documents in [`TernaryMoralLogic/Dual_Latency_Architecture/`](https://github.com/FractonicMind/TernaryMoralLogic/tree/main/Dual_Latency_Architecture)   
+**Constitutional Governance:** [`governance/Tri_Cameral_Constitution.md`](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/governance/Tri_Cameral_Constitution.md)   
 
 ---
 
-*"Own the numbers you can prove. State the rest as integration parameters."*
--- Claude
+
 
 *"Pause when truth is uncertain. Refuse when harm is clear. Proceed where truth is."*
 -- The Goukassian Vow
