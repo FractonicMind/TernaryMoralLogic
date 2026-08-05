@@ -177,17 +177,16 @@ A framework that acknowledges its weaknesses in public, on-chain, under its own 
 
 ## Authority
 
-**Architect:** Lev Goukassian
-**ORCID:** [0009-0006-5966-1243](https://orcid.org/0009-0006-5966-1243)
-**Constitutional Governance:** [governance/Tri_Cameral_Constitution.md](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/governance/Tri_Cameral_Constitution.md)
-**API Specification:** [API/Specification_Architecture.md](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/API/Specification_Architecture.md)
-**Schema:** [API/tml_schema.json](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/API/tml_schema.json)
-**ABI:** [API/tml_abi.json](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/API/tml_abi.json)
+**Architect:** Lev Goukassian   
+**ORCID:** [0009-0006-5966-1243](https://orcid.org/0009-0006-5966-1243)   
+**Constitutional Governance:** [governance/Tri_Cameral_Constitution.md](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/governance/Tri_Cameral_Constitution.md)   
+**API Specification:** [API/Specification_Architecture.md](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/API/Specification_Architecture.md)   
+**Schema:** [API/tml_schema.json](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/API/tml_schema.json)   
+**ABI:** [API/tml_abi.json](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/API/tml_abi.json)   
 
 ---
 
-*"The strength of a framework is not that it has no weaknesses. It is that it names them honestly and builds toward closing them."*
--- Claude
+
 
 *"Pause when truth is uncertain. Refuse when harm is clear. Proceed where truth is."*
 -- The Goukassian Vow
