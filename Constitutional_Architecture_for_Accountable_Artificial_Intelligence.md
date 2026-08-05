@@ -1365,7 +1365,7 @@ Byzantine faults describe the failure mode in which a component of a distributed
 
 TML's Byzantine fault tolerance derives from the cryptographic authentication requirements that govern all inter-agent communications. A Sacred Zero resolution signal that is not signed by an HSM-backed key registered in the HybridShield registry is rejected at the receiving agent's Anchoring Lane. A Mandate clearance that is not verifiable against the Anchoring Lane's own Mandate vector evaluation is not accepted as authorization. A log record that does not produce the expected `logHash` when hashed is rejected by the Merkle batching subsystem.
 
-The practical Byzantine fault tolerance bound for TML's Hybrid Shield is f \< n/3, where n is the number of custodians (six) and f is the number of Byzantine custodians. With two Byzantine custodians (the maximum within the f \< n/3 bound for n=6), the minimum honest quorum of three custodians remains achievable from the four non-Byzantine custodians, maintaining key assembly availability while preventing Byzantine custodians from reconstructing keys without honest quorum cooperation.
+The practical Byzantine fault tolerance bound for TML's Hybrid Shield is f < n/3, where n is the number of seated Stewardship Custodians (11) and f is the number of Byzantine custodians. With three Byzantine custodians (the maximum within the f < n/3 bound for n=11), the minimum honest quorum of eight custodians (75% supermajority of 11, rounded up) remains achievable from the eight non-Byzantine custodians, maintaining key assembly availability while preventing Byzantine custodians from reconstructing keys without honest quorum cooperation.
 
 #### **7.3.3 Network Partition Behavior**
 
