@@ -506,7 +506,7 @@ The **technical implementation** employs multi-signature cryptographic schemes (
 
 Custodian authentication relies on **multi-factor hardware-backed identity**: FIDO2/WebAuthn security keys with attestation, biometric verification bound to secure enclaves, and geographic proof-of-presence through distributed consensus timing. The architecture explicitly rejects pure software-based authentication for custodial actions, recognizing that administrative override of governance itself represents the highest-value adversarial target.
 
-**Rotation and succession protocols** address custodian compromise or incapacity: annual key rotation ceremonies requiring 4/6 participation; dead-man switches triggering automatic key rotation if custodian fails to submit heartbeat attestations within 90-day windows; and Byzantine fault-tolerant consensus for custodian replacement (removing compromised custodians requires 5/6 agreement, ensuring malicious removal is harder than malicious inclusion).
+**Rotation and succession protocols** address custodian compromise or incapacity: 75% supermajority of seated custodians; dead-man switches triggering automatic key rotation if custodian fails to submit heartbeat attestations within 90-day windows; and Byzantine fault-tolerant consensus for custodian replacement (removing compromised custodians requires 5/6 agreement, ensuring malicious removal is harder than malicious inclusion).
 
 #### II.8.2 Software Dependence: Governance Interface Implementation
 
@@ -966,7 +966,7 @@ This section defines the **evolutionary path** from current software-implemented
 
 ### VI.2 Immutable Firmware Signing
 
-**Requirement**: Firmware updates require 4/6 custodian quorum signatures, with hardware verification preventing downgrade attacks (anti-rollback) and ensuring append-only update history.
+**Requirement**: 75% supermajority of seated custodians, with hardware verification preventing downgrade attacks (anti-rollback) and ensuring append-only update history.
 
 **Technical Specification**:
 - **Monotonic Counters**: Hardware-backed counters incrementing with each update; firmware images include counter value; hardware rejects images with counter values less than or equal to current.
