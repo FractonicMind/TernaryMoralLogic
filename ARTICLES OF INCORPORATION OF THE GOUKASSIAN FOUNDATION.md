@@ -617,7 +617,7 @@ At its organizational meeting, the Board shall authorize the creation of a crypt
 
 The time capsule shall be:
 
-* Encrypted using Shamir's Secret Sharing (7 shares, threshold 4);  
+* Encrypted using Shamir's Secret Sharing (N shares, threshold per seated Board composition);  
 * Distributed to the initial Board members;  
 * Subject to a Bitcoin OP\_CHECKLOCKTIMEVERIFY time-lock releasing on January 1, 2050;  
 * Designed to ensure that future generations can cryptographically verify the provenance and original intent of the TML framework.
