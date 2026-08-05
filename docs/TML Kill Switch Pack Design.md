@@ -1,5 +1,23 @@
 # **TML / TL KILL SWITCH PACK: POST-DEPLOYMENT MALICIOUS-USE AUTO-FREEZE ARCHITECTURE**
 
+**Constitutional Clarification: The Kill Switch and the No Switch Off Mandate**
+
+This document describes the system-level Epistemic Hold mechanism for TML deployments operating under hostile conditions. A question naturally arises: does a "Kill Switch" contradict TML's No Switch Off Immutable Mandate?
+
+It does not. The distinction is precise and constitutional:
+
+**No Switch Off** means: no operator, governance body, or state actor can make TML *forget* what it witnessed, destroy its evidentiary record, or prevent it from functioning as a constitutional witness. The blockchain anchors remain. The Moral Trace Logs remain. The chain of custody is intact.
+
+**The Kill Switch** means: when the system detects it is being used in a constitutionally prohibited way -- hardware tampering, constitutional recursion, cryptographic failure, ethical drift -- it refuses to proceed. The FROZEN state (S3) is not a shutdown. It is a system-scale Sacred Zero: an Epistemic Hold that halts execution while preserving all forensic evidence. The system freezes *into* TML, not *away from* it.
+
+The Goukassian Vow still governs in the FROZEN state. Logging continues. Anchoring continues. The constitutional record is protected.
+
+**Recovery authorization** follows the Tri-Cameral governance protocol. Unilateral unfreezing by any operator, administrator, or single institutional actor is constitutionally prohibited. Recovery requires:   
+- Stewardship Custodian involvement per [`governance/VETO_PROTOCOL.md`](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/governance/VETO_PROTOCOL.md)   
+- Mandatory timeout adjudication per [`ADVERSARIAL_RESPONSE_v1.md`](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/Adversarial_Survivability/ADVERSARIAL_RESPONSE_v1.md) Gap 1 protocol   
+- Full constitutional authority: [`governance/Tri_Cameral_Constitution.md`](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/governance/Tri_Cameral_Constitution.md)   
+
+ 
 ## **1.0 ARCHITECTURAL PREAMBLE AND THREAT MODEL**
 
 The architecture presented herein constitutes the mandatory "Kill Switch Pack" for the Ternary Moral Logic (TML) and Ternary Logic (TL) frameworks. Unlike traditional binary safety systems, which often prioritize availability over integrity (fail-open), this architecture enforces a "Constitutional Fail-Closed" paradigm. This document serves as the implementation guide for Systems Security Architects and Constitutional Safeguards Engineers tasked with deploying TML systems in environments where hostile insiders, state-level tampering, or ethical drift are credible threats.  
