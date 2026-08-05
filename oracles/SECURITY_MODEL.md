@@ -108,7 +108,7 @@ quorum_mechanics:
   key_rotation: "Quarterly via Blockchains-time-locked call" # ← updated
   slashing: "10% bond + public exposure for bad sig"
   anonymity: "Keys are pseudonymous; real-world identity optional"
-  multisig_backup: "3-of-5 social recovery for lost keys"
+  multisig_backup: "N-of-M social recovery per seated custodian composition"
   
 human_rights_oracle: "Same 7-of-9 for HR feeds"              # ← new
 earth_protection_oracle: "Same 7-of-9 for eco feeds"          # ← new
@@ -157,7 +157,7 @@ hardware_stack:
   backup: "SeedSigner offline device"
   airgap: "Never touches Internet; PSBT only"
   entropy: "TRNG + environmental noise + Blockchain hash"
-  shard_storage: "Shamir 3-of-5 split across continents"
+  shard_storage: "Shamir N-of-M split per seated custodian composition"
   
 ceremony:
   frequency: "Quarterly key rotation"
