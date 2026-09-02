@@ -4,7 +4,6 @@
 **Version**: 3.0 (Blockchain Oracle Architecture)  
 **Status**: Automated Discovery via Decentralized Oracles  
 **Human Requirement**: Zero (fully automated)  
-**Stewardship Custodians Involvement**: Recommended luxury after Year 5
 
 ---
 
@@ -320,10 +319,10 @@ contract MissedTreatyProtocol {
 ```yaml
 recommended_stewardship_enhancement:
   year_5_plus:
-    - "Cultural context for treaties" (oracles already translate)
-    - "Political interpretation" (math doesn't need politics)  
-    - "Diplomatic relations" (smart contracts don't need diplomacy)
-    - "Committee oversight" (Blockchain provides transparency)
+    - "Cultural context for treaties"
+    - "Political interpretation"  
+    - "Diplomatic relations" 
+    - "Committee oversight"
     
   reality_check:
     - 99% of treaties discovered by oracles first
