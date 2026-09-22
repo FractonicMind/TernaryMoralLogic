@@ -2,7 +2,6 @@
 
 **Author:** Lev Goukassian  
 **Affiliation:** Independent Researcher  
-**Contact:** leogouk@gmail.com  
 **Keywords:** AI Governance, EU AI Act, Accountability, Sacred Pause, Ternary Moral Logic, Ethics, Auditable AI, Immutable Logs
 
 ### 
