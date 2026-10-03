@@ -106,6 +106,16 @@ TML operationalizes emerging international standards for AGI/ASI safety:
 
 -----
 
+### 5. The Structural Contradiction of Software Containment
+
+The foundational argument for why software-based AI containment is architecturally 
+impossible against superintelligence, and the complete comparative analysis of TML 
+against all competing paradigms (TEEs, zkML, HEMs, Software Guardrails).
+
+- **Text:** [View Markdown](https://github.com/FractonicMind/TernaryMoralLogic/blob/main/AGI%20Hardware%20Governance/The_Structural_Contradiction_of_Software_Containment.md)
+
+-----
+
 ## 🛡️ Hybrid Shield Status: Active
 
 This repository is cryptographically anchored across a multi-chain architecture to ensure the **"No Log = No Action"** mandate. Any deviation from this anchored state will physically trigger a **Sacred Pause (0)** at the hardware level.
