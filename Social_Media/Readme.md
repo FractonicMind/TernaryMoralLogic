@@ -93,10 +93,10 @@ External evidence base includes: EU DSA (Articles 26, 34, 40, 51, 52, 66), EU AI
 
 ## Author
 
-**Lev Goukassian**
-Independent Researcher, AI Governance
-ORCID: [0009-0006-5966-1243](https://orcid.org/0009-0006-5966-1243)
-GitHub: [FractonicMind](https://github.com/FractonicMind)
+**Lev Goukassian**   
+Independent Researcher, AI Governance   
+ORCID: [0009-0006-5966-1243](https://orcid.org/0009-0006-5966-1243)   
+GitHub: [FractonicMind](https://github.com/FractonicMind)   
 
 *October 2026*
 
