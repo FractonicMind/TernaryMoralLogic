@@ -337,7 +337,7 @@ TML further generates direct economic value through mechanisms that ungoverned a
 **Architect:** Lev Goukassian   
 **ORCID:** [0009-0006-5966-1243](https://orcid.org/0009-0006-5966-1243)   
 **Document Status:** Active Constitutional Amendment   
-**Amends:** All four audit documents in this folder (February 2026 vintage) [https://github.com/FractonicMind/TernaryMoralLogic/tree/main/Dual_Latency_Architecture] (https://github.com/FractonicMind/TernaryMoralLogic/tree/main/Dual_Latency_Architecture)    
+**Amends:** All four audit documents in this folder (February 2026 vintage) [Dual-Lane_Latency_Architecture] (https://github.com/FractonicMind/TernaryMoralLogic/tree/main/Dual_Latency_Architecture)    
 **License:** CC BY 4.0
 
 ---
